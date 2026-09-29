@@ -1,0 +1,3005 @@
+{
+ "deck": "living-room",
+ "room": "Living Room",
+ "count": 69,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 17,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "LVR-001",
+   "title": "THE LIVING ROOM",
+   "type": "ROOM CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. EVERYBODY'S ROOM, NOBODY'S JOB YET.",
+   "objective": "The living room belongs to everybody, which is why nobody puts anything away in it by default. This card is the map and the order.",
+   "zones_in_order": [
+    "LVZ-001 Sofa and Seating Zone",
+    "LVZ-002 Coffee Table",
+    "LVZ-003 Media Center",
+    "LVZ-004 Bookshelves and Display",
+    "LVZ-005 Side Tables and Lighting",
+    "LVZ-006 Floor and Circulation Path"
+   ],
+   "start_here": "LVZ-006 Floor and Circulation Path. Do the Floor and Circulation Path first, with a laundry basket in your hand. Everything on the floor rides the basket out, and you get an honest look at how much of this room's mess is shoes, school bags and toys from other rooms just visiting.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your living room. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, give each person the zone that annoys them most; this is the one room every person in the house actually uses.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do LVA-015 The Quarterly Behind-the-Furniture Safety Walk before any rebuild. It takes thirty minutes and covers the anchors, the hinges, the outlets and the walked route.",
+   "related": {
+    "contents": "LVZ-001 to LVZ-006, LVF-001 to LVF-018, the shared root causes in ops/root_causes.py, LVA-001 to LVA-015, LVS-001 to LVS-006, LVE-001 to LVE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole tidy living room in its settled state, a sofa and coffee table, a media center, a bookshelf, a side table with a lamp, and a clear floor route all visible in one frame",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "LVZ-001",
+   "title": "SOFA AND SEATING ZONE",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "order": 1,
+   "difficulty": 2,
+   "tagline": "EVERY SEAT SITTABLE. THROWS IN ONE BASKET. REMOTES IN ONE TRAY.",
+   "objective": "Somewhere every person in the house can sit down without first moving something.",
+   "callouts": [
+    "Every seat cushion squared with nothing sitting on it",
+    "Throws folded to one size, all in one basket at the end of the sofa",
+    "At most one decorative cushion left per seat",
+    "Both remotes standing in a tray on the near arm",
+    "The recliner footrest fully lowered and clear",
+    "Bare floor in front of the sofa, nothing tucked underneath"
+   ],
+   "done_looks_like": "Every seat on the sofa and every armchair is sittable without lifting a single thing off it. Throws folded to one size in one basket, at most one cushion per seat left in place, and both remotes in the tray on the arm with batteries that work.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Recliner footrests and sofa bed frames close hard on fingers and small feet, especially with a child sitting on the floor in front of the chair."
+    },
+    {
+     "question": "Fall",
+     "text": "A throw blanket hanging off the sofa onto the floor is the classic night-time trip, because you stand up from that exact spot in the dark."
+    }
+   ],
+   "the_call": {
+    "title": "The pillows you move to sit down",
+    "text": "Count the decorative pillows you shift onto the floor every single time you sit. Those are not seating, and they are not decor either, because decor stays where it is put. Keep only the number that can stay in place while a person sits, which is usually one per armchair and often zero on the sofa people flop on. The honest reason you have been avoiding this is that somebody bought them for you. Keep one of that set and let the other three go without a ceremony."
+   },
+   "supplies": [
+    "Compact vacuum with attachments (upholstery and crevice tools)",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Portable cleaning caddy",
+    "Upholstery spot cleaner for a set-in stain (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-001",
+    "actions": [
+     "LVA-001",
+     "LVA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a sofa and armchair with every seat clear and sittable, throws folded into one basket at the end of the sofa, one cushion per seat, and both remotes standing in a tray on the near arm",
+    "must_show": [
+     "Every seat cushion squared with nothing sitting on it",
+     "Throws folded to one size, all in one basket at the end of the sofa",
+     "At most one decorative cushion left per seat",
+     "Both remotes standing in a tray on the near arm",
+     "The recliner footrest fully lowered and clear",
+     "Bare floor in front of the sofa, nothing tucked underneath"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVZ-002",
+   "title": "COFFEE TABLE",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "order": 2,
+   "difficulty": 1,
+   "tagline": "ONE TRAY. FOUR COASTERS. THE WOOD SHOWING.",
+   "objective": "A small shared surface for whatever is happening right now, and nothing that is not.",
+   "callouts": [
+    "One tray holding exactly four coasters",
+    "The remote currently in use resting on the tray",
+    "At most one book beside the tray",
+    "At most one small plant beside the tray",
+    "Bare wood or glass showing across most of the top",
+    "No mug, cable, or piece of post anywhere on the surface"
+   ],
+   "done_looks_like": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it. No mugs, no charging cables, no post, and the wood or glass showing across most of the top.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Glass tops and hard square corners sit at head height for a child who is learning to walk, and the edge of a coffee table is where those falls land."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A candle on this table is surrounded by throws, magazines and paper, and it is the surface most often left burning when everyone goes to bed."
+    }
+   ],
+   "the_call": {
+    "title": "The book you are in the middle of",
+    "text": "There are four books on this table and you are reading one. The other three are there because putting them away feels like admitting you stopped. Here is the rule that settles it: check the bookmark. If it has not moved in two weeks, you are not reading that book, you are storing it, and storage happens on the shelf. One book per person stays on the table. This is not a judgement on the book, and you can carry it back down the moment you actually open it again."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Streak-free glass cleaner for a glass top (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-002",
+    "actions": [
+     "LVA-003",
+     "LVA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a coffee table with one tray holding four coasters and a remote, a single book and a small plant beside it, bare wood showing across most of the surface",
+    "must_show": [
+     "One tray holding exactly four coasters",
+     "The remote currently in use resting on the tray",
+     "At most one book beside the tray",
+     "At most one small plant beside the tray",
+     "Bare wood or glass showing across most of the top",
+     "No mug, cable, or piece of post anywhere on the surface"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVZ-003",
+   "title": "MEDIA CENTER",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "order": 3,
+   "difficulty": 3,
+   "tagline": "EVERY CABLE LABELLED. ONE BIN FOR CONTROLLERS. CLEAR AIR ON THE VENTS.",
+   "objective": "Keep the television, sound and consoles working, cool and cabled so a fault is findable.",
+   "callouts": [
+    "A cable bundle with a visible label at both ends",
+    "One labelled power strip",
+    "A hand's gap of clear air around the amplifier vents",
+    "The same gap of clear air around the console vents",
+    "One ventilated bin holding every controller and remote",
+    "The television anchored to the wall or the unit"
+   ],
+   "done_looks_like": "Every cable labelled at both ends, running in one bundle to a single labelled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Blocked console and amplifier vents, dust packed on the back of the television, and one power strip plugged into another are the fire risks here, and all three are hidden behind the unit."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unanchored television on a low unit tips forward when a child pulls on the edge or climbs the shelf below it."
+    }
+   ],
+   "the_call": {
+    "title": "The dead electronics shelf",
+    "text": "Somewhere in this unit is a working device nobody has switched on in a year, and a box of cables kept because they might fit something. You have avoided this because the devices cost real money and letting them go feels like admitting the money is gone. The money is already gone. The rule: power each device on now. If it does not boot, or it boots and nobody in the house asks for it within the month, it goes to recycling or resale this week. For a cable, name the device it serves out loud before you finish picking it up, or it leaves, because an unnamed cable will still be unnamed next year."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments (brush head)",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Small detail brush for the vent slots (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-003",
+    "actions": [
+     "LVA-005",
+     "LVA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a media console with a bundle of cables labelled at both ends running to one labelled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote",
+    "must_show": [
+     "A cable bundle with a visible label at both ends",
+     "One labelled power strip",
+     "A hand's gap of clear air around the amplifier vents",
+     "The same gap of clear air around the console vents",
+     "One ventilated bin holding every controller and remote",
+     "The television anchored to the wall or the unit"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVZ-004",
+   "title": "BOOKSHELVES AND DISPLAY",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "A HAND'S WIDTH OF SPACE. A BOOKEND CLOSES EACH GROUP.",
+   "objective": "Hold the books you will genuinely open again, and a small number of objects you actually want to look at.",
+   "callouts": [
+    "A hand's width of empty shelf space at one end of a row",
+    "Books standing upright between bookends",
+    "Nothing stacked flat on top of the upright books",
+    "Frames and objects gathered into two or three groups",
+    "The unit visibly strapped to the wall",
+    "Heavy or stone objects sitting on the lowest shelves"
+   ],
+   "done_looks_like": "Each shelf has a hand's width of empty space at one end, books standing upright between bookends with nothing stacked flat on top of them, frames and objects gathered in two or three groups instead of spaced evenly along every shelf, and a strap running from the top of the unit into the wall.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A tall bookcase that is not strapped to the wall tips forward when a child climbs the lower shelves, and it lands loaded."
+    },
+    {
+     "question": "Fall",
+     "text": "Reaching the top shelf from the sofa arm or a dining chair is how people fall in this room, and it happens with an armful of books already in one hand."
+    }
+   ],
+   "the_call": {
+    "title": "Books you keep to be the person who read them",
+    "text": "A shelf is partly an argument about who you are, and that is why sorting one is uncomfortable. Separate the two questions. First: would you open this again, or press it into a friend's hand and say read this? If yes, it stays, no further debate. If no, ask the second question honestly: are you keeping it so a visitor sees it? That is a fine reason for two or three books and a bad reason for forty. Unread books get a single shelf, capped between two bookends. When a new one arrives and it does not fit, one leaves. Nobody is grading you on the books you did not get to."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Soft dusting brush for carved objects (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-004",
+    "actions": [
+     "LVA-007",
+     "LVA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a bookshelf unit strapped to the wall, books standing upright between bookends with a hand's width of empty space at one end of each shelf, frames and objects gathered into a few groups, heavy pieces on the lowest shelf",
+    "must_show": [
+     "A hand's width of empty shelf space at one end of a row",
+     "Books standing upright between bookends",
+     "Nothing stacked flat on top of the upright books",
+     "Frames and objects gathered into two or three groups",
+     "The unit visibly strapped to the wall",
+     "Heavy or stone objects sitting on the lowest shelves"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVZ-005",
+   "title": "SIDE TABLES AND LIGHTING",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "FOUR ITEMS ON THE TRAY. THE CORD CLIPPED DOWN THE LEG.",
+   "objective": "Put a light, a drink and one or two personal things within reach of the chair without turning the table into a nightstand.",
+   "callouts": [
+    "One small tray holding no more than four items",
+    "A coaster sitting under a glass",
+    "A lit, clean lamp bulb",
+    "The lamp cord clipped down the table leg",
+    "No cable crossing the floor toward the chair",
+    "The tabletop otherwise bare"
+   ],
+   "done_looks_like": "One small tray per table with no more than four items on it, a coaster under the glass, a bulb that lights and has been wiped, and the lamp cord clipped down the table leg so no cable crosses the floor to the chair.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Loose tablets in an open dish or an unlidded pill box sit at exactly grab height for a small child standing beside the chair."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A glass of water next to the lamp base or a phone charging on the same small table means one knocked drink reaches live contacts."
+    }
+   ],
+   "the_call": {
+    "title": "The medicine beside the chair",
+    "text": "The tablets are on this table because taking them is easier when they are in reach of where you sit, and that is a real reason, not laziness. It is also how a bottle of painkillers ends up at knee height in the room where visiting children play. The rule: the bottle lives in a cupboard, and what sits on the side table is a single lidded weekly pill case, closed. You keep the reach that makes you take them, and you lose the open supply. If anyone under five ever visits this house, the case goes in the drawer rather than on the top, and the drawer gets a catch."
+   },
+   "supplies": [
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass cleaner for a glass top (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-005",
+    "actions": [
+     "LVA-009",
+     "LVA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a side table with a small tray holding four items including a coastered glass, a lit clean lamp with its cord clipped down the table leg, no cable crossing the floor",
+    "must_show": [
+     "One small tray holding no more than four items",
+     "A coaster sitting under a glass",
+     "A lit, clean lamp bulb",
+     "The lamp cord clipped down the table leg",
+     "No cable crossing the floor toward the chair",
+     "The tabletop otherwise bare"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVZ-006",
+   "title": "FLOOR AND CIRCULATION PATH",
+   "type": "ZONE CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "order": 6,
+   "difficulty": 2,
+   "tagline": "FULL WIDTH, DOOR TO DOOR. NOTHING ON THE FLOOR BUT THE RUG.",
+   "objective": "Let anyone cross this room in the dark, carrying something, without touching anything.",
+   "callouts": [
+    "A continuous clear route from doorway to doorway",
+    "The route wide enough for two people to pass",
+    "Rug edges lying flat on a grippy pad",
+    "No cord crossing the route",
+    "Baskets pushed back against the wall, out of the route",
+    "Nothing on the floor but furniture legs and the rug"
+   ],
+   "done_looks_like": "A continuous clear route from the doorway past the sofa to the other exit, wide enough for two people to pass and for the vacuum to run through without being lifted. Rug edges lying flat on a grippy pad, no cord crossing the route, and nothing on the floor but furniture legs, the rug, and baskets pushed back against the wall.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "A curled rug corner, a lamp cord crossing the route, or a toy left where you step are the three falls in this room, and all three happen in the dark to the first person up."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A route narrowed below full width means someone carrying a full basket clips a table corner or a furniture leg on the way past."
+    }
+   ],
+   "the_call": {
+    "title": "Whether there is simply too much furniture",
+    "text": "You keep tidying this floor and it keeps failing, and the reason may not be the clutter. Measure the narrowest gap on your route with a tape. If two adults cannot pass, or you cannot get through carrying a full laundry basket in both hands without turning sideways, the room holds more furniture than floor. The avoided decision is that one piece has to leave, and it is usually the spare armchair nobody chooses or the second side table that came with a set. Choose by use, not by what it cost: whichever piece was sat on or set down on least this month is the one that goes. A room you can walk through beats a room with enough seating for a party you host once a year."
+   },
+   "supplies": [
+    "Floor-material-compatible cleaner",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "LVS-006",
+    "actions": [
+     "LVA-011",
+     "LVA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a living room floor with a continuous clear route from one doorway to another, rug edges lying flat on a grippy pad, no cord crossing the path, baskets pushed back against the wall",
+    "must_show": [
+     "A continuous clear route from doorway to doorway",
+     "The route wide enough for two people to pass",
+     "Rug edges lying flat on a grippy pad",
+     "No cord crossing the route",
+     "Baskets pushed back against the wall, out of the route",
+     "Nothing on the floor but furniture legs and the rug"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "LVF-001",
+   "title": "THE LAUNDRY THAT LANDED ON THE SOFA",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Someone has to move a pile of folded laundry, a stray magazine, or a third throw blanket before they can sit down on the sofa.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The laundry doesn't have anywhere else to land on its way through the house, so the sofa catches it",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "A throw put down doesn't read as clutter, it reads as cozy, so nobody treats it as something to deal with",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Clearing the sofa before bed isn't actually anyone's job, it depends on who's up last",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-001",
+    "root_causes": [
+     "KC-002",
+     "RC-017",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sofa cushion with a small pile of folded laundry and a magazine sitting on the seat, a second throw blanket bunched at the far end",
+    "must_show": [
+     "Someone has to move a pile of folded laundry, a stray magazine, or a third throw blanket before they can sit down on the sofa."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-002",
+   "title": "THE REMOTE DOWN THE CUSHION SEAM",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The remotes have migrated between three different spots this week, and half the time somebody's digging down the back of the cushions for one.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The remote tray sits near the television instead of near the seat people actually use, so it never stays there",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Everyone has a different idea of where the remotes should live, so they end up wherever the last person set them down",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Once a remote slides down the seam, nobody wants to dig two hands deep into the cushions for it, so it stays lost until somebody needs it",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-001",
+    "root_causes": [
+     "KC-003",
+     "KC-008",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand reaching down into a sofa cushion seam searching for a remote, an empty tray sitting near the television at the far end of the room",
+    "must_show": [
+     "The remotes have migrated between three different spots this week, and half the time somebody's digging down the back of the cushions for one."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-003",
+   "title": "THE FOOTREST NOBODY CHECKS BEFORE CLOSING",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The recliner footrest has pinched somebody's fingers before, but nobody's actually agreed on checking the floor first before it closes.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no rule to look at the floor before closing the footrest or the hinge",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Checking before closing isn't anyone's specific job, it depends whether an adult happens to be nearby",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "A throw draped over the recliner arm often hides the release lever and whatever's underneath it until you're already pulling it",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-001",
+    "root_causes": [
+     "KC-010",
+     "RC-013",
+     "KC-005"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a recliner footrest partly lowered with a throw blanket draped over the arm covering the release lever, a small child's toy sitting on the floor just in front of it",
+    "must_show": [
+     "The recliner footrest has pinched somebody's fingers before, but nobody's actually agreed on checking the floor first before it closes."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-004",
+   "title": "THE COASTERS IN THE FAR CORNER",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are coasters sitting untouched in the far corner of this table while everyone still sets a mug straight on the wood.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The coasters aren't actually within reach of the seats people use, so grabbing one means leaning across the table",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody's agreed that reaching for a coaster is actually required before a mug goes down",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Skipping the coaster has never actually cost anything yet, so there's no moment that makes anyone stop and grab one",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-002",
+    "root_causes": [
+     "KC-004",
+     "KC-008",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a coffee table with a ring mark left by a mug set directly on the wood, four coasters sitting untouched in the corner of the tray furthest from the seats",
+    "must_show": [
+     "There are coasters sitting untouched in the far corner of this table while everyone still sets a mug straight on the wood."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-005",
+   "title": "THE MAGAZINES UNDER THE ONE BOOK YOU'RE READING",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Old menus and magazines don't obviously look like rubbish once they've sat there a while, so nobody flags them",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Deciding whether to keep or recycle each one is its own small decision that keeps getting put off",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Nobody's specifically assigned to clear this table, so paper just accumulates until somebody's bothered enough",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-002",
+    "root_causes": [
+     "RC-017",
+     "RC-015",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a stack of old magazines and takeaway menus on a coffee table with a single bookmarked book sitting on top of the pile",
+    "must_show": [
+     "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-006",
+   "title": "THE CANDLE TOO CLOSE TO THE MAGAZINE PILE",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A candle sits lit on this table surrounded by throws and a stack of magazines, close enough that nobody's actually thought about what's next to it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no rule about keeping paper and fabric clear of the candle, so it just goes wherever looks nice that evening",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The pile of magazines built up around the candle gradually, so the closeness crept up without anyone noticing",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Lighting the candle happens right before people sit down, in a rush, so clearing the space around it gets skipped",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-002",
+    "root_causes": [
+     "KC-010",
+     "RC-017",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a lit candle burned close to its rim sitting on a coffee table right beside a stack of magazines and a folded throw blanket",
+    "must_show": [
+     "A candle sits lit on this table surrounded by throws and a stack of magazines, close enough that nobody's actually thought about what's next to it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-007",
+   "title": "THE CABLE NOBODY CAN NAME",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There's a coil of cables behind the television unit, and nobody can say which device half of them actually belong to.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Cables never get labelled when they go in, so a year later nobody remembers what any of them are for",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Old devices got swapped out over the years, but their cables never left with them",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Reaching behind the heavy unit to check is enough hassle that it just doesn't happen",
+     "root_cause": "KC-006"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-003",
+    "root_causes": [
+     "KC-008",
+     "KC-001",
+     "KC-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tangled coil of cables behind a television unit, one cable clearly unplugged at both ends and coiled loose among the rest",
+    "must_show": [
+     "There's a coil of cables behind the television unit, and nobody can say which device half of them actually belong to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-008",
+   "title": "THE CONTROLLER BEHIND THE UNIT AGAIN",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The remote and every game controller are stashed in three different spots, and at least one has slid down behind the unit again.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The bin used to sit on top of the unit, exactly where things slide straight off the back",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Everybody who plays has their own idea of where their controller goes back to",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Nobody notices a remote's batteries are dying until the television stops responding mid-show",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-003",
+    "root_causes": [
+     "KC-003",
+     "KC-012",
+     "KC-011"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a game controller wedged in the gap behind a media unit, a second remote sitting loose on top of the console instead of in a bin",
+    "must_show": [
+     "The remote and every game controller are stashed in three different spots, and at least one has slid down behind the unit again."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-009",
+   "title": "THE DUST PACKED BEHIND THE VENTS",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Dust has built up thick behind the console and amplifier vents, and nobody's checked whether it's actually blocking the airflow.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's tucked behind the unit where you genuinely can't see it without pulling everything out",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Reaching back there to actually clean it costs more effort than the rest of the room combined, so it gets skipped",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "There's no scheduled moment that reminds anyone to check behind the unit",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-003",
+    "root_causes": [
+     "KC-005",
+     "RC-016",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a thick layer of dust visible across the back vents of an amplifier and a television console, seen from behind the pulled-out unit",
+    "must_show": [
+     "Dust has built up thick behind the console and amplifier vents, and nobody's checked whether it's actually blocking the airflow."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-010",
+   "title": "THE MANUAL FOR AN APPLIANCE YOU DON'T OWN",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There's a duplicate copy of a book, an old appliance manual for something you don't own anymore, and a water-stained paperback all still sitting on this shelf.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of these has actually been looked at again since it first landed on the shelf",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Getting rid of a book that was a gift, even one you'll never open, feels like getting rid of the person who gave it",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "There's no rule for what earns a spot on this shelf, so whatever arrives just stays",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-004",
+    "root_causes": [
+     "RC-017",
+     "RC-014",
+     "KC-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bookshelf with a duplicate paperback, an old appliance instruction manual, and a water-stained book standing together among the other titles",
+    "must_show": [
+     "There's a duplicate copy of a book, an old appliance manual for something you don't own anymore, and a water-stained paperback all still sitting on this shelf."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-011",
+   "title": "SCANNING EVERY SPINE FOR ONE BOOK",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "You know the book you want is somewhere on this shelf, but scanning every spine still takes a few minutes to actually find it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Books are grouped by colour or by height instead of by subject, so finding one means reading every spine in the row",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "There's no bookend or marker breaking the shelf into groups, so one long row of spines all looks the same",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "New books just get pushed in wherever there's a gap instead of into their actual group",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-004",
+    "root_causes": [
+     "KC-004",
+     "KC-005",
+     "KC-003"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hand scanning a packed row of book spines arranged by colour rather than subject, no bookend or divider breaking up the row",
+    "must_show": [
+     "You know the book you want is somewhere on this shelf, but scanning every spine still takes a few minutes to actually find it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-012",
+   "title": "THE BOOKCASE THAT'S NEVER BEEN STRAPPED DOWN",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "This bookcase has never actually been strapped to the wall, and its lower shelves sit at exactly the height a toddler would use to climb.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Strapping it to the wall is a bigger job than a quick tidy, so it keeps getting pushed to another day",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "It's stood there unstrapped so long the risk doesn't register day to day",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Securing furniture like this has never been anyone's specific job in this house",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-004",
+    "root_causes": [
+     "KC-009",
+     "RC-017",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a tall bookcase standing away from the wall with no visible strap or bracket, its lower shelves at the climbing height of a small child",
+    "must_show": [
+     "This bookcase has never actually been strapped to the wall, and its lower shelves sit at exactly the height a toddler would use to climb."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-013",
+   "title": "THE DISH OF THINGS NOBODY'S TOUCHED IN MONTHS",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The dish beside the chair is full of things nobody's touched in months: old coins, a dead pen, a charger for a phone nobody in the house owns anymore.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "This table reads as one person's personal property, so nobody else in the house feels able to clear it",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "The odds and ends built up slowly enough that the pile stopped looking like something to deal with",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "None of these small things has ever gotten an actual decision, so they just sit in the dish",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-005",
+    "root_causes": [
+     "RC-013",
+     "RC-017",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small dish beside an armchair holding loose coins, a dried-out pen, and a phone charger with no matching phone anywhere in sight",
+    "must_show": [
+     "The dish beside the chair is full of things nobody's touched in months: old coins, a dead pen, a charger for a phone nobody in the house owns anymore."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-014",
+   "title": "THE TABLETS WITHIN A CHILD'S REACH",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Loose tablets sit in an open dish on this table, right at the height a small child standing beside the chair would reach.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no rule that medicine goes in a lidded case instead of an open dish",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "It's easier to take them when they're already sitting out in reach of the chair than to fetch them from a cupboard",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody's actually checked this table since a young child started visiting the house",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-004",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open dish holding loose tablets sitting on a side table at the exact height a small child standing beside the chair would reach",
+    "must_show": [
+     "Loose tablets sit in an open dish on this table, right at the height a small child standing beside the chair would reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-015",
+   "title": "THE CORD CROSSING THE WALKED LINE",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The lamp cord and the phone charger cord both cross the floor between the chair and the door instead of running down the table leg.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's no clip holding either cord to the table leg, so they fall wherever gravity takes them",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nobody's actually agreed the cord has to stay off that specific path",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's the same walked line every night, so a cord crossing it has stopped registering",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-005",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a lamp cord and a phone charger cord both running loose across a floor between an armchair and a doorway, neither clipped to the table leg",
+    "must_show": [
+     "The lamp cord and the phone charger cord both cross the floor between the chair and the door instead of running down the table leg."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-016",
+   "title": "THE BOX THAT'S SAT BESIDE THE SOFA FOR WEEKS",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A box that arrived weeks ago is still sitting beside the sofa, along with today's shoes and yesterday's school bag.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing on this floor has anywhere else assigned to go, so it just stays where it landed",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The box isn't obviously blocking anything, so it's stopped registering as something in the way",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "Whatever's inside the box is an unmade decision, not really clutter, so it just sits",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-006",
+    "root_causes": [
+     "KC-002",
+     "RC-017",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a cardboard box sitting on the floor beside a sofa alongside a pair of shoes and a school bag, all three clearly settled in rather than just dropped",
+    "must_show": [
+     "A box that arrived weeks ago is still sitting beside the sofa, along with today's shoes and yesterday's school bag."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-017",
+   "title": "TURNING SIDEWAYS TO CARRY THE LAUNDRY BASKET THROUGH",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The walking route has narrowed enough that carrying a full laundry basket through it means turning sideways or clipping a table corner.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There's genuinely more furniture in this room than the floor space allows for a full-width route",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "The route only ever gets checked by eye from the doorway, never by actually walking it with something in your hands",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's narrowed so gradually that nobody's actually noticed it's gotten worse",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-006",
+    "root_causes": [
+     "KC-007",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a person carrying a full laundry basket sideways through a narrow gap between a sofa and a side table, barely clearing both",
+    "must_show": [
+     "The walking route has narrowed enough that carrying a full laundry basket through it means turning sideways or clipping a table corner."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "LVF-018",
+   "title": "THE RUG CORNER EVERYONE STEPS AROUND",
+   "type": "FRICTION CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A rug corner has curled up and a cord crosses the route, and both have been like that long enough that everyone's just learned to step around them.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody's checked the rug pad or the cord path specifically, it only gets noticed when someone nearly trips",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "Stepping around them has become automatic, so they've stopped registering as hazards",
+     "root_cause": "RC-017"
+    },
+    {
+     "answer": "There's no grippy pad under the rug to actually keep the corner flat in the first place",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your living room, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "LVZ-006",
+    "root_causes": [
+     "RC-013",
+     "RC-017",
+     "KC-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a curled-up rug corner on a living room floor with a lamp cord crossing directly over the walked route beside it",
+    "must_show": [
+     "A rug corner has curled up and a cord crosses the route, and both have been like that long enough that everyone's just learned to step around them."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-007"
+    ],
+    "actions": [
+     "LVA-005",
+     "LVA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a media console with a tangle of extra cables coiled behind it, far more than the two devices sitting on the shelf could ever need",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-001",
+     "LVF-015",
+     "LVF-016"
+    ],
+    "actions": [
+     "LVA-001",
+     "LVA-010",
+     "LVA-011",
+     "LVA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stray phone charger cord lying loose across a living room floor with no clip or tray anywhere near it",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-002",
+     "LVF-008",
+     "LVF-011"
+    ],
+    "actions": [
+     "LVA-002",
+     "LVA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a television remote sitting on a shelf across the room, out of reach of the sofa it controls",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-002",
+     "LVF-004",
+     "LVF-011",
+     "LVF-014"
+    ],
+    "actions": [
+     "LVA-004",
+     "LVA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching down into a sofa cushion seam, feeling for something instead of finding it in a tray",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-003",
+     "LVF-009",
+     "LVF-011"
+    ],
+    "actions": [
+     "LVA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a section of bookshelf with book spines packed so tightly together that no single title stands out from the row",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-007"
+    ],
+    "actions": [
+     "LVA-006",
+     "LVA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a media unit pulled slightly from the wall, revealing a narrow gap behind it that a hand can barely fit into",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-017"
+    ],
+    "actions": [
+     "LVA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a living room floor with a narrow walking gap left between two pieces of furniture standing close together",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-002",
+     "LVF-004",
+     "LVF-007",
+     "LVF-010",
+     "LVF-015",
+     "LVF-017"
+    ],
+    "actions": [
+     "LVA-002",
+     "LVA-005",
+     "LVA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a coffee table with no tray or marked boundary anywhere to show where clutter is allowed to sit",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-004",
+     "LVF-006",
+     "LVF-009",
+     "LVF-012",
+     "LVF-014"
+    ],
+    "actions": [
+     "LVA-004",
+     "LVA-008",
+     "LVA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an unlit candle burned close to its rim on a coffee table with no clock or calendar anywhere nearby marking when it was last checked",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-003",
+     "LVF-006",
+     "LVF-014",
+     "LVF-018"
+    ],
+    "actions": [
+     "LVA-004",
+     "LVA-010",
+     "LVA-012",
+     "LVA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an open dish of loose tablets sitting on a low side table at the height of a small child standing beside a chair",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-008"
+    ],
+    "actions": [
+     "LVA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a television remote lying still on a shelf, its battery compartment door slightly open",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-008"
+    ],
+    "actions": [
+     "LVA-006"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two game controllers left in two different spots on the same media console, neither in a shared bin",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-001",
+     "LVF-003",
+     "LVF-005",
+     "LVF-012",
+     "LVF-013",
+     "LVF-018"
+    ],
+    "actions": [
+     "LVA-002",
+     "LVA-008",
+     "LVA-009",
+     "LVA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a curled rug corner on a living room floor with nobody nearby and no mark showing whose job it is to fix it",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-010"
+    ],
+    "actions": [
+     "LVA-007"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shelf of inherited books and framed photographs crowding out the working reference titles beside them",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-005",
+     "LVF-013",
+     "LVF-016"
+    ],
+    "actions": [
+     "LVA-003",
+     "LVA-009",
+     "LVA-011",
+     "LVA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small stack of old magazines sitting on a coffee table beside a single bookmarked book",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-009"
+    ],
+    "actions": [
+     "LVA-006",
+     "LVA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand reaching behind a media console into a narrow, dusty gap tight against the wall",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "LVF-001",
+     "LVF-005",
+     "LVF-006",
+     "LVF-010",
+     "LVF-012",
+     "LVF-013",
+     "LVF-015",
+     "LVF-016",
+     "LVF-017",
+     "LVF-018"
+    ],
+    "actions": [
+     "LVA-001",
+     "LVA-003",
+     "LVA-007",
+     "LVA-012",
+     "LVA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a room with a folded throw draped over a sofa arm and a box sitting on the floor beside it, both clearly long settled in",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "LVA-001",
+   "title": "CLEAR EVERY SEAT AND SORT BY WHERE IT GOES",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Pull everything off the seats and dig the seams out, sorting what comes off into leaves-the-room, goes-in-the-wash, and lives-here.",
+   "why_it_matters": "Laundry and stray paper never announce themselves as clutter here, they just read as warmth, so the sofa only clears when someone actually sorts by where each thing goes.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a basket for lives-here items",
+    "a laundry hamper"
+   ],
+   "steps": [
+    "Pull everything off the seats and dig the seams out: the laundry that migrated here, the second and third throw blanket, the magazines wedged behind the armrest, the coins and hair ties down the back. Sort into leaves-the-room, goes-in-the-wash, and lives-here.",
+    "Carry the wash pile to the hamper and the leaves-the-room pile to its actual room, right now.",
+    "Fold the throws to one size and set them in the basket at the end of the sofa."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-017"
+    ],
+    "zone": "LVZ-001",
+    "standard": "LVS-001"
+   },
+   "victory_condition": "Every seat is sittable without moving anything, and the throws are folded in one basket.",
+   "next_card": "LVS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a sofa with every cushion squared and sittable, folded throws sitting in a basket at the end, a small labelled laundry basket standing just outside the room",
+    "must_show": [
+     "Every seat is sittable without moving anything, and the throws are folded in one basket."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-002",
+   "title": "MOVE THE REMOTE TRAY AND WRITE THE BASKET RULE",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move the remote tray to the arm people actually reach from while sitting, and write the basket's own rule where it can be read.",
+   "why_it_matters": "A tray near the television instead of near the seat gets skipped every time, and a rule nobody wrote down is a preference the last person out has to guess at.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a small tray",
+    "a label or tag",
+    "a marker"
+   ],
+   "steps": [
+    "Move the remote tray onto the arm nearest the seat people actually sit in, not the arm nearest the television.",
+    "Write the standard on a tag and tie it to the throw basket: throws folded in, nothing stored on a seat.",
+    "Say out loud who the nightly square-up belongs to: whoever turns the lamp off, every night, not the same person twice in a row."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-008",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-008",
+     "RC-013"
+    ],
+    "zone": "LVZ-001",
+    "standard": "LVS-001"
+   },
+   "victory_condition": "The remote tray sits on the arm people actually reach from, and the basket carries a written rule naming what belongs in it.",
+   "next_card": "LVA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a remote tray sitting on the near arm of a sofa within easy reach of the seat, a small tag tied to a folded-throw basket beside it",
+    "must_show": [
+     "The remote tray sits on the arm people actually reach from, and the basket carries a written rule naming what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-003",
+   "title": "CLEAR THE TOP TO WHAT YOU USED IN TWO DAYS",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the whole coffee table top onto the floor and put back only what somebody used in the last two days.",
+   "why_it_matters": "A magazine or a burned-down candle stub never looks urgent on its own, so the only test that actually clears this table is judging the whole top at once.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a recycling bin"
+   ],
+   "steps": [
+    "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
+    "Recycle the paper pile and return the tray to its spot within reach of the sofa.",
+    "Set back only the four coasters, the remote in use, and at most one book or plant."
+   ],
+   "root_causes": [
+    "RC-017",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-017",
+     "RC-015"
+    ],
+    "zone": "LVZ-002",
+    "standard": "LVS-002"
+   },
+   "victory_condition": "The table holds four coasters, the remote in use, and at most one book or plant, nothing else.",
+   "next_card": "LVS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a coffee table cleared to a tray with four coasters, a remote, and a single book, a small pile of recycled magazines and menus set aside on the floor",
+    "must_show": [
+     "The table holds four coasters, the remote in use, and at most one book or plant, nothing else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-004",
+   "title": "SET THE FOUR-COASTER TRAY AND MOVE THE CANDLE",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Set the tray within reach of the sofa with exactly four coasters on it, and give the candle a hand's width of clear space on every side.",
+   "why_it_matters": "A coaster you have to lean across the table for gets skipped, and a candle surrounded by throws and magazines is the wrong neighbourhood for an open flame.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "four coasters",
+    "the tray",
+    "a heatproof mat for the candle"
+   ],
+   "steps": [
+    "Set the tray on the side of the table nearest the sofa, with the four coasters sitting on it within an arm's reach of every seat.",
+    "Move the candle onto its own mat with a clear hand's width of space on every side, away from the magazine pile.",
+    "Agree the rule out loud: if it does not fit on the tray, it does not live on the table."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-010",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-004",
+     "KC-010",
+     "KC-009"
+    ],
+    "zone": "LVZ-002",
+    "standard": "LVS-002"
+   },
+   "victory_condition": "Four coasters sit on the tray within reach of the sofa, and the candle burns with nothing flammable within a hand's reach.",
+   "next_card": "LVA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a coffee table tray holding four coasters within arm's reach of a sofa, a candle sitting alone on its own mat with clear space on every side",
+    "must_show": [
+     "Four coasters sit on the tray within reach of the sofa, and the candle burns with nothing flammable within a hand's reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-005",
+   "title": "NAME EVERY CABLE AND DECIDE ITS DISCS",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Unplug and lay out every cable, name the device each one serves, and give every disc and game one decision.",
+   "why_it_matters": "A cable that cannot be named out loud is almost always feeding a device the house no longer owns, and it only leaves once someone actually asks.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a bag for electronics recycling"
+   ],
+   "steps": [
+    "Unplug and lay out every cable, then name the device each one serves. The composite leads, the disc player nobody has loaded in a year, the streaming stick from two televisions ago and the charger with the old connector all leave. Discs and games get one decision each: sell, lend, or recycle.",
+    "Bag anything leaving for electronics recycling.",
+    "Reconnect only the cables that named a real device still in the room."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "KC-008"
+    ],
+    "zone": "LVZ-003",
+    "standard": "LVS-003"
+   },
+   "victory_condition": "Every remaining cable is labelled at both ends and runs to a device you can name.",
+   "next_card": "LVS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a media unit with every cable laid out and reconnected only to devices still in use, a small bag of old leads and an unused disc player set aside for recycling",
+    "must_show": [
+     "Every remaining cable is labelled at both ends and runs to a device you can name."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-006",
+   "title": "LABEL THE STRIP, BIN THE CONTROLLERS, CLEAR THE VENTS",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Label the power strip to match every cable, move the controller bin to a reachable height, and clear the dust packed behind the vents.",
+   "why_it_matters": "Heat and power are the two hazards behind this unit, and a controller that slides behind it every time is a location problem, not a habit problem.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "labels or tape",
+    "a marker",
+    "a ventilated bin",
+    "a vacuum with a crevice attachment"
+   ],
+   "steps": [
+    "Label each outlet on the power strip to match the cable plugged into it.",
+    "Move the controller and remote bin down to the height of whoever actually plays, not on top of the unit where things slide off the back.",
+    "Vacuum the dust off the console and amplifier vents and the back panel of the television, and confirm a hand's gap of clear air around both.",
+    "Check the television is anchored to the wall or the unit."
+   ],
+   "root_causes": [
+    "KC-006",
+    "RC-016",
+    "KC-011",
+    "KC-012"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "RC-016",
+     "KC-011",
+     "KC-012"
+    ],
+    "zone": "LVZ-003",
+    "standard": "LVS-003"
+   },
+   "victory_condition": "The power strip and every cable share a label, the controllers live in one bin at a reachable height, and a hand's gap of air surrounds the vents.",
+   "next_card": "LVA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a media console with a labelled power strip, one ventilated bin holding every controller at a reachable height, and clear air visible around the amplifier vents",
+    "must_show": [
+     "The power strip and every cable share a label, the controllers live in one bin at a reachable height, and a hand's gap of air surrounds the vents."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-007",
+   "title": "TAKE ONE SHELF DOWN AT A TIME",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Take one shelf down at a time so every book and object passes through your hands and gets a real decision.",
+   "why_it_matters": "A duplicate book or a dead plant never looks wrong sitting next to a hundred others, so the only way to actually see it is to take the whole shelf down and judge each piece alone.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a box for books leaving the house"
+   ],
+   "steps": [
+    "Take one shelf down at a time so every book passes through your hands. Duplicates, the manuals for appliances you replaced, the free paperbacks from a conference and anything water-damaged go now. Empty frames, the dead plant and the souvenirs you stopped seeing years ago go with them.",
+    "Box anything leaving for donation or resale.",
+    "Wipe the shelf board before anything goes back onto it."
+   ],
+   "root_causes": [
+    "RC-017",
+    "RC-014"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-017",
+     "RC-014"
+    ],
+    "zone": "LVZ-004",
+    "standard": "LVS-004"
+   },
+   "victory_condition": "Every shelf keeps a hand's width of empty space at one end, and nothing is stacked flat on top of the upright books.",
+   "next_card": "LVS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a bookshelf with one shelf's contents laid out on the floor sorted into keep and leaving piles, a small box packed for donation nearby",
+    "must_show": [
+     "Every shelf keeps a hand's width of empty space at one end, and nothing is stacked flat on top of the upright books."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-008",
+   "title": "STRAP THE BOOKCASE AND GROUP BY SUBJECT",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Strap the bookcase to a wall stud, then regroup the books by subject with a bookend closing every group.",
+   "why_it_matters": "A tall bookcase loaded high is a tip-over risk the moment a child uses the shelves as a ladder, and a shelf grouped by colour makes every search take longer than it should.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a wall strap kit",
+    "a stud finder",
+    "bookends"
+   ],
+   "steps": [
+    "Find the stud and fit a wall strap between it and the bookcase.",
+    "Regroup the books by subject, heaviest and stone objects on the bottom two shelves, and close each group with a bookend.",
+    "Leave a hand's width of empty shelf at the end of every row."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013",
+    "KC-003",
+    "KC-005"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013",
+     "KC-003",
+     "KC-005"
+    ],
+    "zone": "LVZ-004",
+    "standard": "LVS-004"
+   },
+   "victory_condition": "The bookcase is strapped to a wall stud, and every group of books sits behind its own bookend with a hand's width of space at the end.",
+   "next_card": "LVA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bookcase strapped to a wall stud, books regrouped by subject with a bookend closing each group, heavy objects sitting on the bottom two shelves",
+    "must_show": [
+     "The bookcase is strapped to a wall stud, and every group of books sits behind its own bookend with a hand's width of space at the end."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-009",
+   "title": "EMPTY THE DISH AND GIVE EVERYTHING A VERDICT",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty the little dish and the drawer onto the seat of the chair, and give every small thing a real verdict.",
+   "why_it_matters": "A dish of odds and ends only grows because nobody ever judges the whole dish at once; one piece at a time it always looks too small to bother with.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a small tray"
+   ],
+   "steps": [
+    "Empty the little dish and the drawer onto the seat of the chair. The reading glasses with the wrong prescription, the dried-out pens, the foreign coins, the loose tablets, the charger for a phone nobody in the house owns and the coasters that never made it back to the coffee table each get a verdict now.",
+    "Return the coasters to the coffee table and the charger to whoever owns the matching phone, or recycle it.",
+    "Set only the tray back down, holding no more than four items."
+   ],
+   "root_causes": [
+    "RC-013",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-013",
+     "RC-015"
+    ],
+    "zone": "LVZ-005",
+    "standard": "LVS-005"
+   },
+   "victory_condition": "Each table's tray holds at most four items, and nothing swallowable sits uncapped.",
+   "next_card": "LVS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a side table tray holding four items, a small pile of coins and an orphaned charger set aside on a chair seat nearby",
+    "must_show": [
+     "Each table's tray holds at most four items, and nothing swallowable sits uncapped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-010",
+   "title": "LID THE TABLETS AND CLIP THE CORDS DOWN",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Move loose tablets into a lidded case and clip both the lamp cord and the charger cord down the table leg.",
+   "why_it_matters": "An open dish of tablets sits at exactly a small child's reach height, and a cord crossing the walked line between the chair and the door is a trip nobody sees until it happens.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a lidded pill case",
+    "cable clips"
+   ],
+   "steps": [
+    "Move any loose tablets into a lidded case and put the case away in a cupboard, not back on the open tray.",
+    "Clip the lamp cord and the phone charger cord down the table leg so neither crosses the floor toward the chair.",
+    "Confirm the tray holds four items or fewer once both cords are clipped down."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-004",
+    "KC-002",
+    "KC-009"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-004",
+     "KC-002",
+     "KC-009"
+    ],
+    "zone": "LVZ-005",
+    "standard": "LVS-005"
+   },
+   "victory_condition": "The dish holds no loose medicine, both cords are clipped to the table leg, and the tray holds four items or fewer.",
+   "next_card": "LVA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a side table with a lidded pill case standing beside a chair, a lamp cord clipped neatly down the table leg with no cable crossing the floor",
+    "must_show": [
+     "The dish holds no loose medicine, both cords are clipped to the table leg, and the tray holds four items or fewer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-011",
+   "title": "WALK THE ROUTE WITH A BASKET IN HAND",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the whole route with a laundry basket and put every floor item into it, carrying anything from another room there first.",
+   "why_it_matters": "A box or a pair of shoes never looks like it is blocking anything on its own; walking the whole route with a basket is what actually reveals the floor's real job.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a laundry basket"
+   ],
+   "steps": [
+    "Walk the route with a laundry basket and put every floor item in it: shoes, toys, yesterday's bag, the pile of post, the box that has sat beside the sofa for a month. Anything belonging to another room gets carried there before you let yourself sit down.",
+    "Return each item to its real room on the same trip.",
+    "Push any remaining basket back against the wall, clear of the route."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ],
+    "zone": "LVZ-006",
+    "standard": "LVS-006"
+   },
+   "victory_condition": "The route from door to door is clear at full width, with nothing on the floor but furniture legs and the rug.",
+   "next_card": "LVS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a living room floor cleared to a wide open route, a laundry basket sitting empty by the door after its trip round the room",
+    "must_show": [
+     "The route from door to door is clear at full width, with nothing on the floor but furniture legs and the rug."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-012",
+   "title": "WALK THE ROUTE WITH A FULL BASKET AND FIX THE RUG",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the route carrying a full basket in both hands, fit a grippy pad under the curled rug corner, and clip down any crossing cord.",
+   "why_it_matters": "A route checked from the doorway always looks wider than it actually is; carrying something through it is the only test that tells the truth.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a grippy rug pad",
+    "cable clips",
+    "a full laundry basket to test with"
+   ],
+   "steps": [
+    "Walk the route carrying a full basket in both hands and note the first spot that makes you turn sideways.",
+    "Fit a grippy pad under the curled rug corner so it lies flat, and clip down any cord that crosses the route.",
+    "If the route still fails the basket test, name the one piece of furniture that has to move or go."
+   ],
+   "root_causes": [
+    "KC-007",
+    "KC-008",
+    "RC-017",
+    "RC-013",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-007",
+     "KC-008",
+     "RC-017",
+     "RC-013",
+     "KC-010"
+    ],
+    "zone": "LVZ-006",
+    "standard": "LVS-006"
+   },
+   "victory_condition": "You can carry a full basket through the route without turning sideways, and no cord or rug edge crosses it.",
+   "next_card": "LVA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a person carrying a full laundry basket easily through a wide clear route, a rug lying flat against a grippy pad beside them",
+    "must_show": [
+     "You can carry a full basket through the route without turning sideways, and no cord or rug edge crosses it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-013",
+   "title": "FOLLOW ONE STRAY OBJECT ALL THE WAY HOME",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Pick one real object currently out of place in this room and carry it through every decision until it has a real home.",
+   "why_it_matters": "This room belongs to everybody, which is exactly why nothing in it has an obvious owner; following one object all the way through shows where the whole system actually stalls.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "one real object currently out of place"
+   ],
+   "steps": [
+    "Pick up one object that is genuinely out of place in the room right now.",
+    "Decide, out loud, where it actually lives: this room, another room, or nowhere anymore.",
+    "Carry it there, on this trip, not later.",
+    "Note which zone, if any, slowed the object down on its way: that zone is today's real job."
+   ],
+   "root_causes": [
+    "KC-002",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-002",
+     "RC-015"
+    ]
+   },
+   "victory_condition": "The one object reaches its real home, and you can name which zone, if any, slowed it down.",
+   "next_card": "LVA-014",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a single object, a stray toy, being carried from a living room floor directly through a doorway toward the room it actually belongs in, no other clutter visible along the way",
+    "must_show": [
+     "The one object reaches its real home, and you can name which zone, if any, slowed it down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-014",
+   "title": "THE ONE-PERSON-ONE-OBJECT SWEEP",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1 TO 6.",
+   "objective": "Everyone in the house carries out exactly the one thing they personally left behind in this room, right now.",
+   "why_it_matters": "This room fails by donation, not by neglect: each person drops one thing and considers the room fine, so no single person ever sees the mess they caused alone.",
+   "time_target_minutes": 15,
+   "players": "1 to 6",
+   "inputs": [
+    "nothing beyond fifteen minutes and every person in the house"
+   ],
+   "steps": [
+    "Everyone in the house stands in the living room for one minute.",
+    "Each person names, out loud, the one thing in the room that is theirs.",
+    "Each person carries their own one thing out, at the same time.",
+    "Whatever is left afterward belongs to nobody currently in the house and gets a decision on the spot."
+   ],
+   "root_causes": [
+    "KC-001",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-001",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "Every object left in the room belongs to whoever is in it right now, not to someone who left ten minutes ago.",
+   "next_card": "LVA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "several people each carrying one object out of a living room at the same time through different doorways, the room behind them left holding only shared furniture",
+    "must_show": [
+     "Every object left in the room belongs to whoever is in it right now, not to someone who left ten minutes ago."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVA-015",
+   "title": "THE QUARTERLY BEHIND-THE-FURNITURE SAFETY WALK",
+   "type": "ACTION CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Walk the whole room checking the anchors, the hinges, the outlets behind the media unit, and the walked route, in one pass.",
+   "why_it_matters": "An unstrapped bookcase, a recliner hinge, a crowded outlet and a curled rug corner all hide until someone checks for them on purpose, and this room hides more of them than any other.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "nothing beyond thirty minutes and a working set of hands"
+   ],
+   "steps": [
+    "Give the television and the bookcase a firm push and confirm neither rocks or leans away from the wall.",
+    "Lower the recliner footrest and the sofa bed hinge slowly once, watching the floor the whole way down.",
+    "Check every outlet behind the media unit for a frayed cable or one power strip chained into another.",
+    "Walk the full route to every door checking for a curled rug edge, a crossing cord, or anything left on the floor."
+   ],
+   "root_causes": [
+    "RC-016",
+    "KC-010",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "KC-010",
+     "KC-006"
+    ]
+   },
+   "victory_condition": "You can name, out loud, that the anchors, the hinges, the outlets and the walked route have each been checked today.",
+   "next_card": "LVA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand checking a bookcase's wall strap, a recliner footrest being lowered slowly, and a media unit's outlets being inspected, all in the same room",
+    "must_show": [
+     "You can name, out loud, that the anchors, the hinges, the outlets and the walked route have each been checked today."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "LVS-001",
+   "title": "SOFA AND SEATING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Sofa and Seating Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Seats hold people, not storage. Throws live folded in one basket, remotes in one tray.",
+   "trigger": "When you switch the lamp off for the night, the cushions get squared and the throws go in the basket.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift each seat cushion and check the seam for coins, crumbs, or a stray remote before you vacuum, not after.",
+    "Rotate and flip the seat cushions so the one nobody chooses takes its turn at the wear.",
+    "Slowly lower the recliner footrest once, watching the floor the whole way down, and teach one other person to do the same."
+   ],
+   "related": {
+    "zone": "LVZ-001",
+    "actions": [
+     "LVA-001",
+     "LVA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a sofa and armchair with every seat clear and sittable, throws folded into one basket at the end of the sofa, one cushion per seat, and both remotes standing in a tray on the near arm, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVS-002",
+   "title": "COFFEE TABLE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Coffee Table",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "If it does not fit on the tray, it does not live on the table.",
+   "trigger": "When the last mug goes to the kitchen at the end of the evening, everything off-tray travels with it.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Lift the tray and wipe the ring marks hiding underneath it, then dry the top with a second pass.",
+    "Check the underside edge and the lower shelf for dust nobody sees at eye level.",
+    "Confirm the candle has a hand's width of clear space on every side before you light it tonight."
+   ],
+   "related": {
+    "zone": "LVZ-002",
+    "actions": [
+     "LVA-003",
+     "LVA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a coffee table with one tray holding four coasters and a remote, a single book and a small plant beside it, bare wood showing across most of the surface, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVS-003",
+   "title": "MEDIA CENTER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Media Center",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every cable is labelled at both ends and every device has clear air on its vents.",
+   "trigger": "When the credits roll and you switch the television off, the controllers go back in their bin on the way out of the room.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the television screen with a dry microfiber cloth only, never a spray, working corner to corner.",
+    "Follow one cable from the strip to its device and confirm the label at both ends still matches.",
+    "Check the television is still anchored to the wall or the unit by giving the top edge a gentle push."
+   ],
+   "related": {
+    "zone": "LVZ-003",
+    "actions": [
+     "LVA-005",
+     "LVA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a media console with a bundle of cables labelled at both ends running to one labelled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVS-004",
+   "title": "BOOKSHELVES AND DISPLAY STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Bookshelves and Display",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every shelf keeps a hand's width of empty space, and the unit stays strapped to the wall.",
+   "trigger": "When you finish a book, it goes back to its group before you start the next one.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Run a finger along the top edge of one row of books, not just the shelf board, and wipe what it picks up.",
+    "Give the bookcase a gentle push partway up and confirm it does not rock or lean from the wall.",
+    "Pick one book you have not opened this year and decide, out loud, whether it is reference or display."
+   ],
+   "related": {
+    "zone": "LVZ-004",
+    "actions": [
+     "LVA-007",
+     "LVA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a bookshelf unit strapped to the wall, books standing upright between bookends with a hand's width of empty space at one end of each shelf, frames and objects gathered into a few groups, heavy pieces on the lowest shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVS-005",
+   "title": "SIDE TABLES AND LIGHTING STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Side Tables and Lighting",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Four items on the tray, cord clipped to the leg, and nothing swallowable left uncapped.",
+   "trigger": "When you plug your phone in for the night, the side table gets cleared back to the tray.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the bulb and the inside of the shade while the lamp is off and cool.",
+    "Count the items on one tray; if it is more than four, carry the extra one out right now.",
+    "Follow the lamp cord from the base to the outlet and confirm it never crosses the walked path."
+   ],
+   "related": {
+    "zone": "LVZ-005",
+    "actions": [
+     "LVA-009",
+     "LVA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a side table with a small tray holding four items including a coastered glass, a lit clean lamp with its cord clipped down the table leg, no cable crossing the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVS-006",
+   "title": "FLOOR AND CIRCULATION PATH STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Living Room",
+   "zone": "Floor and Circulation Path",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The route from door to door stays clear at its full width. The floor is for furniture legs and the rug.",
+   "trigger": "When the vacuum comes out, everything still on the floor rides the basket back to where it lives.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Press the rug's gripper pad at one corner and confirm it still holds the rug flat against the floor.",
+    "Walk the full route once carrying something in both hands, and note the first spot that narrows.",
+    "Check under the sofa and chair legs with the vacuum's crevice tool, where pet hair collects unseen."
+   ],
+   "related": {
+    "zone": "LVZ-006",
+    "actions": [
+     "LVA-011",
+     "LVA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a living room floor with a continuous clear route from one doorway to another, rug edges lying flat on a grippy pad, no cord crossing the path, baskets pushed back against the wall, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "LVE-001",
+   "title": "THE MOVIE NIGHT WITH EIGHT PEOPLE",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Eight people are coming over for a movie tonight, and every seat needs to be sittable the moment they walk in.",
+   "tests_zones": [
+    "LVZ-001"
+   ],
+   "held_if": "Every seat clears in one pass, with nothing to lift off a cushion before anyone sits down.",
+   "if_it_failed": "If clearing the seats took more than one basket trip, the nightly reset slipped. Draw LVA-001 or LVA-002.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a sofa and armchairs all cleared and ready for guests, a basket of folded throws sitting at the end of the sofa, remotes visible in their tray",
+    "must_show": [
+     "Eight people are coming over for a movie tonight, and every seat needs to be sittable the moment they walk in."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LVE-002",
+   "title": "THE SURPRISE VISITOR",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A neighbor knocks and is in the living room in under a minute, with no time to clear the coffee table first.",
+   "tests_zones": [
+    "LVZ-002"
+   ],
+   "held_if": "The table already shows bare wood, four coasters, and nothing that needs explaining.",
+   "if_it_failed": "If you had to sweep something out of sight before they sat down, the tray rule slipped. Draw LVA-003 or LVA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a coffee table already holding just a tray with four coasters and one book, bare wood visible around it, a doorbell visible in the background",
+    "must_show": [
+     "A neighbor knocks and is in the living room in under a minute, with no time to clear the coffee table first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LVE-003",
+   "title": "THE NEW CONSOLE ARRIVES",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A new game console arrives today and needs plugging in, right in the middle of a unit already crowded with cables.",
+   "tests_zones": [
+    "LVZ-003"
+   ],
+   "held_if": "The new cable gets labelled at both ends the moment it is plugged in, and it is obvious which outlet on the strip is free.",
+   "if_it_failed": "If the new cable went in unlabelled, or you could not tell which outlet was free, the standard slipped the moment it was tested. Draw LVA-005 or LVA-006.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand plugging in a new console cable at a labelled power strip, a marker resting nearby, the rest of the bundle already labelled at both ends",
+    "must_show": [
+     "A new game console arrives today and needs plugging in, right in the middle of a unit already crowded with cables."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LVE-004",
+   "title": "THE SCHOOL PROJECT RESEARCH NIGHT",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A child needs three reference books from this shelf for a project due tomorrow, and needs to find them alone.",
+   "tests_zones": [
+    "LVZ-004"
+   ],
+   "held_if": "The right books sit grouped by subject at a reachable height, found without pulling down half the shelf.",
+   "if_it_failed": "If a book had to be hunted for across the whole shelf, the grouping slipped. Draw LVA-007 or LVA-008.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a child's hand pulling a reference book from a shelf grouped clearly by subject with a bookend closing the group",
+    "must_show": [
+     "A child needs three reference books from this shelf for a project due tomorrow, and needs to find them alone."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LVE-005",
+   "title": "THE OVERNIGHT GUEST WITH A TODDLER",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "A guest is staying over with a toddler, and every side table in the room needs to be safe at a small child's reach height by bedtime.",
+   "tests_zones": [
+    "LVZ-005"
+   ],
+   "held_if": "No dish holds loose tablets, no cord crosses the floor, and every tray sits at four items or fewer.",
+   "if_it_failed": "If a loose tablet or a trailing cord turned up during the safety walk, the side table standard slipped. Draw LVA-009 or LVA-010.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a side table with a lidded pill case instead of an open dish, a lamp cord clipped neatly down the table leg, a toddler playing safely nearby on the floor",
+    "must_show": [
+     "A guest is staying over with a toddler, and every side table in the room needs to be safe at a small child's reach height by bedtime."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "LVE-006",
+   "title": "THE 2 A.M. FIRE ALARM",
+   "type": "EVENT CARD",
+   "room": "Living Room",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The smoke alarm goes off at 2 a.m. and everyone has to get from the sofa to the front door in the dark, fast.",
+   "tests_zones": [
+    "LVZ-006"
+   ],
+   "held_if": "The route is clear at full width the whole way, with no rug edge, cord, or toy to catch a foot.",
+   "if_it_failed": "If anyone stumbled on the way out, the floor standard slipped, and it slipped somewhere specific. Draw LVA-011 or LVA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "LVZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a dark living room floor with a clear wide route from a sofa to a front door, no obstruction visible along the path",
+    "must_show": [
+     "The smoke alarm goes off at 2 a.m. and everyone has to get from the sofa to the front door in the dark, fast."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}
