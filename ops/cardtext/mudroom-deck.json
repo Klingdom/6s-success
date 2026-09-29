@@ -1,0 +1,3013 @@
+{
+ "deck": "mudroom",
+ "room": "Mudroom",
+ "count": 69,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 6,
+  "FRICTION CARD": 18,
+  "ROOT CAUSE CARD": 17,
+  "ACTION CARD": 15,
+  "STANDARD CARD": 6,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "MDR-001",
+   "title": "THE MUDROOM",
+   "type": "ROOM CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SIX ZONES. START AT THE HOOKS.",
+   "objective": "The mudroom is where the weather stops: coats, boots, the pet, the seasonal gear and the tools that keep the entry floor walkable all compete for the same short run of wall. This card is the map and the order.",
+   "zones_in_order": [
+    "MDZ-001 Family Hook Zone",
+    "MDZ-002 Bench and Transition Surface",
+    "MDZ-003 Shoe and Boot Storage",
+    "MDZ-004 Pet Station",
+    "MDZ-005 Seasonal Outdoor Gear",
+    "MDZ-006 Cleaning and Utility Zone"
+   ],
+   "start_here": "MDZ-001 Family Hook Zone. Do the hook wall before anything else, and do it with the family standing there so every coat gets handed to its owner rather than judged by you. Once each person has a named column at their own reach, the boots, bags and bins underneath stop migrating onto the floor.",
+   "how_to_play": [
+    "1. Deal the six ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your mudroom. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do MDA-013 The Full Mudroom Hazard Walk before any rebuild. It takes thirty minutes and covers hook anchoring, scarves and drawstrings at toddler height, wet-floor slip zones, poison-grade treatments and chemicals, and every tool hanging clear of a doorway.",
+   "related": {
+    "contents": "MDZ-001 to MDZ-006, MDF-001 to MDF-018, the shared root causes in ops/root_causes.py, MDA-001 to MDA-015, MDS-001 to MDS-006, MDE-001 to MDE-006"
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole mudroom in its settled state, a hook wall with named columns, a bench with a bare seat and an outbound basket, a shoe rack with a boot tray by the door, a pet station, a seasonal gear shelf, and a cleaning corner all visible in one frame",
+    "must_show": [
+     "all six zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the six zones is. If one is not in frame, reshoot."
+   }
+  },
+  {
+   "id": "MDZ-001",
+   "title": "FAMILY HOOK ZONE",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "ONE COAT, ONE BAG, ONE HAT PER COLUMN. BARE FLOOR UNDER THE HOOKS.",
+   "objective": "Holds the coats and bags that leave in the morning and come back the same evening.",
+   "callouts": [
+    "Two coats and one bag hanging on each person's own named column",
+    "A hand-lettered name tag at each column's own eye height",
+    "The lowest hooks set at the height of the shortest person in the house",
+    "Bare floor running the whole length of wall beneath the hooks",
+    "No scarf or drawstring hanging low enough to reach a toddler's neck",
+    "Every hook sitting flush against the wall with no lean or wobble"
+   ],
+   "done_looks_like": "Two coats and one bag per person, each on their own named column, the lowest hooks set at the height of the shortest person in the house, and bare floor along the whole run of wall beneath them.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An overloaded hook rail tearing out of plasterboard brings the rail and every coat on it down at head height."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Scarf ends and coat drawstrings dangling at toddler height are a strangling risk when a small child is alone in the room."
+    }
+   ],
+   "the_call": {
+    "title": "The fourth coat",
+    "text": "The hard one is not the ugly coat, it is the good coat you love and have not put on since March. It stays at the door because carrying it upstairs feels like admitting something. Here is the rule that settles it: the door holds only the coats this week's weather calls for. Hang everything a person owns, then at the end of one week take down any coat still hanging exactly as you left it, untouched, and move it to their wardrobe. It is not gone, it is just not entitled to a hook. If two coats tie, keep the one that survives rain."
+   },
+   "supplies": [
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Compact vacuum with attachments",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy",
+    "Soft clothing brush (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-001",
+    "actions": [
+     "MDA-001",
+     "MDA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom hook wall with two coats and one bag hanging on each person's own named column, a hand-lettered name tag at each column's eye height, the lowest hooks set at a child's own reach, and completely bare floor running the length of wall beneath them",
+    "must_show": [
+     "Two coats and one bag hanging on each person's own named column",
+     "A hand-lettered name tag at each column's own eye height",
+     "The lowest hooks set at the height of the shortest person in the house",
+     "Bare floor running the whole length of wall beneath the hooks",
+     "No scarf or drawstring hanging low enough to reach a toddler's neck",
+     "Every hook sitting flush against the wall with no lean or wobble"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDZ-002",
+   "title": "BENCH AND TRANSITION SURFACE",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "order": 2,
+   "difficulty": 1,
+   "tagline": "THREE THINGS MAX ON THE SEAT. THE BASKET EMPTIES ON THE NEXT TRIP.",
+   "objective": "Somewhere to sit while you deal with your footwear, and a brief stop for things genuinely on their way out of the house.",
+   "callouts": [
+    "A bare wooden seat wide enough for two people to sit and lace boots at once",
+    "No more than three objects resting on the surface",
+    "One labelled basket at the end of the bench",
+    "The basket holding only items that are leaving the house tomorrow",
+    "A completely clear floor path in front of the bench",
+    "Nothing stored on the shelf directly above the seat"
+   ],
+   "done_looks_like": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labelled basket at the end holding only what is leaving tomorrow.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A heavy hinged bench lid dropping on small fingers, and anything stored on a shelf directly above where a head bends to tie a lace."
+    },
+    {
+     "question": "Fall",
+     "text": "A bench seat covered in bags forces people to pull boots off standing on one leg on a wet floor."
+    }
+   ],
+   "the_call": {
+    "title": "The lid you never lift",
+    "text": "If your bench has a hinged storage seat, this is the decision you have been dodging: the box under the lid is full and you cannot say what is in it. Storage under a seat you sit on ten times a day is storage you will never open, because opening it means clearing the seat first. Live with it for a week and count honestly how many times you lift that lid. Fewer than three and the answer is settled. Empty it completely and refill it only with things used while sitting, spare laces, a shoe horn, a rag for wiping soles. Everything else moves somewhere you can reach without asking a person to stand up. If it is still empty in a month, leave it empty."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Floor-material-compatible cleaner",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-002",
+    "actions": [
+     "MDA-003",
+     "MDA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labelled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it",
+    "must_show": [
+     "A bare wooden seat wide enough for two people to sit and lace boots at once",
+     "No more than three objects resting on the surface",
+     "One labelled basket at the end of the bench",
+     "The basket holding only items that are leaving the house tomorrow",
+     "A completely clear floor path in front of the bench",
+     "Nothing stored on the shelf directly above the seat"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDZ-003",
+   "title": "SHOE AND BOOT STORAGE",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "TWO PAIRS PER PERSON. WET STAYS ON THE TRAY.",
+   "objective": "Holds the footwear actually being worn this season, and gives wet pairs somewhere to drain without soaking the floor.",
+   "callouts": [
+    "Two pairs of footwear per person standing on the rack",
+    "Every pair standing soles down and toes pointing out",
+    "One lipped tray sitting by the door",
+    "Only wet or draining pairs standing on the tray",
+    "A completely clear stretch of floor between the tray and the doorway",
+    "Heavier boots on the rack's bottom row, lighter shoes on top"
+   ],
+   "done_looks_like": "Two pairs per person on the rack, soles down and toes out, one lipped tray by the door holding whatever came in wet, and clear floor between the tray and the doorway.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall",
+     "text": "Wet soles carried past the tray leave an invisible film on hard floor right where everyone turns towards the kitchen."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A boot dryer or heated mat with its flex lying across the same floor the wet boots drip onto."
+    }
+   ],
+   "the_call": {
+    "title": "The boots waiting for a winter that has not come",
+    "text": "Everyone has a pair kept for conditions that never quite arrive: the proper wellies, the hiking boots worn twice, the smart shoes for the event you keep not going to. They are expensive and undamaged, which is why you will not decide. So separate the two questions. Keeping the pair is one decision; giving it a slot at the door is another. The rule for the door is simple: a pair earns a slot only if it has been on someone's feet in the last four weeks. Everything else goes to the wardrobe with today's date on a slip of paper tucked in the toe. When the season it was bought for has come and gone with that slip still in place, you have your answer, and it is not a hard one any more."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Garden hose or outdoor tap (not in this zone's list)",
+    "Stiff scrubbing brush (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-003",
+    "actions": [
+     "MDA-005",
+     "MDA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom shoe rack holding two pairs of footwear per person standing soles down and toes out, one lipped boot tray by the door holding only wet pairs, heavier boots on the bottom row, and a completely clear stretch of floor between the tray and the doorway",
+    "must_show": [
+     "Two pairs of footwear per person standing on the rack",
+     "Every pair standing soles down and toes pointing out",
+     "One lipped tray sitting by the door",
+     "Only wet or draining pairs standing on the tray",
+     "A completely clear stretch of floor between the tray and the doorway",
+     "Heavier boots on the rack's bottom row, lighter shoes on top"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDZ-004",
+   "title": "PET STATION",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "order": 4,
+   "difficulty": 1,
+   "tagline": "ONE KIT ON ONE HOOK. TREATMENTS BEHIND A CLOSED DOOR.",
+   "objective": "Everything the animal needs to get out of the door, and everything you need when it comes back through it filthy.",
+   "callouts": [
+    "A lead clipped to its collar hanging on one hook",
+    "A full roll of waste bags threaded onto that same lead",
+    "A folded towel sitting within arm's reach of the door",
+    "Food sealed inside a closed bin with the scoop resting inside it",
+    "Every flea, tick or worming treatment behind a closed door above reach",
+    "A clean water bowl standing on its own mat or tray"
+   ],
+   "done_looks_like": "Lead clipped to collar on one hook with a full roll of waste bags attached, an old towel folded within arm's reach of the door, food sealed in a bin with the scoop inside it, and every treatment behind a closed door above the animal's nose and above a toddler's reach.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Spot-on flea treatment and worming tablets stored in an open caddy at the same height as the waste bags a child is allowed to fetch."
+    },
+    {
+     "question": "Fall",
+     "text": "A knocked water bowl on hard floor, right where people are already stepping in with wet soles."
+    }
+   ],
+   "the_call": {
+    "title": "Whether the food bin belongs here at all",
+    "text": "The mudroom pulls in everything with the animal's name on it, and the food sack is the biggest and least questioned piece. So ask where the bowl actually sits. If you feed in the kitchen, the food is stored here purely because the sack came in through this door, and every meal costs you a walk across the house carrying a scoop. This zone is for departures and arrivals only: lead, bags, towel, coat, paw wash. Feeding, grooming and paperwork belong wherever the bowl and the sink are. Move the bin to the bowl. If the answer is that the bin will not fit in the kitchen, that is a kitchen problem to solve, not a reason to keep walking."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner",
+    "Dish soap for bowls and scoop (not in this zone's list)"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-004",
+    "actions": [
+     "MDA-007",
+     "MDA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom pet station with a lead clipped to its collar hanging on one hook with a full roll of waste bags threaded on, a folded towel within arm's reach of the door, a sealed food bin with its scoop inside, and every treatment stored behind a closed door above reach",
+    "must_show": [
+     "A lead clipped to its collar hanging on one hook",
+     "A full roll of waste bags threaded onto that same lead",
+     "A folded towel sitting within arm's reach of the door",
+     "Food sealed inside a closed bin with the scoop resting inside it",
+     "Every flea, tick or worming treatment behind a closed door above reach",
+     "A clean water bowl standing on its own mat or tray"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDZ-005",
+   "title": "SEASONAL OUTDOOR GEAR",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "order": 5,
+   "difficulty": 2,
+   "tagline": "ONE SEASON WITHIN REACH. THE OTHER CLOSED AND DATED ON THE SHELF.",
+   "objective": "Holds the small weather items the family grabs on the way out, for the season you are actually in.",
+   "callouts": [
+    "One open bin per person set at their own height",
+    "This season's gloves and hat sitting matched in pairs inside each bin",
+    "Umbrellas standing points down in one stand by the door",
+    "The other season's bin closed and labelled with the month it was packed",
+    "That closed off-season bin sitting up on the high shelf",
+    "No single, unmatched glove visible in any open bin"
+   ],
+   "done_looks_like": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labelled with the month you packed it, and up on the high shelf.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Insect repellent and sun cream stored in an open low bin that a young child is encouraged to help themselves from."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A packed seasonal bin lifted down from a high shelf overhead, and umbrella spikes stored points up at face height."
+    }
+   ],
+   "the_call": {
+    "title": "The bag of single gloves",
+    "text": "You are keeping orphan gloves because the other half is somewhere in a coat pocket, a car door or the school lost property, and one of them was expensive. That bag has survived three changeovers already. Give it a rule instead of another reprieve: singles go in one bag with today's date on it, and the bag lives through exactly one changeover. Whatever is still unmatched when you next pack the bins goes, including the good ski glove. A right-hand glove on its own is not a glove. The one exception worth making is a survivor that fits a child who will need a bigger pair by next winter anyway, and even that gets a date on it."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-005",
+    "actions": [
+     "MDA-009",
+     "MDA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labelled off-season bin sitting on the high shelf above",
+    "must_show": [
+     "One open bin per person set at their own height",
+     "This season's gloves and hat sitting matched in pairs inside each bin",
+     "Umbrellas standing points down in one stand by the door",
+     "The other season's bin closed and labelled with the month it was packed",
+     "That closed off-season bin sitting up on the high shelf",
+     "No single, unmatched glove visible in any open bin"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDZ-006",
+   "title": "CLEANING AND UTILITY ZONE",
+   "type": "ZONE CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "order": 6,
+   "difficulty": 2,
+   "tagline": "EVERY TOOL HANGS. NOTHING GOES AWAY WET.",
+   "objective": "The tools that keep the entry floor and the door mats fit to walk on, kept where the mess actually lands.",
+   "callouts": [
+    "A broom clipped to the wall with its bristles hanging clear of the floor",
+    "A mop clipped beside it with its head also hanging clear of the floor",
+    "A dustpan hanging empty on its own clip",
+    "The vacuum parked flat against the wall inside a marked outline",
+    "One caddy holding four labelled cleaner bottles",
+    "No tool anywhere leaning loose against the wall"
+   ],
+   "done_looks_like": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labelled bottle.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bleach and an ammonia-based cleaner shut in one caddy together, and decanted cleaners in unlabelled bottles at child height."
+    },
+    {
+     "question": "Water and electricity",
+     "text": "A vacuum flex and a floor socket sharing a corner with a dripping mop and wet boot trays."
+    }
+   ],
+   "the_call": {
+    "title": "The second vacuum",
+    "text": "The old machine is still here because it works, roughly, and getting rid of something that works feels wasteful. Meanwhile it holds the corner and the new one lives in the walking line. A spare is only a spare if it has actually covered for the main one. So ask the question that decides it: in the last year, did the main vacuum ever break down for long enough that you went and got this one out? If the answer is no, it is not a backup, it is a machine you are storing on behalf of a future that has not asked for it. Pass it to someone who has no vacuum at all, and give the corner to the one you use every week."
+   },
+   "supplies": [
+    "Portable cleaning caddy",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Floor-material-compatible cleaner"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "MDS-006",
+    "actions": [
+     "MDA-011",
+     "MDA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labelled cleaner bottles",
+    "must_show": [
+     "A broom clipped to the wall with its bristles hanging clear of the floor",
+     "A mop clipped beside it with its head also hanging clear of the floor",
+     "A dustpan hanging empty on its own clip",
+     "The vacuum parked flat against the wall inside a marked outline",
+     "One caddy holding four labelled cleaner bottles",
+     "No tool anywhere leaning loose against the wall"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "MDF-001",
+   "title": "A COAT NOBODY'S WORN SINCE MARCH IS STILL ON THE COLUMN",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A coat nobody has worn since the last change of season is still hanging on its owner's column, taking the slot the one-coat limit was supposed to leave open.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's a coat you love, and letting it go feels like admitting you won't wear it again, not a decision about this week's weather",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody's actually run the one-week test the rule calls for, so it just keeps hanging there unchallenged",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "The column is built for one coat, one bag, one hat, and a coat this rarely worn is more than that job needs",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-001",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a single coat hanging alone and dusty on an otherwise bare wall column, clearly untouched compared to the well used coats beside it",
+    "must_show": [
+     "A coat nobody has worn since the last change of season is still hanging on its owner's column, taking the slot the one-coat limit was supposed to leave open."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-002",
+   "title": "A CHILD CAN'T REACH THEIR OWN COAT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Two children share one hook rail near the door instead of each having their own named column, and the older child's things end up at a height the younger one can't reach at all.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The wall was never actually split into a vertical strip per person, so it's still one shared rail two people run by two different habits",
+     "root_cause": "KC-012"
+    },
+    {
+     "answer": "Whoever's coat went up first claimed the reachable height, so the younger child's things end up above their own reach",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "Nobody's remeasured hook height since the youngest child grew, so what's within reach today is still last year's answer",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-001",
+    "root_causes": [
+     "KC-012",
+     "KC-006",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small child reaching up unsuccessfully toward a coat hung high on a shared hook rail, an older child's coat crowding the same hook",
+    "must_show": [
+     "Two children share one hook rail near the door instead of each having their own named column, and the older child's things end up at a height the younger one can't reach at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-003",
+   "title": "A SCARF HANGS DOWN AT TODDLER NECK HEIGHT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A scarf hangs down far enough to dangle at toddler height from the lowest hook on the wall, the same hook set at the shortest person's own reach.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A scarf end or a drawstring hanging loose at a small child's neck height is a strangling risk that outranks which hook is convenient",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There's no separate rule yet for what never goes on the lowest hook, only which person's column it belongs to",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's hung in that exact spot for so long that a dangling scarf end reads as part of the wall, not a hazard",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-001",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a scarf hanging in a long loop from a low hook, dangling down to roughly toddler neck height in an otherwise tidy mudroom entry",
+    "must_show": [
+     "A scarf hangs down far enough to dangle at toddler height from the lowest hook on the wall, the same hook set at the shortest person's own reach."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-004",
+   "title": "NOBODY KNOWS WHAT'S UNDER THE BENCH LID",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The hinged bench seat's storage box is full, but nobody can say what's actually inside it, and it hasn't been opened in longer than a month.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The box is closed and packed deep enough that you can't say what's inside without lifting the lid and clearing the seat first",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Storage under a seat everyone sits on ten times a day means checking it costs clearing the seat every single time",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody's actually run the honest week-long lid-count the rule calls for, so the question just keeps getting deferred",
+     "root_cause": "RC-015"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-002",
+    "root_causes": [
+     "KC-005",
+     "KC-004",
+     "RC-015"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a hinged mudroom bench lid propped half open revealing a crammed, disorganized storage box underneath",
+    "must_show": [
+     "The hinged bench seat's storage box is full, but nobody can say what's actually inside it, and it hasn't been opened in longer than a month."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-005",
+   "title": "THE BENCH SURFACE HAS MORE THAN THREE THINGS ON IT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The bench surface is carrying more than the three objects the standard allows, most of it things that belong in another room entirely.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Most of what's piled here belongs somewhere else in the house, and it's easier to set it down on the way in than carry it the rest of the way",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "There's no outbound basket actually doing its job, so anything genuinely leaving the house has nowhere to wait except the seat itself",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nobody treats taking one thing off the bench as part of standing up from it, so the pile only grows",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-002",
+    "root_causes": [
+     "KC-003",
+     "KC-002",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a mudroom bench seat covered in several unrelated household items instead of a bare seat",
+    "must_show": [
+     "The bench surface is carrying more than the three objects the standard allows, most of it things that belong in another room entirely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-006",
+   "title": "SOMEONE'S BALANCING ON ONE LEG TO PULL OFF A BOOT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The bench seat is covered in bags, so the person changing shoes is balancing on one leg on a wet floor instead of sitting down.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A person balancing on one leg on a wet floor because the seat is unusable is a fall risk that outranks how convenient it was to set bags down there",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "The seat is being used as a shelf instead of a seat, and nobody's drawn a line between the two jobs",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Whoever put the bags there isn't the one who has to sit down and lace boots, so the cost of the pile falls on someone else",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-002",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a person balancing on one leg on a wet mudroom floor while trying to remove a boot, the bench seat behind them buried under bags",
+    "must_show": [
+     "The bench seat is covered in bags, so the person changing shoes is balancing on one leg on a wet floor instead of sitting down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-007",
+   "title": "A PAIR IS STILL WAITING FOR A WINTER THAT HASN'T COME",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A pair of boots bought for a season that hasn't arrived yet is still taking a rack slot, even though nobody's worn them in the last four weeks.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "They're expensive and undamaged, so nobody wants to be the one who decides they're not earning their spot",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "The rack is built for two pairs per person worn this season, and a pair waiting on weather that hasn't come is more than that job needs",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Even after the honest four-week test clears out what shouldn't be here, one active kid's cleats, wellies and school shoes are already more than two pairs",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-003",
+    "root_causes": [
+     "RC-015",
+     "KC-001",
+     "KC-007"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an untouched pair of heavy winter boots standing on a shoe rack in a room otherwise full of current season footwear",
+    "must_show": [
+     "A pair of boots bought for a season that hasn't arrived yet is still taking a rack slot, even though nobody's worn them in the last four weeks."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-008",
+   "title": "WET SOLES ARE LEAVING A FILM PAST THE TRAY",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Wet soles are being carried past the tray onto the hard floor between it and the doorway, leaving an invisible film right where everyone turns toward the kitchen.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The tray isn't sitting exactly where boots actually come off, so it's a step or two short of where the wet-sole change actually happens",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "A wet floor between the tray and the doorway is the surest slip in the house, which outranks how far the tray sits from the door",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody's specifically checking that stretch of floor is bare and dry before it becomes a problem",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-003",
+    "root_causes": [
+     "KC-003",
+     "KC-010",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a faint wet shoe print trail on a hard floor leading from an empty boot tray toward a doorway",
+    "must_show": [
+     "Wet soles are being carried past the tray onto the hard floor between it and the doorway, leaving an invisible film right where everyone turns toward the kitchen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-009",
+   "title": "MUD HAS CAKED UNDER THE RAIL WHERE NOBODY LOOKS",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Dried mud has caked along the underside of the wire rail, exactly where the shine pass says you never look, because reaching it means unloading the whole rack first.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The underside of the rail costs more effort to reach than wiping the visible top shelf, so it never actually gets done",
+     "root_cause": "RC-016"
+    },
+    {
+     "answer": "Nobody's checking that hidden underside for the rust or burr the inspect note warns about, since it's out of sight",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "It's been caked that way through enough cleaning passes that a crusted rail underside just reads as normal now",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-003",
+    "root_causes": [
+     "RC-016",
+     "RC-013",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a close view of the underside of a wire shoe rack rail caked with dried mud, hidden from a standing view",
+    "must_show": [
+     "Dried mud has caked along the underside of the wire rail, exactly where the shine pass says you never look, because reaching it means unloading the whole rack first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-010",
+   "title": "THE FOOD BIN LIVES HERE, THE BOWL LIVES IN THE KITCHEN",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The food bin sits in the mudroom purely because the sack came in through this door, while the bowl it feeds sits in the kitchen, so every meal costs a walk across the house with the scoop.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It's stored here because that's where it arrived, not because it's where it's actually used",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nobody's actually asked the question the rule calls for, whether the bin would fit in the kitchen instead",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "The walk from the food bin to the bowl is an extra trip every single meal, exactly the cost the straighten pass warns against",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-004",
+    "root_causes": [
+     "KC-003",
+     "RC-015",
+     "KC-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a sealed pet food bin sitting in a mudroom corner far from a food bowl visible through a doorway into a kitchen",
+    "must_show": [
+     "The food bin sits in the mudroom purely because the sack came in through this door, while the bowl it feeds sits in the kitchen, so every meal costs a walk across the house with the scoop."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-011",
+   "title": "TREATMENTS SIT LOOSE AT BAG-FETCHING HEIGHT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Flea and worming treatment sits loose in the open caddy at the same height as the waste bags a child is allowed to fetch.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Poison stored at a height a child is encouraged to reach into for something else entirely is a safety constraint that outranks convenience",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There's no separate rule yet that treatments go behind a closed door above reach, only that the walking kit hangs together",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "It's sat in the caddy at that height for so long that nobody clocks it as a hazard walking past",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "flea and worming treatment packets sitting loose in an open caddy at the same low height as a roll of waste bags",
+    "must_show": [
+     "Flea and worming treatment sits loose in the open caddy at the same height as the waste bags a child is allowed to fetch."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-012",
+   "title": "THE BAG ROLL RAN OUT ON A WALK",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The waste bag roll ran out a quarter mile from the house on a walk last week, because nobody checked it when the lead went back on its hook.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nobody's actually pairing the lead-hook check with the bag-roll check the way the sustain rule calls for",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "There's no spare roll kept behind the one in use, so running low has no backup",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Whoever walked the dog last isn't necessarily the one who's supposed to check the roll, so it falls through",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-004",
+    "root_causes": [
+     "KC-009",
+     "KC-011",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an empty cardboard bag roll tube sitting on an otherwise tidy pet station hook, the lead hanging beside it",
+    "must_show": [
+     "The waste bag roll ran out a quarter mile from the house on a walk last week, because nobody checked it when the lead went back on its hook."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-013",
+   "title": "THE SINGLE GLOVES BAG HAS SURVIVED THREE CHANGEOVERS",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The bag of unmatched single gloves has survived three changeovers already, including a good ski glove nobody will actually throw out.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The glove is expensive, and letting it go without finding its pair feels wasteful even three seasons on",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "The one-bag-one-changeover rule exists, but nobody's actually applied it to this bag when the deadline came around",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "Gloves get lost one at a time, so this bag quietly grows a bit worse every season without anyone noticing the accumulation",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-005",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a bag stuffed with unmatched single gloves and mittens sitting on a shelf beside two neatly matched seasonal bins",
+    "must_show": [
+     "The bag of unmatched single gloves has survived three changeovers already, including a good ski glove nobody will actually throw out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-014",
+   "title": "SUN CREAM FROM TWO SUMMERS AGO IS STILL IN THE LOW BIN",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "A bottle of sun cream from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Sun cream and insect repellent sitting where a small child can reach and taste them is a safety constraint that outranks tidy",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody's reading the dates on these bottles at the changeover the way the sort pass calls for, so old stock just ages out unseen",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "It's sat in that bin through enough seasons that an old bottle doesn't register as different from a fresh one",
+     "root_cause": "RC-017"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-011",
+     "RC-017"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an old, faded sun cream bottle sitting in an open low bin at a small child's reach among gloves and hats",
+    "must_show": [
+     "A bottle of sun cream from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-015",
+   "title": "AN UMBRELLA IS STANDING POINT UP AT FACE HEIGHT",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "An umbrella is standing spike up in the stand at exactly face height, instead of points down the way the standard calls for.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "An upright spike at a toddler's eye height is a safety constraint independent of how tidy the stand looks",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nobody's specifically the one who checks the stand when umbrellas go back in, so however it lands stays that way",
+     "root_cause": "RC-013"
+    },
+    {
+     "answer": "There's no habit tied to a specific moment that flips a wrongly stood umbrella, so it only gets noticed by chance",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-005",
+    "root_causes": [
+     "KC-010",
+     "RC-013",
+     "KC-009"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an umbrella standing spike up in a doorside stand at roughly a child's face height, among other umbrellas stood correctly points down",
+    "must_show": [
+     "An umbrella is standing spike up in the stand at exactly face height, instead of points down the way the standard calls for."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-016",
+   "title": "THE SECOND VACUUM HAS NEVER COVERED A BREAKDOWN",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The old vacuum has held its corner for over a year, but the main one has never actually broken down long enough to need it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Getting rid of a machine that still works feels wasteful, even though it isn't functioning as an actual backup",
+     "root_cause": "RC-014"
+    },
+    {
+     "answer": "Nobody's actually asked the one question the rule calls for, whether the spare has ever covered for the main one",
+     "root_cause": "RC-015"
+    },
+    {
+     "answer": "This corner is built for the tools that hang and the vacuum that parks in one outline; two vacuums is more than that job needs",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-006",
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "KC-001"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "an old, dusty backup vacuum wedged into a mudroom utility corner beside the newer vacuum actually in use",
+    "must_show": [
+     "The old vacuum has held its corner for over a year, but the main one has never actually broken down long enough to need it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-017",
+   "title": "BLEACH AND AN AMMONIA CLEANER SHARE ONE SHUT CADDY",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Bleach and an ammonia-based cleaner are capped together in one closed caddy, alongside a decanted bottle with no label.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Two cleaners that mix into a gas if they leak together in a closed box is a safety constraint that outranks how tidy one caddy looks",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "There's no agreed rule yet that every decanted bottle gets labelled before it goes in the caddy",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "Nobody's the one who checks this caddy specifically for two things that shouldn't share a box",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a closed cleaning caddy holding a bleach bottle and an ammonia based cleaner capped together beside an unmarked decanted bottle",
+    "must_show": [
+     "Bleach and an ammonia-based cleaner are capped together in one closed caddy, alongside a decanted bottle with no label."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "MDF-018",
+   "title": "A MOP IS LEANING ACROSS THE DOORWAY",
+   "type": "FRICTION CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The mop is leaning against the wall instead of clipped up, and it has slid sideways until it partly blocks the doorway.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "A long-handled tool leaned instead of clipped will slide and come down across a doorway, a fall risk independent of how quick it was to lean it there",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Leaning it against the wall takes less effort in the moment than reaching up to clip it, so that's what happens when hands are full",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Nobody's the one who notices a leaned tool has drifted across the doorway until someone almost trips on it",
+     "root_cause": "RC-013"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your mudroom, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "MDZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-004",
+     "RC-013"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Friction",
+    "subject": "a mop leaned against a wall having slid sideways to partly block a mudroom doorway, its wall clip hanging empty nearby",
+    "must_show": [
+     "The mop is leaning against the wall instead of clipped up, and it has slid sideways until it partly blocks the doorway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things are kept here than the zone's job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-001",
+     "MDF-007",
+     "MDF-016"
+    ],
+    "actions": [
+     "MDA-002",
+     "MDA-012",
+     "MDA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two vacuums crowded into one mudroom utility corner where only one of them actually gets used every week",
+    "must_show": [
+     "More things are kept here than the zone's job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no single defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-005"
+    ],
+    "actions": [
+     "MDA-003"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of items piled on a mudroom bench with no outbound basket anywhere nearby to hold them",
+    "must_show": [
+     "The thing has no single defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere, just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-005",
+     "MDF-008",
+     "MDF-010"
+    ],
+    "actions": [
+     "MDA-003",
+     "MDA-005",
+     "MDA-008"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a sealed pet food bin sitting in a mudroom corner far from the food bowl visible through a kitchen doorway",
+    "must_show": [
+     "It is stored somewhere, just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-004",
+     "MDF-010",
+     "MDF-018"
+    ],
+    "actions": [
+     "MDA-004",
+     "MDA-008",
+     "MDA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hand lifting a heavy hinged bench lid to reach a spare shoelace stored underneath the seat",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first: too many steps."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-004"
+    ],
+    "actions": [
+     "MDA-004"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a closed hinged bench box propped open, its contents impossible to make out from a standing view",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this zone fetch what they need daily. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-002"
+    ],
+    "actions": [
+     "MDA-001",
+     "MDA-002",
+     "MDA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a small child reaching up unsuccessfully toward a coat hook mounted at an adult's own height",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem, not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-007"
+    ],
+    "actions": [
+     "MDA-005"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a shoe rack with every slot full of current season footwear, no room left for one more worn pair",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-003",
+     "MDF-006",
+     "MDF-011",
+     "MDF-017"
+    ],
+    "actions": [
+     "MDA-001",
+     "MDA-011"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an unmarked decanted cleaning bottle sitting in an open caddy beside two clearly labelled ones",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is \"when I get round to it\", there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-005",
+     "MDF-012",
+     "MDF-015"
+    ],
+    "actions": [
+     "MDA-007",
+     "MDA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an umbrella standing upright with its spike up in a doorside stand nobody has straightened in days",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and an unsafe placement near a child's reach.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-003",
+     "MDF-006",
+     "MDF-008",
+     "MDF-011",
+     "MDF-014",
+     "MDF-015",
+     "MDF-017",
+     "MDF-018"
+    ],
+    "actions": [
+     "MDA-001",
+     "MDA-003",
+     "MDA-005",
+     "MDA-007",
+     "MDA-009",
+     "MDA-011",
+     "MDA-012",
+     "MDA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a scarf hanging in a long loop from a low mudroom hook at roughly toddler neck height",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and stock ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-012",
+     "MDF-014"
+    ],
+    "actions": [
+     "MDA-007",
+     "MDA-009",
+     "MDA-010"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty cardboard bag roll tube sitting on a pet station hook with no spare roll behind it",
+    "must_show": [
+     "Consumables run out unnoticed, and stock ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Do the shared task together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-002"
+    ],
+    "actions": [
+     "MDA-001"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "two coats crowded onto one shared hook rail instead of each hanging on its own named column",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-013",
+   "title": "UNCLEAR OWNERSHIP",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first.",
+   "confirm_in_30_seconds": "Ask who resets this zone. If the honest answer is \"whoever gets to it\" or two names with no agreement, there is no owner.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-006",
+     "MDF-008",
+     "MDF-009",
+     "MDF-012",
+     "MDF-015",
+     "MDF-017",
+     "MDF-018"
+    ],
+    "actions": [
+     "MDA-006",
+     "MDA-013",
+     "MDA-014"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a mop leaning loose against a mudroom wall instead of hanging on its own clip",
+    "must_show": [
+     "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-014",
+   "title": "SENTIMENTAL ATTACHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely.",
+   "confirm_in_30_seconds": "Ask if you would buy this again today for what it does. If the answer is no but you still cannot decide, the hold is sentimental.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-001",
+     "MDF-013",
+     "MDF-016"
+    ],
+    "actions": [
+     "MDA-002",
+     "MDA-010",
+     "MDA-012"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a good winter coat hanging untouched on its column while the coats beside it show real daily wear",
+    "must_show": [
+     "The item is kept for what it represents, not because it is used, and the guilt stalls Sort indefinitely."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-015",
+   "title": "UNRESOLVED DECISION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on.",
+   "confirm_in_30_seconds": "Pick up one piece. If your first thought is a verb (pay, sign, call, decide) rather than a place, it needs a decision, not a home.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-001",
+     "MDF-004",
+     "MDF-007",
+     "MDF-010",
+     "MDF-013",
+     "MDF-016"
+    ],
+    "actions": [
+     "MDA-002",
+     "MDA-004",
+     "MDA-005",
+     "MDA-008",
+     "MDA-010",
+     "MDA-012",
+     "MDA-015"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a single unmatched glove sitting in a bag that has already survived more than one seasonal changeover",
+    "must_show": [
+     "The item is not clutter, it is a decision that has not been made, so it is stacked instead of acted on."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-016",
+   "title": "DIFFICULT TO CLEAN",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "SHINE FIXES THIS ONE.",
+   "objective": "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped.",
+   "confirm_in_30_seconds": "Time how long it actually takes to reach and wipe the surface. If it requires moving something first, that cost is why it is skipped.",
+   "instruction": "This is a Shine problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-009"
+    ],
+    "actions": [
+     "MDA-006",
+     "MDA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "the underside of a wire shoe rack rail caked with dried mud nobody reaches without unloading the whole rack",
+    "must_show": [
+     "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "RC-017",
+   "title": "PERCEPTUAL BLINDNESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The clutter has been visible so long the eye stops flagging it as a problem.",
+   "confirm_in_30_seconds": "Ask someone who does not live here to name what looks out of place. If they see it instantly and you had stopped noticing, this is the cause.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "MDF-002",
+     "MDF-003",
+     "MDF-009",
+     "MDF-011",
+     "MDF-013",
+     "MDF-014"
+    ],
+    "actions": [
+     "MDA-006",
+     "MDA-009",
+     "MDA-013"
+    ]
+   },
+   "source": "ops/root_causes.py, the shared vocabulary",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a hook mounted at a height that stopped matching the shortest person in the house seasons ago",
+    "must_show": [
+     "The clutter has been visible so long the eye stops flagging it as a problem."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "MDA-001",
+   "title": "CLEAR THE WRONG-COLUMN COATS AND FIX THE LOW HOOKS",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Walk the whole wall column by column, return anything on the wrong person's column, enforce one coat one bag one hat, and move any dangling scarf away from toddler height.",
+   "why_it_matters": "A coat on the wrong column and a scarf hanging low enough to reach a toddler's neck both cost the space a working column needs.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "none beyond the wall's own hooks"
+   ],
+   "steps": [
+    "Hang your own coat up right now and walk the whole wall column by column. Move anything sitting on the wrong person's column back to its owner, take down any coat, bag or hat on a column that already has its one coat, one bag, one hat filled, and move any scarf or drawstring hanging low enough to reach a toddler's neck up a hook.",
+    "Leave the floor under the hooks bare before you finish."
+   ],
+   "root_causes": [
+    "KC-012",
+    "KC-006",
+    "KC-010",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-012",
+     "KC-006",
+     "KC-010",
+     "KC-008"
+    ],
+    "zone": "MDZ-001",
+    "standard": "MDS-001"
+   },
+   "victory_condition": "Every column holds no more than one coat, one bag and one hat, nothing dangles low enough to reach toddler height, and the floor under the hooks is bare.",
+   "next_card": "MDS-001",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand moving a coat from the wrong column back to its owner's while a scarf is lifted off a low hook to a higher one",
+    "must_show": [
+     "Every column holds no more than one coat, one bag and one hat, nothing dangles low enough to reach toddler height, and the floor under the hooks is bare."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-002",
+   "title": "SETTLE THE FOURTH COAT AND REMEASURE HOOK HEIGHT",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 3,
+   "six_s": "Sort",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Run the one-week honest test on any coat that hasn't been worn, move it to the wardrobe if it fails, and remeasure hook height against the shortest person who actually uses the wall.",
+   "why_it_matters": "A coat kept because letting it go feels like admitting something, and a hook set for an adult's height on a wall a child also uses, both cost more than they earn.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "a measuring tape",
+    "a spare hook if needed"
+   ],
+   "steps": [
+    "Live with any untouched coat for a week and count honestly whether it moved. If it didn't, take it down and move it to its owner's wardrobe today.",
+    "Stand the shortest household member at the wall and adjust or add a hook to their own reach.",
+    "Write each person's name on their column at their own eye height."
+   ],
+   "root_causes": [
+    "RC-014",
+    "RC-015",
+    "KC-001",
+    "KC-006"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "KC-001",
+     "KC-006"
+    ],
+    "zone": "MDZ-001",
+    "standard": "MDS-001"
+   },
+   "victory_condition": "No untouched coat has occupied a column for more than a week, and every hook sits at the reach of the person whose column it is.",
+   "next_card": "MDA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand hanging a name card at a newly lowered hook height beside a coat being carried up to a wardrobe",
+    "must_show": [
+     "No untouched coat has occupied a column for more than a week, and every hook sits at the reach of the person whose column it is."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-003",
+   "title": "CLEAR THE BENCH TO BARE WOOD",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clear the bench to bare wood, carry stray items to the rooms they belong in, and give the outbound basket its one real job.",
+   "why_it_matters": "Every object on the bench beyond three is one more reason somebody ends up balancing on one leg to change shoes.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the outbound basket itself"
+   ],
+   "steps": [
+    "Sit down right now and clear the bench to bare wood. Carry every item that belongs in another room there immediately rather than sliding it down the bench, and put whatever is genuinely leaving the house tomorrow into the outbound basket at the end, nothing else."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-002",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-002",
+     "KC-010"
+    ],
+    "zone": "MDZ-002",
+    "standard": "MDS-002"
+   },
+   "victory_condition": "The seat is bare enough for two people to lace boots at once, no more than three things sit on the surface, and the outbound basket holds only what leaves on the next trip out.",
+   "next_card": "MDS-002",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand carrying an armful of misplaced items off a mudroom bench into the house, one item going into a labelled outbound basket",
+    "must_show": [
+     "The seat is bare enough for two people to lace boots at once, no more than three things sit on the surface, and the outbound basket holds only what leaves on the next trip out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-004",
+   "title": "EMPTY THE LID AND GIVE IT ONE HONEST JOB",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Empty the hinged bench box completely, run the honest lid-lift count for a week, and refill it only with things used while sitting.",
+   "why_it_matters": "Storage under a seat you sit on ten times a day is storage you will never open unless it earns that spot on purpose.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "spare laces",
+    "a shoe horn",
+    "a rag for wiping soles"
+   ],
+   "steps": [
+    "Empty the storage box completely onto the floor and sort what's actually inside.",
+    "Keep only what you'd use while sitting: spare laces, a shoe horn, a rag for wiping soles.",
+    "If the box is still empty after a week of real use, leave it empty rather than refilling it out of habit."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-004",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-005",
+     "KC-004",
+     "RC-015"
+    ],
+    "zone": "MDZ-002",
+    "standard": "MDS-002"
+   },
+   "victory_condition": "The bench box holds only what's genuinely used while sitting, and an honestly empty box stays empty rather than being refilled out of habit.",
+   "next_card": "MDA-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bench storage box emptied completely onto the floor, a small pile of laces and a shoe horn set aside to go back in",
+    "must_show": [
+     "The bench box holds only what's genuinely used while sitting, and an honestly empty box stays empty rather than being refilled out of habit."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-005",
+   "title": "DRAIN THE TRAY AND CLEAR THE FOUR-WEEK TEST",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Move every dry pair from the tray to the rack, and pull anything that hasn't earned its slot in the last four weeks.",
+   "why_it_matters": "A dry pair still parked on the tray and a pair nobody's worn in a month both cost the door the space this season's footwear needs.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a dated slip of paper"
+   ],
+   "steps": [
+    "Check the tray right now for any pair that has finished draining and move it up to the rack soles down, toes out. While you're there, pull any pair that hasn't been worn in the last four weeks and set it aside with today's date to move to the wardrobe."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-010",
+    "RC-015",
+    "KC-007"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "KC-010",
+     "RC-015",
+     "KC-007"
+    ],
+    "zone": "MDZ-003",
+    "standard": "MDS-003"
+   },
+   "victory_condition": "The tray holds only what's still actually wet, every dry pair sits on the rack soles down and toes out, and nothing unworn for four weeks is still taking a slot without a dated slip.",
+   "next_card": "MDS-003",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand lifting a dry pair of boots off a tray onto a rack soles down, another pair set aside with a dated paper slip in its toe",
+    "must_show": [
+     "The tray holds only what's still actually wet, every dry pair sits on the rack soles down and toes out, and nothing unworn for four weeks is still taking a slot without a dated slip."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-006",
+   "title": "WASH THE TRAY AND CLEAR THE RAIL'S UNDERSIDE",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 3,
+   "six_s": "Shine",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Tip the boot tray out and wash it, and reach under the rail to clear the caked mud nobody sees from standing height.",
+   "why_it_matters": "Dried mud on a tray turns to dust that gets walked straight back inside, and a caked rail underside is where rust starts unseen.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a stiff scrubbing brush",
+    "a garden hose or outdoor tap"
+   ],
+   "steps": [
+    "Carry the tray outside, tip out the grit, and scrub it with a stiff brush until the lip runs clean.",
+    "Unload the rack shelf by shelf and wipe the underside of each rail where mud cakes unseen.",
+    "Flag any rust or burr on the rail while it's unloaded, and vacuum the floor of the rack before boots go back."
+   ],
+   "root_causes": [
+    "RC-016",
+    "RC-013",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-016",
+     "RC-013",
+     "RC-017"
+    ],
+    "zone": "MDZ-003",
+    "standard": "MDS-003"
+   },
+   "victory_condition": "The tray runs clean when rinsed, the underside of every rail is free of caked mud, and the boots go back soles down, toes out.",
+   "next_card": "MDA-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a boot tray being scrubbed clean outdoors beside a shoe rack with its shelves unloaded and the underside of a rail being wiped",
+    "must_show": [
+     "The tray runs clean when rinsed, the underside of every rail is free of caked mud, and the boots go back soles down, toes out."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-007",
+   "title": "CHECK THE HOOK, THE BAGS AND THE BIN",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Clip the lead back on its hook, check the bag roll and the food bin's level, and move any loose treatment behind a closed door.",
+   "why_it_matters": "A bag roll checked when the lead goes back is the only place that shortfall gets caught before it happens a quarter mile from the house.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a spare bag roll"
+   ],
+   "steps": [
+    "Clip the lead back on its hook right now and check the bag roll: if it's down to the last few, swap it for the spare. Check the food bin's level against the scoop and refill it if it has dropped that low, and move any treatment sitting loose in the caddy behind a closed door above reach."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-011",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "KC-011",
+     "KC-010"
+    ],
+    "zone": "MDZ-004",
+    "standard": "MDS-004"
+   },
+   "victory_condition": "The lead, collar and a full bag roll hang together as one kit on the hook, the food bin's level sits at or above the scoop line, and no treatment is loose in the open caddy.",
+   "next_card": "MDS-004",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand clipping a lead back onto its hook beside a full bag roll, a food bin's level checked against its scoop",
+    "must_show": [
+     "The lead, collar and a full bag roll hang together as one kit on the hook, the food bin's level sits at or above the scoop line, and no treatment is loose in the open caddy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-008",
+   "title": "MOVE THE FOOD BIN TO WHERE THE BOWL ACTUALLY SITS",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Decide honestly where the bowl sits and move the food bin there, keeping this zone to departures and arrivals only.",
+   "why_it_matters": "This zone is for leads, bags, towels and paw washes; a feeding job it never signed up for costs a walk across the house every meal.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a hand truck or box for the move"
+   ],
+   "steps": [
+    "Walk to wherever the bowl actually sits and measure whether the food bin will fit there.",
+    "If it fits, move the bin, scoop and spare bag stock to the bowl's room today.",
+    "If it doesn't fit, treat that as a kitchen storage problem to solve, not a reason to keep the walk."
+   ],
+   "root_causes": [
+    "KC-003",
+    "RC-015",
+    "KC-004"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-003",
+     "RC-015",
+     "KC-004"
+    ],
+    "zone": "MDZ-004",
+    "standard": "MDS-004"
+   },
+   "victory_condition": "The food bin sits at the bowl, and this zone holds only what's needed for departures and arrivals: lead, bags, towel, coat, paw wash.",
+   "next_card": "MDA-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a pet food bin being carried out of a mudroom toward a kitchen doorway where a food bowl actually sits",
+    "must_show": [
+     "The food bin sits at the bowl, and this zone holds only what's needed for departures and arrivals: lead, bags, towel, coat, paw wash."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-009",
+   "title": "MATCH THE GLOVES AND CHECK THE DATES",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Match every glove into a pair, bag the singles with today's date, and clear any expired sun cream or repellent from the low bin.",
+   "why_it_matters": "An unmatched glove and an expired bottle in a low bin both cost the bin's one job, which is holding what this season actually needs.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a dated singles bag"
+   ],
+   "steps": [
+    "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sun cream and insect repellent for their dates, moving anything expired out of the low bin."
+   ],
+   "root_causes": [
+    "RC-017",
+    "KC-011",
+    "KC-010"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-017",
+     "KC-011",
+     "KC-010"
+    ],
+    "zone": "MDZ-005",
+    "standard": "MDS-005"
+   },
+   "victory_condition": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin.",
+   "next_card": "MDS-005",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand matching gloves into pairs on the floor beside a dated singles bag and an old sun cream bottle set aside",
+    "must_show": [
+     "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-010",
+   "title": "CLOSE THE SEASON, LABEL THE MONTH, AND SETTLE THE SINGLES BAG",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Run the full seasonal changeover: wash and dry everything going into storage, date the singles bag's deadline, and close the off-season bin with the month on its lid.",
+   "why_it_matters": "Gloves are lost one at a time, so the changeover is the one moment that actually catches the drift before it becomes permanent.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a marker",
+    "a label",
+    "a donation box"
+   ],
+   "steps": [
+    "Wash and fully dry anything going into off-season storage before it's boxed.",
+    "Check the singles bag's date: anything unmatched since the last changeover leaves the house now, with one exception for a genuinely growing child's survivor.",
+    "Label the closed bin with the month and the short order (gloves matched, hats washed, creams checked, umbrellas emptied), then lift it to the high shelf."
+   ],
+   "root_causes": [
+    "RC-014",
+    "RC-015",
+    "KC-011"
+   ],
+   "related": {
+    "root_causes": [
+     "RC-014",
+     "RC-015",
+     "KC-011"
+    ],
+    "zone": "MDZ-005",
+    "standard": "MDS-005"
+   },
+   "victory_condition": "The off-season bin is closed, dated and on the high shelf, and no single glove has survived more than one changeover without a genuine reason.",
+   "next_card": "MDA-009",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a closed seasonal storage bin with a month label being lifted onto a high shelf, a singles bag being emptied into a donation box beside it",
+    "must_show": [
+     "The off-season bin is closed, dated and on the high shelf, and no single glove has survived more than one changeover without a genuine reason."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-011",
+   "title": "HANG THE TOOLS AND CHECK THE MOP HEAD",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Hang the broom back on its clip, check whether the mop head has dried, and label the one unmarked bottle in the caddy.",
+   "why_it_matters": "A mop stored wet is what turns this corner sour, and an unmarked bottle is a guess waiting to be made by someone in a hurry.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a marker or a blank label"
+   ],
+   "steps": [
+    "Shake the door mats out right now, hang the broom back on its clip with the bristles clear of the floor, and check whether the mop head has actually dried. Pull the decanted, unlabelled bottle out of the caddy and label it, or empty it if you can't tell what it is."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-004",
+    "KC-008"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "KC-004",
+     "KC-008"
+    ],
+    "zone": "MDZ-006",
+    "standard": "MDS-006"
+   },
+   "victory_condition": "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labelled.",
+   "next_card": "MDS-006",
+   "source": "content/manual/source/content.json, first_15",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand hanging a broom back on its wall clip beside a mop head checked for dryness, a labelled bottle being set back in a caddy",
+    "must_show": [
+     "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labelled."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-012",
+   "title": "SEPARATE THE BLEACH AND SETTLE THE SECOND VACUUM",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Split bleach and any ammonia-based cleaner into separate containers for good, and decide the second vacuum's fate with the one real question.",
+   "why_it_matters": "Bleach and an ammonia-based cleaner leaking together in a shut caddy make a gas nobody can outrun fast enough in this small a room.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a second closed container or shelf"
+   ],
+   "steps": [
+    "Move the bleach and the ammonia-based cleaner into two separate, never-shared containers.",
+    "Ask out loud whether the spare vacuum has ever actually covered for the main one in the last year.",
+    "If the honest answer is no, pass the spare vacuum to someone with none, and give the corner back to the one you use every week."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-014",
+    "RC-015",
+    "KC-001"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-014",
+     "RC-015",
+     "KC-001"
+    ],
+    "zone": "MDZ-006",
+    "standard": "MDS-006"
+   },
+   "victory_condition": "Bleach and an ammonia-based cleaner never share a container, and the corner holds only the vacuum actually used every week.",
+   "next_card": "MDA-011",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a bleach bottle and an ammonia based cleaner being separated onto different shelves, an old backup vacuum being carried out to a neighbor",
+    "must_show": [
+     "Bleach and an ammonia-based cleaner never share a container, and the corner holds only the vacuum actually used every week."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-013",
+   "title": "THE FULL MUDROOM HAZARD WALK",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Walk all six zones checking hook anchoring, scarves and drawstrings, wet-floor slip zones, treatments and cleaners locked away, and every tool hanging clear of a doorway.",
+   "why_it_matters": "This is the room where every zone carries its own hazard, wet floors, poison-grade treatments, a bleach caddy, an overloaded rail, so the hazards only get found if someone checks all six on purpose.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a childproof latch if needed",
+    "a marker for labels"
+   ],
+   "steps": [
+    "Push on the loaded end of the hook rail and confirm it's anchored into a stud, not just plasterboard.",
+    "Check for any scarf or drawstring hanging low enough to reach a toddler's neck.",
+    "Walk the floor from the boot tray to the doorway and confirm it's bare and dry.",
+    "Confirm every treatment and chemical sits behind a closed door above reach, and bleach never shares a container with an ammonia-based cleaner.",
+    "Check that no long-handled tool is leaning loose across a doorway."
+   ],
+   "root_causes": [
+    "KC-010",
+    "RC-013",
+    "RC-016",
+    "RC-017"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-010",
+     "RC-013",
+     "RC-016",
+     "RC-017"
+    ]
+   },
+   "victory_condition": "No hook pulls at a touch, no scarf or drawstring hangs at toddler height, the floor from tray to door is bare and dry, every treatment and chemical is locked away correctly, and no tool leans across a doorway.",
+   "next_card": "MDA-014",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand testing a loaded hook rail for give, a cleared wet floor path visible behind toward a doorway with no leaning tools",
+    "must_show": [
+     "No hook pulls at a touch, no scarf or drawstring hangs at toddler height, the floor from tray to door is bare and dry, every treatment and chemical is locked away correctly, and no tool leans across a doorway."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-014",
+   "title": "THE DOOR-DAY SWEEP",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "The moment everyone's in for the evening, walk all six zones once in the order the house actually uses them: coats to their columns, boots to the rack or tray, the pet kit back on its hook, and the tools re-hung.",
+   "why_it_matters": "Every zone in this room has its own trigger already; the sweep is what actually fires all six on the same evening instead of one zone drifting behind the rest.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "none beyond the room's own hooks, tray and clips"
+   ],
+   "steps": [
+    "Hang every coat and bag on its own column as you come in.",
+    "Set wet boots on the tray, dry pairs up on the rack.",
+    "Clip the pet lead back on its hook and check the bag roll.",
+    "Hang the broom, mop and dustpan back on their clips before the day ends."
+   ],
+   "root_causes": [
+    "KC-009",
+    "RC-013"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-009",
+     "RC-013"
+    ]
+   },
+   "victory_condition": "All six zones pass their own leave-behind standard on the same evening, in one walk.",
+   "next_card": "MDA-015",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a hand completing the last step of an evening sweep, hanging a mop back on its clip beside a rack of dry boots and a hooked coat",
+    "must_show": [
+     "All six zones pass their own leave-behind standard on the same evening, in one walk."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDA-015",
+   "title": "THE SEASONAL CHANGEOVER DAY",
+   "type": "ACTION CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "On a fixed day twice a year, swap the seasonal gear bins, re-check every hook height against who's grown, and clear anything that failed its honest test all cycle.",
+   "why_it_matters": "A changeover that only happens when someone remembers stops happening within a season; a fixed day is what actually keeps this room matched to the people who use it.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a calendar reminder"
+   ],
+   "steps": [
+    "Pick a fixed day each spring and autumn and put it on a shared calendar.",
+    "Swap the seasonal gear bins and remeasure hook heights against whoever's grown since the last changeover.",
+    "Clear any coat, pair of boots, or bag of singles that failed its honest test since the last changeover."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-001",
+    "RC-015"
+   ],
+   "related": {
+    "root_causes": [
+     "KC-006",
+     "KC-001",
+     "RC-015"
+    ]
+   },
+   "victory_condition": "A changeover happens on the same calendar day twice a year, hook heights match who actually uses them, and nothing that failed its own test all cycle is still taking a slot.",
+   "next_card": "MDA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a calendar reminder pinned near a mudroom wall while a seasonal bin is swapped and a hook height is remeasured against a child standing beside it",
+    "must_show": [
+     "A changeover happens on the same calendar day twice a year, hook heights match who actually uses them, and nothing that failed its own test all cycle is still taking a slot."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "MDS-001",
+   "title": "FAMILY HOOK ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Family Hook Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One coat, one bag, one hat per named column, and the floor under the hooks stays empty.",
+   "trigger": "When you hang up your own coat at the end of the day.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the rail and the wall behind it in downward strokes, working the grey shoulder-height smear until it lifts.",
+    "Brush the shoulders and collar of each coat with a soft clothing brush before it goes back on its column.",
+    "Vacuum the floor strip under the hooks with the crevice tool, working into the corner where it meets the skirting."
+   ],
+   "related": {
+    "zone": "MDZ-001",
+    "actions": [
+     "MDA-001",
+     "MDA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom hook wall with two coats and one bag hanging on each person's own named column, a hand-lettered name tag at each column's eye height, the lowest hooks set at a child's own reach, and completely bare floor running the length of wall beneath them, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDS-002",
+   "title": "BENCH AND TRANSITION SURFACE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Bench and Transition Surface",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The seat is always clear, and the surface never carries more than three things.",
+   "trigger": "When you sit down to change your shoes.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wipe the seat's front edge and apron where boot heels leave a dark rub line, letting the cleaner sit before you wipe.",
+    "Pull the bench away from the wall and vacuum the drift of grit and lone socks underneath.",
+    "Vacuum a cushioned seat with the upholstery tool, lifting any crumbs caught in the piping."
+   ],
+   "related": {
+    "zone": "MDZ-002",
+    "actions": [
+     "MDA-003",
+     "MDA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labelled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDS-003",
+   "title": "SHOE AND BOOT STORAGE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Shoe and Boot Storage",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Two pairs per person at the door, wet stays on the tray, and the path from the door stays bare.",
+   "trigger": "When you step in and take your boots off.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Knock caked mud off boots outdoors and brush the welts and treads clear before they come back inside.",
+    "Wipe each rail and shelf, working the dried mud off the underside where you never look.",
+    "Hose and scrub the lipped tray outside until the lip and corners run clean."
+   ],
+   "related": {
+    "zone": "MDZ-003",
+    "actions": [
+     "MDA-005",
+     "MDA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom shoe rack holding two pairs of footwear per person standing soles down and toes out, one lipped boot tray by the door holding only wet pairs, heavier boots on the bottom row, and a completely clear stretch of floor between the tray and the doorway, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDS-004",
+   "title": "PET STATION STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Pet Station",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Lead, collar and a full bag roll hang together as one kit, and treatments stay behind a closed door above reach.",
+   "trigger": "When you hang the lead back up after a walk.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Wash the scoop in hot soapy water and dry it fully before it goes back in the bin.",
+    "Send the paw towel through the wash with the door mats in the same load.",
+    "Scrub the waterline ring in the water bowl and the dried film in the food bowl daily."
+   ],
+   "related": {
+    "zone": "MDZ-004",
+    "actions": [
+     "MDA-007",
+     "MDA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom pet station with a lead clipped to its collar hanging on one hook with a full roll of waste bags threaded on, a folded towel within arm's reach of the door, a sealed food bin with its scoop inside, and every treatment stored behind a closed door above reach, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDS-005",
+   "title": "SEASONAL OUTDOOR GEAR STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Seasonal Outdoor Gear",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Only the current season is within reach, singles get one bag and one season, and every stored bin carries the month it was closed.",
+   "trigger": "The first morning of the season you reach for gloves and the bin is empty.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Vacuum the sand and grit from the corners of each emptied glove bin before refilling it.",
+    "Tip the umbrella stand over a bin and wipe or rinse the inside before the umbrellas go back.",
+    "Wipe the high shelf and the closed off-season bin lids before you open anything stored there."
+   ],
+   "related": {
+    "zone": "MDZ-005",
+    "actions": [
+     "MDA-009",
+     "MDA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labelled off-season bin sitting on the high shelf above, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDS-006",
+   "title": "CLEANING AND UTILITY ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Mudroom",
+   "zone": "Cleaning and Utility Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Every tool hangs with its head clear of the floor, nothing goes away wet, and bleach never shares a container with anything else.",
+   "trigger": "When you shake out the door mats.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "micro_quest": [
+    "Comb the broom bristles clear of trapped hair and grit over the bin before hanging it back up.",
+    "Cut the wound hair off the vacuum's brush bar with scissors and pull it free.",
+    "Rinse the mop head under running water until it runs clear, then wring and hang it to dry."
+   ],
+   "related": {
+    "zone": "MDZ-006",
+    "actions": [
+     "MDA-011",
+     "MDA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labelled cleaner bottles, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "MDE-001",
+   "title": "A WET SCHOOL MORNING SENDS EVERYONE OUT AT ONCE",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Every coat, bag and hat has to come off the wall inside two minutes flat while the car is already running outside.",
+   "tests_zones": [
+    "MDZ-001"
+   ],
+   "held_if": "Every person grabs exactly their own coat, bag and hat from their own column without asking where anything is.",
+   "if_it_failed": "If someone had to search another person's column, or a coat was buried under someone else's, the wrong-column reset never happened. Draw MDA-001.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "several coats being pulled quickly off a hook wall by different hands, each hand reaching straight to its own named column",
+    "must_show": [
+     "Every coat, bag and hat has to come off the wall inside two minutes flat while the car is already running outside."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "MDE-002",
+   "title": "TWO PEOPLE NEED TO LACE BOOTS AT THE SAME TIME",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Two people arrive at the same moment and both need the bench to sit down and deal with wet boots.",
+   "tests_zones": [
+    "MDZ-002"
+   ],
+   "held_if": "Both people sit down at once because the seat is bare and no more than three things sit on the surface.",
+   "if_it_failed": "If one person had to stand on one leg because the seat was covered in bags, the bench-clearing reset never happened. Draw MDA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "two people sitting side by side on a bare mudroom bench lacing boots at the same time",
+    "must_show": [
+     "Two people arrive at the same moment and both need the bench to sit down and deal with wet boots."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "MDE-003",
+   "title": "A SUDDEN DOWNPOUR SENDS EVERYONE IN SOAKED",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Everyone comes in from a sudden downpour at once, boots dripping, and all of them need somewhere to drain right now.",
+   "tests_zones": [
+    "MDZ-003"
+   ],
+   "held_if": "Every wet pair lands on the tray with room to spare, and the path from the tray to the doorway stays bare underfoot.",
+   "if_it_failed": "If a wet pair ended up on the rack, or the floor beyond the tray turned slick, the tray-and-rail reset never happened. Draw MDA-005.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "several pairs of dripping wet boots lined up on a boot tray, a bare dry floor stretching from the tray to the doorway",
+    "must_show": [
+     "Everyone comes in from a sudden downpour at once, boots dripping, and all of them need somewhere to drain right now."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "MDE-004",
+   "title": "THE DOG NEEDS A WALK IN THE LAST FIVE MINUTES OF DAYLIGHT",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The dog needs walking right now, in the last five minutes before dark, and the whole kit has to come together in one grab.",
+   "tests_zones": [
+    "MDZ-004"
+   ],
+   "held_if": "The lead, collar and a full bag roll come off the hook together as one kit, with no separate search for anything.",
+   "if_it_failed": "If the bag roll turned out empty, or the lead and collar weren't already together, the hook-and-bag check never happened. Draw MDA-007.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a lead already clipped to its collar off a hook, a full bag roll threaded on and ready to go",
+    "must_show": [
+     "The dog needs walking right now, in the last five minutes before dark, and the whole kit has to come together in one grab."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "MDE-005",
+   "title": "THE FIRST COLD MORNING OF THE YEAR ARRIVES WITHOUT WARNING",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The first genuinely cold morning of the year arrives overnight, and everyone needs gloves and a hat on their way out the door.",
+   "tests_zones": [
+    "MDZ-005"
+   ],
+   "held_if": "Every glove in the bin is already matched into a pair, sized for the season that's actually here.",
+   "if_it_failed": "If someone pulled out a single glove with no match, the changeover and the match-and-check pass never happened. Draw MDA-009.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand pulling a matched pair of gloves straight out of an open bin on a cold morning",
+    "must_show": [
+     "The first genuinely cold morning of the year arrives overnight, and everyone needs gloves and a hat on their way out the door."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  },
+  {
+   "id": "MDE-006",
+   "title": "MUDDY FOOTPRINTS TRACK ACROSS THE FLOOR RIGHT BEFORE GUESTS ARRIVE",
+   "type": "EVENT CARD",
+   "room": "Mudroom",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Muddy footprints track across the entry floor twenty minutes before guests are due, and every cleaning tool has to be ready to go.",
+   "tests_zones": [
+    "MDZ-006"
+   ],
+   "held_if": "The broom and mop are already hanging dry and ready, and the right cleaner is already labelled and easy to grab.",
+   "if_it_failed": "If the mop head was still damp from last time, or a bottle had to be guessed at, the hang-and-check pass never happened. Draw MDA-011.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "MDZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hand lifting a dry, ready mop off its wall clip beside a clearly labelled cleaner bottle",
+    "must_show": [
+     "Muddy footprints track across the entry floor twenty minutes before guests are due, and every cleaning tool has to be ready to go."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."
+   }
+  }
+ ]
+}
