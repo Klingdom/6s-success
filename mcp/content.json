@@ -6781,6 +6781,65 @@
        "Look at the mattress cover seams and zip for a split or a soft moldy patch, and press the support base for any spot that flexes more than the rest.",
        "Note whether the drop-side or mattress-height catches still seat firmly on both ends, and flag one that no longer clicks home."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There's a folded quilt or blanket draped over the crib rail, or a plush toy sitting at the foot of the mattress.",
+        "branches": [
+         {
+          "answer": "Someone gave this as a gift and nobody has said yet, out loud, that it can't go in the crib",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody has actually agreed that the crib rule is a fitted sheet and nothing else",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's been in there long enough that a glance at bedtime doesn't register it anymore",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The monitor cable runs down loose alongside the rail instead of being clipped up and back.",
+        "branches": [
+         {
+          "answer": "It's a real strangling risk within reach of the rails, and that outranks how it looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's been mounted that way since before your baby could reach, so it stopped reading as a risk",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The crib ended up close enough to the cable run that there was never a clean path to route it away from the rails",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "The mattress is still set at the high position even though your baby can now pull up to stand.",
+        "branches": [
+         {
+          "answer": "Nobody re-checked the setting once this new milestone made the old one unsafe",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's a safety adjustment that outranks how much effort it takes to get to right now",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's the kind of task each parent assumes the other one already handled",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Strip the crib down to the mattress and one fitted sheet. Anything else crossing the rail, a quilt, a plush toy, a muslin, a blanket, comes out now and goes to its real place: the keepsake box, the toy basket, or the wash.",
+       "victory": "The crib holds a bare mattress with one fitted sheet pulled tight to the corners, and nothing else is inside the rails or draped over the top rail."
+      }
      }
     },
     {
@@ -6861,6 +6920,65 @@
        "Feel whether the dresser rocks at all against the wall as you lean on it, and flag a wobble.",
        "Check the pail lid seal for a soft moldy line in the rubber and flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There's a lamp, a framed photo, or a mostly-full bottle of lotion sitting on the dresser top near the pad.",
+        "branches": [
+         {
+          "answer": "Nobody ever decided this surface is only for what an actual change needs",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It has no assigned home of its own, so it lands on the nearest flat surface on the way past",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It's been sitting there so long it stopped registering as clutter on a work surface",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There's a second, partial changing setup downstairs: a stack of diapers and no wipes, or wipes and no cream.",
+        "branches": [
+         {
+          "answer": "Carrying the baby upstairs every time felt unbearable, so a shortcut version started without anyone deciding what it needed to include",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "It doesn't restock on the same trigger as the real station, so it quietly drifts out of sync",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever stocked it assumed someone else had already checked it matched the real station",
+          "cause": "KC-012"
+         }
+        ]
+       },
+       {
+        "symptom": "A wipe refill bag or the pail liner roll is sitting loose on top of the dresser instead of shut in a drawer.",
+        "branches": [
+         {
+          "answer": "It's a real choking and suffocation risk sitting in reach, and that outranks convenience",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There's no assigned spot for the spare packaging once the drawer under the pad fills up with something else",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It only reads as clutter, not as a hazard, so it keeps getting deprioritized",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the dresser top down to what your hand actually uses during a change: diapers, wipes, cream, a burp cloth. Everything else, and any loose plastic bag or roll sitting out, moves off the top or into a shut drawer.",
+       "victory": "The pad surface and the dresser top around it hold only what a change needs, and nothing loose plastic is left where a hand could reach it."
+      }
      }
     },
     {
@@ -6941,6 +7059,65 @@
        "As you refold hand-me-downs, flag any set-in stain, split seam, or worn snap so it is caught now and not at dawn.",
        "Check that the chest still sits level and does not rock when you lean weight on an open drawer, and flag any wobble."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There's an outfit in the drawer with the tags still on, in a size your baby has already outgrown.",
+        "branches": [
+         {
+          "answer": "It was a gift from someone who mattered, and letting it go feels like a small betrayal",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's applied the two-garments-per-size rule yet, so there's no limit forcing the choice",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The outgoing bag isn't within reach of the drawer, so it's an extra trip rather than a two-second drop-in",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "Two different sizes are sitting in the same drawer, one of them from a few months back.",
+        "branches": [
+         {
+          "answer": "The drawer front was labeled once and never treated as something to update, so it now describes last month, not today",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "There's no specific moment that prompts a re-sort, so it happens whenever someone notices, which is later than the actual size change",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever puts the laundry away isn't necessarily the one who would catch the sizing drift",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A hand-me-down cardigan or sleeper still has its decorative buttons, ribbon ties, or drawstring attached.",
+        "branches": [
+         {
+          "answer": "Those trims are a real choking and strangling risk on anything a baby wears, and that comes off before the garment goes in a drawer, full stop",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "On a hand-me-down, the trim reads as part of the garment rather than as something to remove",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no set moment, before it's washed, before it's filed, when anyone checks a hand-me-down for hazards",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Open every drawer, pull anything smaller than what your baby is wearing today, and put it straight into the outgoing bag on the door hook.",
+       "victory": "Every drawer holds one size only, and the outgoing bag on the door has something in it."
+      }
      }
     },
     {
@@ -7023,6 +7200,65 @@
        "Note any rust spot on a sterilizer tray or a warmer's metal, and flag it.",
        "Check the drying rack and its tray for a mold line or a soft slimy film that keeps coming back."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are bottle parts or pump parts from a brand you've stopped using still sitting in the drawer or bin.",
+        "branches": [
+         {
+          "answer": "There's never been an agreed test, a fixed number of tries before deciding, so 'give it a bit longer' never actually ends",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Trying every recommended option means the shelf now stores more systems than the household actually uses",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "A brand that got refused once still hasn't been formally written off, so nobody feels safe throwing the spares out",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A used bottle or pump part is sitting in the same bin as the clean, assembled ones.",
+        "branches": [
+         {
+          "answer": "There's no fixed moment, like the kitchen light going off, that this household has actually adopted yet for closing out the day's bottles",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Whoever closes the kitchen at night isn't always the one who fed the baby, so the two bins get crossed",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The two bins aren't different enough in color to catch a tired hand reaching for the wrong one",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "A kettle, warmer, or sterilizer cord is coiled loosely on the counter instead of looped short and tucked behind the appliance.",
+        "branches": [
+         {
+          "answer": "A cord within pulling reach next to boiling water is a real scald risk, ahead of anything about tidiness",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's coiled that way every day, so the length of slack within reach stopped being something anyone notices",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Looping it short each time is one more step in an already one-handed routine, so it gets skipped under time pressure",
+          "cause": "KC-004"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Sort every bottle, teat, and pump part on the counter. Anything cloudy, split, or from a brand you've stopped using goes in the bin, and the clean bin gets refilled with fully assembled, dry bottles.",
+       "victory": "The clean bin holds only fully assembled, dry bottles and parts, and nothing used is mixed in with them."
+      }
      }
     },
     {
@@ -7099,6 +7335,65 @@
        "Note any rust on a tin or a cap, and any pack that has been chewed or torn open low down.",
        "Look at how the shelf brackets meet the wall and flag any that show a gap or movement under the loaded weight."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are more than two unopened packs of one diaper size on the shelf, in a size your baby is close to outgrowing.",
+        "branches": [
+         {
+          "answer": "A deal made buying ahead feel like savings, so more came in than the two-pack ceiling allows",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "There's no written cap on how many packs of one size to keep, so 'good deal' is the only rule currently operating",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Nobody's decided yet where the extra packs go, a friend, a diaper bank, so they just stay",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "A heavy carton or pack is stored on a shelf above or beside the crib.",
+        "branches": [
+         {
+          "answer": "Weight that can shift and fall into the sleep space outranks whatever convenience put it there",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The backstock shelf happens to be the closest flat surface to the crib, so overflow lands there by proximity, not by plan",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "It's been stacked there since before the crib had a baby actually sleeping in it, so the arrangement never got re-examined",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A cream, teething gel, or infant medicine on the shelf is past its date, or its tube is split or swollen.",
+        "branches": [
+         {
+          "answer": "Nothing prompts a date check except emptying the shelf to clean it, which doesn't happen often",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Consumables like this age out of use unseen, because nothing signals when one has gone past its date",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "A lidded box that's rarely opened is also rarely looked at closely enough to catch a swollen tube",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every pack off the shelf, read the printed size, and take anything smaller than today's size, opened or not, off the shelf. Move anything heavy off any shelf above or beside the crib.",
+       "victory": "The shelf holds one unopened pack of the current size, no more than two packs of the next size, and nothing heavy sits above or beside the crib."
+      }
      }
     },
     {
@@ -7180,6 +7475,65 @@
        "Look at where the ledge meets the wall and flag any bracket showing a gap or a fixing that has worked loose under a pulling-up weight.",
        "Note a fraying rim or a broken weave on the toy basket that could leave a sharp end at floor level."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A paper-page book or one of your own books is sitting on the low ledge within the baby's reach.",
+        "branches": [
+         {
+          "answer": "It was chosen because you wanted to read it aloud, and moving it off the ledge can feel like giving up that plan",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody's drawn the line yet that the low ledge is board-books-only, so anything book-shaped ends up there",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The split, your shelf versus the ledge, hasn't actually been made yet, so books default to wherever they were unpacked",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The soft toy basket is stacked well above its rim, with more spilling onto the floor beside it.",
+        "branches": [
+         {
+          "answer": "There's no swap trigger, two out when two come in, so the basket only ever grows",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "More toys keep arriving as gifts than the rotation system moves back out to the closet box",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Swapping toys into the rotation box isn't clearly anyone's job, so it only happens when someone happens to be tidying",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A light-up or musical toy's battery compartment opens without a screwdriver, or a soft toy has a loose stitched eye or a long ribbon tag.",
+        "branches": [
+         {
+          "answer": "A battery compartment a baby can open, or a loose part that can detach, is a real choking risk that outranks keeping the toy",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "A toy that's been on the shelf for months doesn't get re-inspected the way a brand-new one would",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no set check when a toy comes back from the wash the way there is for board books, so a loose eye can sit for a while before anyone notices",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Move every paper-page book off the low ledge to a shelf in your own room, and swap the soft toy basket down to level with its rim, boxing the rest for the closet rotation.",
+       "victory": "The low ledge holds only board books facing out, and the soft toy basket sits level with its rim, not above it."
+      }
      }
     }
    ]
