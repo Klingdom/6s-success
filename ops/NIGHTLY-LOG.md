@@ -20,6 +20,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated. No price or product touched; one new free page, IndexNow submission attempted and correctly refused (could not verify the key file is served from this sandbox).
 
+## 2026-09-29, scheduled operator cycle
+
+**Did:** Checkout arrived shallow and detached, as it has every run since 2026-08-26; unshallowed (`git fetch --unshallow`), attached to `main`, and fast-forwarded 826 commits onto `origin/main` with no conflict (`git merge --ff-only`), confirming the merge-base existed before touching anything, per STEP 0. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md` sections 3b/3c, `CLAUDE.md`, `OWNER-ACTIONS.md`'s "start here" list, `RISKS.md`'s three open CRITICALs, and this log's newest four entries. Ran `python ops/preflight.py` to genuine completion via `ops/run_preflight.sh` (never a bare foreground timeout, per this log's own repeated lesson): every gate passed, 25 standing warnings, the same set every recent cycle has recorded (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). `ops/affiliate.py --check`: clean, 165 delivered documents, every page with links discloses above them. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, UNCHECKED not empty.
+
+**Verified:** re-derived rather than cited: `deploy_gap_material_commits(resolve_verdict_commit('159acc34b643d712'))` returns exactly 5 material commits, matching `STATUS.md`'s `BLOCKER-001` with no drift. GitHub's 8 open issues (#35, #33, #31, #29, #21, #18, #15, #2) pulled live via the API, byte-identical to every recent cycle, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --next`: 175 of 175 ops/JS files ledgered, genuinely exhausted. Confirmed this sandbox still has no egress (`curl` to `6s-success.com` and `api.stripe.com` both `connect_rejected` by the agent proxy) and no Stripe/mail/SSH-deploy credential, matching every prior cycle's own finding rather than assuming it still held. `BACKLOG-2026-09-07.md` sections 2 to 4 (A1-A10, B1-B9, C1-C7) each confirmed Done or Phil-gated by ID, no row silently reopened.
+
+**Went well:** used `ops/run_preflight.sh` from the first attempt this cycle rather than a bare foreground `timeout`, avoiding the self-inflicted `stray-probe-files` mistake several recent cycles made and then had to clean up.
+
+**Went not well:** nothing new. This repository is running many concurrent scheduled sessions inside the same hour (155-156 commits in the last 24h per `CHECKIN-LOG.md`, none of them moving a customer-visible number), and this cycle's own honest contribution is a clean independent re-verification, not a new fix. Duplicating another cold-read or backlog sweep would not have surfaced anything the last several dozen passes have not already ruled out.
+
+**Changing next cycle:** none new. No defect surfaced that a gate does not already catch.
+
+**Next:** the same standing Phil-gated list in `OWNER-ACTIONS.md` ("start here": `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Stripe business description) and the 8 open GitHub issues, unchanged. Nothing new is genuinely unblocked from this sandbox.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-09-29, PM check-in (01:2x)
 
 Previous work was finished, but not on the first check: attached clean (unshallowed, checkout main, ff-only onto origin/main, tree clean, no collision with the twin or the operator). A full `preflight.py` run failed one gate, `stray-probe-files`, citing a leftover `site/_audit_catalog_fix...` fixture. Did not assume transient: confirmed the path no longer exists, reran the gate standalone (clean), then reran the entire `preflight.py` a second time end to end rather than trust the single gate. Second run: every gate passed, the same 25 standing warnings every recent cycle has recorded, nothing new. This matches the known race this gate's own docstring names (a concurrent audit/test run killed mid-write, self-heals, caught correctly by the gate that exists for exactly this shape).
