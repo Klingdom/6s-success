@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, scheduled operator cycle (a real collision caught before it cost a merge, then Primary Bedroom, eighteenth room, shipped clean)
+
+**Did:** Unshallowed and attached to main. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast: clean. GitHub: 8 open issues, all decision or art blocked, 0 PRs, unchanged. No mail credential. Picked up B9 (room decks, the current active epic since 1-4 are Phil gated): claimed Nursery, dispatched a subagent to build it, then a full preflight run surfaced `ops/b9-claims.json` already showing Nursery claimed by a concurrent session an hour earlier. My own STATUS.md prose claim had never checked that structured ledger. Stopped the subagent immediately (it had authored one file, no commit, no push), fast forwarded onto the concurrent session's already-merged Nursery deck, discarded the duplicate work.
+
+Reclaimed against the real remaining list (`python ops/b9_claims.py --status`): Primary Bedroom, no diagnosis layer yet. Authored it for all 6 zones grounded in the room's own real text (18 frictions, 54 branches, 14 of 17 shared root causes honestly reached, 3 correctly not forced), regenerated the 6 zone pages, built `ops/cardtext/build_primary_bedroom_deck.py` and `ops/build_primary_bedroom_deck_page.py`, shipped `site/primary-bedroom-deck.html`, wired the two new gates into preflight.py with a fail-then-pass proved test. One real defect found and fixed while verifying: two unrelated zones (Primary Bedroom's Nightstand Left, Dining Room's Sideboard) landed on an identical related-reading set; fixed by recausing one friction branch to a more accurate cause, confirmed zero collisions across all 102 diagnosed zones after.
+
+**Fixed the actual gap that caused the Nursery collision:** STATUS.md section 0 described a prose-only claim convention that a same-day cycle had already outgrown; `ops/b9_claims.py`, built earlier today for this exact recurring collision, actively refuses a claim on an already-claimed room, but nothing pointed a fresh session at it. Added an explicit pointer in STATUS.md section 0.
+
+**Verified:** full `preflight.py` on the merged tree, every gate passed, 27 standing warnings. `check_urls.py` 208/208, `fix_dashes.py --check` 0/0, `all_pages()` recount confirmed 212 (resolved a same-line ROADMAP-2026-2029.md merge conflict, 211 vs 212, against this direct count rather than either side's assumption).
+
+**Went well:** the preflight run itself, not luck, is what surfaced the Nursery collision before a push.
+
+**Did not go well:** started Nursery without checking `ops/b9-claims.json` first, costing one subagent's wasted work (~11 minutes).
+
+**Changing next cycle:** use `python ops/b9_claims.py --claim`, not a hand-edited STATUS.md line, for any B9 work.
+
+**Next:** two rooms remain undiagnosed: Patio or Deck, Workshop (both 6 zones, `python ops/b9_claims.py --status`). All 8 GitHub issues remain Phil gated.
+
+Pushed to main. No price or product touched; one new free page (Primary Bedroom deck), 6 zone pages regenerated. IndexNow attempted, refused honestly (key file reachability unconfirmed, sandboxed network).
+
 ## 2026-09-29, PM check-in (correction: this cycle's own log-append had broken gate_nightly_log_ordering, found and fixed)
 
 **Did:** The full `preflight.py` fast run started at the top of the prior entry finished after that entry had already shipped, and it surfaced a real FAIL: `gate_nightly_log_ordering` (`entry #1471 ... appears after the entry sequence had already moved on to an older date`). Root cause was this cycle's own doing: the prior entry was written with `cat >> ops/NIGHTLY-LOG.md`, appending to the physical end of the file instead of prepending at the top per the file's own "newest first" header, landing it after the 2026-09-04 legacy section, exactly the misreading shape `gate_nightly_log_ordering`'s own docstring names (first found 2026-09-05). A still-earlier entry ("PM check-in ... verified a prior CI failure's fix holds") had already made the identical mistake one cycle before, so both were misplaced at the tail.
