@@ -13199,6 +13199,65 @@
        "Rust bloom on the vise screw, the bench dogs, or any bare steel fitting, a sign the shop is holding damp.",
        "A scorch mark or a heat-glazed patch on the top that says a tool or a workpiece has been running hot on this spot."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A half-assembled project has sat on the bench for months because the next step is one you are unsure how to do.",
+        "branches": [
+         {
+          "answer": "Nobody has been assigned to force a decision once a project stalls, so it just keeps occupying the bench indefinitely",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The project has nowhere else to go once you set it down mid-build, so the bench became its only address",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "It has been up there so long that a half-built something on the bench no longer reads as unusual",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A chisel or marking knife is lying edge up in an open tray instead of on its traced outline on the tool wall.",
+        "branches": [
+         {
+          "answer": "It is what your hand finds first when you reach across the bench without looking, and that risk outranks tidying it between cuts",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Putting it back on the wall mid-cut means crossing the bench and losing your place in the work, so the tray catches it instead",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Two different people run this bench by two different unwritten rules about what counts as put away, so a tool ends up in the tray under one and on the wall under the other",
+          "cause": "KC-012"
+         }
+        ]
+       },
+       {
+        "symptom": "The bench did not get its clear down before the shop light went off last night, and offcuts or glue squeeze-out are still on the bench this morning.",
+        "branches": [
+         {
+          "answer": "Two of you used the bench that evening and each assumed the other would do the ten minute clear down",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The eye level photo is the standard, but nobody actually glances at it before switching the light off, so drift is not caught in the moment",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Nothing marks the specific moment a fresh offcut earns its verdict, so it just sits on the bench until the whole session gets cleared",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the bench top down to just the vise and the task lamp: put every hand tool back on its traced outline, and give any offcut or glue squeeze-out its verdict, the rack, the fire bucket, or the bin.",
+       "victory": "The bench top holds only the vise and the task lamp, with every tool back on its silhouette and the dog holes empty."
+      }
      }
     },
     {
@@ -13283,6 +13342,65 @@
        "Blade teeth chipped or missing, or a blue heat-discolored patch on the blade plate.",
        "Rust on a saw table, a chuck, or an arbor, or a chuck that no longer grips a bit square."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A blade guard does not spring back on its own anymore when you release it.",
+        "branches": [
+         {
+          "answer": "A guard that sticks is the injury this zone is actually waiting on, and that outranks how small a fix it seems",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody checks the guard action on a schedule, so a guard that started sticking gradually is only caught the day it fails outright",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Nobody in the shop is assigned to notice a tool's wear over time, so a guard degrading gradually is not specifically anyone's job to catch",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A lithium battery pack is still sitting on the charger well after the job that needed it ended, resting on a wooden shelf under a bench full of sawdust.",
+        "branches": [
+         {
+          "answer": "A charged pack left running on wood under sawdust is a fire risk, and that outranks the convenience of leaving it plugged in",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The rule is the tool and the battery travel together off the charger in the same motion, but tonight only the tool got hung up",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The battery shelf is the only spot the chargers have ever been mounted, so a wooden shelf under a dusty bench never got questioned",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "There are two drills, or a spare sander, duplicating one already on the wall, and one of them has not cut anything in two years.",
+        "branches": [
+         {
+          "answer": "Nothing ever creates the moment to actually ask the two-question test out loud, so a duplicate keeps its hook by default",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Two similar tools arrived on the wall over time and nobody ever decided only one earns a hook",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "It has sat in the same spot long enough that a second drill on the wall no longer registers as two too many",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Work the retracting guard on every saw with your thumb to confirm it snaps back on its own, and move any battery still sitting on the charger from a finished job onto its tool's hook.",
+       "victory": "Every guard snaps shut on its own, and no charger is running behind a job that already ended."
+      }
      }
     },
     {
@@ -13359,6 +13477,65 @@
        "A drawer runner sagging or dragging, a sign the drawer is carrying more than it was built for.",
        "Condensation or a damp patch on the wall behind the cabinet."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is a coffee tin or jar of mixed, unsorted hardware back on the shelf again, probably traced back to a relative's garage.",
+        "branches": [
+         {
+          "answer": "It came from a relative's garage, and sorting it down to only the sizes you use and recycling the rest feels like discarding part of what they left behind",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "Nobody in the household has taken ownership of keeping mixed hardware off the shelf once it has been sorted, so a new jar just starts the pile again",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "A handful of screws from a finished job never had its own compartment to return to, so it dropped into whatever jar was closest",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "The wall mounted small parts cabinet is fixed into plasterboard anchors rather than studs, and it is fully loaded with steel fasteners.",
+        "branches": [
+         {
+          "answer": "A loaded cabinet pulling off the wall is a real fall and crush risk, and that outranks how solid the anchors looked going in",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Finding the studs and refixing it properly is a job that keeps getting pushed to another weekend",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It has hung there since it was first put up, so the anchors stopped reading as a decision that needs revisiting",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "The compartment you use weekly, the screws you actually drive, sits buried in the middle of the cabinet while a specialty hinge nobody has touched in years sits at hand height.",
+        "branches": [
+         {
+          "answer": "Nothing has ever been rearranged since the cabinet was first filled, so the layout reflects the day it was loaded, not what actually gets driven now",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Getting to the weekly size means moving other bins out of the way first, every single time",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "The minimum line inside that compartment is not marked the way the others are, so a low bin of a size you use constantly never announces itself",
+          "cause": "KC-011"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Tip out one obviously mixed jar or tin of hardware, and sort only the sizes you already have a labeled compartment for; whatever is left over goes straight to metal recycling today.",
+       "victory": "That one jar is empty and gone, and every fastener from it that stayed is inside a labeled compartment, not back in a container of its own."
+      }
      }
     },
     {
@@ -13444,6 +13621,65 @@
        "A rack bracket bending, a weld cracking, or the upright pulling away from the wall under load.",
        "A sheet leaning at too shallow an angle and starting to creep, which you often hear as a faint slide before you see it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The offcut bin is well over its marked fill line, and short pieces from last month are still in it.",
+        "branches": [
+         {
+          "answer": "There is more offcut sitting in reserve than this zone was ever meant to hold, because every cutting session adds more before anything old leaves",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The rule is the shortest piece leaves when the bin is full, but nothing prompts anyone to check the bin against its line",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "More usable offcut comes out of every cutting session than one bin was ever sized to hold",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "A full sheet of plywood is leaning against the wall at a shallow angle instead of standing close to vertical.",
+        "branches": [
+         {
+          "answer": "A shallow lean can slide flat without warning and take out whatever is in front of it, and that outranks how it looks propped there",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "There is no marked bay or bracket for sheet goods the way there is for boards by length, so it just leans wherever there is a gap",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody in the household has been assigned to check how the sheet goods are leaning, so an angle that developed slowly is not specifically anyone's job to catch",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "There is mouse droppings, cobwebs, or a damp stain in the gap behind the rack, the kind of thing you only find once you finally sweep back there.",
+        "branches": [
+         {
+          "answer": "Reaching behind a fully loaded rack costs real effort compared with the rest of the shine pass, so it is the part that gets skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "That gap sits outside your everyday sightline, so nothing happening back there gets flagged until you deliberately look",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nobody has been assigned to check behind the rack since it is not on anyone's daily path through the shop",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every offcut sitting on the bench, the floor, or the top of the rack right now and give each one its verdict: into the bin under the fill line, or straight to the fire bucket.",
+       "victory": "Nothing is stored directly on the shop floor, and the offcut bin sits at or under its marked fill line."
+      }
      }
     },
     {
@@ -13521,6 +13757,65 @@
        "An aerosol gone warm or bulging, or a label rubbed illegible so you can no longer tell water based from solvent.",
        "Liquid pooled and standing in the drip tray, and the smell of solvent in the air with every lid supposedly shut."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "An oil finish rag is balled up in the bin liner, or draped loose over the bench, instead of in the lidded metal can.",
+        "branches": [
+         {
+          "answer": "A balled up oil rag generates its own heat as it cures and can ignite with nothing touching it, and that outranks the two seconds it takes to find the can",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The rule is the rag goes in the can right at the tap when you wash the brush, but tonight the brush got washed somewhere else",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It has draped there before with nothing catching fire, so the risk stopped feeling real each time it happens again",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in.",
+        "branches": [
+         {
+          "answer": "Nobody has ever checked whether an old can is still good before it goes back on the shelf, so it just ages there unnoticed",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "You are storing a full tin against the small chance of a touch up that would only ever need a sealed jar's worth",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody in the house has ever been the one responsible for checking the shelf against the walls it matches, so it defaults to never",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A solvent can and a water based paint can are sitting on the same shelf instead of separated.",
+        "branches": [
+         {
+          "answer": "Incompatibles meeting on one shelf is the actual hazard this zone exists to prevent, and it outranks how tidy the shelf looks",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It has held both together long enough that the mix on that shelf stopped standing out as wrong",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "The zone does not have quite enough clearly separate shelves for every incompatible family, so overflow drifts onto whichever shelf has space",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Check every rag from today's finishing work: anything balled up loose goes into the lidded metal can with the lid pushed down, and scan the open cans on the shelf for one without a date and mark it now.",
+       "victory": "No oily rag is loose anywhere in the zone, and every open can on the shelf shows a marker date on its lid."
+      }
      }
     },
     {
@@ -13603,6 +13898,65 @@
        "The dust mask box empty, or masks that have sat open and loaded with the dust they are meant to stop.",
        "Corrosion on the extinguisher body, or a bent, missing, or unsealed safety pin."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The extinguisher gauge is not sitting in the green, or there is no inspection date on the bracket tape.",
+        "branches": [
+         {
+          "answer": "A dead extinguisher looks identical to a working one until the moment you need it, and that outranks how rarely you check the gauge",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Checking the gauge has no moment attached to it, no session end, no fixed day, so months pass between glances",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It has read fine every other time you happened to glance at it, so skipping this month's check did not feel like it changed anything",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "Your safety glasses are scratched and hazed enough that you have caught yourself lifting them off to see the cut line clearly.",
+        "branches": [
+         {
+          "answer": "Lifting them off at exactly the moment the blade is closest is the injury this whole station exists to prevent, and that outranks finishing the cut with blurred vision",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The lenses got wiped on a dusty shop rag instead of washed in soap and water, which is what put the scratches there in the first place",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "A scratched pair that still technically hangs on the hook does not get replaced, because nothing signals the moment a pair stopped being trustworthy",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "A visitor is standing in the shop while the saw runs, and whether they need their own glasses and muffs depends on who happens to be supervising that day.",
+        "branches": [
+         {
+          "answer": "The board was mounted once, at whoever's height was doing the mounting that day, and never rechecked against the shortest person who actually uses the shop",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "There is only one labeled set per regular user and a single spare, so a second visitor on the same day has nothing left to put on",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Whoever happens to be supervising that day enforces a different version of the rule, so a visitor gets a different answer depending on who is in the shop",
+          "cause": "KC-012"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Lift the extinguisher and confirm the gauge sits in the green, then run a hand over every pair of glasses on the hooks and bin any pair scratched enough that you would lift them off to see a cut line.",
+       "victory": "The extinguisher gauge reads green with a dated tape on the bracket, and every pair of glasses left on the hooks is clear enough to cut by."
+      }
      }
     }
    ]

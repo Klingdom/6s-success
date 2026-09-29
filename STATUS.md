@@ -56,13 +56,14 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-09-29, scheduled operator cycle: claiming Workshop for B9 (room deck), via `python ops/b9_claims.py --claim` (see `ops/b9-claims.json`, claimed 19:07:33Z). No diagnosis layer yet (0/6 zones); authoring it first (Main Workbench, Power Tool Storage, Fastener and Hardware Zone, Material Rack, Finishing and Chemical Zone, Safety and PPE Station), then the deck, following the Primary Bedroom/Nursery reference pattern. Delete this line once merged. Workshop is now the LAST of the 20 rooms without a deck; once it ships, B9 itself is done.
-
-Patio or Deck's B9 claim (diagnosis layer plus `site/patio-or-deck-deck.html`,
-the 19th of 20 rooms) shipped and was released via `ops/b9_claims.py
---release`; see `ops/b9-claims.json`. Primary Bedroom's B9 claim (diagnosis
-layer plus `site/primary-bedroom-deck.html`) shipped and was released the
-same way.
+None currently open. **B9 is done: all 20 rooms now have a diagnosis layer
+and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
+(`site/workshop-deck.html`) were the last two, built by two concurrent
+sessions in parallel with no collision (different rooms), both claims
+released via `ops/b9_claims.py --release`; see `ops/b9-claims.json` for the
+full ledger. Primary Bedroom's claim shipped and released the same way just
+before. Next highest-value BACKLOG item is B8 (landing each deck on an
+18-card print step) or returning to epics 1-4.
 
 # 1. Status Metadata
 
