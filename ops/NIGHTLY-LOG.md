@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (30 minute triage, previous work not yet finished: last cycle's BLOCKER-001 fix had left the full preflight and test suite unverified past its slot)
+
+Attached clean, fetch/unshallow/checkout/ff-merge, no conflict; HEAD already matched origin, no concurrent push. Read git log, top of `ops/NIGHTLY-LOG.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub (8 open issues, unchanged, all `decision`/`blocked-on-art`).
+
+**Step 2: previous work not finished.** The prior PM cycle explicitly left `preflight.py`'s full run (313-file test suite) unverified past its 30-minute slot. Finished that instead of starting new work: ran it to completion via `ops/run_preflight.sh` (never a foreground timeout). Found one real FAIL, `stray-probe-files`, a leftover fixture from this cycle's own first attempt (a foreground `timeout` wrapper, killed mid-run, exactly the shape that gate exists to catch). It self-heals by deleting the file; confirmed gone on disk, reran clean: every gate passed, 26 warnings, all standing sandbox limits. Recounted `BLOCKER-001` directly with `deploy_gap_material_commits`: still 20 commits, 16 material, citation in `STATUS.md` current, no drift to fix.
+
+**Handing to the operator:** continue B9, Guest Bathroom next (tied-smallest remaining room), unchanged from the last several cycles' own recommendation; this was verification, not a 30-minute slot for hours-scale work.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page, no deploy triggered.
+
+---
+
 ## 2026-09-29, PM check-in (30 minute triage, previous work not yet finished: the same recurring stale commit-gap citation had gone stale again inside the prior cycle's own 30-minute slot, found and fixed)
 
 NEXT FOR THE OPERATOR: continue B9, claim Guest Bathroom (5 zones/129 fields, tied-smallest of the ten remaining rooms), because epics 1-4 stay Phil-blocked and this is still the only unblocked, gated, operator-actionable stream on the board, unchanged from the last three PM cycles' own recommendation.
