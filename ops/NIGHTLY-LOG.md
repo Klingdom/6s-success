@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (17:4x slot)
+
+**NEXT FOR THE OPERATOR: continue B9 (room decks), because Patio or Deck, Primary Bedroom and Workshop are the only three rooms left undiagnosed (`ops/b9_claims.py --next` returns Patio or Deck) and every open GitHub issue is decision- or art-gated, so decks are the highest unblocked item.** A concurrent session had already claimed Nursery for its deck step (diagnosis was already done, only the deck itself was outstanding) by the time this check-in finished reading state; that is not a collision, it is B9 continuing correctly.
+
+Attached clean: origin was 1015 commits ahead of this checkout's stale local `main`, fast-forwarded with no conflict. Read the last 12 commits, the newest NIGHTLY-LOG entries, `BACKLOG-2026-09-07.md`, the live dashboard and 8 open GitHub issues (all `decision` or `blocked-on-art`, none Phil-unblocked, 0 open PRs). Prior work (Kids Bedroom deck, B9's 16th room, plus the two preflight-gate fixes it absorbed from a concurrent session) was already shipped and verified per `STATUS.md`; working tree was clean and local `main` matched `origin/main` exactly before this check-in touched anything.
+
+**Ran `python ops/preflight.py` directly rather than through `ops/run_preflight.sh` (a mistake this file's own docstring warns against); it happened to survive under the harness's own backgrounding, took the ~18 minutes its docstring says is normal, and came back with a real finding: `FAIL publish-image-current`, no publish-image.yml run has succeeded since `b8d889e9`, and the live CI log for the most recent attempt (run 473, commit `65dc77b4d`) named the actual cause: `FAIL generator-ownership: site/sitemap.xml differs from what ops/build_seo.py produces`.** Reproduced locally after fast-forwarding onto the current tip: `ops/build_seo.py` rewrote `site/sitemap.xml` (206 URLs), confirming the drift was live, not stale CI output. Fixed by shipping the regenerated file, `ops/ship.py -m "..." --no-deploy` (commit `39adadc21`), dashboard regenerated after. Root cause not chased further this slot (why sitemap.xml drifts from its own generator between commits) because the fix itself is the generator's job, not a hand edit, and B9 traffic through `build_zone_pages.py` is the likely source; worth a look if `generator-ownership` fails on sitemap.xml again.
+
+Also live and unfixed, lower priority: two stale B9 claims the last full preflight caught (`Kids Bedroom` and `Nursery`, both fully diagnosed in `content.json` but still `in_progress` in `ops/b9-claims.json`) should be released once each room's deck step actually lands, not before. `ops/preflight.py`'s Stripe/analytics/mail checks are all `UNCHECKED` here as usual (no credentials or egress in this sandbox); not read as clean.
+
+Pushed to main. No price or product touched, no new page. `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` regenerated and committed with the sitemap fix.
+
+---
+
 ## 2026-09-29, cycle addendum (17:2x: the 17:1x push conflicted with the concurrent Kids Bedroom completion, merged rather than forced)
 
 `git push` was rejected twice while this cycle's own dashboard-regen commit was in flight: first by the operator's Kids Bedroom deck (real content, `ops/NIGHTLY-LOG.md` conflicted on the same prepend line as this cycle's own entry, plus the usual generated-file conflicts), then by the automated hourly check-in bot. Merged both rather than forcing, per STEP 8: kept both nightly-log entries by commit timestamp (this cycle's own 9 seconds later, so on top), regenerated `build_id.py` and `dashboard.py` directly rather than hand-resolving their generated-file conflicts, and let the hourly bot's `indexnow-log.json` change auto-merge with no conflict. Re-checked `gate_conflict_markers`, `gate_dashboard_working_tree`, `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_page_ownership_registry`, `gate_b9_claims_current`, `gate_generator_ownership` and `gate_build_id_current` directly on the merged tree: all clean. `fix_dashes.py --check`: 0/0. Pushed (`1808a83d7`).
