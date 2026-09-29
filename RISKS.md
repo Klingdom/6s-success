@@ -928,6 +928,22 @@ evidence:
     the new mudroom-deck.html (BACKLOG-2026-09-07.md B9 continued, the
     fifteenth room deck), same inert footer newsletter form, nothing new
     in kind.
+  - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
+    entry since 193 says the same sentence: one more page shipped, it carries
+    the same inert footer form as every other page, nothing new in kind. Two
+    sessions have now independently written the same increment on the same
+    afternoon, and the count moved again between writing and committing. The
+    RISK has not changed since the first of them: no form on this site posts
+    anywhere, and the number tracks how many pages exist rather than anything
+    about the risk. Enumerate an increment only when the ADDITION IS DIFFERENT
+    IN KIND, which is the thing worth knowing; a page that adds the same inert
+    footer needs the headline count updated and nothing else.
+
+    Write a historical reading WITHOUT the `forms_dead=` token, as the two
+    entries above now do. `risks-evidence-current` matches that token anywhere
+    in this file and cannot tell a dated record of what was true then from a
+    claim about what is true now, so a past reading that keeps the prefix fails
+    the build from the next page onward, forever.
   - NOBODY HAS EVER TRIED. `list-signup` events, all time, read from the
     analytics export: 0. Not one attempt since the mechanism shipped. With
     roughly 14 visitors a week the bottleneck here is arrivals, not the form,

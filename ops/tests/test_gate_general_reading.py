@@ -141,8 +141,18 @@ def main() -> int:
                               for e in v] for k, v in picks_raw.items()}
             diagnosed_usage = bzp._diagnosed_article_usage(rooms)
             real_pool = set(bzp._ARTICLE_BY_SLUG.keys())
+            # zones_linking added 2026-09-29: the inbound-link ceiling is a
+            # SHARE of the zones that link, not a fixed count, because 35 was
+            # calibrated at 12 diagnosed zones and there are now 78. Without
+            # the real denominator this falls back to len(picks), which counts
+            # only the non-diagnosed zones and re-imposes the old fixed number
+            # on a corpus six times larger.
+            zones_linking = len(real_picks) + sum(
+                1 for r in rooms for z in r.get("zones", [])
+                if z.get("diagnosis"))
             problems = preflight.check_general_reading_picks(
-                real_picks, diagnosed_usage, real_pool)
+                real_picks, diagnosed_usage, real_pool,
+                zones_linking=zones_linking)
             if problems:
                 fails.append("real, built corpus wrongly flagged at the "
                              "picks level: %s" % problems[:3])
