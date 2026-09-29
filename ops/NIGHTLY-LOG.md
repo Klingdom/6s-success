@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-29, PM check-in (20:4x, previous work still mid-build, both claims re-verified fresh, no unblocked item, no new defect)
+
+NEXT FOR THE OPERATOR: continue Workshop, then Patio or Deck, because both are B9's last two of twenty rooms, both claims are genuinely fresh (`python ops/b9_claims.py --status`: Workshop claimed 19:07:33Z, Patio or Deck 19:15:26Z, both well inside the 3-hour staleness window), and neither has a deck file yet (`site/workshop-deck.html`, `site/patio-or-deck-deck.html` both absent), so both are mid-build, not abandoned.
+
+**Did:** Checkout arrived shallow/detached with the usual unrelated-history shape (issue #27); unshallowed and fast-forwarded onto `origin/main` (`aa90d3566`), clean tree. Read the top `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0/2/6/7, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md` section 0, `OWNER-ACTIONS.md`. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2), none Phil-unblocked; 0 PRs.
+
+**Verified rather than cited:** both B9 claims confirmed against the live ledger and the filesystem, not the prose alone (above). `deploy_gap_material_commits('7c6a83084')` recomputed directly: still 48, matches `STATUS.md`. `forms_dead` recount against `ops/state.json`: 212, matches `RISKS.md`. `fix_dashes.py --check`: 0/0. `check_urls.py`: 208/208. `audit_pages.py`: 212 pages, 0 findings. `preflight.py` fast started in the background; every gate through `gate_image_coverage` completed with no `FAIL` line, but it was still on `gate_tests` when this entry shipped (this sandbox's documented `test_audit_catalog.py` lockdir pattern), so per CLAUDE.md 0.4 that stage is reported unchecked, not passing, this cycle.
+
+**Went well:** re-deriving the deploy gap and `forms_dead` fresh instead of citing the prior cycle's numbers; both held.
+
+**Did not go well:** the usual unrelated-history checkout shape; `gate_tests`' own runtime is still the thing most likely to make a PM slot's own verification incomplete.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (`OWNER-ACTIONS.md` item 0, `VPS_DEPLOY_KEY`/issue #35, is still the single highest-leverage owner action). Operator continues Workshop then Patio or Deck.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, regenerated dashboard. No price, product or page touched.
+
 ## 2026-09-29, PM check-in (30-minute triage, previous work still mid-build, wide re-verification, no unblocked item, no new defect)
 
 **Not finished, correctly so:** both remaining B9 rooms (Workshop, Patio or Deck) still claimed, inside the 3-hour staleness window; left alone.
