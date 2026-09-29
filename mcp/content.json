@@ -3369,6 +3369,65 @@
        "Coins, a battery, or a pen cap surfacing from the crevice, small things that have slipped down out of reach",
        "Fabric worn shiny or thin on the seat everyone chooses"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "Someone has to move a pile of folded laundry, a stray magazine, or a third throw blanket before they can sit down on the sofa.",
+        "branches": [
+         {
+          "answer": "The laundry doesn't have anywhere else to land on its way through the house, so the sofa catches it",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "A throw put down doesn't read as clutter, it reads as cozy, so nobody treats it as something to deal with",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Clearing the sofa before bed isn't actually anyone's job, it depends on who's up last",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "The remotes have migrated between three different spots this week, and half the time somebody's digging down the back of the cushions for one.",
+        "branches": [
+         {
+          "answer": "The remote tray sits near the television instead of near the seat people actually use, so it never stays there",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Everyone has a different idea of where the remotes should live, so they end up wherever the last person set them down",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Once a remote slides down the seam, nobody wants to dig two hands deep into the cushions for it, so it stays lost until somebody needs it",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "The recliner footrest has pinched somebody's fingers before, but nobody's actually agreed on checking the floor first before it closes.",
+        "branches": [
+         {
+          "answer": "There's no rule to look at the floor before closing the footrest or the hinge",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Checking before closing isn't anyone's specific job, it depends whether an adult happens to be nearby",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "A throw draped over the recliner arm often hides the release lever and whatever's underneath it until you're already pulling it",
+          "cause": "KC-005"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull everything off the seats and dig the seams out: the laundry that migrated here, the second and third throw blanket, the magazines wedged behind the armrest, the coins and hair ties down the back. Sort into leaves-the-room, goes-in-the-wash, and lives-here.",
+       "victory": "Every seat is sittable without moving anything, and the throws are folded in one basket."
+      }
      }
     },
     {
@@ -3441,6 +3500,65 @@
        "A pale heat bloom or a soft, lifting patch in a wood finish where a hot mug sat too long",
        "The lower shelf board bowing in the middle under stacked books"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There are coasters sitting untouched in the far corner of this table while everyone still sets a mug straight on the wood.",
+        "branches": [
+         {
+          "answer": "The coasters aren't actually within reach of the seats people use, so grabbing one means leaning across the table",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody's agreed that reaching for a coaster is actually required before a mug goes down",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Skipping the coaster has never actually cost anything yet, so there's no moment that makes anyone stop and grab one",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading.",
+        "branches": [
+         {
+          "answer": "Old menus and magazines don't obviously look like rubbish once they've sat there a while, so nobody flags them",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Deciding whether to keep or recycle each one is its own small decision that keeps getting put off",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "Nobody's specifically assigned to clear this table, so paper just accumulates until somebody's bothered enough",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A candle sits lit on this table surrounded by throws and a stack of magazines, close enough that nobody's actually thought about what's next to it.",
+        "branches": [
+         {
+          "answer": "There's no rule about keeping paper and fabric clear of the candle, so it just goes wherever looks nice that evening",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "The pile of magazines built up around the candle gradually, so the closeness crept up without anyone noticing",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Lighting the candle happens right before people sit down, in a rush, so clearing the space around it gets skipped",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
+       "victory": "The table holds four coasters, the remote in use, and at most one book or plant, nothing else."
+      }
      }
     },
     {
@@ -3526,6 +3644,65 @@
        "Dust matted into a solid felt across a vent slot rather than loose enough to lift",
        "A cable sheath gone stiff or tacky with heat where it bends behind the unit"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There's a coil of cables behind the television unit, and nobody can say which device half of them actually belong to.",
+        "branches": [
+         {
+          "answer": "Cables never get labelled when they go in, so a year later nobody remembers what any of them are for",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Old devices got swapped out over the years, but their cables never left with them",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Reaching behind the heavy unit to check is enough hassle that it just doesn't happen",
+          "cause": "KC-006"
+         }
+        ]
+       },
+       {
+        "symptom": "The remote and every game controller are stashed in three different spots, and at least one has slid down behind the unit again.",
+        "branches": [
+         {
+          "answer": "The bin used to sit on top of the unit, exactly where things slide straight off the back",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Everybody who plays has their own idea of where their controller goes back to",
+          "cause": "KC-012"
+         },
+         {
+          "answer": "Nobody notices a remote's batteries are dying until the television stops responding mid-show",
+          "cause": "KC-011"
+         }
+        ]
+       },
+       {
+        "symptom": "Dust has built up thick behind the console and amplifier vents, and nobody's checked whether it's actually blocking the airflow.",
+        "branches": [
+         {
+          "answer": "It's tucked behind the unit where you genuinely can't see it without pulling everything out",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Reaching back there to actually clean it costs more effort than the rest of the room combined, so it gets skipped",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "There's no scheduled moment that reminds anyone to check behind the unit",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Unplug and lay out every cable, then name the device each one serves. The composite leads, the disc player nobody has loaded in a year, the streaming stick from two televisions ago and the charger with the old connector all leave. Discs and games get one decision each: sell, lend, or recycle.",
+       "victory": "Every remaining cable is labelled at both ends and runs to a device you can name."
+      }
      }
     },
     {
@@ -3602,6 +3779,65 @@
        "The wall strap gone slack, or a fixing screw that has backed out of its anchor",
        "Damp-swollen boards, foxing on the pages, or a musty note on books stood against an outside wall"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There's a duplicate copy of a book, an old appliance manual for something you don't own anymore, and a water-stained paperback all still sitting on this shelf.",
+        "branches": [
+         {
+          "answer": "None of these has actually been looked at again since it first landed on the shelf",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Getting rid of a book that was a gift, even one you'll never open, feels like getting rid of the person who gave it",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There's no rule for what earns a spot on this shelf, so whatever arrives just stays",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "You know the book you want is somewhere on this shelf, but scanning every spine still takes a few minutes to actually find it.",
+        "branches": [
+         {
+          "answer": "Books are grouped by colour or by height instead of by subject, so finding one means reading every spine in the row",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "There's no bookend or marker breaking the shelf into groups, so one long row of spines all looks the same",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "New books just get pushed in wherever there's a gap instead of into their actual group",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "This bookcase has never actually been strapped to the wall, and its lower shelves sit at exactly the height a toddler would use to climb.",
+        "branches": [
+         {
+          "answer": "Strapping it to the wall is a bigger job than a quick tidy, so it keeps getting pushed to another day",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "It's stood there unstrapped so long the risk doesn't register day to day",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Securing furniture like this has never been anyone's specific job in this house",
+          "cause": "RC-013"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take one shelf down at a time so every book passes through your hands. Duplicates, the manuals for appliances you replaced, the free paperbacks from a conference and anything water-damaged go now. Empty frames, the dead plant and the souvenirs you stopped seeing years ago go with them.",
+       "victory": "Every shelf keeps a hand's width of empty space at one end, and nothing is stacked flat on top of the upright books."
+      }
      }
     },
     {
@@ -3685,6 +3921,65 @@
        "The cord sheath cracked or gone brittle where it leaves the lamp base",
        "A table leg that rocks, a lifting veneer edge, or a pale heat bloom in the top under the tray"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The dish beside the chair is full of things nobody's touched in months: old coins, a dead pen, a charger for a phone nobody in the house owns anymore.",
+        "branches": [
+         {
+          "answer": "This table reads as one person's personal property, so nobody else in the house feels able to clear it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The odds and ends built up slowly enough that the pile stopped looking like something to deal with",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "None of these small things has ever gotten an actual decision, so they just sit in the dish",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "Loose tablets sit in an open dish on this table, right at the height a small child standing beside the chair would reach.",
+        "branches": [
+         {
+          "answer": "There's no rule that medicine goes in a lidded case instead of an open dish",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It's easier to take them when they're already sitting out in reach of the chair than to fetch them from a cupboard",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Nobody's actually checked this table since a young child started visiting the house",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "The lamp cord and the phone charger cord both cross the floor between the chair and the door instead of running down the table leg.",
+        "branches": [
+         {
+          "answer": "There's no clip holding either cord to the table leg, so they fall wherever gravity takes them",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody's actually agreed the cord has to stay off that specific path",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's the same walked line every night, so a cord crossing it has stopped registering",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the little dish and the drawer onto the seat of the chair. The reading glasses with the wrong prescription, the dried-out pens, the foreign coins, the loose tablets, the charger for a phone nobody in the house owns and the coasters that never made it back to the coffee table each get a verdict now.",
+       "victory": "Each table's tray holds at most four items, and nothing swallowable sits uncapped."
+      }
      }
     },
     {
@@ -3769,6 +4064,65 @@
        "A floorboard that lifts or creaks underfoot, or a tile that sounds hollow when you tap it",
        "A pale stain or a soft, springy patch of floor under the rug, or skirting swelling low down near it"
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "A box that arrived weeks ago is still sitting beside the sofa, along with today's shoes and yesterday's school bag.",
+        "branches": [
+         {
+          "answer": "Nothing on this floor has anywhere else assigned to go, so it just stays where it landed",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The box isn't obviously blocking anything, so it's stopped registering as something in the way",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "Whatever's inside the box is an unmade decision, not really clutter, so it just sits",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "The walking route has narrowed enough that carrying a full laundry basket through it means turning sideways or clipping a table corner.",
+        "branches": [
+         {
+          "answer": "There's genuinely more furniture in this room than the floor space allows for a full-width route",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The route only ever gets checked by eye from the doorway, never by actually walking it with something in your hands",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "It's narrowed so gradually that nobody's actually noticed it's gotten worse",
+          "cause": "RC-017"
+         }
+        ]
+       },
+       {
+        "symptom": "A rug corner has curled up and a cord crosses the route, and both have been like that long enough that everyone's just learned to step around them.",
+        "branches": [
+         {
+          "answer": "Nobody's checked the rug pad or the cord path specifically, it only gets noticed when someone nearly trips",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "Stepping around them has become automatic, so they've stopped registering as hazards",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "There's no grippy pad under the rug to actually keep the corner flat in the first place",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Walk the route with a laundry basket and put every floor item in it: shoes, toys, yesterday's bag, the pile of post, the box that has sat beside the sofa for a month. Anything belonging to another room gets carried there before you let yourself sit down.",
+       "victory": "The route from door to door is clear at full width, with nothing on the floor but furniture legs and the rug."
+      }
      }
     }
    ]
