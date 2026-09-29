@@ -37,9 +37,10 @@
     },
     {
       "room": "Kids Bedroom",
-      "status": "in_progress",
+      "status": "done",
       "claimed_at": "2026-09-29T16:24:17Z",
-      "note": "scheduled operator cycle 2026-09-29 16:2x, prior claim stale (claimed 12:55, past the 3-hour window, no deck shipped), 6 zones"
+      "note": "scheduled operator cycle 2026-09-29 16:2x, prior claim stale (claimed 12:55, past the 3-hour window, no deck shipped), 6 zones",
+      "released_at": "2026-09-29T17:19:18Z"
     },
     {
       "room": "Nursery",
