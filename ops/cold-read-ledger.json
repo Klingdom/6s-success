@@ -142,9 +142,9 @@
       "note": "Re-verified for drift (was 2026-09-10, the ledger's oldest entry). --check reports feed current, 29 entries; gate_feed_current already wired in preflight and passed. No drift."
     },
     "build_garage_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Garage's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per 06:4x PM handoff. Read in full (410 lines): og:image fix from 2026-09-25 still correct (hero_image_url computes garage--primary-workbench-lg.jpg from ZONE_ORDER, file exists on disk in all 3 formats). Regenerated: git status clean after, byte-identical, idempotent. Whole-room card-id assertion (GAA-015/016/017) holds against live content."
     },
     "build_guest_bathroom_deck_page.py": {
       "status": "clean",
@@ -162,9 +162,9 @@
       "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_home_office_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Home Office's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per 06:4x PM handoff. Read in full (406 lines): og:image fix from 2026-09-25 still correct (hero_image_url computes home-office--primary-desk-lg.jpg, file exists on disk in all 3 formats). Regenerated: git status clean after, byte-identical, idempotent. Whole-room card-id assertion (HOA-013/014/015) holds against live content."
     },
     "build_icons.py": {
       "status": "clean",
@@ -188,8 +188,8 @@
     },
     "build_kit_page.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "8 tier-1 kit items, WHY dict keys all match CSV names exactly, retailer_link/disclosure branching correct for withheld/plain/tracked, Sort-before-Straighten assertion verified not trivially satisfied by header/footer text, full generator-ownership chain (canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets) present. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified per 06:4x PM handoff. Read in full (359 lines). Confirmed live rather than assumed: all 8 WHY dict keys match the live Tier-1 CSV product names exactly, and all 8 live names have a WHY entry (checked both directions programmatically, not by eye). _rarity() recomputes zone counts live rather than trusting the CSV's frozen column. Regenerated: git status clean after, idempotent."
     },
     "build_kitchen_deck_page.py": {
       "status": "fixed",
