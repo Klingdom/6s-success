@@ -373,8 +373,8 @@
     },
     "check_ledgerium.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
+      "date": "2026-09-30",
+      "note": "PM 09:1x re-verify: still correctly reports unchecked (no Stripe credential in this sandbox), matches existing note. No defect."
     },
     "check_live_links.py": {
       "status": "clean",
@@ -383,8 +383,8 @@
     },
     "check_pack_pages.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read clean, no defect. Correctly reports UNCHECKED (pypdf not installed here) rather than a false pass, per CLAUDE.md 0.4; ran live and confirmed."
+      "date": "2026-09-30",
+      "note": "PM 09:1x re-verify: still correctly reports UNCHECKED for all 5 printables (pypdf not installed here), matches existing note. No defect."
     },
     "check_sellable.py": {
       "status": "clean",

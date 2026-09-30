@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (09:1x cycle; previous work finished; small re-verification, no new defect)
+
+**Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1243 commits onto origin/main, no conflict). Working tree was clean and main was in sync before this cycle started. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-7, EXECUTIVE-DASHBOARD-LIVE.md, the last several log entries, and confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 has a fresh 06:51 comment but the decision itself is still his). No BACKLOG "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).
+
+**Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit (backgrounded via `ops/run_preflight.sh`, still alive past 3 minutes with near-zero accumulated CPU); reporting that gate unchecked, not passing, per CLAUDE.md 0.4.** Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0/0).
+
+**Re-verified two of the oldest 2026-09-25 cold-read ledger entries myself rather than start the full lane (hours-scale, left to the hourly operator).** `check_ledgerium.py`: still correctly reports unchecked, no Stripe credential in this sandbox, matches its existing note. `check_pack_pages.py`: still correctly reports UNCHECKED for all 5 printables, pypdf not installed here, matches its existing note. No defect in either; recorded both in `ops/cold-read-ledger.json` with today's date.
+
+**Went well:** picking a small, closeable unit of work instead of opening the hours-scale ledger lane in a 30-minute slot.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** the cold-read ledger re-verification lane, 50 entries still dated 2026-09-25 after this cycle's 2 (was 52). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (a real thumbnail-font defect found and fixed, cold-reading the oldest 2026-09-25 ledger entries)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1238 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md (0-7), ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only, matching every concurrent PM check-in today. Claimed the work in STATUS.md before starting.
