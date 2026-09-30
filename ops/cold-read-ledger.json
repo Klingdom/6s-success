@@ -403,13 +403,13 @@
     },
     "check_video_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "oEmbed-based YouTube liveness check, correctly reports UNCHECKED (not pass) when egress is unavailable, only wired into preflight on --deep (gate_site_video_links_alive) since it needs network. Regex ID extraction covers watch/embed/data-yt/quest.js video field forms. No defect."
+      "date": "2026-09-30",
+      "note": "re-verified 2026-09-30: correctly reports UNCHECKED (12 video ids, network blocked in this sandbox, HTTPError/URLError caught), does not report a false clean when it cannot look; no defect"
     },
     "check_video_standard.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "compares rendered .srt checklists against video_zone.done_items(); ran live, 114/114 match the standard, 0 stale, 0 unreadable. No defect."
+      "date": "2026-09-30",
+      "note": "re-verified 2026-09-30: compared all 114 rendered videos' captions against video_zone.done_items() live, 0 stale, matches the 2026-09-25 note; no defect"
     },
     "checkin.py": {
       "status": "fixed",

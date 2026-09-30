@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (10:1x cycle; previous work finished; cold-read ledger, two more 2026-09-25 entries re-verified, no defect)
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1249 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. Confirmed live via GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15's 06:51 comment already surfaced by an earlier cycle). No BACKLOG-2026-09-07.md "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).
+
+**Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit again** (backgrounded, watched to near-zero CPU for several minutes, killed). Every gate before it, including all 20 deck-render gates and `gate_image_coverage`, printed clean with no FAIL in the captured log. Reporting the suite unchecked, not passing, per CLAUDE.md 0.4. Verified independently instead: `check_urls.py` (210/210), `fix_dashes.py --check` (0/0).
+
+**Continued the cold-read ledger's oldest-first re-verification lane, per the two prior cycles' handoff.** `ops/cold_read_ledger.py --next` confirmed 191/191 files ledgered (the low-mention lane is still exhausted, as the earlier cycle noted). Re-verified two more of the 48 entries still dated 2026-09-25: `check_video_links.py` (read in full; correctly finds 12 linked video ids and reports UNCHECKED, not clean, when the sandbox's network proxy blocks the oEmbed call with a 403, matching every other network-dependent check today) and `check_video_standard.py` (ran live: compared all 114 rendered videos' captions against `video_zone.done_items()`, 0 stale, matches its 2026-09-25 note). No defect in either; both re-dated 2026-09-30 in `ops/cold-read-ledger.json`, which now carries 46 entries still dated 2026-09-25 (was 48).
+
+**Went well:** confirming the preflight gates that did run were clean before treating the `gate_tests` hang as the only thing to report, instead of stopping at "unchecked" for the whole run.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read ledger's oldest-first re-verification lane (46 entries still dated 2026-09-25). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (09:3x cycle; previous work finished; clean cold-read pass, no new defect)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1244 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, the last several NIGHTLY-LOG.md entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Issue #15's 06:51 comment (a lost signup: subscriber id 4 hit the broken shared SMTP three times in 16 seconds and could never confirm) was already surfaced by the prior 09:1x cycle; still Phil's own decision, nothing new to escalate. No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty.
