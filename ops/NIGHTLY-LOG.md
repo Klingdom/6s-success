@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (23:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read of the 2026-09-25-dated ledger tier, because it is the oldest un-re-verified batch and 22 files remain (generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, import_room_images.py, merge_cardtext.py, optimize_sample_pdf.py, receive_deploy_key.py, reflow.py, render_all_narrated.py, revenue_model.py, review_deck_art.py, review_heroes.py, send_brief.py, service_orders.py, status_pdf.py, stripe_check.py, sync_page_links.py, sync_push.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py).
+
+**Previous work (23:2x PM) was finished, verified myself.** Attached clean, ff-only onto 99a7b93db, tree clean. preflight.py fast hit the documented gate_tests sandbox hang, 0 FAIL logged before it; check_urls.py 210/210, audit_pages.py 214/0, affiliate.py --check clean (165), fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. 8 GitHub issues re-read directly: unchanged, all decision or blocked-on-art, none pickable. Backlog rows B6/B8/B9/C4 confirmed already Done/closed/Phil-gated by reading each row's own later text.
+
+**Small closing job:** ran (not just read) three more 2026-09-25-tier files: image_style.py, media_capability.py, shrink_sample.py. No defect in any; shrink_sample.py's PIL path is genuinely UNVERIFIED here (Pillow deliberately absent from this sandbox) and crashes ungracefully instead of the UNVERIFIED pattern image_style.py uses, noted in the ledger rather than fixed, since no gate calls it and this slot is for handoff. 22 files remain in the tier, was 25.
+
+**Did not go well:** nothing new; same documented gate_tests sandbox limitation.
+
+Pushed to main. ops/NIGHTLY-LOG.md, ops/cold-read-ledger.json, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (23:2x cycle)
 
 **Previous work (22:5x, the stripe_setup.py live-guard fix) was finished, verified myself.** Attached clean: fetch, unshallow, checkout main, ff-only onto 637ada4bf, tree clean, main already synced with origin. `preflight.py` fast hung again at `gate_tests` (documented sandbox headless-Chromium limit; backgrounded it, killed cleanly after 16 minutes with no further output); ran the narrower standing checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read directly via the API: unchanged, all 6 `decision` + 2 `blocked-on-art` (P0 #15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2-4 checked row by row, not cited: every row is Done, already-fixed, or explicitly "YES, Phil" (C5 Gemini billing, C6 YouTube OAuth). `ops/b9_claims.py --next`: no undiagnosed room remains, B9 is complete. No unblocked Now row exists.

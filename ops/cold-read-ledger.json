@@ -523,8 +523,8 @@
     },
     "image_style.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "CLIP token-budget helper for local SDXL prompts; read-only review (no local model/network in this sandbox to exercise count()). Subject-first ordering and UNVERIFIED-vs-over-budget distinction both correctly implemented. No defect found in the source."
+      "date": "2026-09-30",
+      "note": "Subject-first + 20-token style prompt for local SDXL generation; honest UNVERIFIED when transformers/CLIP tokenizer unavailable (this sandbox). Ran directly: correctly reports UNVERIFIED, no crash. No defect."
     },
     "importProgress.js": {
       "status": "clean",
@@ -598,8 +598,8 @@
     },
     "media_capability.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "image-provider credential prober; ran live, correctly reports all 7 absent (no sandbox credentials) and torch absent, never prints a secret. No defect."
+      "date": "2026-09-30",
+      "note": "Credential-probe tool for 7 image/video providers, cheapest-call auth check, never prints secrets. Ran directly: 0/7 present (no keys in this sandbox, expected), cost_key()/cheapest_first() sort logic correct, GEMINI_API_KEY|GOOGLE_API_KEY either-name handling correct. No defect."
     },
     "merge_cardtext.py": {
       "status": "fixed",
@@ -748,8 +748,8 @@
     },
     "shrink_sample.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
+      "date": "2026-09-30",
+      "note": "Second-pass sample-PDF shrink by resolution, writes to a new file, never overwrites original; verify_shrunk() decodes real JPEG streams post-write, not just page count/text. Could not run --check/--apply here: PIL is deliberately absent from ops/requirements.txt (security-surface decision, 2026-09-04 log). main() raises ModuleNotFoundError uncaught rather than the UNVERIFIED pattern image_style.py uses; its own test_shrink_sample.py (3/3 pass) covers verify_shrunk() only, not main(), so main()'s PIL path is UNVERIFIED here, not confirmed clean. No functional defect found by reading; the ungraceful crash-on-missing-PIL is a minor polish gap worth an UNVERIFIED tag, not a fix, since this is a desktop one-shot tool no gate calls."
     },
     "site.js": {
       "status": "clean",
