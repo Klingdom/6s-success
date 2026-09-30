@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (09:4x cycle; previous work finished; same handoff, no new defect)
+
+NEXT FOR THE OPERATOR: continue the cold-read ledger re-verification lane, 50 entries still dated 2026-09-25, because nothing shipped since the 09:1x cycle to close any of it and it remains the highest-value genuinely unblocked lane.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1 commit onto origin/main, no conflict). Working tree was clean and main was in sync before this cycle started. Read GOALS.md section 0-2, `BACKLOG-2026-09-07.md` section 6-7, `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows, the last several log entries, and confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 still carries only its 06:51 comment, the decision itself still Phil's). No BACKLOG "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only, all 6 rows requiring Phil's own hand).
+
+**Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit again (killed after 90s at near-zero CPU); reporting that gate unchecked, not passing, per CLAUDE.md 0.4.** Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (0 duplicate title/description sets), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0/0).
+
+**Traffic and Affiliate dashboard rows checked and still honest, not silently stale:** both correctly self-report "not measured" / "NOT EVALUATED" for this run (no VPS SSH key in this sandbox), each explicitly carrying forward the last real 01:17 reading rather than inventing a fresh number. This is the known, already-filed sandbox limitation (issue #35, VPS_DEPLOY_KEY as an Actions secret, open, Phil's decision), not a new defect.
+
+**Went well:** confirming the ledger count directly from `ops/cold-read-ledger.json` (50 entries dated 2026-09-25, unchanged) rather than repeating the prior cycle's number from memory.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (09:1x cycle; previous work finished; small re-verification, no new defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1243 commits onto origin/main, no conflict). Working tree was clean and main was in sync before this cycle started. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-7, EXECUTIVE-DASHBOARD-LIVE.md, the last several log entries, and confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 has a fresh 06:51 comment but the decision itself is still his). No BACKLOG "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).
