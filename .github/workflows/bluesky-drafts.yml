@@ -1,0 +1,134 @@
+name: Bluesky drafts
+
+# One more morning email, for the one channel that already works and had no
+# pipeline at all: Bluesky already has a real account and has already sent
+# this site 5 real visitors, all time, at zero authored cost, while
+# social-drafts.yml drafts for Facebook and X before either even has an
+# account (OWNER-ACTIONS.md item 18). ops/bluesky_drafts.py serves the same
+# already-280-character-filtered "x-post" pool social-drafts.yml's X draft
+# reads (Bluesky's own 300-character cap is a strict superset of X's), under
+# its own rotation key so the two never silently exhaust each other's supply.
+#
+# It drafts, he posts. There is no automation against Bluesky's API here and
+# there should not be: an unreviewed script posting under a real account
+# credential this repository does not hold is exactly the shape
+# linkedin-drafts.yml and social-drafts.yml both already avoid on purpose.
+#
+# Same lateness pattern documented on every other scheduled workflow here
+# (see linkedin-drafts.yml's own comment and gate_scheduled_workflow_cadence
+# in ops/preflight.py). Offset from social-drafts.yml's own 13:30 UTC cron so
+# both morning drafts do not compete for the same GitHub Actions scheduling
+# slot; not the one email that has to land before coffee, so no early
+# compensation is applied.
+#
+# A SECOND WAY IN, the same shape fulfil-orders.yml, linkedin-drafts.yml and
+# social-drafts.yml already use: a push trigger is only safe when something
+# ELSE holds the state, so two runs cannot both act. Here, as in those files,
+# there is no natural ledger, so the gate step below uses this workflow's own
+# run history: a push sends only if no run has succeeded today AND the clock
+# is past this cron's own time, which leaves the schedule its chance first.
+
+on:
+  schedule:
+    - cron: '5 14 * * *'      # fires ~14:05 UTC, after social-drafts' 13:30
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: bluesky-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    # A short job with no timeout can sit for hours holding its concurrency
+    # group. Nothing has hung yet; this is so a hang cannot become a silent
+    # outage of the report.
+    timeout-minutes: 20
+    permissions:
+      contents: write         # the last step commits ops/corpus-rotation.json
+      actions: read           # the gate step reads this workflow's own runs
+    steps:
+      - name: Decide whether this run should send
+        id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -eu
+          if [ "$EVENT_NAME" != 'push' ]; then
+            echo 'send=yes' >> "$GITHUB_OUTPUT"
+            echo 'schedule or manual run: sending.'
+            exit 0
+          fi
+          # Push is the FALLBACK. Give the schedule until its own cron time
+          # before standing in for it.
+          now=$(date -u +%s)
+          target=$(date -u -d 'today 14:05' +%s)
+          if [ "$now" -lt "$target" ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo 'before 14:05 UTC: leaving it to the schedule.'
+            exit 0
+          fi
+          today=$(date -u +%Y-%m-%d)
+          runs="repos/$GITHUB_REPOSITORY/actions/workflows/bluesky-drafts.yml/runs"
+          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
+                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          if [ "$n" = unknown ]; then
+            # Could not read the ledger. Do NOT send: a duplicate on every
+            # push is worse than a late email, and both the schedule and the
+            # manual dispatch still work.
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            exit 0
+          fi
+          if [ "$n" -gt 0 ]; then
+            echo 'send=no' >> "$GITHUB_OUTPUT"
+            echo "already sent today ($n successful run(s))."
+            exit 0
+          fi
+          echo 'send=yes' >> "$GITHUB_OUTPUT"
+          echo 'past 14:05 UTC with no successful run today: standing in for the schedule.'
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.send == 'yes'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.send == 'yes'
+        with:
+          python-version: '3.12'
+
+      - name: Check it can send before it builds anything
+        if: steps.gate.outputs.send == 'yes'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: |
+          [ -z "$SMTP_HOST" ] && { echo "::error::No SMTP_HOST, nothing can be sent."; exit 1; }
+          [ -z "$OWNER_EMAIL" ] && { echo "::error::No OWNER_EMAIL, there is nobody to send to."; exit 1; }
+          echo "credentials present"
+
+      - name: Write and send today's Bluesky drafts
+        if: steps.gate.outputs.send == 'yes'
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/bluesky_drafts.py --send "$OWNER_EMAIL"
+
+      # Same gap linkedin-drafts.yml and social-drafts.yml both already
+      # closed for themselves: --send's rotation write only ever lives on
+      # this runner's disk unless committed back, or every run re-reads the
+      # same committed served-set and serves the identical posts forever.
+      - name: Persist the rotation so tomorrow does not repeat today
+        if: steps.gate.outputs.send == 'yes'
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/corpus-rotation.json
+          git diff --cached --quiet || git commit -m 'Bluesky drafts: advance rotation'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main || true

@@ -453,7 +453,8 @@ def load_rotation() -> dict:
     return {"served": {}}
 
 
-def take(kind: str, n: int, record: bool = False, where=None) -> list:
+def take(kind: str, n: int, record: bool = False, where=None,
+         pool_kind: str | None = None) -> list:
     """The next n unserved posts, oldest chapter first for a sensible arc.
 
     where, when given, is a predicate applied before rotation: a platform
@@ -461,10 +462,19 @@ def take(kind: str, n: int, record: bool = False, where=None) -> list:
     fits before picking, rather than after, so a post rejected for length
     is not marked served and stays available once trimmed or once a future
     fix in clean() shortens it.
+
+    pool_kind, when given, is the corpus kind actually read, while `kind`
+    stays the rotation ledger's own key. Added for ops/bluesky_drafts.py,
+    which serves the same already-280-char-filtered "x-post" pool
+    ops/social_drafts.py's X draft reads (Bluesky's own 300-character cap is
+    a strict superset of X's), but must track its own served set: rotation
+    is keyed by `kind`, so two platforms sharing one pool under one key would
+    silently halve each other's supply, each one skipping posts the other
+    already marked served without ever having shown them to its own reader.
     """
     rot = load_rotation()
     served = set(rot["served"].get(kind, []))
-    p = pool(kind)
+    p = pool(pool_kind or kind)
     if where:
         p = [x for x in p if where(x)]
     fresh = [x for x in p if x["id"] not in served]
