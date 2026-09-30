@@ -637,9 +637,9 @@
       "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
     },
     "product_links.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "check() rendered every link, judged some DEAD, printed them, then returned without writing the catalogue -- a dead link stayed published (Link Status still 'Verified search') since affiliate.py/zone_supplies.py only read the CSV, never this tool's stdout. Fixed: check() now demotes a dead/weak result exactly as --assign already does, and persists it (write_catalogue), with a --dry flag matching --assign's. Fail-then-pass proved directly (temporarily skipped write_catalogue, watched 2 new test cases fail by name, restored, reran clean). ops/tests/test_product_links.py extended 32 to 36 cases."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_product_links.py directly (no pytest installed), 36/36 passed, confirming the 2026-09-25 fix (check() now demotes and persists a dead link via write_catalogue, --dry flag present) still holds in code. Live re-verification against real retailer URLs is UNCHECKED, not clean: this sandbox's egress proxy rejects outbound connections to www.google.com/www.target.com/etc (organization policy), the same standing network limitation every other live-retailer check reports."
     },
     "prune_catalog_js.py": {
       "status": "clean",
@@ -737,9 +737,9 @@
       "note": "Adversarially tested the rebase-conflict-resolution path against sync_push.py's own sibling logic (isolated bare-origin sandbox scenarios): a generated-only conflict, a two-commit case where a generated-file conflict resolves cleanly then a second, real-file conflict surfaces mid rebase --continue, and a pre-commit hook forcing a non-conflict failure. In every case the existing sync_push.markered() defense-in-depth plus the unknown-conflict abort already catch it correctly; no exploitable gap found. fix_dashes.py: --check clean (0 em/en dashes), 10/10 own tests pass, deliberately scoped to root/claude/retro control docs per its own docstring (a separate sitewide gate already covers code/site dash usage)."
     },
     "shoot_mobile.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "exit code was hardcoded to 0 regardless of findings; a caller checking the return code instead of scraping stdout for OVERFLOWING would get a false pass. Now exits 1 when any page overflows. test_mobile_overflow.py extended to assert the exit code both ways."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_mobile_overflow.py directly, both cases pass (probe distinguishes overflow, fit, and contained overflow; exit code asserted both ways). The 2026-09-25 fix (exit 1 on any overflow, was hardcoded 0) still holds."
     },
     "shop.js": {
       "status": "clean",
@@ -892,9 +892,9 @@
       "note": "cold-read 2026-09-25 scheduled operator cycle: idempotent CTA-wiring migration, 0 changes on rerun (already fully applied), covered by gate_consult_cta_current, no defect"
     },
     "wire_footer.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "All 134 room and zone pages shipped with no site footer at all, dropped by commit 6ba42a27 when build_zone_pages.py lifted chrome from a resources.html temporarily broken by an unrelated bug in the same commit. wire_footer.py only ever fixed drift on a footer that already existed, so it could not close that gap; extended it to also insert a missing footer, ran it to fix all 134 pages, and hardened gate_footer_consistent to fail (not warn) on a page with none."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_footer.py --check live against the current committed tree -- \"footer rewritten on 0 pages (0 of those had none at all)\", every footer link resolves. The 2026-09-25 fix (insert-when-missing, gate_footer_consistent hardened to fail not warn) still holds, no regression."
     },
     "wire_generated_catalog.py": {
       "status": "clean",
@@ -902,9 +902,9 @@
       "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
     },
     "wire_landmarks.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "wire_landmarks.py --check could not fail: main() exit code only depended on site.css's .skip-link rule, never on whether any page's skip link or main id actually matched (add_main() silently patches a missing id in memory and still reports 'had one'). Fixed main() to track and fail on any page whose skip link/main id would change; new gate_landmarks_current in preflight.py re-derives both checks independently. Fail-then-pass proved against the old code and in an isolated worktree against a planted regression on site/index.html."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_landmarks.py --check live -- 213 pages, all already had a correct main landmark and skip link, 0 needed wrapping. The 2026-09-25 fix (main() now fails on a mismatch instead of silently patching in memory) still holds."
     },
     "wire_legal_strip.py": {
       "status": "clean",
@@ -917,9 +917,9 @@
       "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
     },
     "wire_nav.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "Two real defects found running it live against the committed site: (1) build() writes a plain nav with no aria-current marker, so a run silently stripped aria-current=\"page\" from all 5 pages it touched, and the docstring's own usage instructions never mention wire_aria_current.py needing to follow; (2) the link-resolution scan crashed with an uncaught UnicodeDecodeError on a transient bad-encoding read (a concurrency artifact of this sandbox, not reproducible standalone), with no errors=\"replace\" fallback unlike every comparable read-only scan elsewhere. Fixed: chains wire_aria_current.main() at the end, the read-only scan now uses errors=\"replace\", and the rewrite loop catches UnicodeDecodeError per file (names it, skips it, fails the run rather than silently continuing). Verified idempotent against the real committed site (git diff clean) on two consecutive runs. New ops/tests/test_wire_nav_preserves_aria_current.py, fail-then-pass proved, 4/4."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_aria_current.py --check live -- \"every page marks its nav position correctly\"; confirmed by direct grep that exactly the 6 DESTINATIONS pages (book.html, consulting.html, contact.html, method.html, resources.html, zones/index.html) carry aria-current=\"page\" and no others, matching the design (only nav destinations get marked, index.html and zone/room pages correctly do not). The 2026-09-25 fix (wire_aria_current chained after wire_nav, errors=\"replace\" fallback) still holds."
     },
     "wire_progressive.py": {
       "status": "clean",

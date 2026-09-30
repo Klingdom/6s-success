@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (cold-read ledger re-verification, no new defect, B9/GitHub state reconfirmed)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1250 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md (sections 0-7), ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2), none newly Phil-unblocked. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. `python ops/b9_claims.py --status`: zero undiagnosed rooms, no stray claims; STATUS.md's own Open claims section confirms none open. No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 HOLD pending traffic evidence, section 6 owner-only.
+
+**Ran a full `python ops/preflight.py` and it hung at the documented `gate_tests` headless-Chromium sandbox limit** (203s elapsed, near-zero accumulated CPU, no progress in the captured log); killed and reported that gate **unchecked, not passing**, per CLAUDE.md 0.4. Every gate before it, including all 20 deck-render gates and `gate_image_coverage`, printed clean with no FAIL in the log. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**Continued the cold-read ledger's oldest-first re-verification lane (the standing handoff from the prior several cycles), re-verifying 5 of the 46 entries dated 2026-09-25, all with real commands, not by re-reading the note:** `wire_footer.py --check` (0 pages rewritten, every footer link resolves, the 2026-09-25 insert-when-missing fix still holds); `wire_landmarks.py --check` (213 pages, all already correct, 0 wrapped); `wire_aria_current.py --check` (clean; confirmed by direct grep that exactly the 6 nav-destination pages carry `aria-current="page"` and no others, including checking that `index.html` and zone/room pages correctly do NOT, which is the design, not a gap); `ops/tests/test_product_links.py` (36/36 passed, confirming the dead-link-demotion fix still holds in code; live retailer re-check is UNCHECKED here, the sandbox egress proxy rejects `www.google.com`/`www.target.com` per organization policy, the same standing network limitation every live-retailer check reports); `ops/tests/test_mobile_overflow.py` (2/2, confirming the exit-code fix still holds). No regression in any of the five. Ledger now carries 41 entries still dated 2026-09-25 (was 46).
+
+**Went well:** catching that `wire_aria_current.py`'s zero-hits-on-index.html result needed a second look before calling it clean; reading the generator's own `DESTINATIONS` dict rather than assuming a missing attribute was a regression.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read ledger's oldest-first re-verification lane (41 entries still dated 2026-09-25). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (10:1x cycle; previous work finished; cold-read ledger, two more 2026-09-25 entries re-verified, no defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1249 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. Confirmed live via GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15's 06:51 comment already surfaced by an earlier cycle). No BACKLOG-2026-09-07.md "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).
