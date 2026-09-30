@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (a third stale deploy-verdict citation found in STATUS.md's own "Immediate Focus" line, the gate widened again)
+
+**Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Confirmed live rather than assumed: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`), no unblocked `BACKLOG-2026-09-07.md` "Now" row remains (sections 2-4 all done or Phil-gated), `cold_read_ledger.py --next` shows 191/191 with 0 stale, no mail credential in this sandbox. `preflight.py --fast` reached `gate_tests` with 0 FAIL lines then hung with no CPU progress, the same documented sandbox Chromium limitation every recent cycle reports; killed the orphaned process. Ran the narrower standing checks directly instead.
+
+**The find.** With the citation sweep having already widened `gate_status_deploy_verdict_current` to cover BLOCKER-001 and the "Production Knowledge" paragraph, I re-derived the live deploy gap directly (`resolve_verdict_commit`/`deploy_gap_material_commits`, confirmed zero) and cross-checked it against every section of STATUS.md that cites a build_id. A third section, "Immediate Focus," cited `04167f5ad701b0e4` (15:36:31Z) while "Production Knowledge" two paragraphs above it already correctly cited the newer `6f5176355eb29401` (16:49:06Z): the exact "source corrected, sibling section never told" shape, one section further than the gate had been widened to reach.
+
+**Fixed:** corrected the citation in place with a dated note, not a silent rewrite. Widened `status_deploy_verdict_problem()`'s `sections` dict to also check "Immediate Focus"; widened the docstring to match. New test cases 7-8 in `ops/tests/test_gate_status_deploy_verdict_current.py` (now 8/8) prove the widened gate fails by name on a planted stale "Immediate Focus" citation and passes clean on all three sections current; also fail-then-pass proved directly against the real committed file (planted the old build_id at the real "Immediate Focus" occurrence, watched it fail by name, confirmed the fixed file clean).
+
+**Verified:** `py_compile` clean, sibling gate tests (`gate_affiliate_trigger_citation_current`, `gate_owner_actions_zone_art_citation_current`) undisturbed, `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0. A concurrent push landed mid-cycle; fetched and ff-merged, resolved the generated dashboard's conflict by regenerating fresh rather than hand-merging.
+
+**Went well:** treating the just-widened gate as still possibly incomplete, rather than stopping once it covered two sections.
+
+**Did not go well:** same `gate_tests` sandbox hang; nothing new to change about it.
+
+**Changing next cycle:** none new; grep STATUS.md for every remaining bare `build_id`-shaped citation once more to confirm no fourth section exists.
+
+**Next:** same standing Phil-blocked owner-gates list and 8 open GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_status_deploy_verdict_current.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (20:4x cycle)
 
 NEXT FOR THE OPERATOR: cold-read the 10 files `ops/cold_read_ledger.py --stale` now flags (`site/assets/js/photos.js`, `mobile/quest-app/lib/pickCard.js`, `ops/prerender_shop.py`, `ops/room_image_variants.py`, `site/assets/js/shop.js`, `ops/social_pin_fit.js`, `mobile/quest-app/lib/videoLink.js`, `ops/wire_measure.py`, `ops/wire_pwa.py`, `ops/wire_signup.py`), because each was committed 2026-09-29 but its ledger entry is still dated 2026-09-27, and this exact method (cold-reading a file its own edit outran) has found a real, shippable defect on most passes this week.

@@ -18,6 +18,13 @@ BLOCKER-001 (fixed by the 2026-09-23 correction above) had already moved
 on. The gate only ever checked BLOCKER-001, so this second citation drifted
 unnoticed. status_deploy_verdict_problem() now checks both sections.
 
+Widened again 2026-09-30, scheduled operator: found a THIRD section,
+"Immediate Focus", independently citing its own build_id one confirmation
+behind "Production Knowledge" in the very same review (04167f5ad701b0e4
+against the real 6f5176355eb29401), the gate having just been taught to
+check "Production Knowledge" and never widened past it. Same shape, one
+section further out.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -107,12 +114,38 @@ def main() -> int:
         fails.append("both sections current, but still flagged: %r"
                      % problem)
 
+    # 7. The real defect shape found 2026-09-30: BLOCKER-001 and Production
+    #    Knowledge both current, but a third section, "Immediate Focus",
+    #    independently cites a stale build_id. Must fire, and must name
+    #    only that section.
+    third_stale = (
+        both_current +
+        "\n**Immediate Focus:** production matches HEAD exactly (last "
+        "confirmed at build `04167f5ad701b0e4`).\n\n"
+        "**Correction:** unrelated paragraph.\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(third_stale, verdict)
+    if not problem:
+        fails.append("Immediate Focus stale while the other two are "
+                     "current: expected a problem, got none")
+    elif "Immediate Focus" not in problem or "BLOCKER-001" in problem \
+            or "Production Knowledge" in problem:
+        fails.append("problem string did not correctly name only the "
+                      "stale 'Immediate Focus' section: %r" % problem)
+
+    # 8. All three sections current: must not fire.
+    all_current = third_stale.replace("04167f5ad701b0e4", verdict["build_id"])
+    problem = preflight.status_deploy_verdict_problem(all_current, verdict)
+    if problem:
+        fails.append("all three sections current, but still flagged: %r"
+                     % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 6 checks")
+    print("PASS: 8 checks")
     return 0
 
 
