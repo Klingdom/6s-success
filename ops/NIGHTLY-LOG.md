@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (05:4x; previous work finished; a concurrent session had already closed the handoff this cycle was about to re-issue, adopted rather than duplicated)
+
+NEXT FOR THE OPERATOR: re-verify `ops/build_app_icons.py`, `ops/build_avif.py`, `ops/build_card_prompts.py`, `ops/build_corporate.py` live against the current repository, because a concurrent PM cycle's own 05:1x entry already re-verified the three files this entry was about to hand off (`backup_analytics.py`, `browser.py`, `build_all_prompts.py`, no drift) and named these four as the ledger's new genuinely-oldest, unchanged since.
+
+**Previous work: finished, and this cycle's own draft handoff turned out to be stale before it shipped.** Attached clean, fast-forward merged 1195 commits onto `e3f83309c`. Independently derived the same conclusion a concurrent 05:1x/05:2x PM cycle had already reached minutes earlier: no `BACKLOG-2026-09-07.md` "Now" row unblocked (sections 2-4 all done or Phil-gated, B9's 20 room decks closed 2026-09-29; section 5 HOLD; section 6 owner-only), 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, `STATUS.md` Open claims none, deploy gap re-derived directly at 0 material commits. Drafted a handoff naming `backup_analytics.py`/`browser.py`/`build_all_prompts.py`/`build_app_icons.py` as the ledger's oldest; on push, fetch showed 4 concurrent commits already landed, including the 05:1x cycle's own re-verify of the first three of those exact files (clean, no drift) and a 05:2x addendum naming the real next four (above). Adopted theirs rather than push a duplicate re-check of ground already covered, matching this file's own established practice for this collision shape.
+
+**Also worth carrying forward, not rediscovering:** the 05:2x addendum named a real gap in `gate_cold_read_handoff_not_stale`, whose own docstring only checks whether a file is *ever* ledgered, with no recency window; now that the ledger sits at 191 of 191, every legitimate "oldest, due for a fresh look" handoff will always name an already-ledgered file and trip it. Not fixed here either, for the same reason the 05:2x entry gave (needs a recency threshold and its own fail-then-pass test, more than one slot's room); left named rather than re-reported silently.
+
+**Found and fixed one real, self-inflicted defect on the way to shipping this entry: my own `ops/ship.py` run staged a stray scratch file, `site/audit_exit_code_clean_probe.html`, into the commit.** This shared, CPU-starved sandbox runs concurrent sessions' own `audit_visual.py`/preflight passes, which write and delete exactly this kind of throwaway probe file mid-run; mine landed on disk during the window between staging and commit and got swept in. Caught it reading `git status` before push, not after: the file was already gone from disk (self-healed, the standing pattern this log documents), so `git rm --cached` removed it from the commit cleanly with no content loss. `gate_no_stray_probe_files` exists precisely to catch this shape on `main`; better to not ship it at all.
+
+**Could not get a clean full `preflight.py` this cycle; reporting that rather than borrowing a prior run's result.** Backgrounded `python ops/preflight.py` (280s timeout) hung at `gate_tests` and hit the timeout (exit 124), the same headless-Chromium/CPU-starvation shape this log documents dozens of times. Reporting this run as **unchecked, not passing**, per `CLAUDE.md` 0.4. Verified independently instead, since no product file was touched this cycle: `check_urls.py` (210/210), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes).
+
+**Went well:** checking the remote before treating a drafted handoff as final, which is what caught it was already stale; catching the stray-probe commit before push instead of after.
+
+**Did not go well:** the same background-preflight-hangs-on-gate_tests shape recurred again; no new gate needed, an already-diagnosed sandbox limit.
+
+**Changing next cycle:** none.
+
+Pushed to main (merged onto the concurrent work). `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (05:2x, addendum: gate_cold_read_handoff_not_stale now fires on every possible handoff, not a fresh defect but worth naming)
 
 Merged onto `origin/main` before push (a concurrent session's own `b8c84214e`/`fdf1480bd` landed first; discarded no work, only combined two `NIGHTLY-LOG.md` entries and regenerated the three dashboard files rather than hand-resolving their conflict markers). `ops/run_preflight.sh` on the merged tree: every gate passed, 27 warnings.
