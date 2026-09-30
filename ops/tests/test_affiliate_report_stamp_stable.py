@@ -76,6 +76,26 @@ def case_stamp_does_not_follow_the_clock():
     assert "2099" not in after, after
 
 
+def case_refuses_to_guess_when_shallow():
+    """The 2026-09-30 regression: a shallow clone's git log returns the
+    boundary commit's date, not an error, for any file untouched since. That
+    looks exactly like a real answer, so inputs_date() must refuse before
+    ever calling git log, not try to catch a bad result after the fact."""
+    real_is_shallow = A._is_shallow_clone
+    A._is_shallow_clone = lambda: True
+    try:
+        try:
+            A.inputs_date()
+        except RuntimeError as e:
+            assert "shallow" in str(e).lower(), e
+        else:
+            raise AssertionError(
+                "inputs_date() returned a date while shallow instead of "
+                "refusing; this is the exact silent-wrong-stamp regression")
+    finally:
+        A._is_shallow_clone = real_is_shallow
+
+
 def case_running_twice_writes_identical_bytes():
     """What gate_generator_ownership actually does."""
     A.main()

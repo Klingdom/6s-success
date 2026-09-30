@@ -87,6 +87,19 @@ def missing_fields(p):
     return out
 
 
+def _is_shallow_clone() -> bool:
+    """True only when git itself says the checkout is shallow. Any failure
+    to ask (no .git, git missing) reads as False, the same as the original
+    "outside a git checkout" case inputs_date() already fell back on."""
+    try:
+        out = subprocess.run(
+            ["git", "rev-parse", "--is-shallow-repository"],
+            cwd=ROOT, capture_output=True, text=True, timeout=30)
+        return (out.stdout or "").strip() == "true"
+    except Exception:                                          # noqa: BLE001
+        return False
+
+
 def inputs_date() -> str:
     """The date the INPUTS last changed, not the date this happened to run.
 
@@ -103,7 +116,34 @@ def inputs_date() -> str:
     page lastmod and for the same reason: a date that moves when nothing moved
     is not information, it is noise with a timestamp. Falls back to the file
     mtime outside a git checkout, and only then to today.
+
+    A shallow clone reproduces the exact failure this docstring already
+    describes without ever touching CI, and does it more quietly than an
+    empty `git log`: git treats the shallow boundary commit as a root with
+    no parent to diff against, so every file the boundary commit's tree
+    contains reads as "changed" there, and `git log -1 -- <path>` returns
+    that boundary commit's date, i.e. today, looking exactly like a real
+    answer rather than an empty one. Checked directly in a real depth-1
+    clone of this repository 2026-09-30: it returned "2026-09-30" for a
+    file last genuinely touched 2026-09-09, no error, nothing to catch.
+    gate_ci_checkout_full_history keeps the two workflows that matter at
+    fetch-depth 0, but a session running this generator by hand in a
+    shallow sandbox checkout is not covered by that gate and reproduced the
+    bug directly on 2026-09-30 (the 21:2x PM cycle's fix undone by the
+    21:4x cycle's own shallow run minutes later). So this refuses to run
+    `git log` for these dates at all while shallow, rather than trying to
+    tell a real answer apart from a fabricated one after the fact: unknown
+    is not unused, and a shallow, blind checkout refuses to guess instead
+    of silently stamping a wrong date a second time.
     """
+    if _is_shallow_clone():
+        raise RuntimeError(
+            "inputs_date(): this checkout is shallow. git log -1 on a "
+            "shallow clone reports the shallow boundary commit's date for "
+            "any file that has not changed since, which is indistinguishable "
+            "from a real answer without extra work this function does not "
+            "do, and has already produced a wrong, committed stamp once. "
+            "Run `git fetch --unshallow` first.")
     newest = ""
     for p in (ACCOUNTS, CATALOGUE):
         try:
