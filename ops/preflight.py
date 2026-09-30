@@ -1958,6 +1958,66 @@ def gate_bundle_maths() -> None:
              f"{wrong[:3]}")
 
 
+def check_product_schema_url_honest(cat: dict, pages: dict) -> list[str]:
+    """Pure logic behind gate_product_schema_url_honest. `cat` maps sku to
+    catalogue record, `pages` maps a page name to its full HTML text."""
+    base = "https://6s-success.com"
+    mark_open = "<!-- PRODUCT-SCHEMA:BEGIN -->"
+    mark_close = "<!-- PRODUCT-SCHEMA:END -->"
+
+    problems = []
+    for name, s in pages.items():
+        m = re.search(re.escape(mark_open) + r"(.*?)" + re.escape(mark_close),
+                       s, re.S)
+        if not m or "<script" not in m.group(1):
+            continue
+        raw = re.search(r"<script[^>]*>(.*?)</script>", m.group(1), re.S).group(1)
+        try:
+            graphs = json.loads(raw)
+        except ValueError:
+            continue
+        graphs = graphs if isinstance(graphs, list) else [graphs]
+        for g in graphs:
+            item = cat.get(g.get("sku"))
+            if not item or not item.get("href"):
+                continue
+            want = f"{base}/{item['href']}"
+            got = g.get("url")
+            if got != want:
+                problems.append(f"{name}: {g.get('sku')} url is {got!r}, "
+                                 f"should be {want!r} (its own href)")
+    return problems
+
+
+def gate_product_schema_url_honest() -> None:
+    """A product's own JSON-LD `url` must point at its real, detailed page,
+    not silently fall back to shop.html when a better one exists.
+
+    Found 2026-09-30: `ops/build_product_schema.py`'s `product_ld()` builds
+    every graph's `url` from `p.get("href", "shop.html")`. CN-VIRTUAL and
+    CN-INHOME had no `href` in data.js even though `consulting.html` is
+    where each one's actual "Book and pay" button lives (`id="virtual"`,
+    `id="in-home"`), so both products' Product schema on BOTH shop.html and
+    consulting.html itself told a crawler the product's home page was the
+    generic shop grid, not the page it was actually reading. Fixed by
+    adding the missing `href` to data.js; this gate re-derives the honest
+    URL for every catalogue item that carries one and fails if a shipped
+    page's graph still disagrees, so a future item can go stale the same
+    way and be caught before a fresh reader is told the wrong thing twice.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = {i["sku"]: i for i in json.loads(js[js.index("["):js.rindex("]") + 1])}
+    pages = {os.path.basename(f): io.open(f, encoding="utf-8",
+                                           errors="replace").read()
+             for f in sorted(glob.glob(os.path.join(SITE, "*.html")))}
+    problems = check_product_schema_url_honest(cat, pages)
+    if problems:
+        fail("product-schema-url-honest",
+             f"{len(problems)} Product graph(s) name a url that disagrees "
+             f"with the catalogue's own href for that item: {problems[:5]}")
+
+
 def gate_affiliate() -> None:
     """Affiliate rules that have a contract behind them, not a preference.
 
@@ -25874,6 +25934,7 @@ def main() -> int:
     run_gate(gate_price_matches_its_own_link)
     run_gate(gate_no_stale_hardcoded_stripe_link)
     run_gate(gate_bundle_maths)
+    run_gate(gate_product_schema_url_honest)
     run_gate(gate_affiliate)
     run_gate(gate_stale_claims)
     run_gate(gate_pack_deck_distinct)

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-30 01:16 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-30 01:17 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 214 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer.
 
 ---
 
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1283 of 4771 total |
+| Commits (7 days) | 1284 of 4772 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `e175f593a` Measure the mailto fallback instead of describing it |
+| Last commit | `a732e21b1` CHANGELOG carried the same false "live MCP channel" claim, a |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
 | Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
-| Zone imagery | 114/114 zone pages carry a reviewed picture (live) |
+| Zone imagery | 114/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,6 +56,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 ## What needs you
 
+- **Redeploy the site.** Production is serving an older build: 1 of 10 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 114 reviewed pictures and every fix since the last deploy reach nobody.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
