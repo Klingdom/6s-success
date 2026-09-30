@@ -12,6 +12,7 @@ on correct copy the first time anyone wrote that price beside that name.
 """
 import inspect
 import io
+import gc
 import os
 import shutil
 import subprocess
@@ -238,6 +239,28 @@ def _check_lock_breaks_on_dead_pid_fast() -> str:
     p = subprocess.Popen([sys.executable, "-c", "pass"])
     p.wait()
     dead = p.pid
+    # Windows keeps a pid RESERVED while any handle to that process is
+    # open, and Popen holds one until it is collected. OpenProcess then
+    # succeeds on a process that has already exited, so _pid_alive() says
+    # True, the lock is never broken early, and this test fails on a
+    # product that is working. Measured 2026-09-30: alive=True with the
+    # handle held, alive=False the moment it is closed, same pid.
+    #
+    # It passed in isolation and failed in a full run for that reason
+    # alone: whether the Popen object had been collected yet.
+    try:
+        p._handle.Close()          # nt only; POSIX reaps on wait()
+    except Exception:              # noqa: BLE001
+        pass
+    del p
+    gc.collect()
+    if _pid_alive(dead):
+        # The pid was recycled, or the handle could not be released. The
+        # condition this case needs does not exist, so say so rather than
+        # failing the product or passing quietly.
+        print("  pid %d still reads alive, so a dead-pid lock could not "
+              "be staged here. NOT VERIFIED." % dead)
+        return ""
     path = LOCK + ".pidcheck_%d" % os.getpid()
     os.mkdir(path)
     with open(os.path.join(path, "pid"), "w") as fh:

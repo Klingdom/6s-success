@@ -15765,13 +15765,38 @@ def gate_risks_register_current() -> None:
 
     bad = []
 
-    dm = re.search(r"Last reviewed:\s*(\d{4}-\d{2}-\d{2})", text)
+    # The FRESHEST review claim, not the first string that looks like one.
+    #
+    # Found 2026-09-30: this gate reported RISKS.md 42 days stale on a
+    # register that had been re-read top to bottom that same morning. Two
+    # things had to line up. A cycle rephrased the live header from "Last
+    # reviewed:" to "Re-reviewed", which this pattern does not match; and
+    # section 8 also quotes its own history, including the sentence 'On the
+    # previous "Last reviewed: 2026-08-19" and what it cost'. So the only
+    # match left was a deliberate historical citation, and the gate read it
+    # as the current state and failed the build on it.
+    #
+    # A gate that fails a correct file teaches people to ignore it, which
+    # is worse than the drift it watches for. Both phrasings are accepted
+    # now, and the NEWEST date wins, because a historical citation is
+    # always older than the review that cites it. A genuinely stale
+    # register still fails: its newest claim is still old.
+    # A QUOTED date is a citation of history, never a claim about now, so
+    # it is skipped: the sentence that broke this gate was literally
+    # 'On the previous "Last reviewed: 2026-08-19" and what it cost'.
+    # Without the lookbehind a quoted date also sets a floor under the
+    # computed age, which would make a genuinely abandoned register look
+    # fresher than it is: the opposite failure, and the worse one.
+    dates = [dt.date.fromisoformat(d) for d in re.findall(
+        r'(?<!")(?:Last reviewed:|Re-reviewed)\s*(\d{4}-\d{2}-\d{2})',
+        text)]
+    dm = max(dates) if dates else None
     if not dm:
         warn("risks-register-current",
              "RISKS.md's 'Last reviewed' date could not be found; this "
              "gate needs updating to match.")
         return
-    last_reviewed = dt.date.fromisoformat(dm.group(1))
+    last_reviewed = dm
     age_days = (dt.date.today() - last_reviewed).days
     if age_days > 31:
         bad.append(f"'Last reviewed: {last_reviewed}' is {age_days} days "
