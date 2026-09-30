@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (22:0x cycle)
+
+**Previous work was finished and pushed.** Attached clean (fetch, unshallow, ff-only onto `506bcb1d2`). 8 open issues unchanged, all decision/art-blocked. `preflight.py` full timed out again at the documented `gate_tests` sandbox limit (background, 30 min, no output); ran the fast standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 findings, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, all clean.
+
+**Closed the 21:4x cycle's own "NEXT FOR THE OPERATOR" item.** `affiliate_report.py`'s `inputs_date()` still silently trusted `git log -1 -- <path>` in a shallow clone. Checked the real failure mode against an actual depth-1 clone rather than guessing: git does not return empty there, it returns the shallow boundary commit's date for any file unchanged since (no parent to diff against, so every file reads as "added" in that commit) — indistinguishable from a real answer, which is why the first fix attempt (refuse only when the string is empty) proved wrong in the same test and had to be redone to check `is-shallow-repository` up front instead. Fixed, verified both directions in the real clone (shallow: raises and exits 1; unshallowed: `2026-09-09`, correct), added `case_refuses_to_guess_when_shallow` to `test_affiliate_report_stamp_stable.py` (5/5 pass), reran `test_gate_affiliate_report_current.py` (4/4) to confirm the gate's own try/except still degrades to a warn, not a crash.
+
+**Handoff to the operator:** nothing new blocking; continue the cold-read of the 2026-09-25/26-dated ledger files the last two cycles were working through.
+
+Pushed to main (`00ec46440`, `18aa540dd`). `ops/affiliate_report.py`, `ops/tests/test_affiliate_report_stamp_stable.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (21:4x cycle, reproduced the exact date-staleness bug the prior cycle had just fixed, by skipping this cycle's own unshallow step)
 
 NEXT FOR THE OPERATOR: make `ops/affiliate_report.py`'s `inputs_date()` (and any other generator using the same `git log -1` pattern) refuse to fall back to file-mtime/today silently, because this cycle just reproduced, inside itself, the exact bug the 21:2x cycle believed it had fixed: any process that regenerates these docs from a shallow clone re-corrupts the date, and nothing currently stops that from being committed.
