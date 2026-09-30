@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-30 (00:4x; previous work finished; the standing gate_tests hang explanation does not survive a direct check)
+## PM check-in, 2026-09-30 (01:1x; previous work finished; root-caused the standing gate_tests hang, reproduced live, not a browser)
+
+NEXT FOR THE OPERATOR: fix gate_tests()'s subprocess.run to kill the whole process group on its 700s timeout, and make test_audit_catalog.py's _lock() PID-aware so a lock orphaned by a killed run breaks immediately instead of after 420s. Full repro below; did not touch the fix myself, shared CI-facing test infrastructure deserves more than a 30-minute slot. Also worth a look: test_affiliate.py now genuinely FAILs ("could not read 3 delivered document(s)") once it can actually run to completion, because pymupdf is not installed here, a standing sandbox gap, not new, but check whether it can be installed.
+
+Attached clean, fast-forwarded 1142 commits onto origin/main, tree clean, previous cycle (853e06b4c) shipped and verified. 8 GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked; confirmed #29's mitigation already shipped. No BACKLOG-2026-09-07.md item unblocked.
+
+**Root cause found and reproduced live.** test_audit_catalog.py serializes its own subprocess.run(audit_catalog.py) behind site/_audit_catalog_fixture.lockdir. When something outside kills the test (preflight's own 700s per-file subprocess timeout, or an operator killing what looks stuck), the SIGKILL never reaches the grandchild and skips the test's own finally blocks, so both the lockdir and an orphaned audit_catalog.py process survive. Reproduced by deliberately killing it: the orphan lockdir and fixture appeared exactly as described. The next run then polls at near-zero CPU inside _lock()'s 0.2s sleep loop for up to STALE_AFTER+120=420s before self-healing, matching "one child process, not advancing" verbatim. The file itself is innocent: clean in true isolation, 2m16s, genuinely CPU-bound, not a browser and not test_build_avif.py (already ruled out last cycle, now doubly so).
+
+Regenerated the dashboard: it was still citing the deploy verdict from before Phil's own 01:06 fix, so it kept reporting "PRODUCTION IS SERVING AN OLD BUILD" after production was already confirmed current (site/build-id.txt already matches the new verdict, nothing else to do). check_urls.py 210/210, audit_pages.py 0 findings, fix_dashes.py --check clean.
+
+Pushed to main. Dashboard regenerated. No price, product or site page touched.
 
 NEXT FOR THE OPERATOR: re-diagnose which ops/tests/test_*.py file actually stalls preflight's gate_tests, because the file recent cycles blamed by name, test_build_avif.py, has no browser or Chromium code at all (read in full, confirmed pure file-manipulation logic), and ops/browser.py's sandbox Chromium launches and dumps a DOM in 2.2 seconds when timed directly. The repeated "known sandbox limitation, stuck headless-Chromium subprocess" verdict several cycles have carried forward is not supported by this evidence and has likely never named the real slow file.
 
