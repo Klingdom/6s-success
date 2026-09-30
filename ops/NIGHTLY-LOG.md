@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (14:5x cycle; previous work finished; handoff only, no new defect found)
+
+NEXT FOR THE OPERATOR: resume the DECISIONS.md/RISKS.md/OWNER-ACTIONS.md drift-recheck lane on the older DEC-0001 through DEC-0037 and D-001 through D-018 entries, because two prior cycles in a row named this as the next unblocked item and it has still not been started, and BACKLOG-2026-09-07.md section 7 names "source corrected, shipped artifact never re-derived" as the dominant live defect class, exactly what that lane checks for.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `7b1cf7793`, no conflict). The last two commits (the drafting-workflows' push-fallback retry fix and the GOALS.md correction naming the earlier "now sends" claim as unverified) are both genuinely shipped: working tree clean, local main matches `origin/main`, no uncommitted diff.
+
+**Verified rather than re-run blind.** Full `python ops/preflight.py` was started but did not complete in the foreground within this slot's time budget; this is the same `gate_tests` sandbox-timeout shape the last several cycles have already diagnosed and documented (not a new finding), so it is reported here as unchecked, not as passing, per CLAUDE.md 0.4. Covered instead with the independent fast checks every recent cycle has used in its place: `check_urls.py` (210/210 sitemap URLs resolve), `audit_pages.py` (214 pages, 0 findings, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em, 0 en dashes). All four clean. GitHub: 8 open issues, unchanged from the last several cycles, all `decision` or `blocked-on-art`, none newly unblocked, none of them mine to pick up. `BACKLOG-2026-09-07.md` section 6 (owner gates) and section 2 (micro zones/app, nearly all rows marked Done) reviewed; no unblocked item above the drift-recheck lane in the ordering rule (1 measurement, 2 broken/dishonest, 3 traffic/distribution, 4 conversion, 5 product, 6 operational honesty) — the traffic-side work (Bluesky/social/LinkedIn drafting) was already this same day's prior cycle, and the dashboard's two "could not measure fresh" rows (traffic, affiliate T2) are both blocked on the same missing `/root/.ssh/6s_deploy` key, already in `OWNER-ACTIONS.md`, not newly actionable.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already reported.
+
+**Changing next cycle:** none.
+
+Nothing shipped this cycle beyond this log entry and the regenerated command deck; this slot's job was triage and handoff, not new work, per its own instructions to leave anything large for the operator at :43.
+
 ## 2026-09-30, scheduled operator cycle, continued again (the fixed push-fallback's first real send exposed a second, real bug: two drafting workflows racing on one file; retried and made honest, not fully solved)
 
 **Did:** Followed up on the prior entry's own fix rather than trusting the concurrent PM check-in's confirmation at face value (step 5d): read the actual job logs of all three drafting workflows' runs from the same push that first exercised the fixed ledger.
