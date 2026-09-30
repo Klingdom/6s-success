@@ -4,8 +4,11 @@
 #
 # Why this exists: preflight.py's own docstring has warned since before this
 # script existed not to wrap the command in a foreground timeout shorter than
-# about 1050 seconds, because a killed process leaves generators mid-chain
-# (real incidents: an unfilled front-matter placeholder nearly shipped, an
+# about 480 seconds (see preflight.py's own docstring for the current number
+# and how it is derived; it has moved before, most recently 2026-09-30, and
+# this comment deliberately does not repeat the arithmetic a second place to
+# go stale), because a killed process leaves generators mid-chain (real
+# incidents: an unfilled front-matter placeholder nearly shipped, an
 # orphaned audit-catalog lockdir on 2026-09-11, -16 and twice on -23). The
 # warning alone did not stop the mistake: "foreground timeout" appears
 # dozens of times in ops/NIGHTLY-LOG.md as a caught-and-rerun incident. This

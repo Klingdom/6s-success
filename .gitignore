@@ -103,13 +103,24 @@ ops/tests/_*
 # rather than silently passing it.
 .preflight_jslint_*/
 
-# test_audit_catalog.py's own lock file, serializing concurrent runs of that
-# one test so their fixtures can never coexist in site/ (found 2026-09-08:
+# test_audit_catalog.py's own lock, serializing concurrent runs of that one
+# test so their fixtures can never coexist in site/ (found 2026-09-08:
 # a per-pid fixture name stops two runs sharing a path, but not
 # audit_catalog.py's own whole-tree scan from reading both fixtures at once
 # when two runs overlap, which produced a real-looking "correct price
 # reported as drift" failure with no product defect behind it).
-site/_audit_catalog_fixture.lock
+#
+# Found live 2026-09-30: this entry named the lock's PRE-2026-09-08 shape, a
+# single lock FILE (fcntl.flock, before that was rewritten to os.mkdir for
+# Windows compatibility per that file's own comment). The real lock has been
+# a directory, `_audit_catalog_fixture.lockdir`, since that rewrite, and
+# this line was never told; `git status` showed it as untracked-but-not-
+# ignored while a real, legitimately-held lock from this same cycle's own
+# preflight run sat in the tree, one `git add -A` away from being committed
+# into the live site/ path this exact defect class exists to prevent
+# (gate_no_stray_probe_files's own docstring, 2026-09-03). Corrected to the
+# real name rather than deleted, so the intent (never let this ship) survives.
+site/_audit_catalog_fixture.lockdir
 
 # Python bytecode. Tracking it means every run of any script shows up
 # as a repository change, and a stale .pyc can shadow a source edit.
