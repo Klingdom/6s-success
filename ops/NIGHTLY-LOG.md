@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (16:1x cycle)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `becfcc0f0`, no conflict). Full `python ops/preflight.py` ran clean before I touched anything: every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no mail credential). All 8 open GitHub issues unchanged, still `decision`/`blocked-on-art`, none pickable. Cross-checked the dashboard's deploy-lag claim (build `6f5176355eb29401` vs confirmed-live `04167f5ad701b0e4`) against `site/build-id.txt` and `ops/deploy-verdict.json` directly: real and current, not stale reporting, and already owner-gated (issue #35, `OWNER-ACTIONS.md`), so not mine to fix.
+
+**Did:** found and fixed a small, real instance of this repo's own dominant defect class. `STRATEGY-MICROZONES.md`'s live-generated coverage table (section 1) reads 44 of 114 zones across 7 personalised rooms (Primary Bedroom included), but its own prose two sections later still said "12 zones out of 114", the original pilot count from before D-026 authored five more rooms. `DECISIONS.md` D-026's own operative line had the same drift one room behind ("six of twenty rooms, 38 of 114"), missing Primary Bedroom. Verified Primary Bedroom's deck genuinely exists (`ops/cardtext/build_primary_bedroom_deck.py`, `site/primary-bedroom-deck.html`) before writing that the room count grew for a real reason, not a slip. Fixed both with dated correction notes, not silent rewrites, matching each file's own convention.
+
+**Verified:** `fix_dashes.py --check` clean; ran `gate_decisions_index_current` and `gate_decisions_owner_action_citations_current` directly against the edited tree, both pass; re-ran `ops/build_microzone_coverage.py` and confirmed it reproduces 44/7 exactly and touches nothing outside its own marked block. A second full `preflight.py` run was started to confirm end to end but did not return within this slot; reporting the specific change as independently verified above, the full suite as unchecked past that point, per CLAUDE.md 0.4, not as a clean pass.
+
+**Handing to the operator:** nothing specific found beyond this fix; the standing Phil-blocked list in `OWNER-ACTIONS.md` is unchanged.
+
+Pushed to main (two commits: the fix, then the dashboard regen). No price or product touched, no page added, IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (16:0x; a full preflight caught 4 real FAILs, all already fixed by a concurrent session before this cycle could act)
 
 **Did:** Attached clean (unshallowed, fast-forwarded onto `origin/main`). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `RISKS.md`, `DECISIONS.md` and the last several `NIGHTLY-LOG.md` entries. Ran a full `preflight.py`, not the fast shortcut: it caught 4 real gate FAILs (`stray-probe-files`, `landmarks-current` on a transient test fixture, and a genuine `nightly-log-ordering` defect, entry #1508 appended to the file's end instead of prepended to the top). Before fixing any of them, re-fetched `origin/main` to check for collision, per `STATUS.md` section 0's protocol, and found a concurrent session had already found and fixed the identical ordering defect (`6586d3ed4`) minutes earlier, and the fixture-race failures no longer reproduced. Fast-forwarded onto the fix rather than duplicating it.
