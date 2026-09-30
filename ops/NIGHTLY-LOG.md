@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (22:3x cycle)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read of the 2026-09-25-dated ledger tier, because it is the oldest un-re-verified batch and this method has repeatedly found real drift (deploy-verdict staleness, the Bluesky send bug, the structured-data product-page mismatch); 28 files remain in that tier after this cycle's three (`generate_card_art.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `image_style.py`, `import_room_images.py`, `ledgerium_price_check.py`, `media_capability.py`, `merge_cardtext.py`, `optimize_sample_pdf.py`, `reflow.py`, `refresh_hero_fallback.py`, `render_all_narrated.py`, `review_deck_art.py`, `review_heroes.py`, `send_brief.py`, `service_orders.py`, `shrink_sample.py`, `specific_articles.py`, `status_pdf.py`, `stripe_links.py`, `stripe_setup.py`, `sync_page_links.py`, `video_narrated.py`, `video_srt.py`, `wire_consult_cta.py`, `zone_graphics.py`, plus `stripe_check.py`/`verify_media_delivery.py`/`sync_push.py`/`receive_deploy_key.py`/`revenue_model.py` already cleared by an earlier cycle today).
+
+**Previous work was finished and pushed.** Attached clean (fetch, already unshallowed, `checkout main`, ff-only onto `a53c44c5a`). Working tree was clean before this cycle touched anything, main in sync with origin. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (the documented sandbox headless-Chromium limit), killed cleanly; ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read directly, unchanged (6 `decision` + 2 `blocked-on-art`, 2 P0: #15, #2), none pickable. Checked `BACKLOG-2026-09-07.md` section 2's four apparently-open rows (B6, B8, B9, C6) against their own later text rather than trusting the row header: all four are Done, CLOSED-by-decision (B8, D-027), or Phil-gated (C6 OAuth, C5 billing). No unblocked "Now" row exists; matches every recent cycle's own finding.
+
+**One small closing job: re-read three of the oldest (2026-09-25-dated) `ops/*.py` files for logical drift, not just freshness.** `wire_legal_strip.py`, `wire_breadcrumbs.py`, `wire_aria_current.py`, all under 140 lines. No defect in any. Worth noting for whoever reads `wire_breadcrumbs.py` next: its own `--check` mode never exits 1 on drift (only `wire_legal_strip.py`'s and `wire_aria_current.py`'s do), but this is not a silent gap, because `preflight.py`'s own gate reuses `trail()`/`block()`/`MARKED` directly against the live files rather than trusting that script's exit code; confirmed the gate is in fact wired that way by reading `preflight.py` lines 25105-25159, not assumed from the docstring. Recorded all three in `ops/cold-read-ledger.json` at today's date via `cold_read_ledger.py --add`.
+
+**Went well:** checking each apparently-open backlog row's own later text before treating any as real unblocked work, which is what confirmed B8/B9 are already closed rather than open.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limitation as every recent cycle.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (22:0x cycle)
 
 **Previous work was finished and pushed.** Attached clean (fetch, unshallow, ff-only onto `506bcb1d2`). 8 open issues unchanged, all decision/art-blocked. `preflight.py` full timed out again at the documented `gate_tests` sandbox limit (background, 30 min, no output); ran the fast standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 findings, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, all clean.

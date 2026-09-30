@@ -878,13 +878,13 @@
     },
     "wire_aria_current.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "aria-current wiring verified against real header nav; --check reports every page correct"
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift. --check clean: every page marks its nav position correctly."
     },
     "wire_breadcrumbs.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift. --check: would change 0, 29 already correct, 2 left alone. Its own --check never exits 1 on drift, but preflight's gate reuses trail()/block()/MARKED directly rather than the script's exit code, so this is not a gap."
     },
     "wire_consult_cta.py": {
       "status": "clean",
@@ -908,8 +908,8 @@
     },
     "wire_legal_strip.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift, not just freshness. --check clean: every legal strip matches the table, no stale page."
     },
     "wire_measure.py": {
       "status": "fixed",
