@@ -202,9 +202,9 @@
       "note": "Read in full 2026-09-26. check() never raises, gate_kitchen_deck_pdf_current only calls check(). main()'s subprocess.run has no timeout guard against a raw TimeoutExpired traceback, but it is never invoked from CI/a generator chain, only run manually by an operator, so a loud crash there is acceptable, not a silent-failure class this repo gates against."
     },
     "build_laundry_room_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full, structurally identical to build_kitchen_deck_page.py/build_home_office_deck_page.py pattern. Confirmed hero_image_url() slug (laundry-room--washer-and-dryer-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain (canonical_links through fingerprint_assets) idempotent. No defect found."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
@@ -247,9 +247,9 @@
       "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_primary_bathroom_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Primary Bathroom's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full, same pattern as build_laundry_room_deck_page.py. Confirmed hero_image_url() slug (primary-bathroom--vanity-counter-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain idempotent. No defect found."
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
@@ -268,8 +268,8 @@
     },
     "build_pwa.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "manifest/service-worker generator; ran live, idempotent (no drift), precache existence-checked, cache name derives from content hash. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff (already clean on 5+ prior reads per this ledger/NIGHTLY-LOG). Ran standalone: byte-identical site/sw.js and manifest.webmanifest, zero git diff. No defect found."
     },
     "build_quest.py": {
       "status": "clean",
@@ -283,8 +283,8 @@
     },
     "build_sample_html.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full. degrade_images()/font-repoint/analytics-tag/figalt-CSS logic all sound; the book.css print-diagnostic line re-reads BOOK_CSS_SRC fresh each time (by design, since the source is deliberately never modified, only the shipped copy), so it always reports adding the rule, which is accurate for the source but could read oddly out of context; not a functional defect, no output or behavior wrong. Ran --apply standalone: zero git diff against committed tree. No defect found."
     },
     "build_seo.py": {
       "status": "clean",
@@ -308,13 +308,13 @@
     },
     "build_standards.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_thumbnails.py": {
       "status": "clean",
@@ -333,13 +333,13 @@
     },
     "build_zone_index.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_zone_map_pack.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "132 lines, read in full. Builds the 20-sheet printable Micro Zone Map from zone_graphics.py/video_zone.py, so a sheet cannot claim a zone the site does not have. main() asserts exactly 20 rooms and 114 zones before writing, refusing silently-wrong output. Verified live rather than assumed: reran the generator against the real corpus; both outputs (build/ and site/downloads/) came back byte-identical to the committed files (git diff clean), so the shipped download is not stale against its own source, the exact defect class this repository's own backlog section 7 names as dominant. SVG output already carries role=img/aria-labelledby via zone_graphics.py. No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_zone_pages.py": {
       "status": "fixed",
@@ -358,18 +358,18 @@
     },
     "check_affiliate_trigger.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports T2 unevaluated (no SSH/analytics access in this sandbox), honest unknown rather than false pass. No defect found."
     },
     "check_cron_cadence.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Cron-fire-count parser refuses to guess on day/month/weekday-restricted crons (UNMEASURABLE beats wrong number); intended_landing/scheduled_times/landing_minutes/most_recent_due/last_changed/runs_since all consumed by preflight.py's gate_scheduled_delivery_phase, not dead code as first appeared from a same-file grep. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone against live GitHub Actions run history: all workflows ok except bluesky-drafts.yml correctly reported as too few runs to measure rather than false pass/fail. No defect found."
     },
     "check_integrations.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports UNKNOWN, site unreachable from this sandbox, honest unknown rather than false pass. No defect found."
     },
     "check_ledgerium.py": {
       "status": "clean",
@@ -393,8 +393,8 @@
     },
     "check_sitemap_current.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Pre-commit-only content-hash staleness check; delegates hashing to build_seo.py's own _content_hash/_load_content_hashes, no duplicated logic to drift. CI-side backstop gate_sitemap_lastmod_current in preflight.py uses the same hash file independently and already caught/fixed a real path-resolution bug 2026-09-21, so this check is not the only line of defense. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: 210/210 pages match recorded content hash. No defect found."
     },
     "check_urls.py": {
       "status": "fixed",
