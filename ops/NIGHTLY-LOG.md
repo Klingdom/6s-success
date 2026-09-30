@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (03:1x; previous work finished; closed the ledger's three oldest unre-checked entries, twice recommended but never actually done)
+
+**Previous work: finished.** Attached clean (unshallowed, fast-forward merged 1161 commits onto `origin/main`, no unrelated-history refusal). Working tree was already clean; the cycle immediately above this one (finished ~4 minutes before this one started) had already run a full `preflight.py` clean and re-checked `build_printpack.py`/`build_microzone_coverage.py`. Ran `preflight.py` myself anyway rather than citing that run: every gate passed, 26 warnings, matching.
+
+**Read state:** `BACKLOG-2026-09-07.md` sections 2-6 (all done or Phil-gated), `STATUS.md`'s Open claims section, the last several log entries. Confirmed via a subagent's independent GitHub read: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked. No BACKLOG item is genuinely unblocked, matching every recent cycle today.
+
+**So the standing fallback was the work, and I picked the part of it two prior cycles (02:4x, and the one just above this entry) had both named but neither had executed.** The 02:4x check-in handed off "re-verify the ledger's oldest three: `build_feed.py`, `canonical_links.py`, `card_spec.py` (all 2026-09-10/11)" by name; the very next cycle re-verified two *different*, newer-dated files instead (`build_printpack.py`, `build_microzone_coverage.py`) and left the actual oldest three still unchecked. Did those three, live, myself:
+
+- `build_feed.py` (2026-09-10): `--check` reports current, 29 entries; `gate_feed_current` already wired and passing.
+- `canonical_links.py` (2026-09-11): live run, 0 links would rewrite, canonicals 168 extensionless/49 `.html` (the 49 are top-level pages whose own canonical is `.html` by design, not a regression), internal links 2925 extensionless/0 `.html`. Counts grew with the site (was 2301) but the enforced ratio (0 `.html`) held.
+- `card_spec.py` (2026-09-11): the module-level WCAG assert (all ten families' `band_bg()` output >= 4.5:1) passed, exit 0. Read the CLI table's own printed contrast column closely before trusting it: it shows four families below 4.5 (Problem 4.09, Habit 4.44, Win/Win-Reward 4.02), which looks like a live defect but is not one, per the file's own docstring: that column prints the raw pre-`band_bg()` colour, not what a card actually renders. Confirmed against the source rather than the number alone.
+
+No drift in any of the three. Recorded all three via `python ops/cold_read_ledger.py --add ... --date 2026-09-30` (never hand-edited), so the ledger's oldest entry is now 2026-09-23, not 2026-09-10.
+
+**Verified:** `preflight.py` clean after (every gate passed, 26 warnings, same standing set). No price, product or site page touched.
+
+**Went well:** checking the actual ledger dates rather than trusting a prior cycle's own handoff line, which is what surfaced that the recommended oldest-three had quietly been skipped twice in a row for newer, easier-to-reach files.
+
+**Did not go well:** nothing new; same standing sandbox-access warnings (no Stripe credential, no SSH key, no mail, no Pillow, no egress).
+
+**Changing next cycle:** none; no defect found means no new gate to write.
+
+**Handing to the :43 operator:** no BACKLOG-2026-09-07.md item or GitHub issue is Phil-unblocked. The ledger's new oldest four are `build_corporate_asset.py`, `retire_stripe_skus.py`, `affiliate_report.py`, `build_cleaning_index.py` (all 2026-09-23/24) — genuinely oldest this time, checked directly against the ledger's own dates rather than cited from a prior handoff line.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (independent verification pass, no new defect; two more ledger entries re-checked for drift)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fetched, checked out main, fast-forward merged onto origin/main (1161 commits, no unrelated-history refusal this time). Read `GOALS.md` in full, delegated a research-only subagent to read `BACKLOG-2026-09-07.md` sections 2 to 7, `BACKLOG-2026-H2.md`'s opening, `ROADMAP-2026-2029.md` and the last four `NIGHTLY-LOG.md` entries, then independently checked its conclusion rather than trusting it: read the actual item rows for A1 to A10, B1 to B9 and C1 to C7 in `BACKLOG-2026-09-07.md` myself, confirming every one is either struck through done or carries its own "Done"/"Found and fixed" line; confirmed all 8 open GitHub issues directly via the GitHub API (7 decision, 2 blocked-on-art, one carrying both) and read issue #29 in full, whose art withholding was already shipped; confirmed `STATUS.md`'s own "Current Highest-Level Priority" and "Immediate Focus" lines state plainly that the next step on every distribution channel is Phil's own action. `inbox_agent.py --apply`: no mail credential, unchecked, not empty, same as every prior cycle.
