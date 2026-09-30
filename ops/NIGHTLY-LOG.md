@@ -2,6 +2,104 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (21:4x cycle, reproduced the exact date-staleness bug the prior cycle had just fixed, by skipping this cycle's own unshallow step)
+
+NEXT FOR THE OPERATOR: make `ops/affiliate_report.py`'s `inputs_date()` (and any other generator using the same `git log -1` pattern) refuse to fall back to file-mtime/today silently, because this cycle just reproduced, inside itself, the exact bug the 21:2x cycle believed it had fixed: any process that regenerates these docs from a shallow clone re-corrupts the date, and nothing currently stops that from being committed.
+
+**Previous work was finished as claimed.** Attached ff-only onto `f0e3ce0` (the 21:2x fix), tree clean, main pushed. But STEP 0 of this run's own instructions says unshallow if shallow, and `is-shallow-repository` did read `true` after the fetch; I checked that and then skipped the unshallow, going straight to `preflight.py` and the narrower checks while still shallow. `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 2-4 still all `~~done~~` or Phil-gated. `preflight.py` hung at `gate_tests` twice (90s, 150s), the documented sandbox headless-Chromium limit.
+
+**The find: I caused it, not just found it.** After the second preflight timeout, `git status` showed `AFFILIATE_COMPLIANCE_MATRIX.md`/`AFFILIATE_INPUT_EXCEPTIONS.md` modified again, dated 2026-09-30 instead of the correct 2026-09-09 the last cycle had just committed. Traced it: `gate_generator_ownership`'s real regenerate-and-diff pass ran `ops/affiliate_report.py` for real against the actual repo files (not the sandboxed tempdir copy `gate_affiliate_report_current` uses), and `inputs_date()`'s `git log -1 --format=%cs -- <path>` returns nothing under a shallow clone, so it fell back to file mtime, i.e. today. This is the identical failure the 21:2x entry already named and left ungated, now reproduced mechanically rather than by luck, and it happened because I skipped my own STEP 0. **Fixed for this cycle:** ran `git fetch --unshallow` (30-45s, a real fetch, not instant), confirmed `is-shallow-repository` false, reran `python ops/affiliate_report.py` directly: `git diff` against the two files came back empty, i.e. the correct 2026-09-09 stamp, no other content differed.
+
+**Secondary, unclaimed:** `cold_read_ledger.py --stale` lists 19 files (was 10 at 20:4x), every `build_*_deck_page.py` from the room-deck batch plus `social_pin_fit.js`, `videoLink.js`, `wire_measure.py`, `wire_pwa.py`, `wire_signup.py`, `b9_claims.py`; a queue-freshness signal, not a confirmed defect, left for whoever next has ledger-sweep time.
+
+**Changing next cycle:** run `git fetch --unshallow` before anything else that might regenerate a doc, not just before reading `git log` for my own measurements; the shallow state is dangerous to any generator, not only to the ones I intend to look at.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only (the affiliate docs regenerated back to their already-committed content, so no diff to push there). No price, product or site page touched.
+
+## 2026-09-30, scheduled operator cycle (full clean preflight confirmed end to end; second-pass cold-read of five 2026-09-25 ledger files found no drift; Bluesky send verified real, not just claimed)
+
+**Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge onto `f0e3ce0c2`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries (today alone already carried 37 prior cycles). Confirmed live rather than trusted: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`, 2 P0), no `BACKLOG-2026-09-07.md` "Now" row unblocked (sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only), `inbox_agent.py --apply` reports no mail credential in this sandbox, `cold_read_ledger.py --next` shows 191/191 with 0 stale.
+
+**Ran a full `python ops/preflight.py` to completion in the background (about 13 minutes) rather than kill it at the documented `gate_tests` slow point.** It finished clean this time: every gate passed, 27 warnings, all standing sandbox limitations (no Stripe/SSH/mail credential, Pillow missing, site unreachable). An earlier, separate `--fast` run I started and killed by timeout left two stray `_audit_catalog_fixture_765.html`-shaped probe files behind, which a first full run caught as a genuine `FAIL` on `stray-probe-files`/`landmarks-current`; by the time I checked, the files were already gone (self-healed, gitignored scratch convention) and `git status` was clean, so the second full run confirmed genuinely clean rather than assuming the first FAIL was spurious.
+
+**Second-pass cold-read, since the first full pass over all 191 files closed earlier today.** Re-read five of the 34 files still dated 2026-09-25 (the oldest tier remaining) for logical drift rather than just file-touch staleness: `stripe_check.py`, `verify_media_delivery.py`, `sync_push.py`, `receive_deploy_key.py`, `revenue_model.py` (also ran live). No defect in any: `revenue_model.py`'s live output still matches `ROADMAP-2026-2029.md`'s grouped table, the other four still behave as their own docstrings and the ledger's `clean` status claim.
+
+**Verified, not assumed, that today's Bluesky fix actually sends.** GOALS.md claims a real send at 14:16:46 UTC plus more since; checked the GitHub Actions job directly (`run 36763312615`, the one `event: schedule` run on record) and confirmed both "Write and send today's Bluesky drafts" and "Persist the rotation" steps actually ran and succeeded, not stood down, matching the claim rather than trusting it.
+
+**No new defect found.** `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0 all clean, confirmed independently of the full preflight run too.
+
+**Went well:** running preflight to completion in the background instead of always killing it at the documented slow point caught a real (if transient, self-inflicted) FAIL that a truncated run would have missed entirely.
+
+**Went not well:** nothing new; the standing gate_tests slowness (not a hang today) cost most of this cycle's wall-clock time.
+
+**Changing next cycle:** none; no defect to gate.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the second-pass cold-read of the remaining 2026-09-25-dated ledger files (29 left), or re-check the next-oldest 2026-09-26 tier.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; `IndexNow` not applicable.
+
+## 2026-09-30, PM check-in (21:2x cycle)
+
+**Previous work was finished.** Attached clean (unshallowed, ff-only onto `77e95f9d8`, the STATUS.md deploy-verdict fix). Tree was clean, main pushed. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (same documented sandbox Chromium limit, killed cleanly). Ran narrower checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read, unchanged, all `decision`/`blocked-on-art`.
+
+**The find.** `AFFILIATE_COMPLIANCE_MATRIX.md`/`AFFILIATE_INPUT_EXCEPTIONS.md` were stamped "2026-09-29" but `git log -1` on the two real input files (now full history) says 2026-09-09; the shallow-clone `git log` fallback `gate_ci_checkout_full_history` already documents. `gate_affiliate_report_current` strips the date before comparing by design, so it never caught this. Fixed by regenerating; no other content differed. **Not gated:** the date-correctness check itself is a real gap, left for the operator.
+
+Pushed (`7502b6d06`). Command deck regenerated. No price, product or site page touched.
+
+## 2026-09-30, scheduled operator cycle (a third stale deploy-verdict citation found in STATUS.md's own "Immediate Focus" line, the gate widened again)
+
+**Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Confirmed live rather than assumed: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`), no unblocked `BACKLOG-2026-09-07.md` "Now" row remains (sections 2-4 all done or Phil-gated), `cold_read_ledger.py --next` shows 191/191 with 0 stale, no mail credential in this sandbox. `preflight.py --fast` reached `gate_tests` with 0 FAIL lines then hung with no CPU progress, the same documented sandbox Chromium limitation every recent cycle reports; killed the orphaned process. Ran the narrower standing checks directly instead.
+
+**The find.** With the citation sweep having already widened `gate_status_deploy_verdict_current` to cover BLOCKER-001 and the "Production Knowledge" paragraph, I re-derived the live deploy gap directly (`resolve_verdict_commit`/`deploy_gap_material_commits`, confirmed zero) and cross-checked it against every section of STATUS.md that cites a build_id. A third section, "Immediate Focus," cited `04167f5ad701b0e4` (15:36:31Z) while "Production Knowledge" two paragraphs above it already correctly cited the newer `6f5176355eb29401` (16:49:06Z): the exact "source corrected, sibling section never told" shape, one section further than the gate had been widened to reach.
+
+**Fixed:** corrected the citation in place with a dated note, not a silent rewrite. Widened `status_deploy_verdict_problem()`'s `sections` dict to also check "Immediate Focus"; widened the docstring to match. New test cases 7-8 in `ops/tests/test_gate_status_deploy_verdict_current.py` (now 8/8) prove the widened gate fails by name on a planted stale "Immediate Focus" citation and passes clean on all three sections current; also fail-then-pass proved directly against the real committed file (planted the old build_id at the real "Immediate Focus" occurrence, watched it fail by name, confirmed the fixed file clean).
+
+**Verified:** `py_compile` clean, sibling gate tests (`gate_affiliate_trigger_citation_current`, `gate_owner_actions_zone_art_citation_current`) undisturbed, `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0. A concurrent push landed mid-cycle; fetched and ff-merged, resolved the generated dashboard's conflict by regenerating fresh rather than hand-merging.
+
+**Went well:** treating the just-widened gate as still possibly incomplete, rather than stopping once it covered two sections.
+
+**Did not go well:** same `gate_tests` sandbox hang; nothing new to change about it.
+
+**Changing next cycle:** none new; grep STATUS.md for every remaining bare `build_id`-shaped citation once more to confirm no fourth section exists.
+
+**Next:** same standing Phil-blocked owner-gates list and 8 open GitHub issues, unchanged.
+
+Pushed to main. `STATUS.md`, `ops/preflight.py`, `ops/tests/test_gate_status_deploy_verdict_current.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-09-30, PM check-in (20:4x cycle)
+
+NEXT FOR THE OPERATOR: cold-read the 10 files `ops/cold_read_ledger.py --stale` now flags (`site/assets/js/photos.js`, `mobile/quest-app/lib/pickCard.js`, `ops/prerender_shop.py`, `ops/room_image_variants.py`, `site/assets/js/shop.js`, `ops/social_pin_fit.js`, `mobile/quest-app/lib/videoLink.js`, `ops/wire_measure.py`, `ops/wire_pwa.py`, `ops/wire_signup.py`), because each was committed 2026-09-29 but its ledger entry is still dated 2026-09-27, and this exact method (cold-reading a file its own edit outran) has found a real, shippable defect on most passes this week.
+
+**Previous work was finished.** Attached clean: fetch, already unshallowed, `checkout main`, ff-only onto `93ef94e1` (the 20:1x check-in's own dashboard-citation fix), tree clean before this cycle touched anything, a second fetch just before writing this confirmed nothing landed underneath it. Read `BACKLOG-2026-09-07.md` (sections 0-4, 6-7), `EXECUTIVE-DASHBOARD-LIVE.md`, `git log -12`, and the last several `NIGHTLY-LOG.md` entries. `python3 -u ops/preflight.py` reached `gate_tests` with every prior gate (through `gate_image_coverage`, confirmed 0 `FAIL` lines by grep of the captured log) passing, then hung with no CPU progress past 100s, the same documented sandbox Chromium limitation every cycle today has reported; killed via timeout, no orphaned process left (checked directly, none found). Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4. Ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. All 8 open GitHub issues re-read directly (via a sub-agent, read-only): unchanged, 6 `decision` + 2 `blocked-on-art`, 2 P0 (#15, #2), none pickable.
+
+**Checked two backlog rows that looked stale on a fast read before citing either as a defect.** B8 ("Land each deck on the 18-card print step") reads as open in an early revision of that row, but the row's own later text shows it CLOSED 2026-09-25 (`DECISIONS.md` D-027); confirmed live rather than trusting the row, by running `gate_deck_print_tiers()` directly (passes, no output) and counting `site/*-deck.html` (20, matching all 20 rooms). No defect there. Not fixed, since none was found: correct as written.
+
+**The find, not yet fixed.** `ops/cold_read_ledger.py --stale` (0/191 stale on the last three cycles' own citations) now reports 10 files whose ledger entry (2026-09-27) is older than their last commit touch (2026-09-29): five `ops/*.py` generators, two `mobile/quest-app/lib/*.js` modules, two `site/assets/js/*.js` bundles. Did not cold-read any of them this slot: ten files is more than this handoff slot's few minutes, and this instruction's own text says not to start something large here.
+
+**Went well:** treating a stale-looking backlog row as a lead to verify against the live gate rather than a citation to accept or "fix" on sight, which is what confirmed B8 needed no action.
+
+**Did not go well:** same `gate_tests` sandbox hang; nothing new to change about it.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
+## 2026-09-30, PM check-in (20:1x cycle)
+
+**Previous work was finished.** Attached clean (fetch, already unshallowed, checkout main, ff-only merge onto `6043046fa`, Phil's own merge of the zone-art citation gate fix plus his own two preflight-gate corrections in `a95685974`, real gate bugs not product defects). Working tree was clean before this cycle touched anything. `preflight.py` fast every gate through `gate_image_coverage` passed (0 FAIL lines); it hung at `gate_tests`, the same documented sandbox Chromium limitation every recent cycle has reported, killed the orphaned process rather than wait. Ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes, `cold_read_ledger.py --stale` 0/191 stale. All 8 open GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 0, 2-7 spot-checked: every "Now" row already Done or Phil-gated; the owner-gates table (section 6) is all Phil's own accounts/OAuth/billing. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4.
+
+**The find.** `EXECUTIVE-DASHBOARD-LIVE.md` (generated 13:57 by Phil's own session) still cited `Last commit: a95685974` and `Working tree: uncommitted or unpushed work`, both true at generation time but stale by the merge commit that landed seconds later (`6043046fa`, HEAD at the start of this cycle, confirmed by `git rev-parse HEAD` against the citation directly rather than assumed). Same "source corrected, artifact never re-derived" shape this repo's gates keep closing, this time the deck citing its own repo state one commit behind.
+
+**Fixed:** regenerated via `ops/dashboard.py` (never hand-edited). The new run correctly reports `Last commit: 6043046fa`, `Working tree: clean, in sync`, and, because this sandbox has no VPS SSH key or Stripe credential, honestly marks traffic, the affiliate trigger, and video-build counts as carried forward and unmeasured this run rather than repeating stale numbers as current, per CLAUDE.md 0.4.
+
+**Verified:** ran the five live-citation gates directly against the regenerated files (`gate_goals_traffic_current`, `gate_goals_revenue_current`, `gate_affiliate_trigger_citation_current`, `gate_owner_actions_zone_art_citation_current`, `gate_status_deploy_verdict_current`), all pass. `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check` all reran clean after the regen. `python3 -m py_compile` clean on the touched scripts (none touched beyond the deck itself).
+
+**Went well:** treating the deck's own "Last commit" field as a live citation worth checking against `git rev-parse HEAD`, the same method the citation-gate sweep has used on every other document this week, rather than assuming a deck regenerated minutes ago was still current.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred exactly as every other cycle today; nothing new to change about it.
+
+**Handing to the :43 operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. No large lane left half-open by this cycle.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (continued the citation sweep the 19:2x check-in left off: a real stale zone-art claim in OWNER-ACTIONS.md, found and gated)
 
 **Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge onto `f8ff0b33c`, no conflict, 8 commits ahead of the local snapshot). Read `BACKLOG-2026-09-07.md` (sections 0, 2, 3, 6, 7), `GOALS.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. All 8 GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. Took the 19:2x check-in's own handoff by name: extend the "source corrected, artifact never re-derived" sweep to `OWNER-ACTIONS.md`'s own citations, this time against `ops/hero-verdicts.json` rather than `ops/state.json`.

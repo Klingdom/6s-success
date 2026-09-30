@@ -16301,17 +16301,21 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     session with real production access writes the moment it confirms a
     build live.
 
-    Checks BOTH STATUS.md sections that independently cite a "last confirmed
-    current" build id: BLOCKER-001 (section 17) and the "Production
-    Knowledge" paragraph under "Current Overall Assessment" (section 30).
-    Widened 2026-09-24, PM check-in: found the two had drifted four days
-    apart (BLOCKER-001 correctly cited the 2026-09-23 confirmation;
+    Checks all THREE STATUS.md sections that independently cite a "last
+    confirmed current" build id: BLOCKER-001 (section 17), the "Production
+    Knowledge" paragraph under "Current Overall Assessment" (section 30),
+    and the "Immediate Focus" line near the end of that same section.
+    Widened 2026-09-24, PM check-in: found the first two had drifted four
+    days apart (BLOCKER-001 correctly cited the 2026-09-23 confirmation;
     "Production Knowledge" still cited 2026-09-18/09-20 builds), and this
     gate only ever checked BLOCKER-001, so the second, stale citation shipped
-    unnoticed even while the first stayed current. Same "source corrected,
-    sibling section never told" shape this gate already exists to catch,
-    just with the sibling being another section of the same file rather than
-    another file.
+    unnoticed even while the first stayed current. Widened again 2026-09-30,
+    scheduled operator: "Immediate Focus" cited a build one confirmation
+    behind "Production Knowledge" in the very same review, the gate having
+    just been taught to check that section and never widened past it.
+    Same "source corrected, sibling section never told" shape this gate
+    already exists to catch, just with the sibling being a third section of
+    the same file rather than a second one or another file.
 
     Returns a problem string naming every stale section found; '' if there
     is nothing to check or every citation is current.
@@ -16323,6 +16327,8 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
         "BLOCKER-001": r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)",
         "Production Knowledge (Current Overall Assessment)":
             r"\*\*Production Knowledge.*?(?=\n\*\*|\Z)",
+        "Immediate Focus":
+            r"\*\*Immediate Focus:\*\*.*?(?=\n\*\*|\Z)",
     }
     stale = []
     for label, pattern in sections.items():
