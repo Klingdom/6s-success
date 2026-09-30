@@ -20532,6 +20532,89 @@ def gate_no_redirecting_probe_urls() -> None:
              % (len(problems), "; ".join(problems[:3])))
 
 
+def check_published_zone_urls(docs, zone_slugs) -> list:
+    """Pure check: every zone URL we publish off-site is canonical and real.
+
+    WHY THIS EXISTS
+    ---------------
+    These are the only links this business sends anybody. A YouTube
+    description and a social caption are read on a platform, by a person who
+    then clicks, and by that platform's own crawler.
+
+    Found 2026-09-29: all 114 YouTube descriptions carried 228 links of the
+    form /zones/<slug>.html, and all 114 social captions carried the same
+    form, for 342 links in total and not one canonical. /zones/ is
+    extensionless-canonical here and nginx 301s the .html form, so every
+    outbound link this business publishes took a redirect. The measured
+    context makes it worth a gate rather than a tidy-up: the 12 videos already
+    public have sent this site zero visitors in 26 days, LinkedIn and Bluesky
+    are the only channels that have ever produced one, and Phil is being asked
+    to hand-upload 102 more descriptions. Getting the link right before that
+    is cheaper than after.
+
+    A redirect does not stop a click, so this was never going to show up as a
+    broken link, which is why it survived. What it does is spend the signal a
+    shared link carries, and make the platform crawlers (LinkedInBot,
+    facebookexternalhit, both present in the access log) resolve through a hop.
+
+    The second half of this check is the one that would actually hurt: a
+    published URL whose slug does not exist is a 404 in front of somebody who
+    chose to click. Both halves are cheap, so both are held.
+    """
+    problems = []
+    for name in sorted(docs):
+        text = docs[name] or ""
+        for slug in re.findall(r"https://6s-success\.com/zones/([A-Za-z0-9-]+)\.html",
+                               text):
+            problems.append(
+                "%s publishes /zones/%s.html, which production 301s. An "
+                "off-site link is the only link this business sends anybody; "
+                "it should not need a redirect" % (name, slug))
+        for slug in re.findall(r"https://6s-success\.com/zones/([A-Za-z0-9-]+)",
+                               text):
+            bare = slug[:-5] if slug.endswith(".html") else slug
+            if bare not in zone_slugs:
+                problems.append(
+                    "%s publishes /zones/%s, which is not a page this site "
+                    "has. That is a 404 in front of somebody who chose to "
+                    "click" % (name, bare))
+    return problems
+
+
+def gate_published_zone_urls() -> None:
+    """YouTube descriptions and social captions, the only links we send out."""
+    zone_slugs = {os.path.basename(p)[:-len(".html")]
+                  for p in glob.glob(os.path.join(SITE, "zones", "*.html"))}
+    if not zone_slugs:
+        warn("published-zone-urls",
+             "no zone pages found under site/zones/, so published URLs were "
+             "NOT checked. Unchecked, not clean.")
+        return
+    docs = {}
+    for pattern, label in (
+            (os.path.join(ROOT, "build", "video", "youtube", "*.json"),
+             "build/video/youtube"),
+            (os.path.join(ROOT, "build", "social", "captions", "*.json"),
+             "build/social/captions")):
+        for fp in sorted(glob.glob(pattern)):
+            try:
+                docs["%s/%s" % (label, os.path.basename(fp))] = \
+                    io.open(fp, encoding="utf-8", errors="replace").read()
+            except Exception:                                  # noqa: BLE001
+                continue
+    if not docs:
+        warn("published-zone-urls",
+             "no YouTube metadata or social captions present here, so the "
+             "links this business publishes were NOT checked. Run where they "
+             "are built.")
+        return
+    problems = check_published_zone_urls(docs, zone_slugs)
+    if problems:
+        fail("published-zone-urls",
+             "%d published link(s) are wrong: %s"
+             % (len(problems), "; ".join(problems[:3])))
+
+
 def gate_deck_print_tiers() -> None:
     """Every built deck's card count against the 18-card print step."""
     import glob as _glob
@@ -25814,6 +25897,7 @@ def main() -> int:
     run_gate(gate_cause_vocabulary)
     run_gate(gate_payment_links_nofollow)
     run_gate(gate_no_redirecting_probe_urls)
+    run_gate(gate_published_zone_urls)
     run_gate(gate_deck_print_tiers)
     run_gate(gate_srt_matches_film)
     run_gate(gate_kitchen_deck_current)
