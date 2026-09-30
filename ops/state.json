@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 23:21",
- "commit": "637ada4bf",
- "commit_msg": "Fix stripe_setup.py live-write guard: message disagreed with behaviour",
- "commits_7d": 1316,
- "commits_total": 4903,
+ "generated": "2026-09-30 23:48",
+ "commit": "1b98ee13a",
+ "commit_msg": "PM check-in 23:4x: previous work finished and re-verified, three more 2026-09-25-tier files cold-read clean (22 remain), handoff to operator for the rest",
+ "commits_7d": 1317,
+ "commits_total": 4905,
  "traffic_line": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 16:15; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 16:15",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 16:15",
  "affiliate_trigger_carried_from": "2026-09-30 16:15",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
