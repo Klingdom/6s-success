@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (03:4x; previous work finished; the prior cycle's "genuinely oldest four" handoff was itself wrong, corrected)
+
+NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` (all 2026-09-23/24) for drift, because they are now, genuinely, the cold-read ledger's four oldest entries.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` ran long (this shared sandbox is CPU-starved again this cycle, matching prior logged incidents) but completed clean, fast-forwarded onto `origin/main` (`68c3e3dc4`), no unrelated-history refusal once attached. Tree was already clean. `preflight.py` fast, run via `ops/run_preflight.sh` per the wrapper's own docstring (a bare `timeout 100 python ops/preflight.py` was killed mid-run by this cycle's own CPU starvation, correctly logged as unchecked, not failed, per `CLAUDE.md` 0.4, then re-launched properly detached): **still running at the time this entry ships**, past its usual completion time, same CPU-starvation shape as several logged incidents today. Not treating a still-running check as a clean one; see "Did not go well" below.
+
+**Read state:** `git log`, the last several `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s Open claims (none open), `OWNER-ACTIONS.md`'s "start here" (unchanged). 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked.
+
+**Found the prior cycle's own handoff was wrong, and fixed it rather than repeating it.** The 03:1x entry above named `build_corporate_asset.py`, `retire_stripe_skus.py`, `affiliate_report.py`, `build_cleaning_index.py` (all 2026-09-23/24) as "the ledger's new oldest four... genuinely oldest this time, checked directly against the ledger's own dates." Sorting all 190 `ops/cold-read-ledger.json` entries by date directly showed that was not true: `ops/link_standards.py` (2026-09-11) was still twelve days older and got missed. Same shape `CLAUDE.md` 0.2 and this file's own 03:1x entry both warn about (a correctly-checkable thing skipped in favour of an easier target), just one level up, in the handoff itself.
+
+**Verified `link_standards.py` live rather than trusting its old ledger note:** ran it directly against the current, much larger site (218 pages now vs. 189 in September). 0 pages needed the footer link added (212 of 218 already carry it, the remainder legitimate exclusions per the file's own 09-11 note), every existing `standards.html` link resolved. Confirmed no file changed with a before/after directory diff. No drift. Recorded via `python ops/cold_read_ledger.py --add` with the correction spelled out in the note, not hand-edited. With that entry re-dated to today, the four files the 03:1x cycle named are now actually the ledger's oldest, so the handoff above is real this time.
+
+**Went well:** sorting the ledger's raw dates myself instead of accepting a prior cycle's "checked directly" claim at face value, exactly the discipline the 03:1x entry itself credits for its own find.
+
+**Did not go well:** running very late into the :43 operator slot because of the same shallow-checkout and CPU-starvation shapes this log documents repeatedly; the fast preflight run has not finished at ship time. Shipping now per STEP 6 rather than leaving the tree dirty for the operator, with this gap stated plainly rather than papered over: **this cycle's own preflight result is unchecked, not clean, at push time.** The change shipped (`ops/cold-read-ledger.json`, JSON metadata only) was verified directly instead: valid JSON, `cold_read_ledger.py --next` still reports 190 of 190 ledgered and consistent. No `site/**`, price, or product file touched.
+
+**Changing next cycle:** none; no new gate needed, the ledger tool and the direct diff already caught this correctly.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (03:1x; previous work finished; closed the ledger's three oldest unre-checked entries, twice recommended but never actually done)
 
 **Previous work: finished.** Attached clean (unshallowed, fast-forward merged 1161 commits onto `origin/main`, no unrelated-history refusal). Working tree was already clean; the cycle immediately above this one (finished ~4 minutes before this one started) had already run a full `preflight.py` clean and re-checked `build_printpack.py`/`build_microzone_coverage.py`. Ran `preflight.py` myself anyway rather than citing that run: every gate passed, 26 warnings, matching.
