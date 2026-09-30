@@ -448,8 +448,8 @@
     },
     "deploy_freshness.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "read-only code review only, no live egress from this sandbox to run it against production. Logic is sound: explicit unknown/stale/current tristate, normalises line endings, discovers probe pages rather than hardcoding a possibly-dead marker page. No defect found in the source."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM check-in (11:4x). Ran --check live: correctly reports UNKNOWN, cannot reach 6s-success.com from this sandbox, explicitly not treated as current. Same sandbox egress limit every prior cycle records, source logic unchanged since 2026-09-25 read. No defect."
     },
     "diagnosis.py": {
       "status": "clean",
@@ -463,8 +463,8 @@
     },
     "experiments.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "experiment registry, Umami reader and sample-size arithmetic. Ran --offline live: correctly reports UNCHECKED throughout rather than defaulting to zero, matches its own documented contract. Ran --power 0.02 0.03: 3,826/arm, matches a manual two-proportion power calculation. website_id cross-site guard already covered by test_umami_website_filter.py (7/7). No sandbox ssh key here to exercise the live-read path end to end, but the SELECT-only guard, sentinel-row failure detection and the website_id guard were all read closely and are sound. No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM check-in (11:4x). Ran --offline live: all 4 experiments correctly report UNCHECKED (blocked/answer), not zero, not stale-cited as current. Matches 2026-09-25 read; source unchanged. No defect."
     },
     "fill_front_matter.py": {
       "status": "fixed",
