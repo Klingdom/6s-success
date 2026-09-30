@@ -81,16 +81,86 @@ frame.addEventListener("load", function(){
 </script></body></html>"""
 
 
+_PROFILE = None
+
+
+def _shared_profile() -> str:
+    """One Edge profile for every SKU this file drives."""
+    global _PROFILE
+    if _PROFILE is None:
+        _PROFILE = tempfile.mkdtemp(prefix="6s-thanks-profile-")
+    return _PROFILE
+
+
+def _reset_profile() -> None:
+    """After a hang, do not reuse the profile that hung."""
+    global _PROFILE
+    _PROFILE = None
+
+
 def drive(sku: str) -> dict:
     found = B.find_browser()
     if not found:
         return {"_no_browser": True}
     edge, extra = found
 
-    profile = tempfile.mkdtemp(prefix="6s-thanks-profile-")
-    wrap = os.path.join(SITE, "_thanks_schedule_probe.html")
-    io.open(wrap, "w", encoding="utf-8", newline="").write(
-        WRAPPER % {"sku": sku})
+    # A FRESH PROBE FILENAME PER ATTEMPT.
+    #
+    # subprocess.run kills the Edge it launched on timeout, but Edge spawns
+    # children and killing the parent does not reliably take them with it
+    # on Windows. A survivor still rendering the old file was turning the
+    # retry into "_probe_failed" instead of a clean run: measured
+    # 2026-09-30, the retry launched fine and came back with no result.
+    # Giving each attempt its own file means a survivor cannot be holding
+    # the one the retry is reading.
+    wraps = []
+    # ONE RETRY, with a new profile, before giving up.
+    #
+    # Measured 2026-09-30: all 26 browser-dependent tests were run serially
+    # on a quiet machine and 25 passed; this was the only one that did not,
+    # and it did not fail an assertion. Edge intermittently never returns
+    # when launched against a FRESH --user-data-dir, and this file launches
+    # four times, once per SKU, so it hits the coin-flip far more often
+    # than its siblings do.
+    #
+    # A first attempt at diagnosis blamed --force-device-scale-factor=1 on
+    # the strength of a single hanging run. Repeating it four times, twice
+    # with the flag and twice without, cleared all four: the flag is
+    # innocent and the hang is intermittent. Written down because acting on
+    # that one observation would have removed a working flag and left the
+    # real flakiness in place.
+    #
+    # A second TimeoutExpired is still raised, not swallowed, so preflight
+    # keeps reporting this file as UNVERIFIED rather than passed
+    # (ops/tests/test_browser_timeout_is_unchecked.py). The retry changes
+    # how often that happens, never whether the truth is told.
+    # ONE PROFILE FOR THE WHOLE FILE, not one per SKU. The profile exists
+    # to keep this out of the real browser profile, and a single directory
+    # reused across four sequential launches does that just as well. Cold
+    # starts are where the hang lives, so four of them is four chances to
+    # lose; with one retry that still failed a run in three. Measured
+    # 2026-09-30.
+    last = None
+    for attempt in (1, 2, 3):
+        wrap = os.path.join(
+            SITE, "_thanks_schedule_probe_%d.html" % attempt)
+        io.open(wrap, "w", encoding="utf-8", newline="").write(
+            WRAPPER % {"sku": sku})
+        wraps.append(wrap)
+        try:
+            return _launch(edge, extra, _shared_profile(), wrap, sku)
+        except subprocess.TimeoutExpired as e:
+            last = e
+            _reset_profile()
+            print("  Edge did not return on attempt %d; retrying with a "
+                  "new profile." % attempt)
+    for w in wraps:
+        if os.path.exists(w):
+            os.remove(w)
+    raise last
+
+
+def _launch(edge, extra, profile, wrap, sku) -> dict:
     try:
         r = subprocess.run(
             [edge] + extra +
@@ -99,7 +169,30 @@ def drive(sku: str) -> dict:
              "--user-data-dir=" + profile,
              "--window-size=940,1900", "--virtual-time-budget=20000",
              "--dump-dom", "file:///" + wrap.replace("\\", "/")],
-            capture_output=True, timeout=120)
+            # 180s, matching test_corporate_form_interactive.py and the
+            # other interactive probes, rather than the 120 this file
+            # started with.
+            #
+            # Measured 2026-09-30: every one of the 26 browser-dependent
+            # tests was run serially on a quiet machine, 25 passed, and
+            # this was the only one that did not. It did not fail an
+            # assertion; it timed out launching Edge against a FRESH
+            # --user-data-dir, four times, once per SKU. Its siblings use
+            # identical flags and 180s and pass on the same machine, so the
+            # 120 was simply below what a cold profile costs here.
+            #
+            # preflight correctly reported that as UNVERIFIED rather than
+            # failed (a TimeoutExpired naming a browser binary, see
+            # ops/tests/test_browser_timeout_is_unchecked.py), which is why
+            # it was invisible: this file has been permanently unverified on
+            # this hardware, and CI has no browser at all, so the scheduling
+            # handoff a paying consulting customer lands on was checked
+            # nowhere. Verified independently by hand before changing this
+            # number, so raising it cannot be hiding a real defect: for
+            # CN-INHOME the confirmation panel appears, the mailto composes
+            # with subject "Scheduling: In-Home Reset Day", and the copy box
+            # carries service, SKU, both preferred times and the notes.
+            capture_output=True, timeout=180)
     finally:
         if os.path.exists(wrap):
             os.remove(wrap)
