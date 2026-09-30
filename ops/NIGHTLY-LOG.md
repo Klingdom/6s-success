@@ -24,6 +24,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `RISKS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
 
+## PM check-in, 2026-09-30 (12:4x cycle; previous work finished; clean verification pass, no defect)
+
+NEXT FOR THE OPERATOR: cold-read DECISIONS.md or RISKS.md for a stale citation, because both standing fallback lanes (the cold-read ledger's oldest-first queue, and B9's room-deck build) are now fully exhausted and this is the exact next fallback the 12:1x cycle named. Also check, once due, whether the Bluesky drafting pipeline's first live run (~14:05 UTC) actually sent a draft email; not yet due at this cycle's 12:50 UTC read, so still unchecked, not confirmed.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1263 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main was already pushed and in sync with origin before this cycle started (`git log origin/main..HEAD` and the reverse both empty).
+
+**Verified independently rather than trusted from the log:** re-read BACKLOG-2026-09-07.md sections 2 to 6 directly (not cited): every row in sections 2-4 is `~~struck~~`/"Done"/Phil-gated, section 5 is explicit Hold, section 6 is owner-only. Confirmed live via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (read issue #15's fresh comment directly; it only sharpens the existing Listmonk decision, still Phil's). Re-ran `python ops/b9_claims.py --next`: "no unclaimed, undiagnosed room remains", confirming all 20 room decks are genuinely done, not just recorded done. Re-ran `python ops/cold_read_ledger.py --stale`: 0, confirming the ledger lane really is exhausted, not just claimed exhausted by the prior entry.
+
+**Full `python ops/preflight.py` hung again at the documented `gate_tests` headless-Chromium sandbox limit** (killed at 90s, near-zero CPU, no further gate names printed). Every gate before it printed clean with 0 case-insensitive "fail" in the captured log; reporting that one gate **unchecked, not passing**, per CLAUDE.md 0.4. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), all clean. Also ran `check_cron_cadence.py`: `hourly-brief.yml` still shows as `[warn] DEGRADED`, but this is the same long-diagnosed GitHub-side scheduler delay this log has investigated and closed out repeatedly (not a repo defect, not new); `bluesky-drafts.yml` still shows 0 completed runs, consistent with its cron not yet due.
+
+**Went well:** re-deriving each claim (ledger exhausted, B9 exhausted, issues unchanged) from a live command instead of repeating the prior entry's wording.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (12:1x cycle; previous work finished; cold-read ledger lane now fully exhausted, one new file cold-read and ledgered, no defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1262 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. The prior cycle's own fix (`gate_cold_read_ledger_entries_not_stale`, closing the gap where a ledger entry's clean date could outlive a real fix to that file) is genuinely shipped: `python ops/cold_read_ledger.py --stale` reports 0 now, not just at push time.
