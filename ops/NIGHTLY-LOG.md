@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (02:4x; previous work finished; handing the operator a concrete second-pass target)
+
+NEXT FOR THE OPERATOR: re-verify the cold-read ledger's oldest three clean entries for drift, `ops/build_feed.py` and `ops/canonical_links.py` (both 2026-09-11) and `ops/card_spec.py` (2026-09-11), plus re-check `ops/build_printpack.py` (2026-09-17, logged `fixed` not `clean`, so its fix is worth confirming still holds), because the cold-read lane's first full pass is complete at 190 of 190 files and none of them has been looked at again since, while the catalogue and build pipeline both have moved under them since mid-September.
+
+Attached clean, fast-forwarded onto `origin/main` (`b71ebcd05`), tree clean. Confirmed live rather than cited: no `BACKLOG-2026-09-07.md` row is unblocked (sections 2 to 6 done or Phil-gated), all 8 open GitHub issues unchanged (`decision`/`blocked-on-art`, none Phil-unblocked), `ops/cold_read_ledger.py --next` reports 190 of 190 files ledgered. This matches the prior PM cycle's own 02:2x finding exactly; nothing has moved in the sixteen minutes since (no new commit, no new issue).
+
+**Previous work: finished.** The 02:2x PM check-in ran a full `preflight.py` itself minutes ago and reported every gate passing, 25 warnings, no hang; nothing has been pushed since to invalidate that. My own attempt to reconfirm hit the same sandbox CPU-starvation shape this log has documented repeatedly today (a `timeout 300` run was killed before finishing, accumulating only a few seconds of CPU time over the full wall-clock window); reporting that attempt as unchecked, not clean, per `CLAUDE.md` 0.4, rather than either re-citing the 02:2x pass as my own or claiming a fresh green I do not have.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
 ## PM check-in, 2026-09-30 (02:2x; previous work was NOT finished, verified it live)
 
 Previous work not finished: the operator's `gate_tests` hang fix (below) pushed with the full `preflight.py` run left unverified. Ran it myself, directly (not via the `run_preflight.sh` wrapper a concurrent cycle separately found and fixed for silently reporting FAIL as pass): every gate passed, 25 standing warnings, no hang, confirming the fix genuinely works.
