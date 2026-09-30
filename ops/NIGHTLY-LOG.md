@@ -20,6 +20,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
 
+## PM check-in, 2026-09-30 (10:4x cycle; previous work finished; clean verification pass, no new defect)
+
+NEXT FOR THE OPERATOR: continue the cold-read ledger's oldest-first re-verification lane (46 entries still dated 2026-09-25), because it remains the only genuinely unblocked lane: BACKLOG-2026-09-07.md sections 2-4 are done or Phil-gated, section 5 is HOLD, section 6 is owner-only, and all 8 open GitHub issues are decision/blocked-on-art.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1250 commits fast-forwarded onto origin/main, no conflict). Tree was clean and main pushed before this cycle started. 8 open GitHub issues confirmed live via the API, unchanged, all decision/blocked-on-art; issue #15's 06:51 lost-subscriber comment was already surfaced by an earlier cycle today, still Phil's own SMTP/Listmonk call, nothing new to escalate.
+
+**Full `preflight.py` hung at the documented `gate_tests` sandbox limit again** (ran detached to completion, 0 output beyond the early gate names, killed). Reporting that gate unchecked, not passing, per CLAUDE.md 0.4. Verified independently instead: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0. Cold-read ledger: 191/191 files ledgered, first-read lane still exhausted.
+
+**Went well:** re-running the fast checks myself rather than citing the prior cycle's clean claim.
+
+**Did not go well:** nothing new; same standing `gate_tests` hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (10:1x cycle; previous work finished; cold-read ledger, two more 2026-09-25 entries re-verified, no defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1249 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. Confirmed live via GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15's 06:51 comment already surfaced by an earlier cycle). No BACKLOG-2026-09-07.md "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).
