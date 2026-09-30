@@ -170,6 +170,17 @@ while the slow instrument warms up, and keep opening the video channels,
 because a category like this is searched on YouTube and Pinterest as much as
 on Google.
 
+**Measured 2026-09-29, and it should change the order of this work: the 12 videos already published have sent this site zero visitors.** Read from the all-time referrer table, every arrival this site has ever had, not a 30-day window: direct 79 visitors, linkedin.com 11 plus com.linkedin.android 1, go.bsky.app 3 plus bsky.app 2, google.com 3, bing.com 1, hpanel.hostinger.com 1, buy.stripe.com 1 (a return from checkout). **youtube.com does not appear at all.** The 12 went up on 2026-09-03, so they have had 26 days.
+
+That measures one thing and not another, and the distinction decides what to do next. It measures REFERRALS to this site, and on that the answer is unambiguous: zero. It says nothing about whether anybody watched them on YouTube, which is a real form of value and is visible only in YouTube Studio. So the sequencing that follows is not "stop making videos", it is **read the analytics for the 12 before hand-uploading 102 more**, because those two possibilities call for opposite work:
+
+- If the 12 have meaningful views and simply do not link through, the fix is the description and end-card, and volume is worth adding.
+- If the 12 have almost no views, more of the same will also have almost no views, and the problem is YouTube-side discovery (titles, thumbnails, Shorts, tags), not how many exist. Uploading 102 by hand would then be the most expensive way available to learn nothing.
+
+This is a two-minute look at a screen only Phil can open, against 102 manual uploads, so it belongs before them rather than after. Recorded against `OWNER-ACTIONS.md` item 1.
+
+**The same table names the channels that do work, and they are not the ones getting the effort.** LinkedIn has produced 12 of this site's visitors and Bluesky 5, against 4 from every search engine combined, for a fraction of the production cost of the video library.
+
 **Blocked on:** uploading the other 102 (114 minus the 12 live), which needs
 Phil's own hand on each one, no operator credential exists for this. See
 `OWNER-ACTIONS.md` item 11 and `BACKLOG-2026-H2.md` 3.10. Instagram and
