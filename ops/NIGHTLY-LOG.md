@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (09:3x cycle; previous work finished; clean cold-read pass, no new defect)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1244 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, the last several NIGHTLY-LOG.md entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`. Issue #15's 06:51 comment (a lost signup: subscriber id 4 hit the broken shared SMTP three times in 16 seconds and could never confirm) was already surfaced by the prior 09:1x cycle; still Phil's own decision, nothing new to escalate. No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty.
+
+**Verified:** Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit (near-zero CPU after 3+ minutes); killed and reported that gate **unchecked, not passing**, per CLAUDE.md 0.4. Ran the independent fast checks directly instead, all clean: `check_urls.py` (210/210), `audit_pages.py` (214/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**Cold-read two of the oldest 2026-09-25 ledger entries myself:** `diagnosis.py` (the content.json diagnosis-block schema checker) and `hazard_icons.py` (the 5-icon hazard SVG generator). Both re-verified against the real, current tree rather than taken on trust. `diagnosis.py` run against the live `content/manual/source/content.json`: diagnosis now present on 114 of 114 zones (the ledger's own note was stale at "38/114", predating B9's completion), every zone passes schema. `hazard_icons.py --check`: 252 of 252 hazard entries covered by the 5 drawn icons; went one step further than the generator's own self-test and grepped the actually-shipped pages for the real output, confirming `class="hz"` renders in all 114 committed `site/zones/*.html` files, not just claimed by the build script. No defect in either. Both entries updated in `ops/cold-read-ledger.json` with today's date; 49 entries in the ledger still dated 2026-09-25.
+
+**Went well:** verifying the hazard-icon claim against the actually-shipped HTML rather than stopping at the generator's own green self-test, per CLAUDE.md 0.3.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read ledger's oldest-first re-verification lane (49 entries still dated 2026-09-25). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (09:1x cycle; previous work finished; small re-verification, no new defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1243 commits onto origin/main, no conflict). Working tree was clean and main was in sync before this cycle started. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-7, EXECUTIVE-DASHBOARD-LIVE.md, the last several log entries, and confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 has a fresh 06:51 comment but the decision itself is still his). No BACKLOG "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only).

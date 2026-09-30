@@ -453,8 +453,8 @@
     },
     "diagnosis.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "schema check for content.json diagnosis blocks; ran against real corpus, 38/114 zones carry diagnosis, all pass schema. No defect."
+      "date": "2026-09-30",
+      "note": "ran against real content/manual/source/content.json: diagnosis present on 114 of 114 zones, every zone passes schema; module logic read in full, no defect found"
     },
     "eventLog.js": {
       "status": "clean",
@@ -508,8 +508,8 @@
     },
     "hazard_icons.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "correct and fully wired into build_zone_pages.py, gated by gate_hazard_icons_current; 252/252 coverage confirmed live; no defect"
+      "date": "2026-09-30",
+      "note": "--check: 252 of 252 hazard entries covered by 5 drawn icons, no missing category; confirmed wired into ops/build_zone_pages.py and actually rendered (class=\"hz\") in all 114 shipped site/zones/*.html pages, not just the generator self-test"
     },
     "hourly_brief.py": {
       "status": "fixed",
