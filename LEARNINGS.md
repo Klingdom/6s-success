@@ -329,6 +329,7 @@ Maintain:
 | LRN-0024 | Read the line ending from what git stores, not from the working copy | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0025 | At this traffic scale one 20-minute burst can invert a weekly trend, so check concentration before calling direction | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0026 | Every instrument must exclude its own operator, because a tool that measures a system also acts on it | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0027 | On a shared main, one red build strands every change made near it, and the tooling will tell you to keep retrying | ENGINEERING / DELIVERY | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -859,6 +860,68 @@ instrument, not a later refinement. Concretely, for anything added here:
 **Next action.** When adding a measurement, ask what fraction of the thing
 being measured the measurement itself produces. If the answer is unknown, it
 is not yet an instrument.
+
+#### LRN-0027: On a shared main, one red build strands every change made near it, and the tooling will tell you to keep retrying
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (one full instance, traced end to end, with the tooling's own advice measured as wrong)
+**Domain:** ENGINEERING / DELIVERY
+**Measured:** 2026-09-30
+
+**Observation.** A site change was committed, pushed and merged. It never
+reached a customer, and every tool in the repository said something true
+while none of them said the useful thing.
+
+The sequence:
+
+1. The change touched `site/**`, so `publish-image.yml` fired.
+2. That run FAILED, on a misordered `ops/NIGHTLY-LOG.md` entry in a
+   concurrent session's commit. Nothing to do with the change.
+3. The upstream fix for the log touched no `site/**` path, so the workflow's
+   path filter correctly declined to rebuild.
+4. Result: a merged, green-on-`Checks` site change with **no published image
+   at all**. Not a stale image. None.
+
+**What each tool said.** `deploy_freshness.py`: STALE, "work committed since
+then is not reaching anybody", which invites exactly one move. `deploy.py`:
+production is serving a different build, "usually the image has not finished
+publishing: check `gh run list`, then run this again." Both true. Both point
+at deploying, and deploying pulls `:latest`, which did not contain the change.
+Following that advice loops forever.
+
+**Why the path filter is not the bug.** Filtering the image build to
+`site/**`, `Dockerfile` and itself is correct: `ops/` is not in the image and
+rebuilding for a docs commit would be waste. The failure is the interaction,
+not the filter. A trigger that only fires on change, plus a build that can
+fail for reasons unrelated to the change, equals work that can be stranded
+with no event to notice it.
+
+**Implication, and the general shape.** Any pipeline where the build trigger
+is edge-triggered on a path, and the build can fail for reasons outside that
+path, can strand work silently. The fix is not to widen the trigger; it is to
+make the tools distinguish four states rather than assume one:
+
+    building  wait
+    ready     the image exists; a mismatch is registry or pull lag
+    failed    retrying will NEVER help; fix the build or dispatch
+    none      no run covers this commit; dispatch one
+
+`ops/deploy.py` and `ops/deploy_freshness.py` now both ask GitHub and say
+which, from one shared implementation, with "unknown" kept separate from
+"none" because "I could not look" is not "nobody built it".
+
+**A second-order point worth keeping.** This is the fourth distinct mechanism
+behind `BLOCKER-001`, after "nobody ran the deploy", "the deploy ran against
+a stale build id", and "the sitemap advertised pages production did not
+serve". Each was fixed on its own terms and the blocker recurred anyway,
+because all four are symptoms of the same missing thing: nothing deploys
+automatically. `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) closes
+three of the four. It does not close this one, which is why this learning is
+worth recording separately rather than folded into that item.
+
+**Next action.** When a change does not reach production, establish whether an
+image exists before doing anything else. The tools now answer that without
+being asked.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
