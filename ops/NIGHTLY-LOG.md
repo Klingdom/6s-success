@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (16:0x; a full preflight caught 4 real FAILs, all already fixed by a concurrent session before this cycle could act)
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `origin/main`). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, `RISKS.md`, `DECISIONS.md` and the last several `NIGHTLY-LOG.md` entries. Ran a full `preflight.py`, not the fast shortcut: it caught 4 real gate FAILs (`stray-probe-files`, `landmarks-current` on a transient test fixture, and a genuine `nightly-log-ordering` defect, entry #1508 appended to the file's end instead of prepended to the top). Before fixing any of them, re-fetched `origin/main` to check for collision, per `STATUS.md` section 0's protocol, and found a concurrent session had already found and fixed the identical ordering defect (`6586d3ed4`) minutes earlier, and the fixture-race failures no longer reproduced. Fast-forwarded onto the fix rather than duplicating it.
+
+**Verified:** Independently confirmed, not carried forward: all 8 open GitHub issues are still `decision`/`blocked-on-art` (read each directly); the `ops/cold_read_ledger.py` ledger is 191/191 with 0 stale; `ops/inbox_agent.py --apply` reports no mail credential in this sandbox (unchecked, not empty); no Stripe key, no VPS SSH key, and no network egress to `6s-success.com` from here, all standing sandbox limits. No `BACKLOG-2026-09-07.md` "Now" item is unblocked.
+
+**Went well:** catching the collision before pushing a duplicate fix, by re-fetching rather than trusting a stale local checkout.
+
+**Did not go well:** this cycle found no genuinely new, unblocked work of its own; the repository is under very heavy concurrent automation right now (a new commit roughly every 2 to 5 minutes from parallel sessions across this one hour alone), which left little this single cycle could uniquely contribute.
+
+**Changing next cycle:** none.
+
+**Next:** the standing Phil-blocked "start here" list in `OWNER-ACTIONS.md` is unchanged and remains the highest-leverage unblocked-by-Phil work: `VPS_DEPLOY_KEY` secret, Search Console verification, YouTube OAuth, the Stripe business description.
+
+Regenerated the dashboard (timestamp/commit-hash/carry-forward text only, no stale claim). No price or product touched, no page added or changed, IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (15:4x)
 
 NEXT FOR THE OPERATOR: keep auditing generated/status files against fresh source data for the "corrected source, shipped artifact never re-derived" defect class (`BACKLOG-2026-09-07.md` section 7 names it the dominant one), because this cycle found and fixed a live instance of exactly that shape.
