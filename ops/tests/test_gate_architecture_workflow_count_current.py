@@ -151,11 +151,11 @@ def main() -> int:
     #    fails naming it, restore, confirm clean.
     def reintroduce_bug(text):
         needle = (
-            "**11 workflows exist, see above. They build and check the "
+            "**12 workflows exist, see above. They build and check the "
             "site; nothing in the served page path changed.**"
         )
         replacement = (
-            "**10 workflows exist, see above. They build and check the "
+            "**11 workflows exist, see above. They build and check the "
             "site; nothing in the served page path changed.**"
         )
         assert needle in text, (
@@ -167,7 +167,7 @@ def main() -> int:
     if not r:
         fails.append("reintroducing the real 2026-09-20 defect into the "
                       "committed ARCHITECTURE.md did not fail")
-    elif "10" not in r[0][1] or "11" not in r[0][1]:
+    elif "11" not in r[0][1] or "12" not in r[0][1]:
         fails.append("reintroduced defect failed but message did not "
                       "name both numbers: %r" % (r,))
 
