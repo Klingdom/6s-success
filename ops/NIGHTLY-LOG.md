@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (04:4x; previous work finished; handoff is the ledger's four oldest entries, still not actually re-verified by anyone)
+
+NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` live against the current repository, because they are still the cold-read ledger's four oldest-dated entries (2026-09-23/24) and, despite two prior handoffs naming them (03:1x and 03:4x today), the cycle in between did different work (the Bluesky pipeline) and nobody has actually re-run them yet.
+
+**Previous work: finished.** Attached clean: fetched, unshallowed, `checkout main`, `merge --ff-only origin/main` fast-forwarded onto `ed742eacd`, no unrelated-history refusal. Working tree was already clean, main already pushed. The immediately prior operator cycle (`ac631cf48`, "Give Bluesky the drafting pipeline...") shipped `ops/bluesky_drafts.py` plus its test file and workflow, ran a full `python ops/preflight.py` to completion three times across its own edit cycle (catching and fixing two of its own regressions along the way), and finished with every gate passing, 28 warnings, all previously diagnosed sandbox limits. That is a genuinely finished, verified cycle, not a claim taken on faith.
+
+**Read state:** `GOALS.md` sections 0-1, `BACKLOG-2026-09-07.md` sections 0 and 6-7, `STATUS.md`'s Open claims and Current Highest-Level Priority sections, the last several `NIGHTLY-LOG.md` entries. Confirmed live via the GitHub API myself (not cited): 8 open issues, unchanged, all `decision` or `blocked-on-art`, none Phil-unblocked (#35, #33, #31, #21, #18, #15 decision; #29, #2 blocked-on-art). No `BACKLOG-2026-09-07.md` "Now" item is unblocked: sections 2-4 done or Phil-gated, section 5 is HOLD pending traffic evidence this sandbox cannot generate, section 6 is owner-only gates.
+
+**Could not get a clean full `preflight.py` this cycle, and this entry says so rather than borrowing the prior cycle's result.** Two separate attempts (one backgrounded, one foreground, both `timeout 300`) were both killed at their timeout with zero flushed output; the foreground attempt's own proxy log showed 43 rejected egress attempts (`6s-success.com`, `redirector.gvt1.com`, `www.google.com`) during the run, the same headless-Chromium/`gate_tests` hang this log has documented as a standing sandbox limitation dozens of times, not a new defect. Reporting this run as **unchecked, not passing**, per `CLAUDE.md` 0.4. What I verified independently instead, since no file was touched this cycle: `check_urls.py` (210/210 sitemap URLs resolve), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes). Nothing here overrides the prior cycle's own three completed clean runs; it only means this cycle cannot add a fourth confirmation on top of them.
+
+**Went well:** treating the prior cycle's Bluesky work as finished on its own evidence (three completed preflight runs, its own regressions caught and fixed) rather than re-litigating it; not padding this entry with a fabricated "preflight clean" when it plainly was not.
+
+**Did not go well:** two full `preflight.py` attempts spent on a known, already-diagnosed sandbox limitation instead of moving straight to the ledger re-verification; the four-file handoff itself is now three PM/operator cycles old without anyone actually opening the files.
+
+**Changing next cycle:** none; the hang is an existing, understood sandbox limit with no gate to add, and the standing "unchecked, not passing" convention already covers it correctly.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (built the missing Bluesky drafting pipeline, the one channel proven to work with nothing preparing content for it)
 
 **Did:** Attached clean (unshallowed, fast-forward merged onto `origin/main`, no unrelated-history refusal). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2-7, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed via a subagent's independent GitHub read, then verified myself: all 8 open issues are `decision`/`blocked-on-art`, none Phil-unblocked; issue #31's "Option C" the subagent flagged as outstanding was already shipped (checked `site/deck.html`/`deck-gallery.html` directly, the disclosure text is live). No BACKLOG-2026-09-07.md row is unblocked, matching every recent cycle today.

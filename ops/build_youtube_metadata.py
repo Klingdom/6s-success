@@ -118,11 +118,11 @@ def description_for(room: str, z: dict) -> str:
         lines.append("KEEP IT THIS WAY")
         lines.append("The Sustain habit that keeps this zone from drifting "
                      "back, on the same page:")
-        lines.append("%s/zones/%s.html#sustain" % (SITE, slug))
+        lines.append("%s/zones/%s#sustain" % (SITE, slug))
         lines.append("")
 
     lines.append("Full written steps for this zone, free:")
-    lines.append("%s/zones/%s.html" % (SITE, slug))
+    lines.append("%s/zones/%s" % (SITE, slug))
     lines.append("")
     lines.append("6S Success turns Lean's six-S method into something you can "
                  "actually do in a house: Sort, Straighten, Shine, Safety, "
