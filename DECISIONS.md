@@ -1990,6 +1990,17 @@ authored that way and passed the gate on the first run, with three further
 corrections found by reading each branch against its cause's stated meaning
 afterwards, which the gate cannot do and should not be expected to.
 
+**Room count corrected 2026-09-30, PM check-in.** The "six of twenty rooms,
+38 of 114 zones" line above is now stale by one room: `STRATEGY-MICROZONES.md`'s
+own live-generated coverage table (rebuilt by `ops/build_microzone_coverage.py`
+on every preflight) reads **7 rooms, 44 of 114 zones**, Primary Bedroom having
+been authored since this entry was last edited. This is not a breach of "no
+fifth room on momentum": Primary Bedroom's deck is among the room decks B9
+has since built (`BACKLOG-2026-09-07.md` section 2), so its diagnosis layer
+was authored under this same decision's own carve-out, immediately ahead of
+the deck that consumes it, not as a stockpile. The stop itself is unaffected;
+only this entry's room/zone count needed re-deriving from the live table.
+
 ---
 
 ## D-021 | 2026-09-21 | M6's "21-day read" gate cannot be answered and must stop being re-litigated; it stays shut on a different, honest reason

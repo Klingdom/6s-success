@@ -52,9 +52,13 @@ console, only a wall by the door"). `diagnosis` turns a symptom into a root
 cause through branching questions, which is `CLAUDE.md` sections 5 and 6 in
 working form: understand the function, find the root cause, then prescribe.
 
-**So today the product does what it says it does for 12 zones out of 114.**
-Closing that is not new content. It is making the shipped product match its own
-stated philosophy.
+**So today the product does what it says it does for 44 zones out of 114.**
+(Corrected 2026-09-30, PM check-in: this line still read the original pilot
+count, 12 zones across Entryway and Kitchen, from before D-026 in
+`DECISIONS.md` authored the diagnosis layer for five further rooms. The
+table in section 1 above was already current; only this sentence had not
+been re-derived from it.) Closing that is not new content. It is making the
+shipped product match its own stated philosophy.
 
 ## 3. What completing it unlocks, in order of value
 
