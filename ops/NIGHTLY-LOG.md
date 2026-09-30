@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (05:2x, addendum: gate_cold_read_handoff_not_stale now fires on every possible handoff, not a fresh defect but worth naming)
+
+Merged onto `origin/main` before push (a concurrent session's own `b8c84214e`/`fdf1480bd` landed first; discarded no work, only combined two `NIGHTLY-LOG.md` entries and regenerated the three dashboard files rather than hand-resolving their conflict markers). `ops/run_preflight.sh` on the merged tree: every gate passed, 27 warnings.
+
+One of those warnings is worth naming rather than passing over: `gate_cold_read_handoff_not_stale` fired again, this time on my own "genuinely oldest four" handoff below, because the gate's own logic (see its docstring) only checks whether a named file is already ledgered clean/fixed at all, with no recency threshold. Now that `ops/cold_read_ledger.py --next` reports 191 of 191 files ledgered, every legitimate "oldest, due for a fresh drift check" handoff will always name an already-ledgered file and always trip this warning. That is a real change in the gate's own signal-to-noise since full coverage was reached, not a new mistake this cycle made; not fixing the gate itself here, since a correct fix needs a recency window and its own fail-then-pass test, more than this slot has room for. Leaving it named for whoever picks it up next, rather than re-reporting it silently every cycle from now on.
+
+## PM check-in, 2026-09-30 (05:1x; previous work finished; closed a stale handoff)
+
+**Previous work: finished.** Attached clean, fast-forwarded onto `592722a1c`. Since the 04:4x entry below: `7d2d16100` closed its handoff (re-verified the four named files, no drift); `592722a1c` fixed `gate_youtube_sustain_anchor` (stale `.html` anchor against yesterday's canonical-URL fix). Re-confirmed that fix's own tests myself: 6/6 and 7/7.
+
+**8 open GitHub issues, unchanged, all decision/blocked-on-art, none Phil-unblocked.** No backlog row newly unblocked.
+
+`ops/run_preflight.sh` (proper wrapper, not a foreground timeout): 2 gates failed, both the known self-healing stray-fixture shape, confirmed gone from disk. 27 warnings, all diagnosed sandbox limits. `check_urls.py`, `affiliate.py --check`, `fix_dashes.py --check` independently clean.
+
+**Found `gate_cold_read_handoff_not_stale` correctly flagging the 04:4x handoff as already-verified ground.** Re-sorted the ledger, re-verified three genuinely oldest files myself (`backup_analytics.py`, `browser.py`, `build_all_prompts.py`), no drift, recorded via `--add`.
+
+**Handing to operator:** `build_app_icons.py`, `build_avif.py`, `build_card_prompts.py`, `build_corporate.py` (2026-09-25) are now the genuinely oldest ledger entries.
+
+Pushed to main. Ledger, log, command deck only.
+
 ## PM check-in, 2026-09-30 (04:3x, merge addendum: found the same real gate defect a concurrent session was already fixing, adopted theirs rather than duplicate)
 
 Merging this entry's own push against a concurrent operator commit (`8bb43101e`, "Every link this business publishes off-site needed a redirect") landed clean with no file-level conflict, but the merged tree's own `preflight.py` then FAILed for real: `youtube-sustain-anchor`, all 114 zone video descriptions "wrong slug." Not the transient stray-fixture shape from earlier in this cycle; traced it before assuming so. Root cause: that commit correctly switched `build_youtube_metadata.py`'s published zone links to canonical extensionless URLs and added `gate_published_zone_urls` to hold it, but the older `gate_youtube_sustain_anchor` (2026-09-13) still built its own expected URL with `.html` baked in, so it flagged the very correctness the other gate exists to enforce.

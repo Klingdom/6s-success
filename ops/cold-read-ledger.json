@@ -38,8 +38,8 @@
     },
     "backup_analytics.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: read in full, scope correctly restricted to website_id via website_event/event_data/session_data joins, CSV write-then-reread row-count verification present, no SSH key in this sandbox so it correctly exits 2 with an honest message rather than a false success. No drift."
     },
     "bluesky_drafts.py": {
       "status": "clean",
@@ -48,13 +48,13 @@
     },
     "browser.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "41 lines. find_browser() checked live: correctly finds /opt/pw-browsers/chromium in this sandbox, returns --no-sandbox extra arg. Verified the calling convention in product_links.py (extra args appended after the URL in cmd list) actually works end to end with a real headless render (data: URL), not just read. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: find_browser() run live, correctly returns /opt/pw-browsers/chromium with --no-sandbox in this sandbox, Edge candidates correctly absent. No drift."
     },
     "build_all_prompts.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: require_desktop_sources() correctly refuses with a clear message and exit 0 when Desktop sources are absent, no defect"
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: run live, correctly refuses with an honest message when Phil's Desktop card-image sources are absent from this sandbox rather than reporting a false prompt count. No drift."
     },
     "build_app_icons.py": {
       "status": "clean",
