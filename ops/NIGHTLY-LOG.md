@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (17:5x cycle)
+
+NEXT FOR THE OPERATOR: sweep RISKS.md's own mitigation rows against the sources they cite, because the 17:1x cycle named it as the next "source corrected, artifact never re-derived" lane and it is genuinely unblocked (RISKS.md has 20+ dated `mitigation:` blocks, several already carry a mid-file correction note, and nobody has swept the whole file the way DECISIONS.md was swept twice today).
+
+**Previous work finished.** Attached clean (fetch, unshallow already done, checkout main, ff-only merge; already at `8ec8cc298`, the 17:1x cycle's own head, so nothing new had landed). Working tree was clean before this cycle touched anything. All 8 open GitHub issues re-read directly, unchanged from the 17:1x cycle's count: `decision` or `blocked-on-art`, 2 of them P0 (#15, #2), none pickable per STEP 3. `EXECUTIVE-DASHBOARD-LIVE.md`'s own "8 (2 P0...)" open-issues line checked against that live read: matches, no drift.
+
+**Verified independently:** `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. Full `preflight.py` run twice (once to 90s, once to the full 300s): every gate passes through `gate_image_coverage`, then hangs at `gate_tests` with no CPU progress, the same documented sandbox Chromium limitation every recent cycle has reported, not a new regression; killed the orphaned process both times. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4; everything this cycle actually touched is independently verified above.
+
+**No small closing job done this slot beyond the checks above:** the RISKS.md sweep is real work, not a one-line fix, so it goes to the operator per this slot's own instruction not to start something large here.
+
+Handoff only this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (17:1x cycle)
 
 NEXT FOR THE OPERATOR: the D-019 through D-028 drift-recheck lane the 16:4x cycle handed off is now exhausted, clean. Pick the next document sweep for the same "source corrected, artifact never re-derived" defect class named in BACKLOG-2026-09-07.md section 7, for example RISKS.md's own mitigation rows against their cited sources, since DECISIONS.md has now been swept twice today (D-001 through D-018 earlier, D-019 through D-028 this slot).
