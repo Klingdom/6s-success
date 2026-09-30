@@ -15631,6 +15631,68 @@ def gate_goals_revenue_current() -> None:
              f"same window.")
 
 
+def gate_affiliate_trigger_citation_current() -> None:
+    """GOALS.md and OWNER-ACTIONS.md must cite the same T2 click count
+    ops/state.json's own affiliate_trigger reading carries.
+
+    Found 2026-09-30, scheduled operator: both files cited "reading 0 of 60
+    as of 2026-09-09" for the affiliate application trigger
+    (ops/check_affiliate_trigger.py, PLAN-AFFILIATE-MONETISATION.md's T2),
+    three weeks after a session with real database access last measured it
+    at "1 of 60" (ops/state.json's affiliate_trigger, 2026-09-30 12:25). The
+    exact "one document corrected, sibling never told" shape
+    gate_goals_traffic_current already catches for the traffic baseline had
+    never been extended to this reading, which matters for the same reason:
+    it is the one number that authorises a real, dated business decision
+    (a fresh Amazon application) the moment it crosses 60.
+
+    Deliberately a plain regex against state.json's own already-composed
+    "N of 60" sentence rather than a second re-derivation of the click math:
+    this gate is a citation check, not a rebuild of
+    check_affiliate_trigger.py's own SQL, which this sandbox usually cannot
+    run anyway (no VPS credential). Silent if either file no longer carries
+    the phrase in this shape, same convention as gate_goals_traffic_current's
+    sibling-document checks, so an unrelated rewrite of the surrounding
+    prose cannot be blocked by a check that cannot fix it.
+    """
+    state_path = os.path.join(ROOT, "ops", "state.json")
+    if not os.path.exists(state_path):
+        return
+    state = json.load(io.open(state_path, encoding="utf-8"))
+    live = state.get("affiliate_trigger_last_measured") or state.get(
+        "affiliate_trigger")
+    if not live:
+        return
+    lm = re.search(r"(\d+) of 60", live)
+    if not lm:
+        return
+    live_n = int(lm.group(1))
+
+    bad = []
+    for name in ("GOALS.md", "OWNER-ACTIONS.md"):
+        path = os.path.join(ROOT, name)
+        if not os.path.exists(path):
+            continue
+        text = io.open(path, encoding="utf-8").read()
+        # Hand-wrapped prose puts the line break at a different word in each
+        # file, so collapse whitespace before matching rather than chase
+        # every wrap point with its own \s+.
+        flat = re.sub(r"\s+", " ", text)
+        m = re.search(
+            r"reads?\s*\**\s*(\d+) of 60 outbound retailer click", flat)
+        if not m:
+            continue
+        cited_n = int(m.group(1))
+        if cited_n != live_n:
+            bad.append(f"{name} cites {cited_n} of 60, ops/state.json's "
+                        f"affiliate_trigger now reads {live_n} of 60")
+
+    if bad:
+        fail("affiliate-trigger-citation-current",
+             "The T2 affiliate trigger reading has drifted from where it "
+             "is cited: %s" % "; ".join(bad))
+
+
 def gate_goals_revenue_window_current() -> None:
     """GOALS.md names the exact date its own 30-day revenue framing expires,
     and nothing re-derives that sentence once the date passes.
@@ -26485,6 +26547,7 @@ def main() -> int:
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
     run_gate(gate_goals_revenue_window_current)
+    run_gate(gate_affiliate_trigger_citation_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_risk_cross_references_current)
