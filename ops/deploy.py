@@ -54,6 +54,132 @@ USERS = ("root", "deploy", "ubuntu", "debian")
 VERDICT_PATH = os.path.join(ROOT, "ops", "deploy-verdict.json")
 
 
+def classify_publish(runs, head_sha, ancestors):
+    """Pure logic: what is the image build for this commit actually doing?
+
+    `runs` is newest-first, each {"sha", "status", "conclusion"}.
+    `ancestors` answers "does this run's commit contain head_sha", so the
+    caller owns git and this stays testable without a repository.
+
+    WHY THIS EXISTS
+    ---------------
+    When the live build id does not match the repository, deploy.py used to
+    say, always: "Usually the image has not finished publishing: check `gh run
+    list`, then run this again."
+
+    That is right for the common case and wrong for the one that actually
+    strands work. On 2026-09-30 a site change was pushed, its push-triggered
+    build FAILED on a fault in a concurrent session's commit (a misordered
+    NIGHTLY-LOG.md entry, nothing to do with the change), and the upstream fix
+    for that fault touched no `site/**` path. publish-image.yml is correctly
+    filtered to `site/**`, `Dockerfile` and itself, so it declined to rebuild,
+    and the change sat with no image at all. Re-running deploy.py would have
+    reported the same mismatch forever, and its own advice was to do exactly
+    that.
+
+    Four outcomes, because they need four different actions:
+
+      building  wait, the advice deploy.py already gave
+      ready     an image exists; a mismatch now is registry or pull lag
+      failed    retrying deploy will NEVER help; fix the build or dispatch
+      none      no run covers this commit at all; dispatch one
+
+    "unknown" is separate and deliberate: no gh, no auth, no network. That is
+    reported as unchecked rather than folded into "none", because "nobody
+    built it" and "I could not look" are different facts and only one of them
+    is a reason to act.
+    """
+    if runs is None:
+        return "unknown", None
+    for r in runs:
+        if not ancestors(r.get("sha") or ""):
+            continue
+        status = (r.get("status") or "").lower()
+        if status != "completed":
+            return "building", r
+        concl = (r.get("conclusion") or "").lower()
+        if concl == "success":
+            return "ready", r
+        return "failed", r
+    return "none", None
+
+
+PUBLISH_ADVICE = {
+    "building": ("an image build covering this commit is still running. "
+                 "Wait for it, then run this again."),
+    "ready":    ("an image build covering this commit already succeeded, so "
+                 "the image exists. A mismatch now is registry or pull lag; "
+                 "run this again shortly."),
+    "failed":   ("THE IMAGE BUILD FOR THIS COMMIT FAILED, so no image "
+                 "containing this change was ever published and running this "
+                 "again will not change that. Read the run, fix what it "
+                 "found, or dispatch a fresh build: "
+                 "gh workflow run \"Publish site image\" --ref main"),
+    "none":     ("NO IMAGE BUILD COVERS THIS COMMIT. publish-image.yml only "
+                 "triggers on site/**, Dockerfile and itself, so a site "
+                 "change whose build failed, or that landed behind one, can "
+                 "sit with no image at all. Dispatch one: "
+                 "gh workflow run \"Publish site image\" --ref main"),
+    "unknown":  ("could not ask GitHub what the image build is doing (no gh, "
+                 "no auth, or no network), so why production differs is "
+                 "UNCHECKED. That is not the same as the image being on its "
+                 "way."),
+}
+
+def _gh_runs(limit: int = 12):
+    """Recent 'Publish site image' runs, newest first, or None if not asked.
+
+    None means the question could not be put to GitHub, not that there are no
+    runs. classify_publish() keeps those apart on purpose.
+    """
+    import json
+    try:
+        p = subprocess.run(
+            ["gh", "run", "list", "--workflow", "Publish site image",
+             "--limit", str(limit), "--json", "headSha,status,conclusion"],
+            cwd=ROOT, capture_output=True, text=True, timeout=60)
+    except Exception:                                          # noqa: BLE001
+        return None
+    if p.returncode != 0:
+        return None
+    try:
+        raw = json.loads(p.stdout or "[]")
+    except Exception:                                          # noqa: BLE001
+        return None
+    return [{"sha": r.get("headSha") or "", "status": r.get("status") or "",
+             "conclusion": r.get("conclusion") or ""} for r in raw]
+
+
+def _head_sha():
+    try:
+        p = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                           capture_output=True, text=True, timeout=30)
+        return p.stdout.strip() if p.returncode == 0 else ""
+    except Exception:                                          # noqa: BLE001
+        return ""
+
+
+def _contains(head_sha):
+    """Does a run's commit contain HEAD? Unknown objects answer no, safely."""
+    def ancestors(run_sha):
+        if not run_sha or not head_sha:
+            return False
+        try:
+            p = subprocess.run(
+                ["git", "merge-base", "--is-ancestor", head_sha, run_sha],
+                cwd=ROOT, capture_output=True, text=True, timeout=30)
+            return p.returncode == 0
+        except Exception:                                      # noqa: BLE001
+            return False
+    return ancestors
+
+
+def publish_state():
+    """(state, run) for the image build covering HEAD. See classify_publish."""
+    head = _head_sha()
+    return classify_publish(_gh_runs(), head, _contains(head))
+
+
 def write_verdict_marker(build_id: str) -> None:
     """Record a confirmed-live build id, for a later egress-less run to read.
 
@@ -315,8 +441,10 @@ def main() -> int:
     if mine_id and live_id and live_id != mine_id:
         print("  VERDICT production is serving a DIFFERENT build. Every "
               "deployed byte is covered by this hash, so this is not a "
-              "sampling artefact. Usually the image has not finished "
-              "publishing: check `gh run list`, then run this again.")
+              "sampling artefact.")
+        state, run = publish_state()
+        print("  image build for this commit: %s" % state)
+        print("  %s" % PUBLISH_ADVICE[state])
         return 1
     if mine_id and live_id is None:
         print("  VERDICT unknown: production did not serve build-id.txt, so "
@@ -334,9 +462,10 @@ def main() -> int:
     if live != mine:
         print("  VERDICT production is serving a DIFFERENT build. The product "
               "count matches because it did not change, which is exactly how "
-              "this check used to pass while shipping nothing. Usually the "
-              "image has not finished publishing: check `gh run list`, then "
-              "run this again.")
+              "this check used to pass while shipping nothing.")
+        state, run = publish_state()
+        print("  image build for this commit: %s" % state)
+        print("  %s" % PUBLISH_ADVICE[state])
         return 1
     if before == after and before_id == live_id:
         print("  VERDICT production already matched the repository and still "
