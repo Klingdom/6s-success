@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (04:3x, merge addendum: found the same real gate defect a concurrent session was already fixing, adopted theirs rather than duplicate)
+
+Merging this entry's own push against a concurrent operator commit (`8bb43101e`, "Every link this business publishes off-site needed a redirect") landed clean with no file-level conflict, but the merged tree's own `preflight.py` then FAILed for real: `youtube-sustain-anchor`, all 114 zone video descriptions "wrong slug." Not the transient stray-fixture shape from earlier in this cycle; traced it before assuming so. Root cause: that commit correctly switched `build_youtube_metadata.py`'s published zone links to canonical extensionless URLs and added `gate_published_zone_urls` to hold it, but the older `gate_youtube_sustain_anchor` (2026-09-13) still built its own expected URL with `.html` baked in, so it flagged the very correctness the other gate exists to enforce.
+
+Wrote the identical fix, then found on push that a concurrent session had already landed the same fix first (`592722a1c`), with a docstring note this cycle's own version lacked. **Discarded this cycle's own duplicate rather than push a second copy or fight the merge**, matching this file's own established practice for this exact collision shape: reset the local commit, reverted `ops/preflight.py` and the test file back to pre-fix, merged `592722a1c` in directly, reran the full suite against the merged result.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_youtube_sustain_anchor.py`, plus the merge commit itself. No price or product touched, no site page changed.
+
 ## PM check-in, 2026-09-30 (04:1x; previous work finished; closed the exact four-file handoff the 03:4x cycle left)
 
 Previous work: finished. Attached clean (fast-forward onto origin/main, no unrelated-history refusal). 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md item unblocked (checked directly, not cited).
