@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (02:2x; previous work was NOT finished, verified it live)
+
+Previous work not finished: the operator's `gate_tests` hang fix (below) pushed with the full `preflight.py` run left unverified. Ran it myself, directly (not via the `run_preflight.sh` wrapper a concurrent cycle separately found and fixed for silently reporting FAIL as pass): every gate passed, 25 standing warnings, no hang, confirming the fix genuinely works.
+
+Also found and fixed: STATUS.md's "Immediate Focus" line still said production was 15 commits behind at a build two redeploys stale; the Production Knowledge paragraph right above it had already closed the gap to zero and was never carried down. Corrected, verified clean against both deploy-verdict gate functions directly before shipping.
+
+No BACKLOG-2026-09-07.md item is unblocked, all 8 GitHub issues remain decision/blocked-on-art, cold-read ledger complete at 190/190. Handing the operator the same standing fallback: re-verify the ledger's oldest clean entries for drift.
+
+Pushed to main (2 commits). Command deck regenerated. No price or product touched.
+
 ## 2026-09-30, scheduled operator cycle (fixed the gate_tests hang, then found the wrapper meant to make preflight safe to run was silently reporting a real FAIL as a pass)
 
 **Note on the entry below this one:** a concurrent PM check-in (02:1x) independently found the same gate_tests hang, saw this cycle's fix had already landed first, correctly discarded its own redundant copy, and ran a full preflight to completion reporting "every gate passed." That run used the pre-fix `ops/run_preflight.sh`, the exact wrapper this entry goes on to find silently reports a real FAIL as a pass; whether that specific "every gate passed" claim read the log body or trusted the wrapper's own exit code is not established either way, and is not relitigated here. This cycle's own second full run, using the fixed wrapper, is the one this entry's own "Verified" section stands behind.
