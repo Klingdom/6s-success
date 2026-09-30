@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (11:4x cycle; previous work finished; re-verified 2 more cold-read ledger entries, no defect)
+
+NEXT FOR THE OPERATOR: continue the cold-read ledger's oldest-first re-verification lane (35 entries still dated 2026-09-25), because it remains the only genuinely unblocked lane: BACKLOG-2026-09-07.md sections 2-4 are done or Phil-gated, section 5 is HOLD, section 6 is owner-only, and all 8 open GitHub issues are decision/blocked-on-art. Also worth a look once the ledger lane is picked up: `.github/workflows/bluesky-drafts.yml` (built 03:xx today, first scheduled run 14:05 UTC, roughly 2 hours out) has not fired yet, so confirming the first draft email actually arrives is not yet checkable but will be by the next few cycles.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1256 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main was pushed and in sync before this cycle started. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 and 2-7 (all rows done or Phil-gated, confirmed by reading each one), STATUS.md section 21, the last two log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked.
+
+**Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit again** (backgrounded, watched to near-zero CPU past 44s with no further gate names printed, killed by hand). Every gate before it printed clean with no FAIL in the captured log. Reporting that gate unchecked, not passing, per CLAUDE.md 0.4. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes).
+
+**Continued the cold-read ledger's oldest-first re-verification lane, re-verifying 2 of the 37 entries still dated 2026-09-25 with real commands, not by re-reading the note:** `deploy_freshness.py --check` (still correctly reports UNKNOWN, cannot reach 6s-success.com from this sandbox, explicitly not treated as current) and `experiments.py --offline` (all 4 experiments still correctly report UNCHECKED for blocked/answer, not defaulted to zero or a stale citation). No regression in either. Ledger now carries 35 entries still dated 2026-09-25 (was 37).
+
+**Went well:** confirming no new commits had landed from the operator before pushing, avoiding a collision on this handoff.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (11:1x cycle; previous work finished; re-verified 4 more cold-read ledger entries, no defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1256 commits onto origin/main). Working tree clean, main pushed and in sync. Read GOALS.md, BACKLOG-2026-09-07.md sections 2 to 7 (all rows done or Phil-gated, confirmed by reading each one, not cited), EXECUTIVE-DASHBOARD-LIVE.md, the last two log entries, 8 open GitHub issues (all decision/blocked-on-art, confirmed live via the API; issue #15 has a fresh 2026-09-30 comment but it only sharpens the same SMTP-credential decision already recorded, still Phil's call). No BACKLOG "Now" item unblocked.

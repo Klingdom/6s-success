@@ -449,7 +449,7 @@
     "deploy_freshness.py": {
       "status": "clean",
       "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 (the ledger's own oldest-first re-verification lane, which surfaced the gap this cycle's own gate_cold_read_ledger_entries_not_stale now catches): the 2026-09-25 clean note was stale. A real defect landed and was fixed 2026-09-29 (Phil's own 46b111b56, 'Our own monitoring made 94% of the redirects...'): the probe URL was built from the local filename and asked production for the .html form of a zone page, drawing 2,270 self-inflicted redirects in 8 days. canonical_path() now strips .html for /rooms/ and /zones/ only. Reran ops/tests/test_deploy_freshness.py: 6/6 cases pass. No further defect found on this pass."
+      "note": "Re-verified 2026-09-30 (the ledger's own oldest-first re-verification lane, which surfaced the gap this cycle's own gate_cold_read_ledger_entries_not_stale now catches): the 2026-09-25 clean note was stale. A real defect landed and was fixed 2026-09-29 (Phil's own 46b111b56, 'Our own monitoring made 94% of the redirects...'): the probe URL was built from the local filename and asked production for the .html form of a zone page, drawing 2,270 self-inflicted redirects in 8 days. canonical_path() now strips .html for /rooms/ and /zones/ only. Reran ops/tests/test_deploy_freshness.py: 6/6 cases pass. A concurrent 11:4x PM check-in re-verified the same file the same minute by running --check live (correctly UNKNOWN, no egress from that sandbox either); its note is folded in here rather than kept as a separate, less complete entry, since it did not catch the 2026-09-25-to-2026-09-29 source change this note documents. No further defect found on this pass."
     },
     "diagnosis.py": {
       "status": "clean",
@@ -463,8 +463,8 @@
     },
     "experiments.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "experiment registry, Umami reader and sample-size arithmetic. Ran --offline live: correctly reports UNCHECKED throughout rather than defaulting to zero, matches its own documented contract. Ran --power 0.02 0.03: 3,826/arm, matches a manual two-proportion power calculation. website_id cross-site guard already covered by test_umami_website_filter.py (7/7). No sandbox ssh key here to exercise the live-read path end to end, but the SELECT-only guard, sentinel-row failure detection and the website_id guard were all read closely and are sound. No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM check-in (11:4x). Ran --offline live: all 4 experiments correctly report UNCHECKED (blocked/answer), not zero, not stale-cited as current. Matches 2026-09-25 read; source unchanged. No defect."
     },
     "fill_front_matter.py": {
       "status": "fixed",
