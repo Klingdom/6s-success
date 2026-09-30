@@ -55,8 +55,8 @@ PAGES = [
     "/shop.html",
     "/book.html",
     "/deck-gallery.html",
-    "/zones/entryway-the-landing-spot.html",
-    "/rooms/kitchen.html",
+    "/zones/entryway-the-landing-spot",
+    "/rooms/kitchen",
     # The two highest-value transactions on the whole site: $250 and $1,200,
     # and per ROADMAP-2026-2029.md section 1 services are the only part of the
     # catalogue whose arithmetic can reach the revenue goal at all. This page

@@ -20359,6 +20359,78 @@ def gate_payment_links_nofollow() -> None:
                 "; ".join(problems[:3])))
 
 
+# /rooms/ and /zones/ are extensionless-canonical: nginx 301s the .html form
+# to them. Every other shipped page keeps .html and is served directly.
+REDIRECTING_PREFIXES = ("/rooms/", "/zones/")
+
+
+def check_no_redirecting_probe_urls(sources) -> list:
+    """Pure check: no ops/ tool may request a URL production 301s.
+
+    WHY THIS EXISTS
+    ---------------
+    Found 2026-09-29 in the persistent access log, while looking for something
+    else entirely. The three most requested paths on this whole site were:
+
+        2270  301  /zones/dining-room-the-beverage-or-coffee-station.html
+         233  301  /rooms/kitchen.html
+         232  301  /zones/entryway-the-landing-spot.html
+
+    All three ours. ops/deploy_freshness.py built its probe URL from the LOCAL
+    FILENAME, so it asked for the .html form of a zone page roughly twelve
+    times an hour, and ops/check_live_links.py named two .html paths by hand.
+    urllib follows a 301, so every check passed and nothing looked wrong. That
+    is why it survived for weeks.
+
+    The cost is not the extra round trip, which is nothing. While Search
+    Console is unverified the access log is the ONLY instrument this site has
+    for whether search engines read it, and our own monitoring was generating
+    about 94% of the redirects in it. A real crawler taking a redirect was
+    invisible inside our own noise, and "Googlebot: 36 redirected" could not be
+    read as a number about Googlebot.
+
+    This is the third instrument found polluted by our own tooling in one
+    cycle, alongside Stripe checkout sessions created by followable payment
+    links and a weekly traffic figure inverted by one 20-minute burst. The
+    pattern is worth naming: a tool that measures something can also change it.
+    """
+    problems = []
+    pat = re.compile(r'["\'](/(?:rooms|zones)/[A-Za-z0-9_-]+\.html)["\']')
+    for name in sorted(sources):
+        for m in pat.finditer(sources[name] or ""):
+            problems.append(
+                "%s asks for %s, which production 301s to the extensionless "
+                "form. Every such request doubles into the access log and "
+                "hides real crawler redirects inside our own noise"
+                % (name, m.group(1)))
+    return problems
+
+
+def gate_no_redirecting_probe_urls() -> None:
+    """No ops/ tool may name a page URL production redirects."""
+    sources = {}
+    for fp in sorted(glob.glob(os.path.join(ROOT, "ops", "*.py"))):
+        base = os.path.basename(fp)
+        if base == "preflight.py":
+            # This file quotes those URLs in the gate above, on purpose.
+            continue
+        try:
+            sources["ops/" + base] = io.open(fp, encoding="utf-8",
+                                             errors="replace").read()
+        except Exception:                                      # noqa: BLE001
+            continue
+    if not sources:
+        warn("canonical-probe-urls",
+             "no ops/*.py could be read, so probe URLs were NOT checked. "
+             "Unchecked, not clean.")
+        return
+    problems = check_no_redirecting_probe_urls(sources)
+    if problems:
+        fail("canonical-probe-urls",
+             "%d redirecting URL(s) named in ops/: %s"
+             % (len(problems), "; ".join(problems[:3])))
+
+
 def gate_deck_print_tiers() -> None:
     """Every built deck's card count against the 18-card print step."""
     import glob as _glob
@@ -25639,6 +25711,7 @@ def main() -> int:
     run_gate(gate_diagnosis_branch_shape)
     run_gate(gate_cause_vocabulary)
     run_gate(gate_payment_links_nofollow)
+    run_gate(gate_no_redirecting_probe_urls)
     run_gate(gate_deck_print_tiers)
     run_gate(gate_srt_matches_film)
     run_gate(gate_kitchen_deck_current)

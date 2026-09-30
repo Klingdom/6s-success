@@ -58,7 +58,7 @@ BASE = "https://6s-success.com"
 # an asset hash alone would not notice a page that gained a picture.
 PROBES = [
     ("/", "assets", "the shared stylesheet and scripts"),
-    ("/zones/entryway-the-landing-spot.html", "zone-hero",
+    ("/zones/entryway-the-landing-spot", "zone-hero",
      "whether zone pages carry their photograph yet"),
 ]
 
@@ -85,6 +85,30 @@ DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html",
 def digest(path: str) -> str:
     raw = io.open(path, "rb").read().replace(b"\r\n", b"\n")
     return hashlib.sha256(raw).hexdigest()[:10]
+
+
+def canonical_path(path: str) -> str:
+    """The form production actually serves 200 for.
+
+    /rooms/ and /zones/ are extensionless-canonical: nginx 301s the .html
+    form to it. Top-level pages keep .html and are served directly.
+
+    Found 2026-09-29 in the persistent access log. This tool built its probe
+    URL from the LOCAL FILENAME, so it asked for
+    /zones/dining-room-the-beverage-or-coffee-station.html and took a 301
+    every single time: 2,270 redirects in eight days, about twelve an hour,
+    the single most requested path on the whole site. urllib follows the
+    redirect so nothing was broken, which is exactly why it survived.
+
+    The cost is not the extra round trip. The access log is the only SEO
+    instrument this site has while Search Console is unverified, and our own
+    monitoring was generating 94% of the redirects in it, which makes a real
+    crawler redirect impossible to see.
+    """
+    if path.endswith(".html") and (path.startswith("/rooms/")
+                                   or path.startswith("/zones/")):
+        return path[:-len(".html")]
+    return path
 
 
 def fetch(url: str, timeout: int = 25) -> str | None:
@@ -169,7 +193,8 @@ def check() -> dict:
                   if marker in io.open(f, encoding="utf-8").read())
     if have:
         local_zone = have[0]
-        rel = "/" + os.path.relpath(local_zone, SITE).replace(os.sep, "/")
+        rel = canonical_path(
+            "/" + os.path.relpath(local_zone, SITE).replace(os.sep, "/"))
         out["zone_hero_local"] = True
         live_zone = fetch(BASE + rel)
         if live_zone is not None:
