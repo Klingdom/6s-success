@@ -643,8 +643,8 @@
     },
     "prune_catalog_js.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran live (--check and full): 0 pages need pruning today (data.js already absent from every page that does not render a product), and the site.js guard (window.CATALOG || []) that makes the removal safe is still present. Conservative NEEDS list checked against corporate.html's consulting grid and confirmed correct. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: --check still reports 5 pages keep data.js, 0 pages need pruning; matches 2026-09-25 note, no regression"
     },
     "quest.js": {
       "status": "fixed",
@@ -713,8 +713,8 @@
     },
     "root_causes.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read fully: self-checking (dupe ids, six_s validity, required fields), gated via unknown_ids_in() in preflight.py, all 17 causes' articles verified to exist where set. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: 17 root causes print cleanly (KC-001 to RC-017), self-checking module still loads with no defect; matches 2026-09-25 note, no regression"
     },
     "send_brief.py": {
       "status": "clean",
@@ -898,8 +898,8 @@
     },
     "wire_generated_catalog.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: --check still reports 130 entries (10 hand, 120 generated), 126 buyable/4 free; matches 2026-09-25 note, no regression"
     },
     "wire_landmarks.py": {
       "status": "clean",
@@ -923,8 +923,8 @@
     },
     "wire_progressive.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran live: idempotent (no site/ diff on a rerun against the committed tree), and its own self-check (site.css gates .reveal behind .js) passed against the real committed CSS. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: rerun idempotent, 214 pages marked 5 skipped, 0 site/ diff after; matches 2026-09-25 note, no regression"
     },
     "wire_pwa.py": {
       "status": "fixed",

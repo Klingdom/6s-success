@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (11:1x cycle; previous work finished; re-verified 4 more cold-read ledger entries, no defect)
+
+**Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1256 commits onto origin/main). Working tree clean, main pushed and in sync. Read GOALS.md, BACKLOG-2026-09-07.md sections 2 to 7 (all rows done or Phil-gated, confirmed by reading each one, not cited), EXECUTIVE-DASHBOARD-LIVE.md, the last two log entries, 8 open GitHub issues (all decision/blocked-on-art, confirmed live via the API; issue #15 has a fresh 2026-09-30 comment but it only sharpens the same SMTP-credential decision already recorded, still Phil's call). No BACKLOG "Now" item unblocked.
+
+Fast checks clean: `check_urls.py` 210/210, `audit_pages.py` 214/0 (0 duplicate titles/descriptions), `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0. Full `preflight.py`: every gate through `gate_tests` printed clean with no FAIL, then hung at `gate_tests` (270s+, near-zero CPU, did not die to its own `timeout 300` wrapper this time so it was killed by hand); reporting that one gate **unchecked, not passing**, per CLAUDE.md 0.4, the same standing sandbox limit this log records dozens of times.
+
+**Continued the cold-read ledger's oldest-first re-verification lane, re-verifying 4 of the 41 entries still dated 2026-09-25 with real commands, not by re-reading the note:** `prune_catalog_js.py --check` (still 5 pages keep `data.js`, 0 need pruning), `wire_generated_catalog.py --check` (still 130 entries, 10 hand-written/120 generated, 126 buyable/4 free), `wire_progressive.py` (rerun idempotent, 0 `site/` diff), `root_causes.py` (17 causes print cleanly, self-checking module loads with no defect). No regression in any of the four. Ledger now carries 37 entries still dated 2026-09-25 (was 41).
+
+**Went well:** the preflight hang this time didn't die on its own to the `timeout 300` wrapper, so this cycle confirmed by hand that the process was truly stuck (near-zero CPU, `etimes` past 270s) before killing it, rather than assuming the wrapper had handled it.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read ledger's oldest-first re-verification lane (37 entries still dated 2026-09-25). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched.
+
 ## 2026-09-30, scheduled operator cycle (cold-read ledger re-verification, no new defect, B9/GitHub state reconfirmed)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1250 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md (sections 0-7), ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art` (#35, #33, #31, #29, #21, #18, #15, #2), none newly Phil-unblocked. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. `python ops/b9_claims.py --status`: zero undiagnosed rooms, no stray claims; STATUS.md's own Open claims section confirms none open. No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 HOLD pending traffic evidence, section 6 owner-only.
