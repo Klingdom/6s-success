@@ -58,8 +58,8 @@
     },
     "build_app_icons.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified live 2026-09-30 PM cycle: apple/play/adaptive/splash/feature-graphic all assert correctly, no drift found."
     },
     "build_articles.py": {
       "status": "clean",
@@ -68,13 +68,13 @@
     },
     "build_avif.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "AVIF wiring/encode/check; idempotent, well-tested (test_build_avif.py 3/3), chained into every generator's main(), gate_generator_chains_avif covers it. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified live 2026-09-30 PM cycle: --check ran clean, 935/935 webp files have avif siblings, 142 pages wired, no drift."
     },
     "build_card_prompts.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read clean, no defect. Desktop-source guard correct, prompt framing table complete, wrong-room/lazy-prompt assertions correct."
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM cycle: found real drift, build/prompts/kitchen/KZ-002.txt was stale against ops/cardtext/kitchen-deck.json's objective text ('step of space' vs current 'strip of space'). Regenerated via 'python ops/build_card_prompts.py --deck kitchen --only-missing', fixed."
     },
     "build_card_template.py": {
       "status": "fixed",
@@ -93,8 +93,8 @@
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "corporate.html generator; self-asserting (no price, correct enquiry routing, catalogue consistency), idempotent regen confirmed byte-identical against committed tree. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM cycle: read main()'s 6 assertions (no price, correct routing, no cross-service phrase leak, parseable date example, catalogue record consistency, asset exists), all still sound. site/corporate.html (2026-09-29) is newer than the generator (2026-09-23), consistent with regeneration, no drift indicated."
     },
     "build_corporate_asset.py": {
       "status": "clean",

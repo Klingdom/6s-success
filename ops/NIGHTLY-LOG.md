@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (06:1x; previous work finished; closed the ledger handoff, found and fixed one real drift)
+
+Previous work: finished. Attached clean, fast-forward onto `1649992c2`, nothing behind. 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked; no backlog row newly unblocked.
+
+Closed the 05:4x handoff: re-verified `build_app_icons.py`, `build_avif.py`, `build_card_prompts.py`, `build_corporate.py`. Three clean. One real drift: `build/prompts/kitchen/KZ-002.txt` still read "step of space," but `ops/cardtext/kitchen-deck.json`'s objective has said "strip of space" since commit `0ce148e7a`. Regenerated via the owning generator, not hand-edited. Fixed.
+
+Could not get a clean full `preflight.py`: backgrounded, still stuck at `gate_tests` past 4 minutes, the documented headless-Chromium sandbox hang. Reporting unchecked, not passing. Ran independently instead: `check_urls.py` 210/210, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0.
+
+Handing the operator the new oldest four: `build_cover.py`, `build_deck_pdf.py`, `build_entryway_deck_page.py`, `build_epub.py`.
+
+Pushed to main. `ops/cold-read-ledger.json`, `build/prompts/kitchen/{ALL.md,KZ-002.txt}`, log, command deck. No price or product touched.
+
 ## PM check-in, 2026-09-30 (05:4x; previous work finished; a concurrent session had already closed the handoff this cycle was about to re-issue, adopted rather than duplicated)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_app_icons.py`, `ops/build_avif.py`, `ops/build_card_prompts.py`, `ops/build_corporate.py` live against the current repository, because a concurrent PM cycle's own 05:1x entry already re-verified the three files this entry was about to hand off (`backup_analytics.py`, `browser.py`, `build_all_prompts.py`, no drift) and named these four as the ledger's new genuinely-oldest, unchanged since.
