@@ -13,6 +13,7 @@ on correct copy the first time anyone wrote that price beside that name.
 import inspect
 import io
 import os
+import shutil
 import subprocess
 import time
 import sys
@@ -93,22 +94,86 @@ STALE_AFTER = 300
 # margin below guarantees any single waiter's own timeout outlasts
 # STALE_AFTER, so the lock it is waiting on is always stale, and therefore
 # broken, before that waiter gives up.
+#
+# Found live 2026-09-30: age alone still made every waiter sit out the full
+# STALE_AFTER (300s) even when the pid that created the lock had already
+# been dead the whole time, the exact shape preflight.py's own gate_tests()
+# 700s timeout now produces on the process it kills (see _run_bounded in
+# ops/preflight.py). Waiting on a clock when the real question, "is anyone
+# still holding this," can be answered directly wastes almost all of that
+# 300s. The lock directory now also carries the pid that made it; a waiter
+# that finds the recorded pid gone breaks the lock immediately, and only
+# falls back to the age check when the pid file is missing, unreadable, or
+# still alive (the normal in-progress case).
+def _pid_alive(pid: int) -> bool:
+    """Best-effort liveness check. False positives (says alive, isn't) only
+    cost the STALE_AFTER fallback this replaces, never a wrong break of a
+    lock someone still holds."""
+    if os.name == "nt":
+        # os.kill(pid, 0) on Windows calls TerminateProcess, not a harmless
+        # existence probe, so it must never be used here. OpenProcess with a
+        # query-only access right cannot terminate anything.
+        import ctypes
+        PROCESS_QUERY_LIMITED_INFORMATION = 0x1000
+        handle = ctypes.windll.kernel32.OpenProcess(
+            PROCESS_QUERY_LIMITED_INFORMATION, False, pid)
+        if not handle:
+            return False
+        ctypes.windll.kernel32.CloseHandle(handle)
+        return True
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return True
+    return True
+
+
+def _lock_holder_pid(path: str):
+    try:
+        with open(os.path.join(path, "pid")) as fh:
+            return int(fh.read().strip())
+    except (OSError, ValueError):
+        return None
+
+
 def _lock(path: str, timeout: int = STALE_AFTER + 120) -> None:
     start = time.time()
     while True:
         try:
             os.mkdir(path)
+            try:
+                with open(os.path.join(path, "pid"), "w") as fh:
+                    fh.write(str(os.getpid()))
+            except OSError:
+                pass
             return
         except FileExistsError:
             # A run that was killed leaves its directory behind and would
-            # otherwise block every later run forever. Break a lock that is
-            # older than any legitimate hold.
-            try:
-                if time.time() - os.path.getmtime(path) > STALE_AFTER:
-                    os.rmdir(path)
+            # otherwise block every later run forever. Two ways to recognise
+            # that: the pid that made it is provably gone (checked first,
+            # breaks immediately), or it is simply old enough that no
+            # legitimate hold would still need it (the pre-existing
+            # fallback, for when the pid file cannot be read).
+            holder = _lock_holder_pid(path)
+            stale = False
+            if holder is not None and holder != os.getpid() \
+                    and not _pid_alive(holder):
+                stale = True
+            else:
+                try:
+                    stale = time.time() - os.path.getmtime(path) > STALE_AFTER
+                except OSError:
+                    stale = False
+            if stale:
+                try:
+                    shutil.rmtree(path, ignore_errors=True)
                     continue
-            except OSError:
-                pass
+                except OSError:
+                    pass
             if time.time() - start > timeout:
                 raise RuntimeError("could not take %s within %ss" % (path, timeout))
             time.sleep(0.2)
@@ -116,7 +181,7 @@ def _lock(path: str, timeout: int = STALE_AFTER + 120) -> None:
 
 def _unlock(path: str) -> None:
     try:
-        os.rmdir(path)
+        shutil.rmtree(path, ignore_errors=True)
     except OSError:
         pass
 
@@ -157,6 +222,42 @@ def _check_lock_self_heals() -> str:
     return ""
 
 
+def _check_lock_breaks_on_dead_pid_fast() -> str:
+    """A lock left behind by a pid that is already gone must break right
+    away, not sit out STALE_AFTER first.
+
+    A fresh (not backdated) lockdir with a dead pid recorded in it is the
+    exact shape gate_tests()'s own 700s timeout now leaves behind: the
+    process-group kill in ops/preflight.py's _run_bounded reaches this
+    file's own subprocess.run(TOOL) grandchild within moments of the
+    timeout firing, well before this lock could ever look old by mtime
+    alone. If only the age check were doing the work, this would take the
+    full STALE_AFTER (300s) to clear; timed here with a 5s explicit ceiling
+    so a regression fails in seconds rather than hanging.
+    """
+    p = subprocess.Popen([sys.executable, "-c", "pass"])
+    p.wait()
+    dead = p.pid
+    path = LOCK + ".pidcheck_%d" % os.getpid()
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(dead))
+    start = time.time()
+    try:
+        _lock(path, timeout=5)
+    except RuntimeError as e:
+        return ("a lock recorded against an already-dead pid was not broken "
+                 "within 5s: %s" % e)
+    finally:
+        _unlock(path)
+    elapsed = time.time() - start
+    if elapsed >= STALE_AFTER:
+        return ("a lock recorded against an already-dead pid took %.1fs to "
+                 "break, no faster than the age-only fallback: the pid check "
+                 "is not actually being consulted" % elapsed)
+    return ""
+
+
 def run(inner: str) -> str:
     _lock(LOCK)
     try:
@@ -189,6 +290,9 @@ def main() -> int:
     heal_failure = _check_lock_self_heals()
     if heal_failure:
         bad.append(heal_failure)
+    pid_failure = _check_lock_breaks_on_dead_pid_fast()
+    if pid_failure:
+        bad.append(pid_failure)
     dec_name, dec_price = pick(True)
     int_name, int_price = pick(False)
     retired = A.load_retired()

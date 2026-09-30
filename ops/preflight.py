@@ -32,15 +32,25 @@ Every run first self-heals a fresh checkout (missing pymupdf, unbuilt
 build/products/) before any gate runs; there is no separate --fix step to
 remember to pass.
 
-Do not wrap this command in an external timeout shorter than about 1050
-seconds. ops/tests/test_audit_catalog.py's own file lock self-heals after
-900 seconds, but only for a waiter still alive to see it go stale; a shell
-or harness timeout that kills the whole process tree first leaves the
-lockdir orphaned instead, live on 2026-09-11, 2026-09-16 and twice on
-2026-09-23. If a run hits "FAIL stray-probe-files" or never returns,
-confirm no live process holds site/_audit_catalog_fixture.lockdir (check
-/proc/<pid> for each candidate, not just ps) before removing it by hand;
-that is the sanctioned recovery, not a workaround.
+Do not wrap this command in an external timeout shorter than about 480
+seconds (test_audit_catalog.py's own worst case: 420s, the STALE_AFTER
+age-based fallback, plus ~60s of its own real audit_catalog.py runs).
+ops/tests/test_audit_catalog.py's file lock now also records the pid that
+took it, and a waiter that finds that pid already dead breaks the lock
+immediately rather than waiting on age at all, so a killed run's very next
+waiter clears it in a fraction of a second in the common case; the 420s
+figure is the fallback for when the pid cannot be checked, not the typical
+case anymore. This paragraph carried 900/1050 as the numbers until
+2026-09-30: STALE_AFTER itself had already dropped from 900 to 300 on
+2026-09-25 and nobody had told this docstring, the exact "corrected source,
+unrederived artifact" defect class this repository keeps finding elsewhere.
+A shell or harness timeout that kills the whole process tree before either
+mechanism can run still leaves the lockdir orphaned, live on 2026-09-11,
+2026-09-16 and twice on 2026-09-23. If a run hits "FAIL stray-probe-files"
+or never returns, confirm no live process holds
+site/_audit_catalog_fixture.lockdir (check /proc/<pid> for each candidate,
+not just ps) before removing it by hand; that is the sanctioned recovery,
+not a workaround.
 
 This warning has existed for a long time and agent sessions still trip it:
 "foreground timeout" appears dozens of times in ops/NIGHTLY-LOG.md as a
@@ -68,6 +78,7 @@ import os
 import re
 import shutil
 import datetime as dt
+import signal
 import subprocess
 import sys
 import traceback
@@ -2188,6 +2199,56 @@ def _browser_launch_timeout(out: str) -> bool:
                 "microsoft\\edge", "microsoft/edge"))
 
 
+def _run_bounded(cmd: list, cwd: str, env: dict, timeout: int) -> "tuple[int, str]":
+    """Run cmd, returning (returncode, combined stdout+stderr).
+
+    Raises subprocess.TimeoutExpired on a hang, same as subprocess.run, but
+    first kills cmd's WHOLE process group, not just the pid it started.
+
+    Found live 2026-09-30: test_audit_catalog.py holds a file lock, then
+    shells out to its own audit_catalog.py subprocess while holding it.
+    gate_tests()'s old subprocess.run(..., timeout=700) called process.kill()
+    on TimeoutExpired, which reaches only the direct child (the test file's
+    own interpreter), never a grandchild that child spawned. Killing the
+    child skipped its own `finally: _unlock(LOCK)` (a SIGKILL does not run
+    Python finally blocks), so the timeout left BOTH an orphaned lockdir AND
+    an orphaned audit_catalog.py process still running underneath it,
+    reproduced directly by killing a real run and watching both survive.
+    Starting the child as the leader of its own session (POSIX) or process
+    group (Windows) means one signal to that id reaches everything it spawned,
+    even though the TimeoutExpired exception itself carries no handle back to
+    the child once subprocess.run's own internals go out of scope, which is
+    why this needs the Popen object kept in hand rather than subprocess.run.
+    """
+    kwargs: dict = {}
+    if os.name == "posix":
+        kwargs["start_new_session"] = True
+    else:
+        kwargs["creationflags"] = subprocess.CREATE_NEW_PROCESS_GROUP
+    proc = subprocess.Popen(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT, text=True, **kwargs)
+    try:
+        out, _ = proc.communicate(timeout=timeout)
+        return proc.returncode, out
+    except subprocess.TimeoutExpired:
+        if os.name == "posix":
+            try:
+                os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+            except (ProcessLookupError, PermissionError, OSError):
+                proc.kill()
+        else:
+            try:
+                subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                                capture_output=True, timeout=10)
+            except Exception:                                    # noqa: BLE001
+                proc.kill()
+        try:
+            proc.communicate(timeout=10)
+        except subprocess.TimeoutExpired:
+            pass
+        raise
+
+
 def gate_tests() -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
@@ -2236,14 +2297,11 @@ def gate_tests() -> None:
         # one gate to eat most of the job's total budget if something is
         # still genuinely wrong.
         try:
-            r = subprocess.run([sys.executable, f], cwd=ROOT,
-                               capture_output=True, text=True, timeout=700,
-                               env=env)
+            rc, out = _run_bounded([sys.executable, f], ROOT, env, 700)
         except subprocess.TimeoutExpired:
             bad.append(f"{os.path.basename(f)}: did not finish within 700s")
             continue
-        out = r.stdout + r.stderr
-        if r.returncode != 0 and _browser_launch_timeout(out):
+        if rc != 0 and _browser_launch_timeout(out):
             # COULD NOT LOOK IS NOT A DEFECT FOUND.
             #
             # A test whose own subprocess.TimeoutExpired names a browser
@@ -2267,7 +2325,7 @@ def gate_tests() -> None:
             # asserted false, is still a failure. It is reported loudly as
             # unverified, never silently dropped.
             unverified.append(os.path.basename(f) + " (browser never started)")
-        elif r.returncode != 0:
+        elif rc != 0:
             tail = out.strip().splitlines()
             bad.append(f"{os.path.basename(f)}: "
                        f"{tail[-1][:90] if tail else 'no output'}")
@@ -10181,6 +10239,49 @@ def gate_preflight_wrapper_survives_kill() -> None:
              "process-group signal aimed at the caller (LRN-0021); a "
              "version of this wrapper without setsid silently loses the "
              "one guarantee it exists to provide.")
+
+
+def check_preflight_lock_timing_current(doc: str, stale_after: int) -> str:
+    """Pure logic, no I/O: does preflight.py's own module docstring still
+    cite the external-timeout floor that test_audit_catalog.py's real
+    STALE_AFTER constant derives? Returns "" when it matches, else a message
+    naming the mismatch. Split out from the gate below so a test can drive
+    it against fabricated STALE_AFTER values without needing a dirtied
+    checkout to prove a fail-then-pass.
+    """
+    lock_wait = stale_after + 120
+    sentinel = f"{lock_wait}s, the STALE_AFTER"
+    if sentinel not in doc:
+        return (f"preflight.py's own module docstring does not contain "
+                 f"'{sentinel}', the figure test_audit_catalog.py's real "
+                 f"STALE_AFTER ({stale_after}) derives today; the docstring "
+                 f"likely still names an older STALE_AFTER, the same drift "
+                 f"found and fixed 2026-09-30 (STALE_AFTER had already "
+                 f"moved from 900 to 300 on 2026-09-25 with nobody telling "
+                 f"this docstring)")
+    return ""
+
+
+def gate_preflight_lock_timing_current() -> None:
+    """This file's own docstring names the external-timeout floor derived
+    from test_audit_catalog.py's STALE_AFTER constant, by number, so an
+    agent shell knows how long a run may legitimately take before a
+    foreground timeout would orphan it. Nothing previously checked that
+    citation against the real constant, which is exactly how it carried
+    900/1050 as the numbers for five days after STALE_AFTER dropped to 300
+    on 2026-09-25 (found and fixed 2026-09-30, the same cycle that also made
+    a killed run's own lock self-heal by pid instead of only by age).
+
+    Proof this can fail: change STALE_AFTER in ops/tests/test_audit_catalog.py
+    without updating this file's own docstring, or edit the docstring's
+    figure without changing STALE_AFTER, and this gate fails naming the
+    stale citation; restore either side and it passes.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops", "tests"))
+    import test_audit_catalog as TAC
+    problem = check_preflight_lock_timing_current(__doc__ or "", TAC.STALE_AFTER)
+    if problem:
+        fail("preflight-lock-timing-current", problem)
 
 
 def gate_agents_in_sync() -> None:
@@ -25671,6 +25772,7 @@ def main() -> int:
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
     run_gate(gate_preflight_wrapper_survives_kill)
+    run_gate(gate_preflight_lock_timing_current)
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
     run_gate(gate_publish_image_current)

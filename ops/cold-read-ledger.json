@@ -212,9 +212,9 @@
       "note": "FIELD regex in fill_front_matter.py (colon in the character class) could not match [PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1], so scan()/--check never saw it, and it shipped as literal placeholder text on the copyright page of all 3 manual files. Also cold-read fill_front_matter.py itself while tracing this. Fixed: widened FIELD to allow an optional colon-qualified tail, made the apply-loop token a regex so drop/fill matches the whole bracket, added PRINTING NUMBER LINE as an alias of the existing TERRITORY/PRINTING STATEMENT drop, and moved the closing </p> in build_manual_print.py's COPYRIGHT_PAGE template off the same line as the bracket so dropping it doesn't eat the tag. gate_front_matter_filled already existed and now catches this shape; new ops/tests/test_fill_front_matter_colon_field.py locks in the regex and the line-drop behavior. Fail-then-pass proved directly against the real committed files via git stash (old regex+old files: 0 fields found, defect invisible; new regex+old files: fails citing the field; new regex+new files: clean)."
     },
     "build_microzone_coverage.py": {
-      "status": "fixed",
-      "date": "2026-09-24",
-      "note": "Headline coverage used have[\"diagnosis\"] as a proxy for all three moat fields, agreeing with the real intersection only by coincidence. Fixed to count the real intersection."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified for drift (last checked 2026-09-24, fixed a have[diagnosis]-as-proxy bug). moat_complete still uses the real all() intersection, not a proxy. --check output (44 of 114 zones, 38.6%, 7 rooms complete) matches STRATEGY-MICROZONES.md verbatim, git status clean on that file. No drift found."
     },
     "build_mobile_corpus.py": {
       "status": "clean",
@@ -252,9 +252,9 @@
       "note": "Cold-read 2026-09-29 scheduled operator: mirrors the same shared template as the other room deck generators, idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_printpack.py": {
-      "status": "fixed",
-      "date": "2026-09-17",
-      "note": "Three generators hardcoded a price their own buy link reads live; found cold-reading this file. Fixed at the source."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified for drift (last checked 2026-09-17, fixed the sheet-overflow bug). Ran directly: 20 rooms, 114 zones, 684 cards, 76 sheets, matches live PACK-HOUSE SKU claims in data.js (684 cards, $19) and resources.html/deck-gallery.html copy verbatim. Own assertions (card count matches manual, Safety is fourth S) pass. No drift found."
     },
     "build_product_schema.py": {
       "status": "clean",
