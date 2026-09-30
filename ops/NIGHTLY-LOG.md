@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle, continued (the new Bluesky drafting pipeline had never actually sent an email despite reporting success every time; found, root-caused across all three drafting workflows, fixed and gated)
+
+**Did:** Continuing the same pass, followed up on the prior entry's own "confirm the Bluesky pipeline's first live run" item rather than assuming the earlier cycle's "built and shipped" claim meant it worked (step 5d). Checked GitHub Actions directly: 45 runs of `bluesky-drafts.yml` today, all `status=success`, but zero `schedule`-triggered runs and zero "Bluesky drafts: advance rotation" commits anywhere in this repository's history.
+
+**Found:** the push-fallback's own "already sent today" check counted `?status=success` workflow runs, but a push that stands down before the cron's target time also exits 0 and is therefore itself "successful". On a repository making dozens of pushes a day, the first push checked after the target time already counts every earlier stood-down push as a false "already sent", so the fallback could never fire for real. Confirmed the same shape, copied wholesale, in `linkedin-drafts.yml` and `social-drafts.yml`; both had simply never needed the fallback because their own schedules had always eventually fired the same day, luck rather than a working mechanism.
+
+**Fixed:** all three workflows now gate on whether today's own rotation-advance commit exists (the one thing a real send actually produces), read via the GitHub commits API, instead of workflow run status. New `gate_push_fallback_ledger_honest` in `preflight.py` (`check_push_fallback_ledger_honest`) statically scans every `.github/workflows/*.yml` with a `push:` trigger for the `status=success` run-count anti-pattern; `ops/tests/test_gate_push_fallback_ledger_honest.py` (6/6) fail-then-pass proved, plus a direct plant-on-the-real-file proof through the actual gate machinery, restored byte-identical.
+
+**Verified:** `fix_dashes.py --check` (0/0), `check_urls.py` (210/210), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), all three edited YAML files parse. Real send still unconfirmed as of this write: no schedule has fired since the fix, and this fix does not itself force one.
+
+**Went well:** checking the actual run history instead of trusting "built and shipped" surfaced a real, load-bearing defect on the first look.
+
+**Did not go well:** the same broken pattern shipped identically into three files without anyone testing the fallback path itself, only the happy path.
+
+**Changing next cycle:** watch for a real "advance rotation" commit from any of the three workflows to confirm the fix; if none lands within a day, the schedule itself (not just the fallback) needs investigating.
+
+**Next:** confirm a real Bluesky send lands; resume the DECISIONS.md/RISKS.md drift-recheck lane.
+
+Pushed to main. `.github/workflows/bluesky-drafts.yml`, `.github/workflows/linkedin-drafts.yml`, `.github/workflows/social-drafts.yml`, `ops/preflight.py`, `ops/tests/test_gate_push_fallback_ledger_honest.py`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (D-028 found citing the wrong OWNER-ACTIONS.md item; fixed and gated so it cannot recur silently)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md in full (sections 0-7: A1-A10, B1-B9, C1-C7 all done or Phil-gated; section 5 correctly HOLD; section 6 owner-only), ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty. Picked up the standing handoff from the 13:1x PM check-in ("continue the periodic drift-recheck of DECISIONS.md, RISKS.md, OWNER-ACTIONS.md") and cold-read D-020 through D-028 directly against live state rather than trusting prior citations.

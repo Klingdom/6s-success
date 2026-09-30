@@ -24,9 +24,21 @@ name: Bluesky drafts
 # A SECOND WAY IN, the same shape fulfil-orders.yml, linkedin-drafts.yml and
 # social-drafts.yml already use: a push trigger is only safe when something
 # ELSE holds the state, so two runs cannot both act. Here, as in those files,
-# there is no natural ledger, so the gate step below uses this workflow's own
-# run history: a push sends only if no run has succeeded today AND the clock
-# is past this cron's own time, which leaves the schedule its chance first.
+# there is no natural ledger, so the gate step below checks for the one thing
+# a REAL send actually produces (today's own rotation-advance commit): a push
+# sends only if no real send has happened today AND the clock is past this
+# cron's own time, which leaves the schedule its chance first.
+#
+# NOT simply "no run has succeeded today", found and fixed 2026-09-30, this
+# operator, the day this workflow first ran: a stood-down push (before cron
+# time, or once already sent) exits 0 and is itself a "successful" run, so a
+# workflow-run-status count sees every ordinary push of the day as a false
+# "already sent" and can never fire for real. linkedin-drafts.yml and
+# social-drafts.yml carry the identical shape and have simply never needed
+# the fallback to actually fire, because their own schedules have always
+# eventually run the same day; that is luck, not proof the mechanism works,
+# and is worth the same fix there when one of their schedules genuinely
+# misses a whole day.
 
 on:
   schedule:
@@ -71,25 +83,47 @@ jobs:
             echo 'before 14:05 UTC: leaving it to the schedule.'
             exit 0
           fi
-          today=$(date -u +%Y-%m-%d)
-          runs="repos/$GITHUB_REPOSITORY/actions/workflows/bluesky-drafts.yml/runs"
-          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
-                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          # Found 2026-09-30, this operator, the day this workflow first
+          # ran: a `?status=success` count of this workflow's OWN runs is
+          # not a ledger of sends, it is a ledger of runs that did not
+          # crash, and nearly every run today (44 by the time this was
+          # found) is a push from some other file changing, standing down
+          # here with `exit 0` before 14:05 -- which is itself a SUCCESSFUL
+          # run. So the very first push checked after 14:05 already counts
+          # dozens of stood-down "successes" from earlier the same day and
+          # reports "already sent" without a single real send having
+          # happened, on any day with the normal volume of commits this
+          # repository makes. Confirmed directly: zero `schedule`-triggered
+          # runs exist yet today (the cron had not fired), and zero
+          # "Bluesky drafts: advance rotation" commits exist anywhere in
+          # this repository's history, so the fallback had never actually
+          # been exercised despite reporting a clean gate every time.
+          # linkedin-drafts.yml and social-drafts.yml share this exact
+          # shape and have simply never needed the fallback to work, because
+          # their own schedules have always eventually fired the same day.
+          #
+          # Fixed by checking for the one thing a REAL send actually
+          # produces, the rotation-advance commit the last step below
+          # makes, instead of the workflow's own run status.
+          today_start=$(date -u +%Y-%m-%dT00:00:00Z)
+          n=$(gh api "repos/$GITHUB_REPOSITORY/commits?since=$today_start&path=ops/corpus-rotation.json&per_page=100" \
+                --jq '[.[] | select(.commit.message | startswith("Bluesky drafts: advance rotation"))] | length' \
+                2>/dev/null || echo unknown)
           if [ "$n" = unknown ]; then
             # Could not read the ledger. Do NOT send: a duplicate on every
             # push is worse than a late email, and both the schedule and the
             # manual dispatch still work.
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            echo '::warning::could not read the commit ledger; standing down rather than risking repeats.'
             exit 0
           fi
           if [ "$n" -gt 0 ]; then
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo "already sent today ($n successful run(s))."
+            echo "already sent today ($n rotation-advance commit(s))."
             exit 0
           fi
           echo 'send=yes' >> "$GITHUB_OUTPUT"
-          echo 'past 14:05 UTC with no successful run today: standing in for the schedule.'
+          echo 'past 14:05 UTC with no real send today: standing in for the schedule.'
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.send == 'yes'

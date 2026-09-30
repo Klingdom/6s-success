@@ -3902,6 +3902,58 @@ def gate_schedule_comment_minute_current() -> None:
         fail("schedule-comment-minute", "; ".join(problems))
 
 
+def check_push_fallback_ledger_honest(workflows_dir) -> list:
+    """Pure logic: a push-triggered fallback send step must not treat its
+    OWN workflow's `?status=success` run count as evidence a real send
+    already happened today.
+
+    Found 2026-09-30, this operator, verifying bluesky-drafts.yml's first
+    live run (built and shipped earlier the same day). Its "already sent
+    today" check counted workflow runs with `status=success`, but a push
+    that stands down before the cron's own target time, or because a real
+    send already happened, ALSO exits 0 and is therefore itself a
+    "successful" run. On a repository that pushes dozens of times a day,
+    the very first push checked after the target time already counts every
+    earlier stood-down push as a false "already sent", so the fallback
+    could never fire for real. Confirmed directly: zero schedule-triggered
+    runs and zero "Bluesky drafts: advance rotation" commits existed
+    anywhere in this repository's history despite the workflow reporting a
+    clean gate on every one of its 44 runs that day. `linkedin-drafts.yml`
+    and `social-drafts.yml` shared the identical shape (bluesky-drafts.yml
+    was copied from one of them) and had simply never needed the fallback
+    to actually work, because their own schedules had always eventually
+    fired the same day; that is luck, not evidence the mechanism worked.
+    All three were fixed the same cycle to check for the one thing a REAL
+    send actually produces (today's own rotation-advance commit) instead.
+    """
+    problems = []
+    for path in sorted(glob.glob(os.path.join(workflows_dir, "*.yml"))):
+        text = io.open(path, encoding="utf-8", errors="replace").read()
+        if "push:" not in text:
+            continue
+        if re.search(r"""gh api ["']?\$?\{?[\w./"$-]*runs\?status=success""",
+                      text):
+            problems.append(
+                "%s: a push-fallback gate counts this workflow's own "
+                "`status=success` runs, which a stood-down push also "
+                "satisfies, so it can never detect a real send" %
+                os.path.basename(path))
+    return problems
+
+
+def gate_push_fallback_ledger_honest() -> None:
+    """No scheduled-workflow push fallback may use its own run status as
+    the "already sent today" ledger. See
+    check_push_fallback_ledger_honest() for the finding this closes.
+    """
+    d = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(d):
+        return
+    problems = check_push_fallback_ledger_honest(d)
+    if problems:
+        fail("push-fallback-ledger-honest", "; ".join(problems))
+
+
 def gate_scheduled_workflow_cadence() -> None:
     """Warn when a scheduled GitHub Actions workflow is not firing on schedule.
 
@@ -26233,6 +26285,7 @@ def main() -> int:
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
     run_gate(gate_scheduled_workflow_cadence)
+    run_gate(gate_push_fallback_ledger_honest)
     run_gate(gate_scheduled_delivery_phase)
     run_gate(gate_schedule_comment_minute_current)
     run_gate(gate_stripe_price_claims)

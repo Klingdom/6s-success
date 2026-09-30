@@ -106,25 +106,40 @@ jobs:
             echo 'before 14:19 UTC: leaving it to the schedule.'
             exit 0
           fi
-          today=$(date -u +%Y-%m-%d)
-          runs="repos/$GITHUB_REPOSITORY/actions/workflows/linkedin-drafts.yml/runs"
-          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
-                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          # Found 2026-09-30, this operator, while verifying the new
+          # bluesky-drafts.yml (identical shape, copied from here): a
+          # `?status=success` count of this workflow's OWN runs is not a
+          # ledger of sends, it is a ledger of runs that did not crash, and
+          # nearly every push of the day stands down here with `exit 0`
+          # before 14:19, which is itself a "successful" run. So the first
+          # push checked after 14:19 on a normal day already counts dozens
+          # of stood-down "successes" from earlier the same day and reports
+          # "already sent" without a real send having happened. This
+          # workflow's own schedule has always eventually fired the same
+          # day so far (this file's own header measures a median 3.53h
+          # lag, never a whole missed day), so the fallback's brokenness
+          # had gone unnoticed; fixed by checking for the thing a REAL send
+          # actually produces, the rotation-advance commit the last step
+          # below makes, instead of the workflow's own run status.
+          today_start=$(date -u +%Y-%m-%dT00:00:00Z)
+          n=$(gh api "repos/$GITHUB_REPOSITORY/commits?since=$today_start&path=ops/corpus-rotation.json&per_page=100" \
+                --jq '[.[] | select(.commit.message | startswith("LinkedIn drafts: advance rotation"))] | length' \
+                2>/dev/null || echo unknown)
           if [ "$n" = unknown ]; then
             # Could not read the ledger. Do NOT send: a duplicate on every
             # push is worse than a late email, and both the schedule and the
             # manual dispatch still work.
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            echo '::warning::could not read the commit ledger; standing down rather than risking repeats.'
             exit 0
           fi
           if [ "$n" -gt 0 ]; then
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo "already sent today ($n successful run(s))."
+            echo "already sent today ($n rotation-advance commit(s))."
             exit 0
           fi
           echo 'send=yes' >> "$GITHUB_OUTPUT"
-          echo 'past 14:19 UTC with no successful run today: standing in for the schedule.'
+          echo 'past 14:19 UTC with no real send today: standing in for the schedule.'
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.send == 'yes'
