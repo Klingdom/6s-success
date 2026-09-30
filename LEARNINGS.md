@@ -786,6 +786,25 @@ false rise was.
 per-bucket concentration query alongside the aggregate. If one bucket holds a
 quarter or more of the period, report the period both ways.
 
+**Next action closed 2026-09-30, scheduled operator cycle.** The query did not
+exist; it had been hand-written twice (23 August and again 27 September) and
+would otherwise have to be hand-written a third time. `ops/traffic_query.sh`
+now carries it as two standing blocks, run every time anybody reads traffic
+from the VPS: the top 10 twenty-minute buckets by distinct visitor count, and
+a raw-week-versus-excluding-its-busiest-bucket comparison. Neither block
+decides bot or human; both simply surface the concentration so a reader does
+the same judgement this learning's own analysis did, without re-deriving the
+SQL first. Verified the query logic, not just its syntax, since this sandbox
+has no VPS credential to run it against the real database: stood up a local
+Postgres 16 with `website_event`/`session` tables shaped like Umami's real
+schema, seeded 7 background visitors spread across a week plus the exact
+9-visitor/27-pageview/20-minute/four-OS burst shape this learning describes,
+and confirmed both queries isolate the seeded burst bucket correctly (9
+visitors, all direct) and that the ex-busiest-bucket totals match the
+non-burst rows exactly. That is evidence the logic is sound against this
+schema; it is not evidence about the live database, which nobody in this
+session could reach.
+
 #### LRN-0026: Every instrument must exclude its own operator, because a tool that measures a system also acts on it
 
 **Status:** SUPPORTED

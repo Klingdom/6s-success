@@ -124,15 +124,29 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-09-23. Full top-to-bottom read this cycle (all thirteen
-entries, not just the three open CRITICALs): every severity, status, and
-cited figure (traffic, catalogue size, form counts) checked against
-`GOALS.md`, `STATUS.md`, and `ops/state.json` as they read today. No
-drift found; the header date was six days behind entries that had in fact
-been kept current throughout that window (RISK-0012 alone was corrected
-four times on 2026-09-22), the exact "content fixed, summary line never
-told" shape this section already warns about, just caught here before it
-compounded rather than after.
+**Re-reviewed 2026-09-30, scheduled operator, picking up the drift-recheck
+lane the 17:1x PM check-in handed off after closing DECISIONS.md D-019
+through D-028.** Full top-to-bottom read of all fourteen entries, every
+severity, status, and cited figure cross-checked against the live
+`ops/state.json` rather than trusted from the last dated note: `forms_dead`
+(RISK-0012) reads 214, matching its own last correction exactly; `social_
+units` (same entry) reads 4939, matching; `catalog_total` reads 130 and
+`can_take_payment` is true, matching RISK-0001/RISK-0008's 129-of-130
+closing figures; `ops/card-hero-verdicts.json` still shows exactly 7 `no`
+verdicts of 88, matching RISK-0003. Section 8's own open/closed/CRITICAL
+counts (7 open, 7 closed, three CRITICAL: RISK-0007, RISK-0011, RISK-0013)
+were recounted directly from the table below rather than assumed and match.
+No drift found anywhere in the register this pass.
+
+Last reviewed before that: 2026-09-23. Full top-to-bottom read that cycle
+(all thirteen entries then recorded, not just the three open CRITICALs):
+every severity, status, and cited figure (traffic, catalogue size, form
+counts) checked against `GOALS.md`, `STATUS.md`, and `ops/state.json` as
+they read that day. No drift found; the header date was six days behind
+entries that had in fact been kept current throughout that window
+(RISK-0012 alone was corrected four times on 2026-09-22), the exact
+"content fixed, summary line never told" shape this section already warns
+about, just caught there before it compounded rather than after.
 
 **On the previous "Last reviewed: 2026-08-19" and what it cost.** This
 register's own section 22 promises the four `CRITICAL` entries get re-read

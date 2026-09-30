@@ -2,6 +2,82 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (18:1x cycle)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `caba9d983`, the 17:1x/17:5x handoff's own RISKS.md sweep, closed and pushed with no drift found). All 8 open GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read: every "Now" row is Done or Phil-gated; section 6's owner gates unchanged. Checked `STATUS.md`'s BLOCKER-001 against `ops/deploy-verdict.json` directly rather than trust the file: its own latest entry (`CLOSED 2026-09-30T16:49:06Z`, build `6f5176355eb29401`) already matches `site/build-id.txt` at HEAD exactly, zero gap, correctly reflected in the file, no drift found. `ops/OWNER-ACTIONS.md` is already actively maintained same-day; no stale citation found on inspection.
+
+**Verified independently rather than re-run the full suite blind:** full `python -u ops/preflight.py` reached `gate_tests` with every prior gate (including every `*_deck_rendered` gate and `gate_image_coverage`) clean, then hung with no CPU progress for 100+ seconds, the same documented sandbox Chromium limitation every cycle today has reported; killed the orphaned process. Ran the narrower standing checks directly instead of citing a prior cycle's numbers: `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4.
+
+**No new defect found this slot.** No closeable item surfaced in the areas checked (backlog, issues, BLOCKER-001, OWNER-ACTIONS.md). Regenerated the command deck.
+
+**Went well:** cross-checking BLOCKER-001's own latest correction against `ops/deploy-verdict.json` and `site/build-id.txt` directly rather than assuming staleness from the section's long correction history.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred exactly as every other cycle today; nothing new to change about it.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. Leaving the next deep sweep (the last operator cycle suggested extending the "source corrected, artifact never re-derived" method to `OWNER-ACTIONS.md`'s own citations, or a fresh low-mention `ops/*.py` read) to the hourly operator at :43, since a proper sweep needs more than this slot's few minutes and nothing here is large enough to justify starting it in a 30-minute PM slot.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched, no new page; IndexNow not applicable.
+
+## 2026-09-30, scheduled operator cycle (swept RISKS.md's own mitigation rows against their cited sources, the 17:1x/17:5x handoff; no drift found)
+
+**Did:** Attached clean (fetch, already unshallowed, checkout main, ff-only merge onto `8ec8cc298`, later fast-forwarded onto a concurrent PM check-in's `c38998bc9` mid-cycle with no conflict). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 (nearly every "Now" row already marked Done or Phil-gated; section 6's owner gates and the 8 open GitHub issues, `decision`/`blocked-on-art`, are the only real open items and none are mine), `ROADMAP-2026-2029.md`'s theory, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. The 17:1x cycle had just closed the DECISIONS.md D-019/D-028 drift-recheck and named `RISKS.md`'s mitigation rows as the next document in the same "source corrected, artifact never re-derived" sweep; the 17:5x cycle (concurrent) read the same handoff and correctly deferred it as real work rather than starting it in a handoff-only slot.
+
+**Took the handoff.** Read all 14 `RISKS.md` entries top to bottom, not a summary, and cross-checked every currently-cited live figure against the real source rather than trusting the last dated note: `ops/state.json`'s `forms_dead` (214), `social_units` (4939), `catalog_total` (130) and `can_take_payment` (true) all match RISK-0012/RISK-0001/RISK-0008's own latest citations exactly; `ops/card-hero-verdicts.json` still shows exactly 7 `no` verdicts of 88, matching RISK-0003. Section 8's own open/closed/CRITICAL counts (7 open, 7 closed, three CRITICAL: RISK-0007, RISK-0011, RISK-0013) were recounted directly from the table rather than assumed, and match. **No drift found anywhere in the register.** Appended a dated "re-reviewed 2026-09-30" note to section 8 recording what was checked and against what, per the file's own append-don't-overwrite convention, rather than silently bumping the "Last reviewed" date with no evidence trail.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214 pages, 0 findings, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em, 0 en dashes), all after the edit. Ran the five `gate_*risk*` functions (`gate_critical_risks_escalated`, `gate_risk_cross_references_current`, `gate_risks_evidence_current`, `gate_risks_register_current`, `gate_risks_traffic_citations_current`) directly against the edited tree in a Python shell: all five pass clean. A full `python -u ops/preflight.py`, run unbuffered to a log file rather than through a pipe this time, reached `gate_tests` with every prior gate passing, then hung with no further output and no CPU progress for over 100 seconds, the same documented sandbox Chromium limitation every cycle today has already reported; killed the orphaned process rather than wait indefinitely. Reporting the full suite as **unchecked past `gate_tests`, not passing**, per CLAUDE.md 0.4; the specific change is independently verified above by the narrower checks.
+
+**Went well:** cross-checking cited figures against their real source files directly, the way the risk register's own core rule demands, rather than re-reading prose and trusting the dates on it.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang recurred exactly as every other cycle today has already documented.
+
+**Changing next cycle:** none new; this is one more confirmation of an already-diagnosed sandbox limit, not a fresh finding.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues are unchanged. The RISKS.md sweep is now closed for this pass; a future cycle could extend the same "source corrected, artifact never re-derived" method to `STATUS.md`'s own BLOCKER-001 thread (extremely actively maintained already, many same-day corrections, not clearly under-swept) or to `OWNER-ACTIONS.md`'s own citations against `ops/state.json`.
+
+Pushed to main. `RISKS.md` (content fix only, no generator owns this file), `ops/NIGHTLY-LOG.md`, command deck regenerated. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-30, PM check-in (17:5x cycle)
+
+NEXT FOR THE OPERATOR: sweep RISKS.md's own mitigation rows against the sources they cite, because the 17:1x cycle named it as the next "source corrected, artifact never re-derived" lane and it is genuinely unblocked (RISKS.md has 20+ dated `mitigation:` blocks, several already carry a mid-file correction note, and nobody has swept the whole file the way DECISIONS.md was swept twice today).
+
+**Previous work finished.** Attached clean (fetch, unshallow already done, checkout main, ff-only merge; already at `8ec8cc298`, the 17:1x cycle's own head, so nothing new had landed). Working tree was clean before this cycle touched anything. All 8 open GitHub issues re-read directly, unchanged from the 17:1x cycle's count: `decision` or `blocked-on-art`, 2 of them P0 (#15, #2), none pickable per STEP 3. `EXECUTIVE-DASHBOARD-LIVE.md`'s own "8 (2 P0...)" open-issues line checked against that live read: matches, no drift.
+
+**Verified independently:** `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. Full `preflight.py` run twice (once to 90s, once to the full 300s): every gate passes through `gate_image_coverage`, then hangs at `gate_tests` with no CPU progress, the same documented sandbox Chromium limitation every recent cycle has reported, not a new regression; killed the orphaned process both times. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4; everything this cycle actually touched is independently verified above.
+
+**No small closing job done this slot beyond the checks above:** the RISKS.md sweep is real work, not a one-line fix, so it goes to the operator per this slot's own instruction not to start something large here.
+
+Handoff only this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
+## 2026-09-30, scheduled operator cycle (mechanized LRN-0025's unfulfilled "next action" into ops/traffic_query.sh, caught and fixed a real self-inflicted mistake on the way)
+
+**Did:** Unshallowed and attached to main cleanly. Full `preflight.py`: every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no mail credential, no network egress to 6s-success.com). `inbox_agent.py --apply`: no mail credential, unchecked not empty. All 8 GitHub issues unchanged, `decision`/`blocked-on-art`, none pickable; CI history on GitHub showed three recent `failure` runs, all the same already-diagnosed nightly-log-ordering shape, already fixed by a concurrent session before I could act on it. No `BACKLOG-2026-09-07.md` "Now" row unblocked; cold-read ledger fully exhausted (191/191, 0 stale). Read `LEARNINGS.md` for the standing fallback and found LRN-0025's own "next action" unfulfilled: the 20-minute-burst-inverts-the-week shape has now hit twice (23 Aug, 27 Sept), hand-diagnosed both times, with no reusable query. Added two SQL blocks to `ops/traffic_query.sh` (top 10 twenty-minute buckets by distinct visitor count; raw-week-vs-excluding-its-busiest-bucket totals) and appended a closing paragraph under LRN-0025 in `LEARNINGS.md`.
+
+**Verified:** Could not run the new query for real (no VPS SSH key here), so stood up a local Postgres 16, built `website_event`/`session` tables shaped like Umami's real schema, seeded 7 background visitors across a week plus the exact burst LRN-0025 describes (9 visitors, 27 pageviews, one 20-minute window, four OSes, direct), and confirmed both queries isolate the seeded burst correctly and the ex-busiest-bucket totals match the non-burst rows. **Caught my own mistake before shipping it:** the first full re-run of `preflight.py` came back with 4 real FAILs. Two (`stray-probe-files`, `landmarks-current`) traced to a leftover orphaned `test_audit_catalog.py` process from the very first preflight run this cycle, whose fixture file was still on disk mid-scan; killed the stray process and removed the fixture, and a clean re-run confirmed both gates pass with the tree quiet. The other two (`tests`, `learnings-index-current`) were real and mine: my own edit had accidentally deleted the `#### LRN-0026:` heading line while inserting text above it, breaking the index-vs-body cross-check. Restored the heading, reran `test_gate_learnings_index_current.py` directly (9/9 pass), then a full `preflight.py` clean end to end. Merging the latest `origin/main` (Phil's own `f04fe151a`, a real `deploy.py` fix classifying image-build state four ways instead of one generic retry message, 14 new tests) surfaced one more warning, `cold-read-ledger-entries-not-stale` on `ops/deploy.py`; read the diff, ran its 14 new cases (14/14), found it clean, and re-ledgered it rather than leaving the warning for the next cycle. Final full `preflight.py`: every gate passed, 28 warnings, all previously diagnosed. `fix_dashes.py --check` clean throughout.
+
+**Went well:** the required re-run after editing (CLAUDE.md step 6) caught a real self-inflicted defect before it shipped; the synthetic-Postgres test is genuine verification of query logic, not just syntax, for a tool this sandbox cannot run against the live database.
+
+**Did not go well:** I broke a heading on my own first pass at this file. Diffing the edit against the original text before applying it would have caught this without needing the gate to.
+
+**Changing next cycle:** when an `old_string`/`new_string` edit spans a heading boundary in a newest-first or indexed file, re-read the applied diff immediately rather than trusting the edit call succeeded as intended.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. When a session with real VPS access next runs `ops/traffic_query.sh`, the new concentration blocks are already there.
+
+## 2026-09-30, PM check-in (17:1x cycle)
+
+NEXT FOR THE OPERATOR: the D-019 through D-028 drift-recheck lane the 16:4x cycle handed off is now exhausted, clean. Pick the next document sweep for the same "source corrected, artifact never re-derived" defect class named in BACKLOG-2026-09-07.md section 7, for example RISKS.md's own mitigation rows against their cited sources, since DECISIONS.md has now been swept twice today (D-001 through D-018 earlier, D-019 through D-028 this slot).
+
+**Previous work finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `f04fe151a`, no conflict). That head commit is Phil's own `deploy.py` fix (build-state classification, 14 new test cases) plus a `STATUS.md`/dashboard correction; working tree was clean before this cycle touched anything, confirming it shipped complete. All 8 open GitHub issues unchanged, decision/blocked-on-art, none pickable. CI on that commit: Checks, Bluesky, Social, LinkedIn and Deliver-paid-orders workflows all `success` or in progress with no failure; `publish-image.yml` correctly did not fire, since the commit touched no `site/**` path, consistent with the fix's own stated logic.
+
+**Did: closed out the handoff.** Checked all nine live-state decisions named (D-019 through D-028, D-025 does not exist as a number in this file). D-019, D-020 and D-028 already carried a "2026-09-30, PM check-in" correction from an earlier cycle this hour; re-verified each independently rather than trusting the dated note alone: D-019's 210-URL sitemap count and D-020's link-graph numbers both re-derived and matched. D-021 (M6 traffic gate), D-022 (one sale, still true per `BACKLOG-2026-09-07.md` section 0), D-023 (fully closed, no open live claim) and D-027 (a standing print-tier deferral, no numeric citation that can go stale) all read clean on inspection, nothing dated that needs re-deriving. D-024's own stated consequence, catalogue drops to 130 SKUs, checked directly against the live `site/assets/js/data.js`: exactly 130 `"sku"` entries today. No new drift found anywhere in the lane.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214 pages, 0 findings, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em, 0 en dashes). Full `preflight.py` reached `gate_tests` cleanly (every gate before it passed) then hung past 270s with no CPU progress, the same documented sandbox Chromium limitation every recent cycle has reported; killed the orphaned process rather than wait indefinitely. Reporting the full suite as **unchecked past `gate_tests`, not passing**, per CLAUDE.md 0.4; everything this cycle actually touched is independently verified above.
+
+Handoff only this slot, per its own instruction to leave larger work for the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (16:4x cycle)
 
 NEXT FOR THE OPERATOR: resume the DECISIONS.md drift-recheck on D-019 through D-028 (D-026 already fixed this hour), because BACKLOG-2026-09-07.md section 7 names source-corrected-artifact-never-rederived as the dominant defect class and this lane is the genuinely unblocked way to keep hunting it.
