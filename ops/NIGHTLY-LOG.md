@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (05:2x, addendum: gate_cold_read_handoff_not_stale now fires on every possible handoff, not a fresh defect but worth naming)
+
+Merged onto `origin/main` before push (a concurrent session's own `b8c84214e`/`fdf1480bd` landed first; discarded no work, only combined two `NIGHTLY-LOG.md` entries and regenerated the three dashboard files rather than hand-resolving their conflict markers). `ops/run_preflight.sh` on the merged tree: every gate passed, 27 warnings.
+
+One of those warnings is worth naming rather than passing over: `gate_cold_read_handoff_not_stale` fired again, this time on my own "genuinely oldest four" handoff below, because the gate's own logic (see its docstring) only checks whether a named file is already ledgered clean/fixed at all, with no recency threshold. Now that `ops/cold_read_ledger.py --next` reports 191 of 191 files ledgered, every legitimate "oldest, due for a fresh drift check" handoff will always name an already-ledgered file and always trip this warning. That is a real change in the gate's own signal-to-noise since full coverage was reached, not a new mistake this cycle made; not fixing the gate itself here, since a correct fix needs a recency window and its own fail-then-pass test, more than this slot has room for. Leaving it named for whoever picks it up next, rather than re-reporting it silently every cycle from now on.
+
 ## PM check-in, 2026-09-30 (05:1x; previous work finished; closed a stale handoff)
 
 **Previous work: finished.** Attached clean, fast-forwarded onto `592722a1c`. Since the 04:4x entry below: `7d2d16100` closed its handoff (re-verified the four named files, no drift); `592722a1c` fixed `gate_youtube_sustain_anchor` (stale `.html` anchor against yesterday's canonical-URL fix). Re-confirmed that fix's own tests myself: 6/6 and 7/7.
