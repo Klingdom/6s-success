@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (the cold-read ledger's own dates can go stale, closed the gap and cleared the backlog it exposed)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge). BACKLOG sections 2-6 done or Phil-gated, 8 issues unchanged, no mail credential here. Re-verifying `ops/deploy_freshness.py` from the cold-read ledger's oldest-first queue found its clean note stale: dated 2026-09-25, but a real defect in that file (the freshness probe's own .html URL, 2,270 self-inflicted redirects) was found and fixed 2026-09-29. Nothing had ever compared a ledger date against the file's own git history. Widened the check: 18 of 191 entries were in the same state.
+
+Fixed at the source: `ops/cold_read_ledger.py` gains `last_touched()`/`stale_entries()` and a `--stale` flag; `--check` flags a stale entry inline. New preflight gate `gate_cold_read_ledger_entries_not_stale`, a WARNING matching the sibling `gate_cold_read_handoff_not_stale`. Fail-then-pass proved (`test_cold_read_ledger_stale.py`, 7/7).
+
+Re-verified and re-dated all 18 with real commands: reran each file's own test suite where one exists (13 of 18, all pass); the remaining 5 confirmed against this log's own record of every commit since and this cycle's clean preflight. `--stale` now reports 0.
+
+**Verified:** Full `preflight.py` clean to the documented `gate_tests` sandbox hang; `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 docs), `fix_dashes.py --check` (0/0) clean.
+
+**Went well:** finding this by actually re-verifying a file per the standing lane, not by auditing the ledger mechanism in the abstract.
+
+**Did not go well:** a concurrent 11:4x PM check-in re-verified the same file the same minute without catching the same gap; merged, its note folded into the fuller one.
+
+**Changing next cycle:** none; the new gate watches this going forward.
+
+**Next:** continue the cold-read ledger's oldest-first lane. Standing Phil-blocked list and 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/cold_read_ledger.py`, `ops/cold-read-ledger.json`, `ops/preflight.py`, `ops/tests/test_cold_read_ledger_stale.py`. No price, product or site page touched.
+
 ## PM check-in, 2026-09-30 (11:4x cycle; previous work finished; re-verified 2 more cold-read ledger entries, no defect)
 
 NEXT FOR THE OPERATOR: continue the cold-read ledger's oldest-first re-verification lane (35 entries still dated 2026-09-25), because it remains the only genuinely unblocked lane: BACKLOG-2026-09-07.md sections 2-4 are done or Phil-gated, section 5 is HOLD, section 6 is owner-only, and all 8 open GitHub issues are decision/blocked-on-art. Also worth a look once the ledger lane is picked up: `.github/workflows/bluesky-drafts.yml` (built 03:xx today, first scheduled run 14:05 UTC, roughly 2 hours out) has not fired yet, so confirming the first draft email actually arrives is not yet checkable but will be by the next few cycles.
