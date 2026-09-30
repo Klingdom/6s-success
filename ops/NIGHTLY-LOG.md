@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (07:5x, confirming: full `preflight.py` reran clean after the addendum's own fix)
+
+The full `preflight.py` this cycle's addendum had backgrounded finished after both fixes (the dashboard regeneration and the `STATUS.md` deploy-verdict correction) were already pushed. Reporting the result rather than leaving it unconfirmed: **every gate passed, 27 warnings**, down from the first run's 3 failures and 28 warnings. The 3 failures (`stray-probe-files`, `catalogue`, `landmarks-current`) are gone, consistent with them all tracing to the one transient concurrent-sandbox artifact already diagnosed. The `status-deploy-verdict-current` warning is also gone, confirming the `STATUS.md` fix actually closed what it targeted, not just satisfied the gate's own pure-logic test in isolation. Remaining 27 warnings are all standing, previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no Pillow, no live egress) plus the `cold-read-handoff-not-stale` warning that simply restates the standing operator handoff. Nothing new to act on. Working tree clean, nothing further to push this cycle.
+
 ## PM check-in addendum, 2026-09-30 (07:4x cycle, continued): the backgrounded preflight this cycle had launched finished after the cycle's own commit had already shipped, and it had real findings
 
 The `ops/run_preflight.sh` run this cycle backgrounded (see the entry below) was still alive with no output when the cycle's own dashboard fix was shipped; it finished afterward with exit code 1, 3 gate failures. Read rather than assumed clean.
