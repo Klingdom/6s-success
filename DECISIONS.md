@@ -2084,6 +2084,8 @@ count not re-measured in this session; `check_urls.py`'s last several logged
 runs in `ops/NIGHTLY-LOG.md` report 187/187, consistent with the review's own
 count at the time it was written.
 
+**Sitemap count corrected 2026-09-30, PM check-in: this decision's own "187 URLs" is now stale by 23 pages, and reconciled here with D-026 rather than left to look like a silent breach.** Counted directly from `site/sitemap.xml`: 210 URLs today. All 23 new ones are the room hub and room-deck pages (`*-deck.html`, `/rooms/*`) that D-026 (2026-09-24, reopened 2026-09-25) explicitly authorised Phil to build room by room, landing 2026-09-25 through 2026-09-29 (`git log`, `B9:` commits). They are not the "article 31" or "a 115th zone" this decision names: the zone count is still exactly 114 real zone pages (115 URLs under `/zones/` counts the `/zones/` index itself, confirmed by listing every URL directly), unchanged since this decision was written. D-026 reasoned through its own gate (D-021's traffic argument) but never named this one; recorded now so a future cold read does not have to re-derive it. This decision's actual hold, on new SEO-content pages (a new article, a 115th zone), is unbroken and stays in force: Search Console (`OWNER-ACTIONS.md` 1a) is still unverified.
+
 **Alternatives.** Publish article 31 or zone 115 now, on the reasoning that
 more indexable content can only help: rejected, this is exactly the
 "activity, not growth" framing `GOALS.md` and this decision's own rationale

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (13:1x cycle; previous work finished; corrected a real stale-citation drift in D-019, no other defect)
+
+NEXT FOR THE OPERATOR: continue the periodic drift-recheck of control documents (DECISIONS.md, RISKS.md, OWNER-ACTIONS.md) the 12:4x/13:0x cycles opened; RISKS.md and D-019 are now current, DECISIONS.md's other entries (D-020 through D-028) still unchecked this pass. Also confirm the Bluesky drafting pipeline's first live run (~14:05 UTC) once due; not yet reachable at this cycle's 13:15 UTC read.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1267 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed and in sync before this cycle started. 8 open GitHub issues, unchanged, all decision/blocked-on-art. BACKLOG-2026-09-07.md sections 2-4 confirmed done or Phil-gated by reading each row directly, section 5 HOLD, section 6 owner-only.
+
+**Full `preflight.py` hung again at the documented `gate_tests` sandbox limit** (100s, 0 case-insensitive fail before it); reported unchecked, not passing, per CLAUDE.md 0.4. Verified independently: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**Cold-read DECISIONS.md D-019 for the same drift class RISKS.md's own fix caught last cycle, and found it.** D-019 (2026-09-21) says "hold the sitemap at its current 187 URLs." Direct count of `site/sitemap.xml`: 210. Traced with `git log`: all 23 new URLs are room hub/deck pages built 2026-09-25 through 2026-09-29 under D-026's explicit Phil-directed room-by-room build (B9), not the "article 31"/"115th zone" SEO expansion D-019 actually prohibits; confirmed the zone count is still exactly 114 real zone pages (the 115th `/zones/` URL is the index itself, not a new zone). D-026 never named D-019 when it reasoned through the traffic gate (D-021), so the two had never been reconciled in writing. Fixed by adding a dated correction inline in D-019, same convention its own earlier traffic-figure correction used: the sitemap figure updated, the room-deck growth attributed to D-026, and the decision's real hold (new zone/article pages, still gated on Search Console per `OWNER-ACTIONS.md` 1a, still unverified) stated as unbroken and still in force.
+
+**Verified:** `gate_decisions_index_current` passes in isolation (the edit added no new decision heading, index untouched). `fix_dashes.py --check` clean on the new text. `check_urls.py`/`audit_pages.py`/`affiliate.py --check` all rerun clean after.
+
+**Went well:** picking up the exact fallback lane the prior two cycles named instead of re-deriving one; the sitemap-count check was fast (one Python one-liner against the committed file) and found a real, previously-unreconciled drift.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none; a content-accuracy fix, no new gate needed.
+
+Pushed to main. `DECISIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (RISKS.md's own headline drift count found stale, fixed; cold-read ledger confirmed genuinely exhausted, no other unblocked work found)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1263 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md in full (sections 0-7), ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked. No BACKLOG "Now" item unblocked: sections 2-4 (A1-A10, B1-B8, C1-C7) are every row done or Phil-gated, confirmed by reading each one rather than trusting the prior cycles' citation; section 5 correctly HOLD pending traffic; section 6 is owner-only gates. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty.
