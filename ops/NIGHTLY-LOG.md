@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (02:5x, addendum: the "unchecked" preflight above is now a confirmed clean one, and a self-inflicted false FAIL is explained rather than left alarming)
+
+After shipping the entry below, ran `python ops/preflight.py` a second time, uncontended, in the background (no `timeout` wrapper, no pipe): completed clean, **every gate passed, 26 warning(s)** (one more than the 02:2x cycle's 25, the new `cold-read-handoff-not-stale` warning naming this cycle's own handoff, informational only). No commit landed on `origin/main` between this run and the entry below's own attempts, confirmed by `git fetch` before and after: the tree itself did not change, only the measurement did.
+
+**A stray "2 gate(s) failed" reading from one of this cycle's own two accidentally-concurrent `preflight.py` invocations (one killed by a 300s `timeout`, a second launched moments later by a typo'd `--help` flag that the script ignores and runs anyway) is not a live defect.** Its own tail output showed only warnings, no named FAIL, and this repository's own history already documents exactly this shape (two preflight runs racing the same lockdir/probe file self-healing into a transient false FAIL). Running it a third time, alone, came back clean. Recorded here rather than silently dropped, per `CLAUDE.md` 0.4's own rule that a run which could not look must say so: this one could look, twice more, and both looks were clean. Lesson for future cycles: never pass an unsupported flag to `preflight.py` expecting a `--help`-style no-op; it has none, and running it twice against one tree at once is the one thing this file warns against by name.
+
+No further push needed: nothing above changes the handoff or the state already recorded below.
+
 ## PM check-in, 2026-09-30 (02:4x; previous work finished; handing the operator a concrete second-pass target)
 
 NEXT FOR THE OPERATOR: re-verify the cold-read ledger's oldest three clean entries for drift, `ops/build_feed.py` and `ops/canonical_links.py` (both 2026-09-11) and `ops/card_spec.py` (2026-09-11), plus re-check `ops/build_printpack.py` (2026-09-17, logged `fixed` not `clean`, so its fix is worth confirming still holds), because the cold-read lane's first full pass is complete at 190 of 190 files and none of them has been looked at again since, while the catalogue and build pipeline both have moved under them since mid-September.
