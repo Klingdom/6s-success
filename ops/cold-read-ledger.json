@@ -31,6 +31,11 @@
       "date": "2026-09-26",
       "note": "Two independent fixes landed the same day, non-overlapping regions of the file, merged together: (1) main()'s exit code only reflected bad_text/bad_img, 2 of 9 categories; a broken image, missing alt/label, invisible focus, bad landmark, heading jump, or (mobile) a crowded tiny target/sideways scroll could all print above a clean $?. No preflight gate relied on it (gate_visual_audit/gate_mobile_touch_targets both parse printed counts, not returncode), but a direct run trusting $? would have been fooled. Fixed to derive from all measured categories; ops/tests/test_audit_visual_exit_code.py fail-then-pass proved directly against a real headless-Chromium render. (2) A stale comment claimed a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). Comment corrected to match the real, no-retry behavior."
     },
+    "b9_claims.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: read in full. Claim/release/stale-timeout logic correct, next_room() sorts smallest-zone-count-first as documented, cmd_claim rejects unknown room names and double-claims by a different note. Live ops/b9-claims.json confirms all 20 rooms now diagnosed and every claim released as done, consistent with B9's closure this same day. No defect."
+    },
     "backup_analytics.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -121,6 +126,11 @@
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
     },
+    "build_family_room_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+    },
     "build_feed.py": {
       "status": "clean",
       "date": "2026-09-10",
@@ -130,6 +140,21 @@
       "status": "fixed",
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Garage's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+    },
+    "build_guest_bathroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "full read: wiring chain complete, og:image honest, ZONE_ORDER[0] matches its own 'start with the vanity counter' copy, whole_ids assert verified against live corpus, no defect found, 2026-09-29 scheduled operator"
+    },
+    "build_guest_bedroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+    },
+    "build_hall_closet_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_home_office_deck_page.py": {
       "status": "fixed",
@@ -151,6 +176,11 @@
       "date": "2026-09-27",
       "note": "PM cold-read 2026-09-27: re-verified after the 09-17 comment-only edit fixing the stale nine-image count to six; no logic change, TIER0 list and load() unaffected."
     },
+    "build_kids_bedroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "wiring chain complete (matches B1 follow-on fix), og:image honest and file exists, no defect found, 2026-09-29 scheduled operator"
+    },
     "build_kit_page.py": {
       "status": "clean",
       "date": "2026-09-25",
@@ -171,6 +201,11 @@
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
     },
+    "build_living_room_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
+    },
     "build_manual_print.py": {
       "status": "fixed",
       "date": "2026-09-26",
@@ -186,10 +221,35 @@
       "date": "2026-09-26",
       "note": "Read in full 2026-09-26 (scheduled operator). Verified live: --check reports the mobile corpus matches quest-data.js (114 zones, 684 cards), git status clean after. hero_plan()/hero_problems()/write_heroes() correctly derive zone pictures from the site's own approved -sm.jpg files, hard-erroring on any approved stem with no source file rather than silently skipping. Already gated (gate_mobile_corpus_current in preflight.py) and already imported by build_social_pins.py and wire_generated_catalog.py, so it is wired, not orphaned. No defect."
     },
+    "build_mudroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+    },
+    "build_nursery_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
+    },
+    "build_pantry_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors build_garage_deck_page.py, wired into gate_generator_ownership and gate_page_ownership_registry, hero image matches the real zone page's own og:image (pantry--dry-goods-shelves-lg.jpg), whole-room card id assertion guards drift, idempotent regeneration confirmed byte-identical. No defect."
+    },
+    "build_patio_or_deck_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+    },
     "build_primary_bathroom_deck_page.py": {
       "status": "fixed",
       "date": "2026-09-25",
       "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Primary Bathroom's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+    },
+    "build_primary_bedroom_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the same shared template as the other room deck generators, idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_printpack.py": {
       "status": "fixed",
@@ -255,6 +315,11 @@
       "status": "clean",
       "date": "2026-09-25",
       "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+    },
+    "build_workshop_deck_page.py": {
+      "status": "clean",
+      "date": "2026-09-29",
+      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the same shared template as the other room deck generators, idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_youtube_metadata.py": {
       "status": "clean",

@@ -43,7 +43,7 @@ steps, and the outcome without revenue is a hobby.
 
 **Baseline 2026-09-02, corrected 2026-09-10, and the predicted moment has now arrived (2026-09-20):** $19 lifetime, one customer, one sale (2026-08-21), confirmed again today by reading the Stripe charge list directly: one paid charge, ever. This line used to say the sale sits inside any trailing 30-day window, and noted that it would stop being true on 2026-09-20. Today is that day. **Trailing-30-day revenue is now $0**, and the honest statement is: one $19 sale ever, none in the last 30 days, no second customer in the 30 days since.
 
-That is the number the whole plan is measured against, and nothing shipped since has moved it, because nothing shipped since has moved arrivals: 12 visitors in the last 7 days against 10, 14 and 18 in the three weeks before. The fall has stopped without reversing, and at this scale 10 against 12 is noise rather than recovery.
+That is the number the whole plan is measured against, and nothing shipped since has moved it, because nothing shipped since has moved arrivals. **Corrected 2026-09-29:** this line still cited a 2026-09-20 reading (12 visitors in the last 7 days against 10, 14 and 18 before), ten days stale against section 5's own table below. The current 7-day read is 14 visitors recorded, but 30 of that week's 50 pageviews and 9 of its visitor ids arrived in one 20-minute burst on 27 September with no evidence of being human; excluding it, the week is 7 visitors, down on the 12 read four days earlier. The fall has not stopped. One burst made it look as though it had.
 
 ---
 
