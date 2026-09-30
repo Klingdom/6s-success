@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle, continued again (the fixed push-fallback's first real send exposed a second, real bug: two drafting workflows racing on one file; retried and made honest, not fully solved)
+
+**Did:** Followed up on the prior entry's own fix rather than trusting the concurrent PM check-in's confirmation at face value (step 5d): read the actual job logs of all three drafting workflows' runs from the same push that first exercised the fixed ledger.
+
+**Found:** `bluesky-drafts.yml` and `social-drafts.yml` both fired via push fallback in the same instant (14:16:10 UTC), because a single push past multiple cron targets at once fires every fallback simultaneously, with none of the staggering that protects their separate SCHEDULED cron times. Both actually sent their real drafts (confirmed: "sent: 3 Bluesky posts", "sent: 3 Facebook posts + 4 X posts" in the job logs), but `social-drafts.yml`'s own "Persist the rotation" step lost the race: its `git pull --rebase --autostash origin main || true` conflicted against `bluesky-drafts.yml`'s concurrent commit to the same `ops/corpus-rotation.json`, and the old silent `|| true` swallowed the failure. Confirmed directly: origin never received a "Social drafts: advance rotation" commit for today, though the email genuinely went out, so tomorrow's draft could repeat today's posts.
+
+**Fixed, honestly, not fully:** all three persist steps now retry (fetch, rebase, push, up to 5 times with backoff) instead of swallowing the first failure, which resolves the common case of an unrelated concurrent commit. Tested directly against a real simulated git conflict (two clones committing conflicting changes to the same JSON region): the retry correctly resolves a transient, non-overlapping race, and correctly exhausts and posts a loud `::warning::` rather than silently losing data when the conflict is genuinely irreconcilable (which two drafting workflows editing the same region in the same instant still is; git cannot auto-merge that, and this fix does not pretend it can). The underlying multi-fallback-collision risk is real but should now be rare, since it only recurs when a single push is the first past more than one cron target at once.
+
+**Verified:** `test_gate_push_fallback_ledger_honest.py` (6/6) still passes against the new step bodies. `fix_dashes.py --check` (0/0). All three YAML files parse; the retry script syntax-checked with `bash -n`.
+
+**Went well:** not accepting "it sent" as proof the whole pipeline worked; the persist step was a second, separate point of failure from the send itself.
+
+**Did not go well:** shipping the ledger fix without anticipating that fixing it would let multiple fallbacks fire in the same instant for the first time, which is exactly the collision the crons' own staggering exists to avoid.
+
+**Changing next cycle:** if this collision recurs often, the real fix is per-platform files (or a merge-friendly line format) instead of one shared JSON blob all three scripts rewrite whole; noted here rather than built now, since today's specific trigger (many hours of dead fallback letting multiple cron targets stack up at once) should not repeat now that the ledger is honest.
+
+**Next:** watch for a recurrence of a dropped rotation-advance commit; resume the DECISIONS.md/RISKS.md drift-recheck lane on the older DEC-0001 to D-018 entries.
+
+Pushed to main. `.github/workflows/bluesky-drafts.yml`, `.github/workflows/linkedin-drafts.yml`, `.github/workflows/social-drafts.yml`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (14:1x cycle; previous work finished; confirmed the push-fallback fix actually sent, with evidence, no new defect)
 
 NEXT FOR THE OPERATOR: resume the DECISIONS.md/RISKS.md/OWNER-ACTIONS.md drift-recheck lane on the older DEC-0001 through DEC-0037 and D-001 through D-018 entries, which the D-019 through D-028 pass this morning did not cover. Watch LinkedIn/social drafts for their own first real rotation-advance commit under the same fixed logic, though neither was known broken.

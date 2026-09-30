@@ -179,9 +179,38 @@ jobs:
       - name: Persist the rotation so tomorrow does not repeat today
         if: steps.gate.outputs.send == 'yes'
         run: |
+          set -eu
           git config user.name 'github-actions'
           git config user.email 'actions@github.com'
           git add ops/corpus-rotation.json
-          git diff --cached --quiet || git commit -m 'LinkedIn drafts: advance rotation'
-          git pull --rebase --autostash origin main || true
-          git push origin HEAD:main || true
+          git diff --cached --quiet && exit 0
+          git commit -m 'LinkedIn drafts: advance rotation'
+          # Found 2026-09-30, this operator: social-drafts.yml's own first
+          # real push-fallback send lost this exact race against
+          # bluesky-drafts.yml's concurrent commit to the same file. All
+          # three drafting workflows trigger on the same `push` event, and
+          # their crons are staggered so SCHEDULED runs do not collide, but
+          # a push past multiple cron targets at once fires every fallback
+          # simultaneously with no such staggering. The old silent
+          # `|| true` swallowed the rejected push, so a real send already
+          # sent was never recorded and the next day's draft could repeat
+          # it. A retry with a fresh rebase fixes the common case (a
+          # transient lag against an unrelated change); a genuine
+          # same-file, same-moment collision may still lose, so this warns
+          # loudly rather than pretending success either way.
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              pushed=1
+              break
+            fi
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "rebase conflict on attempt $attempt, retrying"
+            fi
+            sleep "$attempt"
+          done
+          if [ "$pushed" != 1 ]; then
+            echo "::warning::could not persist today's rotation after 5 attempts (last error above). The draft was sent; tomorrow's rotation may repeat it."
+          fi
