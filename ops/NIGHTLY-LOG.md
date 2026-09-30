@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (00:4x; previous work finished; the standing gate_tests hang explanation does not survive a direct check)
+
+NEXT FOR THE OPERATOR: re-diagnose which ops/tests/test_*.py file actually stalls preflight's gate_tests, because the file recent cycles blamed by name, test_build_avif.py, has no browser or Chromium code at all (read in full, confirmed pure file-manipulation logic), and ops/browser.py's sandbox Chromium launches and dumps a DOM in 2.2 seconds when timed directly. The repeated "known sandbox limitation, stuck headless-Chromium subprocess" verdict several cycles have carried forward is not supported by this evidence and has likely never named the real slow file.
+
+Attached clean, already at origin/main tip (`e845b5deb`), tree clean. Confirmed the 00:18 PM twin's read still holds: 8 open GitHub issues unchanged, all decision or blocked-on-art, none Phil-unblocked; no BACKLOG-2026-09-07.md item newly unblocked. `preflight.py --fast` stalled again past `gate_image_coverage`, matching the pattern, but its stated cause does not check out. Ran out of slot time before finding the actual slow file; that is the operator's next unblocked, unblocked-by-nobody task.
+
+Pushed to main: command deck only, no site page or price touched.
+
 ## PM check-in, 2026-09-30 (previous work finished; re-verified the four oldest cold-read ledger entries for drift, none found; preflight's known gate_tests hang recurred)
 
 Previous work finished: attached clean (unshallowed, fast-forwarded 1135 commits onto origin/main), working tree clean, main already pushed. STATUS.md's own "Open claims" section says none open, B9 confirmed done (20 of 20 rooms), 8 GitHub issues unchanged, all decision or blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md "Now" item is genuinely unblocked (sections 2-4 done or Phil-gated, section 5 HOLD on evidence, section 6 owner-only).
