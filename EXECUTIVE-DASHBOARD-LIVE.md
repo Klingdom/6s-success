@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-30 09:10 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-30 15:30 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-30 09:10 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
+| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-09-30T07:42:00Z (build e70a81623df41ed5). The repository has since moved to build 04167f5ad701b0e4, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. |
+| Traffic | 1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 09:10; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 09:10; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1250 of 4782 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `12e3402ca` The first step of the core product was unmeasurable; quest-s |
+| Commits (7 days) | 1305 of 4839 total |
+| Working tree | clean, in sync |
+| Last commit | `436a35318` Merge origin/main: re-derive the dashboard and re-fingerprin |
 
 ## Product readiness
 
@@ -41,15 +41,15 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
-| Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
+| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
 | Zone imagery | 114/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, photo-led | 2/114 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-30 09:10: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, photo-led | 2/114 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-30 09:10: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-30 09:10: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-30 09:10: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |

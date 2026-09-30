@@ -44710,3 +44710,11 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+## 2026-09-30, PM check-in (15:2x)
+
+**Previous work was finished.** Checkout came in shallow/detached (issue #27's usual shape); fast-forwarded cleanly onto origin/main, 1286 commits, no conflict. Full `preflight.py` (not `--fast` shortcut): every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no egress to 6s-success.com). Working tree clean, main already pushed. No open claims in `STATUS.md`. Independently spot-checked the last cycle's RISK-0003 recount against `ops/card-hero-verdicts.json` directly: 7 "no" verdicts, matches exactly.
+
+**Did:** found no genuinely unblocked item. Cold-read ledger fully exhausted (191/191 files, 0 stale). All 8 open GitHub issues are `decision` or `blocked-on-art`. `BLOCKER-001`'s deploy gap is 1 commit (`12e3402ca`, Phil's own), needs VPS access this sandbox lacks, already tracked as issue #35. `deck-print-tier` warning is an intentional open-by-design decision (`DECISIONS.md` D-027), not a defect.
+
+**Handing to :43 operator:** nothing specific; same standing Phil-blocked list. Regenerated dashboard, shipping now.
