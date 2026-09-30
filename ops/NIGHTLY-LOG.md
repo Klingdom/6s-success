@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (swept RISKS.md's own mitigation rows against their cited sources, the 17:1x/17:5x handoff; no drift found)
+
+**Did:** Attached clean (fetch, already unshallowed, checkout main, ff-only merge onto `8ec8cc298`, later fast-forwarded onto a concurrent PM check-in's `c38998bc9` mid-cycle with no conflict). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 (nearly every "Now" row already marked Done or Phil-gated; section 6's owner gates and the 8 open GitHub issues, `decision`/`blocked-on-art`, are the only real open items and none are mine), `ROADMAP-2026-2029.md`'s theory, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. The 17:1x cycle had just closed the DECISIONS.md D-019/D-028 drift-recheck and named `RISKS.md`'s mitigation rows as the next document in the same "source corrected, artifact never re-derived" sweep; the 17:5x cycle (concurrent) read the same handoff and correctly deferred it as real work rather than starting it in a handoff-only slot.
+
+**Took the handoff.** Read all 14 `RISKS.md` entries top to bottom, not a summary, and cross-checked every currently-cited live figure against the real source rather than trusting the last dated note: `ops/state.json`'s `forms_dead` (214), `social_units` (4939), `catalog_total` (130) and `can_take_payment` (true) all match RISK-0012/RISK-0001/RISK-0008's own latest citations exactly; `ops/card-hero-verdicts.json` still shows exactly 7 `no` verdicts of 88, matching RISK-0003. Section 8's own open/closed/CRITICAL counts (7 open, 7 closed, three CRITICAL: RISK-0007, RISK-0011, RISK-0013) were recounted directly from the table rather than assumed, and match. **No drift found anywhere in the register.** Appended a dated "re-reviewed 2026-09-30" note to section 8 recording what was checked and against what, per the file's own append-don't-overwrite convention, rather than silently bumping the "Last reviewed" date with no evidence trail.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214 pages, 0 findings, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em, 0 en dashes), all after the edit. Ran the five `gate_*risk*` functions (`gate_critical_risks_escalated`, `gate_risk_cross_references_current`, `gate_risks_evidence_current`, `gate_risks_register_current`, `gate_risks_traffic_citations_current`) directly against the edited tree in a Python shell: all five pass clean. A full `python -u ops/preflight.py`, run unbuffered to a log file rather than through a pipe this time, reached `gate_tests` with every prior gate passing, then hung with no further output and no CPU progress for over 100 seconds, the same documented sandbox Chromium limitation every cycle today has already reported; killed the orphaned process rather than wait indefinitely. Reporting the full suite as **unchecked past `gate_tests`, not passing**, per CLAUDE.md 0.4; the specific change is independently verified above by the narrower checks.
+
+**Went well:** cross-checking cited figures against their real source files directly, the way the risk register's own core rule demands, rather than re-reading prose and trusting the dates on it.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang recurred exactly as every other cycle today has already documented.
+
+**Changing next cycle:** none new; this is one more confirmation of an already-diagnosed sandbox limit, not a fresh finding.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues are unchanged. The RISKS.md sweep is now closed for this pass; a future cycle could extend the same "source corrected, artifact never re-derived" method to `STATUS.md`'s own BLOCKER-001 thread (extremely actively maintained already, many same-day corrections, not clearly under-swept) or to `OWNER-ACTIONS.md`'s own citations against `ops/state.json`.
+
+Pushed to main. `RISKS.md` (content fix only, no generator owns this file), `ops/NIGHTLY-LOG.md`, command deck regenerated. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (17:5x cycle)
 
 NEXT FOR THE OPERATOR: sweep RISKS.md's own mitigation rows against the sources they cite, because the 17:1x cycle named it as the next "source corrected, artifact never re-derived" lane and it is genuinely unblocked (RISKS.md has 20+ dated `mitigation:` blocks, several already carry a mid-file correction note, and nobody has swept the whole file the way DECISIONS.md was swept twice today).
