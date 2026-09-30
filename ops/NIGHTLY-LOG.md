@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (07:4x; previous work finished; a stale dashboard claim corrected)
+
+NEXT FOR THE OPERATOR: re-verify `ops/build_laundry_room_deck_page.py`, `ops/build_primary_bathroom_deck_page.py`, `ops/build_pwa.py`, `ops/build_sample_html.py`, because the 07:1x PM check-in's own handoff naming these four as the cold-read ledger's genuinely oldest entries (all dated 2026-09-25) was never picked up.
+
+**Previous work: finished.** Attached from a shallow, detached checkout: fetched, unshallowed, fast-forwarded onto `origin/main` with no conflict, then fast-forwarded again onto two more commits that landed mid-cycle. The 07:1x PM check-in closed its own 06:4x handoff with no defect found, and the 07:0x scheduled operator cycle's structured-data fix (two consulting products' Product schema pointing at the wrong page) was pushed and its own honest "gate_tests unchecked" note stands, nothing since contradicts it. 8 open GitHub issues, confirmed directly, unchanged: all `decision` or `blocked-on-art`, none Phil-unblocked (`#15` and `#2` are the two P0s, both waiting on Phil). No `BACKLOG-2026-09-07.md` row newly unblocked; B9 (all 20 room decks) is fully closed and epics 2-4 are done or Phil-gated per section 7's own "read one line" summary.
+
+**Found and fixed one real dashboard-honesty defect.** Two commits landed on `origin/main` mid-cycle, both Phil's own: `ops/deploy-verdict.json` now records production current again (`e70a81623df41ed5`, checked 07:42 UTC) and an automated hourly check-in followed at 07:44. `EXECUTIVE-DASHBOARD-LIVE.md` had last been generated at 07:19, before that verdict landed, so it was still telling Phil "PRODUCTION IS SERVING AN OLD BUILD" after the gap it was describing had already closed, the exact "source corrected, artifact never re-derived" shape section 7 of the backlog names as the dominant defect class here. Not hand-edited: confirmed `ops/dashboard.py` owns this file before touching it, reran it, and the constraint line now correctly reads discovery/traffic as the live constraint instead of a stale deploy warning.
+
+**Could not get a clean full `preflight.py` this cycle; reporting that rather than assuming it would pass.** Backgrounded via `ops/run_preflight.sh`, still alive after 5+ minutes wall clock with under 10 seconds of accumulated CPU time, the same documented headless-Chromium `gate_tests` sandbox hang this log records dozens of times. Reporting **unchecked, not passing**, per `CLAUDE.md` 0.4. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes).
+
+**Went well:** catching the dashboard's own claim against a concurrent commit instead of assuming a 25-minute-old generation was still current.
+
+**Did not go well:** `gate_tests` hung again, an already-diagnosed sandbox limit; no new gate needed.
+
+**Changing next cycle:** none.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (07:1x; previous work finished; closed the 06:4x ledger handoff, no defect found)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, fast-forward 1224 commits onto `origin/main`, no conflict). The 06:4x/07:0x cycle's structured-data fix (`consulting.html`'s two Product schemas) was pushed, independently re-verified above it, and the one gate it could not run (`gate_tests`) was honestly reported unchecked rather than assumed passing. Confirmed via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked (including `#15`, updated today at 06:5x but still awaiting Phil's own call). `EXECUTIVE-DASHBOARD-LIVE.md` and `BACKLOG-2026-09-07.md` section 7 confirm no "Now" row is unblocked (sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only).
