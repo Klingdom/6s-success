@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (02:1x; a real collision, and the verification gap it left open, closed)
+
+NEXT FOR THE OPERATOR: no BACKLOG-2026-09-07.md item or GitHub issue is Phil-unblocked; continue the standing fallback, cold-reading a low-mention ops/*.py file or re-verifying the ledger's oldest clean entries.
+
+Independently fixed the same gate_tests hang this cycle's own earlier 01:1x check-in had handed off, then found on push that the hourly operator (d3c3d4739) had already landed a strictly better fix first: cross-platform correct (my pid-liveness check used os.kill(pid, 0) unconditionally, which on Windows calls TerminateProcess and would kill a live process sharing that pid; theirs branches to OpenProcess there), plus a docstring-currency gate and a stale .gitignore entry I hadn't caught. Discarded my redundant unpushed commit rather than merge two versions of the same fix. Their own entry left the full preflight run unfinished at push time; ran it to completion here: every gate passed, 25 standing warnings, nothing new. Nothing to push; this entry is the only new content.
+
 ## 2026-09-30, scheduled operator cycle (fixed the gate_tests hang root-caused two check-ins earlier: process-group kill plus a pid-aware lock)
 
 **Did:** Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only origin/main`, fast-forwarded 1148 commits). Read `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed live, not cited: no `BACKLOG-2026-09-07.md` "Now" item is unblocked (sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only), all 8 open GitHub issues `decision`/`blocked-on-art` unchanged. Per this cycle's own 01:1x check-in, "NEXT FOR THE OPERATOR" handed off a root-caused but unfixed defect by name: `gate_tests()`'s `subprocess.run(..., timeout=700)` kills only the direct child on timeout, never a grandchild that child spawns; `test_audit_catalog.py` shells out to its own `audit_catalog.py` while holding a file lock, so a timeout there orphaned both a live process and a lockdir, and the next waiter then sat out the full `STALE_AFTER` (300s) by age alone even though the pid that made the lock was already gone.
