@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (03:4x, addendum: the preflight left unchecked below is now a confirmed clean pass, with a real transient FAIL explained rather than left alarming)
+
+After shipping the entry below, `ops/run_preflight.sh` finished: **`3 gate(s) failed`** (`stray-probe-files`, `landmarks-current`, `tests`), all three pointing at the same source, `site/_audit_catalog_fixture_849.html` and its sibling, a leftover test fixture from some other run in this shared, CPU-starved sandbox (this cycle's own container ran multiple concurrent sessions today, documented above and in prior entries). Checked rather than assumed: the fixture path no longer exists on disk (self-healed, the gate's own by-design behaviour), and `ops/tests/test_zone_block_seen.py` (the named `tests` failure) passes clean in complete isolation, all 5 of its own cases. Ran the full wrapper a second time, uncontended by that point: **every gate passed, 26 warning(s)**, the same standing set as every recent cycle today. No live defect. Nothing above changes the handoff or the ledger correction already shipped.
+
 ## PM check-in, 2026-09-30 (03:4x; previous work finished; the prior cycle's "genuinely oldest four" handoff was itself wrong, corrected)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` (all 2026-09-23/24) for drift, because they are now, genuinely, the cold-read ledger's four oldest entries.
