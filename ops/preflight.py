@@ -1277,7 +1277,8 @@ GENERATOR_PROTECTED_ELSEWHERE = {
                       "gate_sameas_backed_by_onsite_link",
                       "gate_sitemap_lastmod_current"),
     "build_social_pins.py": ("gate_dashboard_social_pins_live",),
-    "build_thumbnails.py": ("gate_dashboard_thumbnails_live",),
+    "build_thumbnails.py": ("gate_dashboard_thumbnails_live",
+                             "gate_thumbnail_font_face"),
 }
 
 
@@ -3899,6 +3900,58 @@ def gate_schedule_comment_minute_current() -> None:
     problems = check_schedule_past_comments(texts)
     if problems:
         fail("schedule-comment-minute", "; ".join(problems))
+
+
+def check_push_fallback_ledger_honest(workflows_dir) -> list:
+    """Pure logic: a push-triggered fallback send step must not treat its
+    OWN workflow's `?status=success` run count as evidence a real send
+    already happened today.
+
+    Found 2026-09-30, this operator, verifying bluesky-drafts.yml's first
+    live run (built and shipped earlier the same day). Its "already sent
+    today" check counted workflow runs with `status=success`, but a push
+    that stands down before the cron's own target time, or because a real
+    send already happened, ALSO exits 0 and is therefore itself a
+    "successful" run. On a repository that pushes dozens of times a day,
+    the very first push checked after the target time already counts every
+    earlier stood-down push as a false "already sent", so the fallback
+    could never fire for real. Confirmed directly: zero schedule-triggered
+    runs and zero "Bluesky drafts: advance rotation" commits existed
+    anywhere in this repository's history despite the workflow reporting a
+    clean gate on every one of its 44 runs that day. `linkedin-drafts.yml`
+    and `social-drafts.yml` shared the identical shape (bluesky-drafts.yml
+    was copied from one of them) and had simply never needed the fallback
+    to actually work, because their own schedules had always eventually
+    fired the same day; that is luck, not evidence the mechanism worked.
+    All three were fixed the same cycle to check for the one thing a REAL
+    send actually produces (today's own rotation-advance commit) instead.
+    """
+    problems = []
+    for path in sorted(glob.glob(os.path.join(workflows_dir, "*.yml"))):
+        text = io.open(path, encoding="utf-8", errors="replace").read()
+        if "push:" not in text:
+            continue
+        if re.search(r"""gh api ["']?\$?\{?[\w./"$-]*runs\?status=success""",
+                      text):
+            problems.append(
+                "%s: a push-fallback gate counts this workflow's own "
+                "`status=success` runs, which a stood-down push also "
+                "satisfies, so it can never detect a real send" %
+                os.path.basename(path))
+    return problems
+
+
+def gate_push_fallback_ledger_honest() -> None:
+    """No scheduled-workflow push fallback may use its own run status as
+    the "already sent today" ledger. See
+    check_push_fallback_ledger_honest() for the finding this closes.
+    """
+    d = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(d):
+        return
+    problems = check_push_fallback_ledger_honest(d)
+    if problems:
+        fail("push-fallback-ledger-honest", "; ".join(problems))
 
 
 def gate_scheduled_workflow_cadence() -> None:
@@ -14406,6 +14459,56 @@ def gate_dashboard_thumbnails_live() -> None:
              f"instead of unmeasured: {unmeasured!r}")
 
 
+def gate_thumbnail_font_face() -> None:
+    """Every YouTube thumbnail must actually load its brand font, not
+    silently fall back to whatever font happens to be installed on the
+    machine that renders it.
+
+    Found 2026-09-30, cold-reading build_thumbnails.py (a 2026-09-25
+    ledger entry). html_for() inserted vz.FONTS -- a bare filesystem
+    directory path, e.g. "/home/user/6s-success/site/assets/fonts" -- as the
+    first line inside the <style> block, in the exact spot every sibling
+    generator (video_zone.py, build_social_pins.py) puts a real @font-face
+    rule. No @font-face was ever emitted, in any of the 114 already-built
+    thumbnails: "font-family: Inter" on .room and .zone never actually
+    loaded Inter, so every render silently used whatever system-ui/sans-serif
+    font the host happened to have. Confirmed, not assumed: regenerating one
+    thumbnail in this sandbox and pixel-diffing it against the committed file
+    (Pillow installed for the comparison) showed 8.8% of pixels differing,
+    max channel delta 204 of 255, a real visual difference from font
+    substitution, not the byte-only encoder noise this repository elsewhere
+    treats as harmless. The real Inter-800-normal.woff2 this file needs
+    (font-weight:800 on both .room and .zone) already sits on disk; it was
+    just never linked.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_thumbnails as BT
+    import video_zone as vz
+    html = BT.html_for("Entryway", "Landing Zone", vz)
+    style = html.split("<style>", 1)[1].split("</style>", 1)[0]
+    if vz.FONTS in style.split("@font-face", 1)[0]:
+        fail("thumbnail-font-face",
+             "the raw fonts directory path is substituted directly into "
+             "<style>, ahead of any @font-face rule, instead of a real "
+             "@font-face declaration")
+    faces = re.findall(r"@font-face\{([^}]*)\}", style)
+    if not faces:
+        fail("thumbnail-font-face",
+             "no @font-face rule in a rendered thumbnail: the brand font "
+             "silently falls back to whatever font the render machine has")
+        return
+    declared_weights = set()
+    for face in faces:
+        m = re.search(r"font-weight:\s*([0-9]+)", face)
+        if m:
+            declared_weights.add(m.group(1))
+    if "800" not in declared_weights:
+        fail("thumbnail-font-face",
+             "font-weight:800 is used (.room, .zone) but no @font-face "
+             "declares weight 800 (declared: %r), so the browser must "
+             "synthesize it" % sorted(declared_weights))
+
+
 def gate_dashboard_narrated_videos_live() -> None:
     """The dashboard must not hide the narrated video product either.
 
@@ -16611,6 +16714,55 @@ def gate_cold_read_handoff_not_stale() -> None:
              "it as read. Run `python ops/cold_read_ledger.py --next` "
              "for genuinely un-ledgered candidates instead."
              % ", ".join(crl.lane_path(n) or n for n in stale))
+
+
+def gate_cold_read_ledger_entries_not_stale() -> None:
+    """No ops/cold-read-ledger.json entry may claim a file clean/fixed as
+    of a date that predates the file's own last real commit.
+
+    Found live 2026-09-30, re-verifying ops/deploy_freshness.py from the
+    ledger's own oldest-first re-verification queue (the standing handoff
+    several prior cycles have carried forward): the ledger read "clean,
+    dated 2026-09-25, ... no defect found in the source", but a real
+    defect in that exact file (its freshness probe built the .html form
+    of a zone URL, drawing 2,270 self-inflicted redirects in eight days,
+    94% of the only SEO log this site has) was found and fixed on
+    2026-09-29, four days later. Nothing before this compared a ledger
+    entry's clean/fixed date against the file's own git history, so a
+    "no defect found" verdict could silently outlive the code it was a
+    verdict about: the same "source corrected, artifact never re-derived"
+    shape BACKLOG-2026-09-07.md section 7 names as this repository's
+    dominant defect class, here applied to the cold-read ledger's own
+    bookkeeping. A widened check the moment this was found: 18 of the
+    191 ledgered files were already in this exact state (a legitimate
+    code change landing after the file's own clean/fixed date, never
+    reported back to the ledger).
+
+    A WARNING, not a FAIL, matching gate_cold_read_handoff_not_stale just
+    above for the identical reason: a stale ledger entry sends a future
+    cold-read cycle past a file that actually needs a fresh look, which
+    wastes that cycle's time; it does not by itself ship anything broken
+    to a customer, and the underlying fixes this specific run found (see
+    ops/NIGHTLY-LOG.md 2026-09-30) were already real, already shipped,
+    and already covered by their own dedicated gates and tests.
+
+    Proof this can fail: ops/tests/test_cold_read_ledger_stale.py calls
+    cold_read_ledger.stale_entries() directly against a synthetic ledger
+    entry dated 2020-01-01 for a real, later-touched file and asserts it
+    is returned, then confirms a future-dated entry is not.
+    """
+    import cold_read_ledger as crl
+    stale = crl.stale_entries()
+    if stale:
+        detail = "; ".join(
+            "%s (ledgered %s, touched %s)" % (crl.lane_path(b) or b, d, t)
+            for b, d, t in stale)
+        warn("cold-read-ledger-entries-not-stale",
+             "%d ops/cold-read-ledger.json entr%s the file's own git "
+             "history has outdated: %s. Re-verify and re-add with "
+             "`python ops/cold_read_ledger.py --add`, or run "
+             "`python ops/cold_read_ledger.py --stale` for the full list."
+             % (len(stale), "y" if len(stale) == 1 else "ies", detail))
 
 
 def gate_experiments_blocked_reason_current() -> None:
@@ -24953,6 +25105,135 @@ def gate_decisions_index_current() -> None:
              "; ".join(problems))
 
 
+_CITATION_STOPWORDS = {
+    "the", "and", "for", "that", "this", "with", "from", "stays", "stay",
+    "keep", "keeps", "have", "has", "not", "but", "its", "own", "into",
+    "onto", "upon", "about", "after", "before", "while", "when", "where",
+    "which", "what", "who", "will", "would", "should", "could", "never",
+    "until", "still", "also", "than", "then", "each", "every", "some",
+    "any", "all", "one", "two", "three", "new", "old", "real", "live",
+    "free", "paid", "gets", "get", "made", "make", "makes", "does", "done",
+    "stops", "stop", "goes", "going", "runs", "ran", "run",
+}
+
+
+def _citation_keywords(title):
+    """Distinctive words from a decision's own title: all-caps acronym
+    tokens only (MCP, KDP, SEO). Deliberately narrow, proved so on purpose:
+    an earlier version also took any lowercase word of 6+ letters, and it
+    missed the real D-028 regression this check exists for, because
+    "corpus" happens to appear in both the MCP decision's own title and
+    OWNER-ACTIONS.md item 20's unrelated text about video descriptions,
+    which is generic enough to appear almost anywhere in this repository.
+    An acronym is rare enough that a genuine match means something; a common
+    word is not. A title with no acronym is simply not checked further,
+    which is honest (unverified, not a false pass on a coincidence).
+    """
+    return {w.lower() for w in re.findall(r"[A-Za-z']+", title)
+            if w.isupper() and len(w) >= 2 and w.lower() not in _CITATION_STOPWORDS}
+
+
+def _owner_action_item_text(owner_actions_text, item_id):
+    """The body text of one OWNER-ACTIONS.md item, whichever of the two
+    shapes it is written in (see check_decisions_owner_action_citations).
+    Empty string if the id names neither.
+    """
+    esc = re.escape(item_id)
+    m = re.search(r"^###\s+~{0,2}" + esc + r"\.\s*(.+?)\n(.*?)(?=^###\s|\Z)",
+                  owner_actions_text, re.MULTILINE | re.DOTALL)
+    if m:
+        return m.group(1) + " " + m.group(2)
+    m = re.search(r"^\|\s*~{0,2}\*\*" + esc + r"\*\*~{0,2}\s*\|(.*)$",
+                  owner_actions_text, re.MULTILINE)
+    if m:
+        return m.group(1)
+    return ""
+
+
+def check_decisions_owner_action_citations(decisions_text, owner_actions_text) -> list:
+    """Pure logic: every "OWNER-ACTIONS.md item N" cited in DECISIONS.md must
+    name a real item in that file, and that item must actually be about the
+    same thing the decision is.
+
+    Found 2026-09-30, this operator, cold-reading D-028 (written the same
+    day) for the same citation-drift class check_decisions_index() already
+    catches for decision ids: it escalated its own MCP question as
+    "OWNER-ACTIONS.md item 20", but item 20 in that file is "Add one link to
+    each of the 12 published video descriptions", an unrelated task. The
+    real MCP item is 21. STATUS.md's own account of the same decision
+    already cited 21 correctly, so this was a plain slip in one file, not a
+    genuine renumbering nobody had caught up with, but a reader who trusted
+    the decision record over the source file would have looked in the wrong
+    place.
+
+    A pure existence check would not have caught it: 20 is a real item, just
+    the wrong one. So this also requires at least one distinctive word from
+    the decision's own title to appear in the cited item's own text (here,
+    "MCP", which item 21 has and item 20 does not); a decision with no such
+    word (all short/common) is not checked further, since that would be
+    guessing rather than finding a defect. Valid ids come from two shapes
+    OWNER-ACTIONS.md actually uses: a `### N.` heading for most items, and a
+    `| **N** |` table row for the "Start here" items (0, 1a, 1d) that live
+    in a table instead.
+    """
+    valid = set(re.findall(
+        r"^###\s+~{0,2}(\d+[a-z]?)\.", owner_actions_text, re.MULTILINE))
+    valid |= set(re.findall(
+        r"^\|\s*~{0,2}\*\*(\d+[a-z]?)\*\*~{0,2}\s*\|",
+        owner_actions_text, re.MULTILINE))
+
+    # Two heading shapes coexist in this file: "## D-020 | date | title" and
+    # the older "## DEC-0001: title", so the title separator is either.
+    blocks = re.finditer(
+        r"^##\s+(D-\d{3}|DEC-\d{4})\s*(?:\|[^|\n]*\||:)\s*(.+?)\n(.*?)"
+        r"(?=^##\s+(?:D-\d{3}|DEC-\d{4})\s*(?:\||:)|\Z)",
+        decisions_text, re.MULTILINE | re.DOTALL)
+
+    missing, mismatched = [], []
+    for b in blocks:
+        dec_id, title, body = b.group(1), b.group(2), b.group(3)
+        cites = set(re.findall(
+            r"OWNER-ACTIONS\.md`?\s+item\s+(\d+[a-z]?)\b", body))
+        if not cites:
+            continue
+        kws = _citation_keywords(title)
+        for item_id in sorted(cites):
+            if item_id not in valid:
+                missing.append("%s cites item %s" % (dec_id, item_id))
+                continue
+            if not kws:
+                continue
+            item_text = _owner_action_item_text(
+                owner_actions_text, item_id).lower()
+            if not any(kw in item_text for kw in kws):
+                mismatched.append(
+                    "%s cites OWNER-ACTIONS.md item %s, but none of that "
+                    "decision's own distinctive words (%s) appear in that "
+                    "item's text" % (dec_id, item_id, ", ".join(sorted(kws))))
+
+    problems = []
+    if missing:
+        problems.append("citing nonexistent item(s): %s" % "; ".join(missing))
+    if mismatched:
+        problems.extend(mismatched)
+    return problems
+
+
+def gate_decisions_owner_action_citations_current() -> None:
+    """Every OWNER-ACTIONS.md item number cited from DECISIONS.md must be
+    real. See check_decisions_owner_action_citations() for the finding.
+    """
+    dp = os.path.join(ROOT, "DECISIONS.md")
+    op = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not (os.path.exists(dp) and os.path.exists(op)):
+        return
+    dtext = io.open(dp, encoding="utf-8", errors="replace").read()
+    otext = io.open(op, encoding="utf-8", errors="replace").read()
+    problems = check_decisions_owner_action_citations(dtext, otext)
+    if problems:
+        fail("decisions-owner-action-citations-current", "; ".join(problems))
+
+
 def check_learnings_index(text) -> list:
     """Pure logic: return problem strings for LEARNINGS.md's own index table.
 
@@ -26004,6 +26285,7 @@ def main() -> int:
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
     run_gate(gate_scheduled_workflow_cadence)
+    run_gate(gate_push_fallback_ledger_honest)
     run_gate(gate_scheduled_delivery_phase)
     run_gate(gate_schedule_comment_minute_current)
     run_gate(gate_stripe_price_claims)
@@ -26118,6 +26400,7 @@ def main() -> int:
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
+    run_gate(gate_decisions_owner_action_citations_current)
     run_gate(gate_learnings_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
@@ -26212,6 +26495,7 @@ def main() -> int:
     run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
+    run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)
@@ -26270,6 +26554,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
     run_gate(gate_dashboard_thumbnails_live)
+    run_gate(gate_thumbnail_font_face)
     run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)

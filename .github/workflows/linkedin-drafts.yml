@@ -106,25 +106,40 @@ jobs:
             echo 'before 14:19 UTC: leaving it to the schedule.'
             exit 0
           fi
-          today=$(date -u +%Y-%m-%d)
-          runs="repos/$GITHUB_REPOSITORY/actions/workflows/linkedin-drafts.yml/runs"
-          n=$(gh api "$runs?status=success&created=%3E%3D$today" \
-                --jq '.workflow_runs | length' 2>/dev/null || echo unknown)
+          # Found 2026-09-30, this operator, while verifying the new
+          # bluesky-drafts.yml (identical shape, copied from here): a
+          # `?status=success` count of this workflow's OWN runs is not a
+          # ledger of sends, it is a ledger of runs that did not crash, and
+          # nearly every push of the day stands down here with `exit 0`
+          # before 14:19, which is itself a "successful" run. So the first
+          # push checked after 14:19 on a normal day already counts dozens
+          # of stood-down "successes" from earlier the same day and reports
+          # "already sent" without a real send having happened. This
+          # workflow's own schedule has always eventually fired the same
+          # day so far (this file's own header measures a median 3.53h
+          # lag, never a whole missed day), so the fallback's brokenness
+          # had gone unnoticed; fixed by checking for the thing a REAL send
+          # actually produces, the rotation-advance commit the last step
+          # below makes, instead of the workflow's own run status.
+          today_start=$(date -u +%Y-%m-%dT00:00:00Z)
+          n=$(gh api "repos/$GITHUB_REPOSITORY/commits?since=$today_start&path=ops/corpus-rotation.json&per_page=100" \
+                --jq '[.[] | select(.commit.message | startswith("LinkedIn drafts: advance rotation"))] | length' \
+                2>/dev/null || echo unknown)
           if [ "$n" = unknown ]; then
             # Could not read the ledger. Do NOT send: a duplicate on every
             # push is worse than a late email, and both the schedule and the
             # manual dispatch still work.
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo '::warning::could not read run history; standing down rather than risking repeats.'
+            echo '::warning::could not read the commit ledger; standing down rather than risking repeats.'
             exit 0
           fi
           if [ "$n" -gt 0 ]; then
             echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo "already sent today ($n successful run(s))."
+            echo "already sent today ($n rotation-advance commit(s))."
             exit 0
           fi
           echo 'send=yes' >> "$GITHUB_OUTPUT"
-          echo 'past 14:19 UTC with no successful run today: standing in for the schedule.'
+          echo 'past 14:19 UTC with no real send today: standing in for the schedule.'
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.send == 'yes'
@@ -164,9 +179,38 @@ jobs:
       - name: Persist the rotation so tomorrow does not repeat today
         if: steps.gate.outputs.send == 'yes'
         run: |
+          set -eu
           git config user.name 'github-actions'
           git config user.email 'actions@github.com'
           git add ops/corpus-rotation.json
-          git diff --cached --quiet || git commit -m 'LinkedIn drafts: advance rotation'
-          git pull --rebase --autostash origin main || true
-          git push origin HEAD:main || true
+          git diff --cached --quiet && exit 0
+          git commit -m 'LinkedIn drafts: advance rotation'
+          # Found 2026-09-30, this operator: social-drafts.yml's own first
+          # real push-fallback send lost this exact race against
+          # bluesky-drafts.yml's concurrent commit to the same file. All
+          # three drafting workflows trigger on the same `push` event, and
+          # their crons are staggered so SCHEDULED runs do not collide, but
+          # a push past multiple cron targets at once fires every fallback
+          # simultaneously with no such staggering. The old silent
+          # `|| true` swallowed the rejected push, so a real send already
+          # sent was never recorded and the next day's draft could repeat
+          # it. A retry with a fresh rebase fixes the common case (a
+          # transient lag against an unrelated change); a genuine
+          # same-file, same-moment collision may still lose, so this warns
+          # loudly rather than pretending success either way.
+          pushed=0
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              pushed=1
+              break
+            fi
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "rebase conflict on attempt $attempt, retrying"
+            fi
+            sleep "$attempt"
+          done
+          if [ "$pushed" != 1 ]; then
+            echo "::warning::could not persist today's rotation after 5 attempts (last error above). The draft was sent; tomorrow's rotation may repeat it."
+          fi

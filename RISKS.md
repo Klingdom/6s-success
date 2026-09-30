@@ -303,17 +303,25 @@ evidence:
         leather pouch flap.
       * EM-002, APPROVED and shipping. An indistinct shield-crest emblem on a
         key head, of the kind automotive marks use.
-  - The other 4 rejected files (EE-002, EM-009, ES-007, EU-002, EU-004,
-    EU-009, less ET-003) carry no text, logo or emblem of any kind; their
+  - Corrected 2026-09-30: this row previously said "the other 4 rejected
+    files" while naming 6. Recounted directly against `ops/card-hero-
+    verdicts.json` (7 `no` verdicts total, ET-003 the one IP case above):
+    the other 6 rejected files (EE-002, EM-009, ES-007, EU-002, EU-004,
+    EU-009, distinct from ET-003) carry no text, logo or emblem of any kind; their
     rejections are aesthetic (a distorted umbrella merged into a chest of
     drawers, a melted coat hanger, incoherent furniture), which matches the
     one reason previously on record for EE-002.
   - LIMITS OF THIS SWEEP, stated so it is not read as clearance: it was done
     by a model with vision, not by an intellectual-property professional, and
     it finds visible marks rather than answering whether any depiction
-    infringes. 85 of the 88 were judged at contact-sheet resolution (about 320
-    px wide), where a mark smaller than a few pixels could be missed; the 3
-    flagged and the 7 rejected were checked at full resolution.
+    infringes. Corrected 2026-09-30: this row previously said 85 of 88 and
+    "the 3 flagged", double counting ET-003 (it is both one of the 7
+    rejected and one of the three pseudo-branding images). The 2 additional
+    flagged-but-approved images (EH-011, EM-002) plus the 7 rejected is 9
+    distinct images checked at full resolution, so **79** of the 88 were
+    judged only at contact-sheet resolution (about 320
+    px wide), where a mark smaller than a few pixels could be missed; the 2
+    additional flagged images and the 7 rejected were checked at full resolution.
   - No qualified intellectual-property professional has reviewed the deck.
 impact: >
   The Entryway deck is the pilot for a 20 deck product line. Art that depicts
@@ -945,6 +953,13 @@ evidence:
     sixteenth and seventeenth room decks, the latter a concurrent
     session's own work) each carry the same inert footer newsletter form,
     nothing new in kind.
+  - UPDATED 2026-09-30, scheduled operator: headline count only, 211 to
+    214. primary-bedroom-deck.html, workshop-deck.html and
+    patio-or-deck-deck.html (BACKLOG-2026-09-07.md B9, the eighteenth
+    through twentieth and final room decks, closing B9 at 20 of 20 rooms)
+    each carry the same inert footer newsletter form, nothing new in kind.
+    Re-derived from a live `git log` against the three files and
+    `ops/state.json`'s current `forms_dead`, not carried forward.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two

@@ -2084,6 +2084,8 @@ count not re-measured in this session; `check_urls.py`'s last several logged
 runs in `ops/NIGHTLY-LOG.md` report 187/187, consistent with the review's own
 count at the time it was written.
 
+**Sitemap count corrected 2026-09-30, PM check-in: this decision's own "187 URLs" is now stale by 23 pages, and reconciled here with D-026 rather than left to look like a silent breach.** Counted directly from `site/sitemap.xml`: 210 URLs today. All 23 new ones are the room hub and room-deck pages (`*-deck.html`, `/rooms/*`) that D-026 (2026-09-24, reopened 2026-09-25) explicitly authorised Phil to build room by room, landing 2026-09-25 through 2026-09-29 (`git log`, `B9:` commits). They are not the "article 31" or "a 115th zone" this decision names: the zone count is still exactly 114 real zone pages (115 URLs under `/zones/` counts the `/zones/` index itself, confirmed by listing every URL directly), unchanged since this decision was written. D-026 reasoned through its own gate (D-021's traffic argument) but never named this one; recorded now so a future cold read does not have to re-derive it. This decision's actual hold, on new SEO-content pages (a new article, a 115th zone), is unbroken and stays in force: Search Console (`OWNER-ACTIONS.md` 1a) is still unverified.
+
 **Alternatives.** Publish article 31 or zone 115 now, on the reasoning that
 more indexable content can only help: rejected, this is exactly the
 "activity, not growth" framing `GOALS.md` and this decision's own rationale
@@ -2145,6 +2147,14 @@ D9's four 2026-09-21 status blocks (`ZONE_RELATIONS` grown from the original
 22 hand-curated groups to 29, `gate_zone_relations_rendered` passing against
 the real committed site each time). Direct inspection tier: this repository's
 own prior measurement, itself sourced from the live generated site.
+
+**2026-09-30, PM check-in.** Re-run live: `ops/link_graph_report.py` now
+reads zone pages min 10, max 22, avg 13.3, still 0 orphans, 0 thin pages
+(114 zones, same as the day of the decision). The floor this decision
+actually rests on, no zone below 8, holds more comfortably than when it
+was written, not less. The 17-of-114-clear-15 count was not re-derived
+this pass; nothing above depends on it, since the median-15 clause was
+already downgraded to aspirational.
 
 **Alternatives.** Keep chasing median-15 by fabricating weaker cross-room
 links (a hallway closet linked to a coat closet on shelf-material alone,
@@ -2630,7 +2640,14 @@ contentless version of the question from being re-asked in the meantime.
 **Decision.** Keep `mcp/content.json` byte-identical to the manual corpus and
 keep `publish-mcp.yml` publishing the image, and do NOT start the container
 autonomously. The question of whether 6S Success runs a public MCP endpoint is
-escalated to the owner as `OWNER-ACTIONS.md` item 20.
+escalated to the owner as `OWNER-ACTIONS.md` item 21.
+
+**Corrected 2026-09-30, this operator, same day.** This decision cited the
+wrong number, 20, for that file's real MCP item: 20 is a different,
+unrelated task there ("Add one link to each of the 12 published video
+descriptions"). The real MCP item in
+that file is numbered 21. Checked directly against the live file rather than
+assumed correct because it was written the same day.
 
 **What was found, against production rather than inferred from this
 repository.** Read over ssh on 2026-09-30:

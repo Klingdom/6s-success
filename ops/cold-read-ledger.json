@@ -44,7 +44,7 @@
     "bluesky_drafts.py": {
       "status": "clean",
       "date": "2026-09-30",
-      "note": "Cold-read 2026-09-30 scheduled operator: read the module in full and ran --preview live. Correctly reuses the already-280-char-filtered x-post pool under its own bluesky-post rotation key (pool_kind param), re-derives 'remaining' from the actual served set (guards against the exact stale-count bug social_drafts.py had on 2026-09-12), re-checks the 300-char cap on the selected posts directly rather than trusting the upstream filter, and asserts no unfinished [insert.../TODO corpus text reaches the draft. Live preview produced 3 real, correctly-capped posts (262/258/264 chars), 710 remaining in the pool. No defect found."
+      "note": "Cold-read whole file (115 lines) plus its test (7/7 passing) and .github/workflows/bluesky-drafts.yml, all three new today, none previously ledgered. pool_kind threading in corpus_posts.take()/pool() verified correct: bluesky-post and x-post track separate served-sets keyed by kind while reading the same underlying x-post pool by id (sha256 of source+title, independent of which kind read it), so the two pipelines cannot silently halve each other's supply. --preview produces 3 valid <=300-char posts from the live corpus (710 remaining in the filtered pool). Workflow's push-fallback gate (send only after 14:05 UTC and only if no successful scheduled run today) and SMTP-credential pre-check both correct by inspection, matching the established linkedin-drafts.yml/social-drafts.yml pattern; registered in check_cron_cadence.py's WORKFLOWS list, which reports 0 completed runs so far (first cron fire ~14:05 UTC today, not yet due). No defect found."
     },
     "browser.py": {
       "status": "clean",
@@ -192,9 +192,9 @@
       "note": "Re-verified per 06:4x PM handoff. Read in full (359 lines). Confirmed live rather than assumed: all 8 WHY dict keys match the live Tier-1 CSV product names exactly, and all 8 live names have a WHY entry (checked both directions programmatically, not by eye). _rarity() recomputes zone counts live rather than trusting the CSV's frozen column. Regenerated: git status clean after, idempotent."
     },
     "build_kitchen_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "A concurrent cycle marked this file clean the same day without cross-checking the Room card's own 'start_here' claim against content.json's session-time data. It read: Sink and Dishwashing Zone is the kitchen's shortest zone. False: content.json's session field puts Sink at 30-45 min, tied second-shortest with Upper Cabinet Zone, while Utensil and Utility Drawers is the true shortest at 15-30 min. The true, grounded half of the same sentence (Sink is the point the whole kitchen resets from, per the SINK RESET action card's own why field) was correct and kept. Fixed at the source in ops/cardtext/build_kitchen_deck.py's ROOM card start_here field and this generator's own intro paragraph; regenerated kitchen-deck.json and site/kitchen-deck.html. Shipped dd9c0a01a."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note, both live-content grammar fixes (dd9c0a01a false 'shortest zone' claim, 46ff9077f 'A 80 card deck' should be 'An 80'), already logged and gated (gate_kitchen_deck_rendered). Full preflight.py this cycle ran every gate through gate_tests clean, including gate_kitchen_deck_rendered/gate_kitchen_micro_quests/gate_kitchen_action_related. No defect found."
     },
     "build_kitchen_deck_pdf.py": {
       "status": "clean",
@@ -202,9 +202,9 @@
       "note": "Read in full 2026-09-26. check() never raises, gate_kitchen_deck_pdf_current only calls check(). main()'s subprocess.run has no timeout guard against a raw TimeoutExpired traceback, but it is never invoked from CI/a generator chain, only run manually by an operator, so a loud crash there is acceptable, not a silent-failure class this repo gates against."
     },
     "build_laundry_room_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Laundry Room's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full, structurally identical to build_kitchen_deck_page.py/build_home_office_deck_page.py pattern. Confirmed hero_image_url() slug (laundry-room--washer-and-dryer-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain (canonical_links through fingerprint_assets) idempotent. No defect found."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
@@ -247,9 +247,9 @@
       "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
     },
     "build_primary_bathroom_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Primary Bathroom's own. Fixed to compute hero_image_url() from content.json's real zone order; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full, same pattern as build_laundry_room_deck_page.py. Confirmed hero_image_url() slug (primary-bathroom--vanity-counter-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain idempotent. No defect found."
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
@@ -268,23 +268,23 @@
     },
     "build_pwa.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "manifest/service-worker generator; ran live, idempotent (no drift), precache existence-checked, cache name derives from content hash. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff (already clean on 5+ prior reads per this ledger/NIGHTLY-LOG). Ran standalone: byte-identical site/sw.js and manifest.webmanifest, zero git diff. No defect found."
     },
     "build_quest.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "heroes()/approved_and_published() disk-vs-approval reconciliation, symptom entry screen and BROKEN-build guards all correct; verified no zone currently lacks steps (the one theoretical gap in the pictured-vs-shipped check), so no live defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 80a111d1d (A10, split quest-data.js so the symptom picker does not wait on the manual), already logged in ops/NIGHTLY-LOG.md 2026-09-28 with its own fail-then-pass proof (gate_quest_symptom_picker_lazy_rooms) and all 8 ops/tests/test_quest_*.py e2e scripts passing. Full preflight.py this cycle clean through every quest-related gate. No defect found."
     },
     "build_resources.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Live SKU/price reads, book-name pairing by normalised match, and the full whole-site wiring chain (issue #26 shape) all present and correct; linked downloads/kit/how-to-clean pages confirmed to exist on disk. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 9ddddd197 (420 payment links were followable, so crawling this site opened checkouts), already logged and gated (gate_payment_links_nofollow, 8/8 tests). Full preflight.py this cycle clean. No defect found."
     },
     "build_sample_html.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified per prior cycle's handoff. Read in full. degrade_images()/font-repoint/analytics-tag/figalt-CSS logic all sound; the book.css print-diagnostic line re-reads BOOK_CSS_SRC fresh each time (by design, since the source is deliberately never modified, only the shipped copy), so it always reports adding the rule, which is accurate for the source but could read oddly out of context; not a functional defect, no output or behavior wrong. Ran --apply standalone: zero git diff against committed tree. No defect found."
     },
     "build_seo.py": {
       "status": "clean",
@@ -293,13 +293,13 @@
     },
     "build_social_captions.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Pinterest/Instagram caption generator; ran --all, 114/114 written, 0 length warnings, output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "Read in full (231 lines). Ran --all: 114 captions + boards.json written, 0 warnings (titles/descriptions/captions all within Pinterest/Instagram limits). Regenerated output byte-identical to committed tree (git diff clean). Reuses build_youtube_metadata.py's title_for()/zone_page_slug() and build_social_pins.py's done_items(), so fixes to those propagate here too. No defect found."
     },
     "build_social_pins.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Read in full (385 lines). Ran --zone 'Landing Zone': both pinterest/instagram cards render at correct dimensions; regenerated PNG differs from committed only because Pillow is missing in this sandbox so palette_png()'s 256-colour quantization step is honestly skipped (full-colour fallback, as the code's own docstring says it will), not a code defect; reverted the two test renders rather than ship a full-colour regression. No defect found."
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
@@ -308,18 +308,18 @@
     },
     "build_standards.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_thumbnails.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "Read in full (166 lines). Found and fixed a real defect: html_for() substituted vz.FONTS (a bare filesystem directory path) directly into <style> in place of an @font-face rule, so none of the 114 thumbnails ever actually loaded the Inter font; 'font-family: Inter' silently fell back to whatever system font the render machine has. Confirmed with a pixel diff (Pillow+numpy installed for the check): 8.8% of pixels differed, max channel delta 204/255, before the fix. Added the missing @font-face for Inter-800 (the weight .room/.zone actually use; the real Inter-800-normal.woff2 file already existed on disk, just unlinked), regenerated all 114 thumbnails, new gate_thumbnail_font_face in preflight.py (fail-then-pass proved 4 ways in ops/tests/test_gate_thumbnail_font_face.py: bare-path bug, no @font-face at all, wrong declared weight, and the real fixed shape)."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -328,23 +328,23 @@
     },
     "build_youtube_metadata.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "YouTube title/description/tags generator; ran live, 114/114 written, 0 warnings, output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "Read in full while tracing build_social_captions.py's imports (title_for, zone_page_slug). Both functions are the single source of truth five sibling files already depend on. No defect found in this pass; not independently re-run standalone this cycle."
     },
     "build_zone_index.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_zone_map_pack.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "132 lines, read in full. Builds the 20-sheet printable Micro Zone Map from zone_graphics.py/video_zone.py, so a sheet cannot claim a zone the site does not have. main() asserts exactly 20 rooms and 114 zones before writing, refusing silently-wrong output. Verified live rather than assumed: reran the generator against the real corpus; both outputs (build/ and site/downloads/) came back byte-identical to the committed files (git diff clean), so the shipped download is not stale against its own source, the exact defect class this repository's own backlog section 7 names as dominant. SVG output already carries role=img/aria-labelledby via zone_graphics.py. No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_zone_pages.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "room_time()'s hrs() used round() (banker's rounding), silently understating 9 of 20 room pages' hours by half an hour on exact ties; fixed to math.floor(x+0.5), gate_room_time_rounding_current added"
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: ten commits since the 2026-09-26 clean note (payment-link nofollow, related-reading load-balancing x3, B9 room decks, imageless-page fallback, room_time rounding), every one already logged in ops/NIGHTLY-LOG.md with its own gate (gate_payment_links_nofollow, gate_related_reading_*, gate_room_time_rounding_current, gate_hero_fallback_current). Full preflight.py this cycle ran every one of those gates clean through gate_tests. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -358,33 +358,33 @@
     },
     "check_affiliate_trigger.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports T2 unevaluated (no SSH/analytics access in this sandbox), honest unknown rather than false pass. No defect found."
     },
     "check_cron_cadence.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Cron-fire-count parser refuses to guess on day/month/weekday-restricted crons (UNMEASURABLE beats wrong number); intended_landing/scheduled_times/landing_minutes/most_recent_due/last_changed/runs_since all consumed by preflight.py's gate_scheduled_delivery_phase, not dead code as first appeared from a same-file grep. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone against live GitHub Actions run history: all workflows ok except bluesky-drafts.yml correctly reported as too few runs to measure rather than false pass/fail. No defect found."
     },
     "check_integrations.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports UNKNOWN, site unreachable from this sandbox, honest unknown rather than false pass. No defect found."
     },
     "check_ledgerium.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: EXPECTED/WEBHOOK imported from ledgerium_price_check.py (single source), correctly reports unchecked with no credential, no defect"
+      "date": "2026-09-30",
+      "note": "PM 09:1x re-verify: still correctly reports unchecked (no Stripe credential in this sandbox), matches existing note. No defect."
     },
     "check_live_links.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: verified live rather than assumed that bundle.html/standards.html (missing from PAGES) are not a coverage gap, since both slugs already surface via the scanned assets/js/data.js catalogue (confirmed: grep of every site/**/*.html slug vs. combined HTML+JS slug set is identical, 126 both ways). No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 46b111b56 (the same redirect-probe fix documented against ops/deploy_freshness.py above; this file's own two hardcoded .html paths were fixed in the same commit). Reran ops/tests/test_check_live_links.py: 8/8 cases pass. No defect found."
     },
     "check_pack_pages.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read clean, no defect. Correctly reports UNCHECKED (pypdf not installed here) rather than a false pass, per CLAUDE.md 0.4; ran live and confirmed."
+      "date": "2026-09-30",
+      "note": "PM 09:1x re-verify: still correctly reports UNCHECKED for all 5 printables (pypdf not installed here), matches existing note. No defect."
     },
     "check_sellable.py": {
       "status": "clean",
@@ -393,8 +393,8 @@
     },
     "check_sitemap_current.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Pre-commit-only content-hash staleness check; delegates hashing to build_seo.py's own _content_hash/_load_content_hashes, no duplicated logic to drift. CI-side backstop gate_sitemap_lastmod_current in preflight.py uses the same hash file independently and already caught/fixed a real path-resolution bug 2026-09-21, so this check is not the only line of defense. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: 210/210 pages match recorded content hash. No defect found."
     },
     "check_urls.py": {
       "status": "fixed",
@@ -403,23 +403,23 @@
     },
     "check_video_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "oEmbed-based YouTube liveness check, correctly reports UNCHECKED (not pass) when egress is unavailable, only wired into preflight on --deep (gate_site_video_links_alive) since it needs network. Regex ID extraction covers watch/embed/data-yt/quest.js video field forms. No defect."
+      "date": "2026-09-30",
+      "note": "re-verified 2026-09-30: correctly reports UNCHECKED (12 video ids, network blocked in this sandbox, HTTPError/URLError caught), does not report a false clean when it cannot look; no defect"
     },
     "check_video_standard.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "compares rendered .srt checklists against video_zone.done_items(); ran live, 114/114 match the standard, 0 stale, 0 unreadable. No defect."
+      "date": "2026-09-30",
+      "note": "re-verified 2026-09-30: compared all 114 rendered videos' captions against video_zone.done_items() live, 0 stale, matches the 2026-09-25 note; no defect"
     },
     "checkin.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "next_action() read the raw products_live field instead of the carried-forward products_live_last_measured value, so the deploy-behind warning silently never fired on any run with no egress to the live site (every sandboxed run). Fixed and gated with two new test_checkin.py cases proving fail-then-pass."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (95d3c60eb, fix the deploy-behind warning silently inert on every sandboxed run; bcf6fa1b0, throttle to roughly hourly). Reran ops/tests/test_checkin.py: 29 assertions pass. No defect found."
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified after this file's own 09-27 extension to a 4th ops/*.js lane; _all_candidate_files() collision check, lane_path(), and ledger_size (now counting only cleared candidates, not raw ledger length) all correct; py_compile clean, --next runs correctly (175/175)."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, this cycle: added last_touched()/stale_entries() and the --stale CLI flag, closing the exact gap this re-verification pass exists to find (a ledger entry's clean/fixed date silently outliving the file's own git history, as this cycle found live in ops/deploy_freshness.py). New ops/tests/test_cold_read_ledger_stale.py (7/7 cases), new preflight gate gate_cold_read_ledger_entries_not_stale (a WARNING, matching gate_cold_read_handoff_not_stale's own precedent), fail-then-pass proved directly. No other defect found."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -427,14 +427,14 @@
       "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
     },
     "corpus_posts.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Found 2026-09-26: FREE_CLAIM missed the real 'Read it free.' phrasing on 10 x-post entries from paid chapters 31-33; regex widened, new preflight gate gate_corpus_posts_no_free_claim_leak added and fail-then-pass proved directly. Supersedes a concurrent PM check-in's 'clean' verdict on this same file the same day: that pass checked the extractors and the reflow() import path, both correctly, but did not independently re-derive FREE_CLAIM's own coverage against the live pool."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (db106800b, a live false-claim/misclassification fix; ac631cf48, give Bluesky the drafting pipeline). Reran ops/tests/test_corpus_posts.py: 36/36 cases pass. No defect found."
     },
     "crawl_report.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Bot classification order, TRAINING/RETRIEVAL split, proxy vs container log parsing and reverse-DNS verification all correct on inspection. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 640ac7414 ('77% of this site's traffic is this repository, and the crawl report called it human', excluding this repo's own tooling user-agents from the human/unknown bucket). Reran all four ops/tests/test_crawl_report_*.py files: all clean (line parsing, own-tooling exclusion, purpose classification, unparsed reporting). No defect found."
     },
     "dashboard.py": {
       "status": "clean",
@@ -448,13 +448,13 @@
     },
     "deploy_freshness.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "read-only code review only, no live egress from this sandbox to run it against production. Logic is sound: explicit unknown/stale/current tristate, normalises line endings, discovers probe pages rather than hardcoding a possibly-dead marker page. No defect found in the source."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 (the ledger's own oldest-first re-verification lane, which surfaced the gap this cycle's own gate_cold_read_ledger_entries_not_stale now catches): the 2026-09-25 clean note was stale. A real defect landed and was fixed 2026-09-29 (Phil's own 46b111b56, 'Our own monitoring made 94% of the redirects...'): the probe URL was built from the local filename and asked production for the .html form of a zone page, drawing 2,270 self-inflicted redirects in 8 days. canonical_path() now strips .html for /rooms/ and /zones/ only. Reran ops/tests/test_deploy_freshness.py: 6/6 cases pass. A concurrent 11:4x PM check-in re-verified the same file the same minute by running --check live (correctly UNKNOWN, no egress from that sandbox either); its note is folded in here rather than kept as a separate, less complete entry, since it did not catch the 2026-09-25-to-2026-09-29 source change this note documents. No further defect found on this pass."
     },
     "diagnosis.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "schema check for content.json diagnosis blocks; ran against real corpus, 38/114 zones carry diagnosis, all pass schema. No defect."
+      "date": "2026-09-30",
+      "note": "ran against real content/manual/source/content.json: diagnosis present on 114 of 114 zones, every zone passes schema; module logic read in full, no defect found"
     },
     "eventLog.js": {
       "status": "clean",
@@ -463,8 +463,8 @@
     },
     "experiments.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "experiment registry, Umami reader and sample-size arithmetic. Ran --offline live: correctly reports UNCHECKED throughout rather than defaulting to zero, matches its own documented contract. Ran --power 0.02 0.03: 3,826/arm, matches a manual two-proportion power calculation. website_id cross-site guard already covered by test_umami_website_filter.py (7/7). No sandbox ssh key here to exercise the live-read path end to end, but the SELECT-only guard, sentinel-row failure detection and the website_id guard were all read closely and are sound. No defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30 PM check-in (11:4x). Ran --offline live: all 4 experiments correctly report UNCHECKED (blocked/answer), not zero, not stale-cited as current. Matches 2026-09-25 read; source unchanged. No defect."
     },
     "fill_front_matter.py": {
       "status": "fixed",
@@ -508,13 +508,13 @@
     },
     "hazard_icons.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "correct and fully wired into build_zone_pages.py, gated by gate_hazard_icons_current; 252/252 coverage confirmed live; no defect"
+      "date": "2026-09-30",
+      "note": "--check: 252 of 252 hazard entries covered by 5 drawn icons, no missing category; confirmed wired into ops/build_zone_pages.py and actually rendered (class=\"hz\") in all 114 shipped site/zones/*.html pages, not just the generator self-test"
     },
     "hourly_brief.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Subject line silently defaulted revenue/sales to $0 when Stripe was unreadable (commerce() error), reading as a genuine quiet month; body section already said 'could not read Stripe'. Fixed with a stripe_unreadable branch; new check added to gate_hourly_brief_stripe_checks, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (520709eea, fix false-zero subject line when Stripe is unreadable; 4d334a0ab, fix the real cron cadence with a throttled push trigger). Reran ops/tests/test_hourly_brief_throttle.py: pass. No defect found."
     },
     "image_local.py": {
       "status": "fixed",
@@ -613,8 +613,8 @@
     },
     "owner_inbox.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26 (scheduled operator). unread_from_owner() and unread_needing_action() both use BODY.PEEK (never mark read) and both correctly return None (not empty list) when the IMAP credential is missing, which preflight.py's gate_owner_waiting distinguishes from 'nothing waiting'. Third-party regex covers affiliate/payment/domain/account-security wording, the exact incident class this file's own docstring documents (Impact's decline sitting unread 8 days). ack() is a separate command from main(), so a read never silently claims an action. Already wired into preflight.py's gate_owner_waiting (both functions called, each with its own exception guard) as well as its own bare CLI. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 9915548c4 (read four third-party messages that sat unread for a month, stop them repeating). Reran ops/tests/test_owner_inbox.py: 3/3 cases pass. No defect found."
     },
     "photos.js": {
       "status": "clean",
@@ -627,9 +627,9 @@
       "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "cold_read_handoff_stale_files() header regex was hardcoded to exact '**Next:**'/'NEXT FOR THE OPERATOR:' strings and missed established variants this same log actually uses: '**Next for the operator:**' (45 uses), '**Next for operator:**' (3), '**Next for the operator (:43):**', 'NEXT FOR THE OPERATOR, as of this check-in:', 'NEXT FOR WHOEVER PICKS THIS UP:'. A newest entry using any of these looked file-less to the gate and it fell through to an older, superseded handoff, flagging an already-resolved file instead of trusting the newest entry's own live candidate. Widened both header patterns to accept any text between the keyword and the closing punctuation rather than another exact string. Fail-then-pass proved directly on 3 new cases (stashed the fix, watched all three fail by name, restored, reran clean); the other 12 pre-existing cases in ops/tests/test_gate_cold_read_handoff_not_stale.py still pass unchanged. This revises the 2026-09-27 'clean' cold-read verdict, which read the whole file but did not exercise this specific regex against the log's own real phrasing history."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, this cycle: added gate_cold_read_ledger_entries_not_stale (see ops/cold_read_ledger.py's own re-verification note above); every other gate in a full preflight.py --fast run this cycle passed clean through gate_tests (the documented headless-Chromium sandbox hang). No other defect found."
     },
     "prerender_shop.py": {
       "status": "fixed",
@@ -637,19 +637,19 @@
       "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
     },
     "product_links.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "check() rendered every link, judged some DEAD, printed them, then returned without writing the catalogue -- a dead link stayed published (Link Status still 'Verified search') since affiliate.py/zone_supplies.py only read the CSV, never this tool's stdout. Fixed: check() now demotes a dead/weak result exactly as --assign already does, and persists it (write_catalogue), with a --dry flag matching --assign's. Fail-then-pass proved directly (temporarily skipped write_catalogue, watched 2 new test cases fail by name, restored, reran clean). ops/tests/test_product_links.py extended 32 to 36 cases."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_product_links.py directly (no pytest installed), 36/36 passed, confirming the 2026-09-25 fix (check() now demotes and persists a dead link via write_catalogue, --dry flag present) still holds in code. Live re-verification against real retailer URLs is UNCHECKED, not clean: this sandbox's egress proxy rejects outbound connections to www.google.com/www.target.com/etc (organization policy), the same standing network limitation every other live-retailer check reports."
     },
     "prune_catalog_js.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran live (--check and full): 0 pages need pruning today (data.js already absent from every page that does not render a product), and the site.js guard (window.CATALOG || []) that makes the removal safe is still present. Conservative NEEDS list checked against corporate.html's consulting grid and confirmed correct. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: --check still reports 5 pages keep data.js, 0 pages need pruning; matches 2026-09-25 note, no regression"
     },
     "quest.js": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Read in full (2007 lines). Found and fixed a real dead-selector defect: applyFirstRunGate() and the go-other handler both hid/showed #p-done-wrap via a guarded $(sel), but no element with that id exists anywhere in quest.html (checked directly against the file, not assumed) and never has per this file's own git history. Harmless only because of the if(el) guard: #start-head and #p-bar's own parentNode already correctly cover the same elements a separate two lines later. Removed the dead selector from both arrays, replaced with an explanatory comment (careful to use no quote marks around the id itself, since a quoted mention would itself match the new gate below). Verified no regression: all 8 quest.js browser-driven tests pass after the edit, node --check clean. Turned the lesson into a gate: ops/preflight.py's new gate_no_dangling_dom_id_selectors() scans every \"#id\"-shaped string literal in site/assets/js/*.js against every id= in shipped HTML, excluding hex-colour-shaped literals and runtime-built prefixes (\"#view-\" + n). Proved fail-then-pass by reintroducing the exact removed literal into a scratch copy and watching it fail by name, then confirmed the real committed files are clean."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-27 clean note, 80a111d1d (A10, the lazy-load split), already logged with its own fail-then-pass proof and all 8 ops/tests/test_quest_*.py e2e scripts passing. No defect found."
     },
     "receive_deploy_key.py": {
       "status": "clean",
@@ -702,9 +702,9 @@
       "note": "cold-read 2026-09-25 scheduled operator cycle: --status correctly reports honest 0/0/0 with no build/heroes/ present here, sha-based verdict invalidation on regeneration verified correct, no defect"
     },
     "roadmap_report.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Found 2026-09-26: WAITING_RE (same regex fixed once before, 2026-09-11) missed 'no operator credential' (row 3.10's real wording, blocked on Phil's YouTube OAuth paste, OWNER-ACTIONS.md item 18), so the 4x-daily report to Phil listed it under NEXT IN THE QUEUE as if the operator could just do it. Added 'credential'/'no operator' to the pattern, new regression test against the live file, fail-then-pass proved directly."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: three commits since the 2026-09-26 clean note (db106800b, a live misclassification fix; b94d6275f, two wrong numbers and a daily CI failure from one missing predicate; 29422f906, re-measure traffic baselines and withdraw a rise that was one burst). Reran ops/tests/test_roadmap_report.py: 18 cases pass. No defect found."
     },
     "room_image_variants.py": {
       "status": "clean",
@@ -713,8 +713,8 @@
     },
     "root_causes.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read fully: self-checking (dupe ids, six_s validity, required fields), gated via unknown_ids_in() in preflight.py, all 17 causes' articles verified to exist where set. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: 17 root causes print cleanly (KC-001 to RC-017), self-checking module still loads with no defect; matches 2026-09-25 note, no regression"
     },
     "send_brief.py": {
       "status": "clean",
@@ -737,9 +737,9 @@
       "note": "Adversarially tested the rebase-conflict-resolution path against sync_push.py's own sibling logic (isolated bare-origin sandbox scenarios): a generated-only conflict, a two-commit case where a generated-file conflict resolves cleanly then a second, real-file conflict surfaces mid rebase --continue, and a pre-commit hook forcing a non-conflict failure. In every case the existing sync_push.markered() defense-in-depth plus the unknown-conflict abort already catch it correctly; no exploitable gap found. fix_dashes.py: --check clean (0 em/en dashes), 10/10 own tests pass, deliberately scoped to root/claude/retro control docs per its own docstring (a separate sitewide gate already covers code/site dash usage)."
     },
     "shoot_mobile.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "exit code was hardcoded to 0 regardless of findings; a caller checking the return code instead of scraping stdout for OVERFLOWING would get a false pass. Now exits 1 when any page overflows. test_mobile_overflow.py extended to assert the exit code both ways."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_mobile_overflow.py directly, both cases pass (probe distinguishes overflow, fit, and contained overflow; exit code asserted both ways). The 2026-09-25 fix (exit 1 on any overflow, was hardcoded 0) still holds."
     },
     "shop.js": {
       "status": "clean",
@@ -752,9 +752,9 @@
       "note": "sample-PDF image downsampler; --check could not run live (PIL/Pillow not installed in this sandbox, a known standing limitation). Live sample PDF (32.7MB) already reflects a shrunk state consistent with this tool having been applied historically. Own test suite (test_shrink_sample.py) passes 3/3. No defect."
     },
     "site.js": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Removed dead priceLo/priceHi price-range branch in renderProduct(): only the 21 Situation Kits/Area Bundles retired by D-023 (2026-09-22) ever carried those fields; zero live products, generators, or tests reference them now. A concurrent cycle's own cold-read of this same file called it clean and missed this; this finding supersedes that verdict."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: one commit since the 2026-09-27 clean note, 9ddddd197 (the payment-link nofollow fix touches renderProduct()'s anchor emission). Full preflight.py this cycle's gate_payment_links_nofollow and mobile npm test both clean. No defect found."
     },
     "social_drafts.py": {
       "status": "clean",
@@ -892,19 +892,19 @@
       "note": "cold-read 2026-09-25 scheduled operator cycle: idempotent CTA-wiring migration, 0 changes on rerun (already fully applied), covered by gate_consult_cta_current, no defect"
     },
     "wire_footer.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "All 134 room and zone pages shipped with no site footer at all, dropped by commit 6ba42a27 when build_zone_pages.py lifted chrome from a resources.html temporarily broken by an unrelated bug in the same commit. wire_footer.py only ever fixed drift on a footer that already existed, so it could not close that gap; extended it to also insert a missing footer, ran it to fix all 134 pages, and hardened gate_footer_consistent to fail (not warn) on a page with none."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_footer.py --check live against the current committed tree -- \"footer rewritten on 0 pages (0 of those had none at all)\", every footer link resolves. The 2026-09-25 fix (insert-when-missing, gate_footer_consistent hardened to fail not warn) still holds, no regression."
     },
     "wire_generated_catalog.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "generated-pack catalogue wiring; ran live, 130 entries (120 generated), all self-checks passed (no dead superset pointer, no overpriced subset, no lost buy links), output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: --check still reports 130 entries (10 hand, 120 generated), 126 buyable/4 free; matches 2026-09-25 note, no regression"
     },
     "wire_landmarks.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "wire_landmarks.py --check could not fail: main() exit code only depended on site.css's .skip-link rule, never on whether any page's skip link or main id actually matched (add_main() silently patches a missing id in memory and still reports 'had one'). Fixed main() to track and fail on any page whose skip link/main id would change; new gate_landmarks_current in preflight.py re-derives both checks independently. Fail-then-pass proved against the old code and in an isolated worktree against a planted regression on site/index.html."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_landmarks.py --check live -- 213 pages, all already had a correct main landmark and skip link, 0 needed wrapping. The 2026-09-25 fix (main() now fails on a mismatch instead of silently patching in memory) still holds."
     },
     "wire_legal_strip.py": {
       "status": "clean",
@@ -917,14 +917,14 @@
       "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
     },
     "wire_nav.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "Two real defects found running it live against the committed site: (1) build() writes a plain nav with no aria-current marker, so a run silently stripped aria-current=\"page\" from all 5 pages it touched, and the docstring's own usage instructions never mention wire_aria_current.py needing to follow; (2) the link-resolution scan crashed with an uncaught UnicodeDecodeError on a transient bad-encoding read (a concurrency artifact of this sandbox, not reproducible standalone), with no errors=\"replace\" fallback unlike every comparable read-only scan elsewhere. Fixed: chains wire_aria_current.main() at the end, the read-only scan now uses errors=\"replace\", and the rewrite loop catches UnicodeDecodeError per file (names it, skips it, fails the run rather than silently continuing). Verified idempotent against the real committed site (git diff clean) on two consecutive runs. New ops/tests/test_wire_nav_preserves_aria_current.py, fail-then-pass proved, 4/4."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_aria_current.py --check live -- \"every page marks its nav position correctly\"; confirmed by direct grep that exactly the 6 DESTINATIONS pages (book.html, consulting.html, contact.html, method.html, resources.html, zones/index.html) carry aria-current=\"page\" and no others, matching the design (only nav destinations get marked, index.html and zone/room pages correctly do not). The 2026-09-25 fix (wire_aria_current chained after wire_nav, errors=\"replace\" fallback) still holds."
     },
     "wire_progressive.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran live: idempotent (no site/ diff on a rerun against the committed tree), and its own self-check (site.css gates .reveal behind .js) passed against the real committed CSS. No defect."
+      "date": "2026-09-30",
+      "note": "PM check-in re-verify: rerun idempotent, 214 pages marked 5 skipped, 0 site/ diff after; matches 2026-09-25 note, no regression"
     },
     "wire_pwa.py": {
       "status": "fixed",
@@ -938,13 +938,13 @@
     },
     "wire_zone_heroes.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: FIG regex reuse between the primary wire loop and the fallback/PULLED paths, approved()'s sha-vs-name fallback, orphan_derivatives' extension matching all read cold; already hardened by many prior documented fixes (avif regression, withdrawal desync, alt-text-from-prompt). No new defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note, both B9 room-deck builds (Pantry and one other) exercising the existing fallback/approval paths, no logic change. Reran ops/tests/test_wire_zone_heroes.py: 4/4 cases pass. No defect found."
     },
     "youtube_upload.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "module docstring said '456 videos are built and 12 are public' without saying only 114 (one wide 16x9 master per zone) are ever eligible for this tool; a reader could misread the gap as 444 rather than the real 102. Clarified against GOALS.md's own corrected 12-of-114 framing; no code change, jobs()/upload_one() already correctly scoped to the wide file only"
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: touched 2026-09-27 (a090003cf, move the Google account to philklingmbb@gmail.com and refuse to upload to the wrong channel) since the 2026-09-25 clean note. Reran ops/tests/test_youtube_upload.py: ledger corruption-guard, jobs() dedupe/mp4/srt/room filtering, exit-code logic all correct. No defect found in the account-ownership change."
     },
     "zone_graphics.py": {
       "status": "clean",

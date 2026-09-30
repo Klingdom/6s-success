@@ -64,6 +64,7 @@ import io
 import json
 import os
 import re
+import subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LEDGER_PATH = os.path.join(ROOT, "ops", "cold-read-ledger.json")
@@ -117,6 +118,61 @@ def load_ledger() -> dict:
         return {}
     entries = data.get("entries", {})
     return entries if isinstance(entries, dict) else {}
+
+
+def last_touched(path: str) -> str | None:
+    """The date (YYYY-MM-DD) of the most recent commit that changed path,
+    relative to ROOT, or None if git has nothing to say (untracked, no
+    history, or git itself unavailable). Never raises: a git failure must
+    read as "unknown", not as "never touched" or "touched today".
+    """
+    try:
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cd", "--date=short", "--", path],
+            cwd=ROOT, capture_output=True, text=True, timeout=10)
+    except Exception:                                            # noqa: BLE001
+        return None
+    date = out.stdout.strip()
+    return date or None
+
+
+def stale_entries(ledger: dict | None = None) -> list[tuple[str, str, str]]:
+    """Ledger entries whose file has been committed to AFTER the date the
+    ledger recorded it clean/fixed on, so the entry's "no defect found" (or
+    "fixed") claim is no longer a claim about the code that exists today.
+
+    Found live 2026-09-30, re-verifying ops/deploy_freshness.py from the
+    ledger's own oldest-first queue: the ledger still read "clean, dated
+    2026-09-25, ... no defect found in the source", but a real defect (the
+    freshness probe's own URL causing 2,270 self-inflicted redirects) was
+    found and fixed in this exact file on 2026-09-29, four days later,
+    without the ledger ever being told. Nothing before this function ever
+    compared a ledger entry's date against the file's own git history, so
+    a clean verdict could silently outlive the code it was a verdict about,
+    the same "source corrected, artifact never re-derived" shape
+    BACKLOG-2026-09-07.md section 7 names as this repository's dominant
+    defect class, here applied to the ledger's own bookkeeping rather than
+    a generated page.
+
+    Returns (basename, ledger_date, last_touched_date) tuples, oldest
+    ledger_date first. A file git cannot date (untracked, or the git call
+    itself failed) is silently skipped, never treated as stale: unknown is
+    not a default (CLAUDE.md 0.4), and this must not manufacture a false
+    positive out of a sandbox limitation.
+    """
+    ledger = load_ledger() if ledger is None else ledger
+    out = []
+    for base, entry in ledger.items():
+        if entry.get("status") not in VALID_STATUSES:
+            continue
+        rel = lane_path(base)
+        if rel is None:
+            continue
+        touched = last_touched(rel)
+        if touched and touched > entry.get("date", ""):
+            out.append((base, entry["date"], touched))
+    out.sort(key=lambda t: t[1])
+    return out
 
 
 def is_cleared(filename: str, ledger: dict | None = None) -> bool:
@@ -226,6 +282,10 @@ def add_entry(filename: str, status: str, note: str,
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--next", nargs="?", const=15, type=int, default=None)
+    ap.add_argument("--stale", action="store_true",
+                     help="list ledger entries the git history has "
+                          "outdated (file committed to after its clean/"
+                          "fixed date)")
     ap.add_argument("--check")
     ap.add_argument("--add")
     ap.add_argument("--status", choices=VALID_STATUSES)
@@ -239,14 +299,32 @@ def main() -> int:
         add_entry(args.add, args.status, args.note, args.date)
         return 0
 
+    if args.stale:
+        stale = stale_entries()
+        if not stale:
+            print("0 ledger entries are stale: every clean/fixed date is "
+                  ">= the file's own last commit date.")
+            return 0
+        print("%d ledger entr%s the file's git history has outdated:\n"
+              % (len(stale), "y" if len(stale) == 1 else "ies"))
+        for base, ledger_date, touched in stale:
+            print("  %s: ledgered %s, but last touched %s"
+                  % (lane_path(base) or base, ledger_date, touched))
+        return 0
+
     if args.check:
         ledger = load_ledger()
         base = os.path.basename(args.check)
         path = lane_path(base) or base
         entry = ledger.get(base)
         if entry:
-            print("%s: %s (%s) - %s"
-                  % (path, entry["status"], entry["date"], entry["note"]))
+            note = ""
+            touched = last_touched(lane_path(base) or "") if lane_path(base) else None
+            if touched and touched > entry.get("date", ""):
+                note = (" -- STALE: last touched %s, after this entry's "
+                         "own %s clean/fixed date" % (touched, entry["date"]))
+            print("%s: %s (%s) - %s%s"
+                  % (path, entry["status"], entry["date"], entry["note"], note))
         else:
             print("%s: not in the ledger (unknown, not unread)" % path)
         return 0
@@ -257,10 +335,11 @@ def main() -> int:
     ledger_size = sum(1 for f in all_files if is_cleared(f, ledger))
     total = len(all_files)
     lane_dirs = list(dict.fromkeys(d for d, _ in LANES))
-    print("%d of %d files across %s are in the ledger. "
-          "Next %d un-ledgered candidates, lowest log-mention count first "
-          "(mention count is a rough secondary signal only):\n"
-          % (ledger_size, total, ", ".join(lane_dirs), n))
+    stale_count = len(stale_entries(ledger))
+    print("%d of %d files across %s are in the ledger (%d stale: run "
+          "--stale). Next %d un-ledgered candidates, lowest log-mention "
+          "count first (mention count is a rough secondary signal only):\n"
+          % (ledger_size, total, ", ".join(lane_dirs), stale_count, n))
     for name, count in next_candidates(n):
         print("  %3d  %s" % (count, lane_path(name) or name))
     return 0
