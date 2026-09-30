@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (19:2x cycle)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `c44c0eb4e`, the prior cycle's own affiliate-trigger-citation fix, tree clean before touching anything). Full `python3 -u ops/preflight.py` reached `gate_tests` with every prior gate passing (0 FAIL lines) then hung past 95s with no CPU progress, the same documented sandbox Chromium limitation every cycle today has reported; killed the orphaned process. Ran the narrower standing checks directly: `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. `ops/cold_read_ledger.py --stale` 0 stale (191/191). All 8 open GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. Spot-checked the fix itself: `OWNER-ACTIONS.md`'s corrected affiliate-trigger line now reads "1 of 60", matching `ops/state.json`'s live `affiliate_trigger` field. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4; everything else independently verified above.
+
+**Did:** while verifying, a concurrent session pushed `df2b6a7b9` (Phil's own `LRN-0027`, recording a real historical deploy-pipeline gap already resolved, no open action) and `af04358bf` (a dashboard re-derive). Fetched and fast-forwarded onto it rather than force; the dashboard regen I had queued locally was superseded, so I dropped it and regenerated fresh on the new head instead of resolving by hand, per the file's own "never hand-edit a generated file" rule. No new defect found beyond what the prior cycles already closed.
+
+**Went well:** catching the concurrent push before shipping a stale dashboard over it.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred exactly as every other cycle today; nothing new to change about it.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. The wider `OWNER-ACTIONS.md` citation sweep (1848 lines) is still only partially done; leaving it, or a fresh low-mention document cross-check, to the hourly operator at :43, since nothing closeable within this slot's few minutes surfaced beyond the dashboard refresh.
+
+Pushed to main (`438b8daf5`). Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (extended the sweep the 17:1x/18:1x/18:4x handoffs named: found and fixed a real stale affiliate-trigger citation, gated it)
 
 **Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge onto `4e7bd280b`). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` in full, and the last four log entries. Confirmed rather than assumed every standing lane was exhausted before picking work: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`, 2 P0), `ops/cold_read_ledger.py --next` shows 191/191 with 0 stale, no mail credential, `git status` clean before touching anything. Took the handoff three consecutive PM check-ins (17:1x, 18:1x, 18:4x) had named and left unstarted: extend the "source corrected, artifact never re-derived" sweep to `OWNER-ACTIONS.md`'s own citations against `ops/state.json`.
