@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (a stale Kitchen card-image prompt found re-verifying the ledger's oldest four; a gate written so it cannot drift again)
+
+**Did:** Unshallowed, attached to main, fast-forward merged onto origin/main (1198 commits, a genuinely stale local checkout rather than the unrelated-histories shape step 0 warns about: local main was a pure ancestor of origin/main once real history was fetched). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Confirmed live: 8 open GitHub issues, unchanged, all decision/blocked-on-art, none Phil-unblocked. No mail credential; inbox_agent.py --apply correctly reported so. Every BACKLOG-2026-09-07.md "Now" section is done or Phil-gated: all 20 room decks shipped (B9 complete), the micro-zone/app work (section 2) done, the free half of images/video (section 4) done, section 5 is HOLD on traffic this sandbox cannot generate, section 6 is owner-only gates.
+
+Continued the standing cold-read ledger's oldest-four handoff: build_app_icons.py, build_avif.py, build_card_prompts.py, build_corporate.py. Three came back clean (build_app_icons.py: PIL absent by default, installed it, 4 of 5 regenerated outputs pixel-identical, the fifth differs only in font anti-aliasing, a Pillow/freetype version artifact, not content; build_avif.py: --check reports 935/935 webp files have an avif sibling, wire() proved idempotent in an isolated copy; build_corporate.py: build() diffed clean against the committed page once the wiring-chain artifacts main() always adds are accounted for).
+
+**Found:** build_card_prompts.py's own output, build/prompts/kitchen/KZ-002.txt, still read "The step of space either side of the burners...", the wrong word, while ops/cardtext/kitchen-deck.json had already been corrected to "The strip of space...". Source corrected, artifact never re-derived, the exact defect class this log names as dominant. Only KZ-002 and the ALL.md aggregate were affected; the other 71 Kitchen cards were already current.
+
+**Fixed:** regenerated build/prompts/kitchen/. New gate_kitchen_card_prompts_current in ops/preflight.py re-derives all 72 Kitchen prompts live from the real corpus (no Desktop, GPU or network needed) and diffs them against the committed files; fail-then-pass proved directly (stashed the fix, watched the gate fail by name citing KZ-002, restored, reran clean). ops/tests/test_gate_kitchen_card_prompts_current.py (3/3).
+
+**Verified:** Full preflight.py run to completion twice (once before merging a concurrent session's 6 new commits, once after): every gate passed both times, 25 warnings, all previously diagnosed sandbox limits. check_urls.py (210/210), affiliate.py --check (165 documents), fix_dashes.py --check (0/0) independently clean.
+
+**Went well:** treating the ledger's standing handoff as real work rather than a formality; verifying build_corporate.py and build_avif.py without mutating the shared sandbox's site/ tree (pure-function diff, isolated copy) while a concurrent preflight run was in progress elsewhere.
+
+**Did not go well:** the two full preflight runs together cost most of this cycle's wall-clock in this CPU-starved sandbox; nothing new here, already a standing, diagnosed limit.
+
+**Changing next cycle:** none; the new gate is the change.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots). Cold-read ledger's new oldest four: build_cover.py, build_deck_pdf.py, build_epub.py, build_icons.py (all 2026-09-25).
+
+Pushed to main. ops/preflight.py, ops/tests/test_gate_kitchen_card_prompts_current.py, build/prompts/kitchen/{KZ-002.txt,ALL.md}, ops/cold-read-ledger.json, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (05:4x; previous work finished; a concurrent session had already closed the handoff this cycle was about to re-issue, adopted rather than duplicated)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_app_icons.py`, `ops/build_avif.py`, `ops/build_card_prompts.py`, `ops/build_corporate.py` live against the current repository, because a concurrent PM cycle's own 05:1x entry already re-verified the three files this entry was about to hand off (`backup_analytics.py`, `browser.py`, `build_all_prompts.py`, no drift) and named these four as the ledger's new genuinely-oldest, unchanged since.
