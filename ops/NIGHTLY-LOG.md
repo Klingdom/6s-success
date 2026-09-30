@@ -24,7 +24,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the ledger re-verification lane: 56 entries still dated 2026-09-25 after this cycle's 8.
 
-Pushed to main (merged with the concurrent 07:4x PM check-in). `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+Pushed to main (merged with two concurrent PM check-ins). `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
+## PM check-in addendum, 2026-09-30 (07:4x cycle, continued): the backgrounded preflight this cycle had launched finished after the cycle's own commit had already shipped, and it had real findings
+
+The `ops/run_preflight.sh` run this cycle backgrounded (see the entry below) was still alive with no output when the cycle's own dashboard fix was shipped; it finished afterward with exit code 1, 3 gate failures. Read rather than assumed clean.
+
+**All 3 failures traced to one transient artifact, not a real defect.** `stray-probe-files`, `catalogue` and `landmarks-current` all named the same file, `site/_audit_catalog_fixture_817.html`, the documented shape a concurrent session's own `audit_catalog.py`/test run leaves mid-write in this shared sandbox. Confirmed rather than dismissed on sight: the file no longer exists on disk, was never tracked (`git log --all` for its path is empty), and was not part of this cycle's own commit (`git status` clean before and after). Self-healed, per the standing pattern.
+
+**One of the 28 warnings was real and worth fixing: `status-deploy-verdict-current`.** Phil's own commit at 07:42 (`3f5f8ae46`, recording `ops/deploy-verdict.json` build `e70a81623df41ed5`) superseded the `1db1621639e93437` build both `STATUS.md`'s BLOCKER-001 and its Production Knowledge paragraph still cited. `resolve_verdict_commit()` returned `None`, not because the build is unresolvable but because the line landed via a merge commit (`02274cc669`, "Merge origin/main: re-derive the dashboard") and that function's pickaxe walk skips merge diffs by default; confirmed the real commit with `git blame site/build-id.txt` instead of accepting the helper's `None`. `git log 02274cc669..HEAD -- site/ Dockerfile` is empty: zero gap, verified directly. Appended new dated entries to both `STATUS.md` sections following this file's own newest-appended-last convention for BLOCKER-001 and newest-first for the Production Knowledge paragraph; both `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` tested directly against the edited file, both return `''` (clean). A second `preflight.py` run was backgrounded to confirm; not yet returned as this entry is written.
+
+**Went well:** not assuming the backgrounded run would come back clean just because it was slow, and confirming the transient file's history directly instead of guessing it was safe to ignore.
+
+**Did not go well:** shipping the dashboard fix before the backgrounded preflight had returned meant this addendum, not the original entry, is what actually verifies this cycle's own output; the next cycle should let `ops/run_preflight.sh` finish before considering a cycle closed, not just before the git push.
+
+Pushed to main. `STATUS.md` only (this addendum's own fix); `ops/NIGHTLY-LOG.md`. No price, product or site page touched.
 
 ## PM check-in, 2026-09-30 (07:4x; previous work finished; a stale dashboard claim corrected)
 
