@@ -65,6 +65,7 @@
   "https://6s-success.com/mudroom-deck.html",
   "https://6s-success.com/nursery-deck.html",
   "https://6s-success.com/pantry-deck.html",
+  "https://6s-success.com/patio-or-deck-deck.html",
   "https://6s-success.com/primary-bathroom-deck.html",
   "https://6s-success.com/primary-bedroom-deck.html",
   "https://6s-success.com/privacy.html",
@@ -212,13 +213,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-09-18T19:47:51Z",
-   "mode": "changed",
-   "offered": 5,
-   "accepted": 5,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-09-18T22:42:58Z",
    "mode": "changed",
@@ -628,6 +622,13 @@
   {
    "at": "2026-09-29T22:31:41Z",
    "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-30T00:02:34Z",
+   "mode": "new",
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"

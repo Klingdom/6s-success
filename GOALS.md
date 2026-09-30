@@ -153,6 +153,16 @@ solved and the distribution problem is underway: the YouTube channel now
 carries 12 videos (five Entryway zones, seven Kitchen zones), all narrated
 with a neural voice and captioned, published by Phil directly.
 
+**Five technical explanations for the organic flatline were tested on 2026-09-29 and all five came back clean, which is what makes the remaining gap a measurement gap rather than a build gap.** Read from the persistent access log and from production itself, not inferred:
+
+1. *Is anything crawling us?* Yes, steadily. 662 search-engine fetches over 8 days across 190 distinct non-asset paths, 54 to 118 a day with no downward trend (Googlebot 243, Bingbot 273, YandexBot 118, OAI-SearchBot 35, Applebot 4). A separate 129 fetches were training crawlers (ClaudeBot, GPTBot), which is a licensing event and cannot put this site in front of anybody.
+2. *Are we blocking them?* No. `robots.txt` is `Allow: /` and returns 200.
+3. *Are we sending crawlers through redirects?* Not from anything we publish. Extensionless is canonical and returns 200, `.html` 301s to it, the sitemap uses the extensionless form for all 20 rooms, and of 1,485 internal links to rooms and zones, **zero** use the redirecting form. The 15% of crawler fetches that do redirect are URLs Google remembers, which self-corrects.
+4. *Are we slow or uncacheable?* No. Fingerprinted assets are `public, max-age=2592000, immutable`; only HTML, `robots.txt` and `sitemap.xml` are `no-cache`, which is correct for a site that republishes daily. A first pass here suspected caching was off site-wide because Googlebot re-fetched the same fingerprinted `site.js?v=a9543718af` five times; measuring the headers withdrew that.
+5. *Is the sitemap advertising pages we do not serve?* It was, and that is now fixed and separately recorded against `OWNER-ACTIONS.md` item 0. It cost 258 crawler 404s in 8 days.
+
+So the site is crawled, crawlable, fast, correctly canonicalised and internally linked, and it has four organic visitors in its life. What cannot be seen from here is whether those 190 crawled paths are **indexed and ranking badly** or **not indexed at all**, and those two have opposite fixes: the first is an intent-and-competition problem answered by targeting different queries, the second is an authority problem answered by links from elsewhere. Only Search Console distinguishes them, which promotes `OWNER-ACTIONS.md` 1a from a nice-to-have to the one instrument that decides what the next cycle of SEO work should even be.
+
 **What the numbers say to do:** post to the one channel that already works
 while the slow instrument warms up, and keep opening the video channels,
 because a category like this is searched on YouTube and Pinterest as much as
