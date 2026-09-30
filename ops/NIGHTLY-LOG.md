@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (17:1x cycle)
+
+NEXT FOR THE OPERATOR: the D-019 through D-028 drift-recheck lane the 16:4x cycle handed off is now exhausted, clean. Pick the next document sweep for the same "source corrected, artifact never re-derived" defect class named in BACKLOG-2026-09-07.md section 7, for example RISKS.md's own mitigation rows against their cited sources, since DECISIONS.md has now been swept twice today (D-001 through D-018 earlier, D-019 through D-028 this slot).
+
+**Previous work finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `f04fe151a`, no conflict). That head commit is Phil's own `deploy.py` fix (build-state classification, 14 new test cases) plus a `STATUS.md`/dashboard correction; working tree was clean before this cycle touched anything, confirming it shipped complete. All 8 open GitHub issues unchanged, decision/blocked-on-art, none pickable. CI on that commit: Checks, Bluesky, Social, LinkedIn and Deliver-paid-orders workflows all `success` or in progress with no failure; `publish-image.yml` correctly did not fire, since the commit touched no `site/**` path, consistent with the fix's own stated logic.
+
+**Did: closed out the handoff.** Checked all nine live-state decisions named (D-019 through D-028, D-025 does not exist as a number in this file). D-019, D-020 and D-028 already carried a "2026-09-30, PM check-in" correction from an earlier cycle this hour; re-verified each independently rather than trusting the dated note alone: D-019's 210-URL sitemap count and D-020's link-graph numbers both re-derived and matched. D-021 (M6 traffic gate), D-022 (one sale, still true per `BACKLOG-2026-09-07.md` section 0), D-023 (fully closed, no open live claim) and D-027 (a standing print-tier deferral, no numeric citation that can go stale) all read clean on inspection, nothing dated that needs re-deriving. D-024's own stated consequence, catalogue drops to 130 SKUs, checked directly against the live `site/assets/js/data.js`: exactly 130 `"sku"` entries today. No new drift found anywhere in the lane.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214 pages, 0 findings, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em, 0 en dashes). Full `preflight.py` reached `gate_tests` cleanly (every gate before it passed) then hung past 270s with no CPU progress, the same documented sandbox Chromium limitation every recent cycle has reported; killed the orphaned process rather than wait indefinitely. Reporting the full suite as **unchecked past `gate_tests`, not passing**, per CLAUDE.md 0.4; everything this cycle actually touched is independently verified above.
+
+Handoff only this slot, per its own instruction to leave larger work for the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (16:4x cycle)
 
 NEXT FOR THE OPERATOR: resume the DECISIONS.md drift-recheck on D-019 through D-028 (D-026 already fixed this hour), because BACKLOG-2026-09-07.md section 7 names source-corrected-artifact-never-rederived as the dominant defect class and this lane is the genuinely unblocked way to keep hunting it.
