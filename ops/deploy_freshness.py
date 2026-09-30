@@ -213,6 +213,19 @@ def check() -> dict:
     return out
 
 
+# STALE says production is behind. It does not say whether there is
+# anything to catch up TO, and on 2026-09-30 there was not: a site change
+# was pushed, its image build failed on an unrelated fault in a concurrent
+# session's commit, the fix for that touched no site/** path so the
+# workflow correctly declined to rebuild, and the change sat with no image
+# at all. "Deploy it" is the wrong next move in that state, and it is the
+# move this verdict invites, so the answer is printed beside it rather than
+# left for somebody to discover. One implementation, imported from
+# deploy.py, so the two tools cannot drift into disagreeing about what the
+# build is doing.
+from deploy import publish_state, PUBLISH_ADVICE   # noqa: E402
+
+
 def main() -> int:
     r = check()
     if "--json" in sys.argv:
@@ -260,6 +273,9 @@ def main() -> int:
           f"production differ from this repository.")
     print(f"           The site works. It is serving an older build, so work "
           f"committed since then is not reaching anybody.")
+    state, _run = publish_state()
+    print(f"           image build for this commit: {state}")
+    print(f"           {PUBLISH_ADVICE[state]}")
     return 1
 
 

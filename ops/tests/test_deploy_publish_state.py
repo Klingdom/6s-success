@@ -153,6 +153,46 @@ def case_every_different_build_verdict_consults_the_build():
     assert found >= 2, ("expected both mismatch branches, found %d" % found)
 
 
+def case_deploy_freshness_reports_the_image_state_when_stale():
+    """STALE invites "deploy it", which is the wrong move when no image
+    exists. The answer has to travel with the verdict, and this exercises the
+    real branch rather than reading the source."""
+    import contextlib
+    import io as _io
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import deploy_freshness as F
+
+    real_check = F.check
+    try:
+        F.check = lambda: {"reachable": True, "assets": [], "stale_assets": 2,
+                           "checked_assets": 10, "zone_hero_local": True,
+                           "zone_hero_live": True, "verdict": "stale",
+                           "probes": []}
+        buf = _io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            rc = F.main()
+        out = buf.getvalue()
+    finally:
+        F.check = real_check
+
+    assert rc == 1, rc
+    assert "STALE" in out, out
+    assert "image build for this commit:" in out, out
+    # Whatever state this environment reports, its advice must be printed.
+    state = out.split("image build for this commit:")[1].splitlines()[0].strip()
+    assert state in D.PUBLISH_ADVICE, state
+    assert D.PUBLISH_ADVICE[state][:40] in out, (state, out)
+
+
+def case_freshness_and_deploy_share_one_implementation():
+    """Two tools disagreeing about what the build is doing is the defect."""
+    import io as _io
+    src = _io.open(os.path.join(ROOT, "ops", "deploy_freshness.py"),
+                   encoding="utf-8").read()
+    assert "from deploy import publish_state, PUBLISH_ADVICE" in src
+    assert "def classify_publish" not in src, "second copy of the logic"
+
+
 def main() -> int:
     cases = [v for k, v in sorted(globals().items()) if k.startswith("case_")]
     for c in cases:

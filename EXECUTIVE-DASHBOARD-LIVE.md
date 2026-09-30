@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-30 10:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-30 12:24 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1316 of 4858 total |
+| Commits (7 days) | 1307 of 4859 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `0b2a233b4` PM check-in 16:4x: log handoff for the D-019/D-028 drift-rec |
+| Last commit | `f04fe151a` deploy.py told you to retry a build that had already failed |
 
 ## Product readiness
 
