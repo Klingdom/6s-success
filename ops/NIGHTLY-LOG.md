@@ -22,6 +22,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `DECISIONS.md`, `ops/preflight.py`, `ops/tests/test_gate_decisions_owner_action_citations_current.py`, command deck. No price, product or site page touched. IndexNow not applicable.
 
+## PM check-in, 2026-09-30 (13:4x cycle; previous work finished; corrected a real stale-citation drift in D-020, no other defect)
+
+NEXT FOR THE OPERATOR: continue the drift-recheck of DECISIONS.md D-021 through D-028 and OWNER-ACTIONS.md, because D-019 and D-020 are now both current and the rest of that lane is still unread this pass; check whether the Bluesky drafting pipeline's first live run (~14:05 UTC) actually sent a draft email, since it is due during the operator's own slot.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, no conflict). Working tree was clean and main pushed and in sync before this cycle started. 8 open GitHub issues, unchanged, all decision/blocked-on-art, none newly Phil-unblocked. BACKLOG-2026-09-07.md sections 2-4 confirmed done or Phil-gated by reading each row directly, section 5 HOLD, section 6 owner-only.
+
+**Full `preflight.py` hung again at the documented `gate_tests` sandbox limit** (100s, 0 case-insensitive fail before it); reported unchecked, not passing, per CLAUDE.md 0.4. Verified independently: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**Cold-read DECISIONS.md D-020 for the same drift class D-019 and RISKS.md already caught this cycle's predecessors, and found it.** D-020 (2026-09-21) cites `ops/link_graph_report.py`: zone pages min 9, max 21, avg 12.4. Re-run live: min 10, max 22, avg 13.3, still 114 zones, 0 orphans, 0 thin pages. The decision's real bar (no zone below the floor of 8) holds more comfortably now, not less, so the drift does not overturn anything, but the citation was stale. Fixed with a dated correction appended in place, the same convention D-019's own fix used, rather than rewriting the original evidence line.
+
+**Verified:** `gate_decisions_index_current` passes in isolation (no new decision heading added). `fix_dashes.py --check` clean on the new text. `check_urls.py`/`audit_pages.py`/`affiliate.py --check` all rerun clean after.
+
+**Went well:** the D-019 fix's method (re-run the cited tool live, compare to the number in the file) generalizes directly to every other numeric decision citation; D-020 was the next one and it had drifted too.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none; a content-accuracy fix, no new gate needed.
+
+Pushed to main. `DECISIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (13:1x cycle; previous work finished; corrected a real stale-citation drift in D-019, no other defect)
 
 NEXT FOR THE OPERATOR: continue the periodic drift-recheck of control documents (DECISIONS.md, RISKS.md, OWNER-ACTIONS.md) the 12:4x/13:0x cycles opened; RISKS.md and D-019 are now current, DECISIONS.md's other entries (D-020 through D-028) still unchecked this pass. Also confirm the Bluesky drafting pipeline's first live run (~14:05 UTC) once due; not yet reachable at this cycle's 13:15 UTC read.

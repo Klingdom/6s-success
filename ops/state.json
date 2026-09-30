@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 14:07",
- "commit": "e892e412a",
- "commit_msg": "PM check-in 13:1x: correct D-019's stale sitemap citation (187 to 210) and reconcile it with D-026's room-deck build, no other defect",
- "commits_7d": 1300,
- "commits_total": 4821,
+ "generated": "2026-09-30 14:09",
+ "commit": "70135ff83",
+ "commit_msg": "Fix D-028's wrong OWNER-ACTIONS.md item citation, gate the class",
+ "commits_7d": 1301,
+ "commits_total": 4822,
  "traffic_line": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 01:17",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-30 01:17",
  "affiliate_trigger_carried_from": "2026-09-30 01:17",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

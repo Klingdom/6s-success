@@ -2148,6 +2148,14 @@ D9's four 2026-09-21 status blocks (`ZONE_RELATIONS` grown from the original
 the real committed site each time). Direct inspection tier: this repository's
 own prior measurement, itself sourced from the live generated site.
 
+**2026-09-30, PM check-in.** Re-run live: `ops/link_graph_report.py` now
+reads zone pages min 10, max 22, avg 13.3, still 0 orphans, 0 thin pages
+(114 zones, same as the day of the decision). The floor this decision
+actually rests on, no zone below 8, holds more comfortably than when it
+was written, not less. The 17-of-114-clear-15 count was not re-derived
+this pass; nothing above depends on it, since the median-15 clause was
+already downgraded to aspirational.
+
 **Alternatives.** Keep chasing median-15 by fabricating weaker cross-room
 links (a hallway closet linked to a coat closet on shelf-material alone,
 say): rejected, this is exactly the fabrication `CLAUDE.md` section 6
