@@ -429,15 +429,24 @@ billing question), 11 room pages (still genuinely behind Gemini billing), and
 8 zone pages that turn out to be a different problem (see the correction
 above). Eleven is the honest number this specific action buys.
 
+**Corrected 2026-09-30, this operator, the same finding as the correction
+further down this section:** the "31" total is stale on the zone half. It
+was already 3, not 8, as of 2026-09-17, and since 2026-09-27 none of them
+count as "no picture" at all, only as "no photograph" (they carry an honest
+text panel). The 11 room pages and the 12 print-and-play cards in this count
+are unaffected and still current, per their own sections. Eleven still holds
+as the number this gate buys, unchanged.
+
 The room eleven are not a separate problem: the nine room pages that DO have art
 are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
 eleven without are chapters 40 to 50, which have none. `gate_pages_missing_art`
 names the zone and room pages every run; `gate_deck_download_has_art` names the
 cards.
 
-**Eight zone pages ship with no picture at all**, measured 2026-09-09 and
-2026-09-11. `build_zone_pages.py` refuses to show a hero the art
-review marked "no", which is correct, so those pages carry no image whatsoever:
+**As of 2026-09-09 and 2026-09-11, eight zone pages shipped with no picture
+at all** (superseded below; this is history, not a current reading).
+`build_zone_pages.py` refused to show a hero the art
+review marked "no", which was correct, so those pages carried no image whatsoever:
 family room board game zone, home office file storage, home office printer
 station, kitchen primary prep counter, mudroom family hook zone, nursery crib
 and sleep zone, primary bathroom under-sink cabinet, workshop material rack.
@@ -445,7 +454,33 @@ Each is a 2,600 word instruction page with nothing to look at, on the surface
 this business is trying to be found on. They are the "Zone hero gaps,
 measured, 8 images" line in the table below, which is 31 cents at Flash
 prices, though none of them actually need Flash: all eight are free local
-retries. `gate_zone_pages_have_art` now names them every run.
+retries. `gate_zone_pages_have_art` named them every run at the time
+(renamed/superseded since, see the correction below: the live gate is
+`gate_pages_missing_art`).
+
+**Corrected 2026-09-30, this operator: both "eight" and "nothing to look
+at" are stale, and the second is the more important one.** The count of
+zone heroes with no real photograph was already corrected to three above
+(2026-09-17: family room, kitchen prep counter, nursery, mudroom and the
+under-sink cabinet were regenerated and accepted that day), but this
+paragraph, being earlier in the document, still read eight. More than the
+count: since `7c6a83084` (2026-09-27, "Finish it: no page on this site
+ships with no image, room pages included"), a zone whose photograph was
+rejected no longer ships with nothing at all. `build_zone_pages.py` now
+renders an honest SVG panel in the same `id="zone-hero"` slot, captioned
+"There is no photograph of this zone yet, so this is the finished state in
+words, quoted from the manual." Verified directly this cycle, not taken on
+the commit message's word: read the live markup for all three remaining
+zones (home office file storage, home office printer station, workshop
+material rack) and each one carries that panel; ran `gate_pages_missing_art`
+itself, which currently reports zero zone or room pages with no image at
+all (it separately, correctly, still flags 11 of 20 room pages as carrying
+a text panel rather than a real chapter illustration, which remains a true
+gap behind this gate). **Current reading: ops/hero-verdicts.json reads 3
+rejected zone hero(es), and zero zone pages ship with no picture at all.**
+New `gate_owner_actions_zone_art_citation_current` in `preflight.py` checks
+that number against `ops/hero-verdicts.json`'s own live "no" count on every
+run, so this specific citation cannot drift unnoticed again.
 
 Regenerating those twelve is the cheapest line in the table below.
 `gate_deck_download_has_art` now names them on every run so the count cannot

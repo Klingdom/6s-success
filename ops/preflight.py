@@ -15693,6 +15693,53 @@ def gate_affiliate_trigger_citation_current() -> None:
              "is cited: %s" % "; ".join(bad))
 
 
+def gate_owner_actions_zone_art_citation_current() -> None:
+    """OWNER-ACTIONS.md's "N zone pages ship with no picture at all" count
+    must match ops/hero-verdicts.json's own live count of rejected heroes.
+
+    Found 2026-09-30, scheduled operator: the section still read "Eight
+    zone pages ship with no picture at all ... nothing to look at", citing
+    a 2026-09-09/2026-09-11 measurement, even though a later paragraph in
+    the same document had already corrected the count to three on
+    2026-09-17, and `7c6a83084` (2026-09-27) gave every zone with a
+    rejected photograph an honest SVG "what done looks like, in words"
+    panel, so none of them ship with literally nothing to look at any
+    more. The same "source corrected, artifact never re-derived" shape
+    `gate_affiliate_trigger_citation_current` exists to catch one level up,
+    just never extended to this document's own oldest paragraph on the
+    subject.
+
+    Deliberately a plain citation check against hero-verdicts.json's own
+    "no" count, not a second re-derivation of gate_pages_missing_art's own
+    live HTML scan: this gate answers "does the document still agree with
+    the verdicts file", not "does the site still honour the verdicts
+    file", which is gate_pages_missing_art's job. Silent if the document no
+    longer carries the phrase in this shape, same convention as
+    gate_affiliate_trigger_citation_current, so an unrelated rewrite of the
+    surrounding prose is never blocked by a check that cannot fix it.
+    """
+    verdicts_path = os.path.join(ROOT, "ops", "hero-verdicts.json")
+    doc_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(verdicts_path) or not os.path.exists(doc_path):
+        return
+    verdicts = json.load(io.open(verdicts_path, encoding="utf-8"))
+    live_n = sum(1 for v in verdicts.values()
+                 if isinstance(v, dict) and v.get("verdict") == "no")
+
+    text = io.open(doc_path, encoding="utf-8").read()
+    flat = re.sub(r"\s+", " ", text)
+    m = re.search(
+        r"ops/hero-verdicts\.json reads (\d+) rejected zone hero", flat)
+    if not m:
+        return
+    cited_n = int(m.group(1))
+    if cited_n != live_n:
+        fail("owner-actions-zone-art-citation-current",
+             "OWNER-ACTIONS.md's 'current reading' line cites %d rejected "
+             "zone hero(es), ops/hero-verdicts.json now holds %d"
+             % (cited_n, live_n))
+
+
 def gate_goals_revenue_window_current() -> None:
     """GOALS.md names the exact date its own 30-day revenue framing expires,
     and nothing re-derives that sentence once the date passes.
@@ -26548,6 +26595,7 @@ def main() -> int:
     run_gate(gate_goals_revenue_current)
     run_gate(gate_goals_revenue_window_current)
     run_gate(gate_affiliate_trigger_citation_current)
+    run_gate(gate_owner_actions_zone_art_citation_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_risk_cross_references_current)
