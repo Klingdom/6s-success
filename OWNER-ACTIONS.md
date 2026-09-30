@@ -973,8 +973,12 @@ not the instruction. Read this correction first.** `PLAN-AFFILIATE-MONETISATION.
 section's own "what to do" line was written, and this section was never told:
 "Do not apply to anything today. Not Amazon, not Impact, not CJ, not Rakuten,"
 held until a written click trigger fires (T2: 60 real outbound retailer clicks
-in a trailing 90 days, `ops/check_affiliate_trigger.py`, reading 0 of 60 as of
-2026-09-09). `GOALS.md`'s O4 already carries this as "deliberately held, not
+in a trailing 90 days, `ops/check_affiliate_trigger.py`). **Corrected
+2026-09-30, this operator: the "0 of 60 as of 2026-09-09" reading here had
+gone three weeks stale.** `ops/state.json`'s own `affiliate_trigger`,
+measured the same day against the live database, reads 1 of 60 outbound
+retailer clicks in the last 90 days, from 1 visitor, 2026-09-30 12:25; still
+nowhere near T2. `GOALS.md`'s O4 already carries this as "deliberately held, not
 blocked"; this file did not, so it still read as if finishing the Office Depot
 and Etsy confirmation clicks and a fresh Amazon application were yours to do
 now. They are not: applying today spends a scarce, non-renewable first

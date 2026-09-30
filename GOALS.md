@@ -313,8 +313,15 @@ the real arithmetic: at the traffic level where the services line reaches
 $20,000/month, affiliate earns about $7/month, roughly 0.03% of the goal. The
 plan: apply to nothing today, instrument the existing links, and apply to
 Amazon only, when trigger T2 fires (60 real outbound retailer clicks in a
-trailing 90 days, `ops/check_affiliate_trigger.py`, reading 0 of 60 as of
-2026-09-09). Re-litigate in June 2027 or on the trigger, not monthly. This also
+trailing 90 days, `ops/check_affiliate_trigger.py`). **Corrected 2026-09-30,
+this operator: the "0 of 60 as of 2026-09-09" reading had sat uncorrected for
+three weeks while the real count moved.** `ops/state.json`'s own
+`affiliate_trigger`, measured the same day directly against the live
+database (a session this cloud sandbox cannot reach), reads **1 of 60
+outbound retailer click(s) in the last 90 days, from 1 visitor, 2026-09-30
+12:25**. Still nowhere near T2 and still no application authorised; the
+correction is that the number moved and nothing here said so. Re-litigate in
+June 2027 or on the trigger, not monthly. This also
 retires the older "four verification emails" diagnosis: of the 10 programmes in
 `ops/affiliate-accounts.json`, 5 (Lowes, Target, Walmart, Home Depot, Ace) were
 declined outright by their shared Impact account on 29 August (read 2026-09-06);
