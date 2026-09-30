@@ -75,6 +75,7 @@ import io
 import os
 import re
 import statistics
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -162,6 +163,54 @@ def configured_interval_minutes(workflow_file: str) -> float | None:
         fires_per_day += minute_count * hour_count
     return 1440.0 / fires_per_day if fires_per_day else None
 
+
+# A workflow whose script decides at RUNTIME whether a triggered run actually
+# delivers cannot be judged by its run cadence: a push run is as often not a
+# delivery as it is. has_push_trigger() therefore refuses to count those runs
+# as coverage, and says in its own comment that this "costs a stale-sounding
+# warning" and errs conservative on purpose.
+#
+# That is the right call with only run data. There is better data. Each of
+# these workflows commits a record of its own last real send, so the git
+# history of that file IS the delivery log, and it answers the question the
+# run counts only approximate: how long does Phil actually wait between
+# briefs.
+#
+# Measured 2026-09-30, which is why this exists. hourly-brief.yml's run
+# cadence across every trigger was 11 minutes mean; its schedule-only cadence
+# was 290, and the gate reported 290 and called it degraded. Neither is what a
+# person experiences. The delivery record showed 59, 59, 71, 52, 55, 61, 59,
+# 64, 56, 65, 58, 67, 64, 56, 66, 64, 70, 52, 55 minutes: the brief is
+# genuinely hourly, around the clock, and has been for days.
+DELIVERY_RECORDS = {
+    "hourly-brief.yml": "ops/last-brief-sent.json",
+}
+
+
+def delivery_gaps(record_path: str, limit: int = 40):
+    """Minutes between real deliveries, newest first, from the record's own
+    git history. None when it cannot be read: unknown is not "on time"."""
+    try:
+        p = subprocess.run(
+            ["git", "log", "--format=%cI", "-%d" % limit, "--", record_path],
+            cwd=ROOT, capture_output=True, text=True, timeout=60)
+    except Exception:                                          # noqa: BLE001
+        return None
+    if p.returncode != 0:
+        return None
+    stamps = []
+    for line in (p.stdout or "").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            stamps.append(datetime.datetime.fromisoformat(line))
+        except ValueError:
+            continue
+    if len(stamps) < 3:
+        return None
+    stamps.sort()
+    return [(b - a).total_seconds() / 60.0 for a, b in zip(stamps, stamps[1:])]
 
 def has_push_trigger(workflow_file: str) -> bool:
     """True when this workflow also runs on push to main.
@@ -450,6 +499,26 @@ def check_one(workflow_file: str) -> dict:
                 if configured and eff_mean <= configured * 2.5:
                     result["degraded"] = False
                     result["cron_late_but_covered"] = True
+
+    # A workflow that throttles inside its own script is judged on what it
+    # DELIVERED, not on how often it was triggered. See DELIVERY_RECORDS.
+    record = DELIVERY_RECORDS.get(workflow_file)
+    if result.get("degraded") and record:
+        dg = delivery_gaps(record)
+        if dg:
+            d_mean = statistics.mean(dg)
+            result["delivery_mean"] = d_mean
+            result["delivery_max"] = max(dg)
+            result["delivery_n"] = len(dg)
+            result["delivery_record"] = record
+            if configured and d_mean <= configured * 1.5:
+                result["degraded"] = False
+                result["delivery_on_time"] = True
+        else:
+            # Cannot read the record. Stays degraded, which is the
+            # conservative answer, and says why rather than implying the
+            # cadence was measured.
+            result["delivery_unreadable"] = record
     return result
 
 

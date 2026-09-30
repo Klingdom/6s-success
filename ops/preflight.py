@@ -4007,6 +4007,34 @@ def gate_scheduled_workflow_cadence() -> None:
                  f"{r['mean_gap_min']:.0f} minutes (worst "
                  f"{r['worst_gap_min']:.0f}), {r['mean_over_configured']}x "
                  f"the configured interval.")
+        elif r.get("delivery_on_time"):
+            # This workflow throttles inside its own script, so neither the
+            # schedule cadence nor the run cadence says what a person
+            # experiences. Measured 2026-09-30, all three for hourly-brief:
+            # schedule-only 290 min, runs across every trigger 11 min, and
+            # actual deliveries 60. Only the third is the answer to "how
+            # long does Phil wait for a brief", and it is read from the
+            # git history of the record the workflow commits after each
+            # real send. Reported rather than suppressed, because the cron
+            # throttling behind it is real and would matter if the push
+            # trigger or the throttle changed.
+            warn("cron-cadence",
+                 f"{r['workflow']}'s cron is throttled by GitHub to "
+                 f"{r['mean_gap_min']:.0f} min against a configured "
+                 f"{r['configured_interval_min']:.0f}, and it throttles "
+                 f"again inside its own script, so neither number is what "
+                 f"anybody experiences. What it actually DELIVERED, from "
+                 f"{r['delivery_record']}'s own git history: a mean of "
+                 f"{r['delivery_mean']:.0f} min across "
+                 f"{r['delivery_n']} real sends, worst "
+                 f"{r['delivery_max']:.0f}. On time. This becomes real "
+                 f"again if the push trigger or that throttle changes.")
+        elif r.get("delivery_unreadable"):
+            warn("cron-cadence",
+                 f"{r['workflow']} throttles inside its own script, so its "
+                 f"run cadence does not answer what it delivered, and "
+                 f"{r['delivery_unreadable']} could not be read. Its real "
+                 f"delivery cadence is UNCHECKED, not on time.")
         elif r.get("cron_late_but_covered"):
             # The cron IS late, and nothing waits for it. Reported as its own
             # line rather than suppressed: the throttling is real and would
