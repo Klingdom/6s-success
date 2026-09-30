@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 02:57",
- "commit": "b71ebcd05",
- "commit_msg": "Regenerate dashboard after merge",
- "commits_7d": 1246,
- "commits_total": 4714,
+ "generated": "2026-09-30 02:59",
+ "commit": "cf0c76208",
+ "commit_msg": "Cold-read: verify build_printpack.py and build_microzone_coverage.py hold",
+ "commits_7d": 1247,
+ "commits_total": 4715,
  "traffic_line": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-29 18:42; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-29 18:42",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-29 18:42",
  "affiliate_trigger_carried_from": "2026-09-29 18:42",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
