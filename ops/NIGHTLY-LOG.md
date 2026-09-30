@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (a live structured-data honesty defect found and fixed: two consulting products' Product schema named the wrong page, even on the page that actually sells them)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1213 commits fast-forwarded onto origin/main). Read GOALS.md, BACKLOG-2026-09-07.md (0-7), ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed live: 8 GitHub issues unchanged, all decision/blocked-on-art; no mail credential. No BACKLOG "Now" item unblocked (sections 2-4 done/Phil-gated, section 5 HOLD, section 6 owner-only). Continued the standing ledger re-verification lane (77 of 191 entries still dated 2026-09-25).
+
+**Found and fixed:** `ops/build_product_schema.py`'s `product_ld()` builds every graph's `url` from `p.get("href", "shop.html")`. CN-VIRTUAL and CN-INHOME (Virtual Home Consult, In-Home Reset Day, the two highest-contribution items per `REVIEW-COMMERCE-2026-09-07.md`) had no `href`, even though `consulting.html#virtual`/`#in-home` is where each one's real "Book and pay" button lives. Both products' Product schema, including the copy embedded IN `consulting.html` itself, told a crawler the product's real page was the generic shop grid. Fixed by adding the missing `href` to `data.js`, following the same convention `BK-BUNDLE` already established; ran the full wiring chain (`build_product_schema.py`, `prerender_shop.py`, `fingerprint_assets.py`, `build_seo.py`), each proved idempotent on a second run. New `gate_product_schema_url_honest` in `preflight.py`, fail-then-pass proved directly (planted the exact old `shop.html` url, watched it fail by name citing both SKUs and both pages, restored, reran clean); `ops/tests/test_gate_product_schema_url_honest.py` (5/5, including the real committed site). Side effect, not a bug: the shop tile for both products now also shows "See what is inside", linking to the real explainer, via `site.js`'s existing `p.buy && p.href` branch.
+
+**Also checked, no defect:** `build_icons.py` re-verified (PIL installed fresh, absent by default here); regenerated output differs byte-for-byte from committed, but decoded pixel content is 0% different on direct comparison, a PNG-encoder/zlib version artifact, the same class already diagnosed for `build_app_icons.py`. Reverted rather than ship byte-noise with no visual change.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0). Full `preflight.py`: reached `gate_tests` clean (every gate before it passed) then stalled there past 5 minutes with near-zero CPU, the same documented headless-Chromium sandbox hang; reporting that one gate as **unchecked, not passing**, per `CLAUDE.md` 0.4, while everything this cycle actually touched was independently verified above.
+
+**Went well:** the existing `href` convention (`BK-BUNDLE`) made the fix and its wiring chain fast, low-risk, and easy to prove idempotent.
+
+**Did not go well:** `gate_tests` hung again, the same standing sandbox limit.
+
+**Changing next cycle:** none; the new gate closes this exact defect class.
+
+**Next:** standing Phil-blocked list unchanged (8 GitHub issues, all decision/blocked-on-art). Continue re-verifying the 76 remaining 2026-09-25-dated ledger entries.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_product_schema_url_honest.py`, `site/assets/js/data.js`, `site/shop.html`, `site/consulting.html`, `site/book.html`, `site/contact.html`, `site/index.html`, `site/method.html`, `site/sw.js`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `ops/cold-read-ledger.json`, command deck. No price changed; two existing free-to-view catalogue tiles gained an honest secondary link, no new page. `IndexNow` will pick up `shop.html`/`consulting.html` on its next successful run.
+
 ## 2026-09-30, scheduled operator cycle addendum (same drift, found independently by a concurrent session; adopted theirs, added the gate they did not)
 
 Two sessions re-verified the ledger's oldest-four handoff (build_app_icons.py, build_avif.py, build_card_prompts.py, build_corporate.py) at the same time and found the same real defect: build/prompts/kitchen/KZ-002.txt still read "the step of space," while ops/cardtext/kitchen-deck.json had already been corrected to "the strip of space." Source corrected, artifact never re-derived, the dominant defect class this log names. The concurrent session's fix (below, 06:1x) landed first and is byte-identical to this cycle's own; adopted it rather than push a duplicate, matching this file's established practice for this collision shape.

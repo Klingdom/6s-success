@@ -168,8 +168,8 @@
     },
     "build_icons.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, PIL unavailable in this sandbox (standing gap); maskable safe-zone arithmetic checked by hand and correct, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: PIL absent by default in this sandbox, installed via pip; regenerated all 5 outputs, byte-for-byte cmp differs on every file but decoded RGB pixel content is 0% different (checked icon-192.png directly, pixel by pixel), a PNG-encoder/zlib version artifact, not a content defect, the same class build_app_icons.py's own 2026-09-30 re-verify already found for its feature-graphic PNG. Reverted the regenerated files rather than ship byte-noise with no visual change. No drift."
     },
     "build_id.py": {
       "status": "clean",
@@ -262,9 +262,9 @@
       "note": "Re-verified for drift (last checked 2026-09-17, fixed the sheet-overflow bug). Ran directly: 20 rooms, 114 zones, 684 cards, 76 sheets, matches live PACK-HOUSE SKU claims in data.js (684 cards, $19) and resources.html/deck-gallery.html copy verbatim. Own assertions (card count matches manual, Safety is fourth S) pass. No drift found."
     },
     "build_product_schema.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full (166 lines); re-ran against the real committed shop.html/consulting.html, byte-identical (idempotent), the price-match assertion passed for all 131 graphs. Noted but did not change: CN-VIRTUAL/CN-INHOME (Consulting cat) get a Product graph on both shop.html (only_cat=None, everything) and consulting.html (only_cat=Consulting), with url always defaulting to shop.html even in the consulting.html copy. The module's own comment reads as if each product belongs to one page, but both pages genuinely and accurately display these two buyable items with matching price/link, so this is duplication of accurate data, not fabrication or drift; left alone rather than remove real structured data for a stylistic mismatch with a comment."
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, this operator: product_ld()'s url falls back to shop.html when an item has no href, and CN-VIRTUAL/CN-INHOME had none even though consulting.html#virtual/#in-home is where each one's real book-and-pay button lives, so both products' Product schema (on shop.html AND on consulting.html itself) told a crawler the wrong home page. Fixed by adding the missing href to data.js; ran the full wiring chain (build_product_schema.py, prerender_shop.py, fingerprint_assets.py, build_seo.py), all idempotent on a second run. New gate_product_schema_url_honest in preflight.py, fail-then-pass proved directly (planted the exact old shop.html url, watched it fail by name citing both SKUs, restored, reran clean); ops/tests/test_gate_product_schema_url_honest.py (5/5, including the real committed site)."
     },
     "build_pwa.py": {
       "status": "clean",
