@@ -563,8 +563,8 @@
     },
     "ledgerium_price_check.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: no hardcoded secret, correctly gated by gate_ledgerium via check_ledgerium.py, ran clean (unchecked, no credential) in this sandbox, no defect"
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator, no defect"
     },
     "link_graph_report.py": {
       "status": "clean",
@@ -663,8 +663,8 @@
     },
     "refresh_hero_fallback.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran --check live: 111 pages with a wired hero, 0 added/dropped/changed against the committed ops/hero-fallback.json. Already gated (gate_hero_fallback_current). No defect."
+      "date": "2026-09-30",
+      "note": "Ran --check against the live site/zones/*.html: 111 pages with a wired hero, 0 new, 0 dropped, 0 changed. gate_hero_fallback_current wired in preflight.py (line 1274 gens map, check_hero_fallback_current at 9534). No defect."
     },
     "render_all_narrated.py": {
       "status": "clean",
@@ -768,8 +768,8 @@
     },
     "specific_articles.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "pure-data single source of truth for the 6 specific-problem articles' opening direct answer; gate_specific_article_direct_answer passed as part of this cycle's full preflight run. No defect."
+      "date": "2026-09-30",
+      "note": "Pure data dict (6 direct-answer strings), no logic. Verified all 6 <p class=\"lede\"> openings on the live site/articles/*.html match this module byte for byte. gate_specific_article_direct_answer wired in preflight.py and confirmed present. No defect."
     },
     "split_deck_cards.py": {
       "status": "clean",
@@ -818,13 +818,13 @@
     },
     "stripe_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: superseded by stripe_catalog.py per its own docstring, correctly guards live writes (STRIPE_ALLOW_LIVE), idempotent (finds existing active link before creating another), no defect found"
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator, no defect"
     },
     "stripe_setup.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator: live-guard message disagreed with behaviour under STRIPE_ALLOW_LIVE=1, fixed, gated by test_stripe_setup_live_guard.py"
     },
     "sync_page_links.py": {
       "status": "clean",
@@ -878,18 +878,18 @@
     },
     "wire_aria_current.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "aria-current wiring verified against real header nav; --check reports every page correct"
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift. --check clean: every page marks its nav position correctly."
     },
     "wire_breadcrumbs.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift. --check: would change 0, 29 already correct, 2 left alone. Its own --check never exits 1 on drift, but preflight's gate reuses trail()/block()/MARKED directly rather than the script's exit code, so this is not a gap."
     },
     "wire_consult_cta.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: idempotent CTA-wiring migration, 0 changes on rerun (already fully applied), covered by gate_consult_cta_current, no defect"
+      "date": "2026-09-30",
+      "note": "Ran it live: idempotent, 0 article pages gained a button (already applied), working tree stayed clean. gate_consult_cta_current wired in preflight.py and already confirmed passing this cycle via the full check_urls/audit_pages/affiliate sweep. No defect."
     },
     "wire_footer.py": {
       "status": "clean",
@@ -908,8 +908,8 @@
     },
     "wire_legal_strip.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "date": "2026-09-30",
+      "note": "Second-pass reread for drift, not just freshness. --check clean: every legal strip matches the table, no stale page."
     },
     "wire_measure.py": {
       "status": "fixed",

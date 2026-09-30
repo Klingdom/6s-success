@@ -2,6 +2,68 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (23:2x cycle)
+
+**Previous work (22:5x, the stripe_setup.py live-guard fix) was finished, verified myself.** Attached clean: fetch, unshallow, checkout main, ff-only onto 637ada4bf, tree clean, main already synced with origin. `preflight.py` fast hung again at `gate_tests` (documented sandbox headless-Chromium limit; backgrounded it, killed cleanly after 16 minutes with no further output); ran the narrower standing checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read directly via the API: unchanged, all 6 `decision` + 2 `blocked-on-art` (P0 #15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2-4 checked row by row, not cited: every row is Done, already-fixed, or explicitly "YES, Phil" (C5 Gemini billing, C6 YouTube OAuth). `ops/b9_claims.py --next`: no undiagnosed room remains, B9 is complete. No unblocked Now row exists.
+
+**Small closing job: cold-read three of the remaining 2026-09-25-dated ledger tier.** `specific_articles.py` (pure data, 6 direct-answer strings; verified all 6 live `<p class="lede">` openings match byte for byte, gate wired). `refresh_hero_fallback.py` (ran `--check` against live zone pages: 111 wired, 0 new/dropped/changed, gate wired). `wire_consult_cta.py` (ran it live: idempotent, 0 pages changed, gate wired and already confirmed passing). No defect in any of the three; recorded all in `ops/cold-read-ledger.json`. 25 files remain in the 2026-09-25 tier.
+
+**Went well:** checking each backlog row's own later text instead of trusting a stale header, which is what confirmed no new work is actually unblocked.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limitation as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** continue the second-pass cold-read of the 2026-09-25 tier (25 files left: generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, image_style.py, import_room_images.py, media_capability.py, merge_cardtext.py, optimize_sample_pdf.py, receive_deploy_key.py, reflow.py, render_all_narrated.py, revenue_model.py, review_deck_art.py, review_heroes.py, send_brief.py, service_orders.py, shrink_sample.py, status_pdf.py, stripe_check.py, sync_page_links.py, sync_push.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py); it is hours-sized across the whole tier, not a 30-minute item. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-09-30, scheduled operator cycle (22:5x, a live-guard message that disagreed with its own behaviour, found and fixed, gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, ff-only merge (clean, no unrelated-history refusal this run). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Confirmed live: 8 GitHub issues unchanged (6 `decision` + 2 `blocked-on-art`, 2 P0: #15, #2), no unblocked "Now" row in the backlog (sections 2-4 all done or Phil-gated), `inbox_agent.py` has no mail credential in this sandbox. `preflight.py --fast` (backgrounded) hit the documented `gate_tests` sandbox headless-Chromium hang and was killed by its own 300s timeout (exit 143), the same limitation every recent cycle reports; ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191 (a concurrent 22:3x cycle had just cleared it).
+
+**The find.** Continued the handed-off second-pass cold-read of the 2026-09-25-dated `ops/*.py` tier, picking three money-domain files: `ledgerium_price_check.py`, `stripe_links.py`, `stripe_setup.py`. First two are correctly implemented (read-only Ledgerium check; a superseded, already-guarded link creator). `stripe_setup.py`'s live-write guard printed "Refusing to create live products from a script without a second look" unconditionally on every live `--apply` run, *before* checking `STRIPE_ALLOW_LIVE`, then only actually refused (returned 1) when the flag was unset. With `STRIPE_ALLOW_LIVE=1` set, the same run printed that refusal and then proceeded to create the products anyway: the message and the behaviour disagreed, the exact "if copy and a control disagree" shape step 6 names as a trust defect, here in operator-facing tooling rather than customer-facing copy. Low real-world exposure (the file's own docstring already marks it superseded; the live consulting checkout runs through `stripe_catalog.py`), but cheap and correct to fix outright rather than leave misleading.
+
+**Fixed:** folded the flag check into the same `if` that guards the print, the pattern `stripe_links.py` already used correctly (confirmed by reading it side by side). New `ops/tests/test_stripe_setup_live_guard.py`, proved to fail on the original code (reverted the fix, watched it fail by name: "still printed the refusal message while proceeding to write", restored, watched it pass) before trusting it as a gate. Wired automatically: `preflight.py`'s `gate_tests` globs `ops/tests/test_*.py`, no separate registration needed.
+
+**Verified:** `py_compile` clean; full `ops/tests/test_stripe*.py` suite (7 files) reran clean, including the untouched siblings (`test_stripe_brand.py`, `test_stripe_catalog_deliverable.py`, `test_stripe_catalog_orphan_link_active.py`, `test_stripe_dedupe.py`, `test_stripe_dedupe_links.py`, `test_stripe_fulfil.py`, `test_stripe_invoice.py`); standing suite (`check_urls.py`, `affiliate.py --check`, `fix_dashes.py --check`) reran clean after the change. All three cold-read files recorded in `ops/cold-read-ledger.json`. No live Stripe key present in this sandbox; nothing here touched a real product, price or payment link.
+
+**Went well:** treating a tooling message as subject to the same "copy and control must agree" rule as customer-facing text, instead of writing it off as cosmetic because nobody but an operator ever reads it.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limitation as every recent cycle, and the backlog again had no unblocked product/content row to pick up.
+
+**Changing next cycle:** none; the fix is gated and the ledger reflects it.
+
+**Next:** the standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. The single highest-leverage unblocked item remains owner gate 1 (`BACKLOG-2026-09-07.md` section 6): a 5-minute YouTube OAuth paste, actionable since 2026-09-27, releasing 114 finished, caption-synced videos that are currently shipping nobody. Continue the second-pass cold-read of the remaining ~25 files in the 2026-09-25-dated tier after that.
+
+Pushed to main. `ops/stripe_setup.py`, `ops/tests/test_stripe_setup_live_guard.py`, `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-09-30, PM check-in (22:3x cycle)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read of the 2026-09-25-dated ledger tier, because it is the oldest un-re-verified batch and this method has repeatedly found real drift (deploy-verdict staleness, the Bluesky send bug, the structured-data product-page mismatch); 28 files remain in that tier after this cycle's three (`generate_card_art.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `image_style.py`, `import_room_images.py`, `ledgerium_price_check.py`, `media_capability.py`, `merge_cardtext.py`, `optimize_sample_pdf.py`, `reflow.py`, `refresh_hero_fallback.py`, `render_all_narrated.py`, `review_deck_art.py`, `review_heroes.py`, `send_brief.py`, `service_orders.py`, `shrink_sample.py`, `specific_articles.py`, `status_pdf.py`, `stripe_links.py`, `stripe_setup.py`, `sync_page_links.py`, `video_narrated.py`, `video_srt.py`, `wire_consult_cta.py`, `zone_graphics.py`, plus `stripe_check.py`/`verify_media_delivery.py`/`sync_push.py`/`receive_deploy_key.py`/`revenue_model.py` already cleared by an earlier cycle today).
+
+**Previous work was finished and pushed.** Attached clean (fetch, already unshallowed, `checkout main`, ff-only onto `a53c44c5a`). Working tree was clean before this cycle touched anything, main in sync with origin. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (the documented sandbox headless-Chromium limit), killed cleanly; ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read directly, unchanged (6 `decision` + 2 `blocked-on-art`, 2 P0: #15, #2), none pickable. Checked `BACKLOG-2026-09-07.md` section 2's four apparently-open rows (B6, B8, B9, C6) against their own later text rather than trusting the row header: all four are Done, CLOSED-by-decision (B8, D-027), or Phil-gated (C6 OAuth, C5 billing). No unblocked "Now" row exists; matches every recent cycle's own finding.
+
+**One small closing job: re-read three of the oldest (2026-09-25-dated) `ops/*.py` files for logical drift, not just freshness.** `wire_legal_strip.py`, `wire_breadcrumbs.py`, `wire_aria_current.py`, all under 140 lines. No defect in any. Worth noting for whoever reads `wire_breadcrumbs.py` next: its own `--check` mode never exits 1 on drift (only `wire_legal_strip.py`'s and `wire_aria_current.py`'s do), but this is not a silent gap, because `preflight.py`'s own gate reuses `trail()`/`block()`/`MARKED` directly against the live files rather than trusting that script's exit code; confirmed the gate is in fact wired that way by reading `preflight.py` lines 25105-25159, not assumed from the docstring. Recorded all three in `ops/cold-read-ledger.json` at today's date via `cold_read_ledger.py --add`.
+
+**Went well:** checking each apparently-open backlog row's own later text before treating any as real unblocked work, which is what confirmed B8/B9 are already closed rather than open.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limitation as every recent cycle.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-09-30, PM check-in (22:0x cycle)
+
+**Previous work was finished and pushed.** Attached clean (fetch, unshallow, ff-only onto `506bcb1d2`). 8 open issues unchanged, all decision/art-blocked. `preflight.py` full timed out again at the documented `gate_tests` sandbox limit (background, 30 min, no output); ran the fast standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 findings, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, all clean.
+
+**Closed the 21:4x cycle's own "NEXT FOR THE OPERATOR" item.** `affiliate_report.py`'s `inputs_date()` still silently trusted `git log -1 -- <path>` in a shallow clone. Checked the real failure mode against an actual depth-1 clone rather than guessing: git does not return empty there, it returns the shallow boundary commit's date for any file unchanged since (no parent to diff against, so every file reads as "added" in that commit) — indistinguishable from a real answer, which is why the first fix attempt (refuse only when the string is empty) proved wrong in the same test and had to be redone to check `is-shallow-repository` up front instead. Fixed, verified both directions in the real clone (shallow: raises and exits 1; unshallowed: `2026-09-09`, correct), added `case_refuses_to_guess_when_shallow` to `test_affiliate_report_stamp_stable.py` (5/5 pass), reran `test_gate_affiliate_report_current.py` (4/4) to confirm the gate's own try/except still degrades to a warn, not a crash.
+
+**Handoff to the operator:** nothing new blocking; continue the cold-read of the 2026-09-25/26-dated ledger files the last two cycles were working through.
+
+Pushed to main (`00ec46440`, `18aa540dd`). `ops/affiliate_report.py`, `ops/tests/test_affiliate_report_stamp_stable.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (21:4x cycle, reproduced the exact date-staleness bug the prior cycle had just fixed, by skipping this cycle's own unshallow step)
 
 NEXT FOR THE OPERATOR: make `ops/affiliate_report.py`'s `inputs_date()` (and any other generator using the same `git log -1` pattern) refuse to fall back to file-mtime/today silently, because this cycle just reproduced, inside itself, the exact bug the 21:2x cycle believed it had fixed: any process that regenerates these docs from a shallow clone re-corrupts the date, and nothing currently stops that from being committed.
