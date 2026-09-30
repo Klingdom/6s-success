@@ -181,6 +181,8 @@ This is a two-minute look at a screen only Phil can open, against 102 manual upl
 
 **The same table names the channels that do work, and they are not the ones getting the effort.** LinkedIn has produced 12 of this site's visitors and Bluesky 5, against 4 from every search engine combined, for a fraction of the production cost of the video library.
 
+**Closed 2026-09-30, scheduled operator: Bluesky was getting no effort because nothing prepared content for it, not because the channel is weak.** `ops/linkedin_drafts.py` has drafted Phil's LinkedIn posts for weeks and `ops/social_drafts.py` drafts for Facebook and X before either even has an account; Bluesky, already producing real visitors, had no equivalent. `ops/bluesky_drafts.py` + `.github/workflows/bluesky-drafts.yml` now draft and email 3 Bluesky posts a day from the same corpus, needing no new owner action (the SMTP secrets already exist). This does not change the constraint (O1) by itself; it removes the "not getting the effort" half of this paragraph's own complaint about the one channel already proven to convert.
+
 **Blocked on:** uploading the other 102 (114 minus the 12 live), which needs
 Phil's own hand on each one, no operator credential exists for this. See
 `OWNER-ACTIONS.md` item 11 and `BACKLOG-2026-H2.md` 3.10. Instagram and

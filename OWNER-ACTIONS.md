@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-29 UTC, traffic re-measured by a direct database read:
+**Last measured:** 2026-09-30 UTC, traffic re-measured by a direct database read:
 48 visitors/119 visits/30 days (1.6 a day). The trailing week records
 14, but 30 of its 50 pageviews came in one 20-minute burst on 27 September;
 ex-burst the week is 7 visitors and it fell again. Item 1 (YouTube) made
@@ -622,6 +622,8 @@ month. The only channel doing anything is a social feed somebody posts by
 hand, and it sends engaged people: 6 of the 8 LinkedIn sessions viewed two or
 more pages and several came back across several days. YouTube is a search
 engine with 102 finished files already made for it and no way to reach it.
+
+**Closed the one gap in that sentence, 2026-09-30, scheduled operator: Bluesky had no drafting pipeline at all.** LinkedIn has had `ops/linkedin_drafts.py` for weeks and Facebook/X got `ops/social_drafts.py` before either even has an account, but Bluesky, the second channel actually proven to work (5 visitors, all time, at zero authored cost), had nothing preparing content for it. `ops/bluesky_drafts.py` now drafts 3 posts a day from the same already-280-character-filtered corpus pool `social_drafts.py`'s X draft reads (Bluesky's own 300-character cap is a strict superset of X's), tracked under its own rotation key so the two pipelines cannot silently exhaust each other's supply once X gets an account. `.github/workflows/bluesky-drafts.yml` schedules and sends it daily using the same `SMTP_HOST`/`OWNER_EMAIL` secrets the other draft mailers already use, so no new owner action is needed for these to start arriving: verify a first email lands, then post as written or edit freely, the same as the other two.
 
 Uploading needs OAuth against the Google account that owns the channel. An API
 key cannot perform writes, so there is genuinely no way around this one.
