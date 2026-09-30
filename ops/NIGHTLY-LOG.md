@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (21:2x cycle)
+
+**Previous work was finished.** Attached clean (unshallowed, ff-only onto `77e95f9d8`, the STATUS.md deploy-verdict fix). Tree was clean, main pushed. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (same documented sandbox Chromium limit, killed cleanly). Ran narrower checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read, unchanged, all `decision`/`blocked-on-art`.
+
+**The find.** `AFFILIATE_COMPLIANCE_MATRIX.md`/`AFFILIATE_INPUT_EXCEPTIONS.md` were stamped "2026-09-29" but `git log -1` on the two real input files (now full history) says 2026-09-09; the shallow-clone `git log` fallback `gate_ci_checkout_full_history` already documents. `gate_affiliate_report_current` strips the date before comparing by design, so it never caught this. Fixed by regenerating; no other content differed. **Not gated:** the date-correctness check itself is a real gap, left for the operator.
+
+Pushed (`7502b6d06`). Command deck regenerated. No price, product or site page touched.
+
 ## 2026-09-30, scheduled operator cycle (a third stale deploy-verdict citation found in STATUS.md's own "Immediate Focus" line, the gate widened again)
 
 **Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Confirmed live rather than assumed: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`), no unblocked `BACKLOG-2026-09-07.md` "Now" row remains (sections 2-4 all done or Phil-gated), `cold_read_ledger.py --next` shows 191/191 with 0 stale, no mail credential in this sandbox. `preflight.py --fast` reached `gate_tests` with 0 FAIL lines then hung with no CPU progress, the same documented sandbox Chromium limitation every recent cycle reports; killed the orphaned process. Ran the narrower standing checks directly instead.
