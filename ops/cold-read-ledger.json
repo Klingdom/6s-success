@@ -44,7 +44,7 @@
     "bluesky_drafts.py": {
       "status": "clean",
       "date": "2026-09-30",
-      "note": "Cold-read 2026-09-30 scheduled operator: read the module in full and ran --preview live. Correctly reuses the already-280-char-filtered x-post pool under its own bluesky-post rotation key (pool_kind param), re-derives 'remaining' from the actual served set (guards against the exact stale-count bug social_drafts.py had on 2026-09-12), re-checks the 300-char cap on the selected posts directly rather than trusting the upstream filter, and asserts no unfinished [insert.../TODO corpus text reaches the draft. Live preview produced 3 real, correctly-capped posts (262/258/264 chars), 710 remaining in the pool. No defect found."
+      "note": "Cold-read whole file (115 lines) plus its test (7/7 passing) and .github/workflows/bluesky-drafts.yml, all three new today, none previously ledgered. pool_kind threading in corpus_posts.take()/pool() verified correct: bluesky-post and x-post track separate served-sets keyed by kind while reading the same underlying x-post pool by id (sha256 of source+title, independent of which kind read it), so the two pipelines cannot silently halve each other's supply. --preview produces 3 valid <=300-char posts from the live corpus (710 remaining in the filtered pool). Workflow's push-fallback gate (send only after 14:05 UTC and only if no successful scheduled run today) and SMTP-credential pre-check both correct by inspection, matching the established linkedin-drafts.yml/social-drafts.yml pattern; registered in check_cron_cadence.py's WORKFLOWS list, which reports 0 completed runs so far (first cron fire ~14:05 UTC today, not yet due). No defect found."
     },
     "browser.py": {
       "status": "clean",

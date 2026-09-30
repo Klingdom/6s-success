@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (12:1x cycle; previous work finished; cold-read ledger lane now fully exhausted, one new file cold-read and ledgered, no defect)
+
+**Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1262 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. The prior cycle's own fix (`gate_cold_read_ledger_entries_not_stale`, closing the gap where a ledger entry's clean date could outlive a real fix to that file) is genuinely shipped: `python ops/cold_read_ledger.py --stale` reports 0 now, not just at push time.
+
+**A real milestone, not just a clean pass: the cold-read ledger's oldest-first lane, the standing handoff at least a dozen recent cycles have used, is now fully exhausted.** `--next` reports 191 of 191 files ledgered, `--stale` reports 0. There is no more "next 2026-09-25 entry" to hand the operator; that standing "Next" line in the prior entry is now stale and should not be repeated.
+
+**Did:** 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, confirmed live via the API. No BACKLOG-2026-09-07.md "Now" item unblocked (sections 2-4 done or Phil-gated, section 5 Hold, section 6 owner-only). Full `preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit (killed after ~5 min at near-zero CPU growth); 0 case-insensitive "fail" in the captured log before the hang, so reporting that one gate unchecked, not passing, per CLAUDE.md 0.4, not assuming a pass. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**With the standing lane closed, cold-read the one genuinely unledgered thing in the repo: `ops/bluesky_drafts.py`, its test, and `.github/workflows/bluesky-drafts.yml`, all built earlier today and never read by anyone else.** `pool_kind` threading through `corpus_posts.take()`/`pool()` verified correct: `bluesky-post` and `x-post` track independent served-sets keyed by `kind` while reading the same `x-post` pool by an id that does not depend on which kind read it, so the two drafting pipelines cannot silently halve each other's supply. `--preview` produced 3 valid posts under Bluesky's 300-character cap from the live corpus. The workflow's push-fallback gate (send only after 14:05 UTC and only if no successful scheduled run already landed today) and its SMTP pre-check are correct by inspection, matching `linkedin-drafts.yml`/`social-drafts.yml`. Registered in `check_cron_cadence.py`'s list; 0 completed runs so far, first cron fire ~14:05 UTC today, not yet due, nothing to verify there yet. No defect found; recorded clean in `ops/cold-read-ledger.json` via `--add` rather than left unrecorded.
+
+**Went well:** treating the exhausted ledger as real news worth writing down rather than silently falling back to the same "Next" line four more times.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** the cold-read ledger's oldest-first lane is done. The next fallback in this exact state (no BACKLOG item unblocked, all GitHub issues decision/blocked-on-art) is periodic re-verification of already-ledgered entries for drift, which `--stale` already automates, or reading `DECISIONS.md`/`RISKS.md` cold for a citation that has gone stale since it was last touched.
+
+**Handing to the operator (:43):** the Bluesky drafting pipeline's first live run, due ~14:05 UTC today; confirm the draft email actually arrives once that time has passed, not before.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (the cold-read ledger's own dates can go stale, closed the gap and cleared the backlog it exposed)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge). BACKLOG sections 2-6 done or Phil-gated, 8 issues unchanged, no mail credential here. Re-verifying `ops/deploy_freshness.py` from the cold-read ledger's oldest-first queue found its clean note stale: dated 2026-09-25, but a real defect in that file (the freshness probe's own .html URL, 2,270 self-inflicted redirects) was found and fixed 2026-09-29. Nothing had ever compared a ledger date against the file's own git history. Widened the check: 18 of 191 entries were in the same state.
