@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 16:39",
- "commit": "7b1d5d340",
- "commit_msg": "Fix two stale zone-coverage counts (12/6-rooms to 44/7-rooms) DECISIONS.md D-026 and STRATEGY-MICROZONES.md had not been re-derived after Primary Bedroom's diagnosis layer and deck shipped",
- "commits_7d": 1314,
- "commits_total": 4853,
+ "generated": "2026-09-30 16:51",
+ "commit": "5ad286234",
+ "commit_msg": "Hourly check-in record",
+ "commits_7d": 1317,
+ "commits_total": 4856,
  "traffic_line": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 09:50; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 09:50",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 09:50",
  "affiliate_trigger_carried_from": "2026-09-30 09:50",
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,

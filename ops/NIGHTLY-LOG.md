@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (16:4x cycle)
+
+NEXT FOR THE OPERATOR: resume the DECISIONS.md drift-recheck on D-019 through D-028 (D-026 already fixed this hour), because BACKLOG-2026-09-07.md section 7 names source-corrected-artifact-never-rederived as the dominant defect class and this lane is the genuinely unblocked way to keep hunting it.
+
+**Previous work finished:** attached clean, tree clean, main pushed, all 8 GitHub issues unchanged (decision/blocked-on-art, none pickable). Full `preflight.py` passed every gate through `gate_image_coverage`, then hung at `gate_tests` past 280s, the same documented sandbox Chromium hang every recent cycle has reported; killed the orphaned process, reporting past that point unchecked, not passing (CLAUDE.md 0.4). Independent checks all clean: `check_urls.py` 210/210, `audit_pages.py` 0 findings, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0.
+
+Handoff only this slot; larger work is the operator's, per this slot's own instruction.
+
 ## 2026-09-30, PM check-in (16:1x cycle)
 
 **Previous work was finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `becfcc0f0`, no conflict). Full `python ops/preflight.py` ran clean before I touched anything: every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no mail credential). All 8 open GitHub issues unchanged, still `decision`/`blocked-on-art`, none pickable. Cross-checked the dashboard's deploy-lag claim (build `6f5176355eb29401` vs confirmed-live `04167f5ad701b0e4`) against `site/build-id.txt` and `ops/deploy-verdict.json` directly: real and current, not stale reporting, and already owner-gated (issue #35, `OWNER-ACTIONS.md`), so not mine to fix.
