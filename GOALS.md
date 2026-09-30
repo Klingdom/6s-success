@@ -244,7 +244,15 @@ is already ours. The instance-wide SMTP credential it sends through still
 belongs to Compassion Benchmark, a different business on the same shared
 Listmonk host, so every opt-in confirmation 553s and the visitor sees a 500.
 The signup form built for this on 2026-08-23 was withdrawn the same day for
-exactly that reason; the footer's mailto fallback is what actually runs today.
+exactly that reason; a mailto fallback is what actually runs today.
+**Measured 2026-09-30 rather than assumed, because "the footer's mailto"
+implied something stronger than the shape it actually has:** every one of
+the 115 zone pages and 45 of the 46 top-level pages carries a footer link
+to `contact.html`, which holds the `mailto:support@6s-success.com`, so the
+path is one click rather than zero but it exists on every page a visitor
+can land on. The 46th, `invest.html`, carries its own investor-subject
+mailto directly, which is right for that page rather than a gap. So nobody
+who wants to reach us is stuck; they are just not captured into a list.
 Real blocker: issue #15 (P0, decision) needs Phil to choose a separate
 Listmonk instance for 6S, or hand the shared instance's sending identity to
 6S and move Compassion Benchmark off it. Detail in `OWNER-ACTIONS.md` item 7/7a.
