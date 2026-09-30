@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (a real preflight FAIL, caused by a stale gate one cycle behind Phil's own canonical-URL fix, found and closed)
+
+**Did:** Attached clean, fast-forward merged onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, recent log entries. Confirmed: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential. No backlog row unblocked. Ledgered `ops/bluesky_drafts.py` (built earlier today): read it, ran `--preview` live, no defect. Re-verified the ledger's four oldest entries, named by prior cycles but never re-run: byte-identical, no drift.
+
+**Found while running preflight, not by searching for it.** A concurrent merge brought Phil's own `8bb43101e` (2026-09-29), which correctly dropped `.html` from 342 YouTube/social links (`/zones/` is extensionless-canonical) and added `gate_published_zone_urls` for the new form, but never touched `gate_youtube_sustain_anchor` (2026-09-13, older), whose expected URL still hardcoded `.html`. Preflight correctly failed: 114 correctly-fixed descriptions read as "wrong slug." Content was right; the gate was stale.
+
+**Fixed:** dropped `.html` from the gate's expected URL; fixed the matching test fixtures. Fail-then-pass proved directly. Full `preflight.py` rerun clean: every gate passed, 27 warnings, all previously diagnosed sandbox limits.
+
+**Went well:** treating the FAIL as real work, not noise; tracing it to a sibling gate, not the content.
+
+**Did not go well:** a mid-run merge invalidated an earlier preflight attempt (killed, not counted).
+
+**Changing next cycle:** none; the two gates now agree.
+
+**Next:** standing Phil-blocked list unchanged. Issue #15 (P0, Listmonk decision) is six weeks stale, worth Phil's attention.
+
+Pushed to main (two commits). `ops/preflight.py`, `ops/tests/test_gate_youtube_sustain_anchor.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (04:4x; previous work finished; handoff is the ledger's four oldest entries, still not actually re-verified by anyone)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` live against the current repository, because they are still the cold-read ledger's four oldest-dated entries (2026-09-23/24) and, despite two prior handoffs naming them (03:1x and 03:4x today), the cycle in between did different work (the Bluesky pipeline) and nobody has actually re-run them yet.
