@@ -2623,3 +2623,74 @@ print-tier question is real for that one room, and should be sized and
 scoped like Kitchen's own original build, not squeezed into the slot that
 raises it. Nothing here blocks that future work; it only stops the current,
 contentless version of the question from being re-asked in the meantime.
+
+## D-028 | 2026-09-30 | The MCP server has never run; the corpus stays in sync and the build stays green, but deploying and exposing it is an owner decision, not an autonomous one
+
+**Decision.** Keep `mcp/content.json` byte-identical to the manual corpus and
+keep `publish-mcp.yml` publishing the image, and do NOT start the container
+autonomously. The question of whether 6S Success runs a public MCP endpoint is
+escalated to the owner as `OWNER-ACTIONS.md` item 20.
+
+**What was found, against production rather than inferred from this
+repository.** Read over ssh on 2026-09-30:
+
+- `docker ps -a` on the VPS lists exactly one 6S container, the website.
+  There is no `6s-mcp` container, running or stopped.
+- Port 8974, which `mcp/docker-compose.yml` binds, is not listening.
+- The image was not even present on the host.
+- No file in this repository names an endpoint a client could connect to. No
+  hostname routes to 8974 in the proxy.
+
+Meanwhile `publish-mcp.yml` has been building and publishing
+`ghcr.io/klingdom/6s-success-mcp:latest` successfully on every content change
+(three green runs on 2026-09-29 alone), `gate_mcp_corpus_current` enforces a
+byte-identical 1.1 MB copy of the corpus, and `gate_mcp_corpus_current`'s own
+docstring asserted that "the live server (deployed 2026-08-31,
+watchtower-updated on push) was answering real MCP queries". That sentence was
+false and appears always to have been. It is corrected in place, because a
+claim about production inside the file that runs every other gate is worse
+than no claim.
+
+**Why not simply deploy it.** Two reasons, and the second is the one that
+settles it.
+
+1. It would achieve nothing measurable. An MCP server with no proxy route, no
+   DNS name, no registry listing and no configured client has no users. Running
+   it would convert "not deployed" into "deployed and still unused", which
+   looks like progress and is not.
+2. The only reason to run it is to expose it, and exposing it puts a new
+   unauthenticated service on a VPS shared with Ledgerium AI and Compassion
+   Benchmark. `AUTONOMY.md` puts infrastructure at YELLOW and new public
+   surface closer to the owner than to an operator. The content it would serve
+   is already public, so the risk is not disclosure; it is an additional
+   listening process on somebody else's production box.
+
+**Evidence that the option is real when he wants it.** Capacity checked the
+same session: 4.4 GB of 7.9 GB available, 56 GB of disk free, 15 containers
+running, port 8974 free, and `docker pull ghcr.io/klingdom/6s-success-mcp:latest`
+succeeded on the host, so the image is public and present now. Starting it is
+one `docker compose up -d` from `mcp/docker-compose.yml`. Exposing it is a
+proxy host in Nginx Proxy Manager, which is his UI.
+
+**Alternatives considered.**
+
+- *Deploy and expose it now.* Rejected: see reason 2. Not an operator call.
+- *Retire the pipeline* (delete `mcp/`, drop the gate and the workflow).
+  Rejected: the corpus copy is cheap, the gate is cheap, the image builds in
+  under a minute, and an MCP endpoint is a genuine answer-engine distribution
+  channel for a corpus of 114 zones. Retiring it would destroy a real option to
+  save a trivial cost, and the access log shows retrieval crawlers for three
+  different AI products already fetching this site.
+- *Keep it and say nothing.* Rejected: that is the state that produced a false
+  claim about production in the first place.
+
+**Consequences.** CI keeps building an image nobody runs, which is honest and
+nearly free. The gate keeps two files identical, which is the only thing that
+makes a future deployment safe rather than a surprise. The owner gets one
+decision with the facts and the capacity check already done.
+
+**Revisit condition.** Any of: the owner approves item 20; a client (a
+Claude Desktop config, an MCP registry listing, an integration) genuinely
+wants the endpoint; or the corpus-sync gate starts costing more than it saves.
+If the answer is no, retire `mcp/` and `publish-mcp.yml` together rather than
+leaving a published image with no purpose.
