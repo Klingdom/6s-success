@@ -65,7 +65,7 @@ EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - Clear landing space beside the hob, wide enough for a hot pan
   - Pan handles turned in, never over the front edge
 
-WHAT THE PICTURE HAS TO COMMUNICATE. The step of space either side of the burners where cooking happens with your hands busy and heat already on. The idea behind it: HANDS BUSY, HEAT ON. EVERYTHING WITHIN ONE REACH
+WHAT THE PICTURE HAS TO COMMUNICATE. The strip of space either side of the burners where cooking happens with your hands busy and heat already on. The idea behind it: HANDS BUSY, HEAT ON. EVERYTHING WITHIN ONE REACH
 
 HOW THIS IMAGE WILL BE JUDGED. Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected.
 

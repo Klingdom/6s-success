@@ -4676,6 +4676,87 @@ def gate_kitchen_deck_print_tracked() -> None:
         fail("kitchen-deck-print-tracked", "; ".join(problems))
 
 
+def check_kitchen_card_prompts_current(cards: list, prefix: str,
+                                        files: dict) -> list:
+    """Pure logic for gate_kitchen_card_prompts_current, testable without
+    real files. `cards` is build_card_prompts.load_cards("kitchen")'s own
+    list, `prefix` is build_card_prompts.style_prefix()'s frozen house
+    look, and `files` maps a card ID to the committed text of
+    build/prompts/kitchen/<ID>.txt.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    from build_card_prompts import prompt_for
+
+    problems = []
+    for c in cards:
+        body = prompt_for(c, "Kitchen", prefix)
+        actual = files.get(c["ID"])
+        if actual is None:
+            problems.append(f"{c['ID']} has no committed prompt file")
+            continue
+        if body not in actual:
+            problems.append(
+                f"{c['ID']}'s committed prompt does not match what the "
+                f"live Kitchen corpus would generate today (source "
+                f"corrected, artifact never re-derived; run "
+                f"python ops/build_card_prompts.py --deck kitchen)")
+    return problems
+
+
+def gate_kitchen_card_prompts_current() -> None:
+    """The Kitchen deck's image prompts (build/prompts/kitchen/*.txt) are
+    committed text, generated once from ops/cardtext/kitchen-deck.json and
+    then frozen on disk until someone reruns the generator by hand. They
+    are also the exact "source corrected, artifact never re-derived"
+    defect shape this repository's own log names as its dominant class:
+    found live 2026-09-30 (cold-read re-verify of the ledger's oldest
+    four files), KZ-002's committed prompt still read "The step of space
+    either side of the burners...", the wrong word, while
+    ops/cardtext/kitchen-deck.json had already been corrected to "The
+    strip of space..." Nothing had regenerated the prompt file since.
+
+    This did not touch the live site (Kitchen card art is still
+    billing-gated, per BACKLOG-2026-09-07.md C5, so no image has been
+    generated from the stale prompt yet), but the whole point of this
+    generator, per its own module docstring, is a self-contained prompt
+    that gets pasted into a fresh chat months from now; a stale one asks
+    for the wrong picture with nobody able to tell just by reading it.
+
+    Regenerates the expected prompt for all 72 Kitchen cards live from
+    the real corpus (no Desktop, GPU or network access needed; Kitchen's
+    art lives in the repository, unlike the Entryway/Mudroom decks this
+    same generator also serves, which genuinely need Phil's Desktop and
+    are not checked here) and diffs it against the committed
+    build/prompts/kitchen/*.txt files. Pure logic in
+    check_kitchen_card_prompts_current, proved to fail on a planted
+    regression in ops/tests/test_gate_kitchen_card_prompts_current.py.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import build_card_prompts as BCP
+        cards = BCP.load_cards("kitchen")
+        prefix, _sig = BCP.style_prefix()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kitchen-card-prompts-current",
+             f"could not load the Kitchen card-prompt corpus to check "
+             f"against: {e}")
+        return
+
+    prompt_dir = os.path.join(ROOT, "build", "prompts", "kitchen")
+    files = {}
+    for c in cards:
+        path = os.path.join(prompt_dir, f"{c['ID']}.txt")
+        if os.path.exists(path):
+            files[c["ID"]] = io.open(path, encoding="utf-8",
+                                      errors="replace").read()
+
+    problems = check_kitchen_card_prompts_current(cards, prefix, files)
+    if problems:
+        fail("kitchen-card-prompts-current", "; ".join(problems[:5]) +
+             (f" (+{len(problems) - 5} more)" if len(problems) > 5 else ""))
+
+
 def check_entryway_deck_rendered(cards: list, page: str) -> list:
     """Pure logic for gate_entryway_deck_rendered, the per-room equivalent
     BACKLOG-2026-09-07.md B7/B9 calls for. `cards` is
@@ -25810,6 +25891,7 @@ def main() -> int:
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)
+    run_gate(gate_kitchen_card_prompts_current)
     run_gate(gate_entryway_deck_rendered)
     run_gate(gate_laundry_room_deck_rendered)
     run_gate(gate_home_office_deck_rendered)

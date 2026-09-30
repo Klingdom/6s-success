@@ -58,8 +58,8 @@
     },
     "build_app_icons.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: PIL absent by default in this sandbox, installed via pip; regenerated all 5 outputs, 4 pixel-identical to committed, feature-graphic-1024x500.png differs only in font anti-aliasing (1.2% of pixels, text area only, same words, confirmed by eye), a PIL/freetype version artifact not a content defect. No drift."
     },
     "build_articles.py": {
       "status": "clean",
@@ -68,13 +68,13 @@
     },
     "build_avif.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "AVIF wiring/encode/check; idempotent, well-tested (test_build_avif.py 3/3), chained into every generator's main(), gate_generator_chains_avif covers it. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: --check reports 935/935 webp files have an avif sibling; wire() run against an isolated copy of site/ is idempotent (0 pages rewritten on both the first and second run, already fully wired). No drift."
     },
     "build_card_prompts.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read clean, no defect. Desktop-source guard correct, prompt framing table complete, wrong-room/lazy-prompt assertions correct."
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30, this operator: build/prompts/kitchen/KZ-002.txt (and the aggregate ALL.md) still read 'The step of space either side of the burners...', the wrong word, while ops/cardtext/kitchen-deck.json had already been corrected to 'The strip of space...'. Source corrected, artifact never re-derived, the dominant defect class this log names. Fixed by regenerating build/prompts/kitchen/ (python ops/build_card_prompts.py --deck kitchen); no other card affected (git diff --stat showed only these two files). New gate_kitchen_card_prompts_current in preflight.py re-derives all 72 Kitchen prompts live from the corpus and diffs them against the committed files on every run; fail-then-pass proved directly (stashed the fix, watched the gate fail by name citing KZ-002, restored, reran clean). ops/tests/test_gate_kitchen_card_prompts_current.py (3/3). Entryway and Mudroom decks under this same generator still need Phil's Desktop and are not checked here."
     },
     "build_card_template.py": {
       "status": "fixed",
@@ -93,8 +93,8 @@
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "corporate.html generator; self-asserting (no price, correct enquiry routing, catalogue consistency), idempotent regen confirmed byte-identical against committed tree. No defect."
+      "date": "2026-09-30",
+      "note": "Re-verified 2026-09-30: called build() directly (no side effects) and diffed against the committed site/corporate.html; the only differences are the wiring-chain artifacts main() always adds after build() (fingerprints, skip link, PWA/progressive/measure markers, aria-current), zero content drift. main()'s no-dollar-figure assertion re-confirmed live against a fresh build(). No drift."
     },
     "build_corporate_asset.py": {
       "status": "clean",
