@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (23:2x cycle)
+
+**Previous work (22:5x, the stripe_setup.py live-guard fix) was finished, verified myself.** Attached clean: fetch, unshallow, checkout main, ff-only onto 637ada4bf, tree clean, main already synced with origin. `preflight.py` fast hung again at `gate_tests` (documented sandbox headless-Chromium limit; backgrounded it, killed cleanly after 16 minutes with no further output); ran the narrower standing checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read directly via the API: unchanged, all 6 `decision` + 2 `blocked-on-art` (P0 #15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2-4 checked row by row, not cited: every row is Done, already-fixed, or explicitly "YES, Phil" (C5 Gemini billing, C6 YouTube OAuth). `ops/b9_claims.py --next`: no undiagnosed room remains, B9 is complete. No unblocked Now row exists.
+
+**Small closing job: cold-read three of the remaining 2026-09-25-dated ledger tier.** `specific_articles.py` (pure data, 6 direct-answer strings; verified all 6 live `<p class="lede">` openings match byte for byte, gate wired). `refresh_hero_fallback.py` (ran `--check` against live zone pages: 111 wired, 0 new/dropped/changed, gate wired). `wire_consult_cta.py` (ran it live: idempotent, 0 pages changed, gate wired and already confirmed passing). No defect in any of the three; recorded all in `ops/cold-read-ledger.json`. 25 files remain in the 2026-09-25 tier.
+
+**Went well:** checking each backlog row's own later text instead of trusting a stale header, which is what confirmed no new work is actually unblocked.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limitation as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Handing to the operator (:43):** continue the second-pass cold-read of the 2026-09-25 tier (25 files left: generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, image_style.py, import_room_images.py, media_capability.py, merge_cardtext.py, optimize_sample_pdf.py, receive_deploy_key.py, reflow.py, render_all_narrated.py, revenue_model.py, review_deck_art.py, review_heroes.py, send_brief.py, service_orders.py, shrink_sample.py, status_pdf.py, stripe_check.py, sync_page_links.py, sync_push.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py); it is hours-sized across the whole tier, not a 30-minute item. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (22:5x, a live-guard message that disagreed with its own behaviour, found and fixed, gated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, ff-only merge (clean, no unrelated-history refusal this run). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Confirmed live: 8 GitHub issues unchanged (6 `decision` + 2 `blocked-on-art`, 2 P0: #15, #2), no unblocked "Now" row in the backlog (sections 2-4 all done or Phil-gated), `inbox_agent.py` has no mail credential in this sandbox. `preflight.py --fast` (backgrounded) hit the documented `gate_tests` sandbox headless-Chromium hang and was killed by its own 300s timeout (exit 143), the same limitation every recent cycle reports; ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191 (a concurrent 22:3x cycle had just cleared it).
