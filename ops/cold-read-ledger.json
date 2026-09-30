@@ -133,8 +133,8 @@
     },
     "build_feed.py": {
       "status": "clean",
-      "date": "2026-09-10",
-      "note": "Cold-read and run, closed clean, no defect found."
+      "date": "2026-09-30",
+      "note": "Re-verified for drift (was 2026-09-10, the ledger's oldest entry). --check reports feed current, 29 entries; gate_feed_current already wired in preflight and passed. No drift."
     },
     "build_garage_deck_page.py": {
       "status": "fixed",
@@ -343,13 +343,13 @@
     },
     "canonical_links.py": {
       "status": "clean",
-      "date": "2026-09-11",
-      "note": "Run live against the real tree: 0 links would rewrite, 2301 internal links extensionless, 0 .html. Confirmed the site-wide fix still holds."
+      "date": "2026-09-30",
+      "note": "Re-verified for drift (was 2026-09-11). Live run: 0 links would rewrite, canonicals 168 extensionless/49 .html (the 49 are top-level pages whose own canonical is .html, by design), internal links 2925 extensionless/0 .html. Counts grew with the site (was 2301 extensionless) but the ratio the fix enforces (0 .html) held. No drift."
     },
     "card_spec.py": {
       "status": "clean",
-      "date": "2026-09-11",
-      "note": "Reconfirmed clean on repeated independent re-reads; all ten card families pass the file's own 4.5:1 contrast assertion at import time."
+      "date": "2026-09-30",
+      "note": "Re-verified for drift (was 2026-09-11). Ran directly: the module-level assert (all ten families' band_bg() output >= 4.5:1 against on()) passed, exit 0. The CLI table's own printed contrast column shows several families below 4.5 (Problem 4.09, Habit 4.44, Win/Win-Reward 4.02) but that is the documented pre-band_bg raw colour, not what actually renders on cards; confirmed against the file's own docstring rather than reading the table at face value. No drift."
     },
     "check_affiliate_trigger.py": {
       "status": "clean",
