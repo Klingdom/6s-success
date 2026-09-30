@@ -198,6 +198,9 @@
      card is noise a reader learns to dismiss. Measured too, so we find out
      whether this ever actually happens to anybody rather than guessing. */
   var storageBroken = false;
+  /* Guard for quest-symptom-shown below: once per page load, not once
+     per render. */
+  var symptomShownReported = false;
   var storageWarned = false;
 
   function warnStorageBroken() {
@@ -971,7 +974,32 @@
     var showClassic = first && (symptomSkipped || !hasSymptoms);
 
     var symBox = $("#symptom-step");
-    if (symBox) { symBox.hidden = !showSymptom; }
+    if (symBox) {
+      var symWasHidden = symBox.hidden;
+      symBox.hidden = !showSymptom;
+      /* The first step of the core product was the one gap in this funnel
+         nothing measured. quest-symptom-picked fires when somebody chooses
+         one of the five, and quest-start fires only once a queue is built,
+         but nothing fired when the five were actually put in front of
+         somebody. So "how many people are asked and do not answer" could
+         not be read at all.
+
+         Measured 2026-09-30, which is why this exists: 8 visitors have ever
+         reached quest-start and 3 have ever picked a symptom, and those two
+         are not comparable without this one, because quest-start also covers
+         the room and draw modes that never see this question (mode=zone on
+         17 of 21 starts, room 2, draw 2).
+
+         Fires on the hidden-to-visible transition only, and once per page
+         load. applyFirstRunGate() runs on every render, so an unguarded
+         event here would count renders rather than readers. No room, no
+         zone and no symptom text: this one says only that the question was
+         asked, and how many options it offered. */
+      if (showSymptom && symWasHidden && !symptomShownReported) {
+        symptomShownReported = true;
+        m("quest-symptom-shown", { choices: (Q.symptoms || []).length });
+      }
+    }
     var causeBox = $("#cause-step");
     if (causeBox) { causeBox.hidden = !showCause; }
     var box = $("#first-run");
