@@ -84,7 +84,7 @@ def html_for(room: str, zone: str, vz) -> str:
         '<i style="background:%s"></i>' % c for _n, c in vz.SIX)
     fonts = vz.FONTS if hasattr(vz, "FONTS") else ""
     return """<!doctype html><meta charset="utf-8"><style>
-%s
+@font-face{font-family:Inter;src:url('file:///%s/Inter-800-normal.woff2')format('woff2');font-weight:800}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:%dpx;height:%dpx;overflow:hidden}
 /* THE BUG THAT COST THREE LAYOUTS: the header row was overflowing 1280px.

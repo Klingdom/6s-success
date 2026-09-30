@@ -293,13 +293,13 @@
     },
     "build_social_captions.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Pinterest/Instagram caption generator; ran --all, 114/114 written, 0 length warnings, output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "Read in full (231 lines). Ran --all: 114 captions + boards.json written, 0 warnings (titles/descriptions/captions all within Pinterest/Instagram limits). Regenerated output byte-identical to committed tree (git diff clean). Reuses build_youtube_metadata.py's title_for()/zone_page_slug() and build_social_pins.py's done_items(), so fixes to those propagate here too. No defect found."
     },
     "build_social_pins.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "Read in full (385 lines). Ran --zone 'Landing Zone': both pinterest/instagram cards render at correct dimensions; regenerated PNG differs from committed only because Pillow is missing in this sandbox so palette_png()'s 256-colour quantization step is honestly skipped (full-colour fallback, as the code's own docstring says it will), not a code defect; reverted the two test renders rather than ship a full-colour regression. No defect found."
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
@@ -317,9 +317,9 @@
       "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
     },
     "build_thumbnails.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "Read in full (166 lines). Found and fixed a real defect: html_for() substituted vz.FONTS (a bare filesystem directory path) directly into <style> in place of an @font-face rule, so none of the 114 thumbnails ever actually loaded the Inter font; 'font-family: Inter' silently fell back to whatever system font the render machine has. Confirmed with a pixel diff (Pillow+numpy installed for the check): 8.8% of pixels differed, max channel delta 204/255, before the fix. Added the missing @font-face for Inter-800 (the weight .room/.zone actually use; the real Inter-800-normal.woff2 file already existed on disk, just unlinked), regenerated all 114 thumbnails, new gate_thumbnail_font_face in preflight.py (fail-then-pass proved 4 ways in ops/tests/test_gate_thumbnail_font_face.py: bare-path bug, no @font-face at all, wrong declared weight, and the real fixed shape)."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -328,8 +328,8 @@
     },
     "build_youtube_metadata.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "YouTube title/description/tags generator; ran live, 114/114 written, 0 warnings, output git-clean (no drift). No defect."
+      "date": "2026-09-30",
+      "note": "Read in full while tracing build_social_captions.py's imports (title_for, zone_page_slug). Both functions are the single source of truth five sibling files already depend on. No defect found in this pass; not independently re-run standalone this cycle."
     },
     "build_zone_index.py": {
       "status": "clean",

@@ -1277,7 +1277,8 @@ GENERATOR_PROTECTED_ELSEWHERE = {
                       "gate_sameas_backed_by_onsite_link",
                       "gate_sitemap_lastmod_current"),
     "build_social_pins.py": ("gate_dashboard_social_pins_live",),
-    "build_thumbnails.py": ("gate_dashboard_thumbnails_live",),
+    "build_thumbnails.py": ("gate_dashboard_thumbnails_live",
+                             "gate_thumbnail_font_face"),
 }
 
 
@@ -14406,6 +14407,56 @@ def gate_dashboard_thumbnails_live() -> None:
              f"instead of unmeasured: {unmeasured!r}")
 
 
+def gate_thumbnail_font_face() -> None:
+    """Every YouTube thumbnail must actually load its brand font, not
+    silently fall back to whatever font happens to be installed on the
+    machine that renders it.
+
+    Found 2026-09-30, cold-reading build_thumbnails.py (a 2026-09-25
+    ledger entry). html_for() inserted vz.FONTS -- a bare filesystem
+    directory path, e.g. "/home/user/6s-success/site/assets/fonts" -- as the
+    first line inside the <style> block, in the exact spot every sibling
+    generator (video_zone.py, build_social_pins.py) puts a real @font-face
+    rule. No @font-face was ever emitted, in any of the 114 already-built
+    thumbnails: "font-family: Inter" on .room and .zone never actually
+    loaded Inter, so every render silently used whatever system-ui/sans-serif
+    font the host happened to have. Confirmed, not assumed: regenerating one
+    thumbnail in this sandbox and pixel-diffing it against the committed file
+    (Pillow installed for the comparison) showed 8.8% of pixels differing,
+    max channel delta 204 of 255, a real visual difference from font
+    substitution, not the byte-only encoder noise this repository elsewhere
+    treats as harmless. The real Inter-800-normal.woff2 this file needs
+    (font-weight:800 on both .room and .zone) already sits on disk; it was
+    just never linked.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_thumbnails as BT
+    import video_zone as vz
+    html = BT.html_for("Entryway", "Landing Zone", vz)
+    style = html.split("<style>", 1)[1].split("</style>", 1)[0]
+    if vz.FONTS in style.split("@font-face", 1)[0]:
+        fail("thumbnail-font-face",
+             "the raw fonts directory path is substituted directly into "
+             "<style>, ahead of any @font-face rule, instead of a real "
+             "@font-face declaration")
+    faces = re.findall(r"@font-face\{([^}]*)\}", style)
+    if not faces:
+        fail("thumbnail-font-face",
+             "no @font-face rule in a rendered thumbnail: the brand font "
+             "silently falls back to whatever font the render machine has")
+        return
+    declared_weights = set()
+    for face in faces:
+        m = re.search(r"font-weight:\s*([0-9]+)", face)
+        if m:
+            declared_weights.add(m.group(1))
+    if "800" not in declared_weights:
+        fail("thumbnail-font-face",
+             "font-weight:800 is used (.room, .zone) but no @font-face "
+             "declares weight 800 (declared: %r), so the browser must "
+             "synthesize it" % sorted(declared_weights))
+
+
 def gate_dashboard_narrated_videos_live() -> None:
     """The dashboard must not hide the narrated video product either.
 
@@ -26270,6 +26321,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
     run_gate(gate_dashboard_thumbnails_live)
+    run_gate(gate_thumbnail_font_face)
     run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)

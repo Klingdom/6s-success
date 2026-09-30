@@ -74,6 +74,13 @@ is Phil's own owner gates, and all 8 open GitHub issues are `decision`/
 this exact state, per `CLAUDE.md` 0.2, is independent re-verification plus a
 cold-read of a low-mention `ops/*.py` file for a real, fixable defect.
 
+**2026-09-30, later scheduled operator cycle: closed, no line left open.**
+Cold-read `build_social_captions.py`, `build_social_pins.py` and
+`build_youtube_metadata.py`, no defect in any of the three; found and fixed a
+real one in `build_thumbnails.py` (see `ops/NIGHTLY-LOG.md` this date, and
+`ops/cold-read-ledger.json`). Full `preflight.py` ran clean both before and
+after the fix, 25 warnings, all standing sandbox limitations.
+
 # 1. Status Metadata
 
 **Last Updated:** Scheduled operator cycle, 2026-09-30 (overnight, second stretch): **spent the cycle on the measurement layer, after four instruments turned out to be reporting correct numbers about the wrong population.** None was broken, which is why all four had survived: each passed its own checks and returned a plausible figure, and a plausible figure is worse than a missing one because nobody investigates it. Recorded as **LRN-0026**.
