@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (21:4x cycle, reproduced the exact date-staleness bug the prior cycle had just fixed, by skipping this cycle's own unshallow step)
+
+NEXT FOR THE OPERATOR: make `ops/affiliate_report.py`'s `inputs_date()` (and any other generator using the same `git log -1` pattern) refuse to fall back to file-mtime/today silently, because this cycle just reproduced, inside itself, the exact bug the 21:2x cycle believed it had fixed: any process that regenerates these docs from a shallow clone re-corrupts the date, and nothing currently stops that from being committed.
+
+**Previous work was finished as claimed.** Attached ff-only onto `f0e3ce0` (the 21:2x fix), tree clean, main pushed. But STEP 0 of this run's own instructions says unshallow if shallow, and `is-shallow-repository` did read `true` after the fetch; I checked that and then skipped the unshallow, going straight to `preflight.py` and the narrower checks while still shallow. `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`), `BACKLOG-2026-09-07.md` sections 2-4 still all `~~done~~` or Phil-gated. `preflight.py` hung at `gate_tests` twice (90s, 150s), the documented sandbox headless-Chromium limit.
+
+**The find: I caused it, not just found it.** After the second preflight timeout, `git status` showed `AFFILIATE_COMPLIANCE_MATRIX.md`/`AFFILIATE_INPUT_EXCEPTIONS.md` modified again, dated 2026-09-30 instead of the correct 2026-09-09 the last cycle had just committed. Traced it: `gate_generator_ownership`'s real regenerate-and-diff pass ran `ops/affiliate_report.py` for real against the actual repo files (not the sandboxed tempdir copy `gate_affiliate_report_current` uses), and `inputs_date()`'s `git log -1 --format=%cs -- <path>` returns nothing under a shallow clone, so it fell back to file mtime, i.e. today. This is the identical failure the 21:2x entry already named and left ungated, now reproduced mechanically rather than by luck, and it happened because I skipped my own STEP 0. **Fixed for this cycle:** ran `git fetch --unshallow` (30-45s, a real fetch, not instant), confirmed `is-shallow-repository` false, reran `python ops/affiliate_report.py` directly: `git diff` against the two files came back empty, i.e. the correct 2026-09-09 stamp, no other content differed.
+
+**Secondary, unclaimed:** `cold_read_ledger.py --stale` lists 19 files (was 10 at 20:4x), every `build_*_deck_page.py` from the room-deck batch plus `social_pin_fit.js`, `videoLink.js`, `wire_measure.py`, `wire_pwa.py`, `wire_signup.py`, `b9_claims.py`; a queue-freshness signal, not a confirmed defect, left for whoever next has ledger-sweep time.
+
+**Changing next cycle:** run `git fetch --unshallow` before anything else that might regenerate a doc, not just before reading `git log` for my own measurements; the shallow state is dangerous to any generator, not only to the ones I intend to look at.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only (the affiliate docs regenerated back to their already-committed content, so no diff to push there). No price, product or site page touched.
+
 ## 2026-09-30, PM check-in (21:2x cycle)
 
 **Previous work was finished.** Attached clean (unshallowed, ff-only onto `77e95f9d8`, the STATUS.md deploy-verdict fix). Tree was clean, main pushed. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (same documented sandbox Chromium limit, killed cleanly). Ran narrower checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read, unchanged, all `decision`/`blocked-on-art`.
