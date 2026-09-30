@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (04:1x; previous work finished; closed the exact four-file handoff the 03:4x cycle left)
+
+Previous work: finished. Attached clean (fast-forward onto origin/main, no unrelated-history refusal). 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md item unblocked (checked directly, not cited).
+
+Did the four-file ledger re-verify the 03:4x cycle handed to the operator: build_corporate_asset.py, retire_stripe_skus.py, affiliate_report.py, build_cleaning_index.py. Ran each live. First and last two: reran the generator directly, byte-identical output, clean git diff. retire_stripe_skus.py: confirmed the 09-23 record_archived() fix still holds by reading the source; the live Stripe scan itself stays unchecked here, no credential in this sandbox, same standing limit as every prior cycle. No drift in any of the four. Recorded via cold_read_ledger.py --add.
+
+preflight.py: first run showed 2 FAILs (stray-probe-files, landmarks-current), both pointing at a fixture path from a concurrent session in this shared sandbox; confirmed the path no longer exists on disk, reran uncontended: every gate passed, 26 warnings.
+
+Handing to the operator: ledger's new oldest four are backup_analytics.py, browser.py, build_all_prompts.py, build_app_icons.py (all 2026-09-25).
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed.
+
 ## PM check-in, 2026-09-30 (03:4x, addendum: the preflight left unchecked below is now a confirmed clean pass, with a real transient FAIL explained rather than left alarming)
 
 After shipping the entry below, `ops/run_preflight.sh` finished: **`3 gate(s) failed`** (`stray-probe-files`, `landmarks-current`, `tests`), all three pointing at the same source, `site/_audit_catalog_fixture_849.html` and its sibling, a leftover test fixture from some other run in this shared, CPU-starved sandbox (this cycle's own container ran multiple concurrent sessions today, documented above and in prior entries). Checked rather than assumed: the fixture path no longer exists on disk (self-healed, the gate's own by-design behaviour), and `ops/tests/test_zone_block_seen.py` (the named `tests` failure) passes clean in complete isolation, all 5 of its own cases. Ran the full wrapper a second time, uncontended by that point: **every gate passed, 26 warning(s)**, the same standing set as every recent cycle today. No live defect. Nothing above changes the handoff or the ledger correction already shipped.
