@@ -563,8 +563,8 @@
     },
     "ledgerium_price_check.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: no hardcoded secret, correctly gated by gate_ledgerium via check_ledgerium.py, ran clean (unchecked, no credential) in this sandbox, no defect"
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator, no defect"
     },
     "link_graph_report.py": {
       "status": "clean",
@@ -818,13 +818,13 @@
     },
     "stripe_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: superseded by stripe_catalog.py per its own docstring, correctly guards live writes (STRIPE_ALLOW_LIVE), idempotent (finds existing active link before creating another), no defect found"
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator, no defect"
     },
     "stripe_setup.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "status": "fixed",
+      "date": "2026-09-30",
+      "note": "cold read 2026-09-30 scheduled operator: live-guard message disagreed with behaviour under STRIPE_ALLOW_LIVE=1, fixed, gated by test_stripe_setup_live_guard.py"
     },
     "sync_page_links.py": {
       "status": "clean",

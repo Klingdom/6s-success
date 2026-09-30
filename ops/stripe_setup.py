@@ -128,12 +128,11 @@ def main(apply_it):
     key = creds()
     live = key.startswith(("sk_live_", "rk_live_"))
     print(f"Mode: {'LIVE, real money' if live else 'test, no real money'}")
-    if live and apply_it:
+    if live and apply_it and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
         print("Refusing to create live products from a script without a second "
               "look. Run --plan against the live key, read it, and create them "
               "in the dashboard, or rerun with STRIPE_ALLOW_LIVE=1 set.")
-        if os.environ.get("STRIPE_ALLOW_LIVE") != "1":
-            return 1
+        return 1
 
     have = existing_prices(key)
     print(f"Existing prices with a lookup key: {len(have)}\n")
