@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (15:4x)
+
+NEXT FOR THE OPERATOR: keep auditing generated/status files against fresh source data for the "corrected source, shipped artifact never re-derived" defect class (`BACKLOG-2026-09-07.md` section 7 names it the dominant one), because this cycle found and fixed a live instance of exactly that shape.
+
+**Previous work was finished, then went stale within the same day by one commit.** Checkout arrived shallow/detached again (issue #27); fast-forwarded onto `origin/main`, no conflict. The 15:2x cycle had correctly logged `BLOCKER-001`'s deploy gap as 1 commit (`12e3402ca`, "quest-symptom-shown") awaiting VPS access this sandbox lacks. Between that cycle and this one, Phil's own session redeployed and recorded the fix directly (`ac8e2c1fc`, `ops/deploy-verdict.json` now `checked_at: 2026-09-30T15:36:31Z`, build `04167f5ad701b0e4`), but `STATUS.md`'s four citations (`BLOCKER-001`, Production Knowledge, two summary rows, Immediate Focus) and `EXECUTIVE-DASHBOARD-LIVE.md` (generated 15:30, six minutes before the redeploy verdict landed) still read the superseded `e70a81623df41ed5`/07:42:00Z confirmation and, in the dashboard's case, said outright "PRODUCTION IS SERVING AN OLD BUILD." Verified directly rather than trusted: `git log 12e3402ca..HEAD -- site/ Dockerfile` returns zero commits, `site/build-id.txt` at HEAD matches the confirmed-live build byte for byte.
+
+**Did:** appended correction paragraphs to `STATUS.md`'s four stale citations (same append-don't-overwrite convention the file already uses) and regenerated `EXECUTIVE-DASHBOARD-LIVE.md` via `ops/dashboard.py` (never hand-edited; it now correctly names traffic, not deploy lag, as the constraint). Checked all 8 open GitHub issues: unchanged, every one `decision` or `blocked-on-art`, none pickable per the "never pick Phil-blocked" rule. No new defect found beyond the one fixed.
+
+**Corrected in this same entry, before push:** the first draft of this entry was itself appended to the physical end of the file, after 44,000+ lines of 2026-09-04 history, the exact mistake `gate_nightly_log_ordering` exists to catch (caught live by this cycle's own `preflight.py` run: `FAIL nightly-log-ordering`). Moved to the top, newest-first, as this file's own second line says. Also caught by the same run: `status-deploy-verdict-current` still flagged one citation this cycle's STATUS.md edit had not reached (the "Current Overall Assessment" summary line); fixed in the same push.
+
+**Not verified before the first push:** full `python ops/preflight.py` was still running past 6 minutes (consistent with this sandbox's standing network-timeout pattern: no Stripe key, no VPS SSH, no egress to 6s-success.com) when this entry was first written, so its result was reported unchecked at that point, per CLAUDE.md 0.4. It has since completed: 2 gate(s) failed (the ordering mistake above, both now fixed), 28 warning(s), all standing sandbox limits (no Stripe credential, no VPS SSH, no egress to 6s-success.com, no mail credential) or pre-existing, already-tracked items (`deck-print-tier`, art gaps tracked in issues #2/#29).
+
+Pushed to main (two commits: the fix, then this correction). Files: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price or product touched, no new page, no code change.
+
+## 2026-09-30, PM check-in (15:2x)
+
+**Note added by the 15:4x cycle immediately above, before push: this entry was itself found misplaced at the physical end of the file, the same `gate_nightly_log_ordering` mistake the 15:4x entry above made and fixed in itself. Moved here, to its correct newest-first position, without changing its content.**
+
+**Previous work was finished.** Checkout came in shallow/detached (issue #27's usual shape); fast-forwarded cleanly onto origin/main, 1286 commits, no conflict. Full `preflight.py` (not `--fast` shortcut): every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no egress to 6s-success.com). Working tree clean, main already pushed. No open claims in `STATUS.md`. Independently spot-checked the last cycle's RISK-0003 recount against `ops/card-hero-verdicts.json` directly: 7 "no" verdicts, matches exactly.
+
+**Did:** found no genuinely unblocked item. Cold-read ledger fully exhausted (191/191 files, 0 stale). All 8 open GitHub issues are `decision` or `blocked-on-art`. `BLOCKER-001`'s deploy gap is 1 commit (`12e3402ca`, Phil's own), needs VPS access this sandbox lacks, already tracked as issue #35. `deck-print-tier` warning is an intentional open-by-design decision (`DECISIONS.md` D-027), not a defect.
+
+**Handing to :43 operator:** nothing specific; same standing Phil-blocked list. Regenerated dashboard, shipping now.
+
 ## 2026-09-30, scheduled operator cycle (picked up the standing DECISIONS/RISKS drift-recheck handoff; one real arithmetic drift found and fixed in RISK-0003, DEC-0001 through D-018 checked clean)
 
 **Did:** Attached clean (fetch, already unshallowed by a prior step this session, `checkout main`, `merge --ff-only origin/main`, fast-forwarded onto `7b1cf7793`, then a further `916fe69f9` landed mid-cycle from a concurrent PM check-in and was merged the same way). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed live: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`; no `BACKLOG-2026-09-07.md` "Now" item unblocked; `inbox_agent.py --apply` reports no mail credential in this sandbox (unchecked, not empty, same as every prior cycle). Took the 14:5x PM check-in's own handoff by name: resume the DECISIONS.md/RISKS.md/OWNER-ACTIONS.md drift-recheck lane on DEC-0001 through DEC-0037 and D-001 through D-018.
@@ -44710,23 +44734,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-## 2026-09-30, PM check-in (15:2x)
-
-**Previous work was finished.** Checkout came in shallow/detached (issue #27's usual shape); fast-forwarded cleanly onto origin/main, 1286 commits, no conflict. Full `preflight.py` (not `--fast` shortcut): every gate passed, 27 warnings, all standing sandbox limits (no Stripe key, no VPS SSH, no egress to 6s-success.com). Working tree clean, main already pushed. No open claims in `STATUS.md`. Independently spot-checked the last cycle's RISK-0003 recount against `ops/card-hero-verdicts.json` directly: 7 "no" verdicts, matches exactly.
-
-**Did:** found no genuinely unblocked item. Cold-read ledger fully exhausted (191/191 files, 0 stale). All 8 open GitHub issues are `decision` or `blocked-on-art`. `BLOCKER-001`'s deploy gap is 1 commit (`12e3402ca`, Phil's own), needs VPS access this sandbox lacks, already tracked as issue #35. `deck-print-tier` warning is an intentional open-by-design decision (`DECISIONS.md` D-027), not a defect.
-
-**Handing to :43 operator:** nothing specific; same standing Phil-blocked list. Regenerated dashboard, shipping now.
-
-## 2026-09-30, PM check-in (15:4x)
-
-NEXT FOR THE OPERATOR: keep auditing generated/status files against fresh source data for the "corrected source, shipped artifact never re-derived" defect class (`BACKLOG-2026-09-07.md` section 7 names it the dominant one), because this cycle found and fixed a live instance of exactly that shape.
-
-**Previous work was finished, then went stale within the same day by one commit.** Checkout arrived shallow/detached again (issue #27); fast-forwarded onto `origin/main`, no conflict. The 15:2x cycle had correctly logged `BLOCKER-001`'s deploy gap as 1 commit (`12e3402ca`, "quest-symptom-shown") awaiting VPS access this sandbox lacks. Between that cycle and this one, Phil's own session redeployed and recorded the fix directly (`ac8e2c1fc`, `ops/deploy-verdict.json` now `checked_at: 2026-09-30T15:36:31Z`, build `04167f5ad701b0e4`), but `STATUS.md`'s four citations (`BLOCKER-001`, Production Knowledge, two summary rows, Immediate Focus) and `EXECUTIVE-DASHBOARD-LIVE.md` (generated 15:30, six minutes before the redeploy verdict landed) still read the superseded `e70a81623df41ed5`/07:42:00Z confirmation and, in the dashboard's case, said outright "PRODUCTION IS SERVING AN OLD BUILD." Verified directly rather than trusted: `git log 12e3402ca..HEAD -- site/ Dockerfile` returns zero commits, `site/build-id.txt` at HEAD matches the confirmed-live build byte for byte.
-
-**Did:** appended correction paragraphs to `STATUS.md`'s four stale citations (same append-don't-overwrite convention the file already uses) and regenerated `EXECUTIVE-DASHBOARD-LIVE.md` via `ops/dashboard.py` (never hand-edited; it now correctly names traffic, not deploy lag, as the constraint). Checked all 8 open GitHub issues: unchanged, every one `decision` or `blocked-on-art`, none pickable per the "never pick Phil-blocked" rule. No new defect found beyond the one fixed.
-
-**Not verified this cycle:** full `python ops/preflight.py` was still running past 6 minutes (consistent with this sandbox's standing network-timeout pattern: no Stripe key, no VPS SSH, no egress to 6s-success.com) when this entry was written, so its result is reported unchecked, not passing, per CLAUDE.md 0.4. Will re-check when it returns.
-
-Pushed to main. Files: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price or product touched, no new page, no code change.
