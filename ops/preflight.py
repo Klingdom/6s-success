@@ -25053,6 +25053,135 @@ def gate_decisions_index_current() -> None:
              "; ".join(problems))
 
 
+_CITATION_STOPWORDS = {
+    "the", "and", "for", "that", "this", "with", "from", "stays", "stay",
+    "keep", "keeps", "have", "has", "not", "but", "its", "own", "into",
+    "onto", "upon", "about", "after", "before", "while", "when", "where",
+    "which", "what", "who", "will", "would", "should", "could", "never",
+    "until", "still", "also", "than", "then", "each", "every", "some",
+    "any", "all", "one", "two", "three", "new", "old", "real", "live",
+    "free", "paid", "gets", "get", "made", "make", "makes", "does", "done",
+    "stops", "stop", "goes", "going", "runs", "ran", "run",
+}
+
+
+def _citation_keywords(title):
+    """Distinctive words from a decision's own title: all-caps acronym
+    tokens only (MCP, KDP, SEO). Deliberately narrow, proved so on purpose:
+    an earlier version also took any lowercase word of 6+ letters, and it
+    missed the real D-028 regression this check exists for, because
+    "corpus" happens to appear in both the MCP decision's own title and
+    OWNER-ACTIONS.md item 20's unrelated text about video descriptions,
+    which is generic enough to appear almost anywhere in this repository.
+    An acronym is rare enough that a genuine match means something; a common
+    word is not. A title with no acronym is simply not checked further,
+    which is honest (unverified, not a false pass on a coincidence).
+    """
+    return {w.lower() for w in re.findall(r"[A-Za-z']+", title)
+            if w.isupper() and len(w) >= 2 and w.lower() not in _CITATION_STOPWORDS}
+
+
+def _owner_action_item_text(owner_actions_text, item_id):
+    """The body text of one OWNER-ACTIONS.md item, whichever of the two
+    shapes it is written in (see check_decisions_owner_action_citations).
+    Empty string if the id names neither.
+    """
+    esc = re.escape(item_id)
+    m = re.search(r"^###\s+~{0,2}" + esc + r"\.\s*(.+?)\n(.*?)(?=^###\s|\Z)",
+                  owner_actions_text, re.MULTILINE | re.DOTALL)
+    if m:
+        return m.group(1) + " " + m.group(2)
+    m = re.search(r"^\|\s*~{0,2}\*\*" + esc + r"\*\*~{0,2}\s*\|(.*)$",
+                  owner_actions_text, re.MULTILINE)
+    if m:
+        return m.group(1)
+    return ""
+
+
+def check_decisions_owner_action_citations(decisions_text, owner_actions_text) -> list:
+    """Pure logic: every "OWNER-ACTIONS.md item N" cited in DECISIONS.md must
+    name a real item in that file, and that item must actually be about the
+    same thing the decision is.
+
+    Found 2026-09-30, this operator, cold-reading D-028 (written the same
+    day) for the same citation-drift class check_decisions_index() already
+    catches for decision ids: it escalated its own MCP question as
+    "OWNER-ACTIONS.md item 20", but item 20 in that file is "Add one link to
+    each of the 12 published video descriptions", an unrelated task. The
+    real MCP item is 21. STATUS.md's own account of the same decision
+    already cited 21 correctly, so this was a plain slip in one file, not a
+    genuine renumbering nobody had caught up with, but a reader who trusted
+    the decision record over the source file would have looked in the wrong
+    place.
+
+    A pure existence check would not have caught it: 20 is a real item, just
+    the wrong one. So this also requires at least one distinctive word from
+    the decision's own title to appear in the cited item's own text (here,
+    "MCP", which item 21 has and item 20 does not); a decision with no such
+    word (all short/common) is not checked further, since that would be
+    guessing rather than finding a defect. Valid ids come from two shapes
+    OWNER-ACTIONS.md actually uses: a `### N.` heading for most items, and a
+    `| **N** |` table row for the "Start here" items (0, 1a, 1d) that live
+    in a table instead.
+    """
+    valid = set(re.findall(
+        r"^###\s+~{0,2}(\d+[a-z]?)\.", owner_actions_text, re.MULTILINE))
+    valid |= set(re.findall(
+        r"^\|\s*~{0,2}\*\*(\d+[a-z]?)\*\*~{0,2}\s*\|",
+        owner_actions_text, re.MULTILINE))
+
+    # Two heading shapes coexist in this file: "## D-020 | date | title" and
+    # the older "## DEC-0001: title", so the title separator is either.
+    blocks = re.finditer(
+        r"^##\s+(D-\d{3}|DEC-\d{4})\s*(?:\|[^|\n]*\||:)\s*(.+?)\n(.*?)"
+        r"(?=^##\s+(?:D-\d{3}|DEC-\d{4})\s*(?:\||:)|\Z)",
+        decisions_text, re.MULTILINE | re.DOTALL)
+
+    missing, mismatched = [], []
+    for b in blocks:
+        dec_id, title, body = b.group(1), b.group(2), b.group(3)
+        cites = set(re.findall(
+            r"OWNER-ACTIONS\.md`?\s+item\s+(\d+[a-z]?)\b", body))
+        if not cites:
+            continue
+        kws = _citation_keywords(title)
+        for item_id in sorted(cites):
+            if item_id not in valid:
+                missing.append("%s cites item %s" % (dec_id, item_id))
+                continue
+            if not kws:
+                continue
+            item_text = _owner_action_item_text(
+                owner_actions_text, item_id).lower()
+            if not any(kw in item_text for kw in kws):
+                mismatched.append(
+                    "%s cites OWNER-ACTIONS.md item %s, but none of that "
+                    "decision's own distinctive words (%s) appear in that "
+                    "item's text" % (dec_id, item_id, ", ".join(sorted(kws))))
+
+    problems = []
+    if missing:
+        problems.append("citing nonexistent item(s): %s" % "; ".join(missing))
+    if mismatched:
+        problems.extend(mismatched)
+    return problems
+
+
+def gate_decisions_owner_action_citations_current() -> None:
+    """Every OWNER-ACTIONS.md item number cited from DECISIONS.md must be
+    real. See check_decisions_owner_action_citations() for the finding.
+    """
+    dp = os.path.join(ROOT, "DECISIONS.md")
+    op = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not (os.path.exists(dp) and os.path.exists(op)):
+        return
+    dtext = io.open(dp, encoding="utf-8", errors="replace").read()
+    otext = io.open(op, encoding="utf-8", errors="replace").read()
+    problems = check_decisions_owner_action_citations(dtext, otext)
+    if problems:
+        fail("decisions-owner-action-citations-current", "; ".join(problems))
+
+
 def check_learnings_index(text) -> list:
     """Pure logic: return problem strings for LEARNINGS.md's own index table.
 
@@ -26218,6 +26347,7 @@ def main() -> int:
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
+    run_gate(gate_decisions_owner_action_citations_current)
     run_gate(gate_learnings_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)

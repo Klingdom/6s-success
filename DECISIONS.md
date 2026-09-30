@@ -2632,7 +2632,14 @@ contentless version of the question from being re-asked in the meantime.
 **Decision.** Keep `mcp/content.json` byte-identical to the manual corpus and
 keep `publish-mcp.yml` publishing the image, and do NOT start the container
 autonomously. The question of whether 6S Success runs a public MCP endpoint is
-escalated to the owner as `OWNER-ACTIONS.md` item 20.
+escalated to the owner as `OWNER-ACTIONS.md` item 21.
+
+**Corrected 2026-09-30, this operator, same day.** This decision cited the
+wrong number, 20, for that file's real MCP item: 20 is a different,
+unrelated task there ("Add one link to each of the 12 published video
+descriptions"). The real MCP item in
+that file is numbered 21. Checked directly against the live file rather than
+assumed correct because it was written the same day.
 
 **What was found, against production rather than inferred from this
 repository.** Read over ssh on 2026-09-30:
