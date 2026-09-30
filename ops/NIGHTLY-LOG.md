@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-09-30 (08:1x cycle; previous work finished; clean verification pass, no new defect)
+## PM check-in, 2026-09-30 (08:4x cycle; previous work finished; a real STATUS.md drift the deploy-verdict gate does not cover, found and fixed)
+
+NEXT FOR THE OPERATOR: re-verify the oldest cold-read ledger entries (56 still dated 2026-09-25, the earliest date in the ledger), because the first-read lane closed at 191 of 191 last cycle and drift re-checking the oldest entries is the standing next lane, sized in hours not thirty minutes.
+
+**Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1234 commits onto origin/main). Working tree clean, main pushed and in sync. Read BACKLOG-2026-09-07.md sections 2 to 7, EXECUTIVE-DASHBOARD-LIVE.md, the last several log entries, 8 open GitHub issues (all decision or blocked-on-art, none newly Phil-unblocked; #15 has a fresh, real finding today, a signup's confirmation email silently failed, but the issue itself is still Phil's SMTP-account call). No BACKLOG "Now" item unblocked.
+
+**Found: `STATUS.md`'s Public website row, Production traceability row, and the all-caps Immediate Focus line all still cited the superseded build `1db1621639e93437`/01:06:56Z, while BLOCKER-001 and the Production Knowledge paragraph had already been corrected to `e70a81623df41ed5`/07:42:00Z by the prior two cycles.** `gate_status_deploy_verdict_current` only checks those two sections by design, so this three-way drift shipped past it clean. Fixed all three, re-derived fresh not copied: `git log 3f5f8ae46..HEAD -- site/ Dockerfile` empty, `status_deploy_verdict_problem()` returns `''` after.
+
+Fast checks clean: `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents. Full `preflight.py` hung at the documented `gate_tests` sandbox limit; left running detached, reporting past it unchecked per CLAUDE.md 0.4.
+
+Pushed to main. `STATUS.md` only, plus command deck. No price, product or site page touched.
 
 **Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1234 commits onto origin/main). The 07:1x/07:4x cycles' deploy-verdict citation fix re-verified directly, not cited: both STATUS.md sections carry the e70a81623df41ed5/07:42:00Z entry, and `git log 3f5f8ae46..HEAD -- site/ Dockerfile` is empty, zero gap confirmed fresh. Working tree clean, main pushed and in sync with origin. 8 open GitHub issues confirmed live via API, unchanged, all decision/blocked-on-art, none Phil-unblocked. 0 open PRs. No open claims in STATUS.md.
 
