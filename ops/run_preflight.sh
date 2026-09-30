@@ -68,8 +68,39 @@ DONE_MARKER="${LOG}.exitcode"
 while kill -0 "$PID" 2>/dev/null; do
     sleep 2
 done
-wait "$PID"
-CODE=$?
+# Reaps it if it happens to be a real child of THIS shell (true for a fresh
+# launch above; not true when this invocation attached to one started by an
+# earlier, separate call to this script, where it is a harmless no-op). Its
+# return value is never trusted for CODE below.
+wait "$PID" 2>/dev/null || true
+
+# CODE comes from preflight.py's own final summary line in the log, never
+# from `wait`'s return value. Found live 2026-09-30: this script FAILED a
+# real preflight.py run (a genuine gate FAIL, confirmed reading the log
+# body) while reporting exit code 0, both to its own $DONE_MARKER and to
+# the caller, because `disown "$PID"` a few lines above (kept so a killed
+# wrapper's own job-control SIGHUP bookkeeping cannot take a fresh launch
+# down with it) makes bash's `wait` on that pid always return 0 regardless
+# of the real exit code once a job has been disowned; proved directly by
+# running this exact setsid+nohup+disown+wait sequence against a command
+# that exits 1 and watching `wait` report 0 every time, then 1 the moment
+# disown was removed. The ATTACH branch above has the same false-positive
+# on a second, independent path: that PID was forked by an earlier,
+# separate invocation of this script, never a child of the shell now
+# calling `wait` on it, so `wait` was returning a meaningless value there
+# regardless of disown. preflight.py's own main() prints exactly one of
+# "  every gate passed..." or "  N gate(s) failed..." on every real run,
+# on every path, `--own` included; anything else (a crash before either
+# line, a truncated log) is treated as failure, matching this repository's
+# own "unknown is not unused" rule (CLAUDE.md 0.4) rather than the silent
+# false 0 this replaces.
+if grep -q "^  every gate passed" "$LOG"; then
+    CODE=0
+elif grep -qE "^  [0-9]+ gate\(s\) failed," "$LOG"; then
+    CODE=1
+else
+    CODE=1
+fi
 
 cat "$LOG"
 echo "$CODE" > "$DONE_MARKER"
