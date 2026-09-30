@@ -328,6 +328,7 @@ Maintain:
 | LRN-0023 | Text shared by every room must not assume one room, and no equality check can find the assumption | CONTENT / QUALITY | SUPPORTED | HIGH |
 | LRN-0024 | Read the line ending from what git stores, not from the working copy | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0025 | At this traffic scale one 20-minute burst can invert a weekly trend, so check concentration before calling direction | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0026 | Every instrument must exclude its own operator, because a tool that measures a system also acts on it | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -784,6 +785,61 @@ false rise was.
 **Next action.** Before any weekly traffic figure enters a document, run the
 per-bucket concentration query alongside the aggregate. If one bucket holds a
 quarter or more of the period, report the period both ways.
+
+#### LRN-0026: Every instrument must exclude its own operator, because a tool that measures a system also acts on it
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (three independent instruments, same defect, found in one cycle)
+**Domain:** ANALYTICS / MEASUREMENT
+**Measured:** 2026-09-29
+
+**Observation.** Three of this business's measurement instruments were being
+filled by the tools that read them. None was broken. Each returned a correct
+number about the wrong population.
+
+**1. Stripe's checkout funnel.** A Stripe Payment Link opens a Checkout
+Session when its page is merely opened. 420 `<a>` tags across 171 shipped
+pages pointed at `buy.stripe.com` with no `rel="nofollow"`, so anything that
+follows links could open a checkout. 12 sessions were created on 2026-09-15,
+a day the site recorded zero `buy-click` events. "Sessions created versus
+paid" is the only conversion instrument here that does not need Search
+Console, and it held rows nothing could attribute.
+
+**2. The access log's redirect count.** The three most requested paths on the
+whole site were ours and all 301s: `deploy_freshness.py` asked for the
+`.html` form of a zone page about twelve times an hour (2,270 in eight days)
+because it built the URL from the local filename. Our own monitoring
+generated roughly 94% of the redirects in the log, so "Googlebot: 36
+redirected" could not be read as a number about Googlebot.
+
+**3. The crawl report's own largest bucket.** Of 75,590 requests over eight
+days, **58,247 were this repository**: `6s-freshness` 16,441, the compose
+healthcheck's wget 8,746, `6s-linkcheck` 3,721, `6s-dashboard` 2,970,
+`6s-success-indexnow` 1,803. None matched any pattern in the report's
+classifier, so all of them counted as "human or unknown", the bucket a reader
+is most likely to mistake for an audience. It printed 78,295 of them against
+a measured 48 real visitors in thirty days. After the fix the same window
+reads 58,247 own tooling and 13,986 human or unknown.
+
+**Why none of them looked wrong.** Every one passed its own checks. The
+payment links were live and every gate about them was green. `urllib` follows
+a 301, so the freshness probe always succeeded. The crawl report parsed every
+line it was given. This is not a class of bug that shows up as an error; it
+shows up as a plausible number, and a plausible number is worse than a
+missing one because nobody investigates it.
+
+**Implication.** An instrument that observes a system it also touches must
+name and subtract its own traffic, and that exclusion is part of the
+instrument, not a later refinement. Concretely, for anything added here:
+
+- give every automated client a user agent that identifies it as ours, and
+  register it in `ops/crawl_report.py`'s `BOTS` table in the same commit;
+- never let a monitoring probe request a URL that redirects;
+- never hand a crawler a link that creates state on a third-party system.
+
+**Next action.** When adding a measurement, ask what fraction of the thing
+being measured the measurement itself produces. If the answer is unknown, it
+is not yet an instrument.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
