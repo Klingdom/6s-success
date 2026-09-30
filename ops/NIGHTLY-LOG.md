@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (closed the 07:1x handoff, then continued the ledger re-verification lane, no defect found)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1228 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md (0-7), ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 has a fresh 06:51 comment sharpening the Listmonk decision with new evidence, a lost signup on day one, but the decision itself is still his). No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 correctly HOLD pending traffic, section 6 owner-only. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.
+
+**Closed the 07:1x handoff.** Re-verified all four named files (`build_laundry_room_deck_page.py`, `build_primary_bathroom_deck_page.py`, `build_pwa.py`, `build_sample_html.py`), not by reading alone: ran each standalone and diffed against the committed tree. All four byte-identical, zero git diff, so idempotent, not just clean-looking. Checked both room decks' `hero_image_url()` output against the real filesystem, not just the code: `laundry-room--washer-and-dryer-lg.jpg` and `primary-bathroom--vanity-counter-lg.jpg` both exist in all three formats (avif/jpg/webp). No defect in any of the four. Recorded all four in `ops/cold-read-ledger.json`.
+
+**The un-ledgered cold-read lane is now fully exhausted: 191 of 191 files.** `ops/cold_read_ledger.py --next` confirms it. The standing lane from here is re-verifying the oldest-dated entries (64 still carried 2026-09-25, the earliest date in the ledger) rather than a first read. Re-verified 8 of them this cycle, each run standalone rather than trusted from its prior note: `build_standards.py`, `build_standards_page.py`, `build_zone_index.py`, `build_zone_map_pack.py` (all four byte-identical regeneration, zero diff); `check_affiliate_trigger.py`, `check_integrations.py` (both correctly report an honest UNKNOWN/unevaluated for the parts this sandbox cannot reach, rather than a false pass, matching `CLAUDE.md` 0.4); `check_cron_cadence.py` (live GitHub Actions run history, all workflows `[ok]` except `bluesky-drafts.yml` correctly flagged as too few runs to measure, not a false verdict); `check_sitemap_current.py` (210/210 pages match their recorded content hash). No defect in any of the eight.
+
+**Could not get a clean full `preflight.py` this cycle.** Backgrounded via `timeout 600`, stuck at `gate_tests` near-zero CPU for the full ten minutes before its own timeout killed it, the same documented headless-Chromium sandbox hang this log records dozens of times. Reporting **unchecked, not passing**, per `CLAUDE.md` 0.4. Verified independently instead, each run directly rather than assumed: `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0/0).
+
+**Went well:** confirming hero-image claims against the real filesystem rather than the code alone, and closing out the un-ledgered lane cleanly before starting the re-verification lane on the next batch.
+
+**Did not go well:** `gate_tests` hung again, an already-diagnosed sandbox limit; no new gate needed.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the ledger re-verification lane: 56 entries still dated 2026-09-25 after this cycle's 8.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (07:1x; previous work finished; closed the 06:4x ledger handoff, no defect found)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, fast-forward 1224 commits onto `origin/main`, no conflict). The 06:4x/07:0x cycle's structured-data fix (`consulting.html`'s two Product schemas) was pushed, independently re-verified above it, and the one gate it could not run (`gate_tests`) was honestly reported unchecked rather than assumed passing. Confirmed via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked (including `#15`, updated today at 06:5x but still awaiting Phil's own call). `EXECUTIVE-DASHBOARD-LIVE.md` and `BACKLOG-2026-09-07.md` section 7 confirm no "Now" row is unblocked (sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only).
