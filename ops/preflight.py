@@ -16664,6 +16664,55 @@ def gate_cold_read_handoff_not_stale() -> None:
              % ", ".join(crl.lane_path(n) or n for n in stale))
 
 
+def gate_cold_read_ledger_entries_not_stale() -> None:
+    """No ops/cold-read-ledger.json entry may claim a file clean/fixed as
+    of a date that predates the file's own last real commit.
+
+    Found live 2026-09-30, re-verifying ops/deploy_freshness.py from the
+    ledger's own oldest-first re-verification queue (the standing handoff
+    several prior cycles have carried forward): the ledger read "clean,
+    dated 2026-09-25, ... no defect found in the source", but a real
+    defect in that exact file (its freshness probe built the .html form
+    of a zone URL, drawing 2,270 self-inflicted redirects in eight days,
+    94% of the only SEO log this site has) was found and fixed on
+    2026-09-29, four days later. Nothing before this compared a ledger
+    entry's clean/fixed date against the file's own git history, so a
+    "no defect found" verdict could silently outlive the code it was a
+    verdict about: the same "source corrected, artifact never re-derived"
+    shape BACKLOG-2026-09-07.md section 7 names as this repository's
+    dominant defect class, here applied to the cold-read ledger's own
+    bookkeeping. A widened check the moment this was found: 18 of the
+    191 ledgered files were already in this exact state (a legitimate
+    code change landing after the file's own clean/fixed date, never
+    reported back to the ledger).
+
+    A WARNING, not a FAIL, matching gate_cold_read_handoff_not_stale just
+    above for the identical reason: a stale ledger entry sends a future
+    cold-read cycle past a file that actually needs a fresh look, which
+    wastes that cycle's time; it does not by itself ship anything broken
+    to a customer, and the underlying fixes this specific run found (see
+    ops/NIGHTLY-LOG.md 2026-09-30) were already real, already shipped,
+    and already covered by their own dedicated gates and tests.
+
+    Proof this can fail: ops/tests/test_cold_read_ledger_stale.py calls
+    cold_read_ledger.stale_entries() directly against a synthetic ledger
+    entry dated 2020-01-01 for a real, later-touched file and asserts it
+    is returned, then confirms a future-dated entry is not.
+    """
+    import cold_read_ledger as crl
+    stale = crl.stale_entries()
+    if stale:
+        detail = "; ".join(
+            "%s (ledgered %s, touched %s)" % (crl.lane_path(b) or b, d, t)
+            for b, d, t in stale)
+        warn("cold-read-ledger-entries-not-stale",
+             "%d ops/cold-read-ledger.json entr%s the file's own git "
+             "history has outdated: %s. Re-verify and re-add with "
+             "`python ops/cold_read_ledger.py --add`, or run "
+             "`python ops/cold_read_ledger.py --stale` for the full list."
+             % (len(stale), "y" if len(stale) == 1 else "ies", detail))
+
+
 def gate_experiments_blocked_reason_current() -> None:
     """The status report Phil actually reads (ops/status_report.py's text
     output and the PDF ops/status_pdf.py builds from it) must not claim the
@@ -26263,6 +26312,7 @@ def main() -> int:
     run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
+    run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)
