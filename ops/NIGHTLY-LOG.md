@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (14:1x cycle; previous work finished; confirmed the push-fallback fix actually sent, with evidence, no new defect)
+
+NEXT FOR THE OPERATOR: resume the DECISIONS.md/RISKS.md/OWNER-ACTIONS.md drift-recheck lane on the older DEC-0001 through DEC-0037 and D-001 through D-018 entries, which the D-019 through D-028 pass this morning did not cover. Watch LinkedIn/social drafts for their own first real rotation-advance commit under the same fixed logic, though neither was known broken.
+
+**Previous work: finished, and a claim from two cycles ago is now actually confirmed rather than left open.** Attached clean (fetch, unshallow, checkout main, ff-only merge). While reading state, a concurrent session pushed two new commits mid-cycle (`ceaf77dc5` fixing a silent no-op in the push-fallback gate shared by all three drafting workflows, then `df5284654` "Bluesky drafts: advance rotation"); re-fetched and fast-forwarded onto both rather than working from a stale base or colliding.
+
+**Verified the fix actually worked, not just that it shipped.** Read the workflow's own gate and persist steps directly: the rotation-advance commit step carries `if: steps.gate.outputs.send == 'yes'` with no failure-continuation, sitting after the real `bluesky_drafts.py --send` step with no `continue-on-error`, so a failed send cannot reach the commit step. `df5284654` (author `github-actions`, 14:16:46 UTC) adds a first-ever `bluesky-post` key to `ops/corpus-rotation.json` with three served ids, exactly what a genuine send produces and nothing a stood-down push could fabricate. Ran the new gate's own test file directly (`python ops/tests/test_gate_push_fallback_ledger_honest.py`): 6/6 pass, including against the real committed workflow files. Confirmed `linkedin-drafts.yml` and `social-drafts.yml` carry the identical fixed shape (own rotation-advance commit message, not run-status count).
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean. Full `preflight.py` hit the documented `gate_tests` sandbox timeout again with no gate names flushed before the kill; reported unchecked, not passing, per CLAUDE.md 0.4, and covered by the independent checks above instead. 8 open GitHub issues, unchanged, all decision/blocked-on-art, none newly unblocked. `EXECUTIVE-DASHBOARD-LIVE.md` had gone stale mid-cycle (it read "uncommitted or unpushed work" from a snapshot taken between two pushes); regenerated with `ops/dashboard.py` against the current clean, pushed tree.
+
+**Went well:** re-fetching before trusting the local base caught a real concurrent push instead of overwriting or duplicating it; the fix this cycle verified turned out to be a real, previously load-bearing bug (three workflows had reported false "success" while never sending), so the confirmation was worth doing carefully rather than taking "advance rotation" at face value.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle has already diagnosed.
+
+**Changing next cycle:** none; a verification pass, no new gate needed.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle, continued (the new Bluesky drafting pipeline had never actually sent an email despite reporting success every time; found, root-caused across all three drafting workflows, fixed and gated)
 
 **Did:** Continuing the same pass, followed up on the prior entry's own "confirm the Bluesky pipeline's first live run" item rather than assuming the earlier cycle's "built and shipped" claim meant it worked (step 5d). Checked GitHub Actions directly: 45 runs of `bluesky-drafts.yml` today, all `status=success`, but zero `schedule`-triggered runs and zero "Bluesky drafts: advance rotation" commits anywhere in this repository's history.
