@@ -249,6 +249,28 @@ Real blocker: issue #15 (P0, decision) needs Phil to choose a separate
 Listmonk instance for 6S, or hand the shared instance's sending identity to
 6S and move Compassion Benchmark off it. Detail in `OWNER-ACTIONS.md` item 7/7a.
 
+**Re-verified 2026-09-30 against the running container's own log, not carried
+forward, and it turned up something the diagnosis above never recorded.** The
+553 is real and unchanged: `553 5.7.1 <support@6s-success.com>: Sender address
+rejected: not owned by user info@compassionbenchmark.com`, and no send has
+succeeded since. But the same log shows the form was not merely withdrawn
+before anyone used it. Listmonk had reached **subscriber id 4** by 2026-09-04,
+and the opt-in e-mail for that subscriber failed with the 553 three times in
+sixteen seconds, so it could never confirm. **Somebody typed their address in
+during the one day the form existed, and the shared credential lost them.**
+
+That is the strongest argument issue #15 has and it was not in the issue:
+this is not a hypothetical channel with no demand, it is a channel that
+captured a person on day one and dropped them. "0 subscribers" above stays
+accurate in the sense that matters, because an address that never confirmed is
+not a subscriber, but the number understates what was actually lost.
+
+**Not worked around, deliberately.** Capture without sending is technically
+easy (single opt-in, no confirmation mail) and it would be dishonest here: a
+form that says we will write to you, on an instance that cannot write to
+anybody, is a promise we know we cannot keep (`CLAUDE.md` section 8). The
+mailto fallback stays until #15 is decided.
+
 ### O3. Make the first stranger buy.
 
 | Key result | Baseline | Target |
