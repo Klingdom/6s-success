@@ -16,6 +16,28 @@ NEXT FOR THE OPERATOR: make `ops/affiliate_report.py`'s `inputs_date()` (and any
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only (the affiliate docs regenerated back to their already-committed content, so no diff to push there). No price, product or site page touched.
 
+## 2026-09-30, scheduled operator cycle (full clean preflight confirmed end to end; second-pass cold-read of five 2026-09-25 ledger files found no drift; Bluesky send verified real, not just claimed)
+
+**Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge onto `f0e3ce0c2`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries (today alone already carried 37 prior cycles). Confirmed live rather than trusted: all 8 GitHub issues unchanged (`decision`/`blocked-on-art`, 2 P0), no `BACKLOG-2026-09-07.md` "Now" row unblocked (sections 2-4 done or Phil-gated, section 5 HOLD, section 6 owner-only), `inbox_agent.py --apply` reports no mail credential in this sandbox, `cold_read_ledger.py --next` shows 191/191 with 0 stale.
+
+**Ran a full `python ops/preflight.py` to completion in the background (about 13 minutes) rather than kill it at the documented `gate_tests` slow point.** It finished clean this time: every gate passed, 27 warnings, all standing sandbox limitations (no Stripe/SSH/mail credential, Pillow missing, site unreachable). An earlier, separate `--fast` run I started and killed by timeout left two stray `_audit_catalog_fixture_765.html`-shaped probe files behind, which a first full run caught as a genuine `FAIL` on `stray-probe-files`/`landmarks-current`; by the time I checked, the files were already gone (self-healed, gitignored scratch convention) and `git status` was clean, so the second full run confirmed genuinely clean rather than assuming the first FAIL was spurious.
+
+**Second-pass cold-read, since the first full pass over all 191 files closed earlier today.** Re-read five of the 34 files still dated 2026-09-25 (the oldest tier remaining) for logical drift rather than just file-touch staleness: `stripe_check.py`, `verify_media_delivery.py`, `sync_push.py`, `receive_deploy_key.py`, `revenue_model.py` (also ran live). No defect in any: `revenue_model.py`'s live output still matches `ROADMAP-2026-2029.md`'s grouped table, the other four still behave as their own docstrings and the ledger's `clean` status claim.
+
+**Verified, not assumed, that today's Bluesky fix actually sends.** GOALS.md claims a real send at 14:16:46 UTC plus more since; checked the GitHub Actions job directly (`run 36763312615`, the one `event: schedule` run on record) and confirmed both "Write and send today's Bluesky drafts" and "Persist the rotation" steps actually ran and succeeded, not stood down, matching the claim rather than trusting it.
+
+**No new defect found.** `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0 all clean, confirmed independently of the full preflight run too.
+
+**Went well:** running preflight to completion in the background instead of always killing it at the documented slow point caught a real (if transient, self-inflicted) FAIL that a truncated run would have missed entirely.
+
+**Went not well:** nothing new; the standing gate_tests slowness (not a hang today) cost most of this cycle's wall-clock time.
+
+**Changing next cycle:** none; no defect to gate.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Continue the second-pass cold-read of the remaining 2026-09-25-dated ledger files (29 left), or re-check the next-oldest 2026-09-26 tier.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; `IndexNow` not applicable.
+
 ## 2026-09-30, PM check-in (21:2x cycle)
 
 **Previous work was finished.** Attached clean (unshallowed, ff-only onto `77e95f9d8`, the STATUS.md deploy-verdict fix). Tree was clean, main pushed. `preflight.py` fast: 0 FAIL through `gate_image_coverage`, hung at `gate_tests` (same documented sandbox Chromium limit, killed cleanly). Ran narrower checks directly: `check_urls.py` 210/210, `audit_pages.py` 214/0, `affiliate.py --check` clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191. 8 open GitHub issues re-read, unchanged, all `decision`/`blocked-on-art`.
