@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-29 18:41 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-29 18:42 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1233 of 4688 total |
+| Commits (7 days) | 1234 of 4689 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `5c6e7b932` Merge origin/main: union-merge the IndexNow log, re-derive t |
+| Last commit | `9ddddd197` 420 payment links were followable, so crawling this site ope |
 
 ## Product readiness
 

@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (previous work finished; re-verified the four oldest cold-read ledger entries for drift, none found; preflight's known gate_tests hang recurred)
+
+Previous work finished: attached clean (unshallowed, fast-forwarded 1135 commits onto origin/main), working tree clean, main already pushed. STATUS.md's own "Open claims" section says none open, B9 confirmed done (20 of 20 rooms), 8 GitHub issues unchanged, all decision or blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md "Now" item is genuinely unblocked (sections 2-4 done or Phil-gated, section 5 HOLD on evidence, section 6 owner-only).
+
+**Did:** per the last operator cycle's own handoff (the low-mention ops/*.py cold-read lane closed at 190 of 190, needs a second method), re-read the ledger's four oldest-dated clean entries for drift since they were checked: build_feed.py (2026-09-10), canonical_links.py, card_spec.py, link_standards.py (all 2026-09-11), roughly 20 days stale by ledger date. Ran each directly rather than trust the old citation: build_feed.py --check (site/feed.xml current, 29 entries), canonical_links.py --check (0 rewrites needed, 2925 extensionless internal links, consistent with today's page count), link_standards.py (footer link on all 212 pages, every link resolves), card_spec.py imported clean (its own import-time contrast assertions still pass, all 15 families). No drift found in any of the four.
+
+Ran python ops/preflight.py --fast in the background: every gate through gate_image_coverage passed with no FAIL, then it hung at gate_tests with near-zero CPU progress, the same documented sandbox limitation (a stuck headless-Chromium subprocess) several prior cycles have already diagnosed as standing, not a new defect. Killed the orphaned process after confirming no forward progress. Reporting the full gate suite as unchecked past gate_image_coverage, not passing, per CLAUDE.md 0.4; the four specific facts re-verified this cycle were checked independently of that gate, above.
+
+Regenerated the dashboard (revenue carried forward from 2026-09-29, Stripe unreachable this run, consistent with every prior cycle).
+
+**Went well:** picking up the exact second method the prior cycle named rather than re-running an exhausted sweep.
+
+**Did not go well:** gate_tests still cannot finish in this sandbox; no gate exists to catch "preflight itself cannot finish," the same gap the prior cycle already logged.
+
+**Changing next cycle:** none; no defect found to gate.
+
+**Next for the operator:** no BACKLOG-2026-09-07.md item is unblocked and no GitHub issue is Phil-unblocked. Continue re-reading the ledger's next-oldest clean entries for drift, or start a background-only preflight --deep early in the cycle and check it at the end rather than wait on it.
+
+Pushed to main. Command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (the low-mention `ops/*.py` cold-read lane's first full pass closed: 190 of 190 files now ledgered, 0 new defect)
 
 **Did:** Attached clean (fetch, unshallow already done, `checkout main`, `merge --ff-only origin/main`, 1130 commits fast-forwarded onto `6aa3f1d9e`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries per the 23:4x PM check-in's own handoff. Confirmed live rather than trusted: no `BACKLOG-2026-09-07.md` "Now" item is genuinely unblocked (sections 2-4 all done or Phil-gated, section 5 is HOLD on evidence this sandbox cannot generate, section 6 is owner-only); 8 open GitHub issues, all `decision` or `blocked-on-art`, unchanged; `inbox_agent.py --apply` reported no mail credential in this environment (unchecked, not empty, same as every prior cycle). Per the 23:4x handoff's own instruction, continued the standing fallback: cold-reading the remaining un-ledgered `ops/*.py` files (`ops/cold_read_ledger.py --next`).
