@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 08:06",
- "commit": "ab874d069",
- "commit_msg": "Merge concurrent PM check-in: both cycles independently fixed the same deploy-verdict staleness in different files",
- "commits_7d": 1292,
- "commits_total": 4785,
+ "generated": "2026-09-30 08:28",
+ "commit": "3586e1fa4",
+ "commit_msg": "Merge a second concurrent PM check-in: same STATUS.md staleness fixed twice, deduplicated",
+ "commits_7d": 1293,
+ "commits_total": 4787,
  "traffic_line": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 01:17; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1031 pageviews from 87 visitors across 233 visits, 2026-08-20 to 2026-09-29. **441 of those pageviews came from 2 automated session(s)**, leaving 590 from 85 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 01:17",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-30 01:17",
  "affiliate_trigger_carried_from": "2026-09-30 01:17",
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

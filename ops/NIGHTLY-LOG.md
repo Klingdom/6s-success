@@ -2,6 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (08:1x cycle; previous work finished; clean verification pass, no new defect)
+
+**Previous work: finished.** Attached clean (fetch, unshallow, ff-only merge, 1234 commits onto origin/main). The 07:1x/07:4x cycles' deploy-verdict citation fix re-verified directly, not cited: both STATUS.md sections carry the e70a81623df41ed5/07:42:00Z entry, and `git log 3f5f8ae46..HEAD -- site/ Dockerfile` is empty, zero gap confirmed fresh. Working tree clean, main pushed and in sync with origin. 8 open GitHub issues confirmed live via API, unchanged, all decision/blocked-on-art, none Phil-unblocked. 0 open PRs. No open claims in STATUS.md.
+
+**Full `preflight.py` hung on the documented `gate_tests` headless-Chromium sandbox limit (12+ minutes, near-zero CPU); reporting unchecked, not passing, per CLAUDE.md 0.4.** Left running detached, harmless. Verified independently instead: `check_urls.py` 210/210, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0. `audit_pages.py` showed 7 findings and a duplicate-title set on first run; traced all 7 to one gitignored concurrent-session probe file (`git check-ignore` confirmed), and the duplicate-title set vanished on rerun (0 sets). No real defect.
+
+**No BACKLOG "Now" item newly unblocked, no defect found to fix.** Leaving the cold-read ledger re-verification lane (56+ entries) to the hourly operator, as it is hours-scale work.
+
+Pushed to main. Command deck regenerated only. No price, product or site page touched.
 ## 2026-09-30, scheduled operator cycle (closed the 07:1x handoff, then continued the ledger re-verification lane, no defect found; merged with a concurrent PM check-in that fixed the same deploy-verdict staleness in a different file)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1228 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md (0-7), ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked (issue #15 has a fresh 06:51 comment sharpening the Listmonk decision with new evidence, a lost signup on day one, but the decision itself is still his). No BACKLOG "Now" item unblocked: sections 2-4 done or Phil-gated, section 5 correctly HOLD pending traffic, section 6 owner-only. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.
