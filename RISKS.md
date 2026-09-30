@@ -945,6 +945,13 @@ evidence:
     sixteenth and seventeenth room decks, the latter a concurrent
     session's own work) each carry the same inert footer newsletter form,
     nothing new in kind.
+  - UPDATED 2026-09-30, scheduled operator: headline count only, 211 to
+    214. primary-bedroom-deck.html, workshop-deck.html and
+    patio-or-deck-deck.html (BACKLOG-2026-09-07.md B9, the eighteenth
+    through twentieth and final room decks, closing B9 at 20 of 20 rooms)
+    each carry the same inert footer newsletter form, nothing new in kind.
+    Re-derived from a live `git log` against the three files and
+    `ops/state.json`'s current `forms_dead`, not carried forward.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two

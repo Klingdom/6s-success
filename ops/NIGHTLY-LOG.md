@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (RISKS.md's own headline drift count found stale, fixed; cold-read ledger confirmed genuinely exhausted, no other unblocked work found)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1263 commits fast-forwarded onto origin/main, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md in full (sections 0-7), ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Confirmed live via GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked. No BACKLOG "Now" item unblocked: sections 2-4 (A1-A10, B1-B8, C1-C7) are every row done or Phil-gated, confirmed by reading each one rather than trusting the prior cycles' citation; section 5 correctly HOLD pending traffic; section 6 is owner-only gates. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty.
+
+**Full `python ops/preflight.py` hung at the documented `gate_tests` headless-Chromium sandbox limit again** (154s, near-zero accumulated CPU, no progress); killed and reported that gate **unchecked, not passing**, per CLAUDE.md 0.4. Every gate before it printed clean with 0 case-insensitive "fail" in the captured log. Verified independently instead: `check_urls.py` (210/210), `audit_pages.py` (214/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0).
+
+**`ops/cold_read_ledger.py --next`/`--stale` confirmed the standing fallback lane really is exhausted**, not just cited as exhausted: 191 of 191 files ledgered, 0 stale. With no BACKLOG item and no ledger candidate, read `DECISIONS.md` and `RISKS.md` cold for a stale citation instead, the next fallback the 12:1x PM check-in named.
+
+**Found a real, if small, drift in `RISKS.md`'s RISK-0012 (No Audience Is Being Retained).** Its own headline `forms_dead` count last read 211 (2026-09-29), tracking "sixteenth and seventeenth room decks" (nursery, kids-bedroom). Live `ops/state.json` now reads `forms_dead=214`. Traced the gap with `git log`, not assumed: `primary-bedroom-deck.html`, `workshop-deck.html` and `patio-or-deck-deck.html` shipped since, the eighteenth through twentieth and final room decks, closing B9 at 20 of 20 rooms; all three carry the same inert footer newsletter form, nothing new in kind. Updated the headline count only (211 to 214), following the entry's own instruction to write a historical note WITHOUT the `forms_dead=` token (so `gate_risks_evidence_current`'s key=value scanner, which only checks tokens of that exact shape, is not what is silently doing this work; verified directly by calling the gate function in isolation, `FAIL: []`, `WARN: []`). This gate would not have caught this specific drift on its own, since the file's own prose convention deliberately avoids the token it scans for; the fix is a genuine content correction, not a gate satisfaction. RISK-0013 (the sibling entry, discovery/conversion) was also cold-read for the same class of drift and found current: its last dated reading (2026-09-29, 48/119/731) matches `GOALS.md`'s own same-day figure exactly, both already updated together.
+
+**Verified:** `check_urls.py` (210/210), `audit_pages.py` (214/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0) all clean after. `python ops/dashboard.py` regenerated clean.
+
+**Went well:** treating "the ledger is exhausted" as a real state change worth confirming with `--stale` rather than reflexively continuing the same lane on habit; the drift found matches exactly the shape RISKS.md's own note warns about (a headline count that stops being updated once maintaining it felt like busywork), so the fallback lane still has real value even after the ledger closes.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang every recent cycle today has already diagnosed.
+
+**Changing next cycle:** none; no gate change, a content-accuracy fix.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. With the cold-read ledger closed and today's backlog fully exhausted, the next unblocked lane is periodic drift re-checking of already-verified files and control documents (`DECISIONS.md`, `RISKS.md`, `OWNER-ACTIONS.md`), the same method that found this cycle's fix.
+
+Pushed to main. `RISKS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (12:1x cycle; previous work finished; cold-read ledger lane now fully exhausted, one new file cold-read and ledgered, no defect)
 
 **Previous work: finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 1262 commits fast-forwarded onto origin/main, no conflict). Working tree was clean and main pushed before this cycle started. The prior cycle's own fix (`gate_cold_read_ledger_entries_not_stale`, closing the gap where a ledger entry's clean date could outlive a real fix to that file) is genuinely shipped: `python ops/cold_read_ledger.py --stale` reports 0 now, not just at push time.
