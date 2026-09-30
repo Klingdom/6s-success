@@ -1411,7 +1411,7 @@ Maintain a compact index as the file grows.
 | D-023 | The 6 Area Bundles and 15 Situation Kits are retired; a kit returns behind a proven page | ACTIVE | Commerce |
 | D-024 | The 7 Kitchen Micro Zone Packs and Kitchen Room Pack are retired, now the free Kitchen deck is downloadable | ACTIVE | Commerce |
 | D-027 | Room-deck card counts stay corpus-honest; print-tier alignment waits for a real print order; B8 closed | ACTIVE | Product |
-| D-028 | The MCP server stays built and unstarted; exposing it is an owner decision, not an autonomous one | ACTIVE | Infrastructure |
+| D-028 | The MCP server has never run; corpus stays in sync and the image keeps building, but deploying and exposing it is the owner's call | ACTIVE | Infrastructure |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact

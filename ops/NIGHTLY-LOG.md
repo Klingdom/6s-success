@@ -2,27 +2,29 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-09-30, scheduled operator cycle (a stale Kitchen card-image prompt found re-verifying the ledger's oldest four; a gate written so it cannot drift again)
+## 2026-09-30, scheduled operator cycle addendum (same drift, found independently by a concurrent session; adopted theirs, added the gate they did not)
 
-**Did:** Unshallowed, attached to main, fast-forward merged onto origin/main (1198 commits, a genuinely stale local checkout rather than the unrelated-histories shape step 0 warns about: local main was a pure ancestor of origin/main once real history was fetched). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Confirmed live: 8 open GitHub issues, unchanged, all decision/blocked-on-art, none Phil-unblocked. No mail credential; inbox_agent.py --apply correctly reported so. Every BACKLOG-2026-09-07.md "Now" section is done or Phil-gated: all 20 room decks shipped (B9 complete), the micro-zone/app work (section 2) done, the free half of images/video (section 4) done, section 5 is HOLD on traffic this sandbox cannot generate, section 6 is owner-only gates.
+Two sessions re-verified the ledger's oldest-four handoff (build_app_icons.py, build_avif.py, build_card_prompts.py, build_corporate.py) at the same time and found the same real defect: build/prompts/kitchen/KZ-002.txt still read "the step of space," while ops/cardtext/kitchen-deck.json had already been corrected to "the strip of space." Source corrected, artifact never re-derived, the dominant defect class this log names. The concurrent session's fix (below, 06:1x) landed first and is byte-identical to this cycle's own; adopted it rather than push a duplicate, matching this file's established practice for this collision shape.
 
-Continued the standing cold-read ledger's oldest-four handoff: build_app_icons.py, build_avif.py, build_card_prompts.py, build_corporate.py. Three came back clean (build_app_icons.py: PIL absent by default, installed it, 4 of 5 regenerated outputs pixel-identical, the fifth differs only in font anti-aliasing, a Pillow/freetype version artifact, not content; build_avif.py: --check reports 935/935 webp files have an avif sibling, wire() proved idempotent in an isolated copy; build_corporate.py: build() diffed clean against the committed page once the wiring-chain artifacts main() always adds are accounted for).
+This cycle's own contribution on top of that fix: new gate_kitchen_card_prompts_current in ops/preflight.py, which re-derives all 72 Kitchen prompts live from the real corpus (no Desktop, GPU or network needed) and diffs them against the committed files, so this exact drift cannot recur silently. Fail-then-pass proved directly (stashed the fix, watched the gate fail by name citing KZ-002, restored, reran clean). ops/tests/test_gate_kitchen_card_prompts_current.py (3/3).
 
-**Found:** build_card_prompts.py's own output, build/prompts/kitchen/KZ-002.txt, still read "The step of space either side of the burners...", the wrong word, while ops/cardtext/kitchen-deck.json had already been corrected to "The strip of space...". Source corrected, artifact never re-derived, the exact defect class this log names as dominant. Only KZ-002 and the ALL.md aggregate were affected; the other 71 Kitchen cards were already current.
+Also found and fixed, surfaced by a full preflight run on the merged tree rather than assumed clean: DECISIONS.md section 43's index was missing D-028 momentarily during the merge window (independently caught and fixed by Phil himself, commit 472159ba9, adopted his wording here), and site/build-id.txt had drifted one commit behind the merged tree's real content hash; restamped with ops/build_id.py. Neither was this cycle's own work drifting; both surfaced from merging concurrent commits, caught before push per step 6 (verify before you claim).
 
-**Fixed:** regenerated build/prompts/kitchen/. New gate_kitchen_card_prompts_current in ops/preflight.py re-derives all 72 Kitchen prompts live from the real corpus (no Desktop, GPU or network needed) and diffs them against the committed files; fail-then-pass proved directly (stashed the fix, watched the gate fail by name citing KZ-002, restored, reran clean). ops/tests/test_gate_kitchen_card_prompts_current.py (3/3).
+Full preflight.py clean on the final merged tree: every gate passed, 25 warnings, all previously diagnosed sandbox limits.
 
-**Verified:** Full preflight.py run to completion twice (once before merging a concurrent session's 6 new commits, once after): every gate passed both times, 25 warnings, all previously diagnosed sandbox limits. check_urls.py (210/210), affiliate.py --check (165 documents), fix_dashes.py --check (0/0) independently clean.
+Pushed to main. ops/preflight.py, ops/tests/test_gate_kitchen_card_prompts_current.py, DECISIONS.md, site/build-id.txt, command deck.
 
-**Went well:** treating the ledger's standing handoff as real work rather than a formality; verifying build_corporate.py and build_avif.py without mutating the shared sandbox's site/ tree (pure-function diff, isolated copy) while a concurrent preflight run was in progress elsewhere.
+## PM check-in, 2026-09-30 (06:1x; previous work finished; closed the ledger handoff, found and fixed one real drift)
 
-**Did not go well:** the two full preflight runs together cost most of this cycle's wall-clock in this CPU-starved sandbox; nothing new here, already a standing, diagnosed limit.
+Previous work: finished. Attached clean, fast-forward onto `1649992c2`, nothing behind. 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked; no backlog row newly unblocked.
 
-**Changing next cycle:** none; the new gate is the change.
+Closed the 05:4x handoff: re-verified `build_app_icons.py`, `build_avif.py`, `build_card_prompts.py`, `build_corporate.py`. Three clean. One real drift: `build/prompts/kitchen/KZ-002.txt` still read "step of space," but `ops/cardtext/kitchen-deck.json`'s objective has said "strip of space" since commit `0ce148e7a`. Regenerated via the owning generator, not hand-edited. Fixed.
 
-**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots). Cold-read ledger's new oldest four: build_cover.py, build_deck_pdf.py, build_epub.py, build_icons.py (all 2026-09-25).
+Could not get a clean full `preflight.py`: backgrounded, still stuck at `gate_tests` past 4 minutes, the documented headless-Chromium sandbox hang. Reporting unchecked, not passing. Ran independently instead: `check_urls.py` 210/210, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0.
 
-Pushed to main. ops/preflight.py, ops/tests/test_gate_kitchen_card_prompts_current.py, build/prompts/kitchen/{KZ-002.txt,ALL.md}, ops/cold-read-ledger.json, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+Handing the operator the new oldest four: `build_cover.py`, `build_deck_pdf.py`, `build_entryway_deck_page.py`, `build_epub.py`.
+
+Pushed to main. `ops/cold-read-ledger.json`, `build/prompts/kitchen/{ALL.md,KZ-002.txt}`, log, command deck. No price or product touched.
 
 ## PM check-in, 2026-09-30 (05:4x; previous work finished; a concurrent session had already closed the handoff this cycle was about to re-issue, adopted rather than duplicated)
 
