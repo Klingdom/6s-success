@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (STATUS.md's own deploy-verdict citation was one redeploy stale; fixed, no new gap)
+
+Attached clean (unshallowed, fast-forwarded 1140 commits onto `origin/main`), working tree clean. Confirmed, independently, that no `BACKLOG-2026-09-07.md` "Now" item is unblocked and no open GitHub issue is Phil-unblocked (own read plus a delegated subagent's separate read of sections 2-7, `BACKLOG-2026-H2.md`'s opening, and the last several log entries; all agree with today's own earlier entries).
+
+**Did:** delegated a research-only subagent to run the full `python ops/preflight.py` and re-confirm the backlog state; it completed in ~9 minutes with no hang, every gate passed, 26 warnings, 25 standing/already-tracked. The one new warning, `status-deploy-verdict-current`, was real: `ops/deploy-verdict.json` had moved to build `14089d51f264597d` (`checked_at: 2026-09-30T00:01:56Z`, a session with real access redeployed again) while `STATUS.md`'s Public website row, Production traceability row, the Production Knowledge paragraph and `BLOCKER-001` itself all still cited the superseded build `72f0b37c784c7b60`/commit `295ad54f9` and its 15-commit/11-material gap. Re-derived directly rather than trusted: `resolve_verdict_commit('14089d51f264597d')` returns `0a8930b7e` (one of the prior entry's own "restamp only" commits, confirming the prior gap was fully carried by that redeploy); `deploy_gap_material_commits('0a8930b7e')` returns exactly one commit, `9ddddd197`, Phil's own fix adding `nofollow` to all 420 `buy.stripe.com` links sitewide so a crawler fetch can no longer open a Stripe Checkout Session, the likely real explanation for `GOALS.md`'s "12 checkout sessions, zero matching buy-clicks" finding. Updated all four citations (two STATUS.md rows, the Production Knowledge paragraph, and a new append-only `BLOCKER-001` entry) to the real build, commit and one-commit gap.
+
+**Verified:** re-ran both gate functions directly against the edited file (`status_deploy_verdict_problem`, `deploy_gap_count_problem`); both now return `''`. My own follow-up full `preflight.py` run hung at `gate_tests` and was killed by its own 300s timeout, the same documented stuck-headless-Chromium sandbox limit two of today's own earlier entries already hit; reporting the run past `gate_image_coverage` as unchecked, not passing, per `CLAUDE.md` 0.4, and relying instead on the subagent's own clean run (which predates my edit) plus the two gate functions checked directly against the edited text. No code, price or generated content changed, so nothing plausibly regresses gate_tests from this edit specifically. Regenerated the dashboard (revenue carried forward, Stripe unreachable this run, consistent with every prior cycle). Inbox check (`ops/inbox_agent.py --apply`) returned "no mail credentials in this environment", a standing sandbox limitation, not a finding.
+
+**Went well:** the gate did exactly its job, catching a real drift the moment it happened; fixing it took one read of `ops/deploy-verdict.json` and three consistent edits.
+
+**Went not well:** `gate_tests` hanging in-sandbox is now a three-times-today occurrence with no gate able to catch "preflight itself cannot finish"; still no fix attempted, per the standing note in the two prior entries.
+
+**Changing next cycle:** none; the defect found was already covered by an existing gate, which is the system working as designed, not a gap.
+
+**Next:** no `BACKLOG-2026-09-07.md` item is unblocked and no GitHub issue is Phil-unblocked. Continue the standing fallback (re-reading the low-mention `ops/*.py` cold-read ledger's oldest entries for drift, now complete once through at 190/190) or a fresh cold read.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed, `IndexNow` not applicable.
+
 ## PM check-in, 2026-09-30 (previous work finished; re-verified the four oldest cold-read ledger entries for drift, none found; preflight's known gate_tests hang recurred)
 
 Previous work finished: attached clean (unshallowed, fast-forwarded 1135 commits onto origin/main), working tree clean, main already pushed. STATUS.md's own "Open claims" section says none open, B9 confirmed done (20 of 20 rooms), 8 GitHub issues unchanged, all decision or blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md "Now" item is genuinely unblocked (sections 2-4 done or Phil-gated, section 5 HOLD on evidence, section 6 owner-only).
