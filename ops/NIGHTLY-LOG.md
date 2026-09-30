@@ -44718,3 +44718,15 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** found no genuinely unblocked item. Cold-read ledger fully exhausted (191/191 files, 0 stale). All 8 open GitHub issues are `decision` or `blocked-on-art`. `BLOCKER-001`'s deploy gap is 1 commit (`12e3402ca`, Phil's own), needs VPS access this sandbox lacks, already tracked as issue #35. `deck-print-tier` warning is an intentional open-by-design decision (`DECISIONS.md` D-027), not a defect.
 
 **Handing to :43 operator:** nothing specific; same standing Phil-blocked list. Regenerated dashboard, shipping now.
+
+## 2026-09-30, PM check-in (15:4x)
+
+NEXT FOR THE OPERATOR: keep auditing generated/status files against fresh source data for the "corrected source, shipped artifact never re-derived" defect class (`BACKLOG-2026-09-07.md` section 7 names it the dominant one), because this cycle found and fixed a live instance of exactly that shape.
+
+**Previous work was finished, then went stale within the same day by one commit.** Checkout arrived shallow/detached again (issue #27); fast-forwarded onto `origin/main`, no conflict. The 15:2x cycle had correctly logged `BLOCKER-001`'s deploy gap as 1 commit (`12e3402ca`, "quest-symptom-shown") awaiting VPS access this sandbox lacks. Between that cycle and this one, Phil's own session redeployed and recorded the fix directly (`ac8e2c1fc`, `ops/deploy-verdict.json` now `checked_at: 2026-09-30T15:36:31Z`, build `04167f5ad701b0e4`), but `STATUS.md`'s four citations (`BLOCKER-001`, Production Knowledge, two summary rows, Immediate Focus) and `EXECUTIVE-DASHBOARD-LIVE.md` (generated 15:30, six minutes before the redeploy verdict landed) still read the superseded `e70a81623df41ed5`/07:42:00Z confirmation and, in the dashboard's case, said outright "PRODUCTION IS SERVING AN OLD BUILD." Verified directly rather than trusted: `git log 12e3402ca..HEAD -- site/ Dockerfile` returns zero commits, `site/build-id.txt` at HEAD matches the confirmed-live build byte for byte.
+
+**Did:** appended correction paragraphs to `STATUS.md`'s four stale citations (same append-don't-overwrite convention the file already uses) and regenerated `EXECUTIVE-DASHBOARD-LIVE.md` via `ops/dashboard.py` (never hand-edited; it now correctly names traffic, not deploy lag, as the constraint). Checked all 8 open GitHub issues: unchanged, every one `decision` or `blocked-on-art`, none pickable per the "never pick Phil-blocked" rule. No new defect found beyond the one fixed.
+
+**Not verified this cycle:** full `python ops/preflight.py` was still running past 6 minutes (consistent with this sandbox's standing network-timeout pattern: no Stripe key, no VPS SSH, no egress to 6s-success.com) when this entry was written, so its result is reported unchecked, not passing, per CLAUDE.md 0.4. Will re-check when it returns.
+
+Pushed to main. Files: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price or product touched, no new page, no code change.
