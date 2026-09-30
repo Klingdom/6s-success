@@ -10,7 +10,7 @@ meaningful changes across 6S Success\
 **Primary contributors:** GitHub Manager, Hostinger VPS/Docker Manager,
 DevOps/SRE, Product, Home Quest, Content, Data, Commerce, Services,
 Security, AI/ML, and other domain agents\
-**Last updated:** 2026-09-12
+**Last updated:** 2026-09-30
 
 ------------------------------------------------------------------------
 
@@ -2664,6 +2664,29 @@ old information.
 New `gate_mcp_corpus_current`
 (`ops/tests/test_gate_mcp_corpus_current.py`, 4 cases, fail-then-pass).
 
+### Corrected 2026-09-30
+
+**The premise of this entry is wrong and the fix it describes is still
+right.** Checked against production over ssh: there is no `6s-mcp`
+container running or stopped on the VPS, port 8974 is not listening, the
+image was not even present on the host, and no file in this repository
+names an endpoint a client could reach. The server has never run, so it
+never answered a stale query and no AI-facing surface was serving old
+information. What was real was drift between two committed files, which is
+worth fixing on its own terms because the image is published green on every
+content change and must not ship a corpus that disagrees with the website
+the day anybody deploys it.
+
+The title, and the phrases "deployed 2026-08-31, Watchtower-updated",
+"had been answering every query" and "every stale query this channel
+answered" above, all state something about production that was not
+checked. Left in place rather than rewritten, because this file is a
+record of what was believed at the time and silently editing it would hide
+the mistake this correction exists to show. `ops/preflight.py`'s own
+docstring carried the identical claim and is corrected too. Decision on
+whether to deploy and expose the endpoint at all: `DECISIONS.md` D-028 and
+`OWNER-ACTIONS.md` item 21.
+
 ## CHG-2026-0013: The homepage's retired "46 cards" claim for the free deck corrected
 
 **Date:** 2026-09-12 **Category:** CONTENT **Type:** FIXED **Impact:**
@@ -2701,3 +2724,56 @@ time a material change (section 4) ships, rather than let this file go
 silent again. `gate_changelog_current` in `ops/preflight.py` warns once
 this file's own "Last updated" date falls too far behind real material
 work.
+
+
+## CHG-2026-0014: A shared root cause told 100 pages to picture a surface "at bedtime", and 420 payment links let crawlers open checkouts
+
+**Date:** 2026-09-30 **Category:** CONTENT / COMMERCE **Type:** FIXED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Two customer-visible defects, both live at the time they were found, both
+fixed at source and deployed.
+
+**KC-008's confirmation test read "Ask two people what this surface should
+look like at bedtime."** It shipped on 100 pages: 84 zone pages and every
+deck page, including every garage, pantry, workshop and kitchen page.
+Confirmed against production, not the repository: `garage-deck.html` and
+`pantry-deck.html` were both serving it. Rewritten zone-neutral and
+regenerated; 103 pages corrected. The Kitchen pilot deliberately keeps its
+own kitchen voice, which is why the new gate exempts it by name.
+
+**420 `<a>` tags to `buy.stripe.com`, across 171 pages, carried
+`rel="noopener"` and no `nofollow`.** A Stripe Payment Link opens a Checkout
+Session when its page is merely opened, so anything that follows links could
+open a checkout. `site/shop.html` alone had 126. All 420 now carry
+`nofollow`, fixed at the ten emission points that produce them so the
+generator chain reproduces the change rather than reverting it.
+
+Also: every off-site link this business publishes (228 in YouTube
+descriptions, 114 in social captions) used the `/zones/<slug>.html` form,
+which production 301s, and now uses the canonical form.
+
+### Why
+
+The cause text was consistent across every source that carried it and wrong
+in all of them, so no equality check could find it; only a rule about what
+shared text may assume could. The payment links cost more than crawl budget:
+"sessions created versus paid" is the only conversion instrument this
+business has that does not need Search Console, and it was being filled with
+sessions nothing could attribute. Twelve were created on 2026-09-15, a day
+the site recorded zero `buy-click` events.
+
+### Verification
+
+New `gate_cause_vocabulary` (`ops/tests/test_cause_vocabulary.py`, 11 cases,
+including one that restores the exact 2026-09-29 wording and asserts the real
+tree fails). New `gate_payment_links_nofollow`
+(`ops/tests/test_payment_links_nofollow.py`, 8 cases). New
+`gate_published_zone_urls` (`ops/tests/test_published_zone_urls.py`, 7
+cases). All 45 generators re-run and the counts re-checked afterwards: 420 of
+420 nofollowed, 103 pages carrying the corrected cause text, 570 published
+links resolving to zone pages that exist. Deployed and confirmed live:
+`shop.html` 126 of 126 nofollowed, `bedtime` gone from garage, pantry and
+workshop deck pages.
