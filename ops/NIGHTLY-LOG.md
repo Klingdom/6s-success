@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (20:1x cycle)
+
+**Previous work was finished.** Attached clean (fetch, already unshallowed, checkout main, ff-only merge onto `6043046fa`, Phil's own merge of the zone-art citation gate fix plus his own two preflight-gate corrections in `a95685974`, real gate bugs not product defects). Working tree was clean before this cycle touched anything. `preflight.py` fast every gate through `gate_image_coverage` passed (0 FAIL lines); it hung at `gate_tests`, the same documented sandbox Chromium limitation every recent cycle has reported, killed the orphaned process rather than wait. Ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes, `cold_read_ledger.py --stale` 0/191 stale. All 8 open GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 0, 2-7 spot-checked: every "Now" row already Done or Phil-gated; the owner-gates table (section 6) is all Phil's own accounts/OAuth/billing. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4.
+
+**The find.** `EXECUTIVE-DASHBOARD-LIVE.md` (generated 13:57 by Phil's own session) still cited `Last commit: a95685974` and `Working tree: uncommitted or unpushed work`, both true at generation time but stale by the merge commit that landed seconds later (`6043046fa`, HEAD at the start of this cycle, confirmed by `git rev-parse HEAD` against the citation directly rather than assumed). Same "source corrected, artifact never re-derived" shape this repo's gates keep closing, this time the deck citing its own repo state one commit behind.
+
+**Fixed:** regenerated via `ops/dashboard.py` (never hand-edited). The new run correctly reports `Last commit: 6043046fa`, `Working tree: clean, in sync`, and, because this sandbox has no VPS SSH key or Stripe credential, honestly marks traffic, the affiliate trigger, and video-build counts as carried forward and unmeasured this run rather than repeating stale numbers as current, per CLAUDE.md 0.4.
+
+**Verified:** ran the five live-citation gates directly against the regenerated files (`gate_goals_traffic_current`, `gate_goals_revenue_current`, `gate_affiliate_trigger_citation_current`, `gate_owner_actions_zone_art_citation_current`, `gate_status_deploy_verdict_current`), all pass. `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check` all reran clean after the regen. `python3 -m py_compile` clean on the touched scripts (none touched beyond the deck itself).
+
+**Went well:** treating the deck's own "Last commit" field as a live citation worth checking against `git rev-parse HEAD`, the same method the citation-gate sweep has used on every other document this week, rather than assuming a deck regenerated minutes ago was still current.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred exactly as every other cycle today; nothing new to change about it.
+
+**Handing to the :43 operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open `decision`/`blocked-on-art` GitHub issues, unchanged. No large lane left half-open by this cycle.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, scheduled operator cycle (continued the citation sweep the 19:2x check-in left off: a real stale zone-art claim in OWNER-ACTIONS.md, found and gated)
 
 **Did:** Unshallowed and attached to main cleanly (fetch, `git fetch --unshallow`, checkout main, ff-only merge onto `f8ff0b33c`, no conflict, 8 commits ahead of the local snapshot). Read `BACKLOG-2026-09-07.md` (sections 0, 2, 3, 6, 7), `GOALS.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. All 8 GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. Took the 19:2x check-in's own handoff by name: extend the "source corrected, artifact never re-derived" sweep to `OWNER-ACTIONS.md`'s own citations, this time against `ops/hero-verdicts.json` rather than `ops/state.json`.
