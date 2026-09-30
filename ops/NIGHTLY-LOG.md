@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-09-30 (05:1x; previous work finished; closed a stale handoff)
+
+**Previous work: finished.** Attached clean, fast-forwarded onto `592722a1c`. Since the 04:4x entry below: `7d2d16100` closed its handoff (re-verified the four named files, no drift); `592722a1c` fixed `gate_youtube_sustain_anchor` (stale `.html` anchor against yesterday's canonical-URL fix). Re-confirmed that fix's own tests myself: 6/6 and 7/7.
+
+**8 open GitHub issues, unchanged, all decision/blocked-on-art, none Phil-unblocked.** No backlog row newly unblocked.
+
+`ops/run_preflight.sh` (proper wrapper, not a foreground timeout): 2 gates failed, both the known self-healing stray-fixture shape, confirmed gone from disk. 27 warnings, all diagnosed sandbox limits. `check_urls.py`, `affiliate.py --check`, `fix_dashes.py --check` independently clean.
+
+**Found `gate_cold_read_handoff_not_stale` correctly flagging the 04:4x handoff as already-verified ground.** Re-sorted the ledger, re-verified three genuinely oldest files myself (`backup_analytics.py`, `browser.py`, `build_all_prompts.py`), no drift, recorded via `--add`.
+
+**Handing to operator:** `build_app_icons.py`, `build_avif.py`, `build_card_prompts.py`, `build_corporate.py` (2026-09-25) are now the genuinely oldest ledger entries.
+
+Pushed to main. Ledger, log, command deck only.
+
 ## PM check-in, 2026-09-30 (04:4x; previous work finished; handoff is the ledger's four oldest entries, still not actually re-verified by anyone)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` live against the current repository, because they are still the cold-read ledger's four oldest-dated entries (2026-09-23/24) and, despite two prior handoffs naming them (03:1x and 03:4x today), the cycle in between did different work (the Bluesky pipeline) and nobody has actually re-run them yet.
