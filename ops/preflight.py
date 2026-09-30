@@ -21493,9 +21493,28 @@ def gate_mcp_corpus_current() -> None:
     2026-09-09, this operator: it had drifted from the manual for 114 of 114
     zones, missing every `diagnosis` block and still serving the old
     28-word-median Sustain text this week's rewrite replaced with a 94-word
-    median (BACKLOG-2026-09-07.md item 1). The live server (deployed 2026-08-31,
-    watchtower-updated on push) was answering real MCP queries with content the
-    website itself had already superseded.
+    median (BACKLOG-2026-09-07.md item 1).
+
+    **CORRECTED 2026-09-30: this docstring used to say "the live server
+    (deployed 2026-08-31, watchtower-updated on push) was answering real MCP
+    queries". That is not true and appears never to have been.** Checked
+    against production over ssh rather than inferred from this repository:
+    `docker ps -a` on the VPS lists exactly one 6S container, the website;
+    there is no `6s-mcp` container running or stopped, port 8974 is not
+    listening, and the image was not even present on the host. No document
+    anywhere in this repository names an endpoint a client could connect to.
+    So nothing has ever queried it, and the drift found on 2026-09-09 was
+    real drift in a file, not stale answers to real users.
+
+    The gate is kept anyway, for one reason that survives the correction:
+    `publish-mcp.yml` really does build and publish this image green on
+    every content change, so the day anybody deploys it, it must not ship a
+    corpus that disagrees with the website. Keeping two files identical is
+    cheap; discovering after deployment that they were not is not. The
+    decision about whether to deploy and expose it at all is D-028, and it
+    is the owner's, because the only reason to run it is to expose it and
+    that puts a new unauthenticated service on a VPS shared with two other
+    businesses.
 
     Root cause: `.github/workflows/publish-mcp.yml` only triggers on changes
     under `mcp/**`, and its own "keep the corpus in step with the manual" diff

@@ -1708,6 +1708,7 @@ before anything else is built on top of it.
 
 ---
 
+
 ### 20. Add one link to each of the 12 published video descriptions. About ten minutes, once.
 
 **Decide item 1 first, added 2026-09-18: this may be ten minutes you do not
@@ -1780,3 +1781,64 @@ deck's own acceptance checklist (K2, the other open row, is a design
 question about tooling reuse, not a customer-facing gap). Nobody should
 claim "prints legibly" as done on inspection alone when the actual test
 costs five minutes and one sheet of paper.
+
+---
+
+### 21. Decide whether 6S Success runs a public MCP endpoint. About two minutes to decide; ten to start it if yes.
+
+**This is a decision, not a chore, and it is here because I will not make it
+for you.** The repository has been building and publishing an MCP server image
+on every content change since 2026-08-31, and keeping a byte-identical 1.1 MB
+copy of the whole corpus in `mcp/content.json` with a preflight gate enforcing
+it. Checked against production over ssh on 2026-09-30: **it has never run.**
+There is no `6s-mcp` container running or stopped, port 8974 is not listening,
+the image was not even on the host, and no file anywhere names an endpoint a
+client could connect to.
+
+Worse, `gate_mcp_corpus_current`'s own docstring said "the live server
+(deployed 2026-08-31, watchtower-updated on push) was answering real MCP
+queries". That was false and appears always to have been. Corrected in place,
+because a wrong claim about production inside the file that runs every other
+gate is worse than no claim.
+
+**What an MCP endpoint would be for.** It lets an AI assistant query the 114
+zones, their diagnoses, standards and kit lists directly, as structured data
+rather than by scraping a page. The access log already shows retrieval crawlers
+for three different AI products fetching this site (OAI-SearchBot, ClaudeBot,
+GPTBot, 157 fetches in eight days), so the audience is not hypothetical. It is
+a genuine distribution channel for a corpus this size, and it is one of very
+few that does not need a new social account.
+
+**Why I did not just start it.** Two reasons, and the second decides it:
+
+1. It would change nothing measurable. With no proxy route, no DNS name, no
+   registry listing and no configured client, starting the container converts
+   "not deployed" into "deployed and still unused". That looks like progress.
+2. The only reason to run it is to expose it, and exposing it puts a new
+   unauthenticated listening service on a VPS that also runs Ledgerium AI and
+   Compassion Benchmark. The content is already public so this is not about
+   disclosure; it is an extra process on a box carrying somebody else's
+   revenue, and that is your call rather than mine.
+
+**Everything up to the gate is done, and the capacity is checked, not assumed.**
+On 2026-09-30 the VPS had 4.4 GB of 7.9 GB memory available, 56 GB of disk
+free, 15 containers running, and port 8974 unused. `docker pull
+ghcr.io/klingdom/6s-success-mcp:latest` succeeded on the host, so the image is
+public and already there.
+
+**If the answer is yes,** the whole thing is:
+
+```
+scp mcp/docker-compose.yml root@187.77.25.50:/opt/6s-mcp/docker-compose.yml
+ssh root@187.77.25.50 'cd /opt/6s-mcp && docker compose up -d'
+```
+
+then one proxy host in Nginx Proxy Manager pointing a hostname at `6s-mcp:8974`
+with a certificate, which is your UI. Tell me the hostname afterwards and I
+will document the endpoint, add it to the README, and add a gate that checks it
+answers.
+
+**If the answer is no,** say so and I will retire `mcp/`, `publish-mcp.yml` and
+`gate_mcp_corpus_current` together in one commit. Leaving a published image
+with no purpose is the state that produced the false claim above, and I would
+rather delete it than keep pretending. Recorded as `DECISIONS.md` D-028.
