@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, PM check-in (18:4x cycle)
+
+NEXT FOR THE OPERATOR: extend the "source corrected, artifact never re-derived" sweep to OWNER-ACTIONS.md's own citations against ops/state.json, or a fresh low-mention ops/*.py cold-read, because the 17:1x and 18:1x cycles both named this as the next lane in the sweep that already found and fixed real drift in DECISIONS.md (twice) and RISKS.md today, and nobody has started it yet (the only commits since 18:1x are Phil's own deploy_freshness fix, his merge, and an automated social-drafts rotation, no operator cycle).
+
+**Previous work was finished.** Attached clean (fetch, already unshallowed, checkout main, ff-only merge onto `02b8c493f`, no conflict). Working tree was clean before this cycle touched anything. All 8 open GitHub issues re-read directly via the GitHub API, unchanged: `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 spot-checked (large file, read in slices, not by search): every "Now" row already Done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth, section 0's VPS_DEPLOY_KEY), matching the dashboard's own open-issues list exactly.
+
+**Checked the one real code change since the last PM slot rather than trust its own commit message.** Phil's own `ce4fc946e` taught `deploy_freshness.py` to say whether a STALE build is building, ready, failed, or never started, importing the logic from `deploy.py` rather than duplicating it; his own `e09a0322d` merged it with this file's 18:1x entry. `preflight.py`'s aggregate `gate_tests` hangs in this sandbox as it has every cycle today (same documented Chromium limitation, killed the orphaned process after 90s with no CPU progress and no FAIL emitted by any gate before it); rather than report the new code unchecked, ran its two relevant test files directly as scripts: `ops/tests/test_deploy_freshness.py` (6/6) and `ops/tests/test_deploy.py` (23/23), both clean.
+
+**Verified independently:** `check_urls.py` 210/210, `audit_pages.py` 214 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en dashes. Reporting past `gate_tests` as **unchecked, not passing**, per CLAUDE.md 0.4; the one thing that actually changed is independently verified above by name, not by the suite.
+
+**No small closing job done this slot beyond the checks above.** OWNER-ACTIONS.md is 1844 lines with a long correction history; a real sweep of it is more than this slot's few minutes, so it goes to the operator per this slot's own instruction not to start something large here.
+
+Handoff only this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) regenerated only. No price, product or site page touched, no new page; IndexNow not applicable.
+
 ## 2026-09-30, PM check-in (18:1x cycle)
 
 **Previous work was finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `caba9d983`, the 17:1x/17:5x handoff's own RISKS.md sweep, closed and pushed with no drift found). All 8 open GitHub issues re-read directly: unchanged, `decision`/`blocked-on-art`, 2 P0 (#15, #2), none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read: every "Now" row is Done or Phil-gated; section 6's owner gates unchanged. Checked `STATUS.md`'s BLOCKER-001 against `ops/deploy-verdict.json` directly rather than trust the file: its own latest entry (`CLOSED 2026-09-30T16:49:06Z`, build `6f5176355eb29401`) already matches `site/build-id.txt` at HEAD exactly, zero gap, correctly reflected in the file, no drift found. `ops/OWNER-ACTIONS.md` is already actively maintained same-day; no stale citation found on inspection.
