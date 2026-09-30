@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-09-30, scheduled operator cycle (independent verification pass, no new defect; two more ledger entries re-checked for drift)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, fetched, checked out main, fast-forward merged onto origin/main (1161 commits, no unrelated-history refusal this time). Read `GOALS.md` in full, delegated a research-only subagent to read `BACKLOG-2026-09-07.md` sections 2 to 7, `BACKLOG-2026-H2.md`'s opening, `ROADMAP-2026-2029.md` and the last four `NIGHTLY-LOG.md` entries, then independently checked its conclusion rather than trusting it: read the actual item rows for A1 to A10, B1 to B9 and C1 to C7 in `BACKLOG-2026-09-07.md` myself, confirming every one is either struck through done or carries its own "Done"/"Found and fixed" line; confirmed all 8 open GitHub issues directly via the GitHub API (7 decision, 2 blocked-on-art, one carrying both) and read issue #29 in full, whose art withholding was already shipped; confirmed `STATUS.md`'s own "Current Highest-Level Priority" and "Immediate Focus" lines state plainly that the next step on every distribution channel is Phil's own action. `inbox_agent.py --apply`: no mail credential, unchecked, not empty, same as every prior cycle.
+
+**Verified:** ran `python ops/preflight.py` directly (not the wrapper) to completion: every gate passed, 25 warnings, all previously diagnosed sandbox limits (no Stripe credential, no SSH key, no network egress, no mail, no Pillow). Noticed three concurrent `ops/run_preflight.sh` invocations from other sessions sharing this container mid-run (`/tmp/preflight_run.*.log`), one clean, one a real `stray-probe-files` FAIL, one still in flight; did not touch any of them, since they belong to sessions this one has no visibility into and the gate is designed to self-heal that shape.
+
+With no backlog item or GitHub issue unblocked, continued the standing fallback: re-verified two more `ops/cold-read-ledger.json` entries for drift rather than re-reading already-ledgered files blind. `build_printpack.py` (last checked 2026-09-17, a sheet-overflow bug): reran directly, 20 rooms/114 zones/684 cards/76 sheets, matches the live `PACK-HOUSE` SKU in `data.js` and the copy on `resources.html`, `deck-gallery.html` and a dozen articles verbatim, own internal assertions pass. `build_microzone_coverage.py` (last checked 2026-09-24, a real `have["diagnosis"]`-as-proxy bug): confirmed the fix holds, `moat_complete` still uses the real `all()` intersection; `--check` reports 44 of 114 zones (38.6%), 7 rooms complete, matching `STRATEGY-MICROZONES.md` verbatim with a clean `git status` on that file. No defect found in either. Recorded both via `ops/cold_read_ledger.py --add` rather than hand-editing the ledger.
+
+**Went well:** independently re-deriving the "nothing is unblocked" conclusion instead of accepting a subagent's report at face value; the concurrent-session preflight collision was visible and correctly left alone rather than treated as this session's problem to fix.
+
+**Did not go well:** two cold-read checks in a row came back clean, which is good news for the codebase but means this cycle shipped no product or traffic change; the standing fallback is running low on files that have never been drift-checked even once.
+
+**Changing next cycle:** none; no defect found means no new gate to write. Next operator should keep working down `ops/cold-read-ledger.json`'s oldest-dated entries (`build_corporate_asset.py`, `retire_stripe_skus.py`, `affiliate_report.py`, `build_cleaning_index.py`, all 2026-09-23/24) for drift, since the first full pass is complete at 190 of 190 and re-checking age-ordered is the only method left that has not been exhausted today.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (Umami share URL/key, Listmonk sending identity issue #15, Search Console verification, Pinterest/Instagram/YouTube accounts). No decision issue newly actionable.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (02:2x; previous work was NOT finished, verified it live)
 
 Previous work not finished: the operator's `gate_tests` hang fix (below) pushed with the full `preflight.py` run left unverified. Ran it myself, directly (not via the `run_preflight.sh` wrapper a concurrent cycle separately found and fixed for silently reporting FAIL as pass): every gate passed, 25 standing warnings, no hang, confirming the fix genuinely works.
