@@ -289,7 +289,7 @@ def main() -> int:
     Pack is the same {len(zones)} zones as 684 printable cards, nine to a page,
     so you carry the zone into the room instead of the room to a screen.</p>
     <div class="cta-row" style="margin-top:18px">
-      <a class="btn btn-primary btn-lg" data-sku="PACK-HOUSE" href="{PACK_BUY}" rel="noopener">The Print Pack, ${PACK_PRICE}</a>
+      <a class="btn btn-primary btn-lg" data-sku="PACK-HOUSE" href="{PACK_BUY}" rel="nofollow noopener">The Print Pack, ${PACK_PRICE}</a>
       <a class="btn btn-on-deep btn-lg" href="../quest.html">Or use the free app</a>
     </div>
   </div>

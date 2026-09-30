@@ -87,7 +87,7 @@
        but it is a second step that can go stale, and the card already knows
        exactly which product it is drawing. */
     var action = (p.buy)
-      ? '<a class="btn btn-sm btn-primary" data-sku="' + p.sku + '" href="' + p.buy + '" rel="noopener">' + buyLabel + '</a>'
+      ? '<a class="btn btn-sm btn-primary" data-sku="' + p.sku + '" href="' + p.buy + '" rel="nofollow noopener">' + buyLabel + '</a>'
       : (p.href)
       ? '<a class="btn btn-sm btn-primary" href="' + p.href + '">Open it</a>'
       : (p.available === false)

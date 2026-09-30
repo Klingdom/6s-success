@@ -20260,6 +20260,105 @@ def gate_cause_vocabulary() -> None:
              % (len(problems), "; ".join(problems[:4])))
 
 
+def check_payment_links_nofollow(page_bodies) -> list:
+    """Pure check: every <a> to a Stripe payment link must carry nofollow.
+
+    WHY THIS EXISTS
+    ---------------
+    A Stripe Payment Link creates a Checkout Session when its page is
+    OPENED, not when a card is entered. So a crawler that follows one has
+    opened a checkout, and every such fetch lands in the account as an
+    expired, unpaid session.
+
+    Found 2026-09-29 by reading the Stripe API directly while asking a
+    different question. `buy-click` had fired 11 times from 9 visitors all
+    time, and only one person had ever paid, so the obvious suspicion was a
+    broken checkout. The payment links were all live (gate_live_links,
+    gate_stripe_link_dedup and gate_stripe_orphan_link_active all clean
+    against the real account with a real key). What the session list showed
+    instead was 12 checkout sessions created on 2026-09-15, a day on which
+    the website recorded ZERO buy-clicks. Sessions were being created by
+    something that never touched a buy button.
+
+    At that moment 420 <a> tags across 171 shipped pages pointed at
+    buy.stripe.com and not one carried rel="nofollow"; the shop page alone
+    had 126. Search engines fetch this site hundreds of times a week
+    (GOALS.md O1), and following an outbound link is the ordinary thing a
+    crawler does.
+
+    Two costs, and the second is the one that matters:
+
+      - crawl budget spent walking into a checkout, and
+      - the account's own funnel made unreadable. "Sessions created versus
+        paid" is the only conversion instrument this business has that does
+        not need Search Console, and it was being filled with rows nobody
+        could attribute. A conversion rate computed from it would have been
+        wrong in the pessimistic direction, and it would have looked like
+        evidence.
+
+    This gate does not claim the crawler theory is proved: no outbound
+    request is visible in an access log that only records requests TO this
+    site, and Phil testing links by hand would produce the same rows. It is
+    gated because nofollow on a checkout link is correct either way, and
+    because whichever explanation holds, an unattributable session should
+    not be possible to create by crawling.
+    """
+    problems = []
+    tag = re.compile(r'<a\b[^>]*?>', re.I)
+    for name in sorted(page_bodies):
+        for m in tag.finditer(page_bodies[name] or ""):
+            t = m.group(0)
+            if "buy.stripe.com" not in t:
+                continue
+            rel = re.search(r'\brel="([^"]*)"', t, re.I)
+            if not rel or "nofollow" not in rel.group(1).lower():
+                href = re.search(r'href="([^"]*)"', t, re.I)
+                problems.append(
+                    "%s links to %s without rel=\"nofollow\", so a crawler "
+                    "that follows it opens a Stripe checkout and creates an "
+                    "unpaid session nobody can attribute"
+                    % (name, (href.group(1) if href else "a payment link")))
+    return problems
+
+
+def gate_payment_links_nofollow() -> None:
+    """No shipped page may hand a crawler a followable checkout link."""
+    bodies = {}
+    for fp in sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
+                               recursive=True)):
+        try:
+            bodies[os.path.relpath(fp, SITE).replace("\\", "/")] = \
+                io.open(fp, encoding="utf-8", errors="replace").read()
+        except Exception:                                      # noqa: BLE001
+            continue
+    js = os.path.join(SITE, "assets", "js", "site.js")
+    if os.path.exists(js):
+        # site.js builds the shop's buy buttons at runtime, so its template
+        # is a shipped link too even though no crawler sees it as HTML here.
+        body = io.open(js, encoding="utf-8", errors="replace").read()
+        if "p.buy" in body:
+            for m in re.finditer(r'<a\b[^>]*?p\.buy[^>]*?>', body):
+                t = m.group(0)
+                rel = re.search(r'\brel="([^"]*)"', t, re.I)
+                if not rel or "nofollow" not in rel.group(1).lower():
+                    fail("payment-link-nofollow",
+                         "site/assets/js/site.js builds the shop's buy "
+                         "button without rel=\"nofollow\", so every "
+                         "rendered card hands a crawler a checkout link.")
+    if not bodies:
+        warn("payment-link-nofollow",
+             "no pages under site/ could be read, so payment links were NOT "
+             "checked. Unchecked, not clean.")
+        return
+    problems = check_payment_links_nofollow(bodies)
+    if problems:
+        fail("payment-link-nofollow",
+             "%d payment link(s) on %d page(s) are followable: %s"
+             % (len(problems),
+                len({p.split(" links to ")[0] for p in problems}),
+                "; ".join(problems[:3])))
+
+
 def gate_deck_print_tiers() -> None:
     """Every built deck's card count against the 18-card print step."""
     import glob as _glob
@@ -25539,6 +25638,7 @@ def main() -> int:
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_branch_shape)
     run_gate(gate_cause_vocabulary)
+    run_gate(gate_payment_links_nofollow)
     run_gate(gate_deck_print_tiers)
     run_gate(gate_srt_matches_film)
     run_gate(gate_kitchen_deck_current)

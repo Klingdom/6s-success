@@ -268,8 +268,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
     <li><a href="downloads/6S-Micro-Zone-Map.html">The Micro Zone Map</a>, free to print: twenty sheets, one per room, naming all 114 micro zones with the time a single session takes. Put the sheet for the room you are standing in where the work happens.</li>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
-    <li><a href="{PACK_BUY}" data-sku="PACK-HOUSE" rel="noopener">The Whole House Print Pack, ${PACK_PRICE}</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
-    <li><a href="{MANUAL_BUY}" data-sku="MZ-MANUAL" rel="noopener">The Micro Zone Manual, ${MANUAL_PRICE}</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
+    <li><a href="{PACK_BUY}" data-sku="PACK-HOUSE" rel="nofollow noopener">The Whole House Print Pack, ${PACK_PRICE}</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="{MANUAL_BUY}" data-sku="MZ-MANUAL" rel="nofollow noopener">The Micro Zone Manual, ${MANUAL_PRICE}</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>
