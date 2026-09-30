@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-30 05:05",
- "commit": "f9cdea230",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 1261,
- "commits_total": 4739,
+ "generated": "2026-09-30 05:08",
+ "commit": "b8c84214e",
+ "commit_msg": "PM check-in: ledger re-verify + merge notes (discarded duplicate gate fix, adopting concurrent session's)",
+ "commits_7d": 1262,
+ "commits_total": 4740,
  "traffic_line": "48 visitors across 119 visits, 30 days (carried forward from 2026-09-30; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "48 visitors across 119 visits, 30 days",
  "traffic_line_measured_at": "2026-09-30",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-29 22:11",
  "affiliate_trigger_carried_from": "2026-09-29 22:11",
  "clean": false,
- "ahead": "3",
+ "ahead": "4",
  "deploy": {
   "reachable": false,
   "assets": [],

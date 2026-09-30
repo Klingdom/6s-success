@@ -10,7 +10,27 @@ Wrote the identical fix, then found on push that a concurrent session had alread
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_youtube_sustain_anchor.py`, plus the merge commit itself. No price or product touched, no site page changed.
 
+## PM check-in, 2026-09-30 (04:4x; previous work finished; handoff is the ledger's four oldest entries, still not actually re-verified by anyone)
+
+NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` live against the current repository, because they are still the cold-read ledger's four oldest-dated entries (2026-09-23/24) and, despite two prior handoffs naming them (03:1x and 03:4x today), the cycle in between did different work (the Bluesky pipeline) and nobody has actually re-run them yet.
+
+**Previous work: finished.** Attached clean: fetched, unshallowed, `checkout main`, `merge --ff-only origin/main` fast-forwarded onto `ed742eacd`, no unrelated-history refusal. Working tree was already clean, main already pushed. The immediately prior operator cycle (`ac631cf48`, "Give Bluesky the drafting pipeline...") shipped `ops/bluesky_drafts.py` plus its test file and workflow, ran a full `python ops/preflight.py` to completion three times across its own edit cycle (catching and fixing two of its own regressions along the way), and finished with every gate passing, 28 warnings, all previously diagnosed sandbox limits. That is a genuinely finished, verified cycle, not a claim taken on faith.
+
+**Read state:** `GOALS.md` sections 0-1, `BACKLOG-2026-09-07.md` sections 0 and 6-7, `STATUS.md`'s Open claims and Current Highest-Level Priority sections, the last several `NIGHTLY-LOG.md` entries. Confirmed live via the GitHub API myself (not cited): 8 open issues, unchanged, all `decision` or `blocked-on-art`, none Phil-unblocked (#35, #33, #31, #21, #18, #15 decision; #29, #2 blocked-on-art). No `BACKLOG-2026-09-07.md` "Now" item is unblocked: sections 2-4 done or Phil-gated, section 5 is HOLD pending traffic evidence this sandbox cannot generate, section 6 is owner-only gates.
+
+**Could not get a clean full `preflight.py` this cycle, and this entry says so rather than borrowing the prior cycle's result.** Two separate attempts (one backgrounded, one foreground, both `timeout 300`) were both killed at their timeout with zero flushed output; the foreground attempt's own proxy log showed 43 rejected egress attempts (`6s-success.com`, `redirector.gvt1.com`, `www.google.com`) during the run, the same headless-Chromium/`gate_tests` hang this log has documented as a standing sandbox limitation dozens of times, not a new defect. Reporting this run as **unchecked, not passing**, per `CLAUDE.md` 0.4. What I verified independently instead, since no file was touched this cycle: `check_urls.py` (210/210 sitemap URLs resolve), `affiliate.py --check` (165 documents, clean), `fix_dashes.py --check` (0 em dashes, 0 en dashes). Nothing here overrides the prior cycle's own three completed clean runs; it only means this cycle cannot add a fourth confirmation on top of them.
+
+**Went well:** treating the prior cycle's Bluesky work as finished on its own evidence (three completed preflight runs, its own regressions caught and fixed) rather than re-litigating it; not padding this entry with a fabricated "preflight clean" when it plainly was not.
+
+**Did not go well:** two full `preflight.py` attempts spent on a known, already-diagnosed sandbox limitation instead of moving straight to the ledger re-verification; the four-file handoff itself is now three PM/operator cycles old without anyone actually opening the files.
+
+**Changing next cycle:** none; the hang is an existing, understood sandbox limit with no gate to add, and the standing "unchecked, not passing" convention already covers it correctly.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (04:1x; previous work finished; closed the exact four-file handoff the 03:4x cycle left)
+
+**This entry and the 04:4x one above it were written concurrently by different sessions against the same handoff; both attached before either had pushed.** The four-file re-verify the 04:4x entry above asks the operator to still do was, in fact, already done here, and independently redone by another concurrent session too (both landed in `ops/cold-read-ledger.json`, reconciled on merge, no disagreement in the findings).
 
 Previous work: finished. Attached clean (fast-forward onto origin/main, no unrelated-history refusal). 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md item unblocked (checked directly, not cited).
 
@@ -18,7 +38,7 @@ Did the four-file ledger re-verify the 03:4x cycle handed to the operator: build
 
 preflight.py: first run showed 2 FAILs (stray-probe-files, landmarks-current), both pointing at a fixture path from a concurrent session in this shared sandbox; confirmed the path no longer exists on disk, reran uncontended: every gate passed, 26 warnings.
 
-Handing to the operator: ledger's new oldest four are backup_analytics.py, browser.py, build_all_prompts.py, build_app_icons.py (all 2026-09-25).
+Handing to the operator: ledger's new oldest four (after this and the concurrent re-verify) are backup_analytics.py, browser.py, build_all_prompts.py, build_app_icons.py (all 2026-09-25).
 
 Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed.
 

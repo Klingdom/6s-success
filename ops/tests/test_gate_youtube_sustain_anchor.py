@@ -27,7 +27,7 @@ import video_zone                                               # noqa: E402
 
 ROOM, ZONE = "Entryway", "Landing Zone"
 SLUG = video_zone.zone_slug(ROOM, ZONE)
-GOOD_URL = "https://6s-success.com/zones/%s-%s.html#sustain" % (
+GOOD_URL = "https://6s-success.com/zones/%s-%s#sustain" % (
     bz.slug(ROOM), bz.slug(bz.display(ROOM, ZONE)))
 
 
@@ -83,7 +83,7 @@ def main() -> int:
     # 3. The anchor is missing entirely: caught by name.
     missing = {"description": "This is The Landing Spot in the Entryway.\n"
                                "Full written steps: https://6s-success.com/"
-                               "zones/entryway-the-landing-spot.html\n"}
+                               "zones/entryway-the-landing-spot\n"}
     f, _ = _run({SLUG + ".json": missing})
     if not f or not any(SLUG in msg for _, msg in f):
         fails.append("missing-anchor regression not caught: %r" % (f,))
@@ -93,7 +93,7 @@ def main() -> int:
     wrong = {"description": "This is The Landing Spot in the Entryway.\n"
                              "KEEP IT THIS WAY\nThe Sustain habit:\n"
                              "https://6s-success.com/zones/"
-                             "entryway-the-wrong-zone.html#sustain\n"}
+                             "entryway-the-wrong-zone#sustain\n"}
     f, _ = _run({SLUG + ".json": wrong})
     if not f or not any(SLUG in msg for _, msg in f):
         fails.append("wrong-slug regression not caught: %r" % (f,))

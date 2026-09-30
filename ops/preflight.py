@@ -22949,6 +22949,11 @@ def gate_youtube_sustain_anchor() -> None:
     zone that has a sustain pass must have a description whose own
     "#sustain" anchor link resolves to that zone's real page slug, not a
     stale or mistyped one.
+
+    The expected URL carries no ".html": /zones/ is extensionless-canonical
+    (gate_published_zone_urls, 2026-09-29), and this gate went stale against
+    that fix for one cycle, hardcoding the pre-canonicalisation form until
+    caught and corrected 2026-09-30.
     """
     yt_dir = os.path.join(ROOT, "build", "video", "youtube")
     if not os.path.isdir(yt_dir):
@@ -22972,7 +22977,7 @@ def gate_youtube_sustain_anchor() -> None:
         if not os.path.isfile(fp):
             continue
         desc = json.load(io.open(fp, encoding="utf-8")).get("description", "")
-        want_url = "https://6s-success.com/zones/%s-%s.html#sustain" % (
+        want_url = "https://6s-success.com/zones/%s-%s#sustain" % (
             bz.slug(room), bz.slug(bz.display(room, zone)))
         if want_url not in desc:
             if "#sustain" in desc:
