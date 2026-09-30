@@ -149,7 +149,7 @@ def alt_text(room: str, zone: str) -> str:
 def build_one(room: str, z: dict) -> dict:
     zone = z["zone"]
     slug = VZ.zone_slug(room, zone)
-    url = "%s/zones/%s.html" % (SITE, YT.zone_page_slug(room, zone))
+    url = "%s/zones/%s" % (SITE, YT.zone_page_slug(room, zone))
     return {
         "slug": slug,
         "room": room,
