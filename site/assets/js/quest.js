@@ -1918,6 +1918,33 @@
   document.addEventListener("DOMContentLoaded", function () {
     $("#go-draw").addEventListener("click", function () { begin("draw"); });
 
+    /* Taking the offer, as opposed to being shown it.
+
+       quest-offer-shown has existed since the offer did, and has never
+       fired: the gate is two zones holding, and exactly one visitor has
+       ever held two (measured 2026-09-30, quest-zone-held is 4 events from
+       3 visitors). So the offer is untested rather than failing, and the
+       ratio that will decide whether it works is shown-to-taken.
+
+       The taken half was only half measured. The paid pitch points at
+       buy.stripe.com, which measure.js already turns into buy-click. The
+       free pitch repoints the SAME button at deck.html, which matches none
+       of measure.js's branches (not stripe, not outbound, not downloads/,
+       not contact.html?ref=), so taking the free offer fired nothing at
+       all and would have read as being ignored.
+
+       Fires for both pitches on purpose. On the paid one it co-occurs with
+       buy-click by design: buy-click says money was reached for, this says
+       which offer sent them, and the page has other buy links that are not
+       this offer. Carries the pitch only, no room and no zone. */
+    var offerCta = $("#f-offer-cta");
+    if (offerCta) {
+      offerCta.addEventListener("click", function () {
+        m("quest-offer-taken",
+          { offer: (offerCta.getAttribute("data-sku") || "").slice(0, 32) });
+      });
+    }
+
     /* The symptom screen. Delegated: the five buttons are built by
        renderSymptomList() from window.QUEST.symptoms, not written in
        quest.html. No free text and no symptom name leaves the browser,
