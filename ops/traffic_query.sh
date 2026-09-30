@@ -66,6 +66,64 @@ where website_id = :'w'
   and created_at > now() - interval '7 days';
 SQL
 
+# LRN-0025 (LEARNINGS.md): on 2026-09-29 the last_7d row above read as a rise
+# (14/18/50 against 12/14/27) and was written into GOALS.md, STATUS.md and
+# three other files as "up on every measure" before anybody checked HOW it
+# arrived. 30 of the 50 pageviews and 9 of the visitor ids had landed in one
+# 20-minute window (all direct, four different operating systems); excluding
+# that single bucket the week was 7/9/20, DOWN, not up. The same shape had
+# already happened once before (23 August) and was not checked for either
+# time. The learning's own "next action" is to run this concentration check
+# alongside the aggregate before any weekly figure goes in a document, not to
+# decide by itself whether a bucket is a bot: report both ways and let the
+# reader judge, the same way the manual analysis that found it did.
+echo "== visitor concentration by 20-minute bucket, last 7 days (top 10) =="
+docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
+select to_char(date_trunc('hour', created_at)
+                + (floor(extract(minute from created_at) / 20) * interval '20 min'),
+               'YYYY-MM-DD HH24:MI') as bucket_start,
+       count(*) filter (where event_type = 1) as pageviews,
+       count(distinct session_id) as visitors,
+       count(*) filter (where coalesce(referrer_domain, '') = '') as direct_pageviews
+from website_event
+where website_id = :'w'
+  and created_at > now() - interval '7 days'
+group by 1
+order by visitors desc, pageviews desc
+limit 10;
+SQL
+
+echo "== last 7 days, raw vs excluding its single busiest 20-minute bucket =="
+docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
+with bucketed as (
+  select date_trunc('hour', created_at)
+           + (floor(extract(minute from created_at) / 20) * interval '20 min') as bucket,
+         event_type, session_id, visit_id
+  from website_event
+  where website_id = :'w'
+    and created_at > now() - interval '7 days'
+),
+busiest as (
+  select bucket
+  from bucketed
+  group by bucket
+  order by count(distinct session_id) desc
+  limit 1
+)
+select 'raw_week' as basis,
+       count(*) filter (where event_type = 1) as pageviews,
+       count(distinct session_id) as visitors,
+       count(distinct visit_id) as visits
+from bucketed
+union all
+select 'ex_busiest_bucket',
+       count(*) filter (where event_type = 1) as pageviews,
+       count(distinct session_id) as visitors,
+       count(distinct visit_id) as visits
+from bucketed
+where bucket <> (select bucket from busiest);
+SQL
+
 echo "== top pages, last 30 days =="
 docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
 select url_path, count(*) as views
