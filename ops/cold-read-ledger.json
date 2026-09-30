@@ -103,8 +103,8 @@
     },
     "build_cover.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "230 lines, desktop-only (needs PIL/Windows fonts, never run by CI or gate_generator_ownership's diff chain). Refuses to write on any font fallback to PIL's tiny default (correct, per its own 2026-08-17/2026-09-02 incident comment). author_name() correctly refuses to invent a byline (returns None on a bracketed placeholder), matching gate_cover_author_current's own use of it. No defect found; the known cover-staleness gap is already tracked by gate_cover_author_current and OWNER-ACTIONS item 12, not a new finding."
+      "date": "2026-09-30",
+      "note": "PM 06:4x check-in: pip-installed Pillow in sandbox, regenerated, byte-identical to committed cover.png/cover.jpg"
     },
     "build_deck_gallery.py": {
       "status": "clean",
@@ -113,8 +113,8 @@
     },
     "build_deck_pdf.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "print-at-home PDF layout; place()/duplex-mirror logic correct (test_duplex.py 9/9 clean), aspect ratio and physical sizing verified. No defect."
+      "date": "2026-09-30",
+      "note": "PM 06:4x check-in: needs build/cards-rendered/ source PNGs, gitignored/Desktop-only, absent here; genuinely unchecked, standing sandbox limit, not a new gap"
     },
     "build_dining_room_deck_page.py": {
       "status": "clean",
@@ -122,14 +122,14 @@
       "note": "PM check-in 2026-09-29: regenerated, byte-identical to committed site/dining-room-deck.html, no drift; whole-site wiring chain ran with no other file changed"
     },
     "build_entryway_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "og:image/twitter:image hardcoded ch32-image01.jpg, the Kitchen chapter photo, not Entryway's own real photo. Fixed to use ch31-image01.jpg, the real entryway photo deck.html already uses; gated by gate_deck_og_image_honest."
+      "status": "clean",
+      "date": "2026-09-30",
+      "note": "PM 06:4x check-in: regenerated, found a transient working-tree diff from concurrent sandbox activity, confirmed byte-identical to HEAD after regen (self-healing)"
     },
     "build_epub.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle, no defect found"
+      "date": "2026-09-30",
+      "note": "PM 06:4x check-in: pip-installed reportlab, regenerated; container bytes differ from committed (known zlib/non-determinism, gate_generator_ownership already compares by content), full unzip diff of all entries shows 0 content differences; restored HEAD, did not commit the rebuild"
     },
     "build_family_room_deck_page.py": {
       "status": "clean",

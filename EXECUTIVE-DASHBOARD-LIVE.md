@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-30 00:51 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-30 00:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1282 of 4767 total |
+| Commits (7 days) | 1283 of 4768 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9d2db8aac` Handoff: record the measurement-layer cycle in STATUS.md |
+| Last commit | `4671592cf` The email blocker is still real, and it cost us a subscriber |
 
 ## Product readiness
 
