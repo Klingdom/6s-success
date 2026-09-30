@@ -568,8 +568,8 @@
     },
     "link_standards.py": {
       "status": "clean",
-      "date": "2026-09-11",
-      "note": "Run live: 0 pages changed, 189 already carry the footer link; the 4 pages without it individually checked and confirmed legitimate exclusions."
+      "date": "2026-09-30",
+      "note": "Prior PM cycle (03:1x) claimed the four 09-23/24 files were the ledger's genuinely oldest; they were not, this file (2026-09-11) was still older and got missed by an incomplete check. Re-verified live: 0 pages need the link (212 of 218 already carry it, the rest legitimate exclusions per 09-11's own note), every existing standards.html link resolves. No drift."
     },
     "linkedin_drafts.py": {
       "status": "clean",
