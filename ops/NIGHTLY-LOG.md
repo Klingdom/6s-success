@@ -16,6 +16,32 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Ledger, log, command deck only.
 
+## PM check-in, 2026-09-30 (04:3x, merge addendum: found the same real gate defect a concurrent session was already fixing, adopted theirs rather than duplicate)
+
+Merging this entry's own push against a concurrent operator commit (`8bb43101e`, "Every link this business publishes off-site needed a redirect") landed clean with no file-level conflict, but the merged tree's own `preflight.py` then FAILed for real: `youtube-sustain-anchor`, all 114 zone video descriptions "wrong slug." Not the transient stray-fixture shape from earlier in this cycle; traced it before assuming so. Root cause: that commit correctly switched `build_youtube_metadata.py`'s published zone links to canonical extensionless URLs and added `gate_published_zone_urls` to hold it, but the older `gate_youtube_sustain_anchor` (2026-09-13) still built its own expected URL with `.html` baked in, so it flagged the very correctness the other gate exists to enforce.
+
+Wrote the identical fix, then found on push that a concurrent session had already landed the same fix first (`592722a1c`), with a docstring note this cycle's own version lacked. **Discarded this cycle's own duplicate rather than push a second copy or fight the merge**, matching this file's own established practice for this exact collision shape: reset the local commit, reverted `ops/preflight.py` and the test file back to pre-fix, merged `592722a1c` in directly, reran the full suite against the merged result.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_youtube_sustain_anchor.py`, plus the merge commit itself. No price or product touched, no site page changed.
+
+## 2026-09-30, scheduled operator cycle (a real preflight FAIL, caused by a stale gate one cycle behind Phil's own canonical-URL fix, found and closed)
+
+**Did:** Attached clean, fast-forward merged onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, recent log entries. Confirmed: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential. No backlog row unblocked. Ledgered `ops/bluesky_drafts.py` (built earlier today): read it, ran `--preview` live, no defect. Re-verified the ledger's four oldest entries, named by prior cycles but never re-run: byte-identical, no drift.
+
+**Found while running preflight, not by searching for it.** A concurrent merge brought Phil's own `8bb43101e` (2026-09-29), which correctly dropped `.html` from 342 YouTube/social links (`/zones/` is extensionless-canonical) and added `gate_published_zone_urls` for the new form, but never touched `gate_youtube_sustain_anchor` (2026-09-13, older), whose expected URL still hardcoded `.html`. Preflight correctly failed: 114 correctly-fixed descriptions read as "wrong slug." Content was right; the gate was stale.
+
+**Fixed:** dropped `.html` from the gate's expected URL; fixed the matching test fixtures. Fail-then-pass proved directly. Full `preflight.py` rerun clean: every gate passed, 27 warnings, all previously diagnosed sandbox limits.
+
+**Went well:** treating the FAIL as real work, not noise; tracing it to a sibling gate, not the content.
+
+**Did not go well:** a mid-run merge invalidated an earlier preflight attempt (killed, not counted).
+
+**Changing next cycle:** none; the two gates now agree.
+
+**Next:** standing Phil-blocked list unchanged. Issue #15 (P0, Listmonk decision) is six weeks stale, worth Phil's attention.
+
+Pushed to main (two commits). `ops/preflight.py`, `ops/tests/test_gate_youtube_sustain_anchor.py`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-09-30 (04:4x; previous work finished; handoff is the ledger's four oldest entries, still not actually re-verified by anyone)
 
 NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_stripe_skus.py`, `ops/affiliate_report.py`, `ops/build_cleaning_index.py` live against the current repository, because they are still the cold-read ledger's four oldest-dated entries (2026-09-23/24) and, despite two prior handoffs naming them (03:1x and 03:4x today), the cycle in between did different work (the Bluesky pipeline) and nobody has actually re-run them yet.
@@ -33,6 +59,20 @@ NEXT FOR THE OPERATOR: re-verify `ops/build_corporate_asset.py`, `ops/retire_str
 **Changing next cycle:** none; the hang is an existing, understood sandbox limit with no gate to add, and the standing "unchecked, not passing" convention already covers it correctly.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched. IndexNow not applicable.
+
+## PM check-in, 2026-09-30 (04:1x; previous work finished; closed the exact four-file handoff the 03:4x cycle left)
+
+**This entry and the 04:4x one above it were written concurrently by different sessions against the same handoff; both attached before either had pushed.** The four-file re-verify the 04:4x entry above asks the operator to still do was, in fact, already done here, and independently redone by another concurrent session too (both landed in `ops/cold-read-ledger.json`, reconciled on merge, no disagreement in the findings).
+
+Previous work: finished. Attached clean (fast-forward onto origin/main, no unrelated-history refusal). 8 open GitHub issues unchanged, all decision/blocked-on-art, none Phil-unblocked. No BACKLOG-2026-09-07.md item unblocked (checked directly, not cited).
+
+Did the four-file ledger re-verify the 03:4x cycle handed to the operator: build_corporate_asset.py, retire_stripe_skus.py, affiliate_report.py, build_cleaning_index.py. Ran each live. First and last two: reran the generator directly, byte-identical output, clean git diff. retire_stripe_skus.py: confirmed the 09-23 record_archived() fix still holds by reading the source; the live Stripe scan itself stays unchecked here, no credential in this sandbox, same standing limit as every prior cycle. No drift in any of the four. Recorded via cold_read_ledger.py --add.
+
+preflight.py: first run showed 2 FAILs (stray-probe-files, landmarks-current), both pointing at a fixture path from a concurrent session in this shared sandbox; confirmed the path no longer exists on disk, reran uncontended: every gate passed, 26 warnings.
+
+Handing to the operator: ledger's new oldest four (after this and the concurrent re-verify) are backup_analytics.py, browser.py, build_all_prompts.py, build_app_icons.py (all 2026-09-25).
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed.
 
 ## 2026-09-30, scheduled operator cycle (built the missing Bluesky drafting pipeline, the one channel proven to work with nothing preparing content for it)
 
