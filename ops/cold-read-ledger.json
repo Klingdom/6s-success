@@ -692,9 +692,9 @@
       "note": "PM cycle second-pass re-read: pure arithmetic over live catalogue, assumptions clearly labelled, live run output sane"
     },
     "review_deck_art.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "Cold-read for defects (PM check-in). Sheet paging, sha-pinned verdicts, expand() range parsing all correct. Cross-checked its only consumer, import_generated_art.py: promotion requires verdict == 'ok' exactly, so an unvalidated/typo'd verdict here fails closed (never promoted) rather than open. No defect."
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read, scheduled operator cycle. The first pass (2026-09-25) said mark() was correct but never checked it against review_heroes.py's own documented history: that sibling file's mark() carried a data-destroying defect until 2026-09-21 (a fresh two-key {verdict, sha} dict on every mark, silently erasing any --why reason recorded beside a prior verdict the next time the same image was re-marked). review_deck_art.py never got that fix and never had --why at all, even though it reviews the same kind of one-off human judgement call on card sheets. No live data loss yet: ops/deck-art-verdicts.json has never been created, because card generation is still billing-gated (OWNER-ACTIONS.md 1b), so this is closing the gap before the first real rejection reason is lost, not recovering from one. Fixed: mark() now merges into any prior record instead of replacing it, and gained --why, matching review_heroes.py exactly. New ops/tests/test_review_deck_art.py (5/5), fail-then-pass proved directly (reverted the fix, watched the test fail with the old 2-arg mark() signature, restored, reran clean)."
     },
     "review_heroes.py": {
       "status": "clean",

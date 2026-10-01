@@ -25,6 +25,8 @@ staged file to the real deck folder once it is marked "ok" here.
 
   --sheets   contact sheets of every staged, unjudged card, twelve to a page.
   --mark     records verdicts: --mark ok 1-6,9 or --mark no 7,8
+  --why      a reason to store beside the verdict, kept across future marks:
+             --mark no 7 --why "callout pin points at the wrong drawer"
   --status   staged, approved, rejected, unjudged.
 
 Run:  python ops/review_deck_art.py --sheets
@@ -137,7 +139,7 @@ def expand(spec: str) -> list:
     return out
 
 
-def mark(verdict: str, spec: str) -> int:
+def mark(verdict: str, spec: str, why: str = "") -> int:
     idx, v = load(INDEX), load(VERDICTS)
     if not idx:
         print("  no index. Run --sheets first.")
@@ -148,7 +150,21 @@ def mark(verdict: str, spec: str) -> int:
         if not rel:
             print(f"  {n} is not in the index, skipped")
             continue
-        v[rel] = {"verdict": verdict, "sha": sha(rel)}
+        # Preserve anything already recorded against this sheet (e.g. a prior
+        # --why) rather than replacing the record. ops/review_heroes.py's own
+        # mark() carried the identical defect until 2026-09-21: a fresh
+        # two-key dict silently destroyed any reason written beside a verdict
+        # the next time somebody re-marked that image. This file reviews card
+        # sheets rather than source heroes but the same person re-marking the
+        # same sheet is the same risk, so it gets the same fix rather than
+        # waiting for its own live data loss to prove the point.
+        prior = v.get(rel) if isinstance(v.get(rel), dict) else {}
+        rec = dict(prior)
+        rec["verdict"] = verdict
+        rec["sha"] = sha(rel)
+        if why:
+            rec["why"] = why
+        v[rel] = rec
         hit += 1
     save(VERDICTS, v)
     print(f"  marked {hit} as {verdict}")
@@ -176,7 +192,10 @@ def main() -> int:
         return sheets()
     if "--mark" in sys.argv:
         i = sys.argv.index("--mark")
-        return mark(sys.argv[i + 1], sys.argv[i + 2])
+        why = ""
+        if "--why" in sys.argv:
+            why = sys.argv[sys.argv.index("--why") + 1]
+        return mark(sys.argv[i + 1], sys.argv[i + 2], why)
     return status()
 
 
