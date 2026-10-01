@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (07:1x cycle)
+
+**Previous work finished.** Clean attach: fetch, unshallow, checkout main, merge --ff-only onto origin/main (82 commits), no reset or force, tree clean before and after. The prior addendum (closing the stale audit_catalog.py cold-read-ledger entry) was already on main at HEAD (02fef0191), pushed and not just committed. Working tree stayed clean the entire cycle.
+
+GitHub reconfirmed directly: 8 open issues, unchanged, all decision or blocked-on-art, 0 open PRs, nothing newly commented. BACKLOG-2026-09-07.md sections 2 through 6 read: every Now row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is owner gates. No item is unblocked.
+
+**Continued the handed-off content-level visitor read**, Kitchen as the prior cycle's own next pick: read site/zones/kitchen-the-cooking-zone.html and site/zones/kitchen-the-refrigerator-and-freezer.html in full, end to end, not sampled. Checked the things this lane checks: the A7 storage-before-Sort rule holds on both (id="sort" opens before id="what-to-store-it-in", which precedes id="straighten"); each carries its own affiliate-disclosure-storage aside distinct from the general kit's affiliate-disclosure aside; every retailer link carries rel="nofollow noopener"; the HowTo JSON-LD, the short version list, the FAQPage answers and the body prose all agree with each other on both pages; the 7-zone room list and "you are here" marker are internally consistent and correctly cross-referenced from both directions; every related-reading and cross-zone link resolves (checked directly against the filesystem, not assumed). No defect found on either page.
+
+**Full python ops/preflight.py started this cycle, left running past its own close rather than killed**: hung at the documented gate_tests headless-Chromium sandbox limit, matching every prior cycle's own account of this same limit. Ran the narrower standing checks directly instead, all clean: check_urls.py 210/210, audit_pages.py 214 pages/0 findings, fix_dashes.py --check 0 em/en dashes. affiliate.py --check not rerun this cycle (no catalogue or disclosure file touched).
+
+**Went well:** picking up the exact handoff named twice in a row rather than starting a fresh search.
+
+**Did not go well:** the content-read lane still has roughly 100+ zone pages and several room-deck pages never read in this specific lane; at 2 pages a cycle this is slow, and this cycle does not change that pace.
+
+**Next:** continue the same lane. Good next picks: the remaining 5 Kitchen zone pages (upper-cabinets, sink-and-dishwashing, lower-cabinets-and-cookware, utensil-and-utility-drawers, primary-prep-counter) and kitchen-deck.html's room-deck page, none of which this log has named individually in this lane yet. Same standing Phil-blocked list in OWNER-ACTIONS.md and the 8 open GitHub issues, unchanged.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, addendum: the full preflight left running in the background this cycle finished clean; one stale ledger entry found and closed
 
 **The full `python ops/preflight.py` started earlier this cycle, left running past the cycle's own close rather than killed, finished on its own: every gate passed, 28 warnings, all of them standing (no Stripe/SSH/mail credential, site unreachable from here, Pillow absent, deck-print-tier/page-art/deck-art already tracked in `DECISIONS.md`/GitHub issues #2/#29).** Checked the tail rather than assumed clean, matching the standing lesson from the 06:1x addendum earlier today.
