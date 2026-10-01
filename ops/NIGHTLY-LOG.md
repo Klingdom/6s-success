@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (06:1x cycle, addendum: a real false-positive gate bug found and fixed after the full preflight finished in the background)
+
+**What happened.** The 06:1x cycle below reported `preflight.py` hung at the documented `gate_tests` sandbox limit and stood in with narrower direct checks. Left running in the background past that cycle's own close, it finished and surfaced one real gate FAIL: `catalogue 1 finding(s) across 1 file(s) / _audit_catalog_fixture_718.html / buy.stripe.com link not in data.js: https://buy.stripe.com/notARealSlug0000`.
+
+**Diagnosed, not assumed.** `_audit_catalog_fixture_<pid>.html` is the exact bare shell `ops/tests/test_audit_catalog.py` plants in `site/` on purpose, carrying a deliberately fake Stripe link, to prove `ops/audit_catalog.py` can detect a dead buy link. The file no longer existed when checked directly afterward, and a clean rerun of `audit_catalog.py` confirmed no real catalogue defect (214 pages, 0 findings). This is the same concurrent-session-fixture-collision class already fixed twice in `gate_no_stray_probe_files` and `gate_landmarks_current` (02:2x cycle, this log), but `ops/audit_catalog.py` itself, invoked directly by `preflight.py`'s `gate_existing` "catalogue" entry, had never been given the equivalent protection: `ops/audit_pages.py` already excludes this exact fixture name unconditionally via its own `PROBE_PREFIXES`, `audit_catalog.py` did not.
+
+**Fixed, verified fail-then-pass.** Added the same unconditional-by-default exclusion to `ops/audit_catalog.py`'s `pages()`: a file whose basename starts with `_audit_catalog_fixture` is skipped unless `--include-fixtures` is passed. `ops/tests/test_audit_catalog.py`'s own subprocess call now passes that flag, so its fail-then-pass mechanism (which depends on `audit_catalog.py` reading the fixture it just planted) is unaffected. Chose exclusion over a lock-aware wait inside `gate_existing`, because `test_audit_catalog.py` holds its lock across its own subprocess call into this same tool, and a lock acquired inside `audit_catalog.py` on the identical path would deadlock against its own caller. Manually planted a fixture with a fake link: without the flag, `audit_catalog.py` reports clean; with it, the same fixture is flagged, matching the test's own requirement. Ran `ops/tests/test_audit_catalog.py` directly end to end (its own dozen-plus planted-fault cases): exit 0, all cases pass, nothing it exists to detect went blind. Syntax-checked both changed files, `fix_dashes.py --check` 0/0.
+
+**Went well:** not stopping at "the failure vanished on rerun" and instead tracing why it could happen at all, since the same shape has cost real cycles twice before.
+
+**Did not go well:** this is the third time this exact fixture-collision class has needed its own fix in a different gate; a single shared helper (an `only_known_fixture(out)` check, or routing every direct caller of `audit_catalog.py` through one fixture-aware entry point) would close the class once instead of per-instance, left for a future cycle rather than attempted here given the risk of touching three call sites in one PM slot.
+
+**Next:** same 8 GitHub issues, unchanged. Handing the content-level visitor-read task (2-3 live room-deck/zone pages) to the hourly operator at :43, unchanged.
+
+Pushed to main. `ops/audit_catalog.py`, `ops/tests/test_audit_catalog.py`, this entry, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (06:1x cycle, previous work confirmed finished, nothing new unblocked)
 
 **Previous work finished.** Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, 74 commits, no reset or force). The prior cycle's own build-id CI failure (`checks.yml` run on `f14e7dcdf`/`ac93997a4`, both `failure` on the single gate `build-id`) was already fixed by `5f947af3c`/`085572035`: confirmed directly against GitHub, not cited, that `publish-image.yml` ran green on `085572035` (05:22:29) and that `ops/build_id.py --check` at current HEAD (`8e997de6e`) reports `current`, hash `5824d3fad2bac895` matching both the tree and what CI's own failing run said the site should hash to. Working tree was clean and already matched `origin/main` before this cycle touched anything.

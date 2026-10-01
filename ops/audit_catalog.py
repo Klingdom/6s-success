@@ -69,6 +69,24 @@ RETIRED = os.path.join(ROOT, "ops", "retired-skus.json")
 # the same way it does in ops/audit_pages.py.
 SKIP = ("downloads/",)
 
+# ops/tests/test_audit_catalog.py plants site/_audit_catalog_fixture_<pid>.html
+# (a bare shell carrying a deliberately fake buy.stripe.com link) to prove this
+# file's own checks fire, and its lock serializes concurrent copies of that
+# test against each other. It does not, and cannot without deadlocking its own
+# subprocess call into this file, protect an unrelated direct invocation of
+# this script (preflight.py's own "catalogue" entry in gate_existing) that
+# happens to run while another session's test has the fixture open. Found
+# live 2026-10-01: a PM check-in's own preflight run read another concurrent
+# session's fixture mid-write and reported "buy.stripe.com link not in
+# data.js", a false catalogue defect that was gone on the very next run.
+# Excluded here by name, the same unconditional treatment
+# ops/audit_pages.py's own _is_probe() already gives this exact fixture,
+# rather than attempting a time-boxed wait that would need to reproduce the
+# test's pid-liveness and staleness logic a second time. The test itself
+# opts back in with --include-fixtures so it can still see what it plants.
+PROBE_PREFIX = "_audit_catalog_fixture"
+INCLUDE_FIXTURES = "--include-fixtures" in sys.argv
+
 WINDOW = 200  # chars either side of a name match, wide enough for a sentence
 
 BUY_INTENT = re.compile(
@@ -103,6 +121,8 @@ def pages() -> list[str]:
     for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(p, SITE).replace("\\", "/")
         if not any(rel.startswith(s) for s in SKIP):
+            if not INCLUDE_FIXTURES and os.path.basename(p).startswith(PROBE_PREFIX):
+                continue
             out.append(p)
     return out
 

@@ -286,8 +286,8 @@ def run(inner: str) -> str:
     try:
         io.open(FIXTURE, "w", encoding="utf-8", newline="").write(SHELL % inner)
         try:
-            r = subprocess.run([sys.executable, TOOL], cwd=ROOT, capture_output=True,
-                               text=True, timeout=600,
+            r = subprocess.run([sys.executable, TOOL, "--include-fixtures"], cwd=ROOT,
+                               capture_output=True, text=True, timeout=600,
                                env={**os.environ, "PYTHONIOENCODING": "utf-8"})
             return (r.stdout or "") + (r.stderr or "")
         finally:
