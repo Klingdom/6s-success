@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (03:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read tier past build_dining_room_deck_page.py, because it remains the only genuinely unblocked lane; build_pantry_deck_page.py, build_primary_bedroom_deck_page.py, build_stair_landing_deck_page.py and build_workshop_deck_page.py are the next 2-mention candidates.
+
+**Previous work (03:1x cycle) was finished, verified myself, not just cited.** Attached clean: shallow checkout unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (51 commits), no reset or force, tree clean before and after. `preflight.py` fast hung again at the documented `gate_tests` headless-Chromium sandbox limit (timed out, killed); ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191, mobile `npm test` (pickCard, eventLog, videoLink) all passing. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable. `BACKLOG-2026-09-07.md` sections 2-4 and 6 re-read: every "Now" row done or Phil-gated, all six owner gates still wait on Phil's own hand.
+
+**Small closing job: one more low-mention file, no defect.** Read `build_dining_room_deck_page.py` cold (2 mentions). Correctly mirrors the Hall Closet precedent, carries the whole-site wiring chain (`canonical_links`, `prune_catalog_js`, `wire_landmarks`, `wire_progressive`, `wire_measure`, `wire_pwa`, `wire_aria_current`, `build_avif.wire()`, `fingerprint_assets`) the B1 follow-on defect taught every sibling generator to include, and asserts both its whole-room card ids and full card coverage before writing. Ran it live: output byte-identical to the committed `site/dining-room-deck.html` (`git status` clean after), so the shipped page is not stale against its own generator.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 still open.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (03:1x cycle, previous work finished, started a fresh cold-read tier)
 
 **Previous work finished, verified myself.** Attached clean (unshallowed, fast-forwarded, no reset). Tree clean, main matched origin before and after. Cold-read tier 8/8 complete per the prior entry; 8 GitHub issues unchanged, all owner-gated; `BACKLOG-2026-09-07.md` Now sections all done or Phil-gated; `STATUS.md` has no open claims. Standing checks clean: `check_urls.py` 210/210, `audit_pages.py` 0/214, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Mobile `npm test` 4/4 suites. `preflight.py --fast` hung at `gate_tests` past 4 minutes, the documented headless-Chromium sandbox limit; killed rather than waited on indefinitely, not treated as a pass or a failure, honestly unchecked.
