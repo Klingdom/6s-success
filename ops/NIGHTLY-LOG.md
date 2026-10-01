@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (04:1x cycle)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py second-pass cold-read tier past build_pantry_deck_page.py and build_primary_bedroom_deck_page.py; build_stair_landing_deck_page.py and build_workshop_deck_page.py are the remaining 2-mention candidates named by the prior cycle.
+
+**Previous work (03:4x cycle and the scheduled operator cycle after it) was finished, verified myself, not just cited.** Attached clean: shallow checkout unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (55 commits), no reset or force, tree clean before and after. The latest commit on HEAD (`8e368e122`, a scheduled operator fixing STATUS.md's deploy-verdict citations, not logged under its own NIGHTLY-LOG entry) claimed `status_deploy_verdict_problem()` now returns empty and both dedicated gate tests pass; verified directly rather than trusted: called `status_deploy_verdict_problem()` myself against the live `STATUS.md`/`deploy-verdict.json` (returns `''`) and ran both `test_gate_status_deploy_verdict_current.py` and `test_gate_status_deploy_gap_count_current.py` (8/8 and 11/11). `python ops/preflight.py` hung past 6 minutes with zero output, the documented `gate_tests` headless-Chromium sandbox limit; killed rather than waited on, reported unchecked rather than passing. Ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `fix_dashes.py --check` 0/0, `affiliate.py --check` (165 documents), `cold_read_ledger.py --stale` 0/191. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable. `BACKLOG-2026-09-07.md` Now sections re-read: still done or Phil-gated.
+
+**Continued the handed-off second-pass cold-read tier.** Read and ran live `build_pantry_deck_page.py` and `build_primary_bedroom_deck_page.py`: both mirror the verified sibling template exactly, both whole-room action-card id assertions match the real data (`PNA-011/012/013`, `PRA-013/014/015`), both `og:image` URLs resolve to a real, on-disk zone photograph, both carry the full whole-site wiring chain. No defect in either generator.
+
+**A transient, non-reproducing artifact found and chased down rather than reported blind.** Regenerating these two pages twice produced a stale asset-fingerprint (`site.css`/`site.js`/`measure.js` version queries reverted to the generator's own placeholder literal instead of the live content hash) on the just-written page, once each. Traced rather than assumed: the first occurrence coincided with a backgrounded `preflight.py` still running concurrently (a moving-tree race, the exact LRN-0024 shape); killing it and rerunning on a quiescent tree produced a correct, idempotent result. The second occurrence, on `build_primary_bedroom_deck_page.py`, did **not** have that excuse: `preflight.py` was already stopped, yet one run out of six still mis-wrote the page, and the other five were clean and byte-identical. Could not pin down a root cause after reasonable investigation (site.css itself never changed on disk in either case, confirmed by hash and by `git status`). Not committed either time: discarded via `git stash` + `git stash drop`, never reached `origin/main`. Confirmed this failure mode is already caught before anything ships: `preflight.py` runs `fingerprint_assets.py --check` as its own `fingerprints` gate, which correctly flagged the bad page as STALE when tested directly. Recorded honestly in the ledger notes for both files rather than silently calling them clean; worth a future cycle's attention if it recurs on a quiescent tree.
+
+**Verified:** `check_urls.py` 210/210, `fix_dashes.py --check` 0/0, `fingerprint_assets.py --check` clean (652 references, all current) after discarding the test artifacts. `ops/cold-read-ledger.json` updated for both files with today's date and the full reasoning kept.
+
+**Went well:** not trusting a single clean-looking regeneration; rerunning enough times to tell a real defect from sandbox noise, and confirming the existing gate already guards the failure mode before treating it as new work.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; the one-in-six fingerprint miswrite on a quiescent tree has no identified root cause, only a confirmed safety net.
+
+**Changing next cycle:** none; the existing `fingerprints` gate already does its job.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (03:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read tier past build_dining_room_deck_page.py, because it remains the only genuinely unblocked lane; build_pantry_deck_page.py, build_primary_bedroom_deck_page.py, build_stair_landing_deck_page.py and build_workshop_deck_page.py are the next 2-mention candidates.

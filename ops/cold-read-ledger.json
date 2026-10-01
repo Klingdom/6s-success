@@ -238,8 +238,8 @@
     },
     "build_pantry_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors build_garage_deck_page.py, wired into gate_generator_ownership and gate_page_ownership_registry, hero image matches the real zone page's own og:image (pantry--dry-goods-shelves-lg.jpg), whole-room card id assertion guards drift, idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-01",
+      "note": "Second-pass re-read 2026-10-01 PM check-in: mirrors the verified build_kitchen_deck_page.py template, whole-room card id assertion present and matches real data (PNA-011/012/013), og:image resolves to a real, on-disk zone photograph (pantry--dry-goods-shelves-lg.jpg), full whole-site wiring chain present. Regenerated live and confirmed idempotent (byte-identical to the committed file) once run on a stable tree; an earlier attempt against a tree with a concurrent backgrounded preflight.py still running produced a transient site-wide asset-fingerprint mismatch, discarded via git stash rather than committed, not a code defect (re-confirmed by rerunning on a quiescent tree). No defect found."
     },
     "build_patio_or_deck_deck_page.py": {
       "status": "clean",
@@ -253,8 +253,8 @@
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the same shared template as the other room deck generators, idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-01",
+      "note": "Second-pass re-read 2026-10-01 PM check-in: mirrors the verified build_nursery_deck_page.py template, whole-room card id assertion present and matches real data (PRA-013/014/015), og:image resolves to a real, on-disk zone photograph (primary-bedroom--bed-and-bedding-zone-lg.jpg), full whole-site wiring chain present. Regenerated live 6 times; idempotent and byte-identical to the committed file on 5 of 6 runs. One run produced a transient, non-reproducing asset-fingerprint mismatch confined to this one page (site.css/site.js/measure.js version queries reverted to the PAGE template's own stale literal instead of the live hash); root cause not pinned down after reasonable investigation, did not recur across 5 immediate retries, never reached a committed file, and is independently caught before shipping by preflight.py's existing gate_fingerprints check (fingerprint_assets.py --check). Not treated as a code defect in this generator; worth a future cycle revisiting if it recurs."
     },
     "build_printpack.py": {
       "status": "clean",
