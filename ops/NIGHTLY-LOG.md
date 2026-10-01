@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: the full preflight left running in the background this cycle finished clean, nothing new
+
+**The full python ops/preflight.py started this cycle, left running past the cycle's own close rather than killed, finished on its own: every gate passed, 0 FAIL, 27 warnings.** Checked the warning list line by line rather than trusting the summary count alone: all 27 are the same standing, already-tracked sandbox limitations this log has named for weeks (no Stripe/SSH/mail credential here, site unreachable from this sandbox, Pillow absent, deck-print-tier/page-art/deck-art already tracked in DECISIONS.md/GitHub issues #2/#29, cron-cadence throttling already documented). No new warning, no FAIL. Confirms this cycle's own narrower stand-in checks rather than contradicting them.
+
+Pushed to main. ops/NIGHTLY-LOG.md only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (08:1x cycle)
 
 **Previous work finished.** Clean attach: fetch, unshallow, checkout main, merge --ff-only onto origin/main (84 commits), no reset or force, tree clean before and after. The last operator cycle's close (Kitchen room's final 6 pages, no defect, full preflight clean in background) was already on main at HEAD before this cycle started, pushed, not just committed.
