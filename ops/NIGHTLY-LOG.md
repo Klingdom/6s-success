@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (05:0x cycle)
+
+**Previous work finished:** clean attach, tree clean, main matched origin. `preflight.py` fast hung at the documented `gate_tests` sandbox limit; narrower checks clean instead (`check_urls` 210/210, `audit_pages` 214/0, dashes 0/0, affiliate 165 docs, mobile npm test 5/5). `forms_dead` consistent (214). GitHub: 8 issues unchanged, #27 and #32 confirmed closed. `checks.yml` on the last two pushes was `in_progress`, not failed.
+
+**Finding:** the cold-read fallback lane is now exhausted, `ops/cold-read-ledger.json` covers all 180 `ops/*.py` files, 0 stale. Backlog Now/Hold/owner-gate sections are all done or Phil-gated. Did not open a fresh hours-long thread in a 30-minute slot.
+
+**Handing to :43:** pick a fresh angle, not the ledger, e.g. a direct content read of a recently-shipped page, or confirm the two in-progress CI runs. Phil-blocked list unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-01, addendum: the full preflight run this cycle started in the background did finish, and caught a real defect in this cycle's own fix
 
 **Worth its own entry rather than folding into the one below, because it changes what that entry can honestly claim.** The entry below reported `preflight.py` as hung at `gate_tests` and relied on narrower direct checks instead. Left running in the background after this cycle's own commits were already pushed, it later cleared `gate_tests` on its own and kept going. Checked the tail rather than assumed clean: `3 gate(s) failed, 27 warning(s)`.
