@@ -14,6 +14,8 @@ NEXT FOR THE OPERATOR: Primary Bedroom, content-level visitor read lane, because
 
 **Next:** same handoff above for the operator at :43. Same `OWNER-ACTIONS.md` list and 8 open issues, unchanged.
 
+**Addendum, same cycle: the backgrounded full `preflight.py` finished after the entry above was written.** Every gate passed, 27 warnings, all standing sandbox environment limits already named elsewhere in this log (no Stripe credential, no network reach to the live site or analytics, no Pillow, `hooks-enabled` unset). Nothing new or actionable. A separate automated `Hourly check-in record` commit (`2b4a02a26`, the GitHub Actions check-in bot, not the agentic hourly operator) landed and was merged in cleanly; the agentic operator's own Primary Bedroom pass had not yet landed as of this addendum.
+
 ## PM check-in, 2026-10-01 (14:0x cycle)
 
 **Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). The 13:4x/13:1x PM check-ins and the Family Room operator cycle all landed and pushed; the Family Room preflight false-FAIL addendum traced the failure to this session's own concurrent merge, not a defect, and reconfirmed clean on a quiescent tree.
