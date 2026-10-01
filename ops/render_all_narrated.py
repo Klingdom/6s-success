@@ -106,7 +106,11 @@ def main() -> int:
     print("  elapsed        : %.1f min" % mins)
     for s, w, e in failed[:5]:
         print("     %s %s: %s" % (s, "16x9" if w else "9x16", e))
-    return 0
+    # A real-run exit code that ignored `failed` was the exact shape found
+    # and fixed in the two sibling batch tools (video_zone_photo.py,
+    # render_all_zone_videos.py) on 2026-09-26: a batch could print "FAIL"
+    # lines and still exit 0, so a human trusting $? would never see them.
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

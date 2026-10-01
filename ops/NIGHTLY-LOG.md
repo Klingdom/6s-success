@@ -2,13 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (four real defects found in the second-pass cold-read, the recurring class turned into a gate)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (32 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Confirmed every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), no mail credential here. `preflight.py --fast` hung at the documented `gate_tests` sandbox limitation again (watched, killed); ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` flagged 1 (see below).
+
+**Continued the handed-off second-pass cold-read tier.** `ops/audit_visual.py` was flagged stale (Phil's own 2026-09-30 commit added a documenting comment after the ledger date); read it end to end, no defect, re-stamped clean. Then read 6 of the 14 remaining files. Four had the exact exit-code-lies-about-failure shape fixed in two sibling tools on 2026-09-26: `render_all_narrated.py` and `video_srt.py` (found independently, different variable names `failed`/`empty`), then `generate_card_heroes.py` and `generate_zone_heroes.py` (identical `failed` shape). All four fixed to return nonzero when their batch loop recorded a failure; `verify_media_delivery.py` and `import_room_images.py` read clean, no defect.
+
+**Turned the lesson into a gate.** Six instances of one defect class (2 historical, 4 this cycle) is past CLAUDE.md 10b's line. New `gate_batch_main_ignores_failed` in `preflight.py`, AST-based: finds a `for` loop in `main()` that appends to a variable literally named `failed`, then checks every later statement for an unconditional `return` that never references it. Deliberately scoped to that one name after a looser match on `bad`/`missing`/`fail` produced false positives on files that already guard correctly (`build_quest.py`, `backup_analytics.py`, `check_sellable.py`). Proved against synthetic buggy/fixed sources and the live repo in `ops/tests/test_gate_batch_main_ignores_failed.py` (6/6).
+
+**Verified:** every new/changed test file run directly and fail-then-pass proved by hand (reverted each fix, confirmed the new case failed by name, restored, reran clean): `test_render_all_narrated.py` (4/4), `test_video_srt.py` (6/6), new `test_generate_card_heroes.py` and `test_generate_zone_heroes.py` (2/2 each, fake the image_local backend so no GPU/model is needed), `test_gate_batch_main_ignores_failed.py` (6/6). `py_compile` clean on every touched file. Dependent test files re-run for regressions (`test_gate_image_prompt_negations_handled.py`, `test_gate_srt_captions_current.py`), both clean. Mobile `npm test` (pickCard, eventLog, videoLink) all passing. `check_urls.py`/`audit_pages.py`/`affiliate.py --check`/`fix_dashes.py --check`/`cold_read_ledger.py --stale` all clean after.
+
+**Went well:** the AST scan over all of `ops/*.py` surfaced 8 more candidates sharing surface vocabulary (`missing`, `bad`, `fail`); checking each by hand before trusting the scan found all 8 already correctly guarded, which is exactly why the gate is scoped to the literal name `failed` rather than the broader match.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** continue the same second-pass cold-read tier. 8 files remain (`generate_card_art.py`, `merge_cardtext.py`, `optimize_sample_pdf.py`, `reflow.py`, `review_deck_art.py`, `review_heroes.py`, `video_narrated.py`, `zone_graphics.py`, less any the concurrent PM check-ins have since picked up). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/render_all_narrated.py`, `ops/video_srt.py`, `ops/generate_card_heroes.py`, `ops/generate_zone_heroes.py`, `ops/preflight.py`, their test files (2 new), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (01:5x cycle)
 
-**Collision with the 01:4x twin, found at merge, not before.** Independently picked the exact same small closing job: `cold_read_ledger.py --stale` named the same one entry, `ops/audit_visual.py`, and I reached the same verdict (clean, the 2026-09-30 touch is comment-only). Their commit (`ad02e1cad`) landed first; mine never got pushed (push refused on conflict, caught before force), so no duplicate state shipped. Took their version of the generated files and the ledger rather than hand-merging JSON; this entry replaces what would have been a redundant repeat of theirs below. One thing worth recording that their entry does not: my own first preflight run this cycle hit a real but transient failure (`gate_tests`'s shallow-clone guard, because my checkout was still shallow mid-run from a Step 0 slip), fixed by unshallowing properly and reconfirmed clean on rerun, not a code defect.
+**Collision with the 01:4x twin, found at merge rather than before.** Independently picked the same stale cold-read-ledger entry (`ops/audit_visual.py`) and reached the same clean verdict; their commit landed first, mine stayed unpushed and was merged in rather than force-pushed over. Also hit a real but transient preflight failure in my own session (`gate_tests`'s shallow-clone guard, tripped because my checkout was still shallow mid-run from a Step 0 slip), fixed by unshallowing properly and reconfirmed clean. By the time this merge was ready to push, the operator above had already landed the four-defect batch-gate work; merged that in too (generated files taken as-is, this log spliced by hand), full preflight clean after both merges.
 
-**Next:** picking a different task next cycle rather than this one, per STEP 8. All 8 GitHub issues remain decision/blocked-on-art, none pickable. Hand to :43 operator: continue the 2026-09-25 cold-read tier, 14 files remain (unchanged by this cycle).
+**Next:** picking a different task than the twin going forward, per STEP 8. All 8 GitHub issues remain decision/blocked-on-art, none pickable. Hand to :43 operator: continue the cold-read tier per the count above.
 
-Nothing pushed by this cycle beyond merging the twin's already-pushed state; no new content shipped.
+Pushed to main: two merge commits reconciling two concurrent pushes, no new content beyond this entry.
 
 ## 2026-10-01, PM check-in (01:4x cycle)
 
