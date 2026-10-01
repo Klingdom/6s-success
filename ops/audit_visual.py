@@ -403,6 +403,31 @@ document.getElementById('f').onload=function(){
     var go=function(){if(!raced){raced=true;afterImages();}};
     d.fonts.ready.then(go,go);
     setTimeout(go,4000);            // never hang on a font that never arrives
+    // RAISING THE VIRTUAL-TIME BUDGET DOES NOT FIX THE 20 HEAVY PAGES.
+    //
+    // The deck pages (127 to 140 KB, 126 cards) come back fonts="loading",
+    // so their text sizes and target heights are measured against a
+    // fallback face and the run says so. The obvious guess is that the
+    // probe needs longer. Measured 2026-09-30 on entryway-deck.html at
+    // budget_ms=15000 and again at 60000: BOTH report "loading". Four times
+    // the budget changes nothing.
+    //
+    // The reason is that --virtual-time-budget compresses timers. This
+    // setTimeout fires at virtual-4s, which arrives almost immediately in
+    // wall-clock terms, while d.fonts.ready waits on real font decoding
+    // that virtual time does not accelerate. The fallback wins the race on
+    // any page big enough, and a bigger budget just means more virtual time
+    // elapses before the same timer still fires first.
+    //
+    // Not a product defect, checked separately rather than assumed: loaded
+    // in a real browser, the same deck page reports fonts.status "loaded"
+    // with 22 faces inside 2 seconds and resolves to Inter, and it is 0.55s
+    // over the network. Visitors get the real face.
+    //
+    // So the caveat the run prints is accurate and the limitation is
+    // inherent to measuring under virtual time. Removing the fallback timer
+    // would fix the fonts and reintroduce the hang it was added for.
+    // Anybody tempted to raise the budget again: it has been tried.
   } else { afterImages(); }
 };
 </script>"""
