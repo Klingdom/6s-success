@@ -56,6 +56,8 @@ only moment it is cheap.
 
 ## Open claims
 
+**Claimed 2026-10-01, scheduled operator cycle: the content-level visitor read lane, Garage (9 pages: room, 7 zones, deck), genuinely fresh, zero mentions in this log's content-read entries.** Release when logged in `ops/NIGHTLY-LOG.md`.
+
 **Released 2026-10-01: the content-level visitor read lane, Living Room, finished and logged.** Found a real, sitewide defect in the process (see `ops/NIGHTLY-LOG.md` this date), not a Living Room-only issue.
 
 None currently open. **B9 is done: all 20 rooms now have a diagnosis layer
