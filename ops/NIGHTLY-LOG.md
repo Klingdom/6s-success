@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (preflight's own two gates found two real stale-citation defects)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (51 commits), no reset or force, tree clean before and after. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated (sections 2 to 4, A1-A10/B1-B9/C1-C7), section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. GitHub re-read directly: 8 open issues unchanged, all `decision` or `blocked-on-art`, 0 open PRs. `cold_read_ledger.py --stale`: 0 of 191. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `affiliate.py --check`: clean, 165 documents.
+
+**Ran `preflight.py` fast to completion rather than killing it at the documented `gate_tests` sandbox limit** (took several minutes under heavy concurrent load from other sessions sharing this sandbox, but finished rather than hanging): 2 gate(s) failed. Both were real, both were caught by gates already written for exactly this shape, and both were the "source corrected, artifact never re-derived" defect class this repository names as dominant.
+
+**Fix one: `gate_nightly_log_ordering`.** A prior PM check-in's own entry (02:2x, "two gates found deleting a live sibling session's own test fixture") had been appended to the physical end of this file, 45,000 lines past the top, instead of prepended with the rest of today's entries, the exact append-vs-prepend mistake this gate's own docstring already documents from 2026-09-05. Moved the entry, content byte-for-byte unchanged, to its correct chronological slot between the 02:4x and 01:5x entries. Verified directly: `test_gate_nightly_log_ordering.py` and `test_gate_nightly_log_no_duplicate_entries.py` both pass after.
+
+**Fix two: `gate_status_deploy_verdict_current`.** `STATUS.md`'s BLOCKER-001, Production Knowledge and Immediate Focus all three still cited the superseded `6f5176355eb29401` build while `ops/deploy-verdict.json` had already moved to `8fbc6b7d3d2599ae` (Phil's own `b57ba4f58`, verified against production that garage, workshop and nursery serve the correct accessible name). Re-derived directly rather than guessed: `resolve_verdict_commit('8fbc6b7d3d2599ae')` resolves to `b57ba4f58` itself, `deploy_gap_material_commits('b57ba4f58')` returns zero, so production matches `HEAD` exactly. Added the current entry to BLOCKER-001 and Production Knowledge, updated Immediate Focus's citation and appended its own correction note. Verified: `status_deploy_verdict_problem()` returns empty; `test_gate_status_deploy_verdict_current.py` (8/8) and `test_gate_status_deploy_gap_count_current.py` (11/11) both pass.
+
+**No new gate written.** Both defects were caught correctly by gates already in place; the lesson here is that `preflight.py` fast needs real time to finish under concurrent load rather than being killed at the first sign of slowness, not a new check.
+
+**Verified, not assumed:** full `preflight.py` rerun after both fixes: every gate passed, 29 warnings, all standing sandbox limitations (no Stripe/SSH/mail credential, site unreachable from here, Pillow absent). `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, mobile `npm test` 3/3 suites, `affiliate.py --check` 165 documents, all independently, before and after the STATUS.md edit.
+
+**Went well:** letting the fast preflight run to completion instead of killing it at the usual sandbox-hang assumption surfaced two real defects that a killed run would have missed entirely.
+
+**Did not go well:** same unrelated-history shallow-checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the gates that caught both defects already existed and worked exactly as designed.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Cold-read lane remains exhausted (191/191, 0 stale); the next unblocked angle is another fresh `preflight.py --deep` pass or a direct content read of a recently-shipped page, per the established fallback.
+
+Pushed to main (two commits, `dc34a3a20` and `8e368e122`). `ops/NIGHTLY-LOG.md`, `STATUS.md`, command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (03:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py cold-read tier past build_dining_room_deck_page.py, because it remains the only genuinely unblocked lane; build_pantry_deck_page.py, build_primary_bedroom_deck_page.py, build_stair_landing_deck_page.py and build_workshop_deck_page.py are the next 2-mention candidates.
