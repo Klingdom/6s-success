@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (09:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the content-level visitor read lane with a fresh room, Workshop (`site/workshop-deck.html` and its 6 zone pages, zero mentions anywhere in this log's content-read entries), because it is one of the two most recently built rooms (B9, shipped 2026-09-29) and so the least scrutinized, and the same lane has now found two real sitewide defects (KC-008, the zone-order claim) that no code-level gate caught.
+
+**Previous work: finished.** The Living Room content-read pass (prior entry, below) shipped a real sitewide fix (the false "zones in working order" claim, 189 files across 9 generators, 20 cardtext sources, 2 articles) and its own two follow-up commits (regenerated 20 deck cardtext caches + build-id; regenerated the one gated Kitchen art-prompt surface), all three pushed to `main` and all three independently reproducible: `gate_no_false_zone_order_claim` and its 6-case test exist and pass, `gate_kitchen_card_prompts_current` and the 19 other `gate_*_deck_rendered` gates are in `preflight.py` and currently running clean up to the standing `gate_tests` sandbox hang (see below). `STATUS.md`'s open-claims section already shows the Living Room claim released with evidence; no loose end found.
+
+**Attach:** checkout arrived shallow and detached; `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, twice (94 commits, then one more hourly check-in bot commit that landed mid-cycle), no reset or force, tree clean throughout.
+
+**Verified rather than cited:** `BACKLOG-2026-09-07.md`'s "Now" rows and `STATUS.md`'s own current-objective section, re-read, agree with every recent cycle: epics 1-4 are all done or Phil-gated, epic 5 does not start until epic 1 lands. GitHub re-read directly via the API, not the log: 8 open issues, unchanged in count, number and label (`decision`: 35, 33, 31, 21, 18, 15; `blocked-on-art`: 29, 2), 0 open PRs, none newly actionable; none is marked waiting on Phil in a way this cycle could act around. `cold_read_ledger.py --stale`: 0 stale, the `ops/*.py` lane still fully exhausted (191/191), so the content-read lane is the correct standing fallback. No open claim in `STATUS.md` or `ops/b9-claims.json` conflicts with handing Workshop to the operator.
+
+**Ran `python ops/preflight.py` to genuine completion in the background rather than a fast partial pass**, since STEP 2 requires knowing whether anything fails, not assuming. It reached `gate_tests` (the documented sandbox hang this log has named for weeks) with every gate before it passing, 0 FAIL; left running past this entry's close, per recent cycles' own practice. Narrower checks run directly in the meantime: `check_urls.py` 210/210, `fix_dashes.py --check` 0/0.
+
+**Did not start anything large this slot**, per this run's own instruction to hand off rather than begin three minutes before the operator; the operator's own 09:43 hourly check-in had already landed (bot commit, `indexnow-log.json` only) by the time this entry closed, merged in cleanly, no collision.
+
+**Went well:** picking a genuinely fresh, zero-mention room for the handoff instead of re-citing the same exhausted fallback language; catching and merging the hourly bot's own commit mid-cycle instead of racing it.
+
+**Did not go well:** `gate_tests` still cannot complete inside this cycle's own window; its result is not in hand at the time of this entry.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Workshop handed to the hourly operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Living Room: a sitewide false-ordering claim found and fixed, 20 rooms, 114 zone pages, 20 decks, resources.html)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `ops/NIGHTLY-LOG.md` entries (newest-first, not the tail). Confirmed directly, not cited: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated, GitHub's 8 issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. `cold_read_ledger.py --stale`: 0 stale, the ops/*.py lane fully exhausted (191/191). Claimed the content-read lane's next fresh room, Living Room, in `STATUS.md` before starting.
