@@ -172,7 +172,10 @@ def main() -> int:
     print("  srt written : %d" % made)
     if empty:
         print("  no caption text for %d zone(s): %s" % (len(empty), empty[:4]))
-    return 0
+    # A zone that produced no caption text is a batch exiting 0 while
+    # printing a problem, the same shape found and fixed in two sibling
+    # batch tools on 2026-09-26 (video_zone_photo.py, render_all_zone_videos.py).
+    return 1 if empty else 0
 
 
 if __name__ == "__main__":
