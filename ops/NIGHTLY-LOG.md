@@ -14,6 +14,46 @@ Continuing the entry below. Two full-suite reruns were left running to get the u
 
 **Learning for next time:** never run two full `ops/tests/*.py` sweeps concurrently in this same checkout, even for cross-verification; it reproduces RISK-0014 against yourself. A single authoritative run (the real `preflight.py`, or `preflight.gate_tests()` in-process) is enough, and a second one should wait for the first to finish rather than run alongside it.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Dining Room: no defect found)
+
+**Did:** Continuing the same cycle that closed Pantry above, delegated the Dining Room read to an agent (the next unread room). Read all 7 pages (room, 5 zones, deck) as a visitor, checked against `mcp/content.json`, `content/manual/source/products.json`, `content/manual/source/zone_products.json` and `site/assets/js/data.js`.
+
+**No defect found.** Zone order consistent across room-map tiles, zone list, FAQ answer and every `is-here` chip. FAQPage JSON-LD matches visible copy on all 5 zone pages word for word; re-verified the room page specifically against this cycle's own Pantry fix (commit `52dfa04f1`) and confirmed it held: the closing clause reads identically in both copies. Storage-before-Sort byte position correct on the 4 zones that have a storage section; the 5th, Beverage or Coffee Station, has none at all, investigated as a possible omission and confirmed correct: `ops/zone_supplies.py`'s `storage_block()` omits the section when none of a zone's kit items fall in the Storage & Organization family, and none of this zone's 14 do. 0 em/en dashes, no "Set in Order" anywhere. Every external link carries `nofollow noopener`; every internal link resolves. Pricing (RP-DINING-ROO $9, PACK-HOUSE $19, CN-VIRTUAL $250, five $4 zone packs) matches `data.js` byte for byte. The 61-card deck's own count matches `ops/cardtext/dining-room-deck.json` exactly, every card id resolves. Diagnosis blocks match source on all 5 zones. Safety notice present and consistent everywhere.
+
+**Verified independently** (not just trusted the agent's own report, per `CLAUDE.md` 5d): re-ran the em/en dash check directly in Python against all 7 files (0 hits), re-checked every external link on the room page for `nofollow` directly (0 exceptions), confirmed `git status`/`git diff` genuinely empty.
+
+**Went well:** the FAQPage-vs-visible-copy check this cycle's own Pantry pass added to the room-page checklist caught nothing new here, confirming the sitewide fix actually shipped correctly rather than only on Pantry.
+
+**Did not go well:** nothing to report.
+
+**Changing next cycle:** none.
+
+**Next:** continue the content-read lane on Family Room, the next unread room (Kitchen, Living Room, Workshop, Garage, Entryway, Pantry, Dining Room now read; 13 rooms remain). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md`, command deck regen only. No price, product or page touched, no file changed; IndexNow not applicable.
+
+## 2026-10-01, scheduled operator cycle (content-read lane, Pantry: a real sitewide FAQPage-vs-visible-copy defect found and fixed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md` (sections 0 through 7), `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated, section 5 HOLD, section 6 owner-only. The prior cycle (above, same date) had just closed Entryway with no defect, so per the standing content-read lane handoff, continued on Pantry, the next unread room, delegated to an agent to keep the full seven-page read inside budget.
+
+**Found and fixed a real, sitewide trust defect.** Every room page's FAQPage JSON-LD answer to "how long does it take to organize a `<room>`" and the real visible "Added together..." paragraph lower on the same page are supposed to say the same thing (`room_faq()`'s own docstring says so). They did not: the closing clause had silently drifted onto two different sentences on all 20 room pages ("so it does not have to be done in one go" in the structured data against "stopping after the first still leaves the room better than it was" in the visible copy), since a 2026-09-26 fix kept only the numeric parts in sync and never checked the prose around them. None of the five prior content-read cycles (Kitchen, Living Room, Workshop, Garage, Entryway) caught it: their own checklist diffs a zone page's visible FAQ `<dl>` against its JSON-LD, and room pages carry no visible `<dl>` at all by design, so this exact divergence shape was invisible to that check.
+
+**Fixed at the generator**, not by hand-editing the 20 shipped pages: `room_faq()` in `ops/build_zone_pages.py` now emits the same closing clause the visible paragraph already ships. Reran `ops/build_zone_pages.py` (all 20 room pages changed, one line each) then `ops/build_seo.py` (restamps `sitemap.xml`'s content hashes, the one chain step `build_zone_pages.py` does not call itself); reran both a second time and confirmed byte-identical output. Extended the existing `check_room_time_current()`/`gate_room_time_rounding_current` in `preflight.py` rather than adding a new gate, since it already checked the numeric half of the same sentence; fail-then-pass proved directly by planting the old regression back into the real committed `site/rooms/pantry.html`, watching the gate fail by name, restoring, and reconfirming clean. `ops/tests/test_gate_room_time_rounding_current.py` extended 8 to 9 cases.
+
+**Verified:** `test_gate_room_time_rounding_current.py` (9/9) and `test_gate_sitemap_lastmod_current.py` (6/6) both pass directly, the two files a full `preflight.py` run flagged before the `build_seo.py` rerun. `check_urls.py` (210/210), `audit_pages.py` (214/0), `fix_dashes.py --check` (0 em/en dashes), `affiliate.py --check` (165 documents) all clean. A background full `python ops/preflight.py` (via `ops/run_preflight.sh`) confirms the rest of the site unaffected.
+
+**Also checked and clean on all 7 Pantry pages themselves** (room, 5 zones, deck): zone order against `mcp/content.json`, storage-before-Sort byte position, `nofollow` on every outbound link, internal link resolution, pricing (RP-PANTRY $9, PACK-HOUSE $19, CN-VIRTUAL $250, all current against `data.js`), the 57-card deck's own count against its real corpus, diagnosis blocks against source, 0 em/en dashes, safety notice present and consistent.
+
+**Went well:** the room-page lane finally reads the one surface (FAQPage vs visible prose on pages with no visible `<dl>`) the zone-page-shaped checklist structurally could not see.
+
+**Did not go well:** the fix's own first regeneration left two gates red (`sitemap-lastmod-current`, and the test file exercising it) because `build_zone_pages.py` does not chain `build_seo.py`, the same generator-ownership gap this log has named for other generators before; caught by this cycle's own full preflight run rather than by habit.
+
+**Changing next cycle:** none beyond the extended gate; `gate_room_time_rounding_current` already runs every cycle.
+
+**Next:** continue the content-read lane on Dining Room, the next unread room (Kitchen, Living Room, Workshop, Garage, Entryway, Pantry now read; 14 rooms remain). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Production deploy gap currently 5 commits behind HEAD (`ops/deploy-verdict.json`), unresolved pending issue #35 (VPS_DEPLOY_KEY), not an operator action.
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/sitemap-content-hashes.json`, `ops/tests/test_gate_room_time_rounding_current.py`, `site/rooms/*.html` (20 files), `STATUS.md`, command deck regen. No price or product touched, no new page; IndexNow will pick up the 20 changed room pages on its next credentialed run (no egress from this sandbox to submit directly).
+
 ## 2026-10-01, addendum: a real preflight FAIL surfaced after the 12:4x cycle shipped, one of its four files fixed and proved, the other three still being traced
 
 The full `preflight.py` background run started at the top of the 12:4x PM cycle finished after that cycle had already pushed, and it genuinely failed (exit 0 but `1 gate(s) failed`): `gate_tests` reported `4 of 354 test file(s) failed`, first named `test_check_video_links.py: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte`. Per `CLAUDE.md` 0.4, this is not something to carry forward unread: traced it rather than re-running and hoping it clears.
