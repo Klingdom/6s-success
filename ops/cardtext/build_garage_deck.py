@@ -1235,7 +1235,7 @@ def room_card(intro: str, tips: list) -> dict:
                      "parks, heavy bins stacked overhead above where "
                      "people walk and park, and edged power tools "
                      "within reach of a child's hand. This card is the "
-                     "map and the order.",
+                     "map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"GAZ-001 Primary Workbench. {start_tip['text']}" if start_tip

@@ -1367,8 +1367,7 @@ def room_card(intro: str, tips: list) -> dict:
         "room": ROOM, "zone": None, "difficulty": 1,
         "tagline": "SIX ZONES. THE SURFACE AND THE RAIL COME FIRST.",
         "objective": "A patio lives outdoors, on a clock the indoor "
-                     "rooms never feel. This card is the map and the "
-                     "order.",
+                     "rooms never feel. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"PDZ-006 Surface, Rail, and Safety Zone. {start_tip['text']}"

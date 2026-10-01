@@ -951,8 +951,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "THREE ZONES. START WITH THE STAIRS THEMSELVES.",
         "objective": "The stair landing belongs to nobody, and it is the "
                      "one route in the house where a small oversight "
-                     "turns into a real injury. This card is the map and "
-                     "the order.",
+                     "turns into a real injury. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"SLZ-003 Stair and Floor Path. {start_tip['text']}"

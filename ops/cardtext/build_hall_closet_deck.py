@@ -1196,8 +1196,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "FIVE SHELVES OF EVERYTHING THAT HAD NOWHERE ELSE TO "
                    "GO.",
         "objective": "The hall closet is where everything that had to "
-                     "go somewhere ended up. This card is the map and "
-                     "the order.",
+                     "go somewhere ended up. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"HCZ-001 Linen Shelf Zone. {start_tip['text']}"

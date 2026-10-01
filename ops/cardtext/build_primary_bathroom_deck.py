@@ -1187,7 +1187,7 @@ def room_card(intro: str, tips: list) -> dict:
                      "the most, and it carries three problems no other "
                      "room has all at once: standing moisture, open "
                      "chemistry, and dates that quietly pass while you "
-                     "sleep. This card is the map and the order.",
+                     "sleep. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"PBZ-001 Vanity Counter. {start_tip['text']}" if start_tip

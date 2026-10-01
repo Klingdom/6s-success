@@ -1491,8 +1491,7 @@ def room_card(intro: str, tips: list) -> dict:
         "objective": "A child's bedroom has to work at their height and "
                      "their reading level, not an adult's: toys, clothes, "
                      "sleep, homework and tomorrow's bag all compete for "
-                     "the same small room. This card is the map and the "
-                     "order.",
+                     "the same small room. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"{first_zone_id} {ZONE_ORDER[0]}. {start_tip['text']}"

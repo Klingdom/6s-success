@@ -154,7 +154,7 @@ for r in content["rooms"]:
   <p class="note"><a href="quest.html?room={sl}">Or draw a card free for the whole {e(room)}</a>, no sign-up.</p>
   <div class="cols">
     <div>
-      <h3>The micro zones, in order</h3>
+      <h3>The micro zones</h3>
       <ol>{zl}</ol>
     </div>
     <div>
@@ -171,7 +171,8 @@ doc = f"""<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rooms and micro zones: 20 rooms, 114 micro zones | 6S Success</title>
-<meta name="description" content="Every room broken into its micro zones, in the order to work them, with the product types each one needs. Twenty rooms, 114 micro zones. Free companion to the book.">
+<meta name="description" content="Every room broken into its micro zones, with the product types each one needs. Twenty rooms, 114 micro zones. Free companion to the book.">
+<!-- Not claimed to be a work sequence: corrected 2026-10-01, see build_zone_pages.py's matching note. Each room's own zone order is the manual's chapter order, not necessarily the order to work in. -->
 <!-- ops/build_seo.py owns canonical, Open Graph and JSON-LD. Re-run it after this. -->
 <!-- fonts.css is inlined into site.css now, not a separate request; see site.css's own header comment. -->
 <link rel="stylesheet" href="assets/css/site.css">

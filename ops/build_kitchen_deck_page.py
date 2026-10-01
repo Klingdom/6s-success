@@ -206,8 +206,13 @@ def back_body(card: dict, by_id: dict) -> str:
     if t == "ROOM CARD":
         out.append(f'<p class="kcall"><strong>Start here.</strong> '
                     f'{esc(card["start_here"])}</p>')
+        # Not claimed to be a work order: corrected 2026-10-01. This list is
+        # the manual's own zone order, which "Start here" above frequently
+        # names a different zone than first in (18 of 20 rooms sitewide);
+        # the card's own "objective" text was also fixed, see the per-room
+        # cardtext sources.
         out.append(f'<h4>The {num_word(len(card["zones_in_order"])).lower()} '
-                    f'zones, in order</h4><ol class="ktight">'
+                    f'zones</h4><ol class="ktight">'
                     + "".join(f"<li>{esc(z)}</li>"
                               for z in card["zones_in_order"]) + "</ol>")
         out.append('<h4>How to play</h4><ol>'

@@ -1281,7 +1281,7 @@ def room_card(intro: str, tips: list) -> dict:
         "objective": "The guest bathroom is the one room a visitor "
                      "spends time in alone, with the door shut and "
                      "nothing to look at but your standards. This card "
-                     "is the map and the order.",
+                     "is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"GHZ-001 Guest Vanity Counter. {start_tip['text']}"

@@ -1347,7 +1347,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "SIX ZONES. START WITH YOUR OWN NIGHTSTAND TONIGHT.",
         "objective": "The primary bedroom is the only room in the house "
                      "whose job is to help you stop. This card is the "
-                     "map and the order.",
+                     "map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"PRZ-002 Nightstand Left. {start_tip['text']}"

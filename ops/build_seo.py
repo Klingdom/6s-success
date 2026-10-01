@@ -221,9 +221,8 @@ PAGES = {
     "resources.html": dict(
         path="/resources.html",
         title="Rooms and micro zones: 20 rooms, 114 micro zones | 6S Success",
-        desc="Every room broken into its micro zones, in the order to work them, "
-             "with the product types each one needs. Twenty rooms, 114 micro "
-             "zones.",
+        desc="Every room broken into its micro zones, with the product types "
+             "each one needs. Twenty rooms, 114 micro zones.",
         image="room-map.jpg",
         image_alt="A book figure: an isometric floor plan of a home with each activity zone shaded and named, from launch pad to laundry.",
         type="article",

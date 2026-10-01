@@ -1083,8 +1083,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "SIX ZONES. START WITH THE DESK.",
         "objective": "The home office is six small jobs built around "
                      "one shared trap: physical clutter and unmade "
-                     "decisions about paper. This card is the map and "
-                     "the order.",
+                     "decisions about paper. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"HOZ-001 Primary Desk. {start_tip['text']}" if start_tip

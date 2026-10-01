@@ -616,7 +616,7 @@ def article_one(rooms):
              '<li><a href="../method.html">The six steps in full</a>, with the '
              "worked example each one came from</li>"
              '<li><a href="../resources.html">All %d rooms and %d micro '
-             "zones</a>, in the order to work them</li>" % (n_rooms, n_zones)
+             "zones</a>, with the product types each needs</li>" % (n_rooms, n_zones)
              +
              '<li><a href="how-long-does-it-take-to-organise-a-room.html">How '
              "long it takes to organize a room</a>, with the real session time "

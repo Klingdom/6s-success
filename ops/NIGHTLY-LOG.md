@@ -2,9 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Living Room: a sitewide false-ordering claim found and fixed, 20 rooms, 114 zone pages, 20 decks, resources.html)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `ops/NIGHTLY-LOG.md` entries (newest-first, not the tail). Confirmed directly, not cited: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated, GitHub's 8 issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. `cold_read_ledger.py --stale`: 0 stale, the ops/*.py lane fully exhausted (191/191). Claimed the content-read lane's next fresh room, Living Room, in `STATUS.md` before starting.
+
+**Read all 8 Living Room pages (room, 6 zones, deck) as a visitor, not sampled.** Found a real, live defect: the room page's own numbered zone map, its h2, its figcaption and its meta/og/twitter description all called the zone list "in working order" / "in the order to work them", directly above a "Start here" notice naming LVZ-006 Floor and Circulation Path, the LAST zone in that same list. Checked across all 20 rooms before treating this as sitewide, not assumed from one: `mcp/content.json`'s `zones[0]` disagrees with the room's own "Where to start" tip on **18 of 20 rooms**. The same false claim, worded slightly differently, also shipped on all 114 zone pages ("The rest of the room, in working order"), the printable Micro Zone Map download (intro copy and all 20 SVG `<desc>` elements), `resources.html` (meta/og/twitter and all 20 per-room "in order" subheadings), and two hand-authored articles. Went deeper than the website: all 20 room-deck card corpora's own ROOM CARD `objective` text stated outright **"This card is the map and the order."**, a claim printed on a paid/free product, immediately followed by that same card's own "Start here" line naming a different zone.
+
+**Fixed at the source, not the page.** `ops/build_zone_pages.py` (room-page h2/figcaption/meta description and the zone-page sibling-list heading), `ops/zone_graphics.py` (the room-map SVG `<desc>`), `ops/build_zone_map_pack.py`, `ops/build_resources.py`, `ops/build_seo.py`'s own duplicate `resources.html` description entry (a second, independent copy of the same text that would have silently reverted the `build_resources.py` fix), `ops/build_articles.py`, one hand-authored article (`where-to-start-decluttering.html`, not generator-owned), and `ops/build_kitchen_deck_page.py`'s shared `back_body()` (imported by all 19 other room-deck generators, so one fix covers all 20). Also fixed 20 cardtext sources' own `objective` text (`This card is the map and the order.` to `This card is the map.`) and one hand-authored image `alt` text (`ops/room-images.json`, Kids Bedroom) carrying the identical "numbered in working order" claim against its own room's "Where to start" mismatch. `consulting.html`'s own "zones in the order to work them" is a real, human-determined, paid-deliverable claim for its $250 virtual consult and is correctly left alone.
+
+**Ran the full `GENERATOR_OWNERSHIP_CHAIN` (39 generators) in order, not a partial rebuild**, since the fix touched both a widely-imported shared module (`zone_graphics.py`) and `build_seo.py`'s own PAGES dict. 189 files changed: 114 zone pages, 20 room pages, 20 decks, 20 cardtext sources, `resources.html`, 2 articles, `sitemap.xml`, the Micro Zone Map download (site and build/), `ops/sitemap-content-hashes.json`, and 9 generator source files. Proved idempotent: reran the chain a second time, byte-identical output, 0 further diff.
+
+**Turned the lesson into a gate, per step 10b.** New `gate_no_false_zone_order_claim` in `preflight.py`: greps the actually-shipped `site/` for the four phrase shapes this defect took, excusing only `consulting.html`'s real claim. Proved it can fail two ways: planted the exact live regression back into a real committed file (`site/rooms/living-room.html`) and watched it fail by name citing the file and the phrase, confirmed clean after reverting; new `ops/tests/test_gate_no_false_zone_order_claim.py` (6 cases: an honest page passes, the room-page shape fails, the zone-page/meta-description shapes both fail independently, the card-deck shape fails, `consulting.html` is correctly excused), fail-then-pass proved directly.
+
+**Verified:** `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). `ops/tests/test_gate_sitemap_lastmod_current.py`, `test_gate_living_room_deck_rendered.py`, `test_gate_kitchen_deck_rendered.py`, `test_room_lead_panel_honest.py`, `test_gate_deck_count.py` all pass after. Full `python ops/preflight.py` started this cycle; left running past this entry's close per recent cycles' own practice, result not yet in hand at the time of this entry (see addendum if it lands this cycle).
+
+**Went well:** verifying the mismatch across all 20 rooms with `mcp/content.json` before treating a Living Room oddity as sitewide; finding the `build_seo.py` duplicate description (a second source of truth that would have silently reverted the `build_resources.py` fix) by checking the live output rather than trusting the source edit; running the full ownership chain rather than a partial one, given a shared-module change.
+
+**Did not go well:** `build/prompts/kitchen/KR-001.txt` and the other room art-prompt files under `build/prompts/` still carry the old `objective` text (the regenerator, `ops/build_all_prompts.py`, refuses to run outside Phil's own Desktop checkout); left unfixed, not customer-facing, no gate exists for it.
+
+**Changing next cycle:** none; the new gate and its test cover this defect class going forward.
+
+**Next:** continue the content-read lane on a fresh room (19 of 20 rooms still have no page individually read in this lane). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. No price or product touched; no new page. `IndexNow` to submit the 2 articles, `resources.html` and the Micro Zone Map download; the 114 zone/20 room/20 deck pages are edits to existing URLs, not new ones.
+
 ## 2026-10-01, PM check-in (09:1x cycle)
 
-**Previous work finished.** Kitchen content-read lane shipped and verified by prior cycles. The content-read lane's next room, Living Room, was claimed 08:53 by a concurrent session, minutes before this cycle started; did not duplicate it.
+**Previous work finished.** Kitchen content-read lane shipped and verified by prior cycles. The content-read lane's next room, Living Room, was claimed 08:53 by a concurrent session (the operator cycle entry just above, which has since landed with a real, sitewide fix), minutes before this cycle started; did not duplicate it.
 
 **Verified rather than cited:** clean attach (fetch, unshallow, ff-only merge, 89 commits, no reset/force). 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art/P0), 0 open PRs. cold_read_ledger.py: 191/191 ledgered, 0 stale, lane still exhausted. check_urls.py 210/210, audit_pages.py 214/0, fix_dashes.py --check 0/0, affiliate.py --check clean (165 documents). Full preflight.py hung again at the standing gate_tests sandbox limit; left running in the background past this entry.
 
@@ -13,6 +37,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same 8 issues and OWNER-ACTIONS.md list, unchanged. Living Room stays with whoever claimed it; operator continues there.
 
 Pushed to main. ops/NIGHTLY-LOG.md, command deck regen only. No price, product or page touched.
+
+## 2026-10-01, PM check-in (08:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the content-level visitor read lane with the Living Room (zero mentions anywhere in this log's content-read entries, unlike every other room), because the prior PM cycle already named it as the next genuinely fresh room and nothing has changed since to supersede that pick.
 

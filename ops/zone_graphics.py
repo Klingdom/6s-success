@@ -282,8 +282,12 @@ def room_map_svg(room, zones, uid="", cols=None, cw=330, chh=84):
                             SOFT, "600", track="0.04em"))
 
     t_id, d_id = "rmt" + uid, "rmd" + uid
-    desc = ("A map of the %d micro zones in the %s, numbered in the order to "
-            "work them, each with the time one session takes." % (n, room))
+    # Not a work sequence: corrected 2026-10-01, see build_zone_pages.py's
+    # matching comment. This numbering is the manual's own zone order, not
+    # the recommended order to work in, which 18 of 20 rooms' own "Where to
+    # start" tip names as a different zone than number 1.
+    desc = ("A map of the %d micro zones in the %s, each with the time one "
+            "session takes." % (n, room))
     return ('<svg class="room-map" viewBox="0 0 %s %s" role="img" '
             'aria-labelledby="%s %s" xmlns="http://www.w3.org/2000/svg">'
             '<title id="%s">The micro zones of the %s</title>'

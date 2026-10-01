@@ -22,7 +22,7 @@ not get a page.
 
 What it writes
 --------------
-  site/rooms/<room>.html    20 pages, each listing its zones in working order
+  site/rooms/<room>.html    20 pages, each listing its zones with a start point
   site/zones/<room>-<zone>.html   114 pages, the full method for one zone
 
 Both are wired into the existing chrome, carry the safety notice, and emit
@@ -2964,11 +2964,17 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # The current zone stays in the list as plain text, in position, because
     # removing it would make the same list look different on every page and
     # hide where you are in the order.
+    #
+    # Not claimed to be a work sequence. Corrected 2026-10-01: this list is
+    # the manual's own zone order for the room (how the chapter walks
+    # through it), which is not the recommended order to actually work in.
+    # 18 of 20 rooms' own "Where to start" tip, on `room_page()` just above,
+    # names a zone other than this list's first, so a page that called this
+    # "in working order" was contradicted by its own next sentence on every
+    # room page, and by extension here too.
     zone_names = [display(room["room"], z["zone"]) for z in room["zones"]]
-    out.append(f'<h2>The rest of the {esc(room["room"].lower())}, '
-               'in working order</h2>')
-    out.append('<p>Each of these is one session on its own. Finish this zone '
-               'before you open the next.</p>')
+    out.append(f'<h2>The rest of the {esc(room["room"].lower())}</h2>')
+    out.append('<p>Each of these is one session on its own.</p>')
     out.append('<ol>')
     for dn in zone_names:
         if dn == name:
@@ -3284,8 +3290,8 @@ def room_page(room, header, footer, all_rooms=()):
     title = f"How to organize {article_for(rm)} {rm}, zone by zone"
     if len(title) > 60:
         title = f"How to organize {article_for(rm)} {rm}"
-    desc = (f"Every part of the {room['room'].lower()} worth its own hour, in "
-            f"the order to work them, with what done looks like for each.")
+    desc = (f"Every part of the {room['room'].lower()} worth its own hour, "
+            f"with what done looks like for each and where to start.")
     item_list = {
         "@type": "ItemList",
         "name": f"{room['room']} micro zones",
@@ -3406,7 +3412,7 @@ def room_page(room, header, footer, all_rooms=()):
             out.append(panel)
         except Exception:                                      # noqa: BLE001
             pass
-    out.append(f'<h2>The {n} micro zones, in working order</h2>')
+    out.append(f'<h2>The {n} micro zones</h2>')
     out.append('<p>A micro zone is one session, not a whole day. Finish one before '
                'you start the next.</p>')
     # The total, immediately above the list it is the sum of.
@@ -3448,16 +3454,23 @@ def room_page(room, header, footer, all_rooms=()):
     #
     # Added 2026-09-18. A room page is a list of zones, and a list is the one
     # shape that hides the idea: that the room is a set of small named places
-    # you finish one at a time. The map numbers them in working order and puts
-    # each one's session length on it, so the whole room reads in a glance,
-    # and it is generated from the same data as the list below it.
+    # you finish one at a time. The map numbers them and puts each one's
+    # session length on it, so the whole room reads in a glance, and it is
+    # generated from the same data as the list below it.
+    #
+    # Not a work sequence. Corrected 2026-10-01: this numbering is the
+    # manual's own zone order for the room, not the recommended order to
+    # work in; the "Start here" notice above names the real starting point,
+    # and names a different zone than position 1 on 18 of 20 rooms. The
+    # figcaption used to claim "in the order to work them", which "Start
+    # here" then contradicted one paragraph later on the same page.
     import zone_graphics as _zg
     _map_zones = [dict(z, zone=display(room["room"], z["zone"]))
                   for z in room["zones"]]
     out.append('<figure class="room-map-figure">'
                + _zg.room_map_html(room["room"], _map_zones)
-               + '<figcaption>The %d micro zones of the %s, in the order to '
-                 'work them. Each one is a session that finishes on its own.'
+               + '<figcaption>The %d micro zones of the %s. Each one is a '
+                 'session that finishes on its own.'
                  '</figcaption></figure>' % (len(_map_zones), esc(rm)))
 
     out.append('<ol class="zone-rows">')

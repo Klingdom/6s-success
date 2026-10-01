@@ -1090,7 +1090,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "SIX ZONES. START AT THE MACHINES.",
         "objective": "Laundry is the one job that arrives dirty, sits "
                      "wet, and only counts as finished once it is back "
-                     "in a drawer. This card is the map and the order.",
+                     "in a drawer. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"LRZ-001 Washer and Dryer. {start_tip['text']}" if start_tip

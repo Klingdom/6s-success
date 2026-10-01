@@ -1074,7 +1074,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "SIX ZONES. EVERYBODY'S ROOM, NOBODY'S JOB YET.",
         "objective": "The living room belongs to everybody, which is "
                      "why nobody puts anything away in it by default. "
-                     "This card is the map and the order.",
+                     "This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"LVZ-006 Floor and Circulation Path. {start_tip['text']}"

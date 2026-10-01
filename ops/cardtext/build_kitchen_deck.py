@@ -1291,7 +1291,7 @@ def room_card(zones: dict) -> dict:
         "room": ROOM, "zone": None, "difficulty": 1,
         "tagline": "SEVEN ZONES. START AT THE SINK.",
         "objective": "The kitchen is seven small places, not one big job. "
-                     "This card is the map and the order.",
+                     "This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": "KZ-003 Sink and Dishwashing Zone. It is the point "
                       "the whole kitchen resets from, and you will have "

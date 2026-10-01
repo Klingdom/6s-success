@@ -1445,8 +1445,7 @@ def room_card(intro: str, tips: list) -> dict:
         "objective": "The mudroom is where the weather stops: coats, "
                      "boots, the pet, the seasonal gear and the tools "
                      "that keep the entry floor walkable all compete for "
-                     "the same short run of wall. This card is the map "
-                     "and the order.",
+                     "the same short run of wall. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"MDZ-001 Family Hook Zone. {start_tip['text']}"

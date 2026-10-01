@@ -18878,6 +18878,57 @@ def gate_no_frozen_deck_link() -> None:
         fail("no-frozen-deck-link", "; ".join(bad))
 
 
+def gate_no_false_zone_order_claim() -> None:
+    """A room's zone list must not claim to be "the order to work them"
+    where that is not true.
+
+    Found 2026-10-01, content-level visitor read of the Living Room: the
+    room page's own numbered zone map, its h2, its figcaption and its meta
+    description all called the zone list "in working order" / "in the
+    order to work them", immediately above a "Start here" notice naming a
+    DIFFERENT zone as the real starting point. Checked across all 20
+    rooms before fixing anything, not assumed from one: mcp/content.json's
+    zones[0] disagrees with the room's own "Where to start" tip on 18 of
+    20, so this was sitewide, not a Living Room oddity. The same false
+    claim, worded slightly differently, also shipped on all 114 zone
+    pages ("The rest of the room, in working order"), the printable Micro
+    Zone Map download, resources.html, and two hand-authored articles; the
+    card decks' own ROOM CARD objective text went further and stated
+    outright "This card is the map and the order" on all 20 printed
+    products, while that same card's own back face named a different zone
+    to start at. A reader who followed any of these literally would start
+    in the wrong place, directly contradicted by the very next sentence on
+    the same page or card.
+
+    Fixed by dropping the ordering claim everywhere the zone list itself
+    is just the manual's own chapter order, not a work sequence; "Start
+    here" stays the one real recommendation, unchanged. consulting.html is
+    the one legitimate survivor: its $250 virtual consult genuinely
+    promises a human-determined "zones in the order to work them" as a
+    paid deliverable, a real claim about a real service, not a template
+    describing a fixed list, so it is explicitly excused here.
+
+    Greps the actually-shipped site/, not the generator source, so a hand
+    edit or a reverted fix is caught the same way a regression in a
+    generator would be.
+    """
+    bad_phrases = ("in working order", "in the order to work them",
+                   "numbered in the order to work", "map and the order")
+    excused = {os.path.join(SITE, "consulting.html")}
+    hits = []
+    for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
+        if p in excused:
+            continue
+        src = io.open(p, encoding="utf-8", errors="replace").read()
+        for phrase in bad_phrases:
+            if phrase in src:
+                hits.append("%s: %r" % (os.path.relpath(p, ROOT), phrase))
+    if hits:
+        fail("zone-order-claim",
+             "%d page(s) still claim a zone list is a work order it is "
+             "not: %s" % (len(hits), hits[:8]))
+
+
 def gate_critical_risks_escalated() -> None:
     """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
 
@@ -26841,6 +26892,7 @@ def main() -> int:
     run_gate(gate_send_questions_covers_top_owner_actions)
     run_gate(gate_dashboard_covers_top_owner_actions)
     run_gate(gate_no_frozen_deck_link)
+    run_gate(gate_no_false_zone_order_claim)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)

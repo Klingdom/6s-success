@@ -1238,8 +1238,7 @@ def room_card(intro: str, tips: list) -> dict:
         "tagline": "ONE JOB. THE ONLY ROOM THAT CAN LOSE IT QUIETLY.",
         "objective": "The dining room has one job, and it is the only "
                      "room in the house that can quietly lose that job "
-                     "without anyone noticing. This card is the map and "
-                     "the order.",
+                     "without anyone noticing. This card is the map.",
         "zones_in_order": [f"{v['id']} {k}" for k, v in order],
         "start_here": (
             f"DRZ-001 Dining Table. {start_tip['text']}"
