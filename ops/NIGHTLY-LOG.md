@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (12:1x cycle)
+
+**Previous work: finished.** Clean attach: fetch, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (`0a6340467`), 108 commits, no reset or force, tree clean before and after. The 11:4x/11:2x cycles' work (STATUS.md deploy-gap correction, Garage content-read D5 comment fix, command deck regen) is on `main`, pushed, not just committed. CI confirmed directly, not assumed: `checks.yml` run #1753 on the latest code-affecting commit (`c5d1cfc39`) completed `success`.
+
+**Verified rather than cited:** `check_urls.py` 210/210, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0, `affiliate.py --check` clean (165 documents, every page with links discloses above them), `inbox_agent.py --apply` honestly unchecked (no mail credential in this environment). GitHub reconfirmed directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`, including P0 #15 Listmonk and P0 #2 card art), 0 open PRs, nothing updated since the last cycle. Full `python ops/preflight.py` started in the background at the top of this cycle; still running at this entry's close (past the standing `gate_tests` headless-Chromium sandbox hang this log has named for weeks), left running rather than killed or trusted blind.
+
+**No new work found to start.** `STATUS.md`'s own open-claims section already shows Workshop, Living Room and Garage released with evidence, and the Entryway handoff unchanged and still correctly unstarted; re-read it rather than re-cite a prior pointer. `BACKLOG-2026-09-07.md` sections 2-4 are all Done or Phil-gated, section 5 is Hold pending traffic, section 6 is Phil's own owner-gate list. The dashboard's constraint line is unchanged: production serves an older build than the repository, the redeploy needs Phil's own hand (issue #35), not an agent action. Nothing in this state is PM-actionable per the "never pick an item marked as waiting on Phil" rule; every open issue is `decision` or `blocked-on-art`.
+
+**Did not start anything large this slot**, consistent with the PM's own scope. The content-read lane's existing Entryway handoff in `STATUS.md` is still accurate; left as is.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Entryway content-read lane to the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (11:4x cycle)
 
 NEXT FOR THE OPERATOR: Entryway, content-level visitor read lane, because Kitchen, Living Room, Workshop and Garage are now read and Entryway is the original M4 pilot room never itself read in this lane, as the 10:4x and 11:2x cycles already named and nothing since has changed that pick.
