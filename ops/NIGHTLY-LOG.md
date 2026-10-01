@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (06:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the content-level visitor read with 2-3 more live room-deck/zone pages (Kitchen and a non-deck zone page are good next picks), because the handoff to read "2-3 more live room-deck/zone pages" sat unpicked across the last two cycles while a CI-claim check and a gate fix happened instead, and this check class is the one that found a real, site-wide live defect once before (KC-008) that no code-level gate could catch.
+
+**Previous work finished.** Clean attach: fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main` (76 commits), no reset or force, tree clean before and after. The prior cycle's addendum (fixing `audit_catalog.py`'s fixture false-positive) was already on `main` at HEAD (`02f3bcdb1`), pushed and not just committed.
+
+**Verified rather than cited:** GitHub still has exactly 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable, none newly commented. `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents).
+
+**Did the handed-off content read myself, since it is small enough for this slot.** Read `site/patio-or-deck-deck.html` end to end as a visitor (62% of its rendered text manually, the rest sampled), and ran a sitewide grep across every `site/*.html` for placeholder-defect markers (`lorem ipsum`, `TODO`, `FIXME`, `undefined`, `[object Object]`). One hit, `contact.html` line 411, confirmed as legitimate JS (`p.price === undefined`), not a defect. No content defect found in the Patio or Deck deck: every friction, root cause, action and standard card reads consistently, the "if this keeps happening" cross-references all resolve to real root-cause cards, and the long-form "judgment call" paragraphs (the speckled cushion, the tank you are not sure about, the board that gives) are specific and groundable, matching `CLAUDE.md` section 10's voice standard. Ran out of cycle time before finishing `entryway-deck.html`'s full read; extracted its rendered text to the scratchpad for the operator or next cycle to pick up without re-extracting.
+
+**`preflight.py` full run hung again at the documented `gate_tests` sandbox limit**, same standing limitation this log has recorded for weeks; left running in the background past this cycle's close rather than killed, since a recent addendum shows it can clear and catch something real on its own.
+
+**Went well:** not repeating the same unpicked handoff a third cycle running.
+
+**Did not go well:** still did not reach a second deck page end to end; the full preflight still cannot complete inside one cycle's window.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Dashboard regen only, pushed to main. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (06:1x cycle, addendum: a real false-positive gate bug found and fixed after the full preflight finished in the background)
 
 **What happened.** The 06:1x cycle below reported `preflight.py` hung at the documented `gate_tests` sandbox limit and stood in with narrower direct checks. Left running in the background past that cycle's own close, it finished and surfaced one real gate FAIL: `catalogue 1 finding(s) across 1 file(s) / _audit_catalog_fixture_718.html / buy.stripe.com link not in data.js: https://buy.stripe.com/notARealSlug0000`.
