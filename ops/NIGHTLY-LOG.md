@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (10:4x cycle)
+
+NEXT FOR THE OPERATOR: Garage, content-level visitor read lane, because the 09:52 claim on it was abandoned (a concurrent session claimed Workshop a minute later and read that instead) and grepping `ops/NIGHTLY-LOG.md` confirms Garage has never actually been read in this lane, unlike every other room.
+
+**Previous work: finished.** Attach was clean (unshallow, ff-only merge onto `04755e877`, no reset). CI confirmed directly, not assumed: `checks.yml` run #1751 on HEAD still in progress with every step so far succeeded (deps, eslint, ops-file parse, catalogue build, now on Preflight), no failure; `publish-image.yml` run #498 (manual dispatch, breaking the publish deadlock the 09:1x/09:4x cycles found) completed `success` at 10:31. Working tree clean, `main` pushed, 0 open PRs, 8 open GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`, including P0 #15 Listmonk and P0 #2 card art, both genuinely owner/credential-gated, neither newly actionable).
+
+**Verified rather than cited:** ran the fast standalone checks directly: `cold_read_ledger.py --stale` 0, `fix_dashes.py --check` 0 em/en dashes, `check_urls.py` 210/210. Full `python ops/preflight.py` started in the background; every gate through `gate_image_coverage` passed, 0 FAIL, before it reached the standing `gate_tests` sandbox hang this log has named for weeks; left running past this entry's close rather than killed or trusted blind. Re-read `BACKLOG-2026-09-07.md` sections 2-7 in full: every "Now" row (A1-A10, B1-B3, C1-C7) is Done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 5 stays Hold on traffic; section 6 is Phil's own owner-gate list. No BACKLOG item is genuinely unblocked that was not already unblocked, confirmed by reading, not by re-citing the prior cycle's pointer.
+
+**No new defect found to fix this slot.** The standing constraint is unchanged and already fully tracked: production serves an older build than the repository (`EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line), the redeploy needs Phil's own hand or `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` 1b, GitHub issue #35), not an agent action.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Garage left to the operator at :43 (hours of work, not a PM-slot task).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched.
+
 ## PM check-in, 2026-10-01 (10:1x cycle)
 
 **Previous work: finished.** Attach was clean (unshallow, ff-only merge, no reset). Full `preflight.py` (fast, backgrounded) came back clean: every gate passed, 0 FAIL, 27 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, Pillow absent, site unreachable, known art/print-tier gaps already tracked). CI on the two newest commits (`2345edb6a`, `5ad72d4c4`) is in progress, not stuck: step-by-step job logs show normal forward progress at 15 to 17 minutes, in line with this pipeline's usual full-preflight-plus-build runtime. Working tree clean, `main` pushed, 0 open PRs, 8 open GitHub issues unchanged (all decision or blocked-on-art), `cold_read_ledger.py --stale` 0.
