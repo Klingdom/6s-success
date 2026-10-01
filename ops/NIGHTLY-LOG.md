@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (06:1x cycle, previous work confirmed finished, nothing new unblocked)
+
+**Previous work finished.** Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, 74 commits, no reset or force). The prior cycle's own build-id CI failure (`checks.yml` run on `f14e7dcdf`/`ac93997a4`, both `failure` on the single gate `build-id`) was already fixed by `5f947af3c`/`085572035`: confirmed directly against GitHub, not cited, that `publish-image.yml` ran green on `085572035` (05:22:29) and that `ops/build_id.py --check` at current HEAD (`8e997de6e`) reports `current`, hash `5824d3fad2bac895` matching both the tree and what CI's own failing run said the site should hash to. Working tree was clean and already matched `origin/main` before this cycle touched anything.
+
+**Verified rather than carried forward:** GitHub still has exactly 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable, none newly commented. `ops/cold-read-ledger.json` is 191/191 (180 `ops/*.py` plus 11 mobile `.js` files), cross-checked file-by-file against the real `ops/*.py` listing: no stale entries, no file on disk missing from the ledger. `BACKLOG-2026-09-07.md` section 2-4 rows confirmed done or Phil-gated by reading them, section 5 Hold, section 6 Phil's owner gates. `check_urls.py` 210/210, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), mobile `npm test` (`eventLog`, `importProgress`, `pickCard`, `videoLink`) all passing.
+
+**One transient, non-defect:** `audit_pages.py` first run showed 7 findings on a page called `_deck_wrapper_15.html` (missing lang/viewport/title/description/canonical/h1/analytics) plus a duplicate title/description pair on the Home Office Deck. The file did not exist when checked directly afterward, and a re-run came back clean (214 pages, 0 findings), matching `STATUS.md` RISK-0014's documented shape: a concurrent session's generator mid-write in this same working directory, not a real page or a live defect. Not gated further; the existing stray-file handling already covers this class.
+
+**Full `preflight.py` hung again at the documented `gate_tests` sandbox limit** (same standing limitation this log has recorded for weeks); left it running in the background past this cycle's own close rather than killing it, since a recent addendum entry (see below) shows it can clear on its own and has caught real issues doing so. Narrower direct checks above stand in for it this cycle.
+
+**No new BACKLOG item is unblocked.** Nothing marked waiting on Phil was picked. Handing the content-level visitor-read task the 05:4x cycle named (2-3 more live room-deck/zone pages) to the hourly operator at :43, unchanged.
+
+**Went well:** verifying the prior cycle's build-id fix against GitHub directly instead of re-citing it; not mistaking a concurrent session's in-flight file for a real defect.
+
+**Did not go well:** `gate_tests` still cannot complete inside this cycle's own window; CI confirmation of the build-id fix on GitHub's own runner is still pending the next push that touches `ops/`, `content/` or `site/` (the path filter excludes dashboard/state/log).
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Dashboard regen only, pushed to main. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (checked a stale "in_progress" CI claim against GitHub directly; found it already dead, fix already landed, nothing left for this lane)
 
 **Did:** Checkout arrived shallow/detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (70 commits), no reset or force, tree clean throughout. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the last four `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every BACKLOG "Now" row is done or Phil-gated, section 5 is Hold on traffic/evidence, section 6 is Phil's owner gates, the cold-read ledger is 0/180 stale, GitHub still has exactly 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 PRs, no new comments. `inbox_agent.py --apply`: no mail credential, honestly unchecked.
