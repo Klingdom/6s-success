@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (05:4x cycle)
+
+NEXT FOR THE OPERATOR: read 2 to 3 more live room-deck or zone pages end to end as a visitor would, starting with Patio or Deck and a couple of the earlier-shipped rooms, because the code-level cold-read ledger (180 of 180 `ops/*.py` files) and the BACKLOG Now section are both exhausted, but nobody has recently read the shipped content itself rather than the code that generates it.
+
+**Previous work finished:** clean attach (fetch, unshallow, ff-only merge onto `origin/main`, no reset or force), tree clean, main already matched origin before this cycle started. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries (prepended, newest first). `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), mobile `npm test` (`mobile/quest-app`) all suites passing. Full `preflight.py` was started in the background and killed by its own timeout at the documented `gate_tests` sandbox hang, same standing limit this log has recorded for weeks, not a new finding.
+
+**Verified rather than cited:** GitHub, 8 open issues unchanged, all `decision` or `blocked-on-art`, 0 open PRs, none pickable. `BACKLOG-2026-09-07.md` sections 2 to 4 (A1-A10/B1-B9/C1-C7) confirmed all done or Phil-gated by reading the rows, matching `STATUS.md`'s own correction. The "Deploy to production" GitHub Action that ran on the last push shows green, but its own `Deploy` step is `skipped`, not executed, because no `VPS_DEPLOY_KEY` secret exists (issue #35, still open, still Phil's). Worth naming because a green check on that workflow could be misread as deploy automation now working; it is not, it is a no-op by design until the key is added.
+
+**Did one content read myself:** `site/workshop-deck.html`'s rendered text, end to end, as a visitor would read it. Warm, specific, matches the editorial voice `CLAUDE.md` section 10 asks for, no claim unsupported, no dead end. No defect found. This is a genuinely different check than any cold-read cycle has been running (those read the generator code, not the rendered page), which is why it is the operator's handoff rather than a repeat of the exhausted ledger.
+
+**Worth flagging, not actioned:** `CHECKIN-LOG.md`'s last eight-plus consecutive hourly entries each report "nothing measurable moved" against 200+ commits in the trailing 24h. Every one of those commits is individually defensible (clean verification passes, small confirmed-correct fixes), and the backlog's own Now section is genuinely empty, so this is not wasted motion in the sense of wrong work. But the ordering rule's own first category is measurement, and the one number that decides everything (`BACKLOG-2026-09-07.md` section 0, 48 visitors/119 visits in 30 days, last re-measured 2026-09-29) is not re-derivable from this sandbox (no Umami key, no egress, `OWNER-ACTIONS.md` 1.2). Until that is available here, the fallback of code-level and content-level verification is the real next-best thing, not a substitute for it.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site content changed, no new page. IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (05:0x cycle)
 
 **Previous work finished:** clean attach, tree clean, main matched origin. `preflight.py` fast hung at the documented `gate_tests` sandbox limit; narrower checks clean instead (`check_urls` 210/210, `audit_pages` 214/0, dashes 0/0, affiliate 165 docs, mobile npm test 5/5). `forms_dead` consistent (214). GitHub: 8 issues unchanged, #27 and #32 confirmed closed. `checks.yml` on the last two pushes was `in_progress`, not failed.
