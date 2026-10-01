@@ -24,6 +24,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/build_workshop_deck_page.py`, `ops/build_patio_or_deck_deck_page.py`, `site/workshop-deck.html`, `site/patio-or-deck-deck.html`, `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched. IndexNow not applicable: both pages already existed and were not rewritten structurally, only two sentences corrected.
 
+## 2026-10-01, addendum: GitHub confirmed the checks.yml red streak, caused by the same NIGHTLY-LOG.md ordering bug this cycle fixed, is over
+
+**Worth recording on its own because it is independent confirmation, not a repeat of the entry below.** `checks.yml` had failed on four consecutive pushes to `main` (`5125fe0a0`, `b57ba4f58`, `50137c7b3`, `97446ad9e`, run numbers 1735 to 1738, each failing on its "Preflight" step), the first of those being the commit that introduced the misplaced `NIGHTLY-LOG.md` entry this cycle's `dc34a3a20` fix moved back into place. Watched GitHub Actions directly rather than assuming the local fix would carry: run 1739, on `8e368e122` (this cycle's second fix commit, built on top of `dc34a3a20`), ran its Preflight step in 20 minutes 42 seconds and passed; the whole job (Preflight, the ops test suite, the product-copy-drift check) completed `success` about 36 minutes after the push. Confirms the fix resolved the actual CI failure on GitHub's own runner, not only the local reproduction. No further action; this is the close of the finding two entries below.
+
+## 2026-10-01, PM check-in (04:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the low-mention ops/*.py second-pass cold-read tier starting with build_stair_landing_deck_page.py and build_workshop_deck_page.py, because it remains the only genuinely unblocked lane and those are the two 2-mention candidates the prior cycle named.
+
+**Previous work (04:1x cycle) was finished, verified myself, not just cited.** Attached clean: shallow checkout unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (3 commits, `f358b8e6f`), no reset or force, tree clean before and after, main already matched origin exactly (pushed, nothing ahead or behind). `python ops/preflight.py` hung again past 2 minutes at the documented `gate_tests` headless-Chromium sandbox limit; killed rather than waited on, reported unchecked rather than passing, matching the standing sandbox limitation every recent cycle has hit. Ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/191, `affiliate.py --check` 165 documents, disclosure correct.
+
+**GitHub re-read directly, not cited:** 8 open issues, unchanged (6 `decision`: #35 VPS deploy key, #33 Momentum card, #31 deck-gallery/download design, #21 Ledgerium Stripe entity, #18 chapter 47 plates, #15 P0 Listmonk; 2 `blocked-on-art`: #29 stale card text, #2 P0 card images). None genuinely unblocked; all wait on Phil's own decision or art. 0 open PRs.
+
+**No new defect found this slot.** This is a 30-minute triage run, not the deep-dive slot; did not start the stair-landing/workshop cold-read myself so the operator at :43 has it fresh rather than half-finished. `BACKLOG-2026-09-07.md` section 0 traffic numbers and section 6 owner gates unchanged since the last read; nothing here moved the ordering.
+
+**Went well:** not starting the next cold-read file myself with the operator three minutes out; confirming the previous cycle's own clean claims independently rather than inheriting them.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; the shallow/detached checkout shape (issue #27) recurred again.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. Highest-value unblocked item remains the cold-read tier itself (`build_stair_landing_deck_page.py`, `build_workshop_deck_page.py`).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (04:1x cycle)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py second-pass cold-read tier past build_pantry_deck_page.py and build_primary_bedroom_deck_page.py; build_stair_landing_deck_page.py and build_workshop_deck_page.py are the remaining 2-mention candidates named by the prior cycle.
