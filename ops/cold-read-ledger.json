@@ -27,9 +27,9 @@
       "note": "Fixed a real hero-lazy false-negative: html.find(tag) resolved duplicate-markup img tags to the wrong occurrence's position, so a genuine lazy above-fold hero could silently escape the check whenever its markup matched an earlier video-play thumbnail. Not live today (0 pages currently trigger it), preventive. Fixed in fe566979f."
     },
     "audit_visual.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Two independent fixes landed the same day, non-overlapping regions of the file, merged together: (1) main()'s exit code only reflected bad_text/bad_img, 2 of 9 categories; a broken image, missing alt/label, invisible focus, bad landmark, heading jump, or (mobile) a crowded tiny target/sideways scroll could all print above a clean $?. No preflight gate relied on it (gate_visual_audit/gate_mobile_touch_targets both parse printed counts, not returncode), but a direct run trusting $? would have been fooled. Fixed to derive from all measured categories; ops/tests/test_audit_visual_exit_code.py fail-then-pass proved directly against a real headless-Chromium render. (2) A stale comment claimed a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). Comment corrected to match the real, no-retry behavior."
+      "status": "clean",
+      "date": "2026-10-01",
+      "note": "Flagged stale by cold_read_ledger.py --stale (last touched 2026-09-30, after the 2026-09-26 fixed date). Diffed the touching commit (d526b07af) directly: all 27 changed lines are a comment block or blank lines documenting Phil's own font-loading investigation (virtual-time budget does not fix the 20 heavy-page fallback-font caveat); zero executable lines changed. The 2026-09-26 fixed verdict (exit code reflects all 9 categories, stale retry comment corrected) still describes the real logic. Could not re-run the live 218-page browser audit in this sandbox within a reasonable time (python ops/audit_visual.py and even --help hang past 120s needing a real browser, the same class of limitation Phil's own commit message names: 'CI cannot run it at all because it needs a browser'); re-verified by diff, not by execution, and recorded as such rather than claiming a run that did not happen."
     },
     "b9_claims.py": {
       "status": "clean",

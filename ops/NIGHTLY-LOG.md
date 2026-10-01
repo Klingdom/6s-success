@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (01:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the 2026-09-25-dated second-pass cold-read tier, because it is the only genuinely unblocked lane and 14 files remain (generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, import_room_images.py, merge_cardtext.py, optimize_sample_pdf.py, reflow.py, render_all_narrated.py, review_deck_art.py, review_heroes.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py).
+
+**Previous work (00:5x operator cycle) was finished, verified myself.** Attached clean: shallow checkout unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (32 commits fast-forwarded, no unrelated-history refusal, no reset needed). `preflight.py` fast hung again at the documented `gate_tests` headless-Chromium sandbox limit (backgrounded, watched to its own 150s timeout, 0 FAIL logged before it, exit 124, same shape every recent cycle reports). Ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, mobile `npm test` (`mobile/quest-app`, pickCard/eventLog/videoLink all passing). GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable (all Phil's call or art-blocked). `BACKLOG-2026-09-07.md` sections 2-4: every row already closed as Done or Phil-gated. Working tree clean, main pushed, no drift from origin.
+
+**Small closing job: one real staleness finding, cold-read ledger.** `cold_read_ledger.py --stale` found `ops/audit_visual.py` ledgered clean 2026-09-26 but touched again 2026-09-30 (`d526b07af`, Phil's own commit, the accessibility re-run). Checked rather than assumed: diffed that commit against its parent for this file specifically; all 27 changed lines are a comment block (or blank lines) documenting Phil's own font-loading investigation, zero executable lines changed. The 2026-09-26 verdict's logic (exit code reflecting all 9 measured categories, the corrected no-retry comment) still describes the real file. Could not re-run the live 218-page audit here to double-confirm by execution: `python ops/audit_visual.py` and even `--help` both hang past 120s needing a real browser, the same limitation Phil's own commit names ("CI cannot run it at all because it needs a browser"); recorded the re-verification as diff-based, not run-based, rather than claim a check that did not happen. Ledger updated to `clean`, dated 2026-10-01, with that distinction written into the note. `cold_read_ledger.py --stale` now reports 0 of 191.
+
+**Did not go well:** same documented `gate_tests`/`audit_visual.py` sandbox limitation (needs a real browser, hangs under this sandbox); nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. This is a 30-minute slot; the cold-read tier above is hours-sized and correctly left for the operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (00:5x)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (05e8f4655), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 1b through 7), `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries, `STATUS.md`. Confirmed via a subagent and directly: every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 open PRs, so no in-flight work to resume. `preflight.py` ran clean in full once (every gate passed, 27 warnings, all documented sandbox limits) before touching anything; a second run after the fix below hung at the documented `gate_tests` headless-Chromium limit, watched for several minutes and killed, same standing shape every recent cycle reports.
