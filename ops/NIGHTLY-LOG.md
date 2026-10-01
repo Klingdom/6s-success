@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (01:5x cycle)
+
+**Previous work (00:5x operator) was finished, verified myself.** Unshallowed, ff-only onto origin/main (32 commits), tree clean. preflight.py via run_preflight.sh failed once on a real transient: gate_tests tripped the shallow-clone guard because this session's own checkout was still shallow mid-run, not a code defect. Fixed by unshallowing properly, reran clean (every gate passed).
+
+**Small closing job:** re-verified preflight's one stale cold-read-ledger entry, ops/audit_visual.py (touched 2026-09-30, comment-only diff). This run's own gate_visual_audit already re-ran it live with 0 findings; re-ledgered clean, --stale now 0.
+
+**Did not go well:** my own 100s foreground timeout on a direct audit_visual.py call briefly left a stray probe file; self-cleaned, confirmed by a third clean preflight run (27 warnings).
+
+**Next:** all 8 GitHub issues remain decision/blocked-on-art, none pickable. Hand to :43 operator: continue the 2026-09-25 cold-read tier, 14 files remain.
+
+Pushed to main: ledger, dashboard, this log. No price/product/page touched.
+
 ## 2026-10-01, scheduled operator cycle (00:5x)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (05e8f4655), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 1b through 7), `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries, `STATUS.md`. Confirmed via a subagent and directly: every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 open PRs, so no in-flight work to resume. `preflight.py` ran clean in full once (every gate passed, 27 warnings, all documented sandbox limits) before touching anything; a second run after the fix below hung at the documented `gate_tests` headless-Chromium limit, watched for several minutes and killed, same standing shape every recent cycle reports.

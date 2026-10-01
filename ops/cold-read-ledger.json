@@ -27,9 +27,9 @@
       "note": "Fixed a real hero-lazy false-negative: html.find(tag) resolved duplicate-markup img tags to the wrong occurrence's position, so a genuine lazy above-fold hero could silently escape the check whenever its markup matched an earlier video-play thumbnail. Not live today (0 pages currently trigger it), preventive. Fixed in fe566979f."
     },
     "audit_visual.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Two independent fixes landed the same day, non-overlapping regions of the file, merged together: (1) main()'s exit code only reflected bad_text/bad_img, 2 of 9 categories; a broken image, missing alt/label, invisible focus, bad landmark, heading jump, or (mobile) a crowded tiny target/sideways scroll could all print above a clean $?. No preflight gate relied on it (gate_visual_audit/gate_mobile_touch_targets both parse printed counts, not returncode), but a direct run trusting $? would have been fooled. Fixed to derive from all measured categories; ops/tests/test_audit_visual_exit_code.py fail-then-pass proved directly against a real headless-Chromium render. (2) A stale comment claimed a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). Comment corrected to match the real, no-retry behavior."
+      "status": "clean",
+      "date": "2026-10-01",
+      "note": "Re-verified after the 2026-09-30 touch (d526b07): diff is a comment-only addition explaining why raising --virtual-time-budget cannot fix the 20 heavy-deck-page fonts=loading caveat (virtual time does not accelerate real font decoding), no logic changed. Confirmed current via this cycle's own full preflight run: gate_visual_audit invoked audit_visual.py --all live against all real pages and reported 0 findings, no FAIL."
     },
     "b9_claims.py": {
       "status": "clean",
