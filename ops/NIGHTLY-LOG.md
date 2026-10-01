@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (11:2x cycle)
+
+**Previous work: finished.** Clean attach (unshallow, ff-only onto `2e17ca516`, no reset). CI in progress normally on HEAD (Preflight step, ~18 min in, matches usual runtime). 8 open issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. check_urls.py 210/210, fix_dashes.py 0/0, cold_read_ledger.py 0 stale.
+
+**Did:** re-derived the deploy gap directly with `deploy_gap_material_commits('b57ba4f58')` rather than trusting the still-"current" verdict: 5 commits, 2 material, including `f20f541a4`, the sitewide false zone-order claim fix. Production has not redeployed past `b57ba4f58`, so that false claim is still being served live. Corrected BLOCKER-001, Production Knowledge and Immediate Focus in `STATUS.md`, all three (the known "widen one, miss the siblings" shape); `status_deploy_verdict_problem()` confirmed clean after.
+
+**Verified:** a background full `preflight.py` on this cycle's own earlier HEAD surfaced a transient FAIL in 2 of 354 test files (`test_gate_footer_consistent_missing_fails.py`, `test_gate_no_stale_hardcoded_stripe_link.py`), neither touching `STATUS.md`; both pass clean standalone (7/7, 5/5), matching the documented concurrent-edit contamination shape. A fresh rerun on the quiescent tree was still mid-run at this entry's close; left running past it, per standing practice.
+
+**Next:** Entryway content-read lane, unchanged handoff. Same 8 issues, `OWNER-ACTIONS.md` list unchanged.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Garage: no live defect; the real find was a stale "12-zone pilot" cohort naming in the kit-compact generator and its gate, fixed)
 
 **Did:** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md`'s "Now" sections (2-4, all done or Phil-gated), `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Claimed Garage in `STATUS.md` per the 10:1x PM check-in's own handoff (a dropped claim from 09:52 that nobody had actually read).
