@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: a real preflight FAIL surfaced after the 12:4x cycle shipped, one of its four files fixed and proved, the other three still being traced
+
+The full `preflight.py` background run started at the top of the 12:4x PM cycle finished after that cycle had already pushed, and it genuinely failed (exit 0 but `1 gate(s) failed`): `gate_tests` reported `4 of 354 test file(s) failed`, first named `test_check_video_links.py: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte`. Per `CLAUDE.md` 0.4, this is not something to carry forward unread: traced it rather than re-running and hoping it clears.
+
+**Root cause, confirmed, not guessed.** `test_check_video_links.py` case 7 scans the real `site/` tree with its own ad-hoc `open(path, encoding="utf-8").read()`, no `errors="replace"`, unlike `check_video_links.py`'s own `linked_ids()`, which already guards exactly this. A stray scratch probe under `site/` (the `gate_no_stray_probe_files` shape this file already documents at length: `audit_visual.py`'s `_visual_probe.html`, `test_affiliate.py`'s own planted fixture, or any of the other underscore-prefixed probes a 700s `gate_tests()` timeout can leave mid-write) crashes this unguarded read with an uncaught `UnicodeDecodeError`, reported as a real test FAIL rather than the transient contamination it is. Standalone reruns of this file passed clean every time (no stray probe present at that moment), consistent with a timing-dependent crash, not a deterministic one.
+
+**Fixed:** added `errors="replace"` to case 7's read, matching the production code it tests. Added case 8, which plants a real `_video_links_test_probe.html` with the exact `\xff\xfe` bytes directly under `site/downloads/` (cleaned up in a `finally`), then runs the same scan. Proved fail-then-pass directly: a reverted copy of the file crashed with the identical `UnicodeDecodeError` this cycle found; the fixed file passes 8/8. No other file changed; this is a test-code robustness fix, not a change to `check_video_links.py` or any gated behaviour.
+
+**Still open at this entry's close:** the other 3 of 4 failing files from the original run were never named (preflight's own console report truncates each FAIL line to 150 characters, and `bad[:3]` was itself cut off after the first entry). Two independent full reruns were started to get the untruncated list (one driving `ops/tests/test_*.py` directly, one calling `preflight.gate_tests()` in-process) and were still running, past several minutes, when this entry was written. Left running rather than killed or guessed at; the next cycle to read this should check whether either finished and finish tracing the remaining three before treating `gate_tests` as green again.
+
+Shipping this one proven fix now rather than holding it for the rest of the list, per CLAUDE.md 0.1: a confirmed, isolated defect with its own fail-then-pass proof does not need to wait on an unrelated, still-unidentified one.
+
 ## PM check-in, 2026-10-01 (12:4x cycle)
 
 NEXT FOR THE OPERATOR: Pantry, content-level visitor read lane, because Kitchen, Living Room, Workshop, Garage and Entryway are now read and the `ops/*.py` cold-read ledger alternative the prior cycle floated is confirmed exhausted (191 of 191 files ledgered, 0 un-ledgered candidates, 0 stale), leaving content-read as the only lane with real unread material left.
