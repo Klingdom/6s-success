@@ -121,12 +121,35 @@ def main() -> int:
         fails.append("the real committed site/downloads/ pages failed: %r"
                      % (preflight.FAIL,))
 
+    # 7. A stray _-prefixed scratch/probe file sitting alongside a real,
+    # clean page must not be flagged. Found 2026-10-01: a concurrent
+    # session's test left site/downloads/_visual_probe.html on disk
+    # mid-run and the gate, globbing every *.html with no basename
+    # filter, reported it as a real shipped page missing both tags.
+    tmp = tempfile.mkdtemp()
+    dl = os.path.join(tmp, "downloads")
+    os.makedirs(dl, exist_ok=True)
+    io.open(os.path.join(dl, "a.html"), "w", encoding="utf-8").write(GOOD)
+    io.open(os.path.join(dl, "_visual_probe.html"), "w",
+            encoding="utf-8").write(NEITHER)
+    old_site = preflight.SITE
+    preflight.SITE = tmp
+    preflight.FAIL, preflight.WARN = [], []
+    try:
+        preflight.gate_downloads_noindex()
+        if preflight.FAIL:
+            fails.append("stray _-prefixed probe file wrongly flagged: %r"
+                         % (preflight.FAIL,))
+    finally:
+        preflight.SITE = old_site
+        shutil.rmtree(tmp)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_downloads_noindex, 6/6 checks pass")
+    print("OK: gate_downloads_noindex, 7/7 checks pass")
     return 0
 
 

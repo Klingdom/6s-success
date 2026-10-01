@@ -24992,11 +24992,25 @@ def gate_downloads_noindex() -> None:
     Pack.html automatically, so a human or operator has to rerun
     ops/build_standards.py and copy build/6S-Standards-Pack.html over it by
     hand, which this gate cannot do itself, only catch if skipped.
+
+    Excludes the site/**/_*.html scratch/probe convention
+    (gate_no_stray_probe_files): found 2026-10-01 when a concurrent
+    session's test left site/downloads/_visual_probe.html on disk mid-run
+    and this gate, globbing every *.html under downloads/ with no basename
+    filter, reported it as a real shipped page missing both tags. The file
+    was gone by the time the FAIL was read: a test-tool scratch file,
+    caught mid-flight by a backgrounded preflight run racing a concurrent
+    session, the same self-inflicted cross-contamination shape documented
+    elsewhere in ops/NIGHTLY-LOG.md 2026-10-01. Every other gate here that
+    globs site/**/*.html for real pages already skips a "_" prefix for
+    exactly this reason (see the startswith("_") checks throughout this
+    file); this one had not been updated to match.
     """
     downloads = os.path.join(SITE, "downloads")
     if not os.path.isdir(downloads):
         return
-    pages = sorted(glob.glob(os.path.join(downloads, "*.html")))
+    pages = sorted(p for p in glob.glob(os.path.join(downloads, "*.html"))
+                   if not os.path.basename(p).startswith("_"))
     if not pages:
         return
     for p in pages:
