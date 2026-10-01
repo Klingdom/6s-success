@@ -198,16 +198,24 @@ def stripe_key():
     return os.environ.get("STRIPE_SECRET_KEY")
 
 
-def recent_service_charges(limit: int = 100) -> list:
+def recent_service_charges(limit: int = 100):
+    """The service-related charges Stripe knows about, or None if that could
+    not be checked at all (no credential, or the call itself failed).
+
+    None and [] mean different things to a caller: None is "unchecked",
+    [] is "checked, and there are none." Collapsing them used to let
+    main() report "seen: 0" when no Stripe key was even present, which
+    reads as a real zero rather than as the unmeasured state it was.
+    """
     key = stripe_key()
     if not key:
-        return []
+        return None
     url = "https://api.stripe.com/v1/charges?limit=%d" % limit
     req = urllib.request.Request(url, headers={"Authorization": "Bearer " + key})
     try:
         d = json.loads(urllib.request.urlopen(req, timeout=40).read().decode())
     except Exception:                                           # noqa: BLE001
-        return []
+        return None
     out = []
     for c in d.get("data", []):
         if not c.get("paid") or c.get("refunded"):
@@ -229,8 +237,11 @@ def recent_service_charges(limit: int = 100) -> list:
     return out
 
 
-def service_emails() -> list:
-    """Unread inbox messages about one of the three services."""
+def service_emails():
+    """Unread inbox messages about one of the three services, or None if
+    that could not be checked (no IMAP credential here). See
+    recent_service_charges()'s own docstring for why None and [] are kept
+    distinct rather than both reading as "nothing found"."""
     import email
     import imaplib
     from email.header import decode_header
@@ -247,7 +258,7 @@ def service_emails() -> list:
             env[k] = os.environ[k]
     if not all(env.get(k) for k in ("IMAP_HOST", "IMAP_PORT",
                                     "IMAP_USER", "IMAP_PASS")):
-        return []
+        return None
 
     M = imaplib.IMAP4_SSL(env["IMAP_HOST"], int(env["IMAP_PORT"]))
     out = []
@@ -294,11 +305,21 @@ def main() -> int:
 
     charges = recent_service_charges()
     emails = service_emails()
+    charges_checked, emails_checked = charges is not None, emails is not None
+    charges, emails = charges or [], emails or []
     new_c = [c for c in charges if c["id"] not in state["charges"]]
     new_e = [e for e in emails if e["id"] not in state["messages"]]
 
-    print("  service charges seen : %d, new: %d" % (len(charges), len(new_c)))
-    print("  service emails seen  : %d, new: %d" % (len(emails), len(new_e)))
+    if charges_checked:
+        print("  service charges seen : %d, new: %d" % (len(charges), len(new_c)))
+    else:
+        print("  service charges seen : UNCHECKED, no Stripe credential here. "
+              "Not the same as zero.")
+    if emails_checked:
+        print("  service emails seen  : %d, new: %d" % (len(emails), len(new_e)))
+    else:
+        print("  service emails seen  : UNCHECKED, no IMAP credential here. "
+              "Not the same as zero.")
 
     if not send:
         for c in new_c:

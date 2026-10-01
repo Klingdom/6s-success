@@ -653,8 +653,8 @@
     },
     "receive_deploy_key.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "IMAP mailbox deploy-key harvester/installer for GitHub; read-only review (no IMAP credential here to run live), dedupe()/existing() correctly pure/testable, read_only=true hardcoded on install, UNCHECKED-not-empty pattern for a failed gh api call. Own test suite (test_receive_deploy_key.py) passes. No defect."
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: IMAP harvest/dedupe/existing() all correct, --check correctly reports no IMAP creds in this sandbox"
     },
     "reflow.py": {
       "status": "clean",
@@ -688,8 +688,8 @@
     },
     "revenue_model.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran directly: table is fully live-derived from data.js (verified group counts, e.g. 102 at $4/18 at $9, match the real catalogue exactly), DELIVERY_HOURS/mixes SKUs (CN-VIRTUAL, CN-INHOME, PACK-HOUSE) all exist and priced as coded. No hardcoded stale figures, no crash. No defect."
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: pure arithmetic over live catalogue, assumptions clearly labelled, live run output sane"
     },
     "review_deck_art.py": {
       "status": "clean",
@@ -718,8 +718,8 @@
     },
     "send_brief.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
+      "date": "2026-10-01",
+      "note": "Read in full. Run live (--preview): subject/text/html all built correctly from the real ops/state.json, needs_phil math matches live GitHub issue count (6 decision-labelled), issues_available fallback (GitHub-unreachable case) correctly distinguished from a real zero. No defect. Independently re-read the same day by a concurrent cycle: needs_phil filter re-confirmed against dashboard.py's own definition, staleness refusal confirmed. Two independent reads, same verdict."
     },
     "send_questions.py": {
       "status": "fixed",
@@ -728,8 +728,8 @@
     },
     "service_orders.py": {
       "status": "fixed",
-      "date": "2026-09-25",
-      "note": "state-service-orders.json was only written once, after both forward loops finished; a mail failure on booking N of a multi-item batch meant booking N-1's already-sent forward was never persisted, so a rerun forwarded it to Phil a second time, breaking the file's own idempotency promise. save_state() now runs after each successful send. test_service_orders.py extended with a monkeypatched partial-failure regression test, fail-then-pass proved."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-verified the 2026-09-25 incremental-persistence fix still holds (save_state() still runs after each send). Found a new, real defect: recent_service_charges()/service_emails() returned [] identically whether no credential existed at all or a real query found nothing, so main() printed 'seen: 0' in this credential-less sandbox as if it had checked and found zero (CLAUDE.md 0.4). Both now return None for unchecked; main() reports UNCHECKED distinctly. ops/tests/test_service_orders.py extended (2 new cases), fail-then-pass proved directly (git stash on the source fix, new test failed naming both functions by name; restored, clean)."
     },
     "ship.py": {
       "status": "clean",
@@ -777,9 +777,9 @@
       "note": "Read cold; code correctly matches gate_deck_art_withheld's WITHHOLD set, both index.json and on-disk-URL checks cover withheld codes, no defect found."
     },
     "status_pdf.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
+      "status": "clean",
+      "date": "2026-10-01",
+      "note": "Read in full (332 lines). site_state()/dec/stale logic correctly reads live fields (live_links_verdict, site_live, deploy_verdict) off the same ops/state.json dashboard.py writes, no second hand-typed copy to drift. Cannot execute the actual PDF build here: reportlab is not installed in this sandbox (ModuleNotFoundError), so the Table/Paragraph rendering itself is UNVERIFIED here, not guessed, same class as shrink_sample.py's PIL gap; the data-wiring half it shares with status_report.py is independently covered by gate_status_report_products_consistent/gate_status_report_mail_unknown. No defect found in what could be checked."
     },
     "status_report.py": {
       "status": "fixed",
@@ -798,8 +798,8 @@
     },
     "stripe_check.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (python ops/stripe_check.py). Correctly reports empty keys and refuses with exit 1, never prints a real key, leak_scan() and mask() logic unchanged and still correct. No defect."
     },
     "stripe_dedupe.py": {
       "status": "fixed",
@@ -828,13 +828,13 @@
     },
     "sync_page_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25: read fully. read()/write() newline handling (universal-newline read, newline='' write) matches the same convention used in ~91 other ops/*.py generators, not unique to this file, and every committed site .html/.js is already LF-only, so not chased as a live defect. fixable/orphan classification logic checked by hand against edge cases (retired SKU, sku-less orphan, already-active link) and is correct; already has its own regression test and preflight gate (gate_sync_page_links_scans_js). No defect found."
+      "date": "2026-10-01",
+      "note": "Read in full (162 lines). Logic sound: resolves dead hardcoded buy.stripe.com links by SKU metadata lookup against Stripe's live catalogue, covers both *.html and *.js (data.js, quest.js), leaves orphan/sku-less dead links alone rather than guessing, --apply re-verifies after writing. --check correctly reports 'nothing to authenticate with' and exits 1 (honest unchecked, not a false pass) with no Stripe credential in this sandbox, same standing credential gap as every other Stripe-touching tool here. No defect. Independently re-read the same day by a concurrent cycle: discover_files() *.html/*.js coverage re-confirmed. Two independent reads, same verdict."
     },
     "sync_push.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: rebase-and-push loop regenerates GENERATED files on conflict rather than picking a side, refuses to push files with conflict markers, verifies the push against origin/main after rather than trusting the exit code; no defect found"
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: rebase/regenerate/conflict-marker guard correct, --check ran clean (0 markers, in sync with origin)"
     },
     "verify_deploy.py": {
       "status": "clean",
