@@ -56,6 +56,8 @@ only moment it is cheap.
 
 ## Open claims
 
+**Claimed 2026-10-01, scheduled operator cycle: the content-level visitor read lane, Primary Bedroom (8 pages: room, 6 zones, deck), per the 14:0x PM check-in's own handoff.** Release when logged in `ops/NIGHTLY-LOG.md`.
+
 **Released 2026-10-01: the content-level visitor read lane, Workshop, finished and logged, no content defect.** The cycle's real find was a live publish deadlock, not a content issue: see `ops/NIGHTLY-LOG.md` this date (`gate_publish_image_current`).
 
 **Released 2026-10-01: the content-level visitor read lane, Living Room, finished and logged.** Found a real, sitewide defect in the process (see `ops/NIGHTLY-LOG.md` this date), not a Living Room-only issue.
