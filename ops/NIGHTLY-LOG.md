@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (07:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the content-level visitor read with the 6 remaining Kitchen pages (kitchen-the-upper-cabinets.html, kitchen-the-sink-and-dishwashing-zone.html, kitchen-the-lower-cabinets-and-cookware.html, kitchen-the-utensil-and-utility-drawers.html, kitchen-the-primary-prep-counter.html, and kitchen-deck.html), because the prior two cycles already read the first two Kitchen zone pages clean and named these six as the next pick, and finishing one room end to end is a cleaner unit of work than scattering across rooms.
+
+**Previous work finished.** Clean attach: fetch, unshallow not needed (checkout arrived shallow, unshallowed anyway), `checkout main`, `merge --ff-only` onto `origin/main` (no local commits at risk, 81 commits pulled), no reset or force. Tree was clean before and after. The prior PM cycle's work (Kitchen's first two zone pages, no defect) and the addendum before it (closing the stale `audit_catalog.py` cold-read-ledger entry) were both already on `main` at HEAD (`b40ef6f26`), pushed, not just committed.
+
+**Verified rather than cited:** GitHub still has exactly 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable, none newly actionable. Read issue #15 in full since it carries a fresh comment (2026-09-30): its own re-verification found Listmonk's shared SMTP credential genuinely rejects 6S Success's sender address, and that one real subscriber was lost on 2026-09-04 when the signup form was briefly live, which raises the stakes but does not change the decision itself, still Phil's to make. `check_urls.py` 210/210, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `cold_read_ledger.py --stale` 0 stale.
+
+**`preflight.py` full run hung again at the documented `gate_tests` sandbox limit** (same standing limitation recorded for weeks); left it running in the background past this cycle's close, since recent addenda show it can clear on its own and has twice caught something real doing so. Narrower checks above stand in for it this cycle.
+
+**No new BACKLOG item is unblocked.** `EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line is unchanged: production is serving an older build than the repository (`8fbc6b7d3d2599ae` live vs `5824d3fad2bac895` in the repo), and the redeploy, like `VPS_DEPLOY_KEY`, needs Phil's own hand in Hostinger/GitHub Actions settings; nothing here is newly pickable by an agent. Did not start anything large this slot, per this run's own instruction to hand off rather than begin.
+
+**Went well:** reading the one open issue with a fresh comment in full instead of just counting that the open-issue total was unchanged.
+
+**Did not go well:** `gate_tests` still cannot complete inside this cycle's own window; the Kitchen read lane is at 2 of 8 Kitchen-room pages after three cycles touching it.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Handing the 6 remaining Kitchen pages to the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (07:1x cycle)
 
 **Previous work finished.** Clean attach: fetch, unshallow, checkout main, merge --ff-only onto origin/main (82 commits), no reset or force, tree clean before and after. The prior addendum (closing the stale audit_catalog.py cold-read-ledger entry) was already on main at HEAD (02fef0191), pushed and not just committed. Working tree stayed clean the entire cycle.
