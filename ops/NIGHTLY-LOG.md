@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (12:4x cycle)
+
+NEXT FOR THE OPERATOR: Pantry, content-level visitor read lane, because Kitchen, Living Room, Workshop, Garage and Entryway are now read and the `ops/*.py` cold-read ledger alternative the prior cycle floated is confirmed exhausted (191 of 191 files ledgered, 0 un-ledgered candidates, 0 stale), leaving content-read as the only lane with real unread material left.
+
+**Previous work: finished.** Checkout arrived shallow and detached (the standing issue #27 shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (`53b6efb72`), 106 commits, no reset or force, tree clean before and after. The operator's Entryway content-read cycle (no defect, 7 pages checked as a visitor, card count and nofollow spot-checked independently) is on `main`, pushed, not just committed.
+
+**Verified rather than cited:** 8 open GitHub issues confirmed live via the API, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --next` and `--stale` both run fresh: 191/191 ledgered, 0 stale, 0 un-ledgered candidates, so that lane genuinely has nothing left, not just carried-forward from an earlier cycle's count. CI on HEAD: 5 of 6 check runs `success`, `checks` still `in_progress` at this entry's close, left running rather than assumed. A full `python ops/preflight.py` was started at the top of this cycle and was still blocked on the standing `gate_tests` headless-Chromium network hang (0 agent-proxy egress to Google-hosted resources, matching weeks of prior logged occurrences) past 7 minutes wall clock with under 10s CPU time consumed; left running in the background rather than killed or trusted blind, and **not** claimed as a pass this cycle. Dashboard's Traffic and Affiliate rows both read "not measured" this run (no `ssh` key to the analytics host), the same standing limitation, not a new gap.
+
+**The one closing job this slot: a stale handoff line in `STATUS.md`.** Its "Open claims" section still named Entryway as the un-started next pick, even though the operator's own cycle above had already read it and found no defect. Added the missing "Released" line for Entryway and replaced the stale "NEXT FOR THE OPERATOR: Entryway" with Pantry, the next genuinely unread room, with the cold-read-ledger exhaustion finding recorded alongside it so the next cycle does not re-ask the same question.
+
+**Went well:** checking the prior cycle's own floated alternative (switch to `ops/*.py` cold-read) directly rather than letting it sit as an open question; it resolved cleanly to "already exhausted," which removes the ambiguity for whoever reads this next.
+
+**Did not go well:** full `preflight.py` still has not completed inside a single cycle's working window today; the standing sandbox network limitation on `gate_tests` is unchanged and not fixable from here.
+
+**Next:** Pantry to the hourly operator at :43, per the line above. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Entryway: no defect found)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force, 106 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` (sections 0 through 7), `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries, delegated to an agent to keep this read inside budget on a file with some single lines over 40,000 characters. Confirmed directly via the GitHub API, not cited: 8 open issues, unchanged (6 `decision`: 35, 33, 31, 21, 18, 15; 2 `blocked-on-art`: 29, 2), 0 open PRs, none newly actionable. Ran a full (not fast) `python ops/preflight.py` in the background: every gate passed, 27 warnings, all pre-existing environment limits (no Stripe/.env.secrets credential, no network reach to the live site, no SSH key for analytics, Pillow not installed). `BACKLOG-2026-09-07.md` sections 2 to 4 (epics 1 to 5) are all done or Phil-gated; section 5 is a deliberate HOLD; section 6 is owner-only. Picked up the standing handoff from the 11:2x PM check-in (independently reaffirmed by a concurrent 11:4x PM check-in, below, which found the same handoff still accurate and deliberately did not start it): continue the content-read lane on Entryway.
