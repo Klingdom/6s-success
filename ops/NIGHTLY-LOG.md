@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: the full preflight left running past the Living Room fix's own close found two real follow-on FAILs, both fixed the same cycle
+
+**The full `python ops/preflight.py` run started during the Living Room content-read cycle (see the entry below) was contaminated by this cycle's own concurrent edits and killed rather than trusted; a fresh run against the clean, pushed tree found 21 real FAILs the narrower checks at commit time had not covered.** 20 were `gate_*_deck_current`: the prior commit edited all 20 `ops/cardtext/build_*_deck.py` sources but never reran them, so each room's committed `ops/cardtext/*.json` cache still held the old "map and the order" text, the exact "source corrected, artifact never re-derived" shape this repository's own gates exist to catch. The 21st was `build-id`: stale after 189 site files changed. Fixed by rerunning all 20 cardtext scripts directly and `ops/build_id.py`; also closed 7 cold-read ledger entries the same commit had left outdated. Pushed.
+
+**A second full run then found one more: `gate_kitchen_card_prompts_current`**, the one room whose art-generation prompts are actually gated. `build/prompts/kitchen/KR-001.txt` and `ALL.md` still described the ROOM CARD's old objective text to the art generator. Fixed with `python ops/build_card_prompts.py --deck kitchen` (unlike `build_all_prompts.py`, this one does not need Phil's own Desktop checkout); checked Entryway's and Mudroom's own ungated `build/prompts/` by hand, neither carried the phrase. Pushed.
+
+**A third full run, against the resulting clean tree, passed every gate: 0 FAIL, 27 warnings, all of them the same standing, already-tracked sandbox limitations this log has named for weeks.** Checked the warning list by name rather than trusting the summary count alone.
+
+**The lesson:** a generator's shared/imported module and its own duplicate copies of the same fact (here, `build_seo.py`'s independent `resources.html` description, and 20 separate cardtext JSON caches alongside their 20 source `.py` files) are each a place the same fix can land in the source and still ship stale, and only a full preflight run against a quiescent tree catches all of them. Running the full suite in the same working directory as active edits is itself a trap (RISK-0014's own shape): the first run's "21 FAILs" would have been misleading noise to read mid-edit, and was correctly treated as contaminated and re-run clean instead of debugged in place.
+
+Pushed to main. `ops/cardtext/*.json` (20 files), `site/build-id.txt`, `ops/cold-read-ledger.json`, `build/prompts/kitchen/`. No price, product or page touched; `IndexNow` not applicable to any of this entry's files.
+
 ## PM check-in, 2026-10-01 (09:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the content-level visitor read lane with a fresh room, Workshop (`site/workshop-deck.html` and its 6 zone pages, zero mentions anywhere in this log's content-read entries), because it is one of the two most recently built rooms (B9, shipped 2026-09-29) and so the least scrutinized, and the same lane has now found two real sitewide defects (KC-008, the zone-order claim) that no code-level gate caught.
