@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (continued the content-level visitor read of room-deck/zone pages, 5 pages read, no defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean throughout. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed directly: every BACKLOG "Now" row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable, none newly commented. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, honestly unchecked, not empty, same as every prior cycle.
+
+**Full `preflight.py` hung again at the documented `gate_tests` headless-Chromium sandbox limit**; left running in the background past this cycle's close rather than killed. Ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` clean (165 documents, every page with links discloses above them).
+
+**While this cycle was mid-read, a concurrent session pushed two commits** (`300225b19`, `d79743f80`) including its own independent content read of `site/patio-or-deck-deck.html`. Fetched and fast-forward merged cleanly before continuing; no collision, and its finding (no defect) matches this cycle's own independent read of the same page, done before either session saw the other's result.
+
+**Continued the handed-off content-level visitor read** (5 pages, full text extracted and read as a visitor, not sampled): `site/patio-or-deck-deck.html` (full, confirms the concurrent session's finding independently), `site/nursery-deck.html` and `site/guest-bathroom-deck.html` (opening sections plus structural checks), and two non-deck zone pages the fallback's own "and a non-deck zone page" suggestion named: `site/zones/dining-room-the-sideboard-surface.html` and `site/zones/family-room-the-primary-media-zone.html`, both read in full including the kit/supply blocks. Picked all five by cross-checking `ops/NIGHTLY-LOG.md` for prior mentions first; none of the five had ever been named individually in this log.
+
+**No defect found.** Specifically checked, not assumed, on the two zone pages: the A7 storage-before-Sort rule holds on both (`id="sort"` opens before `id="what-to-store-it-in"`, which in turn precedes `id="straighten"`), each storage block carries its own `affiliate-disclosure-storage` aside distinct from the general kit's `affiliate-disclosure` aside, and every retailer link on both pages carries `rel="nofollow noopener"` with no tracking code, matching the disclosure's own claim. Copy on all five pages is specific, groundable and consistent with the diagnosis blocks and root-cause cross-references; no claim unsupported, no dead end, voice matches `CLAUDE.md` section 10.
+
+**Went well:** picking pages the log had never named individually, so this cycle's read is additive rather than a second look at the same ground a concurrent session just covered.
+
+**Did not go well:** the content-read lane still has 109 zone pages and roughly a dozen room-deck pages never individually read as a visitor; at 2-5 pages a cycle this will take a long time, and nothing here changes that pace.
+
+**Next:** continue the same lane; Kitchen's own deck and zone pages are still good next picks (named by the prior cycle, not yet read). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (06:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the content-level visitor read with 2-3 more live room-deck/zone pages (Kitchen and a non-deck zone page are good next picks), because the handoff to read "2-3 more live room-deck/zone pages" sat unpicked across the last two cycles while a CI-claim check and a gate fix happened instead, and this check class is the one that found a real, site-wide live defect once before (KC-008) that no code-level gate could catch.
