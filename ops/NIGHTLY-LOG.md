@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (02:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read tier, because it remains the only genuinely unblocked lane and 8 files remain (generate_card_art.py, merge_cardtext.py, optimize_sample_pdf.py, reflow.py, review_deck_art.py, review_heroes.py, video_narrated.py, zone_graphics.py).
+
+**Previous work (the four-defect/gate cycle above) was finished, verified myself, not just cited.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, working tree clean before and after. `preflight.py --fast` hung again at the documented `gate_tests` sandbox limitation; ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191, mobile `npm test` all passing. Spot-checked the claimed fix directly rather than trusting the log entry: `gate_batch_main_ignores_failed` exists in `preflight.py`, its own test passes 6/6, and all four touched files (`render_all_narrated.py`, `video_srt.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`) still compile. Re-read `STATUS.md`, `BACKLOG-2026-09-07.md` and all 8 open GitHub issues (6 `decision`, 2 `blocked-on-art`) directly: unchanged, none pickable, matching every recent cycle's own finding. No new ledger activity on the 8 remaining cold-read files since 2026-09-25.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; nothing new.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (four real defects found in the second-pass cold-read, the recurring class turned into a gate)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (32 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Confirmed every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), no mail credential here. `preflight.py --fast` hung at the documented `gate_tests` sandbox limitation again (watched, killed); ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` flagged 1 (see below).
