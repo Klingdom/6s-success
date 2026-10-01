@@ -94,7 +94,21 @@ def main():
     check("both broken pages named, the clean one is not",
           "a.html" in msgs and "b.html" in msgs and "c.html" not in msgs)
 
-    # 6. Sanity: the real committed site/ passes today.
+    # 6. An underscore-prefixed scratch/probe file (the convention every
+    # fixture-writing test under ops/tests/ and audit_visual.py's own probe
+    # share, per gate_no_stray_probe_files's docstring: "No real page
+    # anywhere in site/ starts with an underscore") must never be flagged,
+    # even with neither element, the same way deck/ and downloads/ are
+    # exempt. Found live 2026-10-01: a concurrent session's own
+    # _audit_catalog_fixture_<pid>.html, genuinely still being written, was
+    # read as a real page missing both landmarks.
+    fails = run_gate_against({
+        "_audit_catalog_fixture_12345.html": "<html><body><p>scratch</p></body></html>",
+        "_quest_flow_probe.html": "<html><body><p>scratch</p></body></html>",
+    })
+    check("underscore-prefixed scratch files are never flagged", fails == [])
+
+    # 7. Sanity: the real committed site/ passes today.
     preflight.FAIL.clear()
     preflight.gate_landmarks_current()
     check("real site/ directory clean today", preflight.FAIL == [])

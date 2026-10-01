@@ -7680,11 +7680,26 @@ def gate_landmarks_current() -> None:
     Proved fail-then-pass: ops/tests/test_gate_landmarks_current.py plants
     a missing skip link and a missing main id on scratch pages and confirms
     the real committed site/ is clean.
+
+    Found 2026-10-01: this scan had no exclusion for the underscore-prefixed
+    scratch/probe convention `gate_no_stray_probe_files` (which runs first
+    in main()) already relies on sitewide ("No real page anywhere in site/
+    starts with an underscore"). A concurrent, still-running, un-killed
+    `test_audit_catalog.py` in a separate session sharing this sandbox left
+    its own `_audit_catalog_fixture_<pid>.html` genuinely in place (not a
+    leftover; the stray-probe gate above now correctly leaves a live
+    writer's fixture alone instead of deleting it), and this gate still read
+    it as a real page missing both landmarks, failing on a file that is not
+    a page at all. Every other page-scanning gate in this file that needed
+    this already excludes it by basename (see the `startswith("_")` checks
+    elsewhere); this one simply never had it added.
     """
     problems = []
     for path in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(path, SITE).replace(os.sep, "/")
         if rel.startswith(("downloads/", "deck/")):
+            continue
+        if os.path.basename(path).startswith("_"):
             continue
         html = io.open(path, encoding="utf-8").read()
         if ('<!-- SKIP:BEGIN -->' not in html or 'class="skip-link"' not in html
@@ -11874,6 +11889,27 @@ def gate_no_stray_probe_files() -> None:
     the very next CI run after the widening merged. Excluded by basename
     below; the sweep still catches any real `_`-prefixed probe/fixture path.
 
+    Found 2026-10-01, two independent scheduled sessions sharing one
+    sandbox: this gate ran while a SEPARATE, live, un-killed
+    `test_audit_catalog.py` process (a different session's own preflight,
+    confirmed by `git fetch` showing that session's commits landing mid-run
+    here) had its own `_audit_catalog_fixture_<pid>.html` genuinely open,
+    not abandoned. The file's name carries the writing process's own pid
+    for exactly this reason (it exists so two concurrent runs cannot share
+    one path), but this gate never read it back out, so it still treated a
+    live fixture as leftover, FAILED on it, and deleted it out from under
+    the still-running writer, which is a worse outcome than the false FAIL
+    alone: the other session's own test could now read a file that just
+    vanished mid-run. Reproduced twice in a row (different pids each time,
+    `_750`, then `_32095`), ruling out a one-off. Fixed by checking the pid
+    embedded in this one known-concurrent-safe fixture name with the same
+    `os.kill(pid, 0)` liveness probe `test_audit_catalog.py`'s own lock
+    already uses, and skipping it, not failing or deleting it, when that
+    pid is still alive. Every other convention this gate sweeps
+    (`_gate_fixture_*`, `_measure_probe_*`, `_audit_link_fixture.html`, and
+    so on) carries no pid in its name and is not touched by this change;
+    they stay exactly as exposed to this same shape as before, a narrower
+    problem for another day, not invented here.
     """
     # Found 2026-09-29: a real, checked-in helper module,
     # ops/tests/_worktree.py, matches this same glob. A tracked file can
@@ -11886,13 +11922,29 @@ def gate_no_stray_probe_files() -> None:
     tracked = set(subprocess.run(
         ["git", "ls-files", "ops/tests"], cwd=ROOT,
         capture_output=True, text=True).stdout.splitlines())
+
+    def _writer_pid_alive(basename: str) -> bool:
+        m = re.match(r"^_audit_catalog_fixture_(\d+)\.html$", basename)
+        if not m:
+            return False
+        try:
+            os.kill(int(m.group(1)), 0)
+        except ProcessLookupError:
+            return False
+        except PermissionError:
+            return True
+        except OSError:
+            return False
+        return True
+
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
         for pat in (os.path.join(SITE, "**", "_*.html"),
                     os.path.join(ROOT, "ops", "tests", "_*"))
         for f in glob.glob(pat, recursive=True)
         if os.path.basename(f) != "__pycache__"
-        and os.path.relpath(f, ROOT).replace(os.sep, "/") not in tracked)
+        and os.path.relpath(f, ROOT).replace(os.sep, "/") not in tracked
+        and not _writer_pid_alive(os.path.basename(f)))
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture path(s) sitting in site/ or "
