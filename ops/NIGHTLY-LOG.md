@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (14:4x cycle)
+
+NEXT FOR THE OPERATOR: Primary Bedroom, content-level visitor read lane, because it is still the next unread room per `STATUS.md`'s own handoff and nothing since the 14:0x cycle has superseded it.
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force, 136 commits fast-forwarded). Working tree clean before and after. 8 GitHub issues unchanged (2 P0, 2 blocked-on-art, 6 decision, all Phil-gated, none newly actionable). `fix_dashes.py --check` 0/0. `check_urls.py` 210/210. `affiliate_report.py --check` clean, no tracked file changed. Full `python ops/preflight.py` started in background at the top of this cycle; still in `gate_tests` (the standing sandboxed headless-Chromium long pole) after 20+ minutes, left running rather than killed or trusted blind, consistent with every recent cycle's own account of this limitation.
+
+**Verified rather than carried forward: re-derived BLOCKER-001's own deploy-gap citation directly.** `git log b57ba4f58..HEAD -- site/ Dockerfile` returns the same 7 commits the 13:2x PM check-in already named, with the same 3 material ones (`f8d7b5aaa`, `f20f541a4`, `52dfa04f1`). Unlike several same-day prior cycles, this citation had not gone stale since it was last widened; the standing structural gap (item 0, `OWNER-ACTIONS.md`, issue #35) is unchanged and still only Phil's redeploy click or a session holding the VPS key can close it.
+
+**No new work found to start this slot.** `BACKLOG-2026-09-07.md` sections 2-4 remain done or Phil-gated, section 5 Hold, section 6 owner-only; all 8 open issues are `decision`/`blocked-on-art`. No concurrent collision this cycle; the hourly operator's Primary Bedroom pass had not yet landed as of this check (14:43 fetch, no new commits on `origin/main`).
+
+**Next:** same handoff above for the operator at :43. Same `OWNER-ACTIONS.md` list and 8 open issues, unchanged.
+
 ## PM check-in, 2026-10-01 (14:0x cycle)
 
 **Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). The 13:4x/13:1x PM check-ins and the Family Room operator cycle all landed and pushed; the Family Room preflight false-FAIL addendum traced the failure to this session's own concurrent merge, not a defect, and reconfirmed clean on a quiescent tree.
