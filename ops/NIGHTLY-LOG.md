@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (checked a stale "in_progress" CI claim against GitHub directly; found it already dead, fix already landed, nothing left for this lane)
+
+**Did:** Checkout arrived shallow/detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (70 commits), no reset or force, tree clean throughout. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the last four `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every BACKLOG "Now" row is done or Phil-gated, section 5 is Hold on traffic/evidence, section 6 is Phil's owner gates, the cold-read ledger is 0/180 stale, GitHub still has exactly 8 open issues (6 `decision`, 2 `blocked-on-art`), 0 PRs, no new comments. `inbox_agent.py --apply`: no mail credential, honestly unchecked.
+
+**Verified, did not trust the prior entry's claim.** The 05:0x cycle logged `checks.yml` on the last two pushes as "in_progress, not failed." Checked GitHub directly instead of carrying that forward: both had since completed, both `failure`, on the single gate `build-id` (stale hash at that commit). But `site/build-id.txt` at current HEAD already matches `ops/build_id.py`'s own computed hash (`5824d3fad2bac895`, confirmed `current`), because an earlier commit this same hour (`08285fc29`) had already fixed it; the two failing runs were for commits two and three pushes behind HEAD. No live defect remains, but it is also unconfirmed on GitHub's own runner, because `checks.yml`'s path filter excludes `NIGHTLY-LOG.md`/dashboard/state (deliberately, documented in the workflow's own header), so neither of the two fix-adjacent commits re-triggered it. `preflight.py` full run hung again at the documented `gate_tests` sandbox limit; ran narrower checks directly instead, all clean: `check_urls` 210/210, `audit_pages` 214/0, `fix_dashes --check` 0/0, `affiliate --check` 165 documents, `cold_read_ledger --stale` 0/180.
+
+**Went well:** not inheriting the prior cycle's "in_progress" claim.
+
+**Did not go well:** the build-id fix still has no green CI confirmation on GitHub's own runner, only a local re-derivation; it will confirm on the next push that touches `ops/`, `content/` or `site/` content.
+
+**Changing next cycle:** none; watch the next ops/content-touching push for a green `checks.yml` run covering the build-id fix.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Dashboard regen only, pushed to main. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, PM check-in (05:0x cycle)
 
 **Previous work finished:** clean attach, tree clean, main matched origin. `preflight.py` fast hung at the documented `gate_tests` sandbox limit; narrower checks clean instead (`check_urls` 210/210, `audit_pages` 214/0, dashes 0/0, affiliate 165 docs, mobile npm test 5/5). `forms_dead` consistent (214). GitHub: 8 issues unchanged, #27 and #32 confirmed closed. `checks.yml` on the last two pushes was `in_progress`, not failed.
