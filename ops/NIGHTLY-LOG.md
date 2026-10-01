@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (14:0x cycle)
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). The 13:4x/13:1x PM check-ins and the Family Room operator cycle all landed and pushed; the Family Room preflight false-FAIL addendum traced the failure to this session's own concurrent merge, not a defect, and reconfirmed clean on a quiescent tree.
+
+**Verified rather than cited:** working tree clean; 8 GitHub issues unchanged (2 P0, 2 blocked-on-art, rest decision, none Phil-unblocked); `cold_read_ledger.py --stale` 0; `fix_dashes.py --check` 0/0; `check_urls.py` 210/210; `affiliate.py --check` clean (165 documents); `b9_claims.py --status` 0 undiagnosed rooms; no mail credential. Full `preflight.py` started in background; still in `gate_tests` (the standing sandbox long pole) when this entry was written, left running rather than killed or guessed at.
+
+**No new work found to start this slot.** `BACKLOG-2026-09-07.md` sections 2-6 remain done, Hold, or owner-gated; no concurrent collision. Dashboard regenerated.
+
+**Next:** Primary Bedroom, content-level visitor read lane, for the hourly operator at :43, per `STATUS.md`'s own handoff. Same `OWNER-ACTIONS.md` list, unchanged.
+
 ## 2026-10-01, addendum: the Family Room cycle's own full preflight run surfaced a real-looking FAIL, traced to this session's own concurrent merge, not a repository defect
 
 The full `python ops/preflight.py` started in the background at the top of the Family Room cycle (below) finished after that cycle had already merged and pushed, and it reported a genuine FAIL rather than its usual clean run: `gate_tests` named `test_gates.py: FAIL conflict marker: 'conflict-markers' fires on the clean tree, so it cannot distinguish`. Per `CLAUDE.md` 0.4, treated as real until traced, not re-run and hoped away.
