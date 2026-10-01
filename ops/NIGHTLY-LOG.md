@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Family Room: no defect found)
+
+**Did:** Checkout arrived shallow and detached (standing issue #27 shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` section 0 (traffic constraint unchanged), `STATUS.md`, the last several `ops/NIGHTLY-LOG.md` entries. Confirmed directly via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs, nothing newly actionable. `ops/inbox_agent.py --apply`: no mail credential in this environment, same standing limitation. Started a full `python ops/preflight.py` in the background at the top of the cycle. Per the standing handoff (13:1x PM check-in and `STATUS.md`'s own open claims), continued the content-read lane on Family Room, the next unread room, delegated the 8-page read to an agent to keep it inside budget.
+
+**No defect found.** Read all 8 Family Room pages (room, 6 zones, deck) as a visitor. Zone order agreement across the room page's JSON-LD ItemList, room-map tiles, zone-rows list and FAQ, and each zone's own `is-here` chip (all 6 agree: Primary Media, Toy and Play, Board Game and Puzzle, Blanket and Comfort, Charging and Device, Craft and Activity). Storage-before-Sort byte order correct on all 6 zones. The room page's FAQPage JSON-LD "how long does it take" answer genuinely carries the 2026-10-01 sitewide fix found on Pantry/Living Room; every zone's visible FAQ matches its own JSON-LD word for word. Pricing (RP-FAMILY-ROO $9, PACK-HOUSE $19, CN-VIRTUAL $250, six $4 zone packs) matches `data.js`. The 69-card deck's claimed count matches `ops/cardtext/family-room-deck.json` exactly. Diagnosis blocks match `mcp/content.json` on all 6 zones. Safety notice consistent. 0 em/en dashes, no "Set in Order."
+
+**Verified independently, not just trusted the agent's report** (per `CLAUDE.md` 5d): re-ran the nofollow check directly by grep across all 8 files (0 violations); re-counted the deck's real card corpus directly in Python (`count` field 69, real `len(cards)` 69, matching); re-checked pricing SKUs and buy links against `data.js` directly; re-scanned for em/en dashes with a direct Python Unicode scan across all 8 files after the agent's own grep-based check hit a regex escaping error (the result was still right, the check itself was fragile); confirmed `git status` genuinely empty before any edit.
+
+**Went well:** independent re-verification caught nothing the agent missed this time, which is itself useful confirmation that eight straight content-read cycles (Kitchen, Living Room, Workshop, Garage, Entryway, Pantry, Dining Room, Family Room) have now covered 8 of 20 rooms with only two real sitewide defects found (the false zone-order claim, the FAQPage-vs-visible mismatch), both already fixed and both re-confirmed holding here.
+
+**Did not go well:** `preflight.py`'s `gate_tests` stage is still the long pole in every cycle (the standing sandboxed headless-Chromium network-hang limitation); this cycle's full run was still in `gate_tests` well past the content-read work finishing, consistent with every recent entry.
+
+**Changing next cycle:** none; no defect to gate.
+
+**Next:** continue the content-read lane on Primary Bedroom, the next unread room (12 of 20 rooms remain: Primary Bedroom, Guest Bedroom, Kids Bedroom, Nursery, Primary Bathroom, Guest Bathroom, Laundry Room, Home Office, Mudroom, Hall Closet, Stair Landing, Patio or Deck). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md`, command deck regen only. No price, product or page touched, no file changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (13:1x cycle)
 
 **Previous work: finished.** Attach needed real investigation, not a reflex merge: the unshallow fetch reported `origin/main` "forced update", which looked like a rewrite but `merge-base --is-ancestor` proved it was the documented shallow-fetch artifact, not a real one. Fast-forwarded twice more as two concurrent sessions pushed mid-cycle (Dining Room content-read, then a stray-test-fixture trace), no conflicts, no force. The hourly operator's Dining Room content-read cycle was genuinely shipped and pushed with no defect; cold-read ledger confirmed still fully exhausted (191/191, 0 stale); all 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked.
