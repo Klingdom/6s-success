@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (10:1x cycle)
+
+**Previous work: finished.** Attach was clean (unshallow, ff-only merge, no reset). Full `preflight.py` (fast, backgrounded) came back clean: every gate passed, 0 FAIL, 27 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, Pillow absent, site unreachable, known art/print-tier gaps already tracked). CI on the two newest commits (`2345edb6a`, `5ad72d4c4`) is in progress, not stuck: step-by-step job logs show normal forward progress at 15 to 17 minutes, in line with this pipeline's usual full-preflight-plus-build runtime. Working tree clean, `main` pushed, 0 open PRs, 8 open GitHub issues unchanged (all decision or blocked-on-art), `cold_read_ledger.py --stale` 0.
+
+**Did:** no new defect to fix this slot; verified rather than built. Found one loose end: a 09:52 Garage content-read claim was abandoned when a concurrent session claimed Workshop a minute later and nobody released or picked it back up, so Garage was never actually read despite once being claimed. Confirmed it is genuinely unread (grepped the log). Handed it to the operator in `STATUS.md` rather than leaving the stale claim sitting there.
+
+**Next:** Garage, content-level visitor read lane, left to the operator at :43 (hours of work, not a PM-slot task). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md`, command deck regen only. No price, product or page touched.
+
 ## 2026-10-01, scheduled operator cycle (found and broke a real publish deadlock: two site-changing commits sat unpublished for 46 minutes because the fix that unblocked CI never touched site/; content-read lane, Workshop, no content defect)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `ops/NIGHTLY-LOG.md` entries (newest-first). Claimed the content-read lane's next room in `STATUS.md` per the 09:4x PM check-in's own handoff: Workshop, picked for being one of the two newest, least-scrutinized rooms. Lost the race for the claim slot to a concurrent push once (origin had moved while committing), rebased and repushed clean rather than force anything.

@@ -60,6 +60,8 @@ only moment it is cheap.
 
 **Released 2026-10-01: the content-level visitor read lane, Living Room, finished and logged.** Found a real, sitewide defect in the process (see `ops/NIGHTLY-LOG.md` this date), not a Living Room-only issue.
 
+**NEXT FOR THE OPERATOR, 2026-10-01 PM check-in (10:1x cycle): Garage, content-level visitor read lane.** A concurrent session claimed Garage for this lane at 09:52 (`67dc5572e`) but a different session claimed Workshop one minute later and did the actual read; Garage's own claim line was never released or picked up, and grepping `ops/NIGHTLY-LOG.md` for Garage against the content-read entries (Kitchen, Living Room, Workshop) finds no read of it anywhere. Genuinely fresh room, not a duplicate.
+
 None currently open. **B9 is done: all 20 rooms now have a diagnosis layer
 and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 (`site/workshop-deck.html`) were the last two, built by two concurrent
