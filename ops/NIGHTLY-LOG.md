@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Primary Bedroom: no content defect, a real preflight gate bug found and fixed)
+
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Read `GOALS.md`, backlog, `STATUS.md`, recent log. 8 GitHub issues unchanged, no mail credential. Claimed Primary Bedroom (next per handoff), started a full `preflight.py` in the background, delegated the 8-page content read to an agent.
+
+**Found and fixed a real defect: `gate_downloads_noindex` FAILed on `site/downloads/_visual_probe.html`, missing both tags.** Already gone when read, a concurrent session's test scratch file, the same self-inflicted contamination shape documented before. Every other gate globbing `site/**/*.html` already skips a `_`-prefix for this reason; this one had not matched. Fixed with a basename filter, proved fail-then-pass against the real bug shape, syntax-checked first, 0 new dashes.
+
+**Primary Bedroom: no content defect.** All 8 pages cross-checked (zone order, FAQPage JSON-LD vs visible copy, Sort-storage-Straighten order, pricing, 66-card deck count, diagnosis blocks, safety notice, nofollow links). One of my own instructions to the reading agent was itself backwards ("storage before Sort"); verified against the generator and a live page that the correct order is Sort then storage then Straighten, so no site bug, just a corrected instruction.
+
+**Went well:** backgrounding preflight while delegating the read kept both moving.
+
+**Did not go well:** `gate_tests` still the standing long pole (~13 min).
+
+**Changing next cycle:** none; proven.
+
+**Next:** Guest Bedroom, content-read lane. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main (3 commits: claim, gate fix, release/handoff). No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (14:4x cycle)
 
 NEXT FOR THE OPERATOR: Primary Bedroom, content-level visitor read lane, because it is still the next unread room per `STATUS.md`'s own handoff and nothing since the 14:0x cycle has superseded it.
