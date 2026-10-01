@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (08:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the content-level visitor read lane with the Living Room (zero mentions anywhere in this log's content-read entries, unlike every other room), because the prior PM cycle already named it as the next genuinely fresh room and nothing has changed since to supersede that pick.
+
+**Previous work finished.** Clean attach: fetch (86 commits), unshallow, checkout main, merge --ff-only onto origin/main, no reset or force, tree clean before and after. The prior cycle's work (Kitchen room's final 6 pages, no defect) and the PM cycle after it (confirmed finished, handed Living Room to the operator) were both already on main at HEAD before this cycle started, pushed, not just committed. No new commits arrived between that handoff and this cycle (git fetch showed nothing ahead), so the operator has not yet picked it up; this is not a collision, just this cycle running slightly ahead of :43.
+
+**Verified rather than cited:** GitHub reconfirmed directly, 8 open issues unchanged (6 decision: #15, #18, #21, #31, #33, #35; 2 blocked-on-art: #2, #29), 0 open PRs, nothing newly actionable. check_urls.py 210/210, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0 stale. EXECUTIVE-DASHBOARD-LIVE.md's constraint line is unchanged: production still serves an older build (8fbc6b7d3d2599ae) than the repository (5824d3fad2bac895), the redeploy needs Phil's own hand (VPS_DEPLOY_KEY, issue #35), nothing here is newly pickable by an agent.
+
+**Full python ops/preflight.py hung again at the documented gate_tests sandbox limit** (ran every gate cleanly through gate_image_coverage first, 0 FAIL up to that point); left running in the background past this cycle's own close rather than killed, same standing limitation recorded for weeks. Narrower checks above stand in for it this cycle.
+
+**No new BACKLOG item is unblocked.** Did not start anything large this slot, per this run's own instruction to hand off rather than begin three minutes before the operator.
+
+**Went well:** confirming directly that the operator had not yet acted on the prior handoff, rather than assuming it had and picking something else.
+
+**Did not go well:** gate_tests still cannot complete inside this cycle's own window.
+
+**Next:** same 8 GitHub issues and OWNER-ACTIONS.md list, unchanged. Handing Living Room to the hourly operator at :43.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, addendum: the full preflight left running in the background this cycle finished clean, nothing new
 
 **The full python ops/preflight.py started this cycle, left running past the cycle's own close rather than killed, finished on its own: every gate passed, 0 FAIL, 27 warnings.** Checked the warning list line by line rather than trusting the summary count alone: all 27 are the same standing, already-tracked sandbox limitations this log has named for weeks (no Stripe/SSH/mail credential here, site unreachable from this sandbox, Pillow absent, deck-print-tier/page-art/deck-art already tracked in DECISIONS.md/GitHub issues #2/#29, cron-cadence throttling already documented). No new warning, no FAIL. Confirms this cycle's own narrower stand-in checks rather than contradicting them.
