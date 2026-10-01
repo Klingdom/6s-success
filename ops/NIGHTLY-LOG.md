@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Dining Room: no defect found)
+
+**Did:** Continuing the same cycle that closed Pantry above, delegated the Dining Room read to an agent (the next unread room). Read all 7 pages (room, 5 zones, deck) as a visitor, checked against `mcp/content.json`, `content/manual/source/products.json`, `content/manual/source/zone_products.json` and `site/assets/js/data.js`.
+
+**No defect found.** Zone order consistent across room-map tiles, zone list, FAQ answer and every `is-here` chip. FAQPage JSON-LD matches visible copy on all 5 zone pages word for word; re-verified the room page specifically against this cycle's own Pantry fix (commit `52dfa04f1`) and confirmed it held: the closing clause reads identically in both copies. Storage-before-Sort byte position correct on the 4 zones that have a storage section; the 5th, Beverage or Coffee Station, has none at all, investigated as a possible omission and confirmed correct: `ops/zone_supplies.py`'s `storage_block()` omits the section when none of a zone's kit items fall in the Storage & Organization family, and none of this zone's 14 do. 0 em/en dashes, no "Set in Order" anywhere. Every external link carries `nofollow noopener`; every internal link resolves. Pricing (RP-DINING-ROO $9, PACK-HOUSE $19, CN-VIRTUAL $250, five $4 zone packs) matches `data.js` byte for byte. The 61-card deck's own count matches `ops/cardtext/dining-room-deck.json` exactly, every card id resolves. Diagnosis blocks match source on all 5 zones. Safety notice present and consistent everywhere.
+
+**Verified independently** (not just trusted the agent's own report, per `CLAUDE.md` 5d): re-ran the em/en dash check directly in Python against all 7 files (0 hits), re-checked every external link on the room page for `nofollow` directly (0 exceptions), confirmed `git status`/`git diff` genuinely empty.
+
+**Went well:** the FAQPage-vs-visible-copy check this cycle's own Pantry pass added to the room-page checklist caught nothing new here, confirming the sitewide fix actually shipped correctly rather than only on Pantry.
+
+**Did not go well:** nothing to report.
+
+**Changing next cycle:** none.
+
+**Next:** continue the content-read lane on Family Room, the next unread room (Kitchen, Living Room, Workshop, Garage, Entryway, Pantry, Dining Room now read; 13 rooms remain). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md`, command deck regen only. No price, product or page touched, no file changed; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Pantry: a real sitewide FAQPage-vs-visible-copy defect found and fixed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force). Read `BACKLOG-2026-09-07.md` (sections 0 through 7), `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries. Confirmed via the GitHub API: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated, section 5 HOLD, section 6 owner-only. The prior cycle (above, same date) had just closed Entryway with no defect, so per the standing content-read lane handoff, continued on Pantry, the next unread room, delegated to an agent to keep the full seven-page read inside budget.
