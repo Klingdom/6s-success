@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (content-read lane, Entryway: no defect found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean, no reset or force, 106 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` (sections 0 through 7), `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries, delegated to an agent to keep this read inside budget on a file with some single lines over 40,000 characters. Confirmed directly via the GitHub API, not cited: 8 open issues, unchanged (6 `decision`: 35, 33, 31, 21, 18, 15; 2 `blocked-on-art`: 29, 2), 0 open PRs, none newly actionable. Ran a full (not fast) `python ops/preflight.py` in the background: every gate passed, 27 warnings, all pre-existing environment limits (no Stripe/.env.secrets credential, no network reach to the live site, no SSH key for analytics, Pillow not installed). `BACKLOG-2026-09-07.md` sections 2 to 4 (epics 1 to 5) are all done or Phil-gated; section 5 is a deliberate HOLD; section 6 is owner-only. Picked up the standing handoff from the 11:2x PM check-in (independently reaffirmed by a concurrent 11:4x PM check-in, below, which found the same handoff still accurate and deliberately did not start it): continue the content-read lane on Entryway.
+
+**Did:** Read all 7 Entryway pages as a visitor (`site/rooms/entryway.html`, its 5 zone pages, `site/entryway-deck.html`), not sampled. Checked: zone order agreement between the room page's own stated order and each zone's `is-here` chip and h1 (all 5 agree); no false "already in working order" / "order you'll tackle them" claim anywhere in the 7 files (the sitewide defect a prior cycle fixed elsewhere); storage-before-Sort ordering on all 5 zone pages by real line position (`id="sort"` precedes `id="what-to-store-it-in"` precedes `id="straighten"` in every case); every external link carries `rel="nofollow"` (spot-checked independently on the Landing Spot zone, 13/13 clean); the visible FAQ `<dl>` matches the FAQPage JSON-LD on every zone page; all 31 distinct internal cross-zone/related-reading links resolve to real files; `entryway-deck.html` carries exactly 57 `id`-bearing cards matching its own title/meta claim (verified independently by count, 57), with 0 unresolved internal anchors. Found one near-miss that is not a defect: `DECK-ENTRY` (the separate free print-and-play deck, not this page) describes "twelve micro zones" against the Manual's 5 Entryway zones, but this is already-documented, already-gated, accepted architecture debt (`ops/cardtext/build_kitchen_deck.py`'s own docstring, `gate_deck_count`), not a new regression; confirmed `data.js`, `shop.html`, `deck-gallery.html` and `index.html` all still agree with each other on 88/89 cards and twelve zones.
+
+**No defect found.** No file changed. Re-ran `preflight.py` after: unchanged, every gate passed, same 27 pre-existing warnings.
+
+**Went well:** independent spot-check (card count, storage order, nofollow) of the delegated agent's claims before trusting them, per `CLAUDE.md` 5d; all matched exactly.
+
+**Did not go well:** three straight content-read cycles now (Garage, Workshop, Entryway) have found no page-level defect; the lane's real yield this week has come from the files it walks past (stale docstrings, a dropped publish trigger), not the pages themselves. Worth naming rather than repeating silently if a fourth clean room follows.
+
+**Changing next cycle:** none; no defect to gate. If a fourth consecutive content-read room comes back clean, the next cycle should consider whether the lane's remaining un-read rooms are a lower-yield use of a cycle than another `ops/*.py` cold-read pass, and say so rather than just continuing on inertia.
+
+**Next:** continue the content-read lane on a fresh room (most of the 20 rooms still have no page individually read in this lane: this cycle closes Entryway, joining Kitchen, Living Room, Workshop and Garage). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) only. No price, product or page touched. IndexNow not applicable, no page added or rewritten.
+
 ## PM check-in, 2026-10-01 (11:4x cycle)
 
 NEXT FOR THE OPERATOR: Entryway, content-level visitor read lane, because Kitchen, Living Room, Workshop and Garage are now read and Entryway is the original M4 pilot room never itself read in this lane, as the 10:4x and 11:2x cycles already named and nothing since has changed that pick.
