@@ -56,7 +56,9 @@ only moment it is cheap.
 
 ## Open claims
 
-None currently open. **B9 is done: all 20 rooms now have a diagnosis layer
+**Claimed 2026-10-01, scheduled operator: the content-level visitor read lane, Living Room (8 pages: `living-room.html`, 6 zone pages, `living-room-deck.html`).** Release this line once the room is finished and logged.
+
+None currently open otherwise. **B9 is done: all 20 rooms now have a diagnosis layer
 and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 (`site/workshop-deck.html`) were the last two, built by two concurrent
 sessions in parallel with no collision (different rooms), both claims
