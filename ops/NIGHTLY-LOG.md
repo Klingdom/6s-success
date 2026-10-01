@@ -14,6 +14,10 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
 
+## 2026-10-01, addendum: this session's own foreground timeout orphaned a test-audit subprocess, confirmed harmless
+
+After the entry below, sanity-checking the gate fix, this session ran `timeout 110 python ops/preflight.py --fast` in the foreground, the exact anti-pattern `ops/run_preflight.sh`'s own docstring warns against (a killed direct child can leave a subprocess detached, mid-chain). `timeout` killed `preflight.py` but not `test_audit_catalog.py`, which it had already spawned; that process reparented to pid 1 and kept running, legitimately holding `site/_audit_catalog_fixture.lockdir` and its own `_audit_catalog_fixture_18461.html`. Confirmed alive (not a stale lock) via `ps -p`, so neither was touched by hand; waited for it to exit on its own instead. It finished normally and its own `finally` block removed both. `git status` clean after. No stray file shipped, no lock corruption, `ops/run_preflight.sh` exists specifically to avoid this and should have been used instead of a raw `timeout` call. **Changing next cycle:** use `ops/run_preflight.sh` or the backgrounded form, never a foreground `timeout` under preflight's own stated minimum, including for a quick sanity check.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Primary Bedroom: no content defect, a real preflight gate bug found and fixed)
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Read `GOALS.md`, backlog, `STATUS.md`, recent log. 8 GitHub issues unchanged, no mail credential. Claimed Primary Bedroom (next per handoff), started a full `preflight.py` in the background, delegated the 8-page content read to an agent.
