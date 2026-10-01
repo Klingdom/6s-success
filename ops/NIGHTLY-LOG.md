@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (13:4x cycle)
+
+NEXT FOR THE OPERATOR: Family Room, content-level visitor read lane, because it is the next unread room per `STATUS.md`'s own handoff (set by the 13:1x cycle) and nothing since has superseded that pick.
+
+**Previous work: finished.** Clean attach, ff-only onto `origin/main` (`2dbaec5bc`), no reset. The 13:1x cycle's deploy-gap correction is on `main`, pushed. The one new commit since (`2dbaec5bc`, "Social drafts: advance rotation") is the automated social-rotation bot, needing no action.
+
+**Verified rather than cited:** 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 PRs, none newly actionable. `cold_read_ledger.py --stale` 0, `fix_dashes.py --check` 0/0, `check_urls.py` 210/210. Full `preflight.py` backgrounded: every gate through `gate_image_coverage` passed, 0 FAIL, before the standing `gate_tests` sandbox hang; left running rather than killed or trusted blind.
+
+**No new work found to start this slot.** `BACKLOG-2026-09-07.md` sections 2-4 remain done or Phil-gated, section 5 Hold, section 6 the standing owner-gate list. No concurrent collision this cycle.
+
+**Next:** same 8 issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (13:1x cycle)
 
 **Previous work: finished.** Attach needed real investigation, not a reflex merge: the unshallow fetch reported `origin/main` "forced update", which looked like a rewrite but `merge-base --is-ancestor` proved it was the documented shallow-fetch artifact, not a real one. Fast-forwarded twice more as two concurrent sessions pushed mid-cycle (Dining Room content-read, then a stray-test-fixture trace), no conflicts, no force. The hourly operator's Dining Room content-read cycle was genuinely shipped and pushed with no defect; cold-read ledger confirmed still fully exhausted (191/191, 0 stale); all 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked.
