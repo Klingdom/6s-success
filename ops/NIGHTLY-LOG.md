@@ -4,15 +4,27 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-01, PM check-in (01:5x cycle)
 
-**Previous work (00:5x operator) was finished, verified myself.** Unshallowed, ff-only onto origin/main (32 commits), tree clean. preflight.py via run_preflight.sh failed once on a real transient: gate_tests tripped the shallow-clone guard because this session's own checkout was still shallow mid-run, not a code defect. Fixed by unshallowing properly, reran clean (every gate passed).
+**Collision with the 01:4x twin, found at merge, not before.** Independently picked the exact same small closing job: `cold_read_ledger.py --stale` named the same one entry, `ops/audit_visual.py`, and I reached the same verdict (clean, the 2026-09-30 touch is comment-only). Their commit (`ad02e1cad`) landed first; mine never got pushed (push refused on conflict, caught before force), so no duplicate state shipped. Took their version of the generated files and the ledger rather than hand-merging JSON; this entry replaces what would have been a redundant repeat of theirs below. One thing worth recording that their entry does not: my own first preflight run this cycle hit a real but transient failure (`gate_tests`'s shallow-clone guard, because my checkout was still shallow mid-run from a Step 0 slip), fixed by unshallowing properly and reconfirmed clean on rerun, not a code defect.
 
-**Small closing job:** re-verified preflight's one stale cold-read-ledger entry, ops/audit_visual.py (touched 2026-09-30, comment-only diff). This run's own gate_visual_audit already re-ran it live with 0 findings; re-ledgered clean, --stale now 0.
+**Next:** picking a different task next cycle rather than this one, per STEP 8. All 8 GitHub issues remain decision/blocked-on-art, none pickable. Hand to :43 operator: continue the 2026-09-25 cold-read tier, 14 files remain (unchanged by this cycle).
 
-**Did not go well:** my own 100s foreground timeout on a direct audit_visual.py call briefly left a stray probe file; self-cleaned, confirmed by a third clean preflight run (27 warnings).
+Nothing pushed by this cycle beyond merging the twin's already-pushed state; no new content shipped.
 
-**Next:** all 8 GitHub issues remain decision/blocked-on-art, none pickable. Hand to :43 operator: continue the 2026-09-25 cold-read tier, 14 files remain.
+## 2026-10-01, PM check-in (01:4x cycle)
 
-Pushed to main: ledger, dashboard, this log. No price/product/page touched.
+NEXT FOR THE OPERATOR: continue the 2026-09-25-dated second-pass cold-read tier, because it is the only genuinely unblocked lane and 14 files remain (generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, import_room_images.py, merge_cardtext.py, optimize_sample_pdf.py, reflow.py, render_all_narrated.py, review_deck_art.py, review_heroes.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py).
+
+**Previous work (00:5x operator cycle) was finished, verified myself.** Attached clean: shallow checkout unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (32 commits fast-forwarded, no unrelated-history refusal, no reset needed). `preflight.py` fast hung again at the documented `gate_tests` headless-Chromium sandbox limit (backgrounded, watched to its own 150s timeout, 0 FAIL logged before it, exit 124, same shape every recent cycle reports). Ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, mobile `npm test` (`mobile/quest-app`, pickCard/eventLog/videoLink all passing). GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable (all Phil's call or art-blocked). `BACKLOG-2026-09-07.md` sections 2-4: every row already closed as Done or Phil-gated. Working tree clean, main pushed, no drift from origin.
+
+**Small closing job: one real staleness finding, cold-read ledger.** `cold_read_ledger.py --stale` found `ops/audit_visual.py` ledgered clean 2026-09-26 but touched again 2026-09-30 (`d526b07af`, Phil's own commit, the accessibility re-run). Checked rather than assumed: diffed that commit against its parent for this file specifically; all 27 changed lines are a comment block (or blank lines) documenting Phil's own font-loading investigation, zero executable lines changed. The 2026-09-26 verdict's logic (exit code reflecting all 9 measured categories, the corrected no-retry comment) still describes the real file. Could not re-run the live 218-page audit here to double-confirm by execution: `python ops/audit_visual.py` and even `--help` both hang past 120s needing a real browser, the same limitation Phil's own commit names ("CI cannot run it at all because it needs a browser"); recorded the re-verification as diff-based, not run-based, rather than claim a check that did not happen. Ledger updated to `clean`, dated 2026-10-01, with that distinction written into the note. `cold_read_ledger.py --stale` now reports 0 of 191.
+
+**Did not go well:** same documented `gate_tests`/`audit_visual.py` sandbox limitation (needs a real browser, hangs under this sandbox); nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged. This is a 30-minute slot; the cold-read tier above is hours-sized and correctly left for the operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck regenerated. No price, product or site page touched; IndexNow not applicable.
 
 ## 2026-10-01, scheduled operator cycle (00:5x)
 

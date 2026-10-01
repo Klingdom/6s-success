@@ -29,7 +29,7 @@
     "audit_visual.py": {
       "status": "clean",
       "date": "2026-10-01",
-      "note": "Re-verified after the 2026-09-30 touch (d526b07): diff is a comment-only addition explaining why raising --virtual-time-budget cannot fix the 20 heavy-deck-page fonts=loading caveat (virtual time does not accelerate real font decoding), no logic changed. Confirmed current via this cycle's own full preflight run: gate_visual_audit invoked audit_visual.py --all live against all real pages and reported 0 findings, no FAIL."
+      "note": "Flagged stale by cold_read_ledger.py --stale (last touched 2026-09-30, after the 2026-09-26 fixed date). Diffed the touching commit (d526b07af) directly: all 27 changed lines are a comment block or blank lines documenting Phil's own font-loading investigation (virtual-time budget does not fix the 20 heavy-page fallback-font caveat); zero executable lines changed. The 2026-09-26 fixed verdict (exit code reflects all 9 categories, stale retry comment corrected) still describes the real logic. Could not re-run the live 218-page browser audit in this sandbox within a reasonable time (python ops/audit_visual.py and even --help hang past 120s needing a real browser, the same class of limitation Phil's own commit message names: 'CI cannot run it at all because it needs a browser'); re-verified by diff, not by execution, and recorded as such rather than claiming a run that did not happen."
     },
     "b9_claims.py": {
       "status": "clean",
