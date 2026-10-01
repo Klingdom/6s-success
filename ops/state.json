@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-01 13:01",
- "commit": "53b6efb72",
- "commit_msg": "PM check-in: merge concurrent operator Entryway content-read pass, no defect either side, previous work confirmed finished",
- "commits_7d": 1342,
- "commits_total": 4999,
+ "generated": "2026-10-01 13:03",
+ "commit": "52dfa04f1",
+ "commit_msg": "Fix FAQPage vs visible copy drift on all 20 room pages' session-time answer",
+ "commits_7d": 1343,
+ "commits_total": 5000,
  "traffic_line": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 21:07",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-30 21:07",
  "affiliate_trigger_carried_from": "2026-09-30 21:07",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
@@ -1103,7 +1103,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 218,
+ "site_pages": 219,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 214,
