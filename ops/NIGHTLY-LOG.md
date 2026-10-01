@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (13:1x cycle)
+
+**Previous work: finished.** Attach needed real investigation, not a reflex merge: the unshallow fetch reported `origin/main` "forced update", which looked like a rewrite but `merge-base --is-ancestor` proved it was the documented shallow-fetch artifact, not a real one. Fast-forwarded twice more as two concurrent sessions pushed mid-cycle (Dining Room content-read, then a stray-test-fixture trace), no conflicts, no force. The hourly operator's Dining Room content-read cycle was genuinely shipped and pushed with no defect; cold-read ledger confirmed still fully exhausted (191/191, 0 stale); all 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked.
+
+**Did:** ran `ops/run_preflight.sh` in full: every gate passed, but one warning was real, not a known limitation: `status-deploy-gap-count-current` flagged that `BLOCKER-001`'s own just-written "6 commits" correction had already gone stale by one (`b697f0b89`, a build-id regen, landed right after). Re-derived directly with `deploy_gap_material_commits()`: 7 commits, still only 3 material, same fixes already named (sitewide zone-order, FAQPage-vs-visible-copy, Workshop/Patio shared copy), all still undeployed pending Phil's redeploy. Fixed the citation and its two sibling copies (REOPENED entry, Immediate Focus paragraph) that had drifted to the same stale number. Verified: the gate's own problem function returns empty against the corrected text, its dedicated test passes (11 checks), 0 em/en dashes. Shipped (`cab0d5085`), dashboard regenerated.
+
+**Handing to the operator at :43:** Family Room, content-level visitor read lane (next unread room per `STATUS.md`'s open claims). Nothing else is unblocked; sections 5/6 of the backlog are Hold/owner-gated as before.
+
+
+
 ## 2026-10-01, addendum: the other three of four, traced to this session's own concurrent verification, not real defects; closed
 
 Continuing the entry below. Two full-suite reruns were left running to get the untruncated list of the other 3 failing files: one driving each `ops/tests/test_*.py` directly with a 120s-per-file timeout and no process-group kill, one calling `preflight.gate_tests()` in-process (the real mechanism, with proper `killpg`). Both finished.
