@@ -3,10 +3,12 @@
 Prove ops/preflight.py's check_kit_compact_rendered() catches the defect
 classes REVIEW-DISCOVERY-2026-09-07.md D5 exists to hold: a pilot zone
 whose kit list still renders before the six passes (never regenerated, or
-regressed back), a non-pilot zone whose kit list wrongly moved after the
-six passes (D5 is scoped to the 12-zone pilot cohort only, not all 114),
-and a compact block that has grown back past the word ceiling "compact"
-is supposed to mean.
+regressed back), a non-diagnosed zone whose kit list wrongly moved after
+the six passes (D5 is scoped to zones carrying a `diagnosis`, 12 of them
+when D5 shipped, 114 of 114 today per D-026, so this case is synthetic
+only: no real non-diagnosed zone exists to exercise it against, see case 7
+below), and a compact block that has grown back past the word ceiling
+"compact" is supposed to mean.
 
 Also runs against the real, committed corpus and site/zones/*.html, so a
 future content.json edit or a regeneration that silently drops the D5
@@ -77,8 +79,9 @@ def main() -> int:
     if not problems:
         fails.append("pilot zone with kit list before the passes NOT caught")
 
-    # 4. A non-pilot zone wrongly moved: D5 must stay scoped to the 12-zone
-    #    cohort, not spread to all 114.
+    # 4. A non-diagnosed zone wrongly moved: D5 must stay scoped to the
+    #    diagnosed cohort, not spread to a zone with no diagnosis. Synthetic
+    #    only today (see the module docstring): every real zone is diagnosed.
     overreach = {"o1.html": _passes_then_kit()}
     problems = preflight.check_kit_compact_rendered([], ["o1.html"], overreach)
     if not problems:
@@ -129,8 +132,9 @@ def main() -> int:
                      "class NOT caught")
 
     # 7. Against the real, committed corpus and site/zones/*.html: proves
-    #    the 12 pilot zones actually ship D5's placement today, and the
-    #    other 102 are untouched.
+    #    every diagnosed zone actually ships D5's placement today. real_other
+    #    is expected to be empty (D-026 diagnosed the remaining 102 after D5
+    #    shipped), which is why case 4 above has to stay synthetic.
     src = os.path.join(ROOT, "content", "manual", "source", "content.json")
     rooms = json.load(io.open(src, encoding="utf-8"))["rooms"]
     real_pilot, real_other = [], []

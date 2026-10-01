@@ -2791,14 +2791,26 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # made the trip they were trying to avoid.
     #
     # D5 (REVIEW-DISCOVERY-2026-09-07.md section 2, "Blocked on. Nothing."):
-    # for the same 12-zone pilot cohort M4/D3/D4 already use (content.json's
+    # for the then-12-zone pilot cohort M4/D3/D4 used (content.json's
     # `diagnosis` field), this pre-Sort block was the single largest block on
     # the page at 481 words, and a retailer search page is a weak place to
     # send a reader. Shrunk (zone_supplies.render_compact(), see its own
-    # docstring) and moved below the six passes for those 12 zones only; the
-    # other 102 keep render() here, unchanged. The "discover it mid-task"
-    # risk that placement guarded against is answered with a one-line
-    # pointer instead of the full list, below.
+    # docstring) and moved below the six passes for that cohort.
+    #
+    # Corrected 2026-10-01, content-read lane: this still read "for those 12
+    # zones only; the other 102 keep render() here, unchanged" five weeks
+    # after D-026 (2026-09-24) authored a diagnosis for every remaining zone
+    # as a side effect of building all 20 room decks. The `diagnosis` field
+    # is the same signal this branch has always used, so the branch itself
+    # never needed touching; only this comment, and `is_pilot`'s name, had
+    # gone stale. `content.json` carries a non-empty `diagnosis` for 114 of
+    # 114 zones today (confirmed live, not assumed), so every zone now takes
+    # this branch and `render()`'s pre-Sort placement below is currently
+    # unreachable. It stays, not as dead code but as the correct fallback
+    # for a zone that ships without a diagnosis (a new 115th zone, say)
+    # before this one is authored for it; the "discover it mid-task" risk
+    # that placement guarded against is answered with a one-line pointer
+    # instead of the full list, below, for whichever branch runs.
     is_pilot = bool(zone.get("diagnosis"))
     _compact_kit = ""
     if is_pilot:

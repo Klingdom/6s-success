@@ -22488,17 +22488,21 @@ def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
 
     REVIEW-DISCOVERY-2026-09-07.md D5: "at 481 words it is the single
     largest block on the page... shrink it to a compact list and move it
-    below the method." For the same 12-zone pilot cohort M4/D3/D4 already
-    use, `id="what-you-need"` must now render AFTER `id="sustain"` (the
-    last of the six passes), not before "The six passes, in order"; for
-    every other zone it must stay exactly where it was, before the passes,
-    so this cannot silently spread past the pilot cohort or silently
-    regress it back. `word_ceiling` keeps "compact" a real, checkable
-    claim rather than a one-time description: the block's own visible word
-    count (tags stripped) must stay under it, so a future edit growing the
-    per-item prose back out cannot ship unnoticed.
+    below the method." For the cohort M4/D3/D4 use (content.json's
+    `diagnosis` field, 12 zones when D5 shipped, 114 of 114 today per
+    D-026), `id="what-you-need"` must render AFTER `id="sustain"` (the
+    last of the six passes), not before "The six passes, in order"; for a
+    zone with no diagnosis yet (none exist today, but a newly-added one
+    could ship without one) it must stay exactly where it was, before the
+    passes, so this cannot silently spread past the diagnosed cohort or
+    silently regress it back. `word_ceiling` keeps "compact" a real,
+    checkable claim rather than a one-time description: the block's own
+    visible word count (tags stripped) must stay under it, so a future
+    edit growing the per-item prose back out cannot ship unnoticed.
 
-    pilot_files/other_files are sorted lists of basenames; page_bodies is
+    pilot_files/other_files are sorted lists of basenames (named for D5's
+    original pilot cohort; `other_files` is empty today since every zone
+    is diagnosed, and stays ready for the day it is not); page_bodies is
     {filename: html} for every real site/zones/*.html file.
     """
     import html as _html
@@ -22571,9 +22575,9 @@ def check_kit_compact_rendered(pilot_files, other_files, page_bodies,
             continue
         if w > p:
             problems.append(
-                "%s: not a pilot zone, but its kit list now renders after "
-                "the six passes heading; D5 is scoped to the 12-zone "
-                "cohort only" % f)
+                "%s: not in the diagnosed cohort, but its kit list now "
+                "renders after the six passes heading; D5 is scoped to "
+                "diagnosed zones only" % f)
     return problems
 
 
