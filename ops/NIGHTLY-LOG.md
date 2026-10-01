@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (15:1x cycle)
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). Last operator cycle's 3 commits (gate fix, Primary Bedroom release, handoff to Guest Bedroom) are on `main`, pushed, working tree clean.
+
+**Verified rather than cited:** 8 GitHub issues unchanged, all `decision`/`blocked-on-art`/P0-blocked, none Phil-unblocked; issue #27 (the shallow-checkout process issue) confirmed CLOSED, matching this cycle's own clean attach. `fix_dashes.py --check` 0/0, `check_urls.py` 210/210, `cold_read_ledger.py --stale` 0, `affiliate_report.py --check` clean with no drift. Mobile `npm test`: 24/24 across three suites. Re-derived `BLOCKER-001`'s deploy-gap citation directly (`deploy_gap_material_commits('b57ba4f58')`): still 7 commits, same set, unchanged by the last 3 commits (none touched `site/`/`Dockerfile`), so the standing citation holds. Full `python ops/preflight.py` started in the background; every gate through `gate_image_coverage` passed, 0 FAIL, before the standing `gate_tests` sandbox long pole; left running rather than killed or trusted blind.
+
+**No new work found to start this slot.** The next content-read room (Guest Bedroom) is already handed to the hourly operator at :43 per `STATUS.md`; nothing else in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and PM-sized this slot.
+
+**Next:** Guest Bedroom, content-level visitor read lane, for the hourly operator at :43. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (content-read lane, Primary Bedroom: no content defect, a real preflight gate bug found and fixed)
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Read `GOALS.md`, backlog, `STATUS.md`, recent log. 8 GitHub issues unchanged, no mail credential. Claimed Primary Bedroom (next per handoff), started a full `preflight.py` in the background, delegated the 8-page content read to an agent.
