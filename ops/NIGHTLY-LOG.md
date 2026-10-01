@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-01, PM check-in (08:4x cycle)
+## 2026-10-01, PM check-in (09:1x cycle)
+
+**Previous work finished.** Kitchen content-read lane shipped and verified by prior cycles. The content-read lane's next room, Living Room, was claimed 08:53 by a concurrent session, minutes before this cycle started; did not duplicate it.
+
+**Verified rather than cited:** clean attach (fetch, unshallow, ff-only merge, 89 commits, no reset/force). 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art/P0), 0 open PRs. cold_read_ledger.py: 191/191 ledgered, 0 stale, lane still exhausted. check_urls.py 210/210, audit_pages.py 214/0, fix_dashes.py --check 0/0, affiliate.py --check clean (165 documents). Full preflight.py hung again at the standing gate_tests sandbox limit; left running in the background past this entry.
+
+**No new BACKLOG item is genuinely unblocked**; everything else is an owner gate or a decision issue, both excluded by rule.
+
+**Next:** same 8 issues and OWNER-ACTIONS.md list, unchanged. Living Room stays with whoever claimed it; operator continues there.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen only. No price, product or page touched.
 
 NEXT FOR THE OPERATOR: continue the content-level visitor read lane with the Living Room (zero mentions anywhere in this log's content-read entries, unlike every other room), because the prior PM cycle already named it as the next genuinely fresh room and nothing has changed since to supersede that pick.
 
