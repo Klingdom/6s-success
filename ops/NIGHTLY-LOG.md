@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: the full preflight run this cycle started in the background did finish, and caught a real defect in this cycle's own fix
+
+**Worth its own entry rather than folding into the one below, because it changes what that entry can honestly claim.** The entry below reported `preflight.py` as hung at `gate_tests` and relied on narrower direct checks instead. Left running in the background after this cycle's own commits were already pushed, it later cleared `gate_tests` on its own and kept going. Checked the tail rather than assumed clean: `3 gate(s) failed, 27 warning(s)`.
+
+**Two of the three failures were this cycle's own fault.** `sitemap-lastmod-current`: regenerating `site/workshop-deck.html` and `site/patio-or-deck-deck.html` changed their content without re-running `ops/build_seo.py`, so their `<lastmod>` stayed at 2026-09-29. `build-id`: `site/build-id.txt` still carried the pre-fix commit's hash. Both are exactly the "source corrected, derived artifact never re-derived" class this repository's own gates exist to catch, and this cycle supplied a fresh instance of it rather than catching someone else's. Fixed: ran `ops/build_seo.py` and `ops/build_id.py`, verified `gate_sitemap_lastmod_current` and `gate_build_id_current` both pass directly, confirmed `git diff` touched only the two affected sitemap rows and the one hash line, committed and pushed (merged cleanly against one concurrent push in between, no conflicts). The third failure, `tests` reporting `test_gate_sitemap_lastmod_current.py` failed, was the same sitemap gap surfacing through the test suite, not a separate defect; closed by the same fix.
+
+**No new gate.** `gate_sitemap_lastmod_current` and `gate_build_id_current` already exist and did their job correctly, on the very next full run; the lesson is to run (or wait out) the full preflight before calling a cycle finished, not to add a check that already exists.
+
+**The remaining warnings are standing, not new:** no Stripe/SSH/mail credential, site unreachable from here, Pillow absent, deck-print-tier/page-art/deck-art already tracked in `DECISIONS.md` D-027 and GitHub issues #2/#29. None actionable from this sandbox.
+
+Pushed to main (two commits, merged against one concurrent push). `ops/sitemap-content-hashes.json`, `site/sitemap.xml`, `site/build-id.txt`, this entry. No price or product touched; IndexNow not applicable, no new page.
+
 ## 2026-10-01, scheduled operator cycle (second-pass cold-read found a real, live cross-reference gap in the Workshop/Patio or Deck pair, fixed; preflight's gate_tests hung at its documented sandbox limit)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (59 commits), no reset or force, tree clean before and after. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the last four `NIGHTLY-LOG.md` entries (which are prepended, not appended, newest first). Confirmed directly: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. `inbox_agent.py --apply`: no mail credential, honestly unchecked, not empty. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable; issue #15's 2026-09-30 comment already correctly escalated, nothing actionable from this sandbox.
