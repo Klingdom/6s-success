@@ -653,8 +653,8 @@
     },
     "receive_deploy_key.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "IMAP mailbox deploy-key harvester/installer for GitHub; read-only review (no IMAP credential here to run live), dedupe()/existing() correctly pure/testable, read_only=true hardcoded on install, UNCHECKED-not-empty pattern for a failed gh api call. Own test suite (test_receive_deploy_key.py) passes. No defect."
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: IMAP harvest/dedupe/existing() all correct, --check correctly reports no IMAP creds in this sandbox"
     },
     "reflow.py": {
       "status": "clean",
@@ -688,8 +688,8 @@
     },
     "revenue_model.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran directly: table is fully live-derived from data.js (verified group counts, e.g. 102 at $4/18 at $9, match the real catalogue exactly), DELIVERY_HOURS/mixes SKUs (CN-VIRTUAL, CN-INHOME, PACK-HOUSE) all exist and priced as coded. No hardcoded stale figures, no crash. No defect."
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: pure arithmetic over live catalogue, assumptions clearly labelled, live run output sane"
     },
     "review_deck_art.py": {
       "status": "clean",
@@ -833,8 +833,8 @@
     },
     "sync_push.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: rebase-and-push loop regenerates GENERATED files on conflict rather than picking a side, refuses to push files with conflict markers, verifies the push against origin/main after rather than trusting the exit code; no defect found"
+      "date": "2026-10-01",
+      "note": "PM cycle second-pass re-read: rebase/regenerate/conflict-marker guard correct, --check ran clean (0 markers, in sync with origin)"
     },
     "verify_deploy.py": {
       "status": "clean",
