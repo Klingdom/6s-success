@@ -88,8 +88,35 @@ def check_incremental_persistence():
         os.remove(tmp.name)
 
 
+def check_unchecked_not_reported_as_zero():
+    """With no Stripe/IMAP credential, recent_service_charges()/service_emails()
+    must return None (unchecked), not [] (checked, found none).
+
+    Regression for a real bug found 2026-10-01, second-pass cold-read of this
+    file: both functions returned [] whether they never had a credential to
+    try or really queried and got nothing back, so main() printed "seen: 0"
+    in a sandbox with no Stripe key at all, indistinguishable from a real
+    zero. CLAUDE.md 0.4: unknown is not unused.
+    """
+    fails = []
+    orig_key = so.stripe_key
+    so.stripe_key = lambda: None
+    try:
+        if so.recent_service_charges() is not None:
+            fails.append("recent_service_charges() with no Stripe key "
+                         "returned [] instead of None (unchecked)")
+    finally:
+        so.stripe_key = orig_key
+
+    if so.service_emails() is not None:
+        fails.append("service_emails() with no IMAP credential in this "
+                     "environment returned [] instead of None (unchecked)")
+    return fails
+
+
 def main() -> int:
     fails = []
+    fails += check_unchecked_not_reported_as_zero()
 
     # 1. The exact regression: a message that states an explicit year must
     #    return None, not a wrong time computed from a slice of that year.
@@ -173,8 +200,8 @@ def main() -> int:
             print("  -", f)
         return 1
     print("PASS: %d case(s), find_time year-guard, which_service, ics, "
-          "incremental persistence all correct"
-          % (len(year_cases) + len(cases) + 4 + len(so.DURATION)))
+          "incremental persistence, unchecked-vs-zero all correct"
+          % (len(year_cases) + len(cases) + 4 + len(so.DURATION) + 2))
     return 0
 
 

@@ -718,8 +718,8 @@
     },
     "send_brief.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "needs_phil computed identically to dashboard.py's own definition (decision-labelled issues only); refuses to send a stale brief"
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (--preview) against the real current ops/state.json. needs_phil decision-label filter still matches dashboard.py's own definition exactly (grep-confirmed, no drift); staleness refusal (12h) and the issues_available fallback both correct. No defect."
     },
     "send_questions.py": {
       "status": "fixed",
@@ -728,8 +728,8 @@
     },
     "service_orders.py": {
       "status": "fixed",
-      "date": "2026-09-25",
-      "note": "state-service-orders.json was only written once, after both forward loops finished; a mail failure on booking N of a multi-item batch meant booking N-1's already-sent forward was never persisted, so a rerun forwarded it to Phil a second time, breaking the file's own idempotency promise. save_state() now runs after each successful send. test_service_orders.py extended with a monkeypatched partial-failure regression test, fail-then-pass proved."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-verified the 2026-09-25 incremental-persistence fix still holds (save_state() still runs after each send). Found a new, real defect: recent_service_charges()/service_emails() returned [] identically whether no credential existed at all or a real query found nothing, so main() printed 'seen: 0' in this credential-less sandbox as if it had checked and found zero (CLAUDE.md 0.4). Both now return None for unchecked; main() reports UNCHECKED distinctly. ops/tests/test_service_orders.py extended (2 new cases), fail-then-pass proved directly (git stash on the source fix, new test failed naming both functions by name; restored, clean)."
     },
     "ship.py": {
       "status": "clean",
@@ -798,8 +798,8 @@
     },
     "stripe_check.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "diagnostic-only Stripe key check; masks keys correctly, leak_scan globs site/ correctly, no defect"
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (python ops/stripe_check.py). Correctly reports empty keys and refuses with exit 1, never prints a real key, leak_scan() and mask() logic unchanged and still correct. No defect."
     },
     "stripe_dedupe.py": {
       "status": "fixed",
@@ -828,8 +828,8 @@
     },
     "sync_page_links.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25: read fully. read()/write() newline handling (universal-newline read, newline='' write) matches the same convention used in ~91 other ops/*.py generators, not unique to this file, and every committed site .html/.js is already LF-only, so not chased as a live defect. fixable/orphan classification logic checked by hand against edge cases (retired SKU, sku-less orphan, already-active link) and is correct; already has its own regression test and preflight gate (gate_sync_page_links_scans_js). No defect found."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (--check). discover_files() still covers both *.html and *.js per the module's own WHAT COUNTS AS A PAGE lesson; correctly refuses with .env.secrets not found rather than reporting a false clean. No defect."
     },
     "sync_push.py": {
       "status": "clean",
