@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: GitHub confirmed the checks.yml red streak, caused by the same NIGHTLY-LOG.md ordering bug this cycle fixed, is over
+
+**Worth recording on its own because it is independent confirmation, not a repeat of the entry below.** `checks.yml` had failed on four consecutive pushes to `main` (`5125fe0a0`, `b57ba4f58`, `50137c7b3`, `97446ad9e`, run numbers 1735 to 1738, each failing on its "Preflight" step), the first of those being the commit that introduced the misplaced `NIGHTLY-LOG.md` entry this cycle's `dc34a3a20` fix moved back into place. Watched GitHub Actions directly rather than assuming the local fix would carry: run 1739, on `8e368e122` (this cycle's second fix commit, built on top of `dc34a3a20`), ran its Preflight step in 20 minutes 42 seconds and passed; the whole job (Preflight, the ops test suite, the product-copy-drift check) completed `success` about 36 minutes after the push. Confirms the fix resolved the actual CI failure on GitHub's own runner, not only the local reproduction. No further action; this is the close of the finding two entries below.
+
 ## 2026-10-01, PM check-in (04:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py second-pass cold-read tier starting with build_stair_landing_deck_page.py and build_workshop_deck_page.py, because it remains the only genuinely unblocked lane and those are the two 2-mention candidates the prior cycle named.
