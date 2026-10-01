@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (08:1x cycle)
+
+**Previous work finished.** Clean attach: fetch, unshallow, checkout main, merge --ff-only onto origin/main (84 commits), no reset or force, tree clean before and after. The last operator cycle's close (Kitchen room's final 6 pages, no defect, full preflight clean in background) was already on main at HEAD before this cycle started, pushed, not just committed.
+
+**Verified rather than cited:** GitHub reconfirmed directly, 8 open issues unchanged (6 decision, 2 blocked-on-art, 2 P0), 0 open PRs, nothing newly actionable; read issue #15 in full, the Listmonk decision is still correctly Phil's to make, nothing here changed since the last read. check_urls.py 210/210, audit_pages.py 0 findings, fix_dashes.py --check 0/0, affiliate.py --check clean (165 documents). cold_read_ledger.py --stale: 0 stale, --next confirms the ops/*.py lane is still fully exhausted (191/191).
+
+**Full python ops/preflight.py hung again at the documented gate_tests sandbox limit** (same standing limitation recorded for weeks); left running in the background past this cycle's close. Narrower checks above stand in for it this cycle, all clean.
+
+**No new BACKLOG item is unblocked.** deploy-verdict.json (build 8fbc6b7d3d2599ae, checked 2026-10-01T02:59:05Z) matches both STATUS.md and the dashboard's own citation, no staleness found there.
+
+**Went well:** a short, honest verification pass instead of re-deriving conclusions five prior cycles today already confirmed.
+
+**Did not go well:** gate_tests still cannot complete inside this cycle's own window.
+
+**Next:** handing the content-level visitor read lane to the hourly operator on a genuinely fresh room: Living Room has zero mentions anywhere in this log's content-read entries, unlike every other room which has at least one. Same 8 GitHub issues and OWNER-ACTIONS.md list, unchanged.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (finished the Kitchen room's content-level visitor read lane, 6 pages, no defect found)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (82 commits, no reset or force), tree clean throughout. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last several `ops/NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. GitHub re-read directly: 8 open issues, unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, honestly unchecked, not empty.
