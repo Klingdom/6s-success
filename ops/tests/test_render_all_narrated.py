@@ -19,13 +19,58 @@ Run:  python ops/tests/test_render_all_narrated.py
 """
 import io
 import os
+import subprocess
 import sys
+from unittest.mock import patch
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import render_all_narrated as ran                                 # noqa: E402
 import video_zone as vz                                           # noqa: E402
+
+
+def case_real_run_exit_code_reflects_failures() -> list[str]:
+    """main()'s real-render path (not --check) must exit 1 if any job in
+    `failed` never produced a passing output, exactly the shape found and
+    fixed in video_zone_photo.py and render_all_zone_videos.py on
+    2026-09-26: a batch that prints FAIL lines must not still exit 0.
+
+    Monkeypatches done() so every job is reported "not yet made" both
+    before and after the (mocked, never-really-spawned) subprocess call,
+    which is what a genuinely failed render looks like to main(). No real
+    subprocess, no real video, no network.
+    """
+    fails = []
+    zs = vz.zones()
+    one_zone = [(r, z) for r, z in zs if r == "Entryway"][:1]
+    if not one_zone:
+        return ["SKIP: no Entryway zones in video_zone.zones()"]
+
+    old_argv = sys.argv
+    try:
+        sys.argv = ["render_all_narrated.py", "--room", "Entryway"]
+        with patch.object(vz, "zones", return_value=one_zone), \
+             patch.object(ran, "done", return_value=False), \
+             patch.object(subprocess, "run") as mock_run:
+            mock_run.return_value = subprocess.CompletedProcess(
+                args=[], returncode=1, stdout="", stderr="boom")
+            captured = io.StringIO()
+            old_stdout = sys.stdout
+            sys.stdout = captured
+            try:
+                rc = ran.main()
+            finally:
+                sys.stdout = old_stdout
+    finally:
+        sys.argv = old_argv
+
+    if rc == 0:
+        fails.append("a run where every job stayed un-done after the "
+                      "render attempt (a real failure) returned exit 0: "
+                      "the FAIL lines it printed would never be seen by "
+                      "anyone trusting $?")
+    return fails
 
 
 def main() -> int:
@@ -78,7 +123,9 @@ def main() -> int:
             os.remove(os.path.join(scratch, f))
         os.rmdir(scratch)
 
-    total = 3
+    fails.extend(case_real_run_exit_code_reflects_failures())
+
+    total = 4
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

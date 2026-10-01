@@ -27,9 +27,9 @@
       "note": "Fixed a real hero-lazy false-negative: html.find(tag) resolved duplicate-markup img tags to the wrong occurrence's position, so a genuine lazy above-fold hero could silently escape the check whenever its markup matched an earlier video-play thumbnail. Not live today (0 pages currently trigger it), preventive. Fixed in fe566979f."
     },
     "audit_visual.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Two independent fixes landed the same day, non-overlapping regions of the file, merged together: (1) main()'s exit code only reflected bad_text/bad_img, 2 of 9 categories; a broken image, missing alt/label, invisible focus, bad landmark, heading jump, or (mobile) a crowded tiny target/sideways scroll could all print above a clean $?. No preflight gate relied on it (gate_visual_audit/gate_mobile_touch_targets both parse printed counts, not returncode), but a direct run trusting $? would have been fooled. Fixed to derive from all measured categories; ops/tests/test_audit_visual_exit_code.py fail-then-pass proved directly against a real headless-Chromium render. (2) A stale comment claimed a longer-budget retry runs before a page is marked unread; that retry was written 2026-09-25 and deliberately never shipped (Phil's own commit message: real cost on a memory-short host, not needed once the real cause, an unresolved bare filename, was found). Comment corrected to match the real, no-retry behavior."
+      "status": "clean",
+      "date": "2026-10-01",
+      "note": "Re-verified 2026-10-01 after Phil's own 2026-09-30 commit (d526b07af) added a documenting comment about the virtual-time font-loading limitation on deck pages, no behavior change. Read the full 795-line file end to end: the missing-page resolution, probe lifecycle, contrast/gradient compositing, focus-visibility and target-crowding logic are all sound and already carry extensive inline evidence of prior fixes. No new defect found. Could not re-execute the probe live in this sandbox (headless Chromium needs network for fonts, egress denied by the agent proxy), matching the documented gate_tests limitation; this is a code read, not a live re-run."
     },
     "b9_claims.py": {
       "status": "clean",
@@ -492,14 +492,14 @@
       "note": "torch_status() extracted so the NO-PROVIDER branch reports absent/CPU-only/CUDA honestly instead of a hardcoded false CPU-only claim; ops/tests/test_generate_card_art.py added. Entry lost from an earlier ledger write (concurrent-session merge), backfilled here; the code fix and test were already live and unaffected."
     },
     "generate_card_heroes.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "local hero-image generation planner for Entryway cards; ran --plan live, 89/89 cards planned correctly, token-budget check correctly reports UNVERIFIED (transformers not installed here) rather than a false pass, Problem-vs-settled state framing and rule-word filtering both correct. No defect."
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01: main()'s --run path returned 0 unconditionally even when the batch loop appended to failed, same shape as render_all_narrated.py/video_srt.py found the same cycle and the two 2026-09-26 sibling fixes. Fixed to return 1 if failed else 0. New ops/tests/test_generate_card_heroes.py (fakes image_local via sys.modules, writes only to a scratch dir, no real model/GPU needed), fail-then-pass proved directly. This recurring shape (6th instance) was turned into a gate this cycle: new gate_batch_main_ignores_failed in preflight.py, AST-based, scoped to the literal variable name 'failed' to avoid false positives on files that already guard it correctly (build_quest.py, backup_analytics.py, check_sellable.py all checked clean). Fail-then-pass proved against synthetic sources in ops/tests/test_gate_batch_main_ignores_failed.py (6/6), and against this exact file's pre-fix source directly."
     },
     "generate_zone_heroes.py": {
       "status": "fixed",
-      "date": "2026-09-25",
-      "note": "stale 'WHY THIS IS THE UNLOCK' docstring said 109 of 114 zones had no imagery; real count is 3 of 114 zone pages with no hero (verified live against gate_pages_missing_art's own logic). Docstring corrected, no functional change."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01: identical shape to generate_card_heroes.py found the same cycle: main()'s --run path returned 0 unconditionally even when failed was non-empty. Fixed to return 1 if failed else 0. New ops/tests/test_generate_zone_heroes.py (fakes image_local and the machine-can-generate subprocess probe, writes only to a scratch dir), fail-then-pass proved directly. Covered by the new gate_batch_main_ignores_failed in preflight.py (see generate_card_heroes.py's ledger note for the gate's own account)."
     },
     "generated_products.py": {
       "status": "clean",
@@ -543,8 +543,8 @@
     },
     "import_room_images.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "book-photo importer; ran live, correctly reports MISSING for all figures (no access to Phil's local Windows master path from this sandbox) and reconcile() correctly refused to shrink any room's committed manifest. Guard behaved exactly as documented. No defect."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01. Read end to end. The one real risk this file carries (issue #26 shape: a rerun with fewer source figures than already committed silently shrinking a room) is already solid: reconcile() keeps the committed entries and prints a WARNING, gate_room_images_stable in preflight.py imports fresh_manifest()/reconcile() directly (not reimplemented) so the gate tests the same shape the real run uses, and the docstring records the exact 2026-09-06 bug (wrong dict shape) that already got fixed here. main() always returns 0 even when figures are MISSING on disk, but that is correct in this sandbox: MASTER is a Windows path on Phil's own machine, so every figure is expected to read MISSING here and that is an environment fact, not a run failure; the tool is explicitly --check/--apply only Phil can meaningfully run. No defect found."
     },
     "inbox_agent.py": {
       "status": "fixed",
@@ -667,9 +667,9 @@
       "note": "Ran --check against the live site/zones/*.html: 111 pages with a wired hero, 0 new, 0 dropped, 0 changed. gate_hero_fallback_current wired in preflight.py (line 1274 gens map, check_hero_fallback_current at 9534). No defect."
     },
     "render_all_narrated.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: not wired into any preflight gate by exit code (only slug() is cross-checked by gate_video_slug_single_source), --check correctly reports 0 of 228 in this sandbox, no defect"
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01: main()'s real-render path returned 0 unconditionally even when the loop appended jobs to failed, the exact shape found and fixed in video_zone_photo.py and render_all_zone_videos.py on 2026-09-26 but missed here. Fixed to return 1 if failed else 0. New case in test_render_all_narrated.py (mocks subprocess.run and done() so no real render/network), fail-then-pass proved directly: reverted the fix, confirmed the new case fails by name, restored, reran clean (4/4). Not wired into preflight's exit code (manual batch tool, same as its two siblings), so no new gate needed, matching established precedent."
     },
     "render_all_zone_videos.py": {
       "status": "fixed",
@@ -843,8 +843,8 @@
     },
     "verify_media_delivery.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: correctly reports exit 2 / unmeasured when no Desktop delivery folder exists (matches gate_checkin_undelivered_media_not_fabricated's own contract), no defect"
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01. Read end to end: differs() correctly normalizes CRLF/LF for text sidecars and falls back to a size compare for video; scan() is pure and testable (desktop_root is a parameter, never hardcoded, so a test can point it at a scratch dir); the three-way exit code (0 clean, 1 real gap, 2 no Desktop folder here at all) already correctly distinguishes 'cannot check' from 'confirmed fine' per CLAUDE.md 0.4, matching this file's own docstring. --fix copies only the real gap and resets it to empty before tallying missing_total, so a fixed run reports 0 missing rather than double-counting. No defect found."
     },
     "video.py": {
       "status": "clean",
@@ -862,9 +862,9 @@
       "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
     },
     "video_srt.py": {
-      "status": "clean",
-      "date": "2026-09-25",
-      "note": "Read in full 2026-09-25; no defect found."
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read 2026-10-01: main()'s real-write path returned 0 unconditionally even when empty was non-empty (a zone produced no caption text), the same silent-success shape fixed in two sibling batch tools on 2026-09-26. Confirmed 0 of 114 zones currently empty, so not live-impacting, but the exit code would have lied the day one did. Fixed to return 1 if empty else 0. New case in test_video_srt.py (patches srt_for() to return empty, writes only to a scratch dir), fail-then-pass proved directly: reverted the fix, confirmed the new case fails by name, restored, reran clean (6/6). Not wired into preflight's exit code (preflight does its own independent freshness check via srt_for(), never calls main()), so no new gate needed."
     },
     "video_zone.py": {
       "status": "clean",

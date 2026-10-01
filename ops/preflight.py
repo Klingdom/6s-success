@@ -26311,6 +26311,91 @@ def gate_test_rotation_isolated() -> None:
              f"file on interruption: {bad}")
 
 
+def check_batch_main_ignores_failed(src: str) -> str | None:
+    """Returns a one-line reason, or None, for the shape fixed six times now:
+    main() builds a `failed` list in a loop and then returns a value that
+    does not depend on it, so a batch can print FAILED lines and still exit
+    0. video_zone_photo.py and render_all_zone_videos.py were fixed for this
+    2026-09-26; render_all_narrated.py, generate_card_heroes.py and
+    generate_zone_heroes.py (this exact variable name) were found and fixed
+    the same way 2026-10-01, each independently, because nothing was
+    scanning for the pattern itself. Six instances of one defect class is
+    the line this file's own CLAUDE.md 10b draws for writing a gate instead
+    of continuing to fix the symptom one file at a time.
+
+    Deliberately scoped to the literal name `failed`, this repository's own
+    settled convention for exactly this list (confirmed across all six
+    instances above): a looser match on `bad`/`missing`/`fail` was tried
+    first and produced false positives on files that already guard the
+    name correctly through an `if failed:` branch earlier in main() (
+    build_quest.py, backup_analytics.py, check_sellable.py all do this
+    correctly today). A narrow, precise gate that only ever flags the one
+    confirmed shape is worth more than a broad one an operator learns to
+    ignore.
+    """
+    try:
+        tree = ast.parse(src)
+    except SyntaxError:
+        return None
+    main_fn = next((n for n in tree.body
+                     if isinstance(n, ast.FunctionDef) and n.name == "main"), None)
+    if main_fn is None:
+        return None
+    body = main_fn.body
+    loop_idx = None
+    for idx, stmt in enumerate(body):
+        if not isinstance(stmt, ast.For):
+            continue
+        for n in ast.walk(stmt):
+            if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+                    and n.func.attr == "append"
+                    and isinstance(n.func.value, ast.Name)
+                    and n.func.value.id == "failed"):
+                loop_idx = idx
+                break
+        if loop_idx is not None:
+            break
+    if loop_idx is None:
+        return None
+
+    def mentions_failed(node) -> bool:
+        return any(isinstance(n, ast.Name) and n.id == "failed"
+                   for n in ast.walk(node))
+
+    guarded = False
+    bad_return = None
+    for stmt in body[loop_idx + 1:]:
+        if isinstance(stmt, ast.If) and mentions_failed(stmt.test):
+            guarded = True
+        if isinstance(stmt, ast.Return):
+            if stmt.value is not None and mentions_failed(stmt):
+                guarded = True
+            elif not guarded:
+                bad_return = stmt
+    if bad_return is not None and not guarded:
+        return ("main() builds `failed` in a loop at line %d but returns "
+                "at line %d without ever checking it" % (
+                    body[loop_idx].lineno, bad_return.lineno))
+    return None
+
+
+def gate_batch_main_ignores_failed() -> None:
+    """Scans every ops/*.py file for the exit-code-lies-about-failure shape
+    this file's own history keeps producing. See
+    check_batch_main_ignores_failed()'s docstring for the full account.
+    """
+    bad = []
+    for p in sorted(glob.glob(os.path.join(ROOT, "ops", "*.py"))):
+        src = io.open(p, encoding="utf-8", errors="replace").read()
+        problem = check_batch_main_ignores_failed(src)
+        if problem:
+            bad.append("%s: %s" % (os.path.basename(p), problem))
+    if bad:
+        fail("batch-main-ignores-failed",
+             "%d file(s) can print FAILED lines and still exit 0: %s"
+             % (len(bad), bad))
+
+
 ROUTINE_PROMPT_REQUIRED_LINES = [
     "Never write a customer's name, email or address into this repository.",
     "The buyer's identity is in Stripe and must never be written into this "
@@ -26579,6 +26664,7 @@ def main() -> int:
     run_gate(gate_book_page_figure_disclosure)
     run_gate(gate_binary_files_protected)
     run_gate(gate_test_rotation_isolated)
+    run_gate(gate_batch_main_ignores_failed)
     run_gate(gate_routine_prompt_current)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)

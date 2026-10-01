@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (four real defects found in the second-pass cold-read, the recurring class turned into a gate)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (32 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Confirmed every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), no mail credential here. `preflight.py --fast` hung at the documented `gate_tests` sandbox limitation again (watched, killed); ran the narrower standing checks directly instead: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` flagged 1 (see below).
+
+**Continued the handed-off second-pass cold-read tier.** `ops/audit_visual.py` was flagged stale (Phil's own 2026-09-30 commit added a documenting comment after the ledger date); read it end to end, no defect, re-stamped clean. Then read 6 of the 14 remaining files. Four had the exact exit-code-lies-about-failure shape fixed in two sibling tools on 2026-09-26: `render_all_narrated.py` and `video_srt.py` (found independently, different variable names `failed`/`empty`), then `generate_card_heroes.py` and `generate_zone_heroes.py` (identical `failed` shape). All four fixed to return nonzero when their batch loop recorded a failure; `verify_media_delivery.py` and `import_room_images.py` read clean, no defect.
+
+**Turned the lesson into a gate.** Six instances of one defect class (2 historical, 4 this cycle) is past CLAUDE.md 10b's line. New `gate_batch_main_ignores_failed` in `preflight.py`, AST-based: finds a `for` loop in `main()` that appends to a variable literally named `failed`, then checks every later statement for an unconditional `return` that never references it. Deliberately scoped to that one name after a looser match on `bad`/`missing`/`fail` produced false positives on files that already guard correctly (`build_quest.py`, `backup_analytics.py`, `check_sellable.py`). Proved against synthetic buggy/fixed sources and the live repo in `ops/tests/test_gate_batch_main_ignores_failed.py` (6/6).
+
+**Verified:** every new/changed test file run directly and fail-then-pass proved by hand (reverted each fix, confirmed the new case failed by name, restored, reran clean): `test_render_all_narrated.py` (4/4), `test_video_srt.py` (6/6), new `test_generate_card_heroes.py` and `test_generate_zone_heroes.py` (2/2 each, fake the image_local backend so no GPU/model is needed), `test_gate_batch_main_ignores_failed.py` (6/6). `py_compile` clean on every touched file. Dependent test files re-run for regressions (`test_gate_image_prompt_negations_handled.py`, `test_gate_srt_captions_current.py`), both clean. Mobile `npm test` (pickCard, eventLog, videoLink) all passing. `check_urls.py`/`audit_pages.py`/`affiliate.py --check`/`fix_dashes.py --check`/`cold_read_ledger.py --stale` all clean after.
+
+**Went well:** the AST scan over all of `ops/*.py` surfaced 8 more candidates sharing surface vocabulary (`missing`, `bad`, `fail`); checking each by hand before trusting the scan found all 8 already correctly guarded, which is exactly why the gate is scoped to the literal name `failed` rather than the broader match.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** continue the same second-pass cold-read tier. 8 files remain (`merge_cardtext.py`, `optimize_sample_pdf.py`, `reflow.py`, `review_deck_art.py`, `review_heroes.py`, `video_narrated.py`, `zone_graphics.py`, plus any the concurrent PM check-ins have since picked up). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. `ops/render_all_narrated.py`, `ops/video_srt.py`, `ops/generate_card_heroes.py`, `ops/generate_zone_heroes.py`, `ops/preflight.py`, their test files (2 new), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (00:5x)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (05e8f4655), no reset or force. Read `BACKLOG-2026-09-07.md` in full (sections 1b through 7), `GOALS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries, `STATUS.md`. Confirmed via a subagent and directly: every BACKLOG "Now" row is done or Phil-gated, 8 open GitHub issues unchanged (6 decision, 2 blocked-on-art), 0 open PRs, so no in-flight work to resume. `preflight.py` ran clean in full once (every gate passed, 27 warnings, all documented sandbox limits) before touching anything; a second run after the fix below hung at the documented `gate_tests` headless-Chromium limit, watched for several minutes and killed, same standing shape every recent cycle reports.

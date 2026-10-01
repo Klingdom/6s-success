@@ -172,7 +172,10 @@ def main() -> int:
     print(f"\n  generated {made} of {len(todo)} in {(time.time()-t0)/60:.0f} min")
     for cid, why in failed[:6]:
         print(f"    FAILED {cid:8} {why[:70]}")
-    return 0
+    # A batch that prints FAILED lines and still exits 0 is the shape found
+    # and fixed in two sibling batch tools on 2026-09-26
+    # (video_zone_photo.py, render_all_zone_videos.py).
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
