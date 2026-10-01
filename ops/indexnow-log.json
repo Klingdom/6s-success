@@ -214,13 +214,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-20T16:55:00Z",
-   "mode": "changed",
-   "offered": 117,
-   "accepted": 117,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-20T19:36:06Z",
    "mode": "changed",
    "offered": 161,
@@ -632,6 +625,13 @@
    "offered": 11,
    "accepted": 11,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-01T05:02:02Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -844,7 +844,7 @@
   "https://6s-success.com/kids-bedroom-deck.html": "b3a861117afa4eaa",
   "https://6s-success.com/nursery-deck.html": "b38eb413035a9e76",
   "https://6s-success.com/primary-bedroom-deck.html": "85b74126d96bc10e",
-  "https://6s-success.com/workshop-deck.html": "239ad6d634bafa90",
-  "https://6s-success.com/patio-or-deck-deck.html": "40dae041bc399b67"
+  "https://6s-success.com/workshop-deck.html": "5c403d3e329ff152",
+  "https://6s-success.com/patio-or-deck-deck.html": "9b84ad78c8968458"
  }
 }
