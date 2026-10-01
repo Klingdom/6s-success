@@ -3359,15 +3359,50 @@ def room_page(room, header, footer, all_rooms=()):
         # facts, so two different markers.
         try:
             import wire_zone_heroes as _W
-            panel = _W.panel_figure(room["room"], "", room.get("intro") or "")
+            # THE PANEL MUST NOT REPEAT THE LEDE, AND ITS LABEL MUST BE TRUE.
+            #
+            # Found 2026-09-30. This passed room["intro"], which is also the
+            # page lede immediately beside it, so 11 room pages opened by
+            # saying the same two sentences twice: once as prose, once as
+            # type inside the panel. Worse, panel_figure's eyebrow reads
+            # "WHAT DONE LOOKS LIKE" and its accessible name said "what done
+            # looks like, in words", while the text shown was the room's
+            # PROBLEM: "The garage takes what every other room in the house
+            # evicts" is the opposite of done. A label that contradicts its
+            # own content is worse than no label.
+            #
+            # The room's first tip is the honest thing to put here: it is
+            # the room's own words, it is not the lede, and it answers the
+            # question a visitor on a room page actually has, which
+            # CLAUDE.md section 0.7 P2 names as "what to do first". Rooms
+            # without tips fall back to the intro under a truthful label
+            # rather than a false one.
+            _tips = room.get("tips") or []
+            _tip = _tips[0] if _tips and isinstance(_tips[0], dict) else None
+            if _tip and (_tip.get("text") or "").strip():
+                _ptext = _tip["text"]
+                _plabel = (_tip.get("label") or "Where to start").upper()
+                _paria = "%s, in the room's own words" % (
+                    _tip.get("label") or "where to start").lower()
+            else:
+                _ptext = room.get("intro") or ""
+                _plabel = "THE ROOM IN ITS OWN WORDS"
+                _paria = "the room described in its own words"
+            panel = _W.panel_figure(room["room"], "", _ptext,
+                                    label=_plabel, aria=_paria)
             panel = panel.replace(
                 '<figure class="zone-hero" id="zone-hero">',
                 '<figure class="room-lead room-lead-panel">', 1)
             panel = panel.replace(
                 "There is no photograph of this zone yet, so this is the "
                 "finished state in words, quoted from the manual.",
-                "There is no illustration for this room yet, so this is the "
-                "room in its own words.")
+                # The caption has to describe what the panel actually shows,
+                # which is now the first tip rather than the intro.
+                ("There is no illustration for this room yet, so this is "
+                 "where to start, in the room's own words."
+                 if _tip else
+                 "There is no illustration for this room yet, so this is "
+                 "the room in its own words."))
             out.append(panel)
         except Exception:                                      # noqa: BLE001
             pass

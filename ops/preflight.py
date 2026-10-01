@@ -13469,7 +13469,8 @@ def gate_pages_missing_art() -> None:
     if panelled:
         warn("page-art",
              "%d of %d room page(s) still have no chapter illustration and are "
-             "carrying a text panel built from the room's own intro instead: "
+             "carrying a typographic panel of the room's own first tip "
+             "instead: "
              "%s. That is honest on the page and still a gap in the artwork; "
              "OWNER-ACTIONS 1b is what closes it."
              % (len(panelled), len(room_pages),

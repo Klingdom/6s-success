@@ -387,7 +387,9 @@ def _wrap(text: str, width: int) -> list:
     return lines
 
 
-def panel_figure(room: str, zone: str, done: str) -> str:
+def panel_figure(room: str, zone: str, done: str,
+                 label: str = "WHAT DONE LOOKS LIKE",
+                 aria: str = "what done looks like, in words") -> str:
     """A typographic hero for a zone with no acceptable photograph.
 
     WHY A PANEL AND NOT A HOLE
@@ -416,6 +418,11 @@ def panel_figure(room: str, zone: str, done: str) -> str:
     lines = _wrap(done, 46)[:6]
     top, line_h = 132, 30
     height = top + line_h * len(lines) + 34
+    # 'Room / Zone' for a zone panel, just the room when this is a room
+    # lead: an empty zone used to leave a dangling ' / ' in the accessible
+    # name, so a screen reader announced "Garage / : what done looks
+    # like, in words" on 11 room pages.
+    subject = (room + ' / ' + zone) if zone else room
     rows = ''.join(
         '<text x="52" y="%d" class="d">%s</text>' % (top + line_h * i, esc_svg(ln))
         for i, ln in enumerate(lines))
@@ -431,17 +438,21 @@ def panel_figure(room: str, zone: str, done: str) -> str:
         'preserveAspectRatio="xMidYMid meet" '
         'style="width:100%%;height:auto;display:block;border-radius:14px;'
         'margin:26px 0" '
-        'role="img" aria-label="%s: what done looks like, in words.">'
+        'role="img" aria-label="%s: %s.">'
         '<style>.bg{fill:#22323c}.k{fill:#bc4b2a}'
         '.l{font:600 15px system-ui,sans-serif;fill:#9fb3bd;letter-spacing:.09em}'
         '.z{font:700 34px Georgia,serif;fill:#fff}'
         '.d{font:400 20px Georgia,serif;fill:#e6eef2}</style>'
         '<rect width="900" height="%d" class="bg" rx="14"/>'
         '<rect x="52" y="44" width="46" height="5" class="k" rx="2"/>'
-        '<text x="52" y="82" class="l">WHAT DONE LOOKS LIKE</text>'
+        '<text x="52" y="82" class="l">%s</text>'
         '<text x="52" y="120" class="z">%s</text>%s</svg>'
-    ) % (height, esc_svg(room + ' / ' + zone), height,
-         esc_svg(zone), rows)
+    # The subject is 'Room / Zone' for a zone panel and just the room when
+    # this is a room lead, because an empty zone used to leave a dangling
+    # ' / ' in the accessible name: a screen reader announced
+    # "Garage / : what done looks like, in words" on 11 room pages.
+    ) % (height, esc_svg(subject), esc_svg(aria), height,
+         esc_svg(label), esc_svg(zone), rows)
     # THE OPENING TAG MUST MATCH FIG EXACTLY. The first version added
     # style="margin:26px 0" here, so FIG (which matches
     # '<figure class="zone-hero" id="zone-hero">') no longer matched this
