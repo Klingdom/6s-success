@@ -18,8 +18,8 @@
     },
     "audit_catalog.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "check_price_drift never masked overlapping live names the way check_retired_sold already did; a live substring pair (Vanity Counter Pack inside Guest Vanity Counter Pack, both $4 today) would falsely blame the short SKU for the long SKU's own price the day either price changes independently. Fixed by masking longer live names before searching, same helper the retired check already uses, aimed the other way. ops/tests/test_audit_catalog.py new case fail-then-pass proved directly."
+      "date": "2026-10-01",
+      "note": "Re-verified 2026-10-01: file was touched same day by this morning's fix (fixture-collision false-positive, excluding _audit_catalog_fixture_<pid>.html from pages() by default, opt-in via --include-fixtures), already fail-then-pass proved and pushed. Re-confirmed directly rather than carried forward: ops/audit_catalog.py parses clean, the PROBE_PREFIX/INCLUDE_FIXTURES exclusion is present in the source, and ops/tests/test_audit_catalog.py (drift comparison, correct/wrong prices, unknown buy links) passes end to end, exit 0."
     },
     "audit_pages.py": {
       "status": "fixed",

@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, addendum: the full preflight left running in the background this cycle finished clean; one stale ledger entry found and closed
+
+**The full `python ops/preflight.py` started earlier this cycle, left running past the cycle's own close rather than killed, finished on its own: every gate passed, 28 warnings, all of them standing (no Stripe/SSH/mail credential, site unreachable from here, Pillow absent, deck-print-tier/page-art/deck-art already tracked in `DECISIONS.md`/GitHub issues #2/#29).** Checked the tail rather than assumed clean, matching the standing lesson from the 06:1x addendum earlier today.
+
+**One real, fixable item among the warnings:** `gate_cold_read_ledger_entries_not_stale` named `ops/audit_catalog.py` as ledgered 2026-09-26 but last touched 2026-10-01, by this morning's own fixture-collision fix. Verified before re-ledgering, not assumed: `ops/audit_catalog.py` parses clean, the `PROBE_PREFIX`/`INCLUDE_FIXTURES` exclusion from this morning's fix is present in the source, and `ops/tests/test_audit_catalog.py` passes end to end (exit 0). Re-added via `python ops/cold_read_ledger.py --add`, status `fixed`, dated today. `python ops/cold_read_ledger.py --stale` now reports 0.
+
+**Partly confirmed on GitHub's own runner, not yet whole:** `checks.yml` run 1743, on the exact commit this morning's fixture fix landed on (`02f3bcdb1`), passed its Preflight step (20m23s, `success`); its test-suite step was still `in_progress` when checked. This is the same build-id fix multiple earlier cycles today could only confirm locally, now green on CI for the step that matters to it; the run's overall conclusion is still open and the next cycle should read it directly rather than assume.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (continued the content-level visitor read of room-deck/zone pages, 5 pages read, no defect found)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean throughout. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed directly: every BACKLOG "Now" row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable, none newly commented. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this environment, honestly unchecked, not empty, same as every prior cycle.
