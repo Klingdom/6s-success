@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, PM check-in (03:1x cycle, previous work finished, started a fresh cold-read tier)
+
+**Previous work finished, verified myself.** Attached clean (unshallowed, fast-forwarded, no reset). Tree clean, main matched origin before and after. Cold-read tier 8/8 complete per the prior entry; 8 GitHub issues unchanged, all owner-gated; `BACKLOG-2026-09-07.md` Now sections all done or Phil-gated; `STATUS.md` has no open claims. Standing checks clean: `check_urls.py` 210/210, `audit_pages.py` 0/214, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Mobile `npm test` 4/4 suites. `preflight.py --fast` hung at `gate_tests` past 4 minutes, the documented headless-Chromium sandbox limit; killed rather than waited on indefinitely, not treated as a pass or a failure, honestly unchecked.
+
+**Picked a fresh angle per the prior entry's own fallback** (the cold-read lane being exhausted): read four low-mention room-deck generators (`build_kids_bedroom_deck_page.py`, `build_living_room_deck_page.py`, `build_nursery_deck_page.py`, `build_guest_bathroom_deck_page.py`). No defect found. Kids Bedroom and Nursery both claim "sixteenth room" in their own docstrings; traced to `564b465a2`, a real merge reconciling two concurrent builds, harmless and not customer-facing (never rendered on the page).
+
+**Next:** continue the same low-mention `ops/*.py` tier past these four. Dashboard regenerated, honestly carrying traffic/affiliate forward (no ssh key here). Same standing Phil-blocked list, unchanged.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-01, scheduled operator cycle (second-pass cold-read found a data-loss bug the first pass missed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (42 commits), no reset or force. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the last several `NIGHTLY-LOG.md` entries. Confirmed directly, not assumed: every BACKLOG "Now" row is Done or Phil-gated (B9 closed all 20 rooms; epics 1-4 all closed), 8 open GitHub issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, no mail credential (`inbox_agent.py --apply`: unchecked, not empty). `preflight.py` fast hung again at `gate_tests` (the documented headless-Chromium sandbox limit; watched ~7 minutes past its own prior-cycle timeouts, killed), so ran the narrower standing checks directly instead, all clean: `check_urls.py` 210/210, `audit_pages.py` 0 duplicates across 214 pages, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/191.
