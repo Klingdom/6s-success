@@ -97,6 +97,52 @@ def test_stray_fixture_file_also_caught():
     assert not still_there
 
 
+def test_audit_catalog_fixture_with_live_pid_is_not_stray():
+    """Found live 2026-10-01: two independent scheduled sessions sharing one
+    sandbox collided when this gate ran while a SEPARATE, un-killed
+    test_audit_catalog.py process (not this one) had its own
+    _audit_catalog_fixture_<pid>.html genuinely open. The pid in the name
+    exists so concurrent runs cannot share a path; this gate must read it
+    back and leave a live writer's fixture alone rather than reporting and
+    deleting it out from under the still-running process."""
+    fails, still_there = _run_with_stray(
+        "_audit_catalog_fixture_%d.html" % os.getpid())
+    assert fails == [], (
+        f"a fixture whose writer pid is still alive must not be reported, "
+        f"got {fails}")
+    assert still_there, (
+        "a live writer's fixture must never be deleted out from under it")
+
+
+def test_audit_catalog_fixture_with_dead_pid_still_caught():
+    """The other half: a fixture naming a pid that is genuinely gone (the
+    original killed-run shape this gate exists for) must still be caught
+    and deleted, proving the live-pid exemption above did not accidentally
+    exempt every pid-suffixed fixture. Same Popen-then-wait idiom
+    test_audit_catalog.py's own dead-pid case uses, not os.fork (not
+    available on Windows, and this repository's own pid-liveness helper is
+    written to work there too)."""
+    import subprocess
+    p = subprocess.Popen([sys.executable, "-c", "pass"])
+    p.wait()
+    dead = p.pid
+    try:
+        os.kill(dead, 0)
+        print("  pid %d still reads alive, so a dead-pid fixture could not "
+              "be staged here. NOT VERIFIED." % dead)
+        return
+    except ProcessLookupError:
+        pass
+    except OSError:
+        print("  pid %d liveness could not be determined here. "
+              "NOT VERIFIED." % dead)
+        return
+    fails, still_there = _run_with_stray(
+        "_audit_catalog_fixture_%d.html" % dead)
+    assert len(fails) == 1 and fails[0][0] == "stray-probe-files", fails
+    assert not still_there, "a dead writer's fixture must still be deleted"
+
+
 def test_stray_ops_tests_file_caught_and_deleted():
     """A killed test_render_cards.py-shaped run, a file directly."""
     fails, still_there = _run_with_tests_stray("_scratch_render_cards.png")
