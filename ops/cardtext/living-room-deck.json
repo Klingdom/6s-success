@@ -30,7 +30,7 @@
    "zone": null,
    "difficulty": 1,
    "tagline": "SIX ZONES. EVERYBODY'S ROOM, NOBODY'S JOB YET.",
-   "objective": "The living room belongs to everybody, which is why nobody puts anything away in it by default. This card is the map and the order.",
+   "objective": "The living room belongs to everybody, which is why nobody puts anything away in it by default. This card is the map.",
    "zones_in_order": [
     "LVZ-001 Sofa and Seating Zone",
     "LVZ-002 Coffee Table",
