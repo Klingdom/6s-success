@@ -719,7 +719,7 @@
     "send_brief.py": {
       "status": "clean",
       "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (--preview) against the real current ops/state.json. needs_phil decision-label filter still matches dashboard.py's own definition exactly (grep-confirmed, no drift); staleness refusal (12h) and the issues_available fallback both correct. No defect."
+      "note": "Read in full. Run live (--preview): subject/text/html all built correctly from the real ops/state.json, needs_phil math matches live GitHub issue count (6 decision-labelled), issues_available fallback (GitHub-unreachable case) correctly distinguished from a real zero. No defect. Independently re-read the same day by a concurrent cycle: needs_phil filter re-confirmed against dashboard.py's own definition, staleness refusal confirmed. Two independent reads, same verdict."
     },
     "send_questions.py": {
       "status": "fixed",
@@ -777,9 +777,9 @@
       "note": "Read cold; code correctly matches gate_deck_art_withheld's WITHHOLD set, both index.json and on-disk-URL checks cover withheld codes, no defect found."
     },
     "status_pdf.py": {
-      "status": "fixed",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 PM check-in: the offer table listed a second 'Entryway deck' row for the 16 withheld cards with its own card count and a contradicting Withheld state, alongside the live 72-card row from the same deck, reading as a second competing deck rather than a note about the first. Relabelled 'of which, N Entryway cards' to match status_report.py's own honest phrasing of the same figures. reportlab not installed in this sandbox so the rendered PDF could not be visually confirmed; syntax-checked and no test covers the changed string."
+      "status": "clean",
+      "date": "2026-10-01",
+      "note": "Read in full (332 lines). site_state()/dec/stale logic correctly reads live fields (live_links_verdict, site_live, deploy_verdict) off the same ops/state.json dashboard.py writes, no second hand-typed copy to drift. Cannot execute the actual PDF build here: reportlab is not installed in this sandbox (ModuleNotFoundError), so the Table/Paragraph rendering itself is UNVERIFIED here, not guessed, same class as shrink_sample.py's PIL gap; the data-wiring half it shares with status_report.py is independently covered by gate_status_report_products_consistent/gate_status_report_mail_unknown. No defect found in what could be checked."
     },
     "status_report.py": {
       "status": "fixed",
@@ -829,7 +829,7 @@
     "sync_page_links.py": {
       "status": "clean",
       "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (--check). discover_files() still covers both *.html and *.js per the module's own WHAT COUNTS AS A PAGE lesson; correctly refuses with .env.secrets not found rather than reporting a false clean. No defect."
+      "note": "Read in full (162 lines). Logic sound: resolves dead hardcoded buy.stripe.com links by SKU metadata lookup against Stripe's live catalogue, covers both *.html and *.js (data.js, quest.js), leaves orphan/sku-less dead links alone rather than guessing, --apply re-verifies after writing. --check correctly reports 'nothing to authenticate with' and exits 1 (honest unchecked, not a false pass) with no Stripe credential in this sandbox, same standing credential gap as every other Stripe-touching tool here. No defect. Independently re-read the same day by a concurrent cycle: discover_files() *.html/*.js coverage re-confirmed. Two independent reads, same verdict."
     },
     "sync_push.py": {
       "status": "clean",
