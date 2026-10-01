@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-01 02:02",
- "commit": "61d281f6e",
- "commit_msg": "Merge origin/main: re-derive the dashboard",
- "commits_7d": 1318,
- "commits_total": 4919,
+ "generated": "2026-10-01 02:05",
+ "commit": "0ad3b2e96",
+ "commit_msg": "Four batch tools found reporting success on a failed run; the recurring shape turned into a preflight gate",
+ "commits_7d": 1319,
+ "commits_total": 4920,
  "traffic_line": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 19:08; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 19:08",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-30 19:08",
  "affiliate_trigger_carried_from": "2026-09-30 19:08",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

@@ -29,7 +29,7 @@
     "audit_visual.py": {
       "status": "clean",
       "date": "2026-10-01",
-      "note": "Re-verified 2026-10-01 after Phil's own 2026-09-30 commit (d526b07af) added a documenting comment about the virtual-time font-loading limitation on deck pages, no behavior change. Read the full 795-line file end to end: the missing-page resolution, probe lifecycle, contrast/gradient compositing, focus-visibility and target-crowding logic are all sound and already carry extensive inline evidence of prior fixes. No new defect found. Could not re-execute the probe live in this sandbox (headless Chromium needs network for fonts, egress denied by the agent proxy), matching the documented gate_tests limitation; this is a code read, not a live re-run."
+      "note": "Flagged stale by cold_read_ledger.py --stale (last touched 2026-09-30, after the 2026-09-26 fixed date). Diffed the touching commit (d526b07af) directly: all 27 changed lines are a comment block or blank lines documenting Phil's own font-loading investigation (virtual-time budget does not fix the 20 heavy-page fallback-font caveat); zero executable lines changed. The 2026-09-26 fixed verdict (exit code reflects all 9 categories, stale retry comment corrected) still describes the real logic. Independently re-verified the same day by reading the full 795-line file end to end (missing-page resolution, probe lifecycle, contrast/gradient compositing, focus-visibility and target-crowding logic all sound). Could not re-run the live 218-page browser audit in this sandbox within a reasonable time (python ops/audit_visual.py and even --help hang past 120s needing a real browser, the same class of limitation Phil's own commit message names: 'CI cannot run it at all because it needs a browser'); re-verified by diff and by reading, not by execution, and recorded as such rather than claiming a run that did not happen."
     },
     "b9_claims.py": {
       "status": "clean",
@@ -628,8 +628,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, this cycle: added gate_cold_read_ledger_entries_not_stale (see ops/cold_read_ledger.py's own re-verification note above); every other gate in a full preflight.py --fast run this cycle passed clean through gate_tests (the documented headless-Chromium sandbox hang). No other defect found."
+      "date": "2026-10-01",
+      "note": "Re-verified 2026-10-01, this cycle: added gate_batch_main_ignores_failed (AST-based scan for main() loops that build a 'failed' list and return a value ignoring it; see ops/render_all_narrated.py's own ledger note for the full account), wired into main()'s gate sequence, fail-then-pass proved in ops/tests/test_gate_batch_main_ignores_failed.py. The change is additive (one new gate function plus one new run_gate() call); every other gate's logic is untouched. py_compile clean, module imports clean, the new gate runs 0 FAIL against the live repo."
     },
     "prerender_shop.py": {
       "status": "fixed",
