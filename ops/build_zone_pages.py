@@ -3184,6 +3184,21 @@ def room_faq(room, rm, rt):
     room pages carried a CollectionPage and an ItemList and not one
     question, so "how long does it take to organize a kitchen" had an answer
     on the page and no way for anything to find it.
+
+    The session-arithmetic answer's closing sentence must read identically
+    to the real visible notice this same generator renders a few hundred
+    lines down (the "Added together..." paragraph above the zone list);
+    only "the N sessions below come" loses its "below" here, since that
+    word points at page position and means nothing inside structured data
+    (`check_room_time_current` in preflight.py already expects exactly
+    that one-word difference, nothing more). Found 2026-10-01 during the
+    Pantry content-read cycle: this answer and the visible paragraph had
+    drifted onto two different closing sentences ("so it does not have to
+    be done in one go" here against "stopping after the first still
+    leaves the room better than it was" in the visible paragraph) on all
+    20 room pages, so the FAQPage JSON-LD described content the page does
+    not actually say. Fixed by making the closing sentence match the
+    shipped visible copy, since that copy is what a real visitor reads.
     """
     qa = []
     if rt:
@@ -3191,8 +3206,8 @@ def room_faq(room, rm, rt):
         qa.append((f"How long does it take to organize {article_for(rm)} {rm}?",
                    f"Added together, the {nz} sessions come to about {lo} to "
                    f"{hi} hours for the whole {rm}. That is not one long day. "
-                   f"Each session is one micro zone and finishes on its own, "
-                   f"so it does not have to be done in one go."))
+                   f"Each session finishes on its own, so stopping after the "
+                   f"first still leaves the room better than it was."))
     tips = {t.get("label"): t.get("text") for t in (room.get("tips") or [])}
     if tips.get("Where to start"):
         qa.append((f"Where should you start in the {rm}?",

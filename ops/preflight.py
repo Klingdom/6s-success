@@ -23068,6 +23068,18 @@ def check_room_time_current(expected_map, page_bodies) -> list:
     function's own "rounded to the nearest half hour" docstring. Fixed by
     switching `hrs()` to `math.floor(x + 0.5)`, ordinary round-half-up.
 
+    Also checks the sentence's own closing clause, after "That is not one
+    long day." Found 2026-10-01, Pantry content-read cycle: the visible
+    sentence and its FAQPage duplicate are two independent hardcoded
+    strings in `room_faq()`/`room_page()`, and only the numbers were kept
+    in sync by the 2026-09-26 fix above; the closing clause itself had
+    silently drifted onto two different claims ("so it does not have to
+    be done in one go" in the FAQPage answer against "stopping after the
+    first still leaves the room better than it was" in the visible
+    paragraph) on all 20 room pages, so the structured data described
+    content the page did not actually say. Fixed by making the FAQPage
+    answer's closing clause match the shipped visible copy.
+
     `expected_map` is {room_slug: (low_hours_str, high_hours_str, n)} from
     `ops.build_zone_pages.room_time()` itself, the single source of truth
     both the shipped HTML and this gate read from. `page_bodies` is
@@ -23075,8 +23087,10 @@ def check_room_time_current(expected_map, page_bodies) -> list:
 
     Returns problem strings, empty when every room's shipped "Added
     together" sentence and its FAQPage duplicate both state the current
-    room_time() values.
+    room_time() values and the same closing clause.
     """
+    CLOSING = ("Each session finishes on its own, so stopping after the "
+               "first still leaves the room better than it was.")
     problems = []
     for slug, expected in sorted(expected_map.items()):
         if expected is None:
@@ -23096,6 +23110,10 @@ def check_room_time_current(expected_map, page_bodies) -> list:
         if want_faq not in body:
             problems.append(f"{fname}: FAQPage room-time answer does not "
                              f"say '{want_faq}'")
+        if body.count(CLOSING) < 2:
+            problems.append(f"{fname}: visible room-time sentence and its "
+                             f"FAQPage duplicate do not share the closing "
+                             f"clause '{CLOSING}'")
     return problems
 
 

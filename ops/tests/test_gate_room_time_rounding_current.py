@@ -8,6 +8,14 @@ nearest higher one. Nine of the twenty rooms' zone-session sums land on
 such a tie; the visible "Added together..." sentence and its FAQPage
 duplicate both silently understated the room by half an hour.
 
+Also proves the 2026-10-01 extension: the visible sentence's closing
+clause ("Each session finishes on its own, so stopping after the first
+still leaves the room better than it was.") must appear verbatim in its
+FAQPage duplicate too. Found during the Pantry content-read cycle: the two
+had drifted onto different closing clauses on all 20 room pages, each a
+separate hardcoded string in ops/build_zone_pages.py that only the numeric
+values were being kept in sync between.
+
 Also runs against the real, committed corpus and site/rooms/*.html, so a
 future reversion to round() (or any other drift between the generator and
 the shipped page) fails this test directly.
@@ -27,13 +35,20 @@ import preflight                                               # noqa: E402
 import build_zone_pages as bzp                                 # noqa: E402
 
 
-def _page(lo, hi, n, room="Kitchen"):
+CLOSING = ("Each session finishes on its own, so stopping after the first "
+           "still leaves the room better than it was.")
+
+
+def _page(lo, hi, n, room="Kitchen", closing=CLOSING, faq_closing=None):
+    if faq_closing is None:
+        faq_closing = closing
     faq = ('{"acceptedAnswer": {"text": "Added together, the %d sessions '
            'come to about %s to %s hours for the whole %s. That is not one '
-           'long day."}}' % (n, lo, hi, room.lower()))
+           'long day. %s"}}' % (n, lo, hi, room.lower(), faq_closing))
     notice = ('<p class="notice"><b>Added together, the %d sessions below '
-              'come to about %s to %s hours for the whole %s.</b> Rest.</p>'
-              % (n, lo, hi, room.lower()))
+              'come to about %s to %s hours for the whole %s.</b> That is '
+              'not one long day. %s</p>'
+              % (n, lo, hi, room.lower(), closing))
     return "<h1>%s</h1>%s%s" % (room, notice, faq)
 
 
@@ -138,12 +153,32 @@ def main() -> int:
             fails.append("%s.html does not visibly state the corrected "
                          "'%s'" % (slug, want))
 
+    # 9. The 2026-10-01 regression: the visible sentence's closing clause
+    #    drifted onto a different FAQPage closing clause ("so it does not
+    #    have to be done in one go", the pre-fix text), everything else
+    #    about both copies correct. Must be caught as exactly one problem,
+    #    named by file, and a page where both match must stay clean.
+    drifted_closing = {"kitchen.html": _page(
+        "4.5", "7.5", 7,
+        faq_closing="Each session is one micro zone and finishes on its "
+                    "own, so it does not have to be done in one go.")}
+    problems = preflight.check_room_time_current(
+        {"kitchen": ("4.5", "7.5", 7)}, drifted_closing)
+    if len(problems) != 1 or "closing clause" not in problems[0]:
+        fails.append("closing-clause drift NOT caught as exactly one "
+                     "named problem: %s" % problems)
+    matched_closing = {"kitchen.html": _page("4.5", "7.5", 7)}
+    problems = preflight.check_room_time_current(
+        {"kitchen": ("4.5", "7.5", 7)}, matched_closing)
+    if problems:
+        fails.append("matching closing clause wrongly flagged: %s" % problems)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: 8 cases")
+    print("OK: 9 cases")
     return 0
 
 
