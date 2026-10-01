@@ -242,9 +242,9 @@
       "note": "Second-pass re-read 2026-10-01 PM check-in: mirrors the verified build_kitchen_deck_page.py template, whole-room card id assertion present and matches real data (PNA-011/012/013), og:image resolves to a real, on-disk zone photograph (pantry--dry-goods-shelves-lg.jpg), full whole-site wiring chain present. Regenerated live and confirmed idempotent (byte-identical to the committed file) once run on a stable tree; an earlier attempt against a tree with a concurrent backgrounded preflight.py still running produced a transient site-wide asset-fingerprint mismatch, discarded via git stash rather than committed, not a code defect (re-confirmed by rerunning on a quiescent tree). No defect found."
     },
     "build_patio_or_deck_deck_page.py": {
-      "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read, same finding and fix as build_workshop_deck_page.py's ledger entry this date: the two decks shipped in the same concurrent-session batch (STATUS.md, 2026-09-29) and each omitted the other from its own 'shared root cause vocabulary' sentence (JSON-LD abstract, fulfil-note, and the on-page Root Causes section). Verified 15 of 16 root causes are genuinely shared before fixing. Added the missing cross-reference to Workshop, regenerated the page, confirmed via git diff only the three intended sentences changed, and confirmed gate_patio_or_deck_deck_rendered, gate_deck_og_image_honest, gate_copy_vs_control and gate_unique_names plus their dedicated tests all pass. No new gate: see the paired build_workshop_deck_page.py entry for why this one-off cannot recur now that B9 (all 20 rooms) is closed."
     },
     "build_primary_bathroom_deck_page.py": {
       "status": "clean",
@@ -303,8 +303,8 @@
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "PM check-in cold-read: mirrors build_garage_deck_page.py structure, whole-room card id assertion (SLA-007/008/009) verified against real deck json, hero image slug verified against real file on disk (stair-landing--landing-surface-or-console-lg.jpg), footer matches canonical template, regeneration byte-identical (idempotent). No defect found."
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read, handed off by name from the prior PM check-in (04:1x cycle, continuing past build_pantry_deck_page.py/build_primary_bedroom_deck_page.py). Read in full (409 lines). Verified independently rather than trusted: ZONE_ORDER, deck card count (40) and the whole-room action-card id assertion (SLA-007/008/009) all confirmed live against build_stair_landing_deck.build(), not just read from the docstring. Hero image file confirmed on disk (stair-landing--landing-surface-or-console-lg.jpg/.avif/.webp, all three sizes). The 'Start with the stairs themselves' opening sentence does not match ZONE_ORDER[0] ('Landing Surface or Console'); checked this is not a defect by surveying all 20 room decks' equivalent sentence: roughly half do and half do not match their own ZONE_ORDER[0], and in every mismatched case (Workshop, Primary Bedroom, Patio or Deck, Living Room, Guest Bedroom, Entryway) the named zone is real and present in the room, so this is deliberate real-world sequencing advice (which zone to physically tackle first), not a bug tied to page order. No defect found in this second pass."
     },
     "build_standards.py": {
       "status": "clean",
@@ -322,9 +322,9 @@
       "note": "Read in full (166 lines). Found and fixed a real defect: html_for() substituted vz.FONTS (a bare filesystem directory path) directly into <style> in place of an @font-face rule, so none of the 114 thumbnails ever actually loaded the Inter font; 'font-family: Inter' silently fell back to whatever system font the render machine has. Confirmed with a pixel diff (Pillow+numpy installed for the check): 8.8% of pixels differed, max channel delta 204/255, before the fix. Added the missing @font-face for Inter-800 (the weight .room/.zone actually use; the real Inter-800-normal.woff2 file already existed on disk, just unlinked), regenerated all 114 thumbnails, new gate_thumbnail_font_face in preflight.py (fail-then-pass proved 4 ways in ops/tests/test_gate_thumbnail_font_face.py: bare-path bug, no @font-face at all, wrong declared weight, and the real fixed shape)."
     },
     "build_workshop_deck_page.py": {
-      "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the same shared template as the other room deck generators, idempotent regeneration confirmed byte-identical. No defect."
+      "status": "fixed",
+      "date": "2026-10-01",
+      "note": "Second-pass cold-read (first pass 2026-09-29 was clean but was not cross-checked against its own concurrent-build sibling). Found a real, live customer-visible gap: Workshop and Patio or Deck shipped in the same concurrent-session batch (STATUS.md, 2026-09-29), and each deck's hand-authored 'shared root cause vocabulary' sentence (3 occurrences: JSON-LD abstract, fulfil-note, and the on-page Root Causes section, all rendered on the live page) named every sibling deck shipped before it except the other half of its own concurrent pair. Verified before fixing: 15 of 16 root causes are genuinely shared between the two decks (not assumed), so the omission was real, not a false positive. Fixed by adding the missing cross-reference to both generators (build_workshop_deck_page.py adds Patio or Deck, build_patio_or_deck_deck_page.py adds Workshop), regenerated both pages, confirmed via git diff that only the three intended sentences changed in each, and confirmed the relevant gates (gate_workshop_deck_rendered, gate_patio_or_deck_deck_rendered, gate_deck_og_image_honest, gate_copy_vs_control, gate_unique_names) and their dedicated tests all pass. No new preflight gate: this is a one-off concurrency artifact from B9, which is now permanently closed (all 20 rooms shipped), so the exact shape cannot recur; a sitewide gate requiring every deck to list every other deck would be wrong, since the other 18 decks' lists are correct, intentional historical snapshots of lineage at their own build time, not meant to be exhaustive of rooms shipped later."
     },
     "build_youtube_metadata.py": {
       "status": "clean",

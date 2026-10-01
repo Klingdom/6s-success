@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-01, scheduled operator cycle (second-pass cold-read found a real, live cross-reference gap in the Workshop/Patio or Deck pair, fixed; preflight's gate_tests hung at its documented sandbox limit)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (59 commits), no reset or force, tree clean before and after. Read `BACKLOG-2026-09-07.md` in full, `BACKLOG-2026-H2.md`'s surviving process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, the last four `NIGHTLY-LOG.md` entries (which are prepended, not appended, newest first). Confirmed directly: every `BACKLOG-2026-09-07.md` "Now" row is done or Phil-gated, section 5 is Hold pending traffic/evidence, section 6 is Phil's own owner gates. `inbox_agent.py --apply`: no mail credential, honestly unchecked, not empty. GitHub re-read directly: 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable; issue #15's 2026-09-30 comment already correctly escalated, nothing actionable from this sandbox.
+
+**Continued the handed-off second-pass cold-read tier** (04:1x PM check-in named `build_stair_landing_deck_page.py` and `build_workshop_deck_page.py` as the next 2-mention candidates). Read both in full. `build_stair_landing_deck_page.py`: no defect. Its "Start with the stairs themselves" opening does not match its own `ZONE_ORDER[0]`; checked this against all 20 room decks before treating it as a finding, and roughly half deliberately name a different real zone than their own first listed one (Workshop, Primary Bedroom, Patio or Deck, Living Room, Guest Bedroom, Entryway), always a genuine zone in that room, so it is real-world sequencing advice, not a page-order bug.
+
+**The real find, in `build_workshop_deck_page.py`.** `STATUS.md` already records that Workshop and Patio or Deck were "built by two concurrent sessions in parallel" as the last two of the 20 room decks. Each deck's hand-authored "shared root cause vocabulary" sentence lists every sibling deck that existed at its own build time, by design (checked this against all 20 pages before acting: the other 18 decks' lists are correct, intentional historical snapshots, not meant to include rooms shipped later, so a sitewide "must list every other deck" gate would be wrong). But Workshop and Patio or Deck shipped at the *same* moment, and each omitted the other, in three rendered places per page (JSON-LD abstract, fulfil-note, and the live Root Causes section). Verified before fixing, not assumed: 15 of 16 root causes are genuinely shared between the two decks. Fixed both generators (`build_workshop_deck_page.py` adds Patio or Deck, `build_patio_or_deck_deck_page.py` adds Workshop), regenerated both pages, confirmed via `git diff` that only the three intended sentences changed in each file, nothing else moved.
+
+**No new gate.** This is a one-off concurrency artifact from B9, which is permanently closed (all 20 rooms shipped); the exact shape cannot recur, and the generalized version of the check would be wrong for every other deck. Recorded the full reasoning in `ops/cold-read-ledger.json` instead (three entries: `build_stair_landing_deck_page.py` clean, `build_workshop_deck_page.py` and `build_patio_or_deck_deck_page.py` fixed).
+
+**Verified:** `gate_workshop_deck_rendered`, `gate_patio_or_deck_deck_rendered`, `gate_deck_og_image_honest`, `gate_deck_article_grammar`, `gate_copy_vs_control` and `gate_unique_names` all called directly against the live tree, all pass; their dedicated `ops/tests/test_*.py` files run directly, all pass. `check_urls.py` 210/210, `audit_pages.py` 214/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` (165 documents), mobile `npm test` 4/4 suites. `python ops/preflight.py` (unbuffered, 600s budget, run in the background rather than killed early) ran every gate through `gate_image_coverage` cleanly and then hung at `gate_tests`, the same documented headless-Chromium sandbox limit this log has recorded for weeks; timed out rather than reported as a pass.
+
+**Went well:** checking the "every deck should list every other deck" instinct against the real site before writing a gate for it. That generalization would have been wrong and would have forced needless churn across 18 correctly-written files.
+
+**Did not go well:** same unrelated-history shallow-checkout shape; same `gate_tests` sandbox hang.
+
+**Changing next cycle:** none; the standing fallback (independent re-verification plus a cold-read of a low-mention file) is still the right move while BACKLOG stays all done or Phil-gated.
+
+**Next:** cold-read tier has no more 2-mention candidates named by the prior cycle; the next cycle should pick a fresh angle (a different `ops/*.py` tier, or a direct content read of a recently-shipped page) per the established fallback. Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/build_workshop_deck_page.py`, `ops/build_patio_or_deck_deck_page.py`, `site/workshop-deck.html`, `site/patio-or-deck-deck.html`, `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched. IndexNow not applicable: both pages already existed and were not rewritten structurally, only two sentences corrected.
+
 ## 2026-10-01, PM check-in (04:1x cycle)
 
 NEXT FOR THE OPERATOR: continue the low-mention ops/*.py second-pass cold-read tier past build_pantry_deck_page.py and build_primary_bedroom_deck_page.py; build_stair_landing_deck_page.py and build_workshop_deck_page.py are the remaining 2-mention candidates named by the prior cycle.

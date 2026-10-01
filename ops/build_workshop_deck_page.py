@@ -142,8 +142,8 @@ def build_body(deck: dict) -> str:
                   f'Primary Bathroom, Garage, Stair Landing, Pantry, Hall '
                   f'Closet, Dining Room, Guest Bedroom, Guest Bathroom, '
                   f'Family Room, Living Room, Mudroom, Nursery, Kids '
-                  f'Bedroom and Primary Bedroom decks use. Pull one when '
-                  f'a friction card sends you here.</p>'
+                  f'Bedroom, Primary Bedroom and Patio or Deck decks use. '
+                  f'Pull one when a friction card sends you here.</p>'
                   + "".join(card_html(c, by_id) for c in causes)
                   + '</section>')
     parts.append('<section class="kzone"><h2>Events, the day that tests '
@@ -221,7 +221,7 @@ PAGE = """<!doctype html>
   "gameItem": {"@type": "Thing", "name": "__N__ printable cards, front and back, typeset, no illustrations yet"},
   "publisher": {"@id": "https://6s-success.com/#organization"},
   "genre": "Household organization",
-  "abstract": "__ARTICLE__ __N__ card deck for the workshop, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen, Entryway, Laundry Room, Home Office, Primary Bathroom, Garage, Stair Landing, Pantry, Hall Closet, Dining Room, Guest Bedroom, Guest Bathroom, Family Room, Living Room, Mudroom, Nursery, Kids Bedroom and Primary Bedroom decks), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
+  "abstract": "__ARTICLE__ __N__ card deck for the workshop, built from the Manual's real __NZONES_LOWER__ zones: the frictions each one causes, the __NCAUSES_LOWER__ root causes underneath (shared with the Kitchen, Entryway, Laundry Room, Home Office, Primary Bathroom, Garage, Stair Landing, Pantry, Hall Closet, Dining Room, Guest Bedroom, Guest Bathroom, Family Room, Living Room, Mudroom, Nursery, Kids Bedroom, Primary Bedroom and Patio or Deck decks), the actions that fix them, and the standard each zone keeps. Typeset, free, no illustrations yet."
 }
 </script>
 <!-- SEO:END -->
@@ -281,7 +281,7 @@ __CSS__
         <a class="btn btn-primary btn-lg" href="#workshop-cards">Read the deck</a>
       </div>
       <p class="fulfil-note">Prefer paper? This page's own print layout lays the fronts out at true card size. Use your browser's print dialog.</p>
-      <p class="fulfil-note">This is the first Workshop deck on the site: built straight from the same Manual as the Kitchen, Entryway, Laundry Room, Home Office, Primary Bathroom, Garage, Stair Landing, Pantry, Hall Closet, Dining Room, Guest Bedroom, Guest Bathroom, Family Room, Living Room, Mudroom, Nursery, Kids Bedroom and Primary Bedroom decks, with the same rules.</p>
+      <p class="fulfil-note">This is the first Workshop deck on the site: built straight from the same Manual as the Kitchen, Entryway, Laundry Room, Home Office, Primary Bathroom, Garage, Stair Landing, Pantry, Hall Closet, Dining Room, Guest Bedroom, Guest Bathroom, Family Room, Living Room, Mudroom, Nursery, Kids Bedroom, Primary Bedroom and Patio or Deck decks, with the same rules.</p>
     </div>
   </div>
 </section>
