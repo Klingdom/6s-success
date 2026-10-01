@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-01 (11:4x cycle)
+
+NEXT FOR THE OPERATOR: Entryway, content-level visitor read lane, because Kitchen, Living Room, Workshop and Garage are now read and Entryway is the original M4 pilot room never itself read in this lane, as the 10:4x and 11:2x cycles already named and nothing since has changed that pick.
+
+**Previous work: finished.** Clean attach: fetch, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (`c5d1cfc39`), 106 commits, no reset or force, tree clean before and after. The 11:2x cycle's `STATUS.md` deploy-gap correction and the Garage content-read lane's D5 pilot-cohort comment fix (prior cycles, both below) are on `main`, pushed, not just committed.
+
+**Verified rather than cited:** GitHub reconfirmed directly, 8 open issues unchanged (6 `decision`, 2 `blocked-on-art`/P0, including #15 and #2), 0 open PRs, no issue updated in the last hour. `check_urls.py` 210/210, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0. Full `python ops/preflight.py` started in the background: every gate through `gate_image_coverage` passed, 0 FAIL observed, before it reached the standing `gate_tests` headless-Chromium sandbox hang this log has named for weeks; left running past this entry's close rather than killed or trusted blind.
+
+**Re-read `BACKLOG-2026-09-07.md` in full rather than re-cite a prior pointer.** Section 0 (traffic) is still the real constraint and has not improved. Sections 2-4 ("Now") are all done or Phil-gated. Section 5 (email capture, physical/paid decks, A/B tests, Impact re-application) stays correctly Hold, ahead of the constraint. Section 6 is 6 owner-gate actions (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy, Apple/Play accounts, on-device screenshots), none takeable from here. `EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line is unchanged: production serves an older build than the repository, the redeploy needs Phil's own hand (issue #35). No new BACKLOG item is genuinely unblocked.
+
+**Did not start anything large this slot**, per this run's own instruction to hand off rather than begin three minutes before the operator. The content-read lane's existing Entryway handoff in `STATUS.md` (set by the 10:4x cycle, reconfirmed by 11:2x) is still accurate and still unstarted; left it as is rather than rewrite a correct handoff for its own sake.
+
+**Next:** same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. Entryway to the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (11:2x cycle)
 
 **Previous work: finished.** Clean attach (unshallow, ff-only onto `2e17ca516`, no reset). CI in progress normally on HEAD (Preflight step, ~18 min in, matches usual runtime). 8 open issues unchanged (6 decision, 2 blocked-on-art), 0 PRs. check_urls.py 210/210, fix_dashes.py 0/0, cold_read_ledger.py 0 stale.
