@@ -330,6 +330,7 @@ Maintain:
 | LRN-0025 | At this traffic scale one 20-minute burst can invert a weekly trend, so check concentration before calling direction | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0026 | Every instrument must exclude its own operator, because a tool that measures a system also acts on it | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0027 | On a shared main, one red build strands every change made near it, and the tooling will tell you to keep retrying | ENGINEERING / DELIVERY | SUPPORTED | HIGH |
+| LRN-0028 | A generated image can be good and still wrong, and the reviewer's first instinct is aesthetic | MEDIA / QUALITY | SUPPORTED | MEDIUM |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -922,6 +923,56 @@ worth recording separately rather than folded into that item.
 **Next action.** When a change does not reach production, establish whether an
 image exists before doing anything else. The tools now answer that without
 being asked.
+
+#### LRN-0028: A generated image can be good and still wrong, and the reviewer's first instinct is aesthetic
+
+**Status:** SUPPORTED
+**Confidence:** MEDIUM (two images reviewed directly, on top of LRN-0012's 92)
+**Domain:** MEDIA / QUALITY
+**Measured:** 2026-09-30
+
+**Observation.** Seven entryway card heroes are rejected and render a
+text-only concept panel instead. The gate watching them says reviewing
+replacements needs the Gemini vision billing in `OWNER-ACTIONS.md`. That is
+true of the automated reviewer and not true of the question: an operator with
+vision can look. So the unreviewed candidates on disk were looked at directly
+rather than inherited as verdicts.
+
+EE-002 is meant to show four wet umbrellas in a stand. The candidate shows one
+open umbrella balanced on a side table, against roughly 70% blank wall, and an
+umbrella open indoors is the opposite of the "tidy and settled" the card
+promises. Easy call.
+
+EU-002 is the one worth writing down. The candidate is a genuinely good
+photograph: two wall-mounted hook rails, coats and scarves hung straight, two
+bags, a small side table with books, warm light, no text, no mangled geometry.
+My first judgement was "this is good". Then I read what the card is for: **a
+wall calendar, key hooks and labelled letter slots.** None of those three is
+in the frame. It is an attractive photograph of a different micro zone.
+
+**Implication.** The failure mode is not that bad images pass; it is that good
+images of the wrong thing pass, because aesthetic quality is what the eye
+reports first and subject match takes a deliberate second step. This is
+exactly the gap `ops/accept_image.py` was built for, and its own docstring
+says so: a checklist "derived mechanically from the same record that prints a
+card", "answered as closed yes/no questions, so a generated image cannot pass
+while contradicting the content it illustrates".
+
+I had that tool available and judged by eye first anyway. Read the card's
+subject BEFORE opening the image, not after.
+
+**It also confirms LRN-0012 rather than softening it.** The local model keeps
+producing a plausible room and dropping the named objects. Both candidates
+examined are correctly rejected, so the stock on disk cannot close this gap
+and `gate_deck_download_has_art`'s "the first half needs no decision and no
+spend" understated the cost. At 3 of 12 acceptable for cards, seven
+replacements is roughly 28 generations; the gate now says so.
+
+**Next action.** When reviewing generated art, open the record first and write
+the required objects down, then look. If the image is good but the objects are
+absent, it is a reject, and the note should say "wrong subject" rather than
+"aesthetic", because those two send the next generation in opposite
+directions.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 

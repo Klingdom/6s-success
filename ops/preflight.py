@@ -13601,7 +13601,19 @@ def gate_deck_download_has_art() -> None:
          "GENERATING replacements needs free system RAM (the local "
          "model load dies at about 2 GB free of 15.8), and REVIEWING "
          "them needs the vision billing in OWNER-ACTIONS.md. The "
-         "first half needs no decision and no spend."
+         "first half needs no decision and no spend, but it is not cheap: "
+         "LRN-0012 measured this model at 3 of 12 acceptable for cards and "
+         "0 of 8 for zones across 92 images, so 7 replacements is roughly "
+         "28 generations, and the stock already on disk will not do it. "
+         "Checked 2026-09-30 by looking at the unreviewed candidates "
+         "directly rather than inheriting a verdict: every rejected code "
+         "has 1 to 2 candidates never recorded per-sha, and the two "
+         "examined are both correctly rejected. EE-002 wants four wet "
+         "umbrellas in a stand and shows one open umbrella on a side "
+         "table against 70 percent blank wall; EU-002 wants a wall "
+         "calendar, key hooks and labelled letter slots and shows coats "
+         "and bags on hook rails, which is an attractive photograph of "
+         "the wrong subject."
          % (len(missing), len(d), where, ", ".join(missing)))
 
 
