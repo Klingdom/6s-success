@@ -485,10 +485,10 @@
       "best_page": "/zones/nursery-the-baby-clothing-zone.html",
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "baby nursery organization ideas",
@@ -1859,10 +1859,10 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best entryway organization ideas",
@@ -2510,10 +2510,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "best way to organize dresser",
@@ -13998,10 +13998,10 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to arrange dish rack",
@@ -26342,10 +26342,10 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize diaper caddy cart",
@@ -26360,10 +26360,10 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to organize diaper drawer",
@@ -51720,6 +51720,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-02T20:59:00Z",
-  "scored_against_commit": "3f1764a46"
+  "scored_at": "2026-10-02T21:12:48Z",
+  "scored_against_commit": "ba7d00d0f"
 }

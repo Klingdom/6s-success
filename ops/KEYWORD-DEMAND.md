@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-02T08:12:24Z from google, bing, 151 seeds, 302 attempts: 263 returned completions, 39 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-02T20:59:00Z against 218 page(s) at commit 3f1764a46. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-02T21:12:48Z against 218 page(s) at commit ba7d00d0f. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2827. Checked against 218 published page titles: 1131 covered, 1477 partial, 219 gap.
+**Queries found:** 2827. Checked against 218 published page titles: 1134 covered, 1477 partial, 216 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 219, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 216, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -32,7 +32,6 @@ Showing the top 80 of 219, ordered by the best rank the phrase reached in any on
 | 2 | attic storage ideas ikea | - | More storage will not fix a messy room (0.33) |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 2 | how to organize diaper caddy cart | - | How to organize the nursery diaper storage (0.33) |
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize snacks | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -40,7 +39,6 @@ Showing the top 80 of 219, ordered by the best rank the phrase reached in any on
 | 2 | organize car maintenance tips | - | How to organize the garage car care supplies (0.33) |
 | 3 | attic storage ideas with trusses | - | More storage will not fix a messy room (0.33) |
 | 3 | basement organization ideas reddit | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | best way to organize diaper caddy | - | How to organize a junk drawer (and keep it that way) (0.33) |
 | 3 | buy items in bulk to reorganize storage | - | How to organize the garage bulk and overhead storage (0.40) |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
@@ -54,7 +52,6 @@ Showing the top 80 of 219, ordered by the best rank the phrase reached in any on
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
 | 4 | foyer design ideas photos | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) |
-| 4 | how to arrange diaper caddy | - | How to organize the nursery diaper storage (0.33) |
 | 4 | how to arrange hotel bed | - | How to organize the guest bedroom bed and linens (0.33) |
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) |
@@ -101,6 +98,9 @@ Showing the top 80 of 219, ordered by the best rank the phrase reached in any on
 | 8 | how to attach countertop to vanity | - | How to organize the guest bathroom vanity counter (0.33) |
 | 8 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 8 | how to organize beads for jewelry making | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
+| 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 
 ## Partial: we are close, and the title does not use their words
 

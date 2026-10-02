@@ -1,0 +1,8 @@
+{
+ "_why": "The household words for a micro zone this site names differently, the same idea as ops/room-also-called.json but at zone scope. Every entry is measured, not guessed: the 'queries' and 'covered' figures are from ops/keyword-demand.json's own harvest. A word earns a place here only if people type it AND this site does not already answer for it.",
+ "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
+ "_measured_at": "2026-10-02T08:12:24Z",
+ "zones": {
+  "Nursery|Diaper and Care Backstock": {"names": ["diaper caddy"], "queries": 3, "covered": 0}
+ }
+}
