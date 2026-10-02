@@ -1179,6 +1179,12 @@ GENERATOR_OWNERSHIP_CHAIN = [
     # vocabulary to drift: LRN-0023 is what that costs, one wrong sentence
     # live on 100 pages, perfectly consistent everywhere and wrong everywhere.
     "build_messy_article.py",
+    # The cheap/budget/DIY query-cluster article, added 2026-10-02. Same
+    # reasoning as build_messy_article.py just above: its two root causes and
+    # their tests come from ops/root_causes.py, and its two zone quotes come
+    # from content/manual/source/content.json, so it is re-derived on every
+    # run rather than left to drift from either source.
+    "build_budget_diy_article.py",
     "build_quest.py", "build_printpack.py",
     "build_standards.py",
     # The printable Micro Zone Map, added 2026-09-18: 20 room sheets built
