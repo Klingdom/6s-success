@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (03:1x cycle, a 12 hour autonomous-operation outage found and explained, not a repository defect)
+
+NEXT FOR THE OPERATOR: Guest Bedroom, content-level visitor read lane, unchanged from the 2026-10-01 15:1x handoff below, because the outage below means nobody ever started it.
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force, 8 commits fast-forwarded). Working tree clean before and after. The 2026-10-01 15:1x PM cycle's own work (`gate_downloads_noindex` fix, Primary Bedroom release, Guest Bedroom handoff) was genuinely shipped, pushed and CI-relevant files unchanged since.
+
+**The real finding this cycle: every scheduled PM and operator run between 15:19 UTC on 2026-10-01 and 03:00 UTC on 2026-10-02, about 12 hours, failed immediately on start.** Noticed because `git log` showed nothing but automated bot commits (social-rotation scripts, the unrelated `ops/checkin.py` hourly record) across that entire span, no agentic PM check-in or operator retrospective, which is not how any other 12 hour stretch in this log reads. Checked `list_triggers` directly rather than guess: the :40 PM twin and the :43 hourly operator Routines are both enabled, firing exactly on schedule, but their `last_run` showed `FAILED`, finishing 15 to 20 seconds after firing, far too fast for real work. Read the actual failed sessions (`get_session`): both carry `status_detail: "You've hit your weekly limit, resets 3am (UTC)"`, `rateLimitType: seven_day`, `resetsAt` resolving to exactly 2026-10-02T03:00:00Z. This session's own 03:1x firing is the first PM slot after that reset and is the one that actually ran. **Not a bug in this repository, the gates, or the Routines themselves**, which fired correctly throughout; the account's weekly usage allowance was exhausted and every scheduled session failed at the harness level before reading a single file.
+
+**Verified rather than left as a guess:** confirmed with `git log af7b48ba4..HEAD` that the only commits in the outage window are the three automated bots, none of them agentic work; confirmed `list_triggers` shows all three Routines still `enabled: true` with correct cron expressions and no `ended_reason`, so nothing needs re-creating; this session's own `PENDING` entry in the same listing matches its own session ID, confirming it is the recovery, not a fourth failure.
+
+**One stray fixture, not touched.** A separately-started foreground `preflight.py --fast` under a raw 180s `timeout` (this session's own mistake, the exact anti-pattern a 2026-10-01 addendum already names) left `ops/tests/test_audit_catalog.py` running detached with `site/_audit_catalog_fixture_753.html` on disk. Confirmed alive via `ps -p` before leaving it; it exited and cleaned up on its own within two minutes, `git status` clean after. Re-ran preflight the correct way, via `ops/run_preflight.sh`, backgrounded.
+
+**No new gate needed for the outage itself**, since nothing in this repository could have prevented or caught it: it is an account-level resource limit, not a code or process defect, and it already resolved itself on schedule.
+
+**Went well:** treating a suspiciously quiet git log as a signal worth investigating rather than assuming a quiet night; checking the Routines directly instead of guessing why cycles stopped.
+
+**Did not go well:** about 12 hours of autonomous PM and operator cycles were lost to this, including whatever the Guest Bedroom content-read lane would have found; this session's own first preflight attempt repeated a previously-documented foreground-timeout mistake.
+
+**Changing next cycle:** none for the repository; this is Phil's own account usage to be aware of, not an engineering fix.
+
+**Next:** Guest Bedroom, content-level visitor read lane, for the hourly operator at :43, exactly as the 15:1x cycle below already said. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged (verified directly this cycle: still 8 open, all `decision`/`blocked-on-art`, none Phil-unblocked).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (15:1x cycle)
 
 **Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). Last operator cycle's 3 commits (gate fix, Primary Bedroom release, handoff to Guest Bedroom) are on `main`, pushed, working tree clean.
