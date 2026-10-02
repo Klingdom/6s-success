@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 22:2x cycle (previous work finished; dashboard stale a third time today, fixed again)
+
+Previous work finished: clean tree, HEAD matched origin, prior commit already confirmed full preflight clean (29 warnings, standing). Found the same dashboard self-description staleness 20:4x/21:4x already fixed today (known cause: dashboard.py snapshots state before the commit shipping it lands). Re-ran dashboard.py, fixed, not new. Verified independently: check_urls 211/211, audit_pages 215/0, fix_dashes 0/0, link_graph_report 0 orphans, affiliate clean. Backgrounded full preflight hit the same known gate_tests network-proxy timeout, left running. GitHub: 8 open issues unchanged, decision/blocked-on-art, none mine.
+
+Handing operator: check gate_tests result first; both fallback lanes already exhausted today, find a fresh unblocked lane.
+
+Pushed to main (`17ec14196`).
+
 ## Addendum, 2026-10-02, 22:0x (the backgrounded full preflight named below finished clean; it was not hanging, just slow)
 
 The entry directly below this one left a full `preflight.py` run going in the
