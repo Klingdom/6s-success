@@ -27368,7 +27368,12 @@ def main() -> int:
         run_gate(gate_generator_ownership)
 
     for g, m in FAIL:
-        print(f"  FAIL  {g:22} {m[:150]}")
+        # Not truncated, unlike warn below. A FAIL is rare and actionable;
+        # cutting it to 150 chars twice lost the one piece of evidence
+        # (the actual file/link pair) needed to chase a transient hit on
+        # no-stale-hardcoded-stripe-link, a payment-safety gate, on both
+        # 2026-10-02 occurrences.
+        print(f"  FAIL  {g:22} {m}")
     for g, m in WARN:
         print(f"  warn  {g:22} {m[:150]}")
 
