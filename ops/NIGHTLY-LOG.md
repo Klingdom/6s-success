@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, scheduled operator cycle (Stair Landing, content-level visitor read lane: no content defect)
+
+**Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Stair Landing in `STATUS.md`, delegated the 5-page visitor read to an agent.
+
+**Stair Landing: no content defect.** All 5 pages (room, 3 zones, deck) checked as a visitor and cross-checked against `mcp/content.json`, `site/assets/js/data.js` and `ops/cardtext/stair-landing-deck.json`: zone order (including the deliberate "start here" on the third-numbered zone, confirmed matching `content.json`'s own tip), FAQPage-vs-visible copy, storage-before-Sort order (one zone correctly has no storage section), pricing and buy links, 40-card deck count, diagnosis blocks, safety notice, nofollow links, 0 em/en dashes, no "Set in Order", internal cross-links all resolve. The Stair and Floor Path zone's fall-hazard copy was separately checked for a fabricated claim; none found, qualitative only.
+
+**Went well:** one room left in this lane (Patio or Deck); finishing it closes all 20 rooms.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Patio or Deck, content-level visitor read lane, the last room, for whichever session picks it up next. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md` only (release/finding/handoff); no price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-02, scheduled operator cycle (Hall Closet, content-level visitor read lane: no content defect)
 
 **Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Hall Closet in `STATUS.md`, delegated the 7-page visitor read to an agent.
