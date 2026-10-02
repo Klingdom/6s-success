@@ -146,13 +146,43 @@ ROOM_SECTIONS = [
      "that will fill up too."),
 ]
 
+# THE QUESTIONS ARE THE QUERIES, VERBATIM.
+#
+# Ported 2026-10-01 from a concurrent session's independent version of this
+# same page, which reached the same conclusion from the same harvest a few
+# hours apart and did one thing better than this one did: its FAQ entries were
+# worded as the exact phrases ops/keyword-demand.json recorded, rather than as
+# paraphrases of them. For a block whose entire job is to be matched to a
+# question somebody typed, that is not a stylistic preference.
+#
+# Every answer below is also visible prose on this page, which is the rule for
+# FAQPage data and the reason the four room questions can appear here at all:
+# each one has its own <h2> section above, and the answer quoted here is that
+# section's own opening sentences.
 FAQ = [
-    ("Why is my house always messy even though I clean it?",
-     "Cleaning removes dirt. It does not decide where anything lives, so a "
+    ("Why is my house always messy no matter how much I clean?",
+     "Because cleaning removes dirt and never decides where anything lives. A "
      "freshly cleaned room still has nowhere to put the things that made it "
-     "messy. Within a few days they are back on the same surfaces. What "
-     "changes that is giving the few repeat offenders a home, and agreeing "
-     "what the surface looks like when it is finished."),
+     "messy, so within a few days they are back on the same surfaces. What "
+     "changes it is giving the few repeat offenders a home, and agreeing what "
+     "the surface looks like when it is finished."),
+    ("Why is my kitchen always messy?",
+     "Because the counter is doing two jobs: the surface you cook on, and the "
+     "first flat thing anyone passing through puts anything down on. The "
+     "post and the keys are not kitchen things, they are things with no "
+     "home anywhere else."),
+    ("Why is my bedroom always messy?",
+     "Because of clothes that are neither clean nor dirty. The wardrobe is for "
+     "clean and the basket is for dirty, and the jumper worn for two hours "
+     "is neither, so it lands on a chair that was never meant to hold it."),
+    ("Why is my kids' room always messy?",
+     "Usually because the standard is one an adult can meet and a child "
+     "cannot. Lower it to something the actual person can hit, and it "
+     "starts holding."),
+    ("Why is my closet always a mess?",
+     "Because nobody sees it, so it absorbs whatever the rooms evict until the "
+     "door stops closing. By then it reads as too little storage, and it is "
+     "almost always too much stuff."),
     ("Is my house messy because I do not have enough storage?",
      "Sometimes, and less often than it feels. The honest test is to put back "
      "only what genuinely belongs in that spot. If it still will not close, "
