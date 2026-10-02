@@ -2,6 +2,158 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 20:4x/21:1x cycle (previous work finished; the handoff this cycle drafted was overtaken by the operator before it shipped, re-checked and let stand)
+
+NEXT FOR THE OPERATOR: re-run `ops/keyword_demand.py --rescore` against the current corpus and read the fresh gap tier cold, because the 21:0x cycle's own fix moved 42 queries off `gap` and nobody has looked at what the remaining ~219 look like now; the two standing fallbacks (20-room content-read lane, `ops/cold_read_ledger.py --next`) were both confirmed exhausted as of the 2026-10-02 second owner-directed cycle and nothing has repopulated them since, so a fresh rescore is the most likely place real, still-unclaimed traffic work is hiding.
+
+**Previous work was finished, twice over.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no conflict). Drafted a handoff for the foyer/larder/entrance-hall heading gap the 19:4x PM cycle had named, since no operator slot had landed it yet; before pushing, `git push` refused with a real conflict on `ops/NIGHTLY-LOG.md`. Fetched rather than forced: the 21:0x operator cycle had already landed the identical fix (`ba7d00d0f`) in the time this cycle spent verifying it, plus a full `preflight.py --fast` run to completion (clean except two already-understood non-defects) and a second item, A15 (a stale handoff closed, no new work). Discarded this cycle's own now-superseded draft commit (`git reset --hard` to the pre-draft tip, never pushed, nothing lost) rather than push stale content or fight a merge over a handoff that no longer applied.
+
+**Verified the operator's own work rather than taking the log entry's word for it.** `git log` confirms both `ba7d00d0f` and the A15 nursery fix (`834a36fcd`) are on `main`; local and `origin/main` match exactly, working tree clean. 9 GitHub issues unchanged, all Phil-blocked (decision/art/TTS).
+
+**Found and fixed one small staleness.** `EXECUTIVE-DASHBOARD-LIVE.md`'s "Working tree" line still read "uncommitted or unpushed work" from a moment mid-cycle when that was briefly true; the tree has been clean and in sync since. Re-ran `ops/dashboard.py`; now reads "clean, in sync", last commit `d5b1e9680`.
+
+**No further unblocked backlog item found**, matching the 21:0x operator's own conclusion; this cycle did not re-search past that, since it had already run the fresher check.
+
+**Went well:** fetching and discarding a stale local draft instead of forcing a conflicted push.
+
+**Did not go well:** drafted and nearly shipped a handoff that a concurrent cycle made stale while this one was still verifying it; the fix is unavoidable overlap between a 30-minute PM slot and an operator slot three minutes later, not a process gap to close.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", 9 open decision/art/TTS issues). No new operator handoff this slot; the 21:0x cycle's own conclusion (nothing further unblocked found) stands until the next fresh read.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page. IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-02, 21:0x (closed the 19:4x PM check-in's own named handoff: five room-page household synonyms invisible to the keyword scorer)
+
+**Did.** Attached clean: repository arrived shallow and detached, `fetch
+origin main`, `fetch --unshallow`, `checkout main` (fast-forwarded 395
+commits), `merge --ff-only` onto `origin/main`, no conflict. Read `GOALS.md`,
+`BACKLOG-2026-09-07.md` (sections 0, 1b, 2-7), `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (all from today,
+20:2x back to 19:0x). Confirmed 9 GitHub issues open, unchanged: all
+`decision`/`blocked-on-art`/TTS-blocked (#39, read directly, confirms it
+needs real TTS/network reach this sandbox does not have). 0 open PRs.
+
+**Picked up the 19:4x PM check-in's own named handoff.** `ops/keyword_demand.py`'s
+scorer reads page titles and `<h1>`-`<h3>` text only, by its own documented
+design (verified by reading `page_inventory()` directly, not trusting the
+handoff's own description of it). `also_called_html()` in
+`ops/build_zone_pages.py` rendered a room's household synonyms ("Also
+called the foyer or the entrance hall," the larder/master bedroom/master
+bathroom/den-or-bonus-room equivalents on the other four rooms) inside a
+plain `<p>`, invisible to that scorer even though the room page genuinely
+covers the room. Six real gap-tier queries the handoff named (`foyer
+design ideas` rank 1, `larder organisation` rank 1 and three siblings,
+`entrance hall name` rank 3) scored `gap` for content that already
+existed; confirmed live before touching anything, not trusted from the
+handoff's own citation.
+
+**Fixed.** Changed the one line to an `<h2 class="also-called">`, every
+visual property (font-family, font-size, color, margin) still set inline
+exactly as before, plus an explicit `font-weight:400` added since an `h2`
+defaults to bold and the original `<p>` was not. Regenerated all 20 room
+pages via `ops/build_zone_pages.py`; confirmed only the 5 named pages
+changed. New `gate_also_called_is_heading` in `preflight.py` (pure logic in
+`check_also_called_is_heading`), re-deriving the expected room/name map
+from the real, committed `ops/room-also-called.json` and checking the real
+shipped `site/rooms/*.html`, so a future edit that moves this back into a
+plain paragraph cannot ship silently. `ops/tests/test_gate_also_called_is_heading.py`
+(6/6 cases, including the real committed site) and the existing
+`ops/tests/test_room_also_called.py` (its own regex updated for the tag
+rename, still 5/5) both fail-then-pass proved directly against the real
+file: planted the exact old `<p>` shape on the real committed
+`entryway.html`, ran the real gate function, watched it fail by name citing
+both lost names (`foyer`, `entrance hall`), restored byte for byte,
+reran clean.
+
+**Verified against the real scorer, not assumed.** `python
+ops/keyword_demand.py --rescore` (offline, no network needed) moved 42
+queries off `gap` corpus-wide (251 to 219, several reaching full
+`covered`: "bonus room ideas", "den organization", "entrance hall or
+foyer", "foyer organization ideas", "larder ideas", all three master
+bathroom variants). Five of the six named queries now score `partial`; the
+sixth, `draw a larder organization chart`, correctly stays `gap`, since
+this product has no drawable chart to offer and chasing the literal word
+would mean fabricating content rather than surfacing content that already
+exists. `ops/keyword_demand.py`'s own `--rescore` regenerated
+`ops/KEYWORD-DEMAND.md` and `ops/keyword-demand.json` as a side effect;
+`ops/build_seo.py` rerun after (5 changed room pages' content hashes
+moved in `ops/sitemap-content-hashes.json`, sitemap `lastmod` itself
+unaffected). `ops/audit_visual.py` run directly on all 5 changed pages,
+both viewports: 0 findings, 0 heading-level jumps, confirming the tag
+change is invisible to a reader.
+
+**Also found and closed while reading the backlog, not left stale a second
+time.** The 18:4x cycle's own A14-collision note had promised "the two
+genuinely still-open queries are closed instead by a small, targeted
+addition to the surviving page, described in the next backlog entry
+below," and no such entry ever followed. Checked live rather than trusted
+(CLAUDE.md 5d): a later cycle (`c41faf9b0` and its predecessors) had
+already closed both (`declutter worksheets free`, `diy baking sheet
+organizer`) by expanding `more-storage-wont-fix-clutter.html`, and the
+withdrawn `ops/build_budget_diy_article.py`/`organizing-on-a-budget.html`
+the note threatened to leave behind was already gone. Recorded as A15 in
+`BACKLOG-2026-09-07.md` (closing the stale handoff, no new work needed);
+A16 records this cycle's own fix.
+
+**Full `preflight.py --fast` run to completion** (the first full run
+confirmed to finish this day rather than being backgrounded and left
+unchecked): every real gate passed except two, both already understood,
+neither a product defect. (1) `test_wire_nav_preserves_aria_current.py`'s
+own "working tree was not clean" precondition, hit because this cycle's
+own edits were still uncommitted when the suite ran; expected to clear on
+commit, re-verified after. (2) `test_audit_catalog.py` FAILed on its own
+synthetic Stripe-link fixture check, traced directly rather than assumed:
+an earlier command in this same cycle timed out and was killed, orphaning
+its per-pid scratch fixture (`site/_audit_catalog_fixture_4630.html`),
+exactly the concurrent-fixture-collision shape that file's own docstring
+already names and warns a per-pid name cannot fully prevent (two
+overlapping scans of `site/` can still see both fixtures at once). Removed
+the orphaned fixture (confirmed its own process was dead first; the file
+is a gitignored test scratch artifact, never tracked); the test's own
+author-documented remedy is "rerun alone," consistent with the pattern
+observed. `check_urls.py` (211/211), `audit_pages.py` (215/0),
+`affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0),
+`link_graph_report.py` (0 orphans, confirmed clean on a second run after
+one transient "1 orphan" reading traced to a different concurrent
+session's own stray probe file, gone by the time it was investigated) all
+clean. `ops/inbox_agent.py --apply`: no mail credential, reported
+unchecked, not empty. GitHub: 9 issues confirmed unchanged and
+Phil-blocked.
+
+**Went well:** verifying the scorer's exact surface (title + h1-h3) by
+reading the function directly rather than trusting the handoff's own
+prose description of it; running the real offline rescore against the
+edited files before claiming any query moved, rather than assuming the
+heading change would be enough; tracing the audit_catalog FAIL to its root
+cause (a self-inflicted orphaned fixture from an earlier killed command in
+this same cycle) instead of recording it as an unexplained flake.
+
+**Did not go well:** an earlier exploratory command in this cycle was
+killed with `pkill` while mid-run specifically to speed up iteration, and
+that left the orphaned fixture behind; a plain `timeout`-bounded wait
+would not have needed killing.
+
+**Changing next cycle:** none; the existing gates and the new one caught
+exactly what they were built to catch. No new preflight gate needed for
+the audit_catalog transient itself, since its own docstring already
+documents the exact failure mode and the existing per-pid naming already
+narrows it as far as a single process can; the remaining exposure is
+cross-process, which only cleanup discipline (not killing a test process
+mid-run) closes.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start
+here", the 9 open decision/art/TTS issues). No further unblocked backlog
+item found this cycle beyond A15/A16 above.
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`,
+`ops/tests/test_room_also_called.py`,
+`ops/tests/test_gate_also_called_is_heading.py` (new), 5
+`site/rooms/*.html`, `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`,
+`ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, `STATUS.md`,
+command deck, this entry. No price or product touched; no new page (5
+existing room pages edited). IndexNow not applicable from this sandbox (no
+egress); the next successful `hourly-brief.yml` run picks up the 5 changed
+URLs.
 ## Scheduled operator cycle, 2026-10-02, 20:3x (A15: the nursery diaper-caddy zone-synonym gap)
 
 **Did.** Attached clean: checkout arrived shallow and detached, `git fetch

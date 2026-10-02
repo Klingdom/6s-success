@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-24T22:35:55Z",
-   "mode": "changed",
-   "offered": 49,
-   "accepted": 49,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-25T01:41:03Z",
    "mode": "changed",
    "offered": 190,
@@ -633,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T21:14:43Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -689,8 +689,8 @@
   "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "e14fdad10e0195d8",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "511c3e4cc45fd1f9",
-  "https://6s-success.com/rooms/entryway": "6f6a01a4a692b0fc",
-  "https://6s-success.com/rooms/family-room": "46777dd99aa6a7a0",
+  "https://6s-success.com/rooms/entryway": "9fb5a9342814fa76",
+  "https://6s-success.com/rooms/family-room": "9cb3698cc6028b2e",
   "https://6s-success.com/rooms/garage": "d98c9d17b18cef70",
   "https://6s-success.com/rooms/guest-bathroom": "32ea1363da68f7df",
   "https://6s-success.com/rooms/guest-bedroom": "c3dbc92885549f8a",
@@ -702,10 +702,10 @@
   "https://6s-success.com/rooms/living-room": "40f1a9187b56a88f",
   "https://6s-success.com/rooms/mudroom": "ea95e3cbab9c2ece",
   "https://6s-success.com/rooms/nursery": "ed616059c2ff2707",
-  "https://6s-success.com/rooms/pantry": "bfd82ee272bb64c2",
+  "https://6s-success.com/rooms/pantry": "1f548f4ead3fee0c",
   "https://6s-success.com/rooms/patio-or-deck": "8cbf1603273a510a",
-  "https://6s-success.com/rooms/primary-bathroom": "34f76b0b91463064",
-  "https://6s-success.com/rooms/primary-bedroom": "aefa176e3dfcd697",
+  "https://6s-success.com/rooms/primary-bathroom": "90fd132dfe955034",
+  "https://6s-success.com/rooms/primary-bedroom": "e96e08d99ed64683",
   "https://6s-success.com/rooms/stair-landing": "72a44d619fd6bcf1",
   "https://6s-success.com/rooms/workshop": "741be76d7f011eb9",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "3548475759eb6449",

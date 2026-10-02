@@ -1880,7 +1880,20 @@ else:
 
 
 def also_called_html(room):
-    """One honest line naming the other words for this room, or nothing."""
+    """One honest line naming the other words for this room, or nothing.
+
+    Rendered as an h2, not a p, found and fixed 2026-10-02: the keyword
+    harvest's own scorer (ops/keyword_demand.py) only reads page titles and
+    h1-h3 text, by its own documented design, so a household word sitting in
+    a plain paragraph was invisible to it. "foyer design ideas" (rank 1),
+    "larder organisation" (rank 1) and four siblings scored `gap` even
+    though the room page already carries the word, because it carried it in
+    the wrong element. Every visual property is still set inline, matching
+    the prior <p> exactly, so this is a heading for the scorer and a reader,
+    not a bigger headline on the page; see
+    ops/tests/test_room_also_called.py and
+    preflight.py's gate_also_called_is_heading.
+    """
     entry = ROOM_ALSO_CALLED.get(room)
     names = (entry or {}).get("names") or []
     if not names:
@@ -1889,9 +1902,9 @@ def also_called_html(room):
         said = "the " + names[0]
     else:
         said = ", ".join("the " + n for n in names[:-1]) + " or the " + names[-1]
-    return ('<p class="also-called" style="font-family:var(--sans);'
-            'font-size:14px;color:var(--soft);margin:10px 0 0">'
-            'Also called %s. Same room, same micro zones.</p>'
+    return ('<h2 class="also-called" style="font-family:var(--sans);'
+            'font-size:14px;font-weight:400;color:var(--soft);margin:10px 0 0">'
+            'Also called %s. Same room, same micro zones.</h2>'
             % esc(said))
 
 
