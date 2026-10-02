@@ -3693,6 +3693,82 @@ def gate_dashboard_deck_readiness() -> None:
              "'missing' for a cover checked and genuinely absent.")
 
 
+def gate_dashboard_self_description_fresh(path=None) -> None:
+    """The dashboard's own "Last commit" citation must not drift silently.
+
+    Found 2026-10-02: the identical staleness shape recurred three times in
+    one day (PM check-ins 20:4x, 21:4x, 22:2x), each time caught only by a
+    human eyeballing EXECUTIVE-DASHBOARD-LIVE.md against `git log`, then
+    fixed by rerunning ops/dashboard.py and never gated, the exact
+    "lesson recorded in prose prevents nothing" shape CLAUDE.md 10b warns
+    against.
+
+    The mechanism is understood and partly unavoidable: dashboard.py
+    captures HEAD before the commit that ships its own output lands, so the
+    file it ships always describes the state one commit behind the commit
+    it rides in on; dashboard_citation_gap()'s own docstring names this.
+    That one-commit lag, alone, is not a defect. What this gate actually
+    catches is everything past it: real commits (not just a sibling
+    dashboard-regeneration-and-log commit) landing after the citation with
+    nobody rerunning ops/dashboard.py before the next push.
+
+    WARNS rather than FAILS: in a repository with several concurrent
+    sessions pushing in parallel, some lag between a regeneration and the
+    next push is routine and self-heals on the next regeneration; failing
+    preflight on it would hold unrelated work hostage to a cosmetic
+    citation. The point is to make the gap visible on every run instead of
+    only when someone happens to compare the file to `git log` by eye.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    dash_path = path or os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md")
+    if not os.path.exists(dash_path):
+        return
+    text = io.open(dash_path, encoding="utf-8").read()
+    m = re.search(r"\|\s*Last commit\s*\|\s*`([0-9a-f]{6,40})`", text)
+    if not m:
+        warn("dashboard-self-description-fresh",
+             "EXECUTIVE-DASHBOARD-LIVE.md has no parseable \"Last commit\" "
+             "citation, so freshness was NOT checked.")
+        return
+    cited = m.group(1)
+    head = dashboard.sh_checked("git rev-parse HEAD")
+    if head is None:
+        warn("dashboard-self-description-fresh",
+             "could not read the real current HEAD, so the dashboard's "
+             "\"Last commit\" citation was NOT checked against it.")
+        return
+    if head.startswith(cited):
+        return
+    resolved = dashboard.sh_checked("git rev-parse %s" % cited)
+    if resolved is None:
+        warn("dashboard-self-description-fresh",
+             "EXECUTIVE-DASHBOARD-LIVE.md cites commit %s, which does not "
+             "resolve in this checkout (shallow clone?), so freshness was "
+             "NOT checked." % cited)
+        return
+    log = dashboard.sh_checked("git log --format=%%H %s..HEAD" % resolved)
+    if log is None:
+        warn("dashboard-self-description-fresh",
+             "could not list commits between the dashboard's cited commit "
+             "and HEAD, so freshness was NOT checked.")
+        return
+    shas = [s for s in log.splitlines() if s.strip()]
+    real = []
+    for sha in shas:
+        files_out = dashboard.sh_checked("git show --name-only --format= %s"
+                                          % sha)
+        if files_out is None:
+            real.append(sha)
+            continue
+        touched = {f for f in files_out.splitlines() if f.strip()}
+        if touched - dashboard.DASHBOARD_OWN_OUTPUT:
+            real.append(sha)
+    problem = dashboard.dashboard_citation_gap(real)
+    if problem:
+        warn("dashboard-self-description-fresh", problem)
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -17455,6 +17531,49 @@ def gate_keyword_demand_not_stale() -> None:
         warn("keyword-demand-not-stale", problem)
 
 
+def gate_goals_keyword_cluster_citation_current(goals_path=None,
+                                                 demand_path=None) -> None:
+    """GOALS.md's own small-space/budget cluster citation must not drift
+    from ops/keyword-demand.json, the file it is quoting.
+
+    Found 2026-10-02: GOALS.md's O1 section wrote "small space is 1 covered
+    / 26 partial / 10 gap of 37" and "cheap/budget/DIY is 0 covered / 82
+    partial / 17 gap of 99" the same morning BACKLOG-2026-09-07.md's A13
+    and A14 shipped the pages that moved both clusters (to 20/16/1/37 and
+    29/66/4/99); nobody told this sentence. A concurrent PM check-in (22:5x)
+    read the stale sentence instead of re-deriving from keyword-demand.json
+    directly, LRN-0032's own lesson ("a stored status is a snapshot other
+    sessions are changing") recurring against this file's prose instead of
+    the JSON it was quoting, and drafted a handoff asking the next operator
+    to write an article for a gap that no longer existed.
+
+    WARNS rather than FAILS: nothing customer-facing is wrong when a
+    strategy document's own citation drifts, and failing preflight on a
+    sentence in GOALS.md would be disproportionate. The point is to make
+    the drift visible on every run instead of only to whoever happens to
+    re-score and compare by hand, which is what let it recur.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import keyword_demand as K
+    g_path = goals_path or os.path.join(ROOT, "GOALS.md")
+    d_path = demand_path or os.path.join(ROOT, "ops", "keyword-demand.json")
+    if not os.path.exists(g_path) or not os.path.exists(d_path):
+        return
+    text = io.open(g_path, encoding="utf-8").read()
+    try:
+        payload = json.loads(io.open(d_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        warn("goals-keyword-cluster-citation-current",
+             "ops/keyword-demand.json did not parse, so GOALS.md's cluster "
+             "citation was NOT checked against it.")
+        return
+    rows = payload.get("rows", [])
+    live = {name: K.cluster_counts(rows, pat)
+            for name, pat in K.CLUSTER_PATTERNS.items()}
+    for p in K.goals_cluster_citation_problems(text, live):
+        warn("goals-keyword-cluster-citation-current", p)
+
+
 def gate_experiments_blocked_reason_current() -> None:
     """The status report Phil actually reads (ops/status_report.py's text
     output and the PDF ops/status_pdf.py builds from it) must not claim the
@@ -27395,6 +27514,7 @@ def main() -> int:
     run_gate(gate_dashboard_shallow_commits)
     run_gate(gate_dashboard_shallow_commits_7d)
     run_gate(gate_dashboard_deck_readiness)
+    run_gate(gate_dashboard_self_description_fresh)
     run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
     run_gate(gate_sitemap_images_current)
@@ -27457,6 +27577,7 @@ def main() -> int:
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_goals_keyword_cluster_citation_current)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)

@@ -60,6 +60,35 @@ def working_tree_status(clean, ahead):
         return "could not be checked"
     return "clean, in sync" if clean and ahead == "0" else "uncommitted or unpushed work"
 
+DASHBOARD_OWN_OUTPUT = {"EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html",
+                         "ops/state.json", "ops/NIGHTLY-LOG.md"}
+
+
+def dashboard_citation_gap(real_commit_shas):
+    """Pure so gate_dashboard_self_description_fresh can prove it without
+    shelling out.
+
+    real_commit_shas is the list of commit hashes landing strictly after
+    the dashboard's own cited "Last commit" and up through the real current
+    HEAD, already filtered down by the caller to commits that touch
+    something outside DASHBOARD_OWN_OUTPUT. An empty list means either
+    nothing has happened since the citation, or only a sibling
+    dashboard-regeneration-and-log commit has, which is the one-commit lag
+    dashboard.py cannot avoid (it cannot know the hash of the commit that
+    will ship its own output before that commit exists). Anything else
+    means real work landed with nobody rerunning this file to reflect it,
+    which is the shape that recurred three times on 2026-10-02 (20:4x,
+    21:4x, 22:2x), caught each time only by a human eyeballing the file
+    against `git log`.
+    """
+    if not real_commit_shas:
+        return None
+    return ("%d real commit(s) landed after the dashboard's own cited "
+            "commit with no regeneration since: %s"
+            % (len(real_commit_shas),
+               ", ".join(s[:9] for s in real_commit_shas[:5])))
+
+
 def commits_total_text(commits_total):
     """Pure so gate_dashboard_shallow_commits can prove it without shelling out.
 
