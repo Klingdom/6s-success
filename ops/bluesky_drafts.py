@@ -53,9 +53,38 @@ KIND = "bluesky-post"
 POOL_KIND = "x-post"
 N = 3
 
+# A POST WITH NOWHERE TO GO CANNOT PRODUCE AN ARRIVAL.
+#
+# Found 2026-10-02 by reading the drafts this tool actually emits: every one
+# was a clean excerpt from the book and NONE of them contained a URL. The
+# whole justification for this file, written into its own docstring, is that
+# Bluesky is one of only two channels GOALS.md can show ever produced a
+# visitor. A post with no link cannot produce one, and Bluesky's last referral
+# to this site was 8 September, before this tool existed.
+#
+# book.html is the honest destination: it is where the free chapters 1 to 30
+# actually live, which is what these excerpts are drawn from and what the
+# LinkedIn drafts already promise in words. Not the sample file itself, which
+# is noindex and has spaces in its path.
+#
+# ?from=bsky is not decoration. LinkedIn and Bluesky both strip referrers in
+# some clients, and `(direct)` is already 698 of the last 30 days' pageviews,
+# so a channel with no tracked parameter is one that can work perfectly and
+# still be invisible. url_query is stored, so this is readable in the same
+# database every other traffic number here comes from.
+LINK = "https://6s-success.com/book.html?from=bsky"
+
 
 def _fits(p: dict) -> bool:
-    return len(p["body"]) <= BSKY_CHAR_CAP
+    """Does the post still fit once the link is on the end of it?
+
+    Bluesky counts a URL at its full length; it does not shorten. The pool is
+    pre-filtered to X's 280 characters, and 280 plus this link is 323, over
+    the 300 cap, so filtering on the body alone would have emitted posts that
+    cannot be published as written. The cost is a smaller pool, and the pool
+    has hundreds of unused posts in it.
+    """
+    return len(p["body"]) + 1 + len(LINK) <= BSKY_CHAR_CAP
 
 
 def build(today: datetime.date | None = None, record: bool = False) -> tuple[str, str]:
@@ -74,22 +103,26 @@ def build(today: datetime.date | None = None, record: bool = False) -> tuple[str
 
     # Re-check the actual posts against Bluesky's own limit directly, rather
     # than trust that the filter passed to take() was applied correctly.
-    over = [p for p in posts if len(p["body"]) > BSKY_CHAR_CAP]
+    over = [p for p in posts
+            if len(p["body"]) + 1 + len(LINK) > BSKY_CHAR_CAP]
     assert not over, (f"{len(over)} post(s) exceed Bluesky's {BSKY_CHAR_CAP}-"
-                       f"character limit and should never have been "
-                       f"selected: {[p['title'] for p in over]}")
+                       f"character limit ONCE THE LINK IS ON THEM and should "
+                       f"never have been selected: {[p['title'] for p in over]}")
 
     L = [f"{N} Bluesky posts to publish today, {today:%A %d %B}.", ""]
     if posts:
-        L += [f"Your own writing, the same already-280-character-filtered "
-              f"pool your X drafts would use once X has an account, which "
-              f"fits Bluesky's higher 300-character cap without editing a "
-              f"word. {remaining} usable post(s) left in that pool, none "
-              f"published before. Post as written, or edit freely.", ""]
+        L += [f"Your own writing, from the same pool your X drafts would use "
+              f"once X has an account, filtered so the post AND the link "
+              f"together stay inside Bluesky's 300-character cap. "
+              f"{remaining} usable post(s) left in that pool, none published "
+              f"before. Each one ends with {LINK} so a reader has somewhere "
+              f"to go and so the visit is attributable even when the "
+              f"referrer is stripped. Post as written, or edit freely.", ""]
         for i, p in enumerate(posts, 1):
             L += ["=" * 64,
-                  f"{i}. {p['title']}   [{p['chapter']}, {len(p['body'])} chars]",
-                  "", p["body"], ""]
+                  f"{i}. {p['title']}   [{p['chapter']}, "
+                  f"{len(p['body']) + 1 + len(LINK)} chars with the link]",
+                  "", p["body"] + chr(10) + LINK, ""]
     else:
         L += ["The corpus could not be read this run, so there is nothing "
               "to post today.", ""]

@@ -46,6 +46,26 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORD_CAP = 100
 
 
+# A POST WITH NOWHERE TO GO CANNOT PRODUCE AN ARRIVAL.
+#
+# Found 2026-10-02 by reading what this tool actually emits. Every draft
+# ended in words like "free in the online book" and "Read how in the online
+# book, free", and not one of them contained a URL. LinkedIn is the single
+# channel GOALS.md can show has ever reliably produced a visitor here,
+# referring one on sixteen separate days between 23 August and 28 September,
+# and the posts it was given had no clickable path to the site at all.
+#
+# book.html is the honest destination: it is where the free chapters 1 to 30
+# actually are, which is exactly what the copy above already promises.
+#
+# ?from=li is the half that makes the channel measurable. Referrers are
+# stripped by some clients, and "(direct)" is already 698 of the last 30
+# days' pageviews, so a channel can work perfectly and stay invisible.
+# url_query is stored in the analytics database, so this is readable with
+# the same query every other traffic number here comes from.
+LINK = "https://6s-success.com/book.html?from=li"
+
+
 def facts() -> dict:
     """Every number these messages are allowed to use, measured now."""
     d = json.load(io.open(os.path.join(ROOT, "content", "manual", "source",
@@ -333,7 +353,7 @@ def build(today: datetime.date | None = None, record: bool = False) -> tuple[str
         for i, p in enumerate(posts, 1):
             L += ["=" * 64,
                   f"{i}. {p['title']}   [{p['chapter']}, {p['words']} words]",
-                  "", p["body"], ""]
+                  "", p["body"] + chr(10) + chr(10) + LINK, ""]
     else:
         L += ["The corpus could not be read this run, so there is only the "
               "connection note below.", ""]
