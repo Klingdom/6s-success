@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 21:4x cycle (previous work finished; dashboard was lying about a clean tree, fixed; handing the operator a real unblocked lane)
+
+NEXT FOR THE OPERATOR: run `ops/cold_read_ledger.py --stale` and cold-read the 27 listed files (mostly the 19 per-room `build_*_deck_page.py` generators plus `build_zone_pages.py`, `build_seo.py`, `product_links.py`, `build_articles.py`, `site/assets/js/quest.js`), because all 27 were touched by today's synonym fixes and spelling-regression fix but nobody has done the manual read pass since, and this is the one concrete unblocked lane still standing after the 21:1x cycle's own rescore confirmed both prior fallbacks exhausted.
+
+**Previous work was finished.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only`, HEAD `0c9fb7758` matched `origin/main` exactly, no conflict this slot). The 21:1x cycle's own handoff asked the operator to read a still-running full `preflight.py` result first; by this slot the only visible successor commits (`2b56d5b09`, `0c9fb7758`) were that same cycle resolving its own concurrent-push collision and regenerating the dashboard, not a fresh defect, so that thread is closed.
+
+**Found and fixed one real staleness, the same shape the 20:4x cycle already fixed once today.** `EXECUTIVE-DASHBOARD-LIVE.md` read "Working tree: uncommitted or unpushed work" and named `2b56d5b09` as the last commit, both wrong: the tree was clean and HEAD was `0c9fb7758`. Root cause is mechanical, not a new defect: `dashboard.py` captures tree state before the commit that ships its own output lands, so its last self-regeneration necessarily describes the tree one commit behind reality. Re-ran `ops/dashboard.py`; now correctly reads "clean, in sync" and `0c9fb7758`.
+
+**Ran `preflight.py` fast myself rather than trust the prior cycle's unfinished run.** Every gate up to `gate_tests` passed, zero FAILs printed. `gate_tests` itself did not finish in this slot; it was still running past 15 minutes wall clock, the same network-timeout shape the 21:1x cycle already diagnosed (tests probing Stripe/analytics get a 403 from this sandbox's proxy on every one, not a hang). Left it running in the background rather than kill it a second time without cause; if it surfaces a real FAIL it is the next session's actual work, not a repeat of a known sandbox limitation.
+
+**Checked GitHub directly:** 9 open issues, unchanged, all `decision`/`blocked-on-art` (none newly unblocked); 0 open PRs. None of these are mine to act on per CLAUDE.md section 0.5 and this routine's own rule against picking anything waiting on Phil.
+
+**Checked both standing fallback lanes before writing the handoff above, per STEP 3's ordering rule (measurement first).** `ops/cold_read_ledger.py --next` (the 20-room/un-ledgered lane): 195 of 195 files already ledgered, 0 new candidates, confirming the 21:1x cycle's own "exhausted" conclusion. `ops/cold_read_ledger.py --stale`: 27 entries, all dated 2026-09-26 through 2026-10-01, all last touched 2026-10-02 by today's legitimate synonym and spelling fixes (`c64901cd0`, `ba7d00d0f`, `834a36fcd`, `11b32d124`, `0524f440e`), none of them re-read since. This is a real, previously uninspected lane, not a repeat of an exhausted one, which is why it is the handoff above rather than "nothing found."
+
+**Went well:** catching the dashboard regenerating itself with stale self-description a second time today, and fixing it rather than re-filing the same note; finding a genuinely fresh lane instead of re-running the two already-exhausted fallbacks.
+
+**Did not go well:** `gate_tests` still cannot complete inside a single slot in this sandbox; this is now the second cycle today to hand it off still running, which is an environmental limit, not a process gap this routine can close.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art issues, unchanged. Operator should read the stale-ledger lane named above; if `gate_tests` has finished by then, check it before starting new work.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 21:1x cycle (previous work finished; ran the fresh rescore the twin's own 20:4x/21:1x cycle asked for, no new unblocked item found, full preflight left running)
 
 **Previous work was finished.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only`). While working, the twin's own 20:4x/21:1x cycle pushed its dashboard restamp (`277a3297d`) and the 21:0x operator landed the foyer/larder/entrance-hall synonym fix (`ba7d00d0f`); `git push` correctly refused on a conflict in the generated files (`ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json`, `ops/dashboard.html`, `ops/state.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `site/build-id.txt`). Per CLAUDE.md section 41 and STEP 8, merged rather than forced, took origin's side on every conflicted generator output, then regenerated all of them fresh against the merged tip (`34944eab2`) instead of hand-resolving: `ops/keyword_demand.py --rescore`, `ops/dashboard.py`, `ops/build_id.py`.
