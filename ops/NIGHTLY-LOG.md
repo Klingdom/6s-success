@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 16:2x cycle (previous work finished: Phil closed P0 #37 himself; closed the stale owner-action it left behind)
+
+**Attach:** checkout arrived shallow and detached; `fetch`, already unshallow, `checkout main`, clean `merge --ff-only` onto `origin/main` (`b84b2a0ff`), no unrelated-history error. Working tree clean throughout.
+
+**Previous work IS finished, and in a way no prior cycle today had checked for.** Issue #37 is closed (`state_reason: completed`, closed by `Klingdom` at 16:01:47Z), fixed by Phil's own commit `295b1c642` adding `STRIPE_ALLOW_LIVE: "1"` to `fulfil-orders.yml`. Verified directly against the Actions API rather than trusting the close: the five runs since (`#3050` through `#3054`) all completed `success`. No re-notification needed or sent.
+
+**What nobody had closed: the owner-action this P0 generated was still telling Phil to do the thing he had just done.** `OWNER-ACTIONS.md`'s "Start here" table still carried item **0a** verbatim ("Add one line... to the Deliver step"), and `ops/dashboard.py`'s `top_owner_actions()` parses that table fresh on every run with no filter for a resolved row, so `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" section was still surfacing a fixed problem as live, the exact "source corrected, artifact never re-derived" shape `BACKLOG-2026-09-07.md` section 7 names as this repository's dominant defect class, this time pointed at the owner himself rather than at a page. Moved item 0a out of "Start here" and into a new `~~R5~~` row in the "Resolved today" table above it, citing the same closed issue and the same five green runs. Checked rather than assumed that nothing else references "0a" by id: clean grep across `ops/*.py`.
+
+**Verified, not assumed.** Called `gate_send_questions_covers_top_owner_actions` and `gate_owner_actions_last_measured_current` directly against the edited file: both clean. Ran `dashboard.top_owner_actions()` directly: 0a is gone, the remaining four rows (VPS_DEPLOY_KEY, Search Console, YouTube, Stripe description) are unchanged. Regenerated the command deck (`ops/dashboard.py`); confirmed by reading the rendered file that the `STRIPE_ALLOW_LIVE` line no longer appears under "What needs you" and the P0 count correctly reads 2 (issues #15, #2), not 3. `check_urls.py` 211/211, `affiliate.py --check` clean (165 non-affiliate documents, disclosure above every linked page). Full `preflight.py` backgrounded at attach (no wrapper timeout, per the established sandbox-timing correction); still inside `gate_tests` when this entry needed to ship, reported unchecked per CLAUDE.md 0.4, not assumed clean. The change itself is prose-only (two markdown files plus their generated deck), so the risk a still-running Python test suite would catch something here is low, but the run was not waited out to confirm that.
+
+**Checked the rest of the queue.** 9 GitHub issues open, all decision-labelled, blocked-on-art, or TTS-capability-blocked (#39); 0 open PRs. `cold_read_ledger.py --next`: 0 un-ledgered files, all 195 already read cold at least once. `--stale` shows 30 entries, all deck-page generators re-touched by today's own A12 dialect fix and its own gate-hole fix, not a real backlog item, same conclusion as every recent cycle. `BACKLOG-2026-09-07.md` sections 2-4 (A1-A14, B1-B9, C1-C7): every row Done or correctly Phil/environment-gated.
+
+**Went well:** checking the owner-action table the P0 itself had written, not just the P0, once the fix was confirmed; the dashboard's own `top_owner_actions()` made the gap mechanical to find once looked for.
+
+**Did not go well:** the same shallow/detached checkout shape recurred at attach (issue #27, still needs Phil's hand in the Routines UI); a pre-existing, unrelated oddity noticed in passing and left alone: `OWNER-ACTIONS.md`'s struck-through `~~1h~~` row is still parsed and rendered verbatim by `top_owner_actions()` rather than moved to "Resolved today" the way R1-R4 and the new R5 are, so the dashboard shows "~~Run the Stripe retirement...~~ **DONE**" instead of omitting it; harmless (the text says DONE) but a smaller version of the same gap, not fixed this cycle to keep scope tight.
+
+**Changing next cycle:** none found to change.
+
+**Next:** no genuinely unblocked backlog item beyond the standing Phil-gated list (VPS_DEPLOY_KEY, Search Console, YouTube authorization, Stripe description, the five decision-labelled issues). Operator should read the backgrounded preflight's conclusion before citing it either way, and may want the `~~1h~~` display-only cleanup above if nothing larger is unblocked.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 16:0x (cold-read found the gate meant to close A12 had the exact hole it existed to catch)
 
 **Did.** `cold_read_ledger.py --next`'s one candidate, `fix_dialect.py`, led

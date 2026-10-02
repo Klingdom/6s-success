@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 16:04 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-02 16:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1367 of 5231 total |
+| Commits (7 days) | 1371 of 5237 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `295b1c642` P0 #37: paid orders could not be delivered, and service book |
+| Last commit | `b84b2a0ff` Merge remote-tracking branch 'origin/main' |
 
 ## Product readiness
 
@@ -57,7 +57,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 ## What needs you
 
 - **Redeploy the site.** Production is serving an older build: 0 of 10 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 114 reviewed pictures and every fix since the last deploy reach nobody.
-- **Add one line (`STRIPE_ALLOW_LIVE: "1"`) to the "Deliver" step's `env:` in `.github/workflows/fulfil-orders.yml`** (2 min). **Added 2026-10-02, PM check-in, actively broken right now, not a one-time gap.** `044863b9c` added a live-write guard to `ops/stripe_fulfil.py` without accounting for this workflow, the one caller that is designed to run unattended against a live key.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
