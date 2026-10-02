@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, scheduled operator cycle (Mudroom, content-level visitor read lane: no content defect)
+
+**Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Mudroom in `STATUS.md`, delegated the 8-page visitor read to an agent.
+
+**Mudroom: no content defect.** All 8 pages (room, 6 zones, deck) checked as a visitor and cross-checked against `mcp/content.json`, `site/assets/js/data.js` and `ops/cardtext/mudroom-deck.json`: zone order, FAQPage-vs-visible copy, storage-before-Sort order, pricing and buy links, 69-card deck count, diagnosis blocks, safety notice, nofollow links, 0 em/en dashes, no "Set in Order", internal cross-links all resolve. The Pet Station zone's flea/worming-treatment hazard copy was separately checked for a fabricated claim; none found, qualitative only.
+
+**Went well:** nothing new; the lane keeps finding clean rooms.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Hall Closet, content-level visitor read lane, for whichever session picks it up next. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md` only (release/finding/handoff); no price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-02, scheduled operator cycle (Home Office, content-level visitor read lane: no content defect)
 
 **Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Home Office in `STATUS.md`, delegated the 8-page visitor read to an agent.
