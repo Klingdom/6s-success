@@ -2,6 +2,64 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (03:1x cycle, a 12 hour autonomous-operation outage found and explained, not a repository defect)
+
+NEXT FOR THE OPERATOR: Guest Bedroom, content-level visitor read lane, unchanged from the 2026-10-01 15:1x handoff below, because the outage below means nobody ever started it.
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force, 8 commits fast-forwarded). Working tree clean before and after. The 2026-10-01 15:1x PM cycle's own work (`gate_downloads_noindex` fix, Primary Bedroom release, Guest Bedroom handoff) was genuinely shipped, pushed and CI-relevant files unchanged since.
+
+**The real finding this cycle: every scheduled PM and operator run between 15:19 UTC on 2026-10-01 and 03:00 UTC on 2026-10-02, about 12 hours, failed immediately on start.** Noticed because `git log` showed nothing but automated bot commits (social-rotation scripts, the unrelated `ops/checkin.py` hourly record) across that entire span, no agentic PM check-in or operator retrospective, which is not how any other 12 hour stretch in this log reads. Checked `list_triggers` directly rather than guess: the :40 PM twin and the :43 hourly operator Routines are both enabled, firing exactly on schedule, but their `last_run` showed `FAILED`, finishing 15 to 20 seconds after firing, far too fast for real work. Read the actual failed sessions (`get_session`): both carry `status_detail: "You've hit your weekly limit, resets 3am (UTC)"`, `rateLimitType: seven_day`, `resetsAt` resolving to exactly 2026-10-02T03:00:00Z. This session's own 03:1x firing is the first PM slot after that reset and is the one that actually ran. **Not a bug in this repository, the gates, or the Routines themselves**, which fired correctly throughout; the account's weekly usage allowance was exhausted and every scheduled session failed at the harness level before reading a single file.
+
+**Verified rather than left as a guess:** confirmed with `git log af7b48ba4..HEAD` that the only commits in the outage window are the three automated bots, none of them agentic work; confirmed `list_triggers` shows all three Routines still `enabled: true` with correct cron expressions and no `ended_reason`, so nothing needs re-creating; this session's own `PENDING` entry in the same listing matches its own session ID, confirming it is the recovery, not a fourth failure.
+
+**One stray fixture, not touched.** A separately-started foreground `preflight.py --fast` under a raw 180s `timeout` (this session's own mistake, the exact anti-pattern a 2026-10-01 addendum already names) left `ops/tests/test_audit_catalog.py` running detached with `site/_audit_catalog_fixture_753.html` on disk. Confirmed alive via `ps -p` before leaving it; it exited and cleaned up on its own within two minutes, `git status` clean after. Re-ran preflight the correct way, via `ops/run_preflight.sh`, backgrounded.
+
+**No new gate needed for the outage itself**, since nothing in this repository could have prevented or caught it: it is an account-level resource limit, not a code or process defect, and it already resolved itself on schedule.
+
+**Went well:** treating a suspiciously quiet git log as a signal worth investigating rather than assuming a quiet night; checking the Routines directly instead of guessing why cycles stopped.
+
+**Did not go well:** about 12 hours of autonomous PM and operator cycles were lost to this, including whatever the Guest Bedroom content-read lane would have found; this session's own first preflight attempt repeated a previously-documented foreground-timeout mistake.
+
+**Changing next cycle:** none for the repository; this is Phil's own account usage to be aware of, not an engineering fix.
+
+**Next:** Guest Bedroom, content-level visitor read lane, for the hourly operator at :43, exactly as the 15:1x cycle below already said. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged (verified directly this cycle: still 8 open, all `decision`/`blocked-on-art`, none Phil-unblocked).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-01 (15:1x cycle)
+
+**Previous work: finished.** Clean attach (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force). Last operator cycle's 3 commits (gate fix, Primary Bedroom release, handoff to Guest Bedroom) are on `main`, pushed, working tree clean.
+
+**Verified rather than cited:** 8 GitHub issues unchanged, all `decision`/`blocked-on-art`/P0-blocked, none Phil-unblocked; issue #27 (the shallow-checkout process issue) confirmed CLOSED, matching this cycle's own clean attach. `fix_dashes.py --check` 0/0, `check_urls.py` 210/210, `cold_read_ledger.py --stale` 0, `affiliate_report.py --check` clean with no drift. Mobile `npm test`: 24/24 across three suites. Re-derived `BLOCKER-001`'s deploy-gap citation directly (`deploy_gap_material_commits('b57ba4f58')`): still 7 commits, same set, unchanged by the last 3 commits (none touched `site/`/`Dockerfile`), so the standing citation holds. Full `python ops/preflight.py` started in the background; every gate through `gate_image_coverage` passed, 0 FAIL, before the standing `gate_tests` sandbox long pole; left running rather than killed or trusted blind.
+
+**No new work found to start this slot.** The next content-read room (Guest Bedroom) is already handed to the hourly operator at :43 per `STATUS.md`; nothing else in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and PM-sized this slot.
+
+**Next:** Guest Bedroom, content-level visitor read lane, for the hourly operator at :43. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
+
+## 2026-10-01, addendum: this session's own foreground timeout orphaned a test-audit subprocess, confirmed harmless
+
+After the entry below, sanity-checking the gate fix, this session ran `timeout 110 python ops/preflight.py --fast` in the foreground, the exact anti-pattern `ops/run_preflight.sh`'s own docstring warns against (a killed direct child can leave a subprocess detached, mid-chain). `timeout` killed `preflight.py` but not `test_audit_catalog.py`, which it had already spawned; that process reparented to pid 1 and kept running, legitimately holding `site/_audit_catalog_fixture.lockdir` and its own `_audit_catalog_fixture_18461.html`. Confirmed alive (not a stale lock) via `ps -p`, so neither was touched by hand; waited for it to exit on its own instead. It finished normally and its own `finally` block removed both. `git status` clean after. No stray file shipped, no lock corruption, `ops/run_preflight.sh` exists specifically to avoid this and should have been used instead of a raw `timeout` call. **Changing next cycle:** use `ops/run_preflight.sh` or the backgrounded form, never a foreground `timeout` under preflight's own stated minimum, including for a quick sanity check.
+
+## 2026-10-01, scheduled operator cycle (content-read lane, Primary Bedroom: no content defect, a real preflight gate bug found and fixed)
+
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Read `GOALS.md`, backlog, `STATUS.md`, recent log. 8 GitHub issues unchanged, no mail credential. Claimed Primary Bedroom (next per handoff), started a full `preflight.py` in the background, delegated the 8-page content read to an agent.
+
+**Found and fixed a real defect: `gate_downloads_noindex` FAILed on `site/downloads/_visual_probe.html`, missing both tags.** Already gone when read, a concurrent session's test scratch file, the same self-inflicted contamination shape documented before. Every other gate globbing `site/**/*.html` already skips a `_`-prefix for this reason; this one had not matched. Fixed with a basename filter, proved fail-then-pass against the real bug shape, syntax-checked first, 0 new dashes.
+
+**Primary Bedroom: no content defect.** All 8 pages cross-checked (zone order, FAQPage JSON-LD vs visible copy, Sort-storage-Straighten order, pricing, 66-card deck count, diagnosis blocks, safety notice, nofollow links). One of my own instructions to the reading agent was itself backwards ("storage before Sort"); verified against the generator and a live page that the correct order is Sort then storage then Straighten, so no site bug, just a corrected instruction.
+
+**Went well:** backgrounding preflight while delegating the read kept both moving.
+
+**Did not go well:** `gate_tests` still the standing long pole (~13 min).
+
+**Changing next cycle:** none; proven.
+
+**Next:** Guest Bedroom, content-read lane. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main (3 commits: claim, gate fix, release/handoff). No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-10-01 (14:4x cycle)
 
 NEXT FOR THE OPERATOR: Primary Bedroom, content-level visitor read lane, because it is still the next unread room per `STATUS.md`'s own handoff and nothing since the 14:0x cycle has superseded it.
@@ -13,6 +71,8 @@ NEXT FOR THE OPERATOR: Primary Bedroom, content-level visitor read lane, because
 **No new work found to start this slot.** `BACKLOG-2026-09-07.md` sections 2-4 remain done or Phil-gated, section 5 Hold, section 6 owner-only; all 8 open issues are `decision`/`blocked-on-art`. No concurrent collision this cycle; the hourly operator's Primary Bedroom pass had not yet landed as of this check (14:43 fetch, no new commits on `origin/main`).
 
 **Next:** same handoff above for the operator at :43. Same `OWNER-ACTIONS.md` list and 8 open issues, unchanged.
+
+**Addendum, same cycle: the backgrounded full `preflight.py` finished after the entry above was written.** Every gate passed, 27 warnings, all standing sandbox environment limits already named elsewhere in this log (no Stripe credential, no network reach to the live site or analytics, no Pillow, `hooks-enabled` unset). Nothing new or actionable. A separate automated `Hourly check-in record` commit (`2b4a02a26`, the GitHub Actions check-in bot, not the agentic hourly operator) landed and was merged in cleanly; the agentic operator's own Primary Bedroom pass had not yet landed as of this addendum.
 
 ## PM check-in, 2026-10-01 (14:0x cycle)
 
