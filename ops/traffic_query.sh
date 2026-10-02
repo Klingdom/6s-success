@@ -233,3 +233,32 @@ group by 1, s.browser, s.os, s.device
 order by pageviews desc
 limit 15;
 SQL
+
+# WHERE A VISIT CAME FROM WHEN THE REFERRER IS GONE
+# ------------------------------------------------
+# Added 2026-10-02 with the `?from=` parameters on every generated social
+# draft. Until then the only answer to "which channel sent this person" was
+# referrer_domain, and LinkedIn referrals stopped dead on 28 September with no
+# way to tell "stopped posting" from "still posting, now arriving as direct".
+# `(direct)` is 698 of the last 30 days' pageviews, so a channel that works can
+# hide in it completely.
+#
+# url_query is stored by Umami, so this needs no new instrumentation at all,
+# only the parameter the drafts now carry: from=li, from=bsky, from=fb, from=x.
+# A row here is a visit that can be attributed whatever the client did to the
+# referrer header.
+echo "== arrivals by tracked ?from= parameter, all time =="
+docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
+select substring(url_query from 'from=([a-z0-9_-]+)') as channel,
+       count(distinct session_id) as visitors,
+       count(distinct visit_id)   as visits,
+       count(*)                   as pageviews,
+       min(created_at)::date      as first_seen,
+       max(created_at)::date      as last_seen
+from website_event
+where website_id = :'w'
+  and event_type = 1
+  and url_query ~ 'from=[a-z0-9_-]+'
+group by channel
+order by visitors desc;
+SQL
