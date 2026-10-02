@@ -242,8 +242,19 @@ def chrome():
     #
     # So: take the whole head, remove every json-ld block whatever the count,
     # keep all the rest, and let build() put this page's own back.
+    #
+    # A third bug, found by preflight's own gate_breadcrumbs_current rather
+    # than by reasoning: stripping the json-ld script left the template's
+    # ops/wire_breadcrumbs.py CRUMBLD:BEGIN/END comment markers behind,
+    # empty, because those comments sit outside the script tag the regex
+    # above matches. An empty marked block is not "no breadcrumb", it is a
+    # breadcrumb that drifted to nothing, so the gate correctly failed on
+    # it even though this page's own ld() below provides a real, separate,
+    # correct BreadcrumbList. This template is wire_breadcrumbs.py's to own,
+    # not this generator's, so the whole marked block is stripped too.
     head = s[:s.index("</head>")]
     head = re.sub(r'(?is)<script type="application/ld\+json">.*?</script>\s*', "", head)
+    head = re.sub(r'(?is)<!-- CRUMBLD:BEGIN -->.*?<!-- CRUMBLD:END -->\s*', "", head)
     header = s[s.index("</head>") + len("</head>"):s.index("<main")]
     footer = s[s.index("</main>") + len("</main>"):]
     return head, header, footer
