@@ -23,6 +23,7 @@
   "https://6s-success.com/articles/why-5s-decays-after-six-months",
   "https://6s-success.com/articles/why-a-shared-zone-never-stays-reset",
   "https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean",
+  "https://6s-success.com/articles/why-is-my-house-always-messy",
   "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another",
   "https://6s-success.com/articles/why-mail-piles-up-by-the-door",
   "https://6s-success.com/articles/why-the-medicine-cabinet-never-gets-cleared-out",
@@ -213,13 +214,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-09-22T10:09:31Z",
-   "mode": "changed",
-   "offered": 165,
-   "accepted": 165,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-09-22T15:05:33Z",
    "mode": "changed",
@@ -632,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T05:38:17Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -845,6 +846,7 @@
   "https://6s-success.com/nursery-deck.html": "2b4b1367a21a22a2",
   "https://6s-success.com/primary-bedroom-deck.html": "3b49862be9102594",
   "https://6s-success.com/workshop-deck.html": "dd4d0a1e54e2484c",
-  "https://6s-success.com/patio-or-deck-deck.html": "8e31b0f8c71b0d64"
+  "https://6s-success.com/patio-or-deck-deck.html": "8e31b0f8c71b0d64",
+  "https://6s-success.com/articles/why-is-my-house-always-messy": "f09ab725f0e3cb09"
  }
 }
