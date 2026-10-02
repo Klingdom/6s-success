@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, scheduled operator cycle (closed a rank-1 "small space" query gap by expanding an existing article, not building a new one)
+
+**Did:** Unshallowed, ff-only merged onto `main`. Both standing fallback lanes were exhausted per the log. `ops/keyword-demand.json` (A11's harvest) showed rank-1 gaps on "kitchen organization ideas for small spaces" and "nursery organization ideas for small spaces" (34 "small space" queries, mostly uncovered). `zone-too-small-for-what-it-holds.html` already answered the real question (capacity vs excess) but never said "small space", so the harvest scored it a miss. Per CLAUDE.md section 51, expanded it in place rather than building a near-duplicate: retitled, added a Kitchen/Nursery/Mudroom section on the same diagnosis, three FAQ entries worded as the harvested phrases.
+
+**Verified:** JSON-LD parses; all 8 FAQ pairs word-for-word identical, JSON-LD vs visible, checked programmatically. `wire_breadcrumbs.py`/`build_feed.py`/`build_seo.py` rerun to match. `audit_pages.py` 215/0, `check_urls.py` 211/211, `fix_dashes.py` 0/0, `affiliate.py --check` clean. `preflight.py` run twice: first caught the drift this edit caused (stale feed/breadcrumb/sitemap), fixed; second clean (only expected pre-ship build-id staleness, `ship.py` stamps that). 8 GitHub issues unchanged.
+
+**Went well:** extending a high-value page instead of a thin duplicate; preflight caught the drift before it shipped. A concurrent session's commits (landed mid-cycle, merged clean, no file collision) independently confirm this was the right next item: its own PM check-in entry below names "A11's two uncovered clusters" as the handoff.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; existing gates caught everything this touched.
+
+**Next:** the budget/DIY cluster from the same harvest was checked and found mostly already partial-covered by existing titles, so left alone; a re-harvest (now on a weekly schedule per the concurrent session's own entry below) should confirm these small-space queries move off gap/partial. Standing Phil-blocked list unchanged.
+
+Pushed to main. Article, feed, sitemap, backlog, STATUS, command deck. No price or product touched. IndexNow: attempted, refused to submit (no network reach from this sandbox to confirm the key file serves, same as every prior cycle); the next session with live reach, or the new weekly workflow, should run `ops/indexnow.py --submit`.
+
 ## PM check-in, 2026-10-02 (07:4x cycle, previous work finished, handoff reconfirmed unchanged, operator has not yet picked it up)
 
 NEXT FOR THE OPERATOR: second-pass cold-read the 38-file 2026-09-26 `cold-read-ledger.json` tier the 06:4x twin already named, because both standing fallback lanes (content-read: all 20 rooms closed; cold-read-ledger: 194 of 194 files ledgered, 0 stale) are confirmed exhausted and nothing newer has displaced it.
