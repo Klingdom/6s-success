@@ -10922,6 +10922,70 @@ def gate_workflows_healthy() -> None:
         warn("workflows-healthy", "; ".join(bits))
 
 
+MONEY_CRITICAL_WORKFLOWS = {
+    "fulfil-orders.yml": "the path every paid order travels: it emails the "
+                         "buyer the file they paid for and forwards service "
+                         "bookings to the owner",
+}
+
+
+def gate_money_critical_workflows() -> None:
+    """A broken delivery pipeline is a FAILURE, not a warning.
+
+    WHY THIS IS SEPARATE FROM gate_workflows_healthy
+    ------------------------------------------------
+    That gate watches all eleven workflows and warns when one is failing,
+    which is right for most of them: a missed draft email is not an incident.
+    On 2026-10-02 it meant that `fulfil-orders.yml` failing on EVERY run for
+    six hours produced one line among thirty warnings, and what was actually
+    broken was the only route between a customer's money and the thing they
+    bought (issue #37). Nothing noticed until a human check-in read the
+    Actions tab.
+
+    Not every workflow is equal and this gate is the list of the ones that are
+    not. A failure here is a P0 by CLAUDE.md 0.7's own definition, and 0.2's
+    most expensive lesson in this repository is a payment path left broken
+    while being correctly reported every single day.
+
+    WHY IT DOES NOT DUPLICATE gate_delivery
+    ---------------------------------------
+    gate_delivery fails when a real payment has sat without a `fulfilled_at`
+    past the grace period. That is the right backstop and it is reactive: it
+    cannot fire until somebody has actually paid and actually waited. This
+    one fires when the machine is broken, whether or not anyone has ordered
+    yet, which is the window in which it is still free to fix.
+    """
+    wf_dir = os.path.join(ROOT, ".github", "workflows")
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    token = dashboard.gh_token()
+    for name, what in sorted(MONEY_CRITICAL_WORKFLOWS.items()):
+        if not os.path.exists(os.path.join(wf_dir, name)):
+            fail("money-critical-workflow",
+                 "%s is named money-critical and does not exist in "
+                 ".github/workflows/. Either it was renamed and this list was "
+                 "not, or %s has no pipeline at all." % (name, what))
+            continue
+        if token:
+            conclusion, when, head_sha, err = _workflow_run_via_api(token, name)
+        else:
+            conclusion, when, head_sha, err = _workflow_run_via_cli(name)
+        if err or conclusion is None:
+            # COULD NOT LOOK IS NOT HEALTHY. Said out loud, because this is
+            # the one gate whose silence would be most expensive.
+            warn("money-critical-workflow",
+                 "%s could NOT be queried (%s), so whether paid orders are "
+                 "being delivered is UNCHECKED, not fine. %s"
+                 % (name, err or "no conclusion returned", what))
+            continue
+        if conclusion == "failure":
+            fail("money-critical-workflow",
+                 "%s's most recent run FAILED (%s). That is %s, so a customer "
+                 "who pays now may receive nothing. Read the run log before "
+                 "shipping anything else."
+                 % (name, when or "time unknown", what))
+
+
 def _publish_image_runs(token, wf_name, extra_qs="", per_page=1):
     """One page of publish-image.yml's own run history, newest first.
 
@@ -27018,6 +27082,7 @@ def main() -> int:
     run_gate(gate_preflight_lock_timing_current)
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
+    run_gate(gate_money_critical_workflows)
     run_gate(gate_publish_image_current)
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
