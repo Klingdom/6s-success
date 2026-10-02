@@ -216,6 +216,11 @@
       "date": "2026-09-26",
       "note": "FIELD regex in fill_front_matter.py (colon in the character class) could not match [PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1], so scan()/--check never saw it, and it shipped as literal placeholder text on the copyright page of all 3 manual files. Also cold-read fill_front_matter.py itself while tracing this. Fixed: widened FIELD to allow an optional colon-qualified tail, made the apply-loop token a regex so drop/fill matches the whole bracket, added PRINTING NUMBER LINE as an alias of the existing TERRITORY/PRINTING STATEMENT drop, and moved the closing </p> in build_manual_print.py's COPYRIGHT_PAGE template off the same line as the bracket so dropping it doesn't eat the tag. gate_front_matter_filled already existed and now catches this shape; new ops/tests/test_fill_front_matter_colon_field.py locks in the regex and the line-drop behavior. Fail-then-pass proved directly against the real committed files via git stash (old regex+old files: 0 fields found, defect invisible; new regex+old files: fails citing the field; new regex+new files: clean)."
     },
+    "build_messy_article.py": {
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02, PM check-in. Generator correctly derives all 7 root-cause explanations from ops/root_causes.py rather than retyping them (the exact LRN-0023 drift shape), and is listed in preflight.py's GENERATOR_OWNERSHIP_CHAIN so hand edits are caught. Reran it: output byte-identical to the committed page, 0 em/en dashes, no 'Set in Order', linked twice from site/articles/index.html."
+    },
     "build_microzone_coverage.py": {
       "status": "clean",
       "date": "2026-09-30",
@@ -541,6 +546,11 @@
       "date": "2026-09-26",
       "note": "Card-sheet vs hero-photo router for the illustrated Entryway/Mudroom art pipeline (the two decks that use photographed card sheets, distinct from the newer typeset glyph-panel decks). Ran --check live: both Desktop drop folders correctly report missing, 126 cards indexed, 0 files found, no error. Verdicts/staging logic (sha-checked approval, promote() safe with no staged files) read correct. No defect."
     },
+    "import_room_diagrams.py": {
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02, PM check-in. Correctly refuses to ship with an empty manifest or shrink below what is committed; reran --apply, output byte-identical to committed ops/room-diagrams.json (11 rooms); confirmed site/rooms/garage.html actually carries the imported SVG diagram, not the old typographic panel."
+    },
     "import_room_images.py": {
       "status": "clean",
       "date": "2026-10-01",
@@ -555,6 +565,11 @@
       "status": "clean",
       "date": "2026-09-26",
       "note": "Read in full (405 lines). Checked --new/--changed/--submit/--status modes, key_is_live() three-state (True/False/None) handling, withhold_undeployed() skipping undeployed URLs, content_hashes() baseline-vs-changed logic and its own documented 2026-09-08 fix (hashes recorded only for accepted_now, not all of log[submitted]). run() only appends to log[runs] on an actual submission attempt (not on key-unreachable or refused-to-submit early returns), so status() last-submission line reflects last real submission, not last invocation; correct per this file's own stated purpose (when did we last submit), not a gap. No exit-code-lies-about-success shape (each mode returns rc from run() or an explicit failure code). No defect found."
+    },
+    "keyword_demand.py": {
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02, PM check-in. Harvester correctly distinguishes a genuine empty autocomplete result from a rate-limited/blocked endpoint via start/end canary plus per-seed ok/empty/error accounting, and refuses to overwrite a complete harvest with a partial one. --status shows a healthy 2026-10-01 harvest (238 ok, 36 empty, 0 errored, both canaries ok); ops/tests/test_keyword_demand.py exists."
     },
     "launch_plan_pdf.py": {
       "status": "clean",
