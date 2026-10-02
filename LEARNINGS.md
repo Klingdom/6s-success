@@ -1031,6 +1031,17 @@ root causes we already diagnose rather than written to the query, and link it
 to the room pages. Re-harvest monthly, not weekly: autocomplete moves slowly
 and the report is for choosing work, not for watching a number.
 
+**Done, 2026-10-02, operator.** `site/articles/why-is-my-house-always-messy.html`
+answers the kitchen, bedroom, kids' room and closet variants directly, grounded
+only in the existing 17-cause vocabulary, linked to the real room/zone pages.
+Full account in `BACKLOG-2026-09-07.md` A11 and `ops/NIGHTLY-LOG.md` this date.
+**Two parts of this learning's own next action could not be closed from this
+sandbox:** the re-harvest needs reach to Google's/Bing's autocomplete
+endpoints, and telling the new page to IndexNow needs reach to the live site
+to confirm the key file, neither of which this environment has. Both are
+mechanical once run from a session with network reach; the content gap itself
+is closed.
+
 #### LRN-0030: A test that shells out must prove its interpreter, or the environment answers in place of the code
 
 **Status:** SUPPORTED
