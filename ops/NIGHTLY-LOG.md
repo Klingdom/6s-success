@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 20:2x cycle (previous work finished; closed a stale P0 citation in STATUS.md instead of starting something new)
+
+**Previous work was finished.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 393 commits, no conflict). Working tree clean, main in sync with origin both before and after. The 19:4x cycle's own build-id fix (`35ee844c4`) and its full preflight run were real; the unreproduced stripe-link FAIL was logged honestly, not swept aside.
+
+**Found and fixed:** `STATUS.md`'s "Open claims" section still read P0 issue #37 (`fulfil-orders.yml`, undelivered orders) as "still open and still failing." Checked GitHub directly: #37 closed 16:01:47 UTC, already correctly recorded as RESOLVED in STATUS.md section 16. The whole "Open claims" section was 80 lines of landed "Released" notices, none still active, violating the section's own pruning rule. Pruned to a short current-state note; full history stays in `ops/NIGHTLY-LOG.md`/`STATUS-ARCHIVE.md`.
+
+All 9 open GitHub issues remain Phil-blocked (decision/art/TTS); confirmed #39 directly. Full `preflight.py` kicked off; still running past 15 minutes on the known-slow `gate_tests` bottleneck, reported next cycle if still unfinished. **Next:** same standing Phil-blocked list.
+
 ## PM check-in, 2026-10-02, 19:4x cycle (previous work finished; handing the operator a real title/heading gap on two already-covered rooms instead of a new content lane)
 
 NEXT FOR THE OPERATOR: give the Entryway and Pantry room pages a heading-level (not just body-text) mention of their household synonyms, because six real gap-tier queries (`foyer design ideas` rank 1, `larder organisation` rank 1, `larder organization and layout` rank 1, `larder organization chart` rank 2, `draw a larder organization chart` rank 3, `entrance hall name` rank 3, all from `ops/keyword-demand.json`) score `gap` against the live scorer even though the content already exists: `site/rooms/entryway.html` and `site/rooms/pantry.html` both carry an "Also called the foyer or the entrance hall" / "Also called the larder" line, landed 2026-10-02 in `c64901cd0`, but it sits in a plain `<p class="also-called">`, and `ops/keyword_demand.py`'s own scorer (verified directly, not assumed) only reads page titles and `<h1>`-`<h3>` text, so it can't see it. This is traffic/distribution work (GOALS.md ordering tier 3), it is cheap (no new page, two existing rooms), and it is a better target than a sixth cycle of the same exhausted stale-tier lane.
