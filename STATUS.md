@@ -1055,22 +1055,35 @@ Active experiments should also be tracked in `EXPERIMENTS.md`.
 
 # 16. Current Incidents
 
-**No incident status has yet been verified.**
+**Corrected 2026-10-02, PM check-in.** This section had stood as the unfilled
+bootstrap template while a real, ongoing incident sat tracked only in GitHub
+issue #37 and `OWNER-ACTIONS.md`.
 
-This does **not** mean there are no incidents.
+## INCIDENT-001: fulfil-orders.yml fails every run, paid orders not delivered
 
-Production inspection is required.
-
-When an incident is active, record:
-
-- ID
-- severity
-- start
-- impact
-- coordinator
-- current state
-- mitigation
-- next update
+- **Severity:** P0.
+- **Start:** 2026-10-02, ~09:12 UTC. A live-write guard added in `044863b9c`
+  did not account for this workflow, the one caller designed to run
+  unattended against a live Stripe key.
+- **Impact:** every scheduled and push-triggered run of `fulfil-orders.yml`
+  fails at the "Deliver" step (confirmed repeatedly against the Actions API,
+  most recently run #3016 at 11:38 UTC). Any customer who pays while this
+  stands receives nothing until a human applies the fix.
+- **Coordinator:** none assigned; no autonomous session can close this one.
+- **Current state:** unresolved as of this entry. The one-line fix
+  (`STRIPE_ALLOW_LIVE: "1"` in the Deliver step's `env:`) has been written
+  twice by two different sessions and held both times by this environment's
+  own safety classifier as a payment-safety change requiring a human. This is
+  correct, conservative behavior, not a bug to route around.
+- **Mitigation:** none available from inside a sandboxed session. Orders are
+  still being recorded by Stripe; nothing is lost, only delayed.
+- **Next update:** the single step that closes this is in
+  `OWNER-ACTIONS.md` item 0a and GitHub issue #37: open
+  `.github/workflows/fulfil-orders.yml` in GitHub, add
+  `STRIPE_ALLOW_LIVE: "1"` next to the step's other secrets, commit to
+  `main`. Push notifications with this exact fix have gone to Phil three
+  times today (~09:4x, ~10:33, ~11:2x); re-notify on a roughly hourly
+  cadence while it stays open, not on every 30-minute cycle.
 
 Historical incidents belong in `INCIDENTS.md`.
 
