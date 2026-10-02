@@ -214,13 +214,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-21T23:25:16Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-22T05:12:40Z",
    "mode": "changed",
    "offered": 186,
@@ -632,6 +625,13 @@
    "offered": 4,
    "accepted": 4,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T04:24:32Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -663,14 +663,14 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "60e803e7615329b3",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "e7584e542544abfe",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "ab1791c54d8fa036",
-  "https://6s-success.com/articles/": "014380ba72324e55",
+  "https://6s-success.com/articles/": "b78af0f91eccea6c",
   "https://6s-success.com/articles/is-that-really-a-backup": "27cf1f192845dcbd",
-  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "6d4485303fb745d9",
+  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "6d9b57b747ee1094",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "7152419c59fd7330",
   "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "c2cdb88416b5f956",
   "https://6s-success.com/articles/what-is-6s": "31c3072571a6eacc",
   "https://6s-success.com/articles/what-is-a-micro-zone": "b25a897e5e07f929",
-  "https://6s-success.com/articles/where-to-start-decluttering": "243a51acf041508c",
+  "https://6s-success.com/articles/where-to-start-decluttering": "9e8b562352a12e34",
   "https://6s-success.com/articles/why-a-shared-zone-never-stays-reset": "6918c390b5f487f6",
   "https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean": "6941fdde27fb5365",
   "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another": "aaed9c292117ebe7",
@@ -684,7 +684,7 @@
   "https://6s-success.com/articles/why-you-keep-buying-things-you-already-own": "082d25b95a349b31",
   "https://6s-success.com/articles/why-you-keep-running-out-of-things": "a51b8906261ec5c8",
   "https://6s-success.com/articles/why-you-never-finish-a-zone": "497d77dbfd684452",
-  "https://6s-success.com/articles/why-your-house-gets-messy-again": "7288f7b0c88ada0a",
+  "https://6s-success.com/articles/why-your-house-gets-messy-again": "8cd90203efab7f42",
   "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "1c475a8b5e9fd38f",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "ed91e28082456419",
