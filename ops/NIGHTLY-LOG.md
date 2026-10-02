@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 11:4x cycle (previous work confirmed finished, P0 correctly held rather than re-notified, a stale-image gate triggered to re-check itself)
+
+NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md's open "cheap/budget/DIY" query cluster (`ops/keyword-demand.json`: 0 covered / 82 partial / 17 gap of 99), the same A11/A13 pattern (expand an existing page that already answers the real question, per CLAUDE.md 51/11), because it is the one named, unaddressed traffic-and-distribution gap and it outranks any GREEN-tier housekeeping left on the ordering rule.
+
+**Attach: clean this cycle.** `git fetch origin main`, repo was shallow, `fetch --unshallow`, `checkout main`, `merge --ff-only` landed 277 commits with no unrelated-history error, unlike most prior cycles' logged shape.
+
+**Previous work (issue #38's real fix, `614da0ee9`) confirmed finished, not just locally claimed.** Ran `preflight.py` fast to completion this cycle (prior two cycles shipped before it cleared `gate_tests`; this one waited): 2 gates failed, both known, neither new. `films-six-passes` is #39, unchanged, still blocked on TTS/video reach this sandbox lacks. `publish-image-current` is new-looking but explained: `publish-image.yml` only triggers on `site/**`, `Dockerfile` or its own workflow file, and `614da0ee9` touched none of those, so it correctly has not re-run since the #38 fix landed to confirm the image build is unblocked. Rather than leave that unverified for an unknown number of cycles, triggered it directly via `workflow_dispatch` (queued, not watched to completion this slot; whoever reads this next should check `publish-image.yml`'s latest run before citing the image as current).
+
+**P0 #37: checked, not re-notified.** Confirmed still failing (run #3016, 11:38 UTC, same "Deliver" step) via the Actions API directly. Three push notifications already reached Phil today (~09:4x, ~10:33, ~11:2x) with the identical one-line fix and the issue #37 link; this cycle sits roughly 35 minutes after the last one, short of the ~50-minute gap between the prior three, so a fourth now would restate a condition Phil already has rather than surface new information. Held, per the same judgment the 10:4x and 11:1x cycles already applied. Will renotify once the gap since the last ping is comparable to the established cadence, or the moment the state changes either way.
+
+**One small closing job done:** `STATUS.md` section 16, "Current Incidents," had stood as the unfilled bootstrap template ("No incident status has yet been verified") through three-plus hours of a real, tracked P0. Filled in `INCIDENT-001` from GitHub issue #37 and `OWNER-ACTIONS.md` item 0a rather than duplicating either as a new source of truth.
+
+**Went well:** waiting for the real preflight result instead of shipping on an assumption, per CLAUDE.md 0.4 and the exact mistake the 10:4x and 11:1x cycles each logged and corrected.
+
+**Did not go well:** nothing new; `gate_tests` sandbox slowness is the same standing limitation already logged repeatedly.
+
+**Changing next cycle:** check `publish-image.yml`'s dispatched run before trusting `gate_publish_image_current` either way.
+
+**Next:** issue #37 (P0, Phil-only) and #38/`OWNER-ACTIONS.md` item 0a remain the standing blockers, unchanged. The cheap/budget/DIY cluster is the operator's unblocked item for this slot.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or page touched; IndexNow not applicable. No new GitHub issue this cycle.
+
 ## PM check-in, 2026-10-02, 11:1x addendum (the backgrounded local preflight landed a third FAIL the CI check used to verify the prior entry did not show; fixed issue #38 for real, not left queued, because it turned out to be blocking every deploy)
 
 **The prior entry's own local `preflight.py` run, started before it shipped, was still clearing `gate_tests` when the entry was written and finished after.** It reported 3 FAILs, not the 2 confirmed against CI: the extra one was `publish-image-current`, naming that `publish-image.yml`'s last 3 attempts (back to the last success at `5e0a1f41a`, 09:07 UTC) never published because the same 2 known preflight FAILs block that workflow's own "Preflight, including generator ownership" step, which also gates "Build and push". Not a new defect, but new information: issue #38 was filed as a GREEN-queued documentation nicety; it is actually also blocking every image build and therefore every deploy, on top of the pre-existing stale-production gap already on the dashboard.
