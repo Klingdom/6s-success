@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-24T18:47:56Z",
-   "mode": "new",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-24T18:49:08Z",
    "mode": "changed",
    "offered": 191,
@@ -633,6 +626,13 @@
    "offered": 3,
    "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T16:13:37Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -656,7 +656,7 @@
   "https://6s-success.com/deck.html": "85fbc7cf51de6863",
   "https://6s-success.com/kit.html": "a287385f50ae8f35",
   "https://6s-success.com/quest.html": "5982a673a74a0971",
-  "https://6s-success.com/standards.html": "0afca968d162e556",
+  "https://6s-success.com/standards.html": "684ef755c3a65154",
   "https://6s-success.com/articles/decluttering-vs-organizing": "73449c765982cada",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "951b740c5e752e0c",
   "https://6s-success.com/articles/everything-needs-an-assigned-home": "c7247fcec71599fa",
