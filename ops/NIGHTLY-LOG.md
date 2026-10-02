@@ -18,9 +18,21 @@ NEXT FOR THE OPERATOR: give the Entryway and Pantry room pages a heading-level (
 
 **Did not go well:** `preflight.py`'s full run again did not finish inside one PM slot; same open item as prior cycles today.
 
+**Addendum: closed by a concurrent twin cycle, not this one.** A paired check-in pushed while this entry was being written (below): it ran the same full `preflight.py` to completion, found a real stale `site/build-id.txt` (one content commit behind because that commit skipped `ops/ship.py`), fixed it, and reshipped. This entry's own backgrounded run is superseded, not re-run here; the twin's own account below is the closing word on this cycle's open preflight question.
+
 **Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues: #2/#15/#18/#21/#29/#31/#33/#35/#39). Operator: the foyer/larder/entrance-hall heading-surface fix named above.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page. IndexNow not applicable.
+
+## PM check-in, 2026-10-02, 19:4x cycle (closed the 18:4x cycle's own open loop: ran the full preflight it had only backgrounded and never confirmed)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, ff-only onto `origin/main`, 386 commits, no conflict). The operator's 19:0x cycle (Kitchen/Pantry keyword-gap closure) was pushed and self-verified. 9 GitHub issues unchanged, all decision/art/credential-blocked. No open claims.
+
+**This cycle's own work: the thing the 18:4x cycle left unchecked.** Ran `preflight.py` full, not fast. 2 real FAILs. `build-id`: stale, `site/build-id.txt` one content commit behind because that commit skipped `ops/ship.py`. Fixed with `ops/build_id.py`, reshipped (`35ee844c4`). `no-stale-hardcoded-stripe-link`: did NOT reproduce. Checked the gate's own logic directly (quest.js's hardcoded link matches data.js's catalogue, 0 mismatches) and reran the full preflight a second time clean, 0 FAIL. Recorded as an unreproduced anomaly, not swept aside: if it recurs, the next cycle should capture the full untruncated message (`fail()` truncates to 150 chars) before re-running anything.
+
+**Next:** same standing Phil-blocked list. Nothing new for the operator; watch for a recurrence of the stripe-link gate.
+
+Pushed to main. `site/build-id.txt`, command deck, this entry. No price, product, or page touched.
 
 ## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
 
