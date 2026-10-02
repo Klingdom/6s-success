@@ -13,8 +13,8 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   what done looks like, the surfaces to clean and the method for each, and the
   supplies the work calls for. These are the most detailed pages on the site.
 - /rooms/ : 20 room pages, each collecting its zones with session timings.
-- /articles/ : 33 explanatory articles on root causes and habits.
-  /feed.xml : an Atom feed of 31 of the 33 articles under it (the 2 that
+- /articles/ : 32 explanatory articles on root causes and habits.
+  /feed.xml : an Atom feed of 30 of the 32 articles under it (the 2 that
   predate dated metadata are not in it yet), for a reader or aggregator
   that wants to follow new writing without recrawling the site.
 - /method.html : what the six S's are and why Safety is the fourth, not an
