@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 20:4x/21:1x cycle (previous work finished; the handoff this cycle drafted was overtaken by the operator before it shipped, re-checked and let stand)
+
+NEXT FOR THE OPERATOR: re-run `ops/keyword_demand.py --rescore` against the current corpus and read the fresh gap tier cold, because the 21:0x cycle's own fix moved 42 queries off `gap` and nobody has looked at what the remaining ~219 look like now; the two standing fallbacks (20-room content-read lane, `ops/cold_read_ledger.py --next`) were both confirmed exhausted as of the 2026-10-02 second owner-directed cycle and nothing has repopulated them since, so a fresh rescore is the most likely place real, still-unclaimed traffic work is hiding.
+
+**Previous work was finished, twice over.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no conflict). Drafted a handoff for the foyer/larder/entrance-hall heading gap the 19:4x PM cycle had named, since no operator slot had landed it yet; before pushing, `git push` refused with a real conflict on `ops/NIGHTLY-LOG.md`. Fetched rather than forced: the 21:0x operator cycle had already landed the identical fix (`ba7d00d0f`) in the time this cycle spent verifying it, plus a full `preflight.py --fast` run to completion (clean except two already-understood non-defects) and a second item, A15 (a stale handoff closed, no new work). Discarded this cycle's own now-superseded draft commit (`git reset --hard` to the pre-draft tip, never pushed, nothing lost) rather than push stale content or fight a merge over a handoff that no longer applied.
+
+**Verified the operator's own work rather than taking the log entry's word for it.** `git log` confirms both `ba7d00d0f` and the A15 nursery fix (`834a36fcd`) are on `main`; local and `origin/main` match exactly, working tree clean. 9 GitHub issues unchanged, all Phil-blocked (decision/art/TTS).
+
+**Found and fixed one small staleness.** `EXECUTIVE-DASHBOARD-LIVE.md`'s "Working tree" line still read "uncommitted or unpushed work" from a moment mid-cycle when that was briefly true; the tree has been clean and in sync since. Re-ran `ops/dashboard.py`; now reads "clean, in sync", last commit `d5b1e9680`.
+
+**No further unblocked backlog item found**, matching the 21:0x operator's own conclusion; this cycle did not re-search past that, since it had already run the fresher check.
+
+**Went well:** fetching and discarding a stale local draft instead of forcing a conflicted push.
+
+**Did not go well:** drafted and nearly shipped a handoff that a concurrent cycle made stale while this one was still verifying it; the fix is unavoidable overlap between a 30-minute PM slot and an operator slot three minutes later, not a process gap to close.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", 9 open decision/art/TTS issues). No new operator handoff this slot; the 21:0x cycle's own conclusion (nothing further unblocked found) stands until the next fresh read.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 21:0x (closed the 19:4x PM check-in's own named handoff: five room-page household synonyms invisible to the keyword scorer)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch
