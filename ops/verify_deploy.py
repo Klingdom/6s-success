@@ -47,10 +47,22 @@ import urllib.error
 # two pages that were not yet live when that pass was done. Found by
 # grepping every page under site/ for a live Stripe link and diffing the
 # result against PAGES directly, not by trusting this list was complete.
+#
+# Found 2026-10-02, second-pass cold read: the page named here as "the
+# affiliate disclosure every product-page link promises is above them" was
+# how-we-make-money.html, but ops/affiliate.py's own DISCLOSURE_PAGE is
+# affiliate-disclosure.html, a different page, linked from 215+ pages
+# (every zone/room footer) and never in this list at all. kit.html (the
+# "eight things every micro zone asks for" page, linked from
+# affiliate-disclosure.html and resources.html) was also missing. Fixed by
+# adding both; gate_verify_deploy_pages_current now re-derives the real
+# disclosure target from affiliate.py.DISCLOSURE_PAGE directly, so this
+# specific page can never again silently drop out of PAGES.
 PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
          "resources", "invest", "privacy", "terms", "accessibility",
          "disclaimer", "quest", "deck", "corporate", "thanks",
-         "how-we-make-money", "bundle", "standards"]
+         "how-we-make-money", "affiliate-disclosure", "kit",
+         "bundle", "standards"]
 
 # The subset of PAGES that must never silently disappear from it again.
 # gate_verify_deploy_pages_current in preflight.py re-derives this set on
@@ -58,7 +70,8 @@ PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
 # 2026-09-21 (a broken buy path scoring 10 of 10 because nothing checked it)
 # cannot recur unnoticed a second time.
 CRITICAL_PAGES = {"", "shop", "quest", "deck", "corporate", "thanks",
-                   "how-we-make-money", "bundle", "standards"}
+                   "how-we-make-money", "affiliate-disclosure",
+                   "bundle", "standards"}
 NONSENSE = "this-path-does-not-exist-6s-check"
 
 results = []

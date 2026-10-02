@@ -21,9 +21,13 @@ that two independently composed scenes must never be called a matched pair.
 
 WHAT RUNS HERE
 --------------
-SDXL Turbo on an RTX 2070 SUPER with 8 GB. Turbo is a distilled model: it
-wants one to four steps and a guidance scale of zero, which is why the
-defaults below look wrong if you are used to ordinary Stable Diffusion.
+SD 1.5 on an RTX 2070 SUPER with 8 GB, not SDXL Turbo: measured below (see
+the comment above MODEL) that Turbo peaked at 9.0 GB and spilled into
+system RAM, taking 168 seconds for a single step, while SD 1.5 at the same
+resolution takes 5 seconds at 20 steps and peaks at 3.0 GB, 33 times
+faster. SD 1.5 is an ordinary model, not distilled, so it wants real
+guidance (STEPS and GUIDANCE below are set accordingly) rather than Turbo's
+one-to-four-step, guidance-zero regime.
 
 The style prefix and its hash come from ops/generate_card_art.py, so local and
 API generation share one frozen style and drift is detectable either way.

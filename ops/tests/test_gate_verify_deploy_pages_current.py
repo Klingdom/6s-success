@@ -19,6 +19,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
+import affiliate as AF                                         # noqa: E402
 import preflight                                               # noqa: E402
 import verify_deploy as VD                                     # noqa: E402
 
@@ -80,12 +81,27 @@ def main() -> int:
     VD.PAGES = orig_pages
     VD.CRITICAL_PAGES = orig_crit
 
+    # 5. Found 2026-10-02: affiliate.py's own disclosure page, linked from
+    #    215+ zone/room footers, was never in CRITICAL_PAGES at all (a
+    #    different page, how-we-make-money.html, was there instead). Drop
+    #    it and confirm the gate names affiliate.DISCLOSURE_PAGE directly.
+    disclosure_slug = os.path.splitext(AF.DISCLOSURE_PAGE)[0]
+    VD.CRITICAL_PAGES = orig_crit - {disclosure_slug}
+    r, w = _run()
+    if not r or r[0][0] != "verify-deploy-pages-current":
+        fails.append("dropping affiliate.py's own disclosure page from "
+                      "CRITICAL_PAGES was not caught: %r" % (r,))
+    elif AF.DISCLOSURE_PAGE not in r[0][1]:
+        fails.append("failure message did not name the real disclosure "
+                      "page: %r" % (r[0][1],))
+    VD.CRITICAL_PAGES = orig_crit
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_verify_deploy_pages_current, 4/4 checks pass")
+    print("OK: gate_verify_deploy_pages_current, 5/5 checks pass")
     return 0
 
 

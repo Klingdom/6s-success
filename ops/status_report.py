@@ -603,7 +603,7 @@ def render(d):
             ("Image public", yn(d["image_public"], "yes", "no, pull returns 403")),
             ("Book", f"{c['chapters']} of 50 chapters, live, buyable"),
             ("Buyable today", f"{d['catalogue_buyable']} of {d['catalogue_total']} catalogue items"),
-            ("Experiments run", f"0 of {len(x['designed'])} designed"),
+            ("Experiments run", f"{x['executed']} of {len(x['designed'])} designed"),
             ("Commits, 7 days", str(d["commits_7d"])),
         ])
     html = (
@@ -639,7 +639,7 @@ def render(d):
     }[dstate]
     subject = (f"6S Success {S['overall']}: domain {subject_domain}, "
                f"{S['needs_phil'] if d['issues_available'] else '?'} need you, "
-               f"0 of {len(x['designed'])} experiments running")
+               f"{x['executed']} of {len(x['designed'])} experiments running")
     return subject, text, html
 
 

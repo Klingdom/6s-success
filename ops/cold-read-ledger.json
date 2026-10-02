@@ -392,9 +392,9 @@
       "note": "PM 09:1x re-verify: still correctly reports UNCHECKED for all 5 printables (pypdf not installed here), matches existing note. No defect."
     },
     "check_sellable.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full. Orphan/undeliverable/missing-file/superset-price checks all correct. Lines 82-85's price<=0 check is provably dead code (buyable already filters price>0), already filed as decision issue #36 and correctly left unedited per CLAUDE.md 37/52 (payment-integrity file, prior session's edit was blocked by the safety classifier); no other defect."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "the 'N deliberately excluded' note cited only dropped[0][1] as if it explained every exclusion (29 retired + 6 already-free, one reason shown for all 35); now groups by category with its own count. New test_check_sellable_excluded_note.py, fail-then-pass proved."
     },
     "check_sitemap_current.py": {
       "status": "clean",
@@ -523,8 +523,8 @@
     },
     "image_local.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "split_negations() handled clause-initial 'nothing else' and mid-clause 'with no X' but missed a bare 'nothing' elsewhere in a clause (e.g. the real ET-010 override 'so nothing gets lost'), letting it ride into the positive prompt untouched; widened to a whole-clause search, gate_image_prompt_negations_handled's bare regex widened to match, fail-then-pass proved on both."
+      "date": "2026-10-02",
+      "note": "WHAT RUNS HERE docstring still described SDXL Turbo on an RTX 2070 SUPER; the code switched to SD 1.5 (STEPS=25, GUIDANCE=7.0) a while ago. Corrected the docstring to match the real model and the measured reason for the switch."
     },
     "image_style.py": {
       "status": "clean",
@@ -787,9 +787,9 @@
       "note": "Pure data dict (6 direct-answer strings), no logic. Verified all 6 <p class=\"lede\"> openings on the live site/articles/*.html match this module byte for byte. gate_specific_article_direct_answer wired in preflight.py and confirmed present. No defect."
     },
     "split_deck_cards.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read cold; code correctly matches gate_deck_art_withheld's WITHHOLD set, both index.json and on-disk-URL checks cover withheld codes, no defect found."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "main() returned 0 unconditionally in both the --check and --apply branches regardless of how many cards came out usable, so a run where every source sheet failed verification still reported success. Now fails (return 1) when there were source sheets and none produced a usable card. New test_split_deck_cards.py (fake PIL/numpy, this sandbox has neither), fail-then-pass proved."
     },
     "status_pdf.py": {
       "status": "clean",
@@ -798,8 +798,8 @@
     },
     "status_report.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "gather() hardcoded experiments.executed=0; fixed with executed_count() deriving from EXPERIMENTS.md State markers; new gate_status_report_experiments_executed_current in preflight.py"
+      "date": "2026-10-02",
+      "note": "the HTML summary table's 'Experiments run' row and the email subject line both hardcoded '0 of N designed/running' instead of reading x['executed'] (which the plain-text body already used correctly, and which gather() already computes via executed_count()). Masked today since every EXPERIMENTS.md entry is still IDEA; would have silently under-reported the moment one moved to RUNNING/DONE. New test_status_report_render_executed.py, fail-then-pass proved."
     },
     "stripe_brand.py": {
       "status": "clean",
@@ -822,9 +822,9 @@
       "note": "main() returned before ever calling dedupe_links() whenever duplicate PRODUCTS existed, so a duplicate payment LINK on the same SKU went completely unchecked in that run; and --check's exit code was unconditionally 0 no matter what was found, for both products and links. Fixed: main() always calls dedupe_links() now, and both it and dedupe_links() return non-zero only when something is left duplicated. Gated by fail-then-pass tests in test_stripe_dedupe.py and test_stripe_dedupe_links.py; no live gate change needed since preflight's own gates already call duplicates()/duplicate_active_links() directly, not main()."
     },
     "stripe_fulfil.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "cross-checked DELIVERY against build_catalog.py's 4 real kind values (zone/room/situation/area, no KeyError risk) and stripe_catalog.py's own SELLABLE deliverable paths (all match); dry run correctly refuses without a Stripe credential (CLAUDE.md 0.4, no egress here); DECK-ENTRY-PDF pointing at a file with no generator was already found and correctly judged not-live 2026-09-04 (SKU retired, unreachable, deliver() fails loudly on a missing file rather than sending nothing) -- confirmed still true, not a new finding"
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "the one Stripe script able to email a real customer and stamp a real PaymentIntent (--send) had no STRIPE_ALLOW_LIVE=1 guard, unlike every sibling (stripe_catalog.py, stripe_dedupe.py, stripe_invoice.py, retire_stripe_skus.py). Added the same live()/STRIPE_ALLOW_LIVE check at the top of main(). New test_stripe_fulfil_live_guard.py, fail-then-pass proved."
     },
     "stripe_invoice.py": {
       "status": "clean",
@@ -852,9 +852,9 @@
       "note": "PM cycle second-pass re-read: rebase/regenerate/conflict-marker guard correct, --check ran clean (0 markers, in sync with origin)"
     },
     "verify_deploy.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "PAGES/CRITICAL_PAGES cover every real buy path (bundle, standards added 2026-09-26 PM); parking-page, asset, legal-page and mail-pipe-disclosure checks all correctly implemented. No defect."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "PAGES/CRITICAL_PAGES named how-we-make-money.html as 'the affiliate disclosure every product page promises', but affiliate.py's real DISCLOSURE_PAGE is affiliate-disclosure.html, a different page linked from 215+ zone/room footers, never in the list at all; kit.html (3 inbound links) was also missing. Added both; gate_verify_deploy_pages_current now re-derives the real disclosure target from affiliate.DISCLOSURE_PAGE directly so the two cannot drift apart again. Extended test_gate_verify_deploy_pages_current.py (case 5), fail-then-pass proved."
     },
     "verify_media_delivery.py": {
       "status": "clean",
@@ -882,9 +882,9 @@
       "note": "Second-pass cold-read 2026-10-01: main()'s real-write path returned 0 unconditionally even when empty was non-empty (a zone produced no caption text), the same silent-success shape fixed in two sibling batch tools on 2026-09-26. Confirmed 0 of 114 zones currently empty, so not live-impacting, but the exit code would have lied the day one did. Fixed to return 1 if empty else 0. New case in test_video_srt.py (patches srt_for() to return empty, writes only to a scratch dir), fail-then-pass proved directly: reverted the fix, confirmed the new case fails by name, restored, reran clean (6/6). Not wired into preflight's exit code (preflight does its own independent freshness check via srt_for(), never calls main()), so no new gate needed."
     },
     "video_zone.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read cold; heavily gated already (gate_video_slug_single_source, gate_quest_data_videos_published, done_items/zone_slug single-source checks), no new defect found."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "SIX (the 114 zone videos' progress-spine colours) paired four of six passes with the wrong S's colour and invented two colours absent from site.css entirely (one was --slate, an unrelated input-focus colour; the other appears nowhere). Corrected to match site.css's --s1..--s6 exactly. New gate_video_zone_six_colours_current in preflight.py re-derives the real palette from site.css and fails on drift; new test_gate_video_zone_six_colours_current.py, fail-then-pass proved."
     },
     "video_zone_photo.py": {
       "status": "fixed",

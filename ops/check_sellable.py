@@ -162,8 +162,27 @@ def main() -> int:
     if unsold:
         print(f"  note: {len(unsold)} built but not listed: {unsold[:3]}")
     if dropped:
-        print(f"  note: {len(dropped)} deliberately excluded, "
-              f"{dropped[0][1]}")
+        # Found 2026-10-02, second-pass cold read: this used to print only
+        # dropped[0][1], the first excluded item's own reason, as though it
+        # explained all of them. generated_products.products() drops SKUs
+        # for at least three distinct reasons (already free, at/above the
+        # whole-house price, retired), so that line claimed more than it
+        # checked, the exact "note overstates the finding" shape this
+        # file's own comment two sections below already warns about for the
+        # delivery-entry line. Group by reason instead.
+        def category(why: str) -> str:
+            if why.startswith("retired:"):
+                return "retired"
+            if why.startswith("at or above"):
+                return "at/above the whole-house price"
+            return why
+        by_reason: dict = {}
+        for _sku, why in dropped:
+            cat = category(why)
+            by_reason[cat] = by_reason.get(cat, 0) + 1
+        breakdown = ", ".join(f"{n} {why}" for why, n in
+                               sorted(by_reason.items(), key=lambda kv: -kv[1]))
+        print(f"  note: {len(dropped)} deliberately excluded: {breakdown}")
 
     if fail:
         print()

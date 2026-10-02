@@ -55,8 +55,17 @@ FPS = 30
 
 INK, PAPER, ACCENT = "#2B2622", "#F7F2E9", "#BC4B2A"
 DEEP, HONEY, LINE = "#22323C", "#DDA63A", "#E2D8C4"
-SIX = [("Sort", "#BC4B2A"), ("Straighten", "#DDA63A"), ("Shine", "#4E7A57"),
-       ("Safety", "#CB4B36"), ("Standardize", "#3C5A6B"), ("Sustain", "#6E5B8B")]
+# Must match site.css's --s1..--s6 and quest-data-symptoms.js's QUEST.colours
+# exactly, not just hold six plausible-looking colours. Found 2026-10-02,
+# second-pass cold read: four of these six were drifted to the wrong S
+# (an off-by-one rotation), and two (Standardize, Sustain) were not any
+# canonical 6S colour at all -- #3C5A6B is site.css's unrelated --slate
+# (an input-focus outline colour) and #6E5B8B does not appear anywhere in
+# site.css. Every one of the 114 zone videos renders its progress spine
+# from this list, so the wrong colour would have shipped silently on the
+# next full re-render.
+SIX = [("Sort", "#CB4B36"), ("Straighten", "#BC4B2A"), ("Shine", "#D98A2B"),
+       ("Safety", "#DDA63A"), ("Standardize", "#6E8B5B"), ("Sustain", "#4E7A57")]
 
 
 def browser() -> tuple:

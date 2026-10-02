@@ -247,6 +247,18 @@ def main(apply_it: bool, deck: str = "entryway") -> int:
     for b, why in skipped[:6]:
         print(f"    {b[:40]:42} {why}")
 
+    # Found 2026-10-02, second-pass cold read: both return paths below used
+    # to return 0 unconditionally, so a run where every source sheet failed
+    # the ratio/blank verification still reported success. A caller keying
+    # off the exit code (CI, a script chain) would have seen "0 usable
+    # cards, exit 0" as a clean run. There were sheets to process and none
+    # of them produced a usable card, which is the one shape that is never
+    # a clean run, withheld codes and ordinary skips aside.
+    if files and not index:
+        print("\n  every source sheet failed verification or was withheld; "
+              "0 usable cards came out of this run.")
+        return 1
+
     if not apply_it:
         print(f"\n  would write {len(index) * 2 * len(SIZES) * 2} files "
               f"({len(index)} cards x 2 faces x {len(SIZES)} sizes x webp+jpg)")

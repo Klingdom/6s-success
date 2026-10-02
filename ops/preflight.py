@@ -9135,13 +9135,33 @@ def gate_verify_deploy_pages_current() -> None:
     check_urls.py and audit_pages.py already cover), so the next new
     top-level buy path is caught the day it ships rather than found cold.
 
+    Found 2026-10-02, second-pass cold read: the page this docstring named
+    as "the affiliate disclosure every product page promises" was
+    how-we-make-money.html, but ops/affiliate.py's own DISCLOSURE_PAGE is
+    affiliate-disclosure.html, a different page, linked from the footer of
+    every zone and room page (215+), and it was never in PAGES at all. A
+    verify_deploy.py run scored all green while every one of those
+    disclosure links could have 404'd. Fixed, and this gate now re-derives
+    the real target from affiliate.DISCLOSURE_PAGE directly rather than
+    from a second hardcoded name, so the two cannot drift apart again.
+
     This gate is the reason it cannot regress unnoticed: it re-derives
     verify_deploy.CRITICAL_PAGES and PAGES and fails if a future edit drops
-    a critical page, if the page it names stops existing in site/ at all, or
-    if a top-level page carrying a live Stripe link is missing from PAGES.
+    a critical page, if the page it names stops existing in site/ at all, if
+    a top-level page carrying a live Stripe link is missing from PAGES, or
+    if affiliate.py's own disclosure page is missing from CRITICAL_PAGES.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import verify_deploy as VD
+    import affiliate as AF
+    disclosure_slug = os.path.splitext(AF.DISCLOSURE_PAGE)[0]
+    if disclosure_slug not in VD.CRITICAL_PAGES:
+        fail("verify-deploy-pages-current",
+             "ops/affiliate.py's own DISCLOSURE_PAGE (%r) is not in "
+             "ops/verify_deploy.py's CRITICAL_PAGES, so a deploy that broke "
+             "the disclosure page every product link promises would still "
+             "score all green." % AF.DISCLOSURE_PAGE)
+        return
     missing_from_pages = sorted(p for p in VD.CRITICAL_PAGES if p not in VD.PAGES)
     if missing_from_pages:
         fail("verify-deploy-pages-current",
@@ -14825,6 +14845,50 @@ def gate_video_slug_single_source() -> None:
              "a room/zone name with an ampersand produced disagreeing "
              "slugs: zone_slug=%r check_video_standard.stem_for=%r"
              % (canonical, checker))
+
+
+def gate_video_zone_six_colours_current() -> None:
+    """video_zone.py's SIX (the progress-spine colours on every zone video)
+    must match site.css's --s1..--s6, the one real source of the 6S palette.
+
+    Found 2026-10-02, second-pass cold read: SIX paired four of the six
+    passes with the wrong S's colour (an off-by-one rotation) and invented
+    the other two outright: #3C5A6B is site.css's unrelated --slate (an
+    input-focus outline colour, nothing to do with the 6S palette), and
+    #6E5B8B does not appear anywhere in site.css at all. Every one of the
+    114 zone videos renders its progress spine from this list, so the wrong
+    colours would have shipped silently on the next full re-render with
+    nothing to notice. Fixed by correcting SIX to match site.css's --s1..--s6
+    exactly (confirmed against site/assets/js/quest-data-symptoms.js's own
+    QUEST.colours, which already agreed with site.css and not with the old
+    SIX). This gate re-derives the real palette from site.css itself and
+    fails if video_zone.SIX ever drifts from it again, in colour or in order.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    video_zone = importlib.import_module("video_zone")
+    zone_supplies = importlib.import_module("zone_supplies")
+    css_path = os.path.join(SITE, "assets", "css", "site.css")
+    css = io.open(css_path, encoding="utf-8").read()
+    expected = {}
+    for n in range(1, 7):
+        m = re.search(r"--s%d:\s*(#[0-9A-Fa-f]{6})" % n, css)
+        if not m:
+            fail("video-zone-six-colours-current",
+                 "site.css has no --s%d custom property to check SIX against" % n)
+            return
+        expected[n] = m.group(1).upper()
+    order = [p.capitalize() for p in zone_supplies.PASS_ORDER]
+    actual = dict(video_zone.SIX)
+    problems = []
+    for i, name in enumerate(order, start=1):
+        want = expected[i]
+        got = actual.get(name, "").upper()
+        if got != want:
+            problems.append("%s: SIX has %s, site.css --s%d is %s" % (name, got or "missing", i, want))
+    if problems:
+        fail("video-zone-six-colours-current",
+             "video_zone.SIX disagrees with site.css's --s1..--s6: %s" % "; ".join(problems))
 
 
 def gate_done_items_single_source() -> None:
@@ -27079,6 +27143,7 @@ def main() -> int:
     run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)
+    run_gate(gate_video_zone_six_colours_current)
     run_gate(gate_done_items_single_source)
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)

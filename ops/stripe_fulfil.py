@@ -34,11 +34,16 @@ SAFETY
 ------
 Dry run by default. Sending requires --send. It refuses to deliver anything it
 cannot name a file for, refuses without a customer email, and marks the order
-fulfilled only after the send has actually returned.
+fulfilled only after the send has actually returned. A --send run against a
+live key also needs STRIPE_ALLOW_LIVE=1, the same guard stripe_catalog.py,
+stripe_dedupe.py, stripe_invoice.py and retire_stripe_skus.py already require
+before any of them can act on a real account: this is the one script in that
+family that can email a real customer and stamp a real PaymentIntent, so it
+should not be the one missing the second gate.
 
-Run:  python ops/stripe_fulfil.py                 what would happen
-      python ops/stripe_fulfil.py --send          deliver, for real
-      python ops/stripe_fulfil.py --days 30       widen the window
+Run:  python ops/stripe_fulfil.py                               what would happen
+      STRIPE_ALLOW_LIVE=1 python ops/stripe_fulfil.py --send    deliver, for real
+      python ops/stripe_fulfil.py --days 30                     widen the window
 """
 from __future__ import annotations
 
@@ -149,6 +154,10 @@ def secret_key() -> str:
 
 
 _KEY: str | None = None
+
+
+def live() -> bool:
+    return key().startswith("sk_live_")
 
 
 def key() -> str:
@@ -310,6 +319,8 @@ def selftest(sku, to):
 
 
 def main(send: bool, days: int) -> int:
+    if send and live() and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
+        sys.exit("Refusing to send against a LIVE account without STRIPE_ALLOW_LIVE=1")
     sessions = paid_sessions(days)
     print(f"  {len(sessions)} paid order(s) in the last {days} days")
     if not sessions:
