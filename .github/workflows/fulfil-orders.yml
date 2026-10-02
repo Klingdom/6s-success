@@ -147,6 +147,24 @@ jobs:
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          # THE ONE UNATTENDED CALLER THE GUARD WAS NEVER MEANT TO STOP.
+          #
+          # ops/stripe_fulfil.py refuses a --send against a live account
+          # without this, the same guard stripe_catalog.py, stripe_dedupe.py,
+          # stripe_invoice.py and retire_stripe_skus.py carry. For those it is
+          # exactly right: they are run by a person at a desk who should have
+          # to type it. This workflow is the opposite case and the whole
+          # reason the script exists, a scheduled run with nobody at a
+          # keyboard, and when the guard arrived on 2026-10-02 it failed every
+          # run for six hours (issue #37).
+          #
+          # It authorises nothing this step did not already hold: the live
+          # STRIPE_SECRET_KEY and the SMTP password are three lines above, and
+          # without them nothing could be sent anyway. The only Stripe write
+          # the script makes is stamping metadata[fulfilled_at] on a
+          # PaymentIntent that has already been paid. It cannot charge, refund
+          # or reprice anything.
+          STRIPE_ALLOW_LIVE: "1"
         run: python ops/stripe_fulfil.py --send
 
       # Three products are appointments, not downloads: Virtual Home
@@ -154,6 +172,16 @@ jobs:
       # forwarded to the owner with a calendar invite for whatever time
       # the customer named, because fulfilling them is a conversation.
       - name: Forward service bookings and enquiries
+        # ONE DEAD PATH MUST NOT TAKE THE OTHER DOWN WITH IT.
+        #
+        # Found while fixing #37 and not mentioned in it: a failed step aborts
+        # the job, so for six hours this step was reported `skipped`, not
+        # failed. Digital delivery breaking had silently stopped service
+        # bookings and enquiries being forwarded too, and those are the
+        # Virtual Home Consult, the In-Home Reset Day and Corporate Lean 6S,
+        # the highest-value things this business sells. This step was never
+        # gated on the one above and has no dependency on it.
+        if: always()
         env:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
