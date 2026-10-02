@@ -109,6 +109,57 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 
 ## Open, ranked by what they unblock
 
+### The one channel that has ever worked went silent on 28 September
+
+**Measured 2026-10-02 from the analytics database, by day.** LinkedIn referred
+a visitor to this site on **sixteen separate days between 23 August and 28
+September**, one or two at a time, steadily. Since 28 September: **nothing, for
+four days.** Bluesky's last referral was 8 September.
+
+**Why this is near the top of the list.** `GOALS.md` says the constraint is
+arrivals, and of 96 visitors this site has ever had, search engines have
+delivered five. LinkedIn is not a nice-to-have here; on the evidence it is the
+only channel that has ever reliably produced a human, and it stopped.
+
+**The machine is not the problem, which is the part worth knowing before you
+look.** `linkedin-drafts.yml` has run and sent every day without a gap:
+rotation-advance commits land one to two a day from 25 September through today,
+including two already on 2 October. The drafts are arriving.
+
+**Three explanations and they are indistinguishable from here.** You can tell
+which in about ten seconds and this operator cannot tell at all:
+
+1. The posting stopped.
+2. The posts went out without a working link to the site.
+3. LinkedIn changed how it passes referrers, and the visits are arriving
+   counted as `(direct)`, which is 698 of the last 30 days' pageviews and
+   would hide them completely.
+
+Number 3 is a real possibility rather than a courtesy, and it is why this is
+written as a question rather than a reminder. If you have been posting as
+usual, say so and the right fix is a tracked link in the post (`?from=li`)
+rather than anything about posting cadence.
+
+**Fixed the same day, so this question answers itself from tomorrow.** Reading
+what the draft tools actually emit turned up something worse than the gap
+above: **not one draft from any of the three tools contained a URL at all.**
+LinkedIn's said "free in the online book", Bluesky's were bare excerpts,
+Facebook's said "Read it free in the online book". Nothing to click, in the
+posts written for the only channels that have ever produced a visitor here.
+
+All three now end every post with `https://6s-success.com/book.html` and a
+`from=` parameter (`li`, `bsky`, `fb`, `x`), and `ops/traffic_query.sh` reports
+arrivals grouped by it. That makes explanation 3 above testable rather than
+speculative: a visit from a post is now attributable even if the client strips
+the referrer.
+
+**Not yet proved end to end, and said plainly rather than claimed.** The tools
+emit the links when run by hand and all three workflows are green, but today's
+drafts had already gone out at 16:22 UTC, before the change. **No draft
+carrying a link has actually been emailed yet**; the first will be tomorrow's.
+Until one is posted, the `from=` query correctly returns zero rows.
+
+
 ### Not ours, on your VPS, and crash-looping right now
 
 **Ledgerium's `umami-db` container has restarted 20 times and is still failing,
