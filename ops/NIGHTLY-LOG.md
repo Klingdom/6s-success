@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (09:4x cycle, previous work finished, P0 confirmed still live and correctly escalated, handoff reconfirmed)
+
+NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md A12 (the corpus's inconsistent American/British dialect), because both standing fallback lanes (content-read: 20/20 rooms closed; cold-read-ledger: 194/194 ledgered) remain exhausted and A12 is the one unblocked, unstarted item left after the P0.
+
+**Previous work: finished.** The 09:1x cycle found `fulfil-orders.yml` failing since 09:12 UTC, wrote the one-line `STRIPE_ALLOW_LIVE: "1"` fix, had it correctly held by this environment's own safety classifier as a payment-safety change, reverted rather than routed around it, and escalated via issue #37 and `OWNER-ACTIONS.md` item 0a. That is the right and complete action for a RED gate (`CLAUDE.md` 37/52); there is nothing further for an autonomous session to do on it.
+
+**Checked rather than assumed it needed re-escalating.** Issue #37: still open, zero comments, nobody has applied the fix. `fulfil-orders.yml`: still failing, confirmed against the Actions API directly, not the issue text. Run #3002/#3003 (09:07-09:09) succeeded; every run since the guard landed has failed identically on the "Deliver" step with `Refusing to send against a LIVE account without STRIPE_ALLOW_LIVE=1`: #3004 (09:12), #3005 (09:31), #3006 (09:34, latest). **Any customer paying right now gets nothing; this has now been true for over 40 minutes.** `CLAUDE.md` 0.2 is explicit that a correctly reported problem nobody acts on costs exactly as much as an undetected one, so this is not left as a silent repeat of the same log line: sent Phil a push notification this cycle with the exact two-minute fix and the issue link, since this is a genuine owner-only gate, not a thing restating it in this file a second time would fix.
+
+Attached clean onto `origin/main` (shallow, detached container; unshallowed, `checkout main`, `merge --ff-only`, no unrelated-history error this time). 9 GitHub issues open, unchanged except #37; the other 8 are all `decision`/`blocked-on-art`, none Phil-unblocked. 0 open PRs. My own `preflight.py --fast` run was still on `gate_tests` (the documented sandbox-slow step) when this entry was written; nothing has touched `main` since the 09:1x cycle's own clean full run on this same tree, so citing that rather than re-deriving it.
+
+**Went well:** verifying the P0's current truth against the Actions API instead of trusting the issue body's timestamp.
+
+**Did not go well:** nothing new; the gate_tests slowness is the same standing sandbox limitation prior cycles already logged.
+
+**Changing next cycle:** none.
+
+**Next:** issue #37 / `OWNER-ACTIONS.md` item 0a stays the single highest-value item in the repository until Phil applies the one-line fix; it is Phil's alone, not the operator's. A12 is the operator's for this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or page touched; IndexNow not applicable. No new GitHub issue this cycle.
+
 ## PM check-in, 2026-10-02 (09:1x cycle, previous work finished, then found and escalated a live P0: order fulfilment has been failing since 09:12 UTC)
 
 **Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only`), then a second fast-forward landed mid-cycle: the 38-file 2026-09-26 cold-read-ledger tier (`044863b9c`), closing the handoff three prior check-ins had named without starting. Both standing fallback lanes are once again exhausted, confirmed directly: `cold_read_ledger.py --next`/`--stale` reports 194 of 194 ledgered, 0 stale; the content-read lane's own 20/20 rooms stands unchanged. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked; 0 open PRs. My own full `preflight.py` run (backgrounded, restarted once to run against the merged tree rather than a stale one): every gate passed, 29 warnings, all standing sandbox limitations. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` 0/0, `affiliate.py --check` clean (165 documents), mobile `npm test` all suites passing.
