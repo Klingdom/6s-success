@@ -336,6 +336,7 @@ Maintain:
 | LRN-0031 | Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it | PROCESS / COORDINATION | SUPPORTED | HIGH |
 | LRN-0032 | A stored coverage status is a snapshot of a corpus other sessions are changing; re-score before concluding | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0033 | An ad-hoc pattern that matches nothing looks exactly like a true absence, and throwaway analysis gets no second opinion | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0034 | The tool that writes the code can corrupt it silently; a planted defect that does not fail is the only reliable detector | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0032 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
@@ -1219,7 +1220,8 @@ analysis not at all, and the throwaway analysis is what decisions get made
 from. Three false zeros in one session, all from one-off patterns typed at a
 shell:
 
-1. `grep -c $''` reported **0** carriage returns in a file that is entirely
+1. `grep -c $'
+'` reported **0** carriage returns in a file that is entirely
    CRLF. Had that been believed, the conclusion would have been that a killed
    test had planted a real defect in `ops/build_zone_pages.py`.
 2. `re.findall(r'href="(articles/[^"]+)"')` reported **0** links from the home
@@ -1248,6 +1250,58 @@ return non-zero before believing the zero: run it against a case known to
 match. It costs one command. All three of the above would have been caught by
 it, and the second one was, which is the only reason the home page was not
 edited to fix a problem it does not have.
+
+#### LRN-0034: The tool that writes the code can corrupt it silently, and only a planted defect finds it
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (four occurrences in one session, one inside a gate)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-02
+
+**Observation.** Source in this session is written by passing Python through a
+shell heredoc. That transport silently eats backslash escapes, and it did so
+four separate times in one day:
+
+1. `"\n"` became a real newline, breaking a string literal. Caught instantly,
+   because Python would not parse the file.
+2. The same, in a different file. Caught the same way.
+3. A commit message's backticked word was run as a command substitution and
+   spliced out, leaving `"happened the day after the first was fixed.  looks
+   like a fact about a query"`. Caught by reading the commit afterwards, and
+   not fixable, because the branch is shared and history is not rewritten here.
+4. **A regex written as `r"\b%s\b"` arrived with each two-character `\b` replaced by a single 0x08 backspace byte.**
+   This one parsed, ran, passed every time, and produced a regex that can never
+   match, **inside a preflight gate**.
+
+**Why the fourth is the one that matters.** The first two failed loudly at
+parse time. The third was cosmetic. The fourth produced a check that cannot
+fail, in the file whose entire job is checking, which is the defect class this
+repository has paid for more than any other. It was invisible to a normal read:
+`grep` prints a backspace as nothing, so the line looked exactly right. Only
+`cat -A` showed it.
+
+**What actually caught it.** Not review, not the test suite, not the gate
+passing. It was planting a defect the gate should have caught and noticing the
+gate stayed green. The plant is the detector. Without the habit of proving a
+new check can fail, that gate would have been green forever and nobody would
+have had any reason to look at it again.
+
+**A related trap from the same hour, worth the same vigilance.** Three separate
+plants failed to fail for reasons that had nothing to do with the code under
+test: one removed a label the checker already strips, one used
+`replace(..., 1)` on a phrase every caption repeats across two cues, and one
+chose a post that happened to be short enough to survive the defect. A plant
+that does not produce a failure means one of two things, and they are not
+distinguishable without looking: the check is blind, or the plant missed.
+
+**Implication.** Treat the code-writing transport as unreliable. After writing
+source through it, verify the bytes rather than the appearance, especially for
+regex escapes.
+
+**Next action.** Two cheap habits, both already applied once today. Scan any
+file this session rewrites for control bytes before committing it
+(`preflight.py` is now verified clean). And when a planted defect does not
+fail, debug the plant before concluding anything about the check.
 #### LRN-0032: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
 
 **Status:** SUPPORTED
