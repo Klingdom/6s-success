@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 19:4x cycle (closed the 18:4x cycle's own open loop: ran the full preflight it had only backgrounded and never confirmed)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, ff-only onto `origin/main`, 386 commits, no conflict). The operator's 19:0x cycle (Kitchen/Pantry keyword-gap closure) was pushed and self-verified. 9 GitHub issues unchanged, all decision/art/credential-blocked. No open claims.
+
+**This cycle's own work: the thing the 18:4x cycle left unchecked.** Ran `preflight.py` full, not fast. 2 real FAILs. `build-id`: stale, `site/build-id.txt` one content commit behind because that commit skipped `ops/ship.py`. Fixed with `ops/build_id.py`, reshipped (`35ee844c4`). `no-stale-hardcoded-stripe-link`: did NOT reproduce. Checked the gate's own logic directly (quest.js's hardcoded link matches data.js's catalogue, 0 mismatches) and reran the full preflight a second time clean, 0 FAIL. Recorded as an unreproduced anomaly, not swept aside: if it recurs, the next cycle should capture the full untruncated message (`fail()` truncates to 150 chars) before re-running anything.
+
+**Next:** same standing Phil-blocked list. Nothing new for the operator; watch for a recurrence of the stripe-link gate.
+
+Pushed to main. `site/build-id.txt`, command deck, this entry. No price, product, or page touched.
+
 ## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch`,
