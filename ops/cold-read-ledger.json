@@ -43,8 +43,8 @@
     },
     "bluesky_drafts.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Cold-read whole file (115 lines) plus its test (7/7 passing) and .github/workflows/bluesky-drafts.yml, all three new today, none previously ledgered. pool_kind threading in corpus_posts.take()/pool() verified correct: bluesky-post and x-post track separate served-sets keyed by kind while reading the same underlying x-post pool by id (sha256 of source+title, independent of which kind read it), so the two pipelines cannot silently halve each other's supply. --preview produces 3 valid <=300-char posts from the live corpus (710 remaining in the filtered pool). Workflow's push-fallback gate (send only after 14:05 UTC and only if no successful scheduled run today) and SMTP-credential pre-check both correct by inspection, matching the established linkedin-drafts.yml/social-drafts.yml pattern; registered in check_cron_cadence.py's WORKFLOWS list, which reports 0 completed runs so far (first cron fire ~14:05 UTC today, not yet due). No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: 300-char cap incl. link, pool_kind=x-post rotation-key separation, remaining-count logic all correct. No defect."
     },
     "browser.py": {
       "status": "clean",
@@ -188,8 +188,8 @@
     },
     "build_kit_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per 06:4x PM handoff. Read in full (359 lines). Confirmed live rather than assumed: all 8 WHY dict keys match the live Tier-1 CSV product names exactly, and all 8 live names have a WHY entry (checked both directions programmatically, not by eye). _rarity() recomputes zone counts live rather than trusting the CSV's frozen column. Regenerated: git status clean after, idempotent."
+      "date": "2026-10-02",
+      "note": "Read in full: _rarity() re-derivation, three-state retailer-link rendering, disclosure-order assertions, full generator wiring chain (incl. fingerprint_assets) all correct. No defect."
     },
     "build_kitchen_deck_page.py": {
       "status": "fixed",
@@ -318,8 +318,8 @@
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full: live PACK-HOUSE price/link read, verbatim hero/FAQ assertions against content.json, missing-zone-link guard, full wiring chain all correct. No defect."
     },
     "build_thumbnails.py": {
       "status": "fixed",
@@ -598,8 +598,8 @@
     },
     "linkedin_drafts.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Daily LinkedIn draft generator (3 corpus posts + 1 connection note + a gated B2B corporate post). Ran --preview live: facts() correctly reads the live catalogue (20 rooms, 114 zones, 684 cards, .99 ebook), corporate_facts() anchor-checks corporate.html before including the B2B post, honesty block matches known state (1 customer, referral). Word caps and 'no TODO/[insert' assertions all held. No defect."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: book.html?from=li link added to corpus posts, corporate_facts() anchor-drift guard, word caps, rotation logic all correct. No defect."
     },
     "linkedin_posts.py": {
       "status": "clean",
@@ -723,8 +723,8 @@
     },
     "roadmap_report.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: three commits since the 2026-09-26 clean note (db106800b, a live misclassification fix; b94d6275f, two wrong numbers and a daily CI failure from one missing predicate; 29422f906, re-measure traffic baselines and withdraw a rise that was one burst). Reran ops/tests/test_roadmap_report.py: 18 cases pass. No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full: Stripe charges-not-sessions revenue read, gh/git unshallow unknown-vs-zero guards, backlog waiting-regex, PDF render all correct. No defect."
     },
     "room_image_variants.py": {
       "status": "clean",
@@ -778,8 +778,8 @@
     },
     "social_drafts.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Ran --preview live (facebook + x combined), correct char-cap filtering, remaining count reflects rotation state, no TODO/placeholder text. No defect."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: X char-cap filter, link-attribution fix (book.html?from=x), remaining-count logic all correct. No defect."
     },
     "social_pin_fit.js": {
       "status": "clean",
