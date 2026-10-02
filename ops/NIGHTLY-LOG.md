@@ -4,6 +4,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## Scheduled operator cycle, 2026-10-02, 13:4x (re-notified Phil on the standing P0; full preflight unchecked, this sandbox's own gate_tests hang confirmed again)
 
+**Addendum, found at merge with a concurrent PM check-in landed the same slot (below):** that session deliberately held its own sixth notification because the fifth had gone out roughly 15 minutes earlier and a second one that soon would be noise, not signal. This cycle's own notification was sent at the very start of the session, before reading that reasoning or checking how recently the last one had gone out, on the same finding (the same run, `37013156591`/#3029, 13:27:53Z). Both notifications describe a real, still-open P0, so neither is false, but two inside roughly 15-20 minutes of each other is exactly the pattern the other session was right to avoid. Recorded here rather than smoothed over: the cadence check (how long since the last push, not just whether the problem is still real) belongs earlier in the cycle, before notifying, not after.
+
 **Did:** Fresh checkout, no memory of prior runs. Attached clean: unshallowed, fetched `origin/main`, fast-forwarded 304 commits with no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `STATUS.md`'s incident/blocker sections, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before picking anything, per Step 1.
 
 **Verified rather than trusted the standing P0.** Confirmed directly against the GitHub Actions API, not read from a prior session's claim: `fulfil-orders.yml` ("Deliver paid orders") run #3029 at 13:27:53Z, `conclusion: failure`, same "Deliver" step, same `STRIPE_ALLOW_LIVE` guard named in issue #37. Over 4.5 hours unresolved since 09:12 UTC. Sent a phone/email push notification with the one-line fix and the elapsed time; this is a RED payment-safety gate per CLAUDE.md 37/52 and correctly requires Phil's own hand, not mine to route around. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, matching every prior cycle.
@@ -21,6 +23,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** P0 #37 unchanged, still the single highest-value blocked item; re-notify on the established roughly-hourly cadence if it is still open next cycle. The 28-file `cold_read_ledger.py --stale` tier remains legitimate unblocked work for whichever cycle has room for it; not started here, left for the next one rather than begun and abandoned mid-file.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) only. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-02, 13:4x cycle (previous work still not finished: P0 #37 unchanged; handoff for the operator, no new notification sent so soon after the last one)
+
+NEXT FOR THE OPERATOR: close the next-largest 0-covered query cluster in `ops/keyword-demand.json` beyond small-space and budget/DIY (A11/A13/A14 are all closed), expanding an existing high-value page per CLAUDE.md 51/11 rather than building a near-duplicate, because that is the proven, repeatable traffic-and-distribution method this backlog has already used three times this week and every other named row in sections 2 to 4 is done or Phil-gated. If no further named cluster exists in the current harvest, fall back to the established pattern: cold-read the next-tier low-mention `ops/*.py` files for a hidden defect (`cold_read_ledger.py --stale` names what is due).
+
+**Attach:** `git fetch origin main` plus `--unshallow` (checkout arrived shallow and detached, issue #27's usual shape), clean fast-forward of 304 commits onto `origin/main` (`9e5797e84`), no unrelated-history error this time. Working tree clean throughout.
+
+**Previous work is NOT finished, same item as the last two cycles.** Issue #37 (`fulfil-orders.yml` refuses every live Stripe send without `STRIPE_ALLOW_LIVE=1`, paid orders undelivered since 09:12 UTC) is still open and still failing live: confirmed directly against the Actions API, run `37013156591` (13:27:53Z, this session's own fetch) failed at the same "Deliver" step. This is a genuine Phil-only RED gate (CLAUDE.md 37/52, payment safety), already built to the gate: the exact one-line fix and diff sit in `OWNER-ACTIONS.md` item 0a and issue #37, two prior sessions already found this environment's own safety classifier correctly refuses the edit, and the 13:2x cycle immediately before this one sent the fifth push notification to Phil about it roughly 15 minutes before this cycle started. Did not send a sixth: the established cadence across today's five notifications is roughly one an hour, and re-notifying 15 minutes after the last one would be noise, not signal. Did not re-attempt the fix myself for the same reason the 13:2x cycle gave: this is the third session to reach the identical blocked edit, and routing around a payment-safety classifier is not this session's call.
+
+**Backlog read, not re-derived from zero:** `BACKLOG-2026-09-07.md` sections 1 to 4 (micro zones/app, decks, images/video) read for anything not already marked Done or Phil-gated. A11 (complaint-cluster article), A13 (small-space cluster) and A14 (budget/DIY cluster, including this morning's collision-and-withdrawal with a concurrent session) are all closed as of today. Section 6 (owner gates) is the same six Phil-only actions as every prior cycle. No unblocked, not-yet-done row found in the time available at this slot.
+
+**Full `preflight.py` (fast) backgrounded, not concluded as written.** Started at attach; by the time this entry was written it had run every gate through `gate_image_coverage` clean and was still inside `gate_tests` (the full `ops/tests/test_*.py` suite, now well past 130 files), the same gate the 13:2x cycle's own entry named as the documented sandbox-slowness limit. Per CLAUDE.md 0.4, this is reported as unchecked, not as a pass: nothing in the gates that did finish failed, but `gate_tests` itself has not yet returned a verdict this cycle.
+
+**Went well:** not re-notifying Phil on a problem he was already notified about minutes earlier; reading the backlog's own done/closed markers instead of re-sweeping ground three recent cycles already covered.
+
+**Did not go well:** `gate_tests` still has no way to finish inside one PM slot in this sandbox; worth a future cycle checking whether it can run in the background across the handoff rather than inside a single check-in's own window.
+
+**Next:** same as above. P0 #37 stays top of the list until Phil pastes the one line; do not re-attempt it autonomously.
+
+Pushed to main. Command deck only, no site content, price or product touched. IndexNow not applicable.
 
 ## PM check-in, 2026-10-02, addendum (found and fixed the real cause of publish-image.yml's FAIL: hardcoded British spellings in the generator source, not the pages)
 
