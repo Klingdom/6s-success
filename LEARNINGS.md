@@ -335,6 +335,7 @@ Maintain:
 | LRN-0030 | A test that shells out must prove its interpreter, or the environment answers in place of the code | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0031 | Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it | PROCESS / COORDINATION | SUPPORTED | HIGH |
 | LRN-0032 | A stored coverage status is a snapshot of a corpus other sessions are changing; re-score before concluding | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0033 | An ad-hoc pattern that matches nothing looks exactly like a true absence, and throwaway analysis gets no second opinion | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0032 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
@@ -1205,6 +1206,48 @@ which is the expensive part and the only part that needs the network, does not
 need repeating to do this. Consider renaming the field, or recording the commit
 the scoring ran against, so a reader sees the staleness instead of having to
 remember it.
+
+#### LRN-0033: An ad-hoc pattern that matches nothing looks exactly like a true absence
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (three occurrences in one session, one of which nearly changed the home page)
+**Domain:** ANALYTICS / MEASUREMENT
+**Measured:** 2026-10-02
+
+**Observation.** This repository gates its tools heavily and its throwaway
+analysis not at all, and the throwaway analysis is what decisions get made
+from. Three false zeros in one session, all from one-off patterns typed at a
+shell:
+
+1. `grep -c $''` reported **0** carriage returns in a file that is entirely
+   CRLF. Had that been believed, the conclusion would have been that a killed
+   test had planted a real defect in `ops/build_zone_pages.py`.
+2. `re.findall(r'href="(articles/[^"]+)"')` reported **0** links from the home
+   page to any article, because the href is exactly `articles/` with nothing
+   after it and the pattern required at least one character. The conclusion
+   drawn from that zero was "the home page links to none of the 32 articles",
+   and the action queued was to edit the site's most important page. The real
+   answer is that it links to the articles index under the label "Reading",
+   and the right action was to do nothing.
+3. A `site:` query to one search engine returned nothing on a later attempt,
+   which was rate limiting rather than an empty index, and was recorded as
+   UNCHECKED only because the tool built that distinction in.
+
+**Why the gates did not help.** Every one of these was a pattern typed to
+answer a question quickly, outside any tool, so nothing checked it, nothing
+tested it, and no reviewer saw it. `ops/keyword_demand.py` refuses to believe
+an empty response because that refusal was deliberately designed in. A line of
+`grep` has no such thing.
+
+**Implication.** A zero from an ad-hoc pattern is the least trustworthy number
+in this repository, and it is also the most likely to be acted on, because a
+zero reads as a clean finding rather than as a failed measurement.
+
+**Next action.** When a quick pattern returns zero, prove the pattern can
+return non-zero before believing the zero: run it against a case known to
+match. It costs one command. All three of the above would have been caught by
+it, and the second one was, which is the only reason the home page was not
+edited to fix a problem it does not have.
 #### LRN-0032: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
 
 **Status:** SUPPORTED
