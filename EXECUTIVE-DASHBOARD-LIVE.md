@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 13:55 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-02 14:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 215 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-10-02T13:48:50Z (build d11f572af7d4efe7). The repository has since moved to build 00afed7be8467c99, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 29 |
-| Commits (7 days) | 1349 of 5192 total |
+| Commits (7 days) | 1373 of 5219 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `7f00ef028` Scheduled operator cycle (13:4x): re-verified and re-notifie |
+| Last commit | `803c26c8d` Ledgerium's umami-db is crash-looping on your VPS; diagnosed |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 114/114 zone pages carry a reviewed picture (live) |
+| Zone imagery | 114/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,6 +56,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 ## What needs you
 
+- **Redeploy the site.** Production is serving an older build: 0 of 10 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 114 reviewed pictures and every fix since the last deploy reach nobody.
 - **Add one line (`STRIPE_ALLOW_LIVE: "1"`) to the "Deliver" step's `env:` in `.github/workflows/fulfil-orders.yml`** (2 min). **Added 2026-10-02, PM check-in, actively broken right now, not a one-time gap.** `044863b9c` added a live-write guard to `ops/stripe_fulfil.py` without accounting for this workflow, the one caller that is designed to run unattended against a live key.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.

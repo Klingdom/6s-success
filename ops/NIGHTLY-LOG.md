@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 14:1x cycle (previous work still not finished: P0 #37 unchanged at 5+ hours; held a sixth notification, under the established cadence)
+
+**Attach:** checkout arrived shallow and detached; `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main`, no unrelated-history error. Fetched a second time before writing this entry and fast-forwarded again (a concurrent session's `803c26c8d` landed mid-cycle, the VPS Ledgerium `umami-db` diagnosis below); working tree clean throughout, no conflict.
+
+**Previous work is NOT finished.** Issue #37 (`fulfil-orders.yml`, paid orders undelivered since 09:12 UTC) is still open and still failing live: confirmed directly against the Actions API, run #3042 (14:15:45Z, triggered by the concurrent session's own push) failed at the same step, now 5+ hours unresolved. This is the correctly-built, Phil-only RED payment-safety gate (CLAUDE.md 37/52); the one-line fix already sits in `OWNER-ACTIONS.md` item 0a and issue #37 itself. Checked the log's own cadence before deciding whether to notify again: the last push reached Phil at roughly 13:4x, about 35 minutes before this cycle, short of the established roughly-hourly spacing other cycles today have held to deliberately. Held a sixth notification for that reason rather than add noise on an unchanged finding; did not re-attempt the fix myself, same reasoning as every prior cycle today (two sessions already correctly blocked by this environment's own payment-safety classifier on the identical edit).
+
+**Checked the rest of the queue rather than assume it unchanged.** 10 GitHub issues open, same set as every cycle today (#37 and #15 P0/decision, #2 P0/blocked-on-art, the rest decision or blocked-on-art); 0 open PRs. `STATUS.md`'s "Open claims" section has nothing currently claimed (all entries read Released). The concurrent session's `803c26c8d` (Ledgerium's `umami-db` crash-looping on the shared VPS, 20 restarts) was read and is correctly handled already: diagnosed read-only, explicitly left untouched per CLAUDE.md 36b/35 (not ours, unknown persistent data), confirmed 6S Success's own analytics stack is unaffected, and written up in `OWNER-ACTIONS.md` for whoever owns Ledgerium's deploy. Nothing further needed from this cycle on it. `ops/cold_read_ledger.py --stale` shows 29 entries, but all are generator files re-touched by today's own content edits (deck pages, `build_seo.py`, `build_articles.py`), not files sitting unread; not a real backlog item.
+
+**Preflight: backgrounded, not concluded as written, per CLAUDE.md 0.4.** Started `python ops/preflight.py` with no wrapper timeout per last cycle's own correction (wrapped timeouts have falsely read as hangs all week); through `gate_image_coverage` clean within the first two minutes, still inside `gate_tests` when this entry needed to ship. Reported unchecked, not assumed clean. Left running; next session should read its conclusion before citing preflight as clean.
+
+**Went well:** checking the actual gap since the last notification instead of defaulting to "still open, so notify," which is exactly the noise an earlier cycle today flagged in itself.
+
+**Did not go well:** nothing new; same standing P0, same standing gate.
+
+**Changing next cycle:** none.
+
+**Next for the operator (:43) and the PM twin (:40):** P0 #37 stays top of the list, re-notify once the gap since 13:4x reaches roughly an hour if it is still open; do not re-attempt the fix autonomously. No unblocked backlog row found this cycle beyond the standing Phil-gated list; the next genuinely new work is whatever `preflight.py`'s backgrounded run (above) turns up, or a fresh low-mention `ops/*.py` cold-read if that comes back clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or page touched; IndexNow not applicable. No new GitHub issue (issue #37 already covers P0 #37; the Ledgerium item is explicitly not a 6S Success decision).
+
 ## PM check-in, 2026-10-02, 13:4x cycle, addendum (gate_tests is not hung in this sandbox; it just needs about 20 minutes nobody has given it uninterrupted)
 
 **Corrects, not criticises:** this same slot's own entry above, and every prior cycle this week that called `gate_tests` a "hang" or a "sandbox-timing limit" preflight could not get past. This cycle's earlier background run (started at attach, no `timeout` wrapper around it) finished on its own: `EXIT:0`, every gate passed, 365 test files, 2 reported unverified (`test_build_cover.py`, `test_zone_hero_markup_keeps_avif.py`, both the known no-Pillow-in-this-sandbox case, not a new gap), 0 failed, 32 standing warnings, none new. Start to finish, unattended: attach (~13:4x) to the log file's last write at **14:01:37 UTC**, call it 20 minutes.
