@@ -136,19 +136,33 @@ def case_room_panels_use_their_own_class():
     rooms = glob.glob(os.path.join(ROOT, "site", "rooms", "*.html"))
     rooms = [f for f in rooms if not f.endswith("index.html")]
     assert rooms, "no room pages found"
-    panels, illustrated, bare = 0, 0, []
+    panels, illustrated, diagrams, bare = 0, 0, 0, []
     for fp in rooms:
         s = io.open(fp, encoding="utf-8", errors="replace").read()
         if "room-lead-panel" in s:
             panels += 1
             _ET.fromstring(re.search(r'(<svg xmlns.*?</svg>)', s, re.S).group(1))
             assert "no illustration for this room yet" in s.lower(), fp
+        elif "room-lead-diagram" in s:
+            # THE THIRD CATEGORY, added 2026-10-01. The eleven rooms that
+            # carried a typographic panel now lead on the book's own hand-drawn
+            # zone map (ops/import_room_diagrams.py). It is real artwork, so it
+            # is not the panel, and it is a drawing, so it is not the chapter
+            # photograph either. It gets its own marker for the same reason the
+            # panel got one: gate_pages_missing_art reports all three
+            # separately, and a category that answers to another one's name
+            # erases a fact somebody is still tracking.
+            diagrams += 1
+            assert "not a photograph of a real home" in s.lower(), fp
+            assert 'class="room-lead"' not in s, (
+                "%s uses the bare illustrated marker as well as the diagram "
+                "one, so the two facts have collapsed into one" % fp)
         elif 'class="room-lead"' in s:
             illustrated += 1
         else:
             bare.append(os.path.basename(fp))
     assert not bare, "room page(s) with no lead at all: %s" % bare
-    assert panels >= 1 and illustrated >= 1, (panels, illustrated)
+    assert illustrated >= 1 and diagrams >= 1, (panels, illustrated, diagrams)
 
 
 def case_no_room_page_is_imageless():

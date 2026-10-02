@@ -1838,8 +1838,77 @@ except Exception:
     ROOM_IMAGES = {}
 
 
+# The book's hand-drawn zone maps, for the eleven rooms with no photographic
+# figure. Loaded separately from ROOM_IMAGES, and deliberately WITHOUT that
+# loader's bare `except Exception`. A typo in the JSON would silently drop
+# eleven rooms back to the typographic panel and nothing would say so, which
+# is the "unchecked reported as passing" shape CLAUDE.md 0.4 names. Missing
+# file is a real state (a checkout that has not run the importer) and is
+# allowed; unreadable file is a defect and is raised.
+_DIAGRAMS_PATH = os.path.join(ROOT, "ops", "room-diagrams.json")
+if os.path.exists(_DIAGRAMS_PATH):
+    ROOM_DIAGRAMS = json.load(io.open(_DIAGRAMS_PATH, encoding="utf-8"))
+else:
+    ROOM_DIAGRAMS = {}
+
+
 def room_figures(room):
     return ROOM_IMAGES.get(room, [])
+
+
+def room_diagram(room):
+    """The book's zone-map drawing for a room with no photographic figure."""
+    return ROOM_DIAGRAMS.get(room)
+
+
+# THE DRAWING IS 1000 UNITS WIDE AND A PHONE IS NOT.
+#
+# Scaled into a 390px viewport the zone labels render at about 7px, which is
+# unreadable, and CLAUDE.md section 44 is explicit that mobile is not a smaller
+# desktop page. The sizes are presentation attributes on each <text>, so an
+# attribute selector can target them without editing the book's artwork, which
+# matters: these SVGs are imported verbatim and must stay diffable against the
+# chapter they came from.
+#
+# 1.4x, not more. The binding constraint is "Stair and floor path", 20
+# characters starting at x=112 inside a box whose right edge is 350, so 238
+# units of room. Every label's rendered width is measured against its own box
+# by ops/tests/test_room_diagram_fits.py rather than estimated here.
+DIAGRAM_CSS = (
+    '<style>@media (max-width:820px){'
+    '.room-lead-diagram text[font-size="13"]{font-size:18px}'
+    '.room-lead-diagram text[font-size="15"]{font-size:21px}'
+    '.room-lead-diagram text[font-size="16"]{font-size:22px}'
+    '.room-lead-diagram text[font-size="17"]{font-size:24px}'
+    '.room-lead-diagram text[font-size="22"]{font-size:30px}'
+    '}</style>'
+)
+
+
+def diagram_html(entry, room):
+    """The zone map as the page's lead figure.
+
+    Inline, not an <img>. It is 2.7 KB of vector, so inlining costs no request
+    and it stays sharp at any width; it also carries its own role="img" and
+    accessible name from the book, so a screen reader gets the room and its
+    zone count rather than "image".
+
+    The class is "room-lead room-lead-diagram". gate_page_art counts
+    "room-lead" to find a page with no lead figure at all and "room-lead-panel"
+    to find the typographic stopgap, and this is a third, different fact: real
+    artwork from the book, drawn rather than photographed. Three facts, three
+    markers, for the same reason the panel got its own class rather than
+    answering to the illustrated one.
+    """
+    svg = entry["svg"].replace(
+        "<svg",
+        '<svg style="width:100%;height:auto;display:block;margin:26px 0"', 1)
+    cap = esc(entry["caption"])
+    return ('<figure class="room-lead room-lead-diagram">' + DIAGRAM_CSS + svg
+            + '<figcaption style="font-family:var(--sans);font-size:13px;'
+              'color:var(--soft);margin-top:8px">' + cap
+            + ' Drawn for the ' + esc(room) + ' chapter of the book, not a '
+              'photograph of a real home.</figcaption></figure>')
 
 
 def figure_html(entry, cls=""):
@@ -3375,8 +3444,20 @@ def room_page(room, header, footer, all_rooms=()):
         out.append(f'<p class="lede">{esc(room["intro"])}</p>')
     out.append('</div>')
     figs = room_figures(room["room"])
+    diagram = room_diagram(room["room"])
     if figs:
         out.append(figure_html(figs[0], "room-lead"))
+    elif diagram:
+        # REAL ARTWORK BEATS A RESTATEMENT OF THE PROSE.
+        #
+        # These eleven pages used to carry the typographic panel below. It was
+        # honest and it was not a picture: on garage.html its text was the same
+        # paragraph as the "Start here." callout a few hundred pixels down, and
+        # the lede above said it a third time, so the page made one point three
+        # times and called the third one a figure. Every one of those eleven
+        # chapters already contained a finished overhead plan of the room as
+        # its numbered zones. See ops/import_room_diagrams.py.
+        out.append(diagram_html(diagram, room["room"]))
     else:
         # A ROOM WITH NO CHAPTER ILLUSTRATION STILL GETS SOMETHING TO LOOK AT.
         # 11 of 20 chapters are unillustrated and that is owner-gated on image

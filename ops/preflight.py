@@ -13492,6 +13492,9 @@ def gate_pages_missing_art() -> None:
     def _panel_lead(f):
         return 'room-lead-panel' in _visible_html(f)
 
+    def _diagram_lead(f):
+        return 'room-lead-diagram' in _visible_html(f)
+
     def _no_img(f):
         return not re.search(r"<img\b", _visible_html(f))
 
@@ -13528,6 +13531,30 @@ def gate_pages_missing_art() -> None:
              % (len(panelled), len(room_pages),
                 ", ".join(panelled[:3])
                 + (", ..." if len(panelled) > 3 else "")))
+    # THE DRAWING IS NOT THE PHOTOGRAPH, AND THIS MUST KEEP SAYING SO.
+    #
+    # Added 2026-10-01 with ops/import_room_diagrams.py, which gave those
+    # eleven pages the book's own hand-drawn zone map in place of the
+    # typographic panel. The panel warning above now finds nothing, and if
+    # that were the whole story this gate would have gone quiet and taken
+    # OWNER-ACTIONS 1b's remaining gap with it: a real chapter illustration
+    # is still missing for those rooms, and a plan of the zones is a
+    # different thing from a picture of the room.
+    #
+    # Same reasoning as the panel's own separate class. Three facts about a
+    # room lead (photograph, drawing, type), three markers, and none of them
+    # allowed to answer to another one's name.
+    diagrammed = sorted(os.path.basename(f)[:-5] for f in room_pages
+                        if _diagram_lead(f))
+    if diagrammed:
+        warn("page-art",
+             "%d of %d room page(s) lead on the book's zone-map DRAWING "
+             "rather than a chapter photograph: %s. Real first-party artwork "
+             "and a real improvement on the typographic panel it replaced, "
+             "and still not the illustration OWNER-ACTIONS 1b tracks."
+             % (len(diagrammed), len(room_pages),
+                ", ".join(diagrammed[:3])
+                + (", ..." if len(diagrammed) > 3 else "")))
 
     if out:
         warn("page-art",

@@ -387,6 +387,50 @@ def _wrap(text: str, width: int) -> list:
     return lines
 
 
+# Eight lines, not six. The cap is a layout budget, and the panel's own height
+# formula already grows with the line count, so the only thing the old cap of 6
+# bought was a severed sentence. Measured across the real corpus at width 46:
+# 18 of 20 room tips wrap to 6 lines or fewer and are unaffected, Guest
+# Bathroom needs 7 and Garage 8, and the one zone panel that was cut (Workshop,
+# The Material Rack) needs 8. So 8 shows every one of them whole.
+PANEL_MAX_LINES = 8
+
+
+def _fit_sentences(text: str, width: int, max_lines: int = PANEL_MAX_LINES) -> list:
+    """Wrap text so it ends on a sentence, never mid clause.
+
+    WHAT THIS FIXES, FOUND LIVE 2026-10-01
+    --------------------------------------
+    The line was `lines = _wrap(done, 46)[:6]`, which cut at six lines with no
+    ellipsis and no signal of any kind. Three live panels therefore ended in
+    the middle of a clause, and a reader had no way to know text was missing:
+
+        site/rooms/garage.html          "The slab comes last, once the wall"
+        site/rooms/guest-bathroom.html  "...and let them run while you work"
+        .../workshop-the-material-rack  "...in marker. Nothing stored"
+
+    A slice is the wrong tool because it does not know where a thought ends.
+    This keeps whole sentences while they fit, and if even the first sentence
+    is longer than the budget it is shown anyway: a panel one line too tall is
+    a smaller fault than a sentence that stops dead, and growing is visible
+    while severing is not.
+    """
+    text = ' '.join((text or '').split())
+    if not text:
+        return []
+    sentences = [x.strip() for x in re.findall(r'[^.!?]+[.!?]+|[^.!?]+$', text)
+                 if x.strip()]
+    kept = []
+    for sentence in sentences:
+        trial = ' '.join(kept + [sentence])
+        if kept and len(_wrap(trial, width)) > max_lines:
+            break
+        kept.append(sentence)
+        if len(_wrap(' '.join(kept), width)) >= max_lines:
+            break
+    return _wrap(' '.join(kept), width)
+
+
 def panel_figure(room: str, zone: str, done: str,
                  label: str = "WHAT DONE LOOKS LIKE",
                  aria: str = "what done looks like, in words") -> str:
@@ -415,8 +459,21 @@ def panel_figure(room: str, zone: str, done: str,
     exists rather than letting a reader assume the panel is one.
     """
     done = ' '.join((done or '').split())
-    lines = _wrap(done, 46)[:6]
-    top, line_h = 132, 30
+    lines = _fit_sentences(done, 46)
+    # THE HEADLINE SLOT WAS EMPTY ON EVERY ROOM PANEL, FOUND LIVE 2026-10-01.
+    #
+    # The 34px white Georgia line was filled with `zone`, which is the empty
+    # string for a room lead, so all 11 unillustrated room pages shipped a
+    # panel with `<text class="z"></text>`: no headline, and a 34px hole above
+    # the body copy where one should be. The room name is the honest heading
+    # there, it is already the subject of the accessible name, and it is what
+    # a visitor looking at a dark slab needs in order to know what they are
+    # looking at.
+    heading = zone or room
+    # 168, not 132. With the heading populated the old 12px gap put the
+    # title's descenders through the first line of body copy, which is why
+    # "The File Storage" collided with its own text on a live zone page.
+    top, line_h = 168, 30
     height = top + line_h * len(lines) + 34
     # 'Room / Zone' for a zone panel, just the room when this is a room
     # lead: an empty zone used to leave a dangling ' / ' in the accessible
@@ -452,7 +509,7 @@ def panel_figure(room: str, zone: str, done: str,
     # ' / ' in the accessible name: a screen reader announced
     # "Garage / : what done looks like, in words" on 11 room pages.
     ) % (height, esc_svg(subject), esc_svg(aria), height,
-         esc_svg(label), esc_svg(zone), rows)
+         esc_svg(label), esc_svg(heading), rows)
     # THE OPENING TAG MUST MATCH FIG EXACTLY. The first version added
     # style="margin:26px 0" here, so FIG (which matches
     # '<figure class="zone-hero" id="zone-hero">') no longer matched this
