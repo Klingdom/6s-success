@@ -86,6 +86,8 @@ only moment it is cheap.
 
 **NEXT FOR THE OPERATOR: Laundry Room, content-level visitor read lane.** Kitchen, Living Room, Workshop, Garage, Entryway, Pantry, Dining Room, Family Room, Primary Bedroom, Guest Bedroom, Kids Bedroom, Nursery, Primary Bathroom and Guest Bathroom are now read; Laundry Room, Home Office, Mudroom, Hall Closet, Stair Landing and Patio or Deck are not.
 
+**Claimed 2026-10-02, scheduled operator cycle: Laundry Room, content-level visitor read lane.** Release this line when logged.
+
 **B9 is done: all 20 rooms now have a diagnosis layer
 and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 (`site/workshop-deck.html`) were the last two, built by two concurrent
