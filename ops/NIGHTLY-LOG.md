@@ -2,6 +2,93 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
+
+**Did.** Attached clean: repository arrived shallow and detached, `fetch`,
+`fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`
+(381 commits fast-forwarded, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md`
+(sections 0, 1b, and the "Now" tables), `ROADMAP-2026-2029.md`, `CLAUDE.md`,
+and the last several `NIGHTLY-LOG.md` entries. Confirmed 9 GitHub issues
+open, unchanged: all `decision`/`blocked-on-art`/TTS-blocked (#39), none
+Phil-unblocked. Confirmed both standing fallback lanes (`cold_read_ledger.py
+--next`, the 20-room content-read lane) genuinely exhausted before looking
+further, matching every cycle today. Confirmed production deploy is still
+gated on `VPS_DEPLOY_KEY` (issue #35): the live `deploy.yml` run at
+17:00:39Z shows its own "Deploy" step `skipped`, not merely assumed from
+`OWNER-ACTIONS.md`.
+
+**Picked up the 18:4x PM check-in's own handoff**, the one concrete,
+verified, unblocked item in the queue: close the Kitchen/Pantry
+specific-storage-type keyword gap cluster (`ops/keyword-demand.json`'s
+`gap` tier, from the 2026-10-02 08:12 harvest): `kitchen organization
+ideas for pots and pans` (rank 2), `kitchen organization ideas dollar
+tree` (rank 6), `pantry organization ideas for wire shelving` (rank 4),
+`pantry organization ideas dollar tree` (rank 5). Re-grepped all four
+phrases against the live corpus myself before touching anything: 0 hits,
+confirming the handoff's own claim rather than trusting it.
+
+**Closed two of the four, by expanding the existing budget article rather
+than building a new page**, the same pattern that already closed the
+small-space and cheap/budget/DIY clusters this week.
+`site/articles/more-storage-wont-fix-clutter.html` (hand-maintained, not
+generator-owned; confirmed by grep across every `ops/build_*.py` before
+editing) gained two new subsections inside its existing room-by-room
+section, "Pots and pans without a bigger cabinet" (grounded in the same
+three-deep-nest standard the Kitchen Lower Cabinets and Cookware zone page
+already teaches) and "Wire shelving in the pantry" (a real, common pantry
+shelving material this site's own Dry Goods Shelves zone page does not
+cover, since it assumes solid shelf boards), plus two new FAQ entries
+worded close to the harvested phrases, added identically to both the
+visible "Common questions" list and the page's own FAQPage JSON-LD (checked
+word for word with a script, not by eye). Verified against the real
+scorer, not assumed: both queries moved from `gap` to `covered`
+(`kd.best_page`/`kd.best_by` run directly against the edited file).
+`ops/keyword_demand.py --rescore` (offline, no network needed) confirmed
+corpus-wide: 253 gap to 251, 1109 covered to 1115.
+
+**Deliberately declined the other two.** Both "dollar tree" queries name a
+specific retail brand, and `CLAUDE.md` section 10 says product types, never
+brand names. Writing "Dollar Tree" into page copy to chase an autosuggest
+phrase would be gaming the scorer at the cost of the site's own content
+rule, the wrong trade for two queries out of 2,827. The honest generic
+equivalent ("dollar store") does not share the literal word "tree", so the
+crude bag-of-words scorer cannot and should not count these as covered;
+recorded here so the next cycle does not re-attempt the same trade-off
+without this reasoning.
+
+**Verified.** `ops/fix_dashes.py --check` on the edited file: 0 em dashes, 0
+en dashes. `ops/check_urls.py`: 211/211. `ops/audit_pages.py`: 215 pages, 0
+findings. `ops/link_graph_report.py`: 0 orphans across zones, rooms and
+articles (32 article pages). `ops/build_seo.py` rerun after the edit to
+restamp the sitemap's content hash for this one changed URL (the first
+full `preflight.py` run correctly caught the stale `sitemap-lastmod-current`
+gate before this rerun; confirmed clean directly after). A second full
+`preflight.py` run showed one further FAIL, `test_wire_nav_preserves_aria_
+current.py`'s own "working tree was not clean" precondition, not a content
+defect: this cycle's own uncommitted edit was still unstaged when that test
+ran. Expected to clear once committed; re-verify after push rather than
+claimed clean here.
+
+**Went well:** re-checking the handoff's own grep claim before trusting it,
+and running the real scorer against the edited file before claiming the
+gap closed, rather than assuming the new headings would be enough.
+
+**Did not go well:** the full `preflight.py` run still cannot complete
+inside a single short cycle in this sandbox (`gate_tests` alone runs several
+minutes); both runs this cycle were started in the background and read
+after, not waited on synchronously from the start.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here",
+the six decision issues, #2/#18/#21/#29/#31/#33/#35/#39). No further
+unblocked backlog item found this cycle beyond the one just closed.
+
+Pushed to main. `site/articles/more-storage-wont-fix-clutter.html`,
+`ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`,
+`ops/sitemap-content-hashes.json`, command deck, this entry. No price or
+product touched; no new page (one existing article expanded). IndexNow not
+applicable from this sandbox (no egress); the next successful
+`hourly-brief.yml` run picks up the changed URL.
+
 ## PM check-in, 2026-10-02, 18:4x cycle (previous work finished; handing the operator a concrete, verified content gap instead of the exhausted stale-tier lane)
 
 NEXT FOR THE OPERATOR: close the Kitchen/Pantry specific-storage-type keyword gap cluster (`kitchen organization ideas for pots and pans` rank 2, `kitchen organization ideas dollar tree` rank 6, `pantry organization ideas for wire shelving` rank 4, `pantry organization ideas dollar tree` rank 5, all from `ops/keyword-demand.json`'s `gap` tier, all room-matched to Kitchen/Pantry), because these are genuine on-topic queries with real search rank and zero coverage today (grepped `site/kitchen-deck.html` and `site/pantry-deck.html` directly for all four phrases, 0 hits), it is traffic/distribution work (GOALS.md's own constraint, ordering tier 3), and it continues rather than repeats the pattern that already closed the cheap/budget/DIY and small-space clusters this week.

@@ -2310,10 +2310,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to organize baking supplies",
@@ -8722,7 +8722,7 @@
       "best_page_title": "How to organize the laundry room drying rack",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -18302,10 +18302,10 @@
       "best_page": "/zones/pantry-the-baking-zone.html",
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organise bedroom",
@@ -19537,7 +19537,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -20317,7 +20317,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-keep-running-out-of-things.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -20372,7 +20372,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-keep-running-out-of-things.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -20597,7 +20597,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/kitchen-deck.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -20766,7 +20766,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21221,7 +21221,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21503,7 +21503,7 @@
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -23232,10 +23232,10 @@
       "best_page": "/zones/pantry-the-baking-zone.html",
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize baking pans in cabinet",
@@ -23250,10 +23250,10 @@
       "best_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize baking supplies",
@@ -23324,7 +23324,7 @@
       "best_page_title": "How to organize the pantry baking supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25745,7 +25745,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -26506,7 +26506,7 @@
       "best_page_title": "How to organize the dining room china or display cabinet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -34698,7 +34698,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-keep-running-out-of-things.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34824,10 +34824,10 @@
       "best_page": "/kitchen-deck.html",
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "kitchen organization ideas for small spaces",
@@ -35693,7 +35693,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -38072,7 +38072,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -42904,10 +42904,10 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "pantry organization ideas ikea",
@@ -45794,7 +45794,7 @@
       "best_page_title": "Why does the medicine cabinet never get cleared out?",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/kitchen-deck.html",
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -51720,6 +51720,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-02T14:52:42Z",
-  "scored_against_commit": "25a1ec985"
+  "scored_at": "2026-10-02T18:55:31Z",
+  "scored_against_commit": "df99a6320"
 }

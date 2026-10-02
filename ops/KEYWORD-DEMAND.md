@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-02T08:12:24Z from google, bing, 151 seeds, 302 attempts: 263 returned completions, 39 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-02T14:52:42Z against 218 page(s) at commit 25a1ec985. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-02T18:55:31Z against 218 page(s) at commit df99a6320. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2827. Checked against 218 published page titles: 1109 covered, 1465 partial, 253 gap.
+**Queries found:** 2827. Checked against 218 published page titles: 1115 covered, 1461 partial, 251 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 253, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 251, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -39,7 +39,6 @@ Showing the top 80 of 253, ordered by the best rank the phrase reached in any on
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize snacks | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | kitchen organization ideas for pots and pans | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | larder organization chart | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | master bedroom design | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
@@ -77,7 +76,6 @@ Showing the top 80 of 253, ordered by the best rank the phrase reached in any on
 | 4 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | larder organisation ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | organize car maintenance guide | - | How to organize the garage car care supplies (0.33) |
-| 4 | pantry organization ideas for wire shelving | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
 | 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) |
 | 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -101,10 +99,12 @@ Showing the top 80 of 253, ordered by the best rank the phrase reached in any on
 | 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 6 | master bedroom design simple | - | The Guest Bedroom Deck: 57 cards, free to read (0.25) |
 | 6 | organize car maintenance tools | - | How to organize the garage car care supplies (0.33) |
+| 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
+| 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1465.
+Showing the top 60 of 1461.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -182,12 +182,12 @@ Showing the top 60 of 1465.
 | Hall Closet | 29 | 0 | 13 | 16 |
 | Home Office | 59 | 2 | 28 | 29 |
 | Kids Bedroom | 20 | 0 | 10 | 10 |
-| Kitchen | 96 | 3 | 48 | 45 |
+| Kitchen | 96 | 2 | 48 | 46 |
 | Laundry Room | 73 | 0 | 21 | 52 |
 | Living Room | 91 | 2 | 60 | 29 |
 | Mudroom | 45 | 1 | 22 | 22 |
 | Nursery | 62 | 2 | 27 | 33 |
-| Pantry | 59 | 3 | 32 | 24 |
+| Pantry | 59 | 2 | 32 | 25 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
