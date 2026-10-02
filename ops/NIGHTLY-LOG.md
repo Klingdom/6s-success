@@ -2,6 +2,70 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 17:0x (a real preflight gate_tests FAIL, found and fixed: the test was wrong, not the product)
+
+**Did.** The backgrounded full `preflight.py` started earlier this cycle
+finished while this cycle's own `OWNER-ACTIONS.md` fix (the entry below)
+was already shipped: `FAIL tests 1 of 369 test file(s) failed:
+test_social_drafts.py: 5 of 7 cases pass`. Per this session's own STEP 2
+("if it fails, fixing that IS this run's work"), stopped and fixed this
+rather than starting the next handoff.
+
+**The product is correct; the test's own body-extraction had a bug.**
+`test_social_drafts.py` reported two real X drafts at 284 and 287
+characters, over the 280 limit. Read `social_drafts.py`'s actual output
+directly rather than trust the test's number: the real posted bodies, as
+`take()` hands them back and as `_x_fits` filtered them, are 243 and 246
+characters, 267 and 270 once X's fixed 23-character link weight is added,
+both comfortably under 280. The test's own extraction assumed a rendered
+block ends `"<body>\n\nLINK"` and stripped everything after the LAST
+`"\n\n"` to isolate the body, but the real block ends
+`"<body>\n\nLINK\n\n"` (a second trailing blank line from the render
+list's own closing `""` entry), so the last `"\n\n"` it found was the
+trailing one, not the body/link boundary, and the link (39 characters)
+stayed attached to what it then measured as "body". Confirmed directly:
+reading the real rendered chunk and computing both the old and the
+corrected extraction side by side reproduced the exact 284/287 figures
+from the old logic and 243/246 from the corrected one.
+
+**Fixed the test, not the product.** Rewrote the extraction to strip the
+known link text directly (`body.replace(link, "")`) instead of guessing
+which `"\n\n"` bounds it, then compare against the cap using the same
+formula `_x_fits` already uses (`len(body) + 1 + X_URL_WEIGHT`), so the
+test and the filter it exists to prove cannot silently disagree about what
+"fits" means. Proved it can still fail, not just pass: built a synthetic
+260-character body with the same trailing-link shape and confirmed the
+fixed extraction correctly flags it (284 counted, over cap), then confirmed
+the real corpus's four real X drafts all pass (267, 242, 270, 272).
+
+**Verified.** `test_social_drafts.py`: 7 of 7. `test_social_drafts_carry_a_
+link.py` (today's earlier link fix): still passes, all three draft tools
+confirmed carrying an attributable link and both capped platforms fitting
+with it counted. `fix_dashes.py --check`: clean.
+
+**Went well:** treating the backgrounded preflight's own FAIL as this
+cycle's real work rather than letting it sit unread behind the handoff
+already queued; reading the actual product output before assuming the
+test's number was the true one.
+
+**Did not go well:** a defect in test logic itself (as opposed to the
+code it tests) is a harder thing to notice than a defect in the product,
+because a failing test reads as "the product is broken" by default; this
+one needed opening the real rendered output before that assumption could
+be checked.
+
+**Changing next cycle:** none found to change; the fixed test's own method
+(derive the expected count from the same formula the filter uses, rather
+than re-parsing rendered text by hand) is the right standing pattern for
+any future per-platform length check.
+
+**Next:** the 16:4x cycle's own handoff, still open: a content-level
+visitor read of the five rooms `c64901cd0` renamed (master bedroom, master
+bathroom, foyer, larder, den/bonus room).
+
+Pushed to main. `ops/tests/test_social_drafts.py` only. No price, product
+or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 16:5x (found a third instance of the same stale-owner-action shape two sibling cycles had each closed once already)
 
 **Did.** Checkout arrived shallow and detached; `fetch`, `fetch --unshallow`,
