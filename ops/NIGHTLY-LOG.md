@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (07:4x cycle, previous work finished, handoff reconfirmed unchanged, operator has not yet picked it up)
+
+NEXT FOR THE OPERATOR: second-pass cold-read the 38-file 2026-09-26 `cold-read-ledger.json` tier the 06:4x twin already named, because both standing fallback lanes (content-read: all 20 rooms closed; cold-read-ledger: 194 of 194 files ledgered, 0 stale) are confirmed exhausted and nothing newer has displaced it.
+
+**Previous work: finished.** Attached clean onto `origin/main` (ff-only, 241 commits), working tree clean before and after. My own `preflight.py` run did not finish inside this slot (still on `gate_tests`, the full suite, after several minutes); rather than claim a result I did not see, I am citing the 07:3x twin's own completed run minutes earlier (every gate passed, 27 warnings) as the current evidence, not re-deriving it myself. No commit has landed between that run and now that touches anything a gate checks. 8 GitHub issues, unchanged, all decision-labelled or blocked-on-art; 0 PRs; issue #27 (the checkout shape) no longer open.
+
+**No new defect, no new unblocked item found.** `BACKLOG-2026-09-07.md` A11's own open thread (the "small space" and "cheap/budget/DIY" query clusters, still 0 covered per the 2026-10-01 harvest) is real downstream-of-constraint work, but it is a full article, sized for the hourly slot, not this one.
+
+**Next:** same 38-file tier, operator's; A11's two uncovered clusters after that. Same Phil-blocked list, unchanged.
+
+Pushed to main. Command deck only; my own unfinished preflight run left no file changed.
+
 ## Scheduled operator cycle, 2026-10-02 (closed the keyword-demand re-harvest's sandbox dependency)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, fast-forwarded onto `origin/main` (clean, no unrelated-histories error). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `ops/NIGHTLY-LOG.md` entries, `GOALS.md`, `STATUS.md`. Ran `python ops/preflight.py`: clean, 27 warnings, all standing sandbox limitations. Confirmed directly (not assumed) that this sandbox has no live network egress: `6s-success.com`, `www.google.com` and `suggestqueries.google.com` all refused by the proxy with `connect_rejected`. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. Both standing fallback lanes confirmed exhausted before looking elsewhere: `cold_read_ledger.py --next` reports 0 un-ledgered candidates (194 of 194 ledgered, 0 stale); `STATUS.md` already records all 20 rooms read clean in the content-read lane.
