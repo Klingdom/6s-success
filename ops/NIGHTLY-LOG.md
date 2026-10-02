@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 18:4x cycle (previous work finished; handing the operator a concrete, verified content gap instead of the exhausted stale-tier lane)
+
+NEXT FOR THE OPERATOR: close the Kitchen/Pantry specific-storage-type keyword gap cluster (`kitchen organization ideas for pots and pans` rank 2, `kitchen organization ideas dollar tree` rank 6, `pantry organization ideas for wire shelving` rank 4, `pantry organization ideas dollar tree` rank 5, all from `ops/keyword-demand.json`'s `gap` tier, all room-matched to Kitchen/Pantry), because these are genuine on-topic queries with real search rank and zero coverage today (grepped `site/kitchen-deck.html` and `site/pantry-deck.html` directly for all four phrases, 0 hits), it is traffic/distribution work (GOALS.md's own constraint, ordering tier 3), and it continues rather than repeats the pattern that already closed the cheap/budget/DIY and small-space clusters this week.
+
+**Previous work was finished.** Attached clean: `git fetch origin main`, repository was still shallow, `git fetch --unshallow`, `git checkout main` (local `main` was stale at `77e95f9`, fast-forwarded 381 commits), `merge --ff-only` landed cleanly at `683b844be` ("Social drafts: advance rotation", an automated workflow commit, not code/content). Working tree clean, no conflict. 9 GitHub issues open, re-checked directly against the API: all `decision`/`blocked-on-art`/TTS-blocked (#39), none Phil-unblocked, matching the dashboard's own snapshot exactly. 0 open PRs. Issue #37 (the live payment-fulfilment P0 that dominated today) is `closed`/`completed`, fixed by Phil at 16:01:47Z and independently reconfirmed by the 18:1x cycle against live Actions runs; nothing to re-notify.
+
+**Checked rather than assumed `BACKLOG-2026-09-07.md` and `STATUS.md`'s `BLOCKER-001` were still current.** Backlog sections 4-6: every row is struck-through Done, correctly Phil-gated (C5 Gemini billing, C6 YouTube OAuth), or a Hold waiting on traffic the constraint hasn't moved yet; nothing newly unblocked. Independently re-derived `BLOCKER-001`'s 4-commit deploy gap rather than trusting the 18:1x cycle's citation: `git log -S"d11f572af7d4efe7" -- site/build-id.txt` confirms `e8ad130b8` is still the resolved commit, and `git log e8ad130b8..HEAD -- site/ Dockerfile` is still exactly the same 4 commits (`2944b055b`, `a0d92a83c`, `3f0576573`, `c64901cd0`). Matches `STATUS.md` word for word; no correction needed.
+
+**`cold_read_ledger.py --stale` (27 entries) is the same generator-churn tier every cycle today has correctly declined to treat as real backlog**: all 27 are deck/content generators re-touched by today's own room-deck and article edits, confirmed again this cycle, not re-read.
+
+**Preflight: unchecked, said plainly, not claimed clean.** Ran `python ops/preflight.py` with a 110s timeout first (matching the slot budget); it was killed mid-run (`gate_tests`, the slow per-file pass, same bottleneck every cycle today has hit). Re-launched detached with a 280s budget to let it actually finish; still running past this entry's shipping time. The tree has not changed since the 18:1x cycle's own confirmed-clean run (30 warnings) except an automated rotation-state commit and this cycle's own log edit, neither touching gated logic, so that result still describes the current tree, but this cycle's own fresh run is reported as started, not finished.
+
+**Went well:** re-deriving `BLOCKER-001` independently instead of citing it, and grepping the four target phrases before handing them off rather than trusting the scorer's `gap` label on faith.
+
+**Did not go well:** `preflight.py` still has not completed inside a single PM slot today; same open item as every prior cycle, worth the next full run checking the backgrounded result (addendum here if it lands before 18:43) rather than restarting it again.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues, #2/#39/#15/#18/#21/#29/#31/#33/#35). Operator: the keyword-gap cluster named above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; command deck not regenerated (no figure changed since the 18:1x cycle's own regeneration). No price, product, or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 18:1x cycle (previous work finished; closed a stale dashboard line the 17:4x cycle had left uncorrected)
 
 **Previous work was finished.** Attached clean (fetch, unshallow, `merge --ff-only` onto `origin/main`, no conflict, `189e40942`). The 17:4x cycle's own addendum (backgrounded `preflight.py` finished clean, 30 warnings) is pushed; nothing new from the operator's 17:43/18:43 slots has landed since. 9 GitHub issues open, all `decision`/`blocked-on-art`/TTS-blocked (#39), none Phil-unblocked. `STATUS.md`'s BLOCKER-001 citation (4-commit deploy gap, resolved to `e8ad130b8`) re-derived directly with `git log e8ad130b8..HEAD -- site/ Dockerfile`: still exactly 4 commits, unchanged, so no correction needed there.
