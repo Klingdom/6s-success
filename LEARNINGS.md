@@ -331,6 +331,8 @@ Maintain:
 | LRN-0026 | Every instrument must exclude its own operator, because a tool that measures a system also acts on it | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0027 | On a shared main, one red build strands every change made near it, and the tooling will tell you to keep retrying | ENGINEERING / DELIVERY | SUPPORTED | HIGH |
 | LRN-0028 | A generated image can be good and still wrong, and the reviewer's first instinct is aesthetic | MEDIA / QUALITY | SUPPORTED | MEDIUM |
+| LRN-0029 | The query half of Search Console is public, and nobody had looked; the complaint our product answers has no page | SEO / AEO | SUPPORTED | HIGH |
+| LRN-0030 | A test that shells out must prove its interpreter, or the environment answers in place of the code | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -974,6 +976,107 @@ absent, it is a reject, and the note should say "wrong subject" rather than
 "aesthetic", because those two send the next generation in opposite
 directions.
 
+
+#### LRN-0029: The query half of Search Console is public, and nobody had looked; the complaint our product answers has no page
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (measured directly, 274 attempts, 0 errors, both canaries clean)
+**Domain:** SEO / AEO
+**Measured:** 2026-10-01
+
+**Observation.** For a month `GOALS.md` carried the line "what we still cannot
+see is impressions and queries, and that needs Search Console", and treated
+both halves as equally blocked on the owner. Only one half was. Search Console
+is the only source for OUR impressions. What PEOPLE TYPE is public: Google and
+Bing both answer their autocomplete endpoints with no key, no account and no
+referrer check, and in six weeks of SEO work nothing in this repository had
+ever queried them. Every search term the site targets was invented by reading
+the Micro Zone Manual.
+
+**Evidence.** `ops/keyword_demand.py`, first run 2026-10-01: 137 seeds built
+from the real corpus (20 rooms times 4 intents, plus the 60 hand-written zone
+search terms), 274 attempts across both engines, 0 errors, 36 seeds with
+genuinely no completions, both canaries clean before and after, 2,622 distinct
+queries. Scored against every published page title: 346 covered, 1,562
+partial, 714 with nothing of ours titled for them.
+
+**What the gap actually is.** Not thin content and not a technical fault. The
+complaint cluster, how somebody searches before they have decided that
+organising is the answer, is 49 queries and **zero** covered. "why is my
+kitchen always messy", "why is my kitchen always a mess", "why is my bedroom
+always messy" and "why your home is always messy" are all rank-1 suggestions;
+the closest page we publish is the articles index. This business has 17 shared
+root causes and 114 diagnosed zones built precisely to answer that question,
+and no page stands in front of it. Two more clusters are also 0 covered: the
+"small space" modifier (153 queries) and "cheap, budget, DIY" (98).
+
+**The second finding is about the instrument, not the data.** The first
+version of the harvester counted an empty HTTP 200 as a failure, and voided its
+own first clean run: "why is my entryway always messy" genuinely has no
+completions. A refusal and a genuine zero are byte-identical in one response,
+so they cannot be told apart inside one, only across a run. The fix is a canary
+phrase whose completions are not in doubt, fetched before and after, plus
+separate ceilings for the error rate and the empty rate. Without it the tool
+would have had exactly the property this repository keeps getting hurt by: on
+the day an endpoint started refusing us it would have written "demand
+collapsed" and exited 0.
+
+**Implication.** Before recording an instrument as owner-blocked, check which
+half of it is. A gate on the owner's calendar is not the same thing as a gate
+on the information, and here the cheaper half had been sitting in public for
+six weeks.
+
+**Next action.** Put a page in front of the complaint cluster, grounded in the
+root causes we already diagnose rather than written to the query, and link it
+to the room pages. Re-harvest monthly, not weekly: autocomplete moves slowly
+and the report is for choosing work, not for watching a number.
+
+#### LRN-0030: A test that shells out must prove its interpreter, or the environment answers in place of the code
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced, root-caused, and fail-then-pass proved)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-01
+
+**Observation.** `ops/tests/test_run_preflight_exit_code.py` reported one red
+line in a full preflight run. The red line was not the finding. The test drives
+the real `ops/run_preflight.sh` through `subprocess.run(["bash", variant])`,
+and from Python on this machine the bare name `bash` resolves to Windows' own
+`System32/bash.exe`, the WSL launcher, which answers every invocation with
+"Windows Subsystem for Linux must be updated" in UTF-16 and exits 1. The shell
+script never ran at all.
+
+**Why that was worse than the red line.** Two of the test's three dynamic
+cases assert exit code **1**, and WSL's own refusal exits 1. So both were
+passing, and would have passed against a `run_preflight.sh` deleted from disk.
+Only the third case, the one asserting 0, was honest enough to go red. A test
+file written specifically to catch a wrapper that reports success on a real
+failure had itself become a check that could not fail, in two cases out of
+three, for an entire environment.
+
+**And the fix uncovered a second layer.** Once a real bash was found, the
+script ran and died on `setsid: command not found`: Git Bash for Windows ships
+`nohup` but not `setsid`, which the wrapper needs to launch at all. The right
+answer there is not to relax the assertion but to establish the missing
+capability up front, before any case runs, so it can never be used afterwards
+to explain away a case that failed for a real reason. The file now prints NOT
+VERIFIED and exits 0, which `gate_tests()` already counts as unchecked rather
+than passing, and the one case that is still meaningful here, a static read of
+the committed script, still runs and was proved to bite by planting the exact
+2026-09-30 regression back into the wrapper.
+
+**Implication.** An assertion on a nonzero exit code is only about the code
+under test if the interpreter is known to work. Any test that shells out should
+round-trip a known string through its interpreter, and probe for the tools the
+thing under test needs, before it believes any exit status. The same shape is
+worth looking for wherever a test asserts failure rather than success, because
+that is the direction in which a broken environment is indistinguishable from a
+passing check.
+
+**Next action.** When a test reports FAIL, read what it actually executed
+before fixing what it claims to be about. This one would have been "fixed" by
+adjusting an assertion, which would have deleted the only honest case of the
+three.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED

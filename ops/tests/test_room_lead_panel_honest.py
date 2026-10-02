@@ -61,9 +61,56 @@ def _panels():
     return out
 
 
-def case_some_rooms_actually_carry_a_panel():
-    """A test that passes because it found nothing would be worthless."""
-    assert len(_panels()) >= 5, len(_panels())
+def case_no_room_page_carries_a_panel_any_more():
+    """The panels this file was written about are gone, and that is the win.
+
+    Updated 2026-10-01. This case used to assert that at least five rooms
+    carried a lead panel, which was true of eleven of them and was the whole
+    reason the file exists. It is now true of none: every one of those eleven
+    leads on the book's own hand-drawn zone map instead
+    (ops/import_room_diagrams.py), because rendering garage.html and reading it
+    showed the panel's text was the same paragraph as the "Start here." callout
+    further down the same page, and the lede said it a third time.
+
+    The assertion is inverted rather than deleted, so this file records what
+    happened instead of quietly passing on an empty set. The honesty rules the
+    other cases check are still live, because the three ZONE panels still use
+    panel_figure(), and case_the_zone_panel_still_says_what_done_looks_like
+    exercises the function directly.
+    """
+    panels = _panels()
+    assert not panels, (
+        "%d room page(s) are back on the typographic panel: %s. If that is "
+        "deliberate, say why here; if it is a regression, the diagram manifest "
+        "ops/room-diagrams.json is probably missing or unreadable."
+        % (len(panels), [n for n, _, _ in panels]))
+
+
+def case_every_room_leads_on_real_artwork():
+    """And what replaced the panels has to be honest about what it is."""
+    import glob as _glob
+    rooms = [f for f in _glob.glob(os.path.join(ROOT, "site", "rooms", "*.html"))
+             if not f.endswith("index.html")]
+    assert len(rooms) >= 20, len(rooms)
+    diagrams = 0
+    for fp in rooms:
+        h = io.open(fp, encoding="utf-8", errors="replace").read()
+        assert 'class="room-lead' in h, "no lead figure at all: %s" % fp
+        if "room-lead-diagram" in h:
+            diagrams += 1
+            # It is a drawing. The site's standard (ops/wire_zone_heroes.py)
+            # is that a figure must never let a reader assume a photograph of
+            # a real home exists when it does not.
+            assert "not a photograph of a real home" in h.lower(), fp
+    assert diagrams >= 10, diagrams
+
+
+# The cases below iterate whatever room panels exist. That is an empty set
+# today, by design, so each one is a guard against the panel coming back in a
+# dishonest shape rather than a check that runs every time. The live coverage
+# for panel_figure() itself is case_the_zone_panel_still_says_what_done_looks
+# _like and case_an_empty_zone_drops_the_separator, which call it directly,
+# plus ops/tests/test_zone_hero_panel.py against the three real zone panels.
 
 
 def case_no_panel_claims_to_show_what_done_looks_like():
@@ -104,30 +151,39 @@ def case_the_panel_does_not_repeat_the_page_lede():
         assert probe.lower() not in flat.lower(), (name, probe)
 
 
-def case_the_panel_quotes_the_rooms_own_words():
-    """Nothing invented: the text must come from the corpus."""
-    corpus = json.loads(io.open(
-        os.path.join(ROOT, "content", "manual", "source", "content.json"),
-        encoding="utf-8").read())
-    by_slug = {}
-    for r in corpus["rooms"]:
-        slug = re.sub(r"[^a-z0-9]+", "-", r["room"].lower()).strip("-")
-        by_slug[slug] = r
+def case_the_lead_quotes_the_books_own_words():
+    """Nothing invented: the text under the lead must come from the source.
+
+    Was case_the_panel_quotes_the_rooms_own_words, which checked the panel
+    text against content.json. The panels are gone, so that case had become
+    vacuous (it asserted it had checked at least five rooms and was checking
+    none). Repointed at what carries the claim now: the diagram caption, which
+    must be the book chapter's own figcaption and not something written here
+    to fill the slot.
+    """
+    manifest_path = os.path.join(ROOT, "ops", "room-diagrams.json")
+    if not os.path.exists(manifest_path):
+        print("  (skipped: ops/room-diagrams.json not present)")
+        return
+    manifest = json.loads(io.open(manifest_path, encoding="utf-8").read())
+    assert len(manifest) >= 10, len(manifest)
     checked = 0
-    for name, panel, _ in _panels():
-        room = by_slug.get(name)
-        if not room:
-            continue
-        flat = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", panel))
-        tips = room.get("tips") or []
-        source = (tips[0].get("text") if tips and isinstance(tips[0], dict)
-                  else None) or room.get("intro") or ""
-        probe = " ".join(re.sub(r"\s+", " ", source).split()[:6])
-        if len(probe) < 20:
-            continue
-        assert probe.lower() in flat.lower(), (name, probe)
+    for room, entry in sorted(manifest.items()):
+        chapter = entry["chapter"]
+        src = glob.glob(os.path.join(ROOT, "content", "book",
+                                     "*Chapter-%d" % chapter,
+                                     "chapter_%d_final.html" % chapter))
+        assert src, "no source chapter for %s" % room
+        book = io.open(src[0], encoding="utf-8", errors="replace").read()
+        flat_book = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", book))
+        probe = " ".join(entry["caption"].split()[:8])
+        assert len(probe) > 20, (room, probe)
+        assert probe in flat_book, (
+            "%s: the caption shipped on the room page is not in chapter %d, "
+            "so it was written somewhere other than the book: %r"
+            % (room, chapter, probe))
         checked += 1
-    assert checked >= 5, checked
+    assert checked >= 10, checked
 
 
 def case_the_zone_panel_still_says_what_done_looks_like():
