@@ -602,6 +602,58 @@ They are not authoritative for search rankings or traffic.
 
 ---
 
+# 26b. Public Autocomplete Demand Data
+
+## Owner
+
+`seo-aeo`
+
+## Source
+
+`ops/keyword_demand.py`, reading Google's and Bing's public autocomplete
+endpoints. No key, no account, no owner gate. Output:
+`ops/keyword-demand.json` (the record) and `ops/KEYWORD-DEMAND.md` (the read).
+
+Added 2026-10-01, after this file and `GOALS.md` had both treated "we cannot
+see queries" as entirely blocked on Search Console for a month. Only our own
+impressions are blocked on it. What people type is public.
+
+## Authoritative For
+
+- that an engine predicts a given phrase, which means people type it often
+  enough to be worth predicting
+- the relative order of suggestions **within a single seed's response**
+- whether any page we publish is titled for a given phrase
+
+## NOT Authoritative For
+
+- **search volume.** There is no count in this data. A figure presented as
+  searches per month from this source is a fabrication.
+- cross-seed comparison. Two queries from different seeds cannot be ranked
+  against each other, and the tool deliberately refuses to add relevance
+  scores across seeds for exactly that reason.
+- our impressions, clicks, CTR or position. That is Search Console, section
+  23, still unverified.
+- whether a page is indexed or ranking. Coverage in this report means words
+  appear in a title, which is the weakest claim available without impression
+  data. A page can read as `covered` here and be invisible on a real result
+  page.
+
+## Freshness
+
+Monthly. Autocomplete moves slowly, and the report exists to choose work, not
+to watch a number. `checked_at` in the JSON is the authority for its age.
+
+## Confidence Rule
+
+A run that could not look must not overwrite one that did. The tool refuses to
+write anything if a canary phrase comes back empty, if the error rate exceeds
+10%, or if the empty rate exceeds 50%, and it exits 1 saying UNCHECKED. A
+refused request and a genuine zero are byte-identical in a single response, so
+they are distinguished across the run, never within one.
+
+---
+
 # 27. AEO Measurement
 
 AEO is less standardized.

@@ -1,0 +1,220 @@
+#!/usr/bin/env python3
+"""
+Prove ops/keyword_demand.py cannot report a demand reading it did not take.
+
+The tool reads public autocomplete endpoints, which fail in the one way this
+repository keeps getting hurt by: a refused request comes back as a valid,
+empty, HTTP 200. A naive harvester writes "0 gaps" and exits 0, and the next
+cycle reads that as evidence.
+
+So the cases below are mostly about refusal, not about parsing. In particular
+case 4 pins the correction the first real run forced: "why is my entryway
+always messy" genuinely has no completions, and an earlier version counted
+that as a failure, which would have voided an otherwise complete harvest. A
+genuine zero and a refusal look identical in one response, so they are told
+apart across the run, by the canary.
+
+No network. Every endpoint is stubbed.
+
+Run:  python ops/tests/test_keyword_demand.py
+"""
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+
+import keyword_demand as kd                                    # noqa: E402
+
+
+def attempts(ok=0, empty=0, error=0):
+    out = []
+    out += [{"seed": "s", "source": "google", "count": 5, "error": None,
+             "outcome": "ok"} for _ in range(ok)]
+    out += [{"seed": "s", "source": "google", "count": 0, "error": None,
+             "outcome": "empty"} for _ in range(empty)]
+    out += [{"seed": "s", "source": "google", "count": 0, "error": "http 429",
+             "outcome": "error"} for _ in range(error)]
+    return out
+
+
+GOOD_CANARY = {"google": (True, "")}
+
+
+def main():
+    fails = []
+
+    # 1. A clean run writes. 100 ok attempts, no empties, canary good.
+    r = kd.refusal_reason(attempts(ok=100), GOOD_CANARY)
+    if r:
+        fails.append("clean run refused: %s" % r)
+
+    # 2. A failed canary voids the run even when every attempt returned rows.
+    #    This is the whole point of the canary: the rows are real, they are
+    #    just not the whole picture, and a partial picture overwriting a
+    #    complete one reads as a collapse in demand.
+    r = kd.refusal_reason(attempts(ok=100), {"google": (False, "empty 200")})
+    if not r or "canary" not in r:
+        fails.append("failed canary did not void the run: %r" % r)
+
+    # 3. Error rate over the ceiling is refused.
+    r = kd.refusal_reason(attempts(ok=80, error=20), GOOD_CANARY)
+    if not r or "error rate" not in r:
+        fails.append("20 percent errors not refused: %r" % r)
+
+    # 3b. Exactly at the ceiling is allowed, so the ceiling is a ceiling and
+    #     not an off-by-one.
+    r = kd.refusal_reason(attempts(ok=90, error=10), GOOD_CANARY)
+    if r:
+        fails.append("10 percent errors wrongly refused: %s" % r)
+
+    # 4. The regression the first real run found: genuine zeros below the
+    #    empty ceiling must NOT void a harvest.
+    r = kd.refusal_reason(attempts(ok=80, empty=20), GOOD_CANARY)
+    if r:
+        fails.append("genuine zeros wrongly refused: %s" % r)
+
+    # 5. But an endpoint answering 200-with-nothing for most of the run is
+    #    refused even if the canary happened to squeak through.
+    r = kd.refusal_reason(attempts(ok=30, empty=70), GOOD_CANARY)
+    if not r or "empty rate" not in r:
+        fails.append("70 percent empty not refused: %r" % r)
+
+    # 6. No attempts at all is a refusal, not a clean empty result.
+    r = kd.refusal_reason([], GOOD_CANARY)
+    if not r:
+        fails.append("zero attempts not refused")
+
+    # 7. Parsing: the real OpenSearch shape, and three malformed ones.
+    out, err = kd._parse_opensearch('["seed", ["a", "b"], [], {}]')
+    if err or out != ["a", "b"]:
+        fails.append("real shape misparsed: %r %r" % (out, err))
+    for bad in ('not json', '{"a": 1}', '["seed"]', '["seed", "notalist"]'):
+        out, err = kd._parse_opensearch(bad)
+        if not err:
+            fails.append("malformed payload accepted: %r" % bad)
+
+    # 8. Coverage scoring must not flatter itself. Every title on this site
+    #    carries some form of "organize", so if that counted, a query would
+    #    score partial coverage against any page at all.
+    cw = kd.content_words("how to organize a mudroom")
+    if cw != ["mudroom"]:
+        fails.append("content_words kept filler: %r" % cw)
+    if kd.content_words("how to organize it"):
+        fails.append("a query with no subject scored content words")
+
+    # 9. classify boundaries, including the float case that made 2 words of 3
+    #    round to 1.0 in an earlier draft.
+    for score, want in ((1.0, "covered"), (0.999, "covered"),
+                        (0.998, "partial"), (0.5, "partial"),
+                        (0.499, "gap"), (0.0, "gap")):
+        got = kd.classify(score)
+        if got != want:
+            fails.append("classify(%s) was %s, wanted %s" % (score, got, want))
+
+    # 10. best_page picks the better title and breaks ties by url, so two runs
+    #     over the same corpus cannot disagree.
+    inv = [
+        {"url": "/a.html", "title": "How to organize the mudroom bench",
+         "words": set(kd.words("How to organize the mudroom bench"))},
+        {"url": "/b.html", "title": "How to organize a mudroom, zone by zone",
+         "words": set(kd.words("How to organize a mudroom, zone by zone"))},
+        {"url": "/c.html", "title": "Shop", "words": set(kd.words("Shop"))},
+    ]
+    page, score = kd.best_page("how to organize mudroom bench", inv)
+    if page["url"] != "/a.html" or score != 1.0:
+        fails.append("best_page missed the exact match: %r %r" % (page, score))
+    page, score = kd.best_page("how to organize a mudroom", inv)
+    if page["url"] != "/a.html":
+        fails.append("best_page tie not broken by url: %r" % (page,))
+    page, score = kd.best_page("how to organize a foyer", inv)
+    if score != 0.0:
+        fails.append("unknown subject scored above zero: %r" % score)
+
+    # 11. Room attribution must prefer the longer name, or every Guest
+    #     Bathroom query would be filed under Primary Bathroom's room and the
+    #     by-room table would be wrong in the direction nobody checks.
+    rooms = ["Primary Bathroom", "Guest Bathroom", "Primary Bedroom",
+             "Kids Bedroom", "Kitchen"]
+    for query, want in (("guest bathroom ideas", "Guest Bathroom"),
+                        ("kids bedroom storage", "Kids Bedroom"),
+                        ("how to organize a kitchen", "Kitchen"),
+                        ("how to organize a garage", "")):
+        got = kd.attribute_room(query, rooms)
+        if got != want:
+            fails.append("attribute_room(%r) was %r, wanted %r"
+                         % (query, got, want))
+
+    # 12. harvest() classifies a 200-with-nothing as empty, not error, and an
+    #     exception as error. Stubbed, no network.
+    def stub(seed):
+        if seed == "boom":
+            return [], "URLError: refused"
+        if seed == "quiet":
+            return [], None
+        return ["%s one" % seed, "%s two" % seed], None
+
+    real = dict(kd.SOURCES)
+    try:
+        kd.SOURCES.clear()
+        kd.SOURCES["stub"] = stub
+        rows, atts, failures, pages = kd.harvest(
+            ["stub"], ["loud", "quiet", "boom"], verbose=False, sleep=False)
+        got = sorted(a["outcome"] for a in atts)
+        if got != ["empty", "error", "ok"]:
+            fails.append("harvest outcomes were %r" % got)
+        if len(failures) != 1:
+            fails.append("harvest counted %d failures, wanted 1"
+                         % len(failures))
+        if len(rows) != 2:
+            fails.append("harvest kept %d rows, wanted 2" % len(rows))
+        if pages < 100:
+            fails.append("page inventory read only %d titles, which is too "
+                         "few for this corpus and means the walk is broken"
+                         % pages)
+    finally:
+        kd.SOURCES.clear()
+        kd.SOURCES.update(real)
+
+    # 13. Seeds are deterministic and deduplicated, so two harvests are
+    #     comparable line by line.
+    s1, s2 = kd.build_seeds(), kd.build_seeds()
+    if s1 != s2:
+        fails.append("build_seeds is not deterministic")
+    if len(s1) != len(set(s1)):
+        fails.append("build_seeds emitted a duplicate")
+    if len(s1) < 80:
+        fails.append("only %d seeds built, which is fewer than the 20 rooms "
+                     "times 4 templates this corpus guarantees" % len(s1))
+
+    # 14. The report must carry its own caveat. The single likeliest way this
+    #     tool does damage is somebody quoting a rank as a monthly volume, so
+    #     the disclaimer is load-bearing text, not decoration.
+    payload = {
+        "checked_at": "2026-10-01T00:00:00Z", "sources": ["google"],
+        "seeds": 1, "attempts": 1, "ok_attempts": 1, "empty_attempts": 0,
+        "failed_attempts": 0, "pages_checked": 1, "failures": [],
+        "canaries": {"google": {"ok": True, "note": ""}},
+        "rows": [{"query": "how to organize a foyer", "sources": ["google"],
+                  "best_rank": 1, "seeds": ["x"], "room": "",
+                  "best_page": "/a.html", "best_page_title": "A",
+                  "coverage": 0.0, "status": "gap"}],
+    }
+    text = kd.report(payload)
+    for needed in ("not search volume", "fabrication", "triage score"):
+        if needed not in text:
+            fails.append("report dropped its caveat: %r" % needed)
+    if "how to organize a foyer" not in text:
+        fails.append("report omitted its only gap row")
+
+    if fails:
+        print("FAIL")
+        for f in fails:
+            print(" -", f)
+        return 1
+    print("OK: keyword_demand, 14/14 checks pass")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
