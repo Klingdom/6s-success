@@ -1072,6 +1072,8 @@ rather than from this file's first paragraph. `matched_on` in the JSON says
 whether each row was earned by a title or a heading, and a row earned only by a
 heading is weaker evidence of coverage than one earned by a title.
 
+**Confirmed independently the same day:** this sandbox has no network egress to either Google's/Bing's autocomplete endpoints (a direct probe returned `403 Forbidden` from the proxy) or the live site, so `ops/indexnow.py --submit` for the new page and any re-harvest both stay open for a session with live network reach, not a measurement gap in the page or the data.
+
 #### LRN-0030: A test that shells out must prove its interpreter, or the environment answers in place of the code
 
 **Status:** SUPPORTED
