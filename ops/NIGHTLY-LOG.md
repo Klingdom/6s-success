@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (08:4x cycle, handoff reconfirmed, 38-file cold-read tier still unclaimed)
+
+NEXT FOR THE OPERATOR: second-pass cold-read the 38-file 2026-09-26 cold-read-ledger tier, because both standing fallback lanes (content-read: 20/20 rooms closed; cold-read-ledger: 194/194 ledgered) stay exhausted and three prior cycles named this tier without anyone starting it.
+
+Previous work: finished. A11 and A13 closed with evidence in `BACKLOG-2026-09-07.md` and `STATUS.md`: 9/13 complaint queries covered, 2 partial; small-space gap closed by expanding `zone-too-small-for-what-it-holds.html`. Working tree clean, main pushed. 8 GitHub issues unchanged, all `decision` or `blocked-on-art`, none mine. My own `preflight.py` hung at `gate_tests`, the documented sandbox limit; citing the prior cycle's completed clean run (27 warnings) since nothing gate-relevant changed. No closing job this slot; the handoff is the output.
+
 ## PM check-in, 2026-10-02 (08:1x cycle, previous work finished, verified a concurrent cycle's closure independently rather than duplicate it)
 
 **Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only`). While reading state, the keyword-demand re-harvest fired mid-cycle; started writing up the same A11 closure a concurrent session was writing at the same moment. Caught it by re-fetching before pushing (`c3077a288`), discarded my own duplicate edit, merged theirs instead. **Verified their numbers independently rather than trust the commit message:** read `ops/keyword-demand.json` directly, confirmed 0 of the "always messy" complaint queries are `gap`, both named rank-1 queries `covered`; close to but not identical to their 9/2 split (mine: 10 covered/3 partial of 13 by a slightly broader match), immaterial to the conclusion. Ran a full `preflight.py` to completion on the merged tree: every gate passed, 27 warnings, all standing sandbox limits. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; checked #21 specifically (flagged as possibly superseded by `CLAUDE.md` 36b) and confirmed it is not, three sub-items are genuinely still open and correctly Phil's call.
