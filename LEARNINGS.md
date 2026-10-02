@@ -334,6 +334,7 @@ Maintain:
 | LRN-0029 | The query half of Search Console is public, and nobody had looked; the complaint our product answers has no page | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0030 | A test that shells out must prove its interpreter, or the environment answers in place of the code | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0031 | Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it | PROCESS / COORDINATION | SUPPORTED | HIGH |
+| LRN-0032 | A stored coverage status is a snapshot of a corpus other sessions are changing; re-score before concluding | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0032 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
@@ -1163,6 +1164,47 @@ work starts. When it records a gap it does not intend to close, say so
 explicitly, because that is the more useful signal and it is currently never
 given.
 
+
+#### LRN-0032: A stored coverage status is a snapshot of a corpus other sessions are changing; re-score before concluding
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (the same error, caught twice in two days, once before acting and once after)
+**Domain:** ANALYTICS / MEASUREMENT
+**Measured:** 2026-10-02
+
+**Observation.** `ops/keyword-demand.json` stores a `status` per query: gap,
+partial or covered. That status is not a property of the query. It is the
+result of scoring the query against the site **as it was at the moment of the
+harvest**, and on this repository the site changes several times an hour
+because more than one session is working on it.
+
+Reading the stored file on 2026-10-02 said the "cheap, budget, DIY" cluster was
+121 queries with **zero** covered, which is a striking enough number to build a
+page on. Re-scoring the identical queries against the corpus as it actually
+stood returned **29 covered and 9 gaps**. A concurrent session had added a
+room-by-room budget section to `more-storage-wont-fix-clutter` in the interval.
+Acting on the stored number would have produced an article duplicating one that
+already existed, which is precisely the collision LRN-0031 records, reached by a
+different route.
+
+The same correction applied to "small spaces": stored 50 covered, re-scored 82.
+
+**Why this is not the same learning as LRN-0029.** That one was about the
+instrument being wrong in its design, reading titles and not headings. This one
+is about a correct instrument's output going stale between being written and
+being read. Fixing the scorer did nothing to prevent it, and the second failure
+happened the day after the first was fixed.
+
+**Implication.** Any stored result that was computed against a moving corpus
+carries an implicit "as at" that its own field names do not show. `status` looks
+like a fact about the query and is a fact about a moment.
+
+**Next action.** Re-score before concluding, which costs seconds because
+`score_rows()` is pure and the inventory is read from disk. The harvest itself,
+which is the expensive part and the only part that needs the network, does not
+need repeating to do this. Consider renaming the field, or recording the commit
+the scoring ran against, so a reader sees the staleness instead of having to
+remember it.
 #### LRN-0032: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
 
 **Status:** SUPPORTED
