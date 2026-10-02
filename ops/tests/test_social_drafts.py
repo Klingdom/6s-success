@@ -110,12 +110,26 @@ def main() -> int:
     # guards (261 of 741 real posts still carrying a leftover character-count
     # annotation, found 2026-09-12 building this file) only shows up there.
     subject, text = sd.build("x")
+    link = sd.LINKS["x"]
     for chunk in text.split("=" * 64)[1:]:
         body = chunk.split("\n\n", 1)[1] if "\n\n" in chunk else chunk
-        body = body.rsplit("\n\n", 1)[0].strip()
-        if len(body) > sd.X_CHAR_CAP:
-            fails.append(f"an X draft ran to {len(body)} characters, over "
-                         f"the {sd.X_CHAR_CAP}-character limit: {body[:60]!r}")
+        # Found 2026-10-02 via a real preflight gate_tests FAIL: the block
+        # ends "<body>\n\nLINK\n\n" (two trailing blank lines, the second
+        # from the render list's own closing ""), so rsplit on the LAST
+        # "\n\n" stripped only the trailing blank line and left LINK
+        # attached to body, silently adding 39 characters to every
+        # measured post and reporting a limit violation that was not
+        # real. Strip the known link text directly instead of guessing
+        # which "\n\n" bounds it.
+        body = body.replace(link, "").rstrip("\n").strip()
+        # What X actually counts once it wraps the link: the real check,
+        # matching sd._x_fits exactly rather than re-deriving it, so this
+        # test and the filter it is proving cannot silently disagree.
+        counted = len(body) + 1 + sd.X_URL_WEIGHT
+        if counted > sd.X_CHAR_CAP:
+            fails.append(f"an X draft would count as {counted} characters "
+                         f"once X wraps its link, over the "
+                         f"{sd.X_CHAR_CAP}-character limit: {body[:60]!r}")
 
     # And nothing served to either platform should carry the annotation
     # corpus_posts.split_numbered now strips: the regression this whole file

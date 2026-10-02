@@ -43,8 +43,8 @@
     },
     "bluesky_drafts.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Cold-read whole file (115 lines) plus its test (7/7 passing) and .github/workflows/bluesky-drafts.yml, all three new today, none previously ledgered. pool_kind threading in corpus_posts.take()/pool() verified correct: bluesky-post and x-post track separate served-sets keyed by kind while reading the same underlying x-post pool by id (sha256 of source+title, independent of which kind read it), so the two pipelines cannot silently halve each other's supply. --preview produces 3 valid <=300-char posts from the live corpus (710 remaining in the filtered pool). Workflow's push-fallback gate (send only after 14:05 UTC and only if no successful scheduled run today) and SMTP-credential pre-check both correct by inspection, matching the established linkedin-drafts.yml/social-drafts.yml pattern; registered in check_cron_cadence.py's WORKFLOWS list, which reports 0 completed runs so far (first cron fire ~14:05 UTC today, not yet due). No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: 300-char cap incl. link, pool_kind=x-post rotation-key separation, remaining-count logic all correct. No defect."
     },
     "browser.py": {
       "status": "clean",
@@ -62,9 +62,9 @@
       "note": "Re-verified 2026-09-30: PIL absent by default in this sandbox, installed via pip; regenerated all 5 outputs, 4 pixel-identical to committed, feature-graphic-1024x500.png differs only in font anti-aliasing (1.2% of pixels, text area only, same words, confirmed by eye), a PIL/freetype version artifact not a content defect. No drift."
     },
     "build_articles.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_avif.py": {
       "status": "clean",
@@ -108,8 +108,8 @@
     },
     "build_deck_gallery.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full (796 lines): DECKS/ORDER/BLURB tables, face()/_jpeg_size() intrinsic-size reader, title-repair heuristic, written-vs-drawn counting, ROOM_OG fallback, page assembly and its own three assertions. Ran the real generator (chains canonical_links/wire_landmarks/wire_progressive/wire_measure/wire_pwa/wire_aria_current/build_avif/fingerprint_assets): git diff across site/ empty after, byte-identical to the committed pages, so idempotent. Verified specific claims against source data rather than trusting the code read: mudroom's MR-001 Room-card title-repair traced end to end against build/mudroom-cards.json (correctly resolves to 'Mudroom', the slug-title bug the file's own comment names is fixed for real); zones count (12) traced against the same file's Category tally; both galleries' full_copy state text ('written in full...' vs 'named and outlined...') confirmed correct on the live pages for entryway vs mudroom respectively. No defect found."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_deck_pdf.py": {
       "status": "clean",
@@ -118,13 +118,13 @@
     },
     "build_dining_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "PM check-in 2026-09-29: regenerated, byte-identical to committed site/dining-room-deck.html, no drift; whole-site wiring chain ran with no other file changed"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_entryway_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 06:4x check-in: regenerated, found a transient working-tree diff from concurrent sandbox activity, confirmed byte-identical to HEAD after regen (self-healing)"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_epub.py": {
       "status": "clean",
@@ -133,8 +133,8 @@
     },
     "build_family_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_feed.py": {
       "status": "clean",
@@ -143,28 +143,28 @@
     },
     "build_garage_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per 06:4x PM handoff. Read in full (410 lines): og:image fix from 2026-09-25 still correct (hero_image_url computes garage--primary-workbench-lg.jpg from ZONE_ORDER, file exists on disk in all 3 formats). Regenerated: git status clean after, byte-identical, idempotent. Whole-room card-id assertion (GAA-015/016/017) holds against live content."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_guest_bathroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "full read: wiring chain complete, og:image honest, ZONE_ORDER[0] matches its own 'start with the vanity counter' copy, whole_ids assert verified against live corpus, no defect found, 2026-09-29 scheduled operator"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_guest_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_hall_closet_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_home_office_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per 06:4x PM handoff. Read in full (406 lines): og:image fix from 2026-09-25 still correct (hero_image_url computes home-office--primary-desk-lg.jpg, file exists on disk in all 3 formats). Regenerated: git status clean after, byte-identical, idempotent. Whole-room card-id assertion (HOA-013/014/015) holds against live content."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_icons.py": {
       "status": "clean",
@@ -183,18 +183,18 @@
     },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "wiring chain complete (matches B1 follow-on fix), og:image honest and file exists, no defect found, 2026-09-29 scheduled operator"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_kit_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per 06:4x PM handoff. Read in full (359 lines). Confirmed live rather than assumed: all 8 WHY dict keys match the live Tier-1 CSV product names exactly, and all 8 live names have a WHY entry (checked both directions programmatically, not by eye). _rarity() recomputes zone counts live rather than trusting the CSV's frozen column. Regenerated: git status clean after, idempotent."
+      "date": "2026-10-02",
+      "note": "Read in full: _rarity() re-derivation, three-state retailer-link rendering, disclosure-order assertions, full generator wiring chain (incl. fingerprint_assets) all correct. No defect."
     },
     "build_kitchen_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_kitchen_deck_pdf.py": {
       "status": "clean",
@@ -203,18 +203,18 @@
     },
     "build_laundry_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per prior cycle's handoff. Read in full, structurally identical to build_kitchen_deck_page.py/build_home_office_deck_page.py pattern. Confirmed hero_image_url() slug (laundry-room--washer-and-dryer-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain (canonical_links through fingerprint_assets) idempotent. No defect found."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_manual_print.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "FIELD regex in fill_front_matter.py (colon in the character class) could not match [PRINTING NUMBER LINE: 10 9 8 7 6 5 4 3 2 1], so scan()/--check never saw it, and it shipped as literal placeholder text on the copyright page of all 3 manual files. Also cold-read fill_front_matter.py itself while tracing this. Fixed: widened FIELD to allow an optional colon-qualified tail, made the apply-loop token a regex so drop/fill matches the whole bracket, added PRINTING NUMBER LINE as an alias of the existing TERRITORY/PRINTING STATEMENT drop, and moved the closing </p> in build_manual_print.py's COPYRIGHT_PAGE template off the same line as the bracket so dropping it doesn't eat the tag. gate_front_matter_filled already existed and now catches this shape; new ops/tests/test_fill_front_matter_colon_field.py locks in the regex and the line-drop behavior. Fail-then-pass proved directly against the real committed files via git stash (old regex+old files: 0 fields found, defect invisible; new regex+old files: fails citing the field; new regex+new files: clean)."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_messy_article.py": {
       "status": "clean",
@@ -233,33 +233,33 @@
     },
     "build_mudroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: mirrors the verified build_pantry_deck_page.py template, whole-room card id assertion present, og:image resolves to a real, unique, on-disk zone image (verified against all 20 deck pages, no duplicates), idempotent regeneration confirmed byte-identical. No defect."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_nursery_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "structurally identical to sibling generators, wiring chain complete, og:image honest, no defect found, 2026-09-29 scheduled operator"
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_pantry_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass re-read 2026-10-01 PM check-in: mirrors the verified build_kitchen_deck_page.py template, whole-room card id assertion present and matches real data (PNA-011/012/013), og:image resolves to a real, on-disk zone photograph (pantry--dry-goods-shelves-lg.jpg), full whole-site wiring chain present. Regenerated live and confirmed idempotent (byte-identical to the committed file) once run on a stable tree; an earlier attempt against a tree with a concurrent backgrounded preflight.py still running produced a transient site-wide asset-fingerprint mismatch, discarded via git stash rather than committed, not a code defect (re-confirmed by rerunning on a quiescent tree). No defect found."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_patio_or_deck_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read, same finding and fix as build_workshop_deck_page.py's ledger entry this date: the two decks shipped in the same concurrent-session batch (STATUS.md, 2026-09-29) and each omitted the other from its own 'shared root cause vocabulary' sentence (JSON-LD abstract, fulfil-note, and the on-page Root Causes section). Verified 15 of 16 root causes are genuinely shared before fixing. Added the missing cross-reference to Workshop, regenerated the page, confirmed via git diff only the three intended sentences changed, and confirmed gate_patio_or_deck_deck_rendered, gate_deck_og_image_honest, gate_copy_vs_control and gate_unique_names plus their dedicated tests all pass. No new gate: see the paired build_workshop_deck_page.py entry for why this one-off cannot recur now that B9 (all 20 rooms) is closed."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_primary_bathroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per prior cycle's handoff. Read in full, same pattern as build_laundry_room_deck_page.py. Confirmed hero_image_url() slug (primary-bathroom--vanity-counter-lg.jpg) exists on disk in all 3 formats. Ran standalone: byte-identical regeneration, zero git diff, full wiring chain idempotent. No defect found."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass re-read 2026-10-01 PM check-in: mirrors the verified build_nursery_deck_page.py template, whole-room card id assertion present and matches real data (PRA-013/014/015), og:image resolves to a real, on-disk zone photograph (primary-bedroom--bed-and-bedding-zone-lg.jpg), full whole-site wiring chain present. Regenerated live 6 times; idempotent and byte-identical to the committed file on 5 of 6 runs. One run produced a transient, non-reproducing asset-fingerprint mismatch confined to this one page (site.css/site.js/measure.js version queries reverted to the PAGE template's own stale literal instead of the live hash); root cause not pinned down after reasonable investigation, did not recur across 5 immediate retries, never reached a committed file, and is independently caught before shipping by preflight.py's existing gate_fingerprints check (fingerprint_assets.py --check). Not treated as a code defect in this generator; worth a future cycle revisiting if it recurs."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_printpack.py": {
       "status": "clean",
@@ -292,9 +292,9 @@
       "note": "Re-verified per prior cycle's handoff. Read in full. degrade_images()/font-repoint/analytics-tag/figalt-CSS logic all sound; the book.css print-diagnostic line re-reads BOOK_CSS_SRC fresh each time (by design, since the source is deliberately never modified, only the shipped copy), so it always reports adding the rule, which is accurate for the source but could read oddly out of context; not a functional defect, no output or behavior wrong. Ran --apply standalone: zero git diff against committed tree. No defect found."
     },
     "build_seo.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_social_captions.py": {
       "status": "clean",
@@ -308,8 +308,8 @@
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read, handed off by name from the prior PM check-in (04:1x cycle, continuing past build_pantry_deck_page.py/build_primary_bedroom_deck_page.py). Read in full (409 lines). Verified independently rather than trusted: ZONE_ORDER, deck card count (40) and the whole-room action-card id assertion (SLA-007/008/009) all confirmed live against build_stair_landing_deck.build(), not just read from the docstring. Hero image file confirmed on disk (stair-landing--landing-surface-or-console-lg.jpg/.avif/.webp, all three sizes). The 'Start with the stairs themselves' opening sentence does not match ZONE_ORDER[0] ('Landing Surface or Console'); checked this is not a defect by surveying all 20 room decks' equivalent sentence: roughly half do and half do not match their own ZONE_ORDER[0], and in every mismatched case (Workshop, Primary Bedroom, Patio or Deck, Living Room, Guest Bedroom, Entryway) the named zone is real and present in the room, so this is deliberate real-world sequencing advice (which zone to physically tackle first), not a bug tied to page order. No defect found in this second pass."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_standards.py": {
       "status": "clean",
@@ -318,8 +318,8 @@
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full: live PACK-HOUSE price/link read, verbatim hero/FAQ assertions against content.json, missing-zone-link guard, full wiring chain all correct. No defect."
     },
     "build_thumbnails.py": {
       "status": "fixed",
@@ -327,9 +327,9 @@
       "note": "Read in full (166 lines). Found and fixed a real defect: html_for() substituted vz.FONTS (a bare filesystem directory path) directly into <style> in place of an @font-face rule, so none of the 114 thumbnails ever actually loaded the Inter font; 'font-family: Inter' silently fell back to whatever system font the render machine has. Confirmed with a pixel diff (Pillow+numpy installed for the check): 8.8% of pixels differed, max channel delta 204/255, before the fix. Added the missing @font-face for Inter-800 (the weight .room/.zone actually use; the real Inter-800-normal.woff2 file already existed on disk, just unlinked), regenerated all 114 thumbnails, new gate_thumbnail_font_face in preflight.py (fail-then-pass proved 4 ways in ops/tests/test_gate_thumbnail_font_face.py: bare-path bug, no @font-face at all, wrong declared weight, and the real fixed shape)."
     },
     "build_workshop_deck_page.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read (first pass 2026-09-29 was clean but was not cross-checked against its own concurrent-build sibling). Found a real, live customer-visible gap: Workshop and Patio or Deck shipped in the same concurrent-session batch (STATUS.md, 2026-09-29), and each deck's hand-authored 'shared root cause vocabulary' sentence (3 occurrences: JSON-LD abstract, fulfil-note, and the on-page Root Causes section, all rendered on the live page) named every sibling deck shipped before it except the other half of its own concurrent pair. Verified before fixing: 15 of 16 root causes are genuinely shared between the two decks (not assumed), so the omission was real, not a false positive. Fixed by adding the missing cross-reference to both generators (build_workshop_deck_page.py adds Patio or Deck, build_patio_or_deck_deck_page.py adds Workshop), regenerated both pages, confirmed via git diff that only the three intended sentences changed in each, and confirmed the relevant gates (gate_workshop_deck_rendered, gate_patio_or_deck_deck_rendered, gate_deck_og_image_honest, gate_copy_vs_control, gate_unique_names) and their dedicated tests all pass. No new preflight gate: this is a one-off concurrency artifact from B9, which is now permanently closed (all 20 rooms shipped), so the exact shape cannot recur; a sitewide gate requiring every deck to list every other deck would be wrong, since the other 18 decks' lists are correct, intentional historical snapshots of lineage at their own build time, not meant to be exhaustive of rooms shipped later."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_youtube_metadata.py": {
       "status": "clean",
@@ -347,9 +347,9 @@
       "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
     },
     "build_zone_pages.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -598,8 +598,8 @@
     },
     "linkedin_drafts.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Daily LinkedIn draft generator (3 corpus posts + 1 connection note + a gated B2B corporate post). Ran --preview live: facts() correctly reads the live catalogue (20 rooms, 114 zones, 684 cards, .99 ebook), corporate_facts() anchor-checks corporate.html before including the B2B post, honesty block matches known state (1 customer, referral). Word caps and 'no TODO/[insert' assertions all held. No defect."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: book.html?from=li link added to corpus posts, corporate_facts() anchor-drift guard, word caps, rotation logic all correct. No defect."
     },
     "linkedin_posts.py": {
       "status": "clean",
@@ -658,8 +658,8 @@
     },
     "product_links.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_product_links.py directly (no pytest installed), 36/36 passed, confirming the 2026-09-25 fix (check() now demotes and persists a dead link via write_catalogue, --dry flag present) still holds in code. Live re-verification against real retailer URLs is UNCHECKED, not clean: this sandbox's egress proxy rejects outbound connections to www.google.com/www.target.com/etc (organization policy), the same standing network limitation every other live-retailer check reports."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "prune_catalog_js.py": {
       "status": "clean",
@@ -668,8 +668,8 @@
     },
     "quest.js": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-27 clean note, 80a111d1d (A10, the lazy-load split), already logged with its own fail-then-pass proof and all 8 ops/tests/test_quest_*.py e2e scripts passing. No defect found."
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "receive_deploy_key.py": {
       "status": "clean",
@@ -723,8 +723,8 @@
     },
     "roadmap_report.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: three commits since the 2026-09-26 clean note (db106800b, a live misclassification fix; b94d6275f, two wrong numbers and a daily CI failure from one missing predicate; 29422f906, re-measure traffic baselines and withdraw a rise that was one burst). Reran ops/tests/test_roadmap_report.py: 18 cases pass. No defect found."
+      "date": "2026-10-02",
+      "note": "Read in full: Stripe charges-not-sessions revenue read, gh/git unshallow unknown-vs-zero guards, backlog waiting-regex, PDF render all correct. No defect."
     },
     "room_image_variants.py": {
       "status": "clean",
@@ -778,8 +778,8 @@
     },
     "social_drafts.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Ran --preview live (facebook + x combined), correct char-cap filtering, remaining count reflects rotation state, no TODO/placeholder text. No defect."
+      "date": "2026-10-02",
+      "note": "Read in full post-fix: X char-cap filter, link-attribution fix (book.html?from=x), remaining-count logic all correct. No defect."
     },
     "social_pin_fit.js": {
       "status": "clean",

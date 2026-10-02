@@ -23583,6 +23583,84 @@ def gate_room_time_rounding_current() -> None:
         fail("room-time-rounding", "; ".join(problems[:6]))
 
 
+def check_also_called_is_heading(rooms, page_bodies) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    Found live 2026-10-02, PM check-in: `ops.build_zone_pages.also_called_html()`
+    rendered a room's household synonyms ("foyer", "larder", "master
+    bedroom"...) inside a plain `<p>`. `ops/keyword_demand.py`'s own scorer
+    only reads page titles and `<h1>`-`<h3>` text, by its own documented
+    design (`page_inventory()`'s docstring), so those words were invisible
+    to it: "foyer design ideas" (rank 1), "larder organisation" (rank 1) and
+    four siblings scored `gap` while the room page already carried the exact
+    word, just in the wrong element. Fixed by rendering it as an `<h2>`
+    instead, with every visual property still set inline so the page looks
+    identical; a real offline rescore moved 42 queries off `gap` corpus-wide.
+
+    `rooms` is {room_name: [name, ...]} from `ops/room-also-called.json`'s
+    own `rooms` key. `page_bodies` is {filename: html} for the real
+    `site/rooms/*.html` files, keyed the same way `check_room_time_current`
+    already is.
+
+    Returns problem strings, empty when every room named in the map carries
+    its alternative name inside a real `<h1>`-`<h3>` heading on its own
+    page, not merely somewhere in the body text.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    problems = []
+    for room, names in sorted(rooms.items()):
+        if not names:
+            continue
+        fname = f"{bzp.slug(room)}.html"
+        body = page_bodies.get(fname)
+        if body is None:
+            continue
+        heads = " ".join(
+            re.sub(r"<[^>]+>", " ", h) for h in
+            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body)).lower()
+        for name in names:
+            if name.lower() not in heads:
+                problems.append(
+                    f"{fname}: {name!r} does not appear inside any h1-h3 "
+                    f"heading, so keyword_demand.py's scorer cannot see it")
+    return problems
+
+
+def gate_also_called_is_heading() -> None:
+    """The shipped-HTML half of the 2026-10-02 also_called_html() heading
+    fix (see `check_also_called_is_heading`'s own docstring for what this
+    catches). Re-derives the expected room/name map from the real,
+    committed `ops/room-also-called.json` and diffs it against the real
+    `site/rooms/*.html` files, so a future edit that moves this line back
+    into a plain paragraph, or drops it from a heading some other way,
+    cannot ship silently.
+
+    Proved to fail on a planted regression: see
+    ops/tests/test_gate_also_called_is_heading.py.
+    """
+    map_path = os.path.join(ROOT, "ops", "room-also-called.json")
+    if not os.path.exists(map_path):
+        return
+    data = json.load(io.open(map_path, encoding="utf-8"))
+    rooms = {room: entry.get("names") or []
+             for room, entry in (data.get("rooms") or {}).items()}
+    if not rooms:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "rooms", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("also-called-is-heading", "no room pages built yet, could not check.")
+        return
+
+    problems = check_also_called_is_heading(rooms, page_bodies)
+    if problems:
+        fail("also-called-is-heading", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=None,
                                 zones_linking=None) -> list:
@@ -27211,6 +27289,7 @@ def main() -> int:
     run_gate(gate_specific_article_direct_answer)
     run_gate(gate_room_hub_current)
     run_gate(gate_room_time_rounding_current)
+    run_gate(gate_also_called_is_heading)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
@@ -27409,7 +27488,12 @@ def main() -> int:
         run_gate(gate_generator_ownership)
 
     for g, m in FAIL:
-        print(f"  FAIL  {g:22} {m[:150]}")
+        # Not truncated, unlike warn below. A FAIL is rare and actionable;
+        # cutting it to 150 chars twice lost the one piece of evidence
+        # (the actual file/link pair) needed to chase a transient hit on
+        # no-stale-hardcoded-stripe-link, a payment-safety gate, on both
+        # 2026-10-02 occurrences.
+        print(f"  FAIL  {g:22} {m}")
     for g, m in WARN:
         print(f"  warn  {g:22} {m[:150]}")
 

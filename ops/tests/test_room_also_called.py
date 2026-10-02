@@ -37,7 +37,7 @@ DEMAND = os.path.join(ROOT, "ops", "keyword-demand.json")
 CORPUS = os.path.join(ROOT, "content", "manual", "source", "content.json")
 ROOMS_DIR = os.path.join(ROOT, "site", "rooms")
 
-LINE = re.compile(r'<p class="also-called"[^>]*>(.*?)</p>', re.S)
+LINE = re.compile(r'<h2 class="also-called"[^>]*>(.*?)</h2>', re.S)
 
 
 def load():

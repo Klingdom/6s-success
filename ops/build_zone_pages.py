@@ -1880,7 +1880,20 @@ else:
 
 
 def also_called_html(room):
-    """One honest line naming the other words for this room, or nothing."""
+    """One honest line naming the other words for this room, or nothing.
+
+    Rendered as an h2, not a p, found and fixed 2026-10-02: the keyword
+    harvest's own scorer (ops/keyword_demand.py) only reads page titles and
+    h1-h3 text, by its own documented design, so a household word sitting in
+    a plain paragraph was invisible to it. "foyer design ideas" (rank 1),
+    "larder organisation" (rank 1) and four siblings scored `gap` even
+    though the room page already carries the word, because it carried it in
+    the wrong element. Every visual property is still set inline, matching
+    the prior <p> exactly, so this is a heading for the scorer and a reader,
+    not a bigger headline on the page; see
+    ops/tests/test_room_also_called.py and
+    preflight.py's gate_also_called_is_heading.
+    """
     entry = ROOM_ALSO_CALLED.get(room)
     names = (entry or {}).get("names") or []
     if not names:
@@ -1889,9 +1902,49 @@ def also_called_html(room):
         said = "the " + names[0]
     else:
         said = ", ".join("the " + n for n in names[:-1]) + " or the " + names[-1]
-    return ('<p class="also-called" style="font-family:var(--sans);'
-            'font-size:14px;color:var(--soft);margin:10px 0 0">'
-            'Also called %s. Same room, same micro zones.</p>'
+    return ('<h2 class="also-called" style="font-family:var(--sans);'
+            'font-size:14px;font-weight:400;color:var(--soft);margin:10px 0 0">'
+            'Also called %s. Same room, same micro zones.</h2>'
+            % esc(said))
+
+
+# THE SAME IDEA, ONE LEVEL DOWN: A ZONE WHOSE HOUSEHOLD WORD ISN'T THE
+# MANUAL'S WORD.
+#
+# ops/keyword-demand.json's 2026-10-02 harvest found three zero-coverage
+# queries, rank 2 to 4, for "diaper caddy" against this zone's own "diaper
+# storage" title and headings (keyword_demand.py's scorer reads <title> and
+# <h1>-<h3> only, never body text, so a word has to land in a heading to
+# move a query off `gap`). A plain <p>, the room-level fix above, cannot be
+# measured this way; this one renders as an <h3> so it counts, and still
+# carries real sentence content underneath rather than standing alone as a
+# bare keyword, which is the same honesty bar also_called_html() holds to.
+_ZONE_ALSO_CALLED_PATH = os.path.join(ROOT, "ops", "zone-also-called.json")
+if os.path.exists(_ZONE_ALSO_CALLED_PATH):
+    ZONE_ALSO_CALLED = json.load(
+        io.open(_ZONE_ALSO_CALLED_PATH, encoding="utf-8")).get("zones", {})
+else:
+    ZONE_ALSO_CALLED = {}
+
+
+def zone_also_called_html(room, zone):
+    """One honest heading naming the other words for this zone, or nothing."""
+    entry = ZONE_ALSO_CALLED.get(f"{room}|{zone}")
+    names = (entry or {}).get("names") or []
+    if not names:
+        return ""
+    if len(names) == 1:
+        said = "the " + names[0]
+    else:
+        said = ", ".join("the " + n for n in names[:-1]) + " or the " + names[-1]
+    # h2, not h3: this sits directly under the H1 with nothing between, and
+    # ops/audit_pages.py's heading-skip check is right to refuse h1 -> h3.
+    return ('<h2 class="also-called" style="font-family:var(--sans);'
+            'font-size:15px;font-weight:600;color:var(--soft);margin:10px 0 0">'
+            'Also called %s</h2>'
+            '<p class="also-called-note" style="font-size:14px;'
+            'color:var(--soft);margin:4px 0 0">'
+            'Same zone, same six passes below, whichever word brought you here.</p>'
             % esc(said))
 
 
@@ -2824,7 +2877,9 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # D1 (REVIEW-DISCOVERY-2026-09-07.md section 2): the first paragraph
     # after the H1 answers what belongs here, not just what the zone is for.
     # See direct_answer()'s own docstring.
-    out.append(f'<p class="lede">{esc(direct_answer(room["room"], thing, zone))}</p></div>')
+    out.append(f'<p class="lede">{esc(direct_answer(room["room"], thing, zone))}</p>'
+               + zone_also_called_html(room["room"], zone["zone"])
+               + '</div>')
 
     out.append('<p class="notice" style="max-width:60ch">'
                + _session_notice(zone.get("session", ""), zone.get("time_note", ""))
