@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in addendum, 2026-10-02, 22:4x (the backgrounded preflight from the 22:2x entry below finished with a real FAIL, not a timeout; traced and fixed)
+
+The 22:2x entry's backgrounded preflight used Python loaded before two concurrent commits (27da5009a, 8c7c833bc) landed, so its clean result was already stale. A fresh run crashed: those commits deleted gate_films_teach_all_six_passes's allowlist, its own test still assumed it. Two real causes. Living-room/garage's "missing standardize" was a homophone probe bug (caption "labelled" vs corpus "labeled"), fixed in the probe, fail-then-pass proved, no exception needed. Primary-bedroom/stair-landing genuinely still say "jewellery"/"draught": issue #39's closing commit claimed re-rendering but never committed the caption change. Reopened #39 with evidence, restored a named capped warning for just those two zones, rewrote the stale test. Verified: check_urls 211/211, audit_pages 0, affiliate clean, dashes 0/0.
+
+Pushed to main (`59d14965f`).
+
 ## PM check-in, 2026-10-02, 22:2x cycle (previous work finished; dashboard stale a third time today, fixed again)
 
 Previous work finished: clean tree, HEAD matched origin, prior commit already confirmed full preflight clean (29 warnings, standing). Found the same dashboard self-description staleness 20:4x/21:4x already fixed today (known cause: dashboard.py snapshots state before the commit shipping it lands). Re-ran dashboard.py, fixed, not new. Verified independently: check_urls 211/211, audit_pages 215/0, fix_dashes 0/0, link_graph_report 0 orphans, affiliate clean. Backgrounded full preflight hit the same known gate_tests network-proxy timeout, left running. GitHub: 8 open issues unchanged, decision/blocked-on-art, none mine.
