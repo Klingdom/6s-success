@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 11:1x addendum (the backgrounded local preflight landed a third FAIL the CI check used to verify the prior entry did not show; fixed issue #38 for real, not left queued, because it turned out to be blocking every deploy)
+
+**The prior entry's own local `preflight.py` run, started before it shipped, was still clearing `gate_tests` when the entry was written and finished after.** It reported 3 FAILs, not the 2 confirmed against CI: the extra one was `publish-image-current`, naming that `publish-image.yml`'s last 3 attempts (back to the last success at `5e0a1f41a`, 09:07 UTC) never published because the same 2 known preflight FAILs block that workflow's own "Preflight, including generator ownership" step, which also gates "Build and push". Not a new defect, but new information: issue #38 was filed as a GREEN-queued documentation nicety; it is actually also blocking every image build and therefore every deploy, on top of the pre-existing stale-production gap already on the dashboard.
+
+**That changed the call on #38 from "queue it" to "fix it now".** Implemented the issue's own recommendation: `OWNER-ACTIONS.md` gained a dedicated `**List reviewed:** 2026-10-02.` marker, separate from `**Last measured:**`; `gate_owner_actions_last_measured_current` now reads that marker instead, so bumping it can never again tell the dashboard a fresh traffic read happened when none did. Confirmed, not assumed: `dashboard._owner_actions_traffic_citation()` against the real file still returns the untouched `('2026-09-30', 48, 119)`; the sibling `gate_dashboard_owner_actions_traffic_citation_current` still passes, 8/8; new `ops/tests/test_gate_owner_actions_last_measured_current.py`, 8/8, including a case building both markers on different dates and proving the citation only ever reads `**Last measured:**`. `check_urls.py` (211/211) and `fix_dashes.py --check` (clean) both rerun after. Issue #38 closed with the fix explained.
+
+**A second instance of the same lesson, smaller: the first GitHub close call on issue #38 reported success (an id came back) but the issue read back "open" immediately after.** Did not take the tool's own success report as proof; re-read the issue, saw it was still open, issued the close a second time, and re-read again to confirm `state: closed` before regenerating the deck. The dashboard's open-issue count was briefly wrong (11, not 10) in between for exactly that reason.
+
+**Went well:** not trusting the local preflight's "still running" status as "therefore nothing more to find", or a GitHub write call's own success response, as proof; going back to check both once they could actually be verified, which caught both.
+
+**Did not go well:** shipped the prior entry before the local run that would have caught this had completed, the same shape CLAUDE.md 0.4 warns about, though the gap was closed within the same cycle rather than carried forward.
+
+**Next:** issue #37 (P0, Phil-only) remains the single highest-value item. Issue #39 (films-six-passes) is the only preflight FAIL left, named, needs real TTS/video reach this sandbox does not have; `publish-image.yml` should succeed again on the next push now that #38 is fixed.
+
+Pushed to main. `OWNER-ACTIONS.md`, `ops/preflight.py`, `ops/tests/test_gate_owner_actions_last_measured_current.py` (new), command deck. No price or product touched; IndexNow not applicable. GitHub issue #38 closed.
+
 ## PM check-in, 2026-10-02, 11:1x cycle (previous work finished, P0 renotified after 2 hours unresolved, one untracked finding filed as an issue)
 
 **Previous work: finished, verified against CI, not just the local claim.** Reattached cleanly (unshallow, fetch, `checkout main`, `merge --ff-only`, 273 commits fast-forwarded, no conflict). The 10:4x addendum's "8 of 9 fixed, films-six-passes correctly left open" was checked against GitHub's own `checks.yml` run for that commit (`0524f440e`, run 36998515103), not assumed: it completed with 2 FAILs, both already accounted for, neither new: `owner-actions-last-measured-current` (issue #38, its fix would fabricate traffic freshness, correctly left unfixed) and `films-six-passes` (the addendum's own named, TTS-blocked gap). Nothing additional failed.

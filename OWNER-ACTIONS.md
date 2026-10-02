@@ -19,6 +19,13 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
+**List reviewed:** 2026-10-02. A separate marker from "Last measured" above
+(issue #38, 2026-10-02): that header is the exact sentence the dashboard
+parses for the real traffic-measurement date, and bumping it to mark this
+list as reviewed was quietly telling the dashboard a fresh database read
+had happened on days it had not. This marker only means "every item below
+has been read as of this date"; it says nothing about traffic.
+
 **Corrected 2026-09-25 00:1x, PM check-in: the "3 commits" figure below was already stale, and citing a superseded build_id besides.** Before re-deriving from the same `28ed2709194afab5`/`d5b0d5c8` citation the note below used, checked `ops/deploy-verdict.json` directly. It now records a newer, unread confirmation: `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving (`git log -S`) to commit `b8eca135` ("Micro zones: Laundry Room personalised"). A session with real access redeployed again after the `d5b0d5c8` confirmation and closed the gap in full at that time. Reopened since by exactly one further `site/**` commit, Phil's own `ca49aa25` ("Micro zones: Garage personalised"): `git log b8eca135..HEAD -- site/ Dockerfile` reads 1 commit, 44 files, 547 insertions, 323 deletions, not the 4 a recount against the older, superseded build would have shown. No new action needed beyond item 0 below, same structural gap, just correctly sized against the current verdict; `STATUS.md`'s `BLOCKER-001` carries the same correction.
 
 **Widened 2026-09-25 01:4x, PM check-in: the "1 commit" figure above had already gone stale, caught by `gate_status_deploy_gap_count_current` on this cycle's own `preflight.py` run.** Same build_id (`6a10df205a3d058c`), same resolved commit (`b8eca135`), but a fresh `git log b8eca135..HEAD -- site/ Dockerfile` now reads 2 commits, not 1: Phil's own D-026 checkpoint (`fa78db8c`, which shipped `measure.js`'s new zone-block-seen instrumentation to every zone page) landed the same day as `ca49aa25` and was not counted. Real gap is now (2 commits, `fa78db8c`, `ca49aa25`; 197 files, 808 insertions, 520 deletions). No new action needed beyond item 0 below, same structural gap, just correctly sized; `STATUS.md`'s `BLOCKER-001` carries the same correction.

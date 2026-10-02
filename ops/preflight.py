@@ -20250,8 +20250,8 @@ def gate_zone_hero_rejects_have_subjects() -> None:
              (claimed, len(rejected)))
 
 
-def gate_owner_actions_last_measured_current() -> None:
-    """OWNER-ACTIONS.md's own "Last measured" header must not predate an
+def gate_owner_actions_last_measured_current(path=None) -> None:
+    """OWNER-ACTIONS.md's own "List reviewed" marker must not predate an
     item it lists.
 
     Found 2026-09-08, this operator, reading the file cold: the header read
@@ -20263,15 +20263,29 @@ def gate_owner_actions_last_measured_current() -> None:
     he has already seen everything on the list without reading all of it
     every time. Fixed by hand this cycle; this gate stops the header
     drifting silently behind the body again.
+
+    Moved off "**Last measured:**" onto a dedicated "**List reviewed:**"
+    marker, 2026-10-02 (issue #38). That header is also the exact sentence
+    dashboard._owner_actions_traffic_citation() parses to get the real
+    traffic measurement date; this gate used to bump the same date for an
+    unrelated purpose ("Phil has seen everything new"), and the established
+    fix for THIS gate (bump the leading date) silently told the dashboard a
+    fresh traffic read had happened when none had, which is the exact
+    fabricated-freshness shape CLAUDE.md 0.3/0.4/8 warn about. Confirmed
+    live before this split: bumping the old header date alone, without
+    touching the real traffic figures, made the dashboard claim a
+    same-day database read that never happened. The two now have separate
+    anchors so this gate can be kept current without ever touching the
+    traffic citation.
     """
-    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    path = path or os.path.join(ROOT, "OWNER-ACTIONS.md")
     if not os.path.exists(path):
         return
     text = io.open(path, encoding="utf-8").read()
-    m = re.search(r"\*\*Last measured:\*\*\s*(\d{4}-\d{2}-\d{2})", text)
+    m = re.search(r"\*\*List reviewed:\*\*\s*(\d{4}-\d{2}-\d{2})", text)
     if not m:
         warn("owner-actions-last-measured-current",
-             "OWNER-ACTIONS.md's \"Last measured\" header has changed shape "
+             "OWNER-ACTIONS.md's \"List reviewed\" marker has changed shape "
              "or gone missing; this gate could not read it and needs "
              "updating to match.")
         return
@@ -20283,8 +20297,8 @@ def gate_owner_actions_last_measured_current() -> None:
     newest = max(body_dates)
     if newest > header_date:
         fail("owner-actions-last-measured-current",
-             "OWNER-ACTIONS.md's header says \"Last measured: %s\", but the "
-             "file body carries a later date, %s. Update the header in the "
+             "OWNER-ACTIONS.md's \"List reviewed\" marker says %s, but the "
+             "file body carries a later date, %s. Update the marker in the "
              "same edit that adds or resolves an item." %
              (header_date, newest))
 
