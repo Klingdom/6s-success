@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 16:4x cycle (previous work finished and independently reverified; closed a second stale incident record the 16:2x cycle's own fix had not reached)
+
+NEXT FOR THE OPERATOR: content-level visitor read of the five rooms Phil's own commit `c64901cd0` just renamed (Primary Bedroom, Primary Bathroom, Entryway, Pantry, Family Room now also say master bedroom, master bathroom, foyer, larder, den/bonus room), because that change has a unit test (`test_room_also_called.py`) but no visitor-level content read and is not mentioned anywhere in this log; `STATUS.md` itself says the content-read lane is closed for all 20 rooms and the cold-read ledger is exhausted (195 of 195), so a real site-content change with no content-read behind it is the one concrete unread thing left.
+
+**Attach:** checkout arrived shallow and detached; `fetch`, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main`. Two further fast-forwards landed mid-cycle (the hourly operator's own social-drafts-link fix, then Phil's own tracking-parameter reader) and were merged in, not forced, before this entry was written.
+
+**Previous work IS finished, confirmed two separate ways.** First, re-confirmed P0 #37 directly against the Actions API rather than citing the 16:2x cycle's own close: six consecutive `fulfil-orders.yml` runs since Phil's fix (`#3054` through `#3059`) all `success`, latest 16:47:18Z. Second, ran `ops/tests/test_social_drafts_carry_a_link.py` directly against the hourly operator's just-landed fix: passes, all three draft tools (LinkedIn, Bluesky, Facebook/X) confirmed carrying a real, attributable link.
+
+**Found and fixed a second instance of the same gap the 16:2x cycle had just closed once.** That cycle correctly closed `OWNER-ACTIONS.md`'s stale item 0a, but `STATUS.md`'s own `INCIDENT-001` section still described P0 #37 as unresolved ("Coordinator: none assigned... unresolved as of this entry"), last touched 15:14:49Z, before Phil's 16:01:47Z fix. Exactly the "source corrected, sibling never told" shape `BACKLOG-2026-09-07.md` section 7 names as the dominant defect class, this time in the one document whose entire job is describing current operational reality (`CLAUDE.md` section 23). Rewrote the section as resolved, with the verified run numbers and timestamps above, and a historical note on why the fix correctly waited for Phil rather than an agent routing around the safety classifier. No gate parses this section (confirmed by grep); `gate_status_currency` only watches the file's overall commit lag, which this edit closes to zero, not a reason this specific drift went uncaught.
+
+**Checked the rest of the queue.** 9 GitHub issues open, unchanged: all decision-labelled, blocked-on-art, or TTS-blocked (#39); confirmed directly via `list_issues`, not cited. 0 open PRs. `cold_read_ledger.py --next`: 0 un-ledgered files (195 of 195). `--stale` shows 33 entries, all generator files re-touched by today's own content churn (deck-page builders, the three social-draft tools), the same non-finding every recent cycle has already reached. `BACKLOG-2026-09-07.md` sections 2 through 4: every row Done, HOLD, or correctly Phil/environment-gated. `check_urls.py` 211/211, `affiliate.py --check` clean (165 non-affiliate documents). Mobile `npm test`: all three suites pass, 0 failures.
+
+**Started a full `preflight.py` fast pass backgrounded at attach; killed partway through rather than cited**, because a concurrent fast-forward merge mutated the working tree while `gate_tests` was still running under it, the same invalidation shape a prior cycle already logged today. A second fresh background run was started after the tree settled but had not finished `gate_tests` by the time this entry needed to ship; reported unchecked per `CLAUDE.md` 0.4, not assumed clean. The only uncommitted change in this cycle's own tree is the prose-only `STATUS.md` fix above, so the risk a still-running suite would catch something here is low, but it was not waited out to confirm that.
+
+**Went well:** treating "the 16:2x cycle closed one stale reference to P0 #37" as a claim to re-check for siblings rather than the whole story; it had a second one.
+
+**Did not go well:** the same shallow/detached checkout shape recurred at attach (issue #27, still needs Phil's hand in the Routines UI); the backgrounded full preflight could not be waited out inside this slot.
+
+**Changing next cycle:** none found to change.
+
+**Next:** no genuinely unblocked backlog item beyond the standing Phil-gated list. The room-synonym content-read above is the concrete handoff; if the operator finds that clean too, both standing fallback lanes (ops cold-read, room content-read) will be fully exhausted again and a new verification angle is needed, per `STATUS.md`'s own note on this.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 16:2x cycle (previous work finished: Phil closed P0 #37 himself; closed the stale owner-action it left behind)
 
 **Attach:** checkout arrived shallow and detached; `fetch`, already unshallow, `checkout main`, clean `merge --ff-only` onto `origin/main` (`b84b2a0ff`), no unrelated-history error. Working tree clean throughout.

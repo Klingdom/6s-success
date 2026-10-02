@@ -1067,33 +1067,39 @@ Active experiments should also be tracked in `EXPERIMENTS.md`.
 bootstrap template while a real, ongoing incident sat tracked only in GitHub
 issue #37 and `OWNER-ACTIONS.md`.
 
-## INCIDENT-001: fulfil-orders.yml fails every run, paid orders not delivered
+## INCIDENT-001: fulfil-orders.yml fails every run, paid orders not delivered (RESOLVED)
 
 - **Severity:** P0.
 - **Start:** 2026-10-02, ~09:12 UTC. A live-write guard added in `044863b9c`
   did not account for this workflow, the one caller designed to run
   unattended against a live Stripe key.
-- **Impact:** every scheduled and push-triggered run of `fulfil-orders.yml`
-  fails at the "Deliver" step (confirmed repeatedly against the Actions API,
-  most recently run #37012034916 at 13:17 UTC, failed; a further run was
-  in progress at 13:20 UTC). Any customer who pays while this stands
-  receives nothing until a human applies the fix. Over four hours
-  unresolved as of 13:20 UTC.
-- **Coordinator:** none assigned; no autonomous session can close this one.
-- **Current state:** unresolved as of this entry. The one-line fix
-  (`STRIPE_ALLOW_LIVE: "1"` in the Deliver step's `env:`) has been written
-  twice by two different sessions and held both times by this environment's
-  own safety classifier as a payment-safety change requiring a human. This is
-  correct, conservative behavior, not a bug to route around.
-- **Mitigation:** none available from inside a sandboxed session. Orders are
-  still being recorded by Stripe; nothing is lost, only delayed.
-- **Next update:** the single step that closes this is in
-  `OWNER-ACTIONS.md` item 0a and GitHub issue #37: open
-  `.github/workflows/fulfil-orders.yml` in GitHub, add
-  `STRIPE_ALLOW_LIVE: "1"` next to the step's other secrets, commit to
-  `main`. Push notifications with this exact fix have gone to Phil five
-  times today (~09:4x, ~10:33, ~11:2x, ~12:1x, ~13:2x); re-notify on a
-  roughly hourly cadence while it stays open, not on every 30-minute cycle.
+- **Impact while open:** every scheduled and push-triggered run of
+  `fulfil-orders.yml` failed at the "Deliver" step. Any customer who paid
+  while this stood received nothing until the fix landed. Open roughly
+  6h50m, 09:12 to 16:01:47 UTC.
+- **Resolved 2026-10-02 16:01:47 UTC, by Phil directly**, commit `295b1c642`,
+  adding `STRIPE_ALLOW_LIVE: "1"` to the Deliver step's `env:`, the exact
+  fix five push notifications had already named. GitHub issue #37 closed
+  the same moment, `state_reason: completed`.
+- **Verified, not assumed, against the Actions API directly (this PM
+  check-in, 16:4x cycle):** six consecutive `fulfil-orders.yml` runs since
+  the fix (#3054 through #3059) all completed `success`, most recently at
+  16:47:18 UTC.
+- **Mitigation during the outage:** none available from inside a sandboxed
+  session; no order was lost, Stripe kept recording them, delivery was only
+  delayed.
+- **Follow-up closed:** `OWNER-ACTIONS.md`'s item 0a (the owner-action this
+  incident generated) was still telling Phil to make a fix he had already
+  made; closed into that file's "Resolved today" table as R5, 2026-10-02
+  16:2x PM check-in.
+
+Historical account, superseded by the resolution above, kept for the
+record: the one-line fix was written and reverted twice by two different
+autonomous sessions, each time correctly held by this environment's own
+safety classifier as a payment-safety change requiring a human
+(`CLAUDE.md` 37/52). That was correct, conservative behavior, not a bug to
+route around, which is why the fix waited for Phil rather than an agent
+finding a way around the block.
 
 Historical incidents belong in `INCIDENTS.md`.
 
