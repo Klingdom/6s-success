@@ -878,7 +878,7 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=214)
+  - every form on the site is inert (forms_dead=215)
   - ops/state.json social_units=4939 authored and unused
   - RE-MEASURED 2026-09-21, because two of the three lines above had gone
     stale in opposite directions and a stale risk row drives bad work:
@@ -974,6 +974,12 @@ evidence:
     each carry the same inert footer newsletter form, nothing new in kind.
     Re-derived from a live `git log` against the three files and
     `ops/state.json`'s current `forms_dead`, not carried forward.
+  - UPDATED 2026-10-01, owner-directed cycle: headline count only, 214 to
+    215, following this list's own rule below. The one addition is
+    articles/why-is-my-house-always-messy.html, the complaint-cluster page
+    (BACKLOG-2026-09-07.md A11), which carries the same inert footer
+    newsletter form as every other page. Nothing new in kind, and the risk
+    is unchanged: no form on this site posts anywhere.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two
