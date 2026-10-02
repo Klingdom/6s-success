@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 17:28 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-02 18:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1382 of 5257 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `1d033cc3c` Close the 16:4x handoff: content-level visitor read of c6490 |
+| Commits (7 days) | 1385 of 5262 total |
+| Working tree | clean, in sync |
+| Last commit | `189e40942` Addendum: the backgrounded preflight run finished clean, clo |
 
 ## Product readiness
 

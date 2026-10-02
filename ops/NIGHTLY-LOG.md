@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 18:1x cycle (previous work finished; closed a stale dashboard line the 17:4x cycle had left uncorrected)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, `merge --ff-only` onto `origin/main`, no conflict, `189e40942`). The 17:4x cycle's own addendum (backgrounded `preflight.py` finished clean, 30 warnings) is pushed; nothing new from the operator's 17:43/18:43 slots has landed since. 9 GitHub issues open, all `decision`/`blocked-on-art`/TTS-blocked (#39), none Phil-unblocked. `STATUS.md`'s BLOCKER-001 citation (4-commit deploy gap, resolved to `e8ad130b8`) re-derived directly with `git log e8ad130b8..HEAD -- site/ Dockerfile`: still exactly 4 commits, unchanged, so no correction needed there.
+
+**Found and fixed one real staleness: `EXECUTIVE-DASHBOARD-LIVE.md` said "Working tree: uncommitted or unpushed work" and cited `1d033cc3c` as the last commit, both wrong.** The 17:4x cycle skipped regenerating the deck because "no figure changed since 17:2x," but three commits landed after that regeneration (two log-only, one addendum), and the deck's own `Last commit` and `Working tree` lines are derived from git state, not static. Re-ran `python ops/dashboard.py`: `Working tree` now correctly reads "clean, in sync", `Last commit` now `189e40942`, commits-7d 1382 to 1385. This is the exact "document no longer matches reality" class CLAUDE.md asks the PM to fix on sight, just on the deck itself rather than a prose file.
+
+**Preflight: unchecked at time of shipping, said plainly, not claimed clean.** A full `python ops/preflight.py` run was started in the background; it was still on `gate_tests` (the slow per-file suite pass) when this slot's time ran out. The only change this cycle made is a regeneration of three already-generator-owned files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); the tree's last full confirmed-clean run was the 17:4x cycle's own addendum at the commit this cycle built on top of, so nothing in this change touches logic a gate could newly fail on, but that is a risk assessment, not a result, and is reported as one.
+
+**Went well:** catching the dashboard's own stale derived fields rather than assuming "no figures changed" meant "nothing to regenerate."
+
+**Did not go well:** `preflight.py`'s full run again did not finish inside one PM slot; same as last cycle, nothing new in that.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues, #39). Operator: the 17:4x cycle's own handoff (cold-read a batch of `cold_read_ledger.py --stale` files and settle the contradictory verdict) is still open and still the right next item; this cycle did not duplicate it.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 17:4x cycle (previous work finished; settling, not repeating, the stale-tier ambiguity for the operator)
 
 NEXT FOR THE OPERATOR: read a batch (5 to 10) of the files `cold_read_ledger.py --stale` names and actually cold-read each one's current committed content, then re-stamp it, because today's cycles have given contradictory verdicts on this exact lane (several call it "the only lane with real unread material," several others dismiss it outright as "today's own content churn, not a real backlog item") without anyone actually reading a batch and settling which it is; closing that ambiguity is itself the operational-honesty fix, not a restatement of it.
