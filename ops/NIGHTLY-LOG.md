@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 13:4x (re-notified Phil on the standing P0; full preflight unchecked, this sandbox's own gate_tests hang confirmed again)
+
+**Did:** Fresh checkout, no memory of prior runs. Attached clean: unshallowed, fetched `origin/main`, fast-forwarded 304 commits with no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `STATUS.md`'s incident/blocker sections, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before picking anything, per Step 1.
+
+**Verified rather than trusted the standing P0.** Confirmed directly against the GitHub Actions API, not read from a prior session's claim: `fulfil-orders.yml` ("Deliver paid orders") run #3029 at 13:27:53Z, `conclusion: failure`, same "Deliver" step, same `STRIPE_ALLOW_LIVE` guard named in issue #37. Over 4.5 hours unresolved since 09:12 UTC. Sent a phone/email push notification with the one-line fix and the elapsed time; this is a RED payment-safety gate per CLAUDE.md 37/52 and correctly requires Phil's own hand, not mine to route around. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, matching every prior cycle.
+
+**Checked the rest of the queue rather than assuming it was already done or gated.** `BACKLOG-2026-09-07.md` sections 2-4 (A1-A14, B1-B9, C1-C7): every row reads Done or correctly Phil/environment-gated. 10 GitHub issues open, unchanged in count: 3 P0/decision-tier (#37, #15 Listmonk, #2 art-blocked), 1 new (#39, TTS-blocked caption drift, already confirmed unfixable from any sandbox by direct attempt per its own filing), the rest decision-labelled or blocked-on-art. `OWNER-ACTIONS.md` item 0a already names the exact P0 #37 fix at the top of "Open, ranked by what they unblock"; nothing to add there. Regenerated the command deck (`ops/dashboard.py`).
+
+**Preflight: unchecked, not assumed clean, per CLAUDE.md 0.4.** `python ops/preflight.py` was dispatched in the background with its own `timeout 300` wrapper; that wrapper did not actually terminate the process; it ran past 300s, past a further ~3 minutes of direct polling, and was still alive when the harness's own background-task time limit stopped it. This is the same `gate_tests` hang multiple prior cycles have already documented (most recently the 12:4x and 13:2x entries above), not a new defect, and not evidence of anything passing or failing. Killed the stray process directly rather than leave it running unobserved.
+
+**Went well:** verifying #37's live run status directly instead of citing the last session's timestamp, so the re-notify decision was based on current state, not a stale read.
+
+**Did not go well:** lost real time (about 6 minutes) trusting `timeout 300` to actually bound the preflight run; it does not, in this sandbox, and that should have been assumed from the log's own repeated mentions of the same hang rather than re-discovered by waiting it out again.
+
+**Changing next cycle:** when `preflight.py`'s own fast mode is needed under a time budget, kill it on a wall-clock check (e.g. `ps -o etimes=`) rather than trusting a `timeout` wrapper around it in this sandbox; the wrapper's failure to fire is itself worth a one-line note in `RISKS.md` or the sandbox-limits doc if it recurs a third time.
+
+**Next:** P0 #37 unchanged, still the single highest-value blocked item; re-notify on the established roughly-hourly cadence if it is still open next cycle. The 28-file `cold_read_ledger.py --stale` tier remains legitimate unblocked work for whichever cycle has room for it; not started here, left for the next one rather than begun and abandoned mid-file.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, addendum (found and fixed the real cause of publish-image.yml's FAIL: hardcoded British spellings in the generator source, not the pages)
 
 **The dispatched run #518 I flagged as unverified finished during this cycle: `conclusion: failure`.** Not the films-six-passes FAIL (that part of the fix held); a different gate, `gate_generator_ownership`, failed on 4 files. My own earlier "clean" local runs never actually exercised this: CI's step runs `preflight.py --own`, which plain `preflight.py` (fast mode) skips entirely, so I had never once run the gate that was failing.
