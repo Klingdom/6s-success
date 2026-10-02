@@ -333,6 +333,7 @@ Maintain:
 | LRN-0028 | A generated image can be good and still wrong, and the reviewer's first instinct is aesthetic | MEDIA / QUALITY | SUPPORTED | MEDIUM |
 | LRN-0029 | The query half of Search Console is public, and nobody had looked; the complaint our product answers has no page | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0030 | A test that shells out must prove its interpreter, or the environment answers in place of the code | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0031 | Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it | PROCESS / COORDINATION | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1088,6 +1089,47 @@ passing check.
 before fixing what it claims to be about. This one would have been "fixed" by
 adjusting an assertion, which would have deleted the only honest case of the
 three.
+
+#### LRN-0031: Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (observed directly, two independent implementations within hours)
+**Domain:** PROCESS / COORDINATION
+**Measured:** 2026-10-01
+
+**Observation.** This cycle took the first demand reading this business has
+ever had, found that the complaint cluster was 49 queries with zero covered,
+wrote that finding into `GOALS.md`, `BACKLOG-2026-09-07.md` and a commit
+message, and pushed. A few hours later a concurrent session had independently
+written its own article for the same cluster, at the same slug, and pushed it
+first. Both were real work. One of them had to be thrown away.
+
+**Why the existing rule did not prevent it.** `STATUS.md` section 0 tells a
+session to claim shared work before starting it, and lists generators, gates,
+operating documents and workflows. A new article is none of those, and the
+claim is written for the moment work *starts*. The collision here began
+earlier than that, at the moment a finding was published. A well-argued "here
+is the gap and here is what should fill it", pushed to a branch other sessions
+read at startup, is the most persuasive work assignment in the repository, and
+it carries no indication of whether the session that wrote it intends to do it.
+
+**What it cost, and what it did not.** Nine hours of duplicated authoring on
+one side. It did not cost quality: the two pages had different strengths, the
+surviving one took the other's better FAQ wording, and the result is better
+than either. That is luck rather than process, because the ordinary outcome of
+this shape is a merge fight or a second page at a second slug, and a second
+page aiming at one query cluster is the duplicate-content pattern `CLAUDE.md`
+section 50 forbids.
+
+**Implication.** A finding and an intention are different things and a shared
+branch cannot tell them apart. Publishing an unclaimed gap is publishing a
+job.
+
+**Next action.** When a cycle records a gap it intends to close itself, claim
+it in `STATUS.md` in the same commit that records the finding, not when the
+work starts. When it records a gap it does not intend to close, say so
+explicitly, because that is the more useful signal and it is currently never
+given.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED

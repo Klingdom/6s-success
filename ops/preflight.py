@@ -1169,7 +1169,15 @@ def gate_kitchen_deck_page_counts_current() -> None:
 GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
-    "build_articles.py", "build_quest.py", "build_printpack.py",
+    "build_articles.py",
+    # The complaint-cluster article, added 2026-10-01. Its seven causes, their
+    # meanings, their thirty-second tests and their onward links all come from
+    # ops/root_causes.py, the single shared vocabulary. Owned here so the page
+    # is re-derived on every run and cannot become the eighteenth copy of that
+    # vocabulary to drift: LRN-0023 is what that costs, one wrong sentence
+    # live on 100 pages, perfectly consistent everywhere and wrong everywhere.
+    "build_messy_article.py",
+    "build_quest.py", "build_printpack.py",
     "build_standards.py",
     # The printable Micro Zone Map, added 2026-09-18: 20 room sheets built
     # from ops/zone_graphics.py, so a sheet cannot claim a zone the site
