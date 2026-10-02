@@ -489,7 +489,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -509,7 +509,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/more-storage-wont-fix-clutter</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -569,7 +569,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/where-to-start-decluttering</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -605,6 +605,16 @@
     <image:image>
       <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
       <image:caption>Clean is not a fact, it is a guess, so two honest people can look at the same counter and reach two different answers. Fix it with a standard that is specific.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://6s-success.com/articles/why-is-my-house-always-messy</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Not a character flaw. The specific, fixable reasons a kitchen, bedroom, kids' room or closet stays messy no matter how often you clean it, and what actually changes it.</image:caption>
     </image:image>
   </url>
   <url>
@@ -719,7 +729,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-your-house-gets-messy-again</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
