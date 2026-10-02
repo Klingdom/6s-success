@@ -200,7 +200,7 @@ SPEC = {
         "attachment is the part that matters here, not the motor."),
     "MPL-00010": S("target", "storage totes with lids", ["tote", "storage", "bin"],
         "Sort is a decision and a decision needs somewhere to put the answer. "
-        "Five labelled containers turn a vague clear-out into five finished "
+        "Five labeled containers turn a vague clear-out into five finished "
         "piles, which is why this comes before any organizer."),
     "MPL-00012": S("target", "label maker", ["label"],
         "An inconsistent standard is a root cause: the zone only holds if the "

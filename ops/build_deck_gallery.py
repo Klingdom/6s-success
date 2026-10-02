@@ -90,7 +90,7 @@ BLURB = {
                   "what it is for, and what done looks like.",
     "Problem": "What goes wrong, and the root cause underneath it. Every "
                "problem card points at the zone that fixes it.",
-    "Tool": "The small interventions. A hook, a tray, a labelled bin, used "
+    "Tool": "The small interventions. A hook, a tray, a labeled bin, used "
             "for a reason rather than bought on spec.",
     "Skill": "What you get better at. These are the transferable parts, the "
              "ones that work in the next room too.",
@@ -545,7 +545,7 @@ def build(deck: str) -> None:
     <p style="color:var(--soft);font-size:15px">One more difference worth
     saying plainly: the cards above use the original scanned layout, a full
     photograph with numbered callouts. The free PDF below uses a newer
-    card-game template, a colour band and glyph, the photograph smaller, one
+    card-game template, a color band and glyph, the photograph smaller, one
     action block. Same twelve micro zones and the same written content,
     different look, because they come from two different tools. Neither is
     wrong; they have not been unified yet.</p>
