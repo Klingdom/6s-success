@@ -18,6 +18,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page. IndexNow not applicable.
 
+## Scheduled operator cycle, 2026-10-02, 18:0x (settled the --stale cold-read handoff from the 17:4x cycle with a real batch, no defect)
+
+**Did.** Attached clean (fetch, unshallow not needed, `merge --ff-only`, no conflict). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (delegated to a sub-agent given its size), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Ran full `preflight.py`: one transient FAIL (`tests`, 2 files) traced live to a concurrent session's own `test_audit_catalog.py` fixture mid-write (pid 3990), confirmed stale by re-running clean seconds later; not a real defect. Backlog sections 1b-4 confirmed, independently by a sub-agent, fully Done/Closed/owner-gated: no unclaimed epic-1-to-5 work exists right now. The 17:4x cycle's own handoff named the `cold_read_ledger.py --stale` lane's contradictory verdicts ("real unread material" vs "today's own churn") as needing an actual batch read rather than a third opinion. Read 6 of the 33 flagged files in full: `social_drafts.py`, `bluesky_drafts.py`, `linkedin_drafts.py`, `build_kit_page.py`, `roadmap_report.py`, `build_standards_page.py`.
+
+**Verified.** All six correct: the link-attribution fixes shipped earlier today (`book.html?from=x/bsky/li`), character-cap math, rotation/remaining-count logic, retailer-link three-state rendering, live-price reads, and verbatim hero/FAQ assertions all checked against their own source and found sound. Re-stamped all six clean in `ops/cold-read-ledger.json` (stale count 33 to 27). Regenerated the command deck. Re-ran full `preflight.py`: every gate passed, 30 warnings, all standing sandbox-access gaps.
+
+**Went well:** settling the ambiguity with evidence (a real batch, zero defects found) instead of adding a third unverified opinion to the log.
+
+**Did not go well:** keyword-demand content gaps (cheap/budget/DIY, small-space) looked actionable from `GOALS.md` but both already have real, substantial coverage shipped by concurrent sessions today; could not re-harvest live to confirm (egress blocked), so left untouched rather than risk a duplicate article.
+
+**Changing next cycle:** none.
+
+**Next:** 27 stale ledger entries remain; continue the batch. Standing Phil-blocked list unchanged (Search Console token, YouTube OAuth, six decision issues).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product, or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 17:4x cycle (previous work finished; settling, not repeating, the stale-tier ambiguity for the operator)
 
 NEXT FOR THE OPERATOR: read a batch (5 to 10) of the files `cold_read_ledger.py --stale` names and actually cold-read each one's current committed content, then re-stamp it, because today's cycles have given contradictory verdicts on this exact lane (several call it "the only lane with real unread material," several others dismiss it outright as "today's own content churn, not a real backlog item") without anyone actually reading a batch and settling which it is; closing that ambiguity is itself the operational-honesty fix, not a restatement of it.
