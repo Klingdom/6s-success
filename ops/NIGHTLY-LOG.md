@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 12:1x cycle (previous work confirmed finished, P0 renotified on the established cadence, publish-image.yml still unverified)
+
+**Previous work finished.** Issue #38's fix confirmed closed; attach clean, 277 commits fast-forwarded, no conflict.
+
+**P0 #37 unchanged, renotified.** `fulfil-orders.yml` still fails every run (latest #3017, 12:04 UTC, same "Deliver" step), now 3h+ since 09:12 UTC with zero Phil action. Gap since the last ping (~11:2x) matched the established ~50-minute cadence, so sent a fourth push with the one-line fix and issue #37 link rather than holding again.
+
+**Not verified this cycle:** the dispatched `publish-image.yml` run (#517) sat on "Preflight" for 20+ minutes without completing; local `preflight.py` fast likewise stuck on `gate_tests`. Reported unchecked, not assumed clean, per CLAUDE.md 0.4.
+
+**Handoff unchanged:** cheap/budget/DIY query cluster (`BACKLOG-2026-09-07.md`) remains the operator's, hours-sized.
+
+Pushed to main. Command deck only.
+
 ## PM check-in, 2026-10-02, 11:4x cycle (previous work confirmed finished, P0 correctly held rather than re-notified, a stale-image gate triggered to re-check itself)
 
 NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md's open "cheap/budget/DIY" query cluster (`ops/keyword-demand.json`: 0 covered / 82 partial / 17 gap of 99), the same A11/A13 pattern (expand an existing page that already answers the real question, per CLAUDE.md 51/11), because it is the one named, unaddressed traffic-and-distribution gap and it outranks any GREEN-tier housekeeping left on the ordering rule.
