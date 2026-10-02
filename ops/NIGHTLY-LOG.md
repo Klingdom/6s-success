@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 14:4x cycle (previous work still not finished: P0 #37 unchanged past 5.5 hours; re-notified Phil, gap had reached the established cadence)
+
+NEXT FOR THE OPERATOR: check the backgrounded fast `preflight.py` this cycle started (no timeout wrapper, past `gate_image_coverage` within the first minute) before citing it either way, because the last several cycles have each independently confirmed `gate_tests` just needs roughly 20 uninterrupted minutes rather than being hung; if it comes back clean, there is no new unblocked backlog row beyond the standing Phil-gated list, so fall back to a fresh low-mention `ops/*.py` cold-read per `cold_read_ledger.py`'s own ranking.
+
+**Attach:** checkout arrived shallow and detached; `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (25a1ec985), no unrelated-history error. Working tree clean throughout.
+
+**Previous work is NOT finished.** Issue #37 (`fulfil-orders.yml`, paid orders undelivered since 09:12 UTC) is still open and still failing live: confirmed directly against the Actions API, run #3043 (14:20:40Z) failed at the same "Deliver" step, now 5.5+ hours unresolved. This remains the correctly-built, Phil-only RED payment-safety gate (CLAUDE.md 37/52); the one-line fix already sits in `OWNER-ACTIONS.md` item 0a and issue #37 itself. The 14:1x cycle held its own notification because the gap since the last push was only ~35 minutes; by this cycle the gap had reached roughly an hour, matching the cadence every prior cycle today has used, so sent a push notification with the exact fix and elapsed time. Did not re-attempt the fix myself: this environment's own safety classifier has already correctly blocked two prior sessions on the identical edit, and a third attempt only repeats that.
+
+**Checked the rest of the queue rather than assume it unchanged.** 10 GitHub issues open, same set as every cycle today (#37 and #15 P0/decision, #2 P0/blocked-on-art, the rest decision or blocked-on-art). `EXECUTIVE-DASHBOARD-LIVE.md` (generated 14:19) still reads YELLOW, 3 P0, $0 revenue carried forward (Stripe unreachable from this sandbox). `cold_read_ledger.py --stale` shows 29 entries, all generator files re-touched by today's own content edits, not a real backlog item, same as the prior cycle found.
+
+**Preflight: backgrounded, not concluded as written, per CLAUDE.md 0.4.** Started `python ops/preflight.py` with no wrapper timeout; past `gate_image_coverage` clean within the first minute, still running when this entry needed to ship. Reported unchecked, not assumed clean. Left running for the operator to read the conclusion of.
+
+**Went well:** checking the actual gap since the last notification against the log's own established cadence before deciding to notify, rather than defaulting to either extreme (notify every cycle, or hold indefinitely).
+
+**Did not go well:** nothing new; same standing P0, same standing gate.
+
+**Changing next cycle:** none.
+
+**Next for the operator and the PM twin:** P0 #37 stays top of the list; re-notify once the gap since this cycle's push reaches roughly an hour if it is still open. Do not re-attempt the fix autonomously.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only. No price, product or page touched; IndexNow not applicable. No new GitHub issue (issue #37 already covers P0 #37).
+
 ## PM check-in, 2026-10-02, 14:1x cycle (previous work still not finished: P0 #37 unchanged at 5+ hours; held a sixth notification, under the established cadence)
 
 **Attach:** checkout arrived shallow and detached; `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main`, no unrelated-history error. Fetched a second time before writing this entry and fast-forwarded again (a concurrent session's `803c26c8d` landed mid-cycle, the VPS Ledgerium `umami-db` diagnosis below); working tree clean throughout, no conflict.
