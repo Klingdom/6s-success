@@ -209,7 +209,7 @@ ZONES = {
  },
  "Bulk and Overhead Storage": {
   "id": "GAZ-007", "order": 7, "difficulty": 3,
-  "tagline": "LABELLED. DATED. HEAVIEST BINS DOWN LOW.",
+  "tagline": "LABELED. DATED. HEAVIEST BINS DOWN LOW.",
   "callouts": [
    "Every overhead bin labeled large enough to read from the slab",
    "A last-opened month and year marked on the end of each bin",
@@ -772,7 +772,7 @@ ACTIONS = [
          "containers"},
 
  {"id": "GAA-012", "zone": "Lawn and Garden Tool Zone",
-  "title": "NAME THE UNLABELLED BOTTLE AND SET THE SEASON RULE",
+  "title": "NAME THE UNLABELED BOTTLE AND SET THE SEASON RULE",
   "minutes": 30, "players": "1", "six_s": "Safety",
   "goal": "Settle every chemical container you cannot confidently name, "
           "and apply a one-season rule to everything else on the "
@@ -1011,7 +1011,7 @@ EVENTS = [
   "GAA-011 or GAA-012.",
   "a garden hose coiled on its reel beside a garage door at dusk, "
   "long-handled tools hanging head-up on a rail nearby"),
- ("GAE-007", "THE NEIGHBOUR'S ROOF-LEAK SCARE",
+ ("GAE-007", "THE NEIGHBOR'S ROOF-LEAK SCARE",
   "A neighbor's roof leaked and you want to check your own overhead "
   "bins for water damage tonight, without a ladder mishap in the "
   "dark.",

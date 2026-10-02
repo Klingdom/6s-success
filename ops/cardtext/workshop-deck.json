@@ -1049,7 +1049,7 @@
   },
   {
    "id": "WSF-014",
-   "title": "A ROW OF HALF-USED PAINT CANS SITS FOR COLOURS NO LONGER ON ANY WALL",
+   "title": "A ROW OF HALF-USED PAINT CANS SITS FOR COLORS NO LONGER ON ANY WALL",
    "type": "FRICTION CARD",
    "room": "Workshop",
    "zone": "Finishing and Chemical Zone",
@@ -2256,7 +2256,7 @@
   },
   {
    "id": "WSA-010",
-   "title": "KEEP ONLY THE COLOURS STILL ON A WALL AND SEPARATE THE SHELVES",
+   "title": "KEEP ONLY THE COLORS STILL ON A WALL AND SEPARATE THE SHELVES",
    "type": "ACTION CARD",
    "room": "Workshop",
    "zone": "Finishing and Chemical Zone",
@@ -2900,7 +2900,7 @@
   },
   {
    "id": "WSE-005",
-   "title": "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOUR",
+   "title": "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOR",
    "type": "EVENT CARD",
    "room": "Workshop",
    "zone": null,
