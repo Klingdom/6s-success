@@ -131,7 +131,11 @@ after the fix, 25 warnings, all standing sandbox limitations.
 
 # 1. Status Metadata
 
-**OPEN LOOP AT THE END OF THIS CYCLE, 2026-10-01: production is still serving build `f8e760d9a6da6239` and none of today's work is live.** `/articles/why-is-my-house-always-messy` returns 404 on the real site; the room artwork is not deployed. This is not a claim that it shipped, and it is the first thing the next session should close.
+**CLOSED 2026-10-02 13:48 UTC: production now matches the repository exactly and every piece of this cycle's work is live, verified against the real site rather than claimed.** `ops/deploy.py` moved production `1996fceb2f1f0eb2` to `d11f572af7d4efe7`, equal to `site/build-id.txt`, 130 products live before and after. Verified by fetching production itself: `/articles/why-is-my-house-always-messy` returns 200 with 2,819 words, one JSON-LD block (not four), nine FAQ entries with **zero** answers missing from the visible text, the `CN-VIRTUAL` consult button present, and no followable Stripe link. All twenty live room pages fetched and classified: **11 drawing, 9 photograph, 0 typographic panel, 0 with no lead at all.** Home, shop and quest all 200 in under 0.7s. `ops/deploy-verdict.json` was itself stale (it still recorded `8fbc6b7d3d2599ae` from 2026-10-01 while production had already moved twice) and is now refreshed by that run.
+
+**What follows is the entry written while it was still open, kept because the reasoning in it was right and because a status file that quietly deletes its own open loops cannot be trusted when it says one exists.**
+
+**OPEN LOOP AS AT 2026-10-01: production was still serving build `f8e760d9a6da6239` and none of that day's work was live.** `/articles/why-is-my-house-always-messy` returns 404 on the real site; the room artwork is not deployed. This is not a claim that it shipped, and it is the first thing the next session should close.
 
 **Why, precisely.** `ops/deploy.py` was run and refused to report success, correctly: no published image covers these commits yet. The image builds are the bottleneck, they take 22 to 25 minutes each, several were queued at once, and **three of the recent ones failed outright** on gates rather than on the build. Those gate failures have been fixed and verified clean at HEAD (`gate_consult_cta_current`, `gate_risks_evidence_current`, `gate_build_id_current`, `gate_feed_current`, `gate_llms_txt_current`, `gate_sitemap_lastmod_current`), so the queued build for `9415d6ae4` is expected to pass, but expected is not verified.
 
