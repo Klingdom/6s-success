@@ -75,6 +75,7 @@ import json
 import os
 import random
 import re
+import subprocess
 import sys
 import time
 import urllib.error
@@ -511,6 +512,20 @@ def report(payload):
          ", ".join("%s %s" % (k, "ok" if v["ok"] else "FAILED")
                    for k, v in sorted(payload.get("canaries", {}).items()))
          or "not recorded"))
+    # TWO DATES, NOT ONE, AND THEY ARE DIFFERENT FACTS (LRN-0032).
+    # When the queries were collected is a fact about the engines. When the
+    # statuses were derived is a fact about this site, which changes several
+    # times an hour, so a coverage number read without its scoring date is a
+    # number about a corpus that no longer exists.
+    w("**Scored:** %s against %d page(s)%s. Coverage below describes the "
+      "site at THAT moment, not when the queries were harvested. Re-derive "
+      "with `python ops/keyword_demand.py --rescore`, which needs no "
+      "network.\n"
+      % (payload.get("scored_at") or "not recorded, so treat every status "
+         "here as of unknown age",
+         payload.get("pages_checked", 0),
+         (" at commit " + payload["scored_against_commit"])
+         if payload.get("scored_against_commit") else ""))
     w("**Queries found:** %d. Checked against %d published page titles: "
       "%d covered, %d partial, %d gap.\n"
       % (len(rows), payload["pages_checked"], len(covered), len(partial),
@@ -587,7 +602,67 @@ def status():
     return 0
 
 
+def head_commit():
+    """The commit the corpus was scored against, or an empty string."""
+    try:
+        r = subprocess.run(["git", "rev-parse", "--short=9", "HEAD"],
+                           cwd=ROOT, capture_output=True, text=True,
+                           timeout=20)
+    except Exception:                                  # noqa: BLE001
+        return ""
+    return r.stdout.strip() if r.returncode == 0 else ""
+
+
+def rescore():
+    """Re-derive every status against the corpus as it stands right now.
+
+    LRN-0032, written 2026-10-02 after this cost a wasted investigation and nearly
+    cost a duplicate article. A stored `status` is not a property of the query.
+    It is the result of scoring that query against the site AS IT WAS when the
+    harvest ran, and on this repository the site changes several times an hour
+    because more than one session is working on it. Reading the stored file
+    said the budget cluster was 121 queries with zero covered; re-scoring the
+    identical queries against the corpus as it actually stood returned 29
+    covered, because a concurrent session had added a room-by-room budget
+    section in the interval.
+
+    This is the cheap half of the tool: pure functions over files already on
+    disk, no network, no seeds, nothing to rate-limit. There is no reason to
+    read a stale status ever again.
+    """
+    if not os.path.exists(OUT_JSON):
+        print("No harvest on record to re-score. Run: python "
+              "ops/keyword_demand.py")
+        return 1
+    with open(OUT_JSON, encoding="utf-8") as fh:
+        payload = json.load(fh)
+    before = {}
+    for row in payload["rows"]:
+        before[row["status"]] = before.get(row["status"], 0) + 1
+    results = {r["query"]: {"query": r["query"], "sources": r["sources"],
+                            "best_rank": r["best_rank"], "seeds": r["seeds"]}
+               for r in payload["rows"]}
+    inventory = page_inventory()
+    payload["rows"] = score_rows(results, room_names(), inventory)
+    payload["pages_checked"] = len(inventory)
+    payload["scored_at"] = (datetime.datetime.now(datetime.timezone.utc)
+                            .strftime("%Y-%m-%dT%H:%M:%SZ"))
+    payload["scored_against_commit"] = head_commit()
+    after = {}
+    for row in payload["rows"]:
+        after[row["status"]] = after.get(row["status"], 0) + 1
+    write_outputs(payload)
+    print("re-scored %d quer(ies) against %d page(s) at commit %s"
+          % (len(payload["rows"]), len(inventory),
+             payload["scored_against_commit"] or "unknown"))
+    for st in ("gap", "partial", "covered"):
+        print("  %-8s %5d -> %5d" % (st, before.get(st, 0), after.get(st, 0)))
+    return 0
+
+
 def main(argv):
+    if "--rescore" in argv:
+        return rescore()
     if "--status" in argv:
         return status()
     source = "google"

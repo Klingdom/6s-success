@@ -18,6 +18,7 @@ No network. Every endpoint is stubbed.
 
 Run:  python ops/tests/test_keyword_demand.py
 """
+import io
 import os
 import sys
 
@@ -249,12 +250,38 @@ def main():
     if "how to organize a foyer" not in text:
         fails.append("report omitted its only gap row")
 
+    # 15. The report must disclose WHEN it was scored, not just when it was
+    #     harvested. LRN-0032: a stored status is a fact about a moment, and
+    #     this repository's corpus changes several times an hour, so a
+    #     coverage figure read without its scoring date describes a site that
+    #     no longer exists. A payload with no scoring date must say so rather
+    #     than quietly print the number.
+    dated = dict(payload, scored_at="2026-10-02T14:00:00Z",
+                 scored_against_commit="abc123def")
+    text = kd.report(dated)
+    for needed in ("**Scored:**", "2026-10-02T14:00:00Z", "abc123def",
+                   "not when the queries were harvested"):
+        if needed not in text:
+            fails.append("report omitted the scoring disclosure: %r" % needed)
+    undated = kd.report(payload)
+    if "unknown age" not in undated:
+        fails.append("a payload with no scored_at did not say its statuses "
+                     "are of unknown age")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: keyword_demand, 14/14 checks pass")
+    # Counted from the numbered cases in this file rather than typed, because
+    # a hardcoded tally goes stale the first time somebody adds a case and
+    # then the test reports a number that is simply false. It said 14/14
+    # with fifteen cases in it.
+    import re as _re
+    n = len(_re.findall(r"^    # \d+[a-z]?\. ",
+                        io.open(__file__, encoding="utf-8").read(),
+                        _re.M))
+    print("OK: keyword_demand, %d numbered case(s), no problems" % n)
     return 0
 
 

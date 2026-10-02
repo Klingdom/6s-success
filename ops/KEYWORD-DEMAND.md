@@ -4,7 +4,9 @@
 
 **Harvested:** 2026-10-02T08:12:24Z from google, bing, 151 seeds, 302 attempts: 263 returned completions, 39 had none, 0 errored. Canary: bing ok, google ok.
 
-**Queries found:** 2827. Checked against 218 published page titles: 1012 covered, 1518 partial, 297 gap.
+**Scored:** 2026-10-02T14:09:16Z against 218 page(s) at commit 88bca5ee9. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+
+**Queries found:** 2827. Checked against 218 published page titles: 1109 covered, 1465 partial, 253 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -15,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 297, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 253, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -23,29 +25,21 @@ Showing the top 80 of 297, ordered by the best rank the phrase reached in any on
 | 1 | basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | basement organization ideas pinterest | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | foyer design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | how to declutter a garage quickly | Garage | How to declutter sentimental items without the guilt (0.33) |
 | 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) |
 | 1 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) |
-| 1 | kitchen organization ideas for small spaces | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 1 | larder organisation | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | larder organization and layout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | nursery organization ideas for small spaces | Nursery | The Nursery Deck: 66 cards, free to read (0.33) |
 | 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) |
 | 2 | attic storage ideas ikea | - | More storage will not fix a messy room (0.33) |
-| 2 | basement organization ideas on a budget | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | declutter motorcycle garage | Garage | How to declutter sentimental items without the guilt (0.33) |
-| 2 | declutter worksheets free | - | How to declutter sentimental items without the guilt (0.33) |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 2 | how to declutter kitchen countertops | Kitchen | How to declutter sentimental items without the guilt (0.33) |
 | 2 | how to organize diaper caddy cart | - | How to organize the nursery diaper storage (0.33) |
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize snacks | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | kitchen organization ideas for pots and pans | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
-| 2 | kitchen organization ideas small spaces | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | larder organization chart | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | master bedroom design | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
@@ -61,17 +55,13 @@ Showing the top 80 of 297, ordered by the best rank the phrase reached in any on
 | 3 | entrance hall name | - | The Hall Closet Deck: 58 cards, free to read (0.33) |
 | 3 | how to arrange golu steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.25) |
-| 3 | how to declutter kitchen counters | Kitchen | How to declutter sentimental items without the guilt (0.33) |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | master bedroom design ideas | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
-| 3 | setup declutter garage | Garage | How to declutter sentimental items without the guilt (0.33) |
 | 3 | unfinished basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | attic storage ideas for clothes | - | More storage will not fix a messy room (0.33) |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
-| 4 | basement organization ideas diy | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | bonus room ideas for teens | - | How long does it actually take to organize a room? (0.33) |
-| 4 | declutter bedroom checklist | - | How to declutter sentimental items without the guilt (0.33) |
 | 4 | den organization | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | foyer design ideas photos | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | foyer organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -86,23 +76,35 @@ Showing the top 80 of 297, ordered by the best rank the phrase reached in any on
 | 4 | ideas for decks and patios | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | larder organisation ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 4 | master bedroom decorating ideas | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
 | 4 | organize car maintenance guide | - | How to organize the garage car care supplies (0.33) |
 | 4 | pantry organization ideas for wire shelving | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
 | 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) |
 | 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | declutter checklist for bedroom | - | How to declutter sentimental items without the guilt (0.33) |
-| 5 | declutter modern kitchen | Kitchen | How to declutter sentimental items without the guilt (0.33) |
 | 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | entrance organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
 | 5 | how to organize a garage sale quickly | Garage | The Garage Deck: 80 cards, free to read (0.33) |
+| 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) |
+| 5 | how to organize crafts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | larder ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | master bedroom design plan | - | The Guest Bedroom Deck: 57 cards, free to read (0.25) |
+| 5 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
+| 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
+| 6 | attic storage ideas pinterest | - | More storage will not fix a messy room (0.33) |
+| 6 | foyer design ideas for flat | - | What does a 5S engagement cost, and why no flat rate? (0.33) |
+| 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) |
+| 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) |
+| 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) |
+| 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
+| 6 | master bedroom design simple | - | The Guest Bedroom Deck: 57 cards, free to read (0.25) |
+| 6 | organize car maintenance tools | - | How to organize the garage car care supplies (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1518.
+Showing the top 60 of 1465.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -129,12 +131,8 @@ Showing the top 60 of 1518.
 | 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, zone by zone | 0.75 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
-| 1 | declutter laundry room | The Laundry Room Deck: 67 cards, free to read | 0.67 |
-| 1 | dining room decorating ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | family room decorating ideas | The Family Room Deck: 69 cards, free to read | 0.67 |
-| 1 | guest bedroom decorating ideas | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
-| 1 | home office organization ideas on a budget | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 1 | how to arrange a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 1 | how to arrange a kids bedroom | The Kids Bedroom Deck: 69 cards, free to read | 0.67 |
 | 1 | how to arrange coat hooks | How to organize the mudroom coat hooks | 0.67 |
@@ -143,7 +141,6 @@ Showing the top 60 of 1518.
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 1 | how to declutter a home office | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 1 | how to declutter a kitchen counter | How to organize the kitchen prep counter | 0.67 |
 | 1 | how to declutter a living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 1 | how to declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
@@ -166,26 +163,31 @@ Showing the top 60 of 1518.
 | 2 | home office organization ideas ikea | The Home Office Deck: 66 cards, free to read | 0.67 |
 | 2 | how does a messy room affect you | More storage will not fix a messy room | 0.67 |
 | 2 | how to build a drying rack | How to organize the laundry room drying rack | 0.67 |
+| 2 | how to build a grill station | How to organize the patio or deck grill station | 0.67 |
+| 2 | how to build an entertainment center | How to organize the family room entertainment center | 0.67 |
+| 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
+| 2 | how to organize a dining room hutch | The Dining Room Deck: 61 cards, free to read | 0.67 |
+| 2 | how to organize a living room with toys | The Living Room Deck: 69 cards, free to read | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 1 | 28 | 9 |
+| Dining Room | 38 | 0 | 22 | 16 |
 | Entryway | 49 | 2 | 24 | 23 |
 | Family Room | 29 | 1 | 21 | 7 |
-| Garage | 79 | 6 | 41 | 32 |
+| Garage | 79 | 2 | 35 | 42 |
 | Guest Bathroom | 23 | 3 | 16 | 4 |
-| Guest Bedroom | 24 | 0 | 18 | 6 |
+| Guest Bedroom | 24 | 0 | 15 | 9 |
 | Hall Closet | 29 | 0 | 13 | 16 |
-| Home Office | 59 | 2 | 40 | 17 |
-| Kids Bedroom | 20 | 0 | 14 | 6 |
-| Kitchen | 96 | 14 | 46 | 36 |
-| Laundry Room | 73 | 0 | 28 | 45 |
+| Home Office | 59 | 2 | 28 | 29 |
+| Kids Bedroom | 20 | 0 | 10 | 10 |
+| Kitchen | 96 | 3 | 48 | 45 |
+| Laundry Room | 73 | 0 | 21 | 52 |
 | Living Room | 91 | 2 | 60 | 29 |
-| Mudroom | 45 | 5 | 26 | 14 |
-| Nursery | 62 | 3 | 28 | 31 |
-| Pantry | 59 | 3 | 38 | 18 |
+| Mudroom | 45 | 1 | 22 | 22 |
+| Nursery | 62 | 2 | 27 | 33 |
+| Pantry | 59 | 3 | 32 | 24 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
