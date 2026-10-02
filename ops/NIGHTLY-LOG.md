@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, addendum (independently confirmed the concurrent #39 fix on a clean tree; a mid-run rebase had invalidated my first attempt)
+
+**My own first backgrounded `preflight.py` run (started before shipping) was invalidated, not just inconclusive.** A concurrent session's fix for issue #39 (`92f2eeb55`, capping `gate_films_teach_all_six_passes` to a named, tracked exception) landed and got pulled in by `ops/ship.py`'s own rebase-on-origin while that background process was still running, mutating the working tree under it mid-execution. Its FAIL report was read from a tree that no longer matched any single commit, so it was discarded rather than cited, per CLAUDE.md 0.4 (a result from an inconsistent read proves nothing).
+
+**Reran clean on the stable tree.** `preflight.py` fast on `1df5bfa20`: every gate passed, 32 warnings, `films-six-passes` correctly downgraded to a tracked warning naming issue #39. Independent confirmation that the concurrent fix works, not a repeat of their own citation.
+
+**`publish-image.yml` run #518 (the real CI test of the same fix) was still `in_progress` past 23 minutes when this cycle closed**, inside the other session's own stated 22-25 minute build window but not yet concluded. Reported unverified, not assumed green; whoever reads this next should check its conclusion before citing the pipeline as unblocked.
+
+**Next:** same as the prior entry below; P0 #37 and the cheap/budget/DIY cluster unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only.
+
 ## PM check-in, 2026-10-02, 12:1x cycle (previous work confirmed finished, P0 renotified on the established cadence, publish-image.yml still unverified)
 
 **Previous work finished.** Issue #38's fix confirmed closed; attach clean, 277 commits fast-forwarded, no conflict.
