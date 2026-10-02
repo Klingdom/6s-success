@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 13:4x cycle (previous work still not finished: P0 #37 unchanged; handoff for the operator, no new notification sent so soon after the last one)
+
+NEXT FOR THE OPERATOR: close the next-largest 0-covered query cluster in `ops/keyword-demand.json` beyond small-space and budget/DIY (A11/A13/A14 are all closed), expanding an existing high-value page per CLAUDE.md 51/11 rather than building a near-duplicate, because that is the proven, repeatable traffic-and-distribution method this backlog has already used three times this week and every other named row in sections 2 to 4 is done or Phil-gated. If no further named cluster exists in the current harvest, fall back to the established pattern: cold-read the next-tier low-mention `ops/*.py` files for a hidden defect (`cold_read_ledger.py --stale` names what is due).
+
+**Attach:** `git fetch origin main` plus `--unshallow` (checkout arrived shallow and detached, issue #27's usual shape), clean fast-forward of 304 commits onto `origin/main` (`9e5797e84`), no unrelated-history error this time. Working tree clean throughout.
+
+**Previous work is NOT finished, same item as the last two cycles.** Issue #37 (`fulfil-orders.yml` refuses every live Stripe send without `STRIPE_ALLOW_LIVE=1`, paid orders undelivered since 09:12 UTC) is still open and still failing live: confirmed directly against the Actions API, run `37013156591` (13:27:53Z, this session's own fetch) failed at the same "Deliver" step. This is a genuine Phil-only RED gate (CLAUDE.md 37/52, payment safety), already built to the gate: the exact one-line fix and diff sit in `OWNER-ACTIONS.md` item 0a and issue #37, two prior sessions already found this environment's own safety classifier correctly refuses the edit, and the 13:2x cycle immediately before this one sent the fifth push notification to Phil about it roughly 15 minutes before this cycle started. Did not send a sixth: the established cadence across today's five notifications is roughly one an hour, and re-notifying 15 minutes after the last one would be noise, not signal. Did not re-attempt the fix myself for the same reason the 13:2x cycle gave: this is the third session to reach the identical blocked edit, and routing around a payment-safety classifier is not this session's call.
+
+**Backlog read, not re-derived from zero:** `BACKLOG-2026-09-07.md` sections 1 to 4 (micro zones/app, decks, images/video) read for anything not already marked Done or Phil-gated. A11 (complaint-cluster article), A13 (small-space cluster) and A14 (budget/DIY cluster, including this morning's collision-and-withdrawal with a concurrent session) are all closed as of today. Section 6 (owner gates) is the same six Phil-only actions as every prior cycle. No unblocked, not-yet-done row found in the time available at this slot.
+
+**Full `preflight.py` (fast) backgrounded, not concluded as written.** Started at attach; by the time this entry was written it had run every gate through `gate_image_coverage` clean and was still inside `gate_tests` (the full `ops/tests/test_*.py` suite, now well past 130 files), the same gate the 13:2x cycle's own entry named as the documented sandbox-slowness limit. Per CLAUDE.md 0.4, this is reported as unchecked, not as a pass: nothing in the gates that did finish failed, but `gate_tests` itself has not yet returned a verdict this cycle.
+
+**Went well:** not re-notifying Phil on a problem he was already notified about minutes earlier; reading the backlog's own done/closed markers instead of re-sweeping ground three recent cycles already covered.
+
+**Did not go well:** `gate_tests` still has no way to finish inside one PM slot in this sandbox; worth a future cycle checking whether it can run in the background across the handoff rather than inside a single check-in's own window.
+
+**Next:** same as above. P0 #37 stays top of the list until Phil pastes the one line; do not re-attempt it autonomously.
+
+Pushed to main. Command deck only, no site content, price or product touched. IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, addendum (found and fixed the real cause of publish-image.yml's FAIL: hardcoded British spellings in the generator source, not the pages)
 
 **The dispatched run #518 I flagged as unverified finished during this cycle: `conclusion: failure`.** Not the films-six-passes FAIL (that part of the fix held); a different gate, `gate_generator_ownership`, failed on 4 files. My own earlier "clean" local runs never actually exercised this: CI's step runs `preflight.py --own`, which plain `preflight.py` (fast mode) skips entirely, so I had never once run the gate that was failing.
