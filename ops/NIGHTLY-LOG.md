@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, scheduled operator cycle (Primary Bathroom, content-level visitor read lane: no content defect)
+
+**Did:** After the A11 collision cascade converged clean (prior entry below), checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`) and picked up the next standing content-read handoff, Primary Bathroom, since no higher-priority unblocked item existed in `BACKLOG-2026-09-07.md` sections 2-6. Claimed it in `STATUS.md`, delegated the 9-page visitor read to an agent.
+
+**Primary Bathroom: no content defect.** All 9 pages (room, 7 zones, deck) checked as a visitor and cross-checked against `mcp/content.json`, `site/assets/js/data.js` and `ops/cardtext/primary-bathroom-deck.json`: zone order, FAQPage-vs-visible copy, storage-before-Sort order, pricing and buy links, 76-card deck count, diagnosis blocks, safety notice, nofollow links, dashes, "Set in Order" and internal cross-links all checked clean. The Medicine Cabinet zone's medication guidance was separately read in full for a fabricated claim (CLAUDE.md section 8) given the elevated risk of that zone; none found, all standard guidance. One thing checked and confirmed NOT a defect: the room page itself has no visible FAQ `<dl>`, only JSON-LD; this matches the same template pattern Nursery and Kids Bedroom also use, not Primary Bathroom-specific.
+
+**Went well:** the agent's report cited exact match counts (7 zones, 76 cards, 12 cross-links) rather than a bare "looks fine", consistent with this lane's own standing bar.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Guest Bathroom, content-level visitor read lane, for whichever session picks it up next. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md` only (release/finding/handoff); no price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-02, addendum: the A11 collision cascade converged clean, closing this cycle's involvement in it
 
 **Did:** After this cycle's own entries below (the article collision, the duplicate-CTA collision each found and fixed), kept fetching and fast-forward merging as further concurrent sessions landed a third fix (the generator's `chrome()` was fighting the PROGRESSIVE/PWA/breadcrumb wiring sweeps on every build, a real structural defect, properly root-caused and fixed by another session) and a build-id restamp. No further conflicts: each landed as a clean fast-forward onto this session's own last push.
