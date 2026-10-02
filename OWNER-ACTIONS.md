@@ -108,6 +108,39 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 
 ## Open, ranked by what they unblock
 
+### Not ours, on your VPS, and crash-looping right now
+
+**Ledgerium's `umami-db` container has restarted 20 times and is still failing,
+as at 2026-10-02 14:1x UTC.** Its log says the same thing every time:
+`Database is uninitialized and superuser password is not specified`. It was
+recreated at 14:01:31 today by `/docker/ledgerium/docker-compose.yml`, it mounts
+the volume `ledgerium_umami-db-data`, and `POSTGRES_PASSWORD` is present in its
+environment but appears to be empty.
+
+**Deliberately not touched, and this is the important part.** `CLAUDE.md`
+section 36b says nothing Ledgerium owns may be changed as a side effect of 6S
+Success work, and section 35 says unknown persistent data must not be acted on.
+A postgres container reporting "uninitialized" over a mounted volume is exactly
+the situation where a well-meaning fix (restarting it with a password set) can
+initialise an empty database on top of real data. So this was diagnosed
+read-only and left alone. It needs whoever owns Ledgerium's deploy, not this
+operator.
+
+**6S Success is unaffected and this was confirmed rather than assumed.** Our
+analytics live in a different stack, `umami-analytics-vi0p-umami-db-1`, up two
+months and healthy, holding 1,512 events for our `website_id`. The website
+container is `Up (healthy)` and every page checked returns 200.
+
+**One thing it did cost us, worth knowing if you ever query that host by hand.**
+`docker ps | grep umami-db | head -1` now matches Ledgerium's container first.
+A hand-written analytics query selecting its container that way reads a
+database with none of our rows in it and returns a clean, well-formatted
+**zero**, which is indistinguishable from a site nobody visited.
+`ops/traffic_query.sh` is safe because it hardcodes the right container name;
+this operator's own throwaway script was not, and was caught only because the
+failing container happened to error loudly instead of returning empty.
+
+
 ### Start here: 20 minutes, in this order
 
 Added 2026-09-17 because this list had grown to 20 items and its own ordering
