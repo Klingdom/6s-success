@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, addendum: the A11 collision cascade converged clean, closing this cycle's involvement in it
+
+**Did:** After this cycle's own entries below (the article collision, the duplicate-CTA collision each found and fixed), kept fetching and fast-forward merging as further concurrent sessions landed a third fix (the generator's `chrome()` was fighting the PROGRESSIVE/PWA/breadcrumb wiring sweeps on every build, a real structural defect, properly root-caused and fixed by another session) and a build-id restamp. No further conflicts: each landed as a clean fast-forward onto this session's own last push.
+
+**Verified, not assumed, against the final converged tree:** full `preflight.py` clean (every gate passed, 30 warnings, all standing sandbox limitations), `audit_pages.py` 0 findings, `check_urls.py` 211/211, `fix_dashes.py` 0/0, exactly one `class="band"` and one `data-sku="CN-VIRTUAL"` on the article (the duplicate-CTA shape does not recur), `build_id.py --check` current. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, nothing newly actionable.
+
+**Went well:** re-checking concrete things (grep counts, gate output) after each merge rather than trusting a clean `git merge` exit code, which is what caught the duplicate CTA band a conflict-free merge had silently produced.
+
+**Did not go well:** this single gap (BACKLOG A11) drew at least four independent writers across this session and others in one evening, three of them colliding in ways a clean merge could not itself surface. The claim convention exists and still did not catch it, because a finding read as an assignment faster than any session reached a claim.
+
+**Next:** nothing left to write; `STATUS.md`'s own open-loop note (production still serving the pre-cycle build, Phil's redeploy click pending) is accurate and unchanged by this addendum. Kids Bedroom content-read lane stands as the next handoff.
+
+No separate push beyond the fast-forwards already landed; this addendum is the only new content.
+
 ## PM check-in, 2026-10-02 (04:4x cycle, previous work finished, handoff reaffirmed)
 
 NEXT FOR THE OPERATOR: Kids Bedroom, content-level visitor read lane, unchanged from the 04:1x handoff, because nothing since has superseded it.
