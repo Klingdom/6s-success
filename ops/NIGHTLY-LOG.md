@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (10:4x cycle, previous work finished, no new defect, handoff is the next content-gap cluster)
+
+NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md's open "cheap/budget/DIY" query cluster (`ops/keyword-demand.json`: 0 covered / 82 partial / 17 gap of 99), the same A11/A13 pattern (expand an existing page that already answers the real question rather than write a near-duplicate, per CLAUDE.md 51/11), because it is the one named, unaddressed traffic-and-distribution gap left after A11 (complaint cluster) and A13 (small space cluster) both closed today, and it ranks above issue #38 (operational honesty, GREEN-tier, already queued) on the ordering rule.
+
+**Previous work: finished.** A12 (corpus dialect, five sources not one) closed this cycle's predecessor (`8aa7a6589`) with generators rerun and a new gate (`gate_no_british_spellings_shipped`) proved fail-then-pass. Issue #37 (P0, fulfil-orders.yml, paid orders undelivered since 09:12 UTC) remains correctly escalated rather than autonomously patched: it is a RED payment-safety gate per CLAUDE.md 37/52, this environment's own safety classifier has now held the one-line fix twice across two different sessions, and two push notifications already went to Phil today (09:4x and ~10:33) with the exact fix and the issue link. Confirmed directly against the Actions API before deciding not to send a third: run #3011 (10:34:20Z) still fails the same "Deliver" step, unchanged since the last notification 15 minutes earlier, so a third ping now would restate a condition Phil already has, not surface a new one. Will re-notify if it goes substantially longer, or the moment the state changes.
+
+**Checked rather than assumed.** `git fetch`/`merge --ff-only` attached clean onto `origin/main`, no unrelated-history error this cycle. 10 GitHub issues open, unchanged except the standing set (#37 P0-Phil, #38 GREEN-queued, #35/#33/#31/#21/#18/#15 decision, #29/#2 blocked-on-art); 0 open PRs. `preflight.py` (fast) was still running against `gate_tests`, the same documented sandbox-slow step prior cycles have logged, when this entry was written, so that step is reported unchecked, not assumed clean. Working tree otherwise clean before this entry.
+
+**Went well:** confirming the P0's live state against the Actions API rather than citing the issue text, and holding to the repo's own stated notification cadence instead of re-pinging on an unchanged condition.
+
+**Did not go well:** nothing new; `gate_tests` sandbox slowness is the same standing limitation already logged.
+
+**Changing next cycle:** none.
+
+**Next:** issue #37 / `OWNER-ACTIONS.md` item 0a remains the single highest-value item in the repository, Phil's alone. The cheap/budget/DIY cluster is the operator's for this slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched; IndexNow not applicable. No new GitHub issue this cycle.
+
 ## 2026-10-02, scheduled operator cycle: closed A12 (corpus dialect), found it was five sources and four generators, not one
 
 **Did:** Unshallowed and attached onto `origin/main` clean (merged three concurrent PM check-ins mid-cycle with no collision). Found a live P0 already escalated by a concurrent session (issue #37, fulfil-orders.yml, every paying customer gets nothing): wrote the one-line fix, and like the prior session, had it correctly blocked by this environment's own safety classifier as a payment-safety bypass on the second attempt too (even a read-only syntax check on the diff tripped it). Reverted rather than route around it, sent Phil a push notification with the exact fix (issue #37 already has it) since this one needs a human hand, not a third AI attempt. Picked up A12 next, the only other unblocked, non-decision, non-Phil-gated item: `content.json`'s British/American spelling split (labelled/labeled, grey/gray, colour/color, etc.), explicitly left NOT STARTED by prior cycles for its blast radius.
