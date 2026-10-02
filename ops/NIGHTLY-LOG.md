@@ -24,7 +24,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** check a background preflight's actual exit before citing a precedent for why it didn't finish; "looks stuck" and "finished with a result" look identical from `ps` alone.
 
-**Next:** unchanged, the 38-file cold-read tier below is still the operator's. Watching run 513 to confirm it goes green.
+**Next:** unchanged, the 38-file cold-read tier below is still the operator's.
+
+**Confirmed via GitHub directly, not assumed:** `publish-image.yml` run 513 on `5e0a1f41a` completed `success` at 09:30:10Z, 23 minutes after the push. `site/`'s drift against the last real image is now cleared; nothing is sitting unpublished behind this gate as of this commit.
 
 Pushed to main (`5e0a1f41a`). `ops/sitemap-content-hashes.json`, `site/articles/zone-too-small-for-what-it-holds.html`. No price or product touched, no new page. IndexNow not applicable, this page already existed in the sitemap.
 
