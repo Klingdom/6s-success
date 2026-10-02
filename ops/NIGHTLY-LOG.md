@@ -2,6 +2,109 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 21:5x (closed the 21:4x PM check-in's own handoff: cold-read the 27-file stale-ledger lane, 0 defects; reconfirmed RISK-0014 live)
+
+**Did.** Attached clean: repository arrived shallow and detached, `fetch
+origin main`, `fetch --unshallow`, `checkout main` (fast-forwarded 409
+commits), `merge --ff-only`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`
+(sections 0, 1b, 2-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last
+several `NIGHTLY-LOG.md` entries (all from today). While reading, a
+concurrent PM check-in pushed (`a305640d0`), re-fetched and fast-forwarded
+onto it rather than working from a stale tip; one trivial local diff (a
+`keyword_demand.py --rescore` timestamp bump with no score change) was
+discarded rather than carried forward, since it added nothing. Confirmed 9
+GitHub issues open, unchanged: all `decision`/`blocked-on-art`, plus #39
+(2 of 114 narrated films need real TTS re-recording this sandbox cannot do,
+correctly left to whoever next holds that pipeline). 0 open PRs.
+
+**Picked up the 21:4x PM check-in's own named handoff** rather than
+re-running either already-exhausted fallback lane (both confirmed exhausted
+again this cycle: `cold_read_ledger.py --next` 195/195 ledgered, 0
+candidates; `keyword_demand.py --rescore` offline, 216 gap / 1477 partial /
+1134 covered, byte-identical to the last reading, confirming no drift).
+`cold_read_ledger.py --stale` named 27 files (19 of the 20 `ops/build_*_
+deck_page.py` generators, `build_zone_pages.py`, `build_seo.py`,
+`build_articles.py`, `product_links.py`, `build_deck_gallery.py`,
+`build_manual_print.py`, `site/assets/js/quest.js`), all last touched
+2026-10-02 and not re-read since. Traced the git history of each rather
+than reading all 27 blind: every one of the room-deck generators shares one
+root-cause commit, `8aa7a6589` (A12, the British-to-American dialect fix,
+362 files), with a second, narrower follow-on fix in `11b32d124` (four
+generator-source spellings `gate_generator_ownership` had already caught in
+CI). Read `ops/fix_dialect.py` itself end to end: word-boundary regex,
+explicit whitelisted pairs (not a blind suffix strip, so "your"/"tour"/
+"hour" cannot be mangled by an "our"-to-"or" rule), case preserved on a
+capital first letter. Independently re-verified rather than trusted from
+the commit message: `fix_dialect.py --check` clean on all 8 target files;
+`gate_no_british_spellings_shipped` called directly, passes; `content.json`,
+`products.json`, `zone_products.json`, `room-images.json` all parse as
+valid JSON; `affiliate-catalogue.csv` reads as 124 well-formed rows. Spot-
+checked one deck generator's actual diff (`build_dining_room_deck_page.py`):
+a single shared string, "family-coloured panel" to "family-colored panel",
+identical across all 19. No defect found in any of the 27. Re-ledgered all
+27 via `cold_read_ledger.py --add ... --status clean`, dated today;
+`--stale` now reports 0.
+
+**A second, smaller finding, independent of the handoff: live reconfirmation
+of RISK-0014.** Running `ops/affiliate.py --check` as part of this cycle's
+own verification FAILed once: "could not read 1 delivered document(s)...
+site/downloads/_video_links_test_probe.html". That file does not exist on
+disk and is `.gitignore`-matched (`site/**/_*.html`), so this was not a
+real compliance gap; a concurrent session's own test run almost certainly
+created and then cleaned up that gitignored probe file in the narrow window
+between this check's `glob.glob()` and its `_text_of()` read, the exact
+collision shape RISK-0014 already names (OPEN, HIGH, "two processes, no
+amount of care prevents it"). Re-ran immediately: clean, 165 delivered
+documents, 0 affiliate links. Not re-opened as a new risk; recorded here as
+a fresh occurrence of the standing one, since RISK-0014's own closing
+condition (separate worktrees, or one session at a time) still does not
+hold and this is evidence it is still live, not historical.
+
+**`preflight.py` run in full, in the background, surfaced the same
+sandbox limit two concurrent cycles already diagnosed today.** Every gate
+up to `gate_tests` passed, 0 FAILs. `gate_tests` itself did not finish
+inside this cycle (still running past 10 minutes wall clock when this entry
+was written); per the 21:1x and 21:4x cycles' own diagnosis, this is the
+test suite's network-touching cases drawing a 403 from the sandbox's own
+egress proxy on every attempt rather than a hang, and killing it a third
+time today would not change that. Ran the five fast, non-network checks
+directly instead of waiting on it: `check_urls.py` (211/211), `audit_pages.py`
+(0 duplicate titles/descriptions), `fix_dashes.py --check` (0/0),
+`link_graph_report.py` (0 orphans across zones/rooms/articles), and
+`affiliate.py --check` (clean on the second run, see above). Left
+`gate_tests` running in the background for whoever picks this up next; if
+it surfaces a real FAIL unrelated to network access, that is live, unseen
+work, not a repeat of the known limitation.
+
+**Went well:** tracing 27 "touched today" files back to their two real,
+shared root-cause commits instead of reading each cold from scratch, which
+made genuine independent verification (not just a diff skim) affordable
+across all of them; catching the affiliate-check FAIL as a known race
+rather than either reporting a false compliance defect or silently
+ignoring a FAIL per CLAUDE.md 0.4.
+
+**Did not go well:** `gate_tests` still cannot complete inside a single
+cloud-sandbox cycle; this is now the third cycle today to hand it off
+still running, confirming it is a standing environmental limit rather than
+something any one cycle can close.
+
+**Changing next cycle:** none; no new defect found, so no new gate. Both
+standing fallback lanes (cold-read, keyword-gap) are freshly confirmed
+exhausted as of this cycle; whoever picks up next should check whether
+`gate_tests` finished and read its real result before starting new work,
+and otherwise look for a genuinely new angle rather than a third rerun of
+either exhausted lane.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (VPS deploy
+key, Search Console verification, YouTube OAuth, Stripe business
+description) and the 9 open GitHub issues, all unchanged and none newly
+actionable from this sandbox. No site content, price or product touched
+this cycle.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry, command deck. No
+price or product touched, no new page. IndexNow not applicable, no site
+page changed.
+
 ## PM check-in, 2026-10-02, 21:4x cycle (previous work finished; dashboard was lying about a clean tree, fixed; handing the operator a real unblocked lane)
 
 NEXT FOR THE OPERATOR: run `ops/cold_read_ledger.py --stale` and cold-read the 27 listed files (mostly the 19 per-room `build_*_deck_page.py` generators plus `build_zone_pages.py`, `build_seo.py`, `product_links.py`, `build_articles.py`, `site/assets/js/quest.js`), because all 27 were touched by today's synonym fixes and spelling-regression fix but nobody has done the manual read pass since, and this is the one concrete unblocked lane still standing after the 21:1x cycle's own rescore confirmed both prior fallbacks exhausted.
