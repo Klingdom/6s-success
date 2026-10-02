@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-24T05:06:42Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-24T18:47:56Z",
    "mode": "new",
    "offered": 1,
@@ -633,6 +626,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T16:07:34Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -829,7 +829,7 @@
   "https://6s-success.com/articles/why-5s-decays-after-six-months": "50d07268aba0a8dc",
   "https://6s-success.com/how-to-clean-anything.html": "b61280f205a711b9",
   "https://6s-success.com/entryway-deck.html": "008201afa002f8bb",
-  "https://6s-success.com/garage-deck.html": "de19683460687de8",
+  "https://6s-success.com/garage-deck.html": "8747dd029e719c98",
   "https://6s-success.com/home-office-deck.html": "d0f9df66c1c2723d",
   "https://6s-success.com/laundry-room-deck.html": "10cfff6677cd6670",
   "https://6s-success.com/primary-bathroom-deck.html": "3350f1f75ce1907b",
@@ -838,14 +838,14 @@
   "https://6s-success.com/guest-bathroom-deck.html": "b2d451fe5be45ab6",
   "https://6s-success.com/guest-bedroom-deck.html": "1e195948157cfa27",
   "https://6s-success.com/hall-closet-deck.html": "7a8525b4e1981aee",
-  "https://6s-success.com/living-room-deck.html": "226427903aa34d04",
+  "https://6s-success.com/living-room-deck.html": "f73ba4d4997b0ffe",
   "https://6s-success.com/mudroom-deck.html": "c8a47092376d93c6",
   "https://6s-success.com/pantry-deck.html": "3f94939eeaacf634",
   "https://6s-success.com/stair-landing-deck.html": "aace8343941c79ee",
   "https://6s-success.com/kids-bedroom-deck.html": "3e1d8c14980c0a51",
   "https://6s-success.com/nursery-deck.html": "18eab204d3b02541",
   "https://6s-success.com/primary-bedroom-deck.html": "14be15f1e83446d2",
-  "https://6s-success.com/workshop-deck.html": "4908e5d51599cd43",
+  "https://6s-success.com/workshop-deck.html": "e4d3511887fa35e6",
   "https://6s-success.com/patio-or-deck-deck.html": "d682d9337654ac11",
   "https://6s-success.com/articles/why-is-my-house-always-messy": "7ff6634a93255f10"
  }
