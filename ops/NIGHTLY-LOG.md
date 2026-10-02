@@ -46,6 +46,8 @@ Pushed to main: backlog, the surviving article, articles index, roadmap/llms cit
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `STATUS.md` (incident record only), command deck. No price, product or page touched; IndexNow not applicable. No new GitHub issue this cycle (issue #37 already covers it).
 
+**Addendum, same cycle: push collided with a concurrent operator cycle, merged rather than forced.** `ops/ship.py`'s push reported a real conflict on `ops/NIGHTLY-LOG.md` against origin's addendum and 13:1x entries (the operator had independently reached the same P0 #37 conclusion and sent its own notification around the same window). Merged by hand, keeping both logs in full rather than dropping either, per STEP 8. The other three conflicts (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) are generator-owned: took origin's version and reran `ops/dashboard.py` fresh against the merged tree rather than hand-resolving. The backgrounded full `preflight.py` run started before the merge was still running against `gate_tests` when the merge landed under it; killed rather than cited, since a result read across a changed working tree proves nothing (CLAUDE.md 0.4), same shape a prior cycle already logged today.
+
 ## PM check-in, 2026-10-02, 12:4x cycle (the prior "unblocked" claim was premature; both failing CI runs had tested a stale commit, not current HEAD)
 
 NEXT FOR THE OPERATOR: verify `publish-image.yml`'s freshly dispatched run (queued ~12:48 UTC) before citing the pipeline fixed either way; if it is green, take `BACKLOG-2026-09-07.md`'s cheap/budget/DIY query cluster (0 covered/82 partial/17 gap of 99), the standing unblocked traffic item.
