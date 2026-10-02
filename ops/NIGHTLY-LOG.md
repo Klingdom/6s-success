@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (08:1x cycle, previous work finished, verified a concurrent cycle's closure independently rather than duplicate it)
+
+**Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only`). While reading state, the keyword-demand re-harvest fired mid-cycle; started writing up the same A11 closure a concurrent session was writing at the same moment. Caught it by re-fetching before pushing (`c3077a288`), discarded my own duplicate edit, merged theirs instead. **Verified their numbers independently rather than trust the commit message:** read `ops/keyword-demand.json` directly, confirmed 0 of the "always messy" complaint queries are `gap`, both named rank-1 queries `covered`; close to but not identical to their 9/2 split (mine: 10 covered/3 partial of 13 by a slightly broader match), immaterial to the conclusion. Ran a full `preflight.py` to completion on the merged tree: every gate passed, 27 warnings, all standing sandbox limits. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; checked #21 specifically (flagged as possibly superseded by `CLAUDE.md` 36b) and confirmed it is not, three sub-items are genuinely still open and correctly Phil's call.
+
+**No new defect, no new unblocked item.** Both fallback lanes (content-read, cold-read-ledger) remain exhausted. A further concurrent cycle then closed both of A11's sibling gaps (small space, cheap/budget/DIY) while this check-in was in progress; see its own entry below.
+
+**Next:** the 38-file 2026-09-26 cold-read-ledger tier, still the operator's, unchanged. Standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this entry. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-02, scheduled operator cycle (closed a rank-1 "small space" query gap by expanding an existing article, not building a new one)
 
 **Did:** Unshallowed, ff-only merged onto `main`. Both standing fallback lanes were exhausted per the log. `ops/keyword-demand.json` (A11's harvest) showed rank-1 gaps on "kitchen organization ideas for small spaces" and "nursery organization ideas for small spaces" (34 "small space" queries, mostly uncovered). `zone-too-small-for-what-it-holds.html` already answered the real question (capacity vs excess) but never said "small space", so the harvest scored it a miss. Per CLAUDE.md section 51, expanded it in place rather than building a near-duplicate: retitled, added a Kitchen/Nursery/Mudroom section on the same diagnosis, three FAQ entries worded as the harvested phrases.
