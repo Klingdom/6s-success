@@ -3052,10 +3052,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "bonus room ideas above garage",
@@ -3088,10 +3088,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room ideas for kids",
@@ -3124,10 +3124,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room ideas for men",
@@ -3142,10 +3142,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room ideas for teens",
@@ -3160,10 +3160,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room ideas on a budget",
@@ -3214,10 +3214,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room ideas reddit",
@@ -3232,10 +3232,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room layout",
@@ -3250,10 +3250,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "bonus room storage",
@@ -6599,10 +6599,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/family-room.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "den storage ideas",
@@ -8865,10 +8865,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "entrance hall ideas",
@@ -8883,10 +8883,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "entrance hall meaning",
@@ -8919,10 +8919,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/consulting.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "entrance hall or anteroom",
@@ -8937,10 +8937,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "entrance hall or foyer",
@@ -8955,10 +8955,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "entrance hall or lobby",
@@ -8973,10 +8973,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "entrance hall organizer",
@@ -8991,10 +8991,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "entrance organization ideas",
@@ -9009,10 +9009,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "entry closet design ideas",
@@ -10046,10 +10046,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "foyer design ideas for flat",
@@ -10118,9 +10118,9 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
+      "heading_coverage": 0.333,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
       "status": "gap"
     },
     {
@@ -10154,9 +10154,9 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
+      "heading_coverage": 0.333,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
       "status": "gap"
     },
     {
@@ -10191,7 +10191,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/stair-landing-deck.html",
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -10226,10 +10226,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "foyer storage ideas",
@@ -35313,10 +35313,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "larder inc",
@@ -35331,10 +35331,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder organisation",
@@ -35349,10 +35349,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder organisation ideas",
@@ -35367,10 +35367,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder organization and layout",
@@ -35385,10 +35385,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder organization chart",
@@ -35403,10 +35403,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder origin",
@@ -35421,10 +35421,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "larder owner",
@@ -37342,10 +37342,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bathroom counter organization ideas",
@@ -37360,10 +37360,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bathroom drawer organization ideas",
@@ -37396,10 +37396,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bathroom organizing ideas",
@@ -37418,10 +37418,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bathroom storage",
@@ -37580,10 +37580,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design 2026",
@@ -37598,10 +37598,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design as per vastu",
@@ -37616,9 +37616,9 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.2,
-      "heading_coverage": 0.2,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
+      "heading_coverage": 0.4,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
       "status": "gap"
     },
     {
@@ -37652,10 +37652,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design ideas 2025",
@@ -37670,10 +37670,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design ideas 2026",
@@ -37688,10 +37688,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design pinterest",
@@ -37706,10 +37706,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design plan",
@@ -37724,10 +37724,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design simple",
@@ -37742,10 +37742,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bedroom design with wardrobe",
@@ -37761,7 +37761,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/guest-bedroom-the-guest-welcome-and-work-surface.html",
+      "heading_page": "/rooms/primary-bedroom.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -37780,10 +37780,10 @@
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bedroom storage ideas",
@@ -45356,10 +45356,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/primary-bathroom.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "small mudroom ideas designs",
@@ -49840,10 +49840,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/pantry.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "what is a messy kitchen",
@@ -49914,10 +49914,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/hall-closet-the-cleaning-equipment-zone.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "what is an organised walk",
@@ -51720,6 +51720,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-02T18:55:31Z",
-  "scored_against_commit": "df99a6320"
+  "scored_at": "2026-10-02T20:59:00Z",
+  "scored_against_commit": "3f1764a46"
 }
