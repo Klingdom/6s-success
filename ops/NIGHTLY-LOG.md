@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-10-02, 23:4x (the full preflight left running below finished with a real FAIL, traced to a known transient race, not a new defect)
+
+The 23:2x entry below left a full `python ops/preflight.py` run going in the background rather than waiting on it. It finished: **1 gate failed, 29 warnings**. The failure, `gate_no_stale_hardcoded_stripe_link`, named `site/_audit_catalog_fixture_780.html` linking a fake slug (`buy.stripe.com/notARealSlug0000`). Not treated as a real payment-safety incident without checking first, per CLAUDE.md 0.4: that file does not exist on disk, is `.gitignore`-matched (`site/**/_*.html`), and is not tracked by git, so it was never shipped. This is RISK-0014's own documented shape (a concurrent session's own test run creating and cleaning up a gitignored scratch fixture inside this gate's scan window), already recorded as OPEN/HIGH/recurring in `RISKS.md`. Re-ran the gate function directly against the current tree: clean. No code change needed, no new risk opened, this is a fresh occurrence of the standing one. Every other gate and all 29 warnings matched the same standing sandbox limitations already named throughout today (no Stripe credential, no SSH key, no Pillow, no network reach, issue #39's 2 TTS-gated films).
+
+Pushed to main. This entry only.
+
 ## PM check-in, 2026-10-02, 23:2x cycle (previous work finished; the 22:5x handoff below is wrong, corrected rather than passed on)
 
 **Previous work finished, verified:** checkout attached clean (shallow, unshallowed, ff-only onto `origin/main`). Working tree was clean and main pushed before this cycle touched anything. `python ops/preflight.py` run fresh this cycle (fast gates all clean; `gate_tests` left running in the background, same standing 10 to 15 minute network-timeout shape every cycle today has already named, not waited on past this slot).
