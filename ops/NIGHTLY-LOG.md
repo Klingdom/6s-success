@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 23:4x cycle (previous work finished; nothing fresh and unblocked found; backgrounded preflight left running)
+
+NEXT FOR THE OPERATOR: run `ops/cold_read_ledger.py --stale` and cold-read `ops/dashboard.py` (1 ledger entry stale: ledgered 2026-09-27, touched 2026-10-02 by this cycle's own new `dashboard_citation_gap()`), because it is the only genuinely unblocked, un-reviewed item this check found and the cold-read tier has found a real defect on 2 of its last 3 passes; if `python ops/preflight.py` (left running in the background by this cycle, see below) came back with anything beyond the standing warnings, fix that first per STEP 2.
+
+**Attached clean:** checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (432 commits, no reset or force). Working tree was already clean and `main` already level with `origin/main` before this cycle touched anything.
+
+**Previous work finished, verified, not just cited.** Read the last two `ops/NIGHTLY-LOG.md` entries (the 23:3x cycle's two new WARN-level gates for stale self-citations, and the 23:4x addendum tracing a `gate_no_stale_hardcoded_stripe_link` FAIL to the known RISK-0014 fixture race). `git log --oneline -12` matches the log's own account exactly. `BACKLOG-2026-09-07.md`: grepped every lettered row across sections 2 to 4 for one whose own "Accept when" column does not read done/closed/resolved; the only two are C5 (superseded, no billing gate actually needed) and C6 (publish 102 videos, marked "YES, Phil"), both already correctly Phil-gated, nothing new to pick up. Section 1b (basement/attic) stays HOLD, an owner product-scope decision, not mine to start. `gh`-equivalent (`mcp__github__list_issues`): 9 open, unchanged from every cycle today, all `decision`, `blocked-on-art`, or #39 (needs Phil's own TTS machine) — correctly skipped per STEP 3, none of the nine is mine.
+
+**Ran `python ops/preflight.py` fast, foregrounded, past its own 110s budget with no output**, so backgrounded it rather than guessing a clean result (CLAUDE.md 0.4: unchecked is not passing). Still on the standing `gate_tests` slow step (known 10 to 15 minute network-timeout shape, named by several cycles today) when this entry was written; left running rather than held past this slot. Whoever reads this next: check the process, or wait for the addendum this same pattern has produced all day.
+
+**Checked `EXECUTIVE-DASHBOARD-LIVE.md` against the real git state rather than trusting its own self-citation:** it cites commit `684453764`, one merge commit behind the real HEAD (`2dbd984ad`) at generation time, inside the one-commit lag the 23:3x cycle's own new `gate_dashboard_self_description_fresh` is designed to tolerate (WARN-level, self-heals on next regen). Not a new defect. `cold_read_ledger.py --next`: 195 of 195 files ledgered; `--stale`: the one `ops/dashboard.py` entry named above, from this same cycle's own edit, too large (2487 lines) to cold-read honestly inside this slot without starting something large, so handed to the operator rather than rushed.
+
+**Went well:** verifying the backlog's own open rows directly instead of citing a prior cycle's "nothing found"; backgrounding preflight rather than reporting an unfinished 110-second run as clean.
+
+**Did not go well:** none; this slot found no new defect because the last several cycles had already closed everything genuinely unblocked.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged. `ops/dashboard.py`'s stale cold-read ledger entry is the one concrete unblocked task, handed to the operator above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## Addendum, 2026-10-02, 23:4x (the full preflight left running below finished with a real FAIL, traced to a known transient race, not a new defect)
 
 The 23:2x entry further below left a full `python ops/preflight.py` run going in the background rather than waiting on it. It finished: **1 gate failed, 29 warnings** (count taken before the 23:3x cycle's own concurrent push added two further gates; this entry only accounts for the one real FAIL). The failure, `gate_no_stale_hardcoded_stripe_link`, named `site/_audit_catalog_fixture_780.html` linking a fake slug (`buy.stripe.com/notARealSlug0000`). Not treated as a real payment-safety incident without checking first, per CLAUDE.md 0.4: that file does not exist on disk, is `.gitignore`-matched (`site/**/_*.html`), and is not tracked by git, so it was never shipped. This is RISK-0014's own documented shape (a concurrent session's own test run creating and cleaning up a gitignored scratch fixture inside this gate's scan window), already recorded as OPEN/HIGH/recurring in `RISKS.md`. Re-ran the gate function directly against the current tree: clean. No code change needed, no new risk opened, this is a fresh occurrence of the standing one. Every other gate and all 29 warnings matched the same standing sandbox limitations already named throughout today (no Stripe credential, no SSH key, no Pillow, no network reach, issue #39's 2 TTS-gated films).
