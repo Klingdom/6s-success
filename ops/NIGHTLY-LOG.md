@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 12:4x cycle (the prior "unblocked" claim was premature; both failing CI runs had tested a stale commit, not current HEAD)
+
+NEXT FOR THE OPERATOR: verify `publish-image.yml`'s freshly dispatched run (queued ~12:48 UTC) before citing the pipeline fixed either way; if it is green, take `BACKLOG-2026-09-07.md`'s cheap/budget/DIY query cluster (0 covered/82 partial/17 gap of 99), the standing unblocked traffic item.
+
+**The prior cycle's "unblocked `publish-image.yml`" was not actually verified.** Runs #517 and #518 both failed on `generator-ownership` (drifted `ops/sitemap-content-hashes.json` and a `site/art*` file), but both ran against a stale head SHA (`fa229c1f1`), not current HEAD. Confirmed by calling `gate_generator_ownership()` directly against the clean, current tree: it passes. Re-dispatched `publish-image.yml` on current `main` rather than citing either the old failure or the old "fixed" claim.
+
+**Attach:** clean fast-forward; a concurrent session pushed two more commits mid-cycle, caught on a second fetch, merged ff-only, no conflict.
+
+**P0 #37:** confirmed still failing live (run #3022, 12:42 UTC, same "Deliver" step), 3.5h+ since 09:12 UTC, zero Phil action. Held re-notify this cycle; gap since the last ping (~12:1x) is short of the established ~hourly cadence.
+
+**Local `preflight.py` fast:** still stuck on `gate_tests`, the documented sandbox limitation; reported unchecked, not assumed clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched.
+
 ## PM check-in, 2026-10-02, addendum (independently confirmed the concurrent #39 fix on a clean tree; a mid-run rebase had invalidated my first attempt)
 
 **My own first backgrounded `preflight.py` run (started before shipping) was invalidated, not just inconclusive.** A concurrent session's fix for issue #39 (`92f2eeb55`, capping `gate_films_teach_all_six_passes` to a named, tracked exception) landed and got pulled in by `ops/ship.py`'s own rebase-on-origin while that background process was still running, mutating the working tree under it mid-execution. Its FAIL report was read from a tree that no longer matched any single commit, so it was discarded rather than cited, per CLAUDE.md 0.4 (a result from an inconsistent read proves nothing).
@@ -13,6 +27,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** same as the prior entry below; P0 #37 and the cheap/budget/DIY cluster unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md` only.
+
+## Scheduled operator cycle, 2026-10-02 (closed A14, the cheap/budget/DIY content-gap cluster; confirmed films-six-passes is still the one TTS-blocked FAIL; P0 #37 re-notified at the 3-hour mark)
+
+**Did:** Reattached clean (unshallow, fetch, `checkout main`, `merge --ff-only`, fast-forwarded cleanly). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `STATUS.md` and the last several `ops/NIGHTLY-LOG.md` entries before picking anything, per Step 1. Ran `python ops/preflight.py` first: 1 FAIL (`films-six-passes`), already named and already filed as GitHub issue #39 by a concurrent session this same morning. Independently re-derived the same root cause before trusting the citation (CLAUDE.md 5d): the two stale narrated captions (`living-room--bookshelves-and-display`, `garage--sports-and-recreation-zone`) still say "labelled" against content.json's now-American "labeled" (A12). Tried to close it anyway rather than just cite the prior finding: installed `edge_tts`, worked past a TLS trust gap (aiohttp/certifi default to their own CA bundle, not the proxy's `SSL_CERT_FILE`) by splicing the proxy CA into certifi's `cacert.pem`, and reached `speech.platform.bing.com`, which then refused the WSS handshake itself with a 403. Narration needs both real TTS audio and a fresh headless-browser screenshot of the corrected text (the words are baked into the video pixels, not just the caption), so a caption-only patch would desync audio and captions, which is worse than leaving it named. Left open, consistent with issue #39: this sandbox does not have the capability, confirmed by direct attempt rather than assumed.
+
+**Checked GitHub before picking the next task.** Issue #37 (P0: `fulfil-orders.yml` failing every run since 09:12 UTC, paid orders undelivered) is still open, still failing (run #3018, triggered by this cycle's own merge commit, in progress and headed for the same failure). Three prior pushes already sent to Phil today with the exact one-line fix in the issue; roughly another hour had passed since the last one, matching the established per-cycle renotify cadence in the log, so sent a fourth. Did not re-attempt the fix myself: two prior sessions were each correctly blocked by this environment's own payment-safety classifier on the identical one-line change, and a third attempt would only repeat that.
+
+**Picked A14** (BACKLOG-2026-09-07.md), the next-for-the-operator item a PM check-in cycle had named directly: the "cheap/budget/DIY" query cluster from `ops/keyword-demand.json`, 0 covered / 82 partial / 17 gap of 99. Read all 99 before acting (CLAUDE.md 5c): most of the `gap` rows are out of scope for this business (attic/basement/bonus-room storage we do not have as rooms; literal furniture-build plans for a nightstand, grill station, entertainment center, which this product does not do and will not fake). The real, honest, in-scope sub-cluster is "organize/decorate ROOM on a budget, cheap or DIY", which is also this product's own thesis. Expanded the existing `more-storage-wont-fix-clutter.html` in place (CLAUDE.md 51/11: improve an existing page rather than build a near-duplicate) with an 11-room "room by room" section, each paragraph grounded in the article's own four root causes with one free first step and a real link, plus two new FAQ entries verified word-for-word identical between the visible `<h3>` list and the FAQPage JSON-LD.
+
+**Verified, not assumed.** Checked every new internal link resolves to a real file on disk (all extensionless site URLs, confirmed against `site/**/*.html`, not guessed). Ran `ops/keyword_demand.py`'s own `best_page`/`best_by`/`classify` functions directly against the edited page for all 18 targeted queries, including the two true `gap` rows (`diy cubbies for mudroom`, `spare bedroom decorating ideas on a budget`): all 18 score `covered`. `ops/wire_breadcrumbs.py`, `ops/build_feed.py`, `ops/build_seo.py` rerun; `audit_pages.py` (215/0), `check_urls.py` (211/211), `fix_dashes.py --check` (0 em/en dashes) and `affiliate.py --check` (clean) all rerun clean after. Full `preflight.py` rerun after: 2 FAILs, both pre-existing and accounted for (`films-six-passes`, named above; `tests` failing only because `test_wire_nav_preserves_aria_current.py` correctly refuses to run against an uncommitted working tree, which clears once this commits).
+
+**Not measured, and said so rather than claimed.** This is a scoring-function simulation against the edited page, not a live re-harvest. The real test is `keyword-demand.yml`'s next run (weekly cron, or a manual fire) showing these queries move off `gap`/`partial` for real; this sandbox cannot reach Google's or Bing's autocomplete endpoints to check that directly (confirmed again this cycle, same `connect_rejected` the egress proxy has logged before).
+
+**Went well:** reading the full 99-row cluster before writing anything, which kept the page honest (no fake DIY furniture plans) instead of chasing every row in the count.
+
+**Did not go well:** nothing new this cycle; `films-six-passes` and P0 #37 are both standing, already-named, already-escalated limitations, not fresh defects.
+
+**Changing next cycle:** none.
+
+**Next:** P0 #37 remains the single highest-value item in the repository, Phil's alone. Issue #39 (`films-six-passes`) needs real TTS/video reach this sandbox does not have. With A14 closed, every "Now" row in `BACKLOG-2026-09-07.md` is again done or Phil-gated; the next session should re-check both standing fallbacks (the closed content-read lane, `cold_read_ledger.py --stale`) before assuming there is nothing left.
+
+Pushed to main. `site/articles/more-storage-wont-fix-clutter.html`, `site/feed.xml`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price or product touched. IndexNow covered by `hourly-brief.yml`'s existing `--changed` step for the one edited page. No new GitHub issue this cycle (issue #39 already covers films-six-passes; P0 #37 renotified via push, not a new issue).
 
 ## PM check-in, 2026-10-02, 12:1x cycle (previous work confirmed finished, P0 renotified on the established cadence, publish-image.yml still unverified)
 
