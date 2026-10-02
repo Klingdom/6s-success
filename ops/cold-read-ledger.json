@@ -642,9 +642,9 @@
       "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
     },
     "preflight.py": {
-      "status": "clean",
-      "date": "2026-10-01",
-      "note": "Re-verified 2026-10-01, this cycle: added gate_batch_main_ignores_failed (AST-based scan for main() loops that build a 'failed' list and return a value ignoring it; see ops/render_all_narrated.py's own ledger note for the full account), wired into main()'s gate sequence, fail-then-pass proved in ops/tests/test_gate_batch_main_ignores_failed.py. The change is additive (one new gate function plus one new run_gate() call); every other gate's logic is untouched. py_compile clean, module imports clean, the new gate runs 0 FAIL against the live repo."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "Added gate_keyword_demand_not_stale (and its pure-logic helper keyword_demand_staleness_problem) this cycle; re-verified by reading the surrounding gate registration, run_gate/warn/fail helpers, and re-running the full fail-then-pass proof against the real file."
     },
     "prerender_shop.py": {
       "status": "fixed",
