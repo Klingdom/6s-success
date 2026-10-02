@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 19:4x cycle (previous work finished; handing the operator a real title/heading gap on two already-covered rooms instead of a new content lane)
+
+NEXT FOR THE OPERATOR: give the Entryway and Pantry room pages a heading-level (not just body-text) mention of their household synonyms, because six real gap-tier queries (`foyer design ideas` rank 1, `larder organisation` rank 1, `larder organization and layout` rank 1, `larder organization chart` rank 2, `draw a larder organization chart` rank 3, `entrance hall name` rank 3, all from `ops/keyword-demand.json`) score `gap` against the live scorer even though the content already exists: `site/rooms/entryway.html` and `site/rooms/pantry.html` both carry an "Also called the foyer or the entrance hall" / "Also called the larder" line, landed 2026-10-02 in `c64901cd0`, but it sits in a plain `<p class="also-called">`, and `ops/keyword_demand.py`'s own scorer (verified directly, not assumed) only reads page titles and `<h1>`-`<h3>` text, so it can't see it. This is traffic/distribution work (GOALS.md ordering tier 3), it is cheap (no new page, two existing rooms), and it is a better target than a sixth cycle of the same exhausted stale-tier lane.
+
+**Did not hand off the bigger, equally real finding in the same list:** `attic organization ideas` and `basement organization ideas`/`...pinterest` are rank-1 gap queries with genuine zero coverage (closest match is the About page, 0.00), but Attic and Basement are not among the site's 20 modeled rooms (`mcp/content.json`), so closing them is a new-room buildout on the scale of the B9 epic, not a single operator cycle. Noting it here rather than silently dropping it; it is backlog-sized work, not this handoff.
+
+**Previous work was finished.** Attached clean: repository arrived shallow and detached, `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (local `main` stale, fast-forwarded 387 commits), `merge --ff-only` landed cleanly at `35ee844c4`, no conflict, working tree clean both before and after. Read `GOALS.md`'s own ordering rule, `BACKLOG-2026-09-07.md` sections 2-6, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries, and `STATUS.md`'s Incidents/Blockers sections. Confirmed 9 GitHub issues open via the REST API directly (not cited): all `decision`/`blocked-on-art`/TTS-blocked (#39), matching the 19:0x operator cycle's own count exactly, none newly Phil-unblocked. 0 open PRs. The 19:0x operator cycle's own handoff (two of four Kitchen/Pantry keyword-gap queries) was genuinely closed, verified against the real scorer by that cycle, and it correctly found no further unblocked item beyond that; confirmed rather than re-litigated.
+
+**Found and fixed one real staleness: `EXECUTIVE-DASHBOARD-LIVE.md` said "Working tree: uncommitted or unpushed work" and cited `df99a6320` as the last commit, both wrong.** Three automated commits (an hourly check-in record, a Bluesky rotation advance, a build-id restamp) landed after the 19:0x cycle's own regeneration without anyone rerunning `ops/dashboard.py`. Re-ran it: `Working tree` now reads "clean, in sync", `Last commit` now `35ee844c4`, commits-7d 1385. Same "document no longer matches reality" class CLAUDE.md asks this check-in to fix on sight.
+
+**Preflight: unchecked at shipping time, said plainly, not claimed clean.** A full `python ops/preflight.py` run was started in the background at the top of this cycle; it was still on `gate_tests` (the slow per-file suite pass, the same bottleneck every cycle today has hit) when this slot's time ran out. The only change this cycle made is a regeneration of three already-generator-owned files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); nothing in that change touches gated logic, but that is a risk assessment, not a result, and is reported as one rather than folded into a false "clean."
+
+**Went well:** verifying the scorer's exact surface (title + h1-h3) directly against the source rather than trusting the keyword-demand doc's own prose description of itself, which only describes the title-only reading and would have mis-stated why these six queries are still gap.
+
+**Did not go well:** `preflight.py`'s full run again did not finish inside one PM slot; same open item as prior cycles today.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues: #2/#15/#18/#21/#29/#31/#33/#35/#39). Operator: the foyer/larder/entrance-hall heading-surface fix named above.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch`,
