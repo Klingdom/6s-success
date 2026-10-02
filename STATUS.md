@@ -96,6 +96,8 @@ only moment it is cheap.
 
 **Patio or Deck, the last room in this lane, is already claimed by a concurrent session (see the claim line below this one).** Kitchen, Living Room, Workshop, Garage, Entryway, Pantry, Dining Room, Family Room, Primary Bedroom, Guest Bedroom, Kids Bedroom, Nursery, Primary Bathroom, Guest Bathroom, Laundry Room, Home Office, Mudroom, Hall Closet and Stair Landing are now read. Finishing Patio or Deck closes this lane for all 20 rooms.
 
+**Claimed 2026-10-02, scheduled operator cycle (second session): Patio or Deck, content-level visitor read lane, to avoid duplicating the Stair Landing claim above.** Release this line when logged.
+
 **B9 is done: all 20 rooms now have a diagnosis layer
 and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 (`site/workshop-deck.html`) were the last two, built by two concurrent
