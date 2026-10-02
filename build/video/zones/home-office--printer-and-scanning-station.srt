@@ -33,7 +33,7 @@ inside it
 
 8
 00:00:08,800 --> 00:00:09,667
-2 One spare cartridge in a labelled box
+2 One spare cartridge in a labeled box
 beside it
 
 9
@@ -82,7 +82,7 @@ envelopes from two houses ago go out.
 18
 00:00:21,600 --> 00:00:22,550
 Straighten Paper goes directly under the
-printer, the spare cartridge in a labelled
+printer, the spare cartridge in a labeled
 
 19
 00:00:22,550 --> 00:00:23,500
@@ -92,7 +92,7 @@ tray with
 20
 00:00:23,500 --> 00:00:24,200
 Straighten Paper goes directly under the
-printer, the spare cartridge in a labelled
+printer, the spare cartridge in a labeled
 
 21
 00:00:24,200 --> 00:00:24,900

@@ -24,12 +24,13 @@ What done looks like
 
 6
 00:00:06,967 --> 00:00:07,733
-1 Every cable labelled at both ends,
-running in one bundle to a single labelled
+1 Every cable labeled at both ends,
+running in one bundle to a single labeled
+power
 
 7
 00:00:07,733 --> 00:00:08,500
-power strip
+strip
 
 8
 00:00:08,500 --> 00:00:09,267
@@ -238,7 +239,7 @@ than a clock: nothing gets switched on
 
 51
 00:00:59,950 --> 00:01:01,000
-until its cable is labelled at both ends,
+until its cable is labeled at both ends,
 by whoever plugged it in.
 
 52

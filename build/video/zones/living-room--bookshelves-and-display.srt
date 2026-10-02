@@ -105,7 +105,7 @@ for a book, which for most people is
 22
 00:00:27,950 --> 00:00:29,000
 subject first and author second, never
-colour.
+color.
 
 23
 00:00:29,000 --> 00:00:29,950
@@ -195,17 +195,17 @@ top.
 
 41
 00:00:49,000 --> 00:00:50,900
-Standardize Bookends plus a small labelled
+Standardize Bookends plus a small labeled
 marker at the front of each group makes a
 
 42
 00:00:50,900 --> 00:00:51,950
-Standardize Bookends plus a small labelled
-marker at the front of each group makes
+Standardize Bookends plus a small labeled
+marker at the front of each group makes a
 
 43
 00:00:51,950 --> 00:00:53,000
-a misfiled book visible from the doorway,
+misfiled book visible from the doorway,
 without pulling a single spine out.
 
 44

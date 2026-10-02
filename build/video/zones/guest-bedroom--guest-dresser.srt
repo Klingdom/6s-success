@@ -276,7 +276,7 @@ swapping.
 58
 00:00:59,950 --> 00:01:00,475
 Slip is exactly one thing: something of
-the household's in a drawer labelled
+the household's in a drawer labeled
 
 59
 00:01:00,475 --> 00:01:01,000
@@ -294,12 +294,12 @@ day, while it is still one item.
 
 62
 00:01:05,000 --> 00:01:06,900
-Sustain An empty labelled drawer is the
+Sustain An empty labeled drawer is the
 most tempting storage in an occupied
 
 63
 00:01:06,900 --> 00:01:07,950
-Sustain An empty labelled drawer is the
+Sustain An empty labeled drawer is the
 most tempting storage in an occupied
 house,
 

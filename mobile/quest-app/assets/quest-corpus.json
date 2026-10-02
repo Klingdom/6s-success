@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "9f00e17726f378cff9ff9ae272f4975e792bacfbfd65947d9e3050f5ef80c07b",
+ "sourceSha256": "6888c30740492ee6a2b77ebc1e252485d154177143dbe8536e191a95b9a6ffb0",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
@@ -127,7 +127,7 @@
     },
     {
      "s": "shine",
-     "text": "Lift the tray out and wipe under it, then wipe the tray itself. Keys shed grit and coins leave a grey film that tells you exactly how long it has been since anyone did this."
+     "text": "Lift the tray out and wipe under it, then wipe the tray itself. Keys shed grit and coins leave a gray film that tells you exactly how long it has been since anyone did this."
     },
     {
      "s": "safety",
@@ -283,7 +283,7 @@
     },
     {
      "s": "sustain",
-     "text": "The mat sits on the route back to the vacuum cupboard, so whoever ran the vacuum straightens and cleans it last, every time. Overnight the job is smaller: the last person in nudges it back inside its taped outline with a foot. Slip is visible before you reach the door, as a curled corner outside the tape or a grey line of grit along the threshold. Recovery is beating both mats outdoors, ten minutes, not a hall clean. Unlike the rest of this room, the zone degrades on a schedule set by weather rather than by habits."
+     "text": "The mat sits on the route back to the vacuum cupboard, so whoever ran the vacuum straightens and cleans it last, every time. Overnight the job is smaller: the last person in nudges it back inside its taped outline with a foot. Slip is visible before you reach the door, as a curled corner outside the tape or a gray line of grit along the threshold. Recovery is beating both mats outdoors, ten minutes, not a hall clean. Unlike the rest of this room, the zone degrades on a schedule set by weather rather than by habits."
     }
    ],
    "img": "entryway--door-mat-and-immediate-floor",
@@ -479,7 +479,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabelled key, and the loose batteries are not cooking tools and do not go back in."
+     "text": "Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in."
     },
     {
      "s": "straighten",
@@ -515,7 +515,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Work one shelf at a time so nothing sits out warming while you decide. Anything frozen past recognition and unlabelled goes, and every opened jar, sauce, and dressing gets judged against the date on its lid rather than by smell, because dressings and sauces go on smelling fine long after they should have gone."
+     "text": "Work one shelf at a time so nothing sits out warming while you decide. Anything frozen past recognition and unlabeled goes, and every opened jar, sauce, and dressing gets judged against the date on its lid rather than by smell, because dressings and sauces go on smelling fine long after they should have gone."
     },
     {
      "s": "straighten",
@@ -623,7 +623,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Test the leaveners rather than guessing: a spoon of baking powder into hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with the brick of hardened brown sugar and the cocoa that has turned grey."
+     "text": "Test the leaveners rather than guessing: a spoon of baking powder into hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with the brick of hardened brown sugar and the cocoa that has turned gray."
     },
     {
      "s": "straighten",
@@ -883,7 +883,7 @@
     },
     {
      "s": "shine",
-     "text": "Descale the machine on the interval its manual gives, lift the drip tray grate and wash underneath it where mould starts, and get the sticky ring from under the syrup bottle. Rinse the kettle and look at the element for scale while you are there."
+     "text": "Descale the machine on the interval its manual gives, lift the drip tray grate and wash underneath it where mold starts, and get the sticky ring from under the syrup bottle. Rinse the kettle and look at the element for scale while you are there."
     },
     {
      "s": "safety",
@@ -959,7 +959,7 @@
     },
     {
      "s": "safety",
-     "text": "A glass top or a hard square corner sits at exactly the height of a toddler's forehead, so corner guards or a different table is the real fix, not vigilance. A candle here is surrounded by throws, magazines and paper, which is the wrong neighbourhood for an open flame."
+     "text": "A glass top or a hard square corner sits at exactly the height of a toddler's forehead, so corner guards or a different table is the real fix, not vigilance. A candle here is surrounded by throws, magazines and paper, which is the wrong neighborhood for an open flame."
     },
     {
      "s": "standardize",
@@ -979,7 +979,7 @@
    "zone": "Media Center",
    "session": "45-75 min",
    "purpose": "Keep the television, sound and consoles working, cool and cabled so a fault is findable.",
-   "done": "Every cable labelled at both ends, running in one bundle to a single labelled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
+   "done": "Every cable labeled at both ends, running in one bundle to a single labeled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
    "steps": [
     {
      "s": "sort",
@@ -1003,7 +1003,7 @@
     },
     {
      "s": "sustain",
-     "text": "The rule fires on an event rather than a clock: nothing gets switched on until its cable is labelled at both ends, by whoever plugged it in. Two minutes with a marker while the bundle is already in your hand. Slip is one unnamed cable at the strip, worth chasing because an unnamed cable usually feeds something the house no longer owns. Recovery is tracing that single cable, not pulling the bundle apart. This zone can go a year unchanged and lose its whole standard in one evening, when a console arrives at Christmas."
+     "text": "The rule fires on an event rather than a clock: nothing gets switched on until its cable is labeled at both ends, by whoever plugged it in. Two minutes with a marker while the bundle is already in your hand. Slip is one unnamed cable at the strip, worth chasing because an unnamed cable usually feeds something the house no longer owns. Recovery is tracing that single cable, not pulling the bundle apart. This zone can go a year unchanged and lose its whole standard in one evening, when a console arrives at Christmas."
     }
    ],
    "img": "living-room--media-center",
@@ -1023,7 +1023,7 @@
     },
     {
      "s": "straighten",
-     "text": "Group by how you actually hunt for a book, which for most people is subject first and author second, never colour. The heavy art and reference volumes go on the bottom shelves where a fall does no harm, and the hand's width of slack at the end of each shelf is where the next book lands."
+     "text": "Group by how you actually hunt for a book, which for most people is subject first and author second, never color. The heavy art and reference volumes go on the bottom shelves where a fall does no harm, and the hand's width of slack at the end of each shelf is where the next book lands."
     },
     {
      "s": "shine",
@@ -1035,7 +1035,7 @@
     },
     {
      "s": "standardize",
-     "text": "Bookends plus a small labelled marker at the front of each group makes a misfiled book visible from the doorway, without pulling a single spine out."
+     "text": "Bookends plus a small labeled marker at the front of each group makes a misfiled book visible from the doorway, without pulling a single spine out."
     },
     {
      "s": "sustain",
@@ -1339,7 +1339,7 @@
    "zone": "Bed and Bedding Zone",
    "session": "30-45 min",
    "purpose": "The bed and the linens on it have one job, which is to get you through the night without waking up.",
-   "done": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labelled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
+   "done": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labeled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
    "steps": [
     {
      "s": "sort",
@@ -1347,7 +1347,7 @@
     },
     {
      "s": "straighten",
-     "text": "Store each sheet set folded inside one of its own pillowcases so the flat sheet and the fitted sheet stop travelling separately, and keep this bed's linen on one shelf instead of stacked in with guest doubles and kid singles."
+     "text": "Store each sheet set folded inside one of its own pillowcases so the flat sheet and the fitted sheet stop traveling separately, and keep this bed's linen on one shelf instead of stacked in with guest doubles and kid singles."
     },
     {
      "s": "shine",
@@ -1435,7 +1435,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the sheets come off, both nightstand tops get cleared and wiped in the same pass by whoever is stripping the bed, so one side cannot drift while the other holds. What gets checked is the count and the lidded drink rule, never the drawer, which belongs to whoever sleeps there. Slip is a number rather than a judgement: two tops running different counts, visible from the door. Recovery is that person bringing their own top back to the number. The risk here is one adult tidying another, which ends a standard faster than any pile."
+     "text": "When the sheets come off, both nightstand tops get cleared and wiped in the same pass by whoever is stripping the bed, so one side cannot drift while the other holds. What gets checked is the count and the lidded drink rule, never the drawer, which belongs to whoever sleeps there. Slip is a number rather than a judgment: two tops running different counts, visible from the door. Recovery is that person bringing their own top back to the number. The risk here is one adult tidying another, which ends a standard faster than any pile."
     }
    ],
    "img": "primary-bedroom--nightstand-right",
@@ -1451,7 +1451,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Work through the pocket sediment: loose change into a jar that lives in another room, receipts binned or photographed, single earrings and snapped chains into one small bag you either take to a repair counter this month or let go. Jewellery you love but never put on moves to a box in the closet, not back onto this top."
+     "text": "Work through the pocket sediment: loose change into a jar that lives in another room, receipts binned or photographed, single earrings and snapped chains into one small bag you either take to a repair counter this month or let go. Jewelry you love but never put on moves to a box in the closet, not back onto this top."
     },
     {
      "s": "straighten",
@@ -1467,11 +1467,11 @@
     },
     {
      "s": "standardize",
-     "text": "The tray is the edge. If the keys, wallet, watch and rings will not sit in it without stacking, thin the keyring or move a ring to the jewellery box rather than starting a second pile beside the tray."
+     "text": "The tray is the edge. If the keys, wallet, watch and rings will not sit in it without stacking, thin the keyring or move a ring to the jewelry box rather than starting a second pile beside the tray."
     },
     {
      "s": "sustain",
-     "text": "When you empty your pockets at night, everything goes into the tray and nothing goes down beside it. That is the whole habit, it belongs to whoever the pockets are, and it costs no time. The tray is the edge, so slip is obvious: one receipt or one spare set of keys on bare wood, which is how a second pile starts every time. Recovery is not a bigger tray. Thin the keyring or move a ring to the jewellery box. Everything here grows slowly, and the tray is the only thing that will say so."
+     "text": "When you empty your pockets at night, everything goes into the tray and nothing goes down beside it. That is the whole habit, it belongs to whoever the pockets are, and it costs no time. The tray is the edge, so slip is obvious: one receipt or one spare set of keys on bare wood, which is how a second pile starts every time. Recovery is not a bigger tray. Thin the keyring or move a ring to the jewelry box. Everything here grows slowly, and the tray is the only thing that will say so."
     }
    ],
    "img": "primary-bedroom--dresser-top",
@@ -1523,7 +1523,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Pull out anything you have not worn in a year, anything waiting on a repair you are never going to make, and every wire hanger and plastic sheath the dry cleaner sent home. Winter coats and heavy knits go into a labelled bin or the guest wardrobe so the rod carries only what this month asks for."
+     "text": "Pull out anything you have not worn in a year, anything waiting on a repair you are never going to make, and every wire hanger and plastic sheath the dry cleaner sent home. Winter coats and heavy knits go into a labeled bin or the guest wardrobe so the rod carries only what this month asks for."
     },
     {
      "s": "straighten",
@@ -1531,7 +1531,7 @@
     },
     {
      "s": "shine",
-     "text": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a grey line, and check the back wall and skirting for damp before the shoes go back down."
+     "text": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a gray line, and check the back wall and skirting for damp before the shoes go back down."
     },
     {
      "s": "safety",
@@ -1651,7 +1651,7 @@
     },
     {
      "s": "sustain",
-     "text": "During your own seasonal wardrobe change you open these two drawers in the same trip and confirm they are still empty before the swap counts as done. Thirty seconds inside a job already happening, by whoever is doing the swapping. Slip is exactly one thing: something of the household's in a drawer labelled reserved. Recovery is rehoming it the same day, while it is still one item. An empty labelled drawer is the most tempting storage in an occupied house, and nobody lives in this room to defend it."
+     "text": "During your own seasonal wardrobe change you open these two drawers in the same trip and confirm they are still empty before the swap counts as done. Thirty seconds inside a job already happening, by whoever is doing the swapping. Slip is exactly one thing: something of the household's in a drawer labeled reserved. Recovery is rehoming it the same day, while it is still one item. An empty labeled drawer is the most tempting storage in an occupied house, and nobody lives in this room to defend it."
     }
    ],
    "img": "guest-bedroom--guest-dresser",
@@ -1663,7 +1663,7 @@
    "zone": "Guest Closet",
    "session": "60-90 min",
    "purpose": "Hanging space for someone else's clothes, plus whatever household storage this room has honestly agreed to carry.",
-   "done": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labelled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
+   "done": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labeled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
    "steps": [
     {
      "s": "sort",
@@ -1679,7 +1679,7 @@
     },
     {
      "s": "safety",
-     "text": "Anything stored above the rod sits over the head of whoever is reaching for a hanger. Move heavy boxes down to floor level and keep only light, lidded, labelled bins on the top shelf, with nothing stacked so the top item overhangs the edge."
+     "text": "Anything stored above the rod sits over the head of whoever is reaching for a hanger. Move heavy boxes down to floor level and keep only light, lidded, labeled bins on the top shelf, with nothing stacked so the top item overhangs the edge."
     },
     {
      "s": "standardize",
@@ -1699,7 +1699,7 @@
    "zone": "Guest Welcome and Work Surface",
    "session": "30-45 min",
    "purpose": "Where a guest lands the suitcase, charges a laptop, and answers the email they came to this room to escape.",
-   "done": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labelled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
+   "done": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labeled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
    "steps": [
     {
      "s": "sort",
@@ -1779,7 +1779,7 @@
     },
     {
      "s": "straighten",
-     "text": "One open bin per family and no lids anywhere. A lid is an extra step, and an extra step is the reason a five year old drops the dinosaur on the carpet instead. Heaviest bin on the bottom, the daily favourites at hand height."
+     "text": "One open bin per family and no lids anywhere. A lid is an extra step, and an extra step is the reason a five year old drops the dinosaur on the carpet instead. Heaviest bin on the bottom, the daily favorites at hand height."
     },
     {
      "s": "shine",
@@ -1843,7 +1843,7 @@
    "zone": "Clothing Closet",
    "session": "60-90 min",
    "purpose": "Holds the clothes that fit right now, at a height the child can dress themselves from.",
-   "done": "Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labelled box on the top shelf.",
+   "done": "Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labeled box on the top shelf.",
    "steps": [
     {
      "s": "sort",
@@ -1851,11 +1851,11 @@
     },
     {
      "s": "straighten",
-     "text": "Lower the rod. It is one bracket move, and it changes who is capable of using this closet. Then group by type and by colour inside each type, so getting dressed is picking from a row rather than digging through a jumble."
+     "text": "Lower the rod. It is one bracket move, and it changes who is capable of using this closet. Then group by type and by color inside each type, so getting dressed is picking from a row rather than digging through a jumble."
     },
     {
      "s": "shine",
-     "text": "Empty the closet floor completely, vacuum it, and wipe the rod down where hangers have left a grey line. Check the top shelf for the dust that has been settling onto the stored clothes all year."
+     "text": "Empty the closet floor completely, vacuum it, and wipe the rod down where hangers have left a gray line. Check the top shelf for the dust that has been settling onto the stored clothes all year."
     },
     {
      "s": "safety",
@@ -1863,7 +1863,7 @@
     },
     {
      "s": "standardize",
-     "text": "One hanger style throughout, and the next size box labelled in numbers big enough to read from the doorway. At the start of each season turn every hanger backwards, so the ones still reversed by the end of it tell you what is not being worn."
+     "text": "One hanger style throughout, and the next size box labeled in numbers big enough to read from the doorway. At the start of each season turn every hanger backwards, so the ones still reversed by the end of it tell you what is not being worn."
     },
     {
      "s": "sustain",
@@ -1914,7 +1914,7 @@
    "roomSlug": "kids-bedroom",
    "zone": "School and Activity Launch Zone",
    "session": "15-30 min",
-   "purpose": "The square metre by the bedroom door where tomorrow morning gets assembled the night before.",
+   "purpose": "The square meter by the bedroom door where tomorrow morning gets assembled the night before.",
    "done": "Backpack hanging on its hook at child height, packed and zipped. Shoes side by side directly underneath it. Signed forms in the front pocket rather than on the kitchen counter. Sports bag on the second hook, instrument case upright against the wall. Floor completely clear.",
    "steps": [
     {
@@ -1927,7 +1927,7 @@
     },
     {
      "s": "shine",
-     "text": "Wipe the lunchbox seals and the inside of the water bottle lid, which is where the mould actually grows. Turn the backpack over a bin and shake it, then wipe the base where the drink leaked in March."
+     "text": "Wipe the lunchbox seals and the inside of the water bottle lid, which is where the mold actually grows. Turn the backpack over a bin and shake it, then wipe the base where the drink leaked in March."
     },
     {
      "s": "safety",
@@ -2299,7 +2299,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time you come home from the pharmacy the new box goes into its bin and you read the dates of everything already in that bin before shutting the door. One bin, not three, which keeps it two minutes, and the take-back bag rides back with you next time. Slip is anything in the wrong symptom bin or loose on the shelf, readable at a glance because the bins are labelled by symptom rather than brand. Recovery is that one bin's dates. Every fault here is found by somebody already ill, in the dark."
+     "text": "Every time you come home from the pharmacy the new box goes into its bin and you read the dates of everything already in that bin before shutting the door. One bin, not three, which keeps it two minutes, and the take-back bag rides back with you next time. Slip is anything in the wrong symptom bin or loose on the shelf, readable at a glance because the bins are labeled by symptom rather than brand. Recovery is that one bin's dates. Every fault here is found by somebody already ill, in the dark."
     }
    ],
    "img": "primary-bathroom--medicine-cabinet-or-wall-storage",
@@ -2611,11 +2611,11 @@
     },
     {
      "s": "shine",
-     "text": "Lift the folds of the door gasket and wipe out the coins, hairpins, and grey slime that collect in there. Wash the detergent drawer in the sink, then run a hot cycle with a cleaner tablet in the empty drum."
+     "text": "Lift the folds of the door gasket and wipe out the coins, hairpins, and gray slime that collect in there. Wash the detergent drawer in the sink, then run a hot cycle with a cleaner tablet in the empty drum."
     },
     {
      "s": "safety",
-     "text": "Clear the lint screen every single load, then check the duct behind the dryer for the soft grey packing that builds where the pipe bends. Lint plus heat is a fire, and a crushed foil accordion duct traps far more of it than a smooth rigid pipe does."
+     "text": "Clear the lint screen every single load, then check the duct behind the dryer for the soft gray packing that builds where the pipe bends. Lint plus heat is a fire, and a crushed foil accordion duct traps far more of it than a smooth rigid pipe does."
     },
     {
      "s": "standardize",
@@ -2655,11 +2655,11 @@
     },
     {
      "s": "standardize",
-     "text": "Mark the true dose line on the cap with a permanent marker, since the moulded cap is bigger than the dose almost every time. Write the job on the tray edge under each bottle, wash, whites, stains, so a returned bottle lands back in its own footprint."
+     "text": "Mark the true dose line on the cap with a permanent marker, since the molded cap is bigger than the dose almost every time. Write the job on the tray edge under each bottle, wash, whites, stains, so a returned bottle lands back in its own footprint."
     },
     {
      "s": "sustain",
-     "text": "When you pour the last dose out of a jug, the empty goes straight to recycling and the replacement onto the shopping list before you press start on that load. Whoever emptied it does both, while it is still in their hand. Slip is an unlabelled bottle on the tray, or two open jugs of the same product, seen without picking anything up. Recovery is one bottle leaving. Duplicates are this zone's failure and they arrive because nobody can judge a level through a coloured plastic jug."
+     "text": "When you pour the last dose out of a jug, the empty goes straight to recycling and the replacement onto the shopping list before you press start on that load. Whoever emptied it does both, while it is still in their hand. Slip is an unlabeled bottle on the tray, or two open jugs of the same product, seen without picking anything up. Recovery is one bottle leaving. Duplicates are this zone's failure and they arrive because nobody can judge a level through a colored plastic jug."
     }
    ],
    "img": "laundry-room--detergent-and-treatment-zone",
@@ -2691,7 +2691,7 @@
     },
     {
      "s": "standardize",
-     "text": "Label each bag with the load it makes rather than the colour it holds: hot towels, cold darks, gentle. Anyone in the house can then start a machine without asking which setting the bag wants."
+     "text": "Label each bag with the load it makes rather than the color it holds: hot towels, cold darks, gentle. Anyone in the house can then start a machine without asking which setting the bag wants."
     },
     {
      "s": "sustain",
@@ -2791,7 +2791,7 @@
     },
     {
      "s": "shine",
-     "text": "Rinse the mop head and hang it to dry before it goes back on the rail, and empty the vacuum canister before you store it. A mop put away wet and grey spreads that water back down the next floor it touches."
+     "text": "Rinse the mop head and hang it to dry before it goes back on the rail, and empty the vacuum canister before you store it. A mop put away wet and gray spreads that water back down the next floor it touches."
     },
     {
      "s": "safety",
@@ -2887,7 +2887,7 @@
    "zone": "File Storage",
    "session": "60-90 min",
    "purpose": "Keep the documents you are genuinely required to hold, and put your hand on any one of them without opening a second drawer.",
-   "done": "Hanging folders labelled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
+   "done": "Hanging folders labeled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
    "steps": [
     {
      "s": "sort",
@@ -2959,7 +2959,7 @@
    "zone": "Printer and Scanning Station",
    "session": "30-45 min",
    "purpose": "Turn paper into files and files into paper, without hunting for either.",
-   "done": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
+   "done": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labeled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
    "steps": [
     {
      "s": "sort",
@@ -2967,7 +2967,7 @@
     },
     {
      "s": "straighten",
-     "text": "Paper goes directly under the printer, the spare cartridge in a labelled box beside it, and the scan pile gets one tray with a to-do side and a done side, so you can tell at a glance what has already been through the glass."
+     "text": "Paper goes directly under the printer, the spare cartridge in a labeled box beside it, and the scan pile gets one tray with a to-do side and a done side, so you can tell at a glance what has already been through the glass."
     },
     {
      "s": "shine",
@@ -3103,7 +3103,7 @@
    "zone": "Power Tool and Battery Zone",
    "session": "60-90 min",
    "purpose": "Holds the powered tools, their packs, and their chargers so a tool is always ready to run and nothing is left charging unattended.",
-   "done": "One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.",
+   "done": "One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labeled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.",
    "steps": [
     {
      "s": "sort",
@@ -3138,16 +3138,16 @@
    "roomSlug": "garage",
    "zone": "Automotive Care Zone",
    "session": "45-75 min",
-   "purpose": "Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.",
-   "done": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tyre gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
+   "purpose": "Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labeled, and separate from everything the household touches.",
+   "done": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tire gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
    "steps": [
     {
      "s": "sort",
-     "text": "Line every bottle up and read the label out loud. Oil in a weight your current engine does not take, coolant for the van you sold, and the half bottle whose label has soaked away into unreadable grey all come out of the row."
+     "text": "Line every bottle up and read the label out loud. Oil in a weight your current engine does not take, coolant for the van you sold, and the half bottle whose label has soaked away into unreadable gray all come out of the row."
     },
     {
      "s": "straighten",
-     "text": "Fluids stand upright on a shallow drip tray at waist height, where a weeping cap shows as a ring rather than soaking into a shelf. Jumper cables, tyre gauge, and lug wrench live together in one bag right by the door, because you go for those with a dead engine, in the dark, in a hurry."
+     "text": "Fluids stand upright on a shallow drip tray at waist height, where a weeping cap shows as a ring rather than soaking into a shelf. Jumper cables, tire gauge, and lug wrench live together in one bag right by the door, because you go for those with a dead engine, in the dark, in a hurry."
     },
     {
      "s": "shine",
@@ -3175,7 +3175,7 @@
    "zone": "Sports and Recreation Zone",
    "session": "60-90 min",
    "purpose": "Holds the gear for the sports this household currently plays, with the in-season kit easiest to grab.",
-   "done": "Bikes on wall hooks with bare floor beneath them, one labelled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
+   "done": "Bikes on wall hooks with bare floor beneath them, one labeled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
    "steps": [
     {
      "s": "sort",
@@ -3191,11 +3191,11 @@
     },
     {
      "s": "safety",
-     "text": "A helmet that has taken one real impact is finished even if the shell looks perfect, and so is one past the date moulded inside it. Overhead bike hooks must be rated and driven into studs, never drywall anchors, and never hung where a car door swings open into a hanging wheel."
+     "text": "A helmet that has taken one real impact is finished even if the shell looks perfect, and so is one past the date molded inside it. Overhead bike hooks must be rated and driven into studs, never drywall anchors, and never hung where a car door swings open into a hanging wheel."
     },
     {
      "s": "standardize",
-     "text": "One labelled bin per activity, and the label carries the sport plus the name of the person it belongs to. Gear that fits no named bin has no owner in this house and does not stay in it."
+     "text": "One labeled bin per activity, and the label carries the sport plus the name of the person it belongs to. Gear that fits no named bin has no owner in this house and does not stay in it."
     },
     {
      "s": "sustain",
@@ -3211,7 +3211,7 @@
    "zone": "Lawn and Garden Tool Zone",
    "session": "60-90 min",
    "purpose": "Stores the yard tools and outdoor supplies so long handles stay off the floor and garden chemicals stay latched away from everything else.",
-   "done": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labelled containers behind a latch above head height.",
+   "done": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labeled containers behind a latch above head height.",
    "steps": [
     {
      "s": "sort",
@@ -3227,7 +3227,7 @@
     },
     {
      "s": "safety",
-     "text": "Garden chemicals stay in their original labelled containers on a latched shelf above child and pet height, never decanted into a drink bottle. String trimmers and hedge shears go up with guards fitted and cutting ends pointing away from the aisle you walk down."
+     "text": "Garden chemicals stay in their original labeled containers on a latched shelf above child and pet height, never decanted into a drink bottle. String trimmers and hedge shears go up with guards fitted and cutting ends pointing away from the aisle you walk down."
     },
     {
      "s": "standardize",
@@ -3247,7 +3247,7 @@
    "zone": "Bulk and Overhead Storage",
    "session": "60-90 min",
    "purpose": "Holds the things you genuinely need once or twice a year, high up and out of the way, without becoming the place decisions go to hide.",
-   "done": "Every overhead bin labelled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
+   "done": "Every overhead bin labeled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
    "steps": [
     {
      "s": "sort",
@@ -3307,7 +3307,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last part of every session is the bench clear down, done before you take your safety glasses off, because once the glasses come off you are finished for the day and you know it. Ten minutes, by whoever was working. The photo taped at eye level settles what bare means, so slip is a comparison rather than a judgement, and occupied dog holes are the early version. This is the only large flat surface in a room full of things needing somewhere to go, so every other zone leans on it."
+     "text": "The last part of every session is the bench clear down, done before you take your safety glasses off, because once the glasses come off you are finished for the day and you know it. Ten minutes, by whoever was working. The photo taped at eye level settles what bare means, so slip is a comparison rather than a judgment, and occupied dog holes are the early version. This is the only large flat surface in a room full of things needing somewhere to go, so every other zone leans on it."
     }
    ],
    "img": "workshop--main-workbench",
@@ -3343,7 +3343,7 @@
     },
     {
      "s": "sustain",
-     "text": "When a battery goes onto the charger at the end of a job, the tool it came off goes onto its hook in the same motion. The two travel together or neither happens, and the person who used the tool does both. Locking the shop door is the backstop, since no charger is left running behind it. Slip is a labelled home standing empty while the shop is shut, or a chuck key gone travelling. Tools stay put in this zone. It is the wrenches, keys and blade guards that wander."
+     "text": "When a battery goes onto the charger at the end of a job, the tool it came off goes onto its hook in the same motion. The two travel together or neither happens, and the person who used the tool does both. Locking the shop door is the backstop, since no charger is left running behind it. Slip is a labeled home standing empty while the shop is shut, or a chuck key gone traveling. Tools stay put in this zone. It is the wrenches, keys and blade guards that wander."
     }
    ],
    "img": "workshop--power-tool-storage",
@@ -3487,7 +3487,7 @@
     },
     {
      "s": "sustain",
-     "text": "The gear goes back on the board as you switch off the shop light, never into a drawer or a jacket pocket, so the next person in finds a full board. Each user owns their own labelled set, and hanging it up costs the seconds you are already standing there. Slip is a gap in the silhouettes, plus the two dated tapes, because the extinguisher bracket and the first aid lid both carry the month they were last checked. Recovery is checking your own coat pockets first. An empty hook is ambiguous here, since gear in use looks identical to gear that is lost."
+     "text": "The gear goes back on the board as you switch off the shop light, never into a drawer or a jacket pocket, so the next person in finds a full board. Each user owns their own labeled set, and hanging it up costs the seconds you are already standing there. Slip is a gap in the silhouettes, plus the two dated tapes, because the extinguisher bracket and the first aid lid both carry the month they were last checked. Recovery is checking your own coat pockets first. An empty hook is ambiguous here, since gear in use looks identical to gear that is lost."
     }
    ],
    "img": "workshop--safety-and-ppe-station",
@@ -3511,7 +3511,7 @@
     },
     {
      "s": "shine",
-     "text": "Wipe the rail and the wall behind it where shoulders and sleeves leave a grey smear, then vacuum the narrow strip of floor directly under the hooks where hood fluff and door grit gather."
+     "text": "Wipe the rail and the wall behind it where shoulders and sleeves leave a gray smear, then vacuum the narrow strip of floor directly under the hooks where hood fluff and door grit gather."
     },
     {
      "s": "safety",
@@ -3535,7 +3535,7 @@
    "zone": "Bench and Transition Surface",
    "session": "15-30 min",
    "purpose": "Somewhere to sit while you deal with your footwear, and a brief stop for things genuinely on their way out of the house.",
-   "done": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labelled basket at the end holding only what is leaving tomorrow.",
+   "done": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labeled basket at the end holding only what is leaving tomorrow.",
    "steps": [
     {
      "s": "sort",
@@ -3643,7 +3643,7 @@
    "zone": "Seasonal Outdoor Gear",
    "session": "30-45 min",
    "purpose": "Holds the small weather items the family grabs on the way out, for the season you are actually in.",
-   "done": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labelled with the month you packed it, and up on the high shelf.",
+   "done": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labeled with the month you packed it, and up on the high shelf.",
    "steps": [
     {
      "s": "sort",
@@ -3679,7 +3679,7 @@
    "zone": "Cleaning and Utility Zone",
    "session": "30-45 min",
    "purpose": "The tools that keep the entry floor and the door mats fit to walk on, kept where the mess actually lands.",
-   "done": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labelled bottle.",
+   "done": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labeled bottle.",
    "steps": [
     {
      "s": "sort",
@@ -3727,7 +3727,7 @@
     },
     {
      "s": "shine",
-     "text": "Pull every stack right out, wipe the shelf boards with a barely damp cloth, and let the wood dry fully before linens return. Watch for the grey line along the shelf lip that means dust is drifting down onto clean sheets."
+     "text": "Pull every stack right out, wipe the shelf boards with a barely damp cloth, and let the wood dry fully before linens return. Watch for the gray line along the shelf lip that means dust is drifting down onto clean sheets."
     },
     {
      "s": "safety",
@@ -3883,7 +3883,7 @@
     },
     {
      "s": "sustain",
-     "text": "Taking the guest bed apart after a visit sends the bedding to the wash and then straight back into its own labelled bin, never onto the linen shelf. One load, and the repack happens while it runs. Slip is a bin with no closing date, or guest bedding that has quietly joined the everyday linen, both showing as soon as the door opens. Recovery is the wash, the correct bin, and a new date on the lid. Lidded bins on a high shelf are the easiest place in the house to defer a decision, which is what the date is for."
+     "text": "Taking the guest bed apart after a visit sends the bedding to the wash and then straight back into its own labeled bin, never onto the linen shelf. One load, and the repack happens while it runs. Slip is a bin with no closing date, or guest bedding that has quietly joined the everyday linen, both showing as soon as the door opens. Recovery is the wash, the correct bin, and a new date on the lid. Lidded bins on a high shelf are the easiest place in the house to defer a decision, which is what the date is for."
     }
    ],
    "img": "hall-closet--seasonal-and-guest-zone",
@@ -3903,11 +3903,11 @@
     },
     {
      "s": "straighten",
-     "text": "Put the tray at the end of the console nearest the top step, where your hand lands as you turn, not at the decorative centre. Clip the lamp cord to the back leg so it never crosses the side people walk."
+     "text": "Put the tray at the end of the console nearest the top step, where your hand lands as you turn, not at the decorative center. Clip the lamp cord to the back leg so it never crosses the side people walk."
     },
     {
      "s": "shine",
-     "text": "Wipe the console top, the front edge where hips and bags push past, and the top rim of the lamp shade, which catches the dust the stairwell draught keeps lifting. Then press one corner of the console: if it rocks, shim it now, because a wobble beside an open stairwell is how a lamp goes over the edge."
+     "text": "Wipe the console top, the front edge where hips and bags push past, and the top rim of the lamp shade, which catches the dust the stairwell draft keeps lifting. Then press one corner of the console: if it rocks, shim it now, because a wobble beside an open stairwell is how a lamp goes over the edge."
     },
     {
      "s": "safety",
@@ -3939,11 +3939,11 @@
     },
     {
      "s": "straighten",
-     "text": "Set the spacing by measuring from each frame's centre down to the nose of the tread beneath it and holding that number constant up the flight. Equal gaps between frames, and one consistent bottom edge across the flat landing section."
+     "text": "Set the spacing by measuring from each frame's center down to the nose of the tread beneath it and holding that number constant up the flight. Equal gaps between frames, and one consistent bottom edge across the flat landing section."
     },
     {
      "s": "shine",
-     "text": "Dust the top edge of each frame first, then the glass, then wipe the wall along the turn where shoulders, bags and laundry baskets rub a grey line. As you take your hand off each frame, look behind it at the wire for kinks and at the hook for a bent lip."
+     "text": "Dust the top edge of each frame first, then the glass, then wipe the wall along the turn where shoulders, bags and laundry baskets rub a gray line. As you take your hand off each frame, look behind it at the wire for kinks and at the hook for a bent lip."
     },
     {
      "s": "safety",
@@ -4147,7 +4147,7 @@
    "zone": "Outdoor Storage Zone",
    "session": "45-75 min",
    "purpose": "Get the cushions under a lid within a minute of the first drop of rain.",
-   "done": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labelled totes beneath them, and the floor of the box visible the moment the cushions come out.",
+   "done": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labeled totes beneath them, and the floor of the box visible the moment the cushions come out.",
    "steps": [
     {
      "s": "sort",
@@ -4167,7 +4167,7 @@
     },
     {
      "s": "standardize",
-     "text": "Two totes, one written games and one written covers, labelled on the short end you can read once the cushions are lifted out. The lid is the measure: if someone has to sit on it to close it, something leaves the box that day."
+     "text": "Two totes, one written games and one written covers, labeled on the short end you can read once the cushions are lifted out. The lid is the measure: if someone has to sit on it to close it, something leaves the box that day."
     },
     {
      "s": "sustain",

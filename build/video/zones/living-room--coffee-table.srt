@@ -162,7 +162,7 @@ throws, magazines and paper, which is the
 
 35
 00:00:43,950 --> 00:00:45,000
-wrong neighbourhood for an open flame.
+wrong neighborhood for an open flame.
 
 36
 00:00:45,000 --> 00:00:46,900
@@ -320,7 +320,7 @@ One book per person stays on the table.
 
 68
 00:01:15,644 --> 00:01:16,022
-This is not a judgement on the book, and
+This is not a judgment on the book, and
 you can carry it back down the moment you
 
 69

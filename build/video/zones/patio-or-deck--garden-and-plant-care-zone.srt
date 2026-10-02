@@ -328,7 +328,7 @@ container is finished, no exceptions,
 
 69
 00:01:18,457 --> 00:01:18,700
-because an unlabelled garden chemical
+because an unlabeled garden chemical
 cannot be used safely by you or by anyone
 who
 

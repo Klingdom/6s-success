@@ -81,7 +81,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. A close, straight-on view of one specific area of the Kitchen: SINK AND DISHWASHING ZONE, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
 
-SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabelled bottles with the bare white pipework fully visible around it.
+SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabeled bottles with the bare white pipework fully visible around it.
 
 EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - Empty sink, dry basin
@@ -231,7 +231,7 @@ SCENE. The same kind of area, showing the problem honestly: I COOK ON A CHOPPING
 
 SUBJECT, IN FULL. a small cutting board wedged into a narrow gap of counter between a bread bin, a kettle and a knife block.
 
-WHAT THE PICTURE HAS TO COMMUNICATE. There is a metre of counter and I use twenty centimetres of it. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
+WHAT THE PICTURE HAS TO COMMUNICATE. There is a meter of counter and I use twenty centimetres of it. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
 
 HOW THIS IMAGE WILL BE JUDGED. The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed.
 
@@ -895,7 +895,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The finished state this action produces: REBUILD UNDER THE SINK. The result after the work, never the work itself and never a person doing it.
 
-SUBJECT, IN FULL. an open under sink cabinet holding a single shallow tray with three plain unlabelled bottles on it, the white pipework fully visible and clear all around, the rest of the cabinet floor bare.
+SUBJECT, IN FULL. an open under sink cabinet holding a single shallow tray with three plain unlabeled bottles on it, the white pipework fully visible and clear all around, the rest of the cabinet floor bare.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. One tray, the pipes visible, and nothing stored that can react with anything beside it. The idea behind it: 30 MINUTES. 1
 
@@ -1039,7 +1039,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The finished state this action produces: REBUILD THE FRIDGE. The result after the work, never the work itself and never a person doing it.
 
-SUBJECT, IN FULL. an open refrigerator seen straight on with clearly separated shelves, sealed raw meat lowest, clear labelled containers at eye level, a small round thermometer clipped to a shelf, and the rear wall clear of anything pressed against it.
+SUBJECT, IN FULL. an open refrigerator seen straight on with clearly separated shelves, sealed raw meat lowest, clear labeled containers at eye level, a small round thermometer clipped to a shelf, and the rear wall clear of anything pressed against it.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Assign every shelf a job, and make the cold chain visible. The idea behind it: 30 MINUTES. 1 TO 2
 
@@ -1165,7 +1165,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The zone holding its standard, calm and ordinary, with a generous area of visually quiet surface across the lower half of the frame because write-on lines are printed over it: SINK AND DISHWASHING ZONE STANDARD.
 
-SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabelled bottles with the bare white pipework fully visible around it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
+SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabeled bottles with the bare white pipework fully visible around it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Empty sink, dry basin, one brush and one sponge standing, cleaners on one tray with the plumbing visible. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
 

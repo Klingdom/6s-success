@@ -41,9 +41,8 @@ for the suitcase
 
 10
 00:00:09,667 --> 00:00:10,533
-4 One labelled bin holding a spare
-charger, wifi card, water glass + 2 more
-on the
+4 One labeled bin holding a spare charger,
+wifi card, water glass + 2 more on the
 
 11
 00:00:10,533 --> 00:00:11,400

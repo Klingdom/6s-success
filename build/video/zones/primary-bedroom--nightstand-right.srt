@@ -227,20 +227,22 @@ which belongs to whoever sleeps there.
 49
 00:00:57,000 --> 00:00:57,950
 Sustain Slip is a number rather than a
-judgement: two tops running different
+judgment: two tops running different
+counts,
 
 50
 00:00:57,950 --> 00:00:58,900
-counts, visible from
+visible from
 
 51
 00:00:58,900 --> 00:00:59,600
 Sustain Slip is a number rather than a
-judgement: two tops running different
+judgment: two tops running different
+counts,
 
 52
 00:00:59,600 --> 00:01:00,300
-counts, visible from the door.
+visible from the door.
 
 53
 00:01:00,300 --> 00:01:01,000

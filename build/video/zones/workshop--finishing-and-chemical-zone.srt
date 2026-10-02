@@ -292,7 +292,7 @@ touch-up,
 
 62
 00:01:09,378 --> 00:01:09,756
-including colours from a wall you painted
+including colors from a wall you painted
 over and a house you no longer live in.
 
 63
@@ -302,9 +302,8 @@ matching in two years anyway.
 
 64
 00:01:10,133 --> 00:01:10,511
-So keep only colours currently on a
-surface in this house, and keep them
-properly:
+So keep only colors currently on a surface
+in this house, and keep them properly:
 
 65
 00:01:10,511 --> 00:01:10,889

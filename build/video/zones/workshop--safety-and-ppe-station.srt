@@ -215,12 +215,12 @@ next person in finds a full board.
 
 44
 00:00:53,000 --> 00:00:54,900
-Sustain Each user owns their own labelled
+Sustain Each user owns their own labeled
 set, and hanging it
 
 45
 00:00:54,900 --> 00:00:55,950
-Sustain Each user owns their own labelled
+Sustain Each user owns their own labeled
 set, and hanging it up costs the seconds
 
 46

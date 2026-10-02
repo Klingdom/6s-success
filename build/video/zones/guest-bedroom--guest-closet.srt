@@ -34,12 +34,12 @@ open suitcase
 
 8
 00:00:08,500 --> 00:00:09,267
-3 Household bins on the shelf in labelled
-lidded boxes with nothing loose above
+3 Household bins on the shelf in labeled
+lidded boxes with nothing loose above head
 
 9
 00:00:09,267 --> 00:00:10,033
-head height
+height
 
 10
 00:00:10,033 --> 00:00:10,800
@@ -153,8 +153,7 @@ a hanger.
 33
 00:00:37,000 --> 00:00:37,950
 Safety Move heavy boxes down to floor
-level and keep only light, lidded,
-labelled
+level and keep only light, lidded, labeled
 
 34
 00:00:37,950 --> 00:00:38,900
@@ -163,8 +162,7 @@ bins on
 35
 00:00:38,900 --> 00:00:39,950
 Safety Move heavy boxes down to floor
-level and keep only light, lidded,
-labelled
+level and keep only light, lidded, labeled
 
 36
 00:00:39,950 --> 00:00:41,000
@@ -270,7 +268,7 @@ that shelf that were sealed at a previous
 
 57
 00:01:01,262 --> 00:01:01,523
-address and have travelled unopened ever
+address and have traveled unopened ever
 since.
 
 58
@@ -293,7 +291,7 @@ specific occasion for what is inside, it
 
 62
 00:01:02,569 --> 00:01:02,831
-earns a labelled home.
+earns a labeled home.
 
 63
 00:01:02,831 --> 00:01:03,092

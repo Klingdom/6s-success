@@ -1,7 +1,7 @@
 1
 00:00:00,000 --> 00:00:01,600
 Kids Bedroom School and Activity Launch
-Zone The square metre by the bedroom door
+Zone The square meter by the bedroom door
 
 2
 00:00:01,600 --> 00:00:03,200
@@ -138,7 +138,7 @@ inside of the water bottle lid, which is
 
 29
 00:00:32,550 --> 00:00:33,600
-where the mould actually grows.
+where the mold actually grows.
 
 30
 00:00:33,600 --> 00:00:35,500

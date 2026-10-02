@@ -256,7 +256,7 @@ readable
 
 54
 00:01:03,950 --> 00:01:05,000
-at a glance because the bins are labelled
+at a glance because the bins are labeled
 by symptom rather than brand.
 
 55

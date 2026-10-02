@@ -97,13 +97,13 @@ stop on the landing to look at.
 20
 00:00:21,000 --> 00:00:22,900
 Straighten Set the spacing by measuring
-from each frame's centre down to the nose
+from each frame's center down to the nose
 of
 
 21
 00:00:22,900 --> 00:00:23,950
 Straighten Set the spacing by measuring
-from each frame's centre down to the nose
+from each frame's center down to the nose
 
 22
 00:00:23,950 --> 00:00:25,000
@@ -137,7 +137,7 @@ first, then the glass, then wipe the wall
 28
 00:00:31,950 --> 00:00:33,000
 along the turn where shoulders, bags and
-laundry baskets rub a grey line.
+laundry baskets rub a gray line.
 
 29
 00:00:33,000 --> 00:00:34,900

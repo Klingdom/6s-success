@@ -29,7 +29,7 @@ beneath them
 
 7
 00:00:08,040 --> 00:00:08,960
-2 One labelled bin per activity
+2 One labeled bin per activity
 
 8
 00:00:08,960 --> 00:00:09,880
@@ -152,7 +152,7 @@ impact is finished even if the shell looks
 32
 00:00:35,950 --> 00:00:37,000
 perfect, and so is one past the date
-moulded inside it.
+molded inside it.
 
 33
 00:00:37,000 --> 00:00:37,950
@@ -175,12 +175,12 @@ swings open into a hanging wheel.
 
 37
 00:00:41,000 --> 00:00:42,900
-Standardize One labelled bin per activity,
+Standardize One labeled bin per activity,
 and the label carries the sport
 
 38
 00:00:42,900 --> 00:00:43,950
-Standardize One labelled bin per activity,
+Standardize One labeled bin per activity,
 and the label carries the sport plus the
 
 39

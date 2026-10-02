@@ -7,7 +7,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. A close, straight-on view of one specific area of the Kitchen: SINK AND DISHWASHING ZONE, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
 
-SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabelled bottles with the bare white pipework fully visible around it.
+SUBJECT, IN FULL. an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabeled bottles with the bare white pipework fully visible around it.
 
 EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - Empty sink, dry basin

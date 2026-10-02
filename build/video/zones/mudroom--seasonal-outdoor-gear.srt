@@ -44,8 +44,8 @@ stand by the door
 
 10
 00:00:10,533 --> 00:00:11,400
-4 Labelled with the month you packed it +
-1 more on the zone page
+4 Labeled with the month you packed it + 1
+more on the zone page
 
 11
 00:00:11,400 --> 00:00:13,600

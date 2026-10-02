@@ -203,7 +203,7 @@ PAGES = {
              "six-S method rebuilt for the home. Twenty rooms, 114 micro zones, "
              "and a fifty-chapter book.",
         image="renewed.jpg",
-        image_alt="A book figure: two entryways side by side, one labelled Done and slipping back, one labelled Renewed with a family resetting it.",
+        image_alt="A book figure: two entryways side by side, one labeled Done and slipping back, one labeled Renewed with a family resetting it.",
         type="website",
         jsonld=[ORGANIZATION, WEBSITE],
     ),
@@ -236,7 +236,7 @@ PAGES = {
              "room-by-room playbooks. Chapters 1 to 30 are free to read online "
              "or download as a PDF.",
         image="renewed.jpg",
-        image_alt="A book figure: two entryways side by side, one labelled Done and slipping back, one labelled Renewed with a family resetting it.",
+        image_alt="A book figure: two entryways side by side, one labeled Done and slipping back, one labeled Renewed with a family resetting it.",
         type="book",
         jsonld=[crumbs(("Home", "/"), ("The book", "/book.html")), BOOK],
     ),

@@ -166,7 +166,7 @@ it makes rather than
 35
 00:00:46,900 --> 00:00:47,950
 Standardize Label each bag with the load
-it makes rather than the colour it holds:
+it makes rather than the color it holds:
 
 36
 00:00:47,950 --> 00:00:49,000

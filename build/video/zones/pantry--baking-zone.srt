@@ -79,7 +79,7 @@ cocoa
 
 17
 00:00:19,950 --> 00:00:21,000
-that has turned grey.
+that has turned gray.
 
 18
 00:00:21,000 --> 00:00:21,950

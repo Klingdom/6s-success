@@ -232,17 +232,17 @@ behind it.
 
 50
 00:00:57,000 --> 00:00:58,900
-Sustain Slip is a labelled home standing
+Sustain Slip is a labeled home standing
 empty while the shop is shut, or
 
 51
 00:00:58,900 --> 00:00:59,600
-Sustain Slip is a labelled home standing
+Sustain Slip is a labeled home standing
 empty while the shop is shut, or a chuck
 
 52
 00:00:59,600 --> 00:01:00,300
-key gone travelling.
+key gone traveling.
 
 53
 00:01:00,300 --> 00:01:01,000
