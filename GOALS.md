@@ -135,11 +135,11 @@ rolled out of the window; **corrected 2026-09-25: a read taken the same night
 WITHOUT the `website_id` predicate said 239 visitors, because this Umami
 instance serves three sites. The guard in `ops/experiments.py` now refuses
 that query shape**), and in the whole life
-of this site **exactly five visits from four visitors arrived from a search
-engine**, per the "Sessions from organic search" row above, corrected today
-after the earlier "reconfirmed unchanged" line turned out to be an
-unmeasured carry-forward: one visit from Bing (21 August), and four visits
-from three Google visitors (4 to 18 September). Every other arrival was
+of this site **exactly six visits from five visitors arrived from a search
+engine**, per the "Sessions from organic search" row above, re-measured
+2026-10-02 and moved for the first time in three weeks: one visit from Bing
+(21 August), and five visits from four Google visitors (4 September to
+1 October). Every other arrival was
 direct, or from LinkedIn, which is the only channel we actually post to and
 which produced 17.
 

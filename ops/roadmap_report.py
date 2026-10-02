@@ -60,22 +60,23 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 48, "visits": 119, "views": 731,
-           "days": 30, "as_of": "2026-09-29",
-           "how": "read directly from the Umami database 2026-09-29 over ssh "
-                  "(ops/traffic_query.sh): 48 visitors, 119 visits, 731 "
-                  "pageviews. The 30-day figure keeps falling because late "
-                  "August days roll out of the window, not because arrivals "
-                  "fell. The trailing WEEK records 14 visitors / 18 visits / 50 "
-                  "pageviews against 12 / 14 / 27 four days earlier, but 30 of "
-                  "those pageviews and 9 of the visitor ids arrived between "
-                  "18:00 and 18:20 on 27 September, all direct, across four "
-                  "operating systems; the same shape appears late on 23 August. "
-                  "EX-BURST the week is 7 visitors / 9 visits / 20 pageviews, "
-                  "DOWN on 12 / 14 / 27. Size experiments off the ex-burst "
-                  "figure. All time: 87 visitors, 232 visits, 1030 "
-                  "pageviews since 2026-08-20. In Umami session_id is the "
-                  "VISITOR and persists across days, while visit_id is the visit."}
+TRAFFIC = {"visitors": 49, "visits": 121, "views": 719,
+           "days": 30, "as_of": "2026-10-02",
+           "how": "read directly from the Umami database 2026-10-02 14:1x UTC "
+                  "over ssh (ops/traffic_query.sh): 49 visitors, 121 visits, "
+                  "719 pageviews, flat on the 48 / 119 / 731 of three days "
+                  "earlier. The trailing WEEK is the part that moved: 22 "
+                  "visitors / 29 visits / 62 pageviews as recorded, and 13 "
+                  "visitors / 20 visits / 32 pageviews excluding its single "
+                  "busiest 20-minute bucket (the same 27 September burst "
+                  "named below), against 7 ex-burst three days earlier. That "
+                  "is the first rise this figure has recorded; read honestly "
+                  "it could be noise, but it is not the continued fall the "
+                  "prior reading described. EX-BURST size experiments off the "
+                  "13/20/32 figure, not the as-recorded one. All time: 96 "
+                  "visitors, 246 visits, 1047 pageviews since 2026-08-20. In "
+                  "Umami session_id is the VISITOR and persists across days, "
+                  "while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:

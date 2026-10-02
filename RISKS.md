@@ -444,7 +444,16 @@ evidence:
     in 8 minutes) also goes. The earlier 506 reading was right in method.
     Recorded as LEARNINGS.md LRN-0015; ops/traffic_query.sh now prints the
     per-session breakdown so the two units cannot be confused again.
-  - current baseline, direct Umami database read 2026-09-29 22:2x UTC: 48
+  - current baseline, direct Umami database read 2026-10-02 14:1x UTC: 49
+    visitors / 121 visits / 719 pageviews / 30 days, flat on 48/119/731
+    three days earlier. The trailing week rose for the first time in three
+    weeks: 22 visitors / 29 visits / 62 pageviews as recorded, 13 visitors
+    / 20 visits / 32 pageviews excluding its own busiest 20-minute bucket
+    (the same 27 September signature below), against 7 ex-burst three days
+    earlier. Read honestly this could be noise on a small number, not a
+    reversal.
+  - superseded baseline, kept for the trend it shows, direct Umami database
+    read 2026-09-29 22:2x UTC: 48
     visitors / 119 visits / 731 pageviews / 30 days, down from 57 on
     2026-09-25. Last 7 days: 14 visitors, 18 visits, 50 pageviews, but 30 of
     those pageviews arrived in one 20-minute burst on 27 September from 9
@@ -1162,6 +1171,15 @@ evidence:
     and iOS, no signature identifying them as human. Excluding that bucket
     the week is 7 visitors, 9 visits, 20 pageviews, down on the 12/14/27
     read four days earlier. One sale ever, $19, a personal referral.
+  - RE-MEASURED 2026-10-02 14:1x UTC: 49 visitors / 121 visits / 719
+    pageviews over 30 days, flat on 48/119/731 three days earlier. The
+    trailing week rose for the first time in three weeks: 22 visitors / 29
+    visits / 62 pageviews as recorded, 13 visitors / 20 visits / 32
+    pageviews excluding its own busiest 20-minute bucket (the same 27
+    September signature above), against 7 ex-burst three days earlier.
+    Read honestly this could be noise on a very small number; what it is
+    not is a continuation of the fall. Still one sale ever, $19, a personal
+    referral.
   - THE CRAWL RISE THIS ROW USED TO CITE WAS A BURST, AND THE CORRECTION
     MATTERS MORE THAN THE FIGURE. It previously read that Googlebot content
     fetches "ROSE sharply" from about 1.3 a day to 17 on 20 Sept and 11 by
