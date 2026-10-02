@@ -1,0 +1,12 @@
+{
+ "_why": "The household words for a room this site names differently. Every entry is measured, not guessed: the 'queries' and 'covered' figures are from ops/keyword-demand.json's 2026-10-02 harvest, which ran the VOCABULARY_PROBES seeds added to ops/keyword_demand.py for exactly this question. A word earns a place here only if people type it AND this site does not already answer for it.",
+ "_rule": "Do not add a word with no measured queries. 'master closet', 'rec room', 'ensuite' and 'lounge' were all considered and all returned zero, so naming them would be inventing demand. Do not add a word the site already covers: 'utility room' (13 queries, 9 covered), 'linen closet' (51, 24), 'coat closet' (21, 11), 'walk in closet' (34, 15) and 'front hall' (6, 4) are all answered already and adding them would be noise.",
+ "_measured_at": "2026-10-02T08:12:24Z",
+ "rooms": {
+  "Primary Bedroom": {"names": ["master bedroom"], "queries": 16, "covered": 0},
+  "Primary Bathroom": {"names": ["master bathroom"], "queries": 13, "covered": 0},
+  "Entryway": {"names": ["foyer", "entrance hall"], "queries": 25, "covered": 0},
+  "Pantry": {"names": ["larder"], "queries": 11, "covered": 0},
+  "Family Room": {"names": ["den", "bonus room"], "queries": 19, "covered": 0}
+ }
+}

@@ -1856,6 +1856,45 @@ def room_figures(room):
     return ROOM_IMAGES.get(room, [])
 
 
+# THE WORDS A HOUSEHOLD USES FOR A ROOM THIS SITE NAMES DIFFERENTLY.
+#
+# Added 2026-10-02 from a measurement, not an intuition. The vocabulary
+# probes in ops/keyword_demand.py were written precisely because the first
+# demand harvest could only find phrases built from OUR OWN room names, so
+# "master bedroom" did not appear once in 2,622 queries. With the probes in,
+# it appears 16 times with nothing of ours covering it, "foyer" 16 times,
+# "larder" 11, and grep finds all three on zero pages of this site.
+#
+# This is a reader fix before it is a search fix. Somebody who calls it the
+# master bedroom should not have to guess whether the primary bedroom page is
+# about their room. Every entry is in ops/room-also-called.json with the
+# query count that earned it, and that file refuses words with no measured
+# demand ("ensuite", "rec room") and words the site already answers for
+# ("linen closet", "walk in closet").
+_ALSO_CALLED_PATH = os.path.join(ROOT, "ops", "room-also-called.json")
+if os.path.exists(_ALSO_CALLED_PATH):
+    ROOM_ALSO_CALLED = json.load(
+        io.open(_ALSO_CALLED_PATH, encoding="utf-8")).get("rooms", {})
+else:
+    ROOM_ALSO_CALLED = {}
+
+
+def also_called_html(room):
+    """One honest line naming the other words for this room, or nothing."""
+    entry = ROOM_ALSO_CALLED.get(room)
+    names = (entry or {}).get("names") or []
+    if not names:
+        return ""
+    if len(names) == 1:
+        said = "the " + names[0]
+    else:
+        said = ", ".join("the " + n for n in names[:-1]) + " or the " + names[-1]
+    return ('<p class="also-called" style="font-family:var(--sans);'
+            'font-size:14px;color:var(--soft);margin:10px 0 0">'
+            'Also called %s. Same room, same micro zones.</p>'
+            % esc(said))
+
+
 def room_diagram(room):
     """The book's zone-map drawing for a room with no photographic figure."""
     return ROOM_DIAGRAMS.get(room)
@@ -3442,6 +3481,12 @@ def room_page(room, header, footer, all_rooms=()):
                f'<h1>{esc(room["room"])}: {esc(ROOM_JOB[room["room"]])}</h1>')
     if room.get("intro"):
         out.append(f'<p class="lede">{esc(room["intro"])}</p>')
+    # Appended only when there is one. An unconditional append puts an empty
+    # string into `out`, which the join turns into a blank line, and all 15
+    # rooms with no alternative name would be rewritten for nothing.
+    _also = also_called_html(room["room"])
+    if _also:
+        out.append(_also)
     out.append('</div>')
     figs = room_figures(room["room"])
     diagram = room_diagram(room["room"])
