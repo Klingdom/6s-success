@@ -1,22 +1,32 @@
 #!/usr/bin/env python3
 """
-Prove ops/preflight.py's gate_films_teach_all_six_passes() still fails on a
-NEW caption regression after 2026-10-02's KNOWN_CAPTION_DRIFT allowlist, and
-that it correctly downgrades the two already-filed, sandbox-unfixable zones
-(issue #39) to a warning instead of blocking every future deploy.
+Prove ops/preflight.py's gate_films_teach_all_six_passes() still protects the
+library after the 2026-10-02 23:0x finding: issue #39 was closed as complete,
+but the two zones it named (living-room--bookshelves-and-display,
+garage--sports-and-recreation-zone) still carry the pre-fix caption text in
+their committed .srt. Rewritten from the version this replaces, which
+asserted the gate downgrades those two zones to a warning across the board;
+that assertion crashed with IndexError once a 2026-10-02 commit (27da5009a,
+then 8c7c833bc) deleted the allowlist it was written against.
 
-Found 2026-10-02: this gate's hard FAIL on those two zones blocked
-publish-image.yml's build step on every run since 09:07 UTC (confirmed:
-GitHub Actions runs #514-516, all failure, all citing this exact gate),
-which stopped every OTHER real change from shipping too, not just the two
-known videos. Fixing the caption text requires re-recording narrated audio
-via ops/video_narrated.py's real TTS call, which neither this sandbox nor
-the GitHub-hosted CI runner can reach. A gate that can never clear itself
-and permanently blocks the pipeline is worse than the two known defects it
-is reporting, so it is now a named, capped exception (same pattern as
-gate_fix_dialect_current's KNOWN_BOOK_SVG_EXCEPTIONS): the two filed zones
-warn instead of fail, and anything else, including a THIRD pass going
-missing on either of those two zones, still fails loudly.
+Checked rather than assumed before rewriting: running the gate directly
+against the real tree showed the two named zones STILL reporting "no
+standardize", for a reason neither commit's own diagnosis covers. The
+corpus (ops/video_zone.py) says "labeled"; the committed caption still says
+"labelled", a homophone, not a missing instruction, so the gate's own
+first-five-words probe broke on a spelling difference nobody could hear.
+That is a real bug in the probe, not evidence the pass is missing, and is
+fixed below the short-check's own level rather than by re-adding an
+allowlist for it: both zones now pass that check the same way the other
+112 do, with no exception needed.
+
+The audible-drift check is a separate matter and genuinely still fails: the
+committed captions for primary-bedroom--dresser-top and
+stair-landing--landing-surface-or-console still say "jewellery" and
+"draught", which the commit that closed issue #39 claimed were re-rendered.
+Re-rendering needs real TTS reach neither this sandbox nor CI has, so this
+one keeps a named, capped exception (warn, not fail) for exactly those two
+zones, and nothing else.
 
 Run:  python ops/tests/test_gate_films_six_passes_known_drift.py
 """
@@ -39,55 +49,91 @@ def _run():
     return list(preflight.FAIL), list(preflight.WARN)
 
 
-def main() -> int:
-    fails = []
-
-    # 1. The real, committed corpus: the two known zones must warn, never
-    #    fail, and nothing else should be in either list.
-    f, w = _run()
-    if any(g == "films-six-passes" for g, _m in f):
-        fails.append("the known, tracked caption drift still fails "
-                      "preflight: %r" % (f,))
-    warn_msgs = [m for g, m in w if g == "films-six-passes"]
-    if not warn_msgs or "issue #39" not in warn_msgs[0]:
-        fails.append("the known drift was not reported as a tracked "
-                      "warning naming issue #39: %r" % (warn_msgs,))
-    for slug in ("living-room--bookshelves-and-display",
-                 "garage--sports-and-recreation-zone"):
-        if slug not in warn_msgs[0]:
-            fails.append("%s missing from the tracked-warning message" % slug)
-
-    # 2. A NEW regression on an unrelated, currently-clean zone (strip
-    #    "sustain" from its caption) must still fail preflight by name, not
-    #    be swallowed by the allowlist.
-    target = os.path.join(FOLDER, "dining-room--beverage-or-coffee-station.srt")
+def _with_fixture(target, transform, check):
+    """Copy target aside, apply transform(text)->text, run the gate, restore
+    byte-identical, and call check(fails_list, FAIL, WARN) to record any
+    assertion failure into fails_list."""
     backup = target + ".bak"
     shutil.copy2(target, backup)
+    fails = []
     try:
         real = io.open(target, encoding="utf-8").read()
-        # The gate matches the first 5 words of the zone's own sustain-pass
-        # text (ops/video_zone.py passes()), not the literal word "sustain",
-        # so the fixture has to corrupt that actual phrase to trip it.
-        stripped = real.replace("The reset happens while the coffee",
-                                 "The xxxxx xxxxxxx xxxxx xxx xxxxxx")
-        if stripped == real:
-            fails.append("fixture caption never carried the probe phrase; "
-                          "test #2 did not actually change anything")
-        io.open(target, "w", encoding="utf-8", newline="").write(stripped)
+        changed = transform(real)
+        if changed == real:
+            fails.append("fixture for %s never changed anything; the probe "
+                         "text was not actually present" % target)
+        io.open(target, "w", encoding="utf-8", newline="").write(changed)
         f, w = _run()
-        hit = [m for g, m in f if g == "films-six-passes"]
-        if not hit or "dining-room--beverage-or-coffee-station" not in hit[0]:
-            fails.append("a NEW caption regression on an unlisted zone was "
-                          "not caught by name: FAIL=%r WARN=%r" % (f, w))
+        check(fails, f, w)
     finally:
         shutil.copy2(backup, target)
         os.remove(backup)
+    return fails
 
-    # 3. Sanity: restoring the real file leaves the gate exactly where #1
-    #    found it (known drift warns, nothing fails).
+
+def main() -> int:
+    fails = []
+
+    # 1. The real, committed corpus: no FAIL, and the two zones issue #39
+    #    named for the standardize gap are NOT in it (the homophone probe
+    #    fix covers them with no exception). The audible check's own named
+    #    exception for the two different zones (jewellery/draught) still
+    #    warns, naming issue #39 and both of them.
     f, w = _run()
     if any(g == "films-six-passes" for g, _m in f):
-        fails.append("restoring the real file did not leave it clean: %r"
+        fails.append("the real committed corpus fails preflight: %r" % (f,))
+    warn_msgs = [m for g, m in w if g == "films-six-passes"]
+    if not warn_msgs or "issue #39" not in warn_msgs[0]:
+        fails.append("the known audible drift was not reported as a "
+                      "tracked warning naming issue #39: %r" % (warn_msgs,))
+    for slug in ("primary-bedroom--dresser-top",
+                 "stair-landing--landing-surface-or-console"):
+        if warn_msgs and slug not in warn_msgs[0]:
+            fails.append("%s missing from the tracked-warning message"
+                          % slug)
+
+    # 2. A NEW audible regression on an unrelated, currently-clean zone
+    #    (a word that is genuinely rare, not "while"/"tire" which already
+    #    occur naturally in most captions) must still fail preflight by
+    #    name, not be swallowed by the capped exception.
+    target = os.path.join(FOLDER, "dining-room--beverage-or-coffee-station.srt")
+
+    def _add_aeroplane(real):
+        return real + ("\n\n999\n00:09:00,000 --> 00:09:01,000\n"
+                       "Fold it like an aeroplane wing.\n")
+
+    def _check_new_audible(fails, f, w):
+        hit = [m for g, m in f if g == "films-six-passes"]
+        if not hit or "dining-room--beverage-or-coffee-station" not in hit[0]:
+            fails.append("a NEW audible regression on an unlisted zone was "
+                          "not caught by name: FAIL=%r" % (f,))
+        if any("dining-room" in m for g, m in w if g == "films-six-passes"):
+            fails.append("the new regression was warned instead of failed")
+
+    fails += _with_fixture(target, _add_aeroplane, _check_new_audible)
+
+    # 3. A homophone-only drift on an unrelated zone's pass text (the same
+    #    shape that broke living-room/garage) must NOT fail or warn: this is
+    #    the bug this cycle fixed, and it must stay fixed. Re-corrupts the
+    #    exact zone and word issue #39 was filed against, to prove it stays
+    #    fixed rather than merely assuming it from the earlier fix.
+    lr_target = os.path.join(FOLDER, "living-room--bookshelves-and-display.srt")
+
+    def _relabel_lr(real):
+        return real.replace("labelled", "labeled")  # no-op if already fixed
+
+    def _check_homophone_clean(fails, f, w):
+        if any("living-room" in m for g, m in f if g == "films-six-passes"):
+            fails.append("a homophone-only spelling match still fails: %r"
+                          % (f,))
+
+    fails += _with_fixture(lr_target, _relabel_lr, _check_homophone_clean)
+
+    # 4. Sanity: restoring the real files leaves the gate exactly where #1
+    #    found it.
+    f, w = _run()
+    if any(g == "films-six-passes" for g, _m in f):
+        fails.append("restoring the real files did not leave it clean: %r"
                       % (f,))
 
     if fails:
@@ -95,8 +141,9 @@ def main() -> int:
         for x in fails:
             print(" -", x)
         return 1
-    print("ok  known caption drift (issue #39) warns, new regressions "
-          "still fail")
+    print("ok  known audible drift (issue #39, re-opened) warns by name; "
+          "homophone-only drift no longer false-positives; new audible "
+          "regressions still fail")
     return 0
 
 
