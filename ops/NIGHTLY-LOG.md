@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, addendum (10:1x cycle's own backgrounded preflight finished: 1 real FAIL, the obvious fix would have corrupted the dashboard, filed instead of applied)
+
+The fast `preflight.py` started earlier this cycle finally cleared its documented `gate_tests` slowness and reported **1 gate failed**: `owner-actions-last-measured-current`, `OWNER-ACTIONS.md`'s header still says "Last measured: 2026-09-30" while the body now carries 2026-10-02 (item 0a, this morning's P0 escalation).
+
+**Checked the established fix before applying it, rather than repeating it on faith.** `ops/NIGHTLY-LOG.md` records this exact gate being cleared before by bumping the header's leading date. Tried it, then ran the real parsers against the edited file before shipping: `ops/dashboard.py`'s `_owner_actions_traffic_citation()`/`_prefer_owner_actions_traffic()` read that same leading date as the timestamp of the traffic figures that follow it. Bumping the date alone, without touching the real figures (48 visitors/119 visits, actually read 2026-09-29), made the dashboard render "carried forward from 2026-10-02" next to those same four-day-old numbers, a false freshness claim, exactly the fabricated-measurement shape `CLAUDE.md` 0.3/0.4/8 warn against and a direct input to `GOALS.md`'s own #1 prioritization rule. Confirmed by actually importing `dashboard.py` and reading `S["traffic_line"]`, not by reasoning about the regex. Reverted immediately (`git diff` confirmed byte-identical to the committed file before shipping anything else this cycle).
+
+**Filed rather than silently left failing or silently worked around:** issue #38, with the live-rendered proof and a concrete recommendation (a separate `**List reviewed:**` anchor for `gate_owner_actions_last_measured_current` to check, decoupled from the traffic citation's own anchor). This is a real code change with its own tests, correctly hours-sized rather than a 30-minute documentation edit, so left for a session with that budget rather than rushed into a second bad fix. The one preflight FAIL stays reported as a FAIL, not patched over.
+
+**Next:** issue #38 (engineering defect, GREEN-tier, no owner gate) joins the queue behind issue #37 (still the only P0, still Phil-only, unchanged since the prior entry). Nothing else in this cycle's read changed.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only; `OWNER-ACTIONS.md` is unchanged (edited then reverted, never shipped). No price, product or page touched. GitHub issue #38 opened, not a file change.
+
 ## PM check-in, 2026-10-02 (10:1x cycle, previous work finished, nothing new, regenerated a stale deck)
 
 **Previous work: finished.** Issue #37 (P0, fulfil-orders.yml) is still open, zero comments, confirmed directly against the Actions API: run #3007 (09:56:55, same commit the prior cycle checked) still fails the same "Deliver" step for the same reason. Nothing changed since the 09:4x cycle's own check 17 minutes earlier, and that cycle already sent Phil a push notification with the exact fix, so this cycle did not send a second one for an unchanged condition; the next notification should fire when the state actually changes (Phil applies it, or it goes substantially longer unaddressed). All 8 other open issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked. A12 (corpus dialect) remains correctly left for the hourly operator, hours-sized and explicitly not this slot's work.
