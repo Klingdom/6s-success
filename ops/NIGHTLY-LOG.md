@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 12:1x cycle (previous work confirmed finished, P0 renotified on the established cadence, publish-image.yml still unverified)
+
+**Previous work finished.** Issue #38's fix confirmed closed; attach clean, 277 commits fast-forwarded, no conflict.
+
+**P0 #37 unchanged, renotified.** `fulfil-orders.yml` still fails every run (latest #3017, 12:04 UTC, same "Deliver" step), now 3h+ since 09:12 UTC with zero Phil action. Gap since the last ping (~11:2x) matched the established ~50-minute cadence, so sent a fourth push with the one-line fix and issue #37 link rather than holding again.
+
+**Not verified this cycle:** the dispatched `publish-image.yml` run (#517) sat on "Preflight" for 20+ minutes without completing; local `preflight.py` fast likewise stuck on `gate_tests`. Reported unchecked, not assumed clean, per CLAUDE.md 0.4.
+
+**Handoff unchanged:** cheap/budget/DIY query cluster (`BACKLOG-2026-09-07.md`) remains the operator's, hours-sized.
+
+Pushed to main. Command deck only.
+
 ## Scheduled operator cycle, 2026-10-02, 12:0x (unblocked publish-image.yml, which had been failing every build since 09:07 UTC)
 
 **Did:** Unshallowed and attached clean (`git fetch --unshallow`, `checkout main`, `merge --ff-only`, no unrelated-history error). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. Ran `preflight.py` fast per STEP 2: it failed, 10 gates, so fixing it became this cycle's work rather than picking a backlog item.
