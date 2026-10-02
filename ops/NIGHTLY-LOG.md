@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, addendum: the backgrounded preflight run this slot left unchecked finished; one real, transient FAIL, already resolved by a concurrent cycle before this one's own push
+
+The full `preflight.py` left running past the 03:4x PM entry below finished with `1 gate(s) failed, 28 warning(s)`, exit code 1: `gate_no_stale_hardcoded_stripe_link` found 1 hardcoded `buy.stripe.com` link that did not match `data.js`'s own catalogue at the moment that gate ran (within the first few seconds of the backgrounded process, against the tree as it stood at 03:45, before this cycle's own commit).
+
+**Confirmed, not assumed, that it is not live on the tree this cycle actually shipped.** A concurrent cycle landed several catalog-shaped commits while this preflight ran in the background (retiring the 7 Kitchen zone packs, retiring 6 Area Bundles and 15 Situation Kits, shipping the $49 Complete Digital Bundle page) and `ops/ship.py`'s own rebase-onto-origin carried them in before this cycle's commit (`b42cd686b`) was pushed. Re-ran both the pure-logic check (`stale_hardcoded_stripe_links`) and the real gate function (`gate_no_stale_hardcoded_stripe_link`) directly against current `HEAD`: 0 bad links, gate passes clean. The FAIL was real for the instant it was read, and has already been overtaken by independent, unrelated work rather than by anything in this cycle fixing it; recorded here instead of claimed as a win, and instead of staying silent now that the number has changed.
+
+Not re-run as a full preflight (the 13-minute `gate_tests` pole already ran once this slot; every other gate it reported was a warning, not a FAIL). If a future cycle sees this same gate FAIL again, verify against current `HEAD` first, the way this entry did, rather than assuming the 03:45 read still holds.
+
 ## PM check-in, 2026-10-02 (03:4x cycle, reaffirmed the standing handoff, no new defect)
 
 NEXT FOR THE OPERATOR: Guest Bedroom, content-level visitor read lane, unchanged from the 2026-10-01 15:1x handoff, because the 03:1x cycle's 12-hour outage meant nobody started it yet.
