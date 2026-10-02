@@ -91,6 +91,50 @@ existing zone page gained one heading and one sentence). IndexNow not
 applicable from this sandbox (no egress); the next successful
 `hourly-brief.yml` run picks up the changed URL.
 
+## PM check-in, 2026-10-02, 20:2x cycle (previous work finished; closed a stale P0 citation in STATUS.md instead of starting something new)
+
+**Previous work was finished.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 393 commits, no conflict). Working tree clean, main in sync with origin both before and after. The 19:4x cycle's own build-id fix (`35ee844c4`) and its full preflight run were real; the unreproduced stripe-link FAIL was logged honestly, not swept aside.
+
+**Found and fixed:** `STATUS.md`'s "Open claims" section still read P0 issue #37 (`fulfil-orders.yml`, undelivered orders) as "still open and still failing." Checked GitHub directly: #37 closed 16:01:47 UTC, already correctly recorded as RESOLVED in STATUS.md section 16. The whole "Open claims" section was 80 lines of landed "Released" notices, none still active, violating the section's own pruning rule. Pruned to a short current-state note; full history stays in `ops/NIGHTLY-LOG.md`/`STATUS-ARCHIVE.md`.
+
+All 9 open GitHub issues remain Phil-blocked (decision/art/TTS); confirmed #39 directly.
+
+**Addendum: the backgrounded full preflight finished, 1 FAIL, same gate as the 19:4x cycle's own unreproduced hit, and this time the real gap behind it got fixed.** `gate_no_stale_hardcoded_stripe_link` (payment-safety: a stale `buy.stripe.com` link reaching a dead or wrong checkout) FAILed once on the full run, started 20:17. Rerun directly in isolation immediately after, both via the gate function itself and a from-scratch reimplementation against live `data.js`: 0 matches, clean. This is the second time today this exact payment-safety gate has FAILed once and not reproduced; the 19:4x cycle hit the identical shape and could not investigate because `fail()` truncates every FAIL message to 150 characters for the console summary, and the one piece of evidence that would explain a transient (which file, which link) was cut off both times before anyone could read it. Rather than log the same unreproducible mystery a third time, fixed the actual gap: FAIL messages in `preflight.py`'s summary now print in full (warn messages stay truncated at 150, they are high-volume and informational); confirmed no test depends on the old truncation, `ast.parse` clean. If this gate FAILs again, the next cycle will finally see which file and which link, rather than losing the evidence a third time. Did not chase the transient itself further without that evidence; no site defect confirmed, none fabricated either. The other 32 warnings on that run are the standing credential/network/sandbox set (no Stripe key, no SSH deploy key, no mail, no egress, the known TTS/video gaps), nothing new.
+
+Pushed `ops/preflight.py`. **Next:** same standing Phil-blocked list; watch for a third occurrence of the stripe-link transient, now with full diagnostic detail if it happens.
+
+## PM check-in, 2026-10-02, 19:4x cycle (previous work finished; handing the operator a real title/heading gap on two already-covered rooms instead of a new content lane)
+
+NEXT FOR THE OPERATOR: give the Entryway and Pantry room pages a heading-level (not just body-text) mention of their household synonyms, because six real gap-tier queries (`foyer design ideas` rank 1, `larder organisation` rank 1, `larder organization and layout` rank 1, `larder organization chart` rank 2, `draw a larder organization chart` rank 3, `entrance hall name` rank 3, all from `ops/keyword-demand.json`) score `gap` against the live scorer even though the content already exists: `site/rooms/entryway.html` and `site/rooms/pantry.html` both carry an "Also called the foyer or the entrance hall" / "Also called the larder" line, landed 2026-10-02 in `c64901cd0`, but it sits in a plain `<p class="also-called">`, and `ops/keyword_demand.py`'s own scorer (verified directly, not assumed) only reads page titles and `<h1>`-`<h3>` text, so it can't see it. This is traffic/distribution work (GOALS.md ordering tier 3), it is cheap (no new page, two existing rooms), and it is a better target than a sixth cycle of the same exhausted stale-tier lane.
+
+**Did not hand off the bigger, equally real finding in the same list:** `attic organization ideas` and `basement organization ideas`/`...pinterest` are rank-1 gap queries with genuine zero coverage (closest match is the About page, 0.00), but Attic and Basement are not among the site's 20 modeled rooms (`mcp/content.json`), so closing them is a new-room buildout on the scale of the B9 epic, not a single operator cycle. Noting it here rather than silently dropping it; it is backlog-sized work, not this handoff.
+
+**Previous work was finished.** Attached clean: repository arrived shallow and detached, `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (local `main` stale, fast-forwarded 387 commits), `merge --ff-only` landed cleanly at `35ee844c4`, no conflict, working tree clean both before and after. Read `GOALS.md`'s own ordering rule, `BACKLOG-2026-09-07.md` sections 2-6, `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries, and `STATUS.md`'s Incidents/Blockers sections. Confirmed 9 GitHub issues open via the REST API directly (not cited): all `decision`/`blocked-on-art`/TTS-blocked (#39), matching the 19:0x operator cycle's own count exactly, none newly Phil-unblocked. 0 open PRs. The 19:0x operator cycle's own handoff (two of four Kitchen/Pantry keyword-gap queries) was genuinely closed, verified against the real scorer by that cycle, and it correctly found no further unblocked item beyond that; confirmed rather than re-litigated.
+
+**Found and fixed one real staleness: `EXECUTIVE-DASHBOARD-LIVE.md` said "Working tree: uncommitted or unpushed work" and cited `df99a6320` as the last commit, both wrong.** Three automated commits (an hourly check-in record, a Bluesky rotation advance, a build-id restamp) landed after the 19:0x cycle's own regeneration without anyone rerunning `ops/dashboard.py`. Re-ran it: `Working tree` now reads "clean, in sync", `Last commit` now `35ee844c4`, commits-7d 1385. Same "document no longer matches reality" class CLAUDE.md asks this check-in to fix on sight.
+
+**Preflight: unchecked at shipping time, said plainly, not claimed clean.** A full `python ops/preflight.py` run was started in the background at the top of this cycle; it was still on `gate_tests` (the slow per-file suite pass, the same bottleneck every cycle today has hit) when this slot's time ran out. The only change this cycle made is a regeneration of three already-generator-owned files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); nothing in that change touches gated logic, but that is a risk assessment, not a result, and is reported as one rather than folded into a false "clean."
+
+**Went well:** verifying the scorer's exact surface (title + h1-h3) directly against the source rather than trusting the keyword-demand doc's own prose description of itself, which only describes the title-only reading and would have mis-stated why these six queries are still gap.
+
+**Did not go well:** `preflight.py`'s full run again did not finish inside one PM slot; same open item as prior cycles today.
+
+**Addendum: closed by a concurrent twin cycle, not this one.** A paired check-in pushed while this entry was being written (below): it ran the same full `preflight.py` to completion, found a real stale `site/build-id.txt` (one content commit behind because that commit skipped `ops/ship.py`), fixed it, and reshipped. This entry's own backgrounded run is superseded, not re-run here; the twin's own account below is the closing word on this cycle's open preflight question.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues: #2/#15/#18/#21/#29/#31/#33/#35/#39). Operator: the foyer/larder/entrance-hall heading-surface fix named above.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page. IndexNow not applicable.
+
+## PM check-in, 2026-10-02, 19:4x cycle (closed the 18:4x cycle's own open loop: ran the full preflight it had only backgrounded and never confirmed)
+
+**Previous work was finished.** Attached clean (fetch, unshallow, ff-only onto `origin/main`, 386 commits, no conflict). The operator's 19:0x cycle (Kitchen/Pantry keyword-gap closure) was pushed and self-verified. 9 GitHub issues unchanged, all decision/art/credential-blocked. No open claims.
+
+**This cycle's own work: the thing the 18:4x cycle left unchecked.** Ran `preflight.py` full, not fast. 2 real FAILs. `build-id`: stale, `site/build-id.txt` one content commit behind because that commit skipped `ops/ship.py`. Fixed with `ops/build_id.py`, reshipped (`35ee844c4`). `no-stale-hardcoded-stripe-link`: did NOT reproduce. Checked the gate's own logic directly (quest.js's hardcoded link matches data.js's catalogue, 0 mismatches) and reran the full preflight a second time clean, 0 FAIL. Recorded as an unreproduced anomaly, not swept aside: if it recurs, the next cycle should capture the full untruncated message (`fail()` truncates to 150 chars) before re-running anything.
+
+**Next:** same standing Phil-blocked list. Nothing new for the operator; watch for a recurrence of the stripe-link gate.
+
+Pushed to main. `site/build-id.txt`, command deck, this entry. No price, product, or page touched.
+
 ## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch`,
