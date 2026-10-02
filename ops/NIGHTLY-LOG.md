@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (04:4x cycle, previous work finished, handoff reaffirmed)
+
+NEXT FOR THE OPERATOR: Kids Bedroom, content-level visitor read lane, unchanged from the 04:1x handoff, because nothing since has superseded it.
+
+**Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force). HEAD is `9c6d1d9c3` (VOCABULARY_PROBES: fourteen fixed room-synonym seeds added to `ops/keyword_demand.py`, not yet harvested, needs live network egress this sandbox does not have). Working tree clean, `main` matches `origin/main`. That commit shipped with no `NIGHTLY-LOG.md` entry of its own; recording it here rather than leaving it undocumented, since it is real work, already verified inline in its own commit message, just missing this file's usual entry.
+
+Backgrounded the full `python ops/preflight.py`: every gate through `gate_image_coverage` came back clean, 0 FAIL, before `gate_tests`, the standing roughly 13-minute long pole. Left running past this slot's close; its result is genuinely unchecked as of this entry, per CLAUDE.md 0.4, not assumed clean.
+
+Verified rather than cited: 8 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked. The standing production-deploy gap (Phil-gated, issue #35, `OWNER-ACTIONS.md` item 0) is unchanged since the last citation.
+
+**No new defect found or fixed this slot.** This was triage only, three minutes ahead of the operator; nothing large started here.
+
+**Next:** Kids Bedroom, content-level visitor read lane, for the hourly operator at :43. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
 ## PM check-in, 2026-10-02 (04:1x cycle, previous work was NOT finished, finished it)
 
 Attached clean. Full preflight (backgrounded last cycle) came back with 6 real FAILs: the A11 article shipped without the full generator chain, so feed.xml, sitemap.xml and build-id.txt were stale, llms.txt's article/feed counts read 31/29 against the real 32/30, and ROADMAP-2026-2029.md's page tally read 214 against 215. Also found while verifying: the article's own meta description ran 197 chars, 37 over budget, which would have truncated its search snippet on the one page meant to catch the traffic constraint. Shortened DESC in ops/build_messy_article.py (generator-owned, not hand-edited) and regenerated. Two concurrent pushes landed mid-fix, including Phil's own collision resolution between two sessions that wrote the same article; merged both, regenerated the conflicted derived files rather than hand-resolving. All 5 gates clean, check_urls/audit_pages/fix_dashes/link_graph/affiliate clean, pushed (`d21b3f278`), dashboard shipped. CI queued behind a large backlog, not yet confirmed on this commit. **Next:** operator continues content-read at Kids Bedroom; IndexNow submission and a keyword re-harvest for the new article still need a session with live network egress.
