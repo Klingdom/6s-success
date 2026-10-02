@@ -15,7 +15,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first.
+Showing the top 80 of 223, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -101,6 +101,8 @@ Ordered by the best rank the phrase reached in any one seed suggestion list, so 
 | 8 | how to attach countertop to vanity | - | How to organize the guest bathroom vanity counter (0.33) |
 
 ## Partial: we are close, and the title does not use their words
+
+Showing the top 60 of 1417.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|

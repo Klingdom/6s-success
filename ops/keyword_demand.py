@@ -527,9 +527,10 @@ def report(payload):
       "`covered` here and invisible on a real result page.\n")
     w("\n---\n")
     w("## Gaps: nothing we publish is titled for these\n")
-    w("Ordered by the best rank the phrase reached in any one seed "
-      "suggestion list, so the top of this list is what an engine predicts "
-      "first.\n")
+    w("Showing the top %d of %d, ordered by the best rank the phrase "
+      "reached in any one seed suggestion list, so the top of this list is "
+      "what an engine predicts first. The full set is in "
+      "`keyword-demand.json`.\n" % (min(80, len(gaps)), len(gaps)))
     w("| Rank | Query | Room | Closest page we have |")
     w("|---|---|---|---|")
     for r in sorted(gaps, key=lambda r: (r["best_rank"], r["query"]))[:80]:
@@ -537,6 +538,7 @@ def report(payload):
           % (r["best_rank"], r["query"], r["room"] or "-",
              r["best_page_title"] or "-", r["coverage"]))
     w("\n## Partial: we are close, and the title does not use their words\n")
+    w("Showing the top %d of %d.\n" % (min(60, len(partial)), len(partial)))
     w("| Rank | Query | Our closest title | Coverage |")
     w("|---|---|---|---|")
     for r in sorted(partial, key=lambda r: (-r["coverage"], r["best_rank"]))[:60]:
