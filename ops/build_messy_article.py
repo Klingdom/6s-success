@@ -303,7 +303,8 @@ def room_blocks():
         c = BY_ID[cid]
         out.append(
             '<h2 id="%s">%s</h2>\n<p>%s</p>\n<p>%s</p>\n'
-            '<p>The cause is usually <b>%s</b>: %s %s '
+            '<p>The cause is usually <b>%s</b>, which means this: %s '
+            'The check, standing in the room: %s '
             '<a href="../rooms/%s">See the %s broken into its micro zones</a>.</p>'
             % (re.sub(r"[^a-z]+", "-", heading.lower()).strip("-"),
                esc(heading), esc(why), esc(then),
