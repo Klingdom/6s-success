@@ -334,6 +334,7 @@ Maintain:
 | LRN-0029 | The query half of Search Console is public, and nobody had looked; the complaint our product answers has no page | SEO / AEO | SUPPORTED | HIGH |
 | LRN-0030 | A test that shells out must prove its interpreter, or the environment answers in place of the code | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0031 | Publishing a measurement to a shared main is itself a work assignment, and two sessions will take it | PROCESS / COORDINATION | SUPPORTED | HIGH |
+| LRN-0032 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1161,6 +1162,50 @@ it in `STATUS.md` in the same commit that records the finding, not when the
 work starts. When it records a gap it does not intend to close, say so
 explicitly, because that is the more useful signal and it is currently never
 given.
+
+#### LRN-0032: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (confirmed directly against the proxy, not inferred)
+**Domain:** ENGINEERING / MEASUREMENT
+**Measured:** 2026-10-02
+
+**Observation.** `ops/keyword_demand.py`'s re-harvest, and `ops/indexnow.py
+--submit` before it, were each reported as blocked by multiple separate
+operator cycles, on separate dates, with the same wording: no network egress
+from this sandbox. `GOALS.md` and `STATUS.md` both recorded the keyword
+re-harvest as "unmeasured, and will be for weeks" as though the wait were
+intrinsic to the measurement. This cycle confirmed the refusal directly (a
+`connect_rejected` from the egress proxy against both `6s-success.com` and
+Google's own autocomplete host) and then asked the next question nobody had:
+is there anywhere in this repository's own infrastructure that already has
+real network access and could run this instead? `hourly-brief.yml` already
+answered yes for IndexNow, months earlier, and nothing generalised that
+answer to the newer tool.
+
+**Why the existing rule did not prevent it.** `CLAUDE.md` 0.2 says not to
+report a problem twice that could have been fixed once. Every cycle that hit
+this wall was, technically, reporting a *fact* (this session cannot reach the
+internet), and each one was true. But the fact being repeated was about the
+session, and the fix available was never phrased as "build a way to take this
+reading from somewhere that can," because the session doing the diagnosing
+could never be the session doing the fixing: it structurally lacks the one
+thing the fix needs. A blocker a session cannot personally clear is easy to
+mistake for a blocker nobody can clear.
+
+**Implication.** When a recurring finding's blocker is "this environment
+cannot reach X," the question to ask is not "can I reach X" (already answered,
+repeatedly, no) but "does this repository already run anything, anywhere,
+that can," before accepting the wait as structural. `hourly-brief.yml`'s own
+IndexNow step was the existence proof the whole time.
+
+**Next action.** `.github/workflows/keyword-demand.yml` now runs the
+re-harvest weekly from a GitHub-hosted runner, with `gate_keyword_demand_not_
+stale` in `ops/preflight.py` holding it to that cadence. The general form of
+this fix, checking whether an existing real-network workflow can carry a
+blocked measurement before writing the measurement off as sandbox-bound for
+weeks, applies to any future tool that turns out to need the same thing.
+
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED

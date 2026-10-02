@@ -17033,6 +17033,82 @@ def gate_cold_read_ledger_entries_not_stale() -> None:
              % (len(stale), "y" if len(stale) == 1 else "ies", detail))
 
 
+KEYWORD_DEMAND_STALE_DAYS = 10
+
+
+def keyword_demand_staleness_problem(payload, now) -> str:
+    """Pure logic behind gate_keyword_demand_not_stale, unit testable
+    without touching the real file or the real clock.
+
+    payload is the parsed ops/keyword-demand.json (or None if the file does
+    not exist or does not parse). now is a tz-aware datetime."""
+    if payload is None:
+        return ("ops/keyword-demand.json does not exist or does not parse, "
+                "so what people actually type has never been read. Run "
+                "`python ops/keyword_demand.py --source both` from a runner "
+                "with real internet access (the ops sandbox this usually "
+                "runs from cannot reach either engine; "
+                ".github/workflows/keyword-demand.yml exists for exactly "
+                "this and can be fired by hand with workflow_dispatch).")
+    checked_at = payload.get("checked_at")
+    if not checked_at:
+        return "ops/keyword-demand.json has no checked_at field."
+    try:
+        when = dt.datetime.strptime(checked_at, "%Y-%m-%dT%H:%M:%SZ").replace(
+            tzinfo=dt.timezone.utc)
+    except ValueError:
+        return "ops/keyword-demand.json's checked_at %r does not parse." % checked_at
+    age_days = (now - when).total_seconds() / 86400
+    if age_days > KEYWORD_DEMAND_STALE_DAYS:
+        return ("ops/keyword-demand.json's reading of what people actually "
+                "type is %.1f days old (checked_at %s), past the %d-day "
+                "ceiling. The weekly keyword-demand.yml workflow should be "
+                "landing a fresh one every run; a gap this wide means it "
+                "stopped firing or stopped succeeding, silently."
+                % (age_days, checked_at, KEYWORD_DEMAND_STALE_DAYS))
+    return ""
+
+
+def gate_keyword_demand_not_stale() -> None:
+    """ops/keyword-demand.json, the only reading this business has of what
+    people actually type before they decide organising is the answer
+    (GOALS.md O1, LRN-0029), must not go quietly stale.
+
+    Found 2026-10-02: the first and only harvest (2026-10-01) sat with no
+    way to ever refresh itself. Every operator cycle tried the re-harvest
+    from the cloud sandbox and hit the same proxy refusal
+    ops/indexnow.py --submit already hits, so GOALS.md and STATUS.md both
+    recorded the re-harvest as "unmeasured, and will be for weeks," as if
+    that were a property of the data rather than of never having built a
+    way to take the reading from somewhere with real network access.
+    .github/workflows/keyword-demand.yml now runs it weekly from a GitHub-
+    hosted runner, which already has ordinary outbound internet (the same
+    fact hourly-brief.yml's own IndexNow step already relies on). This gate
+    is the backstop making sure that workflow is actually landing fresh
+    readings rather than quietly failing to commit.
+
+    A WARNING, not a failure: a stale reading is a measurement gap, not
+    something a customer can feel.
+
+    Proof this can fail: ops/tests/test_gate_keyword_demand_not_stale.py
+    calls keyword_demand_staleness_problem() directly with a payload dated
+    three weeks before `now` and asserts the warning fires by name, then
+    with one dated two days before `now` and asserts it does not, then with
+    payload=None and asserts it fires for a missing file too.
+    """
+    path = os.path.join(ROOT, "ops", "keyword-demand.json")
+    payload = None
+    if os.path.exists(path):
+        try:
+            payload = json.loads(io.open(path, encoding="utf-8").read())
+        except Exception:                                          # noqa: BLE001
+            payload = None
+    problem = keyword_demand_staleness_problem(
+        payload, dt.datetime.now(dt.timezone.utc))
+    if problem:
+        warn("keyword-demand-not-stale", problem)
+
+
 def gate_experiments_blocked_reason_current() -> None:
     """The status report Phil actually reads (ops/status_report.py's text
     output and the PDF ops/status_pdf.py builds from it) must not claim the
@@ -26939,6 +27015,7 @@ def main() -> int:
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
+    run_gate(gate_keyword_demand_not_stale)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)

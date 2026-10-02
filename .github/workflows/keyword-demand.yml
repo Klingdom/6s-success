@@ -1,0 +1,72 @@
+name: Keyword demand
+
+# ops/keyword_demand.py reads what people actually type, straight from
+# Google's and Bing's own public autocomplete endpoints: no account, no key,
+# no Search Console. It is the one instrument this business has for "what do
+# people search before they decide organising is the answer", and it needs
+# real internet access to a non-local destination to work at all.
+#
+# Every operator cycle that tried this from the cloud sandbox this repository
+# is usually run from got the exact same answer: the egress proxy there
+# refuses the destination outright (confirmed directly, not assumed: a
+# connect_rejected from the proxy itself, the same shape --submit on
+# ops/indexnow.py hits, and the same reason hourly-brief.yml's own IndexNow
+# step exists as a separate, real-network runner rather than something each
+# sandbox cycle tries and fails at). GOALS.md and STATUS.md both record the
+# re-harvest this tool's own first reading (2026-10-01) called for as
+# "unmeasured, and will be for weeks" for exactly that reason. A GitHub-
+# hosted runner is not that sandbox: it has ordinary outbound internet, the
+# same fact hourly-brief.yml already relies on for IndexNow.
+#
+# Weekly, not hourly or daily: the tool's own harvest takes several minutes
+# (137 seeds across two engines, a deliberate 0.9 to 1.8 second delay between
+# requests so this looks like one slow reader, not a scraper) and a search
+# engine's autocomplete suggestions for a fixed corpus of room/zone phrases do
+# not meaningfully change day to day. A tighter cadence would spend the
+# engines' patience for no additional signal.
+#
+# No push fallback. Unlike fulfil-orders.yml or the social-draft workflows,
+# a late or skipped week here costs nothing a customer can feel: it is a
+# measurement, not a delivery promise, and ops/preflight.py's own
+# gate_keyword_demand_not_stale is the backstop that notices if a real gap
+# opens up, rather than a same-day push trying to compensate for GitHub's
+# scheduler the way those customer-facing workflows have to.
+#
+# The tool itself refuses to write a partial or blocked harvest over a good
+# one (both canaries must answer, and the error/empty rate must stay under
+# its own ceilings), so a run that could not reach the engines fails this
+# job loudly instead of silently committing nothing or committing garbage.
+
+on:
+  schedule:
+    - cron: '45 9 * * 3'      # Wednesdays, mid-morning UTC
+  workflow_dispatch:
+
+concurrency:
+  group: keyword-demand
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write        # commits ops/keyword-demand.json and the .md report
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Harvest autocomplete demand from Google and Bing
+        run: python ops/keyword_demand.py --source both
+
+      - name: Commit the new reading
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/keyword-demand.json ops/KEYWORD-DEMAND.md
+          git diff --cached --quiet || git commit -m 'Weekly keyword demand harvest'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main

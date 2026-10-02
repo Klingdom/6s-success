@@ -10,7 +10,7 @@ meaningful changes across 6S Success\
 **Primary contributors:** GitHub Manager, Hostinger VPS/Docker Manager,
 DevOps/SRE, Product, Home Quest, Content, Data, Commerce, Services,
 Security, AI/ML, and other domain agents\
-**Last updated:** 2026-09-30
+**Last updated:** 2026-10-02
 
 ------------------------------------------------------------------------
 
@@ -2777,3 +2777,39 @@ cases). All 45 generators re-run and the counts re-checked afterwards: 420 of
 links resolving to zone pages that exist. Deployed and confirmed live:
 `shop.html` 126 of 126 nofollowed, `bedtime` gone from garage, pantry and
 workshop deck pages.
+
+## CHG-2026-0015: The keyword-demand re-harvest no longer waits on a session with network reach
+
+**Date:** 2026-10-02 **Category:** ENGINEERING / MEASUREMENT **Type:** ADDED
+**Impact:** MINOR **Status:** VERIFIED
+
+### Changed
+
+`ops/keyword_demand.py`'s re-harvest of Google's and Bing's autocomplete
+suggestions (the instrument behind `LRN-0029` and `BACKLOG-2026-09-07.md`
+A11) had been reported blocked by several separate operator cycles: the
+cloud sandbox this repository is usually run from has no route to either
+engine. `.github/workflows/keyword-demand.yml` (new) now runs the harvest
+weekly from a GitHub-hosted runner, which already has ordinary outbound
+internet, the same fact `hourly-brief.yml`'s own IndexNow step already
+relies on. New `gate_keyword_demand_not_stale` in `ops/preflight.py` warns
+if a fresh reading has not landed in the last 10 days. `ARCHITECTURE.md`'s
+workflow count and named inventory updated from 12 to 13.
+
+### Why
+
+The repeated finding was about the environment, not the data: the same
+proxy refusal `ops/indexnow.py --submit` already has a real-network
+workaround for. Nothing had generalised that fix to the newer tool, so the
+re-harvest sat recorded as "unmeasured, and will be for weeks" across
+multiple cycles. See `LRN-0032`.
+
+### Verification
+
+New `ops/tests/test_gate_keyword_demand_not_stale.py` (6 cases), fail-then-
+pass proved directly against the real gate function. Existing
+`ops/tests/test_gate_architecture_workflow_count_current.py` updated for the
+new real count (12 to 13) and re-confirmed it still fails on the historical
+defect shape and passes clean on the real file. Full `preflight.py` clean
+after. The harvest itself has not fired yet as of this entry; whether the
+complaint-cluster queries move off `gap` is unverified until its first run.
