@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-10-02, 22:0x (the backgrounded full preflight named below finished clean; it was not hanging, just slow)
+
+The entry directly below this one left a full `preflight.py` run going in the
+background and reported `gate_tests` "still running past 10 minutes" without
+a result. It finished shortly after: **every gate passed, 29 warnings**, all
+of them the same standing sandbox limitations already named throughout
+today (no Stripe credential, no SSH key, no Pillow, no network reach, the 2
+TTS-gated films from issue #39). `gate_ops_test_suite_matches_gate_tests`
+and `gate_tests` itself both passed, confirming all 370 test files did run
+to completion this time rather than hang; the earlier two cycles' own
+15-minute-plus waits were the suite's network-touching cases genuinely
+taking that long to time out one by one, not a stuck process. No FAIL
+anywhere in the output. This does not change anything about the cold-read
+or RISK-0014 finding below, which were independently verified without
+waiting on this run; it closes the one open thread that entry left.
+
+Pushed to main. This entry only.
+
 ## Scheduled operator cycle, 2026-10-02, 21:5x (closed the 21:4x PM check-in's own handoff: cold-read the 27-file stale-ledger lane, 0 defects; reconfirmed RISK-0014 live)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch
