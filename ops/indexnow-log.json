@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-22T15:05:33Z",
-   "mode": "changed",
-   "offered": 189,
-   "accepted": 189,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-22T19:01:31Z",
    "mode": "changed",
    "offered": 1,
@@ -633,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T08:28:39Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -686,7 +686,7 @@
   "https://6s-success.com/articles/why-you-keep-running-out-of-things": "a51b8906261ec5c8",
   "https://6s-success.com/articles/why-you-never-finish-a-zone": "497d77dbfd684452",
   "https://6s-success.com/articles/why-your-house-gets-messy-again": "8cd90203efab7f42",
-  "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "1c475a8b5e9fd38f",
+  "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "da88c415ec0c67d6",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "ed91e28082456419",
   "https://6s-success.com/rooms/entryway": "07366f6c35fdd598",
