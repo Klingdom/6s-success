@@ -118,6 +118,37 @@ ROOM_TEMPLATES = (
     "why is my {room} always messy",
 )
 
+# THE SEEDS DECIDE WHAT CAN BE FOUND, AND OURS CAME FROM OUR OWN VOCABULARY.
+#
+# Found 2026-10-01, after the first harvest. Every seed was built from the
+# twenty room names in content.json plus the sixty hand-written zone search
+# terms, so the harvest could only ever discover phrases that an engine
+# suggests from words WE already use. "master bedroom" does not appear once in
+# 2,622 queries, not because nobody types it, but because nothing asked. The
+# same blind spot covers "foyer", "utility room", "den" and "larder".
+#
+# These are the probe seeds for that. They are not claims that anybody searches
+# these phrases; they are the question, put to the engine, so the next harvest
+# can answer it. Each is a word a household might use for a room this site
+# names differently, and the thing worth reading in the result is whether the
+# engine suggests MORE around the synonym than around our name for it.
+VOCABULARY_PROBES = (
+    "master bedroom organization",
+    "master bathroom organization",
+    "foyer organization ideas",
+    "entrance hall organization",
+    "utility room organization",
+    "larder organization",
+    "den organization ideas",
+    "bonus room organization",
+    "linen closet organization",
+    "coat closet organization",
+    "back porch organization",
+    "basement organization ideas",
+    "attic organization ideas",
+    "walk in closet organization",
+)
+
 STOPWORDS = frozenset("""
 a an and are at be best by can do does for from get good have how i ideas in
 into is it its my of on or should so that the their there these this to too
@@ -166,6 +197,7 @@ def build_seeds():
             seeds.append(tpl.format(room=low))
     for term in zone_terms():
         seeds.append("how to organize " + term)
+    seeds.extend(VOCABULARY_PROBES)
     # Deterministic order so two runs are comparable line by line.
     out, seen = [], set()
     for s in seeds:
