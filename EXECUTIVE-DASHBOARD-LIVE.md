@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 09:30 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-02 09:33 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 2 P0 items still open. |
+| **Overall** | **YELLOW** 3 P0 items still open. |
 | **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-30 21:07 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
+| Open issues | 9 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 28 |
-| Commits (7 days) | 1334 of 5146 total |
+| Commits (7 days) | 1334 of 5148 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `044863b9c` Second-pass cold-read the 38-file 2026-09-26 tier, fix 7 rea |
+| Last commit | `8e0e4777a` Hourly check-in record |
 
 ## Product readiness
 
@@ -57,6 +57,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 ## What needs you
 
 - **Redeploy the site.** Production is serving an older build: 0 of 10 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 114 reviewed pictures and every fix since the last deploy reach nobody.
+- **Add one line (`STRIPE_ALLOW_LIVE: "1"`) to the "Deliver" step's `env:` in `.github/workflows/fulfil-orders.yml`** (2 min). **Added 2026-10-02, PM check-in, actively broken right now, not a one-time gap.** `044863b9c` added a live-write guard to `ops/stripe_fulfil.py` without accounting for this workflow, the one caller that is designed to run unattended against a live key.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
@@ -73,6 +74,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
+| 37 | P0: fulfil-orders.yml now fails every run, paid orders are not being delivered | P0 |
 | 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
