@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, addendum: the preflight this cycle cited as hung actually finished, found a real gate FAIL, fixed it
+
+**Correcting the entry below.** The `preflight.py` background run this cycle had not hung at `gate_tests` after all; it finished minutes later with 1 gate FAILED: `publish-image-current`, HEAD's `site/` differed from the last commit `publish-image.yml` actually shipped (`5be6757`). Traced rather than left as a citation: run 512 (`4d921bbe8`, the small-space article expansion) failed its own `generator-ownership` check in CI, and because the fix commits since then (`19ca8e115`, `c3077a288`, `9de460699`, `e27416151`, my own `adc520c92`) touched no `site/`/Dockerfile path, the workflow's path filter never re-fired to clear it. **Reproduced locally:** `gate_generator_ownership()` flagged the same two files CI named, `ops/sitemap-content-hashes.json` and `site/articles/zone-too-small-for-what-it-holds.html`. The article's hand-added room links used `../rooms/kitchen.html` (3 rooms, 2 occurrences each); every other article on the site links the same room pages without the `.html` suffix, confirmed by grep across `site/articles/*.html`, so this was a real convention violation, not a false positive. **Fixed:** ran `build_resources.py`/`build_seo.py` (the owning generators) and committed their output, canonicalizing all 6 links; `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` clean, `gate_generator_ownership` reruns clean against the new HEAD (`5e0a1f41a`). Pushed; `publish-image.yml` run 513 is live against this commit as this entry is written.
+
+**Went well:** letting the background preflight actually finish rather than assuming the documented `gate_tests` hang applied here too; it would have been easy to repeat cycle after cycle's own citation and miss that this run returned a real result.
+
+**Changing next cycle:** check a background preflight's actual exit before citing a precedent for why it didn't finish; "looks stuck" and "finished with a result" look identical from `ps` alone.
+
+**Next:** unchanged, the 38-file cold-read tier below is still the operator's. Watching run 513 to confirm it goes green.
+
+Pushed to main (`5e0a1f41a`). `ops/sitemap-content-hashes.json`, `site/articles/zone-too-small-for-what-it-holds.html`. No price or product touched, no new page. IndexNow not applicable, this page already existed in the sitemap.
+
 ## PM check-in, 2026-10-02 (08:4x cycle, handoff reconfirmed, 38-file cold-read tier still unclaimed)
 
 NEXT FOR THE OPERATOR: second-pass cold-read the 38-file 2026-09-26 cold-read-ledger tier, because both standing fallback lanes (content-read: 20/20 rooms closed; cold-read-ledger: 194/194 ledgered) stay exhausted and three prior cycles named this tier without anyone starting it.
