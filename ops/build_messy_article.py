@@ -426,6 +426,9 @@ __ROOMS__
 <h2>Common questions</h2>
 __FAQ__
 
+
+<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px"><p class="eyebrow on-deep">If you already know which spot it is</p><h2 style="margin:0 0 10px">Work one zone, with the standard written down</h2><p style="margin:0 0 16px;max-width:62ch">Every zone on this site is free to read and free to work. If you want the standard for all 114 of them in one place, the Whole House Print Pack is 19 dollars and prints at home. If a room keeps fighting back after you have done the work, a <a href="../consulting.html" style="color:#DDA63A">one hour virtual consult</a> is 250 dollars.</p><p style="margin:0"><a data-sku="PACK-HOUSE" class="btn btn-primary" href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="nofollow noopener">The Print Pack, 19 dollars</a><a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">Or work a zone, free</a><a class="btn btn-on-deep btn-sm" style="margin-left:10px" data-sku="CN-VIRTUAL" href="../consulting.html?from=article:why-is-my-house-always-messy">Talk it through, 250 dollars</a></p></section>
+
 <h2>Keep reading</h2>
 <ul style="max-width:62ch">
 <li><a href="why-your-house-gets-messy-again">Why your house gets messy again a week after you clean it</a>, which is the other half of this: not why it is messy now, but why it goes back after you fix it.</li>
