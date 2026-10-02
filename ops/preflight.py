@@ -14390,23 +14390,33 @@ def gate_films_teach_all_six_passes() -> None:
         raw = STAMP.sub(" ", CUE_N.sub(" ", raw))
         return WS.sub(" ", LABEL_RE.sub(" ", _norm(raw)))
 
+    # BOTH ORIENTATIONS, AND THE WIDE ONE IS THE PUBLISHED ONE.
+    #
+    # Until 2026-10-02 this loop only ever opened `slug + ".srt"`, the
+    # vertical cut, so half the library was never checked for pass content
+    # at all. That is the wrong half to skip: ops/youtube_upload.py's own
+    # docstring says only the 16:9 file is ever uploaded, so the captions
+    # this gate was NOT reading are precisely the ones the public sees.
+    # Found when a re-render fixed four vertical captions and left their
+    # wide twins stale, and this gate stayed green through it.
     short, checked = [], 0
     for room, z in _vz.zones():
         slug = _vz.zone_slug(room, z["zone"])
-        path = os.path.join(folder, slug + ".srt")
-        if not os.path.exists(path):
-            continue
-        checked += 1
-        cap = _caption(path)
-        miss = []
-        for k in LABELS:
-            t = WS.sub(" ", LABEL_RE.sub(
-                " ", _norm((z.get("passes") or {}).get(k) or ""))).strip()
-            probe = " ".join(t.split()[:5])
-            if probe and probe not in cap:
-                miss.append(k)
-        if miss:
-            short.append((slug, tuple(miss)))
+        for suffix in ("", "-16x9"):
+            path = os.path.join(folder, slug + suffix + ".srt")
+            if not os.path.exists(path):
+                continue
+            checked += 1
+            cap = _caption(path)
+            miss = []
+            for k in LABELS:
+                t = WS.sub(" ", LABEL_RE.sub(
+                    " ", _norm((z.get("passes") or {}).get(k) or ""))).strip()
+                probe = " ".join(t.split()[:5])
+                if probe and probe not in cap:
+                    miss.append(k)
+            if miss:
+                short.append((slug + suffix, tuple(miss)))
     if not checked:
         warn("films-six-passes", "no zone matched a caption file; UNCHECKED")
         return
@@ -14430,6 +14440,44 @@ def gate_films_teach_all_six_passes() -> None:
     # The allowlist is deleted rather than left empty. A stale exception is a
     # check that cannot fail for the thing it names, and these two zones are
     # now exactly as protected as the other 112.
+    # A RE-SPELLED CORPUS CAN MAKE NARRATION AUDIBLY WRONG, AND ONLY SOMETIMES.
+    #
+    # 2026-10-02: a dialect sweep re-spelled the corpus to American English
+    # after all 114 films had been narrated, leaving 94 of 228 caption files
+    # carrying a word the corpus no longer uses. Almost all of it is
+    # inaudible (grey/gray, labelled/labeled, colour/color, mould/mold,
+    # tyre/tire, fibres/fibers, centre/center). Those films are NOT wrong:
+    # the narration is correct English, the spellings are homophones, and a
+    # caption reading "gray" over audio saying "grey" is still an accurate
+    # transcription of the sound. Re-rendering 47 zones for them would be
+    # hours of compute for nothing anyone can hear.
+    #
+    # Two were different. "jewellery" is not pronounced like "jewelry" and a
+    # US neural voice does not read "draught" as "draft". Those two films
+    # really did say something the corpus no longer says, and were
+    # re-rendered.
+    #
+    # So this checks the audible set only, and fails on it. The inaudible
+    # drift is deliberately not reported at all: a warning nobody can act on
+    # usefully is how a report becomes noise.
+    AUDIBLE_BRITISH = {"jewellery": "jewelry", "jewellry": "jewelry",
+                       "draught": "draft", "draughts": "drafts",
+                       "aluminium": "aluminum", "speciality": "specialty",
+                       "whilst": "while", "aeroplane": "airplane"}
+    audible = []
+    for path in sorted(_glob.glob(os.path.join(folder, "*.srt"))):
+        low = io.open(path, encoding="utf-8", errors="replace").read().lower()
+        for brit, amer in sorted(AUDIBLE_BRITISH.items()):
+            if re.search(r"\b%s\b" % brit, low) and amer not in low:
+                audible.append((os.path.basename(path), brit, amer))
+    if audible:
+        fail("films-six-passes",
+             "%d caption(s) say a word the corpus no longer uses AND that is "
+             "pronounced differently, so the narration itself is stale and "
+             "the film needs re-rendering, not just a caption edit: %s"
+             % (len(audible), "; ".join("%s says %r, corpus says %r"
+                                        % x for x in audible[:4])))
+
     if short:
         fail("films-six-passes",
              "%d of %d film(s) do not teach every pass their zone has, which "
