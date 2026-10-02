@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 11:1x cycle (previous work finished, P0 renotified after 2 hours unresolved, one untracked finding filed as an issue)
+
+**Previous work: finished, verified against CI, not just the local claim.** Reattached cleanly (unshallow, fetch, `checkout main`, `merge --ff-only`, 273 commits fast-forwarded, no conflict). The 10:4x addendum's "8 of 9 fixed, films-six-passes correctly left open" was checked against GitHub's own `checks.yml` run for that commit (`0524f440e`, run 36998515103), not assumed: it completed with 2 FAILs, both already accounted for, neither new: `owner-actions-last-measured-current` (issue #38, its fix would fabricate traffic freshness, correctly left unfixed) and `films-six-passes` (the addendum's own named, TTS-blocked gap). Nothing additional failed.
+
+**Found one real gap: films-six-passes existed only in this log, with no GitHub issue**, unlike its sibling #38. Filed issue #39 with the exact fix command for whoever next holds real TTS/video reach, per CLAUDE.md 28 and 0.8.
+
+**P0 #37 renotified.** `fulfil-orders.yml` has failed every run since 09:12 UTC (confirmed still failing at 11:01 UTC, run #3014, same "Deliver" step). Prior notifications at ~09:4x and ~10:33 with no Phil action since; at ~11:2x, two hours in and roughly the same gap as the first renotify, sent a third push with the exact one-line fix (`STRIPE_ALLOW_LIVE: "1"` in `fulfil-orders.yml`'s Deliver step) and the issue #37 link.
+
+**Verified:** working tree clean before and after; command deck regenerated (`ops/dashboard.py`), 11 open issues now (was 10).
+
+**Next:** issue #37 remains the single highest-value item, Phil's alone. Issue #39 and #38 are both named, both need capability this sandbox lacks. The cheap/budget/DIY content-gap cluster (`BACKLOG-2026-09-07.md`) remains the operator's for a longer slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched; IndexNow not applicable. New GitHub issue: #39.
+
 ## PM check-in, 2026-10-02, addendum (10:4x cycle's own backgrounded full preflight landed after the handoff shipped: 9 gates failed, 8 fixed this cycle, 1 left open and named)
 
 **The previous entry's "finished" was written before the full `preflight.py` run it started had actually completed.** It cleared the documented slow `gate_tests` step several minutes later and reported 9 FAILs. Per STEP 2, this became the cycle's own work rather than standing on the earlier, premature "finished."
