@@ -81,11 +81,11 @@
     "A made bed holding a fitted sheet, a flat sheet or duvet, and two sleeping pillows per person",
     "One throw folded at the foot of the bed",
     "Two complete sheet sets for this bed, one on it and one folded on the linen shelf",
-    "Under the bed holding either nothing or two labelled flat bins",
+    "Under the bed holding either nothing or two labeled flat bins",
     "A clear floor on both sides of the bed all the way to the door",
     "A headboard shelf holding nothing but the lamp"
    ],
-   "done_looks_like": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labelled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
+   "done_looks_like": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labeled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
    "session": "30-45 min",
    "safety_checks": [
     {
@@ -126,7 +126,7 @@
      "A made bed holding a fitted sheet, a flat sheet or duvet, and two sleeping pillows per person",
      "One throw folded at the foot of the bed",
      "Two complete sheet sets for this bed, one on it and one folded on the linen shelf",
-     "Under the bed holding either nothing or two labelled flat bins",
+     "Under the bed holding either nothing or two labeled flat bins",
      "A clear floor on both sides of the bed all the way to the door",
      "A headboard shelf holding nothing but the lamp"
     ],
@@ -299,7 +299,7 @@
    ],
    "the_call": {
     "title": "The perfume you were given",
-    "text": "There are three or four bottles standing up here and you wear one of them. The others were gifts, or they were expensive, or they were who you were five years ago. Fragrance turns. A bottle that has stood open for years smells sharper and flatter than the one you were handed, and one you have not reached for in a full year will not be reached for now. Keep the one you wear and the one you honestly alternate to. The rest go, and the guilt goes with them, because whoever gave it to you wanted you to smell good, not to store glass. The same test sorts the jewellery: worn in the last year stays in the tray, loved but unworn goes to a box in the closet, neither worn nor loved leaves the house."
+    "text": "There are three or four bottles standing up here and you wear one of them. The others were gifts, or they were expensive, or they were who you were five years ago. Fragrance turns. A bottle that has stood open for years smells sharper and flatter than the one you were handed, and one you have not reached for in a full year will not be reached for now. Keep the one you wear and the one you honestly alternate to. The rest go, and the guilt goes with them, because whoever gave it to you wanted you to smell good, not to store glass. The same test sorts the jewelry: worn in the last year stays in the tray, loved but unworn goes to a box in the closet, neither worn nor loved leaves the house."
    },
    "supplies": [
     "Portable cleaning caddy",
@@ -875,7 +875,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewellery box, not starting a second pile",
+     "answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewelry box, not starting a second pile",
      "root_cause": "KC-007"
     },
     {
@@ -1231,7 +1231,7 @@
      "root_cause": "KC-001"
     },
     {
-     "answer": "Winter coats and heavy knits that should have moved to the labelled bin for the off season never actually left the rod",
+     "answer": "Winter coats and heavy knits that should have moved to the labeled bin for the off season never actually left the rod",
      "root_cause": "KC-003"
     },
     {
@@ -2075,8 +2075,8 @@
     "a small repair bag"
    ],
    "steps": [
-    "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewellery) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
-    "Move any jewellery you love but never wear into a box in the closet rather than back onto the top."
+    "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewelry) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
+    "Move any jewelry you love but never wear into a box in the closet rather than back onto the top."
    ],
    "root_causes": [
     "KC-007",
@@ -2318,7 +2318,7 @@
    ],
    "steps": [
     "Photograph the one suit, coat, or pair of shoes that cost real money and has not been worn in a year, list it for sale, and set a thirty-day deadline: unsold, it goes to the charity shop without another conversation.",
-    "Move winter coats and heavy knits that belong in the labelled off-season bin off the rod until you can slide two fingers between every remaining hanger, with a bare stretch left at one end."
+    "Move winter coats and heavy knits that belong in the labeled off-season bin off the rod until you can slide two fingers between every remaining hanger, with a bare stretch left at one end."
    ],
    "root_causes": [
     "RC-014",
@@ -2345,7 +2345,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a phone photographing an unworn suit on a closet rod, a labelled seasonal bin standing nearby with a folded coat going into it",
+    "subject": "a phone photographing an unworn suit on a closet rod, a labeled seasonal bin standing nearby with a folded coat going into it",
     "must_show": [
      "The expensive unworn item has a photograph, a listing, and a thirty-day deadline, and you can slide two fingers between every hanger on the rod with a bare stretch left at the end."
     ],
@@ -2705,7 +2705,7 @@
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
     "Lift the bags and boxes down from the top shelf, dust where a film has been settling onto stored things all year.",
-    "Run a damp cloth the full length of the hanging rod to take off the fuzzy grey film that transfers onto a dark shoulder.",
+    "Run a damp cloth the full length of the hanging rod to take off the fuzzy gray film that transfers onto a dark shoulder.",
     "Lift the shoes off the rack, wipe the shelves clean of grit and dried mud, and wipe the soles before pairs go back."
    ],
    "related": {

@@ -39,7 +39,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="assets/css/site.css?v=7b641704fa">
+<link rel="stylesheet" href="assets/css/site.css?v=a619b92238">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -70,23 +70,23 @@
 .q-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .q-row select{flex:1;min-width:170px;padding:12px 14px;border-radius:10px;
   border:1px solid #E2D8C4;background:#fff;font:inherit;font-size:16px;color:#2B2622}
-/* The card. --s-colour is set per draw from the six-S ramp. This is the
+/* The card. --s-color is set per draw from the six-S ramp. This is the
    screen somebody reads at arm's length while their hands are busy, so every
    size below is bigger than the equivalent site.css text would be, and the
    S the card belongs to is carried by a tinted header band as well as the
-   coloured badge, not by the badge's colour alone. */
-.q-card{position:relative;border:1px solid #E2D8C4;border-top:6px solid var(--s-colour,#BC4B2A);
+   colored badge, not by the badge's color alone. */
+.q-card{position:relative;border:1px solid #E2D8C4;border-top:6px solid var(--s-color,#BC4B2A);
   background:#FBF7EF;border-radius:16px;padding:0 22px 26px;
   box-shadow:0 10px 30px rgba(43,38,34,.08);overflow:hidden}
 .q-headband{margin:0 -22px 18px;padding:18px 22px 14px;
   background:#FBF7EF;
-  background:color-mix(in srgb, var(--s-colour,#BC4B2A) 11%, #FBF7EF)}
+  background:color-mix(in srgb, var(--s-color,#BC4B2A) 11%, #FBF7EF)}
 .q-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .q-badge{font-family:"Inter",Arial,sans-serif;font-size:13px;font-weight:800;
   letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:8px 16px;border-radius:99px}
 .q-count{font-family:"Inter",Arial,sans-serif;font-size:12.5px;color:#6A625A;font-weight:700}
 .q-where{font-family:"Inter",Arial,sans-serif;font-size:13.5px;font-weight:700;
-  letter-spacing:.03em;color:var(--s-colour,#BC4B2A);margin:0}
+  letter-spacing:.03em;color:var(--s-color,#BC4B2A);margin:0}
 .q-purpose{font-family:"Fraunces",Georgia,serif;font-size:24px;line-height:1.24;
   margin:0 0 18px;color:#2B2622;letter-spacing:-.01em;text-wrap:balance;font-weight:600}
 .q-do{font-size:19px;line-height:1.62;color:#2B2622;margin:0 0 20px;white-space:pre-line}
@@ -149,9 +149,9 @@
 .q-spotlight .eyebrow{color:#BC4B2A}
 
 /* Finish screen: what S's this session actually touched, as a small strip of
-   coloured dots rather than a bare number. Counts are read from state, never
+   colored dots rather than a bare number. Counts are read from state, never
    guessed, and the text list beside the dots carries the same information
-   for anyone who cannot use colour to tell them apart. */
+   for anyone who cannot use color to tell them apart. */
 .q-recap{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
 .q-recap span{width:14px;height:14px;border-radius:50%;display:inline-block}
 .q-recap-note{font-size:13.5px;color:#6A625A;margin:0 0 22px}
@@ -243,7 +243,7 @@
 
    Every slot below fixes its own aspect ratio and the markup carries width
    and height, so nothing moves when a file arrives. A missing or still
-   loading image leaves a flat sand-coloured box the same size, which is what
+   loading image leaves a flat sand-colored box the same size, which is what
    an offline visitor sees for a zone they have not opened before. */
 .zpic{display:block;width:100%;aspect-ratio:4/3;background:#EFE7D6;
   border:1px solid #E2D8C4;border-radius:12px;overflow:hidden}
@@ -370,10 +370,10 @@ if ("serviceWorker" in navigator) {
      in .css or .js, script tags included, so removing the old script tag
      without adding this link in its place would have quietly dropped the
      manual from the installed app's offline cache. -->
-<link rel="prefetch" as="script" href="assets/js/quest-data.js?v=9f00e17726">
+<link rel="prefetch" as="script" href="assets/js/quest-data.js?v=6888c30740">
 <script defer src="assets/js/quest-data-symptoms.js?v=3a0cc78904"></script>
 <script defer src="assets/js/photos.js?v=e48aa56387"></script>
-<script defer src="assets/js/quest.js?v=6b3fb90cc8"></script>
+<script defer src="assets/js/quest.js?v=af7b73ad83"></script>
 <script defer src="assets/js/site.js?v=a2d5057788"></script>
 </head>
 <body>

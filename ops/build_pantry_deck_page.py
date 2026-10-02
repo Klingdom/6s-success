@@ -285,7 +285,7 @@ __CSS__
     <p class="eyebrow">Built from the Manual, not around it</p>
     <h2>Five zones, real diagnosis, nothing invented</h2>
     <p>__INTRO__</p>
-    <p>Every card here is real: written from the same source as the Manual and the zone pages, gated so a root cause with no friction pointing at it, or an action nobody's problem needs, cannot ship. None of it is generated placeholder copy. What is missing is photography, which this deck does not pretend to have. A family-coloured panel and the card's own symbol stand where a photograph will eventually go.</p>
+    <p>Every card here is real: written from the same source as the Manual and the zone pages, gated so a root cause with no friction pointing at it, or an action nobody's problem needs, cannot ship. None of it is generated placeholder copy. What is missing is photography, which this deck does not pretend to have. A family-colored panel and the card's own symbol stand where a photograph will eventually go.</p>
   </div>
 </section>
 

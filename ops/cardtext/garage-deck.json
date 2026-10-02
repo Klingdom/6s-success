@@ -218,11 +218,11 @@
     "One shelf per battery system",
     "A charger mounted at the front edge of each shelf",
     "No battery pack sitting on any charger",
-    "Every drill and saw in its case or on a labelled hook",
+    "Every drill and saw in its case or on a labeled hook",
     "Every blade guard down",
     "Bits, blades and sanding discs in the shallow drawer underneath"
    ],
-   "done_looks_like": "One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.",
+   "done_looks_like": "One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labeled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -259,12 +259,12 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a garage shelf system with one shelf per battery platform, a charger mounted at the front edge of each shelf with no pack sitting on it, drills and saws stored in their cases or on labelled hooks with blade guards down, and a shallow drawer underneath holding bits, blades and sanding discs",
+    "subject": "a garage shelf system with one shelf per battery platform, a charger mounted at the front edge of each shelf with no pack sitting on it, drills and saws stored in their cases or on labeled hooks with blade guards down, and a shallow drawer underneath holding bits, blades and sanding discs",
     "must_show": [
      "One shelf per battery system",
      "A charger mounted at the front edge of each shelf",
      "No battery pack sitting on any charger",
-     "Every drill and saw in its case or on a labelled hook",
+     "Every drill and saw in its case or on a labeled hook",
      "Every blade guard down",
      "Bits, blades and sanding discs in the shallow drawer underneath"
     ],
@@ -281,30 +281,30 @@
    "order": 4,
    "difficulty": 2,
    "tagline": "UPRIGHT. DATED. ONLY THIS DRIVEWAY'S CARS.",
-   "objective": "Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.",
+   "objective": "Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labeled, and separate from everything the household touches.",
    "callouts": [
     "Every fluid bottle standing upright on a clean drip tray",
     "Each opened bottle dated on its shoulder",
-    "Jumper cables and tyre gauge together in one bag by the door",
+    "Jumper cables and tire gauge together in one bag by the door",
     "Oily rags sealed inside a closed metal can",
     "Not a single bottle for a car nobody here drives",
     "A dry, ring-free drip tray under every bottle"
    ],
-   "done_looks_like": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tyre gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
+   "done_looks_like": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tire gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
    "session": "45-75 min",
    "safety_checks": [
     {
      "question": "Burn or fire",
-     "text": "Petrol vapour pooling low near the water heater pilot, and polish or oil rags heating in a closed plastic bin."
+     "text": "Petrol vapor pooling low near the water heater pilot, and polish or oil rags heating in a closed plastic bin."
     },
     {
      "question": "Poison, choke, or strangle",
-     "text": "Antifreeze tastes sweet, and a spilled puddle or a decanted unlabelled bottle will kill a dog or a curious child."
+     "text": "Antifreeze tastes sweet, and a spilled puddle or a decanted unlabeled bottle will kill a dog or a curious child."
     }
    ],
    "the_call": {
     "title": "The fluids for the car you no longer own",
-    "text": "The hardest bottles here are the two thirds full ones. They cost real money, they have not gone off, and they fit nothing on your driveway. The rule is that every bottle must match a vehicle parked at this address, and no match means no keep. Offer them this week to the neighbour who drives that model, and take whatever is unclaimed to your council's household hazardous waste collection, never down a drain. Then write the opened date on every bottle from today onward, because the only reason this shelf grew this deep is that nobody could tell which ones were still good, so nothing was ever thrown out."
+    "text": "The hardest bottles here are the two thirds full ones. They cost real money, they have not gone off, and they fit nothing on your driveway. The rule is that every bottle must match a vehicle parked at this address, and no match means no keep. Offer them this week to the neighbor who drives that model, and take whatever is unclaimed to your council's household hazardous waste collection, never down a drain. Then write the opened date on every bottle from today onward, because the only reason this shelf grew this deep is that nobody could tell which ones were still good, so nothing was ever thrown out."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -326,11 +326,11 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a garage automotive shelf holding fluid bottles standing upright on a clean drip tray, jumper cables and a tyre gauge together in one bag by the door, oily rags sealed inside a closed metal can, and no bottle left over for a car that no longer parks here",
+    "subject": "a garage automotive shelf holding fluid bottles standing upright on a clean drip tray, jumper cables and a tire gauge together in one bag by the door, oily rags sealed inside a closed metal can, and no bottle left over for a car that no longer parks here",
     "must_show": [
      "Every fluid bottle standing upright on a clean drip tray",
      "Each opened bottle dated on its shoulder",
-     "Jumper cables and tyre gauge together in one bag by the door",
+     "Jumper cables and tire gauge together in one bag by the door",
      "Oily rags sealed inside a closed metal can",
      "Not a single bottle for a car nobody here drives",
      "A dry, ring-free drip tray under every bottle"
@@ -352,12 +352,12 @@
    "callouts": [
     "Bikes hanging on wall hooks",
     "Bare floor visible beneath the hanging bikes",
-    "One labelled bin per activity",
+    "One labeled bin per activity",
     "This season's kit sitting at the front of the shelf",
     "Every helmet belonging to a head that still wears it",
     "Off-season kit pushed to the back of the shelf"
    ],
-   "done_looks_like": "Bikes on wall hooks with bare floor beneath them, one labelled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
+   "done_looks_like": "Bikes on wall hooks with bare floor beneath them, one labeled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -395,11 +395,11 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a garage sports corner with bikes hanging on wall hooks over bare floor, one labelled bin for each activity, this season's kit at the front of the shelf and last season's pushed behind it, and a row of helmets each sized to a head that still wears it",
+    "subject": "a garage sports corner with bikes hanging on wall hooks over bare floor, one labeled bin for each activity, this season's kit at the front of the shelf and last season's pushed behind it, and a row of helmets each sized to a head that still wears it",
     "must_show": [
      "Bikes hanging on wall hooks",
      "Bare floor visible beneath the hanging bikes",
-     "One labelled bin per activity",
+     "One labeled bin per activity",
      "This season's kit sitting at the front of the shelf",
      "Every helmet belonging to a head that still wears it",
      "Off-season kit pushed to the back of the shelf"
@@ -423,15 +423,15 @@
     "No tool leaning in a corner",
     "The hose coiled on its reel",
     "The reel positioned beside the door the hose goes out of",
-    "Garden chemicals in their original labelled containers",
+    "Garden chemicals in their original labeled containers",
     "The chemical shelf latched above head height"
    ],
-   "done_looks_like": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labelled containers behind a latch above head height.",
+   "done_looks_like": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labeled containers behind a latch above head height.",
    "session": "60-90 min",
    "safety_checks": [
     {
      "question": "Poison, choke, or strangle",
-     "text": "Concentrated weed killer decanted into an unlabelled bottle, and slug pellets or granular feed left where a dog can reach and will eat them."
+     "text": "Concentrated weed killer decanted into an unlabeled bottle, and slug pellets or granular feed left where a dog can reach and will eat them."
     },
     {
      "question": "Fall, cut, or crush",
@@ -440,7 +440,7 @@
    ],
    "the_call": {
     "title": "The half-used chemicals",
-    "text": "The shelf holds a bag of feed with the top rolled over, a jug of concentrate that moved here from your last house, and something in an unlabelled sprayer that you are fairly confident is weed killer. Start with the unlabelled one, because it is the easy call: you cannot safely use what you cannot name, so it goes to hazardous waste this month without being opened again. For the rest, apply one season of intent. If you will not genuinely use it before the next growing season ends, you are storing a poison above your children's heads for no reason. Take it to a hazardous waste day, or offer it to a neighbour in its own labelled container. Never pour any of it down a drain, into a gutter, or onto the ground behind the shed."
+    "text": "The shelf holds a bag of feed with the top rolled over, a jug of concentrate that moved here from your last house, and something in an unlabeled sprayer that you are fairly confident is weed killer. Start with the unlabeled one, because it is the easy call: you cannot safely use what you cannot name, so it goes to hazardous waste this month without being opened again. For the rest, apply one season of intent. If you will not genuinely use it before the next growing season ends, you are storing a poison above your children's heads for no reason. Take it to a hazardous waste day, or offer it to a neighbor in its own labeled container. Never pour any of it down a drain, into a gutter, or onto the ground behind the shed."
    },
    "supplies": [
     "Compact vacuum with attachments",
@@ -465,13 +465,13 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a garage garden corner with every long-handled tool hanging head-up on a wall rail, nothing leaning in a corner, a hose coiled on its reel beside the door it goes out of, and garden chemicals standing in their original labelled containers behind a latched shelf above head height",
+    "subject": "a garage garden corner with every long-handled tool hanging head-up on a wall rail, nothing leaning in a corner, a hose coiled on its reel beside the door it goes out of, and garden chemicals standing in their original labeled containers behind a latched shelf above head height",
     "must_show": [
      "Every long-handled tool hanging head-up on the rail",
      "No tool leaning in a corner",
      "The hose coiled on its reel",
      "The reel positioned beside the door the hose goes out of",
-     "Garden chemicals in their original labelled containers",
+     "Garden chemicals in their original labeled containers",
      "The chemical shelf latched above head height"
     ],
     "must_show_kind": "objects",
@@ -489,14 +489,14 @@
    "tagline": "LABELLED. DATED. HEAVIEST BINS DOWN LOW.",
    "objective": "Holds the things you genuinely need once or twice a year, high up and out of the way, without becoming the place decisions go to hide.",
    "callouts": [
-    "Every overhead bin labelled large enough to read from the slab",
+    "Every overhead bin labeled large enough to read from the slab",
     "A last-opened month and year marked on the end of each bin",
     "The heaviest bins on the lowest rack",
     "Lighter bulky items on the highest rack",
     "Nothing overhanging the parking bay",
     "A small map taped beside the light switch"
    ],
-   "done_looks_like": "Every overhead bin labelled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
+   "done_looks_like": "Every overhead bin labeled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -535,7 +535,7 @@
     "framing": "Zone",
     "subject": "a garage overhead storage rack with large labels on every bin readable from the slab below, the heaviest bins on the lowest rack and light bulky items highest, nothing overhanging the parking bay, and a small map taped beside the light switch",
     "must_show": [
-     "Every overhead bin labelled large enough to read from the slab",
+     "Every overhead bin labeled large enough to read from the slab",
      "A last-opened month and year marked on the end of each bin",
      "The heaviest bins on the lowest rack",
      "Lighter bulky items on the highest rack",
@@ -962,7 +962,7 @@
      "root_cause": "KC-009"
     },
     {
-     "answer": "Bottles are unlabelled, so nobody can tell what fits what",
+     "answer": "Bottles are unlabeled, so nobody can tell what fits what",
      "root_cause": "KC-005"
     }
    ],
@@ -1090,7 +1090,7 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "Antifreeze has been decanted into an unlabelled container",
+     "answer": "Antifreeze has been decanted into an unlabeled container",
      "root_cause": "KC-008"
     },
     {
@@ -1110,7 +1110,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a fuel can standing directly beside a bag of garden fertiliser on a low garage shelf, an unlabelled bottle nearby",
+    "subject": "a fuel can standing directly beside a bag of garden fertiliser on a low garage shelf, an unlabeled bottle nearby",
     "must_show": [
      "Something here is a fire or poisoning risk."
     ],
@@ -1178,7 +1178,7 @@
      "root_cause": "KC-009"
     },
     {
-     "answer": "Bins are not labelled, so the nearest one gets used for anything",
+     "answer": "Bins are not labeled, so the nearest one gets used for anything",
      "root_cause": "KC-005"
     },
     {
@@ -1418,7 +1418,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "an unlabelled spray bottle sitting on a garage shelf among garden chemicals, its faded original container long gone",
+    "subject": "an unlabeled spray bottle sitting on a garage shelf among garden chemicals, its faded original container long gone",
     "must_show": [
      "I cannot tell what is in some of these containers."
     ],
@@ -1829,7 +1829,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "a row of unlabelled garage bins on a rack with no way to tell what any one of them holds without climbing up and opening it",
+    "subject": "a row of unlabeled garage bins on a rack with no way to tell what any one of them holds without climbing up and opening it",
     "must_show": [
      "You own it, but you cannot see it, so you buy it again or forget it."
     ],
@@ -2433,11 +2433,11 @@
    "time_target_minutes": 15,
    "players": "1",
    "inputs": [
-    "labelled hooks or bins for each system",
+    "labeled hooks or bins for each system",
     "nothing else beyond fifteen minutes"
    ],
    "steps": [
-    "Give each battery system one shelf, mount its charger at the front edge, take every pack off every charger, put each tool in its case or on a labelled hook with guards down, and put the bits and blades in the shallow drawer.",
+    "Give each battery system one shelf, mount its charger at the front edge, take every pack off every charger, put each tool in its case or on a labeled hook with guards down, and put the bits and blades in the shallow drawer.",
     "Brush or blow the motor vents clear on the tool you use most before it goes back.",
     "Confirm no charger sits directly on the slab where meltwater runs off a car."
    ],
@@ -2506,7 +2506,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a hand lifting a fully charged battery pack off a garage charger on the way to a side door at night, the shelf beside it labelled by system",
+    "subject": "a hand lifting a fully charged battery pack off a garage charger on the way to a side door at night, the shelf beside it labeled by system",
     "must_show": [
      "Everyone in the house can say when a full pack comes off the charger, and the shelf has room for it to move to."
     ],
@@ -2535,7 +2535,7 @@
    "steps": [
     "Stand every bottle upright on one wipeable tray, write today's date on the shoulder of each one you have opened, bin anything that fits no car on this driveway, and put the oily rags in a metal can with a lid.",
     "Check the tray itself for a fresh ring before you set the bottles back on it.",
-    "Coil the jumper cables and put them, with the tyre gauge, in one bag by the door."
+    "Coil the jumper cables and put them, with the tire gauge, in one bag by the door."
    ],
    "root_causes": [
     "RC-015",
@@ -2582,7 +2582,7 @@
    "steps": [
     "Check every container for a weeping cap or a spreading stain underneath it.",
     "Move petrol, or any can that has ever held it, well clear of the water heater's pilot flame.",
-    "Confirm nothing has been decanted into an unlabelled bottle, and relabel anything that has.",
+    "Confirm nothing has been decanted into an unlabeled bottle, and relabel anything that has.",
     "Work oil-absorbent granules into any fresh stain on the slab and sweep it clean."
    ],
    "root_causes": [
@@ -2599,14 +2599,14 @@
     "zone": "GAZ-004",
     "standard": "GAS-004"
    },
-   "victory_condition": "No container is seeping, nothing flammable sits near a flame, and every bottle is labelled for what it actually holds.",
+   "victory_condition": "No container is seeping, nothing flammable sits near a flame, and every bottle is labeled for what it actually holds.",
    "next_card": "GAA-007",
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
     "subject": "a garage automotive shelf with a fuel can stored well away from a water heater, oil-absorbent granules worked into a stain on the concrete floor nearby",
     "must_show": [
-     "No container is seeping, nothing flammable sits near a flame, and every bottle is labelled for what it actually holds."
+     "No container is seeping, nothing flammable sits near a flame, and every bottle is labeled for what it actually holds."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2631,7 +2631,7 @@
    ],
    "steps": [
     "Hang the bikes on wall hooks and clear the floor beneath them, label one bin per activity this household currently plays, move this season's kit to the front of the shelf, and try every helmet on the head it belongs to.",
-    "Retire any helmet that has taken a real impact or is past the date moulded inside it, even if the shell looks fine.",
+    "Retire any helmet that has taken a real impact or is past the date molded inside it, even if the shell looks fine.",
     "Confirm the bike hooks are driven into studs, not drywall."
    ],
    "root_causes": [
@@ -2646,14 +2646,14 @@
     "zone": "GAZ-005",
     "standard": "GAS-005"
    },
-   "victory_condition": "Bikes hanging over bare floor, one labelled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it.",
+   "victory_condition": "Bikes hanging over bare floor, one labeled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it.",
    "next_card": "GAS-005",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "garage bikes hanging on wall hooks over bare floor, a row of labelled bins for different sports, this season's kit sitting at the front of the shelf",
+    "subject": "garage bikes hanging on wall hooks over bare floor, a row of labeled bins for different sports, this season's kit sitting at the front of the shelf",
     "must_show": [
-     "Bikes hanging over bare floor, one labelled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it."
+     "Bikes hanging over bare floor, one labeled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2719,7 +2719,7 @@
    "six_s": "Safety",
    "tagline": "15 MINUTES. 1.",
    "objective": "Hang every long-handled tool head-up on the rail, coil the hose onto its reel, and move every garden chemical behind a latch above head height.",
-   "why_it_matters": "A rake leaning in a corner falls on somebody eventually, and a decanted weed killer in an unlabelled bottle within reach is the single most dangerous ordinary object most garages hold.",
+   "why_it_matters": "A rake leaning in a corner falls on somebody eventually, and a decanted weed killer in an unlabeled bottle within reach is the single most dangerous ordinary object most garages hold.",
    "time_target_minutes": 15,
    "players": "1",
    "inputs": [
@@ -2743,14 +2743,14 @@
     "zone": "GAZ-006",
     "standard": "GAS-006"
    },
-   "victory_condition": "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labelled, latched and above head height.",
+   "victory_condition": "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labeled, latched and above head height.",
    "next_card": "GAS-006",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a garage tool rail holding every long-handled garden tool head-up, a hose coiled on its reel beside a door, a latched cupboard above head height holding labelled chemical containers",
+    "subject": "a garage tool rail holding every long-handled garden tool head-up, a hose coiled on its reel beside a door, a latched cupboard above head height holding labeled chemical containers",
     "must_show": [
-     "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labelled, latched and above head height."
+     "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labeled, latched and above head height."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2774,9 +2774,9 @@
     "a marker for relabelling"
    ],
    "steps": [
-    "Start with anything unlabelled or unreadable and take it straight to household hazardous waste this month, unopened again.",
+    "Start with anything unlabeled or unreadable and take it straight to household hazardous waste this month, unopened again.",
     "For everything else, ask honestly whether it will genuinely be used before the next growing season ends.",
-    "Offer anything you won't use to a neighbour in its own original container.",
+    "Offer anything you won't use to a neighbor in its own original container.",
     "Confirm the chemical shelf carries nothing but garden chemicals, nothing else stored alongside them."
    ],
    "root_causes": [
@@ -2798,7 +2798,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a hazardous waste bag beside a garden chemical shelf in a garage, one relabelled bottle standing clearly apart from an unlabelled one being carried out",
+    "subject": "a hazardous waste bag beside a garden chemical shelf in a garage, one relabeled bottle standing clearly apart from an unlabeled one being carried out",
     "must_show": [
      "Every remaining chemical is named, in date for one growing season, and stored on a shelf holding nothing else."
     ],
@@ -3159,7 +3159,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a garage shelf system with one shelf per battery platform, a charger mounted at the front edge of each shelf with no pack sitting on it, drills and saws stored in their cases or on labelled hooks with blade guards down, and a shallow drawer underneath holding bits, blades and sanding discs, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a garage shelf system with one shelf per battery platform, a charger mounted at the front edge of each shelf with no pack sitting on it, drills and saws stored in their cases or on labeled hooks with blade guards down, and a shallow drawer underneath holding bits, blades and sanding discs, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -3187,7 +3187,7 @@
    "micro_quest": [
     "Lift one fluid bottle and confirm the opened date sits on its shoulder.",
     "Check the drip tray under the bottles for a fresh ring.",
-    "Confirm the jumper cables and tyre gauge sit together in one bag by the door."
+    "Confirm the jumper cables and tire gauge sit together in one bag by the door."
    ],
    "related": {
     "zone": "GAZ-004",
@@ -3199,7 +3199,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a garage automotive shelf holding fluid bottles standing upright on a clean drip tray, jumper cables and a tyre gauge together in one bag by the door, oily rags sealed inside a closed metal can, and no bottle left over for a car that no longer parks here, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a garage automotive shelf holding fluid bottles standing upright on a clean drip tray, jumper cables and a tire gauge together in one bag by the door, oily rags sealed inside a closed metal can, and no bottle left over for a car that no longer parks here, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -3226,7 +3226,7 @@
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
     "Lift a bike off its wall hook and confirm the floor beneath it is bare.",
-    "Check one labelled bin and confirm the name on it matches a person who still plays that sport.",
+    "Check one labeled bin and confirm the name on it matches a person who still plays that sport.",
     "Try on one helmet and confirm it still fits the head that wears it."
    ],
    "related": {
@@ -3239,7 +3239,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a garage sports corner with bikes hanging on wall hooks over bare floor, one labelled bin for each activity, this season's kit at the front of the shelf and last season's pushed behind it, and a row of helmets each sized to a head that still wears it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a garage sports corner with bikes hanging on wall hooks over bare floor, one labeled bin for each activity, this season's kit at the front of the shelf and last season's pushed behind it, and a row of helmets each sized to a head that still wears it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -3279,7 +3279,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a garage garden corner with every long-handled tool hanging head-up on a wall rail, nothing leaning in a corner, a hose coiled on its reel beside the door it goes out of, and garden chemicals standing in their original labelled containers behind a latched shelf above head height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a garage garden corner with every long-handled tool hanging head-up on a wall rail, nothing leaning in a corner, a hose coiled on its reel beside the door it goes out of, and garden chemicals standing in their original labeled containers behind a latched shelf above head height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -3296,7 +3296,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Every overhead bin is labelled to be read from the slab and carries the date it was last opened.",
+   "objective": "Every overhead bin is labeled to be read from the slab and carries the date it was last opened.",
    "trigger": "When a bin comes down, the new date goes on the end of it before it goes back up.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -3366,7 +3366,7 @@
    "zone": null,
    "difficulty": 3,
    "tagline": "THE DAY THAT TESTS IT.",
-   "objective": "A neighbour asks to borrow exactly one screwdriver for twenty minutes, and you need to hand it over and get it back without emptying a drawer.",
+   "objective": "A neighbor asks to borrow exactly one screwdriver for twenty minutes, and you need to hand it over and get it back without emptying a drawer.",
    "tests_zones": [
     "GAZ-002"
    ],
@@ -3383,7 +3383,7 @@
     "framing": "Event",
     "subject": "a hand lifting a single screwdriver off its drawn outline on a garage pegboard wall, the outline plainly visible",
     "must_show": [
-     "A neighbour asks to borrow exactly one screwdriver for twenty minutes, and you need to hand it over and get it back without emptying a drawer."
+     "A neighbor asks to borrow exactly one screwdriver for twenty minutes, and you need to hand it over and get it back without emptying a drawer."
     ],
     "must_show_kind": "condition",
     "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
@@ -3432,7 +3432,7 @@
    "tests_zones": [
     "GAZ-004"
    ],
-   "held_if": "The jumper cables and tyre gauge come off the shelf in one motion, already together in their bag by the door.",
+   "held_if": "The jumper cables and tire gauge come off the shelf in one motion, already together in their bag by the door.",
    "if_it_failed": "If you had to search two shelves for the cables, the automotive standard was not being kept. Draw GAA-007 or GAA-008.",
    "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
    "related": {
@@ -3443,7 +3443,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a hand lifting one bag holding jumper cables and a tyre gauge off a hook by a garage door, ready to leave immediately",
+    "subject": "a hand lifting one bag holding jumper cables and a tire gauge off a hook by a garage door, ready to leave immediately",
     "must_show": [
      "A family member calls from the roadside with a dead battery and needs you to grab the jump leads and go within five minutes."
     ],
@@ -3463,7 +3463,7 @@
    "tests_zones": [
     "GAZ-005"
    ],
-   "held_if": "The labelled bin for that sport is at the front of the shelf, and the helmet fits without a second thought.",
+   "held_if": "The labeled bin for that sport is at the front of the shelf, and the helmet fits without a second thought.",
    "if_it_failed": "If you had to dig past off-season bins or question the helmet, the sports standard was not being kept. Draw GAA-009 or GAA-010.",
    "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
    "related": {
@@ -3474,7 +3474,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a hand pulling one labelled sports bin from the front of a garage shelf, a helmet resting on top of it",
+    "subject": "a hand pulling one labeled sports bin from the front of a garage shelf, a helmet resting on top of it",
     "must_show": [
      "A friend calls with two spare tickets to play this afternoon, and you need the right kit and a helmet that actually fits, in the next ten minutes."
     ],
@@ -3521,7 +3521,7 @@
    "zone": null,
    "difficulty": 3,
    "tagline": "THE DAY THAT TESTS IT.",
-   "objective": "A neighbour's roof leaked and you want to check your own overhead bins for water damage tonight, without a ladder mishap in the dark.",
+   "objective": "A neighbor's roof leaked and you want to check your own overhead bins for water damage tonight, without a ladder mishap in the dark.",
    "tests_zones": [
     "GAZ-007"
    ],
@@ -3536,9 +3536,9 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a person reading a small map taped beside a garage light switch, pointing up at one clearly labelled overhead bin",
+    "subject": "a person reading a small map taped beside a garage light switch, pointing up at one clearly labeled overhead bin",
     "must_show": [
-     "A neighbour's roof leaked and you want to check your own overhead bins for water damage tonight, without a ladder mishap in the dark."
+     "A neighbor's roof leaked and you want to check your own overhead bins for water damage tonight, without a ladder mishap in the dark."
     ],
     "must_show_kind": "condition",
     "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."

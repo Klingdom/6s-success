@@ -400,7 +400,7 @@ main:focus{outline:none}
    and the spine together, never by colour alone: the pass is also named. */
 .hero .cta-row .btn-lg{padding-left:24px;padding-right:24px}
 .hero-card{display:block;width:100%;max-width:440px;background:#FBF7EF;color:var(--ink);
-  border-radius:18px;border-top:7px solid var(--s-colour,#BC4B2A);text-decoration:none;
+  border-radius:18px;border-top:7px solid var(--s-color,#BC4B2A);text-decoration:none;
   box-shadow:0 30px 70px rgba(0,0,0,.38),0 2px 0 rgba(255,255,255,.06) inset;
   transform:rotate(1.2deg);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
 .hero-card:hover,.hero-card:focus-visible{transform:rotate(0deg) translateY(-3px);
@@ -408,7 +408,7 @@ main:focus{outline:none}
 .hero-card:focus-visible{outline:3px solid var(--focus,#F0C674);outline-offset:4px}
 .hero-card > span{display:block}
 .hc-band{padding:18px 24px 14px;background:#FBF7EF;
-  background:color-mix(in srgb,var(--s-colour,#BC4B2A) 14%,#FBF7EF)}
+  background:color-mix(in srgb,var(--s-color,#BC4B2A) 14%,#FBF7EF)}
 .hc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .hc-badge{font-family:var(--sans);font-size:12.5px;font-weight:800;letter-spacing:.1em;
   text-transform:uppercase;padding:7px 14px;border-radius:99px}
@@ -428,7 +428,7 @@ main:focus{outline:none}
 .hc-try::after{content:" \2192"}
 .hc-spine{display:flex;gap:4px}
 .hc-spine i{display:block;width:18px;height:6px;border-radius:3px;background:#E2D8C4}
-.hc-spine i:nth-child(1){background:var(--s-colour,#BC4B2A)}
+.hc-spine i:nth-child(1){background:var(--s-color,#BC4B2A)}
 @media (max-width:900px){.hero-card{transform:none;margin:8px auto 0}}
 @media (prefers-reduced-motion:reduce){.hero-card,.hero-card:hover,.hero-card:focus-visible{transition:none;transform:none}}
 

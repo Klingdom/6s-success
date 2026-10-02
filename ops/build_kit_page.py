@@ -66,7 +66,7 @@ PHASE_ORDER = ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"
 WHY = {
     "Keep, Relocate, Donate, Recycle, Trash container set":
         "Sort is a decision, and a decision needs somewhere to put the answer. "
-        "Five labelled containers turn a vague sort into five clear piles, "
+        "Five labeled containers turn a vague sort into five clear piles, "
         "which is why this comes before any organizer on this page.",
     "Portable cleaning caddy":
         "Every zone gets cleaned, and walking back to the cupboard is the "
@@ -77,7 +77,7 @@ WHY = {
         "zone needs is a crevice tool for the seam where grit collects, not "
         "power on open floor.",
     "Color-coded microfiber cloth set":
-        "Colour coding is a visual control. One colour per job stops the "
+        "Color coding is a visual control. One color per job stops the "
         "bathroom cloth reaching the kitchen counter, and it does that "
         "without anybody having to remember a rule.",
     "Neutral pH multi-surface cleaner":
@@ -87,7 +87,7 @@ WHY = {
         "a finish.",
     "Moisture Absorber or Humidity Monitor":
         "This is the Safety pass in most zones. Damp is what turns a storage "
-        "problem into mould, and it is invisible until it is not, so it gets "
+        "problem into mold, and it is invisible until it is not, so it gets "
         "measured rather than guessed.",
     "Portable label maker":
         "Standardize means the right state is obvious without explanation. A "

@@ -165,13 +165,13 @@ ZONES = {
    "A forearm's width of clear closet rod",
    "Six matching empty hangers on the clear rod",
    "A clear floor square big enough for an open suitcase",
-   "Household bins on the shelf inside labelled lidded boxes",
+   "Household bins on the shelf inside labeled lidded boxes",
    "Nothing loose sitting above head height on the shelf",
    "A strip of tape on the rod marking where the guest section ends",
   ],
   "art": ("a guest closet with a clear stretch of rod holding six "
           "matching empty hangers past a strip of tape, an open floor "
-          "square large enough for a suitcase, and a shelf of labelled "
+          "square large enough for a suitcase, and a shelf of labeled "
           "lidded bins sitting below head height"),
  },
  "Guest Welcome and Work Surface": {
@@ -182,13 +182,13 @@ ZONES = {
    "A clear desk surface with a working lamp",
    "A chair pulled up to the desk",
    "A luggage rack or a taped floor square for the suitcase",
-   "One labelled welcome bin standing on the desk",
+   "One labeled welcome bin standing on the desk",
    "A spare charger, wifi card, water glass, tissues and a folded "
    "blanket visible inside the open bin",
    "A reachable outlet with no cord crossing the floor",
   ],
   "art": ("a guest room desk with a working lamp, a chair pulled up to "
-          "it, a luggage rack beside a taped floor square, one labelled "
+          "it, a luggage rack beside a taped floor square, one labeled "
           "bin open to show a charger, wifi card, water glass and "
           "tissues, and a wall outlet with no cord crossing the floor"),
  },
@@ -725,10 +725,10 @@ ACTIONS = [
   "why": "A heavy box above the rod is a falling-object risk the "
           "moment a hand reaches for a hanger, and a bin on the dark "
           "floor is what a barefoot guest finds first.",
-  "inputs": ["tape for the rod line", "labelled lidded bins"],
+  "inputs": ["tape for the rod line", "labeled lidded bins"],
   "steps": [
    "Move every heavy box off the shelf directly above the rod, and "
-   "repack household storage into labelled lidded bins below head "
+   "repack household storage into labeled lidded bins below head "
    "height.",
    "Clear the closet floor of loose bins so a suitcase has a real "
    "square to sit in.",
@@ -921,7 +921,7 @@ EVENTS = [
   "no unplugging required, leaving the desk clear.",
   "If it took more than one trip or something needed unplugging, the "
   "marked footprint was never honestly set. Draw GBA-010.",
-  "hands lifting a single labelled bin off a guest room desk to leave "
+  "hands lifting a single labeled bin off a guest room desk to leave "
   "it completely clear"),
 ]
 

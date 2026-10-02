@@ -192,13 +192,13 @@ ZONES = {
    "each group",
    "Shoes standing in pairs on the floor rack",
    "A backpack hanging on its own low hook",
-   "One labelled next size box on the top shelf",
+   "One labeled next size box on the top shelf",
   ],
   "art": ("a child's clothing closet with the rod lowered to the child's "
           "own reach, every hanger the same type and facing the same "
           "way, shirts and dresses and jackets grouped with a visible gap "
           "between each group, shoes standing in pairs on a floor rack, a "
-          "backpack on its own low hook, and one labelled next size box "
+          "backpack on its own low hook, and one labeled next size box "
           "on the top shelf"),
  },
  "Dresser Drawers": {
@@ -452,7 +452,7 @@ EXPECTED_DIAGNOSIS = {
                "still matches the child's actual size by the time the "
                "rod clothes run out.",
     "branches": [
-     {"answer": "The stock in that box is ageing out of use unseen, "
+     {"answer": "The stock in that box is aging out of use unseen, "
                 "exactly the way clothes nobody checks on quietly stop "
                 "fitting by the time they're needed", "cause": "KC-011"},
      {"answer": "Nobody's actually opened it and checked the sizing "
@@ -664,7 +664,7 @@ FRICTION_META = [
   "hanger on a closet rod mounted at adult height"),
  ("Clothing Closet", "KBF-011",
   "THE NEXT SIZE BOX HASN'T BEEN OPENED IN A SEASON",
-  "a labelled next size clothing box sitting unopened and dusty on a "
+  "a labeled next size clothing box sitting unopened and dusty on a "
   "closet's top shelf"),
  ("Clothing Closet", "KBF-012",
   "THE BACK WALL AND TOP SHELF HAVEN'T BEEN WIPED IN A YEAR",
@@ -730,7 +730,7 @@ CAUSE_ART = {
            "runs unseen down the hall",
  "KC-010": "a curtain cord hanging in a loop at exactly a toddler's neck "
            "height beside a child's bed",
- "KC-011": "a labelled next size clothing box sitting sealed and "
+ "KC-011": "a labeled next size clothing box sitting sealed and "
            "forgotten on a closet's top shelf",
  "KC-012": "two different folding styles visible in one open dresser "
            "drawer, some clothes standing upright and some lying flat",
@@ -779,7 +779,7 @@ MICRO_QUESTS = {
  ],
  "Clothing Closet": [
   "Wipe the full length of the hanging rod with a damp cloth to lift the "
-  "grey line the sliding hangers leave.",
+  "gray line the sliding hangers leave.",
   "Draw a lint brush over the shoulders of each hanging garment where "
   "dust settles, working straight along the rod.",
   "Run the detail brush along the sliding or bifold door track to clear "
@@ -797,7 +797,7 @@ MICRO_QUESTS = {
   "Turn the backpack over a bin and shake out crumbs and paper, then "
   "wipe its base where a drink once leaked.",
   "Scrub the water bottle's lid threads and drinking valve with a "
-  "detail brush, since that's where mould grows unseen.",
+  "detail brush, since that's where mold grows unseen.",
   "Vacuum the patch of floor under the hooks, then damp mop it if it's a "
   "hard floor, so the morning lane starts clean.",
  ],
@@ -998,9 +998,9 @@ ACTIONS = [
   "minutes": 30, "players": "1", "six_s": "Shine",
   "goal": "Empty the closet completely, wipe the back wall and top "
           "shelf that never get touched, and flag any damp before it "
-          "becomes mould.",
+          "becomes mold.",
   "why": "The one wall you can only see when the closet's empty is "
-         "exactly where damp and mould get a head start, and reaching "
+         "exactly where damp and mold get a head start, and reaching "
          "it at all takes clearing everything else out of the way "
          "first.",
   "inputs": ["a cloth", "a torch", "a calendar reminder"],
@@ -1013,7 +1013,7 @@ ACTIONS = [
    "date on the calendar for it."],
   "causes": ["RC-016", "KC-004", "RC-013"],
   "victory": "The back wall and top shelf are wiped clean with no damp "
-             "or mould found, or any found is flagged, and a calendar "
+             "or mold found, or any found is flagged, and a calendar "
              "date is set for the next check.",
   "next": "KBA-007",
   "art": "a closet emptied completely, a hand wiping the bare back wall "
@@ -1190,7 +1190,7 @@ ACTIONS = [
   "inputs": ["a calendar reminder", "a camera or phone"],
   "steps": [
    "Pick a fixed day each term and put it on a shared calendar.",
-   "Check the next size box's labelled size against how the child "
+   "Check the next size box's labeled size against how the child "
    "measures today, and swap in a new size if it's due.",
    "Retake the made-bed photo and clear anything, a coat, a toy set, a "
    "drawer's worth of clothes, that failed its own honest test all "
@@ -1256,7 +1256,7 @@ EVENTS = [
   "If the next size box hadn't been opened and checked, the whole "
   "morning turns into a scramble. Draw KBA-007.",
   "a child standing at a closet rod holding up a shirt that no longer "
-  "fits, a labelled box open on the shelf above with the next size "
+  "fits, a labeled box open on the shelf above with the next size "
   "visible inside"),
  ("KBE-005", "LAUNDRY DAY BRINGS BACK A FULL BASKET AT ONCE",
   "Laundry day brings back a full basket of clean clothes at once, all "

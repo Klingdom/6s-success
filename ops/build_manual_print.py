@@ -15,7 +15,7 @@ What this does, in order:
                        six-s-disclaimer block near the front of the book.
   4. Print stylesheet  injects a 7 x 10 in paged-media stylesheet: trim, recto and
                        verso margins, folios, running heads, break control,
-                       and a one-colour ink conversion. Screen rendering is
+                       and a one-color ink conversion. Screen rendering is
                        untouched because every rule is inside @media print or an
                        @page block.
   5. Print edition     writes a single self-contained document with the appendices
@@ -585,8 +585,8 @@ def print_css(self_hosted_fonts=False):
               300 pages, which is what makes the book usable open on a shelf
               rather than fighting the spine.
 
-    INK       one colour, black, no fills anywhere. A field manual of this extent
-              is a print-on-demand product, and colour interiors at 350-plus
+    INK       one color, black, no fills anywhere. A field manual of this extent
+              is a print-on-demand product, and color interiors at 350-plus
               pages are not economic. Every panel, chip and table header is
               converted to a rule or an outline, so the file prints correctly
               without depending on print-color-adjust and without any tint that
@@ -605,7 +605,7 @@ def print_css(self_hosted_fonts=False):
     return faces + """
 /* =====================================================================
    THE MICRO ZONE MANUAL - PRINT EDITION
-   Trim 7 x 10 in (178 x 254 mm), portrait, perfect bound, one colour.
+   Trim 7 x 10 in (178 x 254 mm), portrait, perfect bound, one color.
    Screen rendering is untouched: everything below is inside an @page
    block or an @media print block, apart from the two visibility rules
    and the front-matter styling immediately below, which only affect
@@ -775,7 +775,7 @@ def print_css(self_hosted_fonts=False):
   .clean .prod span{background:#fff!important;color:#000!important;border:.5pt solid #000;
             border-radius:0;font-size:7.6pt;padding:.5pt 3pt;margin:0 3pt 3pt 0}
   .clean .inspect li{font-size:9pt;padding-left:11pt;margin:0 0 2pt;break-inside:avoid}
-  /* the magnifier emoji does not belong in a one-colour interior */
+  /* the magnifier emoji does not belong in a one-color interior */
   .clean .inspect li::before{content:"\\2022";font-size:9pt;top:0;left:2pt}
 
   /* ---------- back matter ---------- */

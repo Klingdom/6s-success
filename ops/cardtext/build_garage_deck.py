@@ -146,14 +146,14 @@ ZONES = {
    "One shelf per battery system",
    "A charger mounted at the front edge of each shelf",
    "No battery pack sitting on any charger",
-   "Every drill and saw in its case or on a labelled hook",
+   "Every drill and saw in its case or on a labeled hook",
    "Every blade guard down",
    "Bits, blades and sanding discs in the shallow drawer underneath",
   ],
   "art": ("a garage shelf system with one shelf per battery platform, a "
           "charger mounted at the front edge of each shelf with no pack "
           "sitting on it, drills and saws stored in their cases or on "
-          "labelled hooks with blade guards down, and a shallow drawer "
+          "labeled hooks with blade guards down, and a shallow drawer "
           "underneath holding bits, blades and sanding discs"),
  },
  "Automotive Care Zone": {
@@ -162,13 +162,13 @@ ZONES = {
   "callouts": [
    "Every fluid bottle standing upright on a clean drip tray",
    "Each opened bottle dated on its shoulder",
-   "Jumper cables and tyre gauge together in one bag by the door",
+   "Jumper cables and tire gauge together in one bag by the door",
    "Oily rags sealed inside a closed metal can",
    "Not a single bottle for a car nobody here drives",
    "A dry, ring-free drip tray under every bottle",
   ],
   "art": ("a garage automotive shelf holding fluid bottles standing "
-          "upright on a clean drip tray, jumper cables and a tyre gauge "
+          "upright on a clean drip tray, jumper cables and a tire gauge "
           "together in one bag by the door, oily rags sealed inside a "
           "closed metal can, and no bottle left over for a car that no "
           "longer parks here"),
@@ -179,13 +179,13 @@ ZONES = {
   "callouts": [
    "Bikes hanging on wall hooks",
    "Bare floor visible beneath the hanging bikes",
-   "One labelled bin per activity",
+   "One labeled bin per activity",
    "This season's kit sitting at the front of the shelf",
    "Every helmet belonging to a head that still wears it",
    "Off-season kit pushed to the back of the shelf",
   ],
   "art": ("a garage sports corner with bikes hanging on wall hooks over "
-          "bare floor, one labelled bin for each activity, this season's "
+          "bare floor, one labeled bin for each activity, this season's "
           "kit at the front of the shelf and last season's pushed behind "
           "it, and a row of helmets each sized to a head that still "
           "wears it"),
@@ -198,20 +198,20 @@ ZONES = {
    "No tool leaning in a corner",
    "The hose coiled on its reel",
    "The reel positioned beside the door the hose goes out of",
-   "Garden chemicals in their original labelled containers",
+   "Garden chemicals in their original labeled containers",
    "The chemical shelf latched above head height",
   ],
   "art": ("a garage garden corner with every long-handled tool hanging "
           "head-up on a wall rail, nothing leaning in a corner, a hose "
           "coiled on its reel beside the door it goes out of, and garden "
-          "chemicals standing in their original labelled containers "
+          "chemicals standing in their original labeled containers "
           "behind a latched shelf above head height"),
  },
  "Bulk and Overhead Storage": {
   "id": "GAZ-007", "order": 7, "difficulty": 3,
   "tagline": "LABELLED. DATED. HEAVIEST BINS DOWN LOW.",
   "callouts": [
-   "Every overhead bin labelled large enough to read from the slab",
+   "Every overhead bin labeled large enough to read from the slab",
    "A last-opened month and year marked on the end of each bin",
    "The heaviest bins on the lowest rack",
    "Lighter bulky items on the highest rack",
@@ -283,7 +283,7 @@ FRICTION_META = [
   "cables"),
  ("Automotive Care Zone", "GAF-013", "ONE SHELF AWAY FROM A BAD NIGHT",
   "a fuel can standing directly beside a bag of garden fertiliser on a "
-  "low garage shelf, an unlabelled bottle nearby"),
+  "low garage shelf, an unlabeled bottle nearby"),
 
  ("Sports and Recreation Zone", "GAF-014",
   "THREE THINGS MOVED BEFORE ONE BIKE COMES OUT",
@@ -309,7 +309,7 @@ FRICTION_META = [
   "a garden hose tangled in loose coils on a garage floor near the "
   "door, a thin stream of water leaking from a split near one end"),
  ("Lawn and Garden Tool Zone", "GAF-020", "A BOTTLE NOBODY CAN NAME",
-  "an unlabelled spray bottle sitting on a garage shelf among garden "
+  "an unlabeled spray bottle sitting on a garage shelf among garden "
   "chemicals, its faded original container long gone"),
  ("Lawn and Garden Tool Zone", "GAF-021", "WITHIN REACH OF A CURIOUS HAND",
   "a bag of granular garden feed sitting on an open, unlatched garage "
@@ -349,7 +349,7 @@ CAUSE_ART = {
            "anywhere near the mower it actually feeds",
  "KC-004": "a hand lifting three stacked bins off a garage shelf just to "
            "reach the one tool at the very back",
- "KC-005": "a row of unlabelled garage bins on a rack with no way to "
+ "KC-005": "a row of unlabeled garage bins on a rack with no way to "
            "tell what any one of them holds without climbing up and "
            "opening it",
  "KC-006": "a garage shelf mounted out of easy reach, a wobbling step "
@@ -413,13 +413,13 @@ MICRO_QUESTS = {
   "Lift one fluid bottle and confirm the opened date sits on its "
   "shoulder.",
   "Check the drip tray under the bottles for a fresh ring.",
-  "Confirm the jumper cables and tyre gauge sit together in one bag by "
+  "Confirm the jumper cables and tire gauge sit together in one bag by "
   "the door.",
  ],
  "Sports and Recreation Zone": [
   "Lift a bike off its wall hook and confirm the floor beneath it is "
   "bare.",
-  "Check one labelled bin and confirm the name on it matches a person "
+  "Check one labeled bin and confirm the name on it matches a person "
   "who still plays that sport.",
   "Try on one helmet and confirm it still fits the head that wears it.",
  ],
@@ -578,12 +578,12 @@ ACTIONS = [
          "room whose failure cannot be undone by tidying afterward, and "
          "mixing platforms on one shelf is why the wrong pack keeps "
          "going to the wrong tool.",
-  "inputs": ["labelled hooks or bins for each system",
+  "inputs": ["labeled hooks or bins for each system",
              "nothing else beyond fifteen minutes"],
   "steps": [
    "Give each battery system one shelf, mount its charger at the front "
    "edge, take every pack off every charger, put each tool in its case "
-   "or on a labelled hook with guards down, and put the bits and blades "
+   "or on a labeled hook with guards down, and put the bits and blades "
    "in the shallow drawer.",
    "Brush or blow the motor vents clear on the tool you use most "
    "before it goes back.",
@@ -623,7 +623,7 @@ ACTIONS = [
   "next": "GAA-005",
   "art": "a hand lifting a fully charged battery pack off a garage "
          "charger on the way to a side door at night, the shelf beside "
-         "it labelled by system"},
+         "it labeled by system"},
 
  {"id": "GAA-007", "zone": "Automotive Care Zone",
   "title": "STAND, DATE, AND MATCH TO THE DRIVEWAY", "minutes": 15,
@@ -643,7 +643,7 @@ ACTIONS = [
    "a lid.",
    "Check the tray itself for a fresh ring before you set the bottles "
    "back on it.",
-   "Coil the jumper cables and put them, with the tyre gauge, in one "
+   "Coil the jumper cables and put them, with the tire gauge, in one "
    "bag by the door."],
   "causes": ["RC-015", "KC-009"],
   "victory": "Every bottle upright and dated on one tray, nothing for a "
@@ -669,13 +669,13 @@ ACTIONS = [
    "underneath it.",
    "Move petrol, or any can that has ever held it, well clear of the "
    "water heater's pilot flame.",
-   "Confirm nothing has been decanted into an unlabelled bottle, and "
+   "Confirm nothing has been decanted into an unlabeled bottle, and "
    "relabel anything that has.",
    "Work oil-absorbent granules into any fresh stain on the slab and "
    "sweep it clean."],
   "causes": ["KC-008", "RC-016", "KC-010"],
   "victory": "No container is seeping, nothing flammable sits near a "
-             "flame, and every bottle is labelled for what it actually "
+             "flame, and every bottle is labeled for what it actually "
              "holds.",
   "next": "GAA-007",
   "art": "a garage automotive shelf with a fuel can stored well away "
@@ -700,15 +700,15 @@ ACTIONS = [
    "this season's kit to the front of the shelf, and try every helmet "
    "on the head it belongs to.",
    "Retire any helmet that has taken a real impact or is past the date "
-   "moulded inside it, even if the shell looks fine.",
+   "molded inside it, even if the shell looks fine.",
    "Confirm the bike hooks are driven into studs, not drywall."],
   "causes": ["KC-004", "KC-008"],
-  "victory": "Bikes hanging over bare floor, one labelled bin per sport "
+  "victory": "Bikes hanging over bare floor, one labeled bin per sport "
              "still played, this season's kit at the front, and every "
              "helmet fitting a head that still wears it.",
   "next": "GAS-005",
   "art": "garage bikes hanging on wall hooks over bare floor, a row of "
-         "labelled bins for different sports, this season's kit sitting "
+         "labeled bins for different sports, this season's kit sitting "
          "at the front of the shelf"},
 
  {"id": "GAA-010", "zone": "Sports and Recreation Zone",
@@ -747,7 +747,7 @@ ACTIONS = [
           "hose onto its reel, and move every garden chemical behind a "
           "latch above head height.",
   "why": "A rake leaning in a corner falls on somebody eventually, and "
-         "a decanted weed killer in an unlabelled bottle within reach "
+         "a decanted weed killer in an unlabeled bottle within reach "
          "is the single most dangerous ordinary object most garages "
          "hold.",
   "inputs": ["a wall rail with enough hooks",
@@ -763,12 +763,12 @@ ACTIONS = [
    "cutting ends pointing away from the aisle."],
   "causes": ["KC-007", "KC-002"],
   "victory": "Nothing leaning in a corner, a hose on its reel by the "
-             "right door, and every chemical labelled, latched and "
+             "right door, and every chemical labeled, latched and "
              "above head height.",
   "next": "GAS-006",
   "art": "a garage tool rail holding every long-handled garden tool "
          "head-up, a hose coiled on its reel beside a door, a latched "
-         "cupboard above head height holding labelled chemical "
+         "cupboard above head height holding labeled chemical "
          "containers"},
 
  {"id": "GAA-012", "zone": "Lawn and Garden Tool Zone",
@@ -782,11 +782,11 @@ ACTIONS = [
          "stored above a child's head for no working reason.",
   "inputs": ["a hazardous waste bag", "a marker for relabelling"],
   "steps": [
-   "Start with anything unlabelled or unreadable and take it straight "
+   "Start with anything unlabeled or unreadable and take it straight "
    "to household hazardous waste this month, unopened again.",
    "For everything else, ask honestly whether it will genuinely be "
    "used before the next growing season ends.",
-   "Offer anything you won't use to a neighbour in its own original "
+   "Offer anything you won't use to a neighbor in its own original "
    "container.",
    "Confirm the chemical shelf carries nothing but garden chemicals, "
    "nothing else stored alongside them."],
@@ -796,8 +796,8 @@ ACTIONS = [
              "else.",
   "next": "GAA-011",
   "art": "a hazardous waste bag beside a garden chemical shelf in a "
-         "garage, one relabelled bottle standing clearly apart from an "
-         "unlabelled one being carried out"},
+         "garage, one relabeled bottle standing clearly apart from an "
+         "unlabeled one being carried out"},
 
  {"id": "GAA-013", "zone": "Bulk and Overhead Storage",
   "title": "RELABEL, DATE, AND MAP THE OVERHEAD RACK", "minutes": 15,
@@ -956,7 +956,7 @@ EVENTS = [
   "a garage workbench cleared to bare wood at night under a task "
   "light, a door hinge and one hand tool laid out ready to work"),
  ("GAE-002", "THE BORROWED-DRILL SATURDAY",
-  "A neighbour asks to borrow exactly one screwdriver for twenty "
+  "A neighbor asks to borrow exactly one screwdriver for twenty "
   "minutes, and you need to hand it over and get it back without "
   "emptying a drawer.",
   ["GAZ-002"],
@@ -982,22 +982,22 @@ EVENTS = [
   "A family member calls from the roadside with a dead battery and "
   "needs you to grab the jump leads and go within five minutes.",
   ["GAZ-004"],
-  "The jumper cables and tyre gauge come off the shelf in one motion, "
+  "The jumper cables and tire gauge come off the shelf in one motion, "
   "already together in their bag by the door.",
   "If you had to search two shelves for the cables, the automotive "
   "standard was not being kept. Draw GAA-007 or GAA-008.",
-  "a hand lifting one bag holding jumper cables and a tyre gauge off "
+  "a hand lifting one bag holding jumper cables and a tire gauge off "
   "a hook by a garage door, ready to leave immediately"),
  ("GAE-005", "THE SUDDEN INVITE TO PLAY",
   "A friend calls with two spare tickets to play this afternoon, and "
   "you need the right kit and a helmet that actually fits, in the "
   "next ten minutes.",
   ["GAZ-005"],
-  "The labelled bin for that sport is at the front of the shelf, and "
+  "The labeled bin for that sport is at the front of the shelf, and "
   "the helmet fits without a second thought.",
   "If you had to dig past off-season bins or question the helmet, the "
   "sports standard was not being kept. Draw GAA-009 or GAA-010.",
-  "a hand pulling one labelled sports bin from the front of a garage "
+  "a hand pulling one labeled sports bin from the front of a garage "
   "shelf, a helmet resting on top of it"),
  ("GAE-006", "THE FIRST FROST OF THE SEASON",
   "The forecast turns to frost overnight and you need the hose "
@@ -1012,7 +1012,7 @@ EVENTS = [
   "a garden hose coiled on its reel beside a garage door at dusk, "
   "long-handled tools hanging head-up on a rail nearby"),
  ("GAE-007", "THE NEIGHBOUR'S ROOF-LEAK SCARE",
-  "A neighbour's roof leaked and you want to check your own overhead "
+  "A neighbor's roof leaked and you want to check your own overhead "
   "bins for water damage tonight, without a ladder mishap in the "
   "dark.",
   ["GAZ-007"],
@@ -1022,7 +1022,7 @@ EVENTS = [
   "If you had to climb blind or guess which bin was which, the "
   "overhead standard was not being kept. Draw GAA-013 or GAA-014.",
   "a person reading a small map taped beside a garage light switch, "
-  "pointing up at one clearly labelled overhead bin"),
+  "pointing up at one clearly labeled overhead bin"),
 ]
 
 

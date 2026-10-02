@@ -233,7 +233,7 @@
    ],
    "the_call": {
     "title": "The finished schoolwork",
-    "text": "This is the pile you keep moving instead of deciding on: exercise books, paintings, a folder of worksheets, and the flat certainty that binning any of it means you did not care. Take the judgement out of the moment and put it into a container. One memory box per child per school year, an actual box with a lid and a fixed size, kept on the wardrobe top. When it is full it is full, and the way you make room is by taking something out, not by getting a second box. Photograph the oversized art and let the paper go. Keep the pieces where you can genuinely see their hand getting better, because those are the ones worth opening in ten years. The size of the box makes the call so you do not have to make it at nine o'clock on a Tuesday."
+    "text": "This is the pile you keep moving instead of deciding on: exercise books, paintings, a folder of worksheets, and the flat certainty that binning any of it means you did not care. Take the judgment out of the moment and put it into a container. One memory box per child per school year, an actual box with a lid and a fixed size, kept on the wardrobe top. When it is full it is full, and the way you make room is by taking something out, not by getting a second box. Photograph the oversized art and let the paper go. Keep the pieces where you can genuinely see their hand getting better, because those are the ones worth opening in ten years. The size of the box makes the call so you do not have to make it at nine o'clock on a Tuesday."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -285,9 +285,9 @@
     "Shirts, dresses and jackets grouped with a hand's width gap between each group",
     "Shoes standing in pairs on the floor rack",
     "A backpack hanging on its own low hook",
-    "One labelled next size box on the top shelf"
+    "One labeled next size box on the top shelf"
    ],
-   "done_looks_like": "Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labelled box on the top shelf.",
+   "done_looks_like": "Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labeled box on the top shelf.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -301,7 +301,7 @@
    ],
    "the_call": {
     "title": "The outgrown thing you are keeping for someone",
-    "text": "A good part of what is jammed on this rod fits nobody in the house and is not going anywhere, because it is being kept for a younger sibling, a cousin, or a second child who is currently hypothetical. Make the rule concrete: name the child, and name the season they will fit it. If you cannot say both out loud, it is not being stored, it is being deferred, and deferring quietly eats the shelf you were saving. One box per next size, sealed and labelled. When the box is full, the overflow goes now rather than after one more sort. Clothes kept for nobody in particular arrive at the right size stained, dated and unworn anyway."
+    "text": "A good part of what is jammed on this rod fits nobody in the house and is not going anywhere, because it is being kept for a younger sibling, a cousin, or a second child who is currently hypothetical. Make the rule concrete: name the child, and name the season they will fit it. If you cannot say both out loud, it is not being stored, it is being deferred, and deferring quietly eats the shelf you were saving. One box per next size, sealed and labeled. When the box is full, the overflow goes now rather than after one more sort. Clothes kept for nobody in particular arrive at the right size stained, dated and unworn anyway."
    },
    "supplies": [
     "Compact vacuum with attachments",
@@ -325,14 +325,14 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a child's clothing closet with the rod lowered to the child's own reach, every hanger the same type and facing the same way, shirts and dresses and jackets grouped with a visible gap between each group, shoes standing in pairs on a floor rack, a backpack on its own low hook, and one labelled next size box on the top shelf",
+    "subject": "a child's clothing closet with the rod lowered to the child's own reach, every hanger the same type and facing the same way, shirts and dresses and jackets grouped with a visible gap between each group, shoes standing in pairs on a floor rack, a backpack on its own low hook, and one labeled next size box on the top shelf",
     "must_show": [
      "A rod lowered to the child's own reach, no stool needed",
      "Every hanger the same type, all facing the same way",
      "Shirts, dresses and jackets grouped with a hand's width gap between each group",
      "Shoes standing in pairs on the floor rack",
      "A backpack hanging on its own low hook",
-     "One labelled next size box on the top shelf"
+     "One labeled next size box on the top shelf"
     ],
     "must_show_kind": "objects",
     "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
@@ -414,7 +414,7 @@
    "order": 6,
    "difficulty": 1,
    "tagline": "BAG ON THE HOOK. FLOOR COMPLETELY CLEAR.",
-   "objective": "The square metre by the bedroom door where tomorrow morning gets assembled the night before.",
+   "objective": "The square meter by the bedroom door where tomorrow morning gets assembled the night before.",
    "callouts": [
     "A backpack hanging packed and zipped on its own hook",
     "Shoes standing side by side directly underneath the hook",
@@ -926,7 +926,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "The stock in that box is ageing out of use unseen, exactly the way clothes nobody checks on quietly stop fitting by the time they're needed",
+     "answer": "The stock in that box is aging out of use unseen, exactly the way clothes nobody checks on quietly stop fitting by the time they're needed",
      "root_cause": "KC-011"
     },
     {
@@ -950,7 +950,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a labelled next size clothing box sitting unopened and dusty on a closet's top shelf",
+    "subject": "a labeled next size clothing box sitting unopened and dusty on a closet's top shelf",
     "must_show": [
      "The box of next-size-up clothes on the top shelf hasn't been opened in over a season, so nobody knows whether it still matches the child's actual size by the time the rod clothes run out."
     ],
@@ -1635,7 +1635,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "a labelled next size clothing box sitting sealed and forgotten on a closet's top shelf",
+    "subject": "a labeled next size clothing box sitting sealed and forgotten on a closet's top shelf",
     "must_show": [
      "Consumables run out unnoticed, and stock ages out of use unseen."
     ],
@@ -2234,8 +2234,8 @@
    "difficulty": 3,
    "six_s": "Shine",
    "tagline": "30 MINUTES. 1.",
-   "objective": "Empty the closet completely, wipe the back wall and top shelf that never get touched, and flag any damp before it becomes mould.",
-   "why_it_matters": "The one wall you can only see when the closet's empty is exactly where damp and mould get a head start, and reaching it at all takes clearing everything else out of the way first.",
+   "objective": "Empty the closet completely, wipe the back wall and top shelf that never get touched, and flag any damp before it becomes mold.",
+   "why_it_matters": "The one wall you can only see when the closet's empty is exactly where damp and mold get a head start, and reaching it at all takes clearing everything else out of the way first.",
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
@@ -2262,14 +2262,14 @@
     "zone": "KBZ-004",
     "standard": "KBS-004"
    },
-   "victory_condition": "The back wall and top shelf are wiped clean with no damp or mould found, or any found is flagged, and a calendar date is set for the next check.",
+   "victory_condition": "The back wall and top shelf are wiped clean with no damp or mold found, or any found is flagged, and a calendar date is set for the next check.",
    "next_card": "KBA-007",
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
     "subject": "a closet emptied completely, a hand wiping the bare back wall with a torch checking the corner behind where boxes sat",
     "must_show": [
-     "The back wall and top shelf are wiped clean with no damp or mould found, or any found is flagged, and a calendar date is set for the next check."
+     "The back wall and top shelf are wiped clean with no damp or mold found, or any found is flagged, and a calendar date is set for the next check."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2586,7 +2586,7 @@
    ],
    "steps": [
     "Pick a fixed day each term and put it on a shared calendar.",
-    "Check the next size box's labelled size against how the child measures today, and swap in a new size if it's due.",
+    "Check the next size box's labeled size against how the child measures today, and swap in a new size if it's due.",
     "Retake the made-bed photo and clear anything, a coat, a toy set, a drawer's worth of clothes, that failed its own honest test all term."
    ],
    "root_causes": [
@@ -2623,7 +2623,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Every toy family has one open, photo labelled bin at child height, and the carpet is clear enough to lie down on when the light goes off.",
+   "objective": "Every toy family has one open, photo labeled bin at child height, and the carpet is clear enough to lie down on when the light goes off.",
    "trigger": "Floor cleared while the bedtime story is being chosen, every night.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2752,7 +2752,7 @@
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
-    "Wipe the full length of the hanging rod with a damp cloth to lift the grey line the sliding hangers leave.",
+    "Wipe the full length of the hanging rod with a damp cloth to lift the gray line the sliding hangers leave.",
     "Draw a lint brush over the shoulders of each hanging garment where dust settles, working straight along the rod.",
     "Run the detail brush along the sliding or bifold door track to clear the grit that stops it running smoothly."
    ],
@@ -2766,7 +2766,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a child's clothing closet with the rod lowered to the child's own reach, every hanger the same type and facing the same way, shirts and dresses and jackets grouped with a visible gap between each group, shoes standing in pairs on a floor rack, a backpack on its own low hook, and one labelled next size box on the top shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a child's clothing closet with the rod lowered to the child's own reach, every hanger the same type and facing the same way, shirts and dresses and jackets grouped with a visible gap between each group, shoes standing in pairs on a floor rack, a backpack on its own low hook, and one labeled next size box on the top shelf, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2833,7 +2833,7 @@
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
     "Turn the backpack over a bin and shake out crumbs and paper, then wipe its base where a drink once leaked.",
-    "Scrub the water bottle's lid threads and drinking valve with a detail brush, since that's where mould grows unseen.",
+    "Scrub the water bottle's lid threads and drinking valve with a detail brush, since that's where mold grows unseen.",
     "Vacuum the patch of floor under the hooks, then damp mop it if it's a hard floor, so the morning lane starts clean."
    ],
    "related": {
@@ -2970,7 +2970,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a child standing at a closet rod holding up a shirt that no longer fits, a labelled box open on the shelf above with the next size visible inside",
+    "subject": "a child standing at a closet rod holding up a shirt that no longer fits, a labeled box open on the shelf above with the next size visible inside",
     "must_show": [
      "A growth spurt over the summer makes half the clothes on the rod suddenly too small, all discovered on the same school-uniform morning."
     ],

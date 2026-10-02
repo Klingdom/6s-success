@@ -148,12 +148,12 @@
    "callouts": [
     "A bare wooden seat wide enough for two people to sit and lace boots at once",
     "No more than three objects resting on the surface",
-    "One labelled basket at the end of the bench",
+    "One labeled basket at the end of the bench",
     "The basket holding only items that are leaving the house tomorrow",
     "A completely clear floor path in front of the bench",
     "Nothing stored on the shelf directly above the seat"
    ],
-   "done_looks_like": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labelled basket at the end holding only what is leaving tomorrow.",
+   "done_looks_like": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labeled basket at the end holding only what is leaving tomorrow.",
    "session": "15-30 min",
    "safety_checks": [
     {
@@ -189,11 +189,11 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labelled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it",
+    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labeled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it",
     "must_show": [
      "A bare wooden seat wide enough for two people to sit and lace boots at once",
      "No more than three objects resting on the surface",
-     "One labelled basket at the end of the bench",
+     "One labeled basket at the end of the bench",
      "The basket holding only items that are leaving the house tomorrow",
      "A completely clear floor path in front of the bench",
      "Nothing stored on the shelf directly above the seat"
@@ -353,11 +353,11 @@
     "One open bin per person set at their own height",
     "This season's gloves and hat sitting matched in pairs inside each bin",
     "Umbrellas standing points down in one stand by the door",
-    "The other season's bin closed and labelled with the month it was packed",
+    "The other season's bin closed and labeled with the month it was packed",
     "That closed off-season bin sitting up on the high shelf",
     "No single, unmatched glove visible in any open bin"
    ],
-   "done_looks_like": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labelled with the month you packed it, and up on the high shelf.",
+   "done_looks_like": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labeled with the month you packed it, and up on the high shelf.",
    "session": "30-45 min",
    "safety_checks": [
     {
@@ -393,12 +393,12 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labelled off-season bin sitting on the high shelf above",
+    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labeled off-season bin sitting on the high shelf above",
     "must_show": [
      "One open bin per person set at their own height",
      "This season's gloves and hat sitting matched in pairs inside each bin",
      "Umbrellas standing points down in one stand by the door",
-     "The other season's bin closed and labelled with the month it was packed",
+     "The other season's bin closed and labeled with the month it was packed",
      "That closed off-season bin sitting up on the high shelf",
      "No single, unmatched glove visible in any open bin"
     ],
@@ -421,15 +421,15 @@
     "A mop clipped beside it with its head also hanging clear of the floor",
     "A dustpan hanging empty on its own clip",
     "The vacuum parked flat against the wall inside a marked outline",
-    "One caddy holding four labelled cleaner bottles",
+    "One caddy holding four labeled cleaner bottles",
     "No tool anywhere leaning loose against the wall"
    ],
-   "done_looks_like": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labelled bottle.",
+   "done_looks_like": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labeled bottle.",
    "session": "30-45 min",
    "safety_checks": [
     {
      "question": "Poison, choke, or strangle",
-     "text": "Bleach and an ammonia-based cleaner shut in one caddy together, and decanted cleaners in unlabelled bottles at child height."
+     "text": "Bleach and an ammonia-based cleaner shut in one caddy together, and decanted cleaners in unlabeled bottles at child height."
     },
     {
      "question": "Water and electricity",
@@ -460,13 +460,13 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labelled cleaner bottles",
+    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labeled cleaner bottles",
     "must_show": [
      "A broom clipped to the wall with its bristles hanging clear of the floor",
      "A mop clipped beside it with its head also hanging clear of the floor",
      "A dustpan hanging empty on its own clip",
      "The vacuum parked flat against the wall inside a marked outline",
-     "One caddy holding four labelled cleaner bottles",
+     "One caddy holding four labeled cleaner bottles",
      "No tool anywhere leaning loose against the wall"
     ],
     "must_show_kind": "objects",
@@ -1193,7 +1193,7 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "There's no agreed rule yet that every decanted bottle gets labelled before it goes in the caddy",
+     "answer": "There's no agreed rule yet that every decanted bottle gets labeled before it goes in the caddy",
      "root_cause": "KC-008"
     },
     {
@@ -1523,7 +1523,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "an unmarked decanted cleaning bottle sitting in an open caddy beside two clearly labelled ones",
+    "subject": "an unmarked decanted cleaning bottle sitting in an open caddy beside two clearly labeled ones",
     "must_show": [
      "Nobody agreed what good looks like, so everybody is right."
     ],
@@ -2000,7 +2000,7 @@
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a hand carrying an armful of misplaced items off a mudroom bench into the house, one item going into a labelled outbound basket",
+    "subject": "a hand carrying an armful of misplaced items off a mudroom bench into the house, one item going into a labeled outbound basket",
     "must_show": [
      "The seat is bare enough for two people to lace boots at once, no more than three things sit on the surface, and the outbound basket holds only what leaves on the next trip out."
     ],
@@ -2362,7 +2362,7 @@
     "a marker or a blank label"
    ],
    "steps": [
-    "Shake the door mats out right now, hang the broom back on its clip with the bristles clear of the floor, and check whether the mop head has actually dried. Pull the decanted, unlabelled bottle out of the caddy and label it, or empty it if you can't tell what it is."
+    "Shake the door mats out right now, hang the broom back on its clip with the bristles clear of the floor, and check whether the mop head has actually dried. Pull the decanted, unlabeled bottle out of the caddy and label it, or empty it if you can't tell what it is."
    ],
    "root_causes": [
     "KC-010",
@@ -2378,14 +2378,14 @@
     "zone": "MDZ-006",
     "standard": "MDS-006"
    },
-   "victory_condition": "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labelled.",
+   "victory_condition": "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labeled.",
    "next_card": "MDS-006",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a hand hanging a broom back on its wall clip beside a mop head checked for dryness, a labelled bottle being set back in a caddy",
+    "subject": "a hand hanging a broom back on its wall clip beside a mop head checked for dryness, a labeled bottle being set back in a caddy",
     "must_show": [
-     "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labelled."
+     "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labeled."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2601,7 +2601,7 @@
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
-    "Wipe the rail and the wall behind it in downward strokes, working the grey shoulder-height smear until it lifts.",
+    "Wipe the rail and the wall behind it in downward strokes, working the gray shoulder-height smear until it lifts.",
     "Brush the shoulders and collar of each coat with a soft clothing brush before it goes back on its column.",
     "Vacuum the floor strip under the hooks with the crevice tool, working into the corner where it meets the skirting."
    ],
@@ -2655,7 +2655,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labelled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a mudroom bench with a bare wooden seat wide enough for two people to lace boots at once, no more than three objects on the surface, one labeled outbound basket at the end holding only what leaves tomorrow, and a clear floor in front of it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2775,7 +2775,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labelled off-season bin sitting on the high shelf above, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a mudroom seasonal gear shelf with one open bin per person at their own height holding this season's matched gloves and hats, umbrellas standing points down in a stand by the door, and a closed, labeled off-season bin sitting on the high shelf above, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2815,7 +2815,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labelled cleaner bottles, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a mudroom cleaning corner with a broom, mop and dustpan all clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked floor outline, and one caddy holding four labeled cleaner bottles, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2990,7 +2990,7 @@
    "tests_zones": [
     "MDZ-006"
    ],
-   "held_if": "The broom and mop are already hanging dry and ready, and the right cleaner is already labelled and easy to grab.",
+   "held_if": "The broom and mop are already hanging dry and ready, and the right cleaner is already labeled and easy to grab.",
    "if_it_failed": "If the mop head was still damp from last time, or a bottle had to be guessed at, the hang-and-check pass never happened. Draw MDA-011.",
    "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
    "related": {
@@ -3001,7 +3001,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a hand lifting a dry, ready mop off its wall clip beside a clearly labelled cleaner bottle",
+    "subject": "a hand lifting a dry, ready mop off its wall clip beside a clearly labeled cleaner bottle",
     "must_show": [
      "Muddy footprints track across the entry floor twenty minutes before guests are due, and every cleaning tool has to be ready to go."
     ],

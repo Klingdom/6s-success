@@ -47,7 +47,7 @@ KC-006 (poor accessibility) is not reachable because nothing in the real
 diagnosis branches is about a person who cannot physically reach
 something stored correctly; every hazard in this room's own frictions is
 about a thing placed somewhere unsafe (a rail post that gives, an
-unlabelled chemical, a grease tray left too long) or a thing with no
+unlabeled chemical, a grease tray left too long) or a thing with no
 agreed home, never a person unable to reach something that is already
 stored the right way.
 
@@ -187,13 +187,13 @@ ZONES = {
    "Clear, unobstructed drain holes on the visible pots",
    "One tool caddy holding a trowel, pruners, and gloves",
    "A latched chemical box mounted above the tools",
-   "A short row of labelled containers inside the latched box",
+   "A short row of labeled containers inside the latched box",
   ],
   "art": ("a patio garden corner with every plant saucer empty, pots "
           "nested by size along the wall with their drain holes visible "
           "and clear, one tool caddy holding a trowel, pruners and "
           "gloves, and a latched chemical box mounted above the tools "
-          "holding only a short row of labelled containers"),
+          "holding only a short row of labeled containers"),
  },
  "Outdoor Storage Zone": {
   "id": "PDZ-005", "order": 5, "difficulty": 3,
@@ -201,13 +201,13 @@ ZONES = {
   "callouts": [
    "A deck box lid closing flat without anyone pressing down",
    "Cushions sitting in one layer on top",
-   "Two labelled totes visible beneath the cushions",
+   "Two labeled totes visible beneath the cushions",
    "The bare floor of the box showing once the cushions lift out",
    "A lid stay holding the open lid safely up",
    "A latch fastened across the closed lid",
   ],
   "art": ("an open deck box showing cushions sitting in a single layer "
-          "on top, two totes labelled games and covers beneath them, "
+          "on top, two totes labeled games and covers beneath them, "
           "the bare floor of the box visible underneath, a lid stay "
           "holding the open lid safely in place, and a latch ready to "
           "fasten across the lid once it closes flat"),
@@ -356,7 +356,7 @@ EXPECTED_DIAGNOSIS = {
    {
     "symptom": "There is a shelf of part-used weed killer, rooting hormone, and bug spray whose label has worn away, avoided rather than sorted for more than one season.",
     "branches": [
-     {"answer": "An unlabelled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is", "cause": "KC-010"},
+     {"answer": "An unlabeled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is", "cause": "KC-010"},
      {"answer": "There is no easy way to get rid of them, so avoiding the shelf entirely has been the actual plan for a while now", "cause": "RC-015"},
      {"answer": "The value-size container seemed smart when it was bought, and using it up before it goes stale never quite happened", "cause": "KC-001"}
     ]
@@ -394,7 +394,7 @@ EXPECTED_DIAGNOSIS = {
     ]
    },
    {
-    "symptom": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place.",
+    "symptom": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labeled place.",
     "branches": [
      {"answer": "There is no line drawn for what this box is actually for, so anything without another home defaults to going in here too", "cause": "KC-008"},
      {"answer": "Different people packing the box at each end of the season each have their own idea of what goes on top, so it never settles into the same layout twice", "cause": "KC-012"},
@@ -404,7 +404,7 @@ EXPECTED_DIAGNOSIS = {
   ],
   "first_15": {
    "action": "Empty the deck box completely onto the boards, and pull out anything that is mildewed past saving, missing half its pieces, or belongs to furniture you no longer own.",
-   "victory": "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else."
+   "victory": "The deck box floor is visible with only cushions and the two labeled totes waiting to go back in, and nothing else."
   }
  },
  "Surface, Rail, and Safety Zone": {
@@ -528,7 +528,7 @@ FRICTION_META = [
   "THE LID DOESN'T STAY UP ON ITS OWN AND A CUSHION STILL SMELLS OF "
   "MILDEW",
   "a deck box lid caught mid-fall at a child's hand height beside a "
-  "cushion pulled halfway out, faint grey speckling visible along its "
+  "cushion pulled halfway out, faint gray speckling visible along its "
   "seam"),
  ("Outdoor Storage Zone", "PDF-015",
   "CLOSING THE LID TAKES LEANING YOUR WEIGHT ON IT",
@@ -870,12 +870,12 @@ ACTIONS = [
   "title": "CLEAR THE CHEMICAL SHELF AND TAG EVERY POT",
   "minutes": 30, "players": "1", "six_s": "Safety",
   "goal": "Read every bottle on the chemical shelf and take anything "
-          "unlabelled or unused in the last two growing seasons to "
+          "unlabeled or unused in the last two growing seasons to "
           "household hazardous waste, decide whether the pot with the "
           "family cutting gets repotted properly this week, and tag "
           "every remaining pot with what is in it and the month it "
           "went in.",
-  "why": "An unlabelled concentrate cannot be used safely by whoever "
+  "why": "An unlabeled concentrate cannot be used safely by whoever "
          "finds it later, an undecided cutting just occupies a "
          "drainage-less pot indefinitely, and a pot with no tag is a "
          "question you have to walk over and ask instead of read from "
@@ -892,12 +892,12 @@ ACTIONS = [
    "and tag every pot you are keeping with what is in it and the month "
    "it went in."],
   "causes": ["KC-010", "RC-015", "KC-001", "RC-014", "RC-017"],
-  "victory": "The chemical shelf holds only labelled containers you "
+  "victory": "The chemical shelf holds only labeled containers you "
              "have used in the last two seasons, the family cutting has "
              "either been repotted or given away, and every remaining "
              "pot carries a tag.",
   "next": "PDA-007",
-  "art": "a hand placing an unlabelled spray bottle into a hazardous "
+  "art": "a hand placing an unlabeled spray bottle into a hazardous "
          "waste box, a small tag being tied to a repotted plant nearby"},
 
  {"id": "PDA-009", "zone": "Outdoor Storage Zone",
@@ -916,10 +916,10 @@ ACTIONS = [
    "anything that is mildewed past saving, missing half its pieces, or "
    "belongs to furniture you no longer own.",
    "Sort what is left into what is actually cushions, and everything "
-   "else waiting to go into the two labelled totes."],
+   "else waiting to go into the two labeled totes."],
   "causes": ["KC-002", "RC-015"],
   "victory": "The deck box floor is visible with only cushions and the "
-             "two labelled totes waiting to go back in, and nothing "
+             "two labeled totes waiting to go back in, and nothing "
              "else.",
   "next": "PDS-005",
   "art": "the contents of a deck box spread across patio boards, a "
@@ -1027,7 +1027,7 @@ ACTIONS = [
    "flexes underfoot, and check the grease tray is not overdue and the "
    "grill sits a clear arm's length from the siding and the rail.",
    "Confirm the chemical box is latched and every container inside it "
-   "is labelled, and check the deck box lid holds itself up on its own "
+   "is labeled, and check the deck box lid holds itself up on its own "
    "stay rather than dropping free."],
   "causes": ["KC-010", "RC-016"],
   "victory": "No rail post moves under a hard push, no board is soft, "

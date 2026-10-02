@@ -79,7 +79,7 @@ sixteen reachable root causes, fifteen action cards (two per zone plus
 three whole-room), six standard cards and six event cards. 68 cards in
 total, not padded or trimmed to match any other room's count: sixteen
 causes is simply what this room's own real frictions reach once the
-corpus-wide spread constraint above is honoured, not a number chosen in
+corpus-wide spread constraint above is honored, not a number chosen in
 advance.
 
 WHAT THIS DOES NOT DO
@@ -515,7 +515,7 @@ EXPECTED_DIAGNOSIS = {
     ]
    },
    {
-    "symptom": "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in.",
+    "symptom": "There is a row of half-used paint cans on the shelf, including colors from a wall you painted over years ago or a house you no longer live in.",
     "branches": [
      {
       "answer": "Nobody has ever checked whether an old can is still good before it goes back on the shelf, so it just ages there unnoticed",
@@ -685,7 +685,7 @@ FRICTION_META = [
   "instead of inside the lidded self-closing metal can beside it"),
  ("Finishing and Chemical Zone", "WSF-014",
   "A ROW OF HALF-USED PAINT CANS SITS FOR COLOURS NO LONGER ON ANY WALL",
-  "a row of half-used paint cans of different faded colours lined up on "
+  "a row of half-used paint cans of different faded colors lined up on "
   "a shelf, dust settled on several unopened lids"),
  ("Finishing and Chemical Zone", "WSF-015",
   "A SOLVENT CAN AND A WATER BASED PAINT CAN SHARE ONE SHELF",
@@ -1063,7 +1063,7 @@ ACTIONS = [
   "title": "KEEP ONLY THE COLOURS STILL ON A WALL AND SEPARATE THE "
            "SHELVES",
   "minutes": 30, "players": "1", "six_s": "Sort",
-  "goal": "Narrow the paint shelf down to only colours currently on a "
+  "goal": "Narrow the paint shelf down to only colors currently on a "
           "surface in this house, in small sealed jars, and put "
           "solvents and water based finishes on separate shelves.",
   "why": "Almost none of an old can will brush out matching in two "
@@ -1073,14 +1073,14 @@ ACTIONS = [
   "inputs": ["small sealed jars and labels", "household hazardous waste "
              "drop-off"],
   "steps": [
-   "Decant a small sealed, labeled jar of each colour still on a wall "
+   "Decant a small sealed, labeled jar of each color still on a wall "
    "in this house, and take every other can straight to household "
    "hazardous waste that same day.",
    "Move every solvent and thinner onto its own shelf, separate from "
    "water based paint, with the layout written on the inside of the "
    "cabinet door."],
   "causes": ["KC-011", "KC-001", "KC-010"],
-  "victory": "The paint shelf holds only small sealed jars of colours "
+  "victory": "The paint shelf holds only small sealed jars of colors "
              "currently on a wall in this house, and solvents stand on "
              "a shelf of their own, apart from water based paint.",
   "next": "WSA-009",
@@ -1278,7 +1278,7 @@ EVENTS = [
   "material rack, a clear floor visible along the route to the bench"),
  ("WSE-005", "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOUR",
   "A wall needs a small touch-up today, and you go to the shelf for "
-  "the exact colour that is on it.",
+  "the exact color that is on it.",
   ["WSZ-005"],
   "A small sealed jar labeled with the room and the finish is exactly "
   "where it should be, and it still brushes out matching.",

@@ -1339,7 +1339,7 @@
     var simplify = !!(run.firstCardOverride && run.i === 0);
 
     var colour = Q.colours[c.step.s];
-    document.documentElement.style.setProperty("--s-colour", colour);
+    document.documentElement.style.setProperty("--s-color", colour);
 
     /* THE METHOD, TAUGHT BY DOING
      *

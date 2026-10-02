@@ -131,7 +131,7 @@ ZONES = {
    "Two visible hanging points on each frame, no single nail or sawtooth hanger",
    "The mirror at the turn sitting flat against the wall",
    "Nothing projecting more than a hand's width out from the wall at shoulder height",
-   "A clean wall along the turn, no grey shoulder-height smear",
+   "A clean wall along the turn, no gray shoulder-height smear",
   ],
   "art": ("a stairway wall with a row of picture frames climbing on the "
           "same diagonal as the stairs, each frame hanging level and "
@@ -152,7 +152,7 @@ ZONES = {
   ],
   "art": ("a full flight of stairs seen from the bottom, every tread bare "
           "and visible from nose to riser, a runner lying completely flat "
-          "down the centre with no lifted corner at the turn, an "
+          "down the center with no lifted corner at the turn, an "
           "unobstructed handrail running the full length with nothing "
           "hung on either newel post, and light visibly falling on both "
           "the top step and the bottom step"),
@@ -418,8 +418,8 @@ CAUSE_ART = {
 
 MICRO_QUESTS = {
  "Landing Surface or Console": [
-  "Wipe the top rim of the lamp shade where the stairwell draught keeps "
-  "dropping a grey collar.",
+  "Wipe the top rim of the lamp shade where the stairwell draft keeps "
+  "dropping a gray collar.",
   "Check the drawer runners for grit and brush them clear before you "
   "slide the drawer home.",
   "Press one corner of the console, and if it rocks, shim it before you "
@@ -428,7 +428,7 @@ MICRO_QUESTS = {
  "Wall and Display Zone": [
   "Tilt each frame slightly as your hand leaves it and check the wire "
   "and hook behind for a kink or a bent lip.",
-  "Wipe the grey shoulder-height smear along the turn where bags and "
+  "Wipe the gray shoulder-height smear along the turn where bags and "
   "baskets rub the wall.",
   "Dust the top rim of any sconce and lift cobwebs off its arm with a "
   "soft brush attachment.",
@@ -547,7 +547,7 @@ ACTIONS = [
              "a stud finder or wall anchors for the mirror",
              "a tape measure", "a dated sticker"],
   "steps": [
-   "Measure from each frame's centre down to the tread nose beneath it, "
+   "Measure from each frame's center down to the tread nose beneath it, "
    "and hold that number constant up the flight.",
    "Rehang every frame on two hooks and a wire, never a single nail or a "
    "sawtooth hanger.",

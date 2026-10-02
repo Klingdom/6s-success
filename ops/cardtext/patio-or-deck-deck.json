@@ -99,7 +99,7 @@
    ],
    "the_call": {
     "title": "The speckled cushion",
-    "text": "You have a cushion with grey and black speckling along the piping. It got rained on, it went into the box damp, and every spring you tell yourself you will scrub it properly. Give it exactly one honest attempt: wash it with a fabric cleaner meant for outdoor material, dry it fully in sun, and put it back. If the speckling returns within the same season, the growth is inside the foam core and no surface cleaning reaches it. That cushion is finished. Replace it or go without, and either is better than a seat nobody chooses. The pattern to break is buying replacement cushions before you have fixed the reason the last set died, which was that they had nowhere dry to go in a hurry."
+    "text": "You have a cushion with gray and black speckling along the piping. It got rained on, it went into the box damp, and every spring you tell yourself you will scrub it properly. Give it exactly one honest attempt: wash it with a fabric cleaner meant for outdoor material, dry it fully in sun, and put it back. If the speckling returns within the same season, the growth is inside the foam core and no surface cleaning reaches it. That cushion is finished. Replace it or go without, and either is better than a seat nobody chooses. The pattern to break is buying replacement cushions before you have fixed the reason the last set died, which was that they had nowhere dry to go in a hurry."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -293,7 +293,7 @@
     "Clear, unobstructed drain holes on the visible pots",
     "One tool caddy holding a trowel, pruners, and gloves",
     "A latched chemical box mounted above the tools",
-    "A short row of labelled containers inside the latched box"
+    "A short row of labeled containers inside the latched box"
    ],
    "done_looks_like": "Every saucer empty, pots nested by size along the wall with drain holes clear, one tool caddy holding trowel, pruners, and gloves, and a latched chemical box above the tools with no more in it than you can name from the doorway.",
    "session": "45-75 min",
@@ -309,7 +309,7 @@
    ],
    "the_call": {
     "title": "The half bottles",
-    "text": "There is a shelf of part-used concentrates: a weed killer bought for one path, a rooting hormone, a bug spray whose label has washed to nothing. You avoid this shelf because there is no easy way to get rid of them, and pouring them down a drain is not one. Two rules settle it. First, if you cannot read the label, that container is finished, no exceptions, because an unlabelled garden chemical cannot be used safely by you or by anyone who finds it later; it goes to the household hazardous waste collection. Second, if you can read it, ask whether you have used it in the last two growing seasons. If not, it goes the same way. What survives is a short row you can name from the doorway. From this point on, buy the smallest container the shop sells rather than the best value size, because the value size is what created this shelf."
+    "text": "There is a shelf of part-used concentrates: a weed killer bought for one path, a rooting hormone, a bug spray whose label has washed to nothing. You avoid this shelf because there is no easy way to get rid of them, and pouring them down a drain is not one. Two rules settle it. First, if you cannot read the label, that container is finished, no exceptions, because an unlabeled garden chemical cannot be used safely by you or by anyone who finds it later; it goes to the household hazardous waste collection. Second, if you can read it, ask whether you have used it in the last two growing seasons. If not, it goes the same way. What survives is a short row you can name from the doorway. From this point on, buy the smallest container the shop sells rather than the best value size, because the value size is what created this shelf."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -334,14 +334,14 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labelled containers",
+    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labeled containers",
     "must_show": [
      "Every plant saucer sitting empty",
      "Pots nested by size along the wall",
      "Clear, unobstructed drain holes on the visible pots",
      "One tool caddy holding a trowel, pruners, and gloves",
      "A latched chemical box mounted above the tools",
-     "A short row of labelled containers inside the latched box"
+     "A short row of labeled containers inside the latched box"
     ],
     "must_show_kind": "objects",
     "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
@@ -360,12 +360,12 @@
    "callouts": [
     "A deck box lid closing flat without anyone pressing down",
     "Cushions sitting in one layer on top",
-    "Two labelled totes visible beneath the cushions",
+    "Two labeled totes visible beneath the cushions",
     "The bare floor of the box showing once the cushions lift out",
     "A lid stay holding the open lid safely up",
     "A latch fastened across the closed lid"
    ],
-   "done_looks_like": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labelled totes beneath them, and the floor of the box visible the moment the cushions come out.",
+   "done_looks_like": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labeled totes beneath them, and the floor of the box visible the moment the cushions come out.",
    "session": "45-75 min",
    "safety_checks": [
     {
@@ -404,11 +404,11 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labelled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat",
+    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labeled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat",
     "must_show": [
      "A deck box lid closing flat without anyone pressing down",
      "Cushions sitting in one layer on top",
-     "Two labelled totes visible beneath the cushions",
+     "Two labeled totes visible beneath the cushions",
      "The bare floor of the box showing once the cushions lift out",
      "A lid stay holding the open lid safely up",
      "A latch fastened across the closed lid"
@@ -939,7 +939,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "An unlabelled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is",
+     "answer": "An unlabeled garden chemical cannot be used safely by anyone who finds it later, which outranks just leaving it where it is",
      "root_cause": "KC-010"
     },
     {
@@ -1095,7 +1095,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a deck box lid caught mid-fall at a child's hand height beside a cushion pulled halfway out, faint grey speckling visible along its seam",
+    "subject": "a deck box lid caught mid-fall at a child's hand height beside a cushion pulled halfway out, faint gray speckling visible along its seam",
     "must_show": [
      "The lid does not stay up on its own when you let go halfway, or a cushion pulled out from under the pile still smells faintly of mildew after a wash."
     ],
@@ -1111,7 +1111,7 @@
    "zone": "Outdoor Storage Zone",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place.",
+   "objective": "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labeled place.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
@@ -1141,7 +1141,7 @@
     "framing": "Friction",
     "subject": "a person's hand pressing down hard on an overstuffed deck box lid that will not close flat on its own",
     "must_show": [
-     "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labelled place."
+     "Closing the lid takes leaning your weight on it, and the two totes underneath are buried instead of sitting in their own labeled place."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -2205,8 +2205,8 @@
    "difficulty": 3,
    "six_s": "Safety",
    "tagline": "30 MINUTES. 1.",
-   "objective": "Read every bottle on the chemical shelf and take anything unlabelled or unused in the last two growing seasons to household hazardous waste, decide whether the pot with the family cutting gets repotted properly this week, and tag every remaining pot with what is in it and the month it went in.",
-   "why_it_matters": "An unlabelled concentrate cannot be used safely by whoever finds it later, an undecided cutting just occupies a drainage-less pot indefinitely, and a pot with no tag is a question you have to walk over and ask instead of read from the doorway.",
+   "objective": "Read every bottle on the chemical shelf and take anything unlabeled or unused in the last two growing seasons to household hazardous waste, decide whether the pot with the family cutting gets repotted properly this week, and tag every remaining pot with what is in it and the month it went in.",
+   "why_it_matters": "An unlabeled concentrate cannot be used safely by whoever finds it later, an undecided cutting just occupies a drainage-less pot indefinitely, and a pot with no tag is a question you have to walk over and ask instead of read from the doorway.",
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
@@ -2235,14 +2235,14 @@
     "zone": "PDZ-004",
     "standard": "PDS-004"
    },
-   "victory_condition": "The chemical shelf holds only labelled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag.",
+   "victory_condition": "The chemical shelf holds only labeled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag.",
    "next_card": "PDA-007",
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a hand placing an unlabelled spray bottle into a hazardous waste box, a small tag being tied to a repotted plant nearby",
+    "subject": "a hand placing an unlabeled spray bottle into a hazardous waste box, a small tag being tied to a repotted plant nearby",
     "must_show": [
-     "The chemical shelf holds only labelled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag."
+     "The chemical shelf holds only labeled containers you have used in the last two seasons, the family cutting has either been repotted or given away, and every remaining pot carries a tag."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2267,7 +2267,7 @@
    ],
    "steps": [
     "Empty the deck box completely onto the boards, and pull out anything that is mildewed past saving, missing half its pieces, or belongs to furniture you no longer own.",
-    "Sort what is left into what is actually cushions, and everything else waiting to go into the two labelled totes."
+    "Sort what is left into what is actually cushions, and everything else waiting to go into the two labeled totes."
    ],
    "root_causes": [
     "KC-002",
@@ -2281,14 +2281,14 @@
     "zone": "PDZ-005",
     "standard": "PDS-005"
    },
-   "victory_condition": "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else.",
+   "victory_condition": "The deck box floor is visible with only cushions and the two labeled totes waiting to go back in, and nothing else.",
    "next_card": "PDS-005",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
     "subject": "the contents of a deck box spread across patio boards, a croquet set with missing mallets and old furniture covers being sorted into a donation bag",
     "must_show": [
-     "The deck box floor is visible with only cushions and the two labelled totes waiting to go back in, and nothing else."
+     "The deck box floor is visible with only cushions and the two labeled totes waiting to go back in, and nothing else."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2467,7 +2467,7 @@
    ],
    "steps": [
     "Push the top rail hard at every post and probe any board that flexes underfoot, and check the grease tray is not overdue and the grill sits a clear arm's length from the siding and the rail.",
-    "Confirm the chemical box is latched and every container inside it is labelled, and check the deck box lid holds itself up on its own stay rather than dropping free."
+    "Confirm the chemical box is latched and every container inside it is labeled, and check the deck box lid holds itself up on its own stay rather than dropping free."
    ],
    "root_causes": [
     "KC-010",
@@ -2707,7 +2707,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Chemicals latched and labelled above the tools, every saucer empty, every pot tagged with what and when.",
+   "objective": "Chemicals latched and labeled above the tools, every saucer empty, every pot tagged with what and when.",
    "trigger": "When you fill the watering can, run your eye down the saucers first.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2730,7 +2730,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labelled containers, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a patio garden corner with every plant saucer empty, pots nested by size along the wall with their drain holes visible and clear, one tool caddy holding a trowel, pruners and gloves, and a latched chemical box mounted above the tools holding only a short row of labeled containers, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2747,7 +2747,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Cushions only on top, two labelled totes below, lid closing flat with no pressure.",
+   "objective": "Cushions only on top, two labeled totes below, lid closing flat with no pressure.",
    "trigger": "When the cushions go in for the night, the latch goes across.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2770,7 +2770,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labelled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "an open deck box showing cushions sitting in a single layer on top, two totes labeled games and covers beneath them, the bare floor of the box visible underneath, a lid stay holding the open lid safely in place, and a latch ready to fasten across the lid once it closes flat, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],

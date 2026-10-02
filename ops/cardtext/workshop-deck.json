@@ -371,7 +371,7 @@
    ],
    "the_call": {
     "title": "The wall of half-used paint",
-    "text": "You are storing a row of part cans against the possibility of a touch-up, including colours from a wall you painted over and a house you no longer live in. Almost none of it will still brush out matching in two years anyway. So keep only colours currently on a surface in this house, and keep them properly: one small sealed jar of each, labeled with the room and the finish, not the original half-empty tin sitting open to the air. Everything else goes to hazardous waste on the same day you sort it, because a box of condemned paint sitting by the door for a month is just the same problem, relocated."
+    "text": "You are storing a row of part cans against the possibility of a touch-up, including colors from a wall you painted over and a house you no longer live in. Almost none of it will still brush out matching in two years anyway. So keep only colors currently on a surface in this house, and keep them properly: one small sealed jar of each, labeled with the room and the finish, not the original half-empty tin sitting open to the air. Everything else goes to hazardous waste on the same day you sort it, because a box of condemned paint sitting by the door for a month is just the same problem, relocated."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -1055,7 +1055,7 @@
    "zone": "Finishing and Chemical Zone",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in.",
+   "objective": "There is a row of half-used paint cans on the shelf, including colors from a wall you painted over years ago or a house you no longer live in.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
@@ -1083,9 +1083,9 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a row of half-used paint cans of different faded colours lined up on a shelf, dust settled on several unopened lids",
+    "subject": "a row of half-used paint cans of different faded colors lined up on a shelf, dust settled on several unopened lids",
     "must_show": [
-     "There is a row of half-used paint cans on the shelf, including colours from a wall you painted over years ago or a house you no longer live in."
+     "There is a row of half-used paint cans on the shelf, including colors from a wall you painted over years ago or a house you no longer live in."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -2263,7 +2263,7 @@
    "difficulty": 3,
    "six_s": "Sort",
    "tagline": "30 MINUTES. 1.",
-   "objective": "Narrow the paint shelf down to only colours currently on a surface in this house, in small sealed jars, and put solvents and water based finishes on separate shelves.",
+   "objective": "Narrow the paint shelf down to only colors currently on a surface in this house, in small sealed jars, and put solvents and water based finishes on separate shelves.",
    "why_it_matters": "Almost none of an old can will brush out matching in two years anyway, and solvents sharing a shelf with water based finish is the actual incompatible-storage hazard this zone exists to prevent.",
    "time_target_minutes": 30,
    "players": "1",
@@ -2272,7 +2272,7 @@
     "household hazardous waste drop-off"
    ],
    "steps": [
-    "Decant a small sealed, labeled jar of each colour still on a wall in this house, and take every other can straight to household hazardous waste that same day.",
+    "Decant a small sealed, labeled jar of each color still on a wall in this house, and take every other can straight to household hazardous waste that same day.",
     "Move every solvent and thinner onto its own shelf, separate from water based paint, with the layout written on the inside of the cabinet door."
    ],
    "root_causes": [
@@ -2289,14 +2289,14 @@
     "zone": "WSZ-005",
     "standard": "WSS-005"
    },
-   "victory_condition": "The paint shelf holds only small sealed jars of colours currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint.",
+   "victory_condition": "The paint shelf holds only small sealed jars of colors currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint.",
    "next_card": "WSA-009",
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
     "subject": "small labeled paint jars standing on a shelf beside a shelf layout diagram taped inside a cabinet door, solvent cans now separated onto their own shelf",
     "must_show": [
-     "The paint shelf holds only small sealed jars of colours currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint."
+     "The paint shelf holds only small sealed jars of colors currently on a wall in this house, and solvents stand on a shelf of their own, apart from water based paint."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2906,7 +2906,7 @@
    "zone": null,
    "difficulty": 3,
    "tagline": "THE DAY THAT TESTS IT.",
-   "objective": "A wall needs a small touch-up today, and you go to the shelf for the exact colour that is on it.",
+   "objective": "A wall needs a small touch-up today, and you go to the shelf for the exact color that is on it.",
    "tests_zones": [
     "WSZ-005"
    ],
@@ -2923,7 +2923,7 @@
     "framing": "Event",
     "subject": "a small labeled paint jar being opened for a touch-up, its lid clean and the paint inside still liquid",
     "must_show": [
-     "A wall needs a small touch-up today, and you go to the shelf for the exact colour that is on it."
+     "A wall needs a small touch-up today, and you go to the shelf for the exact color that is on it."
     ],
     "must_show_kind": "condition",
     "accept_test": "The pressure has to be visible in the objects. No people's faces, so the load has to be shown by what is on the surfaces and, where unavoidable, by hands and feet alone."

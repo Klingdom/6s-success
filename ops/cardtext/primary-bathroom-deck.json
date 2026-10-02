@@ -756,7 +756,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "an open jar of skincare product with a visibly separated, discoloured surface sitting at the back of a crowded drawer",
+    "subject": "an open jar of skincare product with a visibly separated, discolored surface sitting at the back of a crowded drawer",
     "must_show": [
      "Products go past their open-jar window before we finish them."
     ],
@@ -888,7 +888,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a water-stained cardboard box sitting directly on the bare floor of an under-sink cabinet, its bottom corner visibly soft and discoloured",
+    "subject": "a water-stained cardboard box sitting directly on the bare floor of an under-sink cabinet, its bottom corner visibly soft and discolored",
     "must_show": [
      "Something under here got damaged and nobody noticed."
     ],
@@ -1416,7 +1416,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a crowded linen shelf with towels of different colours and sizes stacked loosely together, no guest set visible nested separately",
+    "subject": "a crowded linen shelf with towels of different colors and sizes stacked loosely together, no guest set visible nested separately",
     "must_show": [
      "The shelf is full but I can never find a matching set."
     ],
@@ -1444,7 +1444,7 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "Everything is in one column instead of separate labelled ones",
+     "answer": "Everything is in one column instead of separate labeled ones",
      "root_cause": "KC-005"
     }
    ],

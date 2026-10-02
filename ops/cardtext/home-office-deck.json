@@ -215,7 +215,7 @@
     "A retention card taped inside the top drawer",
     "The cabinet anchored to the wall"
    ],
-   "done_looks_like": "Hanging folders labelled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
+   "done_looks_like": "Hanging folders labeled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -343,7 +343,7 @@
     "Clear air behind the machine",
     "Nothing sitting on top of the lid"
    ],
-   "done_looks_like": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
+   "done_looks_like": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labeled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
    "session": "30-45 min",
    "safety_checks": [
     {
@@ -379,7 +379,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labelled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid",
+    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labeled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid",
     "must_show": [
      "A paper bin directly beneath the printer",
      "A min line and a max line drawn inside the bin",
@@ -424,7 +424,7 @@
    ],
    "the_call": {
     "title": "The deal you got",
-    "text": "The bulk box of 500 envelopes, the multipack of sticky notes, the case of paper bought because the price was good. The genuinely hard part is that you were not wrong about the price, and admitting the surplus was a mistake feels like throwing money away twice. It is not: the money left when you bought it, and the shelf space is being paid for now. Count the true stock and divide it by your honest annual use, out loud. Six letters a year against 500 envelopes is a lifetime supply and then some. Cap it at one open plus one spare of anything you use monthly, and a single year of use for everything else. The surplus goes to a school, a charity shop, or a neighbour this week. Not to the top shelf, and not to a box in the garage."
+    "text": "The bulk box of 500 envelopes, the multipack of sticky notes, the case of paper bought because the price was good. The genuinely hard part is that you were not wrong about the price, and admitting the surplus was a mistake feels like throwing money away twice. It is not: the money left when you bought it, and the shelf space is being paid for now. Count the true stock and divide it by your honest annual use, out loud. Six letters a year against 500 envelopes is a lifetime supply and then some. Cap it at one open plus one spare of anything you use monthly, and a single year of use for everything else. The surplus goes to a school, a charity shop, or a neighbor this week. Not to the top shelf, and not to a box in the garage."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -655,7 +655,7 @@
      "root_cause": "KC-001"
     },
     {
-     "answer": "Folders are labelled by department, not by what I would ask",
+     "answer": "Folders are labeled by department, not by what I would ask",
      "root_cause": "KC-008"
     }
    ],
@@ -735,7 +735,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Folders are labelled by company name rather than by what I would ask",
+     "answer": "Folders are labeled by company name rather than by what I would ask",
      "root_cause": "KC-008"
     },
     {
@@ -867,7 +867,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Books are shelved by size or colour, not by what they are for",
+     "answer": "Books are shelved by size or color, not by what they are for",
      "root_cause": "KC-005"
     },
     {
@@ -891,7 +891,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a crowded bookshelf with books arranged by height and colour rather than subject, a hand scanning the spines without finding the one it is looking for",
+    "subject": "a crowded bookshelf with books arranged by height and color rather than subject, a hand scanning the spines without finding the one it is looking for",
     "must_show": [
      "The shelf looks full and I still cannot find the book I want."
     ],
@@ -1828,7 +1828,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a photograph of a bare desk taped inside an open desk drawer, a small labelled box with a dated marking on its lid sitting on a shelf nearby",
+    "subject": "a photograph of a bare desk taped inside an open desk drawer, a small labeled box with a dated marking on its lid sitting on a shelf nearby",
     "must_show": [
      "A taped photo of the bare desk hangs inside the drawer, and the half-finished project either carries a named next action or sits boxed and dated on the shelf."
     ],
@@ -1898,7 +1898,7 @@
    "players": "1",
    "inputs": [
     "the cable bag",
-    "a labelled small box for the kept spares",
+    "a labeled small box for the kept spares",
     "a bag for electronics recycling"
    ],
    "steps": [
@@ -1919,14 +1919,14 @@
     "zone": "HOZ-002",
     "standard": "HOS-002"
    },
-   "victory_condition": "One labelled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling.",
+   "victory_condition": "One labeled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling.",
    "next_card": "HOA-003",
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a small labelled box holding one coiled spare of each cable connector type, a bag of surplus adapters set aside for electronics recycling nearby",
+    "subject": "a small labeled box holding one coiled spare of each cable connector type, a bag of surplus adapters set aside for electronics recycling nearby",
     "must_show": [
-     "One labelled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling."
+     "One labeled box holds exactly one spare of each connector type still in daily use, and everything else is boxed for electronics recycling."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -1971,7 +1971,7 @@
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "an open filing cabinet drawer with folder tabs relabelled and standing in a single straight line, the drawer closing easily with room to spare",
+    "subject": "an open filing cabinet drawer with folder tabs relabeled and standing in a single straight line, the drawer closing easily with room to spare",
     "must_show": [
      "One drawer where the tabs read down in a single line, and it closes without pressure."
     ],
@@ -2350,7 +2350,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a single sheet of paper being carried from a desk inbox tray directly to a labelled folder in an open filing cabinet drawer, no other paper visible along the way",
+    "subject": "a single sheet of paper being carried from a desk inbox tray directly to a labeled folder in an open filing cabinet drawer, no other paper visible along the way",
     "must_show": [
      "The one piece of paper reaches a folder or the bin, and you can name which zone, if any, slowed it down."
     ],
@@ -2640,7 +2640,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labelled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a printer with a paper bin directly beneath it marked with a min line and a max line, a labeled box holding one spare cartridge standing beside it, a scan tray divided into a to-do side and a done side nearby, a gap of clear air behind the machine, and a completely bare top of the lid, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2744,7 +2744,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a new folder of tax documents being slotted into a filing cabinet drawer with clearly labelled tabs, an older folder pulled out beside a shred bag",
+    "subject": "a new folder of tax documents being slotted into a filing cabinet drawer with clearly labeled tabs, an older folder pulled out beside a shred bag",
     "must_show": [
      "This year's tax documents arrive in the post and need a folder, a shred decision, and a place in the cabinet the same afternoon."
     ],

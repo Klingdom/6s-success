@@ -551,7 +551,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a dryer control panel showing a cycle restarting for a second time, a lint screen sitting nearby still coated in a thick grey mat of lint",
+    "subject": "a dryer control panel showing a cycle restarting for a second time, a lint screen sitting nearby still coated in a thick gray mat of lint",
     "must_show": [
      "The dryer takes two or three cycles to dry one load."
     ],
@@ -683,7 +683,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a detergent cap held up to the light with a crusted ring of dried powder built up well above its moulded fill line",
+    "subject": "a detergent cap held up to the light with a crusted ring of dried powder built up well above its molded fill line",
     "must_show": [
      "Washing comes out with detergent marks, or not properly clean."
     ],
@@ -727,7 +727,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a laundry shelf at knee height holding an open tub of colourful detergent pods, well below shoulder height",
+    "subject": "a laundry shelf at knee height holding an open tub of colorful detergent pods, well below shoulder height",
     "must_show": [
      "There is something down here a child could open."
     ],
@@ -791,11 +791,11 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "The bags are not labelled, so things go in the nearest one",
+     "answer": "The bags are not labeled, so things go in the nearest one",
      "root_cause": "KC-005"
     },
     {
-     "answer": "There are more sorting streams than anybody honours",
+     "answer": "There are more sorting streams than anybody honors",
      "root_cause": "KC-001"
     },
     {
@@ -815,7 +815,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "five unlabelled sorting bags standing in a row, clothes of mixed colours visible spilling from more than one of them",
+    "subject": "five unlabeled sorting bags standing in a row, clothes of mixed colors visible spilling from more than one of them",
     "must_show": [
      "Loads have to be sorted again before they can go in the machine."
     ],
@@ -1191,7 +1191,7 @@
      "root_cause": "KC-009"
     },
     {
-     "answer": "It hangs head down, so water sits in the fibres instead of draining",
+     "answer": "It hangs head down, so water sits in the fibers instead of draining",
      "root_cause": "KC-008"
     },
     {
@@ -1231,7 +1231,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Attachments are loose rather than in one labelled caddy",
+     "answer": "Attachments are loose rather than in one labeled caddy",
      "root_cause": "KC-002"
     },
     {
@@ -1849,7 +1849,7 @@
    ],
    "steps": [
     "Unplug the dryer and ease it forward on its feet far enough to reach the duct connection.",
-    "Disconnect the duct and vacuum out any soft grey packing built up at the bend behind the machine.",
+    "Disconnect the duct and vacuum out any soft gray packing built up at the bend behind the machine.",
     "If the duct is a flexible foil accordion, replace the run with rigid metal now rather than promising to do it later.",
     "Check both fill hoses for a hard or bulged collar while the machines are already pulled out, and replace either one that has gone stiff.",
     "Push both machines back, level on their feet, and reconnect the duct fully before running the next load."
@@ -1871,7 +1871,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a dryer pulled away from the wall with its duct disconnected, a small pile of grey lint cleared from the bend, a coil of rigid metal duct ready beside it",
+    "subject": "a dryer pulled away from the wall with its duct disconnected, a small pile of gray lint cleared from the bend, a coil of rigid metal duct ready beside it",
     "must_show": [
      "The duct is clear and rigid where it can be, both fill hoses are supple at the collar, and both machines sit level on their feet."
     ],
@@ -1995,7 +1995,7 @@
     "a small dish"
    ],
    "steps": [
-    "Cut the sorting streams to the three this household will actually honour, label those three bags, stand them clear of the walking line, and put an empty dish on the shelf for pockets.",
+    "Cut the sorting streams to the three this household will actually honor, label those three bags, stand them clear of the walking line, and put an empty dish on the shelf for pockets.",
     "Empty any spare hamper you were holding for a stream that never filled on its own.",
     "Check the floor in front of the washer door is bare before you leave."
    ],
@@ -2011,14 +2011,14 @@
     "zone": "LRZ-003",
     "standard": "LRS-003"
    },
-   "victory_condition": "Three labelled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents.",
+   "victory_condition": "Three labeled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents.",
    "next_card": "LRS-003",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "three labelled laundry sorting bags standing against a wall clear of an open floor path, a small dish on a shelf nearby, bare floor visible in front of a washing machine",
+    "subject": "three labeled laundry sorting bags standing against a wall clear of an open floor path, a small dish on a shelf nearby, bare floor visible in front of a washing machine",
     "must_show": [
-     "Three labelled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents."
+     "Three labeled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2275,11 +2275,11 @@
    "players": "1",
    "inputs": [
     "a marker, paint pen, or tape for the outlines",
-    "a labelled caddy",
+    "a labeled caddy",
     "tape for the bucket's floor square"
    ],
    "steps": [
-    "Hang the broom, mop and dustpan heads up and mark an outline behind each one, gather every vacuum attachment into one labelled caddy, and empty the bucket and stand it inside a taped square on the floor.",
+    "Hang the broom, mop and dustpan heads up and mark an outline behind each one, gather every vacuum attachment into one labeled caddy, and empty the bucket and stand it inside a taped square on the floor.",
     "Knock any wound hair or lint off the dustpan and broom before you hang them.",
     "Confirm the outlines are visible from the doorway, not hidden behind the door swing."
    ],
@@ -2300,7 +2300,7 @@
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a broom, mop and dustpan hanging heads up on a wall with a painted outline behind each, a labelled caddy of vacuum attachments nearby, an empty bucket standing in a taped floor square",
+    "subject": "a broom, mop and dustpan hanging heads up on a wall with a painted outline behind each, a labeled caddy of vacuum attachments nearby, an empty bucket standing in a taped floor square",
     "must_show": [
      "Three handles off the floor with outlines showing behind them, every attachment in one caddy, and an empty bucket standing in its square."
     ],
@@ -2509,7 +2509,7 @@
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
-    "Pull the dryer forward, check the duct for a soft grey buildup, and write this month on the tape strip if it is clear.",
+    "Pull the dryer forward, check the duct for a soft gray buildup, and write this month on the tape strip if it is clear.",
     "Lift the folds of the washer door gasket and wipe out whatever has collected in the seal.",
     "Prop the washer door open a hand's width and check the lint screen is fully clear before you leave the room."
    ],

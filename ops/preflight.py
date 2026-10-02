@@ -85,6 +85,7 @@ import traceback
 
 import browser as B
 import b9_claims
+import fix_dialect
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -165,6 +166,7 @@ def gate_existing(deep: bool) -> None:
         ("catalogue", "audit_catalog.py", ()),
         ("sellable", "check_sellable.py", ("--deep",) if deep else ()),
         ("dashes", "fix_dashes.py", ("--check",)),
+        ("dialect", "fix_dialect.py", ("--check",)),
         ("fingerprints", "fingerprint_assets.py", ("--check",)),
     ]
     for name, script, args in checks:
@@ -10219,6 +10221,91 @@ def gate_no_stray_dashes() -> None:
              f"{len(hit)} of {looked} source files outside the exempt "
              f"detector tools carry an em or en dash: {hit[:5]}. CLAUDE.md: "
              f"zero, anywhere, including code comments.")
+
+
+def gate_no_british_spellings_shipped() -> None:
+    """One dialect, held at the point a visitor actually reads it.
+
+    BACKLOG-2026-09-07.md A12 (closed): content.json and the two hand-authored
+    Manual copies had no voice, mixing labelled/labeled, grey/gray, colour/
+    color inside one authored corpus while every page title on the site is
+    American. `ops/fix_dialect.py` fixes the three source files directly and
+    `gate_existing` already runs it with --check on every cycle, so drift in
+    the SOURCE is caught there. What that does not cover is prose authored
+    downstream of the source: each room's own `ops/cardtext/build_*.py`
+    writes its deck cards' friction/action/standard text independently (not
+    derived from content.json line for line), and 14 of those 20 files
+    carried the same drift the source did, found and fixed the same cycle.
+    A hand edit to deck card copy, or to one of the 20 `build_*_deck_page.py`
+    templates (one of which shipped "A family-coloured panel" on every deck
+    page until this cycle), would not be caught by fix_dialect.py at all,
+    since neither file is in its TARGETS.
+
+    Checks the real shipped site/**/*.html (what fix_dialect.py cannot see,
+    since it only checks sources) and ops/cardtext/build_*.py (deck card
+    copy, a source fix_dialect.py deliberately does not own, since it is
+    prose embedded in code rather than a data file). Does NOT check
+    ops/build_*_deck_page.py directly: every one of those files defines or
+    calls a `colours()` helper (a code identifier, not prose), which a bare
+    word-boundary match on "colour" would also catch and misreport; the one
+    real prose instance found there ("family-coloured panel") is a fixed
+    string with no legitimate reason to recur, so it is covered by the
+    site/**/*.html check instead, downstream of whichever generator emits it.
+
+    content/book/** (the 50-chapter book) is deliberately excluded. It
+    carries the same kind of drift at a much larger scale (589 files at last
+    measurement) but is Phil's own hand-authored prose, not a data field;
+    see ops/fix_dialect.py's own docstring for why a blind sweep across it is
+    a separate, deliberately un-started piece of work, not an oversight here.
+    site/downloads/*Sample*.html (the book's own sample excerpt) is excluded
+    for the same reason: it is book prose, not site-generated copy.
+
+    One named, bounded exception on a site page, not a blanket one: ops/
+    import_chapter_svgs.py wires one Chapter 36 diagram verbatim onto
+    family-room-the-toy-and-play-zone.html, both as its own <img alt="..."> and
+    as literal <text> drawn inside the imported SVG ("...causes mould and
+    odour..."). The alt text is required to describe the SVG it sits beside,
+    so fixing one without the other would plant the exact sighted-reader-vs-
+    screen-reader mismatch LRN-0019's chapter 44-49 finding (STATUS.md,
+    2026-10-02) already cost this project once, and the SVG text itself is
+    book art, out of scope for the same reason the rest of content/book/** is.
+    Capped at exactly 4 (the known count: "mould" and "odour" each appear
+    twice, once in the alt text and once in the SVG's own inline <text>) so a
+    NEW, unrelated word on this same page still fails.
+    """
+    pattern = re.compile(r"\b(" + "|".join(re.escape(b) for b, _a in fix_dialect.PAIRS) + r")\b")
+    KNOWN_BOOK_SVG_EXCEPTIONS = {
+        "site/zones/family-room-the-toy-and-play-zone.html": 4,
+        # Names the real JSON field quest-data-symptoms.js carries
+        # ("symptoms/six/colours/purpose"), not a dialect choice; renaming
+        # that field is a generator/consumer/test-suite change, out of
+        # scope for a prose fix. See ops/build_quest.py and quest.js's own
+        # `Q.colours[...]` reads.
+        "site/quest.html": 1,
+    }
+    hit = []
+    for f in sorted(glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)):
+        rel = os.path.relpath(f, ROOT)
+        if os.sep + "downloads" + os.sep in (os.sep + rel) and "Sample" in rel:
+            continue
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        n = len(pattern.findall(body))
+        allowed = KNOWN_BOOK_SVG_EXCEPTIONS.get(rel.replace(os.sep, "/"), 0)
+        if n > allowed:
+            hit.append(f"{rel} ({n}, {allowed} allowed)")
+    for f in sorted(glob.glob(os.path.join(ROOT, "ops", "cardtext", "build_*.py"))):
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        n = len(pattern.findall(body))
+        if n:
+            hit.append(f"{os.path.relpath(f, ROOT)} ({n})")
+    if hit:
+        fail("no-british-spellings-shipped",
+             f"{len(hit)} shipped file(s) still carry a British spelling "
+             f"this catalogue has otherwise standardised to American: "
+             f"{hit[:5]}. Run ops/fix_dialect.py's word list against the "
+             f"file directly (it is prose embedded in a generator or deck "
+             f"card text, not one of fix_dialect.py's own source targets) "
+             f"and regenerate.")
 
 
 # Chapter 2 of the book deliberately names "Set in Order" once, as one of
@@ -26879,6 +26966,7 @@ def main() -> int:
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
     run_gate(gate_no_stray_dashes)
+    run_gate(gate_no_british_spellings_shipped)
     run_gate(gate_book_no_retired_terminology)
     run_gate(gate_indexable_pages_have_schema)
     run_gate(gate_checker_scope)

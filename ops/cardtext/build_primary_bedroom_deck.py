@@ -133,7 +133,7 @@ ZONES = {
    "One throw folded at the foot of the bed",
    "Two complete sheet sets for this bed, one on it and one folded on "
    "the linen shelf",
-   "Under the bed holding either nothing or two labelled flat bins",
+   "Under the bed holding either nothing or two labeled flat bins",
    "A clear floor on both sides of the bed all the way to the door",
    "A headboard shelf holding nothing but the lamp",
   ],
@@ -353,7 +353,7 @@ EXPECTED_DIAGNOSIS = {
    {
     "symptom": "There is loose change, a receipt, or a single earring sitting on the bare wood beside the tray instead of inside it.",
     "branches": [
-     {"answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewellery box, not starting a second pile", "cause": "KC-007"},
+     {"answer": "The tray is already full, so the honest fix is thinning the keyring or moving a ring to the jewelry box, not starting a second pile", "cause": "KC-007"},
      {"answer": "Loose change and receipts have no assigned home of their own once they leave your pocket", "cause": "KC-002"},
      {"answer": "One receipt on bare wood does not look like much on its own, which is exactly how a second pile starts", "cause": "RC-017"}
     ]
@@ -376,7 +376,7 @@ EXPECTED_DIAGNOSIS = {
    }
   ],
   "first_15": {
-   "action": "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewellery) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
+   "action": "Sweep the dresser top down to just the valet tray and the fragrance dish: pocket sediment (change, receipts, stray jewelry) gets sorted into a jar, the bin, or the repair bag, and any bottle you have not reached for in a year comes off entirely.",
    "victory": "The dresser top holds only the valet tray and a small dish of fragrance bottles, and nothing loose sits on the bare wood."
   }
  },
@@ -434,7 +434,7 @@ EXPECTED_DIAGNOSIS = {
     "symptom": "You cannot slide two fingers between the hangers anywhere along the rod, and there is no bare stretch left at the end.",
     "branches": [
      {"answer": "The rod is carrying more than the two-finger standard allows, so one in one out has stopped happening", "cause": "KC-001"},
-     {"answer": "Winter coats and heavy knits that should have moved to the labelled bin for the off season never actually left the rod", "cause": "KC-003"},
+     {"answer": "Winter coats and heavy knits that should have moved to the labeled bin for the off season never actually left the rod", "cause": "KC-003"},
      {"answer": "The overloaded rod is putting real weight on brackets only ever meant to hold what one season needs, and it can tear out of the plasterboard while you are reaching in underneath", "cause": "KC-010"}
     ]
    }
@@ -650,7 +650,7 @@ MICRO_QUESTS = {
   "Lift the bags and boxes down from the top shelf, dust where a film "
   "has been settling onto stored things all year.",
   "Run a damp cloth the full length of the hanging rod to take off the "
-  "fuzzy grey film that transfers onto a dark shoulder.",
+  "fuzzy gray film that transfers onto a dark shoulder.",
   "Lift the shoes off the rack, wipe the shelves clean of grit and "
   "dried mud, and wipe the soles before pairs go back.",
  ],
@@ -841,9 +841,9 @@ ACTIONS = [
   "steps": [
    "Sweep the dresser top down to just the valet tray and the "
    "fragrance dish: pocket sediment (change, receipts, stray "
-   "jewellery) gets sorted into a jar, the bin, or the repair bag, and "
+   "jewelry) gets sorted into a jar, the bin, or the repair bag, and "
    "any bottle you have not reached for in a year comes off entirely.",
-   "Move any jewellery you love but never wear into a box in the "
+   "Move any jewelry you love but never wear into a box in the "
    "closet rather than back onto the top."],
   "causes": ["KC-007", "KC-002"],
   "victory": "The dresser top holds only the valet tray and a small "
@@ -972,7 +972,7 @@ ACTIONS = [
    "money and has not been worn in a year, list it for sale, and set a "
    "thirty-day deadline: unsold, it goes to the charity shop without "
    "another conversation.",
-   "Move winter coats and heavy knits that belong in the labelled "
+   "Move winter coats and heavy knits that belong in the labeled "
    "off-season bin off the rod until you can slide two fingers between "
    "every remaining hanger, with a bare stretch left at one end."],
   "causes": ["RC-014", "RC-015", "RC-017", "KC-001", "KC-003", "KC-010"],
@@ -982,7 +982,7 @@ ACTIONS = [
              "at the end.",
   "next": "PRA-011",
   "art": "a phone photographing an unworn suit on a closet rod, a "
-         "labelled seasonal bin standing nearby with a folded coat "
+         "labeled seasonal bin standing nearby with a folded coat "
          "going into it"},
 
  {"id": "PRA-013", "zone": None, "title": "THE FULL BEDROOM HAZARD WALK",

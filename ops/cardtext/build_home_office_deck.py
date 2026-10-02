@@ -178,7 +178,7 @@ ZONES = {
    "Nothing sitting on top of the lid",
   ],
   "art": ("a printer with a paper bin directly beneath it marked with a "
-          "min line and a max line, a labelled box holding one spare "
+          "min line and a max line, a labeled box holding one spare "
           "cartridge standing beside it, a scan tray divided into a "
           "to-do side and a done side nearby, a gap of clear air behind "
           "the machine, and a completely bare top of the lid"),
@@ -252,7 +252,7 @@ FRICTION_META = [
 
  ("Bookshelf and Reference Zone", "HOF-010",
   "THE SHELF IS FULL BUT THE BOOK ISN'T THERE",
-  "a crowded bookshelf with books arranged by height and colour rather "
+  "a crowded bookshelf with books arranged by height and color rather "
   "than subject, a hand scanning the spines without finding the one it "
   "is looking for"),
  ("Bookshelf and Reference Zone", "HOF-011",
@@ -451,7 +451,7 @@ ACTIONS = [
              "action or sits boxed and dated on the shelf.",
   "next": "HOA-001",
   "art": "a photograph of a bare desk taped inside an open desk drawer, "
-         "a small labelled box with a dated marking on its lid sitting "
+         "a small labeled box with a dated marking on its lid sitting "
          "on a shelf nearby"},
 
  {"id": "HOA-003", "zone": "Desk Drawers and Pedestal",
@@ -487,7 +487,7 @@ ACTIONS = [
   "why": "A drawer full of cables too cheap to think about and too "
          "specific to throw away only clears when the whole bag is "
          "judged at once, not one cable at a time.",
-  "inputs": ["the cable bag", "a labelled small box for the kept "
+  "inputs": ["the cable bag", "a labeled small box for the kept "
              "spares", "a bag for electronics recycling"],
   "steps": [
    "Empty the whole cable bag onto the cleared desk in one go.",
@@ -498,11 +498,11 @@ ACTIONS = [
    "Coil and band exactly one spare of each connector type you still "
    "use daily, and box the rest for electronics recycling this week."],
   "causes": ["KC-001", "RC-013"],
-  "victory": "One labelled box holds exactly one spare of each "
+  "victory": "One labeled box holds exactly one spare of each "
              "connector type still in daily use, and everything else "
              "is boxed for electronics recycling.",
   "next": "HOA-003",
-  "art": "a small labelled box holding one coiled spare of each cable "
+  "art": "a small labeled box holding one coiled spare of each cable "
          "connector type, a bag of surplus adapters set aside for "
          "electronics recycling nearby"},
 
@@ -526,7 +526,7 @@ ACTIONS = [
   "victory": "One drawer where the tabs read down in a single line, and "
              "it closes without pressure.",
   "next": "HOS-003",
-  "art": "an open filing cabinet drawer with folder tabs relabelled and "
+  "art": "an open filing cabinet drawer with folder tabs relabeled and "
          "standing in a single straight line, the drawer closing easily "
          "with room to spare"},
 
@@ -737,7 +737,7 @@ ACTIONS = [
              "you can name which zone, if any, slowed it down.",
   "next": "HOA-014",
   "art": "a single sheet of paper being carried from a desk inbox tray "
-         "directly to a labelled folder in an open filing cabinet "
+         "directly to a labeled folder in an open filing cabinet "
          "drawer, no other paper visible along the way"},
 
  {"id": "HOA-014", "zone": None, "title": "THE HOLDING PEN SWEEP",
@@ -829,7 +829,7 @@ EVENTS = [
   "If the drawer would not close for the new folder, the retention "
   "pass has not been run. Draw HOA-005 or HOA-006.",
   "a new folder of tax documents being slotted into a filing cabinet "
-  "drawer with clearly labelled tabs, an older folder pulled out beside "
+  "drawer with clearly labeled tabs, an older folder pulled out beside "
   "a shred bag"),
  ("HOE-003", "THE SCHOOL PROJECT RESEARCH NIGHT",
   "A child needs three reference books from the shelf for a project "

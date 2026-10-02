@@ -56,7 +56,7 @@ write anything.
 | **The real delivery cost** | Amazon charges on the size of its converted file, not the EPUB. The EPUB is 0.81 MB, which would be about $0.12 | KDP shows the exact figure on the pricing screen before publishing |
 | **Whether a cover may carry a website URL** | The cover criteria page says nothing either way, and the rule that forbids URLs is written about descriptions, not covers | Sidestepped. See section 2.7: the KDP cover has the URL removed |
 | **Title and subtitle character limits** | Not stated on any KDP page fetched | Both are far short of any plausible limit |
-| **Every Etsy fee, limit and taxonomy** | Etsy returns HTTP 403 to automated requests. `etsy.com/legal/fees`, the seller handbook and every help article tried all refused | Read the fee page while signed in and run `build/listings/etsy_economics.py` with the real numbers. Do not price off any figure in this file that is not labelled measured |
+| **Every Etsy fee, limit and taxonomy** | Etsy returns HTTP 403 to automated requests. `etsy.com/legal/fees`, the seller handbook and every help article tried all refused | Read the fee page while signed in and run `build/listings/etsy_economics.py` with the real numbers. Do not price off any figure in this file that is not labeled measured |
 | **Etsy comparables, competitor prices, competitor tags** | Same block | Nothing in this file is presented as a comparable. There are none here |
 
 **Nothing in this package claims the book has readers, reviews, rankings or
@@ -264,13 +264,13 @@ exactly the 1600 x 2560 KDP names as ideal.
 **One change was made for KDP.** The cover carries `6s-success.com` across the
 foot. `build/listings/build_kdp_cover.py` produces
 `build/listings/kdp/cover-kdp.jpg`, which is the same image with that one line
-painted out in the background colour sampled from the image itself, and every
+painted out in the background color sampled from the image itself, and every
 pixel outside a 105-pixel band verified identical to the original. Upload that
 one.
 
 Three reasons, and the third is the one that decides it. At the size a cover is
 actually seen, about 160 pixels wide in a search result, a 40-pixel line of
-type is a grey smudge. A URL on the cover reads as self-published in a category
+type is a gray smudge. A URL on the cover reads as self-published in a category
 where the competition does not do it. And KDP's rules forbid URLs in the
 description while saying nothing about covers, which makes rejection an
 unverified risk that costs nothing to avoid: a rejected cover is a book stuck
@@ -650,7 +650,7 @@ entryway organizing, mudroom organizing, declutter entryway, cleaning checklist,
 **Description**
 
 ```
-The entryway is four square metres that decides how the whole house feels, and it is the fastest room in the house to fix.
+The entryway is four square meters that decides how the whole house feels, and it is the fastest room in the house to fix.
 
 Five zones, six cards each, thirty cards:
 
@@ -792,7 +792,7 @@ deliberately left out even though they would pull traffic:
 Those queries want a shelf, not a PDF. Traffic that bounces is worse than no
 traffic, because Etsy ranks partly on what happens after the click.
 
-**Theme tags we cannot honour.** *christmas cleaning* was cut from L5. The
+**Theme tags we cannot honor.** *christmas cleaning* was cut from L5. The
 cards are not Christmas-themed, and somebody arriving on that query is looking
 for artwork we do not have.
 
@@ -858,7 +858,7 @@ Look at the numbers 30 days after both are live.
 | Did anyone find the book | KDP Reports, units sold and KENP | any unit that is not us |
 | Did anyone find the packs | Etsy Stats, visits and orders per listing | any order, and which of the three framings got it |
 | Which framing works | Etsy visits per listing, L1 vs L2 vs L4/L5 | one of completeness, room, or life event pulling clear |
-| Is the price wrong | Etsy favourites with no orders | many favourites and no orders means price; no favourites means the images |
+| Is the price wrong | Etsy favorites with no orders | many favorites and no orders means price; no favorites means the images |
 | Did it move the constraint | `GOALS.md` O1 | a marketplace is a second front door, and this is the first time there has been one |
 
 **The honest prior:** two new listings with no reviews, no history and no

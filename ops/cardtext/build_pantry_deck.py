@@ -334,7 +334,7 @@ EXPECTED_DIAGNOSIS = {
    "action": "Test every leavener rather than guessing: a spoon of "
              "baking powder in hot water should fizz hard, and yeast in "
              "warm sugared water should foam. The dead ones go, along "
-             "with any hardened brown sugar or greyed cocoa.",
+             "with any hardened brown sugar or grayed cocoa.",
    "victory": "Every leavener in the bin has been tested this week, and "
               "nothing dead or expired remains.",
   },
@@ -708,7 +708,7 @@ ACTIONS = [
   "title": "TEST EVERY LEAVENER, TOSS WHAT'S DEAD",
   "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
   "goal": "Test every leavener rather than guessing, and remove "
-          "anything dead along with hardened brown sugar or greyed "
+          "anything dead along with hardened brown sugar or grayed "
           "cocoa.",
   "why": "A cake that will not rise on the day is the only way most "
          "households ever find out a leavener died months ago.",
@@ -717,7 +717,7 @@ ACTIONS = [
    "Test every leavener rather than guessing: a spoon of baking "
    "powder in hot water should fizz hard, and yeast in warm sugared "
    "water should foam. The dead ones go, along with any hardened "
-   "brown sugar or greyed cocoa.",
+   "brown sugar or grayed cocoa.",
    "Write today's date on the lid of anything that survives, "
    "including anything freshly opened."],
   "causes": ["KC-009", "RC-015"],

@@ -282,7 +282,7 @@ __CSS__
     <h2>Same room, two different zone counts, and here is why</h2>
     <p>__INTRO__</p>
     <p>The free deck at <a href="deck.html">deck.html</a> is illustrated, photographed, and has been live for months: eighty eight cards built around twelve "Micro Zone" cards, a model written before the Manual's own diagnosis layer existed. The Manual, the zone pages, the Home Quest and the print pack all teach five real Entryway zones instead, the same five this page uses. Rebuilding or retiring the older deck is a bigger decision than one generator can make alone, so both are live for now, each saying plainly what the other is. If you own the illustrated deck and the print pack, this is the version that matches the pack.</p>
-    <p>Every card here is real: written from the same source as the Manual and the zone pages, gated so a root cause with no friction pointing at it, or an action nobody's problem needs, cannot ship. None of it is generated placeholder copy. What is missing is photography, which this deck does not pretend to have. A family-coloured panel and the card's own symbol stand where a photograph will eventually go.</p>
+    <p>Every card here is real: written from the same source as the Manual and the zone pages, gated so a root cause with no friction pointing at it, or an action nobody's problem needs, cannot ship. None of it is generated placeholder copy. What is missing is photography, which this deck does not pretend to have. A family-colored panel and the card's own symbol stand where a photograph will eventually go.</p>
   </div>
 </section>
 

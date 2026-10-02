@@ -251,7 +251,7 @@ FRICTION_META = [
   "needed"),
  ("Vanity Drawers", "PBF-005", "OPENED, FORGOTTEN, EXPIRED",
   "an open jar of skincare product with a visibly separated, "
-  "discoloured surface sitting at the back of a crowded drawer"),
+  "discolored surface sitting at the back of a crowded drawer"),
  ("Vanity Drawers", "PBF-006", "TIDY FOR A WEEK, THEN NOT",
   "a bathroom drawer with its dividers pushed out of position and small "
   "items scattered loose across the compartments"),
@@ -262,7 +262,7 @@ FRICTION_META = [
  ("Under-Sink Cabinet", "PBF-008", "DAMAGED DOWN HERE, NOBODY NOTICED",
   "a water-stained cardboard box sitting directly on the bare floor of "
   "an under-sink cabinet, its bottom corner visibly soft and "
-  "discoloured"),
+  "discolored"),
  ("Under-Sink Cabinet", "PBF-009", "NO WAY TO TELL IF IT'S LEAKING",
   "a crowded under-sink cabinet with bins and boxes stacked directly "
   "over a dark, hidden pipe joint, no pale tray visible beneath it"),
@@ -306,7 +306,7 @@ FRICTION_META = [
   "a nearly bare linen shelf holding only one damp-looking towel, "
   "laundry day still several days away by a calendar visible nearby"),
  ("Linen and Towel Storage", "PBF-020", "FULL SHELF, NO MATCHING SET",
-  "a crowded linen shelf with towels of different colours and sizes "
+  "a crowded linen shelf with towels of different colors and sizes "
   "stacked loosely together, no guest set visible nested separately"),
  ("Linen and Towel Storage", "PBF-021",
   "PULL ONE TOWEL, DOWN COMES THE STACK",

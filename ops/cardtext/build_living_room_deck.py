@@ -134,14 +134,14 @@ ZONES = {
              "THE VENTS.",
   "callouts": [
    "A cable bundle with a visible label at both ends",
-   "One labelled power strip",
+   "One labeled power strip",
    "A hand's gap of clear air around the amplifier vents",
    "The same gap of clear air around the console vents",
    "One ventilated bin holding every controller and remote",
    "The television anchored to the wall or the unit",
   ],
-  "art": ("a media console with a bundle of cables labelled at both ends "
-          "running to one labelled power strip, a hand's gap of clear "
+  "art": ("a media console with a bundle of cables labeled at both ends "
+          "running to one labeled power strip, a hand's gap of clear "
           "air around the amplifier and console vents, and one bin "
           "holding every controller and remote"),
  },
@@ -248,7 +248,7 @@ FRICTION_META = [
   "manual, and a water-stained book standing together among the other "
   "titles"),
  ("Bookshelves and Display", "LVF-011", "SCANNING EVERY SPINE FOR ONE BOOK",
-  "a hand scanning a packed row of book spines arranged by colour "
+  "a hand scanning a packed row of book spines arranged by color "
   "rather than subject, no bookend or divider breaking up the row"),
  ("Bookshelves and Display", "LVF-012",
   "THE BOOKCASE THAT'S NEVER BEEN STRAPPED DOWN",
@@ -426,7 +426,7 @@ ACTIONS = [
              "throws are folded in one basket.",
   "next": "LVS-001",
   "art": "a sofa with every cushion squared and sittable, folded throws "
-         "sitting in a basket at the end, a small labelled laundry "
+         "sitting in a basket at the end, a small labeled laundry "
          "basket standing just outside the room"},
 
  {"id": "LVA-002", "zone": "Sofa and Seating Zone",
@@ -489,7 +489,7 @@ ACTIONS = [
           "space on every side.",
   "why": "A coaster you have to lean across the table for gets skipped, "
          "and a candle surrounded by throws and magazines is the wrong "
-         "neighbourhood for an open flame.",
+         "neighborhood for an open flame.",
   "inputs": ["four coasters", "the tray", "a heatproof mat for the "
              "candle"],
   "steps": [
@@ -527,7 +527,7 @@ ACTIONS = [
    "Reconnect only the cables that named a real device still in the "
    "room."],
   "causes": ["KC-001", "KC-008"],
-  "victory": "Every remaining cable is labelled at both ends and runs "
+  "victory": "Every remaining cable is labeled at both ends and runs "
              "to a device you can name.",
   "next": "LVS-003",
   "art": "a media unit with every cable laid out and reconnected only "
@@ -560,7 +560,7 @@ ACTIONS = [
              "controllers live in one bin at a reachable height, and a "
              "hand's gap of air surrounds the vents.",
   "next": "LVA-005",
-  "art": "a media console with a labelled power strip, one ventilated "
+  "art": "a media console with a labeled power strip, one ventilated "
          "bin holding every controller at a reachable height, and clear "
          "air visible around the amplifier vents"},
 
@@ -597,7 +597,7 @@ ACTIONS = [
           "subject with a bookend closing every group.",
   "why": "A tall bookcase loaded high is a tip-over risk the moment a "
          "child uses the shelves as a ladder, and a shelf grouped by "
-         "colour makes every search take longer than it should.",
+         "color makes every search take longer than it should.",
   "inputs": ["a wall strap kit", "a stud finder", "bookends"],
   "steps": [
    "Find the stud and fit a wall strap between it and the bookcase.",
@@ -827,13 +827,13 @@ EVENTS = [
   "A new game console arrives today and needs plugging in, right in the "
   "middle of a unit already crowded with cables.",
   ["LVZ-003"],
-  "The new cable gets labelled at both ends the moment it is plugged "
+  "The new cable gets labeled at both ends the moment it is plugged "
   "in, and it is obvious which outlet on the strip is free.",
-  "If the new cable went in unlabelled, or you could not tell which "
+  "If the new cable went in unlabeled, or you could not tell which "
   "outlet was free, the standard slipped the moment it was tested. "
   "Draw LVA-005 or LVA-006.",
-  "a hand plugging in a new console cable at a labelled power strip, a "
-  "marker resting nearby, the rest of the bundle already labelled at "
+  "a hand plugging in a new console cable at a labeled power strip, a "
+  "marker resting nearby, the rest of the bundle already labeled at "
   "both ends"),
  ("LVE-004", "THE SCHOOL PROJECT RESEARCH NIGHT",
   "A child needs three reference books from this shelf for a project "

@@ -142,14 +142,14 @@ ZONES = {
    "A bare wooden seat wide enough for two people to sit and lace boots "
    "at once",
    "No more than three objects resting on the surface",
-   "One labelled basket at the end of the bench",
+   "One labeled basket at the end of the bench",
    "The basket holding only items that are leaving the house tomorrow",
    "A completely clear floor path in front of the bench",
    "Nothing stored on the shelf directly above the seat",
   ],
   "art": ("a mudroom bench with a bare wooden seat wide enough for two "
           "people to lace boots at once, no more than three objects on "
-          "the surface, one labelled outbound basket at the end holding "
+          "the surface, one labeled outbound basket at the end holding "
           "only what leaves tomorrow, and a clear floor in front of it"),
  },
  "Shoe and Boot Storage": {
@@ -196,7 +196,7 @@ ZONES = {
    "This season's gloves and hat sitting matched in pairs inside each "
    "bin",
    "Umbrellas standing points down in one stand by the door",
-   "The other season's bin closed and labelled with the month it was "
+   "The other season's bin closed and labeled with the month it was "
    "packed",
    "That closed off-season bin sitting up on the high shelf",
    "No single, unmatched glove visible in any open bin",
@@ -204,7 +204,7 @@ ZONES = {
   "art": ("a mudroom seasonal gear shelf with one open bin per person at "
           "their own height holding this season's matched gloves and "
           "hats, umbrellas standing points down in a stand by the door, "
-          "and a closed, labelled off-season bin sitting on the high "
+          "and a closed, labeled off-season bin sitting on the high "
           "shelf above"),
  },
  "Cleaning and Utility Zone": {
@@ -217,13 +217,13 @@ ZONES = {
    "floor",
    "A dustpan hanging empty on its own clip",
    "The vacuum parked flat against the wall inside a marked outline",
-   "One caddy holding four labelled cleaner bottles",
+   "One caddy holding four labeled cleaner bottles",
    "No tool anywhere leaning loose against the wall",
   ],
   "art": ("a mudroom cleaning corner with a broom, mop and dustpan all "
           "clipped to the wall with their heads hanging clear of the "
           "floor, the vacuum parked flat inside a marked floor outline, "
-          "and one caddy holding four labelled cleaner bottles"),
+          "and one caddy holding four labeled cleaner bottles"),
  },
 }
 
@@ -552,7 +552,7 @@ EXPECTED_DIAGNOSIS = {
                 "in a closed box is a safety constraint that outranks "
                 "how tidy one caddy looks", "cause": "KC-010"},
      {"answer": "There's no agreed rule yet that every decanted bottle "
-                "gets labelled before it goes in the caddy",
+                "gets labeled before it goes in the caddy",
       "cause": "KC-008"},
      {"answer": "Nobody's the one who checks this caddy specifically for "
                 "two things that shouldn't share a box", "cause": "RC-013"},
@@ -577,11 +577,11 @@ EXPECTED_DIAGNOSIS = {
    "action": "Shake the door mats out right now, hang the broom back on "
              "its clip with the bristles clear of the floor, and check "
              "whether the mop head has actually dried. Pull the "
-             "decanted, unlabelled bottle out of the caddy and label it, "
+             "decanted, unlabeled bottle out of the caddy and label it, "
              "or empty it if you can't tell what it is.",
    "victory": "The broom, mop and dustpan all hang clear of the floor, "
               "the mop head is dry, and every bottle in the caddy is "
-              "labelled.",
+              "labeled.",
   },
  },
 }
@@ -698,7 +698,7 @@ CAUSE_ART = {
  "KC-007": "a shoe rack with every slot full of current season "
            "footwear, no room left for one more worn pair",
  "KC-008": "an unmarked decanted cleaning bottle sitting in an open "
-           "caddy beside two clearly labelled ones",
+           "caddy beside two clearly labeled ones",
  "KC-009": "an umbrella standing upright with its spike up in a "
            "doorside stand nobody has straightened in days",
  "KC-010": "a scarf hanging in a long loop from a low mudroom hook at "
@@ -728,7 +728,7 @@ CAUSE_ART = {
 MICRO_QUESTS = {
  "Family Hook Zone": [
   "Wipe the rail and the wall behind it in downward strokes, working the "
-  "grey shoulder-height smear until it lifts.",
+  "gray shoulder-height smear until it lifts.",
   "Brush the shoulders and collar of each coat with a soft clothing "
   "brush before it goes back on its column.",
   "Vacuum the floor strip under the hooks with the crevice tool, working "
@@ -859,7 +859,7 @@ ACTIONS = [
              "trip out.",
   "next": "MDS-002",
   "art": "a hand carrying an armful of misplaced items off a mudroom "
-         "bench into the house, one item going into a labelled outbound "
+         "bench into the house, one item going into a labeled outbound "
          "basket"},
 
  {"id": "MDA-004", "zone": "Bench and Transition Surface",
@@ -1047,15 +1047,15 @@ ACTIONS = [
   "steps": [
    "Shake the door mats out right now, hang the broom back on its clip "
    "with the bristles clear of the floor, and check whether the mop head "
-   "has actually dried. Pull the decanted, unlabelled bottle out of the "
+   "has actually dried. Pull the decanted, unlabeled bottle out of the "
    "caddy and label it, or empty it if you can't tell what it is."],
   "causes": ["KC-010", "KC-004", "KC-008"],
   "victory": "The broom, mop and dustpan all hang clear of the floor, "
              "the mop head is dry, and every bottle in the caddy is "
-             "labelled.",
+             "labeled.",
   "next": "MDS-006",
   "art": "a hand hanging a broom back on its wall clip beside a mop head "
-         "checked for dryness, a labelled bottle being set back in a "
+         "checked for dryness, a labeled bottle being set back in a "
          "caddy"},
 
  {"id": "MDA-012", "zone": "Cleaning and Utility Zone",
@@ -1230,11 +1230,11 @@ EVENTS = [
   "guests are due, and every cleaning tool has to be ready to go.",
   ["MDZ-006"],
   "The broom and mop are already hanging dry and ready, and the right "
-  "cleaner is already labelled and easy to grab.",
+  "cleaner is already labeled and easy to grab.",
   "If the mop head was still damp from last time, or a bottle had to be "
   "guessed at, the hang-and-check pass never happened. Draw MDA-011.",
   "a hand lifting a dry, ready mop off its wall clip beside a clearly "
-  "labelled cleaner bottle"),
+  "labeled cleaner bottle"),
 ]
 
 

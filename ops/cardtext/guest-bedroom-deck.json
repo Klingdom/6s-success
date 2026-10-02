@@ -281,11 +281,11 @@
     "A forearm's width of clear closet rod",
     "Six matching empty hangers on the clear rod",
     "A clear floor square big enough for an open suitcase",
-    "Household bins on the shelf inside labelled lidded boxes",
+    "Household bins on the shelf inside labeled lidded boxes",
     "Nothing loose sitting above head height on the shelf",
     "A strip of tape on the rod marking where the guest section ends"
    ],
-   "done_looks_like": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labelled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
+   "done_looks_like": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labeled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
    "session": "60-90 min",
    "safety_checks": [
     {
@@ -299,7 +299,7 @@
    ],
    "the_call": {
     "title": "The box you have not opened since the move",
-    "text": "There are two or three boxes on that shelf that were sealed at a previous address and have travelled unopened ever since. You keep them because opening one feels like it might cost an afternoon, and you keep meaning to have that afternoon. Do it standing here, now, with one box. If you can name a specific person and a specific occasion for what is inside, it earns a labelled home. If you find yourself saying we might need it, that is not a use, that is a delayed decision wearing a use's clothes. For anything you truly cannot face, write today's date on the lid in marker and put it back. If a year passes and you have not opened it again, it leaves unopened, and you will not remember what was in it."
+    "text": "There are two or three boxes on that shelf that were sealed at a previous address and have traveled unopened ever since. You keep them because opening one feels like it might cost an afternoon, and you keep meaning to have that afternoon. Do it standing here, now, with one box. If you can name a specific person and a specific occasion for what is inside, it earns a labeled home. If you find yourself saying we might need it, that is not a use, that is a delayed decision wearing a use's clothes. For anything you truly cannot face, write today's date on the lid in marker and put it back. If a year passes and you have not opened it again, it leaves unopened, and you will not remember what was in it."
    },
    "supplies": [
     "Compact vacuum with attachments",
@@ -320,12 +320,12 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labelled lidded bins sitting below head height",
+    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labeled lidded bins sitting below head height",
     "must_show": [
      "A forearm's width of clear closet rod",
      "Six matching empty hangers on the clear rod",
      "A clear floor square big enough for an open suitcase",
-     "Household bins on the shelf inside labelled lidded boxes",
+     "Household bins on the shelf inside labeled lidded boxes",
      "Nothing loose sitting above head height on the shelf",
      "A strip of tape on the rod marking where the guest section ends"
     ],
@@ -347,11 +347,11 @@
     "A clear desk surface with a working lamp",
     "A chair pulled up to the desk",
     "A luggage rack or a taped floor square for the suitcase",
-    "One labelled welcome bin standing on the desk",
+    "One labeled welcome bin standing on the desk",
     "A spare charger, wifi card, water glass, tissues and a folded blanket visible inside the open bin",
     "A reachable outlet with no cord crossing the floor"
    ],
-   "done_looks_like": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labelled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
+   "done_looks_like": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labeled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
    "session": "30-45 min",
    "safety_checks": [
     {
@@ -388,12 +388,12 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labelled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor",
+    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labeled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor",
     "must_show": [
      "A clear desk surface with a working lamp",
      "A chair pulled up to the desk",
      "A luggage rack or a taped floor square for the suitcase",
-     "One labelled welcome bin standing on the desk",
+     "One labeled welcome bin standing on the desk",
      "A spare charger, wifi card, water glass, tissues and a folded blanket visible inside the open bin",
      "A reachable outlet with no cord crossing the floor"
     ],
@@ -1847,10 +1847,10 @@
    "players": "1 to 2",
    "inputs": [
     "tape for the rod line",
-    "labelled lidded bins"
+    "labeled lidded bins"
    ],
    "steps": [
-    "Move every heavy box off the shelf directly above the rod, and repack household storage into labelled lidded bins below head height.",
+    "Move every heavy box off the shelf directly above the rod, and repack household storage into labeled lidded bins below head height.",
     "Clear the closet floor of loose bins so a suitcase has a real square to sit in.",
     "Stick a strip of tape on the rod marking exactly where the guest section ends."
    ],
@@ -2189,7 +2189,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Top two drawers empty and labelled reserved, lower drawers holding only spare linens for this room's bed, strap fixed to the wall.",
+   "objective": "Top two drawers empty and labeled reserved, lower drawers holding only spare linens for this room's bed, strap fixed to the wall.",
    "trigger": "When you swap your own wardrobe over between seasons, you check the guest drawers are still empty before the swap counts as finished.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2229,7 +2229,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Six matching empty hangers past the tape line, a clear floor square for a suitcase, and every household bin lidded, labelled and below head height.",
+   "objective": "Six matching empty hangers past the tape line, a clear floor square for a suitcase, and every household bin lidded, labeled and below head height.",
    "trigger": "When you fetch or return a seasonal bin, you count the six hangers before you close the door.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2252,7 +2252,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labelled lidded bins sitting below head height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a guest closet with a clear stretch of rod holding six matching empty hangers past a strip of tape, an open floor square large enough for a suitcase, and a shelf of labeled lidded bins sitting below head height, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2269,7 +2269,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Clear desk, marked suitcase footprint, one labelled welcome bin with the ready-state photo inside the lid, and no cord crossing a walking line.",
+   "objective": "Clear desk, marked suitcase footprint, one labeled welcome bin with the ready-state photo inside the lid, and no cord crossing a walking line.",
    "trigger": "When the guest's sheets go into the machine, the welcome bin is restocked and put back before you leave the room.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2292,7 +2292,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labelled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a guest room desk with a working lamp, a chair pulled up to it, a luggage rack beside a taped floor square, one labeled bin open to show a charger, wifi card, water glass and tissues, and a wall outlet with no cord crossing the floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2447,7 +2447,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "hands lifting a single labelled bin off a guest room desk to leave it completely clear",
+    "subject": "hands lifting a single labeled bin off a guest room desk to leave it completely clear",
     "must_show": [
      "Someone needs the desk for the room's other job the same week a guest is due to arrive."
     ],

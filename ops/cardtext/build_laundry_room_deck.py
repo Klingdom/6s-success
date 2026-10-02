@@ -220,7 +220,7 @@ FRICTION_META = [
   "undisturbed"),
  ("Washer and Dryer", "LRF-002", "ONE LOAD, THREE CYCLES",
   "a dryer control panel showing a cycle restarting for a second time, a "
-  "lint screen sitting nearby still coated in a thick grey mat of lint"),
+  "lint screen sitting nearby still coated in a thick gray mat of lint"),
  ("Washer and Dryer", "LRF-003", "THE LIDS ARE NEVER BARE",
   "the tops of a washer and dryer cluttered with a stray sock, a box of "
   "dryer sheets and a bottle of softener crowded together across both "
@@ -231,9 +231,9 @@ FRICTION_META = [
   "by side, each filled to a different level"),
  ("Detergent and Treatment Zone", "LRF-005", "NOBODY POURS THE SAME DOSE TWICE",
   "a detergent cap held up to the light with a crusted ring of dried "
-  "powder built up well above its moulded fill line"),
+  "powder built up well above its molded fill line"),
  ("Detergent and Treatment Zone", "LRF-006", "THE PODS SIT AT A CHILD'S EYE LEVEL",
-  "a laundry shelf at knee height holding an open tub of colourful "
+  "a laundry shelf at knee height holding an open tub of colorful "
   "detergent pods, well below shoulder height"),
 
  ("Sorting and Hamper Zone", "LRF-007", "THE CLOTHES LAND ON THE FLOOR, NOT THE BAG",
@@ -241,8 +241,8 @@ FRICTION_META = [
   "distance from a laundry bag standing mostly out of sight behind a "
   "door"),
  ("Sorting and Hamper Zone", "LRF-008", "EVERY LOAD GETS SORTED TWICE",
-  "five unlabelled sorting bags standing in a row, clothes of mixed "
-  "colours visible spilling from more than one of them"),
+  "five unlabeled sorting bags standing in a row, clothes of mixed "
+  "colors visible spilling from more than one of them"),
  ("Sorting and Hamper Zone", "LRF-009", "POCKETS EMPTY INTO THE DRUM, NOT THE DISH",
   "a washing machine drum holding a damp load with a few coins and a "
   "crumpled receipt caught among the clothes"),
@@ -335,7 +335,7 @@ CAUSE_ART = {
 
 MICRO_QUESTS = {
  "Washer and Dryer": [
-  "Pull the dryer forward, check the duct for a soft grey buildup, and "
+  "Pull the dryer forward, check the duct for a soft gray buildup, and "
   "write this month on the tape strip if it is clear.",
   "Lift the folds of the washer door gasket and wipe out whatever has "
   "collected in the seal.",
@@ -434,7 +434,7 @@ ACTIONS = [
   "steps": [
    "Unplug the dryer and ease it forward on its feet far enough to reach "
    "the duct connection.",
-   "Disconnect the duct and vacuum out any soft grey packing built up at "
+   "Disconnect the duct and vacuum out any soft gray packing built up at "
    "the bend behind the machine.",
    "If the duct is a flexible foil accordion, replace the run with rigid "
    "metal now rather than promising to do it later.",
@@ -448,7 +448,7 @@ ACTIONS = [
              "level on their feet.",
   "next": "LRA-001",
   "art": "a dryer pulled away from the wall with its duct disconnected, "
-         "a small pile of grey lint cleared from the bend, a coil of "
+         "a small pile of gray lint cleared from the bend, a coil of "
          "rigid metal duct ready beside it"},
 
  {"id": "LRA-003", "zone": "Detergent and Treatment Zone",
@@ -516,18 +516,18 @@ ACTIONS = [
   "inputs": ["three bags", "a marker or labels", "a small dish"],
   "steps": [
    "Cut the sorting streams to the three this household will actually "
-   "honour, label those three bags, stand them clear of the walking "
+   "honor, label those three bags, stand them clear of the walking "
    "line, and put an empty dish on the shelf for pockets.",
    "Empty any spare hamper you were holding for a stream that never "
    "filled on its own.",
    "Check the floor in front of the washer door is bare before you "
    "leave."],
   "causes": ["KC-001", "KC-005"],
-  "victory": "Three labelled bags, none above half full, bare floor in "
+  "victory": "Three labeled bags, none above half full, bare floor in "
              "front of the washer door, and a dish holding only today's "
              "pocket contents.",
   "next": "LRS-003",
-  "art": "three labelled laundry sorting bags standing against a wall "
+  "art": "three labeled laundry sorting bags standing against a wall "
          "clear of an open floor path, a small dish on a shelf nearby, "
          "bare floor visible in front of a washing machine"},
 
@@ -672,10 +672,10 @@ ACTIONS = [
          "the floor, and an outline is the only thing that reports a "
          "missing tool from the doorway.",
   "inputs": ["a marker, paint pen, or tape for the outlines",
-             "a labelled caddy", "tape for the bucket's floor square"],
+             "a labeled caddy", "tape for the bucket's floor square"],
   "steps": [
    "Hang the broom, mop and dustpan heads up and mark an outline behind "
-   "each one, gather every vacuum attachment into one labelled caddy, "
+   "each one, gather every vacuum attachment into one labeled caddy, "
    "and empty the bucket and stand it inside a taped square on the "
    "floor.",
    "Knock any wound hair or lint off the dustpan and broom before you "
@@ -688,7 +688,7 @@ ACTIONS = [
              "standing in its square.",
   "next": "LRS-006",
   "art": "a broom, mop and dustpan hanging heads up on a wall with a "
-         "painted outline behind each, a labelled caddy of vacuum "
+         "painted outline behind each, a labeled caddy of vacuum "
          "attachments nearby, an empty bucket standing in a taped floor "
          "square"},
 

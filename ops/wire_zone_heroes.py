@@ -299,7 +299,7 @@ ALT_VERIFIED = {
         "A child's desk, empty except for a task lamp and a cup of pens.",
     "primary-bedroom--primary-closet":
         "A wide open wardrobe of shirts and jackets on matching hangers, "
-        "grouped by type and then graded by colour along the rail.",
+        "grouped by type and then graded by color along the rail.",
     "workshop--safety-and-ppe-station":
         "Three sets of ear defenders and a blue work jacket hanging on hooks "
         "on a plywood workshop wall.",

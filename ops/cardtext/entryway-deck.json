@@ -371,7 +371,7 @@
    ],
    "the_call": {
     "title": "When the mat is finished",
-    "text": "A mat looks perfectly fine long after it has stopped working, and the decision being dodged is spending money to replace something that is not visibly broken. So test it instead of looking at it. Walk in from outside on a dry gritty day, wipe your feet the way you actually wipe them, then lift the mat and look at both the floor beneath it and the fibres themselves. A working mat holds grit down inside its pile and drops a clear line of dirt when you shake it out. A finished mat has fibres flattened all in one direction, and the grit sits on top of them and walks straight off on the next pair of shoes. If it fails that test, replace it this month rather than next winter. A worn mat is not saving you anything. It is quietly sanding the finish off every floor between this door and the kitchen."
+    "text": "A mat looks perfectly fine long after it has stopped working, and the decision being dodged is spending money to replace something that is not visibly broken. So test it instead of looking at it. Walk in from outside on a dry gritty day, wipe your feet the way you actually wipe them, then lift the mat and look at both the floor beneath it and the fibers themselves. A working mat holds grit down inside its pile and drops a clear line of dirt when you shake it out. A finished mat has fibers flattened all in one direction, and the grit sits on top of them and walks straight off on the next pair of shoes. If it fails that test, replace it this month rather than next winter. A worn mat is not saving you anything. It is quietly sanding the finish off every floor between this door and the kitchen."
    },
    "supplies": [
     "Floor-material-compatible cleaner",
@@ -916,7 +916,7 @@
      "root_cause": "KC-007"
     },
     {
-     "answer": "The fibres have gone flat, so grit rides across the top instead of down into the pile",
+     "answer": "The fibers have gone flat, so grit rides across the top instead of down into the pile",
      "root_cause": "KC-011"
     },
     {

@@ -166,7 +166,7 @@
    ],
    "the_call": {
     "title": "The book you are in the middle of",
-    "text": "There are four books on this table and you are reading one. The other three are there because putting them away feels like admitting you stopped. Here is the rule that settles it: check the bookmark. If it has not moved in two weeks, you are not reading that book, you are storing it, and storage happens on the shelf. One book per person stays on the table. This is not a judgement on the book, and you can carry it back down the moment you actually open it again."
+    "text": "There are four books on this table and you are reading one. The other three are there because putting them away feels like admitting you stopped. Here is the rule that settles it: check the bookmark. If it has not moved in two weeks, you are not reading that book, you are storing it, and storage happens on the shelf. One book per person stays on the table. This is not a judgment on the book, and you can carry it back down the moment you actually open it again."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -213,13 +213,13 @@
    "objective": "Keep the television, sound and consoles working, cool and cabled so a fault is findable.",
    "callouts": [
     "A cable bundle with a visible label at both ends",
-    "One labelled power strip",
+    "One labeled power strip",
     "A hand's gap of clear air around the amplifier vents",
     "The same gap of clear air around the console vents",
     "One ventilated bin holding every controller and remote",
     "The television anchored to the wall or the unit"
    ],
-   "done_looks_like": "Every cable labelled at both ends, running in one bundle to a single labelled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
+   "done_looks_like": "Every cable labeled at both ends, running in one bundle to a single labeled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
    "session": "45-75 min",
    "safety_checks": [
     {
@@ -255,10 +255,10 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a media console with a bundle of cables labelled at both ends running to one labelled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote",
+    "subject": "a media console with a bundle of cables labeled at both ends running to one labeled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote",
     "must_show": [
      "A cable bundle with a visible label at both ends",
-     "One labelled power strip",
+     "One labeled power strip",
      "A hand's gap of clear air around the amplifier vents",
      "The same gap of clear air around the console vents",
      "One ventilated bin holding every controller and remote",
@@ -745,7 +745,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Cables never get labelled when they go in, so a year later nobody remembers what any of them are for",
+     "answer": "Cables never get labeled when they go in, so a year later nobody remembers what any of them are for",
      "root_cause": "KC-008"
     },
     {
@@ -921,7 +921,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Books are grouped by colour or by height instead of by subject, so finding one means reading every spine in the row",
+     "answer": "Books are grouped by color or by height instead of by subject, so finding one means reading every spine in the row",
      "root_cause": "KC-004"
     },
     {
@@ -945,7 +945,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a hand scanning a packed row of book spines arranged by colour rather than subject, no bookend or divider breaking up the row",
+    "subject": "a hand scanning a packed row of book spines arranged by color rather than subject, no bookend or divider breaking up the row",
     "must_show": [
      "You know the book you want is somewhere on this shelf, but scanning every spine still takes a few minutes to actually find it."
     ],
@@ -1889,7 +1889,7 @@
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a sofa with every cushion squared and sittable, folded throws sitting in a basket at the end, a small labelled laundry basket standing just outside the room",
+    "subject": "a sofa with every cushion squared and sittable, folded throws sitting in a basket at the end, a small labeled laundry basket standing just outside the room",
     "must_show": [
      "Every seat is sittable without moving anything, and the throws are folded in one basket."
     ],
@@ -2003,7 +2003,7 @@
    "six_s": "Safety",
    "tagline": "30 MINUTES. 1.",
    "objective": "Set the tray within reach of the sofa with exactly four coasters on it, and give the candle a hand's width of clear space on every side.",
-   "why_it_matters": "A coaster you have to lean across the table for gets skipped, and a candle surrounded by throws and magazines is the wrong neighbourhood for an open flame.",
+   "why_it_matters": "A coaster you have to lean across the table for gets skipped, and a candle surrounded by throws and magazines is the wrong neighborhood for an open flame.",
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
@@ -2076,14 +2076,14 @@
     "zone": "LVZ-003",
     "standard": "LVS-003"
    },
-   "victory_condition": "Every remaining cable is labelled at both ends and runs to a device you can name.",
+   "victory_condition": "Every remaining cable is labeled at both ends and runs to a device you can name.",
    "next_card": "LVS-003",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
     "subject": "a media unit with every cable laid out and reconnected only to devices still in use, a small bag of old leads and an unused disc player set aside for recycling",
     "must_show": [
-     "Every remaining cable is labelled at both ends and runs to a device you can name."
+     "Every remaining cable is labeled at both ends and runs to a device you can name."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2135,7 +2135,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a media console with a labelled power strip, one ventilated bin holding every controller at a reachable height, and clear air visible around the amplifier vents",
+    "subject": "a media console with a labeled power strip, one ventilated bin holding every controller at a reachable height, and clear air visible around the amplifier vents",
     "must_show": [
      "The power strip and every cable share a label, the controllers live in one bin at a reachable height, and a hand's gap of air surrounds the vents."
     ],
@@ -2199,7 +2199,7 @@
    "six_s": "Safety",
    "tagline": "30 MINUTES. 1 TO 2.",
    "objective": "Strap the bookcase to a wall stud, then regroup the books by subject with a bookend closing every group.",
-   "why_it_matters": "A tall bookcase loaded high is a tip-over risk the moment a child uses the shelves as a ladder, and a shelf grouped by colour makes every search take longer than it should.",
+   "why_it_matters": "A tall bookcase loaded high is a tip-over risk the moment a child uses the shelves as a ladder, and a shelf grouped by color makes every search take longer than it should.",
    "time_target_minutes": 30,
    "players": "1 to 2",
    "inputs": [
@@ -2664,7 +2664,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Every cable is labelled at both ends and every device has clear air on its vents.",
+   "objective": "Every cable is labeled at both ends and every device has clear air on its vents.",
    "trigger": "When the credits roll and you switch the television off, the controllers go back in their bin on the way out of the room.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2687,7 +2687,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a media console with a bundle of cables labelled at both ends running to one labelled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a media console with a bundle of cables labeled at both ends running to one labeled power strip, a hand's gap of clear air around the amplifier and console vents, and one bin holding every controller and remote, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -2889,8 +2889,8 @@
    "tests_zones": [
     "LVZ-003"
    ],
-   "held_if": "The new cable gets labelled at both ends the moment it is plugged in, and it is obvious which outlet on the strip is free.",
-   "if_it_failed": "If the new cable went in unlabelled, or you could not tell which outlet was free, the standard slipped the moment it was tested. Draw LVA-005 or LVA-006.",
+   "held_if": "The new cable gets labeled at both ends the moment it is plugged in, and it is obvious which outlet on the strip is free.",
+   "if_it_failed": "If the new cable went in unlabeled, or you could not tell which outlet was free, the standard slipped the moment it was tested. Draw LVA-005 or LVA-006.",
    "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
    "related": {
     "zones": [
@@ -2900,7 +2900,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a hand plugging in a new console cable at a labelled power strip, a marker resting nearby, the rest of the bundle already labelled at both ends",
+    "subject": "a hand plugging in a new console cable at a labeled power strip, a marker resting nearby, the rest of the bundle already labeled at both ends",
     "must_show": [
      "A new game console arrives today and needs plugging in, right in the middle of a unit already crowded with cables."
     ],

@@ -128,7 +128,7 @@ ZONES = {
           "holding one dish brush and one sponge standing upright, an empty "
           "wire drying rack on the drainer, and below, the open cabinet "
           "beneath showing a single shallow plastic tray holding three plain "
-          "unlabelled bottles with the bare white pipework fully visible "
+          "unlabeled bottles with the bare white pipework fully visible "
           "around it"),
  },
  "Upper Cabinet Zone": {
@@ -272,7 +272,7 @@ MICRO_QUESTS = {
   "back at the front where the door opens onto it.",
   "Move any raw meat package down to the lowest shelf so nothing below it "
   "can catch a drip.",
-  "Name and date one unlabelled lid with the tape on top of the fridge, or "
+  "Name and date one unlabeled lid with the tape on top of the fridge, or "
   "empty it into the bin.",
  ],
 }
@@ -380,7 +380,7 @@ FRICTIONS = [
   "appliances and a folded tea towel, with only a hand's width of bare "
   "surface left at the front"),
  ("Primary Prep Counter", "KF-002", "I COOK ON A CHOPPING BOARD OF SPACE",
-  "There is a metre of counter and I use twenty centimetres of it.",
+  "There is a meter of counter and I use twenty centimetres of it.",
   [("The appliances came out for one job and never went back", "KC-001"),
    ("The board's spot is taken, so it sits wherever it fits", "KC-003"),
    ("There is nowhere to set a bowl down while I work", "KC-007")],
@@ -698,7 +698,7 @@ ACTIONS = [
              "way around.",
   "next": "KA-016",
   "art": "an open under sink cabinet holding a single shallow tray with "
-         "three plain unlabelled bottles on it, the white pipework fully "
+         "three plain unlabeled bottles on it, the white pipework fully "
          "visible and clear all around, the rest of the cabinet floor bare"},
 
  {"id": "KA-007", "zone": "Upper Cabinet Zone",
@@ -910,7 +910,7 @@ ACTIONS = [
              "without being told, and the thermometer reads in range.",
   "next": "KA-017",
   "art": "an open refrigerator seen straight on with clearly separated "
-         "shelves, sealed raw meat lowest, clear labelled containers at eye "
+         "shelves, sealed raw meat lowest, clear labeled containers at eye "
          "level, a small round thermometer clipped to a shelf, and the rear "
          "wall clear of anything pressed against it"},
 
@@ -951,7 +951,7 @@ ACTIONS = [
    "Water and electricity. No kettle, socket, or charging phone within "
    "splash distance of the basin.",
    "Chemicals. Bleach stored apart from any acidic or ammonia cleaner, "
-   "everything labelled, and anything hazardous out of a child's reach.",
+   "everything labeled, and anything hazardous out of a child's reach.",
    "Raw above ready to eat. Nothing raw stored above anything that will not "
    "be cooked again."],
   "causes": ["KC-010", "KC-006"],
