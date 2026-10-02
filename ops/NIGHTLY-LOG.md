@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 22:5x cycle (previous work finished; both standing fallback lanes confirmed exhausted; handing the operator a real, evidenced content gap)
+
+NEXT FOR THE OPERATOR: write and ship the "small space" organizing article A11 already named as the real, unaddressed gap, because `small space` (1/37 covered) and `cheap/budget/DIY` (0/99 covered) are the two query clusters every prior harvest has shown correctly un-moved, since no page answers either, and both fallback lanes (`ops/cold_read_ledger.py --next`: 195/195 files ledgered, 0 stale, 0 candidates; the 20-room content-read lane: all 20 rooms already read per today's log) are exhausted.
+
+**Previous work finished, verified, not just committed:** checkout attached clean (shallow, unshallowed, ff-only onto `origin/main`). The 22:4x addendum below already fixed the real `gate_films_teach_all_six_passes` FAIL (a homophone probe bug plus issue #39's unfinished caption commit, correctly reopened) and shipped it (`59d14965f`, `3221b22be`); re-verified this cycle: `check_urls.py` 211/211, `audit_pages.py` 0 findings, `affiliate.py --check` clean, `fix_dashes.py` 0/0. Tree was clean and pushed before I touched anything.
+
+**Checked rather than assumed:** `python ops/preflight.py` (fast) run fresh against the current HEAD (an earlier background run from this same cycle had started before `59d14965f`/`3221b22be` landed, so it was killed as stale rather than trusted, the exact trap the 22:4x addendum names). 72 of 73 gates passed clean with no FAIL; the 73rd, `gate_tests`, is the standing known slow gate (network-touching cases time out one by one, 10-15 min) and was still running at ship time, left backgrounded rather than waited on past this slot. GitHub: 9 open issues, unchanged in substance; #39 correctly reopened with real evidence (Phil's own TTS machine is the only thing that can finish it), the other 8 are `decision`/`blocked-on-art`, none mine. `ops/keyword_demand.py --rescore` re-run (no network needed): 2827 queries against 218 pages, counts unchanged (216 gap / 1477 partial / 1134 covered), confirming the A11 gap figures above are current, not stale.
+
+**Went well:** catching my own stale-background-preflight risk before shipping on it, the same shape the prior addendum had just diagnosed.
+
+**Did not go well:** `gate_tests` did not finish inside this slot; same standing sandbox cost as every prior cycle.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json` (rescore timestamp only, counts unchanged), `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in addendum, 2026-10-02, 22:4x (the backgrounded preflight from the 22:2x entry below finished with a real FAIL, not a timeout; traced and fixed)
 
 The 22:2x entry's backgrounded preflight used Python loaded before two concurrent commits (27da5009a, 8c7c833bc) landed, so its clean result was already stale. A fresh run crashed: those commits deleted gate_films_teach_all_six_passes's allowlist, its own test still assumed it. Two real causes. Living-room/garage's "missing standardize" was a homophone probe bug (caption "labelled" vs corpus "labeled"), fixed in the probe, fail-then-pass proved, no exception needed. Primary-bedroom/stair-landing genuinely still say "jewellery"/"draught": issue #39's closing commit claimed re-rendering but never committed the caption change. Reopened #39 with evidence, restored a named capped warning for just those two zones, rewrote the stale test. Verified: check_urls 211/211, audit_pages 0, affiliate clean, dashes 0/0.
