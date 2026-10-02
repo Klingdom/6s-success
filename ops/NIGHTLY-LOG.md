@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 12:4x cycle (the prior "unblocked" claim was premature; both failing CI runs had tested a stale commit, not current HEAD)
+
+NEXT FOR THE OPERATOR: verify `publish-image.yml`'s freshly dispatched run (queued ~12:48 UTC) before citing the pipeline fixed either way; if it is green, take `BACKLOG-2026-09-07.md`'s cheap/budget/DIY query cluster (0 covered/82 partial/17 gap of 99), the standing unblocked traffic item.
+
+**The prior cycle's "unblocked `publish-image.yml`" was not actually verified.** Runs #517 and #518 both failed on `generator-ownership` (drifted `ops/sitemap-content-hashes.json` and a `site/art*` file), but both ran against a stale head SHA (`fa229c1f1`), not current HEAD. Confirmed by calling `gate_generator_ownership()` directly against the clean, current tree: it passes. Re-dispatched `publish-image.yml` on current `main` rather than citing either the old failure or the old "fixed" claim.
+
+**Attach:** clean fast-forward; a concurrent session pushed two more commits mid-cycle, caught on a second fetch, merged ff-only, no conflict.
+
+**P0 #37:** confirmed still failing live (run #3022, 12:42 UTC, same "Deliver" step), 3.5h+ since 09:12 UTC, zero Phil action. Held re-notify this cycle; gap since the last ping (~12:1x) is short of the established ~hourly cadence.
+
+**Local `preflight.py` fast:** still stuck on `gate_tests`, the documented sandbox limitation; reported unchecked, not assumed clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched.
+
 ## PM check-in, 2026-10-02, addendum (independently confirmed the concurrent #39 fix on a clean tree; a mid-run rebase had invalidated my first attempt)
 
 **My own first backgrounded `preflight.py` run (started before shipping) was invalidated, not just inconclusive.** A concurrent session's fix for issue #39 (`92f2eeb55`, capping `gate_films_teach_all_six_passes` to a named, tracked exception) landed and got pulled in by `ops/ship.py`'s own rebase-on-origin while that background process was still running, mutating the working tree under it mid-execution. Its FAIL report was read from a tree that no longer matched any single commit, so it was discarded rather than cited, per CLAUDE.md 0.4 (a result from an inconsistent read proves nothing).
