@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 16:22 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-02 16:58 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1372 of 5238 total |
+| Commits (7 days) | 1379 of 5252 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `001d59994` Close the stale owner-action P0 #37 left behind: OWNER-ACTIO |
+| Last commit | `e66ec3219` Hourly check-in record |
 
 ## Product readiness
 
@@ -61,7 +61,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
 - **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
-- **~~Run the Stripe retirement for the SKUs still unconfirmed~~ **DONE 2026-09-23 by an autonomous session, not by you.** (0 min). All **65** retired SKUs are now archived and recorded in `ops/retired-skus-stripe-status.json`; the gate that watches this reads 0 unconfirmed.
 - **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys
 - **#33** Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3)
 - **#31** Decide: the deck gallery and the deck download are two different card designs
