@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 17:2x cycle (previous work finished; closed a real stale deploy-verdict citation the gate itself had flagged)
+
+**Previous work was finished.** Attached clean. Full `preflight.py`: every gate passed, 32 standing warnings. 9 GitHub issues, all decision/art/TTS-blocked. Both fallback lanes (cold-read, room-content-read) exhausted again.
+
+**Fixed the one new warning: `status-deploy-verdict-current`.** Production redeployed to `d11f572af7d4efe7` (13:48:50Z) while `STATUS.md`'s BLOCKER-001, Production Knowledge and Immediate Focus still cited the superseded 24-commit gap, the "source corrected, sibling never told" shape CLAUDE.md names as dominant. Re-derived directly: real gap is now 4 commits, all material, none broken. Widened all three sections; both gate functions verified clean before shipping; `fix_dashes.py` clean; deck regenerated.
+
+**Handing to the operator:** nothing larger unblocked; both fallback lanes exhausted, a new verification angle is needed.
+
+Pushed to main (`ca88b30b7`). `STATUS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 17:1x (closed the 16:4x cycle's own handoff: content-level read of the five new "also called" lines, no live defect)
 
 **Did.** With both standing fallback lanes otherwise exhausted (preflight
