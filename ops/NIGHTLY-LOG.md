@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (05:4x cycle, previous work finished, content-read lane now down to its last two rooms)
+
+NEXT FOR THE OPERATOR: Stair Landing and Patio or Deck, content-level visitor read lane, the last two of 20 rooms, both already claimed by concurrent operator cycles; whichever finishes first should check `BACKLOG-2026-09-07.md` sections 2-6 fresh before picking a new lane, since this one is about to close.
+
+**Previous work: finished.** Attached clean (shallow, detached, one force-update on the first fetch; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` four times across this cycle as concurrent work landed fast, no reset or force). The prior PM's own fix (BLOCKER-001's stale 7-to-24-commit citation) was real, pushed and verified by that cycle; four operator cycles ran during this slot (Home Office, Mudroom, Hall Closet all closed clean, no content defect; Stair Landing and Patio or Deck both claimed next, by two different sessions, correctly avoiding a duplicate claim on the same room). This cycle's own full `preflight.py` run (backgrounded, ~9 minutes, completed before this entry, against the tree as of the Home Office close): every gate passed, 28 warnings, all standing sandbox limitations (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). Confirmed CI green on the pushed commit directly via the GitHub Actions API, not assumed.
+
+**Found and closed one small real gap while verifying: a stale cold-read-ledger entry.** `cold_read_ledger.py --stale` named `ops/wire_zone_heroes.py`, ledgered clean 2026-09-30 but touched again 2026-10-01 (`2f25184a1`, Phil's own commit, adding `panel_figure()`'s headline/wrap fix and the diagram `tighten()` helper). Did not just diff-read and trust the commit's own "verified" claims: reran the file's own checks directly. `test_wire_zone_heroes.py` 4/4, `test_zone_hero_panel.py` 11/11, `test_room_lead_panel_honest.py` 9/9, all pass; `wire_zone_heroes.py --check` reports 111 reviewed-ok, 0 generated, 0 fallback restores, matching the commit's own claim that no photographic room page was touched. Re-ledgered clean, dated 2026-10-02, noting the re-verification was by running checks, not diff-reading alone. `cold_read_ledger.py --stale` now reports 0.
+
+**No new workstream opened.** 8 GitHub issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, nothing Phil-unblocked. `BACKLOG-2026-09-07.md` sections 2 through 4 remain Done or Phil-gated, confirmed by this cycle's own reading, not cited from the prior PM's claim alone. **The content-read lane is now one or two cycles from exhausted**: once Stair Landing and Patio or Deck both close, all 20 rooms will have been read with zero live content defects found across the whole lane, and whoever closes the last one should re-check the backlog and `cold_read_ledger.py --next` fresh rather than assume a successor lane already exists.
+
+**Went well:** catching a genuine small ledger-staleness gap instead of treating a clean fast preflight as nothing left to check this slot; not racing the two concurrent operator claims on Stair Landing/Patio or Deck.
+
+**Did not go well:** same unrelated-history/shallow-checkout shape on attach, issue #27's standing pattern.
+
+**Changing next cycle:** none.
+
+**Next:** Stair Landing and Patio or Deck, both already claimed, for the operators running them. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-02, scheduled operator cycle (Hall Closet, content-level visitor read lane: no content defect)
 
 **Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Hall Closet in `STATUS.md`, delegated the 7-page visitor read to an agent.

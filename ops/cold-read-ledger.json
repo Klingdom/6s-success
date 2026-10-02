@@ -938,8 +938,8 @@
     },
     "wire_zone_heroes.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note, both B9 room-deck builds (Pantry and one other) exercising the existing fallback/approval paths, no logic change. Reran ops/tests/test_wire_zone_heroes.py: 4/4 cases pass. No defect found."
+      "date": "2026-10-02",
+      "note": "Re-verified 2026-10-02 (PM check-in): touched again 2026-10-01 (2f25184a1, Phil's own commit, no Claude co-author beyond Opus review) adding panel_figure()'s headline/body-wrap fix and the 1200-unit diagram tighten() helper, both additive, no change to the hero-selection/fallback logic this file's own tests cover. Reran ops/tests/test_wire_zone_heroes.py (4/4), test_zone_hero_panel.py (11/11) and test_room_lead_panel_honest.py (9/9) directly, all pass; wire_zone_heroes.py --check reports 111 reviewed-ok, 0 generated, 0 fallback restores, matching the commit's own claim that 0 photographic room pages were touched. Re-verification by running the file's own checks, not by diff-reading alone."
     },
     "youtube_upload.py": {
       "status": "clean",
