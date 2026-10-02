@@ -51,11 +51,45 @@ from corpus_posts import take, pool, load_rotation              # noqa: E402
 
 X_CHAR_CAP = 280
 
+# A POST WITH NOWHERE TO GO CANNOT PRODUCE AN ARRIVAL.
+#
+# Same defect, same day, same family as ops/linkedin_drafts.py and
+# ops/bluesky_drafts.py (2026-10-02). Every draft this file emitted ended in
+# words like "Read it free in the online book" and not one carried a URL.
+# Fixed here in the same pass rather than filed, because CLAUDE.md 0.2 says
+# not to report a problem twice that could have been fixed once.
+#
+# Neither of these accounts exists yet, so nothing was lost. The point is that
+# they will be correct on the day one does.
+#
+# book.html is where the free chapters 1 to 30 actually are, which is what the
+# copy already promised. The `from=` parameter makes the channel measurable
+# even when the client strips the referrer, which is how LinkedIn's own
+# arrivals became unreadable: see OWNER-ACTIONS.
+LINKS = {"facebook": "https://6s-success.com/book.html?from=fb",
+         "x": "https://6s-success.com/book.html?from=x"}
+
+
+def _x_fits(p: dict) -> bool:
+    """Does an X post still fit once the link is on the end of it?
+
+    X counts a URL as 23 characters whatever its length (t.co wrapping), so
+    this does NOT subtract len(link) the way the Bluesky filter has to. It
+    subtracts 23 plus the newline, which is what X will actually charge.
+    """
+    return len(p["body"]) + 1 + X_URL_WEIGHT <= X_CHAR_CAP
+
+
+# X wraps every link in t.co and bills it at a fixed 23 characters regardless
+# of the real URL length. Bluesky does not wrap and bills the real length,
+# which is why that file subtracts len(LINK) and this one does not.
+X_URL_WEIGHT = 23
+
 PLATFORMS = {
     "facebook": {"kind": "facebook-post", "n": 3, "label": "Facebook posts",
                  "where": None},
     "x": {"kind": "x-post", "n": 4, "label": "X posts",
-          "where": lambda p: len(p["body"]) <= X_CHAR_CAP},
+          "where": _x_fits},
 }
 
 
@@ -87,10 +121,12 @@ def build(platform: str, today: datetime.date | None = None,
         # rather than trust that the filter passed to take() was applied
         # correctly: the whole point of a hard platform limit is that a post
         # over it cannot be published as written.
-        over = [p for p in posts if len(p["body"]) > X_CHAR_CAP]
+        over = [p for p in posts
+                if len(p["body"]) + 1 + X_URL_WEIGHT > X_CHAR_CAP]
         assert not over, (f"{len(over)} post(s) exceed X's {X_CHAR_CAP}-"
-                           f"character limit and should never have been "
-                           f"selected: {[p['title'] for p in over]}")
+                           f"character limit ONCE THE LINK IS ON THEM and "
+                           f"should never have been selected: "
+                           f"{[p['title'] for p in over]}")
 
     L = [f"{cfg['n']} {cfg['label']} to publish today, {today:%A %d %B}.", ""]
     if posts:
@@ -99,10 +135,12 @@ def build(platform: str, today: datetime.date | None = None,
               "that corpus and none had ever been published. Post as "
               "written, or edit freely.", ""]
         for i, p in enumerate(posts, 1):
-            tag = f", {len(p['body'])} chars" if platform == "x" else ""
+            link = LINKS[platform]
+            tag = (f", {len(p['body']) + 1 + X_URL_WEIGHT} chars as X counts it"
+                   if platform == "x" else "")
             L += ["=" * 64,
                   f"{i}. {p['title']}   [{p['chapter']}, {p['words']} words{tag}]",
-                  "", p["body"], ""]
+                  "", p["body"] + chr(10) + chr(10) + link, ""]
     else:
         L += ["The corpus could not be read this run, so there is nothing "
               "to post today.", ""]

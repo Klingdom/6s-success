@@ -37,6 +37,7 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import bluesky_drafts                                          # noqa: E402
 import linkedin_drafts                                         # noqa: E402
+import social_drafts                                           # noqa: E402
 
 SITE = os.path.join(ROOT, "site")
 
@@ -110,6 +111,48 @@ def main():
             fails.append("a Bluesky post does not end with the link: %r"
                          % body[-50:])
 
+    # 7. ops/social_drafts.py, the third tool in the family, which had the
+    #    identical defect and was fixed in the same pass. Neither account
+    #    exists yet, which is exactly why this needs a test: nobody will
+    #    notice a missing link in drafts nobody is posting, right up until
+    #    somebody starts posting them.
+    for platform, tracked in (("facebook", "from=fb"), ("x", "from=x")):
+        link = social_drafts.LINKS.get(platform)
+        if not link:
+            fails.append("social_drafts has no link for %r" % platform)
+            continue
+        if tracked not in link:
+            fails.append("social_drafts %s link %r carries no %r"
+                         % (platform, link, tracked))
+        if not page_exists(link):
+            fails.append("social_drafts %s link %r does not resolve under "
+                         "site/" % (platform, link))
+        subject, text = social_drafts.build(platform, record=False)
+        blocks = [b for b in text.split("=" * 64)
+                  if re.search(r"^\s*\d+\.\s", b)]
+        if len(blocks) < 2:
+            fails.append("social_drafts %s produced %d post block(s)"
+                         % (platform, len(blocks)))
+        for b in blocks:
+            if link not in b:
+                fails.append("social_drafts %s emitted a post with no link: "
+                             "%r" % (platform, re.sub(r"\s+", " ", b)[:60]))
+
+    # 8. X bills a link at a flat 23 characters however long it is, so its
+    #    filter must subtract 23 and NOT the real length. Getting that wrong
+    #    in either direction is invisible in the output: too strict silently
+    #    shrinks the pool, too loose emits posts X will reject.
+    cap, weight = social_drafts.X_CHAR_CAP, social_drafts.X_URL_WEIGHT
+    if weight != 23:
+        fails.append("X_URL_WEIGHT is %d; X charges a flat 23 for any link"
+                     % weight)
+    if social_drafts._x_fits({"body": "x" * (cap - weight)}):
+        fails.append("X filter accepted a post that is over the cap once the "
+                     "link's 23 characters are counted")
+    if not social_drafts._x_fits({"body": "x" * (cap - weight - 10)}):
+        fails.append("X filter rejected a post that fits comfortably with "
+                     "the link, so it is shrinking the pool for nothing")
+
     # 6. THE FILTER ITSELF, not whichever posts today's rotation happened to
     #    pick. Case 5 above checks the real build, and on the day this test
     #    was written every selected post was short enough that relaxing the
@@ -137,8 +180,9 @@ def main():
         for f in sorted(set(fails)):
             print(" -", f)
         return 1
-    print("OK: both draft tools emit an existing, attributable link on every "
-          "post, and every Bluesky post fits the cap with it")
+    print("OK: all three draft tools (LinkedIn, Bluesky, Facebook/X) emit an "
+          "existing, attributable link on every post, and both capped "
+          "platforms fit their limit with it counted")
     return 0
 
 
