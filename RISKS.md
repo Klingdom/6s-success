@@ -974,6 +974,12 @@ evidence:
     each carry the same inert footer newsletter form, nothing new in kind.
     Re-derived from a live `git log` against the three files and
     `ops/state.json`'s current `forms_dead`, not carried forward.
+  - UPDATED 2026-10-01, owner-directed cycle: headline count only, 214 to
+    215, following this list's own rule below. The one addition is
+    articles/why-is-my-house-always-messy.html, the complaint-cluster page
+    (BACKLOG-2026-09-07.md A11), which carries the same inert footer
+    newsletter form as every other page. Nothing new in kind, and the risk
+    is unchanged: no form on this site posts anywhere.
   - **A NOTE ON THIS LIST, so it stops costing more than it is worth.** Every
     entry since 193 says the same sentence: one more page shipped, it carries
     the same inert footer form as every other page, nothing new in kind. Two
