@@ -583,6 +583,87 @@ def report(payload):
     return "\n".join(lines) + "\n"
 
 
+# The two query clusters GOALS.md's O1 section names by hand, matched here
+# by an explicit, reproducible rule rather than re-typed from memory. Found
+# 2026-10-02: GOALS.md's own prose citation of these two counts went stale
+# the same day it was written (A13/A14 shipped the pages that moved them,
+# nobody told this sentence), and a concurrent session was misled by it into
+# drafting a handoff for work already done, LRN-0032's "a stored status is a
+# snapshot other sessions are changing" recurring against prose instead of
+# the JSON file itself. CLUSTER_PATTERNS is the thing gate_goals_keyword_
+# cluster_citation_current re-derives against, so this is provable, not
+# asserted: "cheap/budget/DIY" as `\b(cheap|budget|diy)\b` reproduces the
+# historical "of 99" denominator exactly; a plain substring check for "diy"
+# (no word boundary) or an added "small" term would not.
+CLUSTER_PATTERNS = {
+    "small space": re.compile(r"small space", re.I),
+    "cheap/budget/DIY": re.compile(r"\b(cheap|budget|diy)\b", re.I),
+}
+
+
+def cluster_counts(rows, pattern):
+    """covered/partial/gap counts among the rows whose query matches pattern.
+
+    Pure: takes rows already loaded from keyword-demand.json (or a rescore),
+    never reads a file itself, so gate_goals_keyword_cluster_citation_
+    current can prove it against a synthetic payload as well as the real one.
+    """
+    matched = [r for r in rows if pattern.search(r["query"])]
+    counts = {"covered": 0, "partial": 0, "gap": 0}
+    for r in matched:
+        counts[r["status"]] = counts.get(r["status"], 0) + 1
+    counts["total"] = len(matched)
+    return counts
+
+
+# The exact phrasing GOALS.md's O1 section uses to cite each cluster's
+# coverage, so gate_goals_keyword_cluster_citation_current can check the
+# live claim, not just whether the file mentions the cluster at all.
+CLUSTER_CITATION_PATTERNS = {
+    "small space": re.compile(
+        r'"small space"\s+is\s+\*\*(\d+)\s+covered\s*/\s*(\d+)\s+partial'
+        r'\s*/\s*(\d+)\s+gap\s+of\s+(\d+)\*\*'),
+    "cheap/budget/DIY": re.compile(
+        r'"cheap/budget/DIY"\s+is\s+\*\*(\d+)\s+covered\s*/\s*(\d+)\s+'
+        r'partial\s*/\s*(\d+)\s+gap\s+of\s+(\d+)\*\*'),
+}
+
+
+def goals_cluster_citation_problems(text, live_counts):
+    """Pure so gate_goals_keyword_cluster_citation_current can prove it
+    without shelling out.
+
+    live_counts maps a CLUSTER_PATTERNS name to a cluster_counts()-shaped
+    dict freshly re-derived from the real keyword-demand.json. Returns one
+    problem string per cluster whose cited covered/partial/gap/total in
+    GOALS.md disagrees with the live count. A cluster GOALS.md does not
+    currently cite in this exact phrasing is skipped, not flagged: a
+    legitimate rewording of the sentence is not this function's business,
+    only a citation that stayed in place and went stale underneath it,
+    which is what happened 2026-10-02 (A13/A14 shipped the pages that moved
+    both clusters; the sentence citing their old counts was never updated,
+    and a concurrent session read it instead of re-deriving from the JSON).
+    """
+    problems = []
+    for name, pat in CLUSTER_CITATION_PATTERNS.items():
+        m = pat.search(text)
+        if not m:
+            continue
+        cited = tuple(int(x) for x in m.groups())
+        live = live_counts.get(name)
+        if live is None:
+            continue
+        real = (live["covered"], live["partial"], live["gap"], live["total"])
+        if cited != real:
+            problems.append(
+                "GOALS.md cites the %r cluster as %d covered / %d partial "
+                "/ %d gap of %d, but the real keyword-demand.json currently "
+                "scores it as %d covered / %d partial / %d gap of %d"
+                % (name, cited[0], cited[1], cited[2], cited[3],
+                   real[0], real[1], real[2], real[3]))
+    return problems
+
+
 def status():
     if not os.path.exists(OUT_JSON):
         print("No harvest on record. Run: python ops/keyword_demand.py")
