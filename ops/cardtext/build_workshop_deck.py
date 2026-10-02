@@ -684,7 +684,7 @@ FRICTION_META = [
   "an oil-soaked finishing rag balled up loose in an open bin liner "
   "instead of inside the lidded self-closing metal can beside it"),
  ("Finishing and Chemical Zone", "WSF-014",
-  "A ROW OF HALF-USED PAINT CANS SITS FOR COLOURS NO LONGER ON ANY WALL",
+  "A ROW OF HALF-USED PAINT CANS SITS FOR COLORS NO LONGER ON ANY WALL",
   "a row of half-used paint cans of different faded colors lined up on "
   "a shelf, dust settled on several unopened lids"),
  ("Finishing and Chemical Zone", "WSF-015",
@@ -1060,7 +1060,7 @@ ACTIONS = [
          "shelf beside it"},
 
  {"id": "WSA-010", "zone": "Finishing and Chemical Zone",
-  "title": "KEEP ONLY THE COLOURS STILL ON A WALL AND SEPARATE THE "
+  "title": "KEEP ONLY THE COLORS STILL ON A WALL AND SEPARATE THE "
            "SHELVES",
   "minutes": 30, "players": "1", "six_s": "Sort",
   "goal": "Narrow the paint shelf down to only colors currently on a "
@@ -1276,7 +1276,7 @@ EVENTS = [
   "drifted. Draw WSA-007.",
   "a single board being pulled cleanly from a grouped bay on a "
   "material rack, a clear floor visible along the route to the bench"),
- ("WSE-005", "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOUR",
+ ("WSE-005", "THE TOUCH-UP JOB THAT NEEDS ONE SPECIFIC COLOR",
   "A wall needs a small touch-up today, and you go to the shelf for "
   "the exact color that is on it.",
   ["WSZ-005"],

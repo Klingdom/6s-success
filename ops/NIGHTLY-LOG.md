@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 16:0x (cold-read found the gate meant to close A12 had the exact hole it existed to catch)
+
+**Did.** `cold_read_ledger.py --next`'s one candidate, `fix_dialect.py`, led
+to a concurrent same-morning commit (`8aa7a6589`, A12) and its new
+`gate_no_british_spellings_shipped`. Checked the live site directly rather
+than trust the fresh gate: `garage-deck.html`, `workshop-deck.html` and
+`living-room-deck.html` each ship a card TITLE or TAGLINE in British spelling
+("COLOURS", "LABELLED", "NEIGHBOUR'S") one line from the correct American
+spelling in the same card's own body. The new gate passed clean through all
+of it: its pattern used `fix_dialect.PAIRS` with no `re.IGNORECASE`, and
+these cards ship upper case. Fixed the gate and the three
+`ops/cardtext/build_*_deck.py` generators at the source; confirmed the other
+17 generators already clean by direct scan.
+
+**Verified.** Fail-then-pass against the real defect: patched gate failed
+pre-regeneration (named all three files), passed after. New
+`test_gate_no_british_spellings_shipped_case.py` (5 cases) proved against
+the pre-fix gate too. `fix_dialect.py --check` clean, `build_seo.py` rerun
+and idempotent, relevant deck-rendered/dash/syntax tests pass. Full
+`preflight.py` backgrounded, not yet read.
+
+**Went well.** First use of the cold-read fallback after this morning's own
+A12 gate found a live customer-visible defect inside that same gate, same
+cycle it was found.
+
+**Went not well.** A gate written to close a defect shipped with the same
+hole, undetected, on day one.
+
+**Changing next cycle.** Default new text-matching gates to
+`re.IGNORECASE` against this corpus; require an explicit reason to go
+case-sensitive, not the reverse.
+
+**Next.** Read the backgrounded preflight result. Unrelated to this cycle's
+own work: P0 #37 was fixed live by Phil (`295b1c642`) partway through,
+confirmed by run #3049 succeeding; closed on GitHub.
+
 ## PM check-in, 2026-10-02, 15:4x cycle (previous work now finished; re-notified Phil at the established cadence; no new unblocked backlog item)
 
 NEXT FOR THE OPERATOR: cold-read `ops/fix_dialect.py`, the one remaining un-ledgered file `cold_read_ledger.py` names, because every other genuinely unblocked backlog row is done or Phil-gated and this file has never been read cold by any cycle today.

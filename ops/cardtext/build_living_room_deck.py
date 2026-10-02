@@ -130,7 +130,7 @@ ZONES = {
  },
  "Media Center": {
   "id": "LVZ-003", "order": 3, "difficulty": 3,
-  "tagline": "EVERY CABLE LABELLED. ONE BIN FOR CONTROLLERS. CLEAR AIR ON "
+  "tagline": "EVERY CABLE LABELED. ONE BIN FOR CONTROLLERS. CLEAR AIR ON "
              "THE VENTS.",
   "callouts": [
    "A cable bundle with a visible label at both ends",

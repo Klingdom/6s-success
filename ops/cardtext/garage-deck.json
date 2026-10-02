@@ -486,7 +486,7 @@
    "zone": "Bulk and Overhead Storage",
    "order": 7,
    "difficulty": 3,
-   "tagline": "LABELLED. DATED. HEAVIEST BINS DOWN LOW.",
+   "tagline": "LABELED. DATED. HEAVIEST BINS DOWN LOW.",
    "objective": "Holds the things you genuinely need once or twice a year, high up and out of the way, without becoming the place decisions go to hide.",
    "callouts": [
     "Every overhead bin labeled large enough to read from the slab",
@@ -2758,7 +2758,7 @@
   },
   {
    "id": "GAA-012",
-   "title": "NAME THE UNLABELLED BOTTLE AND SET THE SEASON RULE",
+   "title": "NAME THE UNLABELED BOTTLE AND SET THE SEASON RULE",
    "type": "ACTION CARD",
    "room": "Garage",
    "zone": "Lawn and Garden Tool Zone",
@@ -3515,7 +3515,7 @@
   },
   {
    "id": "GAE-007",
-   "title": "THE NEIGHBOUR'S ROOF-LEAK SCARE",
+   "title": "THE NEIGHBOR'S ROOF-LEAK SCARE",
    "type": "EVENT CARD",
    "room": "Garage",
    "zone": null,

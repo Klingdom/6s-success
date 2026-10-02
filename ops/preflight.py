@@ -10272,8 +10272,22 @@ def gate_no_british_spellings_shipped() -> None:
     Capped at exactly 4 (the known count: "mould" and "odour" each appear
     twice, once in the alt text and once in the SVG's own inline <text>) so a
     NEW, unrelated word on this same page still fails.
+
+    Case-insensitive, found missing 2026-10-02 (this operator, same cycle):
+    deck card titles and taglines are shipped upper case ("LABELLED",
+    "COLOURS", "THE NEIGHBOUR'S ROOF-LEAK SCARE"), and the bare pattern
+    this gate shipped with only matched fix_dialect.PAIRS' own lower-case
+    spellings, so it passed clean on three real, live occurrences in
+    ops/cardtext/build_garage_deck.py, build_workshop_deck.py and
+    build_living_room_deck.py (and the site/*-deck.html pages built from
+    them) the whole time it existed, each one sitting directly beside the
+    correctly-spelled American word in the same card's own body text. A
+    gate added to close A12 reopened the exact hole it was built to find.
     """
-    pattern = re.compile(r"\b(" + "|".join(re.escape(b) for b, _a in fix_dialect.PAIRS) + r")\b")
+    pattern = re.compile(
+        r"\b(" + "|".join(re.escape(b) for b, _a in fix_dialect.PAIRS) + r")\b",
+        re.IGNORECASE,
+    )
     KNOWN_BOOK_SVG_EXCEPTIONS = {
         "site/zones/family-room-the-toy-and-play-zone.html": 4,
         # Names the real JSON field quest-data-symptoms.js carries

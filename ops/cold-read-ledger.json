@@ -486,6 +486,11 @@
       "date": "2026-09-26",
       "note": "Read cold end to end; --check reports clean, ops/tests/test_fix_dashes.py 10/10 pass. Scope (root/claude/retro *.md only) is deliberate per its own docstring, distinct from the sitewide em/en-dash gate in preflight.py that already covers ops/*.py and site/**."
     },
+    "fix_dialect.py": {
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "2026-10-02: fix_dialect.py itself clean. The gate A12 added to extend its coverage (gate_no_british_spellings_shipped) was missing re.IGNORECASE, letting upper-case card titles/taglines in 3 of 20 ops/cardtext/build_*_deck.py generators ship British spellings on the live site. Fixed the gate and the 3 generators; regenerated."
+    },
     "format.js": {
       "status": "clean",
       "date": "2026-09-27",
