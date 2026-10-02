@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 23:2x cycle (previous work finished; the 22:5x handoff below is wrong, corrected rather than passed on)
+
+**Previous work finished, verified:** checkout attached clean (shallow, unshallowed, ff-only onto `origin/main`). Working tree was clean and main pushed before this cycle touched anything. `python ops/preflight.py` run fresh this cycle (fast gates all clean; `gate_tests` left running in the background, same standing 10 to 15 minute network-timeout shape every cycle today has already named, not waited on past this slot).
+
+**The 22:5x entry's own "NEXT FOR THE OPERATOR" line is stale and wrong, found by actually running the check it cited rather than trusting it.** It told the operator to write and ship a "small space" article because `small space` scored 1/37 covered and `cheap/budget/DIY` scored 0/99 covered, "correctly un-moved" by every prior harvest. Both numbers are false against the real data, which was already sitting in the repository at the time that entry was written: A13 (small space) and A14 (budget/DIY) closed most of both clusters earlier the same day (2026-10-02), both visible in `BACKLOG-2026-09-07.md` rows A13/A14. Ran `python ops/keyword_demand.py --rescore` (offline, no network needed) fresh this cycle and read the real rows directly rather than citing either backlog entry or the prior check-in: **small space is 20 covered / 16 partial / 1 gap of 37** (not 1/37), **budget/cheap/DIY is 29 covered / 66 partial / 4 gap of 99** (not 0/99). Checked the 5 remaining gap rows across both clusters by name: all 5 are out of this product's scope, not a content gap to chase (`diy plans for a nightstand`, `diy plans for backyard bbq grill station`, `diy walkways and paths`, `organize outdoor diy lab`, `how to arrange outdoor furniture in small space`, literal furniture-building and landscaping, not organization). Also swept the other 211 gap queries for a fresh real cluster: the next-largest word groups are `basement`/`attic` (already measured and deliberately not escalated, `BACKLOG-2026-09-07.md` section 1b, an owner-scope decision) and `foyer design ideas`/`staircase with landing`/video-game storage, all interior-design, construction or digital-storage queries this product does not and should not fabricate expertise in. **No fresh, in-scope content gap exists right now.** `ops/KEYWORD-DEMAND.md` rescored and committed with this entry so the next reader sees the real numbers instead of the stale ones.
+
+**Why this matters enough to fix now rather than just note:** per `CLAUDE.md` 0.2 and 0.4, a stale claim that reaches the operator as a direct instruction is worse than a reported-and-ignored one, because it spends real operator time re-writing something already shipped. Caught before the 22:43 operator slot could act on it.
+
+**Went well:** running the cited check instead of trusting a confident-sounding number in the prior cycle's own handoff.
+
+**Did not go well:** the 22:5x cycle stated "every prior harvest has shown correctly un-moved" without re-running the harvest that same cycle, the exact trap CLAUDE.md 0.4 exists to catch.
+
+**Changing next cycle:** none; no new gate needed, this is a one-time prose correction, not a code defect.
+
+**Next for the operator:** no fresh keyword-gap content work is waiting. The standing Phil-blocked list in `OWNER-ACTIONS.md` (`VPS_DEPLOY_KEY`, item 0/issue #35) and the 8 other decision/blocked-on-art issues are unchanged. If looking for unblocked work, re-check `ops/cold_read_ledger.py --next` and `BACKLOG-2026-09-07.md` section 1b/5 fresh rather than assuming either exhausted lane has reopened since 22:5x.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/KEYWORD-DEMAND.md`, `ops/keyword-demand.json` (rescore timestamp only, counts unchanged), command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## Addendum, 2026-10-02, 23:1x (the full preflight left running below finished clean)
 
 The 22:5x entry below shipped with `gate_tests` still running in the background rather than waited on. It finished: **every gate passed, 29 warnings**, all the same standing sandbox limitations named throughout today (no Stripe credential, no SSH key, no Pillow, no network reach). One worth flagging rather than letting pass silently: `films-six-passes` still names 4 captions with the audible jewellery/draught drift issue #39 is open for, consistent with that issue's current reopened state, not a new or contradicted finding. No action needed beyond what #39 already tracks. The NEXT FOR THE OPERATOR line below is unchanged.
