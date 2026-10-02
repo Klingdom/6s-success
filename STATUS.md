@@ -96,6 +96,8 @@ only moment it is cheap.
 
 **Claimed 2026-10-02, scheduled operator cycle: Stair Landing, content-level visitor read lane.** Release this line when logged.
 
+**Claimed 2026-10-02, scheduled operator cycle (second session): Patio or Deck, content-level visitor read lane, to avoid duplicating the Stair Landing claim above.** Release this line when logged.
+
 **B9 is done: all 20 rooms now have a diagnosis layer
 and a deck.** Patio or Deck (`site/patio-or-deck-deck.html`) and Workshop
 (`site/workshop-deck.html`) were the last two, built by two concurrent
