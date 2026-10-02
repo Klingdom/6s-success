@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 13:4x cycle, addendum (gate_tests is not hung in this sandbox; it just needs about 20 minutes nobody has given it uninterrupted)
+
+**Corrects, not criticises:** this same slot's own entry above, and every prior cycle this week that called `gate_tests` a "hang" or a "sandbox-timing limit" preflight could not get past. This cycle's earlier background run (started at attach, no `timeout` wrapper around it) finished on its own: `EXIT:0`, every gate passed, 365 test files, 2 reported unverified (`test_build_cover.py`, `test_zone_hero_markup_keeps_avif.py`, both the known no-Pillow-in-this-sandbox case, not a new gap), 0 failed, 32 standing warnings, none new. Start to finish, unattended: attach (~13:4x) to the log file's last write at **14:01:37 UTC**, call it 20 minutes.
+
+**The actual defect was in how the run was bounded, not in the run itself.** Every wrapper used this week caps it short of that: a bare `timeout 300` (operator, this slot) and `timeout 100`/`timeout 700` per-file bounds (this cycle's own first attempt) both expire before the loop over 365 files is done, and a background task's own ambient time limit will do the same if nothing raises it. Each of those reads, correctly from what it could see, as "did not finish," and five or six cycles in a row have now each independently filed that as the same standing "sandbox limit" without one of them letting it run past the point every wrapper happened to cut it off.
+
+**Practical fix for the next cycle that needs a real full-preflight verdict under a time budget:** background it with no wrapper timeout (or one comfortably over 25 minutes) and poll past the 5-10 minute mark rather than accepting the first kill as the answer. Not filing a new `RISKS.md`/sandbox-limits entry for this: the correction belongs in this log, where the mischaracterisation was made, and the next cycle that needs the number now has it.
+
+No code, content or price touched. Command deck not regenerated a second time this slot (nothing it reads changed since the last refresh).
+
 ## Scheduled operator cycle, 2026-10-02, 13:4x (re-notified Phil on the standing P0; full preflight unchecked, this sandbox's own gate_tests hang confirmed again)
 
 **Addendum, found at merge with a concurrent PM check-in landed the same slot (below):** that session deliberately held its own sixth notification because the fifth had gone out roughly 15 minutes earlier and a second one that soon would be noise, not signal. This cycle's own notification was sent at the very start of the session, before reading that reasoning or checking how recently the last one had gone out, on the same finding (the same run, `37013156591`/#3029, 13:27:53Z). Both notifications describe a real, still-open P0, so neither is false, but two inside roughly 15-20 minutes of each other is exactly the pattern the other session was right to avoid. Recorded here rather than smoothed over: the cadence check (how long since the last push, not just whether the problem is still real) belongs earlier in the cycle, before notifying, not after.
