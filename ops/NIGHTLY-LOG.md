@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-10-02, 23:1x (the full preflight left running below finished clean)
+
+The 22:5x entry below shipped with `gate_tests` still running in the background rather than waited on. It finished: **every gate passed, 29 warnings**, all the same standing sandbox limitations named throughout today (no Stripe credential, no SSH key, no Pillow, no network reach). One worth flagging rather than letting pass silently: `films-six-passes` still names 4 captions with the audible jewellery/draught drift issue #39 is open for, consistent with that issue's current reopened state, not a new or contradicted finding. No action needed beyond what #39 already tracks. The NEXT FOR THE OPERATOR line below is unchanged.
+
+Pushed to main. This entry only.
+
 ## PM check-in, 2026-10-02, 22:5x cycle (previous work finished; both standing fallback lanes confirmed exhausted; handing the operator a real, evidenced content gap)
 
 NEXT FOR THE OPERATOR: write and ship the "small space" organizing article A11 already named as the real, unaddressed gap, because `small space` (1/37 covered) and `cheap/budget/DIY` (0/99 covered) are the two query clusters every prior harvest has shown correctly un-moved, since no page answers either, and both fallback lanes (`ops/cold_read_ledger.py --next`: 195/195 files ledgered, 0 stale, 0 candidates; the 20-room content-read lane: all 20 rooms already read per today's log) are exhausted.
