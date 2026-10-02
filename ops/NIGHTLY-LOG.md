@@ -2,6 +2,77 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 16:5x (found a third instance of the same stale-owner-action shape two sibling cycles had each closed once already)
+
+**Did.** Checkout arrived shallow and detached; `fetch`, `fetch --unshallow`,
+`checkout main`, clean `merge --ff-only` onto `origin/main`. Read
+`BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, `GOALS.md` and the last several log entries. Ran a full
+`preflight.py` backgrounded (took about 9 minutes end to end, mostly
+`gate_tests`); confirmed clean, every gate passed, before shipping. GitHub:
+9 open issues, all decision-labelled, blocked-on-art, or TTS-blocked (#39),
+confirmed via `list_issues` directly. 0 open PRs. `inbox_agent.py --apply`:
+no mail credential in this sandbox, reported unchecked, not empty.
+`BACKLOG-2026-09-07.md` sections 2 through 4: every row Done, HOLD, or
+correctly Phil/environment-gated. The A14 duplicate-page collision a
+concurrent session logged earlier today is already resolved on `main`
+(neither the duplicate generator nor its page exist; both target queries
+are answered on the surviving article). The 2026-10-02 08:12 keyword
+harvest's 253 remaining gap queries were already correctly triaged by an
+earlier cycle today as autosuggest noise, not a real content opportunity;
+re-read a sample myself rather than trust the citation, same conclusion.
+
+**Found and fixed a third instance of the stale-owner-action shape the
+16:2x and 16:4x cycles had each independently closed once already.**
+`OWNER-ACTIONS.md`'s "Start here" table still carried item **1h** verbatim
+("Run the Stripe retirement for the SKUs still unconfirmed... DONE
+2026-09-23"), and `ops/dashboard.py`'s `top_owner_actions()` parses every
+row in that table with no filter for a resolved one, so it was still being
+rendered as something Phil needs to do, under "What needs you" on
+`EXECUTIVE-DASHBOARD-LIVE.md`, even though the row's own text already said
+"Nothing here needs you." Same root cause as item 0a (closed as R5 at
+16:2x) and `STATUS.md`'s `INCIDENT-001` (closed at 16:4x): a thing that got
+done was never moved out of the table the dashboard trusts. Moved item 1h
+to a new `~~R6~~` row in "Resolved today", matching the R1-R5 convention,
+and removed it from "Start here".
+
+**Verified, not assumed.** Called `gate_owner_actions_retired_sku_count_
+current`, `gate_send_questions_covers_top_owner_actions`,
+`gate_dashboard_covers_top_owner_actions` and `gate_owner_actions_last_
+measured_current` directly against the edited file: all four clean (the
+first was already silent against the row's current wording before this
+edit, since it no longer matched the gate's "N SKUs still unconfirmed"
+regex; confirmed, not assumed). Regenerated the command deck and read the
+rendered "What needs you" section: 4 real action rows plus the 6 decision
+issues, item 1h gone. `check_urls.py`, `affiliate.py --check`, `fix_dashes.py
+--check` all clean after.
+
+**Went well:** treating two sibling cycles independently finding the same
+defect shape as a reason to check for a third instance, not a reason to
+assume the class was now closed.
+
+**Did not go well:** the same shallow/detached checkout shape recurred at
+attach (issue #27, still needs Phil's hand in the Routines UI); a full
+`preflight.py` run still takes close to 9 minutes in this sandbox, mostly
+`gate_tests`, so it cannot be waited out inside every short cycle, only
+this one, where it was.
+
+**Changing next cycle:** when `OWNER-ACTIONS.md` gets its next
+done-marked row fixed in place rather than moved, grep the whole file for
+"DONE" and "CLEARED" rows still sitting inside an active table before
+calling the class closed; three instances in one afternoon says this is
+worth a standing check, not a one-off.
+
+**Next:** the 16:4x cycle's own handoff, a content-level visitor read of
+the five rooms `c64901cd0` renamed (master bedroom, master bathroom,
+foyer, larder, den/bonus room), since it shipped with a unit test but no
+content read and is the one concrete unread thing both standing fallback
+lanes (ops cold-read, room content-read) still point at.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck
+(`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`).
+No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 16:4x cycle (previous work finished and independently reverified; closed a second stale incident record the 16:2x cycle's own fix had not reached)
 
 NEXT FOR THE OPERATOR: content-level visitor read of the five rooms Phil's own commit `c64901cd0` just renamed (Primary Bedroom, Primary Bathroom, Entryway, Pantry, Family Room now also say master bedroom, master bathroom, foyer, larder, den/bonus room), because that change has a unit test (`test_room_also_called.py`) but no visitor-level content read and is not mentioned anywhere in this log; `STATUS.md` itself says the content-read lane is closed for all 20 rooms and the cold-read ledger is exhausted (195 of 195), so a real site-content change with no content-read behind it is the one concrete unread thing left.
