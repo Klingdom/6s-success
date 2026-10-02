@@ -14,6 +14,8 @@ NEXT FOR THE OPERATOR: read a batch (5 to 10) of the files `cold_read_ledger.py 
 
 **Preflight: unchecked, not claimed clean, said plainly.** Started a full `python ops/preflight.py` run; it was still executing `gate_tests`'s per-file test-suite pass (confirmed progressing, not hung, via `ps`) when this cycle's time budget ran out. The repository has not changed since the 17:2x cycle's own confirmed-clean run at this identical commit, so that result still describes the current tree, but this cycle's own run is left running in the background rather than reported as a fresh pass.
 
+**Addendum, same cycle: the backgrounded run finished after this entry shipped.** Every gate passed, 30 warnings, all the standing environment-access shape (no Stripe credential, no deploy key, no mail credential, no egress). Confirms rather than changes anything above; closing the loop the prior paragraph deliberately left open instead of leaving it unchecked.
+
 **Went well:** verifying the "exhausted" claim independently instead of carrying it forward a second time; finding the `--stale`-tier verdict was itself inconsistent across today's cycles and handing off the fix for that inconsistency instead of adding a third contradictory verdict.
 
 **Did not go well:** `preflight.py`'s fast run took long enough in this session that it did not finish inside one PM slot; nothing in that is new; worth the next full run checking the backgrounded result rather than restarting it.
