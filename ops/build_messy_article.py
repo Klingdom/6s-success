@@ -213,7 +213,7 @@ def esc(s):
 
 
 def chrome():
-    """(head_before_ld, header, footer) lifted from a sibling article.
+    """(head_without_json_ld, header, footer) lifted from a sibling article.
 
     Taken from a real shipped page rather than written here, so this article
     inherits the nav, the footer, the asset fingerprints and the measurement
@@ -221,7 +221,29 @@ def chrome():
     them on the day one of those sweeps changes.
     """
     s = io.open(TEMPLATE, encoding="utf-8").read()
-    head = s[:s.index('<script type="application/ld+json">')]
+    # EVERY json-ld BLOCK IS STRIPPED, AND EVERYTHING ELSE IS KEPT.
+    #
+    # Two bugs here in one evening, in opposite directions, both found by
+    # checking rather than reasoning.
+    #
+    # The first version cut the head at the FIRST json-ld block and threw
+    # away the rest. That dropped the PROGRESSIVE block
+    # (wire_progressive.py) and the PWA icons (wire_pwa.py), which are added
+    # by sweeps running after the generators, so every build went: strip,
+    # sweeps restore, shipped page permanently disagrees with its own
+    # generator. gate_generator_ownership caught it, which is what it is for.
+    #
+    # The obvious repair, keeping everything after that first block, was
+    # worse and was caught by diffing the output: the template carries a
+    # SECOND json-ld block, its own FAQPage, so that version published
+    # another article's questions and answers, under another article's @id,
+    # inside this page. Structured data describing a different page is the
+    # kind of defect nothing renders and nobody sees.
+    #
+    # So: take the whole head, remove every json-ld block whatever the count,
+    # keep all the rest, and let build() put this page's own back.
+    head = s[:s.index("</head>")]
+    head = re.sub(r'(?is)<script type="application/ld\+json">.*?</script>\s*', "", head)
     header = s[s.index("</head>") + len("</head>"):s.index("<main")]
     footer = s[s.index("</main>") + len("</main>"):]
     return head, header, footer
