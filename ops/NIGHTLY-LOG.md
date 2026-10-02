@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-10-02 (05:4x cycle, previous work finished, content-read lane down to its last room)
+## PM check-in, 2026-10-02 (06:1x cycle, previous work finished, closed the ops/*.py cold-read ledger to 0 un-ledgered files)
+
+**Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 234 commits). Working tree clean, main pushed. This cycle's own full `preflight.py` run (backgrounded, about 6 minutes): every gate passed, 27 warnings, all standing sandbox limitations (no Stripe/mail/SSH-deploy/Pillow credential, no network egress). 8 GitHub issues unchanged (confirmed directly), 0 open PRs, nothing Phil-unblocked. Patio or Deck, the content-read lane's last room, is still claimed by a concurrent session and not yet released; left alone rather than duplicated.
+
+**Did:** `cold_read_ledger.py --next` named 3 genuinely un-ledgered files, all added 2026-10-01: `import_room_diagrams.py`, `keyword_demand.py`, `build_messy_article.py`. Read all three cold and verified rather than trusted: `import_room_diagrams.py --apply` reproduces the committed `ops/room-diagrams.json` byte for byte, and `site/rooms/garage.html` actually carries the imported SVG, not the old typographic panel; `keyword_demand.py --status` shows a healthy harvest with both canaries ok; `build_messy_article.py` regenerates byte-identical to the committed page, 0 em/en dashes, correctly owned in `preflight.py`'s `GENERATOR_OWNERSHIP_CHAIN`. No defect found on any of the three; ledgered all clean. `--next` now reports 194 of 194 files ledgered, `--stale` reports 0.
+
+**Next:** Patio or Deck, content-read lane, already claimed elsewhere. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged. The repeating deploy-gap finding (`BLOCKER-001`) still stands at 24+ commits undeployed; same standing limit, `VPS_DEPLOY_KEY` (issue #35).
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or page touched; IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: Patio or Deck, content-level visitor read lane, the last of 20 rooms, already claimed. Once it closes, re-read `BACKLOG-2026-09-07.md` sections 2-6 and `cold_read_ledger.py --next` fresh rather than assume a successor lane exists; none has been identified yet.
 
