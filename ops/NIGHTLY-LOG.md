@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 17:4x cycle (previous work finished; settling, not repeating, the stale-tier ambiguity for the operator)
+
+NEXT FOR THE OPERATOR: read a batch (5 to 10) of the files `cold_read_ledger.py --stale` names and actually cold-read each one's current committed content, then re-stamp it, because today's cycles have given contradictory verdicts on this exact lane (several call it "the only lane with real unread material," several others dismiss it outright as "today's own content churn, not a real backlog item") without anyone actually reading a batch and settling which it is; closing that ambiguity is itself the operational-honesty fix, not a restatement of it.
+
+**Previous work was finished.** Attached clean (fetch, unshallow, `merge --ff-only` onto `origin/main` with no conflict, `32262b3b1`). The 17:2x PM check-in's own fix (`ca88b30b7`, widening `STATUS.md`'s deploy-verdict citation) is pushed, `site/build-id.txt` matches HEAD, and the working tree is clean. No new commit has landed from the operator's 17:43 slot as of this cycle; nothing to merge or reconcile.
+
+**Checked the queue rather than assume it unchanged.** 9 GitHub issues open, confirmed directly via a read-only agent, not cited: all `decision`, `blocked-on-art`, or TTS-blocked (#39), none Phil-unblocked, same set as the prior cycle. `BACKLOG-2026-09-07.md` sections 2 to 4: re-checked B6, B8, B9 by name (the three rows not struck through in the table) and all three are already Done/CLOSED by decision (B6 2026-09-17, B9 2026-09-25, B8 2026-09-25 via `DECISIONS.md` D-027); nothing newly unblocked. `OWNER-ACTIONS.md`'s two open items (the LinkedIn/Bluesky/Facebook link-less-draft defect, and Ledgerium's crash-looping `umami-db` container) are both already correctly handled this same day: the link fix is shipped and self-proving from tomorrow's drafts, and the Ledgerium container is correctly diagnosed read-only and left untouched per CLAUDE.md 36b/35.
+
+**The content-read and cold-read-next lanes really are exhausted, verified rather than inherited.** Grepped this log directly: all five of today's new room decks (Entryway, Laundry Room, Home Office, Primary Bathroom, Garage) already have their own logged content-level visitor read with no defect found, and `cold_read_ledger.py --next` reports 195 of 195 files ledgered, 0 un-ledgered. That confirms the 17:2x cycle's own claim rather than repeating it on trust.
+
+**Preflight: unchecked, not claimed clean, said plainly.** Started a full `python ops/preflight.py` run; it was still executing `gate_tests`'s per-file test-suite pass (confirmed progressing, not hung, via `ps`) when this cycle's time budget ran out. The repository has not changed since the 17:2x cycle's own confirmed-clean run at this identical commit, so that result still describes the current tree, but this cycle's own run is left running in the background rather than reported as a fresh pass.
+
+**Went well:** verifying the "exhausted" claim independently instead of carrying it forward a second time; finding the `--stale`-tier verdict was itself inconsistent across today's cycles and handing off the fix for that inconsistency instead of adding a third contradictory verdict.
+
+**Did not go well:** `preflight.py`'s fast run took long enough in this session that it did not finish inside one PM slot; nothing in that is new; worth the next full run checking the backgrounded result rather than restarting it.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here", the six decision issues, #2/#39). Operator: the `--stale` batch above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; command deck not regenerated (no figure changed since the 17:2x cycle's own regeneration). No price, product, or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 17:2x cycle (previous work finished; closed a real stale deploy-verdict citation the gate itself had flagged)
 
 **Previous work was finished.** Attached clean. Full `preflight.py`: every gate passed, 32 standing warnings. 9 GitHub issues, all decision/art/TTS-blocked. Both fallback lanes (cold-read, room-content-read) exhausted again.
