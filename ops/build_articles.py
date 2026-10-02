@@ -535,7 +535,7 @@ def article_one(rooms):
              "Normal becomes visible, which means abnormal becomes visible too, "
              "and problems get caught early instead of festering.</p>")
     b.append("<p>The five practices underneath that were later named 5S, and "
-             "the name travelled a long way from cars: into hospitals, where a "
+             "the name traveled a long way from cars: into hospitals, where a "
              "missing instrument is an emergency, into aircraft maintenance, "
              "where a tool left in an engine costs lives, and then into "
              "offices, laboratories, kitchens and eventually homes. Safety was "

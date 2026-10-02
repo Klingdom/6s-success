@@ -36,12 +36,12 @@ DESC = ("Twenty sheets, one per room, naming the standard each micro zone holds 
 # cupboard, no printed standard.
 #
 # The picture that alt was describing exists and is standard.jpg, Figure
-# 25-02: a pantry cupboard of labelled containers with a photograph of the
+# 25-02: a pantry cupboard of labeled containers with a photograph of the
 # cupboard's own ideal state taped inside the door, captioned "The
 # ideal-state photo becomes the standard". That is the subject of this page,
 # so this is a correction of the image as well as of its description.
 IMG = "https://6s-success.com/assets/img/standard.jpg"
-ALT = ("A book figure: an open pantry cupboard of labelled containers with a "
+ALT = ("A book figure: an open pantry cupboard of labeled containers with a "
        "photograph of the cupboard's own finished state taped inside the "
        "door, so anyone restocking can see what right looks like.")
 
