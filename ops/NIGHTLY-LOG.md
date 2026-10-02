@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-02, scheduled operator cycle (Home Office, content-level visitor read lane: no content defect)
+
+**Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Home Office in `STATUS.md`, delegated the 8-page visitor read to an agent.
+
+**Home Office: no content defect.** All 8 pages (room, 6 zones, deck) checked as a visitor and cross-checked against `mcp/content.json`, `site/assets/js/data.js` and `ops/cardtext/home-office-deck.json`: zone order, FAQPage-vs-visible copy, storage-before-Sort order, pricing and buy links, 66-card deck count, diagnosis blocks, safety notice, nofollow links, 0 em/en dashes, no "Set in Order", all internal cross-links resolve. The room page's stated "4.5 to 7 hours" total was sanity-checked against the summed zone session ranges and matches the same rounding convention already confirmed on Laundry Room.
+
+**Went well:** nothing new; the lane keeps finding clean rooms.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** Mudroom, content-level visitor read lane, for whichever session picks it up next. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `STATUS.md` only (release/finding/handoff); no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02 (05:1x cycle, previous work finished, closed a stale BLOCKER-001 citation left behind)
 
 **Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`). The prior hourly-operator stretch (the messy-house article's CTA-band collision, then the vestigial breadcrumb-marker fix) was real, pushed, and independently verified at the gate level by the session that made it; this cycle's own full `preflight.py` run (backgrounded, completed before this entry) confirms it clean end to end: every gate passed.
