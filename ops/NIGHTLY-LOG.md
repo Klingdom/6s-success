@@ -2,6 +2,95 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 20:3x (A15: the nursery diaper-caddy zone-synonym gap)
+
+**Did.** Attached clean: checkout arrived shallow and detached, `git fetch
+origin main`, `git fetch --unshallow` (387 commits behind, confirmed fast
+forward, no conflict), `checkout main`, `merge --ff-only`. Read `GOALS.md`
+in full and delegated a research agent to read `BACKLOG-2026-09-07.md` in
+full, the last several `NIGHTLY-LOG.md` entries, and the 9 open GitHub
+issues, since the backlog's own longest lines run tens of thousands of
+characters and do not fit a direct `Read`. Confirmed directly, not taken on
+the agent's word: `python ops/preflight.py` passed clean before touching
+anything (every gate, 33 warnings, all previously diagnosed sandbox
+limits). Confirmed the one FAIL the agent flagged on CI run 37052224131
+(`c41faf9b`, 19:09Z, "build-id site/build-id.txt says f109273af..., the
+site hashes to 4586704337895d50") was already resolved on HEAD by a
+concurrent session's own `35ee844c4` restamp two commits later; `checks.yml`
+does not watch `site/**`, so no fresh run has confirmed it green yet, but
+`site/build-id.txt` on HEAD already reads the exact hash CI computed as
+correct. All 9 open issues unchanged (`decision`/`blocked-on-art`/TTS-
+blocked #39), none Phil-unblocked.
+
+**Picked A15, a traffic/distribution item, the tier this file's own
+ordering rule ranks above product or operational-honesty work and nothing
+in the "broken" tier was actually open once the build-id question above was
+settled.** `ops/keyword-demand.json` (2026-10-02 08:12 harvest) carried
+three rank 2-4, zero-coverage queries ("best way to organize diaper
+caddy", "how to arrange diaper caddy", "how to organize diaper caddy
+cart") whose best-matching page, `site/zones/nursery-the-diaper-and-care-
+backstock.html`, is titled and headed entirely in "diaper storage" with
+the word "caddy" nowhere on it. Same shape as A12's room-level "master
+bedroom"/"foyer"/"larder" fix, one level down: a household word and the
+Manual's own word had drifted apart for one zone, not a whole room. New
+`ops/zone-also-called.json` (same `_why`/`_rule` honesty convention as
+`ops/room-also-called.json`, one entry, 3 measured queries). New
+`zone_also_called_html()` in `ops/build_zone_pages.py`, wired into
+`zone_page()` right after the direct-answer lede, inside the existing
+`.head` div. Rendered as an `<h2>`, not a `<p>` like the room-level
+version, because `ops/keyword_demand.py`'s scorer only reads `<title>`
+and `<h1>-<h3>`, never body text; a first attempt used `<h3>` directly
+under the `<h1>` with nothing between, and `ops/audit_pages.py`'s own
+`heading-skip` check correctly failed on it, fixed to `<h2>`.
+
+**Verified.** `python ops/keyword_demand.py --rescore` moves all three
+targeted queries from `gap` (0.333) to `partial` (0.667, `matched_on:
+heading`); not `covered`, because each query also carries a word ("way",
+"arrange", "cart") the new heading honestly does not, and padding the
+heading with those to force `covered` would be inventing synonyms with no
+measured demand of their own, which `room-also-called.json`'s own `_rule`
+already forbids. `git status` after regenerating confirms the diff is
+exactly one page: the `.head` div's closing tag was rebuilt as one
+concatenated string specifically so the 113 zones with no entry stay
+byte-identical rather than merely re-rendering with a stray newline (the
+first version, joined as a separate list element, touched all 114 pages
+with nothing but whitespace). `ops/audit_pages.py` (0 findings, was 1
+before the h2 fix), `check_urls.py` (211/211), `link_graph_report.py` (0
+orphans), `affiliate.py --check` (165 documents), `fix_dashes.py --check`
+(0/0), `ops/audit_visual.py` on the one page at both desktop and mobile
+viewports (0 findings) all clean. `python ops/preflight.py` (full,
+unbounded) was backgrounded to confirm nothing else regressed; it is the
+slow `gate_tests` pass that every recent cycle has noted runs several
+minutes alone, still running as this entry is written.
+
+**Went well:** verifying the actual scorer function rather than trusting
+that a heading addition would move the number, and catching the
+whitespace-diff and heading-skip defects before shipping rather than
+after, the same two traps this file's own precedent (A11-A14) exists to
+warn about.
+
+**Did not go well:** the full `preflight.py` run again could not complete
+inside the time this entry was written in; same standing limitation every
+recent cycle has hit on `gate_tests`.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start
+here", the six decision issues, #2/#15/#18/#21/#29/#31/#33/#35/#39). No
+further unblocked backlog item was found beyond A15 in the time available
+this cycle; the next operator should re-check the backgrounded preflight
+result first, then look for the next traffic/distribution gap in
+`ops/keyword-demand.json` once the weekly `keyword-demand.yml` harvest
+refreshes it.
+
+Pushed to main. `ops/zone-also-called.json`, `ops/build_zone_pages.py`,
+`site/zones/nursery-the-diaper-and-care-backstock.html`,
+`ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`, `BACKLOG-2026-09-07.md`,
+command deck, this entry. No price or product touched, no new page (one
+existing zone page gained one heading and one sentence). IndexNow not
+applicable from this sandbox (no egress); the next successful
+`hourly-brief.yml` run picks up the changed URL.
+
 ## Scheduled operator cycle, 2026-10-02, 19:0x (closed the 18:4x cycle's own handoff: the Kitchen/Pantry keyword gap cluster, two of four queries, the other two deliberately declined)
 
 **Did.** Attached clean: repository arrived shallow and detached, `fetch`,
