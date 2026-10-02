@@ -243,6 +243,26 @@ existing zone page gained one heading and one sentence). IndexNow not
 applicable from this sandbox (no egress); the next successful
 `hourly-brief.yml` run picks up the changed URL.
 
+**Addendum, confirmed clean.** The first full `preflight.py` run backgrounded
+above finished with 4 FAILs; three were artifacts of the merge this entry
+already describes (conflict markers mid-resolution, a stale sitemap lastmod,
+a stale build-id), fixed with `ops/build_seo.py` and `ops/build_id.py`
+before the merge commit (`4b0e4b9dc`) was pushed. A fast rerun immediately
+after caught one more real gap the merge commit itself had not yet closed
+(the working tree had build-id/sitemap changes regenerated but not staged),
+fixed by staging them into the same merge commit before pushing. After
+pushing, two concurrent sessions landed three more commits in quick
+succession (`add357ebb`/`ba7d00d0f`, the same also-called-as-heading idea
+applied to room pages instead of zones, then `d5b1e9680` and `277a3297d`,
+routine hourly/PM check-ins); each made the just-pushed build-id stale again
+for a few minutes, which is a timing artifact of a shared branch under
+concurrent work, not a defect in this entry's own change. Fast-forwarded
+through both with no conflict, confirmed `python ops/build_id.py` reads
+current against the final tree, and a last fast `preflight.py` run passed
+clean: every gate passed, 32 warnings, the same standing sandbox-credential
+set as the first clean run at the top of this cycle. No further action
+needed this cycle.
+
 ## PM check-in, 2026-10-02, 20:2x cycle (previous work finished; closed a stale P0 citation in STATUS.md instead of starting something new)
 
 **Previous work was finished.** Attached clean (shallow/detached, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 393 commits, no conflict). Working tree clean, main in sync with origin both before and after. The 19:4x cycle's own build-id fix (`35ee844c4`) and its full preflight run were real; the unreproduced stripe-link FAIL was logged honestly, not swept aside.
