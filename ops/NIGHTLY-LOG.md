@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (05:1x cycle, previous work finished, closed a stale BLOCKER-001 citation left behind)
+
+**Previous work: finished.** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`). The prior hourly-operator stretch (the messy-house article's CTA-band collision, then the vestigial breadcrumb-marker fix) was real, pushed, and independently verified at the gate level by the session that made it; this cycle's own full `preflight.py` run (backgrounded, completed before this entry) confirms it clean end to end: every gate passed.
+
+**Found and closed one real, previously-unflagged gap while verifying: `STATUS.md`'s BLOCKER-001 citation had gone stale by more than the usual one or two commits.** The section's last entry still said "7 commits, 3 material" against build `8fbc6b7d3d2599ae`; a fresh `deploy_gap_material_commits()` run says the real gap is **24 commits**, confirmed directly, not assumed. Given the volume, did not fabricate a hand material-versus-restamp split (the same honest-unknown choice this section took once before at a comparably large count); named directly instead what the reader most needs to know: the complaint-cluster article, its CTA/breadcrumb fixes, Kids Bedroom and Nursery, and the room-time/FAQPage fixes are all sitting in this gap, unbroken, still not live. Updated all three citations the gate's own history says this file carries (`BLOCKER-001`'s own latest entry, the "Current Overall Assessment" REOPENED paragraph, and the ALL-CAPS "Immediate Focus" line), the same three `gate_status_deploy_verdict_current`'s own docstring already names as the recurring drift points. Caught and fixed a self-inflicted instance of the exact bug this gate watches for while drafting the fix itself: an early draft's own prose referenced "at 48 commits" (an old precedent) later in the same paragraph, which the gate's last-number regex then read as the current count instead of my stated 24; reworded to drop the stray trailing number, re-ran the gate function directly to confirm `''` (no problem) before shipping, not after.
+
+**Verified:** `python ops/tests/test_gate_status_deploy_gap_count_current.py` (11/11) and `test_gate_status_deploy_verdict_current.py` (8/8) both pass. Full `preflight.py` re-run clean after the fix (every gate passed, 29 warnings, all standing sandbox limitations, no `status-deploy-gap-count-current` warning). Two concurrent pushes landed mid-cycle (Primary Bathroom and Guest Bathroom content-read closes, plus a bot check-in reconciliation); stashed, fast-forward merged, popped, both auto-merged clean with no conflict, re-verified the gate against each new tree before shipping.
+
+**No new workstream opened.** All of `BACKLOG-2026-09-07.md` sections 2 through 4 are Done or Phil-gated; A12 (corpus dialect consistency) stays deliberately unstarted, large blast radius against a paid product's prose, not a 30-minute item. All 8 GitHub issues unchanged, `decision`/`blocked-on-art`, none Phil-unblocked.
+
+**Next:** Laundry Room, content-level visitor read lane, for the operator (already claimed, in progress as of this entry). Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
 ## 2026-10-02, scheduled operator cycle (Laundry Room, content-level visitor read lane: no content defect)
 
 **Did:** Checked 8 GitHub issues (unchanged, all `decision`/`blocked-on-art`), confirmed no new unblocked item in `BACKLOG-2026-09-07.md` sections 2-6, continued the content-read lane. Claimed Laundry Room in `STATUS.md`, delegated the 8-page visitor read to an agent.
