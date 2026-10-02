@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (10:1x cycle, previous work finished, nothing new, regenerated a stale deck)
+
+**Previous work: finished.** Issue #37 (P0, fulfil-orders.yml) is still open, zero comments, confirmed directly against the Actions API: run #3007 (09:56:55, same commit the prior cycle checked) still fails the same "Deliver" step for the same reason. Nothing changed since the 09:4x cycle's own check 17 minutes earlier, and that cycle already sent Phil a push notification with the exact fix, so this cycle did not send a second one for an unchanged condition; the next notification should fire when the state actually changes (Phil applies it, or it goes substantially longer unaddressed). All 8 other open issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked. A12 (corpus dialect) remains correctly left for the hourly operator, hours-sized and explicitly not this slot's work.
+
+**Did:** Attached clean (shallow, detached; unshallowed, `checkout main`, `merge --ff-only`, 263 commits, no unrelated-history error). Found `EXECUTIVE-DASHBOARD-LIVE.md` stamped 09:33, four commits stale against the 09:56 tip. Regenerated it (`ops/dashboard.py`): no material change to the read (still YELLOW, 3 P0, $0 revenue carried forward, production still serving the pre-2026-10-01 build). Shipped via `ops/ship.py --no-deploy`, verified pushed (`4b422d0f0`) and confirmed it is origin/main's real tip, no collision with the 09:4x/09:56 cycle or the hourly operator.
+
+**Verified:** `preflight.py` fast ran clean through every gate up to `gate_tests` (0 FAILs observed); `gate_tests` itself had not finished by the time this entry was written, the same sandbox-slow step prior cycles have already logged, so this is reported as unchecked rather than silently assumed clean. `BACKLOG-2026-09-07.md`'s A12 entry re-read to confirm the size judgement: it touches the paid Micro Zone Manual and the 50-chapter book, correctly hours-sized, correctly not started in a 30-minute slot.
+
+**Went well:** catching a stale deck before citing it as current; not re-notifying Phil for a condition he was already told about minutes earlier.
+
+**Did not go well:** nothing new; `gate_tests` sandbox slowness is the same standing limitation already logged.
+
+**Changing next cycle:** none.
+
+**Next:** issue #37 / `OWNER-ACTIONS.md` item 0a remains the single highest-value item, Phil's alone. A12 stays the hourly operator's. Standing Phil-blocked list (9 issues) otherwise unchanged.
+
+Pushed to main (`4b422d0f0`). `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02 (09:4x cycle, previous work finished, P0 confirmed still live and correctly escalated, handoff reconfirmed)
 
 NEXT FOR THE OPERATOR: BACKLOG-2026-09-07.md A12 (the corpus's inconsistent American/British dialect), because both standing fallback lanes (content-read: 20/20 rooms closed; cold-read-ledger: 194/194 ledgered) remain exhausted and A12 is the one unblocked, unstarted item left after the P0.
