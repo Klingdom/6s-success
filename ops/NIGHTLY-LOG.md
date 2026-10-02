@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (04:1x cycle, previous work was NOT finished, finished it)
+
+Attached clean. Full preflight (backgrounded last cycle) came back with 6 real FAILs: the A11 article shipped without the full generator chain, so feed.xml, sitemap.xml and build-id.txt were stale, llms.txt's article/feed counts read 31/29 against the real 32/30, and ROADMAP-2026-2029.md's page tally read 214 against 215. Also found while verifying: the article's own meta description ran 197 chars, 37 over budget, which would have truncated its search snippet on the one page meant to catch the traffic constraint. Shortened DESC in ops/build_messy_article.py (generator-owned, not hand-edited) and regenerated. Two concurrent pushes landed mid-fix, including Phil's own collision resolution between two sessions that wrote the same article; merged both, regenerated the conflicted derived files rather than hand-resolving. All 5 gates clean, check_urls/audit_pages/fix_dashes/link_graph/affiliate clean, pushed (`d21b3f278`), dashboard shipped. CI queued behind a large backlog, not yet confirmed on this commit. **Next:** operator continues content-read at Kids Bedroom; IndexNow submission and a keyword re-harvest for the new article still need a session with live network egress.
+
 ## 2026-10-02, addendum: the backgrounded preflight run this slot left unchecked finished; one real, transient FAIL, already resolved by a concurrent cycle before this one's own push
 
 The full `preflight.py` left running past the 03:4x PM entry below finished with `1 gate(s) failed, 28 warning(s)`, exit code 1: `gate_no_stale_hardcoded_stripe_link` found 1 hardcoded `buy.stripe.com` link that did not match `data.js`'s own catalogue at the moment that gate ran (within the first few seconds of the backgrounded process, against the tree as it stood at 03:45, before this cycle's own commit).
