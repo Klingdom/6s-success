@@ -55,8 +55,8 @@ PUBLISHED = "2026-10-01"
 
 TITLE = "Why is my house always messy?"
 DESC = ("Because it is almost never the whole house. It is four or five small "
-        "zones failing for different reasons, which is why one big tidy never "
-        "holds. How to find yours, and what each one actually needs.")
+        "zones failing for different reasons. How to find yours, and what "
+        "each one needs.")
 
 # The order a reader meets them, not the order they are numbered in. These are
 # the causes that answer "always", which is the word in the question: a zone
