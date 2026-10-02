@@ -235,7 +235,25 @@ def content_words(query):
 
 
 def page_inventory():
-    """Every published page with a title, as url, title and title word set."""
+    """Every published page as its title and its section headings.
+
+    HEADINGS, ADDED 2026-10-01, AND WHY THEY ARE KEPT SEPARATE.
+
+    The first reading scored a query against page titles only. That is the
+    strictest reading and it understates real coverage in one specific way:
+    a page can answer a question properly in an <h2> with its own id, which
+    is a legitimate target for that query, and still score as a gap because
+    the word is not in the title. The article shipped this same day is the
+    example. It answers "why is my kitchen always messy" under exactly that
+    heading, and reads as `partial` because its title says house.
+
+    So headings are now read as well, and the two scores are kept APART
+    rather than merged into one friendlier number. `coverage` stays
+    title-only, so it is still comparable with the first reading, and the
+    heading score is reported next to it with the surface that matched. A
+    measurement that quietly got more generous would be the worse outcome
+    here than one that was too strict.
+    """
     rows = []
     for dirpath, _dirs, files in os.walk(SITE):
         for name in sorted(files):
@@ -246,17 +264,23 @@ def page_inventory():
             path = os.path.join(dirpath, name)
             try:
                 with open(path, encoding="utf-8") as fh:
-                    head = fh.read(4000)
+                    whole = fh.read()
             except OSError:
                 continue
-            m = re.search(r"<title>(.*?)</title>", head, re.S)
+            m = re.search(r"<title>(.*?)</title>", whole, re.S)
             if not m:
                 continue
-            title = re.sub(r"\s+", " ", m.group(1)).strip()
+            title = re.sub(r"[ \n\t]+", " ", m.group(1)).strip()
             title = title.split("|")[0].strip()
-            rel = os.path.relpath(path, SITE).replace(os.sep, "/")
-            rows.append({"url": "/" + rel, "title": title,
-                         "words": set(words(title))})
+            body = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", whole)
+            heads = " ".join(
+                re.sub(r"<[^>]+>", " ", h)
+                for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
+            rows.append({"url": "/" + os.path.relpath(path, SITE)
+                                .replace(os.sep, "/"),
+                         "title": title,
+                         "words": set(words(title)),
+                         "head_words": set(words(title + " " + heads))})
     return sorted(rows, key=lambda r: r["url"])
 
 
@@ -299,16 +323,40 @@ def attribute_room(query, rooms):
     return ""
 
 
+def best_by(query, inventory, field):
+    """Best-matching page for a query against one surface of the inventory."""
+    cw = content_words(query)
+    if not cw:
+        return None, 0.0
+    best, score = None, -1.0
+    for page in inventory:
+        hit = sum(1 for w in cw if w in page[field])
+        s = hit / len(cw)
+        if s > score or (s == score and best is not None
+                         and page["url"] < best["url"]):
+            best, score = page, s
+    return best, round(score, 3)
+
+
 def score_rows(results, rooms, inventory):
     rows = []
     for q in sorted(results):
         row = dict(results[q])
         page, score = best_page(q, inventory)
+        hpage, hscore = best_by(q, inventory, "head_words")
         row["room"] = attribute_room(q, rooms)
         row["best_page"] = page["url"] if page else ""
         row["best_page_title"] = page["title"] if page else ""
+        # Title-only, unchanged, so this column stays comparable with the
+        # first reading taken before headings were read at all.
         row["coverage"] = score
-        row["status"] = classify(score)
+        row["heading_coverage"] = hscore
+        row["heading_page"] = hpage["url"] if hpage else ""
+        # The status uses the better surface, because a question answered
+        # under its own <h2> is genuinely answered, and names which surface
+        # earned it so a reader can discount it if they disagree.
+        row["matched_on"] = "title" if score >= hscore else "heading"
+        row["status"] = classify(max(score, hscore))
         rows.append(row)
     return rows
 
