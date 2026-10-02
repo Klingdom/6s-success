@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 13:1x (closed the cheap/budget/DIY gap, then withdrew a duplicate of it against a concurrent session)
+
+**Did:** Attached clean. P0 #37 (fulfil-orders.yml refuses live Stripe sends since 09:12 UTC; paying customers receive nothing) was already open and escalated; confirmed still unpatched 4+ hours in, sent a phone notification. Moved to the cheap/budget/DIY query cluster: read all 108 rows rather than the earlier "mostly covered" note (CLAUDE.md 5c/5d), found 5 genuine on-mission gaps among 13 off-mission ones left alone, built a new page and generator for the 5.
+
+**Found at merge:** a concurrent session closed the identical gap minutes apart by expanding `more-storage-wont-fix-clutter.html` instead. Checked their "all 18 covered" claim rather than trusting it: false for 2 of my 5. Withdrew my duplicate rather than ship both; closed the residual 2 plus the small-space-kitchen pair with a small addition to their page.
+
+**Verified:** against `keyword_demand.py`'s own offline scorer, not assumed: all 5 targeted queries now classify `covered`. fix_dashes, fix_dialect, audit_pages, check_urls, affiliate.py --check, audit_visual all clean. Full preflight backgrounded, not concluded as written.
+
+**Went well:** checking the concurrent claim against the real scorer instead of trusting it.
+
+**Did not go well:** built the duplicate before fetching origin; earlier fetch would have caught the collision sooner.
+
+**Changing next cycle:** fetch origin before building content for a named gap, not only before pushing.
+
+**Next:** confirm the backgrounded preflight concluded clean; P0 #37 still top, blocked on Phil's one-line edit.
+
+Pushed to main: backlog, the surviving article, articles index, roadmap/llms citations, preflight.py, command deck. No price or product touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02, 12:4x cycle (the prior "unblocked" claim was premature; both failing CI runs had tested a stale commit, not current HEAD)
 
 NEXT FOR THE OPERATOR: verify `publish-image.yml`'s freshly dispatched run (queued ~12:48 UTC) before citing the pipeline fixed either way; if it is green, take `BACKLOG-2026-09-07.md`'s cheap/budget/DIY query cluster (0 covered/82 partial/17 gap of 99), the standing unblocked traffic item.
