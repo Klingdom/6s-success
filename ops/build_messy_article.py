@@ -54,9 +54,9 @@ SLUG = "why-is-my-house-always-messy"
 PUBLISHED = "2026-10-01"
 
 TITLE = "Why is my house always messy?"
-DESC = ("Almost never the whole house. Four or five small zones failing for "
-        "different reasons, why one big tidy never holds, and what each one "
-        "actually needs.")
+DESC = ("Because it is almost never the whole house. It is four or five small "
+        "zones failing for different reasons. How to find yours, and what "
+        "each one needs.")
 
 # The order a reader meets them, not the order they are numbered in. These are
 # the causes that answer "always", which is the word in the question: a zone
@@ -303,7 +303,8 @@ def room_blocks():
         c = BY_ID[cid]
         out.append(
             '<h2 id="%s">%s</h2>\n<p>%s</p>\n<p>%s</p>\n'
-            '<p>The cause is usually <b>%s</b>: %s %s '
+            '<p>The cause is usually <b>%s</b>, which means this: %s '
+            'The check, standing in the room: %s '
             '<a href="../rooms/%s">See the %s broken into its micro zones</a>.</p>'
             % (re.sub(r"[^a-z]+", "-", heading.lower()).strip("-"),
                esc(heading), esc(why), esc(then),
