@@ -176,6 +176,48 @@ def main():
         kd.SOURCES.clear()
         kd.SOURCES.update(real)
 
+    # 12b. Headings count, and they must not quietly inflate the title score.
+    #      Added with the heading pass on 2026-10-01: a page can answer a
+    #      question properly under its own <h2> and still have a title that
+    #      does not carry the word, which the title-only reading called a gap.
+    #      The two scores are kept apart on purpose, so this asserts both that
+    #      the status improves AND that `coverage` stays title-only, because a
+    #      measurement that silently got more generous would be worse here
+    #      than one that was too strict.
+    inv2 = [{"url": "/a.html",
+             "title": "Why is my house always messy?",
+             "words": set(kd.words("Why is my house always messy?")),
+             "head_words": set(kd.words("Why is my house always messy? "
+                                        "Why is my kitchen always messy?"))}]
+    rows = kd.score_rows({"why is my kitchen always messy":
+                          {"query": "why is my kitchen always messy",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Kitchen"], inv2)
+    r = rows[0]
+    if r["status"] != "covered":
+        fails.append("a question answered under its own heading scored %r"
+                     % r["status"])
+    if r["matched_on"] != "heading":
+        fails.append("matched_on was %r, wanted 'heading'" % r["matched_on"])
+    if r["coverage"] >= 0.999:
+        fails.append("the title-only score was inflated by a heading: %r"
+                     % r["coverage"])
+    if r["heading_coverage"] < 0.999:
+        fails.append("heading score did not reach 1.0: %r"
+                     % r["heading_coverage"])
+
+    # 12c. And a page with neither still reads as a gap, so the heading pass
+    #      cannot turn the whole corpus green.
+    inv3 = [{"url": "/b.html", "title": "Shop",
+             "words": set(kd.words("Shop")),
+             "head_words": set(kd.words("Shop Buy the deck"))}]
+    rows = kd.score_rows({"why is my garage always messy":
+                          {"query": "why is my garage always messy",
+                           "sources": ["google"], "best_rank": 1,
+                           "seeds": ["x"]}}, ["Garage"], inv3)
+    if rows[0]["status"] != "gap":
+        fails.append("an uncovered query scored %r" % rows[0]["status"])
+
     # 13. Seeds are deterministic and deduplicated, so two harvests are
     #     comparable line by line.
     s1, s2 = kd.build_seeds(), kd.build_seeds()

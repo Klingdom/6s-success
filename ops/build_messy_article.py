@@ -213,7 +213,7 @@ def esc(s):
 
 
 def chrome():
-    """(head_before_ld, header, footer) lifted from a sibling article.
+    """(head_without_json_ld, header, footer) lifted from a sibling article.
 
     Taken from a real shipped page rather than written here, so this article
     inherits the nav, the footer, the asset fingerprints and the measurement
@@ -221,7 +221,29 @@ def chrome():
     them on the day one of those sweeps changes.
     """
     s = io.open(TEMPLATE, encoding="utf-8").read()
-    head = s[:s.index('<script type="application/ld+json">')]
+    # EVERY json-ld BLOCK IS STRIPPED, AND EVERYTHING ELSE IS KEPT.
+    #
+    # Two bugs here in one evening, in opposite directions, both found by
+    # checking rather than reasoning.
+    #
+    # The first version cut the head at the FIRST json-ld block and threw
+    # away the rest. That dropped the PROGRESSIVE block
+    # (wire_progressive.py) and the PWA icons (wire_pwa.py), which are added
+    # by sweeps running after the generators, so every build went: strip,
+    # sweeps restore, shipped page permanently disagrees with its own
+    # generator. gate_generator_ownership caught it, which is what it is for.
+    #
+    # The obvious repair, keeping everything after that first block, was
+    # worse and was caught by diffing the output: the template carries a
+    # SECOND json-ld block, its own FAQPage, so that version published
+    # another article's questions and answers, under another article's @id,
+    # inside this page. Structured data describing a different page is the
+    # kind of defect nothing renders and nobody sees.
+    #
+    # So: take the whole head, remove every json-ld block whatever the count,
+    # keep all the rest, and let build() put this page's own back.
+    head = s[:s.index("</head>")]
+    head = re.sub(r'(?is)<script type="application/ld\+json">.*?</script>\s*', "", head)
     header = s[s.index("</head>") + len("</head>"):s.index("<main")]
     footer = s[s.index("</main>") + len("</main>"):]
     return head, header, footer
@@ -404,6 +426,9 @@ __ROOMS__
 <h2>Common questions</h2>
 __FAQ__
 
+
+<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px"><p class="eyebrow on-deep">If you already know which spot it is</p><h2 style="margin:0 0 10px">Work one zone, with the standard written down</h2><p style="margin:0 0 16px;max-width:62ch">Every zone on this site is free to read and free to work. If you want the standard for all 114 of them in one place, the Whole House Print Pack is 19 dollars and prints at home. If a room keeps fighting back after you have done the work, a <a href="../consulting.html" style="color:#DDA63A">one hour virtual consult</a> is 250 dollars.</p><p style="margin:0"><a data-sku="PACK-HOUSE" class="btn btn-primary" href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="nofollow noopener">The Print Pack, 19 dollars</a><a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">Or work a zone, free</a><a class="btn btn-on-deep btn-sm" style="margin-left:10px" data-sku="CN-VIRTUAL" href="../consulting.html?from=article:why-is-my-house-always-messy">Talk it through, 250 dollars</a></p></section>
+
 <h2>Keep reading</h2>
 <ul style="max-width:62ch">
 <li><a href="why-your-house-gets-messy-again">Why your house gets messy again a week after you clean it</a>, which is the other half of this: not why it is messy now, but why it goes back after you fix it.</li>
@@ -412,8 +437,6 @@ __FAQ__
 <li><a href="what-is-a-micro-zone">What a micro zone is</a>, and why it is the unit that actually finishes.</li>
 <li><a href="../resources.html">All twenty rooms, broken into their micro zones</a>.</li>
 </ul>
-
-<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px"><p class="eyebrow on-deep">If you already know which room</p><h2 style="margin:0 0 10px">Get the standard for every zone in the house</h2><p style="margin:0 0 16px;max-width:62ch">The Whole House Print Pack puts the written standard for all 114 micro zones on cards you print at home, the same diagnosis this page describes in general terms, specific to your own kitchen, bedroom, kids' room and closet. 19 dollars. For working through the real cause together, an <a href="../consulting.html#in-home" style="color:#DDA63A">In-Home Reset Day</a> is 1,200 dollars.</p><p style="margin:0"><a data-sku="PACK-HOUSE" class="btn btn-primary" href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="nofollow noopener">The Print Pack, 19 dollars</a><a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">Or find your zone, free</a><a class="btn btn-on-deep btn-sm" style="margin-left:10px" data-sku="CN-VIRTUAL" href="../consulting.html?from=article:why-is-my-house-always-messy">Talk it through, 250 dollars</a></p></section>
 """
 
 

@@ -1032,16 +1032,47 @@ root causes we already diagnose rather than written to the query, and link it
 to the room pages. Re-harvest monthly, not weekly: autocomplete moves slowly
 and the report is for choosing work, not for watching a number.
 
-**Done, 2026-10-02, operator.** `site/articles/why-is-my-house-always-messy.html`
-answers the kitchen, bedroom, kids' room and closet variants directly, grounded
-only in the existing 17-cause vocabulary, linked to the real room/zone pages.
-Full account in `BACKLOG-2026-09-07.md` A11 and `ops/NIGHTLY-LOG.md` this date.
-**Two parts of this learning's own next action could not be closed from this
-sandbox:** the re-harvest needs reach to Google's/Bing's autocomplete
-endpoints, and telling the new page to IndexNow needs reach to the live site
-to confirm the key file, neither of which this environment has. Both are
-mechanical once run from a session with network reach; the content gap itself
-is closed.
+**Corrected the same day, and the correction matters more than the finding.**
+The page shipped, and re-scoring the same 2,622 queries afterwards exposed that
+the instrument had been measuring something narrower than it was being read as.
+It scored a query against page TITLES only, so a page answering a question
+properly under its own `<h2>`, with an id, read as a gap. Reading headings as
+well as titles moves the whole corpus from **714 gaps to 226**, before this
+cycle wrote anything at all, and moves the complaint cluster from 0 covered to
+8. The decomposition, measured three ways rather than argued:
+
+| Reading | Whole corpus, 2,622 queries | Complaint cluster, 53 |
+|---|---|---|
+| titles only, before the article | gap 714, covered 346 | gap 21, covered 0 |
+| headings too, before the article | gap 226, covered 970 | gap 3, covered 8 |
+| headings too, with the article | gap 223, covered 982 | gap 1, covered 17 |
+
+So two things are true at once and both belong in the record. The article is a
+real addition: it took the cluster from 8 covered to 17 and is the only page on
+this site titled for the question. And **"49 queries and zero covered" was
+partly an artifact of my own scorer**, which had already been described in this
+file as evidence strong enough to choose work from.
+
+**What stopped it being expensive.** The decision to write ONE page rather than
+eight. A per-room page for each of "why is my kitchen always messy", "why is my
+bedroom always messy" and the rest would have been eight thin pages built on a
+number that was 60% measurement error, and `CLAUDE.md` section 11 is the only
+reason that did not happen. The policy was load-bearing in a way its own
+justification did not anticipate.
+
+**Implication, and it is the general one.** A measurement being conservative
+does not make it right. A strict scorer fails safely in the sense that it never
+claims coverage that is not there, and it fails expensively in the other
+direction, by commissioning work that did not need doing. Before acting on a
+gap count, check what surface the instrument actually looked at.
+
+**Next action, revised.** The honest remaining target is 223 gaps, not 714, and
+the next cycle should start from `ops/KEYWORD-DEMAND.md`'s regenerated table
+rather than from this file's first paragraph. `matched_on` in the JSON says
+whether each row was earned by a title or a heading, and a row earned only by a
+heading is weaker evidence of coverage than one earned by a title.
+
+**Confirmed independently the same day:** this sandbox has no network egress to either Google's/Bing's autocomplete endpoints (a direct probe returned `403 Forbidden` from the proxy) or the live site, so `ops/indexnow.py --submit` for the new page and any re-harvest both stay open for a session with live network reach, not a measurement gap in the page or the data.
 
 #### LRN-0030: A test that shells out must prove its interpreter, or the environment answers in place of the code
 

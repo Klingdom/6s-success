@@ -4,7 +4,7 @@
 
 **Harvested:** 2026-10-01T15:14:33Z from google, bing, 137 seeds, 274 attempts: 238 returned completions, 36 had none, 0 errored. Canary: bing ok, google ok.
 
-**Queries found:** 2622. Checked against 217 published page titles: 346 covered, 1562 partial, 714 gap.
+**Queries found:** 2622. Checked against 217 published page titles: 982 covered, 1417 partial, 223 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -15,132 +15,120 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first.
+Showing the top 80 of 223, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
-| 1 | above stove storage ideas | - | More storage will not fix a messy room (0.33) |
-| 1 | declutter singing room | - | How long does it actually take to organize a room? (0.33) |
 | 1 | how to declutter a garage quickly | Garage | How to declutter sentimental items without the guilt (0.33) |
 | 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) |
-| 1 | how to make a sorting hopper | - | How we make money: what we sell, and what we do not earn on (0.33) |
-| 1 | how to organize bed sheets and comforters | - | How to organize the guest bedroom bed and linens (0.33) |
 | 1 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | how to organize nightstand without drawers | - | How to declutter sentimental items without the guilt (0.33) |
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) |
-| 1 | how to organize toys | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | how to sort games by storage on steam | - | More storage will not fix a messy room (0.25) |
-| 1 | how to store sports equipment | - | How to organize the garage sports gear storage (0.33) |
-| 1 | ideas to close off under a deck | - | Every card in the Mudroom deck (0.25) |
 | 1 | kitchen organization ideas for small spaces | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
-| 1 | messy play ideas nursery | Nursery | Articles: why homes get messy, and where to start (0.33) |
 | 1 | nursery organization ideas for small spaces | Nursery | The Nursery Deck: 66 cards, free to read (0.33) |
 | 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) |
-| 1 | picture of a messy garage | Garage | Articles: why homes get messy, and where to start (0.33) |
-| 1 | picture of messy pantry | Pantry | Articles: why homes get messy, and where to start (0.33) |
-| 1 | ways to organize blankets | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | why is my bedroom always messy | - | Articles: why homes get messy, and where to start (0.33) |
-| 1 | why is my kitchen always a mess | Kitchen | Why does mail always pile up by the door? (0.33) |
-| 1 | why is my kitchen always messy | Kitchen | Articles: why homes get messy, and where to start (0.33) |
-| 1 | why your home is always messy | - | Why everything needs an assigned home (0.33) |
-| 2 | causes of going to the bathroom frequently | - | The Guest Bathroom Deck: 60 cards, free to read (0.25) |
 | 2 | declutter motorcycle garage | Garage | How to declutter sentimental items without the guilt (0.33) |
-| 2 | declutter nursery room | Nursery | How long does it actually take to organize a room? (0.33) |
-| 2 | declutter pasta pantry | Pantry | How to declutter sentimental items without the guilt (0.33) |
 | 2 | declutter worksheets free | - | How to declutter sentimental items without the guilt (0.33) |
-| 2 | high end mudroom problems | Mudroom | Every card in the Mudroom deck (0.25) |
-| 2 | how to arrange crib set | - | How to organize the nursery crib (0.33) |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 2 | how to declutter a child's bedroom | - | How to declutter sentimental items without the guilt (0.33) |
-| 2 | how to declutter a kitchen table | Kitchen | How to declutter sentimental items without the guilt (0.33) |
-| 2 | how to declutter a small bedroom | - | How to declutter sentimental items without the guilt (0.33) |
 | 2 | how to declutter kitchen countertops | Kitchen | How to declutter sentimental items without the guilt (0.33) |
-| 2 | how to hold pool steps down | - | What is 6S? The six steps, and how it differs from 5S (0.25) |
-| 2 | how to keep your backpack organized | - | How long should you keep something you can't decide about? (0.33) |
-| 2 | how to make a hopper sorting system | - | How we make money: what we sell, and what we do not earn on (0.25) |
-| 2 | how to organize bed sheets and blankets | - | How to organize the guest bedroom bed and linens (0.33) |
-| 2 | how to organize bed sheets and towels | - | How to organize the guest bathroom towels (0.33) |
-| 2 | how to organize bookshelf with a lot of books | - | Contact 6S Success: books, quotes, workshops, and press (0.33) |
-| 2 | how to organize cricut files | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize diaper caddy cart | - | How to organize the nursery diaper storage (0.33) |
-| 2 | how to organize drop down list in excel | - | How to organize the entryway drop zone (0.25) |
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | how to organize garden tools in shed | - | How to organize the garage garden tool storage (0.33) |
 | 2 | how to organize snacks | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | kitchen organization ideas for pots and pans | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 2 | kitchen organization ideas small spaces | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
 | 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | organize car maintenance tips | - | How to organize the garage car care supplies (0.33) |
-| 2 | pantry organization ideas for small spaces | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
-| 2 | tips in organizing your home entryway | Entryway | Why everything needs an assigned home (0.33) |
-| 2 | what causes going to the bathroom frequently | - | The Guest Bathroom Deck: 60 cards, free to read (0.25) |
-| 2 | what to store above stove | - | How to organize the kitchen stove area (0.33) |
-| 2 | why does my garage open by itself | Garage | The Garage Deck: 80 cards, free to read (0.33) |
-| 2 | why is my patio always dirty | - | Why does mail always pile up by the door? (0.33) |
 | 3 | best way to organize diaper caddy | - | How to organize a junk drawer (and keep it that way) (0.33) |
 | 3 | buy items in bulk to reorganize storage | - | How to organize the garage bulk and overhead storage (0.40) |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | declutter a kitchen pantry | Kitchen | How to declutter sentimental items without the guilt (0.33) |
-| 3 | diaper bag organizer insert | - | How to organize the nursery diaper storage (0.33) |
-| 3 | hallway organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | how to add a railing to steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 3 | how to arrange dish rack | - | How to organize the laundry room drying rack (0.33) |
 | 3 | how to arrange golu steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.25) |
-| 3 | how to declutter a small bathroom | - | How to declutter sentimental items without the guilt (0.33) |
 | 3 | how to declutter kitchen counters | Kitchen | How to declutter sentimental items without the guilt (0.33) |
-| 3 | how to get one night stand | - | Why is the thing you use every day the hardest one to reach? (0.33) |
-| 3 | how to hold bench press bar | - | Contact 6S Success: books, quotes, workshops, and press (0.25) |
-| 3 | how to organize a bedroom with too much stuff | - | Where to start decluttering when it all feels like too much (0.33) |
-| 3 | how to organize a kitchen without a pantry | Kitchen | How to declutter sentimental items without the guilt (0.33) |
-| 3 | how to organize a small entryway closet | Entryway | Every card in the Entryway deck (0.33) |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | how to organize paper files at home | - | Why everything needs an assigned home (0.33) |
+| 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
+| 3 | setup declutter garage | Garage | How to declutter sentimental items without the guilt (0.33) |
+| 4 | declutter bedroom checklist | - | How to declutter sentimental items without the guilt (0.33) |
+| 4 | foyer organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | how to arrange diaper caddy | - | How to organize the nursery diaper storage (0.33) |
+| 4 | how to arrange hotel bed | - | How to organize the guest bedroom bed and linens (0.33) |
+| 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
+| 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) |
+| 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | how to organize backyard | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | how to organize hard drive files | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | ideas for decks and patios | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | organize car maintenance guide | - | How to organize the garage car care supplies (0.33) |
+| 4 | pantry organization ideas for wire shelving | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
+| 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
+| 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | declutter checklist for bedroom | - | How to declutter sentimental items without the guilt (0.33) |
+| 5 | declutter modern kitchen | Kitchen | How to declutter sentimental items without the guilt (0.33) |
+| 5 | entrance organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) |
+| 5 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
+| 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
+| 5 | how to organize a garage sale quickly | Garage | The Garage Deck: 80 cards, free to read (0.33) |
+| 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) |
+| 5 | how to organize crafts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
+| 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
+| 6 | declutter bedroom checklist pdf | - | How to declutter sentimental items without the guilt (0.25) |
+| 6 | declutter compact kitchen | Kitchen | How to declutter sentimental items without the guilt (0.33) |
+| 6 | garage declutter services | Garage | How to declutter sentimental items without the guilt (0.33) |
+| 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) |
+| 6 | how to declutter children's bedroom | - | How to declutter sentimental items without the guilt (0.33) |
+| 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) |
+| 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) |
+| 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
+| 6 | organize car maintenance tools | - | How to organize the garage car care supplies (0.33) |
+| 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
+| 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
+| 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
+| 7 | cover space between stove and countertop | - | How to organize the kitchen stove area (0.20) |
+| 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
+| 7 | how to arrange christmas crib | - | How to organize the nursery crib (0.33) |
+| 7 | how to arrange plants in a garden | - | How to organize the garage garden tool storage (0.33) |
+| 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 7 | how to plan a workshop templates | Workshop | Venture plan (0.33) |
+| 7 | organizing your bedroom tips for decluttering | - | Decluttering vs. organizing: what's actually different (0.33) |
+| 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
+| 8 | declutter durable kitchen containers | Kitchen | How to declutter sentimental items without the guilt (0.25) |
+| 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 8 | how to attach countertop to vanity | - | How to organize the guest bathroom vanity counter (0.33) |
 
 ## Partial: we are close, and the title does not use their words
+
+Showing the top 60 of 1417.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
 | 1 | how to arrange towels in guest bathroom | How to organize the guest bathroom towels | 0.75 |
-| 2 | laundry room organization ideas small room | The Laundry Room Deck: 67 cards, free to read | 0.75 |
 | 3 | outdoor patio and deck design ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 4 | how to organize cleaning supplies without a closet | How to organize the hall closet cleaning supplies | 0.75 |
 | 4 | paint storage or painting storage | How to organize the workshop paint and chemical storage | 0.75 |
-| 5 | how to store detergent in laundry room | How to organize the laundry room detergent and supplies | 0.75 |
-| 6 | blanket storage ideas living room | How to organize the family room blanket storage | 0.75 |
+| 4 | why does my house always look messy | Why is my house always messy? | 0.75 |
 | 6 | diy garden tool storage ideas | How to organize the garage garden tool storage | 0.75 |
-| 6 | how to organize towels under bathroom sink | How to organize the primary bathroom under-sink cabinet | 0.75 |
 | 7 | diy power tool storage | How to organize the garage power tool storage | 0.75 |
 | 7 | outdoor patio deck decorating ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 8 | dining room storage ideas ikea | How to organize the dining room sideboard storage | 0.75 |
 | 8 | home office storage ideas ikea | How to organize the home office file storage | 0.75 |
-| 8 | kids sports gear storage | How to organize the garage sports gear storage | 0.75 |
-| 8 | outdoor garden tool storage ideas | How to organize the garage garden tool storage | 0.75 |
 | 9 | diy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 9 | how to decorate a living room table | How to organize the living room coffee table | 0.75 |
 | 9 | power tool storage plans | How to organize the garage power tool storage | 0.75 |
 | 10 | diy power tool storage ideas | How to organize the garage power tool storage | 0.75 |
-| 10 | garage storage for sports equipment | How to organize the garage sports gear storage | 0.75 |
 | 10 | home office storage ideas pinterest | How to organize the home office file storage | 0.75 |
-| 10 | how to organize office desk without drawers | How to organize the home office desk drawers | 0.75 |
 | 10 | kids bedroom storage ideas ikea | How to organize the kids bedroom toy storage | 0.75 |
 | 12 | small guest bathroom storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
-| 13 | guest bathroom towel storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
-| 14 | outdoor garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 14 | power tool organizer for tool box | How to organize the garage power tool storage | 0.75 |
 | 15 | how to declutter dining room table | How to organize the dining room dining table | 0.75 |
-| 17 | blanket storage for living room | How to organize the family room blanket storage | 0.75 |
-| 17 | laundry room detergent storage ideas | How to organize the laundry room detergent and supplies | 0.75 |
-| 17 | small hall closet storage ideas | How to organize the hall closet linen storage | 0.75 |
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, zone by zone | 0.75 |
-| 1 | best way to organize tool wall | How to organize the garage tool wall | 0.67 |
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
-| 1 | declutter family room | The Family Room Deck: 69 cards, free to read | 0.67 |
 | 1 | declutter laundry room | The Laundry Room Deck: 67 cards, free to read | 0.67 |
 | 1 | dining room decorating ideas | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
@@ -161,33 +149,47 @@ Ordered by the best rank the phrase reached in any one seed suggestion list, so 
 | 1 | how to declutter a living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 1 | how to declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 1 | how to hang coat hooks | How to organize the mudroom coat hooks | 0.67 |
-| 1 | how to organize a dining room buffet | The Dining Room Deck: 61 cards, free to read | 0.67 |
-| 1 | how to organize a laundry room pantry | The Laundry Room Deck: 67 cards, free to read | 0.67 |
+| 1 | how to organize a pantry with deep shelves | How to organize the pantry dry goods shelves | 0.67 |
+| 1 | how to organize car detailing supplies | How to organize the garage car care supplies | 0.67 |
+| 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
+| 1 | how to organize entertainment center cables | How to organize the family room entertainment center | 0.67 |
+| 1 | how to use a drying rack | How to organize the laundry room drying rack | 0.67 |
+| 1 | organize wires for entertainment center | How to organize the family room entertainment center | 0.67 |
+| 1 | pantry organization ideas for deep shelves | How to organize the pantry dry goods shelves | 0.67 |
+| 1 | primary bedroom design ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
+| 1 | stair landing design ideas | How to organize a stair landing, zone by zone | 0.67 |
+| 2 | best way to organize a hall closet | The Hall Closet Deck: 58 cards, free to read | 0.67 |
+| 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
+| 2 | building a stair landing | How to organize a stair landing, zone by zone | 0.67 |
+| 2 | declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
+| 2 | guest bathroom decorating ideas | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
+| 2 | guest bedroom design ideas | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
+| 2 | home office organization ideas ikea | The Home Office Deck: 66 cards, free to read | 0.67 |
+| 2 | how does a messy room affect you | More storage will not fix a messy room | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 4 | 30 | 4 |
-| Entryway | 48 | 16 | 27 | 5 |
-| Family Room | 29 | 2 | 24 | 3 |
-| Garage | 78 | 21 | 47 | 10 |
-| Guest Bathroom | 23 | 3 | 17 | 3 |
-| Guest Bedroom | 24 | 0 | 20 | 4 |
-| Hall Closet | 31 | 0 | 24 | 7 |
-| Home Office | 59 | 3 | 47 | 9 |
-| Kids Bedroom | 22 | 1 | 15 | 6 |
-| Kitchen | 97 | 34 | 53 | 10 |
-| Laundry Room | 67 | 5 | 45 | 17 |
-| Living Room | 91 | 10 | 72 | 9 |
-| Mudroom | 45 | 15 | 26 | 4 |
-| Nursery | 62 | 15 | 36 | 11 |
-| Pantry | 59 | 12 | 40 | 7 |
-| Primary Bathroom | 14 | 2 | 8 | 4 |
-| Primary Bedroom | 15 | 1 | 14 | 0 |
-| Stair Landing | 24 | 0 | 20 | 4 |
-| Workshop | 67 | 11 | 47 | 9 |
+| Dining Room | 38 | 1 | 28 | 9 |
+| Entryway | 48 | 2 | 24 | 22 |
+| Family Room | 29 | 1 | 21 | 7 |
+| Garage | 78 | 6 | 39 | 33 |
+| Guest Bathroom | 23 | 3 | 16 | 4 |
+| Guest Bedroom | 24 | 0 | 18 | 6 |
+| Hall Closet | 31 | 0 | 13 | 18 |
+| Home Office | 59 | 2 | 40 | 17 |
+| Kids Bedroom | 22 | 0 | 14 | 8 |
+| Kitchen | 97 | 14 | 46 | 37 |
+| Laundry Room | 67 | 0 | 26 | 41 |
+| Living Room | 91 | 2 | 60 | 29 |
+| Mudroom | 45 | 5 | 26 | 14 |
+| Nursery | 62 | 3 | 28 | 31 |
+| Pantry | 59 | 3 | 38 | 18 |
+| Primary Bathroom | 14 | 1 | 9 | 4 |
+| Primary Bedroom | 15 | 1 | 12 | 2 |
+| Stair Landing | 24 | 0 | 16 | 8 |
+| Workshop | 67 | 7 | 40 | 20 |
 
 1729 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

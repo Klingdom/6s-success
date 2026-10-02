@@ -627,6 +627,15 @@ impressions are blocked on it. What people type is public.
 
 ## NOT Authoritative For
 
+- **anything the seeds could not reach.** This is the limitation that most
+  easily misleads. Every seed is built from the twenty room names in
+  `content.json` and the sixty hand-written zone search terms, so a harvest can
+  only discover phrases an engine suggests from words WE already use. The first
+  reading contained 2,622 queries and not one of them said "master bedroom",
+  which is not evidence that nobody types it: nothing asked. A fixed set of
+  vocabulary probes (`VOCABULARY_PROBES`) was added 2026-10-01 to start
+  answering that for a dozen common synonyms, and the general rule stands.
+  **An absence in this data is an absence of asking, not an absence of demand.**
 - **search volume.** There is no count in this data. A figure presented as
   searches per month from this source is a fabrication.
 - cross-seed comparison. Two queries from different seeds cannot be ranked

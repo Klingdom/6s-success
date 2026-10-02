@@ -118,6 +118,37 @@ ROOM_TEMPLATES = (
     "why is my {room} always messy",
 )
 
+# THE SEEDS DECIDE WHAT CAN BE FOUND, AND OURS CAME FROM OUR OWN VOCABULARY.
+#
+# Found 2026-10-01, after the first harvest. Every seed was built from the
+# twenty room names in content.json plus the sixty hand-written zone search
+# terms, so the harvest could only ever discover phrases that an engine
+# suggests from words WE already use. "master bedroom" does not appear once in
+# 2,622 queries, not because nobody types it, but because nothing asked. The
+# same blind spot covers "foyer", "utility room", "den" and "larder".
+#
+# These are the probe seeds for that. They are not claims that anybody searches
+# these phrases; they are the question, put to the engine, so the next harvest
+# can answer it. Each is a word a household might use for a room this site
+# names differently, and the thing worth reading in the result is whether the
+# engine suggests MORE around the synonym than around our name for it.
+VOCABULARY_PROBES = (
+    "master bedroom organization",
+    "master bathroom organization",
+    "foyer organization ideas",
+    "entrance hall organization",
+    "utility room organization",
+    "larder organization",
+    "den organization ideas",
+    "bonus room organization",
+    "linen closet organization",
+    "coat closet organization",
+    "back porch organization",
+    "basement organization ideas",
+    "attic organization ideas",
+    "walk in closet organization",
+)
+
 STOPWORDS = frozenset("""
 a an and are at be best by can do does for from get good have how i ideas in
 into is it its my of on or should so that the their there these this to too
@@ -166,6 +197,7 @@ def build_seeds():
             seeds.append(tpl.format(room=low))
     for term in zone_terms():
         seeds.append("how to organize " + term)
+    seeds.extend(VOCABULARY_PROBES)
     # Deterministic order so two runs are comparable line by line.
     out, seen = [], set()
     for s in seeds:
@@ -235,7 +267,25 @@ def content_words(query):
 
 
 def page_inventory():
-    """Every published page with a title, as url, title and title word set."""
+    """Every published page as its title and its section headings.
+
+    HEADINGS, ADDED 2026-10-01, AND WHY THEY ARE KEPT SEPARATE.
+
+    The first reading scored a query against page titles only. That is the
+    strictest reading and it understates real coverage in one specific way:
+    a page can answer a question properly in an <h2> with its own id, which
+    is a legitimate target for that query, and still score as a gap because
+    the word is not in the title. The article shipped this same day is the
+    example. It answers "why is my kitchen always messy" under exactly that
+    heading, and reads as `partial` because its title says house.
+
+    So headings are now read as well, and the two scores are kept APART
+    rather than merged into one friendlier number. `coverage` stays
+    title-only, so it is still comparable with the first reading, and the
+    heading score is reported next to it with the surface that matched. A
+    measurement that quietly got more generous would be the worse outcome
+    here than one that was too strict.
+    """
     rows = []
     for dirpath, _dirs, files in os.walk(SITE):
         for name in sorted(files):
@@ -246,17 +296,23 @@ def page_inventory():
             path = os.path.join(dirpath, name)
             try:
                 with open(path, encoding="utf-8") as fh:
-                    head = fh.read(4000)
+                    whole = fh.read()
             except OSError:
                 continue
-            m = re.search(r"<title>(.*?)</title>", head, re.S)
+            m = re.search(r"<title>(.*?)</title>", whole, re.S)
             if not m:
                 continue
-            title = re.sub(r"\s+", " ", m.group(1)).strip()
+            title = re.sub(r"[ \n\t]+", " ", m.group(1)).strip()
             title = title.split("|")[0].strip()
-            rel = os.path.relpath(path, SITE).replace(os.sep, "/")
-            rows.append({"url": "/" + rel, "title": title,
-                         "words": set(words(title))})
+            body = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", whole)
+            heads = " ".join(
+                re.sub(r"<[^>]+>", " ", h)
+                for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
+            rows.append({"url": "/" + os.path.relpath(path, SITE)
+                                .replace(os.sep, "/"),
+                         "title": title,
+                         "words": set(words(title)),
+                         "head_words": set(words(title + " " + heads))})
     return sorted(rows, key=lambda r: r["url"])
 
 
@@ -299,16 +355,40 @@ def attribute_room(query, rooms):
     return ""
 
 
+def best_by(query, inventory, field):
+    """Best-matching page for a query against one surface of the inventory."""
+    cw = content_words(query)
+    if not cw:
+        return None, 0.0
+    best, score = None, -1.0
+    for page in inventory:
+        hit = sum(1 for w in cw if w in page[field])
+        s = hit / len(cw)
+        if s > score or (s == score and best is not None
+                         and page["url"] < best["url"]):
+            best, score = page, s
+    return best, round(score, 3)
+
+
 def score_rows(results, rooms, inventory):
     rows = []
     for q in sorted(results):
         row = dict(results[q])
         page, score = best_page(q, inventory)
+        hpage, hscore = best_by(q, inventory, "head_words")
         row["room"] = attribute_room(q, rooms)
         row["best_page"] = page["url"] if page else ""
         row["best_page_title"] = page["title"] if page else ""
+        # Title-only, unchanged, so this column stays comparable with the
+        # first reading taken before headings were read at all.
         row["coverage"] = score
-        row["status"] = classify(score)
+        row["heading_coverage"] = hscore
+        row["heading_page"] = hpage["url"] if hpage else ""
+        # The status uses the better surface, because a question answered
+        # under its own <h2> is genuinely answered, and names which surface
+        # earned it so a reader can discount it if they disagree.
+        row["matched_on"] = "title" if score >= hscore else "heading"
+        row["status"] = classify(max(score, hscore))
         rows.append(row)
     return rows
 
@@ -447,9 +527,10 @@ def report(payload):
       "`covered` here and invisible on a real result page.\n")
     w("\n---\n")
     w("## Gaps: nothing we publish is titled for these\n")
-    w("Ordered by the best rank the phrase reached in any one seed "
-      "suggestion list, so the top of this list is what an engine predicts "
-      "first.\n")
+    w("Showing the top %d of %d, ordered by the best rank the phrase "
+      "reached in any one seed suggestion list, so the top of this list is "
+      "what an engine predicts first. The full set is in "
+      "`keyword-demand.json`.\n" % (min(80, len(gaps)), len(gaps)))
     w("| Rank | Query | Room | Closest page we have |")
     w("|---|---|---|---|")
     for r in sorted(gaps, key=lambda r: (r["best_rank"], r["query"]))[:80]:
@@ -457,6 +538,7 @@ def report(payload):
           % (r["best_rank"], r["query"], r["room"] or "-",
              r["best_page_title"] or "-", r["coverage"]))
     w("\n## Partial: we are close, and the title does not use their words\n")
+    w("Showing the top %d of %d.\n" % (min(60, len(partial)), len(partial)))
     w("| Rank | Query | Our closest title | Coverage |")
     w("|---|---|---|---|")
     for r in sorted(partial, key=lambda r: (-r["coverage"], r["best_rank"]))[:60]:

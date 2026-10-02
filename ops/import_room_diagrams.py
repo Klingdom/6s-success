@@ -280,6 +280,22 @@ def main(argv):
               "trusting it." % (len(lost), ", ".join(sorted(lost))))
         return 1
 
+    # AN EMPTY MANIFEST IS A FAILURE, NOT A RESULT.
+    #
+    # The "never shrink" check above only fires when something is already
+    # committed, so on a first run, or on a checkout where content/book/ is
+    # missing, collect() would return nothing and this would cheerfully write
+    # {} and exit 0. build_zone_pages.py would then fall back to the
+    # typographic panel on all eleven pages, and the only signal anybody would
+    # get is the artwork quietly disappearing. Found by cold-reading this file
+    # the same day it was written.
+    if not manifest:
+        print()
+        print("REFUSING TO WRITE: no room produced a usable drawing. That is "
+              "a broken source, not a corpus with no artwork in it. Check "
+              "that content/book/*Chapter-N/chapter_N_final.html exist here.")
+        return 1
+
     if "--apply" not in argv:
         print()
         print("Run with --apply to write %s" % os.path.relpath(OUT, ROOT))
