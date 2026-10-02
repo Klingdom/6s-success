@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 13:2x cycle (previous work not finished: P0 #37 still open over 4 hours; re-notified Phil directly rather than only logging it again)
+
+**Attach:** clean fast-forward onto `origin/main`, no unrelated-history error.
+
+**Previous work is NOT finished.** Issue #37 (fulfil-orders.yml, paid orders undelivered since 09:12 UTC) is still open and still failing live: confirmed directly against the Actions API, run `37012034916` failed at 13:17:42Z at the same "Deliver" step, with another run queued at 13:19:53Z. Four prior push notifications already reached Phil today (~09:4x, ~10:33, ~11:2x, ~12:1x); the gap since the last one was now roughly an hour, matching the established cadence, so this cycle sent a fifth push notification directly (not just a log entry) with the exact one-line fix and the issue #37 link, per CLAUDE.md 0.2: a correctly reported problem nobody has acted on costs as much as an undetected one. Did not attempt the fix myself: two prior sessions were each correctly blocked by this environment's own payment-safety classifier on the identical one-line change, and this is a RED payment-safety gate per CLAUDE.md 37/52, not something to route around a third time. Updated `STATUS.md` section 16's incident record with the current failing run id and notification count rather than leaving it at the 11:38 UTC snapshot.
+
+**Checked the rest of the queue before treating this as the only work.** `BACKLOG-2026-09-07.md` sections 2-4 (A1-A14, B1-B5, C1-C7): every row is Done, or correctly Phil/environment-gated (C1 on `GEMINI_API_KEY`/egress, C5/C6/C7's render half on Phil, matching `OWNER-ACTIONS.md`). 10 GitHub issues open, unchanged from the prior cycle's count: 3 P0 (#37 above, #15 Listmonk decision, #2 art-blocked), the rest decision-labelled or blocked-on-art. `ops/cold_read_ledger.py --stale` lists 24 files touched since their last cold-read, an hours-sized tier correctly left for the operator, not started here.
+
+**Local `preflight.py` (full, not fast) was dispatched this cycle and was still running against the documented slow `gate_tests` step when this entry needed to ship; reported unchecked, not assumed clean, per CLAUDE.md 0.4.** CI's own `checks.yml` on the current HEAD is the real signal and was not re-checked this cycle beyond the Actions calls already made for #37/publish-image.yml above.
+
+**Handing to the operator (:43):** the 24-file `cold_read_ledger.py --stale` tier above, and continued verification of `publish-image.yml`'s in-flight runs once they conclude.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `STATUS.md` (incident record only), command deck. No price, product or page touched; IndexNow not applicable. No new GitHub issue this cycle (issue #37 already covers it).
+
 ## PM check-in, 2026-10-02, 12:4x cycle (the prior "unblocked" claim was premature; both failing CI runs had tested a stale commit, not current HEAD)
 
 NEXT FOR THE OPERATOR: verify `publish-image.yml`'s freshly dispatched run (queued ~12:48 UTC) before citing the pipeline fixed either way; if it is green, take `BACKLOG-2026-09-07.md`'s cheap/budget/DIY query cluster (0 covered/82 partial/17 gap of 99), the standing unblocked traffic item.

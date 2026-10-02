@@ -1069,8 +1069,10 @@ issue #37 and `OWNER-ACTIONS.md`.
   unattended against a live Stripe key.
 - **Impact:** every scheduled and push-triggered run of `fulfil-orders.yml`
   fails at the "Deliver" step (confirmed repeatedly against the Actions API,
-  most recently run #3016 at 11:38 UTC). Any customer who pays while this
-  stands receives nothing until a human applies the fix.
+  most recently run #37012034916 at 13:17 UTC, failed; a further run was
+  in progress at 13:20 UTC). Any customer who pays while this stands
+  receives nothing until a human applies the fix. Over four hours
+  unresolved as of 13:20 UTC.
 - **Coordinator:** none assigned; no autonomous session can close this one.
 - **Current state:** unresolved as of this entry. The one-line fix
   (`STRIPE_ALLOW_LIVE: "1"` in the Deliver step's `env:`) has been written
@@ -1083,9 +1085,9 @@ issue #37 and `OWNER-ACTIONS.md`.
   `OWNER-ACTIONS.md` item 0a and GitHub issue #37: open
   `.github/workflows/fulfil-orders.yml` in GitHub, add
   `STRIPE_ALLOW_LIVE: "1"` next to the step's other secrets, commit to
-  `main`. Push notifications with this exact fix have gone to Phil three
-  times today (~09:4x, ~10:33, ~11:2x); re-notify on a roughly hourly
-  cadence while it stays open, not on every 30-minute cycle.
+  `main`. Push notifications with this exact fix have gone to Phil five
+  times today (~09:4x, ~10:33, ~11:2x, ~12:1x, ~13:2x); re-notify on a
+  roughly hourly cadence while it stays open, not on every 30-minute cycle.
 
 Historical incidents belong in `INCIDENTS.md`.
 
