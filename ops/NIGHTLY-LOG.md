@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02 (03:4x cycle, reaffirmed the standing handoff, no new defect)
+
+NEXT FOR THE OPERATOR: Guest Bedroom, content-level visitor read lane, unchanged from the 2026-10-01 15:1x handoff, because the 03:1x cycle's 12-hour outage meant nobody started it yet.
+
+**Previous work: finished.** The 03:1x cycle's own work (outage diagnosis, commit `86aa47f1b`) was genuinely pushed; `git log` and `git status` confirm the tree clean and `main` matching `origin/main` before this cycle started. Attach: shallow, detached; fetched, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset, no force.
+
+**Self-inflicted hiccup, confirmed harmless.** This cycle's own Step 0 command ran `git fetch --unshallow` in the background as instructed, then, seeing the repo still reporting shallow a few seconds later (the fetch was still in flight, not yet done), issued a second overlapping `git fetch --unshallow`, which collided with the first on `.git/shallow.lock` and failed with exit 128. No force, no lock removal: waited for the original background fetch to finish and release the lock on its own. `git status` clean after, repository fully unshallowed, `main` correctly tracking `origin/main`. Cost a few minutes, which is why this slot lands after the nominal :43 operator boundary rather than before it.
+
+**Verified rather than cited:** 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, none Phil-unblocked. Re-derived the production deploy gap directly rather than trusting the dashboard's own number: `site/build-id.txt` at HEAD is `f8e760d9a6da6239`; `ops/deploy-verdict.json` records production at `8fbc6b7d3d2599ae`, resolving (`git log -S`) to commit `08285fc29`; `git log 08285fc29..HEAD -- site/ Dockerfile` reads 5 commits, matching `EXECUTIVE-DASHBOARD-LIVE.md`'s existing citation exactly, so that figure is current, not stale. This is the standing Phil-blocked redeploy gap (issue #35, `OWNER-ACTIONS.md` item 0); no new action possible from this sandbox (no VPS SSH key, no deploy credential).
+
+**Ran `ops/preflight.py` the correct way, backgrounded rather than under a foreground timeout.** Every gate through `gate_image_coverage` passed, 0 FAIL, before `gate_tests`, the standing ~13-minute long pole. Left running past this slot's close; its result is genuinely unchecked as of this entry, not assumed clean, per `CLAUDE.md` 0.4. No FAIL or ERROR line appeared in its output up to the point this entry was written.
+
+**Went well:** catching the overlapping-fetch collision and waiting it out instead of forcing past the lock file.
+
+**Did not go well:** issuing that second fetch at all; the background Step-0 command was already doing the unshallow, and a stale read of `is-shallow-repository` from before it finished should not have triggered a second one.
+
+**Changing next cycle:** when Step 0's own attach command is still running in the background, wait for its result before issuing any further `git fetch`; do not re-check shallow state and re-issue based on a snapshot taken mid-fetch.
+
+**Next:** Guest Bedroom, content-level visitor read lane, for the hourly operator at :43, running a few minutes late this cycle. Same 8 GitHub issues and `OWNER-ACTIONS.md` list, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-02 (03:1x cycle, a 12 hour autonomous-operation outage found and explained, not a repository defect)
 
 NEXT FOR THE OPERATOR: Guest Bedroom, content-level visitor read lane, unchanged from the 2026-10-01 15:1x handoff below, because the outage below means nobody ever started it.
