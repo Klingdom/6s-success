@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-24T18:49:08Z",
-   "mode": "changed",
-   "offered": 191,
-   "accepted": 191,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-24T19:20:51Z",
    "mode": "changed",
    "offered": 9,
@@ -633,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-02T19:09:52Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -666,7 +666,7 @@
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "5f73728905fe2be5",
   "https://6s-success.com/articles/": "64389c5d0027dd6b",
   "https://6s-success.com/articles/is-that-really-a-backup": "a981b7c090c38dc4",
-  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "e48043670aa52589",
+  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "28a02065ed2b7be4",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "21c9c0adcab089e8",
   "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "a094d04c281078dd",
   "https://6s-success.com/articles/what-is-6s": "f4281e9eb210ae5b",
