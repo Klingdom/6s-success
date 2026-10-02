@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, addendum (found and fixed the real cause of publish-image.yml's FAIL: hardcoded British spellings in the generator source, not the pages)
+
+**The dispatched run #518 I flagged as unverified finished during this cycle: `conclusion: failure`.** Not the films-six-passes FAIL (that part of the fix held); a different gate, `gate_generator_ownership`, failed on 4 files. My own earlier "clean" local runs never actually exercised this: CI's step runs `preflight.py --own`, which plain `preflight.py` (fast mode) skips entirely, so I had never once run the gate that was failing.
+
+**Reproduced it with `--own` and found the real shape, the dangerous way first.** Running the real generator chain for real (not the gate's own restore-after) reverted three already-correct, committed pages back to British spelling: `site/articles/what-is-6s.html` ("traveled" to "travelled"), `site/standards.html` (both image alt strings, "labeled" to "labelled"), `site/deck-gallery.html` ("color band"/"labeled bin" to "colour band"/"labelled bin"). Discarded that regeneration immediately rather than commit it: the bug was in the generator, not the page.
+
+**Fixed at the source:** the matching hardcoded strings in `ops/build_articles.py`, `ops/build_standards_page.py`, `ops/build_deck_gallery.py` (two separate strings), plus one more of the same bug in `ops/product_links.py` on a currently-unused description, found while here. Reran the full generator chain after: zero diff against the committed tree. `gate_generator_ownership` directly: clean. Full `preflight.py --own`: every gate passed, 34 warnings. Did not attempt a repo-wide dialect sweep; a broad grep turned up ~400 more hits, almost all variable names, CSS tokens, test fixtures and `fix_dialect.py`'s own data, out of scope for this fix.
+
+**Next:** dispatched `publish-image.yml` again on the fixed commit (`11b32d124`); not watched to completion this slot, check its conclusion before citing the pipeline as unblocked. P0 #37 unchanged.
+
+Pushed to main (`11b32d124`). `ops/build_articles.py`, `ops/build_deck_gallery.py`, `ops/build_standards_page.py`, `ops/product_links.py`.
+
 ## Scheduled operator cycle, 2026-10-02, 13:1x (closed the cheap/budget/DIY gap, then withdrew a duplicate of it against a concurrent session)
 
 **Did:** Attached clean. P0 #37 (fulfil-orders.yml refuses live Stripe sends since 09:12 UTC; paying customers receive nothing) was already open and escalated; confirmed still unpatched 4+ hours in, sent a phone notification. Moved to the cheap/budget/DIY query cluster: read all 108 rows rather than the earlier "mostly covered" note (CLAUDE.md 5c/5d), found 5 genuine on-mission gaps among 13 off-mission ones left alone, built a new page and generator for the 5.
