@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-02 22:00",
- "commit": "a6c9afeff",
- "commit_msg": "Cold-read the 27-file stale-ledger lane (0 defects), reconfirm RISK-0014 live",
- "commits_7d": 1399,
- "commits_total": 5300,
+ "generated": "2026-10-02 22:21",
+ "commit": "d386713aa",
+ "commit_msg": "Hourly check-in record",
+ "commits_7d": 1397,
+ "commits_total": 5302,
  "traffic_line": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-30 21:07",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 21:07",
  "affiliate_trigger_carried_from": "2026-09-30 21:07",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
