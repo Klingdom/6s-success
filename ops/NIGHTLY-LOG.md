@@ -2,6 +2,55 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-02, 17:1x (closed the 16:4x cycle's own handoff: content-level read of the five new "also called" lines, no live defect)
+
+**Did.** With both standing fallback lanes otherwise exhausted (preflight
+clean after this cycle's own two fixes, logged separately above; 9 GitHub
+issues all decision/blocked-on-art/TTS-blocked; `cold_read_ledger.py
+--next` 0 of 195 un-ledgered), picked up the 16:4x cycle's own named
+handoff: `c64901cd0` shipped five rooms' "also called" synonym lines with
+a unit test but no visitor-level content read, the one concrete unread
+thing left.
+
+**Read all five rendered lines directly off the live pages, not the diff
+alone.** Entryway "the foyer or the entrance hall", Family Room "the den
+or the bonus room", Pantry "the larder", Primary Bathroom "the master
+bathroom", Primary Bedroom "the master bedroom", each closing "Same room,
+same micro zones." Checked: none restates a name the page's own H1 or lede
+already carries; grepped the whole site for all five phrases and found
+zero other occurrences, so nothing elsewhere (meta, FAQ, JSON-LD, decks)
+needs to agree with a line that exists in exactly one place; the `--soft`
+colour (`#6A625A` on `#F7F2E9`) the line renders in is the same 5.37:1
+pair already verified elsewhere on this site, not a new contrast risk.
+`ops/room-also-called.json` matches the five rendered pages exactly, and
+`ops/tests/test_room_also_called.py` passes directly.
+
+**No live defect.** Recorded in `STATUS.md`'s own "Open claims" section,
+same convention the prior 20 room-content-read entries used.
+
+**Verified.** `fix_dashes.py --check` clean. The two fixes earlier this
+cycle (the `OWNER-ACTIONS.md` R6 stale-owner-action row, and `test_social_
+drafts.py`'s own body-extraction bug) are both already pushed and logged
+separately above.
+
+**Went well:** finishing the named handoff rather than starting a fresh,
+unscoped search once the standing fallback lanes read exhausted again.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none found to change. Both standing fallback
+lanes (`ops/*.py` cold-read, room-content-read) are fully exhausted again,
+same note the 16:4x cycle already left: the next session with no
+unblocked backlog item and no Phil-unblocked issue needs a new
+verification angle, not a repeat of either lane.
+
+**Next:** no genuinely unblocked backlog item beyond the standing
+Phil-gated list (`VPS_DEPLOY_KEY`, Search Console, YouTube authorisation,
+the Stripe business description, the six decision-labelled issues).
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price,
+product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-02, 17:0x (a real preflight gate_tests FAIL, found and fixed: the test was wrong, not the product)
 
 **Did.** The backgrounded full `preflight.py` started earlier this cycle
