@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-02, 15:4x cycle (previous work now finished; re-notified Phil at the established cadence; no new unblocked backlog item)
+
+NEXT FOR THE OPERATOR: cold-read `ops/fix_dialect.py`, the one remaining un-ledgered file `cold_read_ledger.py` names, because every other genuinely unblocked backlog row is done or Phil-gated and this file has never been read cold by any cycle today.
+
+**Attach:** checkout arrived shallow and detached; `fetch`, `fetch --unshallow` (already unshallow), `checkout main`, `merge --ff-only` onto `origin/main`, two fast-forwards in a row as two concurrent sessions landed converging fixes for the same gate failure mid-cycle (`008c20fac` then `1fa8d74ed`). No unrelated-history error, no conflict.
+
+**Previous work IS now finished.** The 15:2x cycle's `gate_nightly_log_ordering` fix (this file's entry had been appended to the physical end instead of prepended) is confirmed merged and holding: called both `gate_nightly_log_ordering()` and `gate_nightly_log_no_duplicate_entries()` directly against the current file, both return clean. Two independent sessions had converged on the identical fix and merged without conflict.
+
+**P0 #37 unchanged, now 6.5+ hours unresolved.** Confirmed directly against the Actions API, not cited from a prior claim: run #3047 (15:43:17Z, triggered by the convergence merge itself) failed at the same "Deliver" step, same Phil-only RED payment-safety gate (CLAUDE.md 37/52). The one-line fix (`STRIPE_ALLOW_LIVE: "1"` in `.github/workflows/fulfil-orders.yml`'s "Deliver" step `env:`) still sits in `OWNER-ACTIONS.md` item 0a and issue #37 itself; this environment's safety classifier has already correctly blocked prior sessions from making that edit, so not re-attempted here. Gap since the last push notification (~14:45Z) had reached roughly an hour, matching today's established cadence, so sent a fresh notification with the elapsed time and the exact fix.
+
+**Checked the rest of the queue.** 10 GitHub issues open, unchanged: #37 P0/RED, #15 P0/decision, #2 P0/blocked-on-art, #39 TTS-blocked, the rest decision-labelled or blocked-on-art. 0 open PRs. `cold_read_ledger.py --stale` shows 30 entries, all generator files re-touched by today's own content edits (deck-page builders, `build_articles.py`, `build_seo.py`), not a real backlog item, same conclusion as every recent cycle. `cold_read_ledger.py` (un-ledgered, no `--stale`) names exactly one file never yet read cold today: `ops/fix_dialect.py` (4 log mentions), handed to the operator above rather than started here, since triage and a clear handoff is this slot's job, not a new cold-read.
+
+**Went well:** verifying the gate fix held directly against both gate functions rather than trusting the log entries' own "fixed" claims; checking the actual notification gap against the log's established cadence before sending.
+
+**Did not go well:** nothing new; the same unrelated-history/shallow-checkout shape recurred at attach (issue #27, still needs Phil's hand in the Routines UI).
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, plus command deck if regenerated in time. No price, product or page touched; IndexNow not applicable. No new GitHub issue (issue #37 already covers P0 #37).
+
 ## PM check-in, 2026-10-02, 15:2x cycle (previous work still not finished: P0 #37 unchanged; found and fixed a real red gate instead of starting new work)
 
 **Previous work is NOT finished.** Issue #37 still fails live (run #3045, 15:14:55Z), same Phil-only RED payment-safety gate; last push notification was ~30 minutes ago, inside the established hourly cadence, so held rather than re-notify. Attached clean, fast-forwarded through the hourly operator's two latest pushes. All 10 open issues remain Phil-gated, decision-labelled, art-blocked, or TTS-capability-blocked; nothing genuinely unblocked to start. 0 open PRs.
