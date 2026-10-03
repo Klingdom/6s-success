@@ -219,6 +219,42 @@ def common_items_html(zone: dict) -> str:
     rows = "".join(f"<li>{esc(i)}</li>" for i in items)
     return (f'<h2>Common items here</h2><ul class="common-items">{rows}</ul>')
 
+
+def sort_scope_html(zone: dict) -> str:
+    """The belongs/strays field, piloted on Entryway's 5 zones (per the
+    pilot-before-rollout rule this file already follows for `common_items`
+    and `diagnosis`, `BACKLOG-2026-09-07.md` section 5), per Phil's own
+    request for a field distinguishing what belongs in a zone from what
+    strays in and should leave.
+
+    Shape: `{belongs: [...], strays: [...]}`. Deliberately a different key
+    from `common_items` (a flat "what kinds of things go here" noun list,
+    already shipped to all 114 zones): writing this shape under that key
+    would have silently overwritten real, released content (caught and
+    corrected in STATUS.md 2026-10-03 before anything was written). Both
+    halves are grounded in the zone's own existing `passes.sort` (what
+    leaves) and `done_looks_like` (what stays) text, never invented.
+
+    A zone with no `sort_scope` yet (109 of 114, as this is authored a
+    pilot cohort at a time) renders nothing here; additive, never a reason
+    a page fails to build.
+    """
+    scope = zone.get("sort_scope")
+    if not scope:
+        return ""
+    belongs = scope.get("belongs") or []
+    strays = scope.get("strays") or []
+    if not belongs and not strays:
+        return ""
+    out = ['<h2>What belongs, and what strays in</h2>']
+    if belongs:
+        rows = "".join(f"<li>{esc(i)}</li>" for i in belongs)
+        out.append(f'<p>Belongs here:</p><ul class="sort-scope-belongs">{rows}</ul>')
+    if strays:
+        rows = "".join(f"<li>{esc(i)}</li>" for i in strays)
+        out.append(f'<p>Strays in and should leave:</p><ul class="sort-scope-strays">{rows}</ul>')
+    return "".join(out)
+
 # The site and the manual name the same 114 zones differently. The manual says
 # "Landing Zone", the site and the book say "The Landing Spot". Shipping pages
 # in the manual's vocabulary would put two names for one zone in front of the
@@ -2965,6 +3001,10 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     _common = common_items_html(zone)
     if _common:
         out.append(_common)
+
+    _scope = sort_scope_html(zone)
+    if _scope:
+        out.append(_scope)
 
     # Safety comes before the work, because the heading says "before you
     # start" and it was sitting after the instruction to do all six passes,

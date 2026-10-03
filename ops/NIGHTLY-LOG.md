@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (A20: closed the belongs/strays handoff four straight PM/operator cycles had declined to start)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `156585a4a` (622 commits), then fast-forwarded once more onto a concurrent PM push (`a8d528f87`, the 17:4x check-in) with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, and `STATUS.md`'s Open Claims section. Confirmed rather than cited: 0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"` in the corpus, so the field genuinely had not been started by anyone. GitHub: 8 open issues (all `decision`/`blocked-on-art`), 0 PRs, unchanged. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Authored `sort_scope` ({belongs, strays}), piloted on Entryway's 5 zones**, per `build_zone_pages.py`'s own pilot-before-rollout convention and the 15:4x PM check-in's own naming instruction (a key that does not collide with `common_items`, which already carries a different, already-shipped flat noun list for all 114 zones). Both halves grounded in each zone's own existing `passes.sort` (what leaves) and `done_looks_like` (what stays) text, nothing invented. First attempt at the content.json edit used `json.dump(..., indent=2)`, which reformatted the entire 1-space-indented file (37,140 lines changed for a 5-zone edit); caught before staging anything, reverted with `git checkout --`, redone with targeted string replacement so the real diff is 71 insertions/5 deletions. `sort_scope_html()` added to `ops/build_zone_pages.py`, rendered right after the common-items block; ran the real generator (not a hand edit) to produce the 5 changed pages.
+
+**New gate, proved able to fail.** `gate_sort_scope_rendered` in `preflight.py` (pure logic in `check_sort_scope_rendered`, modeled directly on `check_common_items_rendered`), checking the real shipped `site/zones/*.html` against `content.json` byte for byte. `ops/tests/test_gate_sort_scope_rendered.py`, 6/6 cases, fail-then-pass proved on three synthetic regressions (un-authorised block, missing block, paraphrased belongs item, empty-strays-rendered-anyway) and confirmed against the real committed corpus. Additionally proved live, not just synthetically: planted a substitute string in the real committed `entryway-the-landing-spot.html`, ran the check function directly against the live tree, watched it fail by name citing the exact mismatch, restored the file byte for byte, confirmed `git status` clean.
+
+**Verified:** `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `ops/cold_read_ledger.py --stale` (1 pre-existing stale entry, `ops/experiments.py`, unrelated to this cycle's own files, left for a future cycle to keep this one workstream finished rather than open a second). Full `preflight.py` fast run: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, confirmed by grepping the log directly rather than assumed, with the new gate running clean in sequence; killed at the hang per every recent cycle's own documented practice, reported unchecked past that point. `ops/tests/test_gate_common_items_rendered.py` (the sibling gate) reran clean, confirming no collision. Updated `STATUS.md`'s Open Claims section (replaced the stale CLAIMED/CORRECTION pair with a RELEASED entry) and `BACKLOG-2026-09-07.md` (new row A20).
+
+**Went well:** catching the `json.dump` reformatting trap before staging anything, the same trap `STATUS.md`'s own 2026-10-03 Dining Room entry already names and warns about for exactly this file; the live sabotage test against the real committed page, not just the synthetic test cases, is the strongest proof this gate actually protects something.
+
+**Did not go well:** nothing new; `gate_tests` still cannot finish in this sandbox inside a short window, the same standing limitation every recent cycle reports.
+
+**Changing next cycle:** none; the new gate can fail and now does its job.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). The belongs/strays rollout to the remaining 109 zones is further, non-urgent work, same shape as `common_items`'s own room-by-room rollout; `ops/experiments.py`'s stale cold-read ledger entry is the next small, real, unblocked item if nothing else is found first.
+
+Pushed to main. `content/manual/source/content.json`, `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_sort_scope_rendered.py` (new), 5 `site/zones/*.html` (Entryway), `ops/sitemap-content-hashes.json`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched; IndexNow not applicable (no new URL).
+
 ## 2026-10-03, PM check-in (17:4x cycle)
 
 NEXT FOR THE OPERATOR: author the belongs/strays field (`sort_scope` or similar non-colliding key, piloted on Entryway's 5 zones first per `build_zone_pages.py`'s own pilot-before-rollout convention), because it is still the one real, unblocked, non-Phil-gated workstream and nobody has started it yet.

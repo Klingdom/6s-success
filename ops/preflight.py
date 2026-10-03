@@ -23663,6 +23663,115 @@ def gate_common_items_rendered() -> None:
         fail("common-items-rendered", "; ".join(problems[:6]))
 
 
+def check_sort_scope_rendered(scope_map: dict, page_bodies: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    `sort_scope` is the belongs/strays field (`{belongs: [...], strays:
+    [...]}`), piloted on Entryway's 5 zones, grounded in each zone's own
+    `passes.sort` (what leaves) and `done_looks_like` (what stays) text,
+    never invented. Deliberately a different key from `common_items` (a
+    flat noun list already shipped to all 114 zones): STATUS.md 2026-10-03
+    records a near-miss where this shape was about to be written under
+    that key, which would have silently overwritten real, released
+    content. This is that pilot's own render-matches-source check, the
+    same shape `check_common_items_rendered` already runs for the field
+    it was built alongside.
+
+    `scope_map` is {filename: {"belongs": [...], "strays": [...]}} read
+    fresh from content.json, `page_bodies` is {filename: html} for every
+    real site/zones/*.html file. Every item in both halves must appear on
+    its own page byte for byte (escaped the same way `esc()` in
+    ops/build_zone_pages.py escapes it), a page not in the corpus must not
+    carry the block at all, and neither half may be rendered empty where
+    the corpus supplies at least one item for it.
+    """
+    import html as _html
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items()
+                if 'What belongs, and what strays in' in b}
+    want_files = set(scope_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render a sort-scope block the corpus "
+                         "does not authorise: %s" %
+                         (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d zone(s) carry sort_scope in content.json but "
+                         "ship no sort-scope block: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        scope = scope_map[f]
+        for half, css_class in (("belongs", "sort-scope-belongs"),
+                                 ("strays", "sort-scope-strays")):
+            want = scope.get(half) or []
+            m = re.search(r'<ul class="%s">(.*?)</ul>' % css_class, body, re.S)
+            if not want:
+                if m:
+                    problems.append("%s: %s rendered but content.json's "
+                                     "own sort_scope.%s is empty" %
+                                     (f, half, half))
+                continue
+            if not m:
+                problems.append("%s: sort_scope.%s has %d item(s) in "
+                                 "content.json but no <ul class=\"%s\"> "
+                                 "block shipped" % (f, half, len(want), css_class))
+                continue
+            got_items = re.findall(r'<li>(.*?)</li>', m.group(1), re.S)
+            want_html = [_html.escape(i, quote=True) for i in want]
+            if got_items != want_html:
+                problems.append(
+                    "%s: rendered sort_scope.%s does not match "
+                    "content.json's own list: got %r, want %r" %
+                    (f, half, got_items, want_html))
+    return problems
+
+
+def gate_sort_scope_rendered() -> None:
+    """The shipped-HTML half of the belongs/strays pilot (see
+    `check_sort_scope_rendered`'s own docstring for what this catches).
+    `gate_common_items_rendered`-shaped: checks the real corpus against
+    the real site/zones/*.html files, not the generator's own logic.
+
+    Proved to fail on three planted regressions (a page missing its
+    block, a stale/paraphrased belongs list, an empty strays list
+    rendered anyway): ops/tests/test_gate_sort_scope_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("sort-scope-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    scope_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            scope = z.get("sort_scope")
+            if not scope:
+                continue
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            scope_map[f"{rs}-{zs}.html"] = scope
+    if not scope_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("sort-scope-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_sort_scope_rendered(scope_map, page_bodies)
+    if problems:
+        fail("sort-scope-rendered", "; ".join(problems[:6]))
+
+
 def gate_zone_direct_answer_current() -> None:
     """The shipped-HTML half of D1 (see `check_zone_direct_answer`'s own
     docstring for what this catches). `gate_variants_rendered`-shaped:
@@ -27763,6 +27872,7 @@ def main() -> int:
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
     run_gate(gate_common_items_rendered)
+    run_gate(gate_sort_scope_rendered)
     run_gate(gate_kit_compact_rendered)
     run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)
