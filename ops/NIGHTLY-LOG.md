@@ -2,6 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, same cycle, second addendum: the re-run `preflight.py --deep` came back clean, deploy gap widened to 35/28 by this cycle's own commits
+
+The second `--deep` run, started against the settled, committed tree, finished: **every gate passed, 34 warnings**, all the same standing, previously-diagnosed sandbox limitations (no Stripe/mail/SSH credential, no network egress, no Pillow, no JRE) every recent cycle reports. Two were new and both were this cycle's own, not pre-existing:
+
+- `dashboard-self-description-fresh`: the command deck was two commits stale (the measure.js fix and its build-id restamp). Regenerated.
+- `status-deploy-gap-count-current`: this cycle's own two commits (one material: the measure.js fix; one not: its build-id restamp) widened the deploy gap from 33/27 to **35/28**. Re-derived directly with `deploy_gap_material_commits()`, hand-classified the two new commits with `git show --stat` rather than guessed. Updated all four `STATUS.md` citations (`BLOCKER-001`'s two paragraphs, the Production traceability row, Immediate Focus) together, verified clean against both `gate_status_deploy_verdict_current` and `gate_status_deploy_gap_count_current`'s own logic.
+
+No further gates failed. This cycle's work (A19, the build-id fix, and this correction) is now verified clean end to end, not merely committed.
+
 ## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished, caught a real stale build-id this cycle's own commit left behind
 
 The `--deep` run started at the end of A19 below completed in full: **4 gate(s) failed, 33 warnings**. Checked each FAIL rather than assumed real, per CLAUDE.md 0.4/5d:
