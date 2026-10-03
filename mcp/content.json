@@ -14897,6 +14897,20 @@
        "action": "Hang your own coat up right now and walk the whole wall column by column. Move anything sitting on the wrong person's column back to its owner, take down any coat, bag or hat on a column that already has its one coat, one bag, one hat filled, and move any scarf or drawstring hanging low enough to reach a toddler's neck up a hook.",
        "victory": "Every column holds no more than one coat, one bag and one hat, nothing dangles low enough to reach toddler height, and the floor under the hooks is bare."
       }
+     },
+     "variants": [
+      {
+       "condition": "More people than wall",
+       "guidance": "Give every person a column before you give anyone a second hook, even if the columns are narrow. A named column with one hook beats a shared rail with six, because the shared rail has no owner and the floor beneath it fills first."
+      },
+      {
+       "condition": "No mudroom, so the hooks are in a hallway",
+       "guidance": "The height rule and the bare floor matter more in a corridor, not less, because the run is also the route. Keep the hooks shallow and keep bags off the floor entirely: a corridor with bags along it is a trip hazard in the dark."
+      }
+     ],
+     "capacity": {
+      "rule": "Two coats and one bag per person, each on their own named column, the lowest hooks set at the height of the shortest person in the house, and bare floor along the whole run beneath them.",
+      "does_not_fit": "If a column carries three coats, the third belongs in the seasonal closet rather than on the hook. A hook that holds more than it should is the thing that pulls the whole run down onto the floor."
      }
     },
     {
@@ -15028,6 +15042,20 @@
        "action": "Sit down right now and clear the bench to bare wood. Carry every item that belongs in another room there immediately rather than sliding it down the bench, and put whatever is genuinely leaving the house tomorrow into the outbound basket at the end, nothing else.",
        "victory": "The seat is bare enough for two people to lace boots at once, no more than three things sit on the surface, and the outbound basket holds only what leaves on the next trip out."
       }
+     },
+     "variants": [
+      {
+       "condition": "The bench is also storage, with bins underneath",
+       "guidance": "The seat rule still governs the top. Underneath becomes shoes only, one bin per person, because a bench with mixed storage under it is where the shoe zone and the lost property pile merge."
+      },
+      {
+       "condition": "No room for a bench",
+       "guidance": "A single chair or a stool keeps the sitting, which is the actual job. Boots dealt with standing on one leg are boots that get kicked off and left, so the seat matters more than the surface does."
+      }
+     ],
+     "capacity": {
+      "rule": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labeled basket at the end holding only what is leaving tomorrow.",
+      "does_not_fit": "If the outgoing basket is full of things that have been there a week, it is not an outgoing basket. Put a day on it: anything that has not left by the weekend goes back to where it actually lives."
      }
     },
     {
@@ -15165,6 +15193,20 @@
        "action": "Check the tray right now for any pair that has finished draining and move it up to the rack soles down, toes out. While you're there, pull any pair that hasn't been worn in the last four weeks and set it aside with today's date to move to the wardrobe.",
        "victory": "The tray holds only what's still actually wet, every dry pair sits on the rack soles down and toes out, and nothing unworn for four weeks is still taking a slot without a dated slip."
       }
+     },
+     "variants": [
+      {
+       "condition": "A wet climate, so most pairs are wet most of the time",
+       "guidance": "The drip tray stops being an accessory and becomes the zone. Size it for the whole household rather than for one pair, give it a drain or a towel underneath, and empty it as part of the same trigger that resets the floor."
+      },
+      {
+       "condition": "Work boots that come in genuinely dirty",
+       "guidance": "Those get their own tray outside the door if there is any shelter at all, and the indoor rack stays for clean footwear. Mixing site boots with school shoes on one rack is how the floor inside the door never stays clean."
+      }
+     ],
+     "capacity": {
+      "rule": "Two pairs per person on the rack, soles down and toes out, one lipped tray by the door for whatever came in wet, and clear floor between the tray and the doorway.",
+      "does_not_fit": "If the rack needs a third pair per person, the season has changed and nobody has moved the old pairs out. Shoes for a season you are not in belong in the closet, not by the door."
      }
     },
     {
@@ -15300,6 +15342,20 @@
        "action": "Clip the lead back on its hook right now and check the bag roll: if it's down to the last few, swap it for the spare. Check the food bin's level against the scoop and refill it if it has dropped that low, and move any treatment sitting loose in the caddy behind a closed door above reach.",
        "victory": "The lead, collar and a full bag roll hang together as one kit on the hook, the food bin's level sits at or above the scoop line, and no treatment is loose in the open caddy."
       }
+     },
+     "variants": [
+      {
+       "condition": "More than one animal",
+       "guidance": "One hook and one labeled bowl set per animal, and keep the food bins separate even when the food is the same. The reason is dosing: shared bins are how one animal gets the other's prescription diet."
+      },
+      {
+       "condition": "A dog that needs washing down after most walks",
+       "guidance": "The towel becomes a stack rather than one, with a named wash day, and the drip tray from the shoe zone earns its place here too. Plan for the water arriving indoors, because it will."
+      }
+     ],
+     "capacity": {
+      "rule": "Lead clipped to the collar on one hook with a full roll of waste bags attached, an old towel within arm's reach of the door, food sealed in a bin with the scoop inside it, and every treatment behind a closed door above animal height.",
+      "does_not_fit": "If the treatments are not behind a closed door, nothing else in this zone matters. Flea and worming products are the one thing here that is dangerous to the animal they are for, and to a child."
      }
     },
     {
@@ -15431,6 +15487,20 @@
        "action": "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sun cream and insect repellent for their dates, moving anything expired out of the low bin.",
        "victory": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin."
       }
+     },
+     "variants": [
+      {
+       "condition": "A climate with no real seasonal change",
+       "guidance": "There is one bin rather than two, and the rule becomes matching rather than rotation. The failure mode moves from forgotten boxes to a bin of odd gloves nobody ever culls."
+      },
+      {
+       "condition": "Young children who lose gloves constantly",
+       "guidance": "Buy one style in quantity so every glove matches every other, and keep the spares in the same bin. A matched pair is the goal; identical singles are the only version of that which survives a winter."
+      }
+     ],
+     "capacity": {
+      "rule": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas points down in one stand by the door, and the other season's bin closed and labeled with the month you packed it.",
+      "does_not_fit": "If a bin will not close on the off-season gear, you are storing singles. Unmatched gloves are not a pair waiting to be reunited, they are one glove, and they should leave at the changeover."
      }
     },
     {
@@ -15570,6 +15640,20 @@
        "action": "Shake the door mats out right now, hang the broom back on its clip with the bristles clear of the floor, and check whether the mop head has actually dried. Pull the decanted, unlabeled bottle out of the caddy and label it, or empty it if you can't tell what it is.",
        "victory": "The broom, mop and dustpan all hang clear of the floor, the mop head is dry, and every bottle in the caddy is labeled."
       }
+     },
+     "variants": [
+      {
+       "condition": "The mudroom is also the laundry room",
+       "guidance": "Keep the floor-cleaning caddy separate from the laundry products and label both, because the two get grabbed in a hurry and the bottles look alike. The vacuum outline still belongs here, on the path where the mess lands."
+      },
+      {
+       "condition": "No wall available for clips",
+       "guidance": "A narrow upright bin keeps the heads off the floor, which is the actual rule. A broom head resting on the floor it is meant to clean is the thing that makes the tool unpleasant to pick up."
+      }
+     ],
+     "capacity": {
+      "rule": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its labeled bottle.",
+      "does_not_fit": "If the caddy needs a fifth cleaner, two of the four are doing the same job. This zone exists to keep the entry floor walkable, which is a short list of surfaces and a short list of products."
      }
     }
    ]
@@ -15728,6 +15812,20 @@
        "action": "Unfold every set and check it is complete and fits a bed you still own. The flat sheet whose fitted half vanished, fitted sheets with slack elastic that pop off a corner at three in the morning, and towels that smell sour an hour after drying all leave.",
        "victory": "Every set on the shelf is complete, fits a bed you still own, and no towel carries a sour smell."
       }
+     },
+     "variants": [
+      {
+       "condition": "One bed in the house, or a studio",
+       "guidance": "Two sets rather than three is honest when the wash turns around quickly. What does not change is nesting the set inside its own pillowcase, because the point is that a bed change is one grab rather than a hunt for a matching fitted sheet."
+      },
+      {
+       "condition": "Several bed sizes in one house",
+       "guidance": "The size written on the shelf edge becomes the whole system. Sets that cannot be identified by size at a glance get tried on the wrong bed at eleven at night, which is how a tidy shelf turns back into a pile."
+      }
+     ],
+     "capacity": {
+      "rule": "Three sheet sets per bed, each nested inside one of its own pillowcases with the bed size written on the shelf edge beneath, everyday towels folded to one width in a stack no taller than your forearm, and two spare blankets.",
+      "does_not_fit": "If the stack is taller than your forearm, you are storing retired towels alongside working ones. Three sets per bed covers on the bed, in the wash and on the shelf, and a fourth set is laundry you are avoiding."
      }
     },
     {
@@ -15869,6 +15967,20 @@
        "action": "Stand every handle up and look at the working end. Brooms with splayed bristles that push dust rather than gather it, the mop head that no longer twists off its plate, and the old vacuum you keep for parts you have never once harvested all go out this week.",
        "victory": "Every remaining tool has a working end, and nothing is being kept for parts that were never actually used."
       }
+     },
+     "variants": [
+      {
+       "condition": "A house over more than one floor",
+       "guidance": "One set of equipment per floor beats one set carried up and down, and the outline goes on each floor. The reason a vacuum does not get used is almost always the stairs rather than the vacuum."
+      },
+      {
+       "condition": "A robot vacuum instead of an upright",
+       "guidance": "The dock takes the outline and the rule becomes clear floor around it rather than clear floor for parking. Keep the spare filters and brushes in a labeled box beside the dock, because the consumables are what this zone forgets."
+      }
+     ],
+     "capacity": {
+      "rule": "The vacuum standing inside a taped floor outline with its cord wrapped and every tool zipped into one bag clipped to its handle, and broom, mop and duster hanging handle-down from wall clips with their heads clear of the floor.",
+      "does_not_fit": "If the outline will not hold the vacuum with its tools attached, the tools are living somewhere else, which is why they go missing. The bag on the handle is the zone, more than the outline is."
      }
     },
     {
@@ -16009,6 +16121,20 @@
        "action": "Line every bottle up on the hallway floor. Anything decanted into an unmarked spray bottle gets disposed of according to its own instructions, and the specialty cleaner bought for one stain years ago goes with it. Only identical products get poured together.",
        "victory": "Every bottle on the shelf is in its own original, labeled container, and no two different products have been mixed."
       }
+     },
+     "variants": [
+      {
+       "condition": "Small children or a curious pet in the house",
+       "guidance": "A latch is the minimum and height is better. Keep the separation of bleach from ammonia anyway, because the reason for that rule does not care how high the shelf is."
+      },
+      {
+       "condition": "You clean with very few products by choice",
+       "guidance": "One caddy, and the labeling still matters. Decanted products in unlabeled bottles are the hazard here, not the number of them, and a bottle nobody can identify gets guessed at."
+      }
+     ],
+     "capacity": {
+      "rule": "Two or three caddies, each labeled on the end with the room it serves, every bottle in its original label, bleach and ammonia products on separate shelves, and the whole zone out of a small child's reach or latched.",
+      "does_not_fit": "If you need a fourth caddy, you have duplicate products rather than another room. Two of your bottles almost certainly do the same job, and buying a caddy is the expensive way to avoid noticing."
      }
     },
     {
@@ -16143,6 +16269,20 @@
        "action": "Take the lot out. Loose batteries you cannot vouch for, bulbs for fittings you replaced when you went over to LED, and the bulk paper towel pack too big to lift down alone all leave now.",
        "victory": "Every battery is in its original pack, every bulb fits a fitting the house still uses, and nothing on the shelf is too heavy to lift down alone."
       }
+     },
+     "variants": [
+      {
+       "condition": "Little storage, so backstock has to be small",
+       "guidance": "Lower the maximum and raise the minimum, so the reorder point does the work the shelf cannot. The card matters more in a small house, because there is no room to absorb a mistake."
+      },
+      {
+       "condition": "Bulk buying because of distance or cost",
+       "guidance": "Keep this zone at its ceiling and put the genuine bulk somewhere else, labeled. This shelf exists to answer one question at nine at night, and it can only answer it while the count is readable."
+      }
+     ],
+     "capacity": {
+      "rule": "Toilet roll in one clear bin with a card on the shelf edge reading its minimum and maximum, bulbs in a labeled bin sorted by fitting, and batteries standing in their original packs in a shallow tray with the sizes readable without lifting one out.",
+      "does_not_fit": "If the bin is over its maximum, the maximum was wrong or the buying was, and the card is where you settle that rather than the shelf. A reserve with no ceiling is a stockpile, and a stockpile is just floor you are renting."
      }
     },
     {
@@ -16282,6 +16422,20 @@
        "action": "Every lid comes off, on the floor, in daylight. Decorations for a tree you no longer put up, the guest pillow gone flat and yellow, and the bin marked \"misc\" whose contents you cannot name without looking all go.",
        "victory": "Every remaining bin can be named without opening it, and nothing inside is flat, yellowed, or for a tradition you no longer keep."
       }
+     },
+     "variants": [
+      {
+       "condition": "No high shelf, so seasonal bins sit at floor level",
+       "guidance": "Keep the labels facing out and the map on the door regardless, and stack no more than two high. Floor-level bins get opened more often, which is fine; what they must not do is block the equipment this closet also holds."
+      },
+      {
+       "condition": "Decorations that come out for several different occasions",
+       "guidance": "One bin per occasion rather than one bin for decorations, each with its month. A single large bin means unpacking all of it to find a third of it, which is how the rest ends up left out."
+      }
+     ],
+     "capacity": {
+      "rule": "Three or four lidded bins on the upper shelf, each labeled with its contents and the month it was last closed, guest pillows sealed in a zip bag, and a shelf map taped inside the door showing which bin sits where.",
+      "does_not_fit": "If a fifth bin is needed, open the ones you have before buying it. A bin last closed two years ago is a decision that has been deferred, and the month written on the label is there to make that visible."
      }
     }
    ]
@@ -16457,6 +16611,20 @@
        "action": "Clear the console top and drawer in one sweep: keep only what truly lives on this floor, drop anything headed to another floor straight into the stair basket, and bag up the loose screws, dead pens and read mail that have drifted in.",
        "victory": "The console top holds only its permanent items and an empty tray, and the stair basket on the floor is empty."
       }
+     },
+     "variants": [
+      {
+       "condition": "A narrow landing with no room for a console",
+       "guidance": "A single wall-mounted shelf or a basket on a bracket keeps the staging job without taking any floor. The floor beside a stair is the one surface in the house that must never hold anything at all."
+      },
+      {
+       "condition": "The landing is the only place a router or a charger can live",
+       "guidance": "Fix the cable along the skirting and under the tread nose, never across the walking line, and count the router as one of the three. A trailing cable at the top of a staircase is the worst version of a trip hazard in the house."
+      }
+     ],
+     "capacity": {
+      "rule": "Three permanent things on the console top, a lamp, a frame and one tray, with the tray holding nothing that was there yesterday, and the lamp cord clipped down the back leg rather than across the walking side.",
+      "does_not_fit": "If the tray still holds yesterday's things, this surface has become the house's holding pen for another floor. The tray is a staging post with a one-day life, and what empties it is the next trip up or down."
      }
     },
     {
@@ -16616,6 +16784,20 @@
        "action": "Walk the flight and take down every frame still hanging from a single nail or a sawtooth hanger, along with anything with cracked glass, and set them aside rather than rehanging them the same way.",
        "victory": "No frame on the wall hangs from a single nail or a sawtooth hanger, and nothing with cracked glass has gone back up."
       }
+     },
+     "variants": [
+      {
+       "condition": "A rental where you cannot put screws into the wall",
+       "guidance": "Fewer and lighter, and nothing above head height on the stair itself. Adhesive hangers fail with time and temperature, and a frame coming off a stairway wall is not the same event as one coming off a bedroom wall."
+      },
+      {
+       "condition": "Sconces or any wired fitting on the stair wall",
+       "guidance": "The projection rule covers the fitting and the bulb together, measured with your shoulder rather than your eye, and the switch needs to be reachable from both the top and the bottom of the flight."
+      }
+     ],
+     "capacity": {
+      "rule": "Every frame level and hung from two points, each the same vertical distance above the tread nose below it so the gallery climbs on the stair's diagonal, and nothing projecting into the shoulder line of somebody carrying a basket.",
+      "does_not_fit": "If a frame has to sit where a shoulder passes, it is in the circulation space rather than on the wall. Move it or shrink it: the stairway is the one wall where a decorative choice can knock somebody down a flight."
      }
     },
     {
@@ -16782,6 +16964,20 @@
        "action": "Clear every tread of anything sitting on it, laundry, shoes, a box, in one trip to where it actually belongs, then stand at the bottom of the flight and check that both the top and bottom lights actually come on.",
        "victory": "Every tread is bare from nose to riser, and both the top and bottom stair lights work."
       }
+     },
+     "variants": [
+      {
+       "condition": "A household that genuinely uses the stairs to stage things",
+       "guidance": "Replace the habit rather than banning it. One basket at the top and one at the bottom, off the treads and out of the walking line, emptied on the next trip. The staging need is real; the treads are simply the wrong place to meet it."
+      },
+      {
+       "condition": "Small children, or anyone unsteady on stairs",
+       "guidance": "The handrail becomes the whole zone: continuous, firmly fixed and graspable the entire way, including around the turn. Add light at both ends switchable from either, and check the runner fixings rather than assuming them."
+      }
+     ],
+     "capacity": {
+      "rule": "Every tread bare from nose to riser including the bottom three, the runner lying flat with no lifted corner at the turn, and the handrail unbroken and unobstructed from the top newel post to the bottom.",
+      "does_not_fit": "There is no quantity here and no honest version that does not fit, because the capacity of a stair tread is nothing. A step used to stage things for upstairs is the most reliably dangerous surface in a house."
      }
     }
    ]
@@ -16941,6 +17137,20 @@
        "action": "Sit in every chair and press the seat pan hard with your palm, pull any chair that wobbles, cracks, or flexes out of the circle, and carry every cushion sitting anywhere except a chair into the deck box.",
        "victory": "Every remaining chair passes a hard press with no flex or crack, and every cushion is in the deck box."
       }
+     },
+     "variants": [
+      {
+       "condition": "A small balcony rather than a deck",
+       "guidance": "Two chairs and a folding one beats four permanent ones, and the cushion rule matters more because there is nowhere for a wet cushion to go. A bench with storage inside it does both jobs in the footprint of one."
+      },
+      {
+       "condition": "Furniture that stays out all winter",
+       "guidance": "Covers become part of the standard rather than an afterthought, with a named place to keep them when they are off. A cover left on the ground kills the grass under it and holds damp against the frame."
+      }
+     ],
+     "capacity": {
+      "rule": "Four chairs you can sit in without testing them first, set close enough to talk across, every cushion in the deck box, and no cover crumpled on the ground behind a planter.",
+      "does_not_fit": "If a chair has to be tested before anyone sits in it, it is not seating. Repair it this month or let it go, because the one thing this zone promises is that you can drop into a chair without thinking about it."
      }
     },
     {
@@ -17092,6 +17302,20 @@
        "action": "Empty the side shelf and the cabinet completely, wipe the grease tray out, and hang the one tong, one spatula, one thermometer, and one basting brush you are keeping back on the grill's own hooks.",
        "victory": "The grill's own hooks hold exactly one tong, one spatula, one thermometer, and one basting brush, and the grease tray sits empty in its rails."
       }
+     },
+     "variants": [
+      {
+       "condition": "Charcoal rather than gas",
+       "guidance": "The tank rule becomes an ash rule: a metal ash can with a lid, emptied cold, never into a plastic bin or a bag. Ash that looks dead can hold heat for a day, and that is the most common way a deck fire starts."
+      },
+      {
+       "condition": "The grill sits close to the house wall, or under a roof",
+       "guidance": "Clearance stops being a preference and becomes the first thing you check. Measure what the manufacturer actually requires rather than guessing, and if the space cannot meet it the grill moves rather than the rule bending."
+      }
+     ],
+     "capacity": {
+      "rule": "Grates scraped bare, grease tray emptied and back in its rails, four tools on the grill's own hooks and no fifth anywhere, the propane tank upright with its level written on the collar, and a clear arm's length around the cooking box.",
+      "does_not_fit": "If there is a fifth tool, two of them do the same job. The arm's length of clearance is the one rule here with no flexibility in it, because that distance decides whether a flare-up is an event or an accident."
      }
     },
     {
@@ -17238,6 +17462,20 @@
        "action": "Clear the table down to bare surface, crank the umbrella down, and tuck every chair fully under.",
        "victory": "The table holds only the umbrella and the one weighted tray, the umbrella is cranked down, and every chair is tucked fully under."
       }
+     },
+     "variants": [
+      {
+       "condition": "A windy site",
+       "guidance": "The weighted tray and the umbrella base are the zone. An unweighted umbrella is the most dangerous object on a patio, and a tray that blows is what sends glass across the boards."
+      },
+      {
+       "condition": "The table is also the potting or work surface",
+       "guidance": "Give the dirty job a mat or a board that lifts off, and attach the clean-down to finishing the job rather than to the next meal. A dining surface that doubles as a potting bench needs a trigger, not a rule."
+      }
+     ],
+     "capacity": {
+      "rule": "A bare tabletop except the umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along the rail with no cord crossing the floor, and nothing stored beneath the table.",
+      "does_not_fit": "If things live under the table, the table has become storage with a cloth over it. Outdoor storage belongs in the deck box, because anything kept under a table outside gets wet and then stays wet."
      }
     },
     {
@@ -17385,6 +17623,20 @@
        "action": "Walk the row of saucers, the wheelbarrow well, and any upturned pot lid tipping out standing water, then pull any pot with no drainage hole or last year's dead root ball out of the nested stack.",
        "victory": "No saucer, wheelbarrow well, or pot lid on the patio holds standing water, and every pot in the nested stack has a clear drain hole and nothing dead in it."
       }
+     },
+     "variants": [
+      {
+       "condition": "Container growing only, with no beds",
+       "guidance": "The empty-saucer rule does most of the work, because standing water is both the mosquito problem and the root-rot problem. The caddy shrinks to a trowel and pruners, and the chemical box may genuinely be empty."
+      },
+      {
+       "condition": "Children or pets use this space",
+       "guidance": "The latch becomes a lock and the box moves above reach, and anything decanted goes back into a labeled original container. Treat slug pellets and concentrates as the highest-risk items out here rather than the most ordinary."
+      }
+     ],
+     "capacity": {
+      "rule": "Every saucer empty, pots nested by size along the wall with their drain holes clear, one tool caddy holding trowel, pruners and gloves, and a latched chemical box above the tools holding no more than you can name from the doorway.",
+      "does_not_fit": "If you cannot name what is in the chemical box from the doorway, it holds more than it should. Garden chemicals are the one thing out here that is genuinely dangerous to a child and to a pet, and an unnamed bottle is one nobody ever disposes of."
      }
     },
     {
@@ -17531,6 +17783,20 @@
        "action": "Empty the deck box completely onto the boards, and pull out anything that is mildewed past saving, missing half its pieces, or belongs to furniture you no longer own.",
        "victory": "The deck box floor is visible with only cushions and the two labeled totes waiting to go back in, and nothing else."
       }
+     },
+     "variants": [
+      {
+       "condition": "No deck box, so cushions come indoors",
+       "guidance": "Name the indoor place and keep the route short. A cushion pile that has to cross a kitchen will be left outside in a shower, which is how cushions end up mouldy rather than stored."
+      },
+      {
+       "condition": "A box that has been damp inside before",
+       "guidance": "Raise it off the surface on feet or battens and check the seal before the season rather than after. A sealed box standing in a puddle holds the water in along with the cushions."
+      }
+     ],
+     "capacity": {
+      "rule": "A lid that closes flat without anyone pressing down, cushions in one layer on top, two labeled totes beneath them, and the floor of the box visible the moment the cushions come out.",
+      "does_not_fit": "If the lid needs pressing, the box is full and the cushions will not make it in before the rain does. The one-minute promise is the whole zone, and a lid that fights you costs more than the minute."
      }
     },
     {
@@ -17686,6 +17952,20 @@
        "action": "Walk the full route from the door to the steps to the gate carrying a full laundry basket in both arms, and pull off the route anything you have to step around.",
        "victory": "The full route from the door to the steps to the gate is clear enough to walk carrying a full laundry basket without stepping around anything."
       }
+     },
+     "variants": [
+      {
+       "condition": "A raised deck or a balcony above ground level",
+       "guidance": "The rail check becomes the most important thing you do out here, and it is seasonal rather than annual. Check the fixings into the structure rather than the rail itself, because a rail usually feels sound right up until the post does not."
+      },
+      {
+       "condition": "A ground-level patio of slabs or concrete",
+       "guidance": "The rail rules fall away and the surface ones tighten. Lifted or rocking slabs and green film in the shade are the hazards here, and both are easy to walk past for a year because neither looks like damage."
+      }
+     ],
+     "capacity": {
+      "rule": "Nothing on the deck that is not furniture, daylight visible through the gaps between the boards, no green film on the shaded treads, and every rail post immovable when you push it hard.",
+      "does_not_fit": "There is no number to exceed here, only a check to fail. A rail post that moves is a repair rather than a tidying job, and it comes before anything else on this page."
      }
     }
    ]
