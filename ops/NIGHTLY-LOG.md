@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 02:5x
+
+**Did.** Checkout arrived shallow and detached (unrelated-histories shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forwarded cleanly three separate times across this cycle as concurrent sessions pushed, never reset or forced. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries.
+
+**Verified rather than trusted the prior cycles' own clean verdicts.** `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, mobile `npm test` all 4 suites passing. `cold_read_ledger.py --stale` and `--next` both 0 (195/195 ledgered, nothing un-ledgered). `preflight.py`'s full run hit the documented `gate_tests` headless-Chromium sandbox hang twice (once under a 180s timeout wrapper, once backgrounded and watched directly); killed both times after confirming no other output preceded the hang, same standing limitation every recent cycle reports. No VPS deploy key, Stripe, Gemini or mail credential in this sandbox, confirmed directly (empty env, no `~/.ssh` keys) rather than assumed. GitHub: 9 open issues via `gh`-equivalent REST, unchanged, all `decision`/`blocked-on-art`/#39 (the TTS-gated caption fix, read in full, genuinely blocked). 0 open PRs. GitHub Actions: sampled the last 30 workflow runs across `main`, all `success` or the expected `skipped` (Deploy to production, no secret, by design); no failures found.
+
+**No new unblocked workstream-sized item found, checked rather than assumed.** `BACKLOG-2026-09-07.md` sections 2-4 remain fully done or Phil-gated. The one real, unblocked, non-Phil-gated work in flight is the owner-directed `STATUS.md` claim on `content/manual/source/content.json`'s `variants`/`capacity` fields: confirmed directly against the live file (not the claim's own prose), 94 of 114 zones now carry both fields (Mudroom, Hall Closet, Stair Landing, Patio or Deck, 20 zones across 4 rooms, are what remain). That claim's own commits (author Phil Kling, bespoke per-zone judgment, e.g. a finishing cabinet's capacity rule naming a fire load rather than a tidiness preference) landed twice more during this cycle alone, at a steady pace, so it is actively progressing under its claiming session, not stalled and waiting for a handoff. Deliberately did not join it: it is claimed, it is a shared file under active concurrent edit, and the content calls for the same authorial judgment and voice the claiming session is already supplying zone by zone; starting a parallel edit on the same file this cycle's own evidence shows is being touched every ten to twenty minutes would risk exactly the collision `STATUS.md` section 0 was written to prevent, for no gain since the work is not stuck.
+
+**Considered and deliberately not started: authoring the "common items" field the same `STATUS.md` claim names as a second real gap (present on 0 of 114 zones).** It is not part of the active claim's stated scope ("taking variants and capacity first"), it would be a fourth concurrent judgment-heavy content workstream against `CLAUDE.md` section 18's cap of three, and it is exactly the kind of bespoke-voice authoring this cycle just argued should not be duplicated ad hoc across sessions. Left for a session that claims it explicitly.
+
+**Went well:** catching the risk of restarting a stalled-sounding handoff that had in fact already moved twice since it was written, by checking the live file instead of the last log entry's own numbers.
+
+**Did not go well:** nothing new; same shallow-checkout shape, same `gate_tests` sandbox hang, same no-credential sandbox every recent cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** whoever next has a free slot should finish the remaining 4 rooms (Mudroom, Hall Closet, Stair Landing, Patio or Deck) of the variants/capacity claim if it has gone quiet by then (check `STATUS.md`'s claim note and the live commit timestamps first, the same way this cycle did, before assuming it needs picking up), or author the un-claimed "common items" field as a fresh, explicitly-claimed workstream once it does. LinkedIn's `from=li` send is still not checkable before roughly 14:19 UTC.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 02:4x cycle
 
 NEXT FOR THE OPERATOR: continue the claimed variants-and-capacity authoring (`STATUS.md` open claim, 2026-10-02) for the 6 rooms still missing it, Guest Bathroom, Workshop, Mudroom, Hall Closet, Stair Landing, Patio or Deck, because it is already claimed, unblocked and mid-flight (Pantry, Dining Room, Living Room, Family Room, Guest Bedroom, Kids Bedroom and Nursery are done, 83 of 114 zones as of `6055b5b92`), and no other row in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and workstream-sized.

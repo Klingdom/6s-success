@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-25T22:34:18Z",
-   "mode": "changed",
-   "offered": 44,
-   "accepted": 44,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-26T07:53:48Z",
    "mode": "changed",
    "offered": 20,
@@ -633,6 +626,13 @@
    "offered": 12,
    "accepted": 12,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T02:51:22Z",
+   "mode": "changed",
+   "offered": 11,
+   "accepted": 11,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -731,11 +731,11 @@
   "https://6s-success.com/zones/garage-the-power-tool-and-battery-zone": "ddfff914af61eba8",
   "https://6s-success.com/zones/garage-the-primary-workbench": "de766b0b29727d05",
   "https://6s-success.com/zones/garage-the-sports-and-recreation-zone": "b2dbf75f9500506f",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "78bd051cff760f54",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "ad2a83cc5aec73cc",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "3a097ed3d2c4bcca",
-  "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "5708f74869086856",
-  "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "8832e5d10badcaf6",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "53599e3ff36ce753",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "eae147dc636676c9",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "4770d852fb987d14",
+  "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "20fe2149cd331224",
+  "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "932901d58e4635e1",
   "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "4e97b24c8780271b",
   "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "8dd49d858f66ccd3",
   "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "afdf4b4ef85480b5",
@@ -817,12 +817,12 @@
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "7c7f40e4c14a6304",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "cab251024c8f7bd4",
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "6a07f4b8066b67cd",
-  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "5456ad1ef2265070",
-  "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "d8f21bf9978cda43",
-  "https://6s-success.com/zones/workshop-the-main-workbench": "a9673c2c2b8cf376",
-  "https://6s-success.com/zones/workshop-the-material-rack": "6f317d5c0b58dd04",
-  "https://6s-success.com/zones/workshop-the-power-tool-storage": "9d773af62d486922",
-  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "129cb6af787489a0",
+  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "cfb7cdbfd21d95a0",
+  "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "d3eab5c8358d171c",
+  "https://6s-success.com/zones/workshop-the-main-workbench": "b9446617d92e061c",
+  "https://6s-success.com/zones/workshop-the-material-rack": "4adbf63ee6e7756e",
+  "https://6s-success.com/zones/workshop-the-power-tool-storage": "066a67285a7f46b9",
+  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "c22839e672e8ced6",
   "https://6s-success.com/kitchen-deck.html": "01853e44045bceba",
   "https://6s-success.com/bundle.html": "60c20447de9d5706",
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "6f88e90c42d97ae2",
