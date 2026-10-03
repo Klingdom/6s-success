@@ -2,6 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished, caught a real stale build-id this cycle's own commit left behind
+
+The `--deep` run started at the end of A19 below completed in full: **4 gate(s) failed, 33 warnings**. Checked each FAIL rather than assumed real, per CLAUDE.md 0.4/5d:
+
+- `tests` (`test_wire_nav_preserves_aria_current.py`, "working tree was not clean") and `footer-consistent`/`page-ownership-registry` (both citing `_audit_catalog_fixture_22376.html`) were all timing artifacts: the run started before this cycle's own commit landed, so it caught the working tree mid-edit, and a concurrent session's own gitignored `audit_catalog.py` scratch fixture existed for a moment while this run was reading `site/`. Confirmed transient, not real: the fixture file no longer exists, and `test_wire_nav_preserves_aria_current.py` run fresh against the now-committed, clean tree passes 4/4.
+- `build-id` was real and this cycle's own fault: A19's commit changed `measure.js` and re-fingerprinted 214 pages but never reran `ops/build_id.py`, so `site/build-id.txt` cited the pre-fingerprint build. Fixed (`53bcf84c7`), `--check` confirms current.
+
+A second `--deep` run was started immediately after the build-id fix, against the settled, committed tree, to get an honest confirmation rather than treat the first run's mixed timing-artifact/real result as the final word.
+
 ## 2026-10-03, scheduled operator cycle (A19: a real measurement bug found and fixed, second-pass cold-read of an exhausted-lane file)
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow` (579 commits) then `git merge --ff-only origin/main` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. Re-checked GitHub directly: 9 open issues, 0 PRs, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated), matching every recent cycle. `inbox_agent.py --apply`: no mail credential. Confirmed the standing exhausted state directly rather than citing it: cold-read ledger 195/195, `BACKLOG-2026-09-07.md` sections 1b-6 all done or Phil-gated, GitHub unchanged. The deploy gap (`STATUS.md` BLOCKER-001) re-derived directly with `deploy_gap_material_commits()`: 33 commits, unchanged since the 10:5x reading, so no new push notification sent for it.
