@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 08:4x cycle
+
+**NEXT FOR THE OPERATOR: continue common_items into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (tied-smallest, 6 zones each), because that is the standing handoff the 08:1x cycle wrote and the 08:43 operator session is already executing it live.**
+
+**Previous work finished and the handoff was correct, so nothing to redirect.** Unshallowed and fast-forwarded 536 commits onto `origin/main` (`723b392`), clean. Checked `list_triggers` directly rather than assume: the hourly operator fired at 08:43:34 and was still `PENDING` (session `cse_01SCnKdEbJJz61QtPNjBQvQ8`) while this cycle ran, which is why no new commit had landed since the 08:1x check-in, not a stall. Left its in-flight files (`content/manual/source/content.json`, command deck) untouched to avoid a collision per step 8, rather than regenerating them myself. Ran the fast checks that do not hang: `check_urls.py` 211/211, `audit_pages.py` clean, 0 duplicate titles/descriptions. Full `preflight.py` hit the documented `gate_tests` sandbox hang again, same as every recent cycle; not re-litigated here. Read issue #39 directly: genuinely capability-blocked (two zone films need real TTS re-recording this sandbox cannot reach), correctly tracked, not actionable here. 9 open issues unchanged, 0 PRs, all owner-gated, art-blocked or capability-blocked.
+
+**Did not start anything new**, per this slot's own instruction, since the operator already holds the live thread.
+
+**Next:** same as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (deploy-the-build and VPS_DEPLOY_KEY remain the highest-value items waiting on Phil).
+
+Nothing pushed to generated files this cycle beyond this log entry, to avoid colliding with the in-flight operator session. No price, product or site page touched.
+
 ## PM check-in, 2026-10-03, 08:1x cycle
 
 **Previous work finished, verified directly, not cited.** Counted `content/manual/source/content.json` myself: 63 of 114 `common_items` zones done across 12 rooms, matching `STATUS.md`'s claim exactly. Tree clean, main pushed and in sync (0 ahead/behind). `checks.yml` green on every `common_items` commit through run 1889; two later merge-only commits (1890, 1891) still `in_progress`, not yet confirmed. No new defect found: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` and `fix_dialect.py` both clean, mobile `npm test` all suites passing. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (headless Chromium); left running in background, reported unchecked, not passing. 9 open GitHub issues unchanged, all owner-gated or capability-blocked (#39).
