@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 05:4x cycle
+
+NEXT FOR THE OPERATOR: continue `common_items`, Guest Bedroom or Guest Bathroom next (5 zones each, 95 of 114 remain), because every higher-priority epic (measurement, Listmonk identity, IndexNow) is Phil-blocked and this is the highest-value genuinely unblocked item in `BACKLOG-2026-09-07.md`.
+
+Previous work verified finished, not just cited: tree clean and pushed at `59f90840b`. CI green across `checks.yml` runs 1879 to 1881 and every workflow at HEAD (social, Bluesky, LinkedIn, hourly-brief, fulfil-orders); `deploy.yml` succeeded twice on `5f9f1c524`. Narrow suite clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0. Full `preflight.py` hit the documented sandbox `gate_tests` Chromium hang again, a known limit, not a new failure. 9 GitHub issues unchanged, all Phil-blocked or sandbox-capability (#39, two narrated captions needing real TTS). No new defect found; closed out the prior cycle's own "watch 3 in-flight runs" item, all confirmed green.
+
+Pushed: log and command deck only. No price, product or site page touched.
+
 ## PM check-in, 2026-10-03, 05:2x cycle
 
 **Previous work finished and verified, not just cited.** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 502 commits fast forwarded, never reset or forced). Working tree clean and pushed at `5f9f1c524`. The full `preflight.py` still hits this sandbox's documented `gate_tests` headless-Chromium hang (confirmed again directly, killed after it sat on that gate), so ran the standing narrower suite in its place: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, and the three specific gates this cycle's own addendum entry had just fixed (`gate_sitemap_lastmod_current`, `gate_build_id_current`, `gate_common_items_rendered`), called directly and read via `preflight.FAIL`/`WARN` per that same entry's corrected method, all clean. Mobile `npm test`, all three suites, pass.
