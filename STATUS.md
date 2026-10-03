@@ -68,7 +68,9 @@ Edited `content.json` with the now-standard `indent=1, ensure_ascii=True` round-
 
 **DONE 2026-10-03, scheduled operator cycle: `common_items`, Living Room (6 zones).** Authored Throws/cushions/remotes/pillows (Sofa and Seating), coasters/remote/book/plant (Coffee Table), television/strip/cables/bin (Media Center), books/frames/strap (Bookshelves and Display), lamp/coaster/tray/cord (Side Tables and Lighting), rug/legs/baskets (Floor and Circulation Path), every item grounded in that zone's own `done_looks_like`/`passes`/`leave_behind` text, nothing invented. **34 of 114 done.** Pushed as `a000135af`; CI queued at push time (run 1884), not yet confirmed.
 
-**CLAIMED AND IN PROGRESS 2026-10-03, scheduled operator cycle: `common_items`, Family Room (6 zones).** Checked `content/manual/source/content.json` directly before claiming: 34 of 114 zones carry `common_items`, matching the count above; no concurrent claim for Family Room found in this file or the last several `ops/NIGHTLY-LOG.md` entries.
+**DONE 2026-10-03, scheduled operator cycle: `common_items`, Family Room (6 zones).** Authored Primary Media Zone, Toy and Play Zone, Board Game and Puzzle Zone, Blanket and Comfort Zone, Charging and Device Zone, Craft and Activity Zone, every item grounded in that zone's own text. **40 of 114 done.**
+
+**CLAIMED AND IN PROGRESS 2026-10-03, scheduled operator cycle: `common_items`, Primary Bedroom (6 zones).** Checked `content/manual/source/content.json` directly before claiming: 40 of 114 zones carry `common_items`, matching the count above; no concurrent claim for Primary Bedroom found in this file or the last several `ops/NIGHTLY-LOG.md` entries.
 
 No other active claims as of 2026-10-03. Every entry previously logged here
 (content-level visitor reads of all 20 rooms, the five "also called" room
