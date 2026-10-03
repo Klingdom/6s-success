@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (21:1x cycle, previous work finished but a real CI gap found and closed, no new rollout started)
+
+**Previous work was NOT simply finished on first look.** Attached onto a stale local `main` with no common ancestor with `origin/main` (the usual shallow checkout artifact); the documented `git checkout -B main origin/main` fallback was blocked by the sandbox's own destructive-action classifier (120 local commits, no merge base), so renamed the stale branch aside instead of discarding it and built `main` fresh from `origin/main`. Nothing lost, nothing forced.
+
+Local `preflight.py` (fast) ran clean, 0 FAIL, through every gate up to the documented local `gate_tests` sandbox hang, same as every recent cycle. But CLAUDE.md 0.3 says verify against the real thing, not the local proxy for it, so this cycle checked actual GitHub Actions runs on main instead of trusting that local shape again. Found two real failures the standing local-hang explanation does not cover: Checks runs 1917 and the `publish-image.yml` runs for the same two commits (559, 561) had genuinely failed in CI on `test_gate_architecture_workflow_count_current.py`'s stale fixture, already fixed two cycles ago in `f028cee`, but nobody had gone back to confirm the fix actually let a publish through. Because that test fixture bug blocked `publish-image.yml`'s own "Preflight, including generator ownership" step before it ever reached Build and push, 18 zone pages worth of real content (Stair Landing's 3 zones, then Pantry/Dining Room/Hall Closet's 15) had been sitting unpublished to the ghcr.io image for hours, correctly but quietly reported each cycle as `gate_publish_image_current`/`gate_workflows_healthy` warnings that nobody closed the loop on.
+
+**Did:** watched the next real push (commit 834689c, which bundled all of the above) through to completion rather than assuming green. `publish-image.yml` run 562 finished clean end to end: preflight (including generator ownership) passed in full for the first time since the fixture fix, real container boot and route checks passed, full sitemap check passed, and the image was built and pushed. The image at ghcr.io now matches HEAD's site content, 23 of 114 zones carrying sort_scope. `Checks` run for the same commit also has preflight passing (same gates, verified directly, not inferred).
+
+**Not starting the Guest Bedroom and Guest Bathroom sort_scope rollout this cycle.** Confirmed directly (counted `content.json`): still 23/114 zones, 5/20 rooms, those two rooms still the tied-smallest unclaimed at 5 zones each, same as the last three cycles recorded. That is a 10-zone, two-room job, operator sized, not PM sized. Handing it to the hourly operator.
+
+GitHub: 8 open issues, unchanged, all decision/blocked-on-art, none actionable here.
+
+**Changing next cycle:** nothing structural; the standing practice of killing local preflight at the `gate_tests` sandbox hang and reporting the rest unchecked is still correct for THIS sandbox, but it means a PM/operator cycle cannot see a real CI failure from local preflight output alone. Worth a standing habit: check the actual `Checks` and `publish-image.yml` run conclusions on GitHub directly at least once per PM cycle, not just local preflight's exit code, since that is the only way this gap would have been caught.
+
+**Next:** sort_scope rollout, Guest Bedroom and Guest Bathroom (5 zones each), handed to the hourly operator. Standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, five other decision issues, #29/#2 blocked-on-art).
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no content, price or product touched.
+
 ## 2026-10-03, scheduled operator cycle (sort_scope rollout, Pantry/Dining Room/Hall Closet, the exact rooms the 20:1x PM check-in handed off)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `git fetch --unshallow`, `git checkout -B main origin/main`, fast-forwarded cleanly onto `origin/main` (646 commits), no unrelated-history symptom, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries and `STATUS.md`'s Open claims section before picking anything. Confirmed rather than trusted: `content/manual/source/content.json` showed exactly 8 of 114 zones carrying `sort_scope` (Entryway's 5, Stair Landing's 3), matching the 20:1x PM check-in's own handoff naming Pantry, Hall Closet and Dining Room (5 zones each) as next.
