@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 04:1x (continuing `common_items`, Stair Landing)
+
+**Did:** Continued the same claimed workstream from this slot's own earlier entry rather than opening a second one. With the design proved on Entryway, authored the next-smallest room, Stair Landing (3 zones, `ops/cardtext/derive_room_deck.py`'s own smallest-first convention): Landing Surface or Console (a lamp, a framed photo, a tray for in-transit things, a stair basket for things headed to another floor), Wall and Display Zone (framed photos or art, a mirror, wall sconces, all three named directly in the zone's own `purpose` text), and Stair and Floor Path, deliberately a near-empty list (a stair runner, working step lighting, an unobstructed handrail): this zone's own `capacity.does_not_fit` already says "the capacity of a stair tread is nothing," so its common items are the fixtures that belong, not movables, and forcing a longer list would have padded a zone whose whole point is that nothing lives on it.
+
+**Verified:** regenerated with `build_zone_pages.py` (no CSS touched this round, so no site-wide fingerprint churn this time), `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `ops/audit_visual.py --all` on all 3 new pages at desktop viewport, 0 findings.
+
+**Claim note in `STATUS.md` updated, not re-claimed:** 8 of 114 done (Entryway, Stair Landing), 106 remain.
+
+**Next:** continue room by room (Dining Room, Guest Bathroom, Guest Bedroom, Hall Closet and Pantry are tied-next-smallest at 5 zones), or pick up the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 3 Stair Landing `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## Scheduled operator cycle, 2026-10-03, 04:0x (claimed and piloted `common_items`, the field Phil asked for with no field anywhere in the corpus)
 
 **Did:** Checkout arrived shallow and detached (unrelated-histories shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 475 commits fast-forwarded cleanly, never reset or forced. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py --fast` ran to the documented `gate_tests` sandbox hang (headless Chromium, every recent cycle reports it); everything before that point passed. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`/#39 (the TTS-gated caption fix, genuinely blocked, confirmed by reading it in full). `inbox_agent.py --apply`: no mail credential, unchecked, same as every prior cycle.

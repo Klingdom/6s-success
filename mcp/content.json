@@ -16656,7 +16656,13 @@
      "capacity": {
       "rule": "Three permanent things on the console top, a lamp, a frame and one tray, with the tray holding nothing that was there yesterday, and the lamp cord clipped down the back leg rather than across the walking side.",
       "does_not_fit": "If the tray still holds yesterday's things, this surface has become the house's holding pen for another floor. The tray is a staging post with a one-day life, and what empties it is the next trip up or down."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "A framed photo",
+      "A tray for in-transit things",
+      "A stair basket for things headed to another floor"
+     ]
     },
     {
      "zone": "Wall and Display Zone",
@@ -16829,7 +16835,12 @@
      "capacity": {
       "rule": "Every frame level and hung from two points, each the same vertical distance above the tread nose below it so the gallery climbs on the stair's diagonal, and nothing projecting into the shoulder line of somebody carrying a basket.",
       "does_not_fit": "If a frame has to sit where a shoulder passes, it is in the circulation space rather than on the wall. Move it or shrink it: the stairway is the one wall where a decorative choice can knock somebody down a flight."
-     }
+     },
+     "common_items": [
+      "Framed photos or art",
+      "A mirror",
+      "Wall sconces"
+     ]
     },
     {
      "zone": "Stair and Floor Path",
@@ -17009,7 +17020,12 @@
      "capacity": {
       "rule": "Every tread bare from nose to riser including the bottom three, the runner lying flat with no lifted corner at the turn, and the handrail unbroken and unobstructed from the top newel post to the bottom.",
       "does_not_fit": "There is no quantity here and no honest version that does not fit, because the capacity of a stair tread is nothing. A step used to stage things for upstairs is the most reliably dangerous surface in a house."
-     }
+     },
+     "common_items": [
+      "A stair runner",
+      "Working step lighting",
+      "An unobstructed handrail"
+     ]
     }
    ]
   },
