@@ -566,6 +566,11 @@
       "date": "2026-09-27",
       "note": "OWNER_DOMAINS matched the bare domain gmail.com, so any customer emailing from a Gmail address (not just Phil) classified as kind=owner, bypassing delivery-problem detection. Fixed: match only the exact OWNER_EMAIL address, same convention owner_inbox.py uses. See NIGHTLY-LOG 2026-09-27."
     },
+    "indexation_check.py": {
+      "status": "clean",
+      "date": "2026-10-03",
+      "note": "Scheduled operator cycle, 2026-10-03. Read the file end to end (434 lines): canary-vs-trusted-set fix is real and correctly fixed (trusted set computed once from pre-run ledger + SEED_CONFIRMED, never grown mid-run), classify()/domain-url extraction handle both DuckDuckGo's uddg= redirect wrapper and Bing RSS <link> elements correctly, --dry-run fixtures reproduce the documented 4-new-URL result, both ops/tests/test_indexation_check.py and ops/tests/test_gate_indexation_check_not_stale.py pass. One trivial dead-code nit (classify()'s redundant startswith check, already covered by the preceding 'in' test) not worth a commit on its own. No real defect found."
+    },
     "indexnow.py": {
       "status": "fixed",
       "date": "2026-10-03",

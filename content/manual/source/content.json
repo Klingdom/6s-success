@@ -17276,7 +17276,21 @@
       "A framed photo",
       "A tray for in-transit things",
       "A stair basket for things headed to another floor"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A lamp, cord clipped down the back leg",
+       "A framed photo",
+       "One tray, holding nothing from yesterday",
+       "One stair basket, emptied nightly"
+      ],
+      "strays": [
+       "Loose screws",
+       "Dry pens",
+       "Keys to nothing",
+       "Mail you already read"
+      ]
+     }
     },
     {
      "zone": "Wall and Display Zone",
@@ -17454,7 +17468,19 @@
       "Framed photos or art",
       "A mirror",
       "Wall sconces"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Frames hung level, from two points each",
+       "The mirror at the turn, secured flat with no play",
+       "Wall sconces, wired and fixed"
+      ],
+      "strays": [
+       "A frame hanging from a single nail or a sawtooth hanger",
+       "A frame with cracked glass",
+       "A picture you honestly last looked at years ago"
+      ]
+     }
     },
     {
      "zone": "Stair and Floor Path",
@@ -17639,7 +17665,19 @@
       "A stair runner",
       "Working step lighting",
       "An unobstructed handrail"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A stair runner lying flat, no lifted corner",
+       "An unbroken, unobstructed handrail",
+       "Working step lighting, top and bottom"
+      ],
+      "strays": [
+       "Folded laundry staged on a tread",
+       "Shoes left on a step",
+       "A box left sitting on a tread since the weekend"
+      ]
+     }
     }
    ]
   },

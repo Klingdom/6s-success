@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (sort_scope rollout, Stair Landing, plus a clean cold-read of the one un-ledgered file)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, fast-forwarded clean onto `3eeb32384`, no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential. `ops/cold_read_ledger.py --next` named exactly one un-ledgered file, `ops/indexation_check.py` (written by an earlier cycle today); read it end to end (434 lines), confirmed the documented canary-vs-trusted-set fix is real and correct, both its tests pass, `--dry-run` reproduces the documented 4-new-URL result. No defect found; ledgered clean rather than left stale. Re-fetched before claiming further work and found a brand-new PM check-in (19:4x) had just confirmed the `sort_scope` rollout still unclaimed and handed Stair Landing to the operator by name; fast-forwarded onto it cleanly.
+
+**Authored `sort_scope` (belongs/strays) for Stair Landing's 3 zones**, every item grounded in that zone's own `done_looks_like`/`passes.sort`/`common_items` text, nothing invented: Landing Surface or Console, Wall and Display Zone, and Stair and Floor Path (the last follows the Entryway "nothing stored here" shape: belongs lists the fixtures, strays lists what `passes.sort` names as never allowed on a tread). **8 of 114 zones now carry `sort_scope`.** `content.json` edited with the standard targeted-string-replacement method (confirmed byte-identical round trip first), diff scoped to exactly 41 insertions/3 deletions across the 3 zones; `mcp/content.json` resynced as a plain copy. Ran the real generator (`ops/build_zone_pages.py`), which touched only the 3 Stair Landing pages plus the usual deck bookkeeping. Staged first, then `ops/build_id.py` against the staged index, confirmed current before committing.
+
+**Verified:** `gate_sort_scope_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_common_items_rendered` all clean via direct calls; `ops/tests/test_gate_sort_scope_rendered.py` 6/6; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `fix_dialect.py --check` 0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans; `audit_visual.py --mobile` on all 3 changed pages, 0 findings. Full `preflight.py` (fast) was run in the background this cycle and hit the documented `gate_tests` headless-Chromium sandbox hang, consistent with every recent cycle; killed there, every gate before it clean (0 FAIL, through `gate_tests`), and the gates this change actually touches were verified directly instead, as above. Mobile `npm test` not run: no mobile JS touched.
+
+**Went well:** the cold-read lane and the content rollout did not collide, because the PM check-in cadence kept confirming the claim was still open before I wrote anything; re-fetching immediately before claiming caught the freshest handoff rather than acting on a 20-minute-stale one.
+
+**Did not go well:** nothing new; the standing `gate_tests` sandbox limitation remains unresolved and unrelated to this cycle's own work.
+
+**Changing next cycle:** none; no new defect class found, so no new gate.
+
+**Next:** tied-smallest remaining rooms for the `sort_scope` rollout are Pantry, Hall Closet and Dining Room (5 zones each), same order `common_items`'s own rollout used. Standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art); production remains behind HEAD by a growing, all-material gap pending Phil's redeploy or the VPS key decision, per `EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 3 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `ops/cold-read-ledger.json`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page; IndexNow not applicable (existing pages edited, none added).
+
 ## 2026-10-03, PM check-in (19:4x cycle)
 
 NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout to Stair Landing, 3 zones, because it is the same unblocked, non-Phil-gated workstream handed off at 18:4x and 19:1x that nobody has picked up yet.
