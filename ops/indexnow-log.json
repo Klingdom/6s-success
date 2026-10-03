@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T17:58:05Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T19:06:04Z",
    "mode": "changed",
    "offered": 30,
@@ -633,6 +626,13 @@
    "offered": 15,
    "accepted": 15,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T22:01:11Z",
+   "mode": "changed",
+   "offered": 10,
+   "accepted": 10,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -731,16 +731,16 @@
   "https://6s-success.com/zones/garage-the-power-tool-and-battery-zone": "f0f1104c6bd823a2",
   "https://6s-success.com/zones/garage-the-primary-workbench": "b9b661b347c46b5c",
   "https://6s-success.com/zones/garage-the-sports-and-recreation-zone": "1472c0dde83bbb67",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "7122222891db9779",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "a1f3d75911dfa21b",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "080090d2f9ca93b6",
-  "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "9201fb6f51fcd39f",
-  "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "514ccd9d3161246f",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "9c4f343aa8696de6",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "d90f81600ad9e146",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "3b981c914057fdb2",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "2d5583f3896b4fe7",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "ce418eb75abfb1a2",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "eba7660b69451802",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "7d49e654053390ce",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "c3a9fe022a214e41",
+  "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "ad0cc8f2af1a6e63",
+  "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "49f1f451c41434c9",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "ee8cadd2e688be92",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "ede8a37e1402c9c5",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "25e064cd4fdaa385",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "c8129ebf2ce8aa15",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "ff77df37522fab13",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "090e6ce56a3dfb1a",
   "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "06ec3703e6aef0d5",
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "d7d79c4d9540a4de",
