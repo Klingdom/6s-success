@@ -175,7 +175,20 @@
       "Wallets and phones",
       "A folder for act-on paper",
       "A phone charger"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Keys and sunglasses, in the tray",
+       "One wallet and one phone per adult",
+       "An upright folder for act-on paper, kept under ten sheets"
+      ],
+      "strays": [
+       "Keys that open nothing",
+       "Loyalty cards",
+       "Dead batteries",
+       "Last month's flyers and mail with no verdict yet"
+      ]
+     }
     },
     {
      "zone": "Coat and Outerwear Zone",
@@ -333,7 +346,20 @@
       "Bags",
       "Hats and gloves, in a labeled bin",
       "Umbrellas"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One coat per person, on the rail",
+       "One bag",
+       "Hats and gloves together in a labeled bin",
+       "Umbrellas standing in the stand"
+      ],
+      "strays": [
+       "A coat that did not go outdoors once last cold season",
+       "A single glove kept in case the other turns up",
+       "An off-season coat crowding the same rail"
+      ]
+     }
     },
     {
      "zone": "Shoe and Boot Zone",
@@ -490,7 +516,20 @@
       "Boots",
       "Slippers",
       "Off-season pairs, boxed"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two pairs per person on the rack, soles down",
+       "Boots standing in the tray",
+       "One pair of slippers each"
+      ],
+      "strays": [
+       "Odd shoes with no match",
+       "Outgrown children's pairs",
+       "Trainers with a split sole",
+       "Polish that has dried solid"
+      ]
+     }
     },
     {
      "zone": "Entry Console or Bench",
@@ -644,7 +683,22 @@
       "A torch",
       "A pen",
       "Spare car charger"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three items or fewer on the top",
+       "A seat left clear",
+       "A drawer with one named category per section"
+      ],
+      "strays": [
+       "Dead batteries",
+       "Pens that do not write",
+       "A single earbud",
+       "Sunscreen from three summers ago",
+       "Takeaway menus",
+       "Anything you would not want while wearing outdoor shoes"
+      ]
+     }
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
@@ -795,7 +849,19 @@
      "common_items": [
       "An outside scraper mat",
       "An inside absorbent mat"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A coarse mat outside the door",
+       "An absorbent mat inside the door"
+      ],
+      "strays": [
+       "A recycling bag",
+       "A parcel waiting to go back",
+       "Sports kit left on the floor",
+       "Anything stored on the floor inside the door's swing"
+      ]
+     }
     }
    ]
   },
