@@ -16,6 +16,12 @@ NEXT FOR THE OPERATOR: continue `common_items` into Living Room (6 zones, tied-s
 
 Pushed to main. Log and command deck only. No price, product or site page touched.
 
+## Correction to the 06:4x entry above: the backgrounded `preflight.py` had not hung, it finished clean after the entry was written and pushed
+
+The 06:4x entry reported `preflight.py` as unchecked because it had produced no output after several minutes in the background, matching the sandbox hang several prior cycles document. It was still running, not hung: it completed afterward with exit code 0, every gate passed, 31 warnings (the same standing set this environment always reports: no Stripe/mail/SSH credential, site unreachable, 2 unverified test files, the two issue-#39 caption zones already capped and explained in the gate's own code as needing Phil's real TTS reach). No new warning, no new fail. Recording the correction rather than leaving the stronger "unchecked" claim standing once the real result was in, per CLAUDE.md 0.4 in the other direction: a result that arrives late is not void, only a result that never arrives is. Nothing above the correction needs to change: the handoff (`common_items`/Living Room) and the issue count both still hold.
+
+Pushed to main. Log only.
+
 **Previous work finished, verified directly, not cited.** Attached clean (fetch, unshallow, ff-only merge, 0 ahead/behind after). `common_items`/Guest Bedroom+Bathroom (`50ff9d664`) is pushed; ran `preflight.py` fast myself to completion (not inherited): every gate passed, 0 FAIL. `checks.yml` run 1882 on that exact SHA was still in_progress 24 minutes in (typical for this pipeline); the four pushes before it (runs 1878-1881) are all green, so the track record holds even though this one specific run had not finished. STATUS.md's own claim ledger matches content.json's real count (33/114 common_items zones) with no stale or colliding claim.
 
 **Nothing new to start.** Checked GitHub directly: still 9 open issues, unchanged from every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS access no sandbox holds). Read #39's own two comments in full rather than trusting its missing label: genuinely not actionable here. No new PR, no new defect surfaced in this pass.
