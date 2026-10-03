@@ -48509,3 +48509,13 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
+
+## 2026-10-03, PM check-in
+
+**Previous work was finished.** `common_items` corpus field confirmed closed, 114 of 114 zones (counted directly in `content/manual/source/content.json`, not cited from `STATUS.md`). `preflight.py` ran clean both before and after my change: every gate passed. Working tree was clean, main already pushed. GitHub: 9 open issues, 0 PRs, all 9 either decision-labelled, blocked-on-art, or (#39) correctly capped as needing Phil's own TTS/audio machine; none unblocked.
+
+**Did:** the one live, closeable finding was `dashboard-self-description-fresh`: two real commits (`b0839bba9`, `f9a653d6d`) had landed since the deck's last regeneration. Ran `ops/dashboard.py`; warning count dropped 30 to 29, nothing else changed.
+
+**Handing to the operator at :43:** B8 (landing each of 19 decks on the 18-card print tier; `deck-print-tier` warning) is the next real, unblocked backlog item and needs more than a 30-minute slot.
+
+Pushed to main. Command deck only. No price, product or site page touched.
