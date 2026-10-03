@@ -1749,7 +1749,12 @@ def capacity_html(thing, zone):
     fit = _clean(cap.get("does_not_fit", ""))
     if not rule:
         return ""
-    out = [f'<section id="capacity"><h2>How much this {esc(thing)} can '
+    # "the", not "this", and a modal verb. 19 of the 114 zone nouns are
+    # plural ("utensil and utility drawers", "dry goods shelves", "towels"),
+    # and the old wording forced singular agreement onto all of them: "How
+    # much this utensil and utility drawers can actually hold" was live.
+    # "the X can" is correct for both numbers because "can" does not inflect.
+    out = [f'<section id="capacity"><h2>How much the {esc(thing)} can '
            'actually hold</h2>',
            f'<p>{esc(rule)}</p>']
     if fit:
@@ -1775,11 +1780,16 @@ def variants_html(thing, zone):
     variants = zone.get("variants")
     if not variants:
         return ""
-    out = [f'<section id="variants"><h2>If your {esc(thing)} is not like '
-           f'this</h2>',
+    # Same plural problem, twice over: "If your dry goods shelves IS not like
+    # this", and "a fairly ordinary dry goods shelves". Both are fixed by
+    # keeping the zone noun out of the subject. "this" is the subject here, so
+    # the verb agrees with it whatever the noun does, and the second sentence
+    # drops the article that was forcing singular.
+    out = [f'<section id="variants"><h2>When this does not describe your '
+           f'{esc(thing)}</h2>',
            '<p class="notice" style="max-width:66ch">The passes above '
-           f'assume a fairly ordinary {esc(thing)}. A few real households '
-           'are not, and the fix is not to skip the method, it is to run it '
+           'describe the ordinary case. Plenty of real households are not '
+           'ordinary, and the fix is not to skip the method, it is to run it '
            'against a different starting shape.</p>',
            '<dl class="faq-list">']
     for v in variants:

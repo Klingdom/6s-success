@@ -2008,6 +2008,20 @@
        "action": "Bring down every bag and box on this shelf, open anything already opened, and smell the flour and the oats: stale, webbed, or bought for a recipe you have not cooked in months leaves today.",
        "victory": "Every opened bag is sealed in a labeled container or gone, and pasta, rice and oats stand together as one block."
       }
+     },
+     "variants": [
+      {
+       "condition": "Deep cupboard shelves rather than a shallow pantry",
+       "guidance": "Depth is where dry goods go to be forgotten. Keep one row at the front and use the space behind it only for the spare of that same line, never for a different line, so nothing disappears behind something unrelated. A pull-out tray or a shallow bin used as a drawer turns the back half into something you can actually see."
+      },
+      {
+       "condition": "Somebody in the house has a gluten or nut allergy",
+       "guidance": "Separate by risk before you separate by meal. The allergen-free grains get a shelf above the others so nothing can shed down into them, their own scoop that never leaves that shelf, and a written label rather than a remembered rule."
+      }
+     ],
+     "capacity": {
+      "rule": "One container per line you actually cook from, sized to a normal shopping week, with the lid closing flat and the level readable from the doorway without lifting anything.",
+      "does_not_fit": "If the containers are full at the end of an ordinary week and nothing in them has gone stale, this shelf is genuinely short of room rather than badly packed. Move the once-a-month flours and lentils up or out to the backstock zone before you buy another container."
      }
     },
     {
@@ -2144,6 +2158,20 @@
        "action": "Take every can and jar off the shelf, turn each one to find the date, and put anything dented, rusted, bulging or domed straight into the bin rather than back on the shelf.",
        "victory": "No dented, rusted, domed or bulging can or jar remains on the shelf, and every label faces out."
       }
+     },
+     "variants": [
+      {
+       "condition": "Narrow shelves that only hold a single row",
+       "guidance": "Risers stop helping and rotation becomes the whole job. Load from the back, take from the front, and write the month on the lid in marker so one glance gives you the order without reading the small print."
+      },
+      {
+       "condition": "You buy tinned goods in bulk a few times a year",
+       "guidance": "Keep this shelf at the size of a normal month and let the rest live in the backstock zone. A working shelf sized for the bulk delivery is full of things you will not reach for eleven months of the year."
+      }
+     ],
+     "capacity": {
+      "rule": "One row per meal group, one can deep at the front with the oldest date facing you, and no row longer than you can reach without moving the row beside it.",
+      "does_not_fit": "If every row is full, nothing is duplicated and nothing is past its date, the shelf is honestly full. The next tin belongs in the backstock zone with its month written on it, not wedged in front of a row you can no longer read."
      }
     },
     {
@@ -2281,6 +2309,20 @@
        "action": "Test every leavener rather than guessing: a spoon of baking powder in hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with any hardened brown sugar or grayed cocoa.",
        "victory": "Every leavener in the bin has been tested this week, and nothing dead or expired remains."
       }
+     },
+     "variants": [
+      {
+       "condition": "You bake once or twice a year",
+       "guidance": "One bin, not two, and buy the leaveners small each time rather than storing them. Flour and ground spices go stale faster than an occasional baker gets through them, so the honest version of this zone is nearly empty between bakes."
+      },
+      {
+       "condition": "Children bake with you",
+       "guidance": "Cutters, cases and sprinkles go at their height; flour, leaveners and anything that needs measuring stay at yours. The part that gets handled most often should be the part that needs no judgement."
+      }
+     ],
+     "capacity": {
+      "rule": "One lift-out bin for the start of a bake and one for the end of it, each light enough to carry to the counter one-handed, plus the leaveners together in one small box with their dates showing.",
+      "does_not_fit": "If the start-of-bake bin is too heavy to lift with one hand, it is holding things you do not use at the start of a bake. Move those into the second bin rather than buying a bigger first one."
      }
     },
     {
@@ -2418,6 +2460,20 @@
        "action": "Match every lid to a container and bin the orphans in both directions, the lidless tubs and the lids for tubs that died. Pull any snack boxes with only a couple of bars rattling around and combine them.",
        "victory": "Every reusable container has its own lid sitting on it, and the open bin is filled to its marked line."
       }
+     },
+     "variants": [
+      {
+       "condition": "No children in the house",
+       "guidance": "The height rule falls away and this becomes one bin of what you take to work. Keep the pre-approved idea anyway, because it is what stops the shelf filling with snacks bought for a mood rather than for a lunch."
+      },
+      {
+       "condition": "Several children with different rules",
+       "guidance": "One bin each, labeled with the name rather than the rule, so the rule lives on the bin instead of in an argument. A shared bin with different permissions is what generates the argument every morning."
+      }
+     ],
+     "capacity": {
+      "rule": "One open bin at child height holding only snacks you have already said yes to, and a number of reusable containers that matches the lunches you genuinely pack in a week, each sitting with its own lid.",
+      "does_not_fit": "If the containers will not sit with their lids on, the count is wrong before the shelf is. Count the lunches you actually packed last week and keep that many."
      }
     },
     {
@@ -2550,6 +2606,20 @@
        "action": "Open up the back of this zone and meet what you forgot you owned: any item you hold more than one genuine spare of moves forward into the working shelves this month or it leaves.",
        "victory": "Every remaining pack carries its arrival month, and nothing sits stacked in front of an older case of the same thing."
       }
+     },
+     "variants": [
+      {
+       "condition": "No separate backstock space, only the working shelves",
+       "guidance": "Backstock becomes the back half of each working shelf, which makes the maximum number matter more rather than less. Write it on the shelf edge anyway, because the whole purpose of this zone is a ceiling you can see without counting."
+      },
+      {
+       "condition": "You shop a warehouse club every few months",
+       "guidance": "Size the maximum to the gap between trips, not to the size of the pack. A case that lasts five months in a house that shops every two is three months of floor you are renting to a sauce."
+      }
+     ],
+     "capacity": {
+      "rule": "A maximum number written on the shelf edge for each line, everything at or below waist height, one row deep, and the month written on each item as it arrives.",
+      "does_not_fit": "If a line is at its maximum and you are still buying, either the maximum is wrong or the buying is. Change the number on the shelf edge deliberately rather than starting a second row in front of the first."
      }
     }
    ]
