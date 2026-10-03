@@ -71,6 +71,29 @@ NO_INDEX_SECTION = (
     "### LRN-0001: Desired Function May Improve Relevance\n\ntext\n"
 )
 
+DUPLICATE_BODY_ID = (
+    "# Register\n\n"
+    "## 31. Learning Index\n\n"
+    "| ID | Learning | Domain | Status | Confidence |\n"
+    "|---|---|---|---|---|\n"
+    "| LRN-0001 | Desired function may improve relevance | DESIRED_FUNCTION | HYPOTHESIS | UNKNOWN |\n\n"
+    "## 32. Initial Hypothesis Register\n\n"
+    "### LRN-0001: Desired Function May Improve Relevance\n\ntext\n\n"
+    "## 33. Verified Learning Registers\n\n"
+    "#### LRN-0001: A second, unrelated learning that reused the same ID\n\ntext\n"
+)
+
+DUPLICATE_INDEX_ROW = (
+    "# Register\n\n"
+    "## 31. Learning Index\n\n"
+    "| ID | Learning | Domain | Status | Confidence |\n"
+    "|---|---|---|---|---|\n"
+    "| LRN-0001 | Desired function may improve relevance | DESIRED_FUNCTION | HYPOTHESIS | UNKNOWN |\n"
+    "| LRN-0001 | Desired function may improve relevance | DESIRED_FUNCTION | HYPOTHESIS | UNKNOWN |\n\n"
+    "## 32. Initial Hypothesis Register\n\n"
+    "### LRN-0001: Desired Function May Improve Relevance\n\ntext\n"
+)
+
 
 def _run_gate(text):
     tmp_dir = tempfile.mkdtemp()
@@ -136,6 +159,33 @@ def test_no_index_section_is_reported_not_silently_skipped():
     print("ok  a file with no section 31 at all is flagged, not skipped")
 
 
+def test_pure_check_catches_a_duplicate_body_heading():
+    """Found 2026-10-03: two unrelated learnings both used LRN-0032. The
+    original set-based diff could not see this (two identical set members
+    collapse to one), so this proves the raw-list count added for it does.
+    """
+    problems = preflight.check_learnings_index(DUPLICATE_BODY_ID)
+    assert any("LRN-0001" in p and "more than one learning" in p
+                for p in problems), problems
+    print("ok  two learning headings sharing one ID are caught")
+
+
+def test_pure_check_catches_a_duplicate_index_row():
+    problems = preflight.check_learnings_index(DUPLICATE_INDEX_ROW)
+    assert any("LRN-0001" in p and "more than once in the index" in p
+                for p in problems), problems
+    print("ok  one ID repeated across two index rows is caught")
+
+
+def test_gate_fails_by_name_on_duplicate_body_heading():
+    fails = _run_gate(DUPLICATE_BODY_ID)
+    assert len(fails) == 1, fails
+    gate, msg = fails[0]
+    assert gate == "learnings-index-current", fails
+    assert "LRN-0001" in msg, msg
+    print("ok  gate fails naming learnings-index-current and the shared ID")
+
+
 def test_missing_file_does_not_crash():
     tmp_dir = tempfile.mkdtemp()
     try:
@@ -174,6 +224,9 @@ if __name__ == "__main__":
     test_gate_fails_by_name_on_missing_index_row()
     test_gate_fails_by_name_on_stale_index_row()
     test_no_index_section_is_reported_not_silently_skipped()
+    test_pure_check_catches_a_duplicate_body_heading()
+    test_pure_check_catches_a_duplicate_index_row()
+    test_gate_fails_by_name_on_duplicate_body_heading()
     test_missing_file_does_not_crash()
     test_real_repository_file_passes_right_now()
     print("\nall gate_learnings_index_current tests passed")

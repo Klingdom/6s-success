@@ -337,7 +337,7 @@ Maintain:
 | LRN-0032 | A stored coverage status is a snapshot of a corpus other sessions are changing; re-score before concluding | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0033 | An ad-hoc pattern that matches nothing looks exactly like a true absence, and throwaway analysis gets no second opinion | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0034 | The tool that writes the code can corrupt it silently; a planted defect that does not fail is the only reliable detector | ENGINEERING / TOOLING | SUPPORTED | HIGH |
-| LRN-0032 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0035 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1302,7 +1302,16 @@ regex escapes.
 file this session rewrites for control bytes before committing it
 (`preflight.py` is now verified clean). And when a planted defect does not
 fail, debug the plant before concluding anything about the check.
-#### LRN-0032: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
+#### LRN-0035: A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle
+
+**Renumbered 2026-10-03, PM check-in:** this entry was recorded as LRN-0032,
+the same ID already used above by "A stored coverage status is a snapshot of
+a corpus other sessions are changing." Renumbered to LRN-0035, the next free
+ID, because the earlier entry is cited by name from working code
+(`ops/keyword_demand.py`, `ops/preflight.py`) and two test files, while this
+one was cited only from `CHANGELOG.md`, now updated to match. See the new
+duplicate-ID check in `check_learnings_index()` (`ops/preflight.py`), added
+the same cycle so this cannot recur unnoticed.
 
 **Status:** SUPPORTED
 **Confidence:** HIGH (confirmed directly against the proxy, not inferred)

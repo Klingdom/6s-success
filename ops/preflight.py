@@ -26293,17 +26293,28 @@ def check_learnings_index(text) -> list:
     have a matching index row, and every index row must have a matching
     body heading, so neither a new undocumented learning nor a stale index
     entry for a removed one can recur unnoticed.
+
+    Found 2026-10-03, PM check-in, cold-reading the file: two unrelated
+    learnings both used LRN-0032 (one about a stored coverage status going
+    stale, one about a repeated "needs live network reach" finding). The
+    original set-based comparison above could not have caught this: both a
+    duplicated body heading and a duplicated index row collapse to one
+    member the moment they go into a `set()`, so two learnings silently
+    sharing an ID looked identical to one learning correctly indexed once.
+    Catching a duplicate needs the raw list, counted, before either side is
+    deduplicated into a set.
     """
     problems = []
-    body_ids = set(re.findall(
-        r"^#{3,4}\s+(LRN-\d{4})\b", text, re.MULTILINE))
+    body_id_list = re.findall(r"^#{3,4}\s+(LRN-\d{4})\b", text, re.MULTILINE)
+    body_ids = set(body_id_list)
     index_m = re.search(
         r"## 31\. Learning Index.*?\n((?:\|.*\n)+)", text, re.DOTALL)
     if not index_m:
         problems.append("LEARNINGS.md has no section 31 index table to check.")
         return problems
-    index_ids = set(re.findall(
-        r"^\|\s*(LRN-\d{4})\s*\|", index_m.group(1), re.MULTILINE))
+    index_id_list = re.findall(
+        r"^\|\s*(LRN-\d{4})\s*\|", index_m.group(1), re.MULTILINE)
+    index_ids = set(index_id_list)
     missing_from_index = sorted(body_ids - index_ids)
     stale_in_index = sorted(index_ids - body_ids)
     if missing_from_index:
@@ -26312,6 +26323,18 @@ def check_learnings_index(text) -> list:
     if stale_in_index:
         problems.append(
             "indexed but no matching learning: %s" % ", ".join(stale_in_index))
+    dup_body = sorted({i for i in body_id_list
+                        if body_id_list.count(i) > 1})
+    if dup_body:
+        problems.append(
+            "same ID used by more than one learning heading: %s" %
+            ", ".join(dup_body))
+    dup_index = sorted({i for i in index_id_list
+                         if index_id_list.count(i) > 1})
+    if dup_index:
+        problems.append(
+            "same ID appears more than once in the index table: %s" %
+            ", ".join(dup_index))
     return problems
 
 
