@@ -348,8 +348,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-03",
+      "note": "Re-verified for drift (was 2026-10-02): d4e26c700 (2026-10-03) chained build_seo.build_sitemap() into main() so a standalone content.json edit can no longer leave the sitemap stale, the fix an earlier same-day addendum fail-then-pass proved directly in an isolated worktree. Confirmed the chained call is still present at main()'s end (line 3982) and has since been exercised cleanly by every one of today's common_items pushes (Dining Room through this cycle's Primary Bathroom/Garage), each confirming gate_sitemap_lastmod_current clean afterward. No new defect found."
     },
     "canonical_links.py": {
       "status": "clean",
