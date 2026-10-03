@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-03 14:16",
- "commit": "8eeb5dce2",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 1464,
- "commits_total": 5461,
+ "generated": "2026-10-03 14:49",
+ "commit": "b244f62fd",
+ "commit_msg": "PM check-in 14:1x: close stale command deck (two commits short), confirm nothing new unblocked, fast preflight clean up to the documented gate_tests sandbox limit",
+ "commits_7d": 1459,
+ "commits_total": 5462,
  "traffic_line": "49 visitors across 121 visits, 30 days (carried forward from 2026-10-02; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "49 visitors across 121 visits, 30 days",
  "traffic_line_measured_at": "2026-10-02",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 21:07",
  "affiliate_trigger_carried_from": "2026-09-30 21:07",
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,

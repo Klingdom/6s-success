@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (14:4x cycle)
+
+NEXT FOR THE OPERATOR: start a second-pass cold-read of already-ledgered ops/*.py files, lowest-mention tier first, because the first pass is exhausted (195 of 195, 0 un-ledgered) and that method has found real defects twice before.
+
+Previous work finished: preflight --deep closed clean earlier today; tree clean, main fast-forwarded with no reset. Re-checked directly: GitHub 9 issues unchanged, 0 PRs. Backlog's non-struck rows (B6, B8, B9) confirmed closed; C5, C6 confirmed Phil-gated. STATUS.md's 33-commit deploy-gap citation verified accurate against the gate's own function. Fast preflight: 0 FAIL through every gate before gate_tests, which hung at the documented sandbox limit, confirmed by a timeout exit code, not assumed clean. Nothing fixed, nothing broken.
+
+Pushed to main. Command deck, plus this log.
+
 ## 2026-10-03, PM check-in (14:1x cycle)
 
 **Previous work was finished and verified, not just cited.** The `preflight.py --deep` handoff that four straight PM/operator cycles had carried since 2026-10-01 was closed last cycle (`bfcb672d0`, first clean completion). Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow` (574 commits) then `git merge --ff-only origin/main` landed cleanly with no reset. Working tree was clean and main already pushed before this cycle started.
