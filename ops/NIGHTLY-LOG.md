@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished clean, closing the standing handoff
+
+The `--deep` run started below completed in full this time: **every gate passed, 374 of 374 test files ran (`gate_tests` itself finished rather than hanging), 31 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/SSH credential, no network egress, Pillow/pypdf/JRE not installed here). This is the first clean completion since 2026-10-01 per the 11:5x/12:4x/13:1x/13:4x PM check-ins' own repeated handoff, closing that chain; the difference was simply letting it run uninterrupted rather than a fix.
+
+Two warnings read as findings and were checked against GitHub before being recorded, not assumed new: `films-six-passes` names 4 caption files still carrying the pre-fix British spelling for the exact two zones issue #39 names, with its own code comment explaining why (`KNOWN_UNRESOLVED_DESPITE_CLOSED_39`, `ops/preflight.py` line ~14664): the issue was closed 2026-10-02, the committed `.srt` turned out not to actually carry Phil's re-render, so it was reopened. The GitHub issue's own `state_reason: "reopened"` matches exactly; this is the gate correctly flagging already-tracked, already-capability-blocked drift, not a new defect. `deck-print-tier`, `page-art`, `deck-art`, `zone-videos-match-standard` and the rest are all the same standing, previously-documented warnings. Nothing here calls for a new gate per step 10b: every warning is either a known sandbox limitation or an already-filed, already-capped issue.
+
+No code or content changed this addendum; recorded so the next cycle does not re-attempt a `--deep` run believing it has never finished.
+
 ## 2026-10-03, scheduled operator cycle (verification only, preflight --deep started per handoff)
 
 **Did:** Unshallowed and attached to main (git fetch --unshallow, 568 commits), then fast-forwarded a second time onto two more concurrent pushes (af28431d3) with no conflict. Read GOALS.md, BACKLOG-2026-09-07.md in full, STATUS.md's open-claims section, CLAUDE.md, and the last several `ops/NIGHTLY-LOG.md` entries. Re-checked GitHub directly rather than cited: 9 open issues, unchanged (6 decision, 2 blocked-on-art, #39 capability-gated), 0 PRs.
