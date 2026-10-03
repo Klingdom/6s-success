@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-03 00:24 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-03 00:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -10,7 +10,7 @@
 | **Overall** | **YELLOW** 2 P0 items still open. |
 | **Revenue this month** | **not measured this month, no Stripe credential in this environment (last known monthly figure: $0, measured 2026-09-30 21:07)** |
 | | `............................` |
-| **Paying customers** | not measured |
+| **Paying customers** | not measured this month (last known: 0, measured 2026-09-30 21:07) |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1409 of 5325 total |
+| Commits (7 days) | 1407 of 5326 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `ee547104a` Fix duplicate LRN-0032 learning ID (renumber to LRN-0035); g |
+| Last commit | `42726dd99` PM check-in log entry and command deck regen |
 
 ## Product readiness
 

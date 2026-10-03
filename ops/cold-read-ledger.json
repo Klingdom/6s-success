@@ -443,8 +443,8 @@
     },
     "dashboard.py": {
       "status": "fixed",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: found and fixed a real revenue carry-forward defect (carry_forward() relabelled a PRIOR calendar month's last-measured revenue as the current month's, found live crossing the Sept-to-Oct boundary). Fixed with a month-boundary guard, new gate_dashboard_revenue_month_not_cross_month in preflight.py, fail-then-pass proved against the committed pre-fix code. No other defect found in a cold read of the file."
+      "date": "2026-10-03",
+      "note": "Cold-read 2026-10-03: found and fixed a real defect in the customer-count half of the cross-month carry fix that shipped a few hours earlier (934510664). carry_forward()'s cross-month branch sets customers_last_measured/customers_measured_at, but the renderer's revenue-unmeasured branch unconditionally wrote customers_text='not measured', discarding that carried figure -- the exact 'two headline figures contradict each other' shape carry_forward()'s own docstring names as the reason customer carry-forward exists. Extracted the whole revenue/customers rendering block into a new pure function, revenue_customers_display(), so it is testable the same way carry_forward() is; fixed it to show the carried customer count with its own 'last known' caveat. New gate_dashboard_customers_text_reflects_carry in preflight.py, fail-then-pass proved directly (planted the old unconditional-not-measured line, watched it fail by name, restored, reran clean). ops/tests/test_carry_forward.py extended 15 to 18 cases. No other defect found reading the rest of the file."
     },
     "deploy.py": {
       "status": "clean",
@@ -647,9 +647,9 @@
       "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-02",
-      "note": "Added gate_keyword_demand_not_stale (and its pure-logic helper keyword_demand_staleness_problem) this cycle; re-verified by reading the surrounding gate registration, run_gate/warn/fail helpers, and re-running the full fail-then-pass proof against the real file."
+      "status": "clean",
+      "date": "2026-10-03",
+      "note": "Cold-read 2026-10-03: verified main()'s gate registration is internally consistent (376 gate_ functions defined, all 376 wired via run_gate() in main(), 0 orphaned, 0 phantom calls, checked programmatically via AST). Read the full main() gate-ordering list end to end. Added gate_dashboard_customers_text_reflects_carry alongside its sibling gate_dashboard_revenue_month_not_cross_month this cycle (see ops/dashboard.py's own ledger entry). No other defect found in the sections read."
     },
     "prerender_shop.py": {
       "status": "fixed",

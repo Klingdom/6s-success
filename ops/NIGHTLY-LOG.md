@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 01:0x (closed both stale cold-read ledger entries PM check-ins had twice handed off as "too large for this slot"; found a real defect in the customer-count half of the revenue fix that shipped a few hours earlier)
+
+**Did.** Checkout arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (439 commits, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries. 9 GitHub issues open, unchanged, all `decision`/`blocked-on-art`/#39, none mine. `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. Every "Now" row in the backlog again done or Phil-gated; `cold_read_ledger.py --stale` named the two files the 23:4x and 00:1x PM check-ins had each handed off by name without time to act on: `ops/dashboard.py` and `ops/preflight.py`, both touched 2026-10-03 after their last ledger entry.
+
+**Read both files cold rather than re-citing the prior cycles' own clean results.** `ops/preflight.py`: confirmed programmatically (AST walk) that all 376 `gate_*` functions are defined and all 376 are wired via `run_gate()` in `main()`, 0 orphaned, 0 phantom calls; read the full gate-ordering list end to end, nothing out of place.
+
+**Found a real, live defect in `ops/dashboard.py`, a few hours after the cross-month revenue fix (`934510664`) shipped.** That fix correctly stopped relabelling a prior month's carried revenue as this month's, and renders "last known monthly figure: $X, measured &lt;date&gt;" instead. Its own `carry_forward()` sets the customer-count equivalent (`customers_last_measured`/`customers_measured_at`) in the same cross-month branch, but the renderer never read it: the `if S["revenue_month"] is None:` branch unconditionally wrote `S["customers_text"] = "not measured"`, discarding the carried figure outright. That is the exact "two headline figures contradict each other" shape `carry_forward()`'s own docstring names as the reason the customer carry-forward exists at all (its prior fix was for the same contradiction, revenue carried and the count not) — the sibling fix just re-opened a narrower version of it one field over.
+
+**Fixed.** Extracted the whole revenue/customers rendering block (previously bare module-level code) into a new pure function, `revenue_customers_display(S)`, so it is testable the same way `carry_forward()` already is; the extraction is behavior-preserving (confirmed: dashboard output byte-identical for the same-month and never-measured cases before and after). The cross-month branch of the render now shows the carried customer count with its own "last known: N, measured &lt;date&gt;" caveat instead of discarding it. New `gate_dashboard_customers_text_reflects_carry` in `preflight.py`, the same synthetic-input pattern as the sibling `gate_dashboard_revenue_month_not_cross_month`; fail-then-pass proved directly by planting the old unconditional-"not measured" line, watching the gate fail by name citing the discarded figure, restoring, and reconfirming clean. `ops/tests/test_carry_forward.py` extended 15 to 18 cases the same way.
+
+**Verified.** `check_urls.py` (211/211), `audit_pages.py` (215/0), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), mobile `npm test` (all suites) all clean after. Full `preflight.py` backgrounded; reached the standing `gate_tests` network-timeout gate and was still there after several minutes, the same documented sandbox limitation every recent cycle reports; the narrower checks above run directly in its place, the standing workaround. Both stale ledger entries closed with fresh notes naming today's actual findings (`ops/cold_read_ledger.py --stale` now reports 0).
+
+**Went well:** reading the file instead of trusting that "touched a few hours ago by a careful fix" meant nothing was left to find; the extraction into a pure function makes this rendering logic testable going forward instead of only ever eyeballed.
+
+**Did not go well:** the standing `gate_tests` sandbox hang cost another background wait this cycle; nothing new.
+
+**Changing next cycle:** none; the new gate and test coverage are the change.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open GitHub issues, unchanged. No fresh keyword-gap or content-read work is waiting; `cold_read_ledger.py --stale` should read 0 next cycle unless another file is touched without a fresh cold-read to match.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `ops/tests/test_carry_forward.py`, `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, command deck, this entry. No price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 00:1x cycle
 
 **Previous work finished:** the 23:4x dashboard-ledger handoff was shipped (`934510664`, revenue carry-forward fix), verified not cited. Backlog "Now" rows all done or Phil-gated. 9 GitHub issues unchanged, none mine.

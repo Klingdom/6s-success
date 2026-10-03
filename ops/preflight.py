@@ -3412,6 +3412,45 @@ def gate_dashboard_revenue_month_not_cross_month() -> None:
              f"a carry within the SAME calendar month regressed; got {same_month!r}")
 
 
+def gate_dashboard_customers_text_reflects_carry() -> None:
+    """A carried customer count must render, not be silently overwritten
+    with "not measured" the moment revenue is also unmeasured this month.
+
+    Found cold-reading dashboard.py, 2026-10-03, a few hours after the
+    sibling revenue cross-month fix above shipped. carry_forward()'s
+    cross-month branch sets customers_last_measured/customers_measured_at,
+    but the renderer's `if S["revenue_month"] is None` branch unconditionally
+    wrote `S["customers_text"] = "not measured"`, discarding that carried
+    figure. The exact "two headline figures contradict each other" shape
+    carry_forward()'s own docstring names as the reason customer carry-
+    forward exists at all (revenue_text said "last known: $X", customers_text
+    said "not measured" for the same blind run).
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    gate_dashboard_revenue_month_not_cross_month above uses.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    disp = dashboard.revenue_customers_display({
+        "revenue_month": None, "revenue_last_measured": 0.0,
+        "revenue_prior_month_only": "2026-09-30 21:07",
+        "customers_last_measured": 0, "customers_measured_at": "2026-09-30 21:07",
+    })
+    if disp.get("customers_text") == "not measured":
+        fail("dashboard-customers-text-reflects-carry",
+             f"a carried customer count was discarded as bare 'not measured'; "
+             f"got {disp!r}")
+    if "0" not in disp.get("customers_text", ""):
+        fail("dashboard-customers-text-reflects-carry",
+             f"the carried customer figure must appear in the rendered text; "
+             f"got {disp!r}")
+    # No carried figure at all must still read "not measured", unchanged.
+    disp = dashboard.revenue_customers_display({"revenue_month": None})
+    if disp.get("customers_text") != "not measured":
+        fail("dashboard-customers-text-reflects-carry",
+             f"with nothing carried at all, expected 'not measured'; got {disp!r}")
+
+
 def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
     """OWNER-ACTIONS.md's own "Last measured" paragraph must stay in a shape
     dashboard._owner_actions_traffic_citation() parses, or the
@@ -27581,6 +27620,7 @@ def main() -> int:
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
     run_gate(gate_dashboard_revenue_month_not_cross_month)
+    run_gate(gate_dashboard_customers_text_reflects_carry)
     run_gate(gate_dashboard_owner_actions_traffic_citation_current)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)

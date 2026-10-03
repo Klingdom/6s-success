@@ -1978,30 +1978,55 @@ if S.get("deploy_verdict") == "stale" or S.get("live_links_verdict") == "dead":
                            + " One deploy moves all of it to the customer."
                            + _reach)
 
-# None is not zero. A source that could not be read renders as unknown, and
-# the gauge needle is parked rather than pointed at a figure nobody measured.
-if S["revenue_month"] is None:
-    S["revenue_pct"] = None
-    if S.get("revenue_prior_month_only"):
-        # A real figure exists, just not for the current calendar month: say
-        # so, rather than either hiding it or relabelling it as this month's.
-        S["revenue_text"] = (
-            "not measured this month, no Stripe credential in this "
-            "environment (last known monthly figure: $%s, measured %s)"
-            % (f"{S['revenue_last_measured']:,.0f}", S["revenue_prior_month_only"]))
+def revenue_customers_display(S: dict) -> dict:
+    """Render revenue_pct/revenue_text/customers_text from the state dict.
+
+    A pure function (CLAUDE.md step 10b) so the exact rendering contract can
+    be proved with synthetic inputs, the same way carry_forward() above is
+    tested without a Stripe credential.
+
+    None is not zero. A source that could not be read renders as unknown, and
+    the gauge needle is parked rather than pointed at a figure nobody measured.
+    """
+    out = {}
+    if S.get("revenue_month") is None:
+        out["revenue_pct"] = None
+        if S.get("revenue_prior_month_only"):
+            # A real figure exists, just not for the current calendar month:
+            # say so, rather than either hiding it or relabelling it as this
+            # month's.
+            out["revenue_text"] = (
+                "not measured this month, no Stripe credential in this "
+                "environment (last known monthly figure: $%s, measured %s)"
+                % (f"{S['revenue_last_measured']:,.0f}", S["revenue_prior_month_only"]))
+        else:
+            out["revenue_text"] = "not measured, no Stripe credential in this environment"
+        # Same bug as revenue, one field over: a carried customer count exists
+        # (set by the cross-month branch of carry_forward() above) but was
+        # never read here, so the deck said "not measured" beside a revenue
+        # figure that itself said "last known: $X", the exact contradiction
+        # the customer carry-forward was built to stop (see carry_forward()'s
+        # own comment). Found cold-reading this file, 2026-10-03.
+        if S.get("customers_last_measured") is not None:
+            out["customers_text"] = (
+                "not measured this month (last known: %s, measured %s)"
+                % (S["customers_last_measured"], S.get("customers_measured_at", "")))
+        else:
+            out["customers_text"] = "not measured"
     else:
-        S["revenue_text"] = "not measured, no Stripe credential in this environment"
-    S["customers_text"] = "not measured"
-else:
-    S["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
-    S["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
-                         f"${S['revenue_target']:,.0f} target "
-                         f"({S['revenue_pct']}%)"
-                         + (f", carried forward from {S['revenue_carried_from']} "
-                            f"because this run could not reach Stripe"
-                            if S.get("revenue_carried_from") else ""))
-    S["customers_text"] = ("not measured" if S.get("paying_customers") is None
-                           else str(S["paying_customers"]))
+        out["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
+        out["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
+                             f"${S['revenue_target']:,.0f} target "
+                             f"({out['revenue_pct']}%)"
+                             + (f", carried forward from {S['revenue_carried_from']} "
+                                f"because this run could not reach Stripe"
+                                if S.get("revenue_carried_from") else ""))
+        out["customers_text"] = ("not measured" if S.get("paying_customers") is None
+                               else str(S["paying_customers"]))
+    return out
+
+
+S.update(revenue_customers_display(S))
 pct = S["revenue_pct"] or 0
 
 # ---------------------------------------------------------------- render
