@@ -348,8 +348,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-03",
+      "note": "Re-verified for drift (was 2026-10-02): d4e26c700 (2026-10-03) chained build_seo.build_sitemap() into main() so a standalone content.json edit can no longer leave the sitemap stale, the fix an earlier same-day addendum fail-then-pass proved directly in an isolated worktree. Confirmed the chained call is still present at main()'s end (line 3982) and has since been exercised cleanly by every one of today's common_items pushes (Dining Room through this cycle's Primary Bathroom/Garage), each confirming gate_sitemap_lastmod_current clean afterward. No new defect found."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -613,8 +613,8 @@
     },
     "measure.js": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Cold-read: send() swallowed any exception from window.umami.track() but returned true unconditionally, so a throwing call was reported as delivered and silently dropped from the retry queue instead of being retried like the 'not loaded yet' case. Fixed: catch now returns false. Verified with a new browser-driven probe (PROBE_G in test_measure_events.py) that throws on the umami stub's first two calls: reproduced the loss against the old code (0 buy-click events), confirmed the fix delivers it after retry (1 event). (A concurrent cold-read of the same file this same cycle checked the srcset/picture-source and IntersectionObserver-id logic and found those clean; superseded by this entry, which found the real defect.)"
+      "date": "2026-10-03",
+      "note": "Fresh second-pass cold-read. page() classified by substring (indexOf), so /workshop-deck.html (contains 'shop') was mislabeled as the shop page in buy-click/outbound-click/quote-click/service-cta/free-download 'from' fields, folding that deck's clicks into the online store's own funnel numbers. Fixed to exact equality on /quest.html and /shop.html. New gate_measure_page_type_exact_match in preflight.py and probe H in test_measure_events.py, both fail-then-pass proved."
     },
     "media_capability.py": {
       "status": "clean",
@@ -808,8 +808,8 @@
     },
     "stripe_brand.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: BAD_DESCRIPTION_TERMS gap detection, account-field read-only limitation (POST /v1/account correctly refused on a standard account) both consistent with Stripe's real API. No defect found."
+      "date": "2026-10-03",
+      "note": "Fresh second-pass cold-read. Reads the live Stripe account and reports business-identity gaps (url/name/support email/description/branding); cannot write (POST /v1/account refused on own account), only reports where to fix in the Dashboard. No defect found in the logic. No Stripe credential in this sandbox, so the live account state itself is UNCHECKED here, same standing limit every prior cycle reports."
     },
     "stripe_catalog.py": {
       "status": "fixed",

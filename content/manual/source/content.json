@@ -168,7 +168,14 @@
      "capacity": {
       "rule": "One tray, sized for keys and sunglasses plus one wallet and one phone per adult who uses this door, and a single upright folder that stays under ten sheets.",
       "does_not_fit": "If a real folder, worked down honestly every week, still will not stay under ten sheets, or the tray will not hold one phone and wallet per adult without lifting something out first, the tray and folder are undersized for this household, not badly kept."
-     }
+     },
+     "common_items": [
+      "Keys",
+      "Sunglasses",
+      "Wallets and phones",
+      "A folder for act-on paper",
+      "A phone charger"
+     ]
     },
     {
      "zone": "Coat and Outerwear Zone",
@@ -319,7 +326,14 @@
      "capacity": {
       "rule": "One current-season coat per person on the rail, with at least two hooks left empty for a visitor.",
       "does_not_fit": "If one coat per person, with every off-season coat already moved to a bedroom closet, still leaves no hook free, the rail itself is too short for the household using this door."
-     }
+     },
+     "common_items": [
+      "Everyday coats",
+      "The wool coat, on a hanger",
+      "Bags",
+      "Hats and gloves, in a labeled bin",
+      "Umbrellas"
+     ]
     },
     {
      "zone": "Shoe and Boot Zone",
@@ -470,7 +484,13 @@
      "capacity": {
       "rule": "Two everyday pairs per person on the rack, plus one pair of slippers each, with a full stride of clear floor between the door and the rack.",
       "does_not_fit": "If two honest pairs per person, with every off-season pair already boxed and moved to a closet, still will not sit on the rack without crowding the floor stride, the rack is too small for the household, not the pairs too many."
-     }
+     },
+     "common_items": [
+      "Everyday shoes",
+      "Boots",
+      "Slippers",
+      "Off-season pairs, boxed"
+     ]
     },
     {
      "zone": "Entry Console or Bench",
@@ -617,7 +637,14 @@
      "capacity": {
       "rule": "Three items or fewer standing on the top, and a drawer where each named section still shows its own base between things.",
       "does_not_fit": "If the honest, daily-use set for this household is genuinely more than three items, or a named drawer section is packed flat with no base showing even after duplicates and expired items leave, the bench top or the drawer is smaller than the job asked of it."
-     }
+     },
+     "common_items": [
+      "Dog lead and waste bags",
+      "Sun cream and insect spray",
+      "A torch",
+      "A pen",
+      "Spare car charger"
+     ]
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
@@ -764,7 +791,11 @@
      "capacity": {
       "rule": "Two mats only: a coarse one outside long enough to scrape both feet, an absorbent one inside long enough that both feet land on it mid-stride, not just the first one.",
       "does_not_fit": "If the inside mat is already the longest one that fits the doorway and a normal walking stride still lands past its far edge onto bare floor, the doorway itself is shorter than the stride it needs to catch, and a longer mat cannot fix a length the doorway does not have."
-     }
+     },
+     "common_items": [
+      "An outside scraper mat",
+      "An inside absorbent mat"
+     ]
     }
    ]
   },
@@ -938,7 +969,13 @@
      "capacity": {
       "rule": "One clear run of counter at least as wide as the household's largest cutting board, holding only the board, the knife block or strip, and the salt.",
       "does_not_fit": "If the largest board this household actually uses still overhangs the clear run even after the kettle and toaster are moved back against the wall, the counter run itself is narrower than the job, not cluttered."
-     }
+     },
+     "common_items": [
+      "The cutting board, back in its spot against the backsplash",
+      "The knife block or wall strip, on your dominant side",
+      "Oil and salt, behind the board rather than beside it",
+      "The kettle and the toaster, pushed back against the wall with cords coiled"
+     ]
     },
     {
      "zone": "Cooking Zone",
@@ -1101,7 +1138,13 @@
      "capacity": {
       "rule": "A utensil crock holding six tools or fewer, every one used in the last month, and a landing space beside the hob wide enough to set down a hot pan.",
       "does_not_fit": "If the honest, used-this-month count is still more than six tools, or a genuinely hot-pan-sized landing space will not fit beside the hob without moving something else first, the counter beside the hob is smaller than the cooking this household actually does."
-     }
+     },
+     "common_items": [
+      "The utensil crock, holding six tools or fewer, every one used this month",
+      "Oil, salt, and pepper, within one reach of the burners",
+      "Pot holders, on a hook you can find without looking",
+      "The spices you reach for weekly, at the front of the rack"
+     ]
     },
     {
      "zone": "Sink and Dishwashing Zone",
@@ -1255,7 +1298,13 @@
      "capacity": {
       "rule": "One tray under the sink holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes still visible around it.",
       "does_not_fit": "If those three items, in a tray small enough to leave the pipes visible, still will not fit without wedging against the plumbing, the under-sink cavity is too shallow for even the minimum kit, and the tray belongs somewhere else in the kitchen instead."
-     }
+     },
+     "common_items": [
+      "One brush and one sponge, standing upright where they drain",
+      "Dish soap, dishwasher tablets, and one all-purpose cleaner, on a single tray under the sink",
+      "The drying rack, empty or holding only what is still wet",
+      "A hand towel, on a bar within reach of the basin"
+     ]
     },
     {
      "zone": "Upper Cabinet Zone",
@@ -1404,7 +1453,12 @@
      "capacity": {
       "rule": "Everyday plates and bowls at eye level, stacks no more than about six high, with the top shelf reserved for what gets used less than once a month.",
       "does_not_fit": "If the household's everyday plate count still needs a seventh plate on the stack to fit at eye level, or the once-a-month items on the top shelf are the only thing keeping the eye-level shelves clear, the cabinet holds less than this household's daily set, and a second, low-use shelf elsewhere is the honest fix, not a taller stack."
-     }
+     },
+     "common_items": [
+      "Everyday mugs and plates, at eye level where you can lift one without moving another",
+      "Stacked bowls, no more than six high",
+      "The platter for eight and other once-a-year pieces, on the top shelf"
+     ]
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
@@ -1551,7 +1605,13 @@
      "capacity": {
       "rule": "Pans nested no more than three deep, or stood on edge in a divider, with the two pans cooked with nightly at the front nearest the hob.",
       "does_not_fit": "If the pots and pans actually used this month, with any duplicate or long-unused piece already gone, still will not sit at a three-deep nest or in the divider, the cabinet is smaller than the cookware this kitchen runs on, and a second home for the least-used pieces is the honest fix, not a deeper stack."
-     }
+     },
+     "common_items": [
+      "Pots and pans, nested no more than three deep or stood on edge in a divider",
+      "Lids, in a rack or on a door rail instead of loose",
+      "Baking sheets, standing on end in a divider",
+      "The two pans you cook with nightly, at the front nearest the hob"
+     ]
     },
     {
      "zone": "Utensil and Utility Drawers",
@@ -1697,7 +1757,13 @@
      "capacity": {
       "rule": "One job per drawer, with flatware in a divided insert sized so nothing loose sits beside it.",
       "does_not_fit": "If the household's real flatware count still overflows every section of the insert even after duplicates and mismatched pieces leave, the insert was built for a smaller household than this one, and a larger insert or a second drawer is the honest fix, not forcing the count down to match it."
-     }
+     },
+     "common_items": [
+      "Flatware, in a divided insert with nothing loose beside it",
+      "Spatulas, peelers, and other cooking tools, nearest the hob",
+      "Measuring spoons, beside the baking cupboard",
+      "Foil, cling film, and baking paper, standing on end so the boxes read from above"
+     ]
     },
     {
      "zone": "Refrigerator and Freezer",
@@ -1851,7 +1917,13 @@
      "capacity": {
       "rule": "One eat-first bin sized to hold a week's worth of leftovers and near-date items, sitting where the door opens straight onto it, with the back vents still clear.",
       "does_not_fit": "If a genuine week's worth of leftovers for this household still will not fit the eat-first bin without pressing food against the back vents, the fridge itself is undersized for how often this household shops and cooks, and shopping more often in smaller amounts is the honest fix, not a fuller bin against the vents."
-     }
+     },
+     "common_items": [
+      "Raw meat, sealed on the lowest shelf",
+      "Leftovers, in clear containers with a name and a date on the lid",
+      "The eat-this-week bin, at the front where the door opens onto it",
+      "Condiments, in the door, with everything else inside the body of the fridge"
+     ]
     }
    ]
   },
@@ -2022,7 +2094,12 @@
      "capacity": {
       "rule": "One container per line you actually cook from, sized to a normal shopping week, with the lid closing flat and the level readable from the doorway without lifting anything.",
       "does_not_fit": "If the containers are full at the end of an ordinary week and nothing in them has gone stale, this shelf is genuinely short of room rather than badly packed. Move the once-a-month flours and lentils up or out to the backstock zone before you buy another container."
-     }
+     },
+     "common_items": [
+      "Rice, pasta and oats",
+      "Breakfast cereal",
+      "Specialty flours and lentils"
+     ]
     },
     {
      "zone": "Canned and Jarred Goods",
@@ -2172,7 +2249,12 @@
      "capacity": {
       "rule": "One row per meal group, one can deep at the front with the oldest date facing you, and no row longer than you can reach without moving the row beside it.",
       "does_not_fit": "If every row is full, nothing is duplicated and nothing is past its date, the shelf is honestly full. The next tin belongs in the backstock zone with its month written on it, not wedged in front of a row you can no longer read."
-     }
+     },
+     "common_items": [
+      "Tomatoes, beans and soup",
+      "Coconut milk and stock",
+      "Tuna"
+     ]
     },
     {
      "zone": "Baking Zone",
@@ -2317,13 +2399,18 @@
       },
       {
        "condition": "Children bake with you",
-       "guidance": "Cutters, cases and sprinkles go at their height; flour, leaveners and anything that needs measuring stay at yours. The part that gets handled most often should be the part that needs no judgement."
+       "guidance": "Cutters, cases and sprinkles go at their height; flour, leaveners and anything that needs measuring stay at yours. The part that gets handled most often should be the part that needs no judgment."
       }
      ],
      "capacity": {
       "rule": "One lift-out bin for the start of a bake and one for the end of it, each light enough to carry to the counter one-handed, plus the leaveners together in one small box with their dates showing.",
       "does_not_fit": "If the start-of-bake bin is too heavy to lift with one hand, it is holding things you do not use at the start of a bake. Move those into the second bin rather than buying a bigger first one."
-     }
+     },
+     "common_items": [
+      "Flour, sugar and brown sugar",
+      "Baking powder, baking soda and yeast",
+      "Cutters, cases and piping tips"
+     ]
     },
     {
      "zone": "Snack and Lunch Zone",
@@ -2474,7 +2561,12 @@
      "capacity": {
       "rule": "One open bin at child height holding only snacks you have already said yes to, and a number of reusable containers that matches the lunches you genuinely pack in a week, each sitting with its own lid.",
       "does_not_fit": "If the containers will not sit with their lids on, the count is wrong before the shelf is. Count the lunches you actually packed last week and keep that many."
-     }
+     },
+     "common_items": [
+      "Pre-approved snacks",
+      "Lunch containers and lids",
+      "Lunch bags and ice packs"
+     ]
     },
     {
      "zone": "Backstock and Bulk Zone",
@@ -2620,7 +2712,12 @@
      "capacity": {
       "rule": "A maximum number written on the shelf edge for each line, everything at or below waist height, one row deep, and the month written on each item as it arrives.",
       "does_not_fit": "If a line is at its maximum and you are still buying, either the maximum is wrong or the buying is. Change the number on the shelf edge deliberately rather than starting a second row in front of the first."
-     }
+     },
+     "common_items": [
+      "Sacks of rice",
+      "Cases of canned goods",
+      "Kitchen roll and paper napkins"
+     ]
     }
    ]
   },
@@ -2792,7 +2889,12 @@
      "capacity": {
       "rule": "One centerpiece and bare wood everywhere else, seats for the people who actually eat here, and every chair able to push all the way in with nothing hanging off the back of it.",
       "does_not_fit": "If the table cannot seat the household without something being moved first, it is storing something that has no home anywhere else. Find that home before you look for a bigger table."
-     }
+     },
+     "common_items": [
+      "A centerpiece",
+      "Placemats and trivets",
+      "A napkin basket"
+     ]
     },
     {
      "zone": "Buffet or Sideboard Surface",
@@ -2942,7 +3044,13 @@
      "capacity": {
       "rule": "A taped run of bare wood at the table end, long enough for your largest roasting pan, and three display objects grouped at the lamp end. Nothing in between.",
       "does_not_fit": "If the pan run and three objects will not both fit, the surface is shorter than the job it is being asked to do. Move the display to the wall above rather than shortening the run, because the run is the part that gets used."
-     }
+     },
+     "common_items": [
+      "Serving dishes, during a meal",
+      "A small display: candlesticks and framed photos",
+      "A table lamp",
+      "Serving spoons and the trivet stack"
+     ]
     },
     {
      "zone": "Buffet or Sideboard Storage",
@@ -3095,7 +3203,14 @@
      "capacity": {
       "rule": "One drawer for linens and one for serving pieces, large platters standing on edge behind a divider, and a count card taped inside the door saying how many of each there should be.",
       "does_not_fit": "If a drawer will not close with only what belongs in it, you own more serving pieces than this room holds. Decide the number on the count card first, then let the drawer tell you whether that number was honest."
-     }
+     },
+     "common_items": [
+      "Tablecloths and their matching napkins",
+      "Serving bowls, nested by size",
+      "Large platters, stood on edge",
+      "Taper candles of one length",
+      "A count card"
+     ]
     },
     {
      "zone": "China or Display Cabinet",
@@ -3247,7 +3362,13 @@
      "capacity": {
       "rule": "Plates no more than eight high with felt between them, cups single file rather than nested, glasses rim up on a clean liner, heavy tureens on the bottom shelf, and the cabinet strapped to a stud.",
       "does_not_fit": "If the shelves only hold the set by nesting cups or stacking plates past eight, the cabinet is smaller than the collection. Thin the set or move the overflow out, because a stack that chips is not storage."
-     }
+     },
+     "common_items": [
+      "Plates, stacked no more than eight high",
+      "Cups, standing single file",
+      "Glasses, rim up",
+      "Tureens and heavy serving pieces"
+     ]
     },
     {
      "zone": "Beverage or Coffee Station",
@@ -3405,7 +3526,14 @@
      "capacity": {
       "rule": "One liftable tray holding machine, grounds, mugs, spoons and sugar in that order, mugs capped at the number of daily drinkers plus two, and a hand's width of clear air behind the kettle.",
       "does_not_fit": "If the tray will not lift with everything on it, the station has grown past being a station. Take the least-used thing off rather than widening it, because the point of the tray is that the surface underneath can be cleaned in one movement."
-     }
+     },
+     "common_items": [
+      "The machine",
+      "Grounds or pods",
+      "Mugs",
+      "Spoons and sugar",
+      "Tea boxes, syrup bottles, and travel mugs"
+     ]
     }
    ]
   },
@@ -3582,7 +3710,13 @@
      "capacity": {
       "rule": "Every seat sittable without lifting anything off it: at most one cushion per seat, throws folded to one size in one basket, and both remotes in one tray on the arm people actually reach from.",
       "does_not_fit": "If the throws will not fold into one basket, you own more throws than the room has seats. Count the people who sit here on an ordinary evening and keep that many."
-     }
+     },
+     "common_items": [
+      "Throws, folded to one size in one basket",
+      "At most one cushion per seat",
+      "Both remotes, in the tray on the arm",
+      "One or two pillows that can stay in place when someone sits"
+     ]
     },
     {
      "zone": "Coffee Table",
@@ -3727,7 +3861,13 @@
      "capacity": {
       "rule": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it, with most of the top showing.",
       "does_not_fit": "If the tray is full before the evening starts, the table is being used as a desk or a shelf. What does not belong needs a home elsewhere in the room, not a bigger tray."
-     }
+     },
+     "common_items": [
+      "Four coasters",
+      "The remote in use",
+      "One book, mid-read",
+      "One plant"
+     ]
     },
     {
      "zone": "Media Center",
@@ -3885,7 +4025,13 @@
      "capacity": {
       "rule": "One labeled power strip, every cable labeled at both ends and bundled by device path, a hand's gap of air at every vent, and one ventilated bin holding every controller and remote in the house.",
       "does_not_fit": "If one strip will not carry the devices, the answer is a second strip on a second circuit, not a strip plugged into a strip. Daisy-chaining is the arrangement that starts a fire."
-     }
+     },
+     "common_items": [
+      "The television, sound system and consoles",
+      "One labeled power strip",
+      "Cables, labeled at both ends and bundled by device",
+      "Every controller and remote, in one bin"
+     ]
     },
     {
      "zone": "Bookshelves and Display",
@@ -4034,7 +4180,12 @@
      "capacity": {
       "rule": "A hand's width of empty space at one end of every shelf, books upright between bookends with nothing stacked flat on top of them, objects gathered into two or three groups rather than spread evenly, and a strap running into the wall.",
       "does_not_fit": "If the hand's width will not survive one more book, the shelf is full, and full is the signal rather than the problem. Something leaves before something arrives, or the collection needs a second home."
-     }
+     },
+     "common_items": [
+      "Books you will genuinely open again, upright between bookends",
+      "Frames and objects, gathered into two or three groups",
+      "A strap anchoring the unit to the wall"
+     ]
     },
     {
      "zone": "Side Tables and Lighting",
@@ -4190,7 +4341,13 @@
      "capacity": {
       "rule": "One small tray per table holding no more than four items, a coaster under the glass, a working bulb that has been wiped, and the lamp cord clipped down the leg so no cable crosses the floor.",
       "does_not_fit": "If four items will not cover what the person in that chair needs, the chair is doing a second job. Give that job its own container rather than letting the side table turn into a nightstand."
-     }
+     },
+     "common_items": [
+      "A lamp with a clean, working bulb",
+      "A coaster under the glass",
+      "Up to four personal items on the tray",
+      "The lamp cord, clipped down the table leg"
+     ]
     },
     {
      "zone": "Floor and Circulation Path",
@@ -4347,7 +4504,12 @@
      "capacity": {
       "rule": "A continuous route from the doorway to the other exit, wide enough for two people to pass and for the vacuum to run without being lifted, with nothing on the floor but furniture legs, the rug and its grippy pad.",
       "does_not_fit": "If the route cannot be kept clear, the room holds more furniture or more floor baskets than its floor allows. Remove one piece rather than narrowing the route, because the route is what makes the room usable in the dark."
-     }
+     },
+     "common_items": [
+      "The rug, lying flat on a grippy pad",
+      "Furniture legs",
+      "Floor baskets, pushed back against the wall"
+     ]
     }
    ]
   },
@@ -4529,7 +4691,14 @@
      "capacity": {
       "rule": "One console per shelf with its own controllers docked beside it, disc cases standing spine out in a single row, the power strip off the carpet, and no vent slot covered.",
       "does_not_fit": "If a second console has to share a shelf, the unit is a shelf short rather than the console being the problem. Stacking consoles is how vents get blocked, and a blocked vent is the one failure here that costs you a machine."
-     }
+     },
+     "common_items": [
+      "One console per shelf",
+      "Controllers, docked beside their console",
+      "Disc cases, standing spine out",
+      "Cables, labeled at both ends",
+      "The power strip, off the carpet"
+     ]
     },
     {
      "zone": "Toy and Play Zone",
@@ -4687,7 +4856,12 @@
      "capacity": {
       "rule": "Five or six open bins with no lids on the lowest shelf, one category each, and enough clear floor for two children to build without moving anything first.",
       "does_not_fit": "If the toys will not fit in six bins, they are not all in rotation. Box the rest, date the box and swap, rather than adding a seventh bin, because a seventh category is one a child will not learn."
-     }
+     },
+     "common_items": [
+      "Five or six open bins, one category each",
+      "Picture labels on the front face",
+      "The play mat, rolled against the wall"
+     ]
     },
     {
      "zone": "Board Game and Puzzle Zone",
@@ -4839,7 +5013,12 @@
      "capacity": {
       "rule": "Boxes flat in stacks no more than five high, heaviest at the bottom, each taped and named on the short edge, and every box on the shelf one that passed its piece count.",
       "does_not_fit": "If the stacks run past five, the shelf is holding games nobody plays rather than being too small. A box that fails its count twice is a decision, not storage."
-     }
+     },
+     "common_items": [
+      "Boxes, lying flat in stacks no more than five high",
+      "A name strip on each box's short edge",
+      "Loose pieces, bagged inside their own box"
+     ]
     },
     {
      "zone": "Blanket and Comfort Zone",
@@ -4988,7 +5167,12 @@
      "capacity": {
       "rule": "One basket, and its rim is the limit: four throws folded to the same rectangle, two floor cushions beside it, and nothing draped over the sofa back or the radiator.",
       "does_not_fit": "If the fifth throw will not fit, you own a fifth throw rather than too small a basket. The rim exists so that answer is visible without anyone having to count."
-     }
+     },
+     "common_items": [
+      "One basket",
+      "Throws, folded to the same rectangle",
+      "Floor cushions"
+     ]
     },
     {
      "zone": "Charging and Device Zone",
@@ -5146,7 +5330,12 @@
      "capacity": {
       "rule": "One power strip on a hard surface, four or five labeled cables each ending at a named slot, and the empty slots visible during the day.",
       "does_not_fit": "If five slots will not cover the household, add a second named strip rather than a second unnamed charger somewhere else in the room. The point of this zone is that there is exactly one place to look for a flat phone."
-     }
+     },
+     "common_items": [
+      "One power strip, on a hard surface",
+      "Labeled cables, each ending at a named slot",
+      "A labeled bag of spare connectors"
+     ]
     },
     {
      "zone": "Craft and Activity Zone",
@@ -5304,7 +5493,12 @@
      "capacity": {
       "rule": "Four lidded labeled bins grouped by activity, scissors standing point down out of the youngest child's reach, one clear work surface, and exactly one project bin out on it at a time.",
       "does_not_fit": "If four bins will not hold the supplies, you are storing materials for projects nobody is doing. Keep the activities that actually happened this season, because a fifth bin is almost always an abandoned one."
-     }
+     },
+     "common_items": [
+      "Four lidded, labeled bins",
+      "Scissors, standing point down in a cup",
+      "One project bin, out on the clear surface"
+     ]
     }
    ]
   },
@@ -5481,6 +5675,12 @@
        "condition": "A platform bed, a divan with built-in drawers, or a frame too low for bins",
        "guidance": "There is no under-bed strip to police, so that rule stops applying and the floor rule matters more: whatever used to go under the bed now has to live somewhere else entirely, not stacked against the wall in the walking strip. Built-in drawers count as storage with a fill line, one category each, the same as a chest."
       }
+     ],
+     "common_items": [
+      "Fitted sheet, flat sheet or duvet",
+      "Two sleeping pillows per person",
+      "One throw, folded at the foot",
+      "Two complete sheet sets, one on the bed and one on the shelf"
      ]
     },
     {
@@ -5628,6 +5828,12 @@
        "condition": "No nightstand at all, only a shelf, a stool or a windowsill",
        "guidance": "The five-thing rule still holds and the drawer rule simply stops applying: with no drawer there is no hidden layer, so anything that would have gone in one needs a home elsewhere in the room rather than stacking on the surface. A shallow wall shelf plus a single small basket does the same job as a drawer."
       }
+     ],
+     "common_items": [
+      "A lamp",
+      "A lidded bottle or a coaster",
+      "One book",
+      "A small dish for glasses"
      ]
     },
     {
@@ -5781,6 +5987,12 @@
        "condition": "One sleeper works nights or shifts",
        "guidance": "Whoever is asleep while the other is up sets the rules for the walking strip and the light on that side, because they cannot see a hazard being created while they sleep. Cords off the floor and one low light on this side are not tidiness here, they are the only way one room works for two schedules at once."
       }
+     ],
+     "common_items": [
+      "A lamp, its cord run behind the leg",
+      "A lidded bottle or a coaster",
+      "One book",
+      "Medication, in date, capped and closed away"
      ]
     },
     {
@@ -5930,6 +6142,11 @@
        "condition": "The dresser is low, built in, or already anchored to the wall",
        "guidance": "The tipping risk is genuinely absent, so the anti-tip strap stops being the first job and the front-edge rule matters more instead. A low dresser puts its top at a small child's eye and hand height, which turns fragrance, jewelry and anything with a small removable part into a reaching problem rather than a falling one."
       }
+     ],
+     "common_items": [
+      "A valet tray holding keys, wallet, watch and rings",
+      "Fragrance bottles, grouped on a small dish",
+      "An anti-tip strap anchoring the dresser to the wall"
      ]
     },
     {
@@ -6075,6 +6292,12 @@
        "condition": "A child, or anyone seated, uses these drawers",
        "guidance": "The reachable drawers are the middle ones rather than the top, so the categories used most often move down to where the hand arrives without stretching or climbing. That also settles the safety question, because the reason a child climbs a drawer at all is that what they need is above them."
       }
+     ],
+     "common_items": [
+      "Underwear and socks, one drawer",
+      "Sleepwear, one drawer",
+      "T-shirts, one drawer",
+      "Workout clothes, one drawer"
      ]
     },
     {
@@ -6227,6 +6450,12 @@
        "condition": "A reach-in with no fitted rod, or a freestanding rail",
        "guidance": "A freestanding rail hits a weight limit long before it hits a space limit, so the two-fingers rule becomes a safety line rather than a visibility one. Keep the heaviest coats over the legs rather than the center span, and if the rail bows at all it is already past its load however much space is left."
       }
+     ],
+     "common_items": [
+      "Hanging clothes, one hanger style throughout",
+      "Shoes, in pairs on a rack",
+      "Bags, standing upright on the shelf",
+      "Belts, on one hook"
      ]
     }
    ]
@@ -6401,7 +6630,13 @@
      "capacity": {
       "rule": "One complete set made up on the bed, one complete spare folded inside its own pillowcase on the shelf in this room, two pillows that spring back, and nothing under the bed but one empty suitcase lying flat.",
       "does_not_fit": "If the spare set will not fit on the shelf in this room, it is living somewhere a guest cannot reach it at midnight, which is the entire reason it belongs here rather than in the airing cupboard."
-     }
+     },
+     "common_items": [
+      "Mattress protector",
+      "Two complete bedding sets, one made up and one spare, folded in its own pillowcase",
+      "Two pillows",
+      "A flat, empty suitcase"
+     ]
     },
     {
      "zone": "Guest Nightstand",
@@ -6546,7 +6781,14 @@
      "capacity": {
       "rule": "A lamp you can find by feel in the dark, one charging cable per common connector reaching the pillow, a coaster, a tissue box at least half full, and a drawer genuinely empty apart from the wifi card.",
       "does_not_fit": "If the drawer is not empty, this nightstand is yours rather than theirs. The empty drawer is the one part of the zone a guest will actually use, and it is the first thing to get quietly reclaimed."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "Two phone chargers, one per common connector",
+      "A box of tissues",
+      "A coaster",
+      "A wifi password card"
+     ]
     },
     {
      "zone": "Guest Dresser",
@@ -6692,7 +6934,13 @@
      "capacity": {
       "rule": "The top two drawers completely empty and lined, lower drawers holding spare linens folded to one footprint and labeled on the inside front edge, an anti-tip strap into the wall, and a lamp or mirror alone on top.",
       "does_not_fit": "If the top two drawers cannot be emptied, this is household storage with a guest standing in front of it. Move the overflow to the closet shelf, because two empty drawers are the thing that stops a visitor living out of a suitcase."
-     }
+     },
+     "common_items": [
+      "Two empty drawers, labeled reserved",
+      "Spare linens for this bed, folded to one footprint",
+      "A lamp or mirror on top",
+      "An anti-tip strap"
+     ]
     },
     {
      "zone": "Guest Closet",
@@ -6837,7 +7085,13 @@
      "capacity": {
       "rule": "A forearm's width of clear rod carrying six matching empty hangers, a clear floor square big enough for an open suitcase, household bins in labeled lidded boxes on the shelf, and nothing loose above head height.",
       "does_not_fit": "If six hangers will not fit, household storage has taken the room's hospitality. Tape the rod to mark the guest's share and keep the household behind the line, because an unmarked boundary only ever moves one way."
-     }
+     },
+     "common_items": [
+      "Six matching empty hangers",
+      "A clear floor square for an open suitcase",
+      "Labeled, lidded household bins",
+      "A tape marker for the guest section"
+     ]
     },
     {
      "zone": "Guest Welcome and Work Surface",
@@ -6988,7 +7242,12 @@
      "capacity": {
       "rule": "A clear desk with a working lamp and a chair pulled up to it, a luggage rack or taped floor square for the suitcase, one labeled welcome bin, and a reachable outlet with no cord crossing the floor.",
       "does_not_fit": "If the desk cannot be cleared, this room has a second job and the guest is the one paying for it. Move the household work onto a tray that lifts off before a visitor arrives."
-     }
+     },
+     "common_items": [
+      "A desk and lamp",
+      "A luggage rack or taped floor square",
+      "A welcome bin: spare charger, wifi card, water glass, tissues, a folded blanket"
+     ]
     }
    ]
   },
@@ -7162,7 +7421,13 @@
      "capacity": {
       "rule": "One duvet in a washable cover and one pillow, three or four stuffed animals on the bed with the rest in an open basket at the foot, and a clear walkable path from the pillow to the door.",
       "does_not_fit": "If the basket at the foot will not hold the rest, the animals have become storage rather than company. Rotate through a dated box in the closet instead, because a bed a child cannot make alone is a bed they will not make."
-     }
+     },
+     "common_items": [
+      "Duvet and one pillow",
+      "A handful of stuffed animals",
+      "A basket for the rest of the animals",
+      "A nightlight"
+     ]
     },
     {
      "zone": "Toy Storage Zone",
@@ -7315,7 +7580,13 @@
      "capacity": {
       "rule": "Six open bins, none higher than the child's shoulder, one category each with a photo on the front face, enough clear carpet to lie down on, and one dated rotation box out of reach on top of the wardrobe.",
       "does_not_fit": "If the toys will not fit six shoulder-height bins, the surplus belongs in the rotation box rather than in a seventh bin. A child who cannot name the category will not put the toy back into it."
-     }
+     },
+     "common_items": [
+      "Blocks",
+      "Vehicles",
+      "Small figures",
+      "A dated rotation box"
+     ]
     },
     {
      "zone": "Study Desk",
@@ -7474,7 +7745,13 @@
      "capacity": {
       "rule": "A bare surface except a lamp, a pen cup and one tray holding live work, books on the shelf above, the charger clipped at the desk edge, and the chair empty.",
       "does_not_fit": "If the live work will not fit one tray, it is not all live. Finished work goes to a folder or the recycling, because a desk storing last term is a desk homework does not get started on."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "A pen cup",
+      "A tray for live work",
+      "Books on the shelf"
+     ]
     },
     {
      "zone": "Clothing Closet",
@@ -7629,7 +7906,13 @@
      "capacity": {
       "rule": "A rod the child reaches without a stool, every hanger the same type facing the same way, a hand's width between groups, and shoes in pairs on the floor.",
       "does_not_fit": "If the groups cannot keep their hand's width, the closet is holding clothes that no longer fit or no longer get worn. Check the sizes before blaming the rail: children's closets fill with the past faster than any other storage in the house."
-     }
+     },
+     "common_items": [
+      "Shirts, dresses, and jackets on hangers",
+      "Shoes in pairs",
+      "A backpack on a low hook",
+      "A labeled next-size box"
+     ]
     },
     {
      "zone": "Dresser Drawers",
@@ -7778,7 +8061,13 @@
      "capacity": {
       "rule": "Five drawers, one category each with a picture label on the front, socks and underwear standing upright in rows, every drawer closing with one push, and the dresser strapped to the wall.",
       "does_not_fit": "If a drawer has to be pressed down to close, that category has outgrown it. Thin the category rather than cramming it, because a drawer a child cannot close is a drawer they stop using."
-     }
+     },
+     "common_items": [
+      "Socks and underwear, standing upright",
+      "Folded shirts",
+      "Folded pants",
+      "A picture label on each drawer"
+     ]
     },
     {
      "zone": "School and Activity Launch Zone",
@@ -7929,7 +8218,13 @@
      "capacity": {
       "rule": "One hook at child height holding the packed backpack, shoes directly underneath it, a second hook for the sports bag, the instrument case upright against the wall, and clear floor.",
       "does_not_fit": "If the wall will not take the hooks the morning needs, the launch zone is in the wrong square meter. Move it to where the child actually leaves from rather than where the wall happens to be convenient."
-     }
+     },
+     "common_items": [
+      "A backpack on its hook",
+      "Shoes underneath",
+      "Signed forms in the front pocket",
+      "A sports bag or instrument case"
+     ]
     }
    ]
   },
@@ -8108,7 +8403,12 @@
      "capacity": {
       "rule": "A bare mattress with one fitted sheet pulled tight to the corners, and nothing else in the crib at all. The sleep sack folded on the dresser, the monitor cable clipped high and at least an arm's length back from the rails.",
       "does_not_fit": "This is the one zone in the house with no honest version that does not fit, because the limit is zero rather than a number. If something is in the crib it comes out. The empty crib is the standard itself, not a target to work toward."
-     }
+     },
+     "common_items": [
+      "A fitted sheet",
+      "A sleep sack",
+      "A wall-mounted monitor"
+     ]
     },
     {
      "zone": "Changing Station",
@@ -8261,7 +8561,13 @@
      "capacity": {
       "rule": "Diapers, wipes and cream all reachable without moving your feet or lifting a hand off your baby, a lined pail within one step, two spare outfits in the drawer directly beneath, and nothing stacked on the pad.",
       "does_not_fit": "If something you need sits outside your arc, it belongs in the backstock zone rather than crammed onto the station. The arc is a safety rule rather than a tidiness one: whatever makes you step away is the thing that lets a baby roll."
-     }
+     },
+     "common_items": [
+      "Diapers, wipes, and cream",
+      "A lined pail",
+      "Two spare outfits",
+      "A burp cloth"
+     ]
     },
     {
      "zone": "Baby Clothing Zone",
@@ -8414,7 +8720,12 @@
      "capacity": {
       "rule": "One size per drawer with the size written on the drawer front, sleepers and bodysuits filed upright, a next-size bin on the closet shelf, and an outgoing bag on the door hook with something already in it.",
       "does_not_fit": "If a drawer holds two sizes, the outgoing bag has stopped moving. The bag with something already in it is the whole mechanism: a nursery fills faster than any other room precisely because nothing ever leaves on its own."
-     }
+     },
+     "common_items": [
+      "Sleepers and bodysuits, filed upright",
+      "A next-size bin",
+      "An outgoing bag"
+     ]
     },
     {
      "zone": "Feeding Station",
@@ -8569,7 +8880,14 @@
      "capacity": {
       "rule": "One bin of clean bottles assembled with teats and collars on, a second bin in an obviously different color for used parts, a drying rack standing empty, the scoop inside the tin with the lid shut, and burp cloths you can grab without looking.",
       "does_not_fit": "If the clean bin is empty at 2 a.m., the problem is the washing rhythm rather than the size of the bin. Decide when the used bin gets emptied and attach it to something that already happens, because this is the one zone where running out has a crying baby attached to it."
-     }
+     },
+     "common_items": [
+      "Clean, assembled bottles",
+      "A bin for used parts",
+      "A drying rack",
+      "The formula scoop, inside the tin",
+      "Burp cloths"
+     ]
     },
     {
      "zone": "Diaper and Care Backstock",
@@ -8718,7 +9036,12 @@
      "capacity": {
       "rule": "One unopened pack of the current size and no more than two of the next, each size written large on the short end, a wipes carton with its count visible, creams and thermometer in one lidded box, and nothing at all stored above the changing surface.",
       "does_not_fit": "If you are holding more than two packs of the next size, you are storing a guess. Babies change size on their own schedule, and a stockpile of a size they skip is money sitting on a shelf."
-     }
+     },
+     "common_items": [
+      "Diaper packs, current and next size",
+      "A wipes carton",
+      "Creams and a thermometer, in a lidded box"
+     ]
     },
     {
      "zone": "Books and Quiet Play Zone",
@@ -8872,7 +9195,12 @@
      "capacity": {
       "rule": "Twelve board books standing cover out on a low ledge, one basket of soft toys filled level with the rim and no higher, the rest boxed in the closet as rotation stock, and a clear stretch of floor an adult can lie down on.",
       "does_not_fit": "If the basket is over its rim, the surplus is rotation stock rather than evidence you need a bigger basket. A baby chooses from what is visible, and a heaped basket shows nothing."
-     }
+     },
+     "common_items": [
+      "Board books, covers out",
+      "A basket of soft toys",
+      "A rotation box in the closet"
+     ]
     }
    ]
   },
@@ -9051,7 +9379,13 @@
        "action": "Take everything off the counter, wipe the bare stone and the mirror, then put back only the soap, the toothbrush holder and the four products you touched today.",
        "victory": "Bare stone on both sides of the basin, and one tray you can lift with one hand."
       }
-     }
+     },
+     "common_items": [
+      "Soap",
+      "Toothbrush holder",
+      "Up to four daily products",
+      "A liftable tray"
+     ]
     },
     {
      "zone": "Vanity Drawers",
@@ -9202,7 +9536,12 @@
        "action": "Empty the top drawer onto a towel, bin anything past its open-jar window, cap the blades into one lidded box, and put back only what you reach for daily, each in its own compartment.",
        "victory": "The top drawer can be read in a single look without moving anything."
       }
-     }
+     },
+     "common_items": [
+      "Grooming tools by routine",
+      "Products within their open-jar window",
+      "Razor blades, capped or boxed"
+     ]
     },
     {
      "zone": "Under-Sink Cabinet",
@@ -9357,7 +9696,13 @@
        "action": "Pull everything out, wipe the cabinet floor dry, put a pale tray down bare, and return only two bins that clear the P-trap with one open bottle per job.",
        "victory": "Both shut-off valves are in plain sight when the doors swing open, and nothing is stacked on the tray."
       }
-     }
+     },
+     "common_items": [
+      "Cleaning supplies",
+      "One open bottle per job",
+      "Backstock, capped at two",
+      "A pale tray on the cabinet floor"
+     ]
     },
     {
      "zone": "Medicine Cabinet or Wall Storage",
@@ -9508,7 +9853,13 @@
        "action": "Take everything out, bin anything past its date, and sort what is left into three labeled bins: pain relief, stomach and cold, first aid.",
        "victory": "Three labeled bins of in-date items, and a first aid bin you can carry one-handed."
       }
-     }
+     },
+     "common_items": [
+      "Pain relief",
+      "Stomach and cold remedies",
+      "First aid supplies",
+      "Prescriptions, grouped by name"
+     ]
     },
     {
      "zone": "Shower or Tub",
@@ -9663,7 +10014,12 @@
        "action": "Take every bottle out, bin the empties, keep one shampoo, one conditioner, one wash and one bar per person in the caddy, then squeegee the walls and the tray dry.",
        "victory": "Nothing stands on the shower floor, and the squeegee is back on its hook inside the enclosure."
       }
-     }
+     },
+     "common_items": [
+      "One shampoo, conditioner, wash and bar per person",
+      "A squeegee on its hook",
+      "Grip strips or a mat"
+     ]
     },
     {
      "zone": "Toilet Area",
@@ -9821,7 +10177,12 @@
        "action": "Clear the cistern lid completely, empty and dry the brush holder, put a liner and a lid on the bin, and set two reserve rolls within reach from the seat.",
        "victory": "A completely bare cistern lid, and two reserve rolls reachable without standing up."
       }
-     }
+     },
+     "common_items": [
+      "Two reserve rolls within reach",
+      "The brush, emptied and dried, in its holder",
+      "A lined bin with a lid"
+     ]
     },
     {
      "zone": "Linen and Towel Storage",
@@ -9976,7 +10337,13 @@
        "action": "Take the shelf down to three bath towels per person, nest each guest set in its own pillowcase, and put hand towels and washcloths into separate labeled columns.",
        "victory": "Three bath towels per person on the shelf, and every guest set in its own pillowcase."
       }
-     }
+     },
+     "common_items": [
+      "Three bath towels per person",
+      "Guest towel sets, nested in pillowcases",
+      "Hand towels and washcloths, in labeled columns",
+      "A spare bath mat"
+     ]
     }
    ]
   },
@@ -10150,7 +10517,12 @@
      "capacity": {
       "rule": "A soap pump above half full, one folded hand towel visible from the doorway, tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. Nothing belonging to your household on it.",
       "does_not_fit": "If your family's toothbrushes are on this counter, this is a family bathroom that guests also use, which is a different zone with different rules. Decide which one it is rather than resetting it before every visit."
-     }
+     },
+     "common_items": [
+      "Soap",
+      "A hand towel",
+      "Tissues"
+     ]
     },
     {
      "zone": "Guest Vanity Storage",
@@ -10299,7 +10671,12 @@
      "capacity": {
       "rule": "Two lift-out bins and nothing loose: one labeled for guest supplies, one for cleaning, both light enough to lift with one hand, with the toilet paper stacked beside them.",
       "does_not_fit": "If the cabinet needs a third bin, something in it belongs to the household rather than to this room. Cleaning and guest supplies are the only two jobs this cabinet has."
-     }
+     },
+     "common_items": [
+      "A guest-supplies bin: toothbrush, soap, travel toiletries",
+      "A cleaning bin: bowl cleaner, glass spray, cloths",
+      "Backstock toilet paper, stacked in view"
+     ]
     },
     {
      "zone": "Shower or Tub",
@@ -10459,7 +10836,12 @@
      "capacity": {
       "rule": "Three bottles in a hanging caddy, all recognizable and more than a third full, a liner or screen with no pink film along the bottom edge, and the bath mat folded over the rim rather than lying on the floor.",
       "does_not_fit": "If three bottles will not cover it, you are storing the household's shower inside the guest's. Take out the half-empty duplicates: a guest needs shampoo, conditioner and soap, not a shelf of choices."
-     }
+     },
+     "common_items": [
+      "Shampoo, conditioner and body wash, one of each",
+      "A bath mat",
+      "A non-slip surface for the tub floor"
+     ]
     },
     {
      "zone": "Toilet Area",
@@ -10613,7 +10995,12 @@
      "capacity": {
       "rule": "One spare roll a seated person can reach without standing up, a dry brush in a holder with nothing pooled in the bottom, and a small trash can with a liner actually in it.",
       "does_not_fit": "If the spare roll cannot be reached from the seat it is decoration rather than a reserve. That is the entire job of this zone, and it is the one thing a guest will never ask you about."
-     }
+     },
+     "common_items": [
+      "A spare roll, within seated reach",
+      "A toilet brush and holder",
+      "A lined trash can"
+     ]
     },
     {
      "zone": "Guest Linen Zone",
@@ -10762,7 +11149,11 @@
      "capacity": {
       "rule": "One bundle per expected guest, each holding a bath towel, a hand towel and a washcloth folded together, a clean bath mat folded flat beneath the bundles, and a hand's width of air above the stack.",
       "does_not_fit": "If there is no air above the stack, you are storing towels rather than hosting with them. Thin gray towels are not spares, they are rags that have not been told yet."
-     }
+     },
+     "common_items": [
+      "Towel bundles: a bath towel, hand towel and washcloth per guest",
+      "A folded spare bath mat"
+     ]
     }
    ]
   },
@@ -10944,7 +11335,12 @@
        "action": "Empty both drums, take everything off both lids, clear the lint screen and put it back, prop the washer door ajar, and write this month on a strip of tape on the side of the dryer.",
        "victory": "Both drums empty, both lids bare, the door propped open, and a date on the dryer you can read from the doorway."
       }
-     }
+     },
+     "common_items": [
+      "A vent brush and a pack of machine cleaner tablets, on the shelf above",
+      "The lint screen, clean and back in its slot",
+      "A strip of masking tape on the dryer, dated"
+     ]
     },
     {
      "zone": "Detergent and Treatment Zone",
@@ -11094,7 +11490,13 @@
        "action": "Bring every laundry product onto one wipeable tray. Keep one working bottle of each kind, ink the true dose line on each cap, and latch the pod tub above shoulder height.",
        "victory": "One of each kind standing on a wipeable tray, a dose line you can see on every cap, and nothing a child can reach."
       }
-     }
+     },
+     "common_items": [
+      "One detergent, one bleach, one tub of oxygen powder, one stain treatment",
+      "A wipeable tray, under all four",
+      "The pod tub, latched and above shoulder height",
+      "The true dose line, inked on each cap"
+     ]
     },
     {
      "zone": "Sorting and Hamper Zone",
@@ -11238,7 +11640,12 @@
        "action": "Cut the sorting streams to the three this household will actually honor, label those three bags, stand them clear of the walking line, and put an empty dish on the shelf for pockets.",
        "victory": "Three labeled bags, none above half full, bare floor in front of the washer door, and a dish holding only today's pocket contents."
       }
-     }
+     },
+     "common_items": [
+      "Three bags, labeled by load: hot towels, cold darks, gentle",
+      "A small dish on the shelf, for pocket finds",
+      "A mesh bag inside the drum, for the gentle load"
+     ]
     },
     {
      "zone": "Folding Surface",
@@ -11391,7 +11798,12 @@
        "action": "Clear the counter completely, put one empty basket per bedroom underneath it, hang six spare hangers on the rail at the end, and take every piece of clean clothing in this room to the bedroom it belongs in.",
        "victory": "A counter bare enough to roll pastry on, an empty basket per bedroom beneath it, and no clean clothing left in the room."
       }
-     }
+     },
+     "common_items": [
+      "One basket per bedroom, stacked underneath",
+      "Six spare hangers, on the end rail",
+      "A shoebox for unmatched socks"
+     ]
     },
     {
      "zone": "Hanging and Air-Dry Zone",
@@ -11535,7 +11947,12 @@
        "action": "Take everything off the rack that was washed before today, put the dry things away, wipe out the drip tray, fold the rack flat against the wall, and put six spare hangers on the rail.",
        "victory": "The rack folded flat with dry bars, an empty tray beneath it, and nothing hanging that was not washed today."
       }
-     }
+     },
+     "common_items": [
+      "The drying rack, folded flat against the wall when not in use",
+      "A drip tray, underneath",
+      "Six spare hangers, on the rail"
+     ]
     },
     {
      "zone": "Utility and Cleaning Zone",
@@ -11688,7 +12105,13 @@
        "action": "Hang the broom, mop and dustpan heads up and mark an outline behind each one, gather every vacuum attachment into one labeled caddy, and empty the bucket and stand it inside a taped square on the floor.",
        "victory": "Three handles off the floor with outlines showing behind them, every attachment in one caddy, and an empty bucket standing in its square."
       }
-     }
+     },
+     "common_items": [
+      "Broom, mop and dustpan, hung heads up on painted outlines",
+      "One labeled caddy, holding every vacuum attachment",
+      "The bucket, inside its own taped floor square",
+      "One rag bin"
+     ]
     }
    ]
   },
@@ -11865,7 +12288,13 @@
        "action": "Take everything off the desk except the monitor, keyboard and mouse. Put the loose paper into the inbox tray, give every sheet in it a verdict until it is under a dozen, and hook the power strip up off the floor.",
        "victory": "One notebook and one tray under a dozen sheets, and the chair rolls the width of the desk without catching."
       }
-     }
+     },
+     "common_items": [
+      "Monitor, keyboard and mouse, in fixed positions",
+      "One notebook",
+      "One inbox tray, under a dozen sheets",
+      "The power strip, hooked off the floor"
+     ]
     },
     {
      "zone": "Desk Drawers and Pedestal",
@@ -12009,7 +12438,12 @@
        "action": "Empty the top drawer, test every pen on a scrap and bin the ones that skip, then put back only what writes into a divided tray with the scissors point-down in their own slot.",
        "victory": "Every pen in the drawer writes first time, and the scissors have a slot of their own."
       }
-     }
+     },
+     "common_items": [
+      "A divided tray: pens that all write, one stapler, scissors point-down",
+      "Hanging files, tabs running in one line",
+      "One spare of each connector type, coiled and banded"
+     ]
     },
     {
      "zone": "File Storage",
@@ -12157,7 +12591,12 @@
        "action": "Take one drawer. Relabel each folder with the question you would ask when looking for it, set every tab in the same position, and shred the statements you could download again.",
        "victory": "One drawer where the tabs read down in a single line, and it closes without pressure."
       }
-     }
+     },
+     "common_items": [
+      "Hanging folders, labeled by the question you'd ask",
+      "A closed fireproof box, for permanent originals",
+      "A shred bag, by the door"
+     ]
     },
     {
      "zone": "Bookshelf and Reference Zone",
@@ -12300,7 +12739,12 @@
        "action": "Move every heavy binder to the bottom two shelves, bring the reference you actually open to seated eye level, then check the wall fixing and fit one if it is missing.",
        "victory": "The heaviest things are lowest, the unit does not move when you pull a book, and every row ends in a hand's width of space."
       }
-     }
+     },
+     "common_items": [
+      "Working reference, at seated eye level",
+      "Heavy binders and box files, on the bottom two shelves",
+      "A bookend, closing each group"
+     ]
     },
     {
      "zone": "Printer and Scanning Station",
@@ -12453,7 +12897,12 @@
        "action": "Clear the top of and the space behind the printer, draw a min line and a max line on the paper bin, and split the scan tray into a to-do side and a done side.",
        "victory": "Air behind the machine, a paper level anyone can read at a glance, and a scan tray that says what still needs doing."
       }
-     }
+     },
+     "common_items": [
+      "Paper, in a bin with a min and max line",
+      "One spare cartridge, in a labeled box",
+      "A scan tray: a to-do side and a done side"
+     ]
     },
     {
      "zone": "Supply Cabinet",
@@ -12602,7 +13051,12 @@
        "action": "Bring every consumable together, move reams to the bottom shelf, put one open pack of each at hand height with its backstock directly behind, and write min and max on a card inside the door.",
        "victory": "One open pack of each thing visible at hand height, nothing heavy above your shoulder, and a card that says when to buy."
       }
-     }
+     },
+     "common_items": [
+      "One open pack of each consumable, backstock directly behind",
+      "Reams of paper, on the bottom shelf",
+      "A step stool, in the corner"
+     ]
     }
    ]
   },
@@ -12784,7 +13238,13 @@
        "action": "Clear the bench top down to the vise and the task light, put the current job in one tray, rack the clamps on the rail, and sweep until you can see concrete under the bench.",
        "victory": "A bare bench, one tray holding one job, and swept concrete visible underneath."
       }
-     }
+     },
+     "common_items": [
+      "The vise",
+      "The task light",
+      "One tray for the current job",
+      "Clamps, racked on the rail"
+     ]
     },
     {
      "zone": "Hand Tool Wall and Cabinets",
@@ -12938,7 +13398,12 @@
        "action": "Draw an outline behind every hand tool that hangs, move one hammer and one adjustable wrench to chest height nearest the door, sheath every saw and chisel, and latch the cabinet.",
        "victory": "Every tool on its own outline with no blank silhouettes, the two you reach for most at chest height by the door, and nothing sharp left unsheathed."
       }
-     }
+     },
+     "common_items": [
+      "Hand tools, each on its own drawn outline",
+      "The hammer and adjustable wrench, at chest height",
+      "Saws, sheathed"
+     ]
     },
     {
      "zone": "Power Tool and Battery Zone",
@@ -13096,7 +13561,13 @@
        "action": "Give each battery system one shelf, mount its charger at the front edge, take every pack off every charger, put each tool in its case or on a labeled hook with guards down, and put the bits and blades in the shallow drawer.",
        "victory": "One shelf per system, no pack sitting on a charger, every guard down, and bits and blades in one drawer."
       }
-     }
+     },
+     "common_items": [
+      "Batteries, one shelf per system",
+      "Chargers, mounted at the front edge",
+      "Drills and saws, in their cases or on hooks",
+      "Bits, blades and sanding discs"
+     ]
     },
     {
      "zone": "Automotive Care Zone",
@@ -13270,7 +13741,12 @@
        "action": "Stand every bottle upright on one wipeable tray, write today's date on the shoulder of each one you have opened, bin anything that fits no car on this driveway, and put the oily rags in a metal can with a lid.",
        "victory": "Every bottle upright and dated on one tray, nothing for a car you do not own, and the rags in a closed metal can."
       }
-     }
+     },
+     "common_items": [
+      "Fluid bottles, upright with opened dates",
+      "Jumper cables and a tire gauge, bagged together",
+      "Rags, in a closed metal can"
+     ]
     },
     {
      "zone": "Sports and Recreation Zone",
@@ -13445,7 +13921,13 @@
        "action": "Hang the bikes on wall hooks and clear the floor beneath them, label one bin per activity this household currently plays, move this season's kit to the front of the shelf, and try every helmet on the head it belongs to.",
        "victory": "Bikes hanging over bare floor, one labeled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it."
       }
-     }
+     },
+     "common_items": [
+      "Bikes, on wall hooks",
+      "One labeled bin per activity",
+      "This season's kit, at the front of the shelf",
+      "Helmets, one per head that still wears one"
+     ]
     },
     {
      "zone": "Lawn and Garden Tool Zone",
@@ -13622,7 +14104,12 @@
        "action": "Hang every long handle head-up on the rail, coil the hose onto its reel beside the door it goes out of, and move every garden chemical into a latched cupboard above head height, binning anything whose label you cannot read.",
        "victory": "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labeled, latched and above head height."
       }
-     }
+     },
+     "common_items": [
+      "Long-handled tools, hanging head-up",
+      "The hose, coiled on its reel",
+      "Garden chemicals, latched above head height"
+     ]
     },
     {
      "zone": "Bulk and Overhead Storage",
@@ -13797,7 +14284,12 @@
        "action": "Relabel every overhead bin in letters you can read standing on the slab, write the month and year on the end of each one you open, move the heaviest bins to the lowest rack, and tape a map of what is where beside the light switch.",
        "victory": "Labels readable from the floor, a date on every bin, the heaviest ones lowest, and a map by the light switch."
       }
-     }
+     },
+     "common_items": [
+      "Overhead bins, labeled and dated",
+      "Heaviest bins, on the lowest rack",
+      "A map taped beside the light switch"
+     ]
     }
    ]
   },
@@ -13972,7 +14464,12 @@
      "capacity": {
       "rule": "A bare bench top except the vise and the task lamp, one project tray holding the current job's parts, and a clear run in front of the vise long enough to lay a board across.",
       "does_not_fit": "If the current job will not fit one tray, it is more than one job. Finish or box the other, because a bench carrying two projects is a bench where neither of them gets finished."
-     }
+     },
+     "common_items": [
+      "The vise and the task lamp, the only things on the bench top",
+      "One project tray, for the current job's parts",
+      "Chisels and squares, on their traced outlines"
+     ]
     },
     {
      "zone": "Power Tool Storage",
@@ -14129,7 +14626,12 @@
      "capacity": {
       "rule": "Each tool in a labeled home with its guard closed and its blade wrench or chuck key attached to it, batteries on a shelf off the chargers, and no bare blade loose in any drawer.",
       "does_not_fit": "If a tool has no home, the shelf is short of homes rather than the tool being surplus. A tool stored loose is the one that gets damaged and the one whose accessories go missing."
-     }
+     },
+     "common_items": [
+      "Each tool, in its own labeled home with the guard closed",
+      "Blade wrenches and chuck keys, attached to their tool",
+      "Batteries, resting on a shelf off the chargers"
+     ]
     },
     {
      "zone": "Fastener and Hardware Zone",
@@ -14278,7 +14780,12 @@
      "capacity": {
       "rule": "One fastener type and size per compartment, a sample glued to the outside of each drawer face, the sizes you drive weekly at hand height, and no tin of mixed hardware anywhere on the shelf.",
       "does_not_fit": "If a compartment holds two sizes, you own more sizes than compartments, and that is the honest signal to add a second case rather than to mix. Mixed is the exact state this zone exists to prevent."
-     }
+     },
+     "common_items": [
+      "One fastener type and size, per compartment",
+      "A sample screw, glued to each drawer face",
+      "A marked minimum line, inside the compartments you empty most"
+     ]
     },
     {
      "zone": "Material Rack",
@@ -14436,7 +14943,12 @@
      "capacity": {
       "rule": "Boards lying flat and supported along their length with the longest and heaviest at the bottom, sheet goods standing on edge against the wall, and an offcut bin with its size floor written on the front.",
       "does_not_fit": "If the offcut bin is overflowing, the size floor is not being enforced rather than the bin being too small. An offcut you would not drive out to buy is waste or firewood, and keeping it costs you the room to store wood you will actually use."
-     }
+     },
+     "common_items": [
+      "Boards, lying flat and supported along their length",
+      "Sheet goods, standing on edge against the wall",
+      "An offcut bin, with its size floor marked on the front"
+     ]
     },
     {
      "zone": "Finishing and Chemical Zone",
@@ -14586,7 +15098,13 @@
      "capacity": {
       "rule": "Every product in its original labeled container inside a closed metal cabinet, each lid dated, water-based finishes on one shelf and solvents on another, and oily rags in a self-closing metal can with the lid down.",
       "does_not_fit": "If the cabinet will not close, the overflow is not storage, it is a fire load. Take what is beyond its date to a proper disposal facility rather than finding it another shelf."
-     }
+     },
+     "common_items": [
+      "Paint, glue, stain and solvent, in original labeled containers",
+      "Each lid, dated in marker",
+      "A self-closing metal can, for oily rags",
+      "A drip tray, under the solvent shelf"
+     ]
     },
     {
      "zone": "Safety and PPE Station",
@@ -14740,8 +15258,14 @@
      ],
      "capacity": {
       "rule": "Safety glasses on hooks at the door you come in through, one labeled pair per regular user, hearing protection beside them, dust masks in a dated box, and an extinguisher mounted with its gauge in the green and clear floor in front of it.",
-      "does_not_fit": "If there is not a pair per regular user, the people who share will stop wearing them. This is the one zone where the right number is a head count rather than a judgement."
-     }
+      "does_not_fit": "If there is not a pair per regular user, the people who share will stop wearing them. This is the one zone where the right number is a head count rather than a judgment."
+     },
+     "common_items": [
+      "Safety glasses, one labeled pair per regular user",
+      "Hearing protection and dust masks, in a dated box",
+      "A wall-mounted extinguisher, gauge in the green",
+      "A first aid kit, stocked with burn dressings"
+     ]
     }
    ]
   },
@@ -14911,7 +15435,12 @@
      "capacity": {
       "rule": "Two coats and one bag per person, each on their own named column, the lowest hooks set at the height of the shortest person in the house, and bare floor along the whole run beneath them.",
       "does_not_fit": "If a column carries three coats, the third belongs in the seasonal closet rather than on the hook. A hook that holds more than it should is the thing that pulls the whole run down onto the floor."
-     }
+     },
+     "common_items": [
+      "One coat, one bag and one hat per person, each on a named column",
+      "Hooks, set to each person's own reach",
+      "Scarves and cords, kept off the lowest hooks"
+     ]
     },
     {
      "zone": "Bench and Transition Surface",
@@ -15056,7 +15585,12 @@
      "capacity": {
       "rule": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labeled basket at the end holding only what is leaving tomorrow.",
       "does_not_fit": "If the outgoing basket is full of things that have been there a week, it is not an outgoing basket. Put a day on it: anything that has not left by the weekend goes back to where it actually lives."
-     }
+     },
+     "common_items": [
+      "A bare seat, wide enough for two to lace boots at once",
+      "No more than three objects, on the surface",
+      "One labeled basket, for what's leaving tomorrow"
+     ]
     },
     {
      "zone": "Shoe and Boot Storage",
@@ -15207,7 +15741,12 @@
      "capacity": {
       "rule": "Two pairs per person on the rack, soles down and toes out, one lipped tray by the door for whatever came in wet, and clear floor between the tray and the doorway.",
       "does_not_fit": "If the rack needs a third pair per person, the season has changed and nobody has moved the old pairs out. Shoes for a season you are not in belong in the closet, not by the door."
-     }
+     },
+     "common_items": [
+      "Two pairs per person, soles down and toes out",
+      "One lipped tray, by the door, for wet pairs",
+      "Clear floor, between the tray and the doorway"
+     ]
     },
     {
      "zone": "Pet Station",
@@ -15356,7 +15895,13 @@
      "capacity": {
       "rule": "Lead clipped to the collar on one hook with a full roll of waste bags attached, an old towel within arm's reach of the door, food sealed in a bin with the scoop inside it, and every treatment behind a closed door above animal height.",
       "does_not_fit": "If the treatments are not behind a closed door, nothing else in this zone matters. Flea and worming products are the one thing here that is dangerous to the animal they are for, and to a child."
-     }
+     },
+     "common_items": [
+      "Lead clipped to collar, with a full roll of waste bags attached",
+      "An old towel, folded within arm's reach",
+      "Food, sealed in a bin with the scoop inside",
+      "Treatments, behind a closed door above reach"
+     ]
     },
     {
      "zone": "Seasonal Outdoor Gear",
@@ -15501,7 +16046,12 @@
      "capacity": {
       "rule": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas points down in one stand by the door, and the other season's bin closed and labeled with the month you packed it.",
       "does_not_fit": "If a bin will not close on the off-season gear, you are storing singles. Unmatched gloves are not a pair waiting to be reunited, they are one glove, and they should leave at the changeover."
-     }
+     },
+     "common_items": [
+      "One open bin per person, holding this season's matched gloves and hat",
+      "Umbrellas, standing points down in one stand",
+      "The off-season bin, closed and labeled with the month, on the high shelf"
+     ]
     },
     {
      "zone": "Cleaning and Utility Zone",
@@ -15654,7 +16204,12 @@
      "capacity": {
       "rule": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its labeled bottle.",
       "does_not_fit": "If the caddy needs a fifth cleaner, two of the four are doing the same job. This zone exists to keep the entry floor walkable, which is a short list of surfaces and a short list of products."
-     }
+     },
+     "common_items": [
+      "Broom, mop and dustpan, clipped to the wall, heads clear of the floor",
+      "The vacuum, parked inside its marked outline",
+      "One caddy, holding four labeled cleaners"
+     ]
     }
    ]
   },
@@ -15826,7 +16381,12 @@
      "capacity": {
       "rule": "Three sheet sets per bed, each nested inside one of its own pillowcases with the bed size written on the shelf edge beneath, everyday towels folded to one width in a stack no taller than your forearm, and two spare blankets.",
       "does_not_fit": "If the stack is taller than your forearm, you are storing retired towels alongside working ones. Three sets per bed covers on the bed, in the wash and on the shelf, and a fourth set is laundry you are avoiding."
-     }
+     },
+     "common_items": [
+      "Sheet sets, bundled in their own pillowcase",
+      "Everyday towels",
+      "Guest blankets"
+     ]
     },
     {
      "zone": "Cleaning Equipment Zone",
@@ -15981,7 +16541,12 @@
      "capacity": {
       "rule": "The vacuum standing inside a taped floor outline with its cord wrapped and every tool zipped into one bag clipped to its handle, and broom, mop and duster hanging handle-down from wall clips with their heads clear of the floor.",
       "does_not_fit": "If the outline will not hold the vacuum with its tools attached, the tools are living somewhere else, which is why they go missing. The bag on the handle is the zone, more than the outline is."
-     }
+     },
+     "common_items": [
+      "A vacuum",
+      "A broom and a mop",
+      "Vacuum attachments, bagged"
+     ]
     },
     {
      "zone": "Cleaning Supply Zone",
@@ -16135,7 +16700,11 @@
      "capacity": {
       "rule": "Two or three caddies, each labeled on the end with the room it serves, every bottle in its original label, bleach and ammonia products on separate shelves, and the whole zone out of a small child's reach or latched.",
       "does_not_fit": "If you need a fourth caddy, you have duplicate products rather than another room. Two of your bottles almost certainly do the same job, and buying a caddy is the expensive way to avoid noticing."
-     }
+     },
+     "common_items": [
+      "A bathroom caddy and a kitchen caddy",
+      "Gloves and cloths"
+     ]
     },
     {
      "zone": "Paper and Household Backstock",
@@ -16283,7 +16852,12 @@
      "capacity": {
       "rule": "Toilet roll in one clear bin with a card on the shelf edge reading its minimum and maximum, bulbs in a labeled bin sorted by fitting, and batteries standing in their original packs in a shallow tray with the sizes readable without lifting one out.",
       "does_not_fit": "If the bin is over its maximum, the maximum was wrong or the buying was, and the card is where you settle that rather than the shelf. A reserve with no ceiling is a stockpile, and a stockpile is just floor you are renting."
-     }
+     },
+     "common_items": [
+      "Toilet paper",
+      "Light bulbs, grouped by fitting",
+      "Batteries, sorted by size"
+     ]
     },
     {
      "zone": "Seasonal and Guest Zone",
@@ -16436,7 +17010,12 @@
      "capacity": {
       "rule": "Three or four lidded bins on the upper shelf, each labeled with its contents and the month it was last closed, guest pillows sealed in a zip bag, and a shelf map taped inside the door showing which bin sits where.",
       "does_not_fit": "If a fifth bin is needed, open the ones you have before buying it. A bin last closed two years ago is a decision that has been deferred, and the month written on the label is there to make that visible."
-     }
+     },
+     "common_items": [
+      "Guest bedding",
+      "Decorations",
+      "Travel gear"
+     ]
     }
    ]
   },
@@ -16625,7 +17204,13 @@
      "capacity": {
       "rule": "Three permanent things on the console top, a lamp, a frame and one tray, with the tray holding nothing that was there yesterday, and the lamp cord clipped down the back leg rather than across the walking side.",
       "does_not_fit": "If the tray still holds yesterday's things, this surface has become the house's holding pen for another floor. The tray is a staging post with a one-day life, and what empties it is the next trip up or down."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "A framed photo",
+      "A tray for in-transit things",
+      "A stair basket for things headed to another floor"
+     ]
     },
     {
      "zone": "Wall and Display Zone",
@@ -16798,7 +17383,12 @@
      "capacity": {
       "rule": "Every frame level and hung from two points, each the same vertical distance above the tread nose below it so the gallery climbs on the stair's diagonal, and nothing projecting into the shoulder line of somebody carrying a basket.",
       "does_not_fit": "If a frame has to sit where a shoulder passes, it is in the circulation space rather than on the wall. Move it or shrink it: the stairway is the one wall where a decorative choice can knock somebody down a flight."
-     }
+     },
+     "common_items": [
+      "Framed photos or art",
+      "A mirror",
+      "Wall sconces"
+     ]
     },
     {
      "zone": "Stair and Floor Path",
@@ -16978,7 +17568,12 @@
      "capacity": {
       "rule": "Every tread bare from nose to riser including the bottom three, the runner lying flat with no lifted corner at the turn, and the handrail unbroken and unobstructed from the top newel post to the bottom.",
       "does_not_fit": "There is no quantity here and no honest version that does not fit, because the capacity of a stair tread is nothing. A step used to stage things for upstairs is the most reliably dangerous surface in a house."
-     }
+     },
+     "common_items": [
+      "A stair runner",
+      "Working step lighting",
+      "An unobstructed handrail"
+     ]
     }
    ]
   },
@@ -17151,7 +17746,12 @@
      "capacity": {
       "rule": "Four chairs you can sit in without testing them first, set close enough to talk across, every cushion in the deck box, and no cover crumpled on the ground behind a planter.",
       "does_not_fit": "If a chair has to be tested before anyone sits in it, it is not seating. Repair it this month or let it go, because the one thing this zone promises is that you can drop into a chair without thinking about it."
-     }
+     },
+     "common_items": [
+      "Four chairs, close enough to talk without raising your voice",
+      "One cushion per seat, none spare, kept in the deck box",
+      "A photo of the usual arrangement, taped inside the deck box lid"
+     ]
     },
     {
      "zone": "Grill and Outdoor Cooking Zone",
@@ -17316,7 +17916,12 @@
      "capacity": {
       "rule": "Grates scraped bare, grease tray emptied and back in its rails, four tools on the grill's own hooks and no fifth anywhere, the propane tank upright with its level written on the collar, and a clear arm's length around the cooking box.",
       "does_not_fit": "If there is a fifth tool, two of them do the same job. The arm's length of clearance is the one rule here with no flexibility in it, because that distance decides whether a flare-up is an event or an accident."
-     }
+     },
+     "common_items": [
+      "One long-handled tong, one spatula, one thermometer, one basting brush, on the grill's own hooks",
+      "The propane tank, upright, its level written on the collar",
+      "The grease tray, emptied and back in its rails"
+     ]
     },
     {
      "zone": "Outdoor Dining Zone",
@@ -17476,7 +18081,12 @@
      "capacity": {
       "rule": "A bare tabletop except the umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along the rail with no cord crossing the floor, and nothing stored beneath the table.",
       "does_not_fit": "If things live under the table, the table has become storage with a cloth over it. Outdoor storage belongs in the deck box, because anything kept under a table outside gets wet and then stays wet."
-     }
+     },
+     "common_items": [
+      "The umbrella and one weighted tray, the table's resting state",
+      "Six chairs, tucked fully under",
+      "String lights, clipped along the rail"
+     ]
     },
     {
      "zone": "Garden and Plant Care Zone",
@@ -17637,7 +18247,12 @@
      "capacity": {
       "rule": "Every saucer empty, pots nested by size along the wall with their drain holes clear, one tool caddy holding trowel, pruners and gloves, and a latched chemical box above the tools holding no more than you can name from the doorway.",
       "does_not_fit": "If you cannot name what is in the chemical box from the doorway, it holds more than it should. Garden chemicals are the one thing out here that is genuinely dangerous to a child and to a pet, and an unnamed bottle is one nobody ever disposes of."
-     }
+     },
+     "common_items": [
+      "One tool caddy: trowel, pruners and gloves",
+      "Pots, nested by size along the wall",
+      "A latched chemical box, above the tools"
+     ]
     },
     {
      "zone": "Outdoor Storage Zone",
@@ -17787,7 +18402,7 @@
      "variants": [
       {
        "condition": "No deck box, so cushions come indoors",
-       "guidance": "Name the indoor place and keep the route short. A cushion pile that has to cross a kitchen will be left outside in a shower, which is how cushions end up mouldy rather than stored."
+       "guidance": "Name the indoor place and keep the route short. A cushion pile that has to cross a kitchen will be left outside in a shower, which is how cushions end up moldy rather than stored."
       },
       {
        "condition": "A box that has been damp inside before",
@@ -17797,7 +18412,12 @@
      "capacity": {
       "rule": "A lid that closes flat without anyone pressing down, cushions in one layer on top, two labeled totes beneath them, and the floor of the box visible the moment the cushions come out.",
       "does_not_fit": "If the lid needs pressing, the box is full and the cushions will not make it in before the rain does. The one-minute promise is the whole zone, and a lid that fights you costs more than the minute."
-     }
+     },
+     "common_items": [
+      "Cushions, in one layer on top",
+      "Two labeled totes beneath: games and covers",
+      "A lid that closes flat, without being pressed down"
+     ]
     },
     {
      "zone": "Surface, Rail, and Safety Zone",
@@ -17966,7 +18586,12 @@
      "capacity": {
       "rule": "Nothing on the deck that is not furniture, daylight visible through the gaps between the boards, no green film on the shaded treads, and every rail post immovable when you push it hard.",
       "does_not_fit": "There is no number to exceed here, only a check to fail. A rail post that moves is a repair rather than a tidying job, and it comes before anything else on this page."
-     }
+     },
+     "common_items": [
+      "A mat, square at the threshold",
+      "Step lights, lit at every stair",
+      "A dated tag, inside the back door"
+     ]
     }
    ]
   }

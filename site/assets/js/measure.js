@@ -256,8 +256,15 @@
       return p === "/articles/" || p === "/articles/index.html"
         ? "article-index" : "article";
     }
-    if (p.indexOf("quest") >= 0) { return "quest"; }
-    if (p.indexOf("shop") >= 0) { return "shop"; }
+    /* Exact match, not substring. "shop" alone would also match
+       /workshop-deck.html, folding that deck's clicks into the shop page's
+       own numbers and making the deck invisible in the same funnel
+       breakdown this file exists to produce. Found 2026-10-03, this
+       operator, cold-reading this file: no other page name contains
+       "quest", but "workshop-deck.html" is the one real collision for
+       "shop". */
+    if (p === "/quest.html") { return "quest"; }
+    if (p === "/shop.html") { return "shop"; }
     if (p === "/" || p.indexOf("index") >= 0) { return "home"; }
     return p.replace(/^\//, "").replace(/\.html$/, "").slice(0, 30) || "other";
   }

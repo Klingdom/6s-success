@@ -8417,6 +8417,41 @@ def gate_quest_funnel_events() -> None:
             return
 
 
+def gate_measure_page_type_exact_match() -> None:
+    """measure.js's page() must classify quest.html and shop.html by exact
+    path, not by substring.
+
+    Found 2026-10-03, this operator, a fresh cold-read of measure.js (last
+    ledgered 2026-09-27): page() checked `p.indexOf("quest") >= 0` and
+    `p.indexOf("shop") >= 0` to label the page type carried on every
+    buy-click, outbound-click, quote-click, service-cta and free-download
+    event. site/workshop-deck.html contains "shop" inside "workshop", the
+    one collision among all twenty room decks, so every one of those
+    events fired from that page was folded into the online store's own
+    "shop" numbers instead of getting the "workshop-deck" label every
+    other deck page gets from page()'s own fallback. That is exactly the
+    per-page funnel breakdown GOALS.md reads this instrumentation to
+    produce ("buy-click... book 4, method 3, consulting 2"), silently
+    wrong for one page since the day this handler shipped.
+
+    Fixed to exact equality (`p === "/quest.html"`, `p === "/shop.html"`),
+    which structurally cannot be fooled by a filename that merely contains
+    either word, site/workshop-deck.html included.
+    ops/tests/test_measure_events.py's probe H drives the real browser
+    behaviour; this is the cheap static half, proven able to fail by
+    reverting the two lines above and watching it fail by name.
+    """
+    path = os.path.join(SITE, "assets", "js", "measure.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    if 'p === "/quest.html"' not in src or 'p === "/shop.html"' not in src:
+        fail("measure-page-type-exact-match",
+             "site/assets/js/measure.js's page() no longer matches "
+             "quest.html/shop.html by exact path; a substring match "
+             "mislabels site/workshop-deck.html as \"shop\"")
+
+
 def gate_quest_session_placement() -> None:
     """A2: the whole-zone session length must not be the first number a
     first-time visitor reads.
@@ -16012,6 +16047,21 @@ def gate_goals_traffic_current() -> None:
     (2026-09-23 12:50 UTC), the same shape as every check above, just not
     yet checked in this one file. Now also parsed and compared, silent on
     the same terms.
+
+    Widened 2026-10-03, scheduled operator: OWNER-ACTIONS.md's own
+    top-of-file "**Last measured:**" header carries a citation in a
+    DIFFERENT shape from item 1's own dated line the OWNER-ACTIONS.md check
+    above reads ("traffic re-measured by a direct database read: N
+    visitors/M visits/30 days", the exact phrase
+    dashboard._owner_actions_traffic_citation() parses), and nothing had
+    ever compared it against GOALS.md. Found stale that day: the header
+    still read 48 visitors/119 visits (the 2026-09-29 pull) while GOALS.md,
+    STATUS.md and DATA-SOURCES.md had all already moved to 49/121
+    (2026-10-02), one confirmation behind, undetected because this gate's
+    existing OWNER-ACTIONS.md check only ever matched item 1's own,
+    differently-worded line. Now also parsed and compared, silent if the
+    header is absent or no longer names a direct-database-read figure, same
+    convention as every sibling-document check above.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -16133,6 +16183,37 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"OWNER-ACTIONS.md item 1 (measured {oam.group(1)}) "
                        f"says {oam.group(2)} visitors, GOALS.md says "
                        f"{sessions_30}")
+
+        # Found 2026-10-03, scheduled operator: the check above reads item
+        # 1's own dated "Measured ... Traffic is N visitors" line, but the
+        # file's own top-of-file "**Last measured:**" header carries a
+        # SEPARATE, newer-shaped citation ("traffic re-measured by a direct
+        # database read: N visitors/M visits/30 days") that this gate never
+        # read at all. dashboard._owner_actions_traffic_citation() parses
+        # that exact header to decide whether OWNER-ACTIONS.md's own figure
+        # is fresher than state.json's carried one, so a stale header silently
+        # misinforms that fallback even though nothing here would have
+        # caught it. Found live: the header still cited the 2026-09-29
+        # reading (48 visitors/119 visits) while GOALS.md, STATUS.md and
+        # DATA-SOURCES.md had all already moved to the 2026-10-02 reading
+        # (49/121), one confirmation behind, the same "source corrected,
+        # sibling never told" shape every other check in this function
+        # exists to catch, just never extended to this specific field.
+        # Reuses the same bounded two-phrasing regex
+        # dashboard._owner_actions_traffic_citation() already uses, so the
+        # two can never read the header differently from each other.
+        lm = re.search(r"\*\*Last measured:\*\*(.*?)(?:\n\n|\Z)", oa, re.S)
+        if lm:
+            lmm = re.search(
+                r"(?:traffic re-measured by a direct database read:|"
+                r"when a direct database read gave)\s*"
+                r"(\d+)\s*visitors?/\s*(\d+)\s*visits?/\s*30\s+days",
+                lm.group(1), re.S)
+            if lmm and (int(lmm.group(1)), int(lmm.group(2))) != (sessions_30, visits_30):
+                bad.append(f"OWNER-ACTIONS.md's \"Last measured\" header "
+                           f"says {lmm.group(1)} visitors/{lmm.group(2)} "
+                           f"visits/30 days, GOALS.md now says "
+                           f"{sessions_30}/{visits_30}")
 
     # Widened 2026-09-23: DATA-SOURCES.md's Web analytics row cites its own
     # copy of this same figure ("N visitors/M visits, GOALS.md O1") to prove
@@ -23473,6 +23554,104 @@ def check_zone_direct_answer(answer_map, page_bodies, word_ceiling=140) -> list:
     return problems
 
 
+def check_common_items_rendered(items_map: dict, page_bodies: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    Phil asked for micro zones to carry primary function, common items,
+    step-by-step instructions and pitfalls (`97615a223`'s own commit
+    message). The other three already rendered; `common_items` had no
+    field anywhere in the corpus until this cycle authored a pilot cohort
+    (Entryway, 5 zones), grounded in each zone's own `done_looks_like` and
+    `passes` text, never invented. This is that pilot's own
+    render-matches-source check, the same shape `check_variants_rendered`
+    already runs for the sibling field it was built alongside.
+
+    `items_map` is {filename: [item, ...]} read fresh from content.json,
+    `page_bodies` is {filename: html} for every real site/zones/*.html
+    file. Every item must appear on its own page byte for byte (escaped
+    the same way `esc()` in ops/build_zone_pages.py escapes it), a page
+    not in the corpus must not carry the block at all, and the list must
+    not be empty where it does.
+    """
+    import html as _html
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items()
+                if 'class="common-items"' in b}
+    want_files = set(items_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render a common-items block the corpus "
+                         "does not authorise: %s" %
+                         (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d zone(s) carry common_items in content.json but "
+                         "ship no common-items block: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        m = re.search(r'<ul class="common-items">(.*?)</ul>', body, re.S)
+        if not m:
+            problems.append("%s: common-items block malformed, could not "
+                             "isolate the <ul>" % f)
+            continue
+        got_items = re.findall(r'<li>(.*?)</li>', m.group(1), re.S)
+        want = items_map[f]
+        if not want:
+            problems.append("%s: content.json's own common_items is empty "
+                             "for this zone" % f)
+            continue
+        want_html = [_html.escape(i, quote=True) for i in want]
+        if got_items != want_html:
+            problems.append(
+                "%s: rendered common items do not match content.json's "
+                "own list: got %r, want %r" % (f, got_items, want_html))
+    return problems
+
+
+def gate_common_items_rendered() -> None:
+    """The shipped-HTML half of Phil's common-items request (see
+    `check_common_items_rendered`'s own docstring for what this catches).
+    `gate_variants_rendered`-shaped: checks the real corpus against the
+    real site/zones/*.html files, not the generator's own logic.
+
+    Proved to fail on two planted regressions (a page missing its block,
+    a stale/paraphrased item list): ops/tests/test_gate_common_items_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("common-items-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    items_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            items = z.get("common_items")
+            if not items:
+                continue
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            items_map[f"{rs}-{zs}.html"] = list(items)
+    if not items_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("common-items-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_common_items_rendered(items_map, page_bodies)
+    if problems:
+        fail("common-items-rendered", "; ".join(problems[:6]))
+
+
 def gate_zone_direct_answer_current() -> None:
     """The shipped-HTML half of D1 (see `check_zone_direct_answer`'s own
     docstring for what this catches). `gate_variants_rendered`-shaped:
@@ -27420,6 +27599,7 @@ def main() -> int:
     run_gate(gate_quest_data_heroes_current)
     run_gate(gate_quest_data_videos_published)
     run_gate(gate_quest_funnel_events)
+    run_gate(gate_measure_page_type_exact_match)
     run_gate(gate_quest_session_placement)
     run_gate(gate_quest_card_victory_honesty)
     run_gate(gate_mobile_finish_actions_distinct)
@@ -27560,6 +27740,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
+    run_gate(gate_common_items_rendered)
     run_gate(gate_kit_compact_rendered)
     run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)

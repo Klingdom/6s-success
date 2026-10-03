@@ -817,6 +817,15 @@ main:focus{outline:none}
   font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--soft,#6A625A);margin-bottom:2px}
 
+/* Common items: a short, scannable noun list, not a prose restatement of
+   "what done looks like". Flows like tags rather than stacking one per
+   line, since the items are a handful of short phrases, not sentences. */
+.common-items{list-style:none;margin:10px 0 0;padding:0;display:flex;
+  flex-wrap:wrap;gap:8px}
+.common-items li{margin:0;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line,#E2D8C4);background:var(--panel,#FBF7EF);
+  font-size:14.5px;color:var(--ink)}
+
 /* Figures imported from the book chapters onto zone pages. Vector, so they
    stay sharp at any size, and they scroll inside their own box rather than
    pushing the page sideways on a phone. */

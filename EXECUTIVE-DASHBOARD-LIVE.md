@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-03 02:51 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-03 15:30 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-10-02T13:48:50Z (build d11f572af7d4efe7). The repository has since moved to build 78d7c09bf38ccc6e, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-10-02T13:48:50Z (build d11f572af7d4efe7). The repository has since moved to build c77d65d88a0001d2, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Traffic | 49 visitors across 121 visits, 30 days (carried forward from 2026-10-02; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1424 of 5355 total |
-| Working tree | clean, in sync |
-| Last commit | `b2fbc15f8` Merge remote-tracking branch 'origin/main' |
+| Commits (7 days) | 1462 of 5470 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `403b832e9` Update STATUS.md's deploy-gap citations: 35 commits, 28 mate |
 
 ## Product readiness
 

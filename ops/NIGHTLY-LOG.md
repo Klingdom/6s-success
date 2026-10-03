@@ -2,6 +2,667 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, same cycle, second addendum: the re-run `preflight.py --deep` came back clean, deploy gap widened to 35/28 by this cycle's own commits
+
+The second `--deep` run, started against the settled, committed tree, finished: **every gate passed, 34 warnings**, all the same standing, previously-diagnosed sandbox limitations (no Stripe/mail/SSH credential, no network egress, no Pillow, no JRE) every recent cycle reports. Two were new and both were this cycle's own, not pre-existing:
+
+- `dashboard-self-description-fresh`: the command deck was two commits stale (the measure.js fix and its build-id restamp). Regenerated.
+- `status-deploy-gap-count-current`: this cycle's own two commits (one material: the measure.js fix; one not: its build-id restamp) widened the deploy gap from 33/27 to **35/28**. Re-derived directly with `deploy_gap_material_commits()`, hand-classified the two new commits with `git show --stat` rather than guessed. Updated all four `STATUS.md` citations (`BLOCKER-001`'s two paragraphs, the Production traceability row, Immediate Focus) together, verified clean against both `gate_status_deploy_verdict_current` and `gate_status_deploy_gap_count_current`'s own logic.
+
+No further gates failed. This cycle's work (A19, the build-id fix, and this correction) is now verified clean end to end, not merely committed.
+
+## 2026-10-03, PM check-in (15:1x cycle)
+
+Previous work (A19 measure.js fix, then the build-id repair found by this cycle's own `--deep` addendum) was finished: tree clean, main pushed, no open PRs, 9 GitHub issues unchanged (6 decision, 2 blocked-on-art, 1 capability-gated). Attach hit the usual shallow/detached shape; unshallowed and fast-forwarded clean, merging a concurrent operator push with no conflict. Found and fixed one small thing: the command deck was one commit stale, citing `f83db0169` and "uncommitted work" when HEAD was clean at `c5f446eb9`. Reran `ops/dashboard.py`, diff was the expected small set. Verified `fix_dashes.py --check` (0/0), `check_urls.py` (211/211). Fast preflight: 0 FAIL through every gate before `gate_tests`, same documented sandbox hang, killed rather than assumed clean. Nothing newly unblocked in the backlog; handing the operator the same standing `--deep` fallback, already running in a concurrent session.
+
+Pushed to main (`1a196ff5c`). Command deck only, plus this log. No price, product or site page touched.
+
+## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished, caught a real stale build-id this cycle's own commit left behind
+
+The `--deep` run started at the end of A19 below completed in full: **4 gate(s) failed, 33 warnings**. Checked each FAIL rather than assumed real, per CLAUDE.md 0.4/5d:
+
+- `tests` (`test_wire_nav_preserves_aria_current.py`, "working tree was not clean") and `footer-consistent`/`page-ownership-registry` (both citing `_audit_catalog_fixture_22376.html`) were all timing artifacts: the run started before this cycle's own commit landed, so it caught the working tree mid-edit, and a concurrent session's own gitignored `audit_catalog.py` scratch fixture existed for a moment while this run was reading `site/`. Confirmed transient, not real: the fixture file no longer exists, and `test_wire_nav_preserves_aria_current.py` run fresh against the now-committed, clean tree passes 4/4.
+- `build-id` was real and this cycle's own fault: A19's commit changed `measure.js` and re-fingerprinted 214 pages but never reran `ops/build_id.py`, so `site/build-id.txt` cited the pre-fingerprint build. Fixed (`53bcf84c7`), `--check` confirms current.
+
+A second `--deep` run was started immediately after the build-id fix, against the settled, committed tree, to get an honest confirmation rather than treat the first run's mixed timing-artifact/real result as the final word.
+
+## 2026-10-03, scheduled operator cycle (A19: a real measurement bug found and fixed, second-pass cold-read of an exhausted-lane file)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` (579 commits) then `git merge --ff-only origin/main` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. Re-checked GitHub directly: 9 open issues, 0 PRs, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated), matching every recent cycle. `inbox_agent.py --apply`: no mail credential. Confirmed the standing exhausted state directly rather than citing it: cold-read ledger 195/195, `BACKLOG-2026-09-07.md` sections 1b-6 all done or Phil-gated, GitHub unchanged. The deploy gap (`STATUS.md` BLOCKER-001) re-derived directly with `deploy_gap_material_commits()`: 33 commits, unchanged since the 10:5x reading, so no new push notification sent for it.
+
+**Found and fixed a real defect per the standing second-pass fallback (the 12:4x cycle's own handoff, since the first-pass ledger has nothing left).** Cold-read `site/assets/js/measure.js` (last ledgered clean 2026-09-27) fresh. Its `page()` function, which labels the page type carried on every `buy-click`, `outbound-click`, `quote-click`, `service-cta` and `free-download` event, classified by substring: `p.indexOf("shop") >= 0`. `/workshop-deck.html` contains "shop" inside "workshop", the one collision among all twenty room decks (checked directly: no other page name contains "shop" or "quest" except `shop.html`/`quest.html` themselves). Every one of those events fired from the Workshop deck page was silently folded into the online store's own "shop" numbers, invisible in exactly the per-page funnel breakdown GOALS.md reads this instrumentation to produce.
+
+**Fixed:** `page()` now matches `p === "/quest.html"` and `p === "/shop.html"` by exact equality. New `gate_measure_page_type_exact_match` in `preflight.py` and probe H in `ops/tests/test_measure_events.py` (a real headless-Chromium click on a page named to reproduce the exact collision), both fail-then-pass proved directly: reverted to the old substring logic, watched both fail by name citing workshop-deck.html, restored, reran clean.
+
+**Verified:** `ops/fingerprint_assets.py` rerun (measure.js's content hash changed, 214 references across 221 pages updated; confirmed via `git diff` on a sample page that nothing else moved). `check_urls.py` 211/211, `audit_pages.py` 216/0 (two transient duplicate-title readings during what was evidently a concurrent session's own write, resolved on immediate rerun, 4/4 clean after), `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` clean (124 of 126 buyable products in Stripe with delivery, same 2 person-delivered services excluded). Mobile `npm test`: all three suites, unaffected. `preflight.py` fast run twice (before and after the fix): every gate before `gate_tests` passed with 0 FAIL lines both times, including the new gate running cleanly in sequence. `preflight.py --deep` was started in the background at the start of this slot; it reached `gate_visual_audit` (progressing, not stalled, just slow against 216+ pages) by the time this entry needed to ship, so a full clean result past that point is reported as unchecked, not assumed, per CLAUDE.md 0.4.
+
+**Went well:** the second-pass cold-read fallback found a real, previously-invisible defect on the first file tried; fail-then-pass proved both the fix and the new gate against the real pre-fix logic rather than trusting the read.
+
+**Did not go well:** `preflight.py --deep` still cannot finish inside one cycle's window in this sandbox; same standing limitation every recent cycle reports.
+
+**Changing next cycle:** none; the new gate and test can both fail and now do their job.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy, Apple/Play accounts). Whoever has a long slot should let `preflight.py --deep` run to completion and report it, since this cycle could not.
+
+Pushed to main. `site/assets/js/measure.js`, `ops/preflight.py`, `ops/tests/test_measure_events.py`, `ops/tests/test_gate_measure_page_type_exact_match.py` (new), `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, 214 site pages' fingerprint-only `measure.js` hash, command deck. No price or product touched, no new page; IndexNow not applicable, no visible content changed.
+
+## 2026-10-03, PM check-in (14:4x cycle)
+
+NEXT FOR THE OPERATOR: start a second-pass cold-read of already-ledgered ops/*.py files, lowest-mention tier first, because the first pass is exhausted (195 of 195, 0 un-ledgered) and that method has found real defects twice before.
+
+Previous work finished: preflight --deep closed clean earlier today; tree clean, main fast-forwarded with no reset. Re-checked directly: GitHub 9 issues unchanged, 0 PRs. Backlog's non-struck rows (B6, B8, B9) confirmed closed; C5, C6 confirmed Phil-gated. STATUS.md's 33-commit deploy-gap citation verified accurate against the gate's own function. Fast preflight: 0 FAIL through every gate before gate_tests, which hung at the documented sandbox limit, confirmed by a timeout exit code, not assumed clean. Nothing fixed, nothing broken.
+
+Pushed to main. Command deck, plus this log.
+
+## 2026-10-03, PM check-in (14:1x cycle)
+
+**Previous work was finished and verified, not just cited.** The `preflight.py --deep` handoff that four straight PM/operator cycles had carried since 2026-10-01 was closed last cycle (`bfcb672d0`, first clean completion). Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow` (574 commits) then `git merge --ff-only origin/main` landed cleanly with no reset. Working tree was clean and main already pushed before this cycle started.
+
+**Checked for new unblocked work; found none.** GitHub re-read directly: 9 open issues, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated on real TTS hardware this sandbox cannot reach), 0 open PRs. `GOALS.md`'s three questions still point the same way: the constraint is arrivals, not more product work, and nothing in `BACKLOG-2026-09-07.md` sections 1b through 6 is both unblocked and new.
+
+**The one real, small thing found and closed this cycle: the command deck had gone stale again, by two commits.** `EXECUTIVE-DASHBOARD-LIVE.md` still cited `9f1c83f6f` as the last commit and showed "uncommitted or unpushed work," when HEAD was actually `8eeb5dce2` (two social-drafts/check-in commits later) and the tree was clean. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (generation time, commit counts, working-tree line, last-commit line).
+
+**Verified directly, not assumed:** `fix_dashes.py --check` 0 em/en dashes, `check_urls.py` 211/211, `audit_pages.py` 219/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124 of 126 buyable products matched in Stripe with delivery (the other 2 are person-delivered services, correctly excluded). Mobile `npm test`: all three suites (`pickCard`, `eventLog`, `videoLink`) passing. Ran `preflight.py` fast in the foreground: every gate up to `gate_tests` printed with 0 FAIL lines, then hung at the same documented headless-Chromium sandbox limit every recent cycle reports; killed after ~90 seconds with no progress, consistent with the known shape. Not claiming a clean result past that gate, per CLAUDE.md 0.4.
+
+**Went well:** catching the two-commit-stale deck before shipping rather than after; verifying the fast-pass gates directly instead of citing the prior `--deep` completion as covering this cycle's own commits.
+
+**Did not go well:** same unrelated-history checkout shape on attach; `gate_tests` still cannot finish in this sandbox inside a short window.
+
+**Changing next cycle:** none.
+
+**Handing to the operator at :43:** nothing new and workstream-sized is unblocked. Standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, the five other decision issues, #29/#2 blocked-on-art, #39 TTS-capability-gated). If the operator has a long enough slot, a `preflight.py --deep` run (last clean completion this same day, earlier cycle) or a second-pass cold read of already-ledgered `ops/*.py` files remain the two standing fallbacks; neither is urgent since the first ran clean today.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished clean, closing the standing handoff
+
+The `--deep` run started below completed in full this time: **every gate passed, 374 of 374 test files ran (`gate_tests` itself finished rather than hanging), 31 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/SSH credential, no network egress, Pillow/pypdf/JRE not installed here). This is the first clean completion since 2026-10-01 per the 11:5x/12:4x/13:1x/13:4x PM check-ins' own repeated handoff, closing that chain; the difference was simply letting it run uninterrupted rather than a fix.
+
+Two warnings read as findings and were checked against GitHub before being recorded, not assumed new: `films-six-passes` names 4 caption files still carrying the pre-fix British spelling for the exact two zones issue #39 names, with its own code comment explaining why (`KNOWN_UNRESOLVED_DESPITE_CLOSED_39`, `ops/preflight.py` line ~14664): the issue was closed 2026-10-02, the committed `.srt` turned out not to actually carry Phil's re-render, so it was reopened. The GitHub issue's own `state_reason: "reopened"` matches exactly; this is the gate correctly flagging already-tracked, already-capability-blocked drift, not a new defect. `deck-print-tier`, `page-art`, `deck-art`, `zone-videos-match-standard` and the rest are all the same standing, previously-documented warnings. Nothing here calls for a new gate per step 10b: every warning is either a known sandbox limitation or an already-filed, already-capped issue.
+
+No code or content changed this addendum; recorded so the next cycle does not re-attempt a `--deep` run believing it has never finished.
+
+## 2026-10-03, scheduled operator cycle (verification only, preflight --deep started per handoff)
+
+**Did:** Unshallowed and attached to main (git fetch --unshallow, 568 commits), then fast-forwarded a second time onto two more concurrent pushes (af28431d3) with no conflict. Read GOALS.md, BACKLOG-2026-09-07.md in full, STATUS.md's open-claims section, CLAUDE.md, and the last several `ops/NIGHTLY-LOG.md` entries. Re-checked GitHub directly rather than cited: 9 open issues, unchanged (6 decision, 2 blocked-on-art, #39 capability-gated), 0 PRs.
+
+**Verified rather than trusted, three things the standing handoff only asserted:** (1) issue #39's TTS gap is real: `python3 -c "import edge_tts"` in this sandbox raises `ModuleNotFoundError`, confirming `video_narrated.py` genuinely cannot run here, not merely unconfirmed. (2) Live network egress is blocked: a direct `curl` to `https://6s-success.com/` returns `CONNECT tunnel failed, 403` from the proxy, same shape every prior session reports. (3) `keyword-demand.yml`'s weekly cron (`45 9 * * 3`, Wednesdays) is correctly configured and has fired once by hand (2026-10-02); no defect, it simply has not reached its first scheduled Wednesday yet.
+
+**Checked for new unblocked work: found none.** Cold-read ledger still 195/195 ledgered, 0 stale. `BACKLOG-2026-09-07.md` sections 1b through 6 confirm every row done, Phil-gated, or a settled decision. `ops/inbox_agent.py --apply`: no mail credential. `affiliate.py --check` clean (165 documents). `check_urls.py` 211/211, `audit_pages.py` 215/0, `check_sellable.py` clean (124 of 126 buyable products in Stripe with delivery; the other 2 are person-delivered services), `fix_dashes.py --check` 0/0. `preflight.py` fast run: every gate before `gate_tests` passed with 0 FAIL lines; killed at the documented headless-Chromium sandbox hang, reported unchecked past that point per CLAUDE.md 0.4, not claimed clean.
+
+**Started `preflight.py --deep` in the background at the start of this slot**, per the 13:4x PM check-in's own handoff, rather than killing it early; left running past this entry.
+
+**Went well:** verifying the TTS gap and the network block directly instead of citing them; catching a concurrent push mid-read and fast-forwarding onto it cleanly.
+
+**Did not go well:** still no new unblocked work; this is now many consecutive cycles reporting the same exhausted state.
+
+**Changing next cycle:** none; no new defect to gate.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy, Apple/Play accounts). Whoever picks up next should check whether this cycle's `--deep` run finished cleanly (this session's own background process, not visible cross-session) or restart it.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
+## 2026-10-03, PM check-in (13:4x cycle)
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion in the background at the start of your slot and check it before :43 + however long your slot runs, because it has not completed cleanly since 2026-10-01 and every PM/operator cycle since (11:5x, 12:4x, 13:1x) has handed off the same instruction without anyone's slot being long enough to let it finish; your hourly slot is the longest one in rotation, so start it first, before anything else, and let it run the whole time rather than checking back partway through.
+
+**Previous work finished and verified, not just committed.** Checkout arrived shallow/detached (standing issue #27 shape); `git fetch --unshallow` then fast-forwarded cleanly onto `origin/main` (568 commits, f2cd0b605) with no reset or conflict. Working tree was clean and main already pushed before this cycle started. `git log` matched `ops/NIGHTLY-LOG.md`'s own then-newest entry (13:1x) exactly.
+
+**Checked for new unblocked work; found none, same as the last several cycles.** `BACKLOG-2026-09-07.md` sections 1b through 6 re-read directly: every row is done, reframed onto Phil, or a settled `DECISIONS.md` entry not being reopened without new evidence. GitHub re-checked directly via the API rather than cited: 9 open issues, byte-identical in substance to prior cycles (6 `decision`, 2 `blocked-on-art`, 1 capability-gated on real TTS hardware this sandbox cannot reach), 0 PRs. The cold-read ledger fallback stays exhausted (195/195, 0 stale per the 12:4x cycle's own check, unchanged since).
+
+**One real, small thing found and closed this cycle:** the command deck was stale by one commit. `EXECUTIVE-DASHBOARD-LIVE.md` still cited `ccde21488` (13:1x) as the last commit and showed "uncommitted or unpushed work," when HEAD was actually the 13:1x cycle's own merge commit `f2cd0b605` and the tree was clean; the merge that produced `f2cd0b605` evidently regenerated the deck before its own last commit landed, leaving it one short. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (build time, commit counts, working-tree line, last-commit line).
+
+**Verified, not assumed.** Ran `preflight.py` fast in the foreground with a time budget; every gate up to `gate_tests` printed with no FAIL lines, then it reached the documented headless-Chromium sandbox hang at `gate_tests`, same shape every recent cycle reports. Not claiming a clean full result past that point, per CLAUDE.md 0.4. Briefly started `preflight.py --deep` in the background to get it a head start, then killed it: a 30-minute PM slot that hands off to a *different* scheduled session three minutes later cannot usefully pass a running background process to that session (separate container), so the honest handoff is the instruction above, not a PID nobody downstream can see.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
+## 2026-10-03, PM check-in (13:1x cycle)
+
+**Previous work was finished and verified, not just committed.** `common_items` closure (114 of 114 zones, 20 of 20 rooms) carried through STATUS.md's own entries to the end; confirmed the field is genuinely closed, not re-cited. Working tree was clean, main already pushed before this cycle started (checkout arrived shallow/detached per the standing issue #27 shape; fast-forwarded cleanly onto origin/main, 563 commits, no reset needed). `git log` matched `ops/NIGHTLY-LOG.md`'s own then-newest entry (12:4x, commit `c46f1f983`) exactly, so nothing was claimed there that this cycle could not confirm.
+
+**Checked for new unblocked work: found none, same as the last several cycles.** Re-read `BACKLOG-2026-09-07.md` sections 2 to 6 directly rather than citing a prior summary: every row is either struck through (done), reframed onto Phil (C4/C5/C6, Gemini billing and YouTube OAuth), or a recorded decision (B8 closed by D-027, correctly not reopened). Both active workstream slots (1 and 2) stay BLOCKED on Phil (Umami access, a spending decision); workstream 3 stays CLOSED with no replacement, since nothing in the backlog is both unblocked and workstream-sized. GitHub: 9 open issues, 0 PRs, unchanged, all decision/blocked-on-art/Phil-capped.
+
+**The one real, small thing found and closed this cycle:** the command deck had gone stale again. `EXECUTIVE-DASHBOARD-LIVE.md` still named `adf2a359e` (11:5x) as the last commit and showed "uncommitted or unpushed work," when HEAD was actually `c46f1f983` (12:4x) and the tree was clean. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (build time, total commit count, working-tree line, last-commit line), nothing else moved. `fix_dashes.py --check`: 0 em dashes, 0 en dashes.
+
+**Verified, not assumed: ran `preflight.py` fast in the background.** Every gate up to `gate_tests` passed with no failures; it reached the documented headless-Chromium sandbox hang at `gate_tests` (same shape every recent cycle reports) and had not finished by the time this slot needed to ship. Not claiming a clean full result: reporting unchecked past that gate, per CLAUDE.md 0.4. This cycle's own change (command-deck files only) is not touched by `gate_tests`.
+
+**First push attempt hit a real `gate_nightly_log_ordering` shape, caught and fixed before landing.** A concurrent push (the scheduled operator cycle immediately below, plus an hourly check-in) landed while this cycle was writing its own entry. This file's own header says "newest first," and this entry had been appended to the file's physical end instead of prepended to the top, the exact misplacement `gate_nightly_log_ordering`'s own docstring names as its reason for existing. Caught on `git merge` (conflict on this file) rather than by the gate itself, since the gate was never run against the wrongly-placed version; corrected by prepending this entry above the concurrent cycle's own entry instead of leaving it at the bottom. The generated command-deck files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) took the concurrent cycle's version and were not hand-merged, per the standing rule to regenerate rather than resolve a generated file's conflict by hand; `ops/dashboard.py` was re-run after merging to confirm it still reflects the true post-merge HEAD.
+
+**Handing to the operator at :43:** the 12:4x cycle's own handoff stands: run `preflight.py --deep` fresh (not run today in this log) or start a second-pass cold read of `ops/*.py`, since the first-pass ledger reports 0 of 195 files stale. Nothing else is newly actionable.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
+## 2026-10-03, scheduled operator cycle (preflight FAIL fixed, plus a stale cross-document citation a gate gap let through)
+
+**Did:** Unshallowed and fast-forwarded 560 commits onto `origin/main`, clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last log entries. Per step 5d, checked the prior check-in's own handoff (B8, deck print tiers) before acting: `DECISIONS.md` D-027 already closed it permanently; re-opening it would have violated CLAUDE.md 21. Cold-read ledger exhausted (195/195), all 9 GitHub issues decision/blocked-on-art/TTS-gated, no mail credential. Ran `python ops/preflight.py` full: **FAILED** `nightly-log-ordering`, a prior cycle's entry appended to the file's physical end (48,500+ lines down) instead of prepended to the top. Fixed by moving it to the correct position.
+
+**Found a second, unreported defect while verifying the first.** `OWNER-ACTIONS.md`'s "Last measured" traffic header still cited the 2026-09-29 pull (48 visitors/119 visits) while GOALS.md/STATUS.md/DATA-SOURCES.md had all moved to the 2026-10-02 reading (49/121); no gate compared this specific field against GOALS.md, only item 1's differently-shaped line. Fixed the citation; widened `gate_goals_traffic_current` to check it, fail-then-pass proved directly (planted the stale text, gate failed by name citing both figures, restored, clean). `ops/tests/test_gate_goals_traffic_current.py` extended 21 to 24 cases.
+
+**Verified:** both new/fixed gates run directly and via their test files, all green. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. Full `preflight.py` re-run in background to confirm; every gate before `gate_tests` passed with 0 FAIL lines, consistent with every prior cycle's note that `gate_tests` alone can hang in this sandbox on a headless-Chromium case; not re-asserted as passing past that point, reported honestly.
+
+**Went well:** verifying the prior handoff against `DECISIONS.md` before acting on it; finding the second citation defect by cross-checking while fixing the first, not stopping at one.
+
+**Did not go well:** `gate_tests` still cannot finish in this sandbox inside a reasonable window.
+
+**Changing next cycle:** none; both gaps now have gates that can fail.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy accounts). Deploy gap still real; no new push notification sent since one already went out this same day for the same fact.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `OWNER-ACTIONS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+## PM check-in, 2026-10-03, 11:5x cycle
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion, backgrounded with no shell timeout wrapper, checked before your slot ends, because the fast pass has caught nothing new for five straight cycles while `--deep` has not completed cleanly since 2026-10-01 and has a proven record (the 2026-09-04 WCAG contrast miss) of catching real defects the fast pass structurally cannot see.
+
+**Previous work: finished, confirmed a fifth time.** A concurrent cycle pushed while this one was reading state (`72f4d847e`, "fourth consecutive confirmation of nothing new unblocked"); fetched and fast-forwarded cleanly onto it rather than resetting, then onto one further hourly check-in commit (`55fea5dd4`). Tree clean, nothing unpushed. Read `GOALS.md`, `BACKLOG-2026-09-07.md`'s section 6/7, `STATUS.md`'s `BLOCKER-001`, and the last several `NIGHTLY-LOG.md` entries. GitHub: 9 open issues, byte-identical to every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS this sandbox cannot reach, read in full and confirmed correctly filed, not a new defect). 0 open PRs.
+
+**Preflight: fast run hit the documented `gate_tests` sandbox hang; killed rather than left running, since the 11:5x cycle immediately prior had already run it to a clean exit (0 gates failed, 30 warnings) on effectively the same tree** (only check-in-log/state-file commits landed between its run and this one, no code or content). Not re-derived from nothing: this is citing a same-tree result minutes old, not an older cycle's claim.
+
+**No new work found; nothing started this slot, per the instruction not to begin something large three minutes before the operator.** The standing bottleneck is unchanged: issue #35 (`VPS_DEPLOY_KEY`, 9+ days open, zero comments) is the only thing that would move the 33-commit/two-corpus-rollout deploy gap, and it is Phil's decision, not this session's to make or re-escalate again today (already pushed to him once, 2026-09-28; restating an unchanged condition now is noise, not signal).
+
+**Went well:** catching the concurrent push mid-cycle and merging onto it instead of working from a stale base; not re-running a check another cycle had just run clean on an unchanged tree.
+
+**Did not go well:** this is the fifth consecutive 30/60-minute cycle to find nothing newly unblocked. The repeated finding itself is the signal: the backlog's unblocked lane is genuinely exhausted, not under-searched, and `preflight.py --deep` is the one verification path nobody has let finish in two days.
+
+**Changing next cycle:** the operator should let `--deep` run to its own completion this slot rather than start-and-check-later, since every prior attempt to do that has been interrupted by the next scheduled cycle before it finished.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`/issue #35) and issue #15 (Listmonk), unchanged. Tomorrow's `from=li` LinkedIn link test, not due yet.
+
+Nothing pushed yet this entry; command deck regenerated and pushed below. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-03, PM check-in (12:0x cycle, fifth consecutive confirmation of nothing new unblocked, deploy gap now 9 days unresolved)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, confirmed shallow, `git fetch --unshallow` (backgrounded, completed clean), `git checkout main`, `git merge --ff-only origin/main` fast-forwarded 558 commits with no conflict. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s newest entries, `BACKLOG-2026-09-07.md` section 0, `EXECUTIVE-DASHBOARD-LIVE.md` in full, and the 9 open GitHub issues directly via the API.
+
+**Verified rather than cited.** Independently re-derived the deploy gap from first principles instead of trusting STATUS.md's own figure: `resolve_verdict_commit()` on the current `ops/deploy-verdict.json` build id resolves to `e8ad130b8`, and `deploy_gap_material_commits()` against it returns exactly 33 commits, matching the "33 commits, 27 material" figure the 11:0x cycle wrote. Confirmed `gate_status_deploy_verdict_current` and `gate_status_deploy_gap_count_current` both clean by calling their underlying logic directly (`status_deploy_verdict_problem`, `deploy_gap_count_problem`). Ran `ops/build_id.py --check` (current), `ops/fix_dashes.py --check` (0/0), `ops/check_urls.py` (211/211). `python ops/preflight.py` backgrounded; reached every gate cleanly (no FAIL lines) and hung again at `gate_tests` on the documented headless-Chromium sandbox issue, so it was killed after confirming no failure had appeared before that point; reported here as unchecked past `gate_tests`, not assumed passing. Checked GitHub CI directly: the two most recent "Hourly check-in record" / "Confirm no new unblocked work" commits never triggered `checks.yml`, correctly, since `ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`-only commits are deliberately excluded from that workflow's paths; the last code-touching commit (`f9a653d6d`) is green. 9 open GitHub issues, unchanged, all `decision`/`blocked-on-art`; confirmed issue #39's thread is a closed loop (genuinely Phil-gated TTS re-render, already correctly diagnosed, nothing further for a sandbox to do). `content/manual/source/content.json` confirmed directly: 114 of 114 zones carry `common_items`, the corpus rollout is actually finished, and `STATUS.md`'s "Open claims" section already correctly says so with no stale claim left open.
+
+**Found no new defect and no stale claim to close.** This is the fifth consecutive cycle (three operator, two PM) to independently reach "nothing new unblocked beyond the standing VPS_DEPLOY_KEY gate." Per CLAUDE.md 0.2, a correctly reported problem nobody acts on costs exactly as much as an undetected one: issue #35 has been open 9 days with zero comments while the undeployed, customer-ready backlog behind it grew from 1 commit to 33 (two full 114-zone corpus rollouts, finished, invisible to every visitor). Sent one push notification this cycle naming the growth and the 2-minute fix, since the scale materially changed since the last such notification (22:2x, 2026-10-02) and the problem is unchanged in kind but no longer small.
+
+**Went well:** verifying the deploy-gap figure and both its gates from first principles rather than trusting four prior citations; confirming the CI-skip on the log-only commits was by design, not a gap.
+
+**Did not go well:** same unrelated-history/shallow-checkout shape on every attach; `gate_tests` still hangs in this sandbox on every run.
+
+**Changing next cycle:** none; existing gates and workaround are correct.
+
+**Next:** same standing Phil-blocked list (issue #35 VPS_DEPLOY_KEY/manual redeploy, Search Console verification, Stripe business description, the remaining decision-labelled issues). Handing the hourly operator at :43 nothing new; suggest it spend the slot on a genuinely fresh cold-read of a low-mention `ops/*.py` file rather than a sixth re-confirmation of this same conclusion.
+
+Pushed to main. Command deck and this log only. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-03, PM check-in
+
+**Previous work was finished.** `common_items` corpus field confirmed closed, 114 of 114 zones (counted directly in `content/manual/source/content.json`, not cited from `STATUS.md`). `preflight.py` ran clean both before and after my change: every gate passed. Working tree was clean, main already pushed. GitHub: 9 open issues, 0 PRs, all 9 either decision-labelled, blocked-on-art, or (#39) correctly capped as needing Phil's own TTS/audio machine; none unblocked.
+
+**Did:** the one live, closeable finding was `dashboard-self-description-fresh`: two real commits (`b0839bba9`, `f9a653d6d`) had landed since the deck's last regeneration. Ran `ops/dashboard.py`; warning count dropped 30 to 29, nothing else changed.
+
+**Handing to the operator at :43:** B8 (landing each of 19 decks on the 18-card print tier; `deck-print-tier` warning) is the next real, unblocked backlog item and needs more than a 30-minute slot.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
+## 2026-10-03, PM check-in (12:4x cycle)
+
+NEXT FOR THE OPERATOR: run preflight.py --deep fresh, then start a second-pass cold read of ops/*.py, because the prior cycle's B8 handoff was wrong (D-027 already closed it) and the first-pass cold-read ledger is now fully exhausted, so neither of the last two standing fallbacks is actually available.
+
+**The previous cycle's handoff was wrong, caught before the operator acted on it.** The 12:1x cycle (commit `2fcedef5f`) told the operator "B8 (landing each of 19 decks on the 18-card print tier) is the next real, unblocked backlog item." `BACKLOG-2026-09-07.md`'s own B8 row says the opposite: "CLOSED 2026-09-25, scheduled operator, by decision rather than by trimming or filling: DECISIONS.md D-027." Read D-027 directly: it decided card counts stay corpus-honest and print-tier alignment waits for a real print order, and closed B8 on that basis, after five separate cycles between 2026-09-25 15:0x and 18:2x had each correctly deferred acting on the row without noticing the row itself, not the judgement, was the defect. `gate_deck_print_tiers` in `ops/preflight.py` still warns by design (not a failure, cites D-027 in its own docstring and message); the prior cycle read that live warning and did not check the backlog row behind it before reopening a settled decision, which `CLAUDE.md` section 21 says not to do without new evidence. No new evidence exists: all 20 room decks (not just the original 6 D-027 covered) still ship only as free web pages, the exact condition the decision turns on, and no commit anywhere in this repository's history records a room going to print. Confirmed the operator had not yet spent a cycle on it: `origin/main`'s tip is still the 12:1x commit, 25 minutes after it pushed.
+
+**Also found, not previously logged: the first-pass cold-read lane the last several weeks of cycles have used as the standing fallback is now exhausted.** `python ops/cold_read_ledger.py --next` reports 195 of 195 files across `ops/`, `site/assets/js` and `mobile/quest-app/lib` ledgered, and `--stale` reports 0 stale. Every file at this tier has been read and is clean. This is a real result, not a gap: it means the fallback itself has to change, not that there is nothing left to check. The two candidates: `preflight.py --deep` (has not run today in this log, and has caught real defects the fast pass misses before, for example the WCAG contrast bug on `quest.html` found 2026-09-04), or a second-pass cold read of already-ledgered files with fresh scrutiny, the practice that found a real data-loss bug on 2026-10-01 in a file the first pass had already called clean.
+
+**Checked for other new unblocked work before writing this handoff; found none.** `STATUS.md`'s Workstream 3 was closed this same day (12:1x cycle) with no replacement opened, because nothing in `BACKLOG-2026-09-07.md` is both unblocked and workstream-sized; rechecked that conclusion directly rather than citing it, and sections 1b through 6 still read as done or Phil-gated. GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art` or (#39) capped on Phil's own TTS hardware; none unblocked. The deploy gap (`STATUS.md` BLOCKER-001) is unchanged at 33 commits, 27 material, still waiting on issue #35 (`VPS_DEPLOY_KEY`), open 9 days with zero comments; nothing in this sandbox can close it.
+
+**Verified:** started a full `preflight.py` run in the background; it reached `gate_tests` (the one documented slow gate, up to 18+ minutes in CI) and had not finished by the time this slot needed to ship, so a full clean result is unchecked this cycle, not claimed. Every gate before `gate_tests` passed with no failures surfaced. This cycle changed only `ops/NIGHTLY-LOG.md` (an append-only log, owned by no generator) plus the command deck, so the gates that matter here are `fix_dashes.py --check` (ran directly: 0 em dashes, 0 en dashes) and the GitHub/backlog/decision checks already described above, not the slow deck/corpus gates. The 12:1x cycle's own preflight run, immediately prior, reported clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price, product or site page touched.
+
+## Scheduled operator cycle, 2026-10-03 (11:5x, fourth consecutive confirmation of nothing new unblocked, dashboard was 2 commits stale)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main (556 commits). Read GOALS.md, BACKLOG-2026-09-07.md in full, CLAUDE.md, STATUS.md's workstream section, OWNER-ACTIONS.md's open items, and the last several NIGHTLY-LOG.md entries. Delegated the backlog digest to a subagent to protect context on the oversized backlog file, then independently spot-checked its conclusions rather than trusting them. Ran `python ops/preflight.py` backgrounded (foreground times out on `gate_tests`): clean on the first attempt this time, exit 0, every gate passed, 30 standing warnings. `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 9 open issues unchanged, 0 PRs.
+
+**Verified rather than trusted:** opened issue #39 directly (both comments) and confirmed the `films-six-passes` warning for `primary-bedroom--dresser-top` and `stair-landing--landing-surface-or-console` is the already-tracked, correctly-capped, genuinely Phil-gated state (needs real TTS re-render), not a new defect. Confirmed `edge_tts` is not installed here and the rendered-video deliverable lives only on Phil's machine, so that issue cannot be worked from any sandbox. Confirmed the live site is unreachable from here (`curl` timed out), consistent with prior findings. `EXECUTIVE-DASHBOARD-LIVE.md`/`state.json` were citing a commit 2 behind HEAD; regenerated.
+
+**Went well:** independently re-deriving the same "nothing unblocked beyond issue #35" conclusion the prior three cycles reached, through a different verification path (subagent digest plus manual issue/OWNER-ACTIONS spot checks), rather than copying their conclusion.
+
+**Did not go well:** this is now four consecutive cycles finding no new non-Phil-gated work. The decision queue (#35 VPS_DEPLOY_KEY especially) is the actual bottleneck on repeated re-verification cycles, not a missing gate.
+
+**Changing next cycle:** none.
+
+**Next:** same standing list: issue #35 (closes the deploy gap permanently), #15 (Listmonk), tomorrow's `from=li` LinkedIn link test.
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-03 (11:0x, re-derived the real deploy gap: 33 commits, 27 material, two full corpus rollouts undeployed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main through two concurrent pushes (one 551-commit, one 1-commit PM check-in) with no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md in full, BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md, CLAUDE.md and the last four NIGHTLY-LOG.md entries. Ran `python ops/preflight.py`: it hit the documented sandbox hang on a first attempt but completed clean on background retry, exit 0, every gate passed. Checked GitHub directly: 9 open issues unchanged (6 decision, 2 blocked-on-art, 1 capability-blocked), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed clean.
+
+**Verified rather than trusted the last three cycles' own "nothing unblocked" conclusion before accepting it.** Independently re-checked: `cold_read_ledger.py --next` (195 of 195 files ledgered, 0 stale), the keyword-demand gap list (216 remaining gaps, read in full rather than counted: the in-scope ones are already closed by A11/A13/A14/A15/A18, the rest are off-topic autocomplete noise, construction, gaming, gardening, medical), and the affiliate trigger (1 of 60, unmeasurable fresh from this sandbox). All three independently confirmed: nothing concretely unblocked beyond the standing VPS_DEPLOY_KEY gate (issue #35, open 9 days, zero comments).
+
+**Found the one thing that was itself stale: the deploy-gap count.** `ops/deploy-verdict.json` is unchanged since 2026-10-02T13:48:50Z; the last STATUS.md entry cited 10 commits behind as of 21:3x that day. Re-derived directly with `deploy_gap_material_commits()` and hand-classified each of the 33 returned commits with `git show --stat` rather than guessing the split: 27 material, 6 restamp-only (build-id.txt/sitemap.xml alone). The bulk is two complete 114-of-114-zone corpus rollouts finished since the last redeploy (`common_items` and `variants and capacity`), plus five real SEO/content fixes. None of it is broken; all of it is finished, customer-ready content nobody visiting the live site can see yet. This is the largest undeployed body of real content this section has recorded.
+
+**Updated STATUS.md's BLOCKER-001, both Section 4 rows, the Production Knowledge paragraph and the Immediate Focus line together, not just one of the four**, the exact "source corrected, sibling never told" shape `gate_status_deploy_verdict_current`/`gate_status_deploy_gap_count_current` exist to catch. Verified directly against both gates' own logic in a one-off script rather than assumed: both return no problem against the new text. `fix_dashes.py --check` clean (0/0). Regenerated the command deck (`ops/dashboard.py`).
+
+**Went well:** cross-checking three independent cycles' "nothing unblocked" conclusion myself rather than taking it on faith, and finding the one real thing that actually was stale (a number, not a missing workstream).
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang on the first preflight attempt every recent cycle already documents, resolved on retry.
+
+**Changing next cycle:** nothing procedural; the standing instruction to re-derive the deploy gap with `git show --stat` rather than cite the last cycle's figure already covers this.
+
+**Next:** the deploy gap will keep growing every cycle until `VPS_DEPLOY_KEY` is decided (issue #35) or a session with real VPS access redeploys; worth a direct nudge to Phil given the scale (two full corpus fields, not a cosmetic fix) if a channel to reach him opens. Otherwise: watch for the keyword-demand.yml Wednesday re-harvest, and re-scan the backlog fresh rather than carry forward "exhausted."
+
+Pushed to main. STATUS.md, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 10:4x cycle
+
+NEXT FOR THE OPERATOR: do a fresh BACKLOG-2026-09-07.md/STATUS.md scan for anything newly unblocked, because two straight 30-minute cycles (10:1x and this one) found the `common_items` field closed, the cold-read lane exhausted, and keyword-demand not due, with nothing left that is not waiting on Phil.
+
+**Previous work: finished, confirmed a second time.** Attached ff-only onto `origin/main` (`4861f894a`, an automated `indexnow-log.json` bot commit, no code), tree clean, nothing unpushed. `STATUS.md` "Open claims": no open claim, `common_items` still reads 114 of 114, 20 of 20 rooms, matching the 10:1x cycle's own close exactly; no stale claim to release this time. 9 open GitHub issues, byte-identical to the 10:1x count, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs.
+
+**Nothing new to start.** `ops/cold_read_ledger.py --next`: 195 of 195 files still ledgered, 0 stale, confirmed again rather than assumed. `keyword-demand.yml` is cron-gated to Wednesdays only and already ran 2026-10-02; not due. `BACKLOG-2026-09-07.md`'s own epics C1-C7 and section 5 "Hold" items are each already marked done or waiting on Phil/traffic/money, nothing re-read differently this cycle. `EXECUTIVE-DASHBOARD-LIVE.md` (regenerated 10:19, this cycle just re-ran it) still names the one standing constraint: production is behind the repository, gated on `VPS_DEPLOY_KEY` (issue #35, decision, unchanged, 9 days open).
+
+**Preflight: not re-run full; every recent cycle's own documented `gate_tests` sandbox hang makes a fast re-run cost most of this 30-minute slot for no new information.** Could not independently re-verify CI on the two commits since the 10:1x cycle's own check (`checks.yml` run 1896, success, on `1598b377f`): the GitHub Actions list tool in this session returned the same three most-recent-repo-wide runs regardless of the `workflow_id` filter passed, so this is reported as unchecked past that point, not assumed passing, per CLAUDE.md 0.4. No evidence of a new failure either; the only commits since are a prose correction and a bot log update, neither touching `site/**`, code or gates.
+
+**No push notification.** Nothing changed since the standing escalation (`VPS_DEPLOY_KEY`/issue #35, already pushed to Phil once on 2026-09-28); restating an unchanged condition now would be noise.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 10:1x cycle
+
+**Previous work: finished.** Unshallowed and fast-forwarded 551 commits onto `origin/main` (`928ace613`), tree clean, nothing unpushed. Confirmed directly against `content/manual/source/content.json` rather than trusting the log: 114 of 114 zones carry `common_items`, matching the top log entry's own closing claim exactly. 9 open GitHub issues, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs.
+
+**Found and closed a stale claim.** `STATUS.md`'s "Open claims" section still read `common_items` as `CLAIMED AND IN PROGRESS`, `18 of 114 done, 96 remain`, hours after the field actually closed at 114 of 114. Released it in place, replaced the stale count with the real one and a direct count against `content.json`, kept the CI lesson (re-run `build_seo.py`/`build_id.py` on every content-only push) since that still applies to the next corpus-wide field. `ops/cold_read_ledger.py --next`: the fallback lane is still fully exhausted (195 of 195 files ledgered, 0 stale), confirmed again rather than assumed. `keyword-demand.yml` ran once already (2026-10-02, success); not due again on its weekly cron, so not re-fired.
+
+**Preflight: fast run hit the documented `gate_tests` sandbox hang (killed after it sat idle past `gate_image_coverage` with no output since); reported unchecked past that point, not passing.** Cross-checked against CI instead: `checks.yml` run 1896, the real HEAD's own commit (`1598b377f`), shows its `Preflight` step completed `success` at 10:15:44 (20 minutes, zero FAIL), with the test suite step still running after. That is real evidence preflight passes on HEAD; this session's own hung local run is the same sandbox limitation every recent cycle has already named, not a new one.
+
+**Next:** with `common_items` closed and the cold-read lane exhausted, the only genuinely unblocked, non-Phil-gated items left are the standing ones already named: a `keyword-demand.yml` re-harvest once its weekly cron is due, and re-verifying CI resolves green on `1598b377f`/`928ace613`. Standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, now a 32-commit deploy gap, counted directly) and the 9 open GitHub issues, unchanged. Nothing hours-sized to hand the 10:43 operator beyond watching CI on the current head.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-03 (closed `common_items`: Primary Bathroom and Garage, 114 of 114 done)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded cleanly onto `origin/main` (`2c8a5c565`, 0 ahead/behind). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's own verdict: the concrete queue is done or Phil-gated, nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md`/`STATUS.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS this sandbox cannot reach), 0 PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**Checked `content/manual/source/content.json` directly before claiming, not the prose (CLAUDE.md 5d).** 100 of 114 zones carried `common_items` at start, matching `STATUS.md`'s own count exactly; a concurrent PM check-in (`8f8c7d3b3`) landed the same handoff confirmation moments later (log/dashboard only, no content change), merged cleanly. Claimed Primary Bathroom and Garage in `STATUS.md`, pushed the claim before authoring, per the file's own collision rule.
+
+**Shipped Primary Bathroom (7 zones) and Garage (7 zones), closing the field at 114 of 114, 20 of 20 rooms.** Vanity Counter, Vanity Drawers, Under-Sink Cabinet, Medicine Cabinet or Wall Storage, Shower or Tub, Toilet Area, Linen and Towel Storage; Primary Workbench, Hand Tool Wall and Cabinets, Power Tool and Battery Zone, Automotive Care Zone, Sports and Recreation Zone, Lawn and Garden Tool Zone, Bulk and Overhead Storage. Every item grounded in that zone's own `done_looks_like`/`leave_behind` text, nothing invented.
+
+**Verified:** confirmed a byte-identical round trip (`indent=1, ensure_ascii=False` plus trailing newline) before editing, diff scoped to exactly the 14 new `common_items` arrays; `mcp/content.json` re-synced byte-identical. Staged first, then `ops/build_zone_pages.py` (confirms 114 of 114 zones carry all three moat fields, chains `build_seo.build_sitemap()`) and `ops/build_id.py` against the staged index, `--check` current before committing, applying the sitemap/build-id lesson from earlier today's entries directly. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly, read via `preflight.FAIL`/`preflight.WARN`, all clean. `ops/tests/test_gate_common_items_rendered.py` 6/6. `fix_dialect.py --check` 0, `fix_dashes.py --check` 0, `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), `link_graph_report.py` 0 orphans, `ops/audit_visual.py --mobile` on a 4-page sample spanning both rooms, 0 findings. Full `preflight.py` (fast) was backgrounded and progressed cleanly through every other gate before hitting the documented `gate_tests` headless-Chromium sandbox hang every recent cycle reports; reported as unchecked past that point, not assumed passing. Mobile `npm test` not run: no mobile JS touched.
+
+**Went well:** the claim-before-start and stage-then-regenerate-id discipline, both lessons this same file recorded earlier today, held on the first try; no collision, no stale build-id, no CI-red repeat.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang every recent cycle already documents.
+
+**Changing next cycle:** none; the `common_items` field is closed, so there is no next room to hand off. The next cycle should re-check `BACKLOG-2026-09-07.md` section 7's ordering rule fresh rather than assume another `common_items` room remains.
+
+**Next:** with `common_items` closed, the backlog's own "Now" sections (micro zones/web app, decks, images/video) are again all done or Phil-gated. The next genuinely unblocked, workstream-sized item is either a fresh cold-read pass (`ops/cold_read_ledger.py --next`) or the next `keyword-demand.yml` re-harvest's findings; the standing Phil-blocked list in `OWNER-ACTIONS.md` (`VPS_DEPLOY_KEY`/issue #35 highest-value) and the 9 open GitHub issues are otherwise unchanged.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 14 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STRATEGY-MICROZONES.md`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (existing pages edited, none added); the next `hourly-brief.yml` run covers the 14 changed pages' lastmod.
+
+## PM check-in, 2026-10-03, 09:4x cycle
+
+NEXT FOR THE OPERATOR: finish `common_items` for Garage and Primary Bathroom (7 zones each, the last 14 of 114), because that is the exact handoff the 09:1x cycle already queued and nothing since has changed it.
+
+**Previous work: finished.** Attached ff-only onto `origin/main` (`2c8a5c565`), nothing to unshallow this time, tree clean, nothing unpushed. Confirmed directly against `content/manual/source/content.json` rather than trusting the log: 100 of 114 zones carry `common_items`, and the 14 missing are exactly Garage and Primary Bathroom, matching the 09:1x cycle's own claim exactly.
+
+Re-derived rather than cited: 9 open GitHub issues via the API, byte-identical to the 09:1x cycle's count, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs. Checked the "Deploy to production" workflow directly since it ran green twice in the last half hour (09:24, 09:46): both runs are no-ops, `ops/deploy-verdict.json` is unchanged at `checked_at: 2026-10-02T13:48:50Z` because `VPS_DEPLOY_KEY` still is not set (issue #35, open 9 days, zero comments). The workflow's own header says it exits 0 and touches nothing until that secret exists, so a green run here is not progress and did not get reported as any. `preflight.py` (fast) was backgrounded and hit the documented `gate_tests` sandbox hang every recent cycle reports; reported unchecked, not assumed passing.
+
+**No push notification.** Nothing has changed since the standing escalation (the `VPS_DEPLOY_KEY`/redeploy gap already sits in `OWNER-ACTIONS.md` item 0 and issue #35, already pushed to Phil once before on 2026-09-28); restating an unchanged condition now would be noise, not signal, per this repository's own established cadence for exactly this situation.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 09:1x cycle
+
+**Previous work was finished.** Unshallowed and fast-forwarded 542 commits onto `origin/main` (`004f30fc6`), working tree clean, nothing unpushed. Confirmed directly against `content.json` rather than trusting the log's own count: 93 of 114 zones carried `common_items`, matching the prior cycle's claim exactly. 9 open GitHub issues, all decision, blocked-on-art, or capability-blocked (issue #39 needs real TTS re-recording this sandbox cannot reach); 0 open PRs.
+
+**Did: `common_items` for Kitchen (7 zones), the smaller of the two remaining pieces of the standing handoff.** Grounded every item in that zone's own `done_looks_like`/`passes` text, nothing invented. Edited both `content.json` copies with the standard byte-identical round-trip dump, confirmed scoped to exactly the 7 new arrays, re-synced in one script so the manual and MCP mirrors never diverged. Staged, then ran `build_zone_pages.py` and `build_id.py` against the staged index before committing. **100 of 114 done, 18 of 20 rooms fully covered.**
+
+**Verified, not assumed:** `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and clean; `test_gate_common_items_rendered.py` 6/6 (run as a script, no `pytest` module in this sandbox); `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py`/`fix_dialect.py --check` both 0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans. Full `preflight.py` (fast) was backgrounded and hit the same documented `gate_tests` sandbox hang every recent cycle reports, killed by its own timeout with no output captured; reported here as unchecked, not assumed passing, since the gates that touch this change were verified directly instead.
+
+**Handing to the hourly operator at :43: Primary Bathroom and Garage (7 zones each, the last 14 of 114).** Left both rather than starting them here, since two 7-zone rooms is the scale the prior cycle's own 30-zone push took, not a 30-minute slot, and starting one without finishing it risks a collision with the operator's own in-flight claim.
+
+Pushed to main (`be7e35c45`), confirmed on origin. `content/manual/source/content.json`, `mcp/content.json`, 7 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck)
+
+**Did:** Checkout arrived shallow and detached (local main shared no history with origin/main). Unshallowed, attached to main, fast-forwarded 536 commits to 723b39244. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md and the last several log entries. Checked GitHub: 9 open issues unchanged, all decision or blocked-on-art gated. preflight.py (fast) backgrounded; reached gate_tests and hung at the documented headless-Chromium sandbox limit, killed. No mail credential, inbox reported unchecked.
+
+Checked content.json directly before claiming (CLAUDE.md 5d): 63 of 114 zones carried common_items, matching STATUS.md. Claimed the five tied-smallest rooms, no concurrent claim found.
+
+**Shipped all 30 zones across Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck.** Every item grounded in that zone's own done_looks_like/passes/the_call text. Patio or Deck's Surface, Rail, and Safety Zone followed the Stair Landing precedent (a zone whose standard is "nothing stored here": its items are the fixtures that belong, not movables). **93 of 114 done, 17 of 20 rooms fully covered.** 21 remain, all in Kitchen, Primary Bathroom and Garage (7 zones each).
+
+**Verified:** round-tripped content.json (byte-identical before edit, diff scoped to the 30 arrays); staged, then build_zone_pages.py (chains the sitemap) and build_id.py against the staged index, confirmed current before committing. Found and fixed one real pre-existing defect: gate_mcp_corpus_current failed because mcp/content.json had drifted from an earlier push; re-synced. gate_common_items_rendered, gate_mcp_corpus_current, gate_sitemap_lastmod_current, gate_build_id_current all clean via direct FAIL/WARN reads; test_gate_common_items_rendered.py 6/6; check_urls.py 211/211; audit_pages.py 215/0; fix_dashes/fix_dialect clean; affiliate.py clean (165 documents); link_graph_report.py 0 orphans; audit_visual.py --mobile on a 5-page sample, 0 findings; mobile npm test all 4 suites passing.
+
+**Went well:** the stage-then-regenerate-id discipline held; the mcp mirror drift was caught by running the gate directly rather than assuming clean.
+
+**Did not go well:** same gate_tests sandbox hang every recent cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** continue common_items into Kitchen, Primary Bathroom, Garage (7 zones each), closing the field.
+
+Pushed to main. content/manual/source/content.json, mcp/content.json, 30 site/zones/*.html pages, site/sitemap.xml, ops/sitemap-content-hashes.json, site/build-id.txt, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 08:4x cycle
+
+**NEXT FOR THE OPERATOR: continue common_items into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (tied-smallest, 6 zones each), because that is the standing handoff the 08:1x cycle wrote and the 08:43 operator session is already executing it live.**
+
+**Previous work finished and the handoff was correct, so nothing to redirect.** Unshallowed and fast-forwarded 536 commits onto `origin/main` (`723b392`), clean. Checked `list_triggers` directly rather than assume: the hourly operator fired at 08:43:34 and was still `PENDING` (session `cse_01SCnKdEbJJz61QtPNjBQvQ8`) while this cycle ran, which is why no new commit had landed since the 08:1x check-in, not a stall. Left its in-flight files (`content/manual/source/content.json`, command deck) untouched to avoid a collision per step 8, rather than regenerating them myself. Ran the fast checks that do not hang: `check_urls.py` 211/211, `audit_pages.py` clean, 0 duplicate titles/descriptions. Full `preflight.py` hit the documented `gate_tests` sandbox hang again, same as every recent cycle; not re-litigated here. Read issue #39 directly: genuinely capability-blocked (two zone films need real TTS re-recording this sandbox cannot reach), correctly tracked, not actionable here. 9 open issues unchanged, 0 PRs, all owner-gated, art-blocked or capability-blocked.
+
+**Did not start anything new**, per this slot's own instruction, since the operator already holds the live thread.
+
+**Next:** same as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (deploy-the-build and VPS_DEPLOY_KEY remain the highest-value items waiting on Phil).
+
+Nothing pushed to generated files this cycle beyond this log entry, to avoid colliding with the in-flight operator session. No price, product or site page touched.
+
+## PM check-in, 2026-10-03, 08:1x cycle
+
+**Previous work finished, verified directly, not cited.** Counted `content/manual/source/content.json` myself: 63 of 114 `common_items` zones done across 12 rooms, matching `STATUS.md`'s claim exactly. Tree clean, main pushed and in sync (0 ahead/behind). `checks.yml` green on every `common_items` commit through run 1889; two later merge-only commits (1890, 1891) still `in_progress`, not yet confirmed. No new defect found: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` and `fix_dialect.py` both clean, mobile `npm test` all suites passing. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (headless Chromium); left running in background, reported unchecked, not passing. 9 open GitHub issues unchanged, all owner-gated or capability-blocked (#39).
+
+**Handing to operator:** continue `common_items` into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (tied-smallest, 6 zones each); that authoring is hours of work, not a 30-minute PM slot.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Kids Bedroom and Nursery)
+
+**Did:** Checkout arrived shallow and detached. Unshallowed (`git fetch --unshallow`), attached to main, fast-forwarded 528 commits. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's verdict: the backlog's concrete queue is mostly done, dropped, or Phil-gated; nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked), 0 PRs. `preflight.py` (no `--deep`) backgrounded; it hit the documented `gate_tests` headless-Chromium sandbox hang every recent cycle reports (killed by its own 600s timeout; the gates relevant to this change were called directly instead, below). `inbox_agent.py --apply`: no mail credential in this sandbox.
+
+**Checked `content/manual/source/content.json` directly before claiming, not STATUS.md's prose (CLAUDE.md 5d).** 51 of 114 zones carried `common_items` at start, matching the correction the 07:2x PM check-in had just made. Claimed Kids Bedroom and Nursery (tied-smallest remaining) in `STATUS.md`; no concurrent claim found.
+
+**Shipped Kids Bedroom (6 zones) and Nursery (6 zones).** Bed and Sleep Zone, Toy Storage Zone, Study Desk, Clothing Closet, Dresser Drawers, School and Activity Launch Zone; Crib and Sleep Zone, Changing Station, Baby Clothing Zone, Feeding Station, Diaper and Care Backstock, Books and Quiet Play Zone. Every item a direct grounding in that zone's own `done_looks_like`/`passes`/`leave_behind` text (the crib's three items match its own "the limit is zero" design intent; the changing station's four match the zone's own one-handed-reach text). **63 of 114 done, 12 of 20 rooms fully covered.** 51 zones remain; tied-smallest now Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified:** round-tripped `content.json` through `indent=1, ensure_ascii=True`, diff scoped to the 12 touched zones (confirmed via `git diff --stat`); synced `mcp/content.json` byte-identical; staged first, then `ops/build_zone_pages.py` (chains the sitemap) and `ops/build_id.py` against the staged index, confirmed `build_id.py --check` current before committing (caught and fixed one real miss mid-cycle: the first `build_id.py --check` failed because I'd staged `site/zones/*.html` and `site/sitemap.xml` before regenerating the id itself; re-ran `build_id.py` to write it, staged `site/build-id.txt`, reconfirmed current). `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and read via `preflight.FAIL`/`WARN`. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `audit_visual.py --mobile` on all 12 changed pages, 0 findings.
+
+**Went well:** the claim-before-start and stage-then-regenerate-id discipline from the prior cycle's own correction held; no collision, no stale build-id.
+
+**Did not go well:** the same `gate_tests` sandbox hang every recent cycle already documents; still no fix available from this sandbox (needs a real headless-Chromium environment, not this one).
+
+**Changing next cycle:** none; existing gates and process held, including the sitemap/build-id lesson this cycle applied rather than rediscovered.
+
+**Next:** continue `common_items` room by room (Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck all tied-next at 6 zones, then Kitchen, Primary Bathroom, Garage at 7 each); confirm CI resolves green on this cycle's push.
+
+Pushed to main (`09489c4c6`, merged cleanly with two concurrent upstream commits). `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## PM check-in, 2026-10-03, 07:4x cycle
+
+**NEXT FOR THE OPERATOR: continue `common_items` into Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom or Patio or Deck (tied-smallest, 6 zones each), starting from 51 of 114, because it is the active unblocked workstream the prior cycle already handed off and nothing changed since.**
+
+**Previous work was finished.** Unshallowed and fast-forwarded onto `origin/main` (`cd780ed14`) clean, no merge conflict. Re-verified the prior PM cycle's own correction directly rather than citing it: counted `content/manual/source/content.json` myself (not `STATUS.md`'s prose), 51 of 114 zones carry `common_items`, 10 of 20 rooms fully done (Entryway, Pantry, Dining Room, Hall Closet, Stair Landing, Guest Bedroom, Guest Bathroom, Living Room, Family Room, Primary Bedroom), 10 incomplete rooms all at 0 zones done: Kitchen and Garage and Primary Bathroom (7 each, not tied-smallest), the 7 named above (6 each). Matches the correction exactly; no new drift found. Git tree clean, nothing uncommitted.
+
+`preflight.py` fast run backgrounded during this check: no `FAIL` through 50+ gates before it reached `gate_tests`, which hung at its own long-documented sandbox limit (killed after 400s, not a new failure, every recent cycle reports the same). GitHub: 9 open issues, unchanged, all owner-gated (6 `decision`, 2 `blocked-on-art`) except #39 (capability-blocked, real TTS unavailable here). 0 open PRs.
+
+**Did not start anything new**, three minutes of runway before the operator. No new defect found to fix in that window.
+
+**Next:** operator continues `common_items` as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the issues above, unchanged.
+
+Nothing pushed this cycle beyond this log entry and the command deck; no price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 07:2x cycle
+
+**Previous work not finished: STATUS.md's `common_items` count had drifted.** Counted `content.json` directly: **51 of 114 zones, 10 of 20 rooms done**, not the 46 claimed; Primary Bedroom was still marked "in progress" though it shipped (`426758eb1`). Cause: Living Room's own 33+6 was written as 34, propagating a dropped-5 error forward. Corrected all three lines, closed the stale claim. Nothing else changed: `gate_common_items_rendered`, `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check` all clean. Full `preflight.py` hit the documented `gate_tests` sandbox hang again, killed, not new. 9 open issues unchanged, owner-gated except #39 (capability-blocked). Recent CI runs still in progress, nothing failed.
+
+**Handing to operator:** continue `common_items` (Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck, 6 zones each), starting from 51 of 114.
+
+Pushed to main, two commits. `STATUS.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
+## Addendum, 2026-10-03: continued common_items into Primary Bedroom, same cycle
+
+**Did:** Claimed Primary Bedroom in `STATUS.md` (40 of 114 zones carried `common_items` at claim time, matching the running count, no concurrent claim found), then authored all 6 zones: Bed and Bedding Zone (sheets/pillows/throw/two sheet sets), Nightstand Left and Nightstand Right (lamp/bottle/book/dish, Right also carrying its own capped in-date medication from `done_looks_like`), Dresser Top (valet tray/fragrance/anti-tip strap), Dresser Drawers (one clothing category per drawer), Primary Closet (hanging clothes/shoes/bags/belts). Every item a direct grounding in that zone's own `done_looks_like`/`leave_behind` text; this room's edit was a pure addition (`git diff --stat`: +35/-0), no rewording of existing fields. **46 of 114 done.** 68 remain; tied-smallest now Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified the same way as the two rooms below:** `content/manual/source/validate.py` clean, `mcp/content.json` synced byte-identical, staged before `ops/build_zone_pages.py` (chains the sitemap) and `ops/build_id.py --check`, both current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all clean via direct `preflight.FAIL`/`WARN` reads. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `ops/audit_visual.py` on all 6 changed pages 0 findings, mobile `npm test` all 4 suites passing.
+
+**Not yet confirmed:** CI on any of this cycle's five pushes was still `in_progress` when last checked (runs 1884-1888+), consistent with every recent cycle's own report of this pipeline's ~20+ minute runtime; nothing has failed, nothing has been assumed green.
+
+**Next:** continue `common_items` (Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck, all tied at 6 zones); confirm this cycle's CI runs resolve green.
+
+Pushed to main (claim + Primary Bedroom, two commits). `content/manual/source/content.json`, `mcp/content.json`, 6 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Living Room and Family Room)
+
+**Did:** Unshallowed and attached clean (`git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 508 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` (section 0's traffic reading, section 7's own verdict, the B9/room-deck row confirmed closed via `ops/b9_claims.py --status`), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries (newest-first, confirmed by line position, not assumed). Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 read in full, genuinely capability-blocked on real TTS no sandbox here holds), 0 PRs. `preflight.py` fast run completed clean in the background (exit 0, every listed gate ran); the full (`--deep`/`gate_tests`) run hit the same documented headless-Chromium sandbox hang every recent cycle reports, killed after confirming the pattern. `inbox_agent.py --apply`: no mail credential.
+
+**Checked `content/manual/source/content.json` directly before claiming anything, not `STATUS.md`'s prose (CLAUDE.md 5d).** 33 of 114 zones carried `common_items` at start, matching the file's own count; `STATUS.md`'s own claim ledger plus a concurrent PM check-in (`95033a9b5`) had already handed Living Room to the operator, confirming the pick.
+
+**Shipped Living Room (6 zones), then Family Room (6 zones).** Sofa and Seating (throws/cushions/remotes/pillows), Coffee Table (coasters/remote/book/plant), Media Center (console/strip/cables/bin), Bookshelves and Display (books/frames/strap), Side Tables and Lighting (lamp/coaster/tray/cord), Floor and Circulation Path (rug/legs/baskets); then Primary Media Zone (console/controllers/discs/cables/strip), Toy and Play Zone (bins/labels/mat), Board Game and Puzzle Zone (boxes/name strips/bagged pieces), Blanket and Comfort Zone (basket/throws/cushions), Charging and Device Zone (strip/cables/connector bag), Craft and Activity Zone (bins/scissors/project bin). Every item is a direct grounding in that zone's own `done_looks_like`/`passes`/`leave_behind` text; nothing invented. **40 of 114 done.** 74 remain; tied-smallest now Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified, each room separately before committing:** round-tripped `content.json` through `indent=1, ensure_ascii=True` first, diff scoped to the touched zones only (confirmed via `git diff --stat`, ~40 lines per room); synced `mcp/content.json` byte-identical; staged, then `ops/build_zone_pages.py` (chains `build_seo.build_sitemap()` on its own since the 04:59 UTC generator fix) and `ops/build_id.py --check` against the staged index, both current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and read via `preflight.FAIL`/`WARN` (not caught exceptions, per the lesson a concurrent cycle recorded earlier today). `ops/tests/test_gate_common_items_rendered.py` 6/6 each time. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `ops/audit_visual.py` on all 12 changed pages (both rooms) 0 findings, mobile `npm test` all 4 suites passing, each time.
+
+**Claimed each room in `STATUS.md` before starting, released by marking done before claiming the next**, per that file's own section 0 collision rule; fetched and merged origin/main before every push (one hourly check-in commit, one indexnow-log commit, both clean merges, no conflicts).
+
+**Went well:** the claim-before-start discipline worked exactly as designed, no collision with the two concurrent automated check-ins that landed mid-cycle.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang every recent cycle already documents.
+
+**Changing next cycle:** none; existing gates and process held.
+
+**Next:** continue `common_items` room by room (Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck all tied-next at 6 zones); confirm CI resolves green on both pushes (`a000135af`, `741636d8a` merged to `36c289168`).
+
+Pushed to main (4 commits: claim, Living Room, claim+release, Family Room, each merged with concurrent upstream work). `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## PM check-in, 2026-10-03, 06:4x cycle
+
+NEXT FOR THE OPERATOR: continue `common_items` into Living Room (6 zones, tied-smallest-remaining with 9 other rooms), because every higher-priority epic (measurement, Listmonk identity, IndexNow, the owner-gated channels) is Phil-blocked and this stays the highest-value genuinely unblocked item in `BACKLOG-2026-09-07.md`'s own ordering rule.
+
+**Previous work finished, verified directly, not cited.** Attached clean (fetch, ff-only, 0 behind). Working tree clean, pushed at `d0b68c11a`. `checks.yml` run 1882 on `50ff9d664` (the last code-touching commit; the two commits since are log/dashboard-only and do not trigger a separate run) is `completed`/`success`, read directly from the Actions API, not inferred. Ran the narrow suite myself to completion rather than inherit the prior cycle's citation: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, all clean. Full `preflight.py` was tried in the background again this cycle and hit the documented `gate_tests` headless-Chromium sandbox hang (still no output after several minutes); reporting this as unchecked, not passing, per CLAUDE.md 0.4, same known limit every recent cycle names.
+
+**Checked GitHub directly:** still 9 open issues, same set as every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS access no sandbox holds). No new issue, no open PR, no new defect surfaced in this pass.
+
+**Handing off, not starting:** the next `common_items` room is bespoke per-zone authorship (hours, not a 30-minute slot); ten rooms are tied-smallest at 6 zones each (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck). Picking Living Room as the concrete next target to avoid the operator re-deciding the tie. 81 of 114 zones remain either way.
+
+**Next:** operator continues `common_items` with Living Room; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub issues otherwise unchanged.
+
+Pushed to main. Log and command deck only. No price, product or site page touched.
+
+## Correction to the 06:4x entry above: the backgrounded `preflight.py` had not hung, it finished clean after the entry was written and pushed
+
+The 06:4x entry reported `preflight.py` as unchecked because it had produced no output after several minutes in the background, matching the sandbox hang several prior cycles document. It was still running, not hung: it completed afterward with exit code 0, every gate passed, 31 warnings (the same standing set this environment always reports: no Stripe/mail/SSH credential, site unreachable, 2 unverified test files, the two issue-#39 caption zones already capped and explained in the gate's own code as needing Phil's real TTS reach). No new warning, no new fail. Recording the correction rather than leaving the stronger "unchecked" claim standing once the real result was in, per CLAUDE.md 0.4 in the other direction: a result that arrives late is not void, only a result that never arrives is. Nothing above the correction needs to change: the handoff (`common_items`/Living Room) and the issue count both still hold.
+
+Pushed to main. Log only.
+
+**Previous work finished, verified directly, not cited.** Attached clean (fetch, unshallow, ff-only merge, 0 ahead/behind after). `common_items`/Guest Bedroom+Bathroom (`50ff9d664`) is pushed; ran `preflight.py` fast myself to completion (not inherited): every gate passed, 0 FAIL. `checks.yml` run 1882 on that exact SHA was still in_progress 24 minutes in (typical for this pipeline); the four pushes before it (runs 1878-1881) are all green, so the track record holds even though this one specific run had not finished. STATUS.md's own claim ledger matches content.json's real count (33/114 common_items zones) with no stale or colliding claim.
+
+**Nothing new to start.** Checked GitHub directly: still 9 open issues, unchanged from every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS access no sandbox holds). Read #39's own two comments in full rather than trusting its missing label: genuinely not actionable here. No new PR, no new defect surfaced in this pass.
+
+**Handing off, not starting:** the next `common_items` room (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom or Patio or Deck, all tied-next at 6 zones, 81 of 114 remain) is bespoke per-zone authorship, hours of work, not a 30-minute close, per this routine's own instruction to prefer small and closing. Left for the hourly operator.
+
+**Next:** operator continues `common_items`; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub issues otherwise unchanged.
+
+Pushed to main. Log and command deck only. No price, product or site page touched.
+
+## Scheduled operator cycle, 2026-10-03 (continued `common_items` into Guest Bedroom and Guest Bathroom)
+
+**Did:** Attached clean: `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` (502 commits fast-forwarded, never reset or forced). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and `STATUS.md`. Confirmed GitHub green at HEAD (`checks.yml` run 1881, success) and 9 open issues unchanged, all decision or blocked-on-art, 0 PRs. `check_urls.py`, `audit_pages.py` and `fix_dashes.py --check` all clean before starting.
+
+**Checked content.json directly rather than trusting STATUS.md's prose before claiming, per CLAUDE.md 5d:** 23 of 114 zones carried `common_items`, matching the file's own count, and no claim existed yet for Guest Bedroom or Guest Bathroom, the tied-smallest rooms the prior PM check-in had deliberately left unstarted. Claimed both in `STATUS.md` before authoring.
+
+**Authored** Guest Bed and Linens, Guest Nightstand, Guest Dresser, Guest Closet, Guest Welcome and Work Surface (Guest Bedroom), and Guest Vanity Counter, Guest Vanity Storage, Shower or Tub, Toilet Area, Guest Linen Zone (Guest Bathroom), every item grounded in that zone's own `purpose`/`done_looks_like`/`passes` text, nothing invented (the Vanity Counter's three items are its own `leave_behind.standard`: soap, tissues, hand towel). **33 of 114 done.** 81 remain.
+
+**Verified:** round-tripped the unmodified `content.json` through `indent=1, ensure_ascii=True` first (byte-identical) before editing, keeping the diff to 64 lines across the 10 zones; synced `mcp/content.json`; `ops/build_zone_pages.py` (which now chains `build_seo.build_sitemap()` on its own) and `ops/build_id.py --check` against the staged index, current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current` all clean, called directly and read via `preflight.FAIL`/`WARN`, not by catching `SystemExit`. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `ops/audit_visual.py --all` on all 10 changed pages 0 findings, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), mobile `npm test` all 4 suites passing.
+
+**Went well:** the staged-build_seo/build_id sequence from the prior cycle's own lesson worked first try, no CI-red repeat.
+
+**Did not go well:** full `preflight.py` was tried in the background again and hit the documented `gate_tests` headless-Chromium sandbox hang; killed automatically after 30 minutes (exit 143). Ran the standing narrower suite plus the specific new-content gates directly instead, as above. This is the same sandbox limitation every recent cycle reports, not a new defect.
+
+**Changing next cycle:** none; existing gates held the field correctly again.
+
+**Next:** continue `common_items` room by room (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck are all tied-next-smallest at 6 zones), or the standing Phil-blocked list in `OWNER-ACTIONS.md`. Confirm `checks.yml`'s run on this push resolves green.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 10 Guest Bedroom/Guest Bathroom `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## PM check-in, 2026-10-03, 05:4x cycle
+
+NEXT FOR THE OPERATOR: continue `common_items`, Guest Bedroom or Guest Bathroom next (5 zones each, 95 of 114 remain), because every higher-priority epic (measurement, Listmonk identity, IndexNow) is Phil-blocked and this is the highest-value genuinely unblocked item in `BACKLOG-2026-09-07.md`.
+
+Previous work verified finished, not just cited: tree clean and pushed at `59f90840b`. CI green across `checks.yml` runs 1879 to 1881 and every workflow at HEAD (social, Bluesky, LinkedIn, hourly-brief, fulfil-orders); `deploy.yml` succeeded twice on `5f9f1c524`. Narrow suite clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0. Full `preflight.py` hit the documented sandbox `gate_tests` Chromium hang again, a known limit, not a new failure. 9 GitHub issues unchanged, all Phil-blocked or sandbox-capability (#39, two narrated captions needing real TTS). No new defect found; closed out the prior cycle's own "watch 3 in-flight runs" item, all confirmed green.
+
+Pushed: log and command deck only. No price, product or site page touched.
+
+## PM check-in, 2026-10-03, 05:2x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 502 commits fast forwarded, never reset or forced). Working tree clean and pushed at `5f9f1c524`. The full `preflight.py` still hits this sandbox's documented `gate_tests` headless-Chromium hang (confirmed again directly, killed after it sat on that gate), so ran the standing narrower suite in its place: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, and the three specific gates this cycle's own addendum entry had just fixed (`gate_sitemap_lastmod_current`, `gate_build_id_current`, `gate_common_items_rendered`), called directly and read via `preflight.FAIL`/`WARN` per that same entry's corrected method, all clean. Mobile `npm test`, all three suites, pass.
+
+**Checked GitHub directly rather than trusting local green alone.** `checks.yml` has 3 pushes mid-run (`c0ebe38e`, `f4d9638a`, `d4e26c700`), each taking its documented ~20+ minutes; the oldest's own `Preflight` step already completed `success` before this check-in closed, so the gates this cycle cared about are confirmed green in CI, not just locally. The other two were still short of that step; recorded as unresolved, not assumed clean. 9 GitHub issues unchanged, all `decision` or `blocked-on-art`, none mine to act on.
+
+**One claim worth checking rather than trusting: the dashboard's "Redeploy the site" line.** `deploy.yml` had two runs against `5f9f1c524` since the dashboard was last generated, both `success`; read the job steps directly rather than trusting the green checkmark, and both show the `Deploy` step itself `skipped`, no `VPS_DEPLOY_KEY` secret, exactly as the workflow's own comment says it will until Phil pastes one. The dashboard's claim still holds; it was not stale.
+
+**Did:** regenerated the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); the only real change was the generation timestamp and the now-clean working tree/last-commit fields. No new defect found to fix this slot.
+
+**Handing to the operator:** continue `common_items` room by room, Guest Bedroom or Guest Bathroom next (tied-smallest, 5 zones each), per the claim already standing in `STATUS.md`. That workstream is hours-sized across 95 remaining zones; this slot is 30 minutes, so it stays with the operator rather than half-started here. Also worth a glance next cycle: the 3 in-flight `checks.yml` runs above, to confirm each resolves green.
+
+Pushed to main. Command deck only. No price or product touched, no new page. IndexNow not applicable.
+
+## Addendum, 2026-10-03: closed the gap at the generator, and found my own verification method had been silently trusting itself
+
+**Did:** Chained `build_seo.build_sitemap()` into `ops/build_zone_pages.py`'s `main()`, matching the pattern `build_corporate.py` and `build_resources.py` already use, so a standalone run after a `content.json` edit (the way every `common_items` cycle today reached for this file) can no longer leave the sitemap stale. This is CLAUDE.md step 10b: the same defect class had now shipped CI-red twice in one day, so the fix belongs in the generator, not in a third STATUS.md note.
+
+**A real defect in how I was checking my own work, found while proving this one.** Calling `preflight.gate_sitemap_lastmod_current()` directly and catching `SystemExit` to mean "it passed" proves nothing: `fail()` only appends to a module-level `FAIL` list, and only `preflight.py`'s own `main()` turns that into a nonzero exit. Every gate I had called that way earlier this cycle looked clean whether it actually was or not. Caught it by building a proper fail-then-pass proof in an isolated worktree (`git worktree add`): reverted the fix, edited a zone's `common_items`, rebuilt, and the gate's real `FAIL` list came back empty even though the content had genuinely changed and the hash file had not, until I checked `preflight.FAIL` directly instead of trusting the absence of an exception, at which point it correctly named the stale URL. Re-checked the real repo's current state the correct way immediately afterward: still clean, so the Dining Room push earlier this cycle was in fact fine, but by luck of the underlying state being correct, not because my check would have caught it if it hadn't been.
+
+**Verified:** fail-then-pass proved directly in the worktree (FAIL list populated naming the file, then empty after the fix). In the real repo: a full rebuild is idempotent (no diff), `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `test_gate_sitemap_lastmod_current.py` 6/6.
+
+**Changing next cycle: verify every gate by reading `preflight.FAIL`/`preflight.WARN` after calling it, never by catching an exception that the function was never going to raise.** Recording this because CLAUDE.md 0.4 says exactly this class of mistake, an unchecked result silently standing in for a passing one, is the one that has cost the most here, and this was a live instance of it inside a single session, not a historical one.
+
+**Next:** continue `common_items` room by room (Guest Bedroom or Guest Bathroom next); confirm `checks.yml` is green on this push and the two before it.
+
+Pushed to main. `ops/build_zone_pages.py` only. No price or product touched, no new page.
+
+## Scheduled operator cycle, 2026-10-03 (fixed a 5-push CI red streak; continued `common_items` into Dining Room)
+
+**Did:** Unshallowed and attached cleanly (`git fetch --unshallow`, `checkout main`, `merge --ff-only`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries and `STATUS.md`. Checked GitHub Actions directly rather than trusting a prior cycle's own "CI is just slow" note: `checks.yml` had actually failed on 5 consecutive pushes (runs 1873-1877). Read run 1877's job log and found the real cause: `gate_sitemap_lastmod_current` (zone URLs stale) and `gate_build_id_current` (`site/build-id.txt` not matching the real tree), because the prior `common_items` content commits never re-ran `ops/build_seo.py`/`ops/build_id.py`.
+
+**Diagnosed and fixed independently, then found a concurrent PM check-in had landed the identical fix (`02a82a8f`) moments earlier.** Per CLAUDE.md 5d, verified the concurrent commit actually fixed it rather than trusting the commit message, then discarded this operator's own unpushed duplicate commit (`git reset --hard origin/main`) instead of pushing a second copy of the same fix. Corrected the prior cycle's own "CI latency" misdiagnosis in `STATUS.md`, with the real cause and the lesson (re-run `build_seo.py`/`build_id.py` as part of every `common_items` push, not only when a generator's own source changes) so the next cycle does not repeat it. Pushed the correction and a claim for Dining Room before starting work on it, per `STATUS.md` section 0's own collision rule.
+
+**Continued `common_items`, Dining Room (5 zones), the ordering rule's one real unblocked epic-5 item once epics 1-4 were again confirmed done or Phil-gated (9 GitHub issues unchanged, all decision/blocked-on-art).** Authored Dining Table, Buffet or Sideboard Surface, Buffet or Sideboard Storage, China or Display Cabinet, Beverage or Coffee Station, every item grounded in that zone's own `purpose`/`done_looks_like`/`passes` text (e.g. the China Cabinet's "Plates, stacked no more than eight high" is its own `done_looks_like` sentence, not invented). **19 of 114 done.** 95 remain; tied-smallest now Guest Bedroom and Guest Bathroom.
+
+**Found and fixed a formatting trap before it shipped, not after:** a first `json.dump(data, f, indent=2)` reformatted the entire 18,000-line `content.json` (original uses 1-space indent), which would have buried a 5-zone content edit inside a 36,000-line diff. Caught by running `git diff --stat` immediately after the edit, before staging anything. Confirmed `indent=1, ensure_ascii=True` round-trips byte-identical on the unmodified file first, then reapplied the edit; final diff was 41 lines, scoped to the 5 zones.
+
+**Verified:** `gate_common_items_rendered`, `gate_mcp_corpus_current` clean (direct function calls, not the full `preflight.py`, which hits this sandbox's documented `gate_tests` headless-Chromium hang). `ops/tests/test_gate_common_items_rendered.py` 6/6. `fix_dialect.py --check` 0. `check_urls.py` 211/211. `audit_pages.py` 215/0. `fix_dashes.py --check` 0/0. `ops/audit_visual.py` on all 5 new pages, desktop viewport: 0 findings. `build_id.py --check` current, computed against the staged git index (it hashes `git ls-files -s site`, not the working tree) after staging the content and page changes, confirmed before committing.
+
+**Went well:** checking GitHub Actions directly instead of trusting the prior cycle's own "probably just slow" note, which was itself the exact "unchecked is not passing" failure CLAUDE.md 0.4 warns about; finding the concurrent duplicate fix before pushing a second one.
+
+**Did not go well:** this is the second time in one day `common_items` content commits shipped without re-deriving `build_seo.py`/`build_id.py`; the lesson is now written down twice (in `STATUS.md` and here) because once was not enough.
+
+**Changing next cycle:** none beyond the lesson already recorded; the next `common_items` push should apply it without needing to rediscover it.
+
+**Next:** continue `common_items` room by room, Guest Bedroom or Guest Bathroom next (claim in `STATUS.md` first); confirm `checks.yml`'s run on this push resolves green.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Dining Room `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## PM check-in, 2026-10-03, 04:4x cycle
+
+NEXT FOR THE OPERATOR: confirm run 1878 (02a82a8f0) is green on checks.yml, then continue common_items, because the last 7 pushes shipped through a red Checks workflow nobody actually read.
+
+**Previous work not finished; that was this cycle's work.** checks.yml failed on main since run 1870, through the "fixed CI" commit and every common_items commit after; the 04:23 entry called it "latency," never read the log. Real cause: sitemap-lastmod and build-id both stale, common_items never reran build_seo.py/build_id.py.
+
+**Fixed:** ran both generators. Verified: the failing test now passes (6 cases), check_urls 211/211, audit_pages 215/0, dashes/dialect clean, mobile tests 4/4.
+
+Pushed (`02a82a8f0`, `9934ff501`): sitemap, hashes, build-id, deck. No price/product touched. Run 1878 in progress at close, not confirmed green.
+
+## Scheduled operator cycle, 2026-10-03, 04:4x (continuing `common_items`, Hall Closet; CI latency noted, not confirmed green)
+
+**Did:** Continued the same claimed workstream a fourth time this slot. Authored Hall Closet's 5 zones: Linen Shelf Zone (sheet sets bundled in their own pillowcase, everyday towels, guest blankets), Cleaning Equipment Zone (a vacuum, a broom and a mop, bagged attachments), Cleaning Supply Zone (a bathroom caddy and a kitchen caddy, gloves and cloths), Paper and Household Backstock (toilet paper, bulbs grouped by fitting, batteries sorted by size), Seasonal and Guest Zone (guest bedding, decorations, travel gear), every item grounded in that zone's own `straighten`/`sort` text.
+
+**Verified locally:** `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `fix_dialect.py --check` still 0, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `ops/audit_visual.py --all` on all 5 new pages 0 findings.
+
+**18 of 114 done: Entryway, Stair Landing, Pantry, Hall Closet.** 96 remain.
+
+**Noted rather than chased further: this slot's own five pushes to `main` have CI runs that have sat `in_progress` on GitHub far longer than this repository's own normal ~20-minute `Preflight` duration (confirmed against run 1872's own real 22-minute failure earlier the same night), and none had resolved by the time this entry was written.** Every change in this stretch was verified against the real gates, tests and audits locally before it was pushed, including a direct re-check that the dialect fix (the one real pre-existing failure found this slot) holds on every subsequent commit. What is NOT independently confirmed is GitHub's own green checkmark on any of these five pushes. Recorded honestly per CLAUDE.md 0.4 (unchecked is not passing) rather than assumed clean because the local gates were. `STATUS.md`'s claim note carries the same caveat.
+
+**Next:** whoever next has a slot should check `checks.yml`'s latest run on `main` before anything else, confirm it resolved (green or a new, real finding), and continue `common_items` room by room if it is clean (Dining Room, Guest Bathroom and Guest Bedroom are tied-next-smallest at 5 zones).
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Hall Closet `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## PM check-in, 2026-10-03, 04:1x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (481 commits fast-forwarded, no reset or force). Re-verified the Entryway common_items pilot directly: its gate's own 6/6 test cases pass, plus check_urls 211/211, audit_pages 215/0, fix_dashes 0/0, affiliate.py clean. Full preflight hit the documented gate_tests sandbox hang; ran the standing narrower suite and mobile npm test (all passing) in its place. 9 GitHub issues unchanged, all decision or blocked-on-art, nothing PM-actionable.
+
+**While verifying, two concurrent cycles pushed:** common_items extended into Stair Landing and Pantry (now 12 of 114), and a real fix for 3 British spellings that had left Checks red on main for roughly 30 minutes. Did not join common_items, it is actively moving under the operator.
+
+**Found and fixed: the command deck was two commits stale** (cited 3f1499012, HEAD had moved twice, including the CI fix). Regenerated and shipped (`50734b957`). CI on the British-spellings fix commit was still in progress at close, not yet confirmed green; next cycle should check.
+
+**Next:** operator continues `common_items` room by room; confirm the CI fix went green.
+
+## Scheduled operator cycle, 2026-10-03, 04:3x (continuing `common_items`, Pantry)
+
+**Did:** Continued the same claimed workstream a third time this slot rather than opening a new one, while the dialect-fix push's own CI run was still in flight (`checks.yml`'s `Preflight` step runs ~20 minutes in this repository's own CI, the same headless-Chromium shape that hangs locally). Authored Pantry's 5 zones (the next tied-smallest room): Dry Goods Shelves (rice/pasta/oats, breakfast cereal, specialty flours and lentils), Canned and Jarred Goods (tomatoes/beans/soup, coconut milk and stock, tuna), Baking Zone (flour/sugar/brown sugar, baking powder/baking soda/yeast, cutters/cases/piping tips), Snack and Lunch Zone (pre-approved snacks, lunch containers and lids, lunch bags and ice packs), Backstock and Bulk Zone (sacks of rice, cases of canned goods, kitchen roll and paper napkins), every item grounded in that zone's own `straighten`/`sort`/`done_looks_like` text.
+
+**Verified:** `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `fix_dialect.py --check` still 0 (confirming the dialect fix a few minutes earlier is holding), `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `ops/audit_visual.py --all` on all 5 new pages, desktop viewport, 0 findings.
+
+**13 of 114 done: Entryway, Stair Landing, Pantry.** 101 remain. `STATUS.md` claim note updated, not re-claimed.
+
+**Next:** continue room by room (Dining Room, Guest Bathroom, Guest Bedroom and Hall Closet are tied-next-smallest at 5 zones), or pick up the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Pantry `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## Scheduled operator cycle, 2026-10-03, 04:2x (fixed a real, pre-existing CI failure: 3 British spellings shipped, unrelated to this slot's own work)
+
+**Did:** Checked GitHub Actions directly rather than assuming a push is clean once it leaves this machine (CLAUDE.md 0.3): the "Checks" workflow had gone red on `839143719` ("Release the variants and capacity claim: 114 of 114," the variants/capacity bulk-authoring work that landed before this slot started) and stayed red through this slot's own first two pushes, since neither had touched the affected files. `get_job_logs` on the failed run named the exact defect: `content/manual/source/content.json` carried "judgement" (2 instances: Pantry's Baking Zone variant, Workshop's Safety and PPE Station capacity rule) and "mouldy" (1: Patio or Deck's Outdoor Storage Zone variant), all three introduced by that bulk-authoring pass, shipped to `site/zones/pantry-the-baking-zone.html`, `site/zones/workshop-the-safety-and-ppe-station.html` and `site/zones/patio-or-deck-the-outdoor-storage-zone.html`.
+
+**This is epic 2 (broken or dishonest), which outranks the epic-5 `common_items` work this slot had been doing**, so it was fixed immediately rather than queued behind that. `ops/fix_dialect.py --apply` fixed all three at the source (judgement to judgment, mouldy to moldy); `mcp/content.json` resynced; `ops/build_zone_pages.py` regenerated (only the 3 affected pages changed, no deck pages, since none of the three words appear in any deck's own authored card text this time, unlike A12).
+
+**Verified:** `fix_dialect.py --check` 0 remaining, `gate_no_british_spellings_shipped` clean, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered`/`gate_common_items_rendered` all clean. Diffed the 3 changed pages directly: one word each, nothing else moved.
+
+**Went well:** checking GitHub Actions after pushing rather than treating a successful `git push` as proof the work was fine; this defect predated this slot's own changes and would have sat red through them too if not checked.
+
+**Did not go well:** the CI run itself took about 21 minutes (`gate_tests`'s headless-Chromium step, the same shape that hangs locally in this sandbox), so a check-after-push has real latency; worth remembering before assuming a quick re-check will be quick.
+
+**Next:** continue `common_items` room by room (claimed, STATUS.md), or the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 3 affected `site/zones/*.html` pages. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## Scheduled operator cycle, 2026-10-03, 04:1x (continuing `common_items`, Stair Landing)
+
+**Did:** Continued the same claimed workstream from this slot's own earlier entry rather than opening a second one. With the design proved on Entryway, authored the next-smallest room, Stair Landing (3 zones, `ops/cardtext/derive_room_deck.py`'s own smallest-first convention): Landing Surface or Console (a lamp, a framed photo, a tray for in-transit things, a stair basket for things headed to another floor), Wall and Display Zone (framed photos or art, a mirror, wall sconces, all three named directly in the zone's own `purpose` text), and Stair and Floor Path, deliberately a near-empty list (a stair runner, working step lighting, an unobstructed handrail): this zone's own `capacity.does_not_fit` already says "the capacity of a stair tread is nothing," so its common items are the fixtures that belong, not movables, and forcing a longer list would have padded a zone whose whole point is that nothing lives on it.
+
+**Verified:** regenerated with `build_zone_pages.py` (no CSS touched this round, so no site-wide fingerprint churn this time), `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `ops/audit_visual.py --all` on all 3 new pages at desktop viewport, 0 findings.
+
+**Claim note in `STATUS.md` updated, not re-claimed:** 8 of 114 done (Entryway, Stair Landing), 106 remain.
+
+**Next:** continue room by room (Dining Room, Guest Bathroom, Guest Bedroom, Hall Closet and Pantry are tied-next-smallest at 5 zones), or pick up the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 3 Stair Landing `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
+## Scheduled operator cycle, 2026-10-03, 04:0x (claimed and piloted `common_items`, the field Phil asked for with no field anywhere in the corpus)
+
+**Did:** Checkout arrived shallow and detached (unrelated-histories shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 475 commits fast-forwarded cleanly, never reset or forced. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py --fast` ran to the documented `gate_tests` sandbox hang (headless Chromium, every recent cycle reports it); everything before that point passed. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`/#39 (the TTS-gated caption fix, genuinely blocked, confirmed by reading it in full). `inbox_agent.py --apply`: no mail credential, unchecked, same as every prior cycle.
+
+**Sections 2-4 of the backlog are again fully done or Phil-gated**, so per the ordering rule (measurement, broken/dishonest, traffic, conversion, product, operational honesty) this cycle went to the one real unblocked, non-Phil-gated epic-5 item: `common_items`, named in `97615a223`'s own commit message ("Phil asked for micro zones to carry primary function, common items, step-by-step instructions and pitfalls") and left unstarted three times over by name in this same log, each time correctly judged too large to half-start.
+
+**Designed before authoring anything, per CLAUDE.md 5d.** `video_zone.done_items()` already splits `done_looks_like` into full checkable sentences for the video script, the diagram caption and the social pins; a new field restating the same thing would collide with it. `common_items` is instead a short, scannable noun list, grounded in each zone's own `done_looks_like`/`passes`/`watch_for`/`the_call` text, answering "what kinds of things go here" rather than restating the finished standard. Piloted on one room (Entryway, 5 zones) before scaling, the same pattern this corpus already uses for M3/M4 and B9, rather than guessing the design across all 114 and redoing it if wrong.
+
+**Built and shipped.** All 5 Entryway zones authored directly in `content/manual/source/content.json` (Landing Zone: keys, sunglasses, wallets and phones, a folder for act-on paper, a phone charger; Coat and Outerwear Zone: coats, the wool coat on a hanger, bags, hats and gloves, umbrellas; Shoe and Boot Zone: everyday shoes, boots, slippers, off-season pairs; Entry Console or Bench: dog lead and waste bags, sun cream and insect spray, a torch, a pen, spare car charger; Door/Mat/Floor: the two named mats), every item traced to that zone's own `straighten`/`sort`/`done_looks_like` text, nothing invented. New `common_items_html()` in `ops/build_zone_pages.py`, wired into `zone_page()` right after "What done looks like"; renders as a pill-style list (`.common-items` in `site.css`, reusing the existing `--panel`/`--line`/`--ink` tokens). New `gate_common_items_rendered` in `preflight.py` (`check_common_items_rendered`), the same shape as `gate_variants_rendered`: re-derives the expected list from the real corpus and diffs it byte for byte against the real shipped `site/zones/*.html`, so a hand edit or a stale build cannot ship silently. Fail-then-pass proved directly against the real committed pages (planted a stale item and a stripped block in turn, watched the gate fail by name citing the file and the mismatch, restored, reran clean); `ops/tests/test_gate_common_items_rendered.py` (6/6 cases, including the real committed site).
+
+**Found and fixed one real gap while verifying, not caused by this cycle's own work:** `mcp/content.json`, the committed byte-identical copy `gate_mcp_corpus_current` checks, had drifted from `content/manual/source/content.json` before this cycle even started (the prior variants/capacity work released 2026-10-02 had not resynced it); resynced, confirmed byte-identical, `gate_mcp_corpus_current` clean.
+
+**Verified:** `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 real orphans (one `_`-prefixed audit scratch file, gitignored, removed). `ops/audit_visual.py --all` on all 5 changed pages, both desktop and mobile viewports: 0 contrast/heading/landmark/tap-target/side-scroll findings. Mobile `npm test` (the `quest-app` suite, untouched by this change but rerun anyway): all 4 suites passing. Ran `gate_variants_rendered`, `gate_capacity_rendered`, `gate_zone_direct_answer_current`, `gate_diagnosis_rendered`, `gate_also_called_is_heading`, `gate_zone_short_answer_above_fold`, `gate_no_duplicate_hazard_labels` and `gate_kit_compact_rendered` directly (the full `preflight.py` run cannot complete in this sandbox): all clean, no sibling field regressed. The site-wide `site.css?v=` fingerprint churn from the new CSS rule touches every page's stylesheet link, confirmed by diffing a sample unrelated page: one line, the hash, no content change.
+
+**Claimed in `STATUS.md`** before this entry, per LRN-0031, naming the design decision and the pilot scope so a concurrent session sees it rather than starting the same field independently. 109 zones remain.
+
+**Went well:** piloting one room before committing to a design across all 114, and finding the stale `mcp/content.json` copy by running its own gate rather than assuming the prior release had closed everything it touched.
+
+**Did not go well:** the standing `gate_tests` sandbox hang, unchanged; same no-credential (Stripe/Gemini/mail/VPS) sandbox every recent cycle reports.
+
+**Changing next cycle:** none; the new gate and test already hold this field the same way its siblings are held.
+
+**Next:** whoever next has a free slot should continue `common_items` room by room (claimed, not stalled), or pick up the standing Phil-blocked list in `OWNER-ACTIONS.md` otherwise unchanged.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_common_items_rendered.py`, `site/assets/css/site.css`, the 5 Entryway `site/zones/*.html` pages (plus site-wide CSS-fingerprint-only diffs on every other page), `STATUS.md`, `STRATEGY-MICROZONES.md` (caught up to the already-complete variants/capacity figures), command deck. No price or product touched, no new page. IndexNow not applicable (no new URL; the 5 changed pages are picked up by `hourly-brief.yml`'s existing `--changed` step).
+
+## PM check-in, 2026-10-03, 03:4x cycle
+
+NEXT FOR THE OPERATOR: start `common_items` authoring for the 114 micro zones, because it is the one real unblocked item left from Phil's own request and nothing higher in the ordering (measurement, broken/dishonest, traffic, conversion) surfaced as unblocked this cycle.
+
+**Previous work finished and verified, confirmed again rather than carried forward.** Attached clean (475 commits fast-forwarded, no reset or force, onto `b30c56923`). Zero commits landed since the 03:1x cycle's own check-in twenty-two minutes ago, so there is no new "previous work" to re-verify beyond what that cycle already confirmed (the variants/capacity release, 114 of 114, independently checked then against live `content.json`). Re-read `STATUS.md` Open claims (still "No active claims," `common_items` still the one named open item) and `BACKLOG-2026-09-07.md` sections 0 and 2 to 4 for anything newly unblocked: none. `preflight.py` (fast) hit the documented `gate_tests` sandbox hang again and was killed after 90s, the same standing limitation every recent cycle reports; not re-run narrower this slot since nothing changed to re-check. GitHub: 9 open issues, unchanged. Read #39 in full rather than trusting its label-less appearance as something new: it is correctly capability-blocked, not actionable here (needs real TTS re-recording on Phil's own video pipeline, outside this sandbox). The other 8 are `decision`/`blocked-on-art`. 0 open PRs.
+
+**No new PM-slot-sized item found; handoff stands.** `common_items` is bespoke per-zone authorship, hours of work, not a 30-minute close, so it stays the operator's to start, not mine. This slot is otherwise a confirmation pass, per this routine's own instruction not to start something large at :40.
+
+**Next:** operator claims and starts `common_items` authoring now; same standing Phil-blocked list in `OWNER-ACTIONS.md` and the same 9 GitHub issues otherwise unchanged.
+
+Pushed to main. Command deck only, this log entry. No price or product touched, no new page. IndexNow not applicable.
+
+## PM check-in, 2026-10-03, 03:1x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (474 commits fast-forwarded, no reset or force). The variants/capacity claim the 02:5x cycle watched mid-flight landed in full and released itself (`839143719`, 114 of 114 zones, `STATUS.md` Open claims and Workstream 3 both correctly closed by that same commit); confirmed directly against the live `content.json`, not the claim's own prose: 0 of 114 zones now missing either field. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Mobile `npm test` all 4 suites passing. `preflight.py`'s full run hit the documented `gate_tests` sandbox hang again (confirmed by letting it run 150s before killing it, same standing limitation every recent cycle reports); the narrower checks above ran directly in its place. 9 GitHub issues unchanged, all `decision`/`blocked-on-art`/#39, 0 open PRs.
+
+**No new unblocked, PM-slot-sized item found.** The one real unblocked item left, `common_items` (Phil's own request, 0 of 114 zones), is correctly un-started: it is bespoke per-zone authorship, hours of work, not a 30-minute close. Held for the hourly operator or a session with a full slot rather than half-starting it.
+
+**Next:** operator should claim and start `common_items` authoring if nothing higher-priority surfaces; same standing Phil-blocked list in `OWNER-ACTIONS.md` otherwise unchanged.
+
+Pushed to main. Command deck only, this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03, 02:5x
 
 **Did.** Checkout arrived shallow and detached (unrelated-histories shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, fast-forwarded cleanly three separate times across this cycle as concurrent sessions pushed, never reset or forced. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 0 through 7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries.
@@ -48039,3 +48700,4 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
+

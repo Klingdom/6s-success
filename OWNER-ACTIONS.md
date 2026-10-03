@@ -6,10 +6,16 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-30 UTC, traffic re-measured by a direct database read:
-48 visitors/119 visits/30 days (1.6 a day). The trailing week records
-14, but 30 of its 50 pageviews came in one 20-minute burst on 27 September;
-ex-burst the week is 7 visitors and it fell again. Item 1 (YouTube) made
+**Last measured:** 2026-10-02 UTC, traffic re-measured by a direct database read:
+49 visitors/121 visits/30 days (1.6 a day), flat on the 48/119 of three days
+earlier. **Corrected 2026-10-03, scheduled operator: this header still cited
+the 2026-09-29 reading while GOALS.md, STATUS.md and DATA-SOURCES.md had all
+moved on to this one.** The trailing week as recorded is 22 visitors/29
+visits/62 pageviews; excluding its single busiest 20-minute bucket (the same
+27 September burst every prior reading has excluded) it is 13 visitors/20
+visits/32 pageviews, against 7 ex-burst on 2026-09-29, the first rise this
+figure has shown, though 13 against 7 is a small enough number that it could
+still be noise. Item 1 (YouTube) made
 genuinely actionable 2026-09-27: the two prerequisites that would each have
 broken the first run are now done (the credential files are gitignored, the
 Google client libraries are installed), and the publish pair is verified at
