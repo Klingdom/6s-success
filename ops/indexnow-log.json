@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-27T14:12:44Z",
-   "mode": "changed",
-   "offered": 195,
-   "accepted": 195,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-27T22:24:17Z",
    "mode": "changed",
    "offered": 14,
@@ -633,6 +626,13 @@
    "offered": 3,
    "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T04:17:12Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -791,7 +791,7 @@
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "23015ea2aa44e6ab",
   "https://6s-success.com/zones/nursery-the-feeding-station": "6287911455361d7b",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "f8cb182303a3a384",
-  "https://6s-success.com/zones/pantry-the-baking-zone": "5f36ea28db4aad28",
+  "https://6s-success.com/zones/pantry-the-baking-zone": "1ab5bfbfb04d2a4b",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "5718304aec5b255b",
   "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "dc8f38da0aa361e8",
   "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "a7d7b6cd2f732caf",
@@ -799,7 +799,7 @@
   "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "421e483cba502fce",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "90f064b712937c2b",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "bcc64860d7a531c4",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "ab6c9171ed3aa8ca",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "5174fd74a0351b8a",
   "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "6036f3f9b696d3e7",
   "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "00aab1a679c1f262",
   "https://6s-success.com/zones/primary-bathroom-the-medicine-cabinet": "98ba5e79a75de895",
@@ -822,7 +822,7 @@
   "https://6s-success.com/zones/workshop-the-main-workbench": "7e749d57cefea53d",
   "https://6s-success.com/zones/workshop-the-material-rack": "907e9649342d1252",
   "https://6s-success.com/zones/workshop-the-power-tool-storage": "166d821e6bb8659e",
-  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "e0c87707c94ec8e9",
+  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "df5d95bf8bf07582",
   "https://6s-success.com/kitchen-deck.html": "ae8798dba55f2dbb",
   "https://6s-success.com/bundle.html": "20efbaa604fb190b",
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "197b7f04c803d689",
