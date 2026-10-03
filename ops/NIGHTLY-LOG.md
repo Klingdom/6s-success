@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (23:2x cycle, previous work finished, handoff reconfirmed, nothing new started)
+
+**Previous work finished, verified not cited.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, fast-forward, tree clean). `content.json` confirmed 45/114 zones carry `sort_scope`, 9/20 rooms, matching the last operator commit (`c51c4097f`, Living Room and Family Room). STATUS.md already documents full verification for that cycle (gates, tests, audits, all clean). CI on that commit: Checks and Publish site image still `in_progress` after ~20 minutes, consistent with normal runtime, not yet confirmed green, reported unchecked rather than assumed. `preflight.py` fresh in background: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed there as usual. `cold_read_ledger.py`: 0 stale, 0 un-ledgered candidates, that lane still exhausted. `RISKS.md`'s `forms_dead=215` citation matches live `state.json`, no drift. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable; 0 PRs.
+
+**Did:** regenerated the dashboard (stale since 11:01). No other content, price or product touched.
+
+**Handing operator:** `sort_scope` rollout continues at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each); Kitchen, Primary Bathroom, Garage (7 each) last. Already correctly named in STATUS.md's Open claims; not re-claiming or starting it myself, operator-sized not PM-sized.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## 2026-10-03, scheduled operator cycle (sort_scope rollout, Living Room and Family Room, 6 zones each)
 
 **Did:** Attached via STEP 0 (fetch, unshallow, `checkout main`, ff-only merge onto `origin/main`, 659 commits, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `preflight.py` fresh in the background before touching anything: 0 FAIL, 0 WARN through every gate up to the documented `gate_tests` headless-Chromium sandbox hang; killed there, everything before it clean. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. Confirmed directly rather than cited: `content/manual/source/content.json` carried `sort_scope` for 33 of 114 zones, 7 of 20 rooms fully covered, matching the 22:1x PM check-in's own handoff naming Living Room and Family Room (6 zones each) as the next tied-smallest unclaimed rooms.
