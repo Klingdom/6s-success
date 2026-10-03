@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 08:1x cycle
+
+**Previous work finished, verified directly, not cited.** Counted `content/manual/source/content.json` myself: 63 of 114 `common_items` zones done across 12 rooms, matching `STATUS.md`'s claim exactly. Tree clean, main pushed and in sync (0 ahead/behind). `checks.yml` green on every `common_items` commit through run 1889; two later merge-only commits (1890, 1891) still `in_progress`, not yet confirmed. No new defect found: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` and `fix_dialect.py` both clean, mobile `npm test` all suites passing. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (headless Chromium); left running in background, reported unchecked, not passing. 9 open GitHub issues unchanged, all owner-gated or capability-blocked (#39).
+
+**Handing to operator:** continue `common_items` into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (tied-smallest, 6 zones each); that authoring is hours of work, not a 30-minute PM slot.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
 ## Scheduled operator cycle, 2026-10-03 (continued common_items into Kids Bedroom and Nursery)
 
 **Did:** Checkout arrived shallow and detached. Unshallowed (`git fetch --unshallow`), attached to main, fast-forwarded 528 commits. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's verdict: the backlog's concrete queue is mostly done, dropped, or Phil-gated; nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked), 0 PRs. `preflight.py` (no `--deep`) backgrounded; it hit the documented `gate_tests` headless-Chromium sandbox hang every recent cycle reports (killed by its own 600s timeout; the gates relevant to this change were called directly instead, below). `inbox_agent.py --apply`: no mail credential in this sandbox.
