@@ -5634,6 +5634,12 @@
        "condition": "A platform bed, a divan with built-in drawers, or a frame too low for bins",
        "guidance": "There is no under-bed strip to police, so that rule stops applying and the floor rule matters more: whatever used to go under the bed now has to live somewhere else entirely, not stacked against the wall in the walking strip. Built-in drawers count as storage with a fill line, one category each, the same as a chest."
       }
+     ],
+     "common_items": [
+      "Fitted sheet, flat sheet or duvet",
+      "Two sleeping pillows per person",
+      "One throw, folded at the foot",
+      "Two complete sheet sets, one on the bed and one on the shelf"
      ]
     },
     {
@@ -5781,6 +5787,12 @@
        "condition": "No nightstand at all, only a shelf, a stool or a windowsill",
        "guidance": "The five-thing rule still holds and the drawer rule simply stops applying: with no drawer there is no hidden layer, so anything that would have gone in one needs a home elsewhere in the room rather than stacking on the surface. A shallow wall shelf plus a single small basket does the same job as a drawer."
       }
+     ],
+     "common_items": [
+      "A lamp",
+      "A lidded bottle or a coaster",
+      "One book",
+      "A small dish for glasses"
      ]
     },
     {
@@ -5934,6 +5946,12 @@
        "condition": "One sleeper works nights or shifts",
        "guidance": "Whoever is asleep while the other is up sets the rules for the walking strip and the light on that side, because they cannot see a hazard being created while they sleep. Cords off the floor and one low light on this side are not tidiness here, they are the only way one room works for two schedules at once."
       }
+     ],
+     "common_items": [
+      "A lamp, its cord run behind the leg",
+      "A lidded bottle or a coaster",
+      "One book",
+      "Medication, in date, capped and closed away"
      ]
     },
     {
@@ -6083,6 +6101,11 @@
        "condition": "The dresser is low, built in, or already anchored to the wall",
        "guidance": "The tipping risk is genuinely absent, so the anti-tip strap stops being the first job and the front-edge rule matters more instead. A low dresser puts its top at a small child's eye and hand height, which turns fragrance, jewelry and anything with a small removable part into a reaching problem rather than a falling one."
       }
+     ],
+     "common_items": [
+      "A valet tray holding keys, wallet, watch and rings",
+      "Fragrance bottles, grouped on a small dish",
+      "An anti-tip strap anchoring the dresser to the wall"
      ]
     },
     {
@@ -6228,6 +6251,12 @@
        "condition": "A child, or anyone seated, uses these drawers",
        "guidance": "The reachable drawers are the middle ones rather than the top, so the categories used most often move down to where the hand arrives without stretching or climbing. That also settles the safety question, because the reason a child climbs a drawer at all is that what they need is above them."
       }
+     ],
+     "common_items": [
+      "Underwear and socks, one drawer",
+      "Sleepwear, one drawer",
+      "T-shirts, one drawer",
+      "Workout clothes, one drawer"
      ]
     },
     {
@@ -6380,6 +6409,12 @@
        "condition": "A reach-in with no fitted rod, or a freestanding rail",
        "guidance": "A freestanding rail hits a weight limit long before it hits a space limit, so the two-fingers rule becomes a safety line rather than a visibility one. Keep the heaviest coats over the legs rather than the center span, and if the rail bows at all it is already past its load however much space is left."
       }
+     ],
+     "common_items": [
+      "Hanging clothes, one hanger style throughout",
+      "Shoes, in pairs on a rack",
+      "Bags, standing upright on the shelf",
+      "Belts, on one hook"
      ]
     }
    ]
