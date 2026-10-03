@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T16:04:36Z",
-   "mode": "changed",
-   "offered": 55,
-   "accepted": 55,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T17:06:02Z",
    "mode": "changed",
    "offered": 48,
@@ -633,6 +626,13 @@
    "offered": 211,
    "accepted": 211,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T18:03:32Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -713,11 +713,11 @@
   "https://6s-success.com/zones/dining-room-the-dining-table": "acc88008db172b38",
   "https://6s-success.com/zones/dining-room-the-sideboard-storage": "9d8a2b48b966debf",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "cc8cb733630643c8",
-  "https://6s-success.com/zones/entryway-the-bench-or-console": "6e7a8ea82dd2bdcc",
-  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "e0b53662df44d95f",
-  "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "6ae81587aab436d5",
-  "https://6s-success.com/zones/entryway-the-landing-spot": "f27aa7ec559b88e3",
-  "https://6s-success.com/zones/entryway-the-shoes-and-boots": "b86161c7810e3ed8",
+  "https://6s-success.com/zones/entryway-the-bench-or-console": "6cfd6f0581da50b2",
+  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "7cf562ea6ef67478",
+  "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "44a5e3dcaa516d35",
+  "https://6s-success.com/zones/entryway-the-landing-spot": "a97437c72db44b3a",
+  "https://6s-success.com/zones/entryway-the-shoes-and-boots": "26ac6680c9e9fbd7",
   "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "a30af5fa5741c711",
   "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "9f51f09622c4943a",
   "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "43c3a712b51296c9",
