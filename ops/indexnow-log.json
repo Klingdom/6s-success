@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T08:21:08Z",
-   "mode": "changed",
-   "offered": 25,
-   "accepted": 25,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T08:35:24Z",
    "mode": "changed",
    "offered": 7,
@@ -633,6 +626,13 @@
    "offered": 6,
    "accepted": 6,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T07:03:18Z",
+   "mode": "changed",
+   "offered": 6,
+   "accepted": 6,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -808,12 +808,12 @@
   "https://6s-success.com/zones/primary-bathroom-the-under-sink-cabinet": "de7c37a442d29029",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-counter": "d38d185618408e0f",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-drawers": "74c8f28625c423f5",
-  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "cba012562bfa531b",
-  "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "3f49be0f216ec1c6",
-  "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "f3ce72c3a96a2f4f",
-  "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "9632aba8979d4c84",
-  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "8d3945f4627f8ea9",
-  "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "88702869f735d693",
+  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "7b93417976b362cf",
+  "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "20273503baecaa4f",
+  "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "c0d00d07d551c9cf",
+  "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "7203c2270ada0561",
+  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "b0c7ae9bf90452f5",
+  "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "d0327993718cae2c",
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "a2e1dfdd0b604838",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "f1a403d997fab161",
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "8767b60f2bac11e4",
