@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 04:3x (continuing `common_items`, Pantry)
+
+**Did:** Continued the same claimed workstream a third time this slot rather than opening a new one, while the dialect-fix push's own CI run was still in flight (`checks.yml`'s `Preflight` step runs ~20 minutes in this repository's own CI, the same headless-Chromium shape that hangs locally). Authored Pantry's 5 zones (the next tied-smallest room): Dry Goods Shelves (rice/pasta/oats, breakfast cereal, specialty flours and lentils), Canned and Jarred Goods (tomatoes/beans/soup, coconut milk and stock, tuna), Baking Zone (flour/sugar/brown sugar, baking powder/baking soda/yeast, cutters/cases/piping tips), Snack and Lunch Zone (pre-approved snacks, lunch containers and lids, lunch bags and ice packs), Backstock and Bulk Zone (sacks of rice, cases of canned goods, kitchen roll and paper napkins), every item grounded in that zone's own `straighten`/`sort`/`done_looks_like` text.
+
+**Verified:** `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `fix_dialect.py --check` still 0 (confirming the dialect fix a few minutes earlier is holding), `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `ops/audit_visual.py --all` on all 5 new pages, desktop viewport, 0 findings.
+
+**13 of 114 done: Entryway, Stair Landing, Pantry.** 101 remain. `STATUS.md` claim note updated, not re-claimed.
+
+**Next:** continue room by room (Dining Room, Guest Bathroom, Guest Bedroom and Hall Closet are tied-next-smallest at 5 zones), or pick up the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Pantry `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## Scheduled operator cycle, 2026-10-03, 04:2x (fixed a real, pre-existing CI failure: 3 British spellings shipped, unrelated to this slot's own work)
 
 **Did:** Checked GitHub Actions directly rather than assuming a push is clean once it leaves this machine (CLAUDE.md 0.3): the "Checks" workflow had gone red on `839143719` ("Release the variants and capacity claim: 114 of 114," the variants/capacity bulk-authoring work that landed before this slot started) and stayed red through this slot's own first two pushes, since neither had touched the affected files. `get_job_logs` on the failed run named the exact defect: `content/manual/source/content.json` carried "judgement" (2 instances: Pantry's Baking Zone variant, Workshop's Safety and PPE Station capacity rule) and "mouldy" (1: Patio or Deck's Outdoor Storage Zone variant), all three introduced by that bulk-authoring pass, shipped to `site/zones/pantry-the-baking-zone.html`, `site/zones/workshop-the-safety-and-ppe-station.html` and `site/zones/patio-or-deck-the-outdoor-storage-zone.html`.

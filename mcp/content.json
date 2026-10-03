@@ -2053,7 +2053,12 @@
      "capacity": {
       "rule": "One container per line you actually cook from, sized to a normal shopping week, with the lid closing flat and the level readable from the doorway without lifting anything.",
       "does_not_fit": "If the containers are full at the end of an ordinary week and nothing in them has gone stale, this shelf is genuinely short of room rather than badly packed. Move the once-a-month flours and lentils up or out to the backstock zone before you buy another container."
-     }
+     },
+     "common_items": [
+      "Rice, pasta and oats",
+      "Breakfast cereal",
+      "Specialty flours and lentils"
+     ]
     },
     {
      "zone": "Canned and Jarred Goods",
@@ -2203,7 +2208,12 @@
      "capacity": {
       "rule": "One row per meal group, one can deep at the front with the oldest date facing you, and no row longer than you can reach without moving the row beside it.",
       "does_not_fit": "If every row is full, nothing is duplicated and nothing is past its date, the shelf is honestly full. The next tin belongs in the backstock zone with its month written on it, not wedged in front of a row you can no longer read."
-     }
+     },
+     "common_items": [
+      "Tomatoes, beans and soup",
+      "Coconut milk and stock",
+      "Tuna"
+     ]
     },
     {
      "zone": "Baking Zone",
@@ -2354,7 +2364,12 @@
      "capacity": {
       "rule": "One lift-out bin for the start of a bake and one for the end of it, each light enough to carry to the counter one-handed, plus the leaveners together in one small box with their dates showing.",
       "does_not_fit": "If the start-of-bake bin is too heavy to lift with one hand, it is holding things you do not use at the start of a bake. Move those into the second bin rather than buying a bigger first one."
-     }
+     },
+     "common_items": [
+      "Flour, sugar and brown sugar",
+      "Baking powder, baking soda and yeast",
+      "Cutters, cases and piping tips"
+     ]
     },
     {
      "zone": "Snack and Lunch Zone",
@@ -2505,7 +2520,12 @@
      "capacity": {
       "rule": "One open bin at child height holding only snacks you have already said yes to, and a number of reusable containers that matches the lunches you genuinely pack in a week, each sitting with its own lid.",
       "does_not_fit": "If the containers will not sit with their lids on, the count is wrong before the shelf is. Count the lunches you actually packed last week and keep that many."
-     }
+     },
+     "common_items": [
+      "Pre-approved snacks",
+      "Lunch containers and lids",
+      "Lunch bags and ice packs"
+     ]
     },
     {
      "zone": "Backstock and Bulk Zone",
@@ -2651,7 +2671,12 @@
      "capacity": {
       "rule": "A maximum number written on the shelf edge for each line, everything at or below waist height, one row deep, and the month written on each item as it arrives.",
       "does_not_fit": "If a line is at its maximum and you are still buying, either the maximum is wrong or the buying is. Change the number on the shelf edge deliberately rather than starting a second row in front of the first."
-     }
+     },
+     "common_items": [
+      "Sacks of rice",
+      "Cases of canned goods",
+      "Kitchen roll and paper napkins"
+     ]
     }
    ]
   },
