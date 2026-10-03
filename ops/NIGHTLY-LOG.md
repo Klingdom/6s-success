@@ -48701,3 +48701,19 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
 
+
+## 2026-10-03, scheduled operator cycle (16:0x UTC, clean verification pass, no new defect, deploy gap confirmed Phil-blocked)
+
+**Did:** Checkout arrived shallow and detached; unshallowed and fast-forwarded cleanly onto `origin/main` (589 commits behind, now at `c1656ea7d`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, the last several `ops/NIGHTLY-LOG.md` entries. Every row in `BACKLOG-2026-09-07.md` sections 2 through 6 is done or explicitly Phil-gated, confirmed directly rather than trusted (`STATUS.md` section 30 already says the same as of 2026-09-15 and nothing since contradicts it). GitHub: 9 open issues, all `decision`, `blocked-on-art` or (issue #39) blocked on real TTS re-render only Phil's machine can do; 0 open PRs.
+
+**Verified:** `ops/preflight.py` run in the background; every gate up to `gate_tests` passed (0 `FAIL` in the full log), then hit the documented headless-Chromium sandbox hang (killed after ~5 minutes at exit 143, consistent with every recent cycle's report); reported here as unchecked past that point, not assumed passing. `inbox_agent.py --apply`: no mail credential, unchecked. Cold-read three low-mention `ops/*.py` files for defects (`import_room_diagrams.py`, `bluesky_drafts.py`, `build_nursery_deck_page.py`): all three ran clean against the live corpus (`import_room_diagrams.py --apply` produced a byte-identical `ops/room-diagrams.json`; all 11 drawn rooms plus the 9 book-photographed rooms render on `site/rooms/*.html`, 20/20; `bluesky_drafts.py --preview` emits three posts, each correctly carrying `?from=bsky` and under the 300-char cap). No defect found. Checked `deploy.yml`'s latest run (162, triggered by this cycle's own merge, `success`): its "Deploy" step is still `skipped`, confirming `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0) has not been added yet, so the dashboard's "production is serving an old build" P0 is real and correctly Phil-blocked, not a false reading.
+
+**Went well:** confirming the deploy-gap P0 against a real, current workflow run instead of citing the dashboard's own carried-forward text.
+
+**Did not go well:** `gate_tests` still cannot complete in this sandbox; no new mitigation found this cycle.
+
+**Changing next cycle:** none; no new defect to gate.
+
+**Next:** `OWNER-ACTIONS.md`'s "Start here" list, unchanged: add `VPS_DEPLOY_KEY` as a GitHub secret (closes the deploy-gap P0 for good), verify Search Console, authorise YouTube uploads. Issue #39 (2 films' captions) needs Phil's own machine. Everything else in the current backlog is done.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page. IndexNow not applicable.
