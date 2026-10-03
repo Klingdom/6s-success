@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (11:0x, re-derived the real deploy gap: 33 commits, 27 material, two full corpus rollouts undeployed)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main through two concurrent pushes (one 551-commit, one 1-commit PM check-in) with no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md in full, BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md, CLAUDE.md and the last four NIGHTLY-LOG.md entries. Ran `python ops/preflight.py`: it hit the documented sandbox hang on a first attempt but completed clean on background retry, exit 0, every gate passed. Checked GitHub directly: 9 open issues unchanged (6 decision, 2 blocked-on-art, 1 capability-blocked), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed clean.
+
+**Verified rather than trusted the last three cycles' own "nothing unblocked" conclusion before accepting it.** Independently re-checked: `cold_read_ledger.py --next` (195 of 195 files ledgered, 0 stale), the keyword-demand gap list (216 remaining gaps, read in full rather than counted: the in-scope ones are already closed by A11/A13/A14/A15/A18, the rest are off-topic autocomplete noise, construction, gaming, gardening, medical), and the affiliate trigger (1 of 60, unmeasurable fresh from this sandbox). All three independently confirmed: nothing concretely unblocked beyond the standing VPS_DEPLOY_KEY gate (issue #35, open 9 days, zero comments).
+
+**Found the one thing that was itself stale: the deploy-gap count.** `ops/deploy-verdict.json` is unchanged since 2026-10-02T13:48:50Z; the last STATUS.md entry cited 10 commits behind as of 21:3x that day. Re-derived directly with `deploy_gap_material_commits()` and hand-classified each of the 33 returned commits with `git show --stat` rather than guessing the split: 27 material, 6 restamp-only (build-id.txt/sitemap.xml alone). The bulk is two complete 114-of-114-zone corpus rollouts finished since the last redeploy (`common_items` and `variants and capacity`), plus five real SEO/content fixes. None of it is broken; all of it is finished, customer-ready content nobody visiting the live site can see yet. This is the largest undeployed body of real content this section has recorded.
+
+**Updated STATUS.md's BLOCKER-001, both Section 4 rows, the Production Knowledge paragraph and the Immediate Focus line together, not just one of the four**, the exact "source corrected, sibling never told" shape `gate_status_deploy_verdict_current`/`gate_status_deploy_gap_count_current` exist to catch. Verified directly against both gates' own logic in a one-off script rather than assumed: both return no problem against the new text. `fix_dashes.py --check` clean (0/0). Regenerated the command deck (`ops/dashboard.py`).
+
+**Went well:** cross-checking three independent cycles' "nothing unblocked" conclusion myself rather than taking it on faith, and finding the one real thing that actually was stale (a number, not a missing workstream).
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang on the first preflight attempt every recent cycle already documents, resolved on retry.
+
+**Changing next cycle:** nothing procedural; the standing instruction to re-derive the deploy gap with `git show --stat` rather than cite the last cycle's figure already covers this.
+
+**Next:** the deploy gap will keep growing every cycle until `VPS_DEPLOY_KEY` is decided (issue #35) or a session with real VPS access redeploys; worth a direct nudge to Phil given the scale (two full corpus fields, not a cosmetic fix) if a channel to reach him opens. Otherwise: watch for the keyword-demand.yml Wednesday re-harvest, and re-scan the backlog fresh rather than carry forward "exhausted."
+
+Pushed to main. STATUS.md, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 10:4x cycle
 
 NEXT FOR THE OPERATOR: do a fresh BACKLOG-2026-09-07.md/STATUS.md scan for anything newly unblocked, because two straight 30-minute cycles (10:1x and this one) found the `common_items` field closed, the cold-read lane exhausted, and keyword-demand not due, with nothing left that is not waiting on Phil.
