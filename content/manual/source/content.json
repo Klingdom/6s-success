@@ -3902,7 +3902,21 @@
       "At most one cushion per seat",
       "Both remotes, in the tray on the arm",
       "One or two pillows that can stay in place when someone sits"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every seat on the sofa and each armchair, clear enough to sit on without lifting anything off it",
+       "Throws folded to one size, in one basket",
+       "At most one cushion per seat, left in place",
+       "Both remotes, in the tray on the arm, with batteries that work"
+      ],
+      "strays": [
+       "Laundry that migrated here instead of the hamper",
+       "A second and third throw blanket beyond the one the basket holds",
+       "Magazines wedged behind the armrest",
+       "Coins and hair ties down the back of the cushions"
+      ]
+     }
     },
     {
      "zone": "Coffee Table",
@@ -4053,7 +4067,20 @@
       "The remote in use",
       "One book, mid-read",
       "One plant"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One tray holding four coasters and the remote in use",
+       "At most one book, mid-read, or one plant beside the tray",
+       "The wood or glass top, showing across most of the surface"
+      ],
+      "strays": [
+       "A candle burned down to the foil",
+       "Coasters nobody uses because they sit on the far corner",
+       "Three-month-old magazines",
+       "Takeaway menus"
+      ]
+     }
     },
     {
      "zone": "Media Center",
@@ -4217,7 +4244,21 @@
       "One labeled power strip",
       "Cables, labeled at both ends and bundled by device",
       "Every controller and remote, in one bin"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The television, sound system and consoles, with a clear hand's gap of air around the vents",
+       "One labeled power strip",
+       "Cables, labeled at both ends and bundled by device",
+       "Every controller and remote, in one bin instead of four locations"
+      ],
+      "strays": [
+       "Composite leads for a connection this setup no longer uses",
+       "A disc player nobody has loaded in a year",
+       "A streaming stick from two televisions ago",
+       "A charger with the old connector"
+      ]
+     }
     },
     {
      "zone": "Bookshelves and Display",
@@ -4371,7 +4412,21 @@
       "Books you will genuinely open again, upright between bookends",
       "Frames and objects, gathered into two or three groups",
       "A strap anchoring the unit to the wall"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Books you will genuinely open again, standing upright between bookends",
+       "Frames and objects, gathered into two or three groups rather than spaced along every shelf",
+       "A strap anchoring the top of the unit into the wall",
+       "A hand's width of empty space at one end of each shelf"
+      ],
+      "strays": [
+       "Duplicate books",
+       "Manuals for appliances you replaced",
+       "Free paperbacks from a conference",
+       "Empty frames, a dead plant, and souvenirs you stopped seeing years ago"
+      ]
+     }
     },
     {
      "zone": "Side Tables and Lighting",
@@ -4533,7 +4588,21 @@
       "A coaster under the glass",
       "Up to four personal items on the tray",
       "The lamp cord, clipped down the table leg"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A lamp with a bulb that lights, wiped clean",
+       "A coaster, under the glass",
+       "Up to four personal items on the tray",
+       "The lamp cord, clipped down the table leg so no cable crosses the floor"
+      ],
+      "strays": [
+       "Reading glasses with the wrong prescription",
+       "Dried-out pens",
+       "Foreign coins and loose tablets",
+       "A charger for a phone nobody in the house owns"
+      ]
+     }
     },
     {
      "zone": "Floor and Circulation Path",
@@ -4695,7 +4764,20 @@
       "The rug, lying flat on a grippy pad",
       "Furniture legs",
       "Floor baskets, pushed back against the wall"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The rug, lying flat on a grippy pad",
+       "Furniture legs, and nothing else, along the route",
+       "Floor baskets, pushed back against the wall"
+      ],
+      "strays": [
+       "Shoes, toys and yesterday's bag left on the route",
+       "A pile of post",
+       "A box that has sat beside the sofa for a month",
+       "Anything that belongs in another room"
+      ]
+     }
     }
    ]
   },
@@ -4884,7 +4966,20 @@
       "Disc cases, standing spine out",
       "Cables, labeled at both ends",
       "The power strip, off the carpet"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One console per shelf, its own controllers docked beside it",
+       "Disc cases, standing spine out in a single row",
+       "Cables, labeled at both ends",
+       "The power strip, off the carpet"
+      ],
+      "strays": [
+       "A disc case, remote or headset that pairs with a console or television you no longer own",
+       "Two or three remotes kept in case",
+       "A loose cable with no device left to match it"
+      ]
+     }
     },
     {
      "zone": "Toy and Play Zone",
@@ -5047,7 +5142,21 @@
       "Five or six open bins, one category each",
       "Picture labels on the front face",
       "The play mat, rolled against the wall"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Five or six open bins with no lids, one category each, on the lowest shelf",
+       "A photo of the contents taped to the front face, where a child looking down sees it",
+       "The play mat, rolled against the wall",
+       "Enough clear floor that two children can build without moving anything first"
+      ],
+      "strays": [
+       "A toy with a cracked seam, a corroded battery compartment, or a missing wheel",
+       "Anything outgrown",
+       "A toy missing its other half",
+       "Anything broken, still waiting in the bin instead of repaired or gone"
+      ]
+     }
     },
     {
      "zone": "Board Game and Puzzle Zone",
@@ -5204,7 +5313,19 @@
       "Boxes, lying flat in stacks no more than five high",
       "A name strip on each box's short edge",
       "Loose pieces, bagged inside their own box"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Boxes lying flat in stacks no more than five high",
+       "A strip of tape on each short edge, naming the game",
+       "Every loose piece, bagged inside its own lid"
+      ],
+      "strays": [
+       "A game that fails its own piece count against the rules sheet",
+       "Cards, tokens or dice loose in the box instead of bagged",
+       "A box nobody can finish counting"
+      ]
+     }
     },
     {
      "zone": "Blanket and Comfort Zone",
@@ -5358,7 +5479,18 @@
       "One basket",
       "Throws, folded to the same rectangle",
       "Floor cushions"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One basket holding four throws, folded to the same rectangle, fold edges lined up",
+       "Two floor cushions, stacked beside the basket"
+      ],
+      "strays": [
+       "A throw pilled through or thinned along the fold lines",
+       "A throw that holds a smell that survives washing",
+       "Anything draped over the sofa back, the radiator, or the arm of a chair"
+      ]
+     }
     },
     {
      "zone": "Charging and Device Zone",
@@ -5521,7 +5653,19 @@
       "One power strip, on a hard surface",
       "Labeled cables, each ending at a named slot",
       "A labeled bag of spare connectors"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One power strip, on a hard surface",
+       "Four or five labeled cables, each ending at a named slot",
+       "Empty slots, visible during the day"
+      ],
+      "strays": [
+       "A charger plugged into any other socket in the room",
+       "A cable or plug that matches no device currently in the house and working",
+       "Unmatched cables kept back in the drawer as spares"
+      ]
+     }
     },
     {
      "zone": "Craft and Activity Zone",
@@ -5684,7 +5828,20 @@
       "Four lidded, labeled bins",
       "Scissors, standing point down in a cup",
       "One project bin, out on the clear surface"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Four lidded, labeled bins: paper and card, drawing, glue and tape, kits in progress",
+       "Scissors, standing point down in a cup, out of the youngest child's reach",
+       "One completely clear work surface, with exactly one project bin out on it"
+      ],
+      "strays": [
+       "A marker that fails the scrap-paper test",
+       "Dried glue sticks",
+       "Paint that has separated and will not stir back together",
+       "A kit whose instruction sheet is gone and cannot be found online"
+      ]
+     }
     }
    ]
   },

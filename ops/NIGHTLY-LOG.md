@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (sort_scope rollout, Living Room and Family Room, 6 zones each)
+
+**Did:** Attached via STEP 0 (fetch, unshallow, `checkout main`, ff-only merge onto `origin/main`, 659 commits, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Ran `preflight.py` fresh in the background before touching anything: 0 FAIL, 0 WARN through every gate up to the documented `gate_tests` headless-Chromium sandbox hang; killed there, everything before it clean. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. Confirmed directly rather than cited: `content/manual/source/content.json` carried `sort_scope` for 33 of 114 zones, 7 of 20 rooms fully covered, matching the 22:1x PM check-in's own handoff naming Living Room and Family Room (6 zones each) as the next tied-smallest unclaimed rooms.
+
+**Authored `sort_scope` (belongs/strays) for all 12 zones across those two rooms**, every item grounded in that zone's own existing `purpose`/`done_looks_like`/`passes.sort`/`common_items` text, nothing invented. `content.json` edited with the standard targeted string-replacement method (12 separate edits, each anchored on the zone's own `common_items` block, a unique-zone-name guard checked before each edit), valid JSON confirmed after every edit and on the final write. `mcp/content.json` resynced as a plain copy, confirmed byte-identical. Ran the real generator (`ops/build_zone_pages.py`), which changed only the 12 target pages plus the usual sitemap/service-worker bookkeeping (215 pages, 211 sitemap URLs); `ops/build_id.py --check` current against the resulting tree.
+
+**Verified:** `gate_sort_scope_rendered` clean via direct function call; `ops/tests/test_gate_sort_scope_rendered.py` 6/6 against the real committed site; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans across zones/rooms/articles; `ops/audit_visual.py` on all 12 changed pages, both desktop and mobile viewports, 0 findings in every category either checks. Full `preflight.py` (fast) run twice in the background, once as a clean baseline before the edit and once against the staged change after: both 0 FAIL, 0 WARN through every gate before the documented sandbox hang. A fetch immediately before committing picked up one concurrent PM check-in commit (`fe70cb5c4`, `ops/NIGHTLY-LOG.md` only, no content collision), merged cleanly via fast-forward.
+
+**Went well:** the handoff named the exact two rooms and the content for both was straightforward to ground in each zone's own existing text; the fetch-before-commit check caught the one concurrent commit with no real collision.
+
+**Did not go well:** nothing new; the standing `gate_tests` sandbox hang is unchanged and unrelated to this cycle's own work.
+
+**Changing next cycle:** none; the existing gate and test already cover this exact shape correctly.
+
+**Next:** 45 of 114 zones now carry `sort_scope`, 9 of 20 rooms fully covered. Tied-smallest remaining: Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each); Kitchen, Primary Bathroom, Garage (7 zones each) last, per the `common_items` rollout's own precedent of saving the largest rooms for last. Standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art); production remains behind HEAD pending Phil's redeploy or the VPS key decision.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page; IndexNow not applicable (existing pages edited, none added).
+
 ## 2026-10-03, PM check-in (22:4x cycle, previous work finished, handoff reconfirmed, nothing new started)
 
 NEXT FOR THE OPERATOR: continue the sort_scope rollout at Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each, 60 total), because the 22:1x twin cycle already handed this off 20 minutes ago and it remains unclaimed and unblocked.
