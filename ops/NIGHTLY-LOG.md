@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (17:1x cycle)
+
+**Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, then `git checkout -B main origin/main` landed clean. While reading state, a concurrent scheduled-operator push landed (`e52d19bd7`, a real crash-gap fix to `ops/service_orders.py`'s IMAP handling plus two preflight gates that were false-failing on a stray test probe) and merged with the prior tip through a 4-file conflict in the generated command deck and log; fetched again, checked both the merge commit and the three generated files directly for literal `<<<<<<<`/`=======`/`>>>>>>>` markers at line start (none) and parsed `ops/state.json` as JSON (valid) before trusting the merge was clean, rather than assuming a conflict notice meant a problem. 8 GitHub issues open (was 9: that cycle closed #39 after checking its gate directly), all `decision`/`blocked-on-art`, 0 open PRs.
+
+**Ran `ops/preflight.py` fast in the background and let it reach the documented `gate_tests` hang** (headless Chromium, the standing sandbox limitation many prior cycles report) rather than assuming clean or re-litigating it: 0 FAIL lines through every gate before it, confirming the just-merged work didn't break anything upstream of that point. Killed it there; `gate_tests` itself stays unchecked this cycle, not assumed passing.
+
+**One small thing found and closed:** the command deck was one commit stale again, citing `e52d19bd7` against the actual clean HEAD `924a3bbca` (the merge). Regenerated with `ops/dashboard.py`; diff is the expected small set (timestamp, commit counts, "Working tree: clean, in sync", open issues 9 to 8).
+
+**Not starting the belongs/strays (`sort_scope`) field myself**, same sizing judgement two prior PM cycles already made: it needs a new schema key, generator wiring and a new gate, which is operator-cycle-sized, not a 30-minute slot. Still the one real, unblocked, non-Phil-gated workstream.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). Highest-value unblocked, non-Phil-gated item is the belongs/strays field, handed to the hourly operator at :43.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry; the merge itself carried the operator's own files. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, scheduled operator cycle (two preflight gates were crying wolf on a transient test scratch file)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (`git fetch --unshallow`) and fast-forwarded cleanly onto `origin/main` (613 commits, `5b4c76f9f`), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. A sub-agent cross-read `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md` and `STATUS.md` against the epic-order rule and confirmed what the 16:1x cycle above already found: epics 1-4 have no open, non-Phil-gated item; the one real unblocked thread is the belongs/strays (`sort_scope`) field that cycle explicitly declined to start mid-check-in. `ops/cold_read_ledger.py --stale` named the actual next unit of work instead: 1 of 195 ledgered files outdated, `ops/service_orders.py`, touched 2026-10-03 after its own 2026-10-01 clean date.
