@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 04:2x (fixed a real, pre-existing CI failure: 3 British spellings shipped, unrelated to this slot's own work)
+
+**Did:** Checked GitHub Actions directly rather than assuming a push is clean once it leaves this machine (CLAUDE.md 0.3): the "Checks" workflow had gone red on `839143719` ("Release the variants and capacity claim: 114 of 114," the variants/capacity bulk-authoring work that landed before this slot started) and stayed red through this slot's own first two pushes, since neither had touched the affected files. `get_job_logs` on the failed run named the exact defect: `content/manual/source/content.json` carried "judgement" (2 instances: Pantry's Baking Zone variant, Workshop's Safety and PPE Station capacity rule) and "mouldy" (1: Patio or Deck's Outdoor Storage Zone variant), all three introduced by that bulk-authoring pass, shipped to `site/zones/pantry-the-baking-zone.html`, `site/zones/workshop-the-safety-and-ppe-station.html` and `site/zones/patio-or-deck-the-outdoor-storage-zone.html`.
+
+**This is epic 2 (broken or dishonest), which outranks the epic-5 `common_items` work this slot had been doing**, so it was fixed immediately rather than queued behind that. `ops/fix_dialect.py --apply` fixed all three at the source (judgement to judgment, mouldy to moldy); `mcp/content.json` resynced; `ops/build_zone_pages.py` regenerated (only the 3 affected pages changed, no deck pages, since none of the three words appear in any deck's own authored card text this time, unlike A12).
+
+**Verified:** `fix_dialect.py --check` 0 remaining, `gate_no_british_spellings_shipped` clean, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered`/`gate_common_items_rendered` all clean. Diffed the 3 changed pages directly: one word each, nothing else moved.
+
+**Went well:** checking GitHub Actions after pushing rather than treating a successful `git push` as proof the work was fine; this defect predated this slot's own changes and would have sat red through them too if not checked.
+
+**Did not go well:** the CI run itself took about 21 minutes (`gate_tests`'s headless-Chromium step, the same shape that hangs locally in this sandbox), so a check-after-push has real latency; worth remembering before assuming a quick re-check will be quick.
+
+**Next:** continue `common_items` room by room (claimed, STATUS.md), or the standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 3 affected `site/zones/*.html` pages. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## Scheduled operator cycle, 2026-10-03, 04:1x (continuing `common_items`, Stair Landing)
 
 **Did:** Continued the same claimed workstream from this slot's own earlier entry rather than opening a second one. With the design proved on Entryway, authored the next-smallest room, Stair Landing (3 zones, `ops/cardtext/derive_room_deck.py`'s own smallest-first convention): Landing Surface or Console (a lamp, a framed photo, a tray for in-transit things, a stair basket for things headed to another floor), Wall and Display Zone (framed photos or art, a mirror, wall sconces, all three named directly in the zone's own `purpose` text), and Stair and Floor Path, deliberately a near-empty list (a stair runner, working step lighting, an unobstructed handrail): this zone's own `capacity.does_not_fit` already says "the capacity of a stair tread is nothing," so its common items are the fixtures that belong, not movables, and forcing a longer list would have padded a zone whose whole point is that nothing lives on it.
