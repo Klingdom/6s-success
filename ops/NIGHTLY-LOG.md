@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (built section-level indexation measurement, epic 1, instead of adding to the already-oversubscribed epic-5 queue)
+
+**Did:** Unshallowed and attached to `main` per the standing procedure, no conflict. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `STATUS.md`. Preflight (fast) ran clean through every gate except the documented `gate_tests` headless-Chromium hang. Checked GitHub directly: 8 open issues, all `decision`/`blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential. Dozens of concurrent sessions were already deep in epic-5 `common_items`/`sort_scope` zone authoring, well past the ordering rule's stated priority, so delegated a focused search for the highest unblocked epic 1-4 item instead of adding another zone field. Found it in GOALS.md O1: section-level indexation (does any `/zones/` page get indexed at all) was left explicitly UNCHECKED after an earlier session's own keyword-demand burst earned a DuckDuckGo block. Built `ops/indexation_check.py` (one `site:` query per engine, additive ledger, canary-voided on a block) and `.github/workflows/indexation-check.yml`, the same real-egress pattern `keyword-demand.yml` already proved necessary.
+
+**Verified:** Found and fixed a real bug in my own first draft before shipping (a later engine's canary was judged against a trusted set earlier engines in the same run had already grown, silently dropping a clean result); `ops/tests/test_indexation_check.py` proves it by name, fail-then-pass. New `gate_indexation_check_not_stale`, `ops/tests/test_gate_indexation_check_not_stale.py` 6/6. Shipping the workflow correctly tripped `gate_architecture_workflow_count_current` on the first full sweep; fixed ARCHITECTURE.md's stale count, reran clean. Full `preflight.py` (gate_tests stubbed, reproduced the hang first): 0 FAIL, 31 warnings. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0.
+
+**Went well:** Verifying the subagent's recommendation against GOALS.md's own prior finding before building anything; the bug the new test caught would have shipped a quietly broken instrument otherwise.
+
+**Did not go well:** Two merge conflicts against concurrent pushes, both in the generator-owned command-deck files only; resolved by regenerating rather than hand-merging.
+
+**Changing next cycle:** None; the gate that would catch this class of drift already exists and worked.
+
+**Next:** The ledger is empty until `indexation-check.yml`'s first live run. Epic 5 rollout (sort_scope, Stair Landing) remains queued for whoever picks it up next.
+
 ## 2026-10-03, PM check-in (19:1x cycle)
 
 **Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `git checkout -B main origin/main`, fast-forwarded clean onto `d40c94f53`, no conflict. Confirmed the 18:4x cycle's own merge-resolution claims directly instead of trusting them: all six workflows (Deploy to production, Hourly brief, Deliver paid orders, LinkedIn/Bluesky/Facebook-X drafts) show `success` on `d40c94f53` via GitHub's own run list; `build_id.py --check` current; working tree was clean, main already pushed.
