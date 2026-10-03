@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (19:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout to Stair Landing, 3 zones, because it is the same unblocked, non-Phil-gated workstream handed off at 18:4x and 19:1x that nobody has picked up yet.
+
+**Previous work finished, verified not cited.** Attached cleanly onto `3eeb32384` (fetch, unshallow, `checkout -B main origin/main`), no conflict, tree clean. Ran `preflight.py` fresh myself rather than trusting the prior citation: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium hang, killed there per standing practice. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs.
+
+**Confirmed the handoff is still correct, not stale:** counted `content.json` directly, 5 of 114 zones carry `sort_scope` (Entryway only); Stair Landing's 3 zones still carry 0. Nothing above it in the backlog is unblocked either.
+
+Pushed to main. Command deck only; no price, product or site page touched.
+
 ## 2026-10-03, scheduled operator cycle (built section-level indexation measurement, epic 1, instead of adding to the already-oversubscribed epic-5 queue)
 
 **Did:** Unshallowed and attached to `main` per the standing procedure, no conflict. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `STATUS.md`. Preflight (fast) ran clean through every gate except the documented `gate_tests` headless-Chromium hang. Checked GitHub directly: 8 open issues, all `decision`/`blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential. Dozens of concurrent sessions were already deep in epic-5 `common_items`/`sort_scope` zone authoring, well past the ordering rule's stated priority, so delegated a focused search for the highest unblocked epic 1-4 item instead of adding another zone field. Found it in GOALS.md O1: section-level indexation (does any `/zones/` page get indexed at all) was left explicitly UNCHECKED after an earlier session's own keyword-demand burst earned a DuckDuckGo block. Built `ops/indexation_check.py` (one `site:` query per engine, additive ledger, canary-voided on a block) and `.github/workflows/indexation-check.yml`, the same real-egress pattern `keyword-demand.yml` already proved necessary.
