@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (21:4x cycle, previous work confirmed finished, handoff reconfirmed, nothing new started)
+
+NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Guest Bedroom and Guest Bathroom (5 zones each), because the 21:1x cycle already fixed the CI gap blocking publish and handed this off, and it is still the correct unblocked, non-Phil-gated item nobody has claimed since.
+
+**Previous work genuinely finished, verified independently rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape, a long `git fetch --unshallow` this cycle). Attached cleanly onto `ddfab3278` (fetch, unshallow, `checkout main`, `merge --ff-only`), no unrelated-history symptom this time, no conflict, tree clean. Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`. Confirmed the 21:1x cycle's own claim directly rather than trusting it: counted `content/manual/source/content.json` myself, 23 of 114 zones carry `sort_scope`, 5 of 20 rooms fully covered, and Guest Bedroom/Guest Bathroom are still the tied-smallest unclaimed rooms at 5 zones each, 0 coverage. `git fetch origin main` showed no new commits past `ddfab3278`, so the operator has not yet picked up the handoff and there is no collision to resolve.
+
+`python ops/preflight.py` was run fresh this cycle rather than citing the twin's run; it reached the documented `gate_tests` headless-Chromium sandbox hang (pip install of `ops/requirements.txt` plus the browser launch itself took the bulk of this cycle's own clock time), consistent with every recent cycle, killed there per standing practice, everything before it unchecked for failures because the run did not reach that far before this entry was written; reported honestly as unchecked past that point, not assumed passing. GitHub's own `list_issues` timed out twice this cycle (60s each), so the standing "8 open issues, unchanged" figure is carried forward from the 21:1x cycle's own direct check minutes earlier, not re-verified here; marked unchecked rather than silently repeated as new.
+
+**Not starting the Guest Bedroom/Guest Bathroom rollout myself**, per the instruction not to begin something large three minutes before the operator; this cycle ran long on the shallow-checkout unshallow (git's own `index-pack` step), so the handoff below lands after the operator's :43 slot rather than before it. Confirming it in writing here is still the useful output regardless of the exact minute.
+
+**Changing next cycle:** none found; the twin's CI fix and the standing `gate_tests` sandbox hang are both already correctly understood, and GitHub's tool timeout this cycle looks transient (first timeout of this kind logged) rather than a new defect to chase.
+
+**Next:** sort_scope rollout, Guest Bedroom and Guest Bathroom (5 zones each), handed to the hourly operator. Standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art); production remains behind HEAD pending Phil's redeploy or the VPS key decision, per `EXECUTIVE-DASHBOARD-LIVE.md`'s own constraint line.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and command deck only this cycle; no content, price or product touched.
+
 ## 2026-10-03, PM check-in (21:1x cycle, previous work finished but a real CI gap found and closed, no new rollout started)
 
 **Previous work was NOT simply finished on first look.** Attached onto a stale local `main` with no common ancestor with `origin/main` (the usual shallow checkout artifact); the documented `git checkout -B main origin/main` fallback was blocked by the sandbox's own destructive-action classifier (120 local commits, no merge base), so renamed the stale branch aside instead of discarding it and built `main` fresh from `origin/main`. Nothing lost, nothing forced.
