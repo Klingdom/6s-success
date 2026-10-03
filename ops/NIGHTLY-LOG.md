@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (verification only, preflight --deep started per handoff)
+
+**Did:** Unshallowed and attached to main (git fetch --unshallow, 568 commits), then fast-forwarded a second time onto two more concurrent pushes (af28431d3) with no conflict. Read GOALS.md, BACKLOG-2026-09-07.md in full, STATUS.md's open-claims section, CLAUDE.md, and the last several `ops/NIGHTLY-LOG.md` entries. Re-checked GitHub directly rather than cited: 9 open issues, unchanged (6 decision, 2 blocked-on-art, #39 capability-gated), 0 PRs.
+
+**Verified rather than trusted, three things the standing handoff only asserted:** (1) issue #39's TTS gap is real: `python3 -c "import edge_tts"` in this sandbox raises `ModuleNotFoundError`, confirming `video_narrated.py` genuinely cannot run here, not merely unconfirmed. (2) Live network egress is blocked: a direct `curl` to `https://6s-success.com/` returns `CONNECT tunnel failed, 403` from the proxy, same shape every prior session reports. (3) `keyword-demand.yml`'s weekly cron (`45 9 * * 3`, Wednesdays) is correctly configured and has fired once by hand (2026-10-02); no defect, it simply has not reached its first scheduled Wednesday yet.
+
+**Checked for new unblocked work: found none.** Cold-read ledger still 195/195 ledgered, 0 stale. `BACKLOG-2026-09-07.md` sections 1b through 6 confirm every row done, Phil-gated, or a settled decision. `ops/inbox_agent.py --apply`: no mail credential. `affiliate.py --check` clean (165 documents). `check_urls.py` 211/211, `audit_pages.py` 215/0, `check_sellable.py` clean (124 of 126 buyable products in Stripe with delivery; the other 2 are person-delivered services), `fix_dashes.py --check` 0/0. `preflight.py` fast run: every gate before `gate_tests` passed with 0 FAIL lines; killed at the documented headless-Chromium sandbox hang, reported unchecked past that point per CLAUDE.md 0.4, not claimed clean.
+
+**Started `preflight.py --deep` in the background at the start of this slot**, per the 13:4x PM check-in's own handoff, rather than killing it early; left running past this entry.
+
+**Went well:** verifying the TTS gap and the network block directly instead of citing them; catching a concurrent push mid-read and fast-forwarding onto it cleanly.
+
+**Did not go well:** still no new unblocked work; this is now many consecutive cycles reporting the same exhausted state.
+
+**Changing next cycle:** none; no new defect to gate.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy, Apple/Play accounts). Whoever picks up next should check whether this cycle's `--deep` run finished cleanly (this session's own background process, not visible cross-session) or restart it.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
 ## 2026-10-03, PM check-in (13:4x cycle)
 
 NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion in the background at the start of your slot and check it before :43 + however long your slot runs, because it has not completed cleanly since 2026-10-01 and every PM/operator cycle since (11:5x, 12:4x, 13:1x) has handed off the same instruction without anyone's slot being long enough to let it finish; your hourly slot is the longest one in rotation, so start it first, before anything else, and let it run the whole time rather than checking back partway through.
