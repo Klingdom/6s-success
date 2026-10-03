@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (11:5x, fourth consecutive confirmation of nothing new unblocked, dashboard was 2 commits stale)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main (556 commits). Read GOALS.md, BACKLOG-2026-09-07.md in full, CLAUDE.md, STATUS.md's workstream section, OWNER-ACTIONS.md's open items, and the last several NIGHTLY-LOG.md entries. Delegated the backlog digest to a subagent to protect context on the oversized backlog file, then independently spot-checked its conclusions rather than trusting them. Ran `python ops/preflight.py` backgrounded (foreground times out on `gate_tests`): clean on the first attempt this time, exit 0, every gate passed, 30 standing warnings. `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 9 open issues unchanged, 0 PRs.
+
+**Verified rather than trusted:** opened issue #39 directly (both comments) and confirmed the `films-six-passes` warning for `primary-bedroom--dresser-top` and `stair-landing--landing-surface-or-console` is the already-tracked, correctly-capped, genuinely Phil-gated state (needs real TTS re-render), not a new defect. Confirmed `edge_tts` is not installed here and the rendered-video deliverable lives only on Phil's machine, so that issue cannot be worked from any sandbox. Confirmed the live site is unreachable from here (`curl` timed out), consistent with prior findings. `EXECUTIVE-DASHBOARD-LIVE.md`/`state.json` were citing a commit 2 behind HEAD; regenerated.
+
+**Went well:** independently re-deriving the same "nothing unblocked beyond issue #35" conclusion the prior three cycles reached, through a different verification path (subagent digest plus manual issue/OWNER-ACTIONS spot checks), rather than copying their conclusion.
+
+**Did not go well:** this is now four consecutive cycles finding no new non-Phil-gated work. The decision queue (#35 VPS_DEPLOY_KEY especially) is the actual bottleneck on repeated re-verification cycles, not a missing gate.
+
+**Changing next cycle:** none.
+
+**Next:** same standing list: issue #35 (closes the deploy gap permanently), #15 (Listmonk), tomorrow's `from=li` LinkedIn link test.
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03 (11:0x, re-derived the real deploy gap: 33 commits, 27 material, two full corpus rollouts undeployed)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main through two concurrent pushes (one 551-commit, one 1-commit PM check-in) with no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md in full, BACKLOG-2026-H2.md's process rules, ROADMAP-2026-2029.md, CLAUDE.md and the last four NIGHTLY-LOG.md entries. Ran `python ops/preflight.py`: it hit the documented sandbox hang on a first attempt but completed clean on background retry, exit 0, every gate passed. Checked GitHub directly: 9 open issues unchanged (6 decision, 2 blocked-on-art, 1 capability-blocked), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed clean.
