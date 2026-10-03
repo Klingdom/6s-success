@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 23:28 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-03 00:00 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-30 21:07 because this run could not reach Stripe** |
+| **Revenue this month** | **not measured this month, no Stripe credential in this environment (last known monthly figure: $0, measured 2026-09-30 21:07)** |
 | | `............................` |
-| **Paying customers** | 0 |
+| **Paying customers** | not measured |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 30 |
-| Commits (7 days) | 1406 of 5318 total |
+| Commits (7 days) | 1404 of 5319 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `684453764` Merge origin/main: reconcile concurrent NIGHTLY-LOG.md adden |
+| Last commit | `2dbd984ad` Merge concurrent fix (GOALS.md/STATUS.md cluster-citation ga |
 
 ## Product readiness
 

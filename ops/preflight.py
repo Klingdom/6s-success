@@ -3363,6 +3363,55 @@ def gate_dashboard_traffic_carry_forward() -> None:
              f"on an unmeasured run; got {aff!r}")
 
 
+def gate_dashboard_revenue_month_not_cross_month() -> None:
+    """A revenue figure measured in one calendar month must never be
+    relabelled as a LATER month's "revenue this month".
+
+    Found live 2026-10-02: the last real Stripe read was 2026-09-30 21:07
+    ($0 for September). Every credential-less run since, starting with the
+    first run on 2026-10-02 itself, carried that same $0 forward unchanged
+    via carry_forward() and rendered it as "revenue $0 of $20,000 target
+    this month" on a date October had not been checked at all. That is a
+    different failure from the one carry_forward() was built to fix (a
+    credential gap erasing a real reading): here the number survives, but
+    answers a question nobody asked it, the same "a measurement can read
+    the wrong source and report zero forever" shape CLAUDE.md's own
+    operating notes warn against.
+
+    Proves the pure function itself, with synthetic inputs, the same
+    pattern the sibling carry-forward gates above use for their own
+    resolve functions.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    sept = dashboard.carry_forward(
+        {"revenue_month": 0.0, "paying_customers": 0,
+         "generated": "2026-09-30 21:07"}, {})
+    oct_blind = dashboard.carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-10-02 23:51"}, sept)
+    if oct_blind.get("revenue_month") is not None:
+        fail("dashboard-revenue-month-not-cross-month",
+             f"carry_forward() relabelled a figure measured in a PRIOR "
+             f"calendar month as this month's; got {oct_blind!r}")
+    if oct_blind.get("revenue_carried_from"):
+        fail("dashboard-revenue-month-not-cross-month",
+             f"carry_forward() still claims 'carried forward from <date>' "
+             f"for a figure from a different calendar month; got {oct_blind!r}")
+    if oct_blind.get("revenue_last_measured") != 0.0:
+        fail("dashboard-revenue-month-not-cross-month",
+             f"a cross-month carry must still keep the true last-measured "
+             f"figure under its own key, just not relabel it; got {oct_blind!r}")
+    # Within the SAME calendar month, the original behaviour (relabel the
+    # last figure as this month's, pending a fresh read) must be unchanged.
+    same_month = dashboard.carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-09-30 23:00"}, sept)
+    if same_month.get("revenue_month") != 0.0 or not same_month.get("revenue_carried_from"):
+        fail("dashboard-revenue-month-not-cross-month",
+             f"a carry within the SAME calendar month regressed; got {same_month!r}")
+
+
 def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
     """OWNER-ACTIONS.md's own "Last measured" paragraph must stay in a shape
     dashboard._owner_actions_traffic_citation() parses, or the
@@ -27508,6 +27557,7 @@ def main() -> int:
     run_gate(gate_dashboard_deploy_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
+    run_gate(gate_dashboard_revenue_month_not_cross_month)
     run_gate(gate_dashboard_owner_actions_traffic_citation_current)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)

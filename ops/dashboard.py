@@ -1845,6 +1845,33 @@ def carry_forward(now: dict, prev: dict) -> dict:
     if last is None:
         return {"revenue_carried_from": None}
 
+    # `last` measured a PRIOR calendar month's revenue. Found live
+    # 2026-10-02: the last real Stripe read was 2026-09-30 21:07 ($0 for
+    # September), and every credential-less run since, the first of them
+    # on 2026-10-02 itself, carried that same $0 forward unchanged into
+    # October and rendered it as "revenue $0 of $20,000 target this
+    # month", a sentence that claims October has been checked and is
+    # zero when nobody has checked October at all. Carrying a NUMBER
+    # across a month boundary is not the same bug carry_forward() was
+    # built to fix (a credential gap erasing a real reading); it is a
+    # different failure in the same family, a measurement answering a
+    # question nobody asked it. The standing answer (revenue_last_measured)
+    # is still kept, so a later run, or a reader who follows the date, can
+    # see the true last-known figure; it is just not relabelled as this
+    # month's.
+    now_month = (now.get("generated") or "")[:7]
+    last_month = (when or "")[:7]
+    if now_month and last_month and now_month != last_month:
+        out["revenue_last_measured"] = last
+        out["revenue_measured_at"] = when or ""
+        out["revenue_carried_from"] = None
+        out["revenue_prior_month_only"] = when or "an earlier run"
+        carried_c = prev.get("customers_last_measured")
+        if carried_c is not None:
+            out["customers_last_measured"] = carried_c
+            out["customers_measured_at"] = prev.get("customers_measured_at", when or "")
+        return out
+
     out["revenue_month"] = last
     out["revenue_last_measured"] = last
     out["revenue_measured_at"] = when or ""
@@ -1955,7 +1982,15 @@ if S.get("deploy_verdict") == "stale" or S.get("live_links_verdict") == "dead":
 # the gauge needle is parked rather than pointed at a figure nobody measured.
 if S["revenue_month"] is None:
     S["revenue_pct"] = None
-    S["revenue_text"] = "not measured, no Stripe credential in this environment"
+    if S.get("revenue_prior_month_only"):
+        # A real figure exists, just not for the current calendar month: say
+        # so, rather than either hiding it or relabelling it as this month's.
+        S["revenue_text"] = (
+            "not measured this month, no Stripe credential in this "
+            "environment (last known monthly figure: $%s, measured %s)"
+            % (f"{S['revenue_last_measured']:,.0f}", S["revenue_prior_month_only"]))
+    else:
+        S["revenue_text"] = "not measured, no Stripe credential in this environment"
     S["customers_text"] = "not measured"
 else:
     S["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)

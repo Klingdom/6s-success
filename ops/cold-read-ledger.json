@@ -442,9 +442,9 @@
       "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 640ac7414 ('77% of this site's traffic is this repository, and the crawl report called it human', excluding this repo's own tooling user-agents from the human/unknown bucket). Reran all four ops/tests/test_crawl_report_*.py files: all clean (line parsing, own-tooling exclusion, purpose classification, unparsed reporting). No defect found."
     },
     "dashboard.py": {
-      "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified all changes since the 09-26 ledger date. The None-not-zero fix for cards_total/social_pins_built/youtube_metadata_built/thumbnails_built is consistently guarded everywhere each field is read (grepped all usages); book_sellable_detail() correctly separates could-not-check from checked-and-missing; gate_dashboard_deck_readiness proves the deck-readiness half fail-then-pass. Also re-verified the 09-27 traffic-citation paragraph-wide regex directly against the live OWNER-ACTIONS.md: returns (2026-09-25 01:17, 57, 144) correctly. The stray-probe-file glob exclusion (basename startswith '_') matches .gitignore's own rule. No defect."
+      "status": "fixed",
+      "date": "2026-10-02",
+      "note": "Cold-read 2026-10-02: found and fixed a real revenue carry-forward defect (carry_forward() relabelled a PRIOR calendar month's last-measured revenue as the current month's, found live crossing the Sept-to-Oct boundary). Fixed with a month-boundary guard, new gate_dashboard_revenue_month_not_cross_month in preflight.py, fail-then-pass proved against the committed pre-fix code. No other defect found in a cold read of the file."
     },
     "deploy.py": {
       "status": "clean",
