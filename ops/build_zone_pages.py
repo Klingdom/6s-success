@@ -3966,6 +3966,21 @@ def main():
     import build_microzone_coverage
     build_microzone_coverage.main()
 
+    # The sitemap, and only the sitemap, for the same reason build_corporate.py
+    # and build_resources.py already chain this rather than the rest of
+    # build_seo's __main__ (which rewrites every page's <head>, not this
+    # generator's business). This is the generator an operator actually reaches
+    # for after a content.json edit (a diagnosis layer, a deck's source data,
+    # or common_items), and a standalone run of it otherwise leaves every
+    # touched zone page's lastmod stale in site/sitemap.xml until a full
+    # preflight run repairs it as a side effect: the exact gap that failed
+    # gate_sitemap_lastmod_current on 5 consecutive pushes on 2026-10-03,
+    # because the common_items authoring sessions that day ran this file
+    # standalone and never re-ran build_seo.py by hand. It is idempotent, so
+    # a later full preflight run or ops/build_seo.py --check changes nothing.
+    import build_seo
+    print("  sitemap.xml rebuilt: %d URL(s)" % build_seo.build_sitemap())
+
     return urls
 
 
