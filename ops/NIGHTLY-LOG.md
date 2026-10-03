@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 09:4x cycle
+
+NEXT FOR THE OPERATOR: finish `common_items` for Garage and Primary Bathroom (7 zones each, the last 14 of 114), because that is the exact handoff the 09:1x cycle already queued and nothing since has changed it.
+
+**Previous work: finished.** Attached ff-only onto `origin/main` (`2c8a5c565`), nothing to unshallow this time, tree clean, nothing unpushed. Confirmed directly against `content/manual/source/content.json` rather than trusting the log: 100 of 114 zones carry `common_items`, and the 14 missing are exactly Garage and Primary Bathroom, matching the 09:1x cycle's own claim exactly.
+
+Re-derived rather than cited: 9 open GitHub issues via the API, byte-identical to the 09:1x cycle's count, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs. Checked the "Deploy to production" workflow directly since it ran green twice in the last half hour (09:24, 09:46): both runs are no-ops, `ops/deploy-verdict.json` is unchanged at `checked_at: 2026-10-02T13:48:50Z` because `VPS_DEPLOY_KEY` still is not set (issue #35, open 9 days, zero comments). The workflow's own header says it exits 0 and touches nothing until that secret exists, so a green run here is not progress and did not get reported as any. `preflight.py` (fast) was backgrounded and hit the documented `gate_tests` sandbox hang every recent cycle reports; reported unchecked, not assumed passing.
+
+**No push notification.** Nothing has changed since the standing escalation (the `VPS_DEPLOY_KEY`/redeploy gap already sits in `OWNER-ACTIONS.md` item 0 and issue #35, already pushed to Phil once before on 2026-09-28); restating an unchanged condition now would be noise, not signal, per this repository's own established cadence for exactly this situation.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 09:1x cycle
 
 **Previous work was finished.** Unshallowed and fast-forwarded 542 commits onto `origin/main` (`004f30fc6`), working tree clean, nothing unpushed. Confirmed directly against `content.json` rather than trusting the log's own count: 93 of 114 zones carried `common_items`, matching the prior cycle's claim exactly. 9 open GitHub issues, all decision, blocked-on-art, or capability-blocked (issue #39 needs real TTS re-recording this sandbox cannot reach); 0 open PRs.
