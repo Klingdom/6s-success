@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (20:4x cycle, confirmed clean, no new work started)
+
+NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Pantry (5 zones), because it is the same unblocked, non-Phil-gated workstream the 18:4x and 20:1x cycles already queued and nobody has claimed since.
+
+**Previous work finished, verified not cited.** Attached cleanly onto `304053d05` (fetch, unshallow, `checkout -B main origin/main`), fast-forward, no conflict, tree clean, main already pushed. `preflight.py` fast: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang; killed there per standing practice, reported unchecked past that point, not assumed passing. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs. `cold_read_ledger.py --stale`: 0 stale, 196/196 files covered, that lane genuinely exhausted for now.
+
+**Confirmed the standing handoff is still correct, not stale:** counted `content/manual/source/content.json` directly, 8 of 114 zones carry `sort_scope` (Entryway's 5, Stair Landing's 3), unchanged since the 20:1x entry. Five rooms are tied-smallest at 5 zones each and still carry 0: Pantry, Dining Room, Guest Bedroom, Guest Bathroom, Hall Closet, the same order the 18:4x cycle already established. Naming Pantry first for the operator, one room per slot, same cadence the rollout has used throughout.
+
+**Not starting the rollout myself**, per the instruction not to begin something large three minutes before the operator.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). After Pantry: Dining Room, Guest Bedroom, Guest Bathroom, Hall Closet (5 zones each), in that order.
+
+Pushed to main. Command deck only; no price, product or site page touched.
+
 ## 2026-10-03, PM check-in (20:1x cycle, fired the never-run indexation workflow, fixed a real red CI gate)
 
 **Previous work finished, verified not cited:** attached cleanly onto `7b1ad976`, preflight 0 FAIL through every gate before the documented `gate_tests` sandbox hang, tree clean, main pushed, GitHub 8 open issues unchanged, all decision/blocked-on-art.
