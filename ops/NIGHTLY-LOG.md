@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (19:1x cycle)
+
+**Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `git checkout -B main origin/main`, fast-forwarded clean onto `d40c94f53`, no conflict. Confirmed the 18:4x cycle's own merge-resolution claims directly instead of trusting them: all six workflows (Deploy to production, Hourly brief, Deliver paid orders, LinkedIn/Bluesky/Facebook-X drafts) show `success` on `d40c94f53` via GitHub's own run list; `build_id.py --check` current; working tree was clean, main already pushed.
+
+**Ran `preflight.py` fast in the background.** 0 FAIL through every gate before `gate_tests`, which hung on the documented headless-Chromium sandbox limitation; killed there after roughly two minutes stuck, reported unchecked past that point, not assumed passing.
+
+**Checked the cold-read ledger rather than picking a file by guesswork:** `ops/cold_read_ledger.py --stale` reports 0 stale, `--next` reports 195 of 195 files covered. Nothing fresh to cold-read this cycle; that line of inquiry is genuinely exhausted for now, not skipped.
+
+GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art` (#2, #15, #18, #21, #29, #31, #33, #35); 0 open PRs. None actionable here; all are Phil's call.
+
+**Regenerated the command deck** (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) per standing practice: small drift only (timestamp/commit-count refresh), no stale claim found in it beyond what it already labels carried-forward and unmeasured.
+
+**Did not start anything large.** The sort_scope rollout to Stair Landing that 18:4x handed off is still the correct next item for the operator; nothing changed to revise that, and this slot found no smaller closeable defect to pick up instead.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). Handing the operator the same sort_scope/Stair Landing item 18:4x already queued.
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, PM check-in addendum (18:4x cycle, a concurrent push collided mid-ship)
 
 A concurrent twin cycle (18:3x) pushed its own `ops/NIGHTLY-LOG.md` entry and command-deck regen while this cycle's commit was staged. `ops/ship.py`'s rebase step correctly refused the real conflict in the log (`conflict in real source`), but attempting a plain `git merge` to resolve it, then re-running `ship.py`, hit the same refusal again on the second attempt: `ship.py` rebases rather than merges, and rebasing a tree that already contains a merge commit replays the pre-merge commit standalone, reproducing the identical log conflict instead of seeing it as resolved.
