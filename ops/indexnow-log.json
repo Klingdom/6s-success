@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T17:06:02Z",
-   "mode": "changed",
-   "offered": 48,
-   "accepted": 48,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T17:20:07Z",
    "mode": "changed",
    "offered": 61,
@@ -633,6 +626,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T20:02:07Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -814,9 +814,9 @@
   "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "46a1d92047b945a1",
   "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "ea08fbe3068436c6",
   "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "61e6103a69a4d20e",
-  "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "1aa827569e912b59",
-  "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "27db517e321053a2",
-  "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "a2789ce65ff14e40",
+  "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "d18afed0e8fd1cef",
+  "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "44e869d732d723c5",
+  "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "1633ca98367aa8f3",
   "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "9e88d797bb46e5a4",
   "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "6c9abf1a0cbf30cd",
   "https://6s-success.com/zones/workshop-the-main-workbench": "f4a91e0d3d93b397",
