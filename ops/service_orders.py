@@ -260,7 +260,29 @@ def service_emails():
                                     "IMAP_USER", "IMAP_PASS")):
         return None
 
-    M = imaplib.IMAP4_SSL(env["IMAP_HOST"], int(env["IMAP_PORT"]))
+    # A FAILED CONNECTION IS UNCHECKED, NOT EMPTY, AND IT MUST NOT CRASH THE
+    # CALLER EITHER.
+    #
+    # Found 2026-10-03: this line raised ssl.SSLEOFError straight out of the
+    # function, which aborts `ops/service_orders.py --send` entirely. In the
+    # workflow that is the step that forwards Virtual Home Consult, In-Home
+    # Reset Day and Corporate Lean 6S enquiries, the highest-value things this
+    # business sells. The charge-forwarding half runs before this and is
+    # therefore safe, which is luck of ordering rather than design.
+    #
+    # Returning None matches recent_service_charges(), which has caught its own
+    # transport failures since it was written: None is 'could not check', [] is
+    # 'checked, nothing there'. Said out loud rather than swallowed, because an
+    # inbox that cannot be read is exactly the state that must not look like an
+    # empty inbox.
+    try:
+        M = imaplib.IMAP4_SSL(env['IMAP_HOST'], int(env['IMAP_PORT']))
+    except Exception as exc:                                  # noqa: BLE001
+        print('  UNCHECKED: could not open an IMAP connection to %s:%s (%s: '
+              '%s). Enquiries were NOT read this run; this is not an empty '
+              'inbox.' % (env.get('IMAP_HOST'), env.get('IMAP_PORT'),
+                          type(exc).__name__, exc))
+        return None
     out = []
     try:
         M.login(env["IMAP_USER"], env["IMAP_PASS"])

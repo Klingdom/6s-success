@@ -18,8 +18,10 @@ match a slice of a longer digit run.
 Run:  python ops/tests/test_service_orders.py
 """
 import datetime as dt
+import io
 import json
 import os
+import re
 import sys
 import tempfile
 
@@ -108,9 +110,29 @@ def check_unchecked_not_reported_as_zero():
     finally:
         so.stripe_key = orig_key
 
-    if so.service_emails() is not None:
-        fails.append("service_emails() with no IMAP credential in this "
-                     "environment returned [] instead of None (unchecked)")
+    # This half only means anything where there is genuinely no IMAP
+    # credential, which is CI and most sandboxes. On a workstation with a real
+    # .env.secrets it used to open a live connection to the mail host, which is
+    # both slow and, when the handshake failed, a red FAIL that said nothing
+    # about the claim being checked (an ssl.SSLEOFError traceback, 2026-10-03).
+    # An absent credential is established BEFORE the call rather than inferred
+    # from whatever it returns, so this can never pass for the wrong reason.
+    env = {}
+    p = os.path.join(so.ROOT, '.env.secrets')
+    if os.path.exists(p):
+        for line in io.open(p, encoding='utf-8', errors='replace'):
+            m = re.match(r'^([A-Z_]+)=(.*)$', line.strip())
+            if m:
+                env[m.group(1)] = m.group(2)
+    have = all(os.environ.get(k) or env.get(k)
+               for k in ('IMAP_HOST', 'IMAP_PORT', 'IMAP_USER', 'IMAP_PASS'))
+    if have:
+        print('  NOT VERIFIED: this environment HAS an IMAP credential, so '
+              'the no-credential branch of service_emails() was not exercised. '
+              'It is checked on every CI run, which has none.')
+    elif so.service_emails() is not None:
+        fails.append('service_emails() with no IMAP credential returned [] '
+                     'instead of None (unchecked)')
     return fails
 
 

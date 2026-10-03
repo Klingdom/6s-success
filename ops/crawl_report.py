@@ -35,6 +35,7 @@ from __future__ import annotations
 import argparse
 import collections
 import datetime
+import io
 import os
 import re
 import subprocess
@@ -287,6 +288,41 @@ def fetch():
     return lines, ""
 
 
+def sitemap_coverage(fetched):
+    """How much of the sitemap has a crawler actually fetched.
+
+    Added 2026-10-03 (LEARNINGS.md LRN-0036) because this report could say how
+    MANY distinct paths search engines fetched and never which of OUR pages
+    they had not. 274 distinct paths against a 211-URL sitemap looks like full
+    coverage and does not prove it: the two sets overlap, they are not nested,
+    and a crawler fetching 60 legacy .html redirects would pad the first number
+    while leaving real pages unread.
+
+    The answer the first run gave was 211 of 211, zero never fetched, and that
+    is the kind of number worth being able to re-derive rather than remember.
+
+    `fetched` is a set of request paths. Returns (total, covered, never), where
+    never is sorted. Trailing-slash and .html variants are resolved both ways,
+    because this site serves extensionless canonical URLs and 301s the .html
+    form, so a crawler hitting either has read the page.
+    """
+    sm = os.path.join(ROOT, 'site', 'sitemap.xml')
+    try:
+        text = io.open(sm, encoding='utf-8').read()
+    except OSError as e:
+        return None, None, ['could not read site/sitemap.xml: %s' % e]
+    locs = re.findall(r'<loc>([^<]+)</loc>', text)
+    base = 'https://6s-success.com'
+    never = []
+    for u in locs:
+        p = u[len(base):] if u.startswith(base) else u
+        p = p or '/'
+        bare = p.rstrip('/') or '/'
+        variants = {p, bare, bare + '/', bare + '.html'}
+        if not (variants & fetched):
+            never.append(p)
+    return len(locs), len(locs) - len(never), sorted(never)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=7)
@@ -398,6 +434,21 @@ def main():
         print("    per day: " + ", ".join(
             "%s %d" % (d, per_day[d]) for d in sorted(per_day)))
 
+    # Which of OUR pages a crawler has not read, which is a different question
+    # from how many paths it fetched. See sitemap_coverage's own docstring.
+    retrieval_paths = {r['path'] for r in rows if purpose(r['bot']) == 'retrieval'}
+    retrieval_paths |= {r['path'] for r in rows if r['bot'] in ('PetalBot', 'Google-Other')}
+    total, covered, never = sitemap_coverage(retrieval_paths)
+    if total is None:
+        print('    SITEMAP COVERAGE: UNCHECKED, %s' % never[0])
+    else:
+        print('    sitemap coverage: %d of %d URL(s) fetched by a retrieval '
+              'crawler in this window, %d never'
+              % (covered, total, len(never)))
+        for p in never[:15]:
+            print('      NEVER FETCHED %s' % p)
+        if len(never) > 15:
+            print('      ... and %d more' % (len(never) - 15))
     if args.verify:
         claim = [ip for ip, _ in collections.Counter(
             r["ip"] for r in search if r.get("ip")).most_common()]

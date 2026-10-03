@@ -112,14 +112,40 @@ def case_running_twice_writes_identical_bytes():
 
 
 def case_the_committed_reports_match_a_fresh_run():
-    """The real tree, the real check CI performs."""
+    """The real tree, the real check CI performs.
+
+    Compared with `git diff`, not `git status --porcelain`, and the difference
+    is not cosmetic. `git status` consults the index stat cache and calls a
+    file modified the moment its mtime moves, which a generator rewriting
+    byte-identical content does on every run. Worse here: this workstation has
+    core.autocrlf=true, so a report written with LF and committed through
+    .gitattributes normalisation is reported modified forever, on this platform
+    only, while CI stays clean.
+
+    That made this case fail every local run for a reason that says nothing
+    about the claim it exists to check, which is the worst shape a check can
+    take: one that cries wolf until somebody stops reading it.
+    `ops/preflight.py`'s own `worktree_changes()` documents the identical
+    finding and solved it the same way, so this now matches the tool it is
+    guarding rather than guessing differently.
+
+    `git diff` does a content comparison with the repository's own
+    normalisation applied, which is exactly the question being asked: would
+    gate_generator_ownership see drift. A real content change still fails.
+    """
     A.main()
-    out = subprocess.run(["git", "status", "--porcelain"] + REPORTS,
-                         cwd=ROOT, capture_output=True, text=True, timeout=60)
-    dirty = [l for l in (out.stdout or "").splitlines() if l.strip()]
+
+    def names(*args):
+        out = subprocess.run(['git'] + list(args) + ['--'] + REPORTS,
+                             cwd=ROOT, capture_output=True, text=True,
+                             timeout=60).stdout
+        return [x for x in (out or '').splitlines() if x.strip()]
+
+    dirty = sorted(set(names('diff', '--name-only')
+                       + names('diff', '--cached', '--name-only')))
     assert not dirty, (
-        "a fresh run changes the committed reports, so gate_generator_"
-        "ownership will refuse the next CI build: %s" % dirty)
+        'a fresh run changes the committed reports, so gate_generator_'
+        'ownership will refuse the next CI build: %s' % dirty)
 
 
 def main() -> int:
