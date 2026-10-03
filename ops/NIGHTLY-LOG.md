@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Living Room and Family Room)
+
+**Did:** Unshallowed and attached clean (`git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 508 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` (section 0's traffic reading, section 7's own verdict, the B9/room-deck row confirmed closed via `ops/b9_claims.py --status`), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries (newest-first, confirmed by line position, not assumed). Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 read in full, genuinely capability-blocked on real TTS no sandbox here holds), 0 PRs. `preflight.py` fast run completed clean in the background (exit 0, every listed gate ran); the full (`--deep`/`gate_tests`) run hit the same documented headless-Chromium sandbox hang every recent cycle reports, killed after confirming the pattern. `inbox_agent.py --apply`: no mail credential.
+
+**Checked `content/manual/source/content.json` directly before claiming anything, not `STATUS.md`'s prose (CLAUDE.md 5d).** 33 of 114 zones carried `common_items` at start, matching the file's own count; `STATUS.md`'s own claim ledger plus a concurrent PM check-in (`95033a9b5`) had already handed Living Room to the operator, confirming the pick.
+
+**Shipped Living Room (6 zones), then Family Room (6 zones).** Sofa and Seating (throws/cushions/remotes/pillows), Coffee Table (coasters/remote/book/plant), Media Center (console/strip/cables/bin), Bookshelves and Display (books/frames/strap), Side Tables and Lighting (lamp/coaster/tray/cord), Floor and Circulation Path (rug/legs/baskets); then Primary Media Zone (console/controllers/discs/cables/strip), Toy and Play Zone (bins/labels/mat), Board Game and Puzzle Zone (boxes/name strips/bagged pieces), Blanket and Comfort Zone (basket/throws/cushions), Charging and Device Zone (strip/cables/connector bag), Craft and Activity Zone (bins/scissors/project bin). Every item is a direct grounding in that zone's own `done_looks_like`/`passes`/`leave_behind` text; nothing invented. **40 of 114 done.** 74 remain; tied-smallest now Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified, each room separately before committing:** round-tripped `content.json` through `indent=1, ensure_ascii=True` first, diff scoped to the touched zones only (confirmed via `git diff --stat`, ~40 lines per room); synced `mcp/content.json` byte-identical; staged, then `ops/build_zone_pages.py` (chains `build_seo.build_sitemap()` on its own since the 04:59 UTC generator fix) and `ops/build_id.py --check` against the staged index, both current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and read via `preflight.FAIL`/`WARN` (not caught exceptions, per the lesson a concurrent cycle recorded earlier today). `ops/tests/test_gate_common_items_rendered.py` 6/6 each time. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `ops/audit_visual.py` on all 12 changed pages (both rooms) 0 findings, mobile `npm test` all 4 suites passing, each time.
+
+**Claimed each room in `STATUS.md` before starting, released by marking done before claiming the next**, per that file's own section 0 collision rule; fetched and merged origin/main before every push (one hourly check-in commit, one indexnow-log commit, both clean merges, no conflicts).
+
+**Went well:** the claim-before-start discipline worked exactly as designed, no collision with the two concurrent automated check-ins that landed mid-cycle.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang every recent cycle already documents.
+
+**Changing next cycle:** none; existing gates and process held.
+
+**Next:** continue `common_items` room by room (Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck all tied-next at 6 zones); confirm CI resolves green on both pushes (`a000135af`, `741636d8a` merged to `36c289168`).
+
+Pushed to main (4 commits: claim, Living Room, claim+release, Family Room, each merged with concurrent upstream work). `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## PM check-in, 2026-10-03, 06:4x cycle
 
 NEXT FOR THE OPERATOR: continue `common_items` into Living Room (6 zones, tied-smallest-remaining with 9 other rooms), because every higher-priority epic (measurement, Listmonk identity, IndexNow, the owner-gated channels) is Phil-blocked and this stays the highest-value genuinely unblocked item in `BACKLOG-2026-09-07.md`'s own ordering rule.
