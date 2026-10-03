@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-25T13:59:05Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-25T18:46:28Z",
    "mode": "changed",
    "offered": 4,
@@ -633,6 +626,13 @@
    "offered": 11,
    "accepted": 11,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T02:40:22Z",
+   "mode": "changed",
+   "offered": 11,
+   "accepted": 11,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -718,12 +718,12 @@
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "ba17daddc02d2d9f",
   "https://6s-success.com/zones/entryway-the-landing-spot": "92bc0b9045184d31",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "4f6228c15b1de6e5",
-  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "6b5da068922c7d17",
-  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "193d342977ef8a35",
-  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "c72fcc142096d465",
-  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "d00228c007be49b4",
-  "https://6s-success.com/zones/family-room-the-primary-media-zone": "4ffd3e54fa6a23c8",
-  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "245cc674427cf5d2",
+  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "78b4827e8444a9c0",
+  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "c291876c48735b22",
+  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "d5d2b1748b3ca4d2",
+  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "776abdfbda73d4c5",
+  "https://6s-success.com/zones/family-room-the-primary-media-zone": "747e0a600755de07",
+  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "0995d0907510452e",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "0dbea2c5172613b6",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "493c1bcc5eec3d28",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "838e22132f679dee",
@@ -736,11 +736,11 @@
   "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "3a097ed3d2c4bcca",
   "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "5708f74869086856",
   "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "8832e5d10badcaf6",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "fc72256c62114b81",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "83ee37b422559168",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "cb7a599644e7f106",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "d556b18004d27537",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "6b961afb018a0eec",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "4e97b24c8780271b",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "8dd49d858f66ccd3",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "afdf4b4ef85480b5",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "fd4c002c3c476005",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "d090807efe366ed0",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "b8779c51d200ba13",
   "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "faf1e177efd04bce",
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "b8844dbb7c8bbe22",
