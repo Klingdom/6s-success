@@ -7380,7 +7380,13 @@
      "capacity": {
       "rule": "One duvet in a washable cover and one pillow, three or four stuffed animals on the bed with the rest in an open basket at the foot, and a clear walkable path from the pillow to the door.",
       "does_not_fit": "If the basket at the foot will not hold the rest, the animals have become storage rather than company. Rotate through a dated box in the closet instead, because a bed a child cannot make alone is a bed they will not make."
-     }
+     },
+     "common_items": [
+      "Duvet and one pillow",
+      "A handful of stuffed animals",
+      "A basket for the rest of the animals",
+      "A nightlight"
+     ]
     },
     {
      "zone": "Toy Storage Zone",
@@ -7533,7 +7539,13 @@
      "capacity": {
       "rule": "Six open bins, none higher than the child's shoulder, one category each with a photo on the front face, enough clear carpet to lie down on, and one dated rotation box out of reach on top of the wardrobe.",
       "does_not_fit": "If the toys will not fit six shoulder-height bins, the surplus belongs in the rotation box rather than in a seventh bin. A child who cannot name the category will not put the toy back into it."
-     }
+     },
+     "common_items": [
+      "Blocks",
+      "Vehicles",
+      "Small figures",
+      "A dated rotation box"
+     ]
     },
     {
      "zone": "Study Desk",
@@ -7692,7 +7704,13 @@
      "capacity": {
       "rule": "A bare surface except a lamp, a pen cup and one tray holding live work, books on the shelf above, the charger clipped at the desk edge, and the chair empty.",
       "does_not_fit": "If the live work will not fit one tray, it is not all live. Finished work goes to a folder or the recycling, because a desk storing last term is a desk homework does not get started on."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "A pen cup",
+      "A tray for live work",
+      "Books on the shelf"
+     ]
     },
     {
      "zone": "Clothing Closet",
@@ -7847,7 +7865,13 @@
      "capacity": {
       "rule": "A rod the child reaches without a stool, every hanger the same type facing the same way, a hand's width between groups, and shoes in pairs on the floor.",
       "does_not_fit": "If the groups cannot keep their hand's width, the closet is holding clothes that no longer fit or no longer get worn. Check the sizes before blaming the rail: children's closets fill with the past faster than any other storage in the house."
-     }
+     },
+     "common_items": [
+      "Shirts, dresses, and jackets on hangers",
+      "Shoes in pairs",
+      "A backpack on a low hook",
+      "A labeled next-size box"
+     ]
     },
     {
      "zone": "Dresser Drawers",
@@ -7996,7 +8020,13 @@
      "capacity": {
       "rule": "Five drawers, one category each with a picture label on the front, socks and underwear standing upright in rows, every drawer closing with one push, and the dresser strapped to the wall.",
       "does_not_fit": "If a drawer has to be pressed down to close, that category has outgrown it. Thin the category rather than cramming it, because a drawer a child cannot close is a drawer they stop using."
-     }
+     },
+     "common_items": [
+      "Socks and underwear, standing upright",
+      "Folded shirts",
+      "Folded pants",
+      "A picture label on each drawer"
+     ]
     },
     {
      "zone": "School and Activity Launch Zone",
@@ -8147,7 +8177,13 @@
      "capacity": {
       "rule": "One hook at child height holding the packed backpack, shoes directly underneath it, a second hook for the sports bag, the instrument case upright against the wall, and clear floor.",
       "does_not_fit": "If the wall will not take the hooks the morning needs, the launch zone is in the wrong square meter. Move it to where the child actually leaves from rather than where the wall happens to be convenient."
-     }
+     },
+     "common_items": [
+      "A backpack on its hook",
+      "Shoes underneath",
+      "Signed forms in the front pocket",
+      "A sports bag or instrument case"
+     ]
     }
    ]
   },
@@ -8326,7 +8362,12 @@
      "capacity": {
       "rule": "A bare mattress with one fitted sheet pulled tight to the corners, and nothing else in the crib at all. The sleep sack folded on the dresser, the monitor cable clipped high and at least an arm's length back from the rails.",
       "does_not_fit": "This is the one zone in the house with no honest version that does not fit, because the limit is zero rather than a number. If something is in the crib it comes out. The empty crib is the standard itself, not a target to work toward."
-     }
+     },
+     "common_items": [
+      "A fitted sheet",
+      "A sleep sack",
+      "A wall-mounted monitor"
+     ]
     },
     {
      "zone": "Changing Station",
@@ -8479,7 +8520,13 @@
      "capacity": {
       "rule": "Diapers, wipes and cream all reachable without moving your feet or lifting a hand off your baby, a lined pail within one step, two spare outfits in the drawer directly beneath, and nothing stacked on the pad.",
       "does_not_fit": "If something you need sits outside your arc, it belongs in the backstock zone rather than crammed onto the station. The arc is a safety rule rather than a tidiness one: whatever makes you step away is the thing that lets a baby roll."
-     }
+     },
+     "common_items": [
+      "Diapers, wipes, and cream",
+      "A lined pail",
+      "Two spare outfits",
+      "A burp cloth"
+     ]
     },
     {
      "zone": "Baby Clothing Zone",
@@ -8632,7 +8679,12 @@
      "capacity": {
       "rule": "One size per drawer with the size written on the drawer front, sleepers and bodysuits filed upright, a next-size bin on the closet shelf, and an outgoing bag on the door hook with something already in it.",
       "does_not_fit": "If a drawer holds two sizes, the outgoing bag has stopped moving. The bag with something already in it is the whole mechanism: a nursery fills faster than any other room precisely because nothing ever leaves on its own."
-     }
+     },
+     "common_items": [
+      "Sleepers and bodysuits, filed upright",
+      "A next-size bin",
+      "An outgoing bag"
+     ]
     },
     {
      "zone": "Feeding Station",
@@ -8787,7 +8839,14 @@
      "capacity": {
       "rule": "One bin of clean bottles assembled with teats and collars on, a second bin in an obviously different color for used parts, a drying rack standing empty, the scoop inside the tin with the lid shut, and burp cloths you can grab without looking.",
       "does_not_fit": "If the clean bin is empty at 2 a.m., the problem is the washing rhythm rather than the size of the bin. Decide when the used bin gets emptied and attach it to something that already happens, because this is the one zone where running out has a crying baby attached to it."
-     }
+     },
+     "common_items": [
+      "Clean, assembled bottles",
+      "A bin for used parts",
+      "A drying rack",
+      "The formula scoop, inside the tin",
+      "Burp cloths"
+     ]
     },
     {
      "zone": "Diaper and Care Backstock",
@@ -8936,7 +8995,12 @@
      "capacity": {
       "rule": "One unopened pack of the current size and no more than two of the next, each size written large on the short end, a wipes carton with its count visible, creams and thermometer in one lidded box, and nothing at all stored above the changing surface.",
       "does_not_fit": "If you are holding more than two packs of the next size, you are storing a guess. Babies change size on their own schedule, and a stockpile of a size they skip is money sitting on a shelf."
-     }
+     },
+     "common_items": [
+      "Diaper packs, current and next size",
+      "A wipes carton",
+      "Creams and a thermometer, in a lidded box"
+     ]
     },
     {
      "zone": "Books and Quiet Play Zone",
@@ -9090,7 +9154,12 @@
      "capacity": {
       "rule": "Twelve board books standing cover out on a low ledge, one basket of soft toys filled level with the rim and no higher, the rest boxed in the closet as rotation stock, and a clear stretch of floor an adult can lie down on.",
       "does_not_fit": "If the basket is over its rim, the surplus is rotation stock rather than evidence you need a bigger basket. A baby chooses from what is visible, and a heaped basket shows nothing."
-     }
+     },
+     "common_items": [
+      "Board books, covers out",
+      "A basket of soft toys",
+      "A rotation box in the closet"
+     ]
     }
    ]
   },
