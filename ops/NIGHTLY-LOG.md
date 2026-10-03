@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 00:4x cycle
+
+NEXT FOR THE OPERATOR: resume a wall-to-wall cold-read of `ops/preflight.py` (27,752 lines, never read end to end in one pass), because it is the one genuinely unblocked, un-gated item left after this cycle closed out the cold-read ledger's only two open entries, and it is the gate every other gate's result depends on.
+
+**Attached clean:** shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (439 commits fast-forwarded, no reset or force).
+
+**Previous work finished and verified, not just committed.** The 00:1x cycle's LRN-0035/duplicate-ID gate (`ee547104a`) and the 2026-10-02 dashboard month-boundary fix (`934510664`) are both pushed, working tree clean, `main` up to date with origin. Re-ran the standing narrower suite directly (full `preflight.py` hit the documented `gate_tests` headless-Chromium sandbox hang again, killed at 180s, same known limitation): `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, mobile `npm test` all 4 suites passing, `ops/tests/test_gate_learnings_index_current.py` 12/12. 0 open PRs. 9 GitHub issues unchanged: 6 `decision`, 1 `blocked-on-art`, 1 (#2) `P0 blocked-on-art`, 1 (#39) confirmed genuinely blocked on real TTS/network capability this sandbox does not have (read its body in full; not a label gap). `inbox_agent.py --apply`: no mail credential, UNCHECKED as always.
+
+**Found and fixed a real defect in the cold-read ledger itself, not left for the operator to chase.** `cold_read_ledger.py --stale` flagged both `ops/dashboard.py` and `ops/preflight.py`. Checked each against real commit timestamps rather than trusting the flag: `dashboard.py`'s flag was a UTC-midnight labelling artifact (`934510664` committed 00:00:34Z on 2026-10-03, the entry had been recorded dated 2026-10-02 the same cycle; no further commit has touched the file since, so nothing was actually unread). `preflight.py`'s flag was real: its ledger note still described only the earlier `keyword_demand` gate (`d2af92c42`), but a later, undescribed commit (`ee547104a`) had since extended `check_learnings_index()` to catch duplicate LRN IDs. Verified that change directly (`ops/tests/test_gate_learnings_index_current.py`, 12/12, fail-then-pass already proved against the real shared-ID regression and the real committed `LEARNINGS.md`) rather than re-reading the whole 27.7k-line file, then re-recorded both ledger entries via `ops/cold_read_ledger.py --add` (never hand-edited) with dates that match their real last-touching commit and notes that describe the actual current state. `--stale` now reports 0.
+
+**Verified:** `ops/cold-read-ledger.json` parses clean; `--stale` 0, `--next` 0 (195/195 files ledgered). This closes the standing cold-read fallback lane for real, which is why the operator's next unblocked item is the one above rather than another ledger pick.
+
+**Went well:** checking the staleness flag against real commit timestamps instead of accepting or dismissing it outright; the gap it found in `preflight.py`'s own note was real.
+
+**Did not go well:** nothing new; same shallow-checkout shape as every cycle, same `gate_tests` sandbox hang.
+
+**Next:** standing Phil-gated list unchanged (`OWNER-ACTIONS.md` item 0, the Hostinger redeploy; issues #35, #33, #31, #29, #21, #18, #15, #2). Operator: see the handoff line above.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck regen. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 00:1x cycle
 
 **Previous work finished:** the 23:4x dashboard-ledger handoff was shipped (`934510664`, revenue carry-forward fix), verified not cited. Backlog "Now" rows all done or Phil-gated. 9 GitHub issues unchanged, none mine.

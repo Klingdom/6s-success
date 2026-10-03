@@ -443,8 +443,8 @@
     },
     "dashboard.py": {
       "status": "fixed",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: found and fixed a real revenue carry-forward defect (carry_forward() relabelled a PRIOR calendar month's last-measured revenue as the current month's, found live crossing the Sept-to-Oct boundary). Fixed with a month-boundary guard, new gate_dashboard_revenue_month_not_cross_month in preflight.py, fail-then-pass proved against the committed pre-fix code. No other defect found in a cold read of the file."
+      "date": "2026-10-03",
+      "note": "Carry-forward month-boundary fix (934510664, committed 2026-10-03T00:00:34Z, labelled 2026-10-02 in the cycle's own log): carry_forward() relabelled a prior month's last-measured revenue as the current month's. Fixed with a month-boundary guard, gate_dashboard_revenue_month_not_cross_month added, fail-then-pass proved. No further commit has touched this file since; the previous --stale flag was a UTC-midnight labelling artifact (entry recorded as 2026-10-02, commit landed 00:00:34 UTC the next calendar day), not real drift."
     },
     "deploy.py": {
       "status": "clean",
@@ -648,8 +648,8 @@
     },
     "preflight.py": {
       "status": "fixed",
-      "date": "2026-10-02",
-      "note": "Added gate_keyword_demand_not_stale (and its pure-logic helper keyword_demand_staleness_problem) this cycle; re-verified by reading the surrounding gate registration, run_gate/warn/fail helpers, and re-running the full fail-then-pass proof against the real file."
+      "date": "2026-10-03",
+      "note": "Verified the file's actual latest change (ee547104a, committed 2026-10-03T00:22:13Z): check_learnings_index() extended to catch two learnings sharing one LRN ID, which the prior set-based diff could never see (a duplicate collapses into one member the moment it enters a set). New ops/tests/test_gate_learnings_index_current.py, 12/12 passing, fail-then-pass proved against the real shared-ID regression and the real committed LEARNINGS.md. The previous ledger note described only the earlier keyword_demand gate (d2af92c42) and had gone stale against this later, undescribed change; this entry replaces it. Full 27.7k-line file not re-read end to end this cycle; that remains open standing work."
     },
     "prerender_shop.py": {
       "status": "fixed",
