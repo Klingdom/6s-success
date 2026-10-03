@@ -339,6 +339,7 @@ Maintain:
 | LRN-0034 | The tool that writes the code can corrupt it silently; a planted defect that does not fail is the only reliable detector | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0035 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0036 | Every page is crawled and almost none is ranked: crawl coverage is 210 of 211 and search sent 6 requests in 14 days | SEO / ANALYTICS | SUPPORTED | HIGH |
+| LRN-0037 | A metric protected only by a third-party heuristic is unprotected: our own headless browser sent 9,113 beacons | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1435,6 +1436,64 @@ the standing warning about exactly that. `ops/crawl_report.py` now prints
 the sitemap coverage line itself (`sitemap_coverage()`), so this number is
 re-derivable on demand rather than remembered, and it is what caught the
 ad-hoc version's error above.
+#### LRN-0037: A number is only as protected as the thing protecting it, and ours was protected by somebody else's bot list
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (counted in the site's own access log, both sides compared)
+**Domain:** ANALYTICS / MEASUREMENT
+**Measured:** 2026-10-03, window 2026-09-19 to 2026-10-03
+
+**Observation.** Looking for something else entirely (whether the analytics
+beacon still fires after a measure.js change), the access log showed hundreds
+of POSTs a day to `/stats/api/send` while Umami recorded 1 to 11 pageviews a
+day for this site. Two orders of magnitude apart, on the one metric every
+objective here is measured against.
+
+**Evidence.** 9,113 of the beacons in the window carried a HeadlessChrome user
+agent, counted by extracting the agent field rather than by sampling: 7,950
+from HeadlessChrome/153 and 1,163 from /154, both the Edge-derived build this
+workstation's tooling drives. They are this repository's own screenshot and
+visual-audit scripts, which run a real Chromium and therefore execute the
+tracker on every page they load. The remainder are mostly
+`meta-externalagent` and `YandexRenderResourcesBot`, which also execute
+JavaScript.
+
+**No reported figure was ever wrong.** Umami discarded all of them. That is
+the part worth sitting with: the measurement was correct, and it was correct
+for a reason nobody here chose, documented or tested. Umami's bot list happens
+to recognise the string HeadlessChrome. One upstream change to that list, or
+one tool configured with a friendlier user agent, and 9,000 of our own
+pageviews would have landed in the only traffic figure this business has. At 7
+to 22 visitors a week the constraint would have appeared solved overnight, by
+our own monitoring, with nothing in the system able to say otherwise.
+
+**Learning.** When a measurement survives only because an external component
+happens to behave well, it is not protected, it is lucky. The test is not
+"is the number right today" but "what in OUR system would stop it being wrong".
+Here the answer was nothing. This generalises past analytics: the same shape is
+a price that is only correct because an upstream default has not changed, or a
+gate that passes only because a dependency still emits the string it greps for.
+
+**Action taken.** `site/nginx/default.conf` now returns 204 for a beacon whose
+user agent contains Headless or starts with `6s-`, before `proxy_pass`, so the
+refusal is ours and is visible in the file that serves the site.
+`ops/tests/test_nginx_beacon_guard.py` compiles the guard's own pattern and
+runs it against the five agents measured hitting the endpoint and four real
+browser strings, so it fails both if the guard stops catching our tooling and
+if it ever starts catching a visitor. Proved in both directions with planted
+defects.
+
+**What this does not say.** It does not mean past traffic figures were
+overstated; the opposite, they are now corroborated from a second, independent
+source. It also does not clean the historical log: the 9,113 lines remain in
+the access log for the window before the guard, so any future crawl or traffic
+analysis over September must still exclude them, which is what
+`ops/crawl_report.py`'s `6S own tooling` bucket is for.
+
+**Next action.** None outstanding. The honest follow-up is to re-read
+`/stats/api/send` by user agent after the next deploy and confirm the
+HeadlessChrome 200s have become 204s, which is a before-and-after this log can
+answer on its own.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
