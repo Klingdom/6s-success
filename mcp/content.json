@@ -10136,6 +10136,20 @@
        "action": "Take everything off the counter and put back only what a visitor would use: soap, tissues, hand towel. The travel conditioner, the spare contact lens case, and the razor that ended up here because the main bathroom ran out of room all go back where they belong or into the trash.",
        "victory": "Only soap, tissues and a folded hand towel remain on the counter, with bare space enough for a phone and glasses, and nothing of the household's left behind."
       }
+     },
+     "variants": [
+      {
+       "condition": "The only bathroom in the house, used by everybody",
+       "guidance": "The counter rule becomes a reset rather than a standard. One tray holds the household's daily things and lifts off in a single movement before anyone arrives, so bare counter is five seconds away instead of an evening of work."
+      },
+      {
+       "condition": "A very small counter with no bare space at all",
+       "guidance": "Move the tissues to the wall or the tank and keep the bare space. Somewhere to set a phone down matters more to a guest than somewhere to put the tissues."
+      }
+     ],
+     "capacity": {
+      "rule": "A soap pump above half full, one folded hand towel visible from the doorway, tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. Nothing belonging to your household on it.",
+      "does_not_fit": "If your family's toothbrushes are on this counter, this is a family bathroom that guests also use, which is a different zone with different rules. Decide which one it is rather than resetting it before every visit."
      }
     },
     {
@@ -10271,6 +10285,20 @@
        "action": "Pull everything out and be honest about the hotel miniatures: the shampoos from three trips, the lotion nobody opened, the free conditioner samples. Keep the unopened ones a guest would actually use, throw out the started ones, and send household backstock that drifted in here back to the bathroom it came from.",
        "victory": "Every started miniature and drifted household item is gone, and only unopened travel toiletries a guest would actually use remain."
       }
+     },
+     "variants": [
+      {
+       "condition": "Cleaning products have to stay out of reach of children",
+       "guidance": "The cleaning bin leaves the cabinet entirely and lives latched or high elsewhere, and the guest bin stays. A latch a visitor has to defeat is worse than keeping the chemicals in another room."
+      },
+      {
+       "condition": "A pedestal basin with no cabinet at all",
+       "guidance": "Both bins move to a closed basket or a small shelf unit, and the labels matter more because nothing is hidden. A guest still needs one obvious container they are allowed to open."
+      }
+     ],
+     "capacity": {
+      "rule": "Two lift-out bins and nothing loose: one labeled for guest supplies, one for cleaning, both light enough to lift with one hand, with the toilet paper stacked beside them.",
+      "does_not_fit": "If the cabinet needs a third bin, something in it belongs to the household rather than to this room. Cleaning and guest supplies are the only two jobs this cabinet has."
      }
     },
     {
@@ -10417,6 +10445,20 @@
        "action": "Take out every bottle and turn it over. This is where the household's rejected products retire: the shampoo nobody liked, the body wash that smells wrong, the conditioner welded to the shelf. Keep one shampoo, one conditioner, one body wash, all readable and more than a third full. The rest go, along with the old razor and the disintegrating loofah.",
        "victory": "One shampoo, one conditioner and one body wash stand in the shower, each more than a third full and easy to read, with nothing else left welded to the shelf."
       }
+     },
+     "variants": [
+      {
+       "condition": "The household uses this shower weekly too",
+       "guidance": "The three-bottle rule still governs what is visible, and the household's extras live in a lift-out basket that comes out before a guest arrives. Either way nothing stands directly on the tub floor collecting water underneath it."
+      },
+      {
+       "condition": "A tub used mainly for bathing children",
+       "guidance": "Toys need a draining bag or bin that hangs rather than a pile in the corner, and the mat becomes a daily job instead of a weekly one. Standing water under a toy bin is exactly where the pink film starts."
+      }
+     ],
+     "capacity": {
+      "rule": "Three bottles in a hanging caddy, all recognizable and more than a third full, a liner or screen with no pink film along the bottom edge, and the bath mat folded over the rim rather than lying on the floor.",
+      "does_not_fit": "If three bottles will not cover it, you are storing the household's shower inside the guest's. Take out the half-empty duplicates: a guest needs shampoo, conditioner and soap, not a shelf of choices."
      }
     },
     {
@@ -10557,6 +10599,20 @@
        "action": "Clear everything from the top of the tank and the floor behind the bowl: the collection of air fresheners, the second brush, the magazines, the box of something nobody has identified in years. One reserve roll stays in the open. Nothing else.",
        "victory": "The tank top and the floor behind the bowl are bare except for one reserve roll standing in the open."
       }
+     },
+     "variants": [
+      {
+       "condition": "A very small room where the brush and bin crowd the toilet",
+       "guidance": "Wall mount what you can and keep the floor clear on the side a person steps. Clutter on the floor beside a toilet is both the hardest thing to clean around and the easiest to knock over."
+      },
+      {
+       "condition": "Somebody with limited mobility uses this room",
+       "guidance": "The reserve roll, the flush and any grab rail all need to be reachable from seated without twisting, and the floor needs to stay completely clear. Convenience for a guest and safety for a resident ask for the same layout here."
+      }
+     ],
+     "capacity": {
+      "rule": "One spare roll a seated person can reach without standing up, a dry brush in a holder with nothing pooled in the bottom, and a small trash can with a liner actually in it.",
+      "does_not_fit": "If the spare roll cannot be reached from the seat it is decoration rather than a reserve. That is the entire job of this zone, and it is the one thing a guest will never ask you about."
      }
     },
     {
@@ -10692,6 +10748,20 @@
        "action": "Unfold every towel and look at it in daylight rather than closet light. Anything thin along the fold line, permanently gray, stiff from too much softener, or carrying a hair dye or nosebleed stain comes out of the guest stack. It becomes a rag or a car towel today. It does not go back just in case.",
        "victory": "Every towel remaining in the guest stack is free of thinning, graying, stiffness or stains, and none of it went back in just in case."
       }
+     },
+     "variants": [
+      {
+       "condition": "A linen closet elsewhere already holds all the household towels",
+       "guidance": "Keep one bundle in here anyway. The point is that hosting never begins with a search, and a trip to another room at the moment a guest arrives is the search."
+      },
+      {
+       "condition": "Guests arrive unexpectedly and often",
+       "guidance": "Two bundles rather than one, and a named restock trigger after each visit. The failure here is rarely the number of towels, it is that the used set never gets replaced."
+      }
+     ],
+     "capacity": {
+      "rule": "One bundle per expected guest, each holding a bath towel, a hand towel and a washcloth folded together, a clean bath mat folded flat beneath the bundles, and a hand's width of air above the stack.",
+      "does_not_fit": "If there is no air above the stack, you are storing towels rather than hosting with them. Thin gray towels are not spares, they are rags that have not been told yet."
      }
     }
    ]
@@ -13888,6 +13958,20 @@
        "action": "Clear the bench top down to just the vise and the task lamp: put every hand tool back on its traced outline, and give any offcut or glue squeeze-out its verdict, the rack, the fire bucket, or the bin.",
        "victory": "The bench top holds only the vise and the task lamp, with every tool back on its silhouette and the dog holes empty."
       }
+     },
+     "variants": [
+      {
+       "condition": "The bench is also the only flat surface in the garage",
+       "guidance": "The clear run in front of the vise is the part to defend. Everything else is negotiable, but once there is nowhere to lay a board the bench has quietly become a shelf."
+      },
+      {
+       "condition": "The workshop is shared, or children use it",
+       "guidance": "Traced tool outlines stop being a nicety and become the handover. Anyone should be able to see what is missing at the end of a session, and the bench gets returned to bare rather than to however you found it."
+      }
+     ],
+     "capacity": {
+      "rule": "A bare bench top except the vise and the task lamp, one project tray holding the current job's parts, and a clear run in front of the vise long enough to lay a board across.",
+      "does_not_fit": "If the current job will not fit one tray, it is more than one job. Finish or box the other, because a bench carrying two projects is a bench where neither of them gets finished."
      }
     },
     {
@@ -14031,6 +14115,20 @@
        "action": "Work the retracting guard on every saw with your thumb to confirm it snaps back on its own, and move any battery still sitting on the charger from a finished job onto its tool's hook.",
        "victory": "Every guard snaps shut on its own, and no charger is running behind a job that already ended."
       }
+     },
+     "variants": [
+      {
+       "condition": "Mostly cordless, all on one battery system",
+       "guidance": "Battery management becomes the zone. A named shelf position per battery, off the charger once full, and a count you can see, because the failure here is four flat batteries rather than a missing tool."
+      },
+      {
+       "condition": "Tools get borrowed in and out of the house",
+       "guidance": "Add an out board or a written list by the door. A missing tool you know is lent is an inconvenience; one you cannot account for costs an afternoon and usually a replacement."
+      }
+     ],
+     "capacity": {
+      "rule": "Each tool in a labeled home with its guard closed and its blade wrench or chuck key attached to it, batteries on a shelf off the chargers, and no bare blade loose in any drawer.",
+      "does_not_fit": "If a tool has no home, the shelf is short of homes rather than the tool being surplus. A tool stored loose is the one that gets damaged and the one whose accessories go missing."
      }
     },
     {
@@ -14166,6 +14264,20 @@
        "action": "Tip out one obviously mixed jar or tin of hardware, and sort only the sizes you already have a labeled compartment for; whatever is left over goes straight to metal recycling today.",
        "victory": "That one jar is empty and gone, and every fastener from it that stayed is inside a labeled compartment, not back in a container of its own."
       }
+     },
+     "variants": [
+      {
+       "condition": "A small collection, a drawer rather than a cabinet",
+       "guidance": "The sample-on-the-face rule still does the work, taped inside the drawer edge instead. Sorting by type first and size second matters more in a small space rather than less."
+      },
+      {
+       "condition": "Shared with somebody who does not put things back by size",
+       "guidance": "Make the sample fastener bigger and the labels blunter, and keep one unsorted landing tray by the bench by agreement. An honest holding tray that gets emptied beats a mixed tin that never does."
+      }
+     ],
+     "capacity": {
+      "rule": "One fastener type and size per compartment, a sample glued to the outside of each drawer face, the sizes you drive weekly at hand height, and no tin of mixed hardware anywhere on the shelf.",
+      "does_not_fit": "If a compartment holds two sizes, you own more sizes than compartments, and that is the honest signal to add a second case rather than to mix. Mixed is the exact state this zone exists to prevent."
      }
     },
     {
@@ -14310,6 +14422,20 @@
        "action": "Pull every offcut sitting on the bench, the floor, or the top of the rack right now and give each one its verdict: into the bin under the fill line, or straight to the fire bucket.",
        "victory": "Nothing is stored directly on the shop floor, and the offcut bin sits at or under its marked fill line."
       }
+     },
+     "variants": [
+      {
+       "condition": "Very little space, so material is stored against a wall in the open",
+       "guidance": "Fixing the rack into structure matters more here rather than less, and so does the no-leaning rule. Sheet goods leaning out into a room are the most common way a workshop injures somebody."
+      },
+      {
+       "condition": "Mostly metal rather than wood",
+       "guidance": "The weight changes everything about the fixings and nothing about the principle. Support at closer intervals, keep the longest and heaviest lowest, and treat the rack's attachment to the wall as the thing you inspect."
+      }
+     ],
+     "capacity": {
+      "rule": "Boards lying flat and supported along their length with the longest and heaviest at the bottom, sheet goods standing on edge against the wall, and an offcut bin with its size floor written on the front.",
+      "does_not_fit": "If the offcut bin is overflowing, the size floor is not being enforced rather than the bin being too small. An offcut you would not drive out to buy is waste or firewood, and keeping it costs you the room to store wood you will actually use."
      }
     },
     {
@@ -14446,6 +14572,20 @@
        "action": "Check every rag from today's finishing work: anything balled up loose goes into the lidded metal can with the lid pushed down, and scan the open cans on the shelf for one without a date and mark it now.",
        "victory": "No oily rag is loose anywhere in the zone, and every open can on the shelf shows a marker date on its lid."
       }
+     },
+     "variants": [
+      {
+       "condition": "No metal cabinet yet",
+       "guidance": "The separation and the rag can are the parts that cannot wait. A self-closing metal can for oily rags is the highest-value single item in this zone, and it matters more than the cabinet it should eventually sit beside."
+      },
+      {
+       "condition": "The workshop is attached to, or underneath, living space",
+       "guidance": "Every rule here tightens. Check what the extinguisher is actually rated for, keep quantities to what a project needs rather than what a sale offered, and never store solvents against a wall shared with a bedroom."
+      }
+     ],
+     "capacity": {
+      "rule": "Every product in its original labeled container inside a closed metal cabinet, each lid dated, water-based finishes on one shelf and solvents on another, and oily rags in a self-closing metal can with the lid down.",
+      "does_not_fit": "If the cabinet will not close, the overflow is not storage, it is a fire load. Take what is beyond its date to a proper disposal facility rather than finding it another shelf."
      }
     },
     {
@@ -14587,6 +14727,20 @@
        "action": "Lift the extinguisher and confirm the gauge sits in the green, then run a hand over every pair of glasses on the hooks and bin any pair scratched enough that you would lift them off to see a cut line.",
        "victory": "The extinguisher gauge reads green with a dated tape on the bracket, and every pair of glasses left on the hooks is clear enough to cut by."
       }
+     },
+     "variants": [
+      {
+       "condition": "Visitors or children come into the workshop",
+       "guidance": "Add a visitor set in a different color at the same door, sized for a smaller face. Gear that does not fit is gear that ends up pushed onto a forehead, which protects nobody."
+      },
+      {
+       "condition": "A one-person workshop",
+       "guidance": "The head count is one and the counting gets easier, but the door placement matters exactly as much. The gear hangs at the door because putting it on has to be faster than deciding to skip it."
+      }
+     ],
+     "capacity": {
+      "rule": "Safety glasses on hooks at the door you come in through, one labeled pair per regular user, hearing protection beside them, dust masks in a dated box, and an extinguisher mounted with its gauge in the green and clear floor in front of it.",
+      "does_not_fit": "If there is not a pair per regular user, the people who share will stop wearing them. This is the one zone where the right number is a head count rather than a judgement."
      }
     }
    ]
