@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-28T15:41:58Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-28T18:31:53Z",
    "mode": "changed",
    "offered": 1,
@@ -633,6 +626,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T04:25:22Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -741,11 +741,11 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "8da425c2b7cb3d95",
   "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "c07ae66e3a1aa142",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "d3cf6d3d1db05bdb",
-  "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "60bee2e5f9b92b56",
-  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "e1c4ed8acaf97460",
-  "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "5ec8b809e9044af2",
-  "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "54a15cd22bf6948d",
-  "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "b0cf10ae145aad7c",
+  "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "0aa370e16a82d719",
+  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "7ce467a1f3e02682",
+  "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "0fe5034825b952b2",
+  "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "feec746280f240fd",
+  "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "3f269698757c13d6",
   "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "2a415988f96ea539",
   "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "4a6e1b4d931702d7",
   "https://6s-success.com/zones/home-office-the-file-storage": "186c25e4c9b7e0ac",
