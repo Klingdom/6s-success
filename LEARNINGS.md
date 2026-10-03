@@ -338,6 +338,7 @@ Maintain:
 | LRN-0033 | An ad-hoc pattern that matches nothing looks exactly like a true absence, and throwaway analysis gets no second opinion | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0034 | The tool that writes the code can corrupt it silently; a planted defect that does not fail is the only reliable detector | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0035 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0036 | Every page is crawled and almost none is ranked: crawl coverage is 210 of 211 and search sent 6 requests in 14 days | SEO / ANALYTICS | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1354,6 +1355,86 @@ this fix, checking whether an existing real-network workflow can carry a
 blocked measurement before writing the measurement off as sandbox-bound for
 weeks, applies to any future tool that turns out to need the same thing.
 
+#### LRN-0036: Every page on this site is crawled and almost none of it is ranked, so indexation is finished work and not a lever
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (first-party server log, every figure counted directly)
+**Domain:** SEO / ANALYTICS
+**Measured:** 2026-10-03, window 2026-09-19 to 2026-10-03
+
+**Observation.** This repository has spent months on indexation: sitemap
+lastmod correctness, www and .html 301s, a `Disallow: /stats/` rule, an
+IndexNow submitter with a deploy-aware withholding guard, a weekly keyword
+harvest. Nobody had ever asked the question those all serve: how much of this
+site do search engines actually fetch, and what do they send back.
+
+**Evidence.** Read from `/var/log/6s-success/access.log*` on the VPS, the
+bind-mounted log that outlives a container, across 15 days with traffic and
+139,272 requests.
+
+* **Crawl coverage is 210 of 211 sitemap URLs, with exactly one never fetched.**
+  The one is `/articles/why-is-my-house-always-messy`, published 2026-10-02 and
+  first announced to IndexNow on 2026-10-03; its whole fetch history is this
+  repository's own tooling, one curl and one browser. Everything else on the
+  site has been read by a retrieval crawler inside the window.
+* **Corrected before publishing, and the correction is the same lesson as
+  LRN-0033.** This bullet first said 211 of 211 from a hand-written
+  `grep | awk | sort -u` over the log. `ops/crawl_report.py`'s own
+  `sitemap_coverage()`, added the same hour, said 210 of 211 and named the page.
+  The ad-hoc version matched a looser bot set and looser path variants and so
+  reported full coverage that did not exist. A throwaway pipeline gets no
+  second opinion; the tool does, so the number now lives in the tool.
+* **Googlebot content fetches run 7 to 44 a day, mean about 19, for fourteen
+  consecutive days.** Per day: 7, 28, 8, 8, 8, 44, 20, 16, 16, 25, 24, 19, 12,
+  26. Assets and the analytics beacon excluded.
+* **That is roughly a tenfold rise on the baseline LRN-0013 recorded**, which
+  was 0 to 2 a day through 10 to 19 September with occasional recrawl bursts.
+  LRN-0013's own correction is the reason this one is worth writing: it called
+  a two-day rise "sustained" and had to retract it four days later. Fourteen
+  consecutive days with no day below 7 is a different claim from two days.
+* **Search engines sent 6 requests from something that was not a bot, in the
+  same 14 days.** Five distinct days; four landed on `/`, one on
+  `/articles/why-you-keep-buying-things-you-already-own`, one on `/shop.html`.
+  The crawl report's own referrer section agrees at 9 Google referrers and 1
+  Bing, counting assets.
+* Also in the window, and worth separating from discovery: ClaudeBot 186 and
+  GPTBot 42 fetches are training traffic, which is a licensing event rather
+  than a route to a reader; Bingbot 458 and OAI-SearchBot 55 are retrieval.
+  PerplexityBot does not appear at all.
+
+**Learning.** The crawl half of organic discovery is done and has no headroom
+left. A page cannot be fetched more completely than all of it, and more
+submission, more sitemap precision and more IndexNow cannot improve a number
+that is already 210 of 211, with the one exception being a page published the day
+before. The site is all but fully crawled and effectively unranked:
+every page is read by the engines and the engines send about three requests a
+week to a human. That is not a discovery problem, it is a ranking problem, and
+on a domain almost nothing links to, ranking is bought with authority and time
+rather than with on-page work.
+
+**Implication for prioritisation.** Three classes of work are now known to have
+no remaining headroom and should not be picked up again without new evidence:
+submitting URLs, improving sitemap mechanics, and widening crawl access. Two
+classes remain honest: matching real intent on pages that already exist (which
+`ops/keyword-demand.json` can at least point at), and distribution that does
+not route through a search engine at all, which is what `GOALS.md` has said is
+the constraint since 2026-09-02 and what `OWNER-ACTIONS.md` is mostly about.
+
+**What this does not say.** Nothing here measures impressions or position,
+because Search Console is still verified to nothing (`OWNER-ACTIONS.md` 1a).
+"Crawled" is not "indexed": a fetch proves an engine read the page, not that it
+kept it. A user agent is also a claim and this log records no addresses by
+design, so every bot count above is "requests from something calling itself X".
+Spoofing would inflate them and nothing here detects it. The 6 search-referred
+requests are a referrer header, which the client chooses.
+
+**Next action.** None of the above changes what to build next, which is the
+point: it removes a tempting direction rather than adding one. Re-read the same
+log in two weeks before claiming the crawl rise has held, because LRN-0013 is
+the standing warning about exactly that. `ops/crawl_report.py` now prints
+the sitemap coverage line itself (`sitemap_coverage()`), so this number is
+re-derivable on demand rather than remembered, and it is what caught the
+ad-hoc version's error above.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
