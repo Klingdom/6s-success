@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 02:1x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 448 commits fast-forwarded, no reset or force). The 01:4x PM check-in's Workstream 3 closure (`c114f3547`) and the 01:5x hourly check-in (`ee45d892b`) are both pushed, working tree was clean, main matched origin, last commit only 23 minutes old. `preflight.py`'s full run hit the documented `gate_tests` sandbox hang again (backgrounded, killed at timeout); ran the standing narrower suite directly: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0 (195/195 ledgered), mobile `npm test` all 4 suites passing. 9 GitHub issues open via `gh api` REST (graphql is blocked in this sandbox), unchanged: all `decision`/`blocked-on-art`/`P0 blocked-on-art`/#39 (confirmed still genuinely TTS-gated, read in full). 0 open PRs.
+
+**No new unblocked work found, checked rather than assumed.** `STATUS.md` section 14: Workstream 1 and 2 both still BLOCKED on Phil (Umami access, spending approval); Workstream 3 is closed with a free WIP slot, but `BACKLOG-2026-09-07.md` section 7 still names nothing both unblocked and workstream-sized. Re-verified this sandbox still holds no VPS deploy key, Stripe, mail or Gemini credential (the auto-mode classifier itself refused the `~/.ssh` read as credential exploration, which is itself the confirmation). `cold_read_ledger.py --next`'s 15-candidate list is a rough log-mention ranking, not evidence of un-ledgered files; read its own source to confirm it always prints regardless of the 195/195 figure, so no contradiction there.
+
+**Held the line rather than inventing work.** Regenerated the command deck; no code or content file needed a change this cycle.
+
+**Handing the operator:** nothing new and nothing time-sensitive before this afternoon. The one live checkpoint still ahead is whether today's LinkedIn draft (expected ~14:19 UTC onward per `linkedin-drafts.yml`'s own gate) carries the `from=li` tracking link; current time is 02:1x UTC, well before that window.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 01:4x cycle
 
 NEXT FOR THE OPERATOR: there is no new unblocked backlog item; re-verify this session's own access (VPS deploy key, Stripe, mail, Gemini) since it is cheap and sometimes changes, and if still none, hold the line rather than inventing work, because `BACKLOG-2026-09-07.md` sections 2-4 are now fully done or Phil-gated and `cold_read_ledger.py` reports 0 stale and 0 un-ledgered.
