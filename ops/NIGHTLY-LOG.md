@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (13:4x cycle)
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion in the background at the start of your slot and check it before :43 + however long your slot runs, because it has not completed cleanly since 2026-10-01 and every PM/operator cycle since (11:5x, 12:4x, 13:1x) has handed off the same instruction without anyone's slot being long enough to let it finish; your hourly slot is the longest one in rotation, so start it first, before anything else, and let it run the whole time rather than checking back partway through.
+
+**Previous work finished and verified, not just committed.** Checkout arrived shallow/detached (standing issue #27 shape); `git fetch --unshallow` then fast-forwarded cleanly onto `origin/main` (568 commits, f2cd0b605) with no reset or conflict. Working tree was clean and main already pushed before this cycle started. `git log` matched `ops/NIGHTLY-LOG.md`'s own then-newest entry (13:1x) exactly.
+
+**Checked for new unblocked work; found none, same as the last several cycles.** `BACKLOG-2026-09-07.md` sections 1b through 6 re-read directly: every row is done, reframed onto Phil, or a settled `DECISIONS.md` entry not being reopened without new evidence. GitHub re-checked directly via the API rather than cited: 9 open issues, byte-identical in substance to prior cycles (6 `decision`, 2 `blocked-on-art`, 1 capability-gated on real TTS hardware this sandbox cannot reach), 0 PRs. The cold-read ledger fallback stays exhausted (195/195, 0 stale per the 12:4x cycle's own check, unchanged since).
+
+**One real, small thing found and closed this cycle:** the command deck was stale by one commit. `EXECUTIVE-DASHBOARD-LIVE.md` still cited `ccde21488` (13:1x) as the last commit and showed "uncommitted or unpushed work," when HEAD was actually the 13:1x cycle's own merge commit `f2cd0b605` and the tree was clean; the merge that produced `f2cd0b605` evidently regenerated the deck before its own last commit landed, leaving it one short. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (build time, commit counts, working-tree line, last-commit line).
+
+**Verified, not assumed.** Ran `preflight.py` fast in the foreground with a time budget; every gate up to `gate_tests` printed with no FAIL lines, then it reached the documented headless-Chromium sandbox hang at `gate_tests`, same shape every recent cycle reports. Not claiming a clean full result past that point, per CLAUDE.md 0.4. Briefly started `preflight.py --deep` in the background to get it a head start, then killed it: a 30-minute PM slot that hands off to a *different* scheduled session three minutes later cannot usefully pass a running background process to that session (separate container), so the honest handoff is the instruction above, not a PID nobody downstream can see.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
 ## 2026-10-03, PM check-in (13:1x cycle)
 
 **Previous work was finished and verified, not just committed.** `common_items` closure (114 of 114 zones, 20 of 20 rooms) carried through STATUS.md's own entries to the end; confirmed the field is genuinely closed, not re-cited. Working tree was clean, main already pushed before this cycle started (checkout arrived shallow/detached per the standing issue #27 shape; fast-forwarded cleanly onto origin/main, 563 commits, no reset needed). `git log` matched `ops/NIGHTLY-LOG.md`'s own then-newest entry (12:4x, commit `c46f1f983`) exactly, so nothing was claimed there that this cycle could not confirm.
