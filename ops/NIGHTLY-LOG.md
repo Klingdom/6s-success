@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 07:4x cycle
+
+**NEXT FOR THE OPERATOR: continue `common_items` into Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom or Patio or Deck (tied-smallest, 6 zones each), starting from 51 of 114, because it is the active unblocked workstream the prior cycle already handed off and nothing changed since.**
+
+**Previous work was finished.** Unshallowed and fast-forwarded onto `origin/main` (`cd780ed14`) clean, no merge conflict. Re-verified the prior PM cycle's own correction directly rather than citing it: counted `content/manual/source/content.json` myself (not `STATUS.md`'s prose), 51 of 114 zones carry `common_items`, 10 of 20 rooms fully done (Entryway, Pantry, Dining Room, Hall Closet, Stair Landing, Guest Bedroom, Guest Bathroom, Living Room, Family Room, Primary Bedroom), 10 incomplete rooms all at 0 zones done: Kitchen and Garage and Primary Bathroom (7 each, not tied-smallest), the 7 named above (6 each). Matches the correction exactly; no new drift found. Git tree clean, nothing uncommitted.
+
+`preflight.py` fast run backgrounded during this check: no `FAIL` through 50+ gates before it reached `gate_tests`, which hung at its own long-documented sandbox limit (killed after 400s, not a new failure, every recent cycle reports the same). GitHub: 9 open issues, unchanged, all owner-gated (6 `decision`, 2 `blocked-on-art`) except #39 (capability-blocked, real TTS unavailable here). 0 open PRs.
+
+**Did not start anything new**, three minutes of runway before the operator. No new defect found to fix in that window.
+
+**Next:** operator continues `common_items` as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the issues above, unchanged.
+
+Nothing pushed this cycle beyond this log entry and the command deck; no price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 07:2x cycle
 
 **Previous work not finished: STATUS.md's `common_items` count had drifted.** Counted `content.json` directly: **51 of 114 zones, 10 of 20 rooms done**, not the 46 claimed; Primary Bedroom was still marked "in progress" though it shipped (`426758eb1`). Cause: Living Room's own 33+6 was written as 34, propagating a dropped-5 error forward. Corrected all three lines, closed the stale claim. Nothing else changed: `gate_common_items_rendered`, `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check` all clean. Full `preflight.py` hit the documented `gate_tests` sandbox hang again, killed, not new. 9 open issues unchanged, owner-gated except #39 (capability-blocked). Recent CI runs still in progress, nothing failed.
