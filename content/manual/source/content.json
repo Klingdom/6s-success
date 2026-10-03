@@ -6822,7 +6822,20 @@
       "Two complete bedding sets, one made up and one spare, folded in its own pillowcase",
       "Two pillows",
       "A flat, empty suitcase"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Mattress protector, fitted and on",
+       "Two complete bedding sets, one made up and one spare in its own pillowcase",
+       "Two pillows that spring back when folded in half",
+       "One empty suitcase, lying flat"
+      ],
+      "strays": [
+       "A demoted sheet set whose fitted corner pops off this mattress",
+       "A pillow that stays folded in half",
+       "Anything stored under the bed besides the one flat suitcase"
+      ]
+     }
     },
     {
      "zone": "Guest Nightstand",
@@ -6974,7 +6987,21 @@
       "A box of tissues",
       "A coaster",
       "A wifi password card"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A lamp with a switch you can find by feel in the dark",
+       "One charging cable per common connector, reaching the pillow",
+       "A coaster and a tissue box at least half full",
+       "A wifi name and password card, alone in the drawer"
+      ],
+      "strays": [
+       "Dead batteries",
+       "A clock radio that lost its time in a power cut",
+       "Paperbacks nobody chose for this room",
+       "Cough drops fused into their own tin"
+      ]
+     }
     },
     {
      "zone": "Guest Dresser",
@@ -7126,7 +7153,21 @@
       "Spare linens for this bed, folded to one footprint",
       "A lamp or mirror on top",
       "An anti-tip strap"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two empty, lined drawers reserved for a guest",
+       "Spare linens for this bed, folded to one footprint and labeled",
+       "A lamp or mirror, alone on top",
+       "An anti-tip strap fixed to the wall"
+      ],
+      "strays": [
+       "Off-season jumpers that belong in your own wardrobe",
+       "A bin of cables that belongs with the household's other cables",
+       "Wrapping paper and ribbon",
+       "A bag of outgrown baby clothes waiting on a decision"
+      ]
+     }
     },
     {
      "zone": "Guest Closet",
@@ -7277,7 +7318,21 @@
       "A clear floor square for an open suitcase",
       "Labeled, lidded household bins",
       "A tape marker for the guest section"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A forearm's width of clear rod with six matching empty hangers",
+       "A clear floor square sized for an open suitcase",
+       "Household overflow in labeled, lidded bins, nothing loose above head height",
+       "A tape marker on the rod showing where the guest section ends"
+      ],
+      "strays": [
+       "Holiday decorations crowding the guest section",
+       "A wedding dress in a zipped bag with no place of its own",
+       "A box of old phones",
+       "Paperwork from an address you no longer live at"
+      ]
+     }
     },
     {
      "zone": "Guest Welcome and Work Surface",
@@ -7433,7 +7488,21 @@
       "A desk and lamp",
       "A luggage rack or taped floor square",
       "A welcome bin: spare charger, wifi card, water glass, tissues, a folded blanket"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A clear desk and a working lamp, with a chair pulled up",
+       "A luggage rack or a taped floor square for the suitcase",
+       "One labeled welcome bin: spare charger, wifi card, water glass, tissues, a folded blanket",
+       "A reachable outlet with no cord crossing the floor"
+      ],
+      "strays": [
+       "Gift wrap stored on the desk",
+       "An ironing pile that never made it back to the wardrobe",
+       "A printer that has not been switched on this year",
+       "Paperwork someone brought in here to deal with in peace"
+      ]
+     }
     }
    ]
   },
@@ -10708,7 +10777,21 @@
       "Soap",
       "A hand towel",
       "Tissues"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Soap, more than half full",
+       "One folded hand towel, visible from the doorway",
+       "A box of tissues in the back corner",
+       "Bare counter, enough to set down a phone and glasses"
+      ],
+      "strays": [
+       "Your family's toothbrushes in a cup on this counter",
+       "Hair clips left behind the tap",
+       "Travel conditioner or a spare contact lens case that drifted in",
+       "A razor that ended up here because the main bathroom ran out of room"
+      ]
+     }
     },
     {
      "zone": "Guest Vanity Storage",
@@ -10862,7 +10945,21 @@
       "A guest-supplies bin: toothbrush, soap, travel toiletries",
       "A cleaning bin: bowl cleaner, glass spray, cloths",
       "Backstock toilet paper, stacked in view"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A guest-supplies bin: a new toothbrush, a wrapped bar of soap, four unopened travel toiletries",
+       "A cleaning bin: bowl cleaner, glass spray, cloths standing upright on a shallow tray",
+       "Four rolls of toilet paper, stacked in plain view",
+       "A cabinet base bare enough to show a drip from the trap"
+      ],
+      "strays": [
+       "Started hotel miniatures collected over several trips",
+       "Lotion nobody ever opened",
+       "Free conditioner samples",
+       "Household backstock that drifted in from the main bathroom"
+      ]
+     }
     },
     {
      "zone": "Shower or Tub",
@@ -11027,7 +11124,21 @@
       "Shampoo, conditioner and body wash, one of each",
       "A bath mat",
       "A non-slip surface for the tub floor"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One shampoo, one conditioner, one body wash, each more than a third full and readable",
+       "A curtain liner or glass screen with no pink film along the bottom edge",
+       "A bath mat folded over the tub rim, not lying wet on the floor",
+       "A non-slip surface underfoot"
+      ],
+      "strays": [
+       "A rejected shampoo or body wash nobody liked",
+       "A conditioner welded to the shelf by its own residue",
+       "An old razor",
+       "A disintegrating loofah"
+      ]
+     }
     },
     {
      "zone": "Toilet Area",
@@ -11186,7 +11297,21 @@
       "A spare roll, within seated reach",
       "A toilet brush and holder",
       "A lined trash can"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One spare roll, standing in plain sight within seated reach",
+       "A dry toilet brush, resting with nothing pooled in the holder",
+       "A small trash can with a liner actually in it",
+       "A dry, dust-free floor behind the pedestal"
+      ],
+      "strays": [
+       "A collection of air fresheners",
+       "A second toilet brush",
+       "Magazines kept here to read",
+       "A box of something nobody has identified in years"
+      ]
+     }
     },
     {
      "zone": "Guest Linen Zone",
@@ -11339,7 +11464,20 @@
      "common_items": [
       "Towel bundles: a bath towel, hand towel and washcloth per guest",
       "A folded spare bath mat"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One bundle per expected guest: a bath towel, hand towel and washcloth folded together, matching in color",
+       "A clean bath mat, folded flat beneath the bundles",
+       "A hand's width of air above the stack"
+      ],
+      "strays": [
+       "A towel gone thin along the fold line",
+       "A towel permanently gray or stiff from too much softener",
+       "A towel carrying a hair dye or nosebleed stain",
+       "A thin gray towel kept for the dog"
+      ]
+     }
     }
    ]
   },
