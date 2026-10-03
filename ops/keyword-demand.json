@@ -3630,10 +3630,10 @@
       "best_page": "/zones/garage-the-bulk-and-overhead-storage.html",
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.4,
-      "heading_coverage": 0.4,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.6,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "cabinet to organize cleaning supplies",
@@ -17324,10 +17324,10 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/corporate.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to hold a workshop meeting",
@@ -17342,10 +17342,10 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/corporate.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/workshop-the-fastener-and-hardware-zone.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to hold bench",
@@ -21407,10 +21407,10 @@
       "best_page": "/articles/sentimental-items-without-guilt.html",
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/pantry-the-backstock-and-bulk.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to organize a pantry with drawers",
@@ -23214,10 +23214,10 @@
       "best_page": "/articles/sentimental-items-without-guilt.html",
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-baking-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize baking pans",
@@ -23543,10 +23543,10 @@
       "best_page": "/articles/sentimental-items-without-guilt.html",
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize bathroom products",
@@ -24663,10 +24663,10 @@
       "best_page": "/articles/sentimental-items-without-guilt.html",
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/garage-the-bulk-and-overhead-storage.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize bulk snacks",
@@ -40533,10 +40533,10 @@
       "best_page": "/articles/sentimental-items-without-guilt.html",
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/everyday-things-out-of-reach.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "organizer for bathroom counter",
@@ -44933,9 +44933,9 @@
       "best_page": "/zones/hall-closet-the-seasonal-and-guest-zone.html",
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 0.6,
-      "heading_coverage": 0.6,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
+      "heading_coverage": 0.8,
+      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -51720,6 +51720,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-02T23:18:12Z",
-  "scored_against_commit": "fe82d44a0"
+  "scored_at": "2026-10-03T15:54:24Z",
+  "scored_against_commit": "4c5edab86"
 }

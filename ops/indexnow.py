@@ -38,6 +38,8 @@ Run:  python ops/indexnow.py            what would be submitted, and what is new
       python ops/indexnow.py --status   last submission, and the unsubmitted count
 """
 import datetime
+import hashlib
+import io
 import json
 import os
 import re
@@ -291,6 +293,42 @@ def run(batch_urls, label):
     return (0 if accepted else 1), accepted_urls
 
 
+# The hash recipe, named and versioned, because changing it silently would
+# make every recorded baseline incomparable while still looking like a
+# measurement. ops/indexnow-log.json records which recipe its hashes were
+# taken with, and --changed refuses to compare across recipes.
+HASH_ALGO = 'sha256-16-lf-1'
+
+
+def page_hash(raw):
+    """
+    LINE ENDINGS MUST NOT COUNT AS A CONTENT CHANGE.
+
+    Found 2026-10-03 by reading the submission log: six runs that morning
+    announced 6, 6, 12, 30, 7 and 14 URLs, exactly the shape a change
+    notifier should have, and then two consecutive runs each announced all
+    210. The first of those was honest (a measure.js refingerprint really did
+    change every page). The second was not: nothing had changed between them
+    except WHERE the hash was taken. CI checks out LF, this workstation has
+    core.autocrlf=true and checks out CRLF, so the same deployed page hashes
+    differently depending on which machine looked, and every alternation
+    between a scheduled run and an interactive session re-announced the
+    entire site. Verified rather than assumed: all 211 stored hashes matched
+    this file's raw-byte reading and exactly 1 matched the LF-normalised one.
+
+    That is not a cosmetic bug. This file's own docstring says re-blasting
+    the whole site is how a domain earns a rate limit rather than a crawl,
+    and it was doing it several times a day on a domain with no crawl trust
+    to spend.
+
+    Normalising to LF is also the more correct reading of the question being
+    asked, which is 'did the page a visitor receives change'. The deployed
+    bytes come from a Linux checkout inside the image, so LF is what is
+    actually served; the CR bytes exist only in this working copy.
+    """
+    return hashlib.sha256(raw.replace(b'\r\n', b'\n')).hexdigest()[:16]
+
+
 def content_hashes():
     """sha of each sitemap URL's page as it stands in site/, keyed by URL.
 
@@ -306,8 +344,6 @@ def content_hashes():
     change", and it is cheap. A URL whose local file cannot be found is skipped
     rather than guessed at.
     """
-    import hashlib
-    import io as _io
     out = {}
     for u in urls():
         rel = u[len(BASE):].lstrip("/") or "index.html"
@@ -315,8 +351,7 @@ def content_hashes():
         for c in cand:
             fp = os.path.join(ROOT, "site", c.replace("/", os.sep))
             if os.path.isfile(fp):
-                out[u] = hashlib.sha256(
-                    _io.open(fp, "rb").read()).hexdigest()[:16]
+                out[u] = page_hash(io.open(fp, "rb").read())
                 break
     return out
 
@@ -343,6 +378,19 @@ def main(argv):
         # recorded when it was last announced.
         hashes = content_hashes()
         seen = log.get("hashes") or {}
+        # A baseline taken with a different recipe is not a baseline. If the
+        # recorded algorithm is not the current one, the stored hashes cannot
+        # be compared to these, and pretending otherwise would report every
+        # page as changed (or, worse after a future change, as unchanged).
+        # Say so and fall back to the honest answer, which is that the
+        # baseline is unknown.
+        if seen and log.get("hash_algo") != HASH_ALGO:
+            print("  BASELINE NOT COMPARABLE: %d hash(es) on record were "
+                  "taken with %r, this run computes %r. Treating every page "
+                  "as having no baseline rather than guessing which changed."
+                  % (len(seen), log.get("hash_algo") or "an unrecorded recipe",
+                     HASH_ALGO))
+            seen = {}
         # A URL with NO recorded hash is unknown, not unchanged. Treating it as
         # unchanged is how this returned "0 changed" on its first run, on a day
         # when 114 zone pages had just gone from about 1,300 words to about
@@ -381,6 +429,9 @@ def main(argv):
         log = load_log()
         log.setdefault("hashes", {}).update(
             {x: hashes[x] for x in todo if x in hashes and x in accepted_now})
+        # Record WHICH recipe these hashes were taken with, so a later
+        # change to page_hash cannot quietly compare apples to pears.
+        log["hash_algo"] = HASH_ALGO
         save_log(log)
         return rc
     if mode == "--submit":

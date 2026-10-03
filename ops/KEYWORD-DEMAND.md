@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-02T08:12:24Z from google, bing, 151 seeds, 302 attempts: 263 returned completions, 39 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-02T23:18:12Z against 218 page(s) at commit fe82d44a0. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-03T15:54:24Z against 218 page(s) at commit 4c5edab86. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2827. Checked against 218 published page titles: 1134 covered, 1477 partial, 216 gap.
+**Queries found:** 2827. Checked against 218 published page titles: 1139 covered, 1475 partial, 213 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 216, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 213, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -39,7 +39,6 @@ Showing the top 80 of 216, ordered by the best rank the phrase reached in any on
 | 2 | organize car maintenance tips | - | How to organize the garage car care supplies (0.33) |
 | 3 | attic storage ideas with trusses | - | More storage will not fix a messy room (0.33) |
 | 3 | basement organization ideas reddit | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | buy items in bulk to reorganize storage | - | How to organize the garage bulk and overhead storage (0.40) |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
 | 3 | draw a larder organization chart | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -101,10 +100,11 @@ Showing the top 80 of 216, ordered by the best rank the phrase reached in any on
 | 8 | how to organize beads for jewelry making | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
 | 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1477.
+Showing the top 60 of 1475.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -187,11 +187,11 @@ Showing the top 60 of 1477.
 | Living Room | 91 | 2 | 60 | 29 |
 | Mudroom | 45 | 1 | 22 | 22 |
 | Nursery | 62 | 2 | 27 | 33 |
-| Pantry | 59 | 2 | 32 | 25 |
+| Pantry | 59 | 1 | 33 | 25 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
-| Workshop | 66 | 5 | 41 | 20 |
+| Workshop | 66 | 4 | 41 | 21 |
 
 1932 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 
