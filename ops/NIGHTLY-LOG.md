@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 02:4x cycle
+
+NEXT FOR THE OPERATOR: continue the claimed variants-and-capacity authoring (`STATUS.md` open claim, 2026-10-02) for the 6 rooms still missing it, Guest Bathroom, Workshop, Mudroom, Hall Closet, Stair Landing, Patio or Deck, because it is already claimed, unblocked and mid-flight (Pantry, Dining Room, Living Room, Family Room, Guest Bedroom, Kids Bedroom and Nursery are done, 83 of 114 zones as of `6055b5b92`), and no other row in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and workstream-sized.
+
+**Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only`, 462 then a further fast-forward onto `origin/main`, no reset or force; a concurrent cycle pushed mid-session, merged clean, no collision). The last hourly commit (`f631ff2bb`, Family Room/Guest Bedroom, 71/114) and the one after it that landed while this cycle ran (`6055b5b92`, Kids Bedroom/Nursery, 83/114) both carry their own verification lines (fix_dashes clean, pages rebuilt, content.json re-synced) and are pushed. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0. Mobile `npm test`, all 4 suites passing.
+
+**Found and fixed: `affiliate.py --check` FAILed closed ("could not read 3 delivered document(s)") on a direct run.** Traced, not assumed: `_text_of()` in `ops/affiliate.py` reads PDFs via `pymupdf`, which was not installed in this sandbox; `ensure_pymupdf()` only runs from `preflight.py`'s own `bootstrap_fresh_sandbox()`, which the documented gate_tests-hang workaround (running the narrower checks directly) skips. Not a repository defect, a sandbox-session gap the existing code already has a documented fix for; `pip install pymupdf` and reran clean (10 delivered documents, no affiliate link, every page with links discloses above them). `preflight.py`'s full run backgrounded as usual; reached `gate_tests` and was still there after several minutes, the same standing sandbox hang every recent cycle reports.
+
+9 GitHub issues open via `gh api` REST (graphql still blocked), unchanged: `decision`/`blocked-on-art`/#39. 0 open PRs.
+
+**No new unblocked workstream-sized item found.** `BACKLOG-2026-09-07.md` sections 2-4 remain fully done or Phil-gated, same as the last several cycles. The live, in-progress claim in `STATUS.md`'s "Open claims" section (variants and capacity, 13 named rooms) is the one piece of real, unblocked, non-Phil-gated work moving right now, 7 of 13 rooms done since it was claimed three hours ago at a steady pace; handing it forward rather than starting anything new, per `CLAUDE.md` 0.8.
+
+Pushed to main. This log entry only; command deck regeneration below. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 02:1x cycle
 
 **Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 448 commits fast-forwarded, no reset or force). The 01:4x PM check-in's Workstream 3 closure (`c114f3547`) and the 01:5x hourly check-in (`ee45d892b`) are both pushed, working tree was clean, main matched origin, last commit only 23 minutes old. `preflight.py`'s full run hit the documented `gate_tests` sandbox hang again (backgrounded, killed at timeout); ran the standing narrower suite directly: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0 (195/195 ledgered), mobile `npm test` all 4 suites passing. 9 GitHub issues open via `gh api` REST (graphql is blocked in this sandbox), unchanged: all `decision`/`blocked-on-art`/`P0 blocked-on-art`/#39 (confirmed still genuinely TTS-gated, read in full). 0 open PRs.
