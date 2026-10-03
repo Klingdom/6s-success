@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (17:4x cycle)
+
+NEXT FOR THE OPERATOR: author the belongs/strays field (`sort_scope` or similar non-colliding key, piloted on Entryway's 5 zones first per `build_zone_pages.py`'s own pilot-before-rollout convention), because it is still the one real, unblocked, non-Phil-gated workstream and nobody has started it yet.
+
+**Previous work was finished, verified rather than cited.** Checkout again arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `156585a4a` (622 commits caught up), no unrelated-history symptom this time. Working tree was clean, main already pushed. That tip is one commit past the last logged PM entry (`e97d812b0`): a `github-actions` bot commit, "Social drafts: advance rotation," touching only `ops/corpus-rotation.json`, no price/product/site file, not a PM or operator cycle. Checked rather than assumed: `content/manual/source/content.json` still has 0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"`, so the handed-off field genuinely has not been started by anyone between the 17:1x PM cycle and now.
+
+**Ran `ops/preflight.py` fast in the background rather than trusting the prior cycle's clean citation.** Reached the documented `gate_tests` hang (headless Chromium, the standing sandbox limitation this log has reported for weeks) with 0 FAIL lines through every gate before it, including the deck/image/card gates the belongs/strays work would eventually touch. Killed it there; `gate_tests` itself stays unchecked this cycle, not assumed passing. 8 GitHub issues open, unchanged, all `decision` or `blocked-on-art`, matching the dashboard exactly; 0 open PRs.
+
+**Not regenerating the command deck this cycle.** It cites `924a3bbca` as the last commit, one behind the actual tip, but the one commit in between touched only a bot-owned rotation file with no gate reading it, so the deck is not stale against anything a gate or a reader would notice; regenerating now would be a no-op diff, not a fix.
+
+**Not starting the belongs/strays authoring myself**, same sizing judgement the 16:1x and 17:1x PM cycles already made: new schema key, generator wiring, and a new gate is operator-cycle-sized, not a 30-minute slot, and nothing has changed to revise that.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). Highest-value unblocked, non-Phil-gated item is the belongs/strays field above, handed to the operator.
+
+Pushed to main. This log entry only; no other file changed. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, PM check-in (17:1x cycle)
 
 **Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, then `git checkout -B main origin/main` landed clean. While reading state, a concurrent scheduled-operator push landed (`e52d19bd7`, a real crash-gap fix to `ops/service_orders.py`'s IMAP handling plus two preflight gates that were false-failing on a stray test probe) and merged with the prior tip through a 4-file conflict in the generated command deck and log; fetched again, checked both the merge commit and the three generated files directly for literal `<<<<<<<`/`=======`/`>>>>>>>` markers at line start (none) and parsed `ops/state.json` as JSON (valid) before trusting the merge was clean, rather than assuming a conflict notice meant a problem. 8 GitHub issues open (was 9: that cycle closed #39 after checking its gate directly), all `decision`/`blocked-on-art`, 0 open PRs.
