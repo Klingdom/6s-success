@@ -6488,7 +6488,13 @@
      "capacity": {
       "rule": "One complete set made up on the bed, one complete spare folded inside its own pillowcase on the shelf in this room, two pillows that spring back, and nothing under the bed but one empty suitcase lying flat.",
       "does_not_fit": "If the spare set will not fit on the shelf in this room, it is living somewhere a guest cannot reach it at midnight, which is the entire reason it belongs here rather than in the airing cupboard."
-     }
+     },
+     "common_items": [
+      "Mattress protector",
+      "Two complete bedding sets, one made up and one spare, folded in its own pillowcase",
+      "Two pillows",
+      "A flat, empty suitcase"
+     ]
     },
     {
      "zone": "Guest Nightstand",
@@ -6633,7 +6639,14 @@
      "capacity": {
       "rule": "A lamp you can find by feel in the dark, one charging cable per common connector reaching the pillow, a coaster, a tissue box at least half full, and a drawer genuinely empty apart from the wifi card.",
       "does_not_fit": "If the drawer is not empty, this nightstand is yours rather than theirs. The empty drawer is the one part of the zone a guest will actually use, and it is the first thing to get quietly reclaimed."
-     }
+     },
+     "common_items": [
+      "A lamp",
+      "Two phone chargers, one per common connector",
+      "A box of tissues",
+      "A coaster",
+      "A wifi password card"
+     ]
     },
     {
      "zone": "Guest Dresser",
@@ -6779,7 +6792,13 @@
      "capacity": {
       "rule": "The top two drawers completely empty and lined, lower drawers holding spare linens folded to one footprint and labeled on the inside front edge, an anti-tip strap into the wall, and a lamp or mirror alone on top.",
       "does_not_fit": "If the top two drawers cannot be emptied, this is household storage with a guest standing in front of it. Move the overflow to the closet shelf, because two empty drawers are the thing that stops a visitor living out of a suitcase."
-     }
+     },
+     "common_items": [
+      "Two empty drawers, labeled reserved",
+      "Spare linens for this bed, folded to one footprint",
+      "A lamp or mirror on top",
+      "An anti-tip strap"
+     ]
     },
     {
      "zone": "Guest Closet",
@@ -6924,7 +6943,13 @@
      "capacity": {
       "rule": "A forearm's width of clear rod carrying six matching empty hangers, a clear floor square big enough for an open suitcase, household bins in labeled lidded boxes on the shelf, and nothing loose above head height.",
       "does_not_fit": "If six hangers will not fit, household storage has taken the room's hospitality. Tape the rod to mark the guest's share and keep the household behind the line, because an unmarked boundary only ever moves one way."
-     }
+     },
+     "common_items": [
+      "Six matching empty hangers",
+      "A clear floor square for an open suitcase",
+      "Labeled, lidded household bins",
+      "A tape marker for the guest section"
+     ]
     },
     {
      "zone": "Guest Welcome and Work Surface",
@@ -7075,7 +7100,12 @@
      "capacity": {
       "rule": "A clear desk with a working lamp and a chair pulled up to it, a luggage rack or taped floor square for the suitcase, one labeled welcome bin, and a reachable outlet with no cord crossing the floor.",
       "does_not_fit": "If the desk cannot be cleared, this room has a second job and the guest is the one paying for it. Move the household work onto a tray that lifts off before a visitor arrives."
-     }
+     },
+     "common_items": [
+      "A desk and lamp",
+      "A luggage rack or taped floor square",
+      "A welcome bin: spare charger, wifi card, water glass, tissues, a folded blanket"
+     ]
     }
    ]
   },
@@ -10237,7 +10267,12 @@
      "capacity": {
       "rule": "A soap pump above half full, one folded hand towel visible from the doorway, tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. Nothing belonging to your household on it.",
       "does_not_fit": "If your family's toothbrushes are on this counter, this is a family bathroom that guests also use, which is a different zone with different rules. Decide which one it is rather than resetting it before every visit."
-     }
+     },
+     "common_items": [
+      "Soap",
+      "A hand towel",
+      "Tissues"
+     ]
     },
     {
      "zone": "Guest Vanity Storage",
@@ -10386,7 +10421,12 @@
      "capacity": {
       "rule": "Two lift-out bins and nothing loose: one labeled for guest supplies, one for cleaning, both light enough to lift with one hand, with the toilet paper stacked beside them.",
       "does_not_fit": "If the cabinet needs a third bin, something in it belongs to the household rather than to this room. Cleaning and guest supplies are the only two jobs this cabinet has."
-     }
+     },
+     "common_items": [
+      "A guest-supplies bin: toothbrush, soap, travel toiletries",
+      "A cleaning bin: bowl cleaner, glass spray, cloths",
+      "Backstock toilet paper, stacked in view"
+     ]
     },
     {
      "zone": "Shower or Tub",
@@ -10546,7 +10586,12 @@
      "capacity": {
       "rule": "Three bottles in a hanging caddy, all recognizable and more than a third full, a liner or screen with no pink film along the bottom edge, and the bath mat folded over the rim rather than lying on the floor.",
       "does_not_fit": "If three bottles will not cover it, you are storing the household's shower inside the guest's. Take out the half-empty duplicates: a guest needs shampoo, conditioner and soap, not a shelf of choices."
-     }
+     },
+     "common_items": [
+      "Shampoo, conditioner and body wash, one of each",
+      "A bath mat",
+      "A non-slip surface for the tub floor"
+     ]
     },
     {
      "zone": "Toilet Area",
@@ -10700,7 +10745,12 @@
      "capacity": {
       "rule": "One spare roll a seated person can reach without standing up, a dry brush in a holder with nothing pooled in the bottom, and a small trash can with a liner actually in it.",
       "does_not_fit": "If the spare roll cannot be reached from the seat it is decoration rather than a reserve. That is the entire job of this zone, and it is the one thing a guest will never ask you about."
-     }
+     },
+     "common_items": [
+      "A spare roll, within seated reach",
+      "A toilet brush and holder",
+      "A lined trash can"
+     ]
     },
     {
      "zone": "Guest Linen Zone",
@@ -10849,7 +10899,11 @@
      "capacity": {
       "rule": "One bundle per expected guest, each holding a bath towel, a hand towel and a washcloth folded together, a clean bath mat folded flat beneath the bundles, and a hand's width of air above the stack.",
       "does_not_fit": "If there is no air above the stack, you are storing towels rather than hosting with them. Thin gray towels are not spares, they are rags that have not been told yet."
-     }
+     },
+     "common_items": [
+      "Towel bundles: a bath towel, hand towel and washcloth per guest",
+      "A folded spare bath mat"
+     ]
     }
    ]
   },

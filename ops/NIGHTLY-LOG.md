@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (continued `common_items` into Guest Bedroom and Guest Bathroom)
+
+**Did:** Attached clean: `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` (502 commits fast-forwarded, never reset or forced). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and `STATUS.md`. Confirmed GitHub green at HEAD (`checks.yml` run 1881, success) and 9 open issues unchanged, all decision or blocked-on-art, 0 PRs. `check_urls.py`, `audit_pages.py` and `fix_dashes.py --check` all clean before starting.
+
+**Checked content.json directly rather than trusting STATUS.md's prose before claiming, per CLAUDE.md 5d:** 23 of 114 zones carried `common_items`, matching the file's own count, and no claim existed yet for Guest Bedroom or Guest Bathroom, the tied-smallest rooms the prior PM check-in had deliberately left unstarted. Claimed both in `STATUS.md` before authoring.
+
+**Authored** Guest Bed and Linens, Guest Nightstand, Guest Dresser, Guest Closet, Guest Welcome and Work Surface (Guest Bedroom), and Guest Vanity Counter, Guest Vanity Storage, Shower or Tub, Toilet Area, Guest Linen Zone (Guest Bathroom), every item grounded in that zone's own `purpose`/`done_looks_like`/`passes` text, nothing invented (the Vanity Counter's three items are its own `leave_behind.standard`: soap, tissues, hand towel). **33 of 114 done.** 81 remain.
+
+**Verified:** round-tripped the unmodified `content.json` through `indent=1, ensure_ascii=True` first (byte-identical) before editing, keeping the diff to 64 lines across the 10 zones; synced `mcp/content.json`; `ops/build_zone_pages.py` (which now chains `build_seo.build_sitemap()` on its own) and `ops/build_id.py --check` against the staged index, current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current` all clean, called directly and read via `preflight.FAIL`/`WARN`, not by catching `SystemExit`. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `ops/audit_visual.py --all` on all 10 changed pages 0 findings, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), mobile `npm test` all 4 suites passing.
+
+**Went well:** the staged-build_seo/build_id sequence from the prior cycle's own lesson worked first try, no CI-red repeat.
+
+**Did not go well:** full `preflight.py` was tried in the background again and hit the documented `gate_tests` headless-Chromium sandbox hang; killed automatically after 30 minutes (exit 143). Ran the standing narrower suite plus the specific new-content gates directly instead, as above. This is the same sandbox limitation every recent cycle reports, not a new defect.
+
+**Changing next cycle:** none; existing gates held the field correctly again.
+
+**Next:** continue `common_items` room by room (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck are all tied-next-smallest at 6 zones), or the standing Phil-blocked list in `OWNER-ACTIONS.md`. Confirm `checks.yml`'s run on this push resolves green.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 10 Guest Bedroom/Guest Bathroom `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## PM check-in, 2026-10-03, 05:4x cycle
 
 NEXT FOR THE OPERATOR: continue `common_items`, Guest Bedroom or Guest Bathroom next (5 zones each, 95 of 114 remain), because every higher-priority epic (measurement, Listmonk identity, IndexNow) is Phil-blocked and this is the highest-value genuinely unblocked item in `BACKLOG-2026-09-07.md`.
