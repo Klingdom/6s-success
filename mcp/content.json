@@ -4650,7 +4650,14 @@
      "capacity": {
       "rule": "One console per shelf with its own controllers docked beside it, disc cases standing spine out in a single row, the power strip off the carpet, and no vent slot covered.",
       "does_not_fit": "If a second console has to share a shelf, the unit is a shelf short rather than the console being the problem. Stacking consoles is how vents get blocked, and a blocked vent is the one failure here that costs you a machine."
-     }
+     },
+     "common_items": [
+      "One console per shelf",
+      "Controllers, docked beside their console",
+      "Disc cases, standing spine out",
+      "Cables, labeled at both ends",
+      "The power strip, off the carpet"
+     ]
     },
     {
      "zone": "Toy and Play Zone",
@@ -4808,7 +4815,12 @@
      "capacity": {
       "rule": "Five or six open bins with no lids on the lowest shelf, one category each, and enough clear floor for two children to build without moving anything first.",
       "does_not_fit": "If the toys will not fit in six bins, they are not all in rotation. Box the rest, date the box and swap, rather than adding a seventh bin, because a seventh category is one a child will not learn."
-     }
+     },
+     "common_items": [
+      "Five or six open bins, one category each",
+      "Picture labels on the front face",
+      "The play mat, rolled against the wall"
+     ]
     },
     {
      "zone": "Board Game and Puzzle Zone",
@@ -4960,7 +4972,12 @@
      "capacity": {
       "rule": "Boxes flat in stacks no more than five high, heaviest at the bottom, each taped and named on the short edge, and every box on the shelf one that passed its piece count.",
       "does_not_fit": "If the stacks run past five, the shelf is holding games nobody plays rather than being too small. A box that fails its count twice is a decision, not storage."
-     }
+     },
+     "common_items": [
+      "Boxes, lying flat in stacks no more than five high",
+      "A name strip on each box's short edge",
+      "Loose pieces, bagged inside their own box"
+     ]
     },
     {
      "zone": "Blanket and Comfort Zone",
@@ -5109,7 +5126,12 @@
      "capacity": {
       "rule": "One basket, and its rim is the limit: four throws folded to the same rectangle, two floor cushions beside it, and nothing draped over the sofa back or the radiator.",
       "does_not_fit": "If the fifth throw will not fit, you own a fifth throw rather than too small a basket. The rim exists so that answer is visible without anyone having to count."
-     }
+     },
+     "common_items": [
+      "One basket",
+      "Throws, folded to the same rectangle",
+      "Floor cushions"
+     ]
     },
     {
      "zone": "Charging and Device Zone",
@@ -5267,7 +5289,12 @@
      "capacity": {
       "rule": "One power strip on a hard surface, four or five labeled cables each ending at a named slot, and the empty slots visible during the day.",
       "does_not_fit": "If five slots will not cover the household, add a second named strip rather than a second unnamed charger somewhere else in the room. The point of this zone is that there is exactly one place to look for a flat phone."
-     }
+     },
+     "common_items": [
+      "One power strip, on a hard surface",
+      "Labeled cables, each ending at a named slot",
+      "A labeled bag of spare connectors"
+     ]
     },
     {
      "zone": "Craft and Activity Zone",
@@ -5425,7 +5452,12 @@
      "capacity": {
       "rule": "Four lidded labeled bins grouped by activity, scissors standing point down out of the youngest child's reach, one clear work surface, and exactly one project bin out on it at a time.",
       "does_not_fit": "If four bins will not hold the supplies, you are storing materials for projects nobody is doing. Keep the activities that actually happened this season, because a fifth bin is almost always an abandoned one."
-     }
+     },
+     "common_items": [
+      "Four lidded, labeled bins",
+      "Scissors, standing point down in a cup",
+      "One project bin, out on the clear surface"
+     ]
     }
    ]
   },
