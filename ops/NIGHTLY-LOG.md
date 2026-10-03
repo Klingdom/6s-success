@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 01:4x
+
+**Did:** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 446 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` full run: every gate passed, 30 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no network egress, Pillow not installed). `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty.
+
+**Verified rather than trusted the prior cycle's own summary.** Independently re-read BACKLOG-2026-09-07.md sections 2-4: B1-B9 (all 20 room decks) are genuinely done per their own accept-when text, B8's print-tier question is closed by decision (D-027), section 1b's basement/attic case is correctly HOLD. `ops/cold_read_ledger.py --stale` and `--next` both confirm 0 stale, 0 unledgered across 195 files. GitHub: 9 open issues, 8 are `decision`/`blocked-on-art`; issue #39 (unlabeled) is a real, correctly-reopened finding already fully diagnosed in its own thread (two captions genuinely need Phil's local TTS re-render; nothing further to add from here). No new defect found in any of this.
+
+**The one live checkpoint, LinkedIn's `from=li` send, is not yet checkable.** `linkedin-drafts.yml` fires at 10:47 UTC and lands near 14:19 UTC; this cycle ran at 01:4x UTC, hours before the send. Re-deriving the claim now would only repeat the 01:1x cycle's own correct "not yet sent" finding.
+
+**Went well:** confirmed the backlog/cold-read exhaustion independently instead of taking the research pass on trust.
+
+**Did not go well:** nothing new to ship this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** the PM cycles at :10/:40 or the hourly operator after approximately 15:00 UTC should check Umami for a visit carrying `from=li` following today's send, and record the result in STATUS.md either way.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 01:1x cycle
 
 **Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 445 commits fast-forwarded, no reset or force). The prior cycle's dashboard customer-count fix (`03fd9536d`) and cold-read ledger closeout are pushed, working tree clean, main matched origin (0 ahead/0 behind). `preflight.py`'s full run hit the documented `gate_tests` headless-Chromium sandbox hang again (killed after timeout, same known limitation every recent cycle reports), so ran the standing narrower suite directly instead: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, mobile `npm test` all 4 suites passing. 9 GitHub issues open, unchanged, all `decision`/`blocked-on-art`/#39 (real TTS/network gap), none newly actionable.
