@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T07:15:59Z",
-   "mode": "changed",
-   "offered": 32,
-   "accepted": 32,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T08:21:08Z",
    "mode": "changed",
    "offered": 25,
@@ -633,6 +626,13 @@
    "offered": 6,
    "accepted": 6,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T06:59:43Z",
+   "mode": "changed",
+   "offered": 6,
+   "accepted": 6,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -718,12 +718,12 @@
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "f2565a15ad6d755e",
   "https://6s-success.com/zones/entryway-the-landing-spot": "818a99c6f4baf262",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "a9d5a90bb1796999",
-  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "b01b338f0ad85f63",
-  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "2aa0e0bd237dc1cb",
-  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "394bf804fe59bb6e",
-  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "d515853963bf82f2",
-  "https://6s-success.com/zones/family-room-the-primary-media-zone": "43654908f86ff7c2",
-  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "8a985f14cc4d0a10",
+  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "cd70dc0d53b016b8",
+  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "a49ddf0c5209cbee",
+  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "e577d1cac70daf07",
+  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "5124ecf739961dad",
+  "https://6s-success.com/zones/family-room-the-primary-media-zone": "f5e37a7b5d9bb933",
+  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "8677f3d1736cfd78",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "ad5c8fcecc5f9eea",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "26a777869afd7d05",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "3acb6c0843a3fecd",
