@@ -39,11 +39,8 @@ MUST_REFUSE = [
     'like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
     'like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0',
-    '6s-freshness',
-    '6s-linkcheck',
-    '6s-success-indexnow/1.0',
 ]
-MUST_ALLOW = [
+MUST_REACH_UMAMI = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
     'like Gecko) Chrome/145.0.0.0 Safari/537.36',
     'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/'
@@ -51,6 +48,15 @@ MUST_ALLOW = [
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
     '(KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
     'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0',
+    # NOT a visitor, and still must get through. ops/check_integrations.py
+    # GETs this endpoint and asserts 404 or 405, because the beacon is POST
+    # only and a 200 would mean something other than Umami is answering. A
+    # 204 from the guard is neither, so a guard that caught this agent would
+    # report the analytics beacon BROKEN on every run. The first version of
+    # the guard matched ^6s- and would have done exactly that; this line is
+    # why it does not any more.
+    '6s-integrations',
+    '6s-freshness',
 ]
 
 
@@ -124,19 +130,22 @@ def main():
         # 3. And it must not catch a real visitor. A guard that matched
         #    everything would pass case 2 perfectly and delete the business's
         #    only traffic figure.
-        for ua in MUST_ALLOW:
+        for ua in MUST_REACH_UMAMI:
             if rx.search(ua):
-                fails.append('the guard WOULD refuse a real browser, so live '
-                             'traffic would stop being counted: %r' % ua[:60])
+                fails.append('the guard WOULD refuse %r, an agent that must '
+                             'still reach Umami: either a real visitor who '
+                             'would stop being counted, or the integrations '
+                             'probe that asserts Umami itself answers this '
+                             'path' % ua[:60])
 
     if fails:
         print('FAIL')
         for f in fails:
             print(' -', f)
         return 1
-    print('OK: nginx beacon guard, %d measured tooling agent(s) refused, '
-          '%d real browser(s) still counted'
-          % (len(MUST_REFUSE), len(MUST_ALLOW)))
+    print('OK: nginx beacon guard, %d measured headless agent(s) refused, '
+          '%d agent(s) that must still reach Umami unaffected'
+          % (len(MUST_REFUSE), len(MUST_REACH_UMAMI)))
     return 0
 
 
