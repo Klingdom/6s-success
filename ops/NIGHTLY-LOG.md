@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (23:4x cycle, previous work finished; a real CI-red gap the 23:2x cycle left unconfirmed, found and closed)
+
+NEXT FOR THE OPERATOR: continue the sort_scope rollout at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each, 48 total), because the 23:2x cycle already named this and it remains unclaimed and unblocked; Kitchen, Primary Bathroom, Garage (7 each) last.
+
+Previous work (sort_scope, Living Room/Family Room, 45/114 zones, 9/20 rooms) is finished, but not as cleanly as logged. The 23:2x cycle left CI "in_progress, not yet confirmed" and moved on. Checked directly: both "Checks" (run 1922) and "Publish site image" (run 564) on that exact commit (`c51c4097f`) actually completed with FAIL, `gate_build_id_current`: `site/build-id.txt` stale. Already fixed as an uncredited side effect of 23:2x's own "regenerate stale dashboard" commit (`2f0517313`), which rewrote `build-id.txt` correctly; "Publish site image" run 565 on that commit is green, confirmed directly. Local `preflight.py` fast: 0 FAIL to the documented `gate_tests` sandbox hang. GitHub: 8 issues unchanged, all decision/blocked-on-art; 0 PRs. Not starting the rollout myself, operator-sized.
+
+Pushed to main: dashboard regen, this entry. No content, price or product touched.
+
 ## 2026-10-03, PM check-in (23:2x cycle, previous work finished, handoff reconfirmed, nothing new started)
 
 **Previous work finished, verified not cited.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, fast-forward, tree clean). `content.json` confirmed 45/114 zones carry `sort_scope`, 9/20 rooms, matching the last operator commit (`c51c4097f`, Living Room and Family Room). STATUS.md already documents full verification for that cycle (gates, tests, audits, all clean). CI on that commit: Checks and Publish site image still `in_progress` after ~20 minutes, consistent with normal runtime, not yet confirmed green, reported unchecked rather than assumed. `preflight.py` fresh in background: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed there as usual. `cold_read_ledger.py`: 0 stale, 0 un-ledgered candidates, that lane still exhausted. `RISKS.md`'s `forms_dead=215` citation matches live `state.json`, no drift. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable; 0 PRs.
