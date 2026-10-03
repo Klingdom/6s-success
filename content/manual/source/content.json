@@ -969,7 +969,13 @@
      "capacity": {
       "rule": "One clear run of counter at least as wide as the household's largest cutting board, holding only the board, the knife block or strip, and the salt.",
       "does_not_fit": "If the largest board this household actually uses still overhangs the clear run even after the kettle and toaster are moved back against the wall, the counter run itself is narrower than the job, not cluttered."
-     }
+     },
+     "common_items": [
+      "The cutting board, back in its spot against the backsplash",
+      "The knife block or wall strip, on your dominant side",
+      "Oil and salt, behind the board rather than beside it",
+      "The kettle and the toaster, pushed back against the wall with cords coiled"
+     ]
     },
     {
      "zone": "Cooking Zone",
@@ -1132,7 +1138,13 @@
      "capacity": {
       "rule": "A utensil crock holding six tools or fewer, every one used in the last month, and a landing space beside the hob wide enough to set down a hot pan.",
       "does_not_fit": "If the honest, used-this-month count is still more than six tools, or a genuinely hot-pan-sized landing space will not fit beside the hob without moving something else first, the counter beside the hob is smaller than the cooking this household actually does."
-     }
+     },
+     "common_items": [
+      "The utensil crock, holding six tools or fewer, every one used this month",
+      "Oil, salt, and pepper, within one reach of the burners",
+      "Pot holders, on a hook you can find without looking",
+      "The spices you reach for weekly, at the front of the rack"
+     ]
     },
     {
      "zone": "Sink and Dishwashing Zone",
@@ -1286,7 +1298,13 @@
      "capacity": {
       "rule": "One tray under the sink holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes still visible around it.",
       "does_not_fit": "If those three items, in a tray small enough to leave the pipes visible, still will not fit without wedging against the plumbing, the under-sink cavity is too shallow for even the minimum kit, and the tray belongs somewhere else in the kitchen instead."
-     }
+     },
+     "common_items": [
+      "One brush and one sponge, standing upright where they drain",
+      "Dish soap, dishwasher tablets, and one all-purpose cleaner, on a single tray under the sink",
+      "The drying rack, empty or holding only what is still wet",
+      "A hand towel, on a bar within reach of the basin"
+     ]
     },
     {
      "zone": "Upper Cabinet Zone",
@@ -1435,7 +1453,12 @@
      "capacity": {
       "rule": "Everyday plates and bowls at eye level, stacks no more than about six high, with the top shelf reserved for what gets used less than once a month.",
       "does_not_fit": "If the household's everyday plate count still needs a seventh plate on the stack to fit at eye level, or the once-a-month items on the top shelf are the only thing keeping the eye-level shelves clear, the cabinet holds less than this household's daily set, and a second, low-use shelf elsewhere is the honest fix, not a taller stack."
-     }
+     },
+     "common_items": [
+      "Everyday mugs and plates, at eye level where you can lift one without moving another",
+      "Stacked bowls, no more than six high",
+      "The platter for eight and other once-a-year pieces, on the top shelf"
+     ]
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
@@ -1582,7 +1605,13 @@
      "capacity": {
       "rule": "Pans nested no more than three deep, or stood on edge in a divider, with the two pans cooked with nightly at the front nearest the hob.",
       "does_not_fit": "If the pots and pans actually used this month, with any duplicate or long-unused piece already gone, still will not sit at a three-deep nest or in the divider, the cabinet is smaller than the cookware this kitchen runs on, and a second home for the least-used pieces is the honest fix, not a deeper stack."
-     }
+     },
+     "common_items": [
+      "Pots and pans, nested no more than three deep or stood on edge in a divider",
+      "Lids, in a rack or on a door rail instead of loose",
+      "Baking sheets, standing on end in a divider",
+      "The two pans you cook with nightly, at the front nearest the hob"
+     ]
     },
     {
      "zone": "Utensil and Utility Drawers",
@@ -1728,7 +1757,13 @@
      "capacity": {
       "rule": "One job per drawer, with flatware in a divided insert sized so nothing loose sits beside it.",
       "does_not_fit": "If the household's real flatware count still overflows every section of the insert even after duplicates and mismatched pieces leave, the insert was built for a smaller household than this one, and a larger insert or a second drawer is the honest fix, not forcing the count down to match it."
-     }
+     },
+     "common_items": [
+      "Flatware, in a divided insert with nothing loose beside it",
+      "Spatulas, peelers, and other cooking tools, nearest the hob",
+      "Measuring spoons, beside the baking cupboard",
+      "Foil, cling film, and baking paper, standing on end so the boxes read from above"
+     ]
     },
     {
      "zone": "Refrigerator and Freezer",
@@ -1882,7 +1917,13 @@
      "capacity": {
       "rule": "One eat-first bin sized to hold a week's worth of leftovers and near-date items, sitting where the door opens straight onto it, with the back vents still clear.",
       "does_not_fit": "If a genuine week's worth of leftovers for this household still will not fit the eat-first bin without pressing food against the back vents, the fridge itself is undersized for how often this household shops and cooks, and shopping more often in smaller amounts is the honest fix, not a fuller bin against the vents."
-     }
+     },
+     "common_items": [
+      "Raw meat, sealed on the lowest shelf",
+      "Leftovers, in clear containers with a name and a date on the lid",
+      "The eat-this-week bin, at the front where the door opens onto it",
+      "Condiments, in the door, with everything else inside the body of the fridge"
+     ]
     }
    ]
   },
