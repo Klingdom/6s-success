@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-27T22:24:17Z",
-   "mode": "changed",
-   "offered": 14,
-   "accepted": 14,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-28T15:41:58Z",
    "mode": "changed",
    "offered": 1,
@@ -633,6 +626,13 @@
    "offered": 3,
    "accepted": 3,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T04:20:37Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -790,11 +790,11 @@
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "377fa5a7d4c11fc3",
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "23015ea2aa44e6ab",
   "https://6s-success.com/zones/nursery-the-feeding-station": "6287911455361d7b",
-  "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "f8cb182303a3a384",
-  "https://6s-success.com/zones/pantry-the-baking-zone": "1ab5bfbfb04d2a4b",
-  "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "5718304aec5b255b",
-  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "dc8f38da0aa361e8",
-  "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "a7d7b6cd2f732caf",
+  "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "79f0f3f6b2c2f81f",
+  "https://6s-success.com/zones/pantry-the-baking-zone": "32fb7b3e89325d81",
+  "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "58b24d0615250f30",
+  "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "d65578321203a5af",
+  "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "a9439f9f7a5aa6c0",
   "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "92143b8ef8f8b6d5",
   "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "421e483cba502fce",
   "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "90f064b712937c2b",
