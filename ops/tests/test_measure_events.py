@@ -176,6 +176,19 @@ setTimeout(function () {
 }, 400);
 """)
 
+# H: page() used to classify by substring, not by exact page. "shop" matched
+# anywhere in the path, and /workshop-deck.html contains "shop" inside
+# "workshop", so every buy-click, outbound-click and quote-click fired from
+# the one page covering the Workshop room was folded into the online store's
+# own "shop" numbers instead of getting its own "workshop-deck" label, the
+# one deck page name of the twenty that collides this way. Served at site
+# root with "workshop-deck" in its own filename, not the real
+# site/workshop-deck.html, so this cannot touch the live page.
+PROBE_H = probe("h", "", BUYS, """
+document.getElementById("plain").click();
+setTimeout(finish, 120);
+""")
+
 PROBES = {
     "zones/_measure_probe_a.html": PROBE_A,
     "zones/_measure_probe_b.html": PROBE_B,
@@ -184,6 +197,7 @@ PROBES = {
     "zones/_measure_probe_e.html": PROBE_E,
     "_measure_probe_f.html": PROBE_F,
     "_measure_probe_g.html": PROBE_G,
+    "_measure_probe_workshop-deck.html": PROBE_H,
 }
 
 
@@ -349,6 +363,21 @@ def main() -> int:
     elif f[0]["d"].get("what") != "6S-Some-Deck.pdf":
         bad.append("free-download sent what=%r for a root-page download "
                    "link, expected the filename" % f[0]["d"].get("what"))
+
+    # ---- H: a page whose name contains "shop" or "quest" as a substring,
+    # without being that page, must not be mislabelled as it.
+    h = only("_measure_probe_workshop-deck.html", "buy-click")
+    if len(h) != 1:
+        bad.append("clicking a payment link on a workshop-deck-named page "
+                   "produced %d buy-click event(s), expected 1" % len(h))
+    elif h[0]["d"].get("from") == "shop":
+        bad.append("buy-click on a page whose name merely contains \"shop\" "
+                   "(workshop-deck) reported from=\"shop\", folding that "
+                   "deck's clicks into the online store's own numbers")
+    elif h[0]["d"].get("from") != "_measure_probe_workshop-deck":
+        bad.append("buy-click on the workshop-deck-named probe reported "
+                   "from=%r, expected its own page name"
+                   % h[0]["d"].get("from"))
 
     # ---- G: a track() call that throws must be retried, not counted as sent.
     g = only("_measure_probe_g.html", "buy-click")

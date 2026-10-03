@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (A19: a real measurement bug found and fixed, second-pass cold-read of an exhausted-lane file)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow` (579 commits) then `git merge --ff-only origin/main` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. Re-checked GitHub directly: 9 open issues, 0 PRs, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated), matching every recent cycle. `inbox_agent.py --apply`: no mail credential. Confirmed the standing exhausted state directly rather than citing it: cold-read ledger 195/195, `BACKLOG-2026-09-07.md` sections 1b-6 all done or Phil-gated, GitHub unchanged. The deploy gap (`STATUS.md` BLOCKER-001) re-derived directly with `deploy_gap_material_commits()`: 33 commits, unchanged since the 10:5x reading, so no new push notification sent for it.
+
+**Found and fixed a real defect per the standing second-pass fallback (the 12:4x cycle's own handoff, since the first-pass ledger has nothing left).** Cold-read `site/assets/js/measure.js` (last ledgered clean 2026-09-27) fresh. Its `page()` function, which labels the page type carried on every `buy-click`, `outbound-click`, `quote-click`, `service-cta` and `free-download` event, classified by substring: `p.indexOf("shop") >= 0`. `/workshop-deck.html` contains "shop" inside "workshop", the one collision among all twenty room decks (checked directly: no other page name contains "shop" or "quest" except `shop.html`/`quest.html` themselves). Every one of those events fired from the Workshop deck page was silently folded into the online store's own "shop" numbers, invisible in exactly the per-page funnel breakdown GOALS.md reads this instrumentation to produce.
+
+**Fixed:** `page()` now matches `p === "/quest.html"` and `p === "/shop.html"` by exact equality. New `gate_measure_page_type_exact_match` in `preflight.py` and probe H in `ops/tests/test_measure_events.py` (a real headless-Chromium click on a page named to reproduce the exact collision), both fail-then-pass proved directly: reverted to the old substring logic, watched both fail by name citing workshop-deck.html, restored, reran clean.
+
+**Verified:** `ops/fingerprint_assets.py` rerun (measure.js's content hash changed, 214 references across 221 pages updated; confirmed via `git diff` on a sample page that nothing else moved). `check_urls.py` 211/211, `audit_pages.py` 216/0 (two transient duplicate-title readings during what was evidently a concurrent session's own write, resolved on immediate rerun, 4/4 clean after), `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` clean (124 of 126 buyable products in Stripe with delivery, same 2 person-delivered services excluded). Mobile `npm test`: all three suites, unaffected. `preflight.py` fast run twice (before and after the fix): every gate before `gate_tests` passed with 0 FAIL lines both times, including the new gate running cleanly in sequence. `preflight.py --deep` was started in the background at the start of this slot; it reached `gate_visual_audit` (progressing, not stalled, just slow against 216+ pages) by the time this entry needed to ship, so a full clean result past that point is reported as unchecked, not assumed, per CLAUDE.md 0.4.
+
+**Went well:** the second-pass cold-read fallback found a real, previously-invisible defect on the first file tried; fail-then-pass proved both the fix and the new gate against the real pre-fix logic rather than trusting the read.
+
+**Did not go well:** `preflight.py --deep` still cannot finish inside one cycle's window in this sandbox; same standing limitation every recent cycle reports.
+
+**Changing next cycle:** none; the new gate and test can both fail and now do their job.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy, Apple/Play accounts). Whoever has a long slot should let `preflight.py --deep` run to completion and report it, since this cycle could not.
+
+Pushed to main. `site/assets/js/measure.js`, `ops/preflight.py`, `ops/tests/test_measure_events.py`, `ops/tests/test_gate_measure_page_type_exact_match.py` (new), `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, 214 site pages' fingerprint-only `measure.js` hash, command deck. No price or product touched, no new page; IndexNow not applicable, no visible content changed.
+
 ## 2026-10-03, PM check-in (14:4x cycle)
 
 NEXT FOR THE OPERATOR: start a second-pass cold-read of already-ledgered ops/*.py files, lowest-mention tier first, because the first pass is exhausted (195 of 195, 0 un-ledgered) and that method has found real defects twice before.

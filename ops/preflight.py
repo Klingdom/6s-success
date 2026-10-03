@@ -8417,6 +8417,41 @@ def gate_quest_funnel_events() -> None:
             return
 
 
+def gate_measure_page_type_exact_match() -> None:
+    """measure.js's page() must classify quest.html and shop.html by exact
+    path, not by substring.
+
+    Found 2026-10-03, this operator, a fresh cold-read of measure.js (last
+    ledgered 2026-09-27): page() checked `p.indexOf("quest") >= 0` and
+    `p.indexOf("shop") >= 0` to label the page type carried on every
+    buy-click, outbound-click, quote-click, service-cta and free-download
+    event. site/workshop-deck.html contains "shop" inside "workshop", the
+    one collision among all twenty room decks, so every one of those
+    events fired from that page was folded into the online store's own
+    "shop" numbers instead of getting the "workshop-deck" label every
+    other deck page gets from page()'s own fallback. That is exactly the
+    per-page funnel breakdown GOALS.md reads this instrumentation to
+    produce ("buy-click... book 4, method 3, consulting 2"), silently
+    wrong for one page since the day this handler shipped.
+
+    Fixed to exact equality (`p === "/quest.html"`, `p === "/shop.html"`),
+    which structurally cannot be fooled by a filename that merely contains
+    either word, site/workshop-deck.html included.
+    ops/tests/test_measure_events.py's probe H drives the real browser
+    behaviour; this is the cheap static half, proven able to fail by
+    reverting the two lines above and watching it fail by name.
+    """
+    path = os.path.join(SITE, "assets", "js", "measure.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    if 'p === "/quest.html"' not in src or 'p === "/shop.html"' not in src:
+        fail("measure-page-type-exact-match",
+             "site/assets/js/measure.js's page() no longer matches "
+             "quest.html/shop.html by exact path; a substring match "
+             "mislabels site/workshop-deck.html as \"shop\"")
+
+
 def gate_quest_session_placement() -> None:
     """A2: the whole-zone session length must not be the first number a
     first-time visitor reads.
@@ -27564,6 +27599,7 @@ def main() -> int:
     run_gate(gate_quest_data_heroes_current)
     run_gate(gate_quest_data_videos_published)
     run_gate(gate_quest_funnel_events)
+    run_gate(gate_measure_page_type_exact_match)
     run_gate(gate_quest_session_placement)
     run_gate(gate_quest_card_victory_honesty)
     run_gate(gate_mobile_finish_actions_distinct)
