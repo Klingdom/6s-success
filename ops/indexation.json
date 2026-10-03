@@ -1,0 +1,92 @@
+{
+ "checked_at": "2026-10-03T20:20:28Z",
+ "confirmed": {
+  "https://6s-success.com/": {
+   "section": "home",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/contact.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/about.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/method.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/consulting.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/articles/": {
+   "section": "article",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/resources.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": {
+   "section": "article",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/shop.html": {
+   "section": "other",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  },
+  "https://6s-success.com/rooms/home-office": {
+   "section": "room",
+   "first_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-03T20:20:28Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "duckduckgo"
+  }
+ },
+ "runs": [
+  {
+   "checked_at": "2026-10-03T20:20:28Z",
+   "engines": {
+    "duckduckgo": {
+     "status": "ok",
+     "url_count": 10,
+     "voided": false
+    },
+    "bing_rss": {
+     "status": "ok",
+     "url_count": 1,
+     "voided": true
+    }
+   }
+  }
+ ]
+}
