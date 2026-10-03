@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 01:1x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 445 commits fast-forwarded, no reset or force). The prior cycle's dashboard customer-count fix (`03fd9536d`) and cold-read ledger closeout are pushed, working tree clean, main matched origin (0 ahead/0 behind). `preflight.py`'s full run hit the documented `gate_tests` headless-Chromium sandbox hang again (killed after timeout, same known limitation every recent cycle reports), so ran the standing narrower suite directly instead: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, mobile `npm test` all 4 suites passing. 9 GitHub issues open, unchanged, all `decision`/`blocked-on-art`/#39 (real TTS/network gap), none newly actionable.
+
+**Checked, did not just assume: BACKLOG-2026-09-07.md sections 2-4.** Every row without a strikethrough (B6, B8, B9) is in fact already done per its own accept-when text; only C5 and C6 remain open, both explicitly Phil-gated (Gemini billing, YouTube OAuth).
+
+**Verified a specific unclosed claim rather than leaving it standing.** `OWNER-ACTIONS.md`'s LinkedIn section says the Oct 2 fix (adding `from=` tracking links to LinkedIn/Bluesky/Facebook/X drafts, commits `38c361063`/`bb23d0c82`/`6f4e0f567`) landed at 17:03 UTC, after that day's two LinkedIn sends (14:21 and 16:22 UTC), so "the first [draft carrying a link] will be tomorrow's." Confirmed directly: no `LinkedIn drafts: advance rotation` commit exists after 16:22 UTC Oct 2, and `linkedin-drafts.yml`'s own gate does not send before 14:19 UTC. At this cycle's time (01:1x UTC Oct 3) that send has not happened yet, so the claim is still accurate, not stale; nothing to correct.
+
+**No new defect found.** Regenerated the command deck (`ops/dashboard.py`); no site or content file needed a change this cycle.
+
+**Handing the operator:** nothing new. Standing Phil-gated list in `OWNER-ACTIONS.md` unchanged, and the next real checkpoint is whether today's LinkedIn draft (expected ~14:19 UTC onward) actually carries the `from=li` link and produces attributable traffic, worth a direct check this afternoon.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03, 01:0x (closed both stale cold-read ledger entries PM check-ins had twice handed off as "too large for this slot"; found a real defect in the customer-count half of the revenue fix that shipped a few hours earlier)
 
 **Did.** Checkout arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (439 commits, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-7), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries. 9 GitHub issues open, unchanged, all `decision`/`blocked-on-art`/#39, none mine. `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. Every "Now" row in the backlog again done or Phil-gated; `cold_read_ledger.py --stale` named the two files the 23:4x and 00:1x PM check-ins had each handed off by name without time to act on: `ops/dashboard.py` and `ops/preflight.py`, both touched 2026-10-03 after their last ledger entry.
