@@ -2165,7 +2165,19 @@
       "Rice, pasta and oats",
       "Breakfast cereal",
       "Specialty flours and lentils"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Rice, pasta and oats, standing together as one block",
+       "Breakfast cereal, as its own block",
+       "An opened bag sealed in a container with its opening date written on it"
+      ],
+      "strays": [
+       "Stale or webbed flour and oats",
+       "A bag bought for one recipe you cooked two summers ago",
+       "An opened bag with no date and no container"
+      ]
+     }
     },
     {
      "zone": "Canned and Jarred Goods",
@@ -2320,7 +2332,19 @@
       "Tomatoes, beans and soup",
       "Coconut milk and stock",
       "Tuna"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Tomatoes, beans and soup, each in their own row",
+       "Cans and jars with a readable date, label facing out",
+       "One jar standing in front of another, never hidden behind it"
+      ],
+      "strays": [
+       "A dented, rusted or bulging can",
+       "A domed or weeping lid",
+       "A fourth jar of the same sauce nobody checked for before buying"
+      ]
+     }
     },
     {
      "zone": "Baking Zone",
@@ -2476,7 +2500,19 @@
       "Flour, sugar and brown sugar",
       "Baking powder, baking soda and yeast",
       "Cutters, cases and piping tips"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Flour, sugar and brown sugar, in sealed containers you can open one-handed",
+       "Baking powder, bicarbonate of soda and yeast, dated, together in one small box",
+       "Cutters, cases and piping tips, in a single lift-out bin"
+      ],
+      "strays": [
+       "A leavener that failed its own fizz or foam test",
+       "Hardened brown sugar or cocoa that has turned gray",
+       "Loose sprinkles rolling free of any bin"
+      ]
+     }
     },
     {
      "zone": "Snack and Lunch Zone",
@@ -2632,7 +2668,19 @@
       "Pre-approved snacks",
       "Lunch containers and lids",
       "Lunch bags and ice packs"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Pre-approved snacks, in the open bin at child height",
+       "Snacks that need an adult, on the higher shelf",
+       "A reusable container, each with its own lid sitting on it"
+      ],
+      "strays": [
+       "A lidless container, or a lid with no container left to close",
+       "A snack box with only two bars rattling in the bottom",
+       "A container count that no longer matches the lunches you actually pack"
+      ]
+     }
     },
     {
      "zone": "Backstock and Bulk Zone",
@@ -2783,7 +2831,18 @@
       "Sacks of rice",
       "Cases of canned goods",
       "Kitchen roll and paper napkins"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Sacks, cases and packs, each marked with the month they arrived",
+       "One row per line, at or below waist height, at or under its written maximum"
+      ],
+      "strays": [
+       "A second spare of a line you already hold one of",
+       "A twelve-pack of a sauce nobody liked",
+       "Anything stacked in front of another case of the same thing"
+      ]
+     }
     }
    ]
   },
@@ -2960,7 +3019,18 @@
       "A centerpiece",
       "Placemats and trivets",
       "A napkin basket"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One centerpiece, on bare wood",
+       "Placemats and trivets, one step away in the sideboard drawer"
+      ],
+      "strays": [
+       "Homework, unopened mail, or a half-finished craft project",
+       "Anything hanging off the back of a chair",
+       "Paper of any kind left on the surface"
+      ]
+     }
     },
     {
      "zone": "Buffet or Sideboard Surface",
@@ -3116,7 +3186,19 @@
       "A small display: candlesticks and framed photos",
       "A table lamp",
       "Serving spoons and the trivet stack"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A bare run of wood near the table, long enough for the roasting pan",
+       "Three display objects, grouped at the lamp end",
+       "The lamp cord, the only cord in sight"
+      ],
+      "strays": [
+       "A burnt-down candle stub or dried flowers",
+       "A charger belonging to another room",
+       "Paper left on the wood with no verdict given"
+      ]
+     }
     },
     {
      "zone": "Buffet or Sideboard Storage",
@@ -3276,7 +3358,20 @@
       "Large platters, stood on edge",
       "Taper candles of one length",
       "A count card"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Tablecloths, rolled with their matching napkins inside",
+       "Serving bowls, nested by size",
+       "Large platters, standing on edge behind a divider",
+       "Taper candles of one length"
+      ],
+      "strays": [
+       "A partial napkin set",
+       "A cloth stained beyond what you have already tried to lift",
+       "A serving piece orphaned from a set you no longer own"
+      ]
+     }
     },
     {
      "zone": "China or Display Cabinet",
@@ -3434,7 +3529,20 @@
       "Cups, standing single file",
       "Glasses, rim up",
       "Tureens and heavy serving pieces"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Plates, stacked no more than eight high with felt between them",
+       "Cups, standing single file",
+       "Glasses, rim up on a clean liner",
+       "Tureens and heavy serving pieces, on the bottom shelf"
+      ],
+      "strays": [
+       "A chipped or crazed piece",
+       "A lone survivor of a set that is long gone",
+       "Anything that cannot be mended and is not safe to drink from"
+      ]
+     }
     },
     {
      "zone": "Beverage or Coffee Station",
@@ -3599,7 +3707,19 @@
       "Mugs",
       "Spoons and sugar",
       "Tea boxes, syrup bottles, and travel mugs"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The machine, grounds, mugs, spoons and sugar, running left to right on one liftable tray",
+       "Mugs, capped at the number of daily drinkers plus two",
+       "A travel mug matched to its own lid"
+      ],
+      "strays": [
+       "A tea box, syrup bottle or pod sleeve past its date",
+       "A travel mug with no lid to match it",
+       "Promotional glassware you have never once poured into"
+      ]
+     }
     }
    ]
   },
@@ -16452,7 +16572,19 @@
       "Sheet sets, bundled in their own pillowcase",
       "Everyday towels",
       "Guest blankets"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three sheet sets per bed, each nested inside its own pillowcase",
+       "Everyday towels, folded to one width, stacked no taller than your forearm",
+       "Two spare blankets, on the top shelf"
+      ],
+      "strays": [
+       "A flat sheet whose fitted half vanished",
+       "A fitted sheet with elastic slack enough to pop off a corner",
+       "A towel that smells sour an hour after drying"
+      ]
+     }
     },
     {
      "zone": "Cleaning Equipment Zone",
@@ -16612,7 +16744,19 @@
       "A vacuum",
       "A broom and a mop",
       "Vacuum attachments, bagged"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The vacuum, inside its taped floor outline, cord wrapped",
+       "Crevice tools and brush heads, zipped in one bag clipped to the handle",
+       "Broom, mop and duster, hanging handle-down with the heads clear of the floor"
+      ],
+      "strays": [
+       "A broom with splayed bristles that push dust rather than gather it",
+       "A mop head that no longer twists off its plate",
+       "An old vacuum kept for parts you have never once harvested"
+      ]
+     }
     },
     {
      "zone": "Cleaning Supply Zone",
@@ -16770,7 +16914,19 @@
      "common_items": [
       "A bathroom caddy and a kitchen caddy",
       "Gloves and cloths"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two or three caddies, each labeled with the room it serves",
+       "Every bottle, wearing its original label",
+       "Bleach products and ammonia products, kept on separate shelves"
+      ],
+      "strays": [
+       "Anything decanted into an unmarked spray bottle",
+       "A specialty cleaner bought for one stain years ago",
+       "A product poured together with anything other than an identical one"
+      ]
+     }
     },
     {
      "zone": "Paper and Household Backstock",
@@ -16923,7 +17079,19 @@
       "Toilet paper",
       "Light bulbs, grouped by fitting",
       "Batteries, sorted by size"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Toilet roll, in one clear bin with its min/max card on the shelf edge",
+       "Light bulbs, in a labeled bin sorted by fitting",
+       "Batteries, standing in their original packs in a shallow tray"
+      ],
+      "strays": [
+       "A loose battery you cannot vouch for",
+       "A bulb for a fitting you replaced when you went over to LED",
+       "A bulk paper towel pack too big to lift down alone"
+      ]
+     }
     },
     {
      "zone": "Seasonal and Guest Zone",
@@ -17081,7 +17249,18 @@
       "Guest bedding",
       "Decorations",
       "Travel gear"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three or four lidded bins, each labeled with its contents and the month it was last closed",
+       "Guest pillows, sealed in a zip bag"
+      ],
+      "strays": [
+       "Decorations for a tree you no longer put up",
+       "A guest pillow gone flat and yellow",
+       "A bin marked \"misc\" whose contents you cannot name without looking"
+      ]
+     }
     }
    ]
   },

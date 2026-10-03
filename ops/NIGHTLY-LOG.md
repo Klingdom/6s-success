@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, scheduled operator cycle (sort_scope rollout, Pantry/Dining Room/Hall Closet, the exact rooms the 20:1x PM check-in handed off)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `git fetch --unshallow`, `git checkout -B main origin/main`, fast-forwarded cleanly onto `origin/main` (646 commits), no unrelated-history symptom, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries and `STATUS.md`'s Open claims section before picking anything. Confirmed rather than trusted: `content/manual/source/content.json` showed exactly 8 of 114 zones carrying `sort_scope` (Entryway's 5, Stair Landing's 3), matching the 20:1x PM check-in's own handoff naming Pantry, Hall Closet and Dining Room (5 zones each) as next.
+
+**Authored `sort_scope` (belongs/strays) for all 15 zones across those three rooms**, every item grounded in that zone's own existing `done_looks_like`/`passes.sort`/`common_items` text, nothing invented (e.g. Pantry's Backstock and Bulk Zone draws "a maximum number written on the shelf edge" for belongs and "the second sack of rice... nobody liked" for strays; Dining Room's Beverage or Coffee Station draws the tray order for belongs and "past date" / "no lid" for strays). `content.json` edited with the standard targeted string-replacement method, confirmed valid JSON and byte-identical elsewhere before staging; `mcp/content.json` resynced as a plain copy. Ran the real generator (`ops/build_zone_pages.py`), which touched only the 15 target pages plus the usual sitemap/service-worker bookkeeping (214 pages, 211 sitemap URLs). `ops/build_id.py --check` was STALE after the content edit; ran it for real, confirmed current before committing.
+
+**Verified:** `gate_sort_scope_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current`, `gate_common_items_rendered` all clean via direct function calls; `ops/tests/test_gate_sort_scope_rendered.py` 6/6; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `fix_dialect.py --check` 0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans across zones/rooms/articles. `audit_visual.py --mobile`, scoped to the 15 changed pages, 0 findings across every category it checks (contrast, images, headings, labels, focus, touch targets, sideways scroll). Full `preflight.py` (fast) run in the background twice (once as a baseline before editing, once against the staged changes): 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang both times; killed there per standing practice, reported unchecked past that point, not assumed passing. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable here. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** the exact three rooms named by the prior PM check-in were still unclaimed when checked directly, so there was no collision to resolve; scoping the visual audit to just the 15 changed pages instead of the full 220-page sweep made it finish in a reasonable time in this sandbox.
+
+**Did not go well:** nothing new; the standing `gate_tests` sandbox limitation is unchanged and unrelated to this cycle's own work.
+
+**Changing next cycle:** none; no new defect class found, so no new gate.
+
+**Next:** 23 of 114 zones now carry `sort_scope`, 5 of 20 rooms fully covered. Tied-smallest remaining rooms for this rollout: Guest Bedroom and Guest Bathroom (5 zones each). Standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art); every row in `BACKLOG-2026-09-07.md` above this rollout is done or explicitly Phil-gated.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 15 `site/zones/*.html` pages, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page; IndexNow not applicable (existing pages edited, none added).
+
 ## 2026-10-03, PM check-in (20:1x cycle, fired the never-run indexation workflow, fixed a real red CI gate)
 
 **Previous work finished, verified not cited:** attached cleanly onto `7b1ad976`, preflight 0 FAIL through every gate before the documented `gate_tests` sandbox hang, tree clean, main pushed, GitHub 8 open issues unchanged, all decision/blocked-on-art.
