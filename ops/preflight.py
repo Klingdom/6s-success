@@ -12124,6 +12124,17 @@ def gate_footer_consistent() -> None:
     canon_n = norm(canon)
     drifted, missing = [], []
     for f in all_pages():
+        # A `_`-prefixed scratch probe (ops/audit_catalog.py's own
+        # site/_audit_catalog_fixture_<pid>.html, left behind mid-flight by a
+        # concurrent or killed run) is gitignored and self-cleaning, never a
+        # shipped page. Found 2026-10-03: one such file failed this gate as
+        # "missing a footer entirely", which it never had in the first place
+        # because it is a bare test fixture, not a real page. all_pages()
+        # deliberately keeps these in for the three planted-fixture tests
+        # that need them (see its own docstring); this caller filters locally
+        # instead, as that docstring prescribes.
+        if os.path.basename(f).startswith("_"):
+            continue
         rel = os.path.relpath(f, SITE).replace(os.sep, "/")
         body = io.open(f, encoding="utf-8", errors="replace").read()
         mm = foot.search(body)
@@ -26720,9 +26731,20 @@ def gate_page_ownership_registry() -> None:
     CLASSIFICATION itself is exhaustive: every top-level page is named in
     exactly one of the two registries above, so a new page cannot go
     unclassified and a page cannot silently appear in both.
+
+    Found 2026-10-03: a `_`-prefixed scratch probe (ops/audit_catalog.py's
+    own `site/_audit_catalog_fixture_<pid>.html`, or ops/shoot_mobile.py's
+    `_shoot_wrapper.html`) left on disk mid-flight by a concurrent or killed
+    run failed this gate as an "unclassified" page, even though both are
+    gitignored, self-cleaning, and never shipped. Every other caller that
+    needs protection from one of these filters it locally rather than
+    relying on all_pages()/a bare glob to exclude it (see that function's
+    own docstring); this one glob had not been updated to match.
     """
     seen = set()
     for path in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        if os.path.basename(path).startswith("_"):
+            continue
         seen.add(os.path.basename(path))
     unclassified = seen - set(GENERATED_TOP_LEVEL_PAGES) - HAND_MAINTAINED_PAGES
     if unclassified:

@@ -136,9 +136,62 @@ def check_unchecked_not_reported_as_zero():
     return fails
 
 
+def check_imap_mid_session_failure_does_not_crash():
+    """A failure during login/select/search/fetch must return None (unchecked),
+    not propagate and crash the caller.
+
+    Regression for a real residual bug found 2026-10-03, re-reading this file
+    after that same day's fix: the fix wrapped only the IMAP4_SSL() connection
+    call in try/except. login(), select(), search() and fetch() still sat in
+    a bare try/finally with no except, so a bad password, a server that drops
+    mid-session, or a timeout during search/fetch would raise straight out of
+    service_emails() exactly as the connection call used to, aborting
+    `ops/service_orders.py --send` -- the step that forwards Virtual Home
+    Consult, In-Home Reset Day and Corporate Lean 6S enquiries. Proved by
+    faking a connection that opens fine and then fails on login().
+    """
+    import imaplib
+
+    class _FakeConnOpensThenFailsLogin:
+        def __init__(self, host, port):
+            pass
+
+        def login(self, user, pw):
+            raise imaplib.IMAP4.error("LOGIN failed: authentication error")
+
+        def logout(self):
+            pass
+
+    orig_imap_ssl = imaplib.IMAP4_SSL
+    orig_env = {k: os.environ.get(k) for k in
+                ("IMAP_HOST", "IMAP_PORT", "IMAP_USER", "IMAP_PASS")}
+    imaplib.IMAP4_SSL = _FakeConnOpensThenFailsLogin
+    os.environ.update({"IMAP_HOST": "mail.example.com", "IMAP_PORT": "993",
+                        "IMAP_USER": "u", "IMAP_PASS": "p"})
+    fails = []
+    try:
+        result = so.service_emails()
+        if result is not None:
+            fails.append("service_emails() with a login failure returned "
+                         "%r instead of None (unchecked)" % (result,))
+    except Exception as exc:                                   # noqa: BLE001
+        fails.append("service_emails() raised instead of returning None on "
+                     "a mid-session IMAP failure: %s: %s"
+                     % (type(exc).__name__, exc))
+    finally:
+        imaplib.IMAP4_SSL = orig_imap_ssl
+        for k, v in orig_env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+    return fails
+
+
 def main() -> int:
     fails = []
     fails += check_unchecked_not_reported_as_zero()
+    fails += check_imap_mid_session_failure_does_not_crash()
 
     # 1. The exact regression: a message that states an explicit year must
     #    return None, not a wrong time computed from a slice of that year.

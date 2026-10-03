@@ -54,6 +54,13 @@ def pages() -> list:
         # not navigated, the same exclusion ops/wire_measure.py makes.
         if rel.startswith(("downloads" + os.sep, "deck" + os.sep)):
             continue
+        # A `_`-prefixed scratch probe (ops/audit_catalog.py's own fixture,
+        # left behind mid-flight by a concurrent or killed run) is
+        # gitignored and self-cleaning, never a shipped page. Found
+        # 2026-10-03: `--check` reported one such file as needing a skip
+        # link and a main id, which real preflight read as a live defect.
+        if os.path.basename(f).startswith("_"):
+            continue
         out.append(f)
     return out
 

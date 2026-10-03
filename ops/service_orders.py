@@ -260,31 +260,30 @@ def service_emails():
                                     "IMAP_USER", "IMAP_PASS")):
         return None
 
-    # A FAILED CONNECTION IS UNCHECKED, NOT EMPTY, AND IT MUST NOT CRASH THE
+    # A FAILED IMAP STEP IS UNCHECKED, NOT EMPTY, AND IT MUST NOT CRASH THE
     # CALLER EITHER.
     #
-    # Found 2026-10-03: this line raised ssl.SSLEOFError straight out of the
-    # function, which aborts `ops/service_orders.py --send` entirely. In the
-    # workflow that is the step that forwards Virtual Home Consult, In-Home
-    # Reset Day and Corporate Lean 6S enquiries, the highest-value things this
-    # business sells. The charge-forwarding half runs before this and is
-    # therefore safe, which is luck of ordering rather than design.
+    # Found 2026-10-03: the connection line raised ssl.SSLEOFError straight out
+    # of the function, which aborts `ops/service_orders.py --send` entirely.
+    # In the workflow that is the step that forwards Virtual Home Consult,
+    # In-Home Reset Day and Corporate Lean 6S enquiries, the highest-value
+    # things this business sells. That fix only wrapped the connection open;
+    # login(), select(), search() and fetch() sat in a bare try/finally with
+    # no except, so a bad password, a server that drops mid-session, or a
+    # timeout during search/fetch would crash this function exactly the same
+    # way, one line later. The whole conversation is unchecked together: any
+    # step failing means the inbox was not read this run, not that it was
+    # empty.
     #
     # Returning None matches recent_service_charges(), which has caught its own
     # transport failures since it was written: None is 'could not check', [] is
     # 'checked, nothing there'. Said out loud rather than swallowed, because an
     # inbox that cannot be read is exactly the state that must not look like an
     # empty inbox.
+    out = []
+    M = None
     try:
         M = imaplib.IMAP4_SSL(env['IMAP_HOST'], int(env['IMAP_PORT']))
-    except Exception as exc:                                  # noqa: BLE001
-        print('  UNCHECKED: could not open an IMAP connection to %s:%s (%s: '
-              '%s). Enquiries were NOT read this run; this is not an empty '
-              'inbox.' % (env.get('IMAP_HOST'), env.get('IMAP_PORT'),
-                          type(exc).__name__, exc))
-        return None
-    out = []
-    try:
         M.login(env["IMAP_USER"], env["IMAP_PASS"])
         M.select("INBOX")
         typ, data = M.search(None, "UNSEEN")
@@ -312,11 +311,18 @@ def service_emails():
                 out.append({"id": msg.get("Message-ID", str(i)),
                             "service": svc, "subject": str(subj),
                             "from": msg.get("From", ""), "body": body})
+    except Exception as exc:                                   # noqa: BLE001
+        print('  UNCHECKED: the IMAP session with %s:%s failed (%s: %s). '
+              'Enquiries were NOT read this run; this is not an empty '
+              'inbox.' % (env.get('IMAP_HOST'), env.get('IMAP_PORT'),
+                          type(exc).__name__, exc))
+        return None
     finally:
-        try:
-            M.logout()
-        except Exception:                                       # noqa: BLE001
-            pass
+        if M is not None:
+            try:
+                M.logout()
+            except Exception:                                   # noqa: BLE001
+                pass
     return out
 
 

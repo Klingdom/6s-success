@@ -649,7 +649,7 @@
     "preflight.py": {
       "status": "fixed",
       "date": "2026-10-03",
-      "note": "Cold-read 2026-10-03: verified main()'s gate registration is internally consistent (376 gate_ functions defined, all 376 wired via run_gate() in main(), 0 orphaned, 0 phantom calls, checked programmatically via AST), and read the full main() gate-ordering list end to end. A concurrent PM check-in independently verified the file's then-latest change (ee547104a: check_learnings_index() extended to catch two learnings sharing one LRN ID, ops/tests/test_gate_learnings_index_current.py 12/12, fail-then-pass proved) and left a wall-to-wall read as open standing work. This cycle then added a further gate of its own, gate_dashboard_customers_text_reflects_carry alongside its sibling gate_dashboard_revenue_month_not_cross_month (see ops/dashboard.py's own ledger entry for the defect it catches). No defect found in the sections read; the full 27.7k-line file has still not been read end to end in one pass."
+      "note": "Found 2026-10-03 (stale-ledger re-check on ops/service_orders.py triggered a full preflight run): gate_footer_consistent and gate_page_ownership_registry both glob site/ directly without skipping a leading underscore, so a transient, gitignored, self-cleaning scratch probe (ops/audit_catalog.py's own _audit_catalog_fixture_<pid>.html, left on disk mid-flight by a concurrent or killed run) FAILed preflight as a missing footer / unclassified page, a false defect on a page that was never shipped. all_pages()'s own docstring already prescribes filtering this locally per-caller (precedent: gate_roadmap_prices_current); these two had not been updated to match. Fixed both with the same 'startswith(\"_\")' skip. Proved against the real stray file (reproduced the FAIL, then rm'd it and confirmed both gates clean), and the three tests that encode 'real site/ directory clean today' (test_gate_footer_consistent_missing_fails.py, test_gate_page_ownership_registry.py) now pass fully."
     },
     "prerender_shop.py": {
       "status": "fixed",
@@ -748,8 +748,8 @@
     },
     "service_orders.py": {
       "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-verified the 2026-09-25 incremental-persistence fix still holds (save_state() still runs after each send). Found a new, real defect: recent_service_charges()/service_emails() returned [] identically whether no credential existed at all or a real query found nothing, so main() printed 'seen: 0' in this credential-less sandbox as if it had checked and found zero (CLAUDE.md 0.4). Both now return None for unchecked; main() reports UNCHECKED distinctly. ops/tests/test_service_orders.py extended (2 new cases), fail-then-pass proved directly (git stash on the source fix, new test failed naming both functions by name; restored, clean)."
+      "date": "2026-10-03",
+      "note": "Residual crash bug from 2026-10-03's own fix: only IMAP4_SSL() was wrapped in try/except; login()/select()/search()/fetch() still sat in a bare try/finally with no except, so a bad password or a mid-session drop would still crash service_emails() and abort --send, aborting the forward of Virtual Home Consult / In-Home Reset Day / Corporate Lean 6S enquiries. Widened the try/except around the whole IMAP conversation so any failure returns None (unchecked). ops/tests/test_service_orders.py: new check_imap_mid_session_failure_does_not_crash, fail-then-pass proved by stashing the source fix (new test failed naming the crash), restoring (clean)."
     },
     "ship.py": {
       "status": "clean",
@@ -922,9 +922,9 @@
       "note": "PM check-in re-verify: --check still reports 130 entries (10 hand, 120 generated), 126 buyable/4 free; matches 2026-09-25 note, no regression"
     },
     "wire_landmarks.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_landmarks.py --check live -- 213 pages, all already had a correct main landmark and skip link, 0 needed wrapping. The 2026-09-25 fix (main() now fails on a mismatch instead of silently patching in memory) still holds."
+      "status": "fixed",
+      "date": "2026-10-03",
+      "note": "Same finding as ops/preflight.py's 2026-10-03 entry: pages() globs site/**/*.html with no underscore-prefix skip, so ops/audit_catalog.py's transient _audit_catalog_fixture_<pid>.html failed --check as needing a skip link and main id. Fixed with the same local filter; test_wire_landmarks_check.py (4/4) and a live --check run (214 pages, clean) confirm."
     },
     "wire_legal_strip.py": {
       "status": "clean",
