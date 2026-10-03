@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-03 15:53",
+ "generated": "2026-10-03 15:51",
  "commit": "c1656ea7d",
  "commit_msg": "Merge remote-tracking branch 'origin/main'",
  "commits_7d": 1466,
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 21:07",
  "affiliate_trigger_carried_from": "2026-09-30 21:07",
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,

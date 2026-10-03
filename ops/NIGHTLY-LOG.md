@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (15:4x cycle)
+
+NEXT FOR THE OPERATOR: check whether the owner-directed session claiming `common_items` ({belongs, strays} shape) has written anything yet, and if so confirm no zone's existing flat noun list was overwritten, because that claim's premise was stale and the key name collides with a field already shipped to all 114 zones six hours earlier.
+
+**Previous work finished: verified, not assumed.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main` then the background chain's own `git fetch --unshallow` had already completed and attached `main` cleanly to `origin/main` by the time this cycle re-checked, confirmed with `git status`/`git rev-parse`, no reset or force needed. Tree clean, `c1656ea7d` (a merge of two concurrent pushes, A20's micro-zone-coverage re-derivation and the owner-directed `common_items` claim, landed with no conflict). `preflight.py` fast: 0 FAIL through every gate before `gate_tests`, which hung on this sandbox's documented limit and was not force-finished; reported unchecked past that point, not assumed clean. `check_urls.py` 211/211, `fix_dashes.py --check` 0/0. 9 GitHub issues unchanged (6 decision, 2 blocked-on-art, 1 capability-gated), 0 PRs. `STATUS.md`'s deploy-gap citation (35 commits, 28 material against `d11f572af7d4efe7`) re-derived directly with `deploy_gap_material_commits()`: still 35, the two newest commits (a coverage-table re-derivation, a claim line) touch neither `site/` nor `Dockerfile`, so the count did not move; no edit needed there.
+
+**Found and corrected a real collision before it could destroy shipped content, not just re-cited.** `STATUS.md`'s Open Claims section carried a claim, 4 minutes old at read time, that `common_items` is "the only one with no field anywhere in the corpus" and proposed authoring it as `{belongs: [...], strays: [...]}`, piloting Entryway first. Checked `content/manual/source/content.json` directly rather than trusting either claim's prose: `common_items` was already authored and RELEASED for all 114 zones, 6 hours before this claim landed (closing commit `6b9fb7aa8`, 09:52:42 UTC; the claim, `a8e0548`, 15:38:02 UTC), as a flat noun list ("Keys", "Sunglasses", ... for the Landing Zone, confirmed zone by zone for all 5 Entryway zones and corpus-wide, 0 of 114 missing). The claim's own `{belongs, strays}` shape is a genuinely different, not-yet-built idea (what belongs in a zone versus what strays in and should leave), but writing it under the same `common_items` key would silently overwrite the already-shipped list the moment anything landed, with no existing gate positioned to catch a shape change rather than a missing value. Appended a correction directly under the claim naming the exact collision, the exact timestamps proving the premise stale, and the fix (rename before authoring; do not release the claim, since the underlying belongs/strays idea is still real work).
+
+**Verified:** regenerated the command deck, 3 commits stale (citing `403b832e9`, HEAD had moved to `c1656ea7d`); diff was the expected small set (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). `fix_dashes.py --check` clean on the STATUS.md edit, `check_urls.py` reran clean after.
+
+**Went well:** checking the corpus directly before trusting either claim's own prose, the same discipline recent cycles have used for stale counts, caught this before a single byte was overwritten.
+
+**Did not go well:** the prose convention this file's section 0 relies on for non-B9 claims (no JSON ledger, no refusal on collision, just a line someone is supposed to read first) let a claim get written and committed against a premise that was already six hours stale; worth a harder check (grep the key name against the corpus before claiming) the next time this pattern is used, not just for B9.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, the 5 other decision issues, #29/#2 blocked-on-art, #39 capability-gated). The belongs/strays idea itself is real, unblocked, non-Phil-gated work once renamed; worth picking up directly if nobody else does.
+
+Pushed to main. `STATUS.md` (the correction), command deck, this log. No price, product or site page touched.
+
 ## 2026-10-03, same cycle, second addendum: the re-run `preflight.py --deep` came back clean, deploy gap widened to 35/28 by this cycle's own commits
 
 The second `--deep` run, started against the settled, committed tree, finished: **every gate passed, 34 warnings**, all the same standing, previously-diagnosed sandbox limitations (no Stripe/mail/SSH credential, no network egress, no Pillow, no JRE) every recent cycle reports. Two were new and both were this cycle's own, not pre-existing:
