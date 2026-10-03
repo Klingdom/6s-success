@@ -468,8 +468,8 @@
     },
     "experiments.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 PM check-in (11:4x). Ran --offline live: all 4 experiments correctly report UNCHECKED (blocked/answer), not zero, not stale-cited as current. Matches 2026-09-25 read; source unchanged. No defect."
+      "date": "2026-10-03",
+      "note": "Cold-read 2026-10-03, scheduled operator: Phil's own f5531bf58 added the /__ probe-path exclusion to umami_rows()/refuse_unsafe_sql() and all 7 pageview/people-counting queries. Verified by running test_umami_website_filter.py (13/13), including case_experiments_own_queries_satisfy_every_guard, which regex-scans every SQL literal in this file and runs it through the real refusal function, and case_the_repositorys_own_queries_would_pass, which scans every other ops/*.py for an unguarded website_event read. No defect found."
     },
     "fill_front_matter.py": {
       "status": "fixed",
