@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T19:06:04Z",
-   "mode": "changed",
-   "offered": 30,
-   "accepted": 30,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T20:29:40Z",
    "mode": "new",
    "offered": 3,
@@ -633,6 +626,13 @@
    "offered": 10,
    "accepted": 10,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T23:00:02Z",
+   "mode": "changed",
+   "offered": 12,
+   "accepted": 12,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -718,12 +718,12 @@
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "44a5e3dcaa516d35",
   "https://6s-success.com/zones/entryway-the-landing-spot": "a97437c72db44b3a",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "26ac6680c9e9fbd7",
-  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "a30af5fa5741c711",
-  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "9f51f09622c4943a",
-  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "43c3a712b51296c9",
-  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "ccbeee90a7c1979b",
-  "https://6s-success.com/zones/family-room-the-primary-media-zone": "f895173640fdbdad",
-  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "c97e947d40827838",
+  "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "ac80842cebe7ba5b",
+  "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "e0db67b7851586c2",
+  "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "eff6b0ee7321df56",
+  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "2a6f0bab8b872acd",
+  "https://6s-success.com/zones/family-room-the-primary-media-zone": "6f5a464e37eb3ee8",
+  "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "39b558ae7f74457b",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "70e49c64fd15f07a",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "dd77a484b29d66f4",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "e421260c67d1e387",
@@ -772,12 +772,12 @@
   "https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone": "802010d9d9aac5fb",
   "https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone": "ff97bef9b785eca7",
   "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "ff2baac274863b7f",
-  "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "ac34878f373fafe6",
-  "https://6s-success.com/zones/living-room-the-coffee-table": "70b42fab772eb45b",
-  "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "e79e2873d830a8e6",
-  "https://6s-success.com/zones/living-room-the-media-center": "358842cd46312966",
-  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "f768b84a5e8e5ee3",
-  "https://6s-success.com/zones/living-room-the-sofa-and-seating": "002a3fc3d2bc189a",
+  "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "2bcbb2b42ed4373c",
+  "https://6s-success.com/zones/living-room-the-coffee-table": "e297fee6ef7a8268",
+  "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "1972de1e74d1dbdf",
+  "https://6s-success.com/zones/living-room-the-media-center": "35755dd3c899f439",
+  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "5a31d2806c2552d7",
+  "https://6s-success.com/zones/living-room-the-sofa-and-seating": "8336702a246d24f7",
   "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "fe914382251f644c",
   "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "d283931d7d669eb2",
   "https://6s-success.com/zones/mudroom-the-family-hook-zone": "7dc8781132a5ed6e",
