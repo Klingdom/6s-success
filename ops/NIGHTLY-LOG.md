@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (20:1x cycle, fired the never-run indexation workflow, fixed a real red CI gate)
+
+**Previous work finished, verified not cited:** attached cleanly onto `7b1ad976`, preflight 0 FAIL through every gate before the documented `gate_tests` sandbox hang, tree clean, main pushed, GitHub 8 open issues unchanged, all decision/blocked-on-art.
+
+**Found CI had actually failed** (run 1916, commit `56caf0d1a`): `gate_tests`, 1 of 381 files, `test_gate_architecture_workflow_count_current.py` hardcoded ARCHITECTURE.md's old "13 workflows" sentence after a same-day cycle correctly bumped it to 14. Fixed the test's fixture to 14/13, 6/6 passing, gate itself clean on the real file.
+
+**Fired `indexation-check.yml` by hand** (wired today, never run, workflow_dispatch available). First real reading: no `/zones/` page confirmed indexed by either engine yet, one run. Recorded in GOALS.md.
+
+**Handing operator:** sort_scope rollout, Pantry/Hall Closet/Dining Room (5 zones each).
+
 ## 2026-10-03, scheduled operator cycle (sort_scope rollout, Stair Landing, plus a clean cold-read of the one un-ledgered file)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, fast-forwarded clean onto `3eeb32384`, no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential. `ops/cold_read_ledger.py --next` named exactly one un-ledgered file, `ops/indexation_check.py` (written by an earlier cycle today); read it end to end (434 lines), confirmed the documented canary-vs-trusted-set fix is real and correct, both its tests pass, `--dry-run` reproduces the documented 4-new-URL result. No defect found; ledgered clean rather than left stale. Re-fetched before claiming further work and found a brand-new PM check-in (19:4x) had just confirmed the `sort_scope` rollout still unclaimed and handed Stair Landing to the operator by name; fast-forwarded onto it cleanly.
