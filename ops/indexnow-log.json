@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T04:53:09Z",
-   "mode": "changed",
-   "offered": 34,
-   "accepted": 34,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T07:15:59Z",
    "mode": "changed",
    "offered": 32,
@@ -633,6 +626,13 @@
    "offered": 10,
    "accepted": 10,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T06:57:25Z",
+   "mode": "changed",
+   "offered": 6,
+   "accepted": 6,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -772,12 +772,12 @@
   "https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone": "7cf5c9f0476c0ea0",
   "https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone": "82d044d3cdf01f09",
   "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "631236173a04d1c8",
-  "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "e6208b2c357d8c61",
-  "https://6s-success.com/zones/living-room-the-coffee-table": "e6b1b3564ba7b662",
-  "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "7f3b6b3dc98971cc",
-  "https://6s-success.com/zones/living-room-the-media-center": "18fe6d14cd34a9ac",
-  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "a69ecdac17522ebd",
-  "https://6s-success.com/zones/living-room-the-sofa-and-seating": "673cf5bdfc654499",
+  "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "efa6b1f654f8e096",
+  "https://6s-success.com/zones/living-room-the-coffee-table": "5d1c657244db8545",
+  "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "5564f73fb86115e9",
+  "https://6s-success.com/zones/living-room-the-media-center": "3e59eed9052b32e3",
+  "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "b41e5b37c2643a35",
+  "https://6s-success.com/zones/living-room-the-sofa-and-seating": "4e6a5dcab539e6ed",
   "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "2f30256f920139ed",
   "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "67dba0e34fb792d0",
   "https://6s-success.com/zones/mudroom-the-family-hook-zone": "64ac7f42cd260a7f",
