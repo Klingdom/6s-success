@@ -2778,6 +2778,20 @@
        "action": "Clear the whole table onto the floor in one armful, then sort what came off by owner rather than by type. The homework, the unopened mail, and the half-finished craft project each go back to a person, not back to the table.",
        "victory": "The table holds nothing but its centerpiece, and every activity that was on it has gone home with the person who owns it."
       }
+     },
+     "variants": [
+      {
+       "condition": "The table is also the only workspace in the house",
+       "guidance": "Then the reset is the standard, not a permanently clear surface. Give the work one liftable tray or box that comes off the table completely at the end of the working day, and hang the trigger on finishing work rather than on finishing dinner. A table cleared once a day on purpose beats one that is supposed to be clear always and never is."
+      },
+      {
+       "condition": "The table is only set for meals a few times a year",
+       "guidance": "The centerpiece rule still holds, because the surface is what the room is judged on. What changes is the drawer: keep placemats and trivets for the number of seats you genuinely set at the holidays, not for the number of chairs that fit around the table."
+      }
+     ],
+     "capacity": {
+      "rule": "One centerpiece and bare wood everywhere else, seats for the people who actually eat here, and every chair able to push all the way in with nothing hanging off the back of it.",
+      "does_not_fit": "If the table cannot seat the household without something being moved first, it is storing something that has no home anywhere else. Find that home before you look for a bigger table."
      }
     },
     {
@@ -2914,6 +2928,20 @@
        "action": "Take everything off the wood, including the picture frames and the candlesticks, and give every piece of paper a verdict tonight: act on it, file it, or recycle it. Burnt-down candle stubs, dried flowers, and chargers belonging to other rooms leave now.",
        "victory": "The wood is bare, every piece of paper has a verdict, and nothing that belongs to another room is still sitting here."
       }
+     },
+     "variants": [
+      {
+       "condition": "No sideboard, only the table and a wall",
+       "guidance": "The bare run moves to the kitchen counter nearest the door and the display rule falls away. What matters is that one named landing place exists for hot dishes, and that it is not the dining table itself."
+      },
+      {
+       "condition": "The sideboard doubles as the drinks surface",
+       "guidance": "Keep the bare run at one end and make the bottles and glasses a single liftable tray at the other. The surface can then still be cleared for serving in one movement instead of ten."
+      }
+     ],
+     "capacity": {
+      "rule": "A taped run of bare wood at the table end, long enough for your largest roasting pan, and three display objects grouped at the lamp end. Nothing in between.",
+      "does_not_fit": "If the pan run and three objects will not both fit, the surface is shorter than the job it is being asked to do. Move the display to the wall above rather than shortening the run, because the run is the part that gets used."
      }
     },
     {
@@ -3053,6 +3081,20 @@
        "action": "Pull every tablecloth, runner, and napkin out and lay them across the table so you can see which sets are actually complete. Partial napkin sets, cloths with stains you have already tried and failed to lift, and serving pieces orphaned from sets you no longer own are finished.",
        "victory": "Every remaining linen set is complete, every serving piece belongs to a set you still own, and nothing carries a stain you've already failed to lift."
       }
+     },
+     "variants": [
+      {
+       "condition": "You host a large meal two or three times a year",
+       "guidance": "Everyday set in the drawers, occasion set boxed and labeled elsewhere, and the box named on the count card so you remember it exists in November. Storage you open twice a year should not be holding the drawer you open twice a week."
+      },
+      {
+       "condition": "Inherited china or linen you will not use and will not give away",
+       "guidance": "Treat it as archive rather than storage. One labeled, dated box kept out of the working drawers, and the decision written on the card as a date to revisit, so it stops being a permanent unanswered question taking up a drawer."
+      }
+     ],
+     "capacity": {
+      "rule": "One drawer for linens and one for serving pieces, large platters standing on edge behind a divider, and a count card taped inside the door saying how many of each there should be.",
+      "does_not_fit": "If a drawer will not close with only what belongs in it, you own more serving pieces than this room holds. Decide the number on the count card first, then let the drawer tell you whether that number was honest."
      }
     },
     {
@@ -3191,6 +3233,20 @@
        "action": "Take every piece out and split it into three groups: complete sets, chipped or crazed pieces, and lone survivors of sets that are long gone. A chipped rim cannot be mended and is not safe to drink from, so that whole group leaves together.",
        "victory": "What's left behind the glass is complete sets and pieces without a chip or crack, nothing kept only out of habit."
       }
+     },
+     "variants": [
+      {
+       "condition": "Open shelving rather than a glass cabinet",
+       "guidance": "Everything above still applies, plus dust, which now needs a wipe on the same trigger as the surface below. Keep the daily-use pieces here and box the ceremonial ones, because open shelves turn every object into a cleaning job."
+      },
+      {
+       "condition": "Small children, or a pet that jumps",
+       "guidance": "The strap stops being optional and the heavy pieces move down rather than up. A tureen at head height is a hazard. Remember the bottom shelf is also the shelf a child can reach, so it holds the heavy and unbreakable rather than the precious."
+      }
+     ],
+     "capacity": {
+      "rule": "Plates no more than eight high with felt between them, cups single file rather than nested, glasses rim up on a clean liner, heavy tureens on the bottom shelf, and the cabinet strapped to a stud.",
+      "does_not_fit": "If the shelves only hold the set by nesting cups or stacking plates past eight, the cabinet is smaller than the collection. Thin the set or move the overflow out, because a stack that chips is not storage."
      }
     },
     {
@@ -3335,6 +3391,20 @@
        "action": "Line up every tea box, syrup bottle, and pod sleeve and check the dates, then open the travel mugs and match them to their lids. Anything past date, any mug missing its lid, and the promotional glassware you have never once poured into are out.",
        "victory": "Everything on the counter is in date, every travel mug has its matching lid, and no glassware sits here unused."
       }
+     },
+     "variants": [
+      {
+       "condition": "No room for a station outside the kitchen",
+       "guidance": "It becomes a tray that travels. Same order left to right, same mug cap, living on the kitchen counter and coming out to the sideboard only when people are sitting down."
+      },
+      {
+       "condition": "Guests make their own drinks here",
+       "guidance": "Label nothing for yourself and everything for them. A guest should find mugs, the machine's one instruction and the bin without opening a drawer. If a visitor has to ask where something is, the station is arranged for you rather than for them."
+      }
+     ],
+     "capacity": {
+      "rule": "One liftable tray holding machine, grounds, mugs, spoons and sugar in that order, mugs capped at the number of daily drinkers plus two, and a hand's width of clear air behind the kettle.",
+      "does_not_fit": "If the tray will not lift with everything on it, the station has grown past being a station. Take the least-used thing off rather than widening it, because the point of the tray is that the surface underneath can be cleaned in one movement."
      }
     }
    ]
@@ -3498,6 +3568,20 @@
        "action": "Pull everything off the seats and dig the seams out: the laundry that migrated here, the second and third throw blanket, the magazines wedged behind the armrest, the coins and hair ties down the back. Sort into leaves-the-room, goes-in-the-wash, and lives-here.",
        "victory": "Every seat is sittable without moving anything, and the throws are folded in one basket."
       }
+     },
+     "variants": [
+      {
+       "condition": "Somebody sleeps on this sofa",
+       "guidance": "The bedding is the exception that needs a home of its own, and that home is not the sofa. One basket or drawer holds the night's bedding and is emptied in the morning, with the trigger attached to leaving the room rather than to going to bed."
+      },
+      {
+       "condition": "Pets use the furniture",
+       "guidance": "A washable throw per pet seat becomes part of the standard rather than evidence of failing it. Fold them to the same size as the rest so the basket still closes, and attach the wash to the same trigger as the rest of the room."
+      }
+     ],
+     "capacity": {
+      "rule": "Every seat sittable without lifting anything off it: at most one cushion per seat, throws folded to one size in one basket, and both remotes in one tray on the arm people actually reach from.",
+      "does_not_fit": "If the throws will not fold into one basket, you own more throws than the room has seats. Count the people who sit here on an ordinary evening and keep that many."
      }
     },
     {
@@ -3629,6 +3713,20 @@
        "action": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
        "victory": "The table holds four coasters, the remote in use, and at most one book or plant, nothing else."
       }
+     },
+     "variants": [
+      {
+       "condition": "A crawling or toddling child uses this room",
+       "guidance": "The tray stays and its contents change: nothing breakable, nothing hot, and the corners of the table itself considered. At that age a coffee table is a safety surface before it is a display surface."
+      },
+      {
+       "condition": "No coffee table, only side tables",
+       "guidance": "The rule moves with the job rather than disappearing. Each side table gets its own tray and coaster count, and the floor between the seats stays part of the circulation path instead of quietly becoming the surface."
+      }
+     ],
+     "capacity": {
+      "rule": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it, with most of the top showing.",
+      "does_not_fit": "If the tray is full before the evening starts, the table is being used as a desk or a shelf. What does not belong needs a home elsewhere in the room, not a bigger tray."
      }
     },
     {
@@ -3773,6 +3871,20 @@
        "action": "Unplug and lay out every cable, then name the device each one serves. The composite leads, the disc player nobody has loaded in a year, the streaming stick from two televisions ago and the charger with the old connector all leave. Discs and games get one decision each: sell, lend, or recycle.",
        "victory": "Every remaining cable is labeled at both ends and runs to a device you can name."
       }
+     },
+     "variants": [
+      {
+       "condition": "Everything is wall mounted",
+       "guidance": "Cable labeling matters more rather than less, because the run is hidden and a fault is harder to trace. Label both ends before anything enters the wall channel, and photograph the back of the unit before you close it up."
+      },
+      {
+       "condition": "The media wall is also the home office",
+       "guidance": "Separate the two power paths and label them separately. The thing you must be able to do is unplug the games console without taking down a machine somebody is working on."
+      }
+     ],
+     "capacity": {
+      "rule": "One labeled power strip, every cable labeled at both ends and bundled by device path, a hand's gap of air at every vent, and one ventilated bin holding every controller and remote in the house.",
+      "does_not_fit": "If one strip will not carry the devices, the answer is a second strip on a second circuit, not a strip plugged into a strip. Daisy-chaining is the arrangement that starts a fire."
      }
     },
     {
@@ -3908,6 +4020,20 @@
        "action": "Take one shelf down at a time so every book passes through your hands. Duplicates, the manuals for appliances you replaced, the free paperbacks from a conference and anything water-damaged go now. Empty frames, the dead plant and the souvenirs you stopped seeing years ago go with them.",
        "victory": "Every shelf keeps a hand's width of empty space at one end, and nothing is stacked flat on top of the upright books."
       }
+     },
+     "variants": [
+      {
+       "condition": "You genuinely keep more books than you have shelves",
+       "guidance": "Then the shelf is a working set and the rest is storage, and the two should look different. The working set keeps its hand's width; the stored set is boxed, labeled by subject and dated, so it is a library rather than a pile."
+      },
+      {
+       "condition": "The shelves hold few books and mostly objects",
+       "guidance": "The hand's width still does the work, because the usual fault on a display shelf is even spacing. Cluster into two or three groups and leave the rest empty. A shelf is read by its gaps at least as much as by its contents."
+      }
+     ],
+     "capacity": {
+      "rule": "A hand's width of empty space at one end of every shelf, books upright between bookends with nothing stacked flat on top of them, objects gathered into two or three groups rather than spread evenly, and a strap running into the wall.",
+      "does_not_fit": "If the hand's width will not survive one more book, the shelf is full, and full is the signal rather than the problem. Something leaves before something arrives, or the collection needs a second home."
      }
     },
     {
@@ -4050,6 +4176,20 @@
        "action": "Empty the little dish and the drawer onto the seat of the chair. The reading glasses with the wrong prescription, the dried-out pens, the foreign coins, the loose tablets, the charger for a phone nobody in the house owns and the coasters that never made it back to the coffee table each get a verdict now.",
        "victory": "Each table's tray holds at most four items, and nothing swallowable sits uncapped."
       }
+     },
+     "variants": [
+      {
+       "condition": "The chair is used by somebody with limited reach or mobility",
+       "guidance": "The tray goes on the reaching side and nothing lives behind the lamp. Everything that person needs should be gettable without standing, and the cord clip matters more here than anywhere, because a trailing cable beside a chair is where a fall starts."
+      },
+      {
+       "condition": "No side table, only a floor lamp",
+       "guidance": "The tray rule moves to a small shelf or an arm caddy, and the cord rule gets stricter, because a floor lamp's cable crosses open floor by default. Clip it along the skirting rather than running it under the rug."
+      }
+     ],
+     "capacity": {
+      "rule": "One small tray per table holding no more than four items, a coaster under the glass, a working bulb that has been wiped, and the lamp cord clipped down the leg so no cable crosses the floor.",
+      "does_not_fit": "If four items will not cover what the person in that chair needs, the chair is doing a second job. Give that job its own container rather than letting the side table turn into a nightstand."
      }
     },
     {
@@ -4193,6 +4333,20 @@
        "action": "Walk the route with a laundry basket and put every floor item in it: shoes, toys, yesterday's bag, the pile of post, the box that has sat beside the sofa for a month. Anything belonging to another room gets carried there before you let yourself sit down.",
        "victory": "The route from door to door is clear at full width, with nothing on the floor but furniture legs and the rug."
       }
+     },
+     "variants": [
+      {
+       "condition": "Open plan, so the route is also the way to another room",
+       "guidance": "The route gets wider and stricter rather than narrower. Treat it as a corridor that happens to pass through a sitting room, and keep furniture out of the straight line between the two doorways entirely."
+      },
+      {
+       "condition": "A wheelchair, a walking frame or a child learning to walk uses this room",
+       "guidance": "Measure the route rather than judging it by eye, and keep rug edges flat on a grippy pad or take the rug out altogether. The width that feels generous when you are standing is often not the width that turns a chair."
+      }
+     ],
+     "capacity": {
+      "rule": "A continuous route from the doorway to the other exit, wide enough for two people to pass and for the vacuum to run without being lifted, with nothing on the floor but furniture legs, the rug and its grippy pad.",
+      "does_not_fit": "If the route cannot be kept clear, the room holds more furniture or more floor baskets than its floor allows. Remove one piece rather than narrowing the route, because the route is what makes the room usable in the dark."
      }
     }
    ]
