@@ -9379,7 +9379,13 @@
        "action": "Take everything off the counter, wipe the bare stone and the mirror, then put back only the soap, the toothbrush holder and the four products you touched today.",
        "victory": "Bare stone on both sides of the basin, and one tray you can lift with one hand."
       }
-     }
+     },
+     "common_items": [
+      "Soap",
+      "Toothbrush holder",
+      "Up to four daily products",
+      "A liftable tray"
+     ]
     },
     {
      "zone": "Vanity Drawers",
@@ -9530,7 +9536,12 @@
        "action": "Empty the top drawer onto a towel, bin anything past its open-jar window, cap the blades into one lidded box, and put back only what you reach for daily, each in its own compartment.",
        "victory": "The top drawer can be read in a single look without moving anything."
       }
-     }
+     },
+     "common_items": [
+      "Grooming tools by routine",
+      "Products within their open-jar window",
+      "Razor blades, capped or boxed"
+     ]
     },
     {
      "zone": "Under-Sink Cabinet",
@@ -9685,7 +9696,13 @@
        "action": "Pull everything out, wipe the cabinet floor dry, put a pale tray down bare, and return only two bins that clear the P-trap with one open bottle per job.",
        "victory": "Both shut-off valves are in plain sight when the doors swing open, and nothing is stacked on the tray."
       }
-     }
+     },
+     "common_items": [
+      "Cleaning supplies",
+      "One open bottle per job",
+      "Backstock, capped at two",
+      "A pale tray on the cabinet floor"
+     ]
     },
     {
      "zone": "Medicine Cabinet or Wall Storage",
@@ -9836,7 +9853,13 @@
        "action": "Take everything out, bin anything past its date, and sort what is left into three labeled bins: pain relief, stomach and cold, first aid.",
        "victory": "Three labeled bins of in-date items, and a first aid bin you can carry one-handed."
       }
-     }
+     },
+     "common_items": [
+      "Pain relief",
+      "Stomach and cold remedies",
+      "First aid supplies",
+      "Prescriptions, grouped by name"
+     ]
     },
     {
      "zone": "Shower or Tub",
@@ -9991,7 +10014,12 @@
        "action": "Take every bottle out, bin the empties, keep one shampoo, one conditioner, one wash and one bar per person in the caddy, then squeegee the walls and the tray dry.",
        "victory": "Nothing stands on the shower floor, and the squeegee is back on its hook inside the enclosure."
       }
-     }
+     },
+     "common_items": [
+      "One shampoo, conditioner, wash and bar per person",
+      "A squeegee on its hook",
+      "Grip strips or a mat"
+     ]
     },
     {
      "zone": "Toilet Area",
@@ -10149,7 +10177,12 @@
        "action": "Clear the cistern lid completely, empty and dry the brush holder, put a liner and a lid on the bin, and set two reserve rolls within reach from the seat.",
        "victory": "A completely bare cistern lid, and two reserve rolls reachable without standing up."
       }
-     }
+     },
+     "common_items": [
+      "Two reserve rolls within reach",
+      "The brush, emptied and dried, in its holder",
+      "A lined bin with a lid"
+     ]
     },
     {
      "zone": "Linen and Towel Storage",
@@ -10304,7 +10337,13 @@
        "action": "Take the shelf down to three bath towels per person, nest each guest set in its own pillowcase, and put hand towels and washcloths into separate labeled columns.",
        "victory": "Three bath towels per person on the shelf, and every guest set in its own pillowcase."
       }
-     }
+     },
+     "common_items": [
+      "Three bath towels per person",
+      "Guest towel sets, nested in pillowcases",
+      "Hand towels and washcloths, in labeled columns",
+      "A spare bath mat"
+     ]
     }
    ]
   },
@@ -13199,7 +13238,13 @@
        "action": "Clear the bench top down to the vise and the task light, put the current job in one tray, rack the clamps on the rail, and sweep until you can see concrete under the bench.",
        "victory": "A bare bench, one tray holding one job, and swept concrete visible underneath."
       }
-     }
+     },
+     "common_items": [
+      "The vise",
+      "The task light",
+      "One tray for the current job",
+      "Clamps, racked on the rail"
+     ]
     },
     {
      "zone": "Hand Tool Wall and Cabinets",
@@ -13353,7 +13398,12 @@
        "action": "Draw an outline behind every hand tool that hangs, move one hammer and one adjustable wrench to chest height nearest the door, sheath every saw and chisel, and latch the cabinet.",
        "victory": "Every tool on its own outline with no blank silhouettes, the two you reach for most at chest height by the door, and nothing sharp left unsheathed."
       }
-     }
+     },
+     "common_items": [
+      "Hand tools, each on its own drawn outline",
+      "The hammer and adjustable wrench, at chest height",
+      "Saws, sheathed"
+     ]
     },
     {
      "zone": "Power Tool and Battery Zone",
@@ -13511,7 +13561,13 @@
        "action": "Give each battery system one shelf, mount its charger at the front edge, take every pack off every charger, put each tool in its case or on a labeled hook with guards down, and put the bits and blades in the shallow drawer.",
        "victory": "One shelf per system, no pack sitting on a charger, every guard down, and bits and blades in one drawer."
       }
-     }
+     },
+     "common_items": [
+      "Batteries, one shelf per system",
+      "Chargers, mounted at the front edge",
+      "Drills and saws, in their cases or on hooks",
+      "Bits, blades and sanding discs"
+     ]
     },
     {
      "zone": "Automotive Care Zone",
@@ -13685,7 +13741,12 @@
        "action": "Stand every bottle upright on one wipeable tray, write today's date on the shoulder of each one you have opened, bin anything that fits no car on this driveway, and put the oily rags in a metal can with a lid.",
        "victory": "Every bottle upright and dated on one tray, nothing for a car you do not own, and the rags in a closed metal can."
       }
-     }
+     },
+     "common_items": [
+      "Fluid bottles, upright with opened dates",
+      "Jumper cables and a tire gauge, bagged together",
+      "Rags, in a closed metal can"
+     ]
     },
     {
      "zone": "Sports and Recreation Zone",
@@ -13860,7 +13921,13 @@
        "action": "Hang the bikes on wall hooks and clear the floor beneath them, label one bin per activity this household currently plays, move this season's kit to the front of the shelf, and try every helmet on the head it belongs to.",
        "victory": "Bikes hanging over bare floor, one labeled bin per sport still played, this season's kit at the front, and every helmet fitting a head that still wears it."
       }
-     }
+     },
+     "common_items": [
+      "Bikes, on wall hooks",
+      "One labeled bin per activity",
+      "This season's kit, at the front of the shelf",
+      "Helmets, one per head that still wears one"
+     ]
     },
     {
      "zone": "Lawn and Garden Tool Zone",
@@ -14037,7 +14104,12 @@
        "action": "Hang every long handle head-up on the rail, coil the hose onto its reel beside the door it goes out of, and move every garden chemical into a latched cupboard above head height, binning anything whose label you cannot read.",
        "victory": "Nothing leaning in a corner, a hose on its reel by the right door, and every chemical labeled, latched and above head height."
       }
-     }
+     },
+     "common_items": [
+      "Long-handled tools, hanging head-up",
+      "The hose, coiled on its reel",
+      "Garden chemicals, latched above head height"
+     ]
     },
     {
      "zone": "Bulk and Overhead Storage",
@@ -14212,7 +14284,12 @@
        "action": "Relabel every overhead bin in letters you can read standing on the slab, write the month and year on the end of each one you open, move the heaviest bins to the lowest rack, and tape a map of what is where beside the light switch.",
        "victory": "Labels readable from the floor, a date on every bin, the heaviest ones lowest, and a map by the light switch."
       }
-     }
+     },
+     "common_items": [
+      "Overhead bins, labeled and dated",
+      "Heaviest bins, on the lowest rack",
+      "A map taped beside the light switch"
+     ]
     }
    ]
   },

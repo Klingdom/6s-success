@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (closed `common_items`: Primary Bathroom and Garage, 114 of 114 done)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded cleanly onto `origin/main` (`2c8a5c565`, 0 ahead/behind). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's own verdict: the concrete queue is done or Phil-gated, nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md`/`STATUS.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS this sandbox cannot reach), 0 PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**Checked `content/manual/source/content.json` directly before claiming, not the prose (CLAUDE.md 5d).** 100 of 114 zones carried `common_items` at start, matching `STATUS.md`'s own count exactly; a concurrent PM check-in (`8f8c7d3b3`) landed the same handoff confirmation moments later (log/dashboard only, no content change), merged cleanly. Claimed Primary Bathroom and Garage in `STATUS.md`, pushed the claim before authoring, per the file's own collision rule.
+
+**Shipped Primary Bathroom (7 zones) and Garage (7 zones), closing the field at 114 of 114, 20 of 20 rooms.** Vanity Counter, Vanity Drawers, Under-Sink Cabinet, Medicine Cabinet or Wall Storage, Shower or Tub, Toilet Area, Linen and Towel Storage; Primary Workbench, Hand Tool Wall and Cabinets, Power Tool and Battery Zone, Automotive Care Zone, Sports and Recreation Zone, Lawn and Garden Tool Zone, Bulk and Overhead Storage. Every item grounded in that zone's own `done_looks_like`/`leave_behind` text, nothing invented.
+
+**Verified:** confirmed a byte-identical round trip (`indent=1, ensure_ascii=False` plus trailing newline) before editing, diff scoped to exactly the 14 new `common_items` arrays; `mcp/content.json` re-synced byte-identical. Staged first, then `ops/build_zone_pages.py` (confirms 114 of 114 zones carry all three moat fields, chains `build_seo.build_sitemap()`) and `ops/build_id.py` against the staged index, `--check` current before committing, applying the sitemap/build-id lesson from earlier today's entries directly. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly, read via `preflight.FAIL`/`preflight.WARN`, all clean. `ops/tests/test_gate_common_items_rendered.py` 6/6. `fix_dialect.py --check` 0, `fix_dashes.py --check` 0, `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), `link_graph_report.py` 0 orphans, `ops/audit_visual.py --mobile` on a 4-page sample spanning both rooms, 0 findings. Full `preflight.py` (fast) was backgrounded and progressed cleanly through every other gate before hitting the documented `gate_tests` headless-Chromium sandbox hang every recent cycle reports; reported as unchecked past that point, not assumed passing. Mobile `npm test` not run: no mobile JS touched.
+
+**Went well:** the claim-before-start and stage-then-regenerate-id discipline, both lessons this same file recorded earlier today, held on the first try; no collision, no stale build-id, no CI-red repeat.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox hang every recent cycle already documents.
+
+**Changing next cycle:** none; the `common_items` field is closed, so there is no next room to hand off. The next cycle should re-check `BACKLOG-2026-09-07.md` section 7's ordering rule fresh rather than assume another `common_items` room remains.
+
+**Next:** with `common_items` closed, the backlog's own "Now" sections (micro zones/web app, decks, images/video) are again all done or Phil-gated. The next genuinely unblocked, workstream-sized item is either a fresh cold-read pass (`ops/cold_read_ledger.py --next`) or the next `keyword-demand.yml` re-harvest's findings; the standing Phil-blocked list in `OWNER-ACTIONS.md` (`VPS_DEPLOY_KEY`/issue #35 highest-value) and the 9 open GitHub issues are otherwise unchanged.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 14 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STRATEGY-MICROZONES.md`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (existing pages edited, none added); the next `hourly-brief.yml` run covers the 14 changed pages' lastmod.
+
 ## PM check-in, 2026-10-03, 09:4x cycle
 
 NEXT FOR THE OPERATOR: finish `common_items` for Garage and Primary Bathroom (7 zones each, the last 14 of 114), because that is the exact handoff the 09:1x cycle already queued and nothing since has changed it.
