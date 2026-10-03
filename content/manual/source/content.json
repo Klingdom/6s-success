@@ -7148,6 +7148,20 @@
        "action": "Check every blind or curtain cord near the bed head right now and cleat any hanging loop up out of a sleeping child's reach. Strip the duvet and pillow off, count how many stuffed animals were actually in the bed, and move the rest into the basket at the foot where they're still visible. Square the pillow and pull the duvet flat before you finish.",
        "victory": "No cord or loop hangs within reach of the pillow, the bed carries a squared pillow and a flat duvet with only the animals that fit in two arms on top, and the rest sit visible in the basket at the foot."
       }
+     },
+     "variants": [
+      {
+       "condition": "Bunk beds, or a shared room",
+       "guidance": "The path rule applies to each bed separately and matters most for the top bunk, where a child climbs down half asleep. Keep the floor under the ladder permanently clear, and give each child their own animal basket, because a shared one becomes a dispute at bedtime."
+      },
+      {
+       "condition": "A child who needs one specific comfort object to sleep",
+       "guidance": "That object is outside the count and never goes into the rotation box. Give it a named place on the bed and keep a spare if you can find one. The thing that gets a child to sleep earns an exception to every other rule here."
+      }
+     ],
+     "capacity": {
+      "rule": "One duvet in a washable cover and one pillow, three or four stuffed animals on the bed with the rest in an open basket at the foot, and a clear walkable path from the pillow to the door.",
+      "does_not_fit": "If the basket at the foot will not hold the rest, the animals have become storage rather than company. Rotate through a dated box in the closet instead, because a bed a child cannot make alone is a bed they will not make."
      }
     },
     {
@@ -7287,6 +7301,20 @@
        "action": "Tip out the bin nearest the door and check every piece against the toilet-roll-tube test: anything small enough to fit through goes up into a bin on the wardrobe top shelf, out of a younger sibling's reach, right now. Wipe that bin's photo label clean enough to read, and clear a lie-down-sized patch of carpet before you stop.",
        "victory": "No choke-sized piece or loose battery sits in a bin at floor height, the wiped label is readable and matches what's actually inside, and there's enough clear carpet to lie down on."
       }
+     },
+     "variants": [
+      {
+       "condition": "Two children sharing the room",
+       "guidance": "Shared categories, not shared ownership. Keep bins by type so tidying is a sorting game rather than a negotiation, and give anything genuinely personal a named box that is not one of the six."
+      },
+      {
+       "condition": "A child who finds tidying overwhelming",
+       "guidance": "Fewer bins and bigger categories, even if that means three. The number of decisions is what makes tidying hard, not the number of toys, and three bins a child will finish beats six they will not start."
+      }
+     ],
+     "capacity": {
+      "rule": "Six open bins, none higher than the child's shoulder, one category each with a photo on the front face, enough clear carpet to lie down on, and one dated rotation box out of reach on top of the wardrobe.",
+      "does_not_fit": "If the toys will not fit six shoulder-height bins, the surplus belongs in the rotation box rather than in a seventh bin. A child who cannot name the category will not put the toy back into it."
      }
     },
     {
@@ -7432,6 +7460,20 @@
        "action": "Clear the desk down to bare wood right now. Sort every loose sheet of paper into exactly one of three piles, live work into the tray, keepsake into the memory box, everything else into recycling, and count the plugs under the desk, bringing any chain of strips back to one strip in one wall socket.",
        "victory": "The desk holds only the lamp, the pen cup and one tray of live work, every other sheet of paper has a verdict, and exactly one power strip runs from exactly one wall socket."
       }
+     },
+     "variants": [
+      {
+       "condition": "A games console or tablet lives on the same desk",
+       "guidance": "The tray rule needs a partner: the device gets a named parking spot off the writing surface. A screen on the work surface is the most reliable single reason a work surface stops being used for work."
+      },
+      {
+       "condition": "No room for a desk, so homework happens at the kitchen table",
+       "guidance": "The tray becomes the desk. One tray holds the live work, the pen cup and the charger, comes out at homework time and goes back on a shelf afterwards, so starting is one trip rather than a search."
+      }
+     ],
+     "capacity": {
+      "rule": "A bare surface except a lamp, a pen cup and one tray holding live work, books on the shelf above, the charger clipped at the desk edge, and the chair empty.",
+      "does_not_fit": "If the live work will not fit one tray, it is not all live. Finished work goes to a folder or the recycling, because a desk storing last term is a desk homework does not get started on."
      }
     },
     {
@@ -7573,6 +7615,20 @@
        "action": "Stand the shortest person who dresses from this closet at the rod right now and check whether they can reach a hanger unaided. If they can't, lower the rod one bracket notch immediately. While you're in there, pull down the next-size box and check its labeled size against how the child actually measures today.",
        "victory": "The rod sits at a height the child reaches without a stool, and the next-size box on the shelf is labeled with a size that still matches where the child actually is."
       }
+     },
+     "variants": [
+      {
+       "condition": "A child who cannot yet choose their own clothes",
+       "guidance": "Hang a small number of complete outfits together rather than grouping by type. Choosing is the skill being taught here, and a rail of forty garments teaches avoidance instead."
+      },
+      {
+       "condition": "A closet shared between siblings",
+       "guidance": "Split the rod with tape and give each child their own hanger color. A shared rail with no visible boundary quietly becomes the older child's."
+      }
+     ],
+     "capacity": {
+      "rule": "A rod the child reaches without a stool, every hanger the same type facing the same way, a hand's width between groups, and shoes in pairs on the floor.",
+      "does_not_fit": "If the groups cannot keep their hand's width, the closet is holding clothes that no longer fit or no longer get worn. Check the sizes before blaming the rail: children's closets fill with the past faster than any other storage in the house."
      }
     },
     {
@@ -7708,6 +7764,20 @@
        "action": "Open every drawer right now and push on it once without leaning. Any drawer that needs a press to close gets emptied onto the bed immediately, and anything with dead elastic, no pair, or a hem that now stops above the ankle comes out for good. Refile what's left standing upright before you move to the next drawer.",
        "victory": "Every drawer closes with a single push, socks and underwear stand upright rather than lying flat, and nothing with a broken pair, dead elastic or the wrong size is back in a drawer."
       }
+     },
+     "variants": [
+      {
+       "condition": "A toddler just learning to dress themselves",
+       "guidance": "Two drawers rather than five, holding only the categories they choose from. Everything else moves higher and out of the picture-label system until they are ready for it."
+      },
+      {
+       "condition": "A child with sensory sensitivities about clothing",
+       "guidance": "Let the categories follow feel rather than garment type: the soft ones together, and anything with tags or seams they cannot tolerate out of the drawer entirely. A category matching how the child actually decides beats one matching how a shop sorts clothes."
+      }
+     ],
+     "capacity": {
+      "rule": "Five drawers, one category each with a picture label on the front, socks and underwear standing upright in rows, every drawer closing with one push, and the dresser strapped to the wall.",
+      "does_not_fit": "If a drawer has to be pressed down to close, that category has outgrown it. Thin the category rather than cramming it, because a drawer a child cannot close is a drawer they stop using."
      }
     },
     {
@@ -7845,6 +7915,20 @@
        "action": "Check the hook right now: if the backpack isn't hanging there zipped, empty it onto the floor, sort tomorrow's real needs back in, and hang it up. Confirm any inhaler, epipen or daily medication is in its one named pocket, and set the shoes directly underneath the hook before you finish.",
        "victory": "The backpack hangs zipped on its hook with shoes underneath, any medication sits in its one named pocket, and the floor by the door is completely clear."
       }
+     },
+     "variants": [
+      {
+       "condition": "Several children leaving at the same time",
+       "guidance": "One named hook column each, spaced so two children can stand at them at once. A shared launch wall where the bags touch is where the morning argument starts."
+      },
+      {
+       "condition": "The child leaves from the front door rather than the bedroom",
+       "guidance": "Then this zone belongs in the entryway or mudroom and the bedroom keeps only the packing. Decide which room owns it, because the failure here is almost always two half-zones in two rooms instead of one that works."
+      }
+     ],
+     "capacity": {
+      "rule": "One hook at child height holding the packed backpack, shoes directly underneath it, a second hook for the sports bag, the instrument case upright against the wall, and clear floor.",
+      "does_not_fit": "If the wall will not take the hooks the morning needs, the launch zone is in the wrong square meter. Move it to where the child actually leaves from rather than where the wall happens to be convenient."
      }
     }
    ]
@@ -8010,6 +8094,20 @@
        "action": "Strip the crib down to the mattress and one fitted sheet. Anything else crossing the rail, a quilt, a plush toy, a muslin, a blanket, comes out now and goes to its real place: the keepsake box, the toy basket, or the wash.",
        "victory": "The crib holds a bare mattress with one fitted sheet pulled tight to the corners, and nothing else is inside the rails or draped over the top rail."
       }
+     },
+     "variants": [
+      {
+       "condition": "A small room where the crib shares a wall with a window or a radiator",
+       "guidance": "Move the crib rather than the cable. Blind cords, curtain hems and heat sources all need to sit beyond arm's length of the rails, and the arm to measure is your baby's as it will be in three months, not as it is today."
+      },
+      {
+       "condition": "Room sharing with a parent or an older sibling",
+       "guidance": "The crib's own rules do not change at all. What changes is everything around it: nothing stored underneath that a toddler can pull out, and the adult's charging cables routed along the far side of the room."
+      }
+     ],
+     "capacity": {
+      "rule": "A bare mattress with one fitted sheet pulled tight to the corners, and nothing else in the crib at all. The sleep sack folded on the dresser, the monitor cable clipped high and at least an arm's length back from the rails.",
+      "does_not_fit": "This is the one zone in the house with no honest version that does not fit, because the limit is zero rather than a number. If something is in the crib it comes out. The empty crib is the standard itself, not a target to work toward."
      }
     },
     {
@@ -8149,6 +8247,20 @@
        "action": "Clear the dresser top down to what your hand actually uses during a change: diapers, wipes, cream, a burp cloth. Everything else, and any loose plastic bag or roll sitting out, moves off the top or into a shut drawer.",
        "victory": "The pad surface and the dresser top around it hold only what a change needs, and nothing loose plastic is left where a hand could reach it."
       }
+     },
+     "variants": [
+      {
+       "condition": "Changing happens on a bed or on the floor rather than at a dedicated station",
+       "guidance": "Build the arc into a caddy instead. Everything within one arm's reach of where the baby lies, carried as a single unit, so the rule survives even though the furniture does not."
+      },
+      {
+       "condition": "Two adults of very different heights use it",
+       "guidance": "Set the pad height for the shorter adult and give the taller one a mat or a low step to bring the arc down. A station that makes one parent bend badly is the station that parent quietly stops using."
+      }
+     ],
+     "capacity": {
+      "rule": "Diapers, wipes and cream all reachable without moving your feet or lifting a hand off your baby, a lined pail within one step, two spare outfits in the drawer directly beneath, and nothing stacked on the pad.",
+      "does_not_fit": "If something you need sits outside your arc, it belongs in the backstock zone rather than crammed onto the station. The arc is a safety rule rather than a tidiness one: whatever makes you step away is the thing that lets a baby roll."
      }
     },
     {
@@ -8288,6 +8400,20 @@
        "action": "Open every drawer, pull anything smaller than what your baby is wearing today, and put it straight into the outgoing bag on the door hook.",
        "victory": "Every drawer holds one size only, and the outgoing bag on the door has something in it."
       }
+     },
+     "variants": [
+      {
+       "condition": "Gifts arrive faster than the baby grows",
+       "guidance": "Anything above the current size goes straight into the next-size bin unopened, with the size written on the outside. Opening and washing clothes for a season that has not arrived is how these drawers lose their meaning."
+      },
+      {
+       "condition": "Clothes are being kept for a future sibling",
+       "guidance": "That is storage rather than clothing, and it leaves the nursery. Labeled, dated boxes elsewhere in the house, because a drawer holding clothes for a hypothetical baby is a drawer the actual baby is not using."
+      }
+     ],
+     "capacity": {
+      "rule": "One size per drawer with the size written on the drawer front, sleepers and bodysuits filed upright, a next-size bin on the closet shelf, and an outgoing bag on the door hook with something already in it.",
+      "does_not_fit": "If a drawer holds two sizes, the outgoing bag has stopped moving. The bag with something already in it is the whole mechanism: a nursery fills faster than any other room precisely because nothing ever leaves on its own."
      }
     },
     {
@@ -8429,6 +8555,20 @@
        "action": "Sort every bottle, teat, and pump part on the counter. Anything cloudy, split, or from a brand you've stopped using goes in the bin, and the clean bin gets refilled with fully assembled, dry bottles.",
        "victory": "The clean bin holds only fully assembled, dry bottles and parts, and nothing used is mixed in with them."
       }
+     },
+     "variants": [
+      {
+       "condition": "Breastfeeding with occasional pumping",
+       "guidance": "The station shrinks to pump parts and storage bags, and the two bins matter just as much. The 2 a.m. test does not change: can a tired person assemble a working set without making a single decision."
+      },
+      {
+       "condition": "Several children, so the kitchen is the feeding station",
+       "guidance": "Keep the two-bin rule and let it live in the kitchen. Where the station is matters far less than clean and used never sharing a container."
+      }
+     ],
+     "capacity": {
+      "rule": "One bin of clean bottles assembled with teats and collars on, a second bin in an obviously different color for used parts, a drying rack standing empty, the scoop inside the tin with the lid shut, and burp cloths you can grab without looking.",
+      "does_not_fit": "If the clean bin is empty at 2 a.m., the problem is the washing rhythm rather than the size of the bin. Decide when the used bin gets emptied and attach it to something that already happens, because this is the one zone where running out has a crying baby attached to it."
      }
     },
     {
@@ -8564,6 +8704,20 @@
        "action": "Pull every pack off the shelf, read the printed size, and take anything smaller than today's size, opened or not, off the shelf. Move anything heavy off any shelf above or beside the crib.",
        "victory": "The shelf holds one unopened pack of the current size, no more than two packs of the next size, and nothing heavy sits above or beside the crib."
       }
+     },
+     "variants": [
+      {
+       "condition": "Bulk buying for cost or delivery reasons",
+       "guidance": "Keep the ceiling in this room and put the genuine bulk elsewhere, labeled by size. The nursery shelf still shows the current size at the front with one next size behind it, so what is left reads at a glance at midnight."
+      },
+      {
+       "condition": "Cloth diapers rather than disposable",
+       "guidance": "The counts change and the rhythm becomes the rule: the clean stack, the wet bag and a named wash day. The shelf above the changing surface stays empty for exactly the same reason it always does."
+      }
+     ],
+     "capacity": {
+      "rule": "One unopened pack of the current size and no more than two of the next, each size written large on the short end, a wipes carton with its count visible, creams and thermometer in one lidded box, and nothing at all stored above the changing surface.",
+      "does_not_fit": "If you are holding more than two packs of the next size, you are storing a guess. Babies change size on their own schedule, and a stockpile of a size they skip is money sitting on a shelf."
      }
     },
     {
@@ -8704,6 +8858,20 @@
        "action": "Move every paper-page book off the low ledge to a shelf in your own room, and swap the soft toy basket down to level with its rim, boxing the rest for the closet rotation.",
        "victory": "The low ledge holds only board books facing out, and the soft toy basket sits level with its rim, not above it."
       }
+     },
+     "variants": [
+      {
+       "condition": "A very young baby who is not yet choosing",
+       "guidance": "The ledge is for you rather than for them, and twelve is still the right number because it is the number you can face at bedtime. At this stage the clear floor matters more than the books do."
+      },
+      {
+       "condition": "An older sibling shares the space",
+       "guidance": "Keep the baby's ledge at the baby's height and give the older child a shelf above it. The hazard is small parts arriving at floor level, so the height split here is a safety rule rather than a tidiness one."
+      }
+     ],
+     "capacity": {
+      "rule": "Twelve board books standing cover out on a low ledge, one basket of soft toys filled level with the rim and no higher, the rest boxed in the closet as rotation stock, and a clear stretch of floor an adult can lie down on.",
+      "does_not_fit": "If the basket is over its rim, the surplus is rotation stock rather than evidence you need a bigger basket. A baby chooses from what is visible, and a heaped basket shows nothing."
      }
     }
    ]
