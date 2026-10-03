@@ -33,6 +33,39 @@
 #    of them. Anything that reports count(distinct session_id) under the word
 #    "sessions" is reporting visitors and understating visits by about 3x.
 set -e
+# NOT WRITTEN WITH LIKE, AND THIS IS THE SECOND VERSION OF THIS BLOCK.
+#
+# The first used `not like '/__%'`, which is wrong in a way that reads as
+# correct: in SQL LIKE, _ is a single-character wildcard, so that pattern
+# excluded every path of three or more characters. Running it reported 117
+# all-time pageviews and 52 visitors against a known baseline of 1,047 and 96,
+# and `top pages` listed exactly one row. It would have quietly deleted most of
+# the site's measured traffic from every figure this file produces, which is a
+# worse failure than the single synthetic row it was written to hide.
+#
+# starts_with() has no wildcard semantics at all. Caught only because the
+# output was compared against GOALS.md's own baseline instead of being read for
+# plausibility; 117 is a perfectly plausible-looking number.
+# A RESERVED PATH PREFIX, SO A LIVE PROBE CANNOT BECOME A VISITOR
+# ----------------------------------------------------------------
+# Every query below excludes url_path starting with /__ .
+#
+# Written 2026-10-03, the same hour it was needed. Verifying the new
+# headless-beacon guard in site/nginx/default.conf meant POSTing a real beacon
+# from a real browser user agent, because nothing short of that proves the
+# guard lets a visitor through. That POST was recorded, correctly, as one
+# pageview and one visitor on /__guard_probe: a synthetic arrival inside the
+# one metric every objective in GOALS.md is measured against, created by the
+# very check that existed to protect it.
+#
+# The raw row is deliberately NOT deleted. Raw measurement is the thing you
+# never edit, and a reader who wants to know what the server actually received
+# should be able to find it. Excluding it here is honest and it generalises:
+# any future live probe named /__something is handled before it is made.
+#
+# So the rule for any session verifying something against live analytics: send
+# it to a path beginning /__ . Nothing on this site serves one, nothing links
+# to one, and nothing counts one.
 C=umami-analytics-vi0p-umami-db-1
 W=f1fc5160-4473-422d-a89e-73ff6cbdca7a
 
@@ -45,7 +78,7 @@ select 'all_time',
        to_char(min(created_at), 'YYYY-MM-DD'),
        to_char(max(created_at), 'YYYY-MM-DD')
 from website_event
-where website_id = :'w';
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__');
 
 select 'last_30d',
        count(*) filter (where event_type = 1),
@@ -53,7 +86,7 @@ select 'last_30d',
        count(distinct visit_id),
        '', ''
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and created_at > now() - interval '30 days';
 
 select 'last_7d',
@@ -62,7 +95,7 @@ select 'last_7d',
        count(distinct visit_id),
        '', ''
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and created_at > now() - interval '7 days';
 SQL
 
@@ -86,7 +119,7 @@ select to_char(date_trunc('hour', created_at)
        count(distinct session_id) as visitors,
        count(*) filter (where coalesce(referrer_domain, '') = '') as direct_pageviews
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and created_at > now() - interval '7 days'
 group by 1
 order by visitors desc, pageviews desc
@@ -100,7 +133,7 @@ with bucketed as (
            + (floor(extract(minute from created_at) / 20) * interval '20 min') as bucket,
          event_type, session_id, visit_id
   from website_event
-  where website_id = :'w'
+  where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
     and created_at > now() - interval '7 days'
 ),
 busiest as (
@@ -128,7 +161,7 @@ echo "== top pages, last 30 days =="
 docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
 select url_path, count(*) as views
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and event_type = 1
   and created_at > now() - interval '30 days'
 group by url_path
@@ -140,7 +173,7 @@ echo "== referrers, last 30 days =="
 docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
 select coalesce(nullif(referrer_domain, ''), '(direct)') as src, count(*) as n
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and event_type = 1
   and created_at > now() - interval '30 days'
 group by src
@@ -152,7 +185,7 @@ echo "== custom events, all time =="
 docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
 select event_name, count(*) as n, count(distinct session_id) as visitors
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and event_type = 2
 group by event_name
 order by n desc;
@@ -166,7 +199,7 @@ select e.event_name,
        count(*) as n
 from website_event e
 join event_data d on d.website_event_id = e.event_id
-where e.website_id = :'w'
+where e.website_id = :'w' and not starts_with(coalesce(e.url_path, ''), '/__')
 group by 1, 2, 3
 order by 1, 2, 4 desc;
 SQL
@@ -179,7 +212,7 @@ select coalesce(ty.string_value, '(no type)') as page_type,
 from website_event e
 join event_data de on de.website_event_id = e.event_id and de.data_key = 'depth'
 left join event_data ty on ty.website_event_id = e.event_id and ty.data_key = 'type'
-where e.website_id = :'w'
+where e.website_id = :'w' and not starts_with(coalesce(e.url_path, ''), '/__')
   and e.event_name = 'scroll-depth'
 group by 1, 2
 order by 1, 2;
@@ -197,7 +230,7 @@ from website_event e
 left join event_data pl on pl.website_event_id = e.event_id and pl.data_key = 'plink'
 left join event_data sk on sk.website_event_id = e.event_id and sk.data_key = 'sku'
 left join session s on s.session_id = e.session_id
-where e.website_id = :'w'
+where e.website_id = :'w' and not starts_with(coalesce(e.url_path, ''), '/__')
   and e.event_name = 'buy-click'
 order by e.created_at;
 SQL
@@ -227,7 +260,7 @@ select left(e.session_id::text, 8) as visitor,
          as span_minutes
 from website_event e
 left join session s on s.session_id = e.session_id
-where e.website_id = :'w'
+where e.website_id = :'w' and not starts_with(coalesce(e.url_path, ''), '/__')
   and e.created_at > now() - interval '30 days'
 group by 1, s.browser, s.os, s.device
 order by pageviews desc
@@ -256,7 +289,7 @@ select substring(url_query from 'from=([a-z0-9_-]+)') as channel,
        min(created_at)::date      as first_seen,
        max(created_at)::date      as last_seen
 from website_event
-where website_id = :'w'
+where website_id = :'w' and not starts_with(coalesce(url_path, ''), '/__')
   and event_type = 1
   and url_query ~ 'from=[a-z0-9_-]+'
 group by channel

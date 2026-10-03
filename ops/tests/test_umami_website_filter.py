@@ -79,12 +79,102 @@ def case_substring_tables_do_not_trip_it():
 
 
 def case_guard_regex_has_no_control_bytes():
-    """The defect that made the first version of this guard a no-op."""
-    src = inspect.getsource(E.umami_rows)
+    """The defect that made the first version of this guard a no-op.
+
+    Reads refuse_unsafe_sql, not umami_rows. The guard moved there 2026-10-03
+    when it was extracted to be testable, and this case kept passing against
+    the now-two-line umami_rows: it was checking a function that no longer
+    contains a regex, which is a check that cannot fail.
+    """
+    src = inspect.getsource(E.refuse_unsafe_sql)
     bad = sorted({c for c in src if ord(c) < 32 and c not in "\n\r\t"})
     assert not bad, ("umami_rows() contains control byte(s) %r; a mangled "
                      "escape here makes the guard match nothing while still "
                      "reading correctly in a diff" % bad)
+
+
+def _probe_blocked(sql):
+    """True when the PROBE-PATH guard (not another refusal) refused it."""
+    try:
+        E.refuse_unsafe_sql(sql)
+        return False
+    except E.Unreadable as exc:
+        return "/__ probe paths" in str(exc)
+
+
+def case_probe_paths_unexcluded_pageview_count_is_refused():
+    """2026-10-03: verifying the headless-beacon guard meant POSTing a real
+    beacon from a real browser user agent, and Umami recorded it as one
+    pageview and one visitor on /__guard_probe. A synthetic arrival inside the
+    metric every objective rests on, created by the check protecting it. The
+    raw row is kept; the readers exclude it."""
+    assert _probe_blocked(
+        "select count(*) filter (where event_type = 1), "
+        "count(distinct session_id) from website_event "
+        "where website_id = '%s'" % E.WEBSITE)
+
+
+def case_probe_paths_excluded_is_allowed():
+    assert not _probe_blocked(
+        "select count(*) filter (where event_type = 1) from website_event "
+        "where website_id = '%s' "
+        "and not starts_with(coalesce(url_path, ''), '/__')" % E.WEBSITE)
+
+
+def case_named_event_counts_are_not_nagged():
+    """The probe carried no event name, so it cannot appear in an
+    event_type = 2 query. A guard that fired there would fire where there is
+    nothing to catch, which is how a guard gets switched off."""
+    assert not _probe_blocked(
+        "select event_name, count(distinct session_id) from website_event "
+        "where website_id = '%s' and event_type = 2 group by 1" % E.WEBSITE)
+
+
+def case_counting_probes_on_purpose_is_allowed():
+    assert not _probe_blocked(
+        "-- counts-probes" + chr(10) +
+        "select count(distinct session_id) from website_event "
+        "where website_id = '%s'" % E.WEBSITE)
+
+
+def case_a_like_pattern_would_not_satisfy_this():
+    """Belt and braces on the mistake that was actually made: the first
+    version of the filter in ops/traffic_query.sh used `not like '/__%'`,
+    and _ is a single-character wildcard in LIKE, so it excluded every path of
+    three or more characters and reported 117 all-time pageviews against a
+    real 1,047. The guard accepts any query mentioning /__, including that
+    broken one, so this case documents the trap rather than catching it: the
+    refusal text must name it."""
+    try:
+        E.refuse_unsafe_sql("select count(distinct session_id) from "
+                            "website_event where website_id = '%s'"
+                            % E.WEBSITE)
+    except E.Unreadable as exc:
+        assert "_ is a wildcard" in str(exc), (
+            "the refusal does not warn that LIKE treats _ as a wildcard, "
+            "which is the mistake this guard's own first fix made: %s" % exc)
+    else:
+        raise AssertionError("the probe guard did not fire at all")
+
+
+def case_experiments_own_queries_satisfy_every_guard():
+    """Not just the website_id one. Every SQL literal in experiments.py is run
+    through the real refusal function; four of them had to gain the probe
+    filter when it was added, and a fifth would have to if anyone adds one."""
+    body = io.open(os.path.join(ROOT, "ops", "experiments.py"),
+                   encoding="utf-8").read()
+    pat = (r'(?:one|umami_rows)\(' + chr(34) * 3 + '(.*?)' + chr(34) * 3)
+    qs = re.findall(pat, body, re.S)
+    assert len(qs) >= 10, ("found only %d SQL literal(s) in experiments.py; "
+                           "this case would prove nothing" % len(qs))
+    refused = []
+    for q in qs:
+        try:
+            E.refuse_unsafe_sql(q.replace("%s", "'" + E.WEBSITE + "'"))
+        except E.Unreadable as exc:
+            refused.append((" ".join(q.split())[:70], str(exc)[:70]))
+    assert not refused, ("experiments.py contains %d query it would refuse to "
+                         "run itself: %s" % (len(refused), refused[:2]))
 
 
 def case_the_repositorys_own_queries_would_pass():

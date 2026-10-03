@@ -92,11 +92,15 @@ class Unreadable(Exception):
 
 # --------------------------------------------------------------------- read
 
-def umami_rows(sql: str, timeout: int = 60) -> list[list[str]]:
-    """Run read-only SQL against Umami's Postgres and return split rows.
+def refuse_unsafe_sql(sql: str) -> None:
+    """Raise Unreadable if this query must not be run as written.
 
-    SELECT only. Nothing in this repository has any business writing to the
-    analytics database, and a tool that could would eventually be asked to.
+    Extracted from umami_rows() 2026-10-03 so it can be tested without a
+    database or an ssh key. It had grown three independent refusals, each
+    added after a real wrong number reached a document, and none of them could
+    be exercised by a test: reaching them meant calling the function that then
+    shells out to the VPS. A guard nobody can test is a guard nobody can prove
+    still fires, which is this repository's most expensive recurring defect.
     """
     stripped = re.sub(r"--[^\n]*", " ", sql).strip().lower()
     for banned in ("insert", "update", "delete", "drop", "alter", "truncate",
@@ -127,6 +131,56 @@ def umami_rows(sql: str, timeout: int = 60) -> list[list[str]]:
                 "into ours. Add \"where website_id = '%s'\", or put the "
                 "comment -- all-websites in the query if crossing every "
                 "site is genuinely what you mean." % WEBSITE)
+
+    # A SECOND WAY A TRAFFIC NUMBER GOES WRONG, same shape as the one above.
+    #
+    # 2026-10-03: verifying the new headless-beacon guard in
+    # site/nginx/default.conf required POSTing a real beacon with a real
+    # browser user agent, because nothing weaker proves a visitor still gets
+    # through. Umami recorded it, correctly, as one pageview and one visitor on
+    # /__guard_probe. A synthetic arrival, created by the check that existed to
+    # protect the traffic figure, sitting inside the traffic figure.
+    #
+    # The raw row is kept on purpose; raw measurement is not edited. So the
+    # readers exclude it, and /__ is the reserved prefix for anything a session
+    # sends at the live site on purpose. ops/traffic_query.sh does the same in
+    # all 13 of its filters.
+    #
+    # Written with starts_with(), never LIKE: the first version of the filter in
+    # traffic_query.sh used `not like '/__%'` and _ is a single-character
+    # wildcard in LIKE, so it excluded every path of three or more characters
+    # and reported 117 all-time pageviews against a real 1,047. Caught only by
+    # comparing to a known baseline, because 117 looks perfectly plausible.
+    # Scoped to queries the probe could actually appear in. A query restricted
+    # to event_type = 2 counts NAMED events, and the probe carried no event
+    # name, so it cannot be in one: refusing those would be a guard that fires
+    # where there is nothing to catch, which is how a guard gets switched off.
+    counts_people = (re.search(r"event_type\s*=\s*1", stripped)
+                     or "distinct session_id" in stripped
+                     or "distinct visit_id" in stripped)
+    named_events_only = bool(re.search(r"event_type\s*=\s*2",
+                                       stripped))
+    if (re.search(r"\bwebsite_event\b", stripped)
+            and counts_people and not named_events_only
+            and "/__" not in stripped
+            and "counts-probes" not in sql):
+        raise Unreadable(
+            "this query counts pageviews or people from website_event without "
+            "excluding the reserved /__ probe paths, so a verification beacon "
+            "this repository sent itself would be counted as a visitor. Add "
+            "\"and not starts_with(coalesce(url_path, ''), '/__')\" (not a "
+            "LIKE pattern: _ is a wildcard there), or put the comment "
+            "-- counts-probes in the query if including them is genuinely "
+            "what you mean.")
+
+
+def umami_rows(sql: str, timeout: int = 60) -> list[list[str]]:
+    """Run read-only SQL against Umami's Postgres and return split rows.
+
+    SELECT only. Nothing in this repository has any business writing to the
+    analytics database, and a tool that could would eventually be asked to.
+    """
+    refuse_unsafe_sql(sql)
 
     if not os.path.exists(SSH_KEY):
         raise Unreadable("no ssh key at %s, so the database was not reached"
@@ -235,17 +289,20 @@ def gather() -> Facts:
                    to_char(min(created_at), 'YYYY-MM-DD'),
                    to_char(max(created_at), 'YYYY-MM-DD')
             from website_event where website_id = %s
+              and not starts_with(coalesce(url_path, ''), '/__')
         """ % W)
         t30 = one("""
             select count(*) filter (where event_type = 1),
                    count(distinct session_id), count(distinct visit_id)
             from website_event where website_id = %s
+              and not starts_with(coalesce(url_path, ''), '/__')
               and created_at > now() - interval '30 days'
         """ % W)
         t7 = one("""
             select count(*) filter (where event_type = 1),
                    count(distinct session_id), count(distinct visit_id)
             from website_event where website_id = %s
+              and not starts_with(coalesce(url_path, ''), '/__')
               and created_at > now() - interval '7 days'
         """ % W)
         ev = umami_rows("""
@@ -294,6 +351,7 @@ def gather() -> Facts:
           left join event_data d
                  on d.website_event_id = e.event_id and d.data_key = 'who'
           where e.website_id = %s
+            and not starts_with(coalesce(e.url_path, ''), '/__')
           group by 1)
         select count(*), coalesce(sum(views), 0)
         from per
@@ -395,6 +453,7 @@ def answer_exp001(f: Facts) -> Answer:
                string_agg(distinct nullif(e.referrer_domain, ''), ',')
         from website_event e join b on b.session_id = e.session_id
         where e.website_id = %s
+          and not starts_with(coalesce(e.url_path, ''), '/__')
         group by 1
     """ % (W, W))
     entry = {r[0]: (r[1] or "") for r in refs}
@@ -507,6 +566,7 @@ def answer_exp002(f: Facts) -> Answer:
                count(*)
         from website_event
         where website_id = %s and event_type = 1
+          and not starts_with(coalesce(url_path, ''), '/__')
         group by 1
     """ % W)
     seen = {r[0]: int(r[1]) for r in views}
@@ -632,6 +692,7 @@ def answer_exp004(f: Facts) -> Answer:
     quest_views = one("""
         select count(*), count(distinct session_id) from website_event
         where website_id = %s and event_type = 1 and url_path like '%%quest%%'
+          and not starts_with(coalesce(url_path, ''), '/__')
     """ % W, ["0", "0"])
 
     if not rows:

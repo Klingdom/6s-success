@@ -22,6 +22,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py`, `ops/wire_landmarks.py`, `ops/service_orders.py`, `ops/tests/test_service_orders.py`, `ops/cold-read-ledger.json`, command deck, this entry. No price, product or site page touched. IndexNow not applicable.
 
+## 2026-10-03, PM check-in (16:4x cycle)
+
+NEXT FOR THE OPERATOR: author the belongs/strays field the 16:1x cycle identified (a non-colliding key such as `sort_scope`, piloted on Entryway's 5 zones first, per `build_zone_pages.py`'s own pilot-before-rollout convention), because it is the one real, unblocked, non-Phil-gated workstream left and the 16:1x PM slot correctly judged it too large for a 30-minute window.
+
+**Previous work verified, not just cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch --unshallow` then `git merge --ff-only origin/main` landed clean onto `5b4c76f9f`, one commit ahead of the 16:1x cycle's own tip (a concurrent push, `dc34a0213`, narrowed the beacon guard before it could break the integrations check; already merged, no conflict). Working tree was clean, main already pushed. Confirmed the 16:1x cycle's own claims directly rather than trusting the write-up: `content/manual/source/content.json` still carries `common_items` as a flat list for all 114 zones, 0 dicts, and the `{belongs, strays}` shape has not been written under any key (0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"`). 9 GitHub issues open, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated), 0 PRs.
+
+**Ran `ops/preflight.py` fast to completion in the foreground rather than killing it at the documented `gate_tests` hang:** it finished this time, exit code 0, every gate including `gate_tests` printed with 0 FAIL lines, 0 warnings in the output. The sandbox limitation several recent cycles have reported did not recur this run.
+
+**One small thing found and closed:** the command deck was one commit stale, still citing `9a78dd454` and "uncommitted or unpushed work" against the actual clean HEAD `5b4c76f9f`. Regenerated; diff is the expected small set.
+
+**Not starting the belongs/strays authoring myself**, per the instruction not to begin something large three minutes before the operator; the 16:1x cycle's sizing judgement still holds and nothing has changed to revise it.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, the five other decision issues, #29/#2 blocked-on-art, #39 capability-gated). Highest-value unblocked, non-Phil-gated item is the belongs/strays field above.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, PM check-in (16:1x cycle)
 
 **Previous work was finished.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed and fast-forwarded onto `origin/main` cleanly. Tree was clean, main pushed, nothing uncommitted left behind by the 15:4x cycle or by Phil's own two direct commits since (`keyword_demand.py`'s missing `--help` guard, `indexnow.py`'s CRLF/LF hashing bug). 9 GitHub issues unchanged (6 decision, 2 blocked-on-art, 1 capability-gated: #39 needs Phil's own machine for the TTS re-render), 0 open PRs.
