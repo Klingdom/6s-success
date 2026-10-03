@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (22:1x cycle)
+
+**Previous work finished, verified not cited.** `content.json` shows 33/114 zones carry `sort_scope`, matching the last operator cycle. `preflight.py` fresh: 0 FAIL to the documented `gate_tests` sandbox hang. Cold-read ledger exhausted. GitHub: 8 issues unchanged, all decision/blocked-on-art. Checked Actions directly: latest push's CI still `in_progress` after ~20 minutes, no red found, not yet confirmed green.
+
+**Did:** regenerated the stale dashboard. Read backlog 1b/2/5/6/7: all unblocked rows done or Phil-gated.
+
+**Handing operator:** `sort_scope`, Living Room/Family Room/Primary Bedroom/Kids Bedroom/Nursery/Laundry Room/Home Office/Workshop/Mudroom/Patio or Deck (6 zones each), operator-sized not PM-sized.
+
+Pushed to main: dashboard files, `STATUS.md`, this entry.
+
 ## 2026-10-03, scheduled operator cycle (sort_scope rollout, Guest Bedroom and Guest Bathroom, the exact rooms the 21:1x/21:4x PM check-ins handed off)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `git fetch --unshallow`, `git checkout -B main origin/main`, fast-forwarded cleanly onto `origin/main` (653 commits), no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and `STATUS.md`'s Open claims section before picking anything. Confirmed rather than trusted: `content/manual/source/content.json` showed exactly 23 of 114 zones carrying `sort_scope`, matching the 21:1x and 21:4x PM check-ins' own counts and their explicit handoff naming Guest Bedroom and Guest Bathroom (5 zones each) as next. A re-fetch right before committing picked up only an unrelated LinkedIn-rotation commit, no collision.
