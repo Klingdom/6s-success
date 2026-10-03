@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Kids Bedroom and Nursery)
+
+**Did:** Checkout arrived shallow and detached. Unshallowed (`git fetch --unshallow`), attached to main, fast-forwarded 528 commits. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's verdict: the backlog's concrete queue is mostly done, dropped, or Phil-gated; nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked), 0 PRs. `preflight.py` (no `--deep`) backgrounded; it hit the documented `gate_tests` headless-Chromium sandbox hang every recent cycle reports (killed by its own 600s timeout; the gates relevant to this change were called directly instead, below). `inbox_agent.py --apply`: no mail credential in this sandbox.
+
+**Checked `content/manual/source/content.json` directly before claiming, not STATUS.md's prose (CLAUDE.md 5d).** 51 of 114 zones carried `common_items` at start, matching the correction the 07:2x PM check-in had just made. Claimed Kids Bedroom and Nursery (tied-smallest remaining) in `STATUS.md`; no concurrent claim found.
+
+**Shipped Kids Bedroom (6 zones) and Nursery (6 zones).** Bed and Sleep Zone, Toy Storage Zone, Study Desk, Clothing Closet, Dresser Drawers, School and Activity Launch Zone; Crib and Sleep Zone, Changing Station, Baby Clothing Zone, Feeding Station, Diaper and Care Backstock, Books and Quiet Play Zone. Every item a direct grounding in that zone's own `done_looks_like`/`passes`/`leave_behind` text (the crib's three items match its own "the limit is zero" design intent; the changing station's four match the zone's own one-handed-reach text). **63 of 114 done, 12 of 20 rooms fully covered.** 51 zones remain; tied-smallest now Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified:** round-tripped `content.json` through `indent=1, ensure_ascii=True`, diff scoped to the 12 touched zones (confirmed via `git diff --stat`); synced `mcp/content.json` byte-identical; staged first, then `ops/build_zone_pages.py` (chains the sitemap) and `ops/build_id.py` against the staged index, confirmed `build_id.py --check` current before committing (caught and fixed one real miss mid-cycle: the first `build_id.py --check` failed because I'd staged `site/zones/*.html` and `site/sitemap.xml` before regenerating the id itself; re-ran `build_id.py` to write it, staged `site/build-id.txt`, reconfirmed current). `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and read via `preflight.FAIL`/`WARN`. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `audit_visual.py --mobile` on all 12 changed pages, 0 findings.
+
+**Went well:** the claim-before-start and stage-then-regenerate-id discipline from the prior cycle's own correction held; no collision, no stale build-id.
+
+**Did not go well:** the same `gate_tests` sandbox hang every recent cycle already documents; still no fix available from this sandbox (needs a real headless-Chromium environment, not this one).
+
+**Changing next cycle:** none; existing gates and process held, including the sitemap/build-id lesson this cycle applied rather than rediscovered.
+
+**Next:** continue `common_items` room by room (Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck all tied-next at 6 zones, then Kitchen, Primary Bathroom, Garage at 7 each); confirm CI resolves green on this cycle's push.
+
+Pushed to main (`09489c4c6`, merged cleanly with two concurrent upstream commits). `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## PM check-in, 2026-10-03, 07:4x cycle
 
 **NEXT FOR THE OPERATOR: continue `common_items` into Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom or Patio or Deck (tied-smallest, 6 zones each), starting from 51 of 114, because it is the active unblocked workstream the prior cycle already handed off and nothing changed since.**
