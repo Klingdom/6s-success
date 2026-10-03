@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T08:35:24Z",
-   "mode": "changed",
-   "offered": 7,
-   "accepted": 7,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T09:33:26Z",
    "mode": "changed",
    "offered": 6,
@@ -633,6 +626,13 @@
    "offered": 6,
    "accepted": 6,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T07:55:13Z",
+   "mode": "changed",
+   "offered": 12,
+   "accepted": 12,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -753,12 +753,12 @@
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "acd02e3fe0ee88de",
   "https://6s-success.com/zones/home-office-the-supply-cabinet": "cf8933ac75fbca3b",
   "https://6s-success.com/zones/": "f207d2c32fad588d",
-  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "01d79a994a66b79b",
-  "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "cebe13430e31287a",
-  "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "cb250bf69b1422ee",
-  "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "ff64ffbdbb0ee2d4",
-  "https://6s-success.com/zones/kids-bedroom-the-study-desk": "aedb3cf08b6d8bf3",
-  "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "6aeeae78ad4944bb",
+  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "c15db2133eeddde9",
+  "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "21d55e464323530e",
+  "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "9cbd1d3b6ccb18b1",
+  "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "e84701573a53ec40",
+  "https://6s-success.com/zones/kids-bedroom-the-study-desk": "2e26e04be53b8952",
+  "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "929ba9470a623595",
   "https://6s-success.com/zones/kitchen-the-cooking-zone": "12f273cce5fe1bf2",
   "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "4fb59589afaf0926",
   "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "85d06a104d94a732",
@@ -784,12 +784,12 @@
   "https://6s-success.com/zones/mudroom-the-pet-station": "5edccf1179794b23",
   "https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear": "181448380f55f871",
   "https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage": "7667acb0ef22ea07",
-  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "3bb397f2922683e9",
-  "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "19f27215c79d3511",
-  "https://6s-success.com/zones/nursery-the-changing-station": "8686957be47049ce",
-  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "377fa5a7d4c11fc3",
-  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "23015ea2aa44e6ab",
-  "https://6s-success.com/zones/nursery-the-feeding-station": "6287911455361d7b",
+  "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "499aeb39488864d3",
+  "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "9312213f374ddb56",
+  "https://6s-success.com/zones/nursery-the-changing-station": "616ad9df59f15ef5",
+  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "984dcddf05fa065a",
+  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "29604d01310c1f66",
+  "https://6s-success.com/zones/nursery-the-feeding-station": "6ae1d231112396cb",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "79f0f3f6b2c2f81f",
   "https://6s-success.com/zones/pantry-the-baking-zone": "32fb7b3e89325d81",
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "58b24d0615250f30",
