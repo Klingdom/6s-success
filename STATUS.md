@@ -785,7 +785,18 @@ Blocked on: 3B.1, a capped budget and stop date, correctly RED per `CLAUDE.md`
 
 ## Workstream 3: The diagnostic layer, Sustain depth, and the Kitchen deck
 
-**Status:** ACTIVE, opened 2026-09-07  
+**Status:** CLOSED, 2026-10-03, PM check-in. Opened 2026-09-07. Every item is
+now done, dropped, or genuinely gated on Phil: M1-M5, A1-A18, B1-B9 and C1-C4/C7
+all shipped (see the "Done"/strikethrough rows throughout this section and
+`BACKLOG-2026-09-07.md` sections 2-4). M6 stays shut per `DECISIONS.md` D-021/
+D-026 (needs real zone entrances or a Search Console read, neither true yet).
+S1-S4 (the structured `sustain_detail` schema) are DROPPED, not merely
+deferred: see `DECISIONS.md` D-029, recorded this cycle, closing the open
+question this section itself raised on 2026-09-09 and nobody had revisited
+since. C5/C6 stay on Phil (Gemini billing, YouTube OAuth). This closure frees
+a WIP slot under `CLAUDE.md` section 18's limit of 3; no replacement
+workstream is opened here, since nothing in the current backlog is both
+unblocked and workstream-sized (`BACKLOG-2026-09-07.md` section 7).  
 **Owner:** operator, direction from Phil  
 **Objective:** `PLAN-MICROZONES-DECKS-APP.md` + `BACKLOG-2026-09-07.md`
 section 2/3: build the root-cause diagnostic layer the product currently
@@ -914,6 +925,21 @@ measurement-tier item it was filed as. Recommend re-scoping S1 to something
 narrower before spending 0.5 to 3.5 days on it, or dropping it in favour of
 Epic 3 (traffic) work; left as an open question rather than started this
 cycle.
+
+**S1-S4 dropped, 2026-10-03, PM check-in, closing the open question above
+after 24 days with nobody revisiting it.** Epic 3 (traffic) work this
+paragraph named as the alternative is itself done now: A11/A13/A14/A15/A18
+all shipped between 2026-09-20 and 2026-10-02, closing the keyword-cluster
+gaps they targeted. The condition that would make S1 worth its 0.5-to-3.5-day
+cost (more distribution to protect with a stricter gate) has not changed in
+the meantime: Umami read 2026-09-29/30 shows 7 to 14 visitors a week across
+the whole site, Search Console is still unverified (`OWNER-ACTIONS.md`), and
+`BACKLOG-2026-09-07.md` section 1b's own test for new work is "does this help
+somebody arrive, or does it improve something nobody is looking at yet."
+Re-authoring 114 already-adequate prose passes into a structured schema is
+the second kind, with no reader behind it. Recorded as `DECISIONS.md` D-029
+rather than left open a second month; revisit condition is the same one that
+would also reopen M6 (real zone entrances or a Search Console read).
 
 **A2 done, 2026-09-09, operator, a later cycle the same day.** "45 to 75
 minutes" was still the first number a first-timer read on card one of the
