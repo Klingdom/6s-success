@@ -2,17 +2,35 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 01:4x cycle
+
+NEXT FOR THE OPERATOR: there is no new unblocked backlog item; re-verify this session's own access (VPS deploy key, Stripe, mail, Gemini) since it is cheap and sometimes changes, and if still none, hold the line rather than inventing work, because `BACKLOG-2026-09-07.md` sections 2-4 are now fully done or Phil-gated and `cold_read_ledger.py` reports 0 stale and 0 un-ledgered.
+
+**Previous work finished and verified, not just cited.** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 446 commits fast-forwarded, no reset or force). The 01:0x operator cycle's dashboard customer-count fix and the 01:1x PM check-in's LinkedIn-claim verification are both pushed, working tree was clean, main matched origin. `preflight.py`'s full run hit the documented `gate_tests` sandbox hang again (backgrounded, killed at its timeout); ran the standing narrower suite directly: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0, `--next` 0 (195/195 ledgered), mobile `npm test` all 4 suites passing. 9 GitHub issues open, unchanged, all `decision`/`blocked-on-art`/#39, 0 PRs. No VPS deploy key, no Stripe/mail/Gemini credential in this sandbox, same as every prior cycle.
+
+**Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full, not sampled, since the previous-work check and the ledger both came back clean and STEP 3 asks what comes next.** Every row in sections 2 (micro zones/app), 3 (decks) and 4 (images/video) is already struck through done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth). Section 1b (basement/attic) stays correctly un-started, an owner-scope call, not a defect. Section 6's owner gates are unchanged. There is genuinely no workstream-sized unblocked item sitting in this file today.
+
+**Found and closed a real stale thread rather than reporting the dead end twice.** `STATUS.md` Workstream 3 had read "ACTIVE, opened 2026-09-07" for 26 days after its own named contents (M1-M7, A1-A18, B1-B9, C1-C7) finished shipping, and a 2026-09-09 note inside it had recommended re-scoping or dropping the structured `sustain_detail` schema (S1-S4) and then left that as an open question nobody revisited, the same "correctly identified, never surfaced" shape `CLAUDE.md` 0.2 and 0.8 name, just for a decision instead of a defect. Checked rather than assumed: the alternative that note pointed to (Epic 3 traffic work) is itself done (A11/A13/A14/A15/A18, 2026-09-20 to 10-02); the condition that would justify S1's 0.5-to-3.5-day cost (readers or Search Console) has not changed (Umami 7-14 visitors/week as of 2026-09-29/30, Search Console still unverified). Recorded as `DECISIONS.md` D-029 (dropped, not deferred, same revisit condition as M6's own D-021/D-026), marked S1-S4 DROPPED in `PLAN-MICROZONES-DECKS-APP.md`, and closed Workstream 3 in `STATUS.md`, freeing a WIP slot under `CLAUDE.md` section 18. No code or shipped page changed; this is a documentation correction, GREEN-tier, fully reversible.
+
+**Verified:** `fix_dashes.py --check` clean on the edited files (0/0). `git status` showed exactly the three files intended (`DECISIONS.md`, `PLAN-MICROZONES-DECKS-APP.md`, `STATUS.md`), nothing else touched. Command deck regenerated.
+
+**Went well:** treating a 24-day-old dangling "recommend... left as an open question" as work rather than background noise, since that is exactly the pattern CLAUDE.md 0.8 warns accumulates.
+
+**Did not go well:** same unrelated-history checkout shape every cycle reports; same `gate_tests` sandbox hang; nothing new in either.
+
+Pushed to main. `DECISIONS.md`, `PLAN-MICROZONES-DECKS-APP.md`, `STATUS.md`, command deck, this entry. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03, 01:4x
 
 **Did:** Attached clean (shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 446 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` full run: every gate passed, 30 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no network egress, Pillow not installed). `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty.
 
-**Verified rather than trusted the prior cycle's own summary.** Independently re-read BACKLOG-2026-09-07.md sections 2-4: B1-B9 (all 20 room decks) are genuinely done per their own accept-when text, B8's print-tier question is closed by decision (D-027), section 1b's basement/attic case is correctly HOLD. `ops/cold_read_ledger.py --stale` and `--next` both confirm 0 stale, 0 unledgered across 195 files. GitHub: 9 open issues, 8 are `decision`/`blocked-on-art`; issue #39 (unlabeled) is a real, correctly-reopened finding already fully diagnosed in its own thread (two captions genuinely need Phil's local TTS re-render; nothing further to add from here). No new defect found in any of this.
+**Verified rather than trusted the prior cycle's own summary.** Independently re-read BACKLOG-2026-09-07.md sections 2-4: B1-B9 (all 20 room decks) are genuinely done per their own accept-when text, B8's print-tier question is closed by decision (D-027), section 1b's basement/attic case is correctly HOLD. `ops/cold_read_ledger.py --stale` and `--next` both confirm 0 stale, 0 unledgered across 195 files. GitHub: 9 open issues, 8 are `decision`/`blocked-on-art`; issue #39 (unlabeled) is a real, correctly-reopened finding already fully diagnosed in its own thread (two captions genuinely need Phil's local TTS re-render; nothing further to add from here). No new defect found in any of this. A concurrent PM check-in reached the same conclusion independently and closed a real stale thread (`STATUS.md` Workstream 3, `DECISIONS.md` D-029) this cycle had not reached yet; see its entry above.
 
 **The one live checkpoint, LinkedIn's `from=li` send, is not yet checkable.** `linkedin-drafts.yml` fires at 10:47 UTC and lands near 14:19 UTC; this cycle ran at 01:4x UTC, hours before the send. Re-deriving the claim now would only repeat the 01:1x cycle's own correct "not yet sent" finding.
 
 **Went well:** confirmed the backlog/cold-read exhaustion independently instead of taking the research pass on trust.
 
-**Did not go well:** nothing new to ship this cycle.
+**Did not go well:** nothing new to ship this cycle; collided with a concurrent PM check-in on the command deck and this file, resolved by merge.
 
 **Changing next cycle:** none.
 
