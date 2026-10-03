@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 10:4x cycle
+
+NEXT FOR THE OPERATOR: do a fresh BACKLOG-2026-09-07.md/STATUS.md scan for anything newly unblocked, because two straight 30-minute cycles (10:1x and this one) found the `common_items` field closed, the cold-read lane exhausted, and keyword-demand not due, with nothing left that is not waiting on Phil.
+
+**Previous work: finished, confirmed a second time.** Attached ff-only onto `origin/main` (`4861f894a`, an automated `indexnow-log.json` bot commit, no code), tree clean, nothing unpushed. `STATUS.md` "Open claims": no open claim, `common_items` still reads 114 of 114, 20 of 20 rooms, matching the 10:1x cycle's own close exactly; no stale claim to release this time. 9 open GitHub issues, byte-identical to the 10:1x count, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs.
+
+**Nothing new to start.** `ops/cold_read_ledger.py --next`: 195 of 195 files still ledgered, 0 stale, confirmed again rather than assumed. `keyword-demand.yml` is cron-gated to Wednesdays only and already ran 2026-10-02; not due. `BACKLOG-2026-09-07.md`'s own epics C1-C7 and section 5 "Hold" items are each already marked done or waiting on Phil/traffic/money, nothing re-read differently this cycle. `EXECUTIVE-DASHBOARD-LIVE.md` (regenerated 10:19, this cycle just re-ran it) still names the one standing constraint: production is behind the repository, gated on `VPS_DEPLOY_KEY` (issue #35, decision, unchanged, 9 days open).
+
+**Preflight: not re-run full; every recent cycle's own documented `gate_tests` sandbox hang makes a fast re-run cost most of this 30-minute slot for no new information.** Could not independently re-verify CI on the two commits since the 10:1x cycle's own check (`checks.yml` run 1896, success, on `1598b377f`): the GitHub Actions list tool in this session returned the same three most-recent-repo-wide runs regardless of the `workflow_id` filter passed, so this is reported as unchecked past that point, not assumed passing, per CLAUDE.md 0.4. No evidence of a new failure either; the only commits since are a prose correction and a bot log update, neither touching `site/**`, code or gates.
+
+**No push notification.** Nothing changed since the standing escalation (`VPS_DEPLOY_KEY`/issue #35, already pushed to Phil once on 2026-09-28); restating an unchanged condition now would be noise.
+
+Command deck regenerated and committed. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 10:1x cycle
 
 **Previous work: finished.** Unshallowed and fast-forwarded 551 commits onto `origin/main` (`928ace613`), tree clean, nothing unpushed. Confirmed directly against `content/manual/source/content.json` rather than trusting the log: 114 of 114 zones carry `common_items`, matching the top log entry's own closing claim exactly. 9 open GitHub issues, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs.
