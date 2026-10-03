@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in addendum (18:4x cycle, a concurrent push collided mid-ship)
+
+A concurrent twin cycle (18:3x) pushed its own `ops/NIGHTLY-LOG.md` entry and command-deck regen while this cycle's commit was staged. `ops/ship.py`'s rebase step correctly refused the real conflict in the log (`conflict in real source`), but attempting a plain `git merge` to resolve it, then re-running `ship.py`, hit the same refusal again on the second attempt: `ship.py` rebases rather than merges, and rebasing a tree that already contains a merge commit replays the pre-merge commit standalone, reproducing the identical log conflict instead of seeing it as resolved.
+
+Resolved by hand rather than worked around: kept both PM entries (mine on top as the newer one, the twin's 18:3x entry below it, in true chronological order), took origin's committed copies of the three generated deck files, then regenerated them for real with `ops/dashboard.py` rather than trusting either side's stale copy. Verified directly before pushing: `gate_conflict_markers`, `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries` all called directly against the resolved file, all clean (no stray `<<<<<<<`/`=======`/`>>>>>>>` markers; the nine text hits for those literal strings elsewhere in this file are backtick-quoted prose describing past incidents, not real markers). `git reset --hard` to retry cleanly was denied by this session's own safety classifier (destructive-git), so pushed the already-correct merge commit directly with a plain `git push` instead, which is fast-forward-safe on origin's side and matches STEP 8's own instruction to merge rather than force. `build_id.py --check` current after.
+
+**Worth fixing, not fixed here (scope creep three minutes before the operator):** `ops/ship.py`'s rebase-conflict handling has no path for "I already resolved this with a merge"; it will reproduce the same conflict on retry. A future cycle should either teach it to detect an existing merge commit and skip re-rebasing, or document that a hand-merge must be pushed directly rather than re-run through `ship.py`.
+
+## 2026-10-03, PM check-in (18:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout to Stair Landing (3 zones, the smallest remaining room), because it is the same unblocked, non-Phil-gated workstream A20 piloted on Entryway and nobody has picked up since.
+
+**Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `dd273c58a`, no unrelated-history symptom, no conflict. Working tree was clean, main already pushed. Read `ops/NIGHTLY-LOG.md`'s newest entries (confirmed the file is newest-first; its last dated-header block is 2026-09-04 only because entries since then are inserted at the top, not appended at the bottom), `BACKLOG-2026-09-07.md` in full, `STATUS.md`'s Open Claims section, `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows, and GitHub's open issues directly.
+
+**Confirmed A20 (the `sort_scope` pilot on Entryway's 5 zones) is genuinely done, not just logged as done:** counted `content/manual/source/content.json` directly, Entryway's 5 zones carry `sort_scope`, all other 18 rooms carry 0. `BACKLOG-2026-09-07.md` row A20 and `STATUS.md`'s matching RELEASED entry both match this count. No open row above A20 in section 2 of the backlog; sections 3-4 (decks, images/video) have nothing unblocked either, B6/B8/B9 are each closed by decision or delivery, C6 is Phil-gated (OAuth paste).
+
+**Ran `ops/preflight.py` fast in the background** rather than trusting the prior cycle's clean citation: 0 FAIL lines through every gate up to and including the deck/image gates, reaching the documented `gate_tests` sandbox hang (headless Chromium) with nothing failing before it. Killed there per the standing practice this log has used for weeks; `gate_tests` itself stays unchecked this cycle, not assumed passing. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art` (#2, #15, #18, #21, #29, #31, #33, #35), matching the dashboard; 0 open PRs.
+
+**Not starting the rollout myself**, per the instruction not to begin something large three minutes before the operator; Stair Landing is 3 zones, smaller than any room `common_items`'s own rollout ever did in one PM slot, but still real authoring plus a generator/gate check, sized for the operator's slot, not this one.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). Highest-value unblocked, non-Phil-gated item is the `sort_scope` rollout above, handed to the operator at Stair Landing first (tied-smallest remaining), then Pantry/Dining Room/Guest Bedroom/Guest Bathroom/Hall Closet (5 zones each), following the exact room-by-room order `common_items` already proved out.
+
+Pushed to main. This log entry only; no other file changed. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-03, PM check-in (18:3x cycle)
+
+**Previous work was NOT finished, so fixing it was this cycle's work.** A20's sort_scope commit shipped after `gate_tests` hung locally and was killed, so `gate_mcp_corpus_current` and `gate_build_id_current` never ran and were reported unchecked. Both then failed for real in CI (Checks 1913/1914, Publish site image 559, confirmed via GitHub, not assumed): `mcp/content.json` had drifted from the manual's source, and `build-id.txt` was stale.
+
+**Fixed:** re-copied the manual's `content.json` into `mcp/` verbatim; ran `ops/build_id.py`. Full `preflight.py` ran end to end this time (no kill): 5 FAIL before (one a transient probe-file race, confirmed gone), 0 FAIL/30 standing warnings after. Shipped via `ops/ship.py`; command deck regenerated and shipped.
+
+8 GitHub issues unchanged, all decision/blocked-on-art, none actionable here. Nothing else genuinely unblocked.
+
+**Handing to :43:** confirm Checks on `dd273c58a` actually finished green; still in_progress when this slot ended.
+
+Pushed to main (`dd273c58a`, `d1c7b8495`).
+
 ## 2026-10-03, scheduled operator cycle (A20: closed the belongs/strays handoff four straight PM/operator cycles had declined to start)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `156585a4a` (622 commits), then fast-forwarded once more onto a concurrent PM push (`a8d528f87`, the 17:4x check-in) with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, and `STATUS.md`'s Open Claims section. Confirmed rather than cited: 0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"` in the corpus, so the field genuinely had not been started by anyone. GitHub: 8 open issues (all `decision`/`blocked-on-art`), 0 PRs, unchanged. `inbox_agent.py --apply`: no mail credential, unchecked.
