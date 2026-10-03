@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 00:1x cycle
+
+**Previous work finished:** the 23:4x dashboard-ledger handoff was shipped (`934510664`, revenue carry-forward fix), verified not cited. Backlog "Now" rows all done or Phil-gated. 9 GitHub issues unchanged, none mine.
+
+**Did:** found two unrelated `LEARNINGS.md` entries sharing ID LRN-0032, noted unfixed by the 23:3x cycle. Renumbered the newer to LRN-0035, fixed its one citation (`CHANGELOG.md`). Extended `gate_learnings_index_current` (its old set-based diff could never see a duplicate ID) to catch this directly; 4 new tests, fail-then-pass proved.
+
+**Verified:** tests 12/12, real gate clean, `check_urls`/`audit_pages`/`affiliate` clean. `preflight.py` backgrounded, hit the standing `gate_tests` timeout, left running.
+
+**Handing the operator:** `ops/dashboard.py` and `ops/preflight.py`, still stale in the cold-read ledger, too large for this slot.
+
+Pushed to main (`ee547104a` + dashboard regen). No price/product/page touched.
+
 ## Scheduled operator cycle, 2026-10-02 (dashboard revenue figure silently crossed a calendar-month boundary; fixed and gated)
 
 **Did.** Attached clean: checkout arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (2dbd984ad, 432 commits fast-forwarded, no reset or force). Read `BACKLOG-2026-09-07.md` (sections 0-7), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (all dated 2026-10-02, newest-first per this file's own header). 9 GitHub issues open, all `decision`/`blocked-on-art`, none mine; 0 PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED as every prior cycle. Every "Now" row in the backlog was again done or Phil-gated (B9's twenty room decks all shipped, B8 closed by D-027, A1-A18 all closed), the standing fallback lane (`cold_read_ledger.py --next`/`--stale`) was the only genuinely unblocked work: 195 of 195 files ledgered, 1 stale (`ops/dashboard.py`, touched after its own last clean entry by that same day's gate additions).
