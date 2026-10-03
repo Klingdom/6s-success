@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (18:4x cycle)
+
+NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout to Stair Landing (3 zones, the smallest remaining room), because it is the same unblocked, non-Phil-gated workstream A20 piloted on Entryway and nobody has picked up since.
+
+**Previous work was finished, verified rather than cited.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `dd273c58a`, no unrelated-history symptom, no conflict. Working tree was clean, main already pushed. Read `ops/NIGHTLY-LOG.md`'s newest entries (confirmed the file is newest-first; its last dated-header block is 2026-09-04 only because entries since then are inserted at the top, not appended at the bottom), `BACKLOG-2026-09-07.md` in full, `STATUS.md`'s Open Claims section, `EXECUTIVE-DASHBOARD-LIVE.md`'s Traffic and Affiliate rows, and GitHub's open issues directly.
+
+**Confirmed A20 (the `sort_scope` pilot on Entryway's 5 zones) is genuinely done, not just logged as done:** counted `content/manual/source/content.json` directly, Entryway's 5 zones carry `sort_scope`, all other 18 rooms carry 0. `BACKLOG-2026-09-07.md` row A20 and `STATUS.md`'s matching RELEASED entry both match this count. No open row above A20 in section 2 of the backlog; sections 3-4 (decks, images/video) have nothing unblocked either, B6/B8/B9 are each closed by decision or delivery, C6 is Phil-gated (OAuth paste).
+
+**Ran `ops/preflight.py` fast in the background** rather than trusting the prior cycle's clean citation: 0 FAIL lines through every gate up to and including the deck/image gates, reaching the documented `gate_tests` sandbox hang (headless Chromium) with nothing failing before it. Killed there per the standing practice this log has used for weeks; `gate_tests` itself stays unchecked this cycle, not assumed passing. GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art` (#2, #15, #18, #21, #29, #31, #33, #35), matching the dashboard; 0 open PRs.
+
+**Not starting the rollout myself**, per the instruction not to begin something large three minutes before the operator; Stair Landing is 3 zones, smaller than any room `common_items`'s own rollout ever did in one PM slot, but still real authoring plus a generator/gate check, sized for the operator's slot, not this one.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 `VPS_DEPLOY_KEY`, five other decision issues, #29/#2 blocked-on-art). Highest-value unblocked, non-Phil-gated item is the `sort_scope` rollout above, handed to the operator at Stair Landing first (tied-smallest remaining), then Pantry/Dining Room/Guest Bedroom/Guest Bathroom/Hall Closet (5 zones each), following the exact room-by-room order `common_items` already proved out.
+
+Pushed to main. This log entry only; no other file changed. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, scheduled operator cycle (A20: closed the belongs/strays handoff four straight PM/operator cycles had declined to start)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `156585a4a` (622 commits), then fast-forwarded once more onto a concurrent PM push (`a8d528f87`, the 17:4x check-in) with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, and `STATUS.md`'s Open Claims section. Confirmed rather than cited: 0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"` in the corpus, so the field genuinely had not been started by anyone. GitHub: 8 open issues (all `decision`/`blocked-on-art`), 0 PRs, unchanged. `inbox_agent.py --apply`: no mail credential, unchecked.
