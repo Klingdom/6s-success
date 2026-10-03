@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (continued common_items into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck)
+
+**Did:** Checkout arrived shallow and detached (local main shared no history with origin/main). Unshallowed, attached to main, fast-forwarded 536 commits to 723b39244. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md and the last several log entries. Checked GitHub: 9 open issues unchanged, all decision or blocked-on-art gated. preflight.py (fast) backgrounded; reached gate_tests and hung at the documented headless-Chromium sandbox limit, killed. No mail credential, inbox reported unchecked.
+
+Checked content.json directly before claiming (CLAUDE.md 5d): 63 of 114 zones carried common_items, matching STATUS.md. Claimed the five tied-smallest rooms, no concurrent claim found.
+
+**Shipped all 30 zones across Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck.** Every item grounded in that zone's own done_looks_like/passes/the_call text. Patio or Deck's Surface, Rail, and Safety Zone followed the Stair Landing precedent (a zone whose standard is "nothing stored here": its items are the fixtures that belong, not movables). **93 of 114 done, 17 of 20 rooms fully covered.** 21 remain, all in Kitchen, Primary Bathroom and Garage (7 zones each).
+
+**Verified:** round-tripped content.json (byte-identical before edit, diff scoped to the 30 arrays); staged, then build_zone_pages.py (chains the sitemap) and build_id.py against the staged index, confirmed current before committing. Found and fixed one real pre-existing defect: gate_mcp_corpus_current failed because mcp/content.json had drifted from an earlier push; re-synced. gate_common_items_rendered, gate_mcp_corpus_current, gate_sitemap_lastmod_current, gate_build_id_current all clean via direct FAIL/WARN reads; test_gate_common_items_rendered.py 6/6; check_urls.py 211/211; audit_pages.py 215/0; fix_dashes/fix_dialect clean; affiliate.py clean (165 documents); link_graph_report.py 0 orphans; audit_visual.py --mobile on a 5-page sample, 0 findings; mobile npm test all 4 suites passing.
+
+**Went well:** the stage-then-regenerate-id discipline held; the mcp mirror drift was caught by running the gate directly rather than assuming clean.
+
+**Did not go well:** same gate_tests sandbox hang every recent cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** continue common_items into Kitchen, Primary Bathroom, Garage (7 zones each), closing the field.
+
+Pushed to main. content/manual/source/content.json, mcp/content.json, 30 site/zones/*.html pages, site/sitemap.xml, ops/sitemap-content-hashes.json, site/build-id.txt, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-03, 08:1x cycle
 
 **Previous work finished, verified directly, not cited.** Counted `content/manual/source/content.json` myself: 63 of 114 `common_items` zones done across 12 rooms, matching `STATUS.md`'s claim exactly. Tree clean, main pushed and in sync (0 ahead/behind). `checks.yml` green on every `common_items` commit through run 1889; two later merge-only commits (1890, 1891) still `in_progress`, not yet confirmed. No new defect found: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` and `fix_dialect.py` both clean, mobile `npm test` all suites passing. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (headless Chromium); left running in background, reported unchecked, not passing. 9 open GitHub issues unchanged, all owner-gated or capability-blocked (#39).
