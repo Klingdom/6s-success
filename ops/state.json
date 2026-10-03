@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-03 15:11",
- "commit": "c5f446eb9",
- "commit_msg": "Fix measure.js page-type attribution: workshop-deck.html was counted as shop",
- "commits_7d": 1462,
- "commits_total": 5466,
+ "generated": "2026-10-03 15:19",
+ "commit": "412cf56a2",
+ "commit_msg": "Nightly log addendum: the first --deep run's 4 FAILs, checked not assumed",
+ "commits_7d": 1464,
+ "commits_total": 5469,
  "traffic_line": "49 visitors across 121 visits, 30 days (carried forward from 2026-10-02; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "49 visitors across 121 visits, 30 days",
  "traffic_line_measured_at": "2026-10-02",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-09-30 21:07",
  "affiliate_trigger_carried_from": "2026-09-30 21:07",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
