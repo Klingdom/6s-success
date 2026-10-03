@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 04:4x cycle
+
+NEXT FOR THE OPERATOR: confirm run 1878 (02a82a8f0) is green on checks.yml, then continue common_items, because the last 7 pushes shipped through a red Checks workflow nobody actually read.
+
+**Previous work not finished; that was this cycle's work.** checks.yml failed on main since run 1870, through the "fixed CI" commit and every common_items commit after; the 04:23 entry called it "latency," never read the log. Real cause: sitemap-lastmod and build-id both stale, common_items never reran build_seo.py/build_id.py.
+
+**Fixed:** ran both generators. Verified: the failing test now passes (6 cases), check_urls 211/211, audit_pages 215/0, dashes/dialect clean, mobile tests 4/4.
+
+Pushed (`02a82a8f0`, `9934ff501`): sitemap, hashes, build-id, deck. No price/product touched. Run 1878 in progress at close, not confirmed green.
+
 ## Scheduled operator cycle, 2026-10-03, 04:4x (continuing `common_items`, Hall Closet; CI latency noted, not confirmed green)
 
 **Did:** Continued the same claimed workstream a fourth time this slot. Authored Hall Closet's 5 zones: Linen Shelf Zone (sheet sets bundled in their own pillowcase, everyday towels, guest blankets), Cleaning Equipment Zone (a vacuum, a broom and a mop, bagged attachments), Cleaning Supply Zone (a bathroom caddy and a kitchen caddy, gloves and cloths), Paper and Household Backstock (toilet paper, bulbs grouped by fitting, batteries sorted by size), Seasonal and Guest Zone (guest bedding, decorations, travel gear), every item grounded in that zone's own `straighten`/`sort` text.
