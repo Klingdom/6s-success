@@ -56,6 +56,8 @@ only moment it is cheap.
 
 ## Open claims
 
+**CLAIMED 2026-10-02, owner-directed session: `content/manual/source/content.json`, the `variants` and `capacity` fields, for the 13 rooms that lack them.** Phil asked for micro zones to carry primary function, common items, step-by-step instructions and pitfalls. Measured first: 11 of 14 fields are already complete on all 114 zones (purpose, done_looks_like, the six passes, the_call, watch_for, leave_behind, shine_detail with per-surface method, diagnosis). The real gaps are **variants and capacity, present on 44 of 114**, and **common items, which has no field at all**. Taking variants and capacity first because the rendering already exists and only the data is missing. Rooms: Pantry, Dining Room, Living Room, Family Room, Guest Bedroom, Kids Bedroom, Nursery, Guest Bathroom, Workshop, Mudroom, Hall Closet, Stair Landing, Patio or Deck. Release when done.
+
 No active claims as of 2026-10-02. Every entry previously logged here
 (content-level visitor reads of all 20 rooms, the five "also called" room
 names, the Kitchen/Pantry and small-space keyword-gap closures, A14, the
