@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-10-03: continued common_items into Primary Bedroom, same cycle
+
+**Did:** Claimed Primary Bedroom in `STATUS.md` (40 of 114 zones carried `common_items` at claim time, matching the running count, no concurrent claim found), then authored all 6 zones: Bed and Bedding Zone (sheets/pillows/throw/two sheet sets), Nightstand Left and Nightstand Right (lamp/bottle/book/dish, Right also carrying its own capped in-date medication from `done_looks_like`), Dresser Top (valet tray/fragrance/anti-tip strap), Dresser Drawers (one clothing category per drawer), Primary Closet (hanging clothes/shoes/bags/belts). Every item a direct grounding in that zone's own `done_looks_like`/`leave_behind` text; this room's edit was a pure addition (`git diff --stat`: +35/-0), no rewording of existing fields. **46 of 114 done.** 68 remain; tied-smallest now Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
+
+**Verified the same way as the two rooms below:** `content/manual/source/validate.py` clean, `mcp/content.json` synced byte-identical, staged before `ops/build_zone_pages.py` (chains the sitemap) and `ops/build_id.py --check`, both current before committing. `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all clean via direct `preflight.FAIL`/`WARN` reads. `ops/tests/test_gate_common_items_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `link_graph_report.py` 0 orphans, `affiliate.py --check` clean (165 documents), `ops/audit_visual.py` on all 6 changed pages 0 findings, mobile `npm test` all 4 suites passing.
+
+**Not yet confirmed:** CI on any of this cycle's five pushes was still `in_progress` when last checked (runs 1884-1888+), consistent with every recent cycle's own report of this pipeline's ~20+ minute runtime; nothing has failed, nothing has been assumed green.
+
+**Next:** continue `common_items` (Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck, all tied at 6 zones); confirm this cycle's CI runs resolve green.
+
+Pushed to main (claim + Primary Bedroom, two commits). `content/manual/source/content.json`, `mcp/content.json`, 6 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03 (continued common_items into Living Room and Family Room)
 
 **Did:** Unshallowed and attached clean (`git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 508 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` (section 0's traffic reading, section 7's own verdict, the B9/room-deck row confirmed closed via `ops/b9_claims.py --status`), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `STATUS.md`/`ops/NIGHTLY-LOG.md` entries (newest-first, confirmed by line position, not assumed). Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 read in full, genuinely capability-blocked on real TTS no sandbox here holds), 0 PRs. `preflight.py` fast run completed clean in the background (exit 0, every listed gate ran); the full (`--deep`/`gate_tests`) run hit the same documented headless-Chromium sandbox hang every recent cycle reports, killed after confirming the pattern. `inbox_agent.py --apply`: no mail credential.
