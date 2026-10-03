@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 05:2x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (`fetch --unshallow`, `checkout main`, `merge --ff-only`, 502 commits fast forwarded, never reset or forced). Working tree clean and pushed at `5f9f1c524`. The full `preflight.py` still hits this sandbox's documented `gate_tests` headless-Chromium hang (confirmed again directly, killed after it sat on that gate), so ran the standing narrower suite in its place: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, and the three specific gates this cycle's own addendum entry had just fixed (`gate_sitemap_lastmod_current`, `gate_build_id_current`, `gate_common_items_rendered`), called directly and read via `preflight.FAIL`/`WARN` per that same entry's corrected method, all clean. Mobile `npm test`, all three suites, pass.
+
+**Checked GitHub directly rather than trusting local green alone.** `checks.yml` has 3 pushes mid-run (`c0ebe38e`, `f4d9638a`, `d4e26c700`), each taking its documented ~20+ minutes; the oldest's own `Preflight` step already completed `success` before this check-in closed, so the gates this cycle cared about are confirmed green in CI, not just locally. The other two were still short of that step; recorded as unresolved, not assumed clean. 9 GitHub issues unchanged, all `decision` or `blocked-on-art`, none mine to act on.
+
+**One claim worth checking rather than trusting: the dashboard's "Redeploy the site" line.** `deploy.yml` had two runs against `5f9f1c524` since the dashboard was last generated, both `success`; read the job steps directly rather than trusting the green checkmark, and both show the `Deploy` step itself `skipped`, no `VPS_DEPLOY_KEY` secret, exactly as the workflow's own comment says it will until Phil pastes one. The dashboard's claim still holds; it was not stale.
+
+**Did:** regenerated the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); the only real change was the generation timestamp and the now-clean working tree/last-commit fields. No new defect found to fix this slot.
+
+**Handing to the operator:** continue `common_items` room by room, Guest Bedroom or Guest Bathroom next (tied-smallest, 5 zones each), per the claim already standing in `STATUS.md`. That workstream is hours-sized across 95 remaining zones; this slot is 30 minutes, so it stays with the operator rather than half-started here. Also worth a glance next cycle: the 3 in-flight `checks.yml` runs above, to confirm each resolves green.
+
+Pushed to main. Command deck only. No price or product touched, no new page. IndexNow not applicable.
+
 ## Addendum, 2026-10-03: closed the gap at the generator, and found my own verification method had been silently trusting itself
 
 **Did:** Chained `build_seo.build_sitemap()` into `ops/build_zone_pages.py`'s `main()`, matching the pattern `build_corporate.py` and `build_resources.py` already use, so a standalone run after a `content.json` edit (the way every `common_items` cycle today reached for this file) can no longer leave the sitemap stale. This is CLAUDE.md step 10b: the same defect class had now shipped CI-red twice in one day, so the fix belongs in the generator, not in a third STATUS.md note.
