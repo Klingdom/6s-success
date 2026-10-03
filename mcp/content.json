@@ -4515,6 +4515,20 @@
        "action": "Pull every disc case, spare remote, headset, and loose cable out of the cabinet onto the floor. Anything that pairs with a console or a television you no longer own leaves today, including any remote you have been keeping in case. Check the dock: if a cradle is empty, that controller is loose in the house, and you go find it now rather than at the start of the next game.",
        "victory": "Every remaining disc case, controller, and cable in the cabinet pairs with a console or television the house still owns, and every dock cradle holds the controller that belongs in it."
       }
+     },
+     "variants": [
+      {
+       "condition": "Everything streams and there are no discs",
+       "guidance": "The disc row disappears and the cable rules take all the attention. The failure mode shifts from clutter to heat and to cables nobody can trace, so label both ends and keep the vent gaps even while the shelf looks half empty."
+      },
+      {
+       "condition": "The television is shared by people who game competitively",
+       "guidance": "Give each player a named controller slot rather than a shared bin. The argument in this zone is almost never about the television, it is about whose controller is flat."
+      }
+     ],
+     "capacity": {
+      "rule": "One console per shelf with its own controllers docked beside it, disc cases standing spine out in a single row, the power strip off the carpet, and no vent slot covered.",
+      "does_not_fit": "If a second console has to share a shelf, the unit is a shelf short rather than the console being the problem. Stacking consoles is how vents get blocked, and a blocked vent is the one failure here that costs you a machine."
      }
     },
     {
@@ -4659,6 +4673,20 @@
        "action": "Pull every toy off the shelf and run the two-question sort in the open: does a child actually reach for this without being pointed at it, and is it in one piece with no small part loose enough to choke on. Anything nobody has chosen in the last honest week, and anything cracked or missing a piece that could be swallowed, comes off the shelf today.",
        "victory": "Only toys a child actually chooses remain on the shelf, none of them cracked or missing a small part, sorted into five or six open bins a child can see into from standing height."
       }
+     },
+     "variants": [
+      {
+       "condition": "One child, and older than about eight",
+       "guidance": "Fewer bins and larger categories, and the photo labels can come off. The photo is there for a child who cannot read yet, so leaving it up past its use makes the shelf feel as though it belongs to a younger child."
+      },
+      {
+       "condition": "The play zone sits inside a shared adult room",
+       "guidance": "The bins get lids and the zone gets a closing time. The standard stops being a tidy shelf and becomes a room that converts back in one trip, so what you measure is how long the conversion takes rather than how it looks mid-afternoon."
+      }
+     ],
+     "capacity": {
+      "rule": "Five or six open bins with no lids on the lowest shelf, one category each, and enough clear floor for two children to build without moving anything first.",
+      "does_not_fit": "If the toys will not fit in six bins, they are not all in rotation. Box the rest, date the box and swap, rather than adding a seventh bin, because a seventh category is one a child will not learn."
      }
     },
     {
@@ -4797,6 +4825,20 @@
        "action": "Pull every box and check its lid for a name label and a tape strip on the short edge. While each one is open, count the pieces against the box's own list. If something is missing, decide now whether it's substitutable (a token, a die, a bill of play money you can replace) or structural (a rules booklet, a board section, a single puzzle piece). Write the missing item and today's date on a sticky note on any box you are not fixing immediately.",
        "victory": "Every box on the shelf is labeled and stacked no more than five high, and any box missing a piece carries a dated sticky note naming exactly what is gone."
       }
+     },
+     "variants": [
+      {
+       "condition": "Mostly children's games with flimsy boxes",
+       "guidance": "Lids split long before the games stop being played. Move the pieces into labeled bags inside the box, or into one lidded tub per game, and keep the original lid only for the picture on it."
+      },
+      {
+       "condition": "A collector's shelf rather than a family shelf",
+       "guidance": "Standing boxes on edge protects them better than stacking, so the five-high rule can go. The count rule matters more instead: a collection is only a collection while every box is complete."
+      }
+     ],
+     "capacity": {
+      "rule": "Boxes flat in stacks no more than five high, heaviest at the bottom, each taped and named on the short edge, and every box on the shelf one that passed its piece count.",
+      "does_not_fit": "If the stacks run past five, the shelf is holding games nobody plays rather than being too small. A box that fails its count twice is a decision, not storage."
      }
     },
     {
@@ -4932,6 +4974,20 @@
        "action": "Pull every throw and cushion out and fold each throw to the same rectangle so the fold edges line up in the basket. Run the reaches test out loud: which ones actually get pulled off the pile in an average week. The decorative one nobody reaches for goes to the guest bed or out, and a genuine heirloom nobody unfolds goes to the linen closet or to the person who will actually use it.",
        "victory": "One basket holds one throw per regular seat plus one spare, all folded to the same rectangle, and nothing is draped over the sofa back, a radiator, or a chair arm."
       }
+     },
+     "variants": [
+      {
+       "condition": "A cold house, so the throws are in constant use",
+       "guidance": "The basket still sets the number and the fold is what changes. Fold to the same rectangle anyway, because a basket of identical folds shows a missing throw at a glance and a heap never does."
+      },
+      {
+       "condition": "Allergies, or a pet that sheds",
+       "guidance": "Split the basket into washable and not, and hang the wash on a weekly trigger. The throw that gets used most needs washing most, and it is reliably the one nobody remembers to wash."
+      }
+     ],
+     "capacity": {
+      "rule": "One basket, and its rim is the limit: four throws folded to the same rectangle, two floor cushions beside it, and nothing draped over the sofa back or the radiator.",
+      "does_not_fit": "If the fifth throw will not fit, you own a fifth throw rather than too small a basket. The rim exists so that answer is visible without anyone having to count."
      }
     },
     {
@@ -5076,6 +5132,20 @@
        "action": "Match every cable at the station to a device the house actually uses, and keep one spare of each connector type in a labeled bag. Pull the retired phone out of the drawer, charge it, and decide out loud whether it is genuinely a backup or an archive. If it is an archive, transfer the photos now while it is charged and in your hand; if it is neither, recycle it with the battery still in it at a proper collection point.",
        "victory": "Every cable at the station ends at a named device the house uses, the retired phone has been settled as backup, archive, or recycled, and no charger is plugged in anywhere else in the room."
       }
+     },
+     "variants": [
+      {
+       "condition": "Children's devices charge here too",
+       "guidance": "The slot label carries the name and the rule, and the strip goes where an adult passes. In a family room this is also where screen time ends, which is a reason to keep it in sight rather than in a bedroom."
+      },
+      {
+       "condition": "Somebody works from this room",
+       "guidance": "Give the work machine its own strip and its own slot, outside the household count. A laptop that has to be charged for tomorrow morning should not be competing with four phones for a socket."
+      }
+     ],
+     "capacity": {
+      "rule": "One power strip on a hard surface, four or five labeled cables each ending at a named slot, and the empty slots visible during the day.",
+      "does_not_fit": "If five slots will not cover the household, add a second named strip rather than a second unnamed charger somewhere else in the room. The point of this zone is that there is exactly one place to look for a flat phone."
      }
     },
     {
@@ -5220,6 +5290,20 @@
        "action": "For any project sitting on the work surface, name its very next physical action and the day you will do it, out loud. If you can't produce both without stalling, the project is finished whether it says so or not. Break it down: good materials go back into the paper, drawing, or glue bins where the next project can use them, and the partly worked piece goes to someone who will finish it or goes out. Put the scissors point down in the cup and unplug the glue gun.",
        "victory": "The work surface is completely clear except for at most one active project bin, every scissors sits point down in its cup, and the glue gun is unplugged."
       }
+     },
+     "variants": [
+      {
+       "condition": "An adult hobby rather than children's crafts",
+       "guidance": "The bins stay and the reach rule relaxes, but the one-project-out rule matters more. An adult project left out is what turns a shared family surface into a workshop nobody else can use."
+      },
+      {
+       "condition": "No dedicated surface, so the dining table is the work surface",
+       "guidance": "The lift-out bin becomes the whole system and the trigger is the meal rather than the end of the project. Everything returns to one bin that leaves the table, which means the bin, not the table, decides how big a project can be."
+      }
+     ],
+     "capacity": {
+      "rule": "Four lidded labeled bins grouped by activity, scissors standing point down out of the youngest child's reach, one clear work surface, and exactly one project bin out on it at a time.",
+      "does_not_fit": "If four bins will not hold the supplies, you are storing materials for projects nobody is doing. Keep the activities that actually happened this season, because a fifth bin is almost always an abandoned one."
      }
     }
    ]
@@ -6303,6 +6387,20 @@
        "action": "Take every sheet set that has been demoted to this room and try each fitted sheet on the actual mattress. If a corner pops off while you are making the bed, it is a rag, not a spare. Fold each pillow in half and let go, and anything that stays folded goes out.",
        "victory": "Every remaining sheet set has passed the mattress test, and every remaining pillow springs back when folded in half."
       }
+     },
+     "variants": [
+      {
+       "condition": "The guest room doubles as long-term storage",
+       "guidance": "The under-bed rule is then the one holding the room together. Everything stored goes into labeled lidded boxes that slide out without moving the bed, and the bed itself stays made and usable all year rather than becoming a shelf."
+      },
+      {
+       "condition": "Guests stay for weeks rather than nights",
+       "guidance": "Two spare sets rather than one, and a named laundry day. Somebody staying a month needs to change the bed without asking, which means the spare has to be obvious rather than merely present."
+      }
+     ],
+     "capacity": {
+      "rule": "One complete set made up on the bed, one complete spare folded inside its own pillowcase on the shelf in this room, two pillows that spring back, and nothing under the bed but one empty suitcase lying flat.",
+      "does_not_fit": "If the spare set will not fit on the shelf in this room, it is living somewhere a guest cannot reach it at midnight, which is the entire reason it belongs here rather than in the airing cupboard."
      }
     },
     {
@@ -6434,6 +6532,20 @@
        "action": "Open the drawer and take out what has been hiding in a room nobody uses: dead batteries, a clock radio that lost its time when the power blipped, three paperbacks nobody chose, cough drops fused into their tin. None of it belongs to a guest, and none of it belongs to you either.",
        "victory": "The drawer holds only what a guest needs: a lamp within reach, two tested cables, tissues, a coaster and the wifi card, nothing of the household's."
       }
+     },
+     "variants": [
+      {
+       "condition": "Guests are family who visit often",
+       "guidance": "The empty drawer can become their drawer, with their name on it. The rule survives because it is still empty of your things, and a named drawer is a stronger welcome than a bare one."
+      },
+      {
+       "condition": "One nightstand for a bed two people share",
+       "guidance": "Put it on the side nearest the door and move the second set of charging cables to the work surface. A shared nightstand only works while it holds nothing personal to either person."
+      }
+     ],
+     "capacity": {
+      "rule": "A lamp you can find by feel in the dark, one charging cable per common connector reaching the pillow, a coaster, a tissue box at least half full, and a drawer genuinely empty apart from the wifi card.",
+      "does_not_fit": "If the drawer is not empty, this nightstand is yours rather than theirs. The empty drawer is the one part of the zone a guest will actually use, and it is the first thing to get quietly reclaimed."
      }
     },
     {
@@ -6566,6 +6678,20 @@
        "action": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
        "victory": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed."
       }
+     },
+     "variants": [
+      {
+       "condition": "The room is used as a guest room only a few nights a year",
+       "guidance": "The empty drawers can hold off-season clothing as long as it leaves in one lift. Keep it to a single labeled bag or box per drawer so preparing the room is one movement rather than an afternoon."
+      },
+      {
+       "condition": "No dresser, only a closet",
+       "guidance": "The empty-drawer promise moves to shelf space: one clear shelf at chest height, labeled for the guest, with household bins below it. What matters is somewhere to put folded clothes that is neither the floor nor the suitcase."
+      }
+     ],
+     "capacity": {
+      "rule": "The top two drawers completely empty and lined, lower drawers holding spare linens folded to one footprint and labeled on the inside front edge, an anti-tip strap into the wall, and a lamp or mirror alone on top.",
+      "does_not_fit": "If the top two drawers cannot be emptied, this is household storage with a guest standing in front of it. Move the overflow to the closet shelf, because two empty drawers are the thing that stops a visitor living out of a suitcase."
      }
     },
     {
@@ -6697,6 +6823,20 @@
        "action": "Take everything out and put it on the bed. This closet is where the house keeps holiday decorations, a wedding dress in a zipped bag, a box of old phones, and paperwork from two addresses ago. Sort by whether a named person will use it in a named situation, and route the rest out.",
        "victory": "At least a forearm's width of clear rod carries six matching empty hangers, and the floor square for a suitcase is clear."
       }
+     },
+     "variants": [
+      {
+       "condition": "This closet is the household's main storage and genuinely cannot be shared",
+       "guidance": "Say so and solve it elsewhere. A labeled garment rack, or six hangers on the back of the door, is a more honest welcome than a rod a guest has to excavate and will not dare to."
+      },
+      {
+       "condition": "Long-stay guests, or a lodger",
+       "guidance": "The tape line moves permanently and the household bins move out. A room somebody lives in needs its closet to be theirs, and anything short of that turns into a weekly negotiation nobody enjoys."
+      }
+     ],
+     "capacity": {
+      "rule": "A forearm's width of clear rod carrying six matching empty hangers, a clear floor square big enough for an open suitcase, household bins in labeled lidded boxes on the shelf, and nothing loose above head height.",
+      "does_not_fit": "If six hangers will not fit, household storage has taken the room's hospitality. Tape the rod to mark the guest's share and keep the household behind the line, because an unmarked boundary only ever moves one way."
      }
     },
     {
@@ -6834,6 +6974,20 @@
        "action": "Clear the surface completely. It will be holding gift wrap, an ironing pile that never made it back, a printer that has not been switched on this year, and paperwork someone brought in here to deal with in peace. The ironing goes back to the wardrobe it came from, the printer either earns a desk somewhere it gets used or leaves the house, and the paperwork goes into the file it was always headed for.",
        "victory": "The desk stands clear with a working lamp, and no cord crosses the walking line to the outlet."
       }
+     },
+     "variants": [
+      {
+       "condition": "No room for a desk",
+       "guidance": "The welcome bin matters more and moves to the dresser top or a shelf. What a guest actually needs is the wifi card, a charger and a glass of water: the desk is the nicety, the bin is the promise."
+      },
+      {
+       "condition": "Guests who work while they stay",
+       "guidance": "The outlet and the chair stop being decorative. Sit in that chair at that desk for an hour rather than a minute, and put a second outlet or a short extension within reach, clipped so nothing crosses the floor."
+      }
+     ],
+     "capacity": {
+      "rule": "A clear desk with a working lamp and a chair pulled up to it, a luggage rack or taped floor square for the suitcase, one labeled welcome bin, and a reachable outlet with no cord crossing the floor.",
+      "does_not_fit": "If the desk cannot be cleared, this room has a second job and the guest is the one paying for it. Move the household work onto a tray that lifts off before a visitor arrives."
      }
     }
    ]
