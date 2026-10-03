@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum, 2026-10-03: closed the gap at the generator, and found my own verification method had been silently trusting itself
+
+**Did:** Chained `build_seo.build_sitemap()` into `ops/build_zone_pages.py`'s `main()`, matching the pattern `build_corporate.py` and `build_resources.py` already use, so a standalone run after a `content.json` edit (the way every `common_items` cycle today reached for this file) can no longer leave the sitemap stale. This is CLAUDE.md step 10b: the same defect class had now shipped CI-red twice in one day, so the fix belongs in the generator, not in a third STATUS.md note.
+
+**A real defect in how I was checking my own work, found while proving this one.** Calling `preflight.gate_sitemap_lastmod_current()` directly and catching `SystemExit` to mean "it passed" proves nothing: `fail()` only appends to a module-level `FAIL` list, and only `preflight.py`'s own `main()` turns that into a nonzero exit. Every gate I had called that way earlier this cycle looked clean whether it actually was or not. Caught it by building a proper fail-then-pass proof in an isolated worktree (`git worktree add`): reverted the fix, edited a zone's `common_items`, rebuilt, and the gate's real `FAIL` list came back empty even though the content had genuinely changed and the hash file had not, until I checked `preflight.FAIL` directly instead of trusting the absence of an exception, at which point it correctly named the stale URL. Re-checked the real repo's current state the correct way immediately afterward: still clean, so the Dining Room push earlier this cycle was in fact fine, but by luck of the underlying state being correct, not because my check would have caught it if it hadn't been.
+
+**Verified:** fail-then-pass proved directly in the worktree (FAIL list populated naming the file, then empty after the fix). In the real repo: a full rebuild is idempotent (no diff), `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `test_gate_sitemap_lastmod_current.py` 6/6.
+
+**Changing next cycle: verify every gate by reading `preflight.FAIL`/`preflight.WARN` after calling it, never by catching an exception that the function was never going to raise.** Recording this because CLAUDE.md 0.4 says exactly this class of mistake, an unchecked result silently standing in for a passing one, is the one that has cost the most here, and this was a live instance of it inside a single session, not a historical one.
+
+**Next:** continue `common_items` room by room (Guest Bedroom or Guest Bathroom next); confirm `checks.yml` is green on this push and the two before it.
+
+Pushed to main. `ops/build_zone_pages.py` only. No price or product touched, no new page.
+
 ## Scheduled operator cycle, 2026-10-03 (fixed a 5-push CI red streak; continued `common_items` into Dining Room)
 
 **Did:** Unshallowed and attached cleanly (`git fetch --unshallow`, `checkout main`, `merge --ff-only`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries and `STATUS.md`. Checked GitHub Actions directly rather than trusting a prior cycle's own "CI is just slow" note: `checks.yml` had actually failed on 5 consecutive pushes (runs 1873-1877). Read run 1877's job log and found the real cause: `gate_sitemap_lastmod_current` (zone URLs stale) and `gate_build_id_current` (`site/build-id.txt` not matching the real tree), because the prior `common_items` content commits never re-ran `ops/build_seo.py`/`ops/build_id.py`.
