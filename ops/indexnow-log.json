@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T10:16:46Z",
-   "mode": "changed",
-   "offered": 35,
-   "accepted": 35,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T12:26:25Z",
    "mode": "changed",
    "offered": 20,
@@ -633,6 +626,13 @@
    "offered": 30,
    "accepted": 30,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T09:22:06Z",
+   "mode": "changed",
+   "offered": 7,
+   "accepted": 7,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -759,13 +759,13 @@
   "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "e84701573a53ec40",
   "https://6s-success.com/zones/kids-bedroom-the-study-desk": "2e26e04be53b8952",
   "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "929ba9470a623595",
-  "https://6s-success.com/zones/kitchen-the-cooking-zone": "12f273cce5fe1bf2",
-  "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "4fb59589afaf0926",
-  "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "85d06a104d94a732",
-  "https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer": "b75f1f94a82e75e9",
-  "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "a4594922fabe7f80",
-  "https://6s-success.com/zones/kitchen-the-upper-cabinets": "5c348cff15355114",
-  "https://6s-success.com/zones/kitchen-the-utensil-and-utility-drawers": "edc1a8a66f8514e6",
+  "https://6s-success.com/zones/kitchen-the-cooking-zone": "0d520ae8ea38e54e",
+  "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "92fb70b5e96ed238",
+  "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "44ca9c24b6ae5ab5",
+  "https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer": "1cce453b30f57989",
+  "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "5cce81dd3d75f8f1",
+  "https://6s-success.com/zones/kitchen-the-upper-cabinets": "3e93e9822bc18a67",
+  "https://6s-success.com/zones/kitchen-the-utensil-and-utility-drawers": "ddccd3a8ed49a717",
   "https://6s-success.com/zones/laundry-room-the-detergent-and-treatment-zone": "d49975532c5c1e26",
   "https://6s-success.com/zones/laundry-room-the-folding-surface": "ae4374ef46d7f6eb",
   "https://6s-success.com/zones/laundry-room-the-hanging-and-air-dry-zone": "76f2b876a1a12116",
