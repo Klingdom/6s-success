@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 07:2x cycle
+
+**Previous work not finished: STATUS.md's `common_items` count had drifted.** Counted `content.json` directly: **51 of 114 zones, 10 of 20 rooms done**, not the 46 claimed; Primary Bedroom was still marked "in progress" though it shipped (`426758eb1`). Cause: Living Room's own 33+6 was written as 34, propagating a dropped-5 error forward. Corrected all three lines, closed the stale claim. Nothing else changed: `gate_common_items_rendered`, `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check` all clean. Full `preflight.py` hit the documented `gate_tests` sandbox hang again, killed, not new. 9 open issues unchanged, owner-gated except #39 (capability-blocked). Recent CI runs still in progress, nothing failed.
+
+**Handing to operator:** continue `common_items` (Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck, 6 zones each), starting from 51 of 114.
+
+Pushed to main, two commits. `STATUS.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## Addendum, 2026-10-03: continued common_items into Primary Bedroom, same cycle
 
 **Did:** Claimed Primary Bedroom in `STATUS.md` (40 of 114 zones carried `common_items` at claim time, matching the running count, no concurrent claim found), then authored all 6 zones: Bed and Bedding Zone (sheets/pillows/throw/two sheet sets), Nightstand Left and Nightstand Right (lamp/bottle/book/dish, Right also carrying its own capped in-date medication from `done_looks_like`), Dresser Top (valet tray/fragrance/anti-tip strap), Dresser Drawers (one clothing category per drawer), Primary Closet (hanging clothes/shoes/bags/belts). Every item a direct grounding in that zone's own `done_looks_like`/`leave_behind` text; this room's edit was a pure addition (`git diff --stat`: +35/-0), no rewording of existing fields. **46 of 114 done.** 68 remain; tied-smallest now Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each).
