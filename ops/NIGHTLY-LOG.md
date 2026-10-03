@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 09:1x cycle
+
+**Previous work was finished.** Unshallowed and fast-forwarded 542 commits onto `origin/main` (`004f30fc6`), working tree clean, nothing unpushed. Confirmed directly against `content.json` rather than trusting the log's own count: 93 of 114 zones carried `common_items`, matching the prior cycle's claim exactly. 9 open GitHub issues, all decision, blocked-on-art, or capability-blocked (issue #39 needs real TTS re-recording this sandbox cannot reach); 0 open PRs.
+
+**Did: `common_items` for Kitchen (7 zones), the smaller of the two remaining pieces of the standing handoff.** Grounded every item in that zone's own `done_looks_like`/`passes` text, nothing invented. Edited both `content.json` copies with the standard byte-identical round-trip dump, confirmed scoped to exactly the 7 new arrays, re-synced in one script so the manual and MCP mirrors never diverged. Staged, then ran `build_zone_pages.py` and `build_id.py` against the staged index before committing. **100 of 114 done, 18 of 20 rooms fully covered.**
+
+**Verified, not assumed:** `gate_common_items_rendered`, `gate_mcp_corpus_current`, `gate_sitemap_lastmod_current`, `gate_build_id_current` all called directly and clean; `test_gate_common_items_rendered.py` 6/6 (run as a script, no `pytest` module in this sandbox); `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py`/`fix_dialect.py --check` both 0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans. Full `preflight.py` (fast) was backgrounded and hit the same documented `gate_tests` sandbox hang every recent cycle reports, killed by its own timeout with no output captured; reported here as unchecked, not assumed passing, since the gates that touch this change were verified directly instead.
+
+**Handing to the hourly operator at :43: Primary Bathroom and Garage (7 zones each, the last 14 of 114).** Left both rather than starting them here, since two 7-zone rooms is the scale the prior cycle's own 30-zone push took, not a 30-minute slot, and starting one without finishing it risks a collision with the operator's own in-flight claim.
+
+Pushed to main (`be7e35c45`), confirmed on origin. `content/manual/source/content.json`, `mcp/content.json`, 7 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03 (continued common_items into Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck)
 
 **Did:** Checkout arrived shallow and detached (local main shared no history with origin/main). Unshallowed, attached to main, fast-forwarded 536 commits to 723b39244. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md and the last several log entries. Checked GitHub: 9 open issues unchanged, all decision or blocked-on-art gated. preflight.py (fast) backgrounded; reached gate_tests and hung at the documented headless-Chromium sandbox limit, killed. No mail credential, inbox reported unchecked.
