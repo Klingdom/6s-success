@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 10:1x cycle
+
+**Previous work: finished.** Unshallowed and fast-forwarded 551 commits onto `origin/main` (`928ace613`), tree clean, nothing unpushed. Confirmed directly against `content/manual/source/content.json` rather than trusting the log: 114 of 114 zones carry `common_items`, matching the top log entry's own closing claim exactly. 9 open GitHub issues, all `decision`/`blocked-on-art`/capability-blocked; 0 open PRs.
+
+**Found and closed a stale claim.** `STATUS.md`'s "Open claims" section still read `common_items` as `CLAIMED AND IN PROGRESS`, `18 of 114 done, 96 remain`, hours after the field actually closed at 114 of 114. Released it in place, replaced the stale count with the real one and a direct count against `content.json`, kept the CI lesson (re-run `build_seo.py`/`build_id.py` on every content-only push) since that still applies to the next corpus-wide field. `ops/cold_read_ledger.py --next`: the fallback lane is still fully exhausted (195 of 195 files ledgered, 0 stale), confirmed again rather than assumed. `keyword-demand.yml` ran once already (2026-10-02, success); not due again on its weekly cron, so not re-fired.
+
+**Preflight: fast run hit the documented `gate_tests` sandbox hang (killed after it sat idle past `gate_image_coverage` with no output since); reported unchecked past that point, not passing.** Cross-checked against CI instead: `checks.yml` run 1896, the real HEAD's own commit (`1598b377f`), shows its `Preflight` step completed `success` at 10:15:44 (20 minutes, zero FAIL), with the test suite step still running after. That is real evidence preflight passes on HEAD; this session's own hung local run is the same sandbox limitation every recent cycle has already named, not a new one.
+
+**Next:** with `common_items` closed and the cold-read lane exhausted, the only genuinely unblocked, non-Phil-gated items left are the standing ones already named: a `keyword-demand.yml` re-harvest once its weekly cron is due, and re-verifying CI resolves green on `1598b377f`/`928ace613`. Standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`, now a 32-commit deploy gap, counted directly) and the 9 open GitHub issues, unchanged. Nothing hours-sized to hand the 10:43 operator beyond watching CI on the current head.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03 (closed `common_items`: Primary Bathroom and Garage, 114 of 114 done)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded cleanly onto `origin/main` (`2c8a5c565`, 0 ahead/behind). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 7's own verdict: the concrete queue is done or Phil-gated, nothing unblocked and workstream-sized remains outside the in-flight `common_items` field), `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md`/`STATUS.md` entries. Checked GitHub directly: 9 open issues unchanged (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS this sandbox cannot reach), 0 PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
