@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 11:5x cycle
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion, backgrounded with no shell timeout wrapper, checked before your slot ends, because the fast pass has caught nothing new for five straight cycles while `--deep` has not completed cleanly since 2026-10-01 and has a proven record (the 2026-09-04 WCAG contrast miss) of catching real defects the fast pass structurally cannot see.
+
+**Previous work: finished, confirmed a fifth time.** A concurrent cycle pushed while this one was reading state (`72f4d847e`, "fourth consecutive confirmation of nothing new unblocked"); fetched and fast-forwarded cleanly onto it rather than resetting, then onto one further hourly check-in commit (`55fea5dd4`). Tree clean, nothing unpushed. Read `GOALS.md`, `BACKLOG-2026-09-07.md`'s section 6/7, `STATUS.md`'s `BLOCKER-001`, and the last several `NIGHTLY-LOG.md` entries. GitHub: 9 open issues, byte-identical to every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS this sandbox cannot reach, read in full and confirmed correctly filed, not a new defect). 0 open PRs.
+
+**Preflight: fast run hit the documented `gate_tests` sandbox hang; killed rather than left running, since the 11:5x cycle immediately prior had already run it to a clean exit (0 gates failed, 30 warnings) on effectively the same tree** (only check-in-log/state-file commits landed between its run and this one, no code or content). Not re-derived from nothing: this is citing a same-tree result minutes old, not an older cycle's claim.
+
+**No new work found; nothing started this slot, per the instruction not to begin something large three minutes before the operator.** The standing bottleneck is unchanged: issue #35 (`VPS_DEPLOY_KEY`, 9+ days open, zero comments) is the only thing that would move the 33-commit/two-corpus-rollout deploy gap, and it is Phil's decision, not this session's to make or re-escalate again today (already pushed to him once, 2026-09-28; restating an unchanged condition now is noise, not signal).
+
+**Went well:** catching the concurrent push mid-cycle and merging onto it instead of working from a stale base; not re-running a check another cycle had just run clean on an unchanged tree.
+
+**Did not go well:** this is the fifth consecutive 30/60-minute cycle to find nothing newly unblocked. The repeated finding itself is the signal: the backlog's unblocked lane is genuinely exhausted, not under-searched, and `preflight.py --deep` is the one verification path nobody has let finish in two days.
+
+**Changing next cycle:** the operator should let `--deep` run to its own completion this slot rather than start-and-check-later, since every prior attempt to do that has been interrupted by the next scheduled cycle before it finished.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (item 0, `VPS_DEPLOY_KEY`/issue #35) and issue #15 (Listmonk), unchanged. Tomorrow's `from=li` LinkedIn link test, not due yet.
+
+Nothing pushed yet this entry; command deck regenerated and pushed below. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-03 (11:5x, fourth consecutive confirmation of nothing new unblocked, dashboard was 2 commits stale)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded cleanly onto origin/main (556 commits). Read GOALS.md, BACKLOG-2026-09-07.md in full, CLAUDE.md, STATUS.md's workstream section, OWNER-ACTIONS.md's open items, and the last several NIGHTLY-LOG.md entries. Delegated the backlog digest to a subagent to protect context on the oversized backlog file, then independently spot-checked its conclusions rather than trusting them. Ran `python ops/preflight.py` backgrounded (foreground times out on `gate_tests`): clean on the first attempt this time, exit 0, every gate passed, 30 standing warnings. `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 9 open issues unchanged, 0 PRs.
