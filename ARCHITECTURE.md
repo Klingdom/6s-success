@@ -208,15 +208,17 @@ true weeks ago and this section never said so, directly contradicting
 `RISKS.md`'s own tracking of the same two risks as CLOSED.** Payment exists
 (Stripe-hosted Payment Links, linked directly off product pages, e.g.
 `buy.stripe.com/...` on `book.html` and `consulting.html`; one real sale
-completed 2026-08-21, see `GOALS.md`) and CI exists (**13 workflows as of
-2026-10-02, corrected from 12: `keyword-demand.yml` was added this cycle,
-a weekly real-network re-harvest of ops/keyword_demand.py's autocomplete
-reading, which the cloud operator sandbox cannot run itself**,
+completed 2026-08-21, see `GOALS.md`) and CI exists (**14 workflows as of
+2026-10-03, corrected from 13: `indexation-check.yml` was added this
+cycle, a weekly real-network check of which sections of the site (zone,
+room, article) an engine has ever confirmed indexed, which the cloud
+operator sandbox cannot run itself, same reason `keyword-demand.yml`
+exists as its own workflow rather than something a sandbox cycle tries**,
 under `.github/workflows/`: `bluesky-drafts.yml`, `checks.yml`, `deploy.yml`,
-`fulfil-orders.yml`, `hourly-brief.yml`, `keyword-demand.yml`,
-`linkedin-drafts.yml`, `mobile-checks.yml`, `publish-image.yml`,
-`publish-mcp.yml`, `roadmap-report.yml`, `social-drafts.yml`,
-`status-email.yml`). Neither added a runtime: the
+`fulfil-orders.yml`, `hourly-brief.yml`, `indexation-check.yml`,
+`keyword-demand.yml`, `linkedin-drafts.yml`, `mobile-checks.yml`,
+`publish-image.yml`, `publish-mcp.yml`, `roadmap-report.yml`,
+`social-drafts.yml`, `status-email.yml`). Neither added a runtime: the
 payment mechanism is exactly the "hosted checkout" path section 13 always
 recommended, and CI runs against the static output; `deploy.yml` runs a
 credentialed SSH step only once `VPS_DEPLOY_KEY` is set as a GitHub secret
@@ -230,7 +232,7 @@ credentialed SSH step only once `VPS_DEPLOY_KEY` is set as a GitHub secret
 - ~~no analytics~~ **Self-hosted Umami analytics exists (`site/assets/js/measure.js` calls `window.umami.track()`), added after 2026-08-17. Still true as written: no third-party analytics, no advertising pixels, no session recording, no third-party trackers. `site/privacy.html` discloses this correctly ("self-hosted software running on our own server, not a third-party analytics service") and was not stale on this point. Verified 2026-09-11 by reading both files directly.**
 - no external network requests from any page, including fonts, which are self hosted
 - no CDN
-- ~~no CI, no `.github` directory, no workflows~~ **13 workflows exist, see above. They build and check the site; nothing in the served page path changed.**
+- ~~no CI, no `.github` directory, no workflows~~ **14 workflows exist, see above. They build and check the site; nothing in the served page path changed.**
 - no staging environment
 
 Several of these are deliberate and good. Several are `RISKS.md` entries. They are not the same list, and the difference matters:

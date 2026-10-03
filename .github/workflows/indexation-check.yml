@@ -1,0 +1,68 @@
+name: Indexation check
+
+# ops/indexation_check.py asks one question with a plain `site:6s-success.com`
+# search on DuckDuckGo and Bing: which of our pages has an engine confirmed
+# indexed, and specifically, has a /zones/ page ever been one of them. It
+# needs real outbound internet to a non-local destination, the same
+# requirement ops/keyword_demand.py already has and the same reason this
+# workflow exists rather than something an operator cycle tries from the
+# cloud sandbox: that sandbox's egress proxy refuses both engines outright
+# (confirmed directly: a tunnel/403 from the proxy itself, the exact shape
+# ops/indexnow.py --submit and ops/keyword_demand.py already hit there). A
+# GitHub-hosted runner has ordinary outbound internet, the same fact
+# hourly-brief.yml's own IndexNow step and keyword-demand.yml already rely
+# on.
+#
+# Weekly, not daily: the tool sends exactly two queries, one per engine, with
+# a real delay between them, by design (its own docstring explains why: the
+# 2026-10-01 session that lost DuckDuckGo for an hour did it by retrying into
+# a block). A tighter cadence spends an engine's patience for no additional
+# signal, since which pages an engine has indexed does not meaningfully
+# change day to day either.
+#
+# No push fallback. A late or skipped week here costs nothing a customer can
+# feel: it is a measurement, not a delivery promise, and
+# ops/preflight.py's own gate_indexation_check_not_stale is the backstop
+# that notices if a real gap opens up.
+#
+# The tool itself refuses to let a blocked or empty engine overwrite the
+# ledger (both the canary check and the "every engine failed" refusal exist
+# for exactly that), so a run that could not reach an engine fails this job
+# loudly instead of silently committing nothing or committing a false
+# "indexation collapsed" reading.
+
+on:
+  schedule:
+    - cron: '15 10 * * 3'      # Wednesdays, mid-morning UTC, offset from
+                                # keyword-demand.yml's 09:45 so the two never
+                                # share a runner minute
+  workflow_dispatch:
+
+concurrency:
+  group: indexation-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write        # commits ops/indexation.json and ops/INDEXATION.md
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check which sections are indexed
+        run: python ops/indexation_check.py --check
+
+      - name: Commit the new reading
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/indexation.json ops/INDEXATION.md
+          git diff --cached --quiet || git commit -m 'Weekly indexation check'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main

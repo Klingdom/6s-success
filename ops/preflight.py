@@ -17711,6 +17711,80 @@ def gate_keyword_demand_not_stale() -> None:
         warn("keyword-demand-not-stale", problem)
 
 
+INDEXATION_CHECK_STALE_DAYS = 14
+
+
+def indexation_check_staleness_problem(payload, now) -> str:
+    """Pure logic behind gate_indexation_check_not_stale, unit testable
+    without touching the real file or the real clock.
+
+    payload is the parsed ops/indexation.json (or None if the file does not
+    exist or does not parse). now is a tz-aware datetime."""
+    if payload is None:
+        return ("ops/indexation.json does not exist or does not parse, so "
+                "whether any /zones/ page has ever been confirmed indexed "
+                "has never been read. Run "
+                "`python ops/indexation_check.py --check` from a runner "
+                "with real internet access (the ops sandbox this usually "
+                "runs from cannot reach either engine; "
+                ".github/workflows/indexation-check.yml exists for exactly "
+                "this and can be fired by hand with workflow_dispatch).")
+    checked_at = payload.get("checked_at")
+    if not checked_at:
+        return "ops/indexation.json has no checked_at field."
+    try:
+        when = dt.datetime.strptime(checked_at, "%Y-%m-%dT%H:%M:%SZ").replace(
+            tzinfo=dt.timezone.utc)
+    except ValueError:
+        return "ops/indexation.json's checked_at %r does not parse." % checked_at
+    age_days = (now - when).total_seconds() / 86400
+    if age_days > INDEXATION_CHECK_STALE_DAYS:
+        return ("ops/indexation.json's reading of which sections are "
+                "indexed is %.1f days old (checked_at %s), past the %d-day "
+                "ceiling. The indexation-check.yml workflow should be "
+                "landing a fresh one every run; a gap this wide means it "
+                "stopped firing or stopped succeeding, silently."
+                % (age_days, checked_at, INDEXATION_CHECK_STALE_DAYS))
+    return ""
+
+
+def gate_indexation_check_not_stale() -> None:
+    """ops/indexation.json, the only reading this business has of which
+    SECTIONS of the site are actually indexed rather than merely crawled
+    (GOALS.md O1), must not go quietly stale.
+
+    This sandbox cannot reach either engine directly (confirmed by running
+    `ops/indexation_check.py --check` here: both DuckDuckGo and Bing's RSS
+    endpoint come back as a tunnel/proxy refusal, the same shape
+    `ops/indexnow.py --submit` and `ops/keyword_demand.py` already hit).
+    `.github/workflows/indexation-check.yml` runs it from a GitHub-hosted
+    runner, which has ordinary outbound internet. This gate is the backstop
+    making sure that workflow is actually landing fresh readings rather
+    than quietly failing to commit, the exact gap `gate_keyword_demand_not_
+    stale` exists to close for the sibling tool it was modelled on.
+
+    A WARNING, not a failure: a stale reading is a measurement gap, not
+    something a customer can feel.
+
+    Proof this can fail: ops/tests/test_gate_indexation_check_not_stale.py
+    calls indexation_check_staleness_problem() directly with a payload
+    dated three weeks before `now` and asserts the warning fires by name,
+    then with one dated two days before `now` and asserts it does not, then
+    with payload=None and asserts it fires for a missing file too.
+    """
+    path = os.path.join(ROOT, "ops", "indexation.json")
+    payload = None
+    if os.path.exists(path):
+        try:
+            payload = json.loads(io.open(path, encoding="utf-8").read())
+        except Exception:                                          # noqa: BLE001
+            payload = None
+    problem = indexation_check_staleness_problem(
+        payload, dt.datetime.now(dt.timezone.utc))
+    if problem:
+        warn("indexation-check-not-stale", problem)
+
+
 def gate_goals_keyword_cluster_citation_current(goals_path=None,
                                                  demand_path=None) -> None:
     """GOALS.md's own small-space/budget cluster citation must not drift
@@ -28003,6 +28077,7 @@ def main() -> int:
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_indexation_check_not_stale)
     run_gate(gate_goals_keyword_cluster_citation_current)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
