@@ -2,6 +2,39 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (13:1x cycle)
+
+**Previous work was finished and verified, not just committed.** `common_items` closure (114 of 114 zones, 20 of 20 rooms) carried through STATUS.md's own entries to the end; confirmed the field is genuinely closed, not re-cited. Working tree was clean, main already pushed before this cycle started (checkout arrived shallow/detached per the standing issue #27 shape; fast-forwarded cleanly onto origin/main, 563 commits, no reset needed). `git log` matched `ops/NIGHTLY-LOG.md`'s own then-newest entry (12:4x, commit `c46f1f983`) exactly, so nothing was claimed there that this cycle could not confirm.
+
+**Checked for new unblocked work: found none, same as the last several cycles.** Re-read `BACKLOG-2026-09-07.md` sections 2 to 6 directly rather than citing a prior summary: every row is either struck through (done), reframed onto Phil (C4/C5/C6, Gemini billing and YouTube OAuth), or a recorded decision (B8 closed by D-027, correctly not reopened). Both active workstream slots (1 and 2) stay BLOCKED on Phil (Umami access, a spending decision); workstream 3 stays CLOSED with no replacement, since nothing in the backlog is both unblocked and workstream-sized. GitHub: 9 open issues, 0 PRs, unchanged, all decision/blocked-on-art/Phil-capped.
+
+**The one real, small thing found and closed this cycle:** the command deck had gone stale again. `EXECUTIVE-DASHBOARD-LIVE.md` still named `adf2a359e` (11:5x) as the last commit and showed "uncommitted or unpushed work," when HEAD was actually `c46f1f983` (12:4x) and the tree was clean. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (build time, total commit count, working-tree line, last-commit line), nothing else moved. `fix_dashes.py --check`: 0 em dashes, 0 en dashes.
+
+**Verified, not assumed: ran `preflight.py` fast in the background.** Every gate up to `gate_tests` passed with no failures; it reached the documented headless-Chromium sandbox hang at `gate_tests` (same shape every recent cycle reports) and had not finished by the time this slot needed to ship. Not claiming a clean full result: reporting unchecked past that gate, per CLAUDE.md 0.4. This cycle's own change (command-deck files only) is not touched by `gate_tests`.
+
+**First push attempt hit a real `gate_nightly_log_ordering` shape, caught and fixed before landing.** A concurrent push (the scheduled operator cycle immediately below, plus an hourly check-in) landed while this cycle was writing its own entry. This file's own header says "newest first," and this entry had been appended to the file's physical end instead of prepended to the top, the exact misplacement `gate_nightly_log_ordering`'s own docstring names as its reason for existing. Caught on `git merge` (conflict on this file) rather than by the gate itself, since the gate was never run against the wrongly-placed version; corrected by prepending this entry above the concurrent cycle's own entry instead of leaving it at the bottom. The generated command-deck files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) took the concurrent cycle's version and were not hand-merged, per the standing rule to regenerate rather than resolve a generated file's conflict by hand; `ops/dashboard.py` was re-run after merging to confirm it still reflects the true post-merge HEAD.
+
+**Handing to the operator at :43:** the 12:4x cycle's own handoff stands: run `preflight.py --deep` fresh (not run today in this log) or start a second-pass cold read of `ops/*.py`, since the first-pass ledger reports 0 of 195 files stale. Nothing else is newly actionable.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched.
+
+## 2026-10-03, scheduled operator cycle (preflight FAIL fixed, plus a stale cross-document citation a gate gap let through)
+
+**Did:** Unshallowed and fast-forwarded 560 commits onto `origin/main`, clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last log entries. Per step 5d, checked the prior check-in's own handoff (B8, deck print tiers) before acting: `DECISIONS.md` D-027 already closed it permanently; re-opening it would have violated CLAUDE.md 21. Cold-read ledger exhausted (195/195), all 9 GitHub issues decision/blocked-on-art/TTS-gated, no mail credential. Ran `python ops/preflight.py` full: **FAILED** `nightly-log-ordering`, a prior cycle's entry appended to the file's physical end (48,500+ lines down) instead of prepended to the top. Fixed by moving it to the correct position.
+
+**Found a second, unreported defect while verifying the first.** `OWNER-ACTIONS.md`'s "Last measured" traffic header still cited the 2026-09-29 pull (48 visitors/119 visits) while GOALS.md/STATUS.md/DATA-SOURCES.md had all moved to the 2026-10-02 reading (49/121); no gate compared this specific field against GOALS.md, only item 1's differently-shaped line. Fixed the citation; widened `gate_goals_traffic_current` to check it, fail-then-pass proved directly (planted the stale text, gate failed by name citing both figures, restored, clean). `ops/tests/test_gate_goals_traffic_current.py` extended 21 to 24 cases.
+
+**Verified:** both new/fixed gates run directly and via their test files, all green. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. Full `preflight.py` re-run in background to confirm; every gate before `gate_tests` passed with 0 FAIL lines, consistent with every prior cycle's note that `gate_tests` alone can hang in this sandbox on a headless-Chromium case; not re-asserted as passing past that point, reported honestly.
+
+**Went well:** verifying the prior handoff against `DECISIONS.md` before acting on it; finding the second citation defect by cross-checking while fixing the first, not stopping at one.
+
+**Did not go well:** `gate_tests` still cannot finish in this sandbox inside a reasonable window.
+
+**Changing next cycle:** none; both gaps now have gates that can fail.
+
+**Next:** standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, Search Console, Amazon/Etsy accounts). Deploy gap still real; no new push notification sent since one already went out this same day for the same fact.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `OWNER-ACTIONS.md`, `ops/preflight.py`, `ops/tests/test_gate_goals_traffic_current.py`, command deck. No price, product or site page touched; IndexNow not applicable.
 ## PM check-in, 2026-10-03, 11:5x cycle
 
 NEXT FOR THE OPERATOR: run `python ops/preflight.py --deep` to completion, backgrounded with no shell timeout wrapper, checked before your slot ends, because the fast pass has caught nothing new for five straight cycles while `--deep` has not completed cleanly since 2026-10-01 and has a proven record (the 2026-09-04 WCAG contrast miss) of catching real defects the fast pass structurally cannot see.
@@ -39,6 +72,30 @@ Nothing pushed yet this entry; command deck regenerated and pushed below. No pri
 **Next:** same standing Phil-blocked list (issue #35 VPS_DEPLOY_KEY/manual redeploy, Search Console verification, Stripe business description, the remaining decision-labelled issues). Handing the hourly operator at :43 nothing new; suggest it spend the slot on a genuinely fresh cold-read of a low-mention `ops/*.py` file rather than a sixth re-confirmation of this same conclusion.
 
 Pushed to main. Command deck and this log only. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-03, PM check-in
+
+**Previous work was finished.** `common_items` corpus field confirmed closed, 114 of 114 zones (counted directly in `content/manual/source/content.json`, not cited from `STATUS.md`). `preflight.py` ran clean both before and after my change: every gate passed. Working tree was clean, main already pushed. GitHub: 9 open issues, 0 PRs, all 9 either decision-labelled, blocked-on-art, or (#39) correctly capped as needing Phil's own TTS/audio machine; none unblocked.
+
+**Did:** the one live, closeable finding was `dashboard-self-description-fresh`: two real commits (`b0839bba9`, `f9a653d6d`) had landed since the deck's last regeneration. Ran `ops/dashboard.py`; warning count dropped 30 to 29, nothing else changed.
+
+**Handing to the operator at :43:** B8 (landing each of 19 decks on the 18-card print tier; `deck-print-tier` warning) is the next real, unblocked backlog item and needs more than a 30-minute slot.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
+## 2026-10-03, PM check-in (12:4x cycle)
+
+NEXT FOR THE OPERATOR: run preflight.py --deep fresh, then start a second-pass cold read of ops/*.py, because the prior cycle's B8 handoff was wrong (D-027 already closed it) and the first-pass cold-read ledger is now fully exhausted, so neither of the last two standing fallbacks is actually available.
+
+**The previous cycle's handoff was wrong, caught before the operator acted on it.** The 12:1x cycle (commit `2fcedef5f`) told the operator "B8 (landing each of 19 decks on the 18-card print tier) is the next real, unblocked backlog item." `BACKLOG-2026-09-07.md`'s own B8 row says the opposite: "CLOSED 2026-09-25, scheduled operator, by decision rather than by trimming or filling: DECISIONS.md D-027." Read D-027 directly: it decided card counts stay corpus-honest and print-tier alignment waits for a real print order, and closed B8 on that basis, after five separate cycles between 2026-09-25 15:0x and 18:2x had each correctly deferred acting on the row without noticing the row itself, not the judgement, was the defect. `gate_deck_print_tiers` in `ops/preflight.py` still warns by design (not a failure, cites D-027 in its own docstring and message); the prior cycle read that live warning and did not check the backlog row behind it before reopening a settled decision, which `CLAUDE.md` section 21 says not to do without new evidence. No new evidence exists: all 20 room decks (not just the original 6 D-027 covered) still ship only as free web pages, the exact condition the decision turns on, and no commit anywhere in this repository's history records a room going to print. Confirmed the operator had not yet spent a cycle on it: `origin/main`'s tip is still the 12:1x commit, 25 minutes after it pushed.
+
+**Also found, not previously logged: the first-pass cold-read lane the last several weeks of cycles have used as the standing fallback is now exhausted.** `python ops/cold_read_ledger.py --next` reports 195 of 195 files across `ops/`, `site/assets/js` and `mobile/quest-app/lib` ledgered, and `--stale` reports 0 stale. Every file at this tier has been read and is clean. This is a real result, not a gap: it means the fallback itself has to change, not that there is nothing left to check. The two candidates: `preflight.py --deep` (has not run today in this log, and has caught real defects the fast pass misses before, for example the WCAG contrast bug on `quest.html` found 2026-09-04), or a second-pass cold read of already-ledgered files with fresh scrutiny, the practice that found a real data-loss bug on 2026-10-01 in a file the first pass had already called clean.
+
+**Checked for other new unblocked work before writing this handoff; found none.** `STATUS.md`'s Workstream 3 was closed this same day (12:1x cycle) with no replacement opened, because nothing in `BACKLOG-2026-09-07.md` is both unblocked and workstream-sized; rechecked that conclusion directly rather than citing it, and sections 1b through 6 still read as done or Phil-gated. GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art` or (#39) capped on Phil's own TTS hardware; none unblocked. The deploy gap (`STATUS.md` BLOCKER-001) is unchanged at 33 commits, 27 material, still waiting on issue #35 (`VPS_DEPLOY_KEY`), open 9 days with zero comments; nothing in this sandbox can close it.
+
+**Verified:** started a full `preflight.py` run in the background; it reached `gate_tests` (the one documented slow gate, up to 18+ minutes in CI) and had not finished by the time this slot needed to ship, so a full clean result is unchecked this cycle, not claimed. Every gate before `gate_tests` passed with no failures surfaced. This cycle changed only `ops/NIGHTLY-LOG.md` (an append-only log, owned by no generator) plus the command deck, so the gates that matter here are `fix_dashes.py --check` (ran directly: 0 em dashes, 0 en dashes) and the GitHub/backlog/decision checks already described above, not the slow deck/corpus gates. The 12:1x cycle's own preflight run, immediately prior, reported clean.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price, product or site page touched.
 
 ## Scheduled operator cycle, 2026-10-03 (11:5x, fourth consecutive confirmation of nothing new unblocked, dashboard was 2 commits stale)
 
@@ -48530,40 +48587,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
 
-## 2026-10-03, PM check-in
-
-**Previous work was finished.** `common_items` corpus field confirmed closed, 114 of 114 zones (counted directly in `content/manual/source/content.json`, not cited from `STATUS.md`). `preflight.py` ran clean both before and after my change: every gate passed. Working tree was clean, main already pushed. GitHub: 9 open issues, 0 PRs, all 9 either decision-labelled, blocked-on-art, or (#39) correctly capped as needing Phil's own TTS/audio machine; none unblocked.
-
-**Did:** the one live, closeable finding was `dashboard-self-description-fresh`: two real commits (`b0839bba9`, `f9a653d6d`) had landed since the deck's last regeneration. Ran `ops/dashboard.py`; warning count dropped 30 to 29, nothing else changed.
-
-**Handing to the operator at :43:** B8 (landing each of 19 decks on the 18-card print tier; `deck-print-tier` warning) is the next real, unblocked backlog item and needs more than a 30-minute slot.
-
-Pushed to main. Command deck only. No price, product or site page touched.
-
-## 2026-10-03, PM check-in (12:4x cycle)
-
-NEXT FOR THE OPERATOR: run preflight.py --deep fresh, then start a second-pass cold read of ops/*.py, because the prior cycle's B8 handoff was wrong (D-027 already closed it) and the first-pass cold-read ledger is now fully exhausted, so neither of the last two standing fallbacks is actually available.
-
-**The previous cycle's handoff was wrong, caught before the operator acted on it.** The 12:1x cycle (commit `2fcedef5f`) told the operator "B8 (landing each of 19 decks on the 18-card print tier) is the next real, unblocked backlog item." `BACKLOG-2026-09-07.md`'s own B8 row says the opposite: "CLOSED 2026-09-25, scheduled operator, by decision rather than by trimming or filling: DECISIONS.md D-027." Read D-027 directly: it decided card counts stay corpus-honest and print-tier alignment waits for a real print order, and closed B8 on that basis, after five separate cycles between 2026-09-25 15:0x and 18:2x had each correctly deferred acting on the row without noticing the row itself, not the judgement, was the defect. `gate_deck_print_tiers` in `ops/preflight.py` still warns by design (not a failure, cites D-027 in its own docstring and message); the prior cycle read that live warning and did not check the backlog row behind it before reopening a settled decision, which `CLAUDE.md` section 21 says not to do without new evidence. No new evidence exists: all 20 room decks (not just the original 6 D-027 covered) still ship only as free web pages, the exact condition the decision turns on, and no commit anywhere in this repository's history records a room going to print. Confirmed the operator had not yet spent a cycle on it: `origin/main`'s tip is still the 12:1x commit, 25 minutes after it pushed.
-
-**Also found, not previously logged: the first-pass cold-read lane the last several weeks of cycles have used as the standing fallback is now exhausted.** `python ops/cold_read_ledger.py --next` reports 195 of 195 files across `ops/`, `site/assets/js` and `mobile/quest-app/lib` ledgered, and `--stale` reports 0 stale. Every file at this tier has been read and is clean. This is a real result, not a gap: it means the fallback itself has to change, not that there is nothing left to check. The two candidates: `preflight.py --deep` (has not run today in this log, and has caught real defects the fast pass misses before, for example the WCAG contrast bug on `quest.html` found 2026-09-04), or a second-pass cold read of already-ledgered files with fresh scrutiny, the practice that found a real data-loss bug on 2026-10-01 in a file the first pass had already called clean.
-
-**Checked for other new unblocked work before writing this handoff; found none.** `STATUS.md`'s Workstream 3 was closed this same day (12:1x cycle) with no replacement opened, because nothing in `BACKLOG-2026-09-07.md` is both unblocked and workstream-sized; rechecked that conclusion directly rather than citing it, and sections 1b through 6 still read as done or Phil-gated. GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art` or (#39) capped on Phil's own TTS hardware; none unblocked. The deploy gap (`STATUS.md` BLOCKER-001) is unchanged at 33 commits, 27 material, still waiting on issue #35 (`VPS_DEPLOY_KEY`), open 9 days with zero comments; nothing in this sandbox can close it.
-
-**Verified:** started a full `preflight.py` run in the background; it reached `gate_tests` (the one documented slow gate, up to 18+ minutes in CI) and had not finished by the time this slot needed to ship, so a full clean result is unchecked this cycle, not claimed. Every gate before `gate_tests` passed with no failures surfaced. This cycle changed only `ops/NIGHTLY-LOG.md` (an append-only log, owned by no generator) plus the command deck, so the gates that matter here are `fix_dashes.py --check` (ran directly: 0 em dashes, 0 en dashes) and the GitHub/backlog/decision checks already described above, not the slow deck/corpus gates. The 12:1x cycle's own preflight run, immediately prior, reported clean.
-
-Pushed to main. `ops/NIGHTLY-LOG.md` and the command deck only. No price, product or site page touched.
-
-## 2026-10-03, PM check-in (13:1x cycle)
-
-**Previous work was finished and verified, not just committed.** `common_items` closure (114 of 114 zones, 20 of 20 rooms) carried through STATUS.md's own entries to the end; confirmed the field is genuinely closed, not re-cited. Working tree was clean, main already pushed before this cycle started (checkout arrived shallow/detached per the standing issue #27 shape; fast-forwarded cleanly onto origin/main, 563 commits, no reset needed). `git log` matched `ops/NIGHTLY-LOG.md`'s own last entry (12:4x, commit `c46f1f983`) exactly, so nothing was claimed there that this cycle could not confirm.
-
-**Checked for new unblocked work: found none, same as the last several cycles.** Re-read `BACKLOG-2026-09-07.md` sections 2 to 6 directly rather than citing a prior summary: every row is either struck through (done), reframed onto Phil (C4/C5/C6, Gemini billing and YouTube OAuth), or a recorded decision (B8 closed by D-027, correctly not reopened). Both active workstream slots (1 and 2) stay BLOCKED on Phil (Umami access, a spending decision); workstream 3 stays CLOSED with no replacement, since nothing in the backlog is both unblocked and workstream-sized. GitHub: 9 open issues, 0 PRs, unchanged, all decision/blocked-on-art/Phil-capped.
-
-**The one real, small thing found and closed this cycle:** the command deck had gone stale again. `EXECUTIVE-DASHBOARD-LIVE.md` still named `adf2a359e` (11:5x) as the last commit and showed "uncommitted or unpushed work," when HEAD was actually `c46f1f983` (12:4x) and the tree was clean. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (build time, total commit count, working-tree line, last-commit line), nothing else moved. `fix_dashes.py --check`: 0 em dashes, 0 en dashes.
-
-**Verified, not assumed: ran `preflight.py` fast in the background.** Every gate up to `gate_tests` passed with no failures; it reached the documented headless-Chromium sandbox hang at `gate_tests` (same shape every recent cycle reports) and had not finished by the time this slot needed to ship. Not claiming a clean full result: reporting unchecked past that gate, per CLAUDE.md 0.4. This cycle's own change (command-deck files only) is not touched by `gate_tests`.
-
-**Handing to the operator at :43:** the 12:4x cycle's own handoff stands, unactioned since then (origin tip is still that cycle's commit until this one): run `preflight.py --deep` fresh (not run today in this log) or start a second-pass cold read of `ops/*.py`, since the first-pass ledger reports 0 of 195 files stale. Nothing else is newly actionable.
-
-Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched.
