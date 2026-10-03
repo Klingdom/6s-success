@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03 (fixed a 5-push CI red streak; continued `common_items` into Dining Room)
+
+**Did:** Unshallowed and attached cleanly (`git fetch --unshallow`, `checkout main`, `merge --ff-only`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries and `STATUS.md`. Checked GitHub Actions directly rather than trusting a prior cycle's own "CI is just slow" note: `checks.yml` had actually failed on 5 consecutive pushes (runs 1873-1877). Read run 1877's job log and found the real cause: `gate_sitemap_lastmod_current` (zone URLs stale) and `gate_build_id_current` (`site/build-id.txt` not matching the real tree), because the prior `common_items` content commits never re-ran `ops/build_seo.py`/`ops/build_id.py`.
+
+**Diagnosed and fixed independently, then found a concurrent PM check-in had landed the identical fix (`02a82a8f`) moments earlier.** Per CLAUDE.md 5d, verified the concurrent commit actually fixed it rather than trusting the commit message, then discarded this operator's own unpushed duplicate commit (`git reset --hard origin/main`) instead of pushing a second copy of the same fix. Corrected the prior cycle's own "CI latency" misdiagnosis in `STATUS.md`, with the real cause and the lesson (re-run `build_seo.py`/`build_id.py` as part of every `common_items` push, not only when a generator's own source changes) so the next cycle does not repeat it. Pushed the correction and a claim for Dining Room before starting work on it, per `STATUS.md` section 0's own collision rule.
+
+**Continued `common_items`, Dining Room (5 zones), the ordering rule's one real unblocked epic-5 item once epics 1-4 were again confirmed done or Phil-gated (9 GitHub issues unchanged, all decision/blocked-on-art).** Authored Dining Table, Buffet or Sideboard Surface, Buffet or Sideboard Storage, China or Display Cabinet, Beverage or Coffee Station, every item grounded in that zone's own `purpose`/`done_looks_like`/`passes` text (e.g. the China Cabinet's "Plates, stacked no more than eight high" is its own `done_looks_like` sentence, not invented). **19 of 114 done.** 95 remain; tied-smallest now Guest Bedroom and Guest Bathroom.
+
+**Found and fixed a formatting trap before it shipped, not after:** a first `json.dump(data, f, indent=2)` reformatted the entire 18,000-line `content.json` (original uses 1-space indent), which would have buried a 5-zone content edit inside a 36,000-line diff. Caught by running `git diff --stat` immediately after the edit, before staging anything. Confirmed `indent=1, ensure_ascii=True` round-trips byte-identical on the unmodified file first, then reapplied the edit; final diff was 41 lines, scoped to the 5 zones.
+
+**Verified:** `gate_common_items_rendered`, `gate_mcp_corpus_current` clean (direct function calls, not the full `preflight.py`, which hits this sandbox's documented `gate_tests` headless-Chromium hang). `ops/tests/test_gate_common_items_rendered.py` 6/6. `fix_dialect.py --check` 0. `check_urls.py` 211/211. `audit_pages.py` 215/0. `fix_dashes.py --check` 0/0. `ops/audit_visual.py` on all 5 new pages, desktop viewport: 0 findings. `build_id.py --check` current, computed against the staged git index (it hashes `git ls-files -s site`, not the working tree) after staging the content and page changes, confirmed before committing.
+
+**Went well:** checking GitHub Actions directly instead of trusting the prior cycle's own "probably just slow" note, which was itself the exact "unchecked is not passing" failure CLAUDE.md 0.4 warns about; finding the concurrent duplicate fix before pushing a second one.
+
+**Did not go well:** this is the second time in one day `common_items` content commits shipped without re-deriving `build_seo.py`/`build_id.py`; the lesson is now written down twice (in `STATUS.md` and here) because once was not enough.
+
+**Changing next cycle:** none beyond the lesson already recorded; the next `common_items` push should apply it without needing to rediscover it.
+
+**Next:** continue `common_items` room by room, Guest Bedroom or Guest Bathroom next (claim in `STATUS.md` first); confirm `checks.yml`'s run on this push resolves green.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Dining Room `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## PM check-in, 2026-10-03, 04:4x cycle
 
 NEXT FOR THE OPERATOR: confirm run 1878 (02a82a8f0) is green on checks.yml, then continue common_items, because the last 7 pushes shipped through a red Checks workflow nobody actually read.

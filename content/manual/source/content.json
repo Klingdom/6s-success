@@ -2848,7 +2848,12 @@
      "capacity": {
       "rule": "One centerpiece and bare wood everywhere else, seats for the people who actually eat here, and every chair able to push all the way in with nothing hanging off the back of it.",
       "does_not_fit": "If the table cannot seat the household without something being moved first, it is storing something that has no home anywhere else. Find that home before you look for a bigger table."
-     }
+     },
+     "common_items": [
+      "A centerpiece",
+      "Placemats and trivets",
+      "A napkin basket"
+     ]
     },
     {
      "zone": "Buffet or Sideboard Surface",
@@ -2998,7 +3003,13 @@
      "capacity": {
       "rule": "A taped run of bare wood at the table end, long enough for your largest roasting pan, and three display objects grouped at the lamp end. Nothing in between.",
       "does_not_fit": "If the pan run and three objects will not both fit, the surface is shorter than the job it is being asked to do. Move the display to the wall above rather than shortening the run, because the run is the part that gets used."
-     }
+     },
+     "common_items": [
+      "Serving dishes, during a meal",
+      "A small display: candlesticks and framed photos",
+      "A table lamp",
+      "Serving spoons and the trivet stack"
+     ]
     },
     {
      "zone": "Buffet or Sideboard Storage",
@@ -3151,7 +3162,14 @@
      "capacity": {
       "rule": "One drawer for linens and one for serving pieces, large platters standing on edge behind a divider, and a count card taped inside the door saying how many of each there should be.",
       "does_not_fit": "If a drawer will not close with only what belongs in it, you own more serving pieces than this room holds. Decide the number on the count card first, then let the drawer tell you whether that number was honest."
-     }
+     },
+     "common_items": [
+      "Tablecloths and their matching napkins",
+      "Serving bowls, nested by size",
+      "Large platters, stood on edge",
+      "Taper candles of one length",
+      "A count card"
+     ]
     },
     {
      "zone": "China or Display Cabinet",
@@ -3303,7 +3321,13 @@
      "capacity": {
       "rule": "Plates no more than eight high with felt between them, cups single file rather than nested, glasses rim up on a clean liner, heavy tureens on the bottom shelf, and the cabinet strapped to a stud.",
       "does_not_fit": "If the shelves only hold the set by nesting cups or stacking plates past eight, the cabinet is smaller than the collection. Thin the set or move the overflow out, because a stack that chips is not storage."
-     }
+     },
+     "common_items": [
+      "Plates, stacked no more than eight high",
+      "Cups, standing single file",
+      "Glasses, rim up",
+      "Tureens and heavy serving pieces"
+     ]
     },
     {
      "zone": "Beverage or Coffee Station",
@@ -3461,7 +3485,14 @@
      "capacity": {
       "rule": "One liftable tray holding machine, grounds, mugs, spoons and sugar in that order, mugs capped at the number of daily drinkers plus two, and a hand's width of clear air behind the kettle.",
       "does_not_fit": "If the tray will not lift with everything on it, the station has grown past being a station. Take the least-used thing off rather than widening it, because the point of the tray is that the surface underneath can be cleaned in one movement."
-     }
+     },
+     "common_items": [
+      "The machine",
+      "Grounds or pods",
+      "Mugs",
+      "Spoons and sugar",
+      "Tea boxes, syrup bottles, and travel mugs"
+     ]
     }
    ]
   },
