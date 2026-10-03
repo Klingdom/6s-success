@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-02 22:00 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-03 01:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-30 21:07 because this run could not reach Stripe** |
+| **Revenue this month** | **not measured this month, no Stripe credential in this environment (last known monthly figure: $0, measured 2026-09-30 21:07)** |
 | | `............................` |
-| **Paying customers** | 0 |
+| **Paying customers** | not measured this month (last known: 0, measured 2026-09-30 21:07) |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 1032 pageviews from 88 visitors across 234 visits, 2026-08-20 to 2026-10-01. **441 of those pageviews came from 2 automated session(s)**, leaving 591 from 86 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-30 21:07; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 31 |
-| Commits (7 days) | 1399 of 5300 total |
+| Open issues | 9 (2 P0, 2 blocked on art, 6 need your call) |
+| Closed to date | 30 |
+| Commits (7 days) | 1408 of 5333 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a6c9afeff` Cold-read the 27-file stale-ledger lane (0 defects), reconfi |
+| Last commit | `23312ae39` PM check-in: verified previous cycle's work finished, checke |
 
 ## Product readiness
 
@@ -72,6 +72,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
+| 39 | gate_films_teach_all_six_passes: 2 of 114 narrated zone films' captions never got the standardize pass re-recorded |  |
 | 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
 | 31 | Decide: the deck gallery and the deck download are two different card designs | decision |

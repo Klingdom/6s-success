@@ -1412,6 +1412,7 @@ Maintain a compact index as the file grows.
 | D-024 | The 7 Kitchen Micro Zone Packs and Kitchen Room Pack are retired, now the free Kitchen deck is downloadable | ACTIVE | Commerce |
 | D-027 | Room-deck card counts stay corpus-honest; print-tier alignment waits for a real print order; B8 closed | ACTIVE | Product |
 | D-028 | The MCP server has never run; corpus stays in sync and the image keeps building, but deploying and exposing it is the owner's call | ACTIVE | Infrastructure |
+| D-029 | S1-S4 (the structured `sustain_detail` schema) are dropped, not deferred; the prose Sustain pass already covers the content gap and no distribution exists to protect with a stricter gate | ACTIVE | Product |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact
@@ -2723,3 +2724,67 @@ Claude Desktop config, an MCP registry listing, an integration) genuinely
 wants the endpoint; or the corpus-sync gate starts costing more than it saves.
 If the answer is no, retire `mcp/` and `publish-mcp.yml` together rather than
 leaving a published image with no purpose.
+
+## D-029 | 2026-10-03 | S1-S4 (the structured `sustain_detail` schema) are dropped, not deferred; the prose Sustain pass already covers the content gap and no distribution exists to protect with a stricter gate
+
+**Decision.** Drop S1, S2, S3 and S4 from `PLAN-MICROZONES-DECKS-APP.md` as
+originally scoped. Do not add a `sustain_detail` object (six typed fields, a
+closed cadence list, a `drift_signal` noun check, a 10-minute recovery
+ceiling) to the corpus schema, and do not re-author any zone's Sustain pass
+into that structured form.
+
+**Why this was open instead of already closed.** A 2026-09-09 cycle measured
+S1-S4 against the real corpus and found the content half of the problem
+already solved by a concurrent prose rewrite (all 114 `passes.sustain`
+strings 87 to 106 words, recovery language in 102 of 114) while the
+structured, machine-checkable schema S1 itself asks for did not exist (0 of
+114). It recommended re-scoping S1 or dropping it in favour of Epic 3
+(traffic) work, and left the question open rather than deciding. Nobody
+revisited it for 24 days; it sat in `STATUS.md` as a dangling "recommend"
+with no owner and no gate, the exact shape `CLAUDE.md` 0.8 ("do not add ideas
+faster than you close them") warns about, just for a decision instead of a
+defect.
+
+**What changed, and what did not.** The alternative the 2026-09-09 note
+pointed to, Epic 3 traffic work, is itself done now: `BACKLOG-2026-09-07.md`
+rows A11, A13, A14, A15 and A18 all shipped between 2026-09-20 and
+2026-10-02, closing the keyword-cluster gaps the harvest named. What has not
+changed is the reason S1 would be worth 0.5 to 3.5 days: distribution. A
+Umami read on 2026-09-29/30 showed 7 to 14 visitors a week across the whole
+site (one 20-minute unidentified burst excluded); Search Console is still
+unverified (`OWNER-ACTIONS.md`, item 2), so no impressions read exists either.
+`BACKLOG-2026-09-07.md` section 1b states the test this repository already
+applies to new work: "does this help somebody arrive, or does it improve
+something nobody is looking at yet." A stricter build-time gate on a page
+structure that already reads correctly, with no measured reader behind it
+and no search-visibility story for it, is the second kind. It is also the
+same conclusion `GOALS.md` rule 1 (distribution beats production) and
+`BACKLOG-2026-09-07.md` section 5 ("Hold: correct, but ahead of the
+constraint") already apply to everything else at this stage.
+
+**Alternatives considered.**
+
+- *Re-scope S1 narrower* (e.g. just a `cadence` enum, dropping the other five
+  fields). Rejected for now: even a narrow version re-authors 114 zones' worth
+  of already-adequate prose a second time for a readership that does not yet
+  exist to benefit from the stricter check. The honest narrow version of this
+  work is "wait for readers," not "do less of it."
+- *Leave it open as a recommendation.* Rejected: that is the state that
+  produced a 24-day-old dangling question with no owner and no gate. A
+  decision that is never made is still a decision, just an unrecorded one.
+- *Do it anyway, since the product philosophy (`CLAUDE.md` section 6)
+  supports Sustain depth.* Rejected: the philosophy argument was already
+  weighed and did not change between 2026-09-09 and today; what would change
+  it is readers, not time passing.
+
+**Consequences.** The Sustain pass stays prose-only on all 114 zones, same as
+today; nothing customer-facing changes. `PLAN-MICROZONES-DECKS-APP.md`'s S1-S4
+rows are marked DROPPED rather than left as unscoped backlog. Workstream 3 in
+`STATUS.md` closes, freeing a WIP slot under `CLAUDE.md` section 18.
+
+**Revisit condition.** Either: Search Console is verified and produces a real
+impressions read, or zone pages show genuine human entrances (more than a
+handful of sessions in a 30-day window) in the Umami database. This is the
+same condition `DECISIONS.md` D-021/D-026 already use to gate M6 (the
+remaining 102 zones' diagnosis layer), since both ask the same underlying
+question: is anyone reading the pages this would protect.

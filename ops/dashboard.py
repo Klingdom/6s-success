@@ -60,6 +60,35 @@ def working_tree_status(clean, ahead):
         return "could not be checked"
     return "clean, in sync" if clean and ahead == "0" else "uncommitted or unpushed work"
 
+DASHBOARD_OWN_OUTPUT = {"EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html",
+                         "ops/state.json", "ops/NIGHTLY-LOG.md"}
+
+
+def dashboard_citation_gap(real_commit_shas):
+    """Pure so gate_dashboard_self_description_fresh can prove it without
+    shelling out.
+
+    real_commit_shas is the list of commit hashes landing strictly after
+    the dashboard's own cited "Last commit" and up through the real current
+    HEAD, already filtered down by the caller to commits that touch
+    something outside DASHBOARD_OWN_OUTPUT. An empty list means either
+    nothing has happened since the citation, or only a sibling
+    dashboard-regeneration-and-log commit has, which is the one-commit lag
+    dashboard.py cannot avoid (it cannot know the hash of the commit that
+    will ship its own output before that commit exists). Anything else
+    means real work landed with nobody rerunning this file to reflect it,
+    which is the shape that recurred three times on 2026-10-02 (20:4x,
+    21:4x, 22:2x), caught each time only by a human eyeballing the file
+    against `git log`.
+    """
+    if not real_commit_shas:
+        return None
+    return ("%d real commit(s) landed after the dashboard's own cited "
+            "commit with no regeneration since: %s"
+            % (len(real_commit_shas),
+               ", ".join(s[:9] for s in real_commit_shas[:5])))
+
+
 def commits_total_text(commits_total):
     """Pure so gate_dashboard_shallow_commits can prove it without shelling out.
 
@@ -1816,6 +1845,33 @@ def carry_forward(now: dict, prev: dict) -> dict:
     if last is None:
         return {"revenue_carried_from": None}
 
+    # `last` measured a PRIOR calendar month's revenue. Found live
+    # 2026-10-02: the last real Stripe read was 2026-09-30 21:07 ($0 for
+    # September), and every credential-less run since, the first of them
+    # on 2026-10-02 itself, carried that same $0 forward unchanged into
+    # October and rendered it as "revenue $0 of $20,000 target this
+    # month", a sentence that claims October has been checked and is
+    # zero when nobody has checked October at all. Carrying a NUMBER
+    # across a month boundary is not the same bug carry_forward() was
+    # built to fix (a credential gap erasing a real reading); it is a
+    # different failure in the same family, a measurement answering a
+    # question nobody asked it. The standing answer (revenue_last_measured)
+    # is still kept, so a later run, or a reader who follows the date, can
+    # see the true last-known figure; it is just not relabelled as this
+    # month's.
+    now_month = (now.get("generated") or "")[:7]
+    last_month = (when or "")[:7]
+    if now_month and last_month and now_month != last_month:
+        out["revenue_last_measured"] = last
+        out["revenue_measured_at"] = when or ""
+        out["revenue_carried_from"] = None
+        out["revenue_prior_month_only"] = when or "an earlier run"
+        carried_c = prev.get("customers_last_measured")
+        if carried_c is not None:
+            out["customers_last_measured"] = carried_c
+            out["customers_measured_at"] = prev.get("customers_measured_at", when or "")
+        return out
+
     out["revenue_month"] = last
     out["revenue_last_measured"] = last
     out["revenue_measured_at"] = when or ""
@@ -1922,22 +1978,55 @@ if S.get("deploy_verdict") == "stale" or S.get("live_links_verdict") == "dead":
                            + " One deploy moves all of it to the customer."
                            + _reach)
 
-# None is not zero. A source that could not be read renders as unknown, and
-# the gauge needle is parked rather than pointed at a figure nobody measured.
-if S["revenue_month"] is None:
-    S["revenue_pct"] = None
-    S["revenue_text"] = "not measured, no Stripe credential in this environment"
-    S["customers_text"] = "not measured"
-else:
-    S["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
-    S["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
-                         f"${S['revenue_target']:,.0f} target "
-                         f"({S['revenue_pct']}%)"
-                         + (f", carried forward from {S['revenue_carried_from']} "
-                            f"because this run could not reach Stripe"
-                            if S.get("revenue_carried_from") else ""))
-    S["customers_text"] = ("not measured" if S.get("paying_customers") is None
-                           else str(S["paying_customers"]))
+def revenue_customers_display(S: dict) -> dict:
+    """Render revenue_pct/revenue_text/customers_text from the state dict.
+
+    A pure function (CLAUDE.md step 10b) so the exact rendering contract can
+    be proved with synthetic inputs, the same way carry_forward() above is
+    tested without a Stripe credential.
+
+    None is not zero. A source that could not be read renders as unknown, and
+    the gauge needle is parked rather than pointed at a figure nobody measured.
+    """
+    out = {}
+    if S.get("revenue_month") is None:
+        out["revenue_pct"] = None
+        if S.get("revenue_prior_month_only"):
+            # A real figure exists, just not for the current calendar month:
+            # say so, rather than either hiding it or relabelling it as this
+            # month's.
+            out["revenue_text"] = (
+                "not measured this month, no Stripe credential in this "
+                "environment (last known monthly figure: $%s, measured %s)"
+                % (f"{S['revenue_last_measured']:,.0f}", S["revenue_prior_month_only"]))
+        else:
+            out["revenue_text"] = "not measured, no Stripe credential in this environment"
+        # Same bug as revenue, one field over: a carried customer count exists
+        # (set by the cross-month branch of carry_forward() above) but was
+        # never read here, so the deck said "not measured" beside a revenue
+        # figure that itself said "last known: $X", the exact contradiction
+        # the customer carry-forward was built to stop (see carry_forward()'s
+        # own comment). Found cold-reading this file, 2026-10-03.
+        if S.get("customers_last_measured") is not None:
+            out["customers_text"] = (
+                "not measured this month (last known: %s, measured %s)"
+                % (S["customers_last_measured"], S.get("customers_measured_at", "")))
+        else:
+            out["customers_text"] = "not measured"
+    else:
+        out["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
+        out["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
+                             f"${S['revenue_target']:,.0f} target "
+                             f"({out['revenue_pct']}%)"
+                             + (f", carried forward from {S['revenue_carried_from']} "
+                                f"because this run could not reach Stripe"
+                                if S.get("revenue_carried_from") else ""))
+        out["customers_text"] = ("not measured" if S.get("paying_customers") is None
+                               else str(S["paying_customers"]))
+    return out
+
+
+S.update(revenue_customers_display(S))
 pct = S["revenue_pct"] or 0
 
 # ---------------------------------------------------------------- render

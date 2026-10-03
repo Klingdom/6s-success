@@ -3363,6 +3363,94 @@ def gate_dashboard_traffic_carry_forward() -> None:
              f"on an unmeasured run; got {aff!r}")
 
 
+def gate_dashboard_revenue_month_not_cross_month() -> None:
+    """A revenue figure measured in one calendar month must never be
+    relabelled as a LATER month's "revenue this month".
+
+    Found live 2026-10-02: the last real Stripe read was 2026-09-30 21:07
+    ($0 for September). Every credential-less run since, starting with the
+    first run on 2026-10-02 itself, carried that same $0 forward unchanged
+    via carry_forward() and rendered it as "revenue $0 of $20,000 target
+    this month" on a date October had not been checked at all. That is a
+    different failure from the one carry_forward() was built to fix (a
+    credential gap erasing a real reading): here the number survives, but
+    answers a question nobody asked it, the same "a measurement can read
+    the wrong source and report zero forever" shape CLAUDE.md's own
+    operating notes warn against.
+
+    Proves the pure function itself, with synthetic inputs, the same
+    pattern the sibling carry-forward gates above use for their own
+    resolve functions.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    sept = dashboard.carry_forward(
+        {"revenue_month": 0.0, "paying_customers": 0,
+         "generated": "2026-09-30 21:07"}, {})
+    oct_blind = dashboard.carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-10-02 23:51"}, sept)
+    if oct_blind.get("revenue_month") is not None:
+        fail("dashboard-revenue-month-not-cross-month",
+             f"carry_forward() relabelled a figure measured in a PRIOR "
+             f"calendar month as this month's; got {oct_blind!r}")
+    if oct_blind.get("revenue_carried_from"):
+        fail("dashboard-revenue-month-not-cross-month",
+             f"carry_forward() still claims 'carried forward from <date>' "
+             f"for a figure from a different calendar month; got {oct_blind!r}")
+    if oct_blind.get("revenue_last_measured") != 0.0:
+        fail("dashboard-revenue-month-not-cross-month",
+             f"a cross-month carry must still keep the true last-measured "
+             f"figure under its own key, just not relabel it; got {oct_blind!r}")
+    # Within the SAME calendar month, the original behaviour (relabel the
+    # last figure as this month's, pending a fresh read) must be unchanged.
+    same_month = dashboard.carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-09-30 23:00"}, sept)
+    if same_month.get("revenue_month") != 0.0 or not same_month.get("revenue_carried_from"):
+        fail("dashboard-revenue-month-not-cross-month",
+             f"a carry within the SAME calendar month regressed; got {same_month!r}")
+
+
+def gate_dashboard_customers_text_reflects_carry() -> None:
+    """A carried customer count must render, not be silently overwritten
+    with "not measured" the moment revenue is also unmeasured this month.
+
+    Found cold-reading dashboard.py, 2026-10-03, a few hours after the
+    sibling revenue cross-month fix above shipped. carry_forward()'s
+    cross-month branch sets customers_last_measured/customers_measured_at,
+    but the renderer's `if S["revenue_month"] is None` branch unconditionally
+    wrote `S["customers_text"] = "not measured"`, discarding that carried
+    figure. The exact "two headline figures contradict each other" shape
+    carry_forward()'s own docstring names as the reason customer carry-
+    forward exists at all (revenue_text said "last known: $X", customers_text
+    said "not measured" for the same blind run).
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    gate_dashboard_revenue_month_not_cross_month above uses.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    disp = dashboard.revenue_customers_display({
+        "revenue_month": None, "revenue_last_measured": 0.0,
+        "revenue_prior_month_only": "2026-09-30 21:07",
+        "customers_last_measured": 0, "customers_measured_at": "2026-09-30 21:07",
+    })
+    if disp.get("customers_text") == "not measured":
+        fail("dashboard-customers-text-reflects-carry",
+             f"a carried customer count was discarded as bare 'not measured'; "
+             f"got {disp!r}")
+    if "0" not in disp.get("customers_text", ""):
+        fail("dashboard-customers-text-reflects-carry",
+             f"the carried customer figure must appear in the rendered text; "
+             f"got {disp!r}")
+    # No carried figure at all must still read "not measured", unchanged.
+    disp = dashboard.revenue_customers_display({"revenue_month": None})
+    if disp.get("customers_text") != "not measured":
+        fail("dashboard-customers-text-reflects-carry",
+             f"with nothing carried at all, expected 'not measured'; got {disp!r}")
+
+
 def gate_dashboard_owner_actions_traffic_citation_current(path=None) -> None:
     """OWNER-ACTIONS.md's own "Last measured" paragraph must stay in a shape
     dashboard._owner_actions_traffic_citation() parses, or the
@@ -3691,6 +3779,82 @@ def gate_dashboard_deck_readiness() -> None:
         fail("dashboard-deck-readiness",
              "book_sellable_detail(True, 9.9, False, 0) does not say "
              "'missing' for a cover checked and genuinely absent.")
+
+
+def gate_dashboard_self_description_fresh(path=None) -> None:
+    """The dashboard's own "Last commit" citation must not drift silently.
+
+    Found 2026-10-02: the identical staleness shape recurred three times in
+    one day (PM check-ins 20:4x, 21:4x, 22:2x), each time caught only by a
+    human eyeballing EXECUTIVE-DASHBOARD-LIVE.md against `git log`, then
+    fixed by rerunning ops/dashboard.py and never gated, the exact
+    "lesson recorded in prose prevents nothing" shape CLAUDE.md 10b warns
+    against.
+
+    The mechanism is understood and partly unavoidable: dashboard.py
+    captures HEAD before the commit that ships its own output lands, so the
+    file it ships always describes the state one commit behind the commit
+    it rides in on; dashboard_citation_gap()'s own docstring names this.
+    That one-commit lag, alone, is not a defect. What this gate actually
+    catches is everything past it: real commits (not just a sibling
+    dashboard-regeneration-and-log commit) landing after the citation with
+    nobody rerunning ops/dashboard.py before the next push.
+
+    WARNS rather than FAILS: in a repository with several concurrent
+    sessions pushing in parallel, some lag between a regeneration and the
+    next push is routine and self-heals on the next regeneration; failing
+    preflight on it would hold unrelated work hostage to a cosmetic
+    citation. The point is to make the gap visible on every run instead of
+    only when someone happens to compare the file to `git log` by eye.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    dash_path = path or os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md")
+    if not os.path.exists(dash_path):
+        return
+    text = io.open(dash_path, encoding="utf-8").read()
+    m = re.search(r"\|\s*Last commit\s*\|\s*`([0-9a-f]{6,40})`", text)
+    if not m:
+        warn("dashboard-self-description-fresh",
+             "EXECUTIVE-DASHBOARD-LIVE.md has no parseable \"Last commit\" "
+             "citation, so freshness was NOT checked.")
+        return
+    cited = m.group(1)
+    head = dashboard.sh_checked("git rev-parse HEAD")
+    if head is None:
+        warn("dashboard-self-description-fresh",
+             "could not read the real current HEAD, so the dashboard's "
+             "\"Last commit\" citation was NOT checked against it.")
+        return
+    if head.startswith(cited):
+        return
+    resolved = dashboard.sh_checked("git rev-parse %s" % cited)
+    if resolved is None:
+        warn("dashboard-self-description-fresh",
+             "EXECUTIVE-DASHBOARD-LIVE.md cites commit %s, which does not "
+             "resolve in this checkout (shallow clone?), so freshness was "
+             "NOT checked." % cited)
+        return
+    log = dashboard.sh_checked("git log --format=%%H %s..HEAD" % resolved)
+    if log is None:
+        warn("dashboard-self-description-fresh",
+             "could not list commits between the dashboard's cited commit "
+             "and HEAD, so freshness was NOT checked.")
+        return
+    shas = [s for s in log.splitlines() if s.strip()]
+    real = []
+    for sha in shas:
+        files_out = dashboard.sh_checked("git show --name-only --format= %s"
+                                          % sha)
+        if files_out is None:
+            real.append(sha)
+            continue
+        touched = {f for f in files_out.splitlines() if f.strip()}
+        if touched - dashboard.DASHBOARD_OWN_OUTPUT:
+            real.append(sha)
+    problem = dashboard.dashboard_citation_gap(real)
+    if problem:
+        warn("dashboard-self-description-fresh", problem)
 
 
 def gate_deploy_fresh() -> None:
@@ -14390,6 +14554,30 @@ def gate_films_teach_all_six_passes() -> None:
         raw = STAMP.sub(" ", CUE_N.sub(" ", raw))
         return WS.sub(" ", LABEL_RE.sub(" ", _norm(raw)))
 
+    # AUDIBLE vs INAUDIBLE BRITISH SPELLING, defined here because both the
+    # per-pass "short" check below and the audible-drift check further down
+    # need to agree on which spellings a listener could actually notice.
+    AUDIBLE_BRITISH = {"jewellery": "jewelry", "jewellry": "jewelry",
+                       "draught": "draft", "draughts": "drafts",
+                       "aluminium": "aluminum", "speciality": "specialty",
+                       "whilst": "while", "aeroplane": "airplane"}
+    # Found 2026-10-02: the "short" check below flagged two zones as missing
+    # their whole standardize pass because their caption said "labelled" and
+    # the corpus says "labeled", a homophone, not a missing instruction. That
+    # probe needs the same tolerance the audible check already has for
+    # spelling a listener cannot hear, reusing fix_dialect's own pair list
+    # rather than a second copy of it, minus the words that ARE audible.
+    try:
+        import fix_dialect as _fd
+        _INAUDIBLE_SUB = [(b, a) for b, a in _fd.PAIRS if b not in AUDIBLE_BRITISH]
+    except Exception:                                         # pragma: no cover
+        _INAUDIBLE_SUB = []
+
+    def _american(s):
+        for brit, amer in _INAUDIBLE_SUB:
+            s = re.sub(r"\b%s\b" % re.escape(brit), amer, s)
+        return s
+
     # BOTH ORIENTATIONS, AND THE WIDE ONE IS THE PUBLISHED ONE.
     #
     # Until 2026-10-02 this loop only ever opened `slug + ".srt"`, the
@@ -14407,12 +14595,12 @@ def gate_films_teach_all_six_passes() -> None:
             if not os.path.exists(path):
                 continue
             checked += 1
-            cap = _caption(path)
+            cap = _american(_caption(path))
             miss = []
             for k in LABELS:
                 t = WS.sub(" ", LABEL_RE.sub(
                     " ", _norm((z.get("passes") or {}).get(k) or ""))).strip()
-                probe = " ".join(t.split()[:5])
+                probe = _american(" ".join(t.split()[:5]))
                 if probe and probe not in cap:
                     miss.append(k)
             if miss:
@@ -14459,24 +14647,47 @@ def gate_films_teach_all_six_passes() -> None:
     #
     # So this checks the audible set only, and fails on it. The inaudible
     # drift is deliberately not reported at all: a warning nobody can act on
-    # usefully is how a report becomes noise.
-    AUDIBLE_BRITISH = {"jewellery": "jewelry", "jewellry": "jewelry",
-                       "draught": "draft", "draughts": "drafts",
-                       "aluminium": "aluminum", "speciality": "specialty",
-                       "whilst": "while", "aeroplane": "airplane"}
+    # usefully is how a report becomes noise. AUDIBLE_BRITISH itself is
+    # defined once, above, so the "short" check's homophone tolerance and
+    # this check's intolerance of the same handful of words cannot drift
+    # apart.
+    # ISSUE #39 WAS CLOSED AS COMPLETE 2026-10-02, AND THE COMMITTED CAPTIONS
+    # SAY OTHERWISE. That closing commit (27da5009a) reported both affected
+    # zones re-rendered on Phil's own machine; the video itself is gitignored
+    # by design, but captions stay tracked deliberately, and the committed
+    # .srt for both zones still reads the pre-fix British spelling. Either
+    # the local render was never committed or never happened; either way,
+    # re-fixing it needs the real TTS reach only Phil's own machine has, same
+    # as before the issue was filed. Capped to exactly these two zones so a
+    # NEW audible regression anywhere else, including a third orientation of
+    # either of these two, still fails loudly rather than being swallowed.
+    KNOWN_UNRESOLVED_DESPITE_CLOSED_39 = {
+        "primary-bedroom--dresser-top", "primary-bedroom--dresser-top-16x9",
+        "stair-landing--landing-surface-or-console",
+        "stair-landing--landing-surface-or-console-16x9"}
     audible = []
     for path in sorted(_glob.glob(os.path.join(folder, "*.srt"))):
         low = io.open(path, encoding="utf-8", errors="replace").read().lower()
         for brit, amer in sorted(AUDIBLE_BRITISH.items()):
             if re.search(r"\b%s\b" % brit, low) and amer not in low:
                 audible.append((os.path.basename(path), brit, amer))
-    if audible:
+    known = [a for a in audible if os.path.splitext(a[0])[0]
+             in KNOWN_UNRESOLVED_DESPITE_CLOSED_39]
+    new = [a for a in audible if a not in known]
+    if known:
+        warn("films-six-passes",
+             "%d caption(s) still carry the audible drift issue #39 closed "
+             "as fixed 2026-10-02 (%s); the committed .srt was not actually "
+             "updated, re-render needs Phil's own TTS reach"
+             % (len(known), "; ".join("%s says %r" % (k[0], k[1])
+                                       for k in known)))
+    if new:
         fail("films-six-passes",
              "%d caption(s) say a word the corpus no longer uses AND that is "
              "pronounced differently, so the narration itself is stale and "
              "the film needs re-rendering, not just a caption edit: %s"
-             % (len(audible), "; ".join("%s says %r, corpus says %r"
-                                        % x for x in audible[:4])))
+             % (len(new), "; ".join("%s says %r, corpus says %r"
+                                    % x for x in new[:4])))
 
     if short:
         fail("films-six-passes",
@@ -17406,6 +17617,49 @@ def gate_keyword_demand_not_stale() -> None:
         payload, dt.datetime.now(dt.timezone.utc))
     if problem:
         warn("keyword-demand-not-stale", problem)
+
+
+def gate_goals_keyword_cluster_citation_current(goals_path=None,
+                                                 demand_path=None) -> None:
+    """GOALS.md's own small-space/budget cluster citation must not drift
+    from ops/keyword-demand.json, the file it is quoting.
+
+    Found 2026-10-02: GOALS.md's O1 section wrote "small space is 1 covered
+    / 26 partial / 10 gap of 37" and "cheap/budget/DIY is 0 covered / 82
+    partial / 17 gap of 99" the same morning BACKLOG-2026-09-07.md's A13
+    and A14 shipped the pages that moved both clusters (to 20/16/1/37 and
+    29/66/4/99); nobody told this sentence. A concurrent PM check-in (22:5x)
+    read the stale sentence instead of re-deriving from keyword-demand.json
+    directly, LRN-0032's own lesson ("a stored status is a snapshot other
+    sessions are changing") recurring against this file's prose instead of
+    the JSON it was quoting, and drafted a handoff asking the next operator
+    to write an article for a gap that no longer existed.
+
+    WARNS rather than FAILS: nothing customer-facing is wrong when a
+    strategy document's own citation drifts, and failing preflight on a
+    sentence in GOALS.md would be disproportionate. The point is to make
+    the drift visible on every run instead of only to whoever happens to
+    re-score and compare by hand, which is what let it recur.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import keyword_demand as K
+    g_path = goals_path or os.path.join(ROOT, "GOALS.md")
+    d_path = demand_path or os.path.join(ROOT, "ops", "keyword-demand.json")
+    if not os.path.exists(g_path) or not os.path.exists(d_path):
+        return
+    text = io.open(g_path, encoding="utf-8").read()
+    try:
+        payload = json.loads(io.open(d_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        warn("goals-keyword-cluster-citation-current",
+             "ops/keyword-demand.json did not parse, so GOALS.md's cluster "
+             "citation was NOT checked against it.")
+        return
+    rows = payload.get("rows", [])
+    live = {name: K.cluster_counts(rows, pat)
+            for name, pat in K.CLUSTER_PATTERNS.items()}
+    for p in K.goals_cluster_citation_problems(text, live):
+        warn("goals-keyword-cluster-citation-current", p)
 
 
 def gate_experiments_blocked_reason_current() -> None:
@@ -26078,17 +26332,28 @@ def check_learnings_index(text) -> list:
     have a matching index row, and every index row must have a matching
     body heading, so neither a new undocumented learning nor a stale index
     entry for a removed one can recur unnoticed.
+
+    Found 2026-10-03, PM check-in, cold-reading the file: two unrelated
+    learnings both used LRN-0032 (one about a stored coverage status going
+    stale, one about a repeated "needs live network reach" finding). The
+    original set-based comparison above could not have caught this: both a
+    duplicated body heading and a duplicated index row collapse to one
+    member the moment they go into a `set()`, so two learnings silently
+    sharing an ID looked identical to one learning correctly indexed once.
+    Catching a duplicate needs the raw list, counted, before either side is
+    deduplicated into a set.
     """
     problems = []
-    body_ids = set(re.findall(
-        r"^#{3,4}\s+(LRN-\d{4})\b", text, re.MULTILINE))
+    body_id_list = re.findall(r"^#{3,4}\s+(LRN-\d{4})\b", text, re.MULTILINE)
+    body_ids = set(body_id_list)
     index_m = re.search(
         r"## 31\. Learning Index.*?\n((?:\|.*\n)+)", text, re.DOTALL)
     if not index_m:
         problems.append("LEARNINGS.md has no section 31 index table to check.")
         return problems
-    index_ids = set(re.findall(
-        r"^\|\s*(LRN-\d{4})\s*\|", index_m.group(1), re.MULTILINE))
+    index_id_list = re.findall(
+        r"^\|\s*(LRN-\d{4})\s*\|", index_m.group(1), re.MULTILINE)
+    index_ids = set(index_id_list)
     missing_from_index = sorted(body_ids - index_ids)
     stale_in_index = sorted(index_ids - body_ids)
     if missing_from_index:
@@ -26097,6 +26362,18 @@ def check_learnings_index(text) -> list:
     if stale_in_index:
         problems.append(
             "indexed but no matching learning: %s" % ", ".join(stale_in_index))
+    dup_body = sorted({i for i in body_id_list
+                        if body_id_list.count(i) > 1})
+    if dup_body:
+        problems.append(
+            "same ID used by more than one learning heading: %s" %
+            ", ".join(dup_body))
+    dup_index = sorted({i for i in index_id_list
+                         if index_id_list.count(i) > 1})
+    if dup_index:
+        problems.append(
+            "same ID appears more than once in the index table: %s" %
+            ", ".join(dup_index))
     return problems
 
 
@@ -27342,12 +27619,15 @@ def main() -> int:
     run_gate(gate_dashboard_deploy_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
+    run_gate(gate_dashboard_revenue_month_not_cross_month)
+    run_gate(gate_dashboard_customers_text_reflects_carry)
     run_gate(gate_dashboard_owner_actions_traffic_citation_current)
     run_gate(gate_dashboard_constraint_reflects_carried_deploy)
     run_gate(gate_dashboard_working_tree)
     run_gate(gate_dashboard_shallow_commits)
     run_gate(gate_dashboard_shallow_commits_7d)
     run_gate(gate_dashboard_deck_readiness)
+    run_gate(gate_dashboard_self_description_fresh)
     run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
     run_gate(gate_sitemap_images_current)
@@ -27410,6 +27690,7 @@ def main() -> int:
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_goals_keyword_cluster_citation_current)
     run_gate(gate_experiments_blocked_reason_current)
     run_gate(gate_status_report_experiments_executed_current)
     run_gate(gate_changelog_current)

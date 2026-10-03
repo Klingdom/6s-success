@@ -30,6 +30,10 @@ m = re.search(r"^def carry_forward.*?^S\.update", src, re.S | re.M)
 exec(m.group(0).rsplit("\n\n", 1)[0], ns)
 carry_forward = ns["carry_forward"]
 
+m2 = re.search(r"^def revenue_customers_display.*?^S\.update", src, re.S | re.M)
+exec(m2.group(0).rsplit("\n\n", 1)[0], ns)
+revenue_customers_display = ns["revenue_customers_display"]
+
 
 def main() -> int:
     fails = []
@@ -93,7 +97,80 @@ def main() -> int:
         fails.append("carried revenue beside an unknown customer count is the "
                      "self-contradiction this exists to prevent")
 
-    total = 10
+    # The defect found live 2026-10-02: the last real Stripe read was
+    # 2026-09-30 21:07 ($0 for September). Every credential-less run since,
+    # starting with the first run on 2026-10-02, carried that same $0
+    # forward unchanged and rendered it as "revenue $0 of $20,000 target
+    # this month" on a date October had not been checked at all. A real
+    # September figure must not be relabelled as October's.
+    sept = carry_forward({"revenue_month": 0.0, "paying_customers": 0,
+                          "generated": "2026-09-30 21:07"}, {})
+    oct_blind = carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-10-02 23:51"}, sept)
+    if oct_blind.get("revenue_month") is not None:
+        fails.append("a figure measured in a PRIOR calendar month must not "
+                     f"be relabelled as this month's, got "
+                     f"{oct_blind.get('revenue_month')!r}")
+    if oct_blind.get("revenue_carried_from"):
+        fails.append("a cross-month carry must not claim 'carried forward "
+                     "from <date>' as this month's figure, since that date "
+                     f"is a different month, got {oct_blind!r}")
+    if oct_blind.get("revenue_last_measured") != 0.0:
+        fails.append("the real last-measured figure must still be kept, "
+                     f"just not relabelled, got {oct_blind!r}")
+    if not oct_blind.get("revenue_prior_month_only"):
+        fails.append("a cross-month carry must say so, so the renderer can "
+                     "show the true last-known date instead of nothing")
+
+    # Within the SAME calendar month, the original carry-forward behaviour
+    # (relabel the last figure as this month's, pending a fresh read) must
+    # be unchanged.
+    same_month = carry_forward(
+        {"revenue_month": None, "paying_customers": None,
+         "generated": "2026-09-30 23:00"}, sept)
+    if same_month.get("revenue_month") != 0.0:
+        fails.append("a carry within the SAME calendar month must still "
+                     f"relabel the figure as this month's, got {same_month!r}")
+    if not same_month.get("revenue_carried_from"):
+        fails.append("a same-month carry must still say it was carried "
+                     f"forward, got {same_month!r}")
+
+    # revenue_customers_display(): a carried customer count must render
+    # beside a carried revenue figure, not be overwritten with "not
+    # measured". Found cold-reading dashboard.py, 2026-10-03: the
+    # cross-month carry_forward() branch above sets customers_last_measured
+    # but the renderer unconditionally wrote "not measured" for customers_text
+    # whenever revenue_month was None, so a real carried customer count (even
+    # zero) was silently discarded on screen, the exact "two headline figures
+    # contradict each other" shape carry_forward()'s own docstring names.
+    disp = revenue_customers_display({
+        "revenue_month": None, "revenue_last_measured": 0.0,
+        "revenue_prior_month_only": "2026-09-30 21:07",
+        "customers_last_measured": 0, "customers_measured_at": "2026-09-30 21:07",
+    })
+    if disp.get("customers_text") == "not measured":
+        fails.append("a carried customer count must not render as bare "
+                     f"'not measured'; got {disp!r}")
+    if "0" not in disp.get("customers_text", ""):
+        fails.append(f"the carried customer figure must appear in the text; got {disp!r}")
+
+    # No carried customer figure at all (truly never measured): stays "not
+    # measured", unchanged from before this fix.
+    disp = revenue_customers_display({
+        "revenue_month": None, "revenue_last_measured": None,
+    })
+    if disp.get("customers_text") != "not measured":
+        fails.append(f"with no carried figure at all, expected 'not measured', got {disp!r}")
+
+    # A real this-month measurement renders the live count unchanged.
+    disp = revenue_customers_display({
+        "revenue_month": 19.0, "revenue_target": 20000, "paying_customers": 1,
+    })
+    if disp.get("customers_text") != "1":
+        fails.append(f"a live this-month customer count must render as-is, got {disp!r}")
+
+    total = 10 + 5 + 3
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

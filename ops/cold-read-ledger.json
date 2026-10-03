@@ -442,9 +442,9 @@
       "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 640ac7414 ('77% of this site's traffic is this repository, and the crawl report called it human', excluding this repo's own tooling user-agents from the human/unknown bucket). Reran all four ops/tests/test_crawl_report_*.py files: all clean (line parsing, own-tooling exclusion, purpose classification, unparsed reporting). No defect found."
     },
     "dashboard.py": {
-      "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified all changes since the 09-26 ledger date. The None-not-zero fix for cards_total/social_pins_built/youtube_metadata_built/thumbnails_built is consistently guarded everywhere each field is read (grepped all usages); book_sellable_detail() correctly separates could-not-check from checked-and-missing; gate_dashboard_deck_readiness proves the deck-readiness half fail-then-pass. Also re-verified the 09-27 traffic-citation paragraph-wide regex directly against the live OWNER-ACTIONS.md: returns (2026-09-25 01:17, 57, 144) correctly. The stray-probe-file glob exclusion (basename startswith '_') matches .gitignore's own rule. No defect."
+      "status": "fixed",
+      "date": "2026-10-03",
+      "note": "Cold-read 2026-10-03: found and fixed a real defect in the customer-count half of the cross-month carry fix that shipped a few hours earlier (934510664). carry_forward()'s cross-month branch sets customers_last_measured/customers_measured_at, but the renderer's revenue-unmeasured branch unconditionally wrote customers_text='not measured', discarding that carried figure -- the exact 'two headline figures contradict each other' shape carry_forward()'s own docstring names as the reason customer carry-forward exists. Extracted the whole revenue/customers rendering block into a new pure function, revenue_customers_display(), so it is testable the same way carry_forward() is; fixed it to show the carried customer count with its own 'last known' caveat. New gate_dashboard_customers_text_reflects_carry in preflight.py, fail-then-pass proved directly (planted the old unconditional-not-measured line, watched it fail by name, restored, reran clean). ops/tests/test_carry_forward.py extended 15 to 18 cases. A concurrent PM check-in (58b05b0ce) independently re-dated this same entry in the meantime, arguing the prior --stale flag was only a UTC-midnight labelling artifact with no real drift; superseded by this entry, since a real further commit (this one) has now touched the file."
     },
     "deploy.py": {
       "status": "clean",
@@ -648,8 +648,8 @@
     },
     "preflight.py": {
       "status": "fixed",
-      "date": "2026-10-02",
-      "note": "Added gate_keyword_demand_not_stale (and its pure-logic helper keyword_demand_staleness_problem) this cycle; re-verified by reading the surrounding gate registration, run_gate/warn/fail helpers, and re-running the full fail-then-pass proof against the real file."
+      "date": "2026-10-03",
+      "note": "Cold-read 2026-10-03: verified main()'s gate registration is internally consistent (376 gate_ functions defined, all 376 wired via run_gate() in main(), 0 orphaned, 0 phantom calls, checked programmatically via AST), and read the full main() gate-ordering list end to end. A concurrent PM check-in independently verified the file's then-latest change (ee547104a: check_learnings_index() extended to catch two learnings sharing one LRN ID, ops/tests/test_gate_learnings_index_current.py 12/12, fail-then-pass proved) and left a wall-to-wall read as open standing work. This cycle then added a further gate of its own, gate_dashboard_customers_text_reflects_carry alongside its sibling gate_dashboard_revenue_month_not_cross_month (see ops/dashboard.py's own ledger entry for the defect it catches). No defect found in the sections read; the full 27.7k-line file has still not been read end to end in one pass."
     },
     "prerender_shop.py": {
       "status": "fixed",

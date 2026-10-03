@@ -2802,7 +2802,8 @@ The repeated finding was about the environment, not the data: the same
 proxy refusal `ops/indexnow.py --submit` already has a real-network
 workaround for. Nothing had generalised that fix to the newer tool, so the
 re-harvest sat recorded as "unmeasured, and will be for weeks" across
-multiple cycles. See `LRN-0032`.
+multiple cycles. See `LRN-0035` (renumbered 2026-10-03 from a duplicate
+`LRN-0032`).
 
 ### Verification
 
