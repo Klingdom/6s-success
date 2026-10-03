@@ -3669,7 +3669,13 @@
      "capacity": {
       "rule": "Every seat sittable without lifting anything off it: at most one cushion per seat, throws folded to one size in one basket, and both remotes in one tray on the arm people actually reach from.",
       "does_not_fit": "If the throws will not fold into one basket, you own more throws than the room has seats. Count the people who sit here on an ordinary evening and keep that many."
-     }
+     },
+     "common_items": [
+      "Throws, folded to one size in one basket",
+      "At most one cushion per seat",
+      "Both remotes, in the tray on the arm",
+      "One or two pillows that can stay in place when someone sits"
+     ]
     },
     {
      "zone": "Coffee Table",
@@ -3814,7 +3820,13 @@
      "capacity": {
       "rule": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it, with most of the top showing.",
       "does_not_fit": "If the tray is full before the evening starts, the table is being used as a desk or a shelf. What does not belong needs a home elsewhere in the room, not a bigger tray."
-     }
+     },
+     "common_items": [
+      "Four coasters",
+      "The remote in use",
+      "One book, mid-read",
+      "One plant"
+     ]
     },
     {
      "zone": "Media Center",
@@ -3972,7 +3984,13 @@
      "capacity": {
       "rule": "One labeled power strip, every cable labeled at both ends and bundled by device path, a hand's gap of air at every vent, and one ventilated bin holding every controller and remote in the house.",
       "does_not_fit": "If one strip will not carry the devices, the answer is a second strip on a second circuit, not a strip plugged into a strip. Daisy-chaining is the arrangement that starts a fire."
-     }
+     },
+     "common_items": [
+      "The television, sound system and consoles",
+      "One labeled power strip",
+      "Cables, labeled at both ends and bundled by device",
+      "Every controller and remote, in one bin"
+     ]
     },
     {
      "zone": "Bookshelves and Display",
@@ -4121,7 +4139,12 @@
      "capacity": {
       "rule": "A hand's width of empty space at one end of every shelf, books upright between bookends with nothing stacked flat on top of them, objects gathered into two or three groups rather than spread evenly, and a strap running into the wall.",
       "does_not_fit": "If the hand's width will not survive one more book, the shelf is full, and full is the signal rather than the problem. Something leaves before something arrives, or the collection needs a second home."
-     }
+     },
+     "common_items": [
+      "Books you will genuinely open again, upright between bookends",
+      "Frames and objects, gathered into two or three groups",
+      "A strap anchoring the unit to the wall"
+     ]
     },
     {
      "zone": "Side Tables and Lighting",
@@ -4277,7 +4300,13 @@
      "capacity": {
       "rule": "One small tray per table holding no more than four items, a coaster under the glass, a working bulb that has been wiped, and the lamp cord clipped down the leg so no cable crosses the floor.",
       "does_not_fit": "If four items will not cover what the person in that chair needs, the chair is doing a second job. Give that job its own container rather than letting the side table turn into a nightstand."
-     }
+     },
+     "common_items": [
+      "A lamp with a clean, working bulb",
+      "A coaster under the glass",
+      "Up to four personal items on the tray",
+      "The lamp cord, clipped down the table leg"
+     ]
     },
     {
      "zone": "Floor and Circulation Path",
@@ -4434,7 +4463,12 @@
      "capacity": {
       "rule": "A continuous route from the doorway to the other exit, wide enough for two people to pass and for the vacuum to run without being lifted, with nothing on the floor but furniture legs, the rug and its grippy pad.",
       "does_not_fit": "If the route cannot be kept clear, the room holds more furniture or more floor baskets than its floor allows. Remove one piece rather than narrowing the route, because the route is what makes the room usable in the dark."
-     }
+     },
+     "common_items": [
+      "The rug, lying flat on a grippy pad",
+      "Furniture legs",
+      "Floor baskets, pushed back against the wall"
+     ]
     }
    ]
   },
