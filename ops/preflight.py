@@ -23473,6 +23473,104 @@ def check_zone_direct_answer(answer_map, page_bodies, word_ceiling=140) -> list:
     return problems
 
 
+def check_common_items_rendered(items_map: dict, page_bodies: dict) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    Phil asked for micro zones to carry primary function, common items,
+    step-by-step instructions and pitfalls (`97615a223`'s own commit
+    message). The other three already rendered; `common_items` had no
+    field anywhere in the corpus until this cycle authored a pilot cohort
+    (Entryway, 5 zones), grounded in each zone's own `done_looks_like` and
+    `passes` text, never invented. This is that pilot's own
+    render-matches-source check, the same shape `check_variants_rendered`
+    already runs for the sibling field it was built alongside.
+
+    `items_map` is {filename: [item, ...]} read fresh from content.json,
+    `page_bodies` is {filename: html} for every real site/zones/*.html
+    file. Every item must appear on its own page byte for byte (escaped
+    the same way `esc()` in ops/build_zone_pages.py escapes it), a page
+    not in the corpus must not carry the block at all, and the list must
+    not be empty where it does.
+    """
+    import html as _html
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items()
+                if 'class="common-items"' in b}
+    want_files = set(items_map)
+    got_files = set(rendered)
+    extra = sorted(got_files - want_files)
+    missing = sorted(want_files - got_files)
+    if extra:
+        problems.append("%d page(s) render a common-items block the corpus "
+                         "does not authorise: %s" %
+                         (len(extra), ", ".join(extra[:3])))
+    if missing:
+        problems.append("%d zone(s) carry common_items in content.json but "
+                         "ship no common-items block: %s" %
+                         (len(missing), ", ".join(missing[:3])))
+
+    for f in sorted(want_files & got_files):
+        body = rendered[f]
+        m = re.search(r'<ul class="common-items">(.*?)</ul>', body, re.S)
+        if not m:
+            problems.append("%s: common-items block malformed, could not "
+                             "isolate the <ul>" % f)
+            continue
+        got_items = re.findall(r'<li>(.*?)</li>', m.group(1), re.S)
+        want = items_map[f]
+        if not want:
+            problems.append("%s: content.json's own common_items is empty "
+                             "for this zone" % f)
+            continue
+        want_html = [_html.escape(i, quote=True) for i in want]
+        if got_items != want_html:
+            problems.append(
+                "%s: rendered common items do not match content.json's "
+                "own list: got %r, want %r" % (f, got_items, want_html))
+    return problems
+
+
+def gate_common_items_rendered() -> None:
+    """The shipped-HTML half of Phil's common-items request (see
+    `check_common_items_rendered`'s own docstring for what this catches).
+    `gate_variants_rendered`-shaped: checks the real corpus against the
+    real site/zones/*.html files, not the generator's own logic.
+
+    Proved to fail on two planted regressions (a page missing its block,
+    a stale/paraphrased item list): ops/tests/test_gate_common_items_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("common-items-rendered", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    items_map = {}
+    for r in rooms:
+        for z in r.get("zones", []):
+            items = z.get("common_items")
+            if not items:
+                continue
+            name = bzp.display(r["room"], z["zone"])
+            rs, zs = bzp.slug(r["room"]), bzp.slug(name)
+            items_map[f"{rs}-{zs}.html"] = list(items)
+    if not items_map:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("common-items-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_common_items_rendered(items_map, page_bodies)
+    if problems:
+        fail("common-items-rendered", "; ".join(problems[:6]))
+
+
 def gate_zone_direct_answer_current() -> None:
     """The shipped-HTML half of D1 (see `check_zone_direct_answer`'s own
     docstring for what this catches). `gate_variants_rendered`-shaped:
@@ -27560,6 +27658,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_variants_rendered)
     run_gate(gate_capacity_rendered)
+    run_gate(gate_common_items_rendered)
     run_gate(gate_kit_compact_rendered)
     run_gate(gate_zone_relations_rendered)
     run_gate(gate_zone_direct_answer_current)

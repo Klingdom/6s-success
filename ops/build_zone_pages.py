@@ -193,6 +193,32 @@ def direct_answer(room_name: str, thing: str, zone: dict) -> str:
         out = f"{out} {done}"
     return out
 
+
+def common_items_html(zone: dict) -> str:
+    """Phil's own request, named directly: micro zones should carry primary
+    function, common items, step-by-step instructions and pitfalls. The
+    other three already rendered (`purpose`, the six `passes`, `watch_for`);
+    `common_items` is the one with no field anywhere in the corpus until
+    this cycle authored it, zone by zone, grounded in that zone's own
+    `done_looks_like` and `passes` text rather than invented.
+
+    Distinct from `video_zone.done_items()`, which already splits
+    `done_looks_like` into full checkable sentences for the video script,
+    the diagram caption and the social pins ("One tray holding keys and
+    sunglasses" as one item). `common_items` is a shorter, scannable noun
+    list, "what kinds of things go here", not a restatement of the
+    finished standard, so the two do not collide on one page.
+
+    A zone with no `common_items` yet (most of the 114, as this field is
+    authored a room at a time) renders nothing here; this is additive,
+    never a reason a page fails to build.
+    """
+    items = zone.get("common_items")
+    if not items:
+        return ""
+    rows = "".join(f"<li>{esc(i)}</li>" for i in items)
+    return (f'<h2>Common items here</h2><ul class="common-items">{rows}</ul>')
+
 # The site and the manual name the same 114 zones differently. The manual says
 # "Landing Zone", the site and the book say "The Landing Spot". Shipping pages
 # in the manual's vocabulary would put two names for one zone in front of the
@@ -2935,6 +2961,10 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     if zone.get("done_looks_like"):
         out.append('<h2>What done looks like</h2>')
         out.append(f'<p>{esc(zone["done_looks_like"])}</p>')
+
+    _common = common_items_html(zone)
+    if _common:
+        out.append(_common)
 
     # Safety comes before the work, because the heading says "before you
     # start" and it was sitting after the instruction to do all six passes,

@@ -168,7 +168,14 @@
      "capacity": {
       "rule": "One tray, sized for keys and sunglasses plus one wallet and one phone per adult who uses this door, and a single upright folder that stays under ten sheets.",
       "does_not_fit": "If a real folder, worked down honestly every week, still will not stay under ten sheets, or the tray will not hold one phone and wallet per adult without lifting something out first, the tray and folder are undersized for this household, not badly kept."
-     }
+     },
+     "common_items": [
+      "Keys",
+      "Sunglasses",
+      "Wallets and phones",
+      "A folder for act-on paper",
+      "A phone charger"
+     ]
     },
     {
      "zone": "Coat and Outerwear Zone",
@@ -319,7 +326,14 @@
      "capacity": {
       "rule": "One current-season coat per person on the rail, with at least two hooks left empty for a visitor.",
       "does_not_fit": "If one coat per person, with every off-season coat already moved to a bedroom closet, still leaves no hook free, the rail itself is too short for the household using this door."
-     }
+     },
+     "common_items": [
+      "Everyday coats",
+      "The wool coat, on a hanger",
+      "Bags",
+      "Hats and gloves, in a labeled bin",
+      "Umbrellas"
+     ]
     },
     {
      "zone": "Shoe and Boot Zone",
@@ -470,7 +484,13 @@
      "capacity": {
       "rule": "Two everyday pairs per person on the rack, plus one pair of slippers each, with a full stride of clear floor between the door and the rack.",
       "does_not_fit": "If two honest pairs per person, with every off-season pair already boxed and moved to a closet, still will not sit on the rack without crowding the floor stride, the rack is too small for the household, not the pairs too many."
-     }
+     },
+     "common_items": [
+      "Everyday shoes",
+      "Boots",
+      "Slippers",
+      "Off-season pairs, boxed"
+     ]
     },
     {
      "zone": "Entry Console or Bench",
@@ -617,7 +637,14 @@
      "capacity": {
       "rule": "Three items or fewer standing on the top, and a drawer where each named section still shows its own base between things.",
       "does_not_fit": "If the honest, daily-use set for this household is genuinely more than three items, or a named drawer section is packed flat with no base showing even after duplicates and expired items leave, the bench top or the drawer is smaller than the job asked of it."
-     }
+     },
+     "common_items": [
+      "Dog lead and waste bags",
+      "Sun cream and insect spray",
+      "A torch",
+      "A pen",
+      "Spare car charger"
+     ]
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
@@ -764,7 +791,11 @@
      "capacity": {
       "rule": "Two mats only: a coarse one outside long enough to scrape both feet, an absorbent one inside long enough that both feet land on it mid-stride, not just the first one.",
       "does_not_fit": "If the inside mat is already the longest one that fits the doorway and a normal walking stride still lands past its far edge onto bare floor, the doorway itself is shorter than the stride it needs to catch, and a longer mat cannot fix a length the doorway does not have."
-     }
+     },
+     "common_items": [
+      "An outside scraper mat",
+      "An inside absorbent mat"
+     ]
     }
    ]
   },
