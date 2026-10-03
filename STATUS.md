@@ -92,6 +92,8 @@ Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 7 `sit
 
 **Next:** continue `common_items` on Primary Bathroom and Garage (7 zones each, the last 14 of 114), handed to the hourly operator.
 
+**CLAIMED 2026-10-03, scheduled operator: `common_items`, Primary Bathroom and Garage (7 zones each, the last 14 of 114), closing the field.** Checked `content/manual/source/content.json` directly before claiming (CLAUDE.md 5d): 100 of 114 zones carry `common_items`, matching the entry above exactly; no concurrent claim found for these two rooms.
+
 No other active claims as of 2026-10-03. Every entry previously logged here
 (content-level visitor reads of all 20 rooms, the five "also called" room
 names, the Kitchen/Pantry and small-space keyword-gap closures, A14, the
