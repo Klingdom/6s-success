@@ -56,6 +56,8 @@ only moment it is cheap.
 
 ## Open claims
 
+**CLAIMED 2026-10-03, owner-directed session: a new `common_items` field in `content/manual/source/content.json`, plus its rendering in `ops/build_zone_pages.py`.** The last unaddressed part of Phil's request and the only one with no field anywhere in the corpus. Shape: `{belongs: [...], strays: [...]}`, both halves grounded in the zone's own existing text, which already names them (the Landing Zone's sort pass names keys that open nothing, loyalty cards and dead batteries as what leaves; its done_looks_like names the tray, folder, wallet and phone as what stays). Piloting Entryway's 5 zones first, per the pilot-before-rollout rule `build_zone_pages.py` already cites, then rolling out. Release when done.
+
 **RELEASED 2026-10-02: all 114 micro zones now carry `variants` and `capacity`, up from 44.** Seventy zones authored across thirteen rooms, every line grounded in that zone's own existing text. Also fixed on the way: 19 of the 114 zone nouns are plural, and both section templates forced singular agreement onto them, so "How much this utensil and utility drawers can actually hold" was already live before this work started. Held now by `ops/tests/test_zone_headings_number_safe.py`.
 
 **Still open from Phil's request, and deliberately not started in the same stretch:** a `common_items` field, which is the one thing he asked for that has no field anywhere in the corpus. Primary function (`purpose`), step-by-step instructions (the six `passes` plus `shine_detail`'s per-surface method) and pitfalls (`watch_for`, plus `the_call` and `diagnosis`) were all already complete on all 114 before today.
