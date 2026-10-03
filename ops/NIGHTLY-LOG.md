@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-03, PM check-in (14:1x cycle)
+
+**Previous work was finished and verified, not just cited.** The `preflight.py --deep` handoff that four straight PM/operator cycles had carried since 2026-10-01 was closed last cycle (`bfcb672d0`, first clean completion). Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow` (574 commits) then `git merge --ff-only origin/main` landed cleanly with no reset. Working tree was clean and main already pushed before this cycle started.
+
+**Checked for new unblocked work; found none.** GitHub re-read directly: 9 open issues, unchanged (6 decision, 2 blocked-on-art, 1 capability-gated on real TTS hardware this sandbox cannot reach), 0 open PRs. `GOALS.md`'s three questions still point the same way: the constraint is arrivals, not more product work, and nothing in `BACKLOG-2026-09-07.md` sections 1b through 6 is both unblocked and new.
+
+**The one real, small thing found and closed this cycle: the command deck had gone stale again, by two commits.** `EXECUTIVE-DASHBOARD-LIVE.md` still cited `9f1c83f6f` as the last commit and showed "uncommitted or unpushed work," when HEAD was actually `8eeb5dce2` (two social-drafts/check-in commits later) and the tree was clean. Re-ran `ops/dashboard.py`; diff is exactly the expected small set (generation time, commit counts, working-tree line, last-commit line).
+
+**Verified directly, not assumed:** `fix_dashes.py --check` 0 em/en dashes, `check_urls.py` 211/211, `audit_pages.py` 219/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124 of 126 buyable products matched in Stripe with delivery (the other 2 are person-delivered services, correctly excluded). Mobile `npm test`: all three suites (`pickCard`, `eventLog`, `videoLink`) passing. Ran `preflight.py` fast in the foreground: every gate up to `gate_tests` printed with 0 FAIL lines, then hung at the same documented headless-Chromium sandbox limit every recent cycle reports; killed after ~90 seconds with no progress, consistent with the known shape. Not claiming a clean result past that gate, per CLAUDE.md 0.4.
+
+**Went well:** catching the two-commit-stale deck before shipping rather than after; verifying the fast-pass gates directly instead of citing the prior `--deep` completion as covering this cycle's own commits.
+
+**Did not go well:** same unrelated-history checkout shape on attach; `gate_tests` still cannot finish in this sandbox inside a short window.
+
+**Changing next cycle:** none.
+
+**Handing to the operator at :43:** nothing new and workstream-sized is unblocked. Standing Phil-blocked list unchanged (issue #35 VPS_DEPLOY_KEY, the five other decision issues, #29/#2 blocked-on-art, #39 TTS-capability-gated). If the operator has a long enough slot, a `preflight.py --deep` run (last clean completion this same day, earlier cycle) or a second-pass cold read of already-ledgered `ops/*.py` files remain the two standing fallbacks; neither is urgent since the first ran clean today.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished clean, closing the standing handoff
 
 The `--deep` run started below completed in full this time: **every gate passed, 374 of 374 test files ran (`gate_tests` itself finished rather than hanging), 31 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/SSH credential, no network egress, Pillow/pypdf/JRE not installed here). This is the first clean completion since 2026-10-01 per the 11:5x/12:4x/13:1x/13:4x PM check-ins' own repeated handoff, closing that chain; the difference was simply letting it run uninterrupted rather than a fix.
