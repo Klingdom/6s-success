@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-03, 04:4x (continuing `common_items`, Hall Closet; CI latency noted, not confirmed green)
+
+**Did:** Continued the same claimed workstream a fourth time this slot. Authored Hall Closet's 5 zones: Linen Shelf Zone (sheet sets bundled in their own pillowcase, everyday towels, guest blankets), Cleaning Equipment Zone (a vacuum, a broom and a mop, bagged attachments), Cleaning Supply Zone (a bathroom caddy and a kitchen caddy, gloves and cloths), Paper and Household Backstock (toilet paper, bulbs grouped by fitting, batteries sorted by size), Seasonal and Guest Zone (guest bedding, decorations, travel gear), every item grounded in that zone's own `straighten`/`sort` text.
+
+**Verified locally:** `gate_common_items_rendered`/`gate_mcp_corpus_current`/`gate_variants_rendered`/`gate_capacity_rendered` all clean, `ops/tests/test_gate_common_items_rendered.py` 6/6, `fix_dialect.py --check` still 0, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `ops/audit_visual.py --all` on all 5 new pages 0 findings.
+
+**18 of 114 done: Entryway, Stair Landing, Pantry, Hall Closet.** 96 remain.
+
+**Noted rather than chased further: this slot's own five pushes to `main` have CI runs that have sat `in_progress` on GitHub far longer than this repository's own normal ~20-minute `Preflight` duration (confirmed against run 1872's own real 22-minute failure earlier the same night), and none had resolved by the time this entry was written.** Every change in this stretch was verified against the real gates, tests and audits locally before it was pushed, including a direct re-check that the dialect fix (the one real pre-existing failure found this slot) holds on every subsequent commit. What is NOT independently confirmed is GitHub's own green checkmark on any of these five pushes. Recorded honestly per CLAUDE.md 0.4 (unchecked is not passing) rather than assumed clean because the local gates were. `STATUS.md`'s claim note carries the same caveat.
+
+**Next:** whoever next has a slot should check `checks.yml`'s latest run on `main` before anything else, confirm it resolved (green or a new, real finding), and continue `common_items` room by room if it is clean (Dining Room, Guest Bathroom and Guest Bedroom are tied-next-smallest at 5 zones).
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, the 5 Hall Closet `site/zones/*.html` pages, `STATUS.md`, command deck. No price or product touched, no new page. IndexNow not applicable (no new URL).
+
 ## Scheduled operator cycle, 2026-10-03, 04:3x (continuing `common_items`, Pantry)
 
 **Did:** Continued the same claimed workstream a third time this slot rather than opening a new one, while the dialect-fix push's own CI run was still in flight (`checks.yml`'s `Preflight` step runs ~20 minutes in this repository's own CI, the same headless-Chromium shape that hangs locally). Authored Pantry's 5 zones (the next tied-smallest room): Dry Goods Shelves (rice/pasta/oats, breakfast cereal, specialty flours and lentils), Canned and Jarred Goods (tomatoes/beans/soup, coconut milk and stock, tuna), Baking Zone (flour/sugar/brown sugar, baking powder/baking soda/yeast, cutters/cases/piping tips), Snack and Lunch Zone (pre-approved snacks, lunch containers and lids, lunch bags and ice packs), Backstock and Bulk Zone (sacks of rice, cases of canned goods, kitchen roll and paper napkins), every item grounded in that zone's own `straighten`/`sort`/`done_looks_like` text.

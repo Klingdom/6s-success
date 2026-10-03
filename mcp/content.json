@@ -15882,7 +15882,12 @@
      "capacity": {
       "rule": "Three sheet sets per bed, each nested inside one of its own pillowcases with the bed size written on the shelf edge beneath, everyday towels folded to one width in a stack no taller than your forearm, and two spare blankets.",
       "does_not_fit": "If the stack is taller than your forearm, you are storing retired towels alongside working ones. Three sets per bed covers on the bed, in the wash and on the shelf, and a fourth set is laundry you are avoiding."
-     }
+     },
+     "common_items": [
+      "Sheet sets, bundled in their own pillowcase",
+      "Everyday towels",
+      "Guest blankets"
+     ]
     },
     {
      "zone": "Cleaning Equipment Zone",
@@ -16037,7 +16042,12 @@
      "capacity": {
       "rule": "The vacuum standing inside a taped floor outline with its cord wrapped and every tool zipped into one bag clipped to its handle, and broom, mop and duster hanging handle-down from wall clips with their heads clear of the floor.",
       "does_not_fit": "If the outline will not hold the vacuum with its tools attached, the tools are living somewhere else, which is why they go missing. The bag on the handle is the zone, more than the outline is."
-     }
+     },
+     "common_items": [
+      "A vacuum",
+      "A broom and a mop",
+      "Vacuum attachments, bagged"
+     ]
     },
     {
      "zone": "Cleaning Supply Zone",
@@ -16191,7 +16201,11 @@
      "capacity": {
       "rule": "Two or three caddies, each labeled on the end with the room it serves, every bottle in its original label, bleach and ammonia products on separate shelves, and the whole zone out of a small child's reach or latched.",
       "does_not_fit": "If you need a fourth caddy, you have duplicate products rather than another room. Two of your bottles almost certainly do the same job, and buying a caddy is the expensive way to avoid noticing."
-     }
+     },
+     "common_items": [
+      "A bathroom caddy and a kitchen caddy",
+      "Gloves and cloths"
+     ]
     },
     {
      "zone": "Paper and Household Backstock",
@@ -16339,7 +16353,12 @@
      "capacity": {
       "rule": "Toilet roll in one clear bin with a card on the shelf edge reading its minimum and maximum, bulbs in a labeled bin sorted by fitting, and batteries standing in their original packs in a shallow tray with the sizes readable without lifting one out.",
       "does_not_fit": "If the bin is over its maximum, the maximum was wrong or the buying was, and the card is where you settle that rather than the shelf. A reserve with no ceiling is a stockpile, and a stockpile is just floor you are renting."
-     }
+     },
+     "common_items": [
+      "Toilet paper",
+      "Light bulbs, grouped by fitting",
+      "Batteries, sorted by size"
+     ]
     },
     {
      "zone": "Seasonal and Guest Zone",
@@ -16492,7 +16511,12 @@
      "capacity": {
       "rule": "Three or four lidded bins on the upper shelf, each labeled with its contents and the month it was last closed, guest pillows sealed in a zip bag, and a shelf map taped inside the door showing which bin sits where.",
       "does_not_fit": "If a fifth bin is needed, open the ones you have before buying it. A bin last closed two years ago is a decision that has been deferred, and the month written on the label is there to make that visible."
-     }
+     },
+     "common_items": [
+      "Guest bedding",
+      "Decorations",
+      "Travel gear"
+     ]
     }
    ]
   },
