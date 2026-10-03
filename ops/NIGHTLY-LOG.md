@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 06:2x cycle
+
+**Previous work finished, verified directly, not cited.** Attached clean (fetch, unshallow, ff-only merge, 0 ahead/behind after). `common_items`/Guest Bedroom+Bathroom (`50ff9d664`) is pushed; ran `preflight.py` fast myself to completion (not inherited): every gate passed, 0 FAIL. `checks.yml` run 1882 on that exact SHA was still in_progress 24 minutes in (typical for this pipeline); the four pushes before it (runs 1878-1881) are all green, so the track record holds even though this one specific run had not finished. STATUS.md's own claim ledger matches content.json's real count (33/114 common_items zones) with no stale or colliding claim.
+
+**Nothing new to start.** Checked GitHub directly: still 9 open issues, unchanged from every recent cycle (6 `decision`, 2 `blocked-on-art`, #39 capability-blocked on real TTS access no sandbox holds). Read #39's own two comments in full rather than trusting its missing label: genuinely not actionable here. No new PR, no new defect surfaced in this pass.
+
+**Handing off, not starting:** the next `common_items` room (Living Room, Family Room, Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom or Patio or Deck, all tied-next at 6 zones, 81 of 114 remain) is bespoke per-zone authorship, hours of work, not a 30-minute close, per this routine's own instruction to prefer small and closing. Left for the hourly operator.
+
+**Next:** operator continues `common_items`; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub issues otherwise unchanged.
+
+Pushed to main. Log and command deck only. No price, product or site page touched.
+
 ## Scheduled operator cycle, 2026-10-03 (continued `common_items` into Guest Bedroom and Guest Bathroom)
 
 **Did:** Attached clean: `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` (502 commits fast-forwarded, never reset or forced). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries and `STATUS.md`. Confirmed GitHub green at HEAD (`checks.yml` run 1881, success) and 9 open issues unchanged, all decision or blocked-on-art, 0 PRs. `check_urls.py`, `audit_pages.py` and `fix_dashes.py --check` all clean before starting.
