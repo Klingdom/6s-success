@@ -77,6 +77,28 @@ OA_UNRELATED_PARAGRAPHS = (
 
 OA_NO_LINE = "Nothing resembling that phrase appears anywhere in this file.\n"
 
+# The real 2026-10-03 regression shape: OWNER-ACTIONS.md's own top-of-file
+# "**Last measured:**" header carries a SEPARATE citation from item 1's own
+# dated line above (OA_AGREES/OA_DISAGREES check that one), in the shape
+# dashboard._owner_actions_traffic_citation() parses ("traffic re-measured by
+# a direct database read: N visitors/M visits/30 days"). Found stale that
+# day: the header still read 48/119 (the 2026-09-29 pull) while GOALS.md had
+# already moved to 49/121 (2026-10-02), and nothing had ever checked this
+# specific field against GOALS.md, only against item 1's differently-shaped
+# line further down.
+OA_LASTMEASURED_AGREES = (
+    "**Last measured:** 2026-10-02 UTC, traffic re-measured by a direct "
+    "database read:\n68 visitors/161 visits/30 days (2.3 a day). Some more "
+    "prose about an unrelated item.\n\n"
+    "**List reviewed:** 2026-10-02.\n"
+)
+OA_LASTMEASURED_DISAGREES = (
+    "**Last measured:** 2026-09-29 UTC, traffic re-measured by a direct "
+    "database read:\n60 visitors/140 visits/30 days (2.0 a day). Some more "
+    "prose about an unrelated item.\n\n"
+    "**List reviewed:** 2026-10-02.\n"
+)
+
 DS_AGREES = (
     "| Web analytics | Umami | VERIFIED: real traffic figures (68 "
     "visitors/161 visits, `GOALS.md` O1) were read directly | x | x | x |\n"
@@ -326,6 +348,28 @@ def main() -> int:
     if r:
         fails.append("absent BACKLOG-2026-09-07.md wrongly flagged: %r" % (r,))
 
+    # 22. OWNER-ACTIONS.md's own "Last measured" header agrees with GOALS.md
+    #     (68/161 both places): no failure. OA_AGREES's own item-1 line also
+    #     agrees, isolating this case to the new header check alone.
+    r = _run(GOALS, OA_AGREES + "\n" + OA_LASTMEASURED_AGREES)
+    if r:
+        fails.append("\"Last measured\" header agreement wrongly flagged: %r" % (r,))
+
+    # 23. It disagrees (60/140 vs. GOALS.md's 68/161): caught, naming both
+    #     numbers. This is the real 2026-10-03 regression shape: the header
+    #     sat one confirmation behind GOALS.md after nothing had ever
+    #     compared this specific field against it.
+    r = _run(GOALS, OA_AGREES + "\n" + OA_LASTMEASURED_DISAGREES)
+    if not r or "60" not in r[0][1] or "68" not in r[0][1]:
+        fails.append("\"Last measured\" header disagreement not caught: %r" % (r,))
+
+    # 24. OWNER-ACTIONS.md carries no "Last measured" header at all (older
+    #     shape, or the field renamed): must not crash, must not invent a
+    #     finding.
+    r = _run(GOALS, OA_AGREES)
+    if r:
+        fails.append("missing \"Last measured\" header wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
@@ -333,7 +377,7 @@ def main() -> int:
         return 1
     print("OK: gate_goals_traffic_current (OWNER-ACTIONS.md + DATA-SOURCES.md "
           "+ STATUS.md Business Data Knowledge + BACKLOG-2026-09-07.md "
-          "+ same-document checks), 21/21 checks pass")
+          "+ same-document checks), 24/24 checks pass")
     return 0
 
 

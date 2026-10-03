@@ -16012,6 +16012,21 @@ def gate_goals_traffic_current() -> None:
     (2026-09-23 12:50 UTC), the same shape as every check above, just not
     yet checked in this one file. Now also parsed and compared, silent on
     the same terms.
+
+    Widened 2026-10-03, scheduled operator: OWNER-ACTIONS.md's own
+    top-of-file "**Last measured:**" header carries a citation in a
+    DIFFERENT shape from item 1's own dated line the OWNER-ACTIONS.md check
+    above reads ("traffic re-measured by a direct database read: N
+    visitors/M visits/30 days", the exact phrase
+    dashboard._owner_actions_traffic_citation() parses), and nothing had
+    ever compared it against GOALS.md. Found stale that day: the header
+    still read 48 visitors/119 visits (the 2026-09-29 pull) while GOALS.md,
+    STATUS.md and DATA-SOURCES.md had all already moved to 49/121
+    (2026-10-02), one confirmation behind, undetected because this gate's
+    existing OWNER-ACTIONS.md check only ever matched item 1's own,
+    differently-worded line. Now also parsed and compared, silent if the
+    header is absent or no longer names a direct-database-read figure, same
+    convention as every sibling-document check above.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -16133,6 +16148,37 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"OWNER-ACTIONS.md item 1 (measured {oam.group(1)}) "
                        f"says {oam.group(2)} visitors, GOALS.md says "
                        f"{sessions_30}")
+
+        # Found 2026-10-03, scheduled operator: the check above reads item
+        # 1's own dated "Measured ... Traffic is N visitors" line, but the
+        # file's own top-of-file "**Last measured:**" header carries a
+        # SEPARATE, newer-shaped citation ("traffic re-measured by a direct
+        # database read: N visitors/M visits/30 days") that this gate never
+        # read at all. dashboard._owner_actions_traffic_citation() parses
+        # that exact header to decide whether OWNER-ACTIONS.md's own figure
+        # is fresher than state.json's carried one, so a stale header silently
+        # misinforms that fallback even though nothing here would have
+        # caught it. Found live: the header still cited the 2026-09-29
+        # reading (48 visitors/119 visits) while GOALS.md, STATUS.md and
+        # DATA-SOURCES.md had all already moved to the 2026-10-02 reading
+        # (49/121), one confirmation behind, the same "source corrected,
+        # sibling never told" shape every other check in this function
+        # exists to catch, just never extended to this specific field.
+        # Reuses the same bounded two-phrasing regex
+        # dashboard._owner_actions_traffic_citation() already uses, so the
+        # two can never read the header differently from each other.
+        lm = re.search(r"\*\*Last measured:\*\*(.*?)(?:\n\n|\Z)", oa, re.S)
+        if lm:
+            lmm = re.search(
+                r"(?:traffic re-measured by a direct database read:|"
+                r"when a direct database read gave)\s*"
+                r"(\d+)\s*visitors?/\s*(\d+)\s*visits?/\s*30\s+days",
+                lm.group(1), re.S)
+            if lmm and (int(lmm.group(1)), int(lmm.group(2))) != (sessions_30, visits_30):
+                bad.append(f"OWNER-ACTIONS.md's \"Last measured\" header "
+                           f"says {lmm.group(1)} visitors/{lmm.group(2)} "
+                           f"visits/30 days, GOALS.md now says "
+                           f"{sessions_30}/{visits_30}")
 
     # Widened 2026-09-23: DATA-SOURCES.md's Web analytics row cites its own
     # copy of this same figure ("N visitors/M visits, GOALS.md O1") to prove
