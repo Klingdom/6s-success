@@ -268,6 +268,53 @@ def main():
         fails.append("a payload with no scored_at did not say its statuses "
                      "are of unknown age")
 
+    # 16. An argument main() does not recognise must be refused, and --help
+    #     must print and stop. Found live 2026-10-03: neither was a flag, so
+    #     both fell through every branch and ran the default action, a full
+    #     live harvest of both engines that overwrites keyword-demand.json.
+    #     Proved here by making the two expensive calls explode: if either
+    #     path still reaches them, this case fails loudly instead of quietly
+    #     fetching the internet during a test run.
+    def _must_not_run(*a, **k):
+        raise AssertionError('main() reached the network/write path')
+    saved = (kd.harvest, kd.write_outputs, kd.build_seeds, kd.canary_ok)
+    kd.harvest = _must_not_run
+    kd.write_outputs = _must_not_run
+    kd.build_seeds = _must_not_run
+    kd.canary_ok = _must_not_run
+    try:
+        for argv, want in ((['--help'], 0), (['-h'], 0),
+                           (['--statuss'], 2), (['--rescor'], 2),
+                           (['extra-positional'], 2), (['--source'], 2)):
+            try:
+                got = kd.main(list(argv))
+            # Any exception, not just the planted AssertionError. Proving
+            # this case by deleting the guard showed why: without it,
+            # main(['--source']) raises IndexError on argv[index+1] before
+            # the harvest stub is ever reached, which crashed the whole test
+            # file instead of reporting the defect. A test that dies on the
+            # defect it exists to catch tells a reader less than one that
+            # names it.
+            except Exception as exc:                     # noqa: BLE001
+                fails.append('main(%r) raised %s: %s'
+                             % (argv, type(exc).__name__, exc))
+                continue
+            if got != want:
+                fails.append('main(%r) returned %r, expected %r'
+                             % (argv, got, want))
+        # And a flag it DOES know must still be accepted as one, or this
+        # guard would have fixed the hole by breaking the tool: --source
+        # takes a value, and that value must not read as an unknown
+        # argument.
+        try:
+            kd.main(['--source', 'bing'])
+        except AssertionError:
+            pass                  # reached harvest, which is correct here
+        else:
+            fails.append('main([--source, bing]) returned without reaching the harvest path, so a valid flag is being refused')
+    finally:
+        kd.harvest, kd.write_outputs, kd.build_seeds, kd.canary_ok = saved
+
     if fails:
         print("FAIL")
         for f in fails:

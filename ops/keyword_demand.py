@@ -69,6 +69,16 @@ Run:  python ops/keyword_demand.py                 harvest Google, write outputs
       python ops/keyword_demand.py --source both   harvest both, union the queries
       python ops/keyword_demand.py --dry-run       first 6 seeds only, write nothing
       python ops/keyword_demand.py --status        read the last harvest, write nothing
+      python ops/keyword_demand.py --rescore       re-derive coverage against
+                                                   the current site: no network,
+                                                   no new demand data
+      python ops/keyword_demand.py --help          print this and stop
+
+An argument this file does not recognise is REFUSED, not ignored. Found
+2026-10-03: --help was not a flag here, so it fell through every check above
+and started a full live harvest of both engines, which is the one thing a
+reader asking for help cannot have meant. Nothing that writes files or
+touches the network may be reachable by a typo.
 """
 import datetime
 import json
@@ -742,7 +752,42 @@ def rescore():
 
 
 def main(argv):
-    if "--rescore" in argv:
+    # A FLAG THIS FILE DOES NOT KNOW MUST NOT START A LIVE HARVEST.
+    #
+    # Found 2026-10-03 by running it: `--help` was not recognised here, so it
+    # matched none of the branches below and fell straight through to the
+    # default action, which fetches both autocomplete endpoints for every seed
+    # in the corpus and overwrites ops/keyword-demand.json. A reader asking a
+    # tool how to use it cannot have meant that, and the same hole made every
+    # typo (--statuss, --dry-ryn, --rescor) silently do the most expensive and
+    # least reversible thing this file can do rather than say it did not
+    # understand. Validate first, act second.
+    FLAGS = {
+        '--rescore', '--status', '--dry-run', '--source', '--help', '-h',
+    }
+    if '--help' in argv or '-h' in argv:
+        print((__doc__ or '').strip())
+        return 0
+    unknown = []
+    skip = False
+    for arg in argv:
+        if skip:
+            skip = False          # the value belonging to --source
+            continue
+        if arg == '--source':
+            skip = True
+            continue
+        if arg not in FLAGS:
+            unknown.append(arg)
+    if unknown:
+        print('unknown argument(s): %s' % ', '.join(unknown))
+        print('Refusing to harvest, because that is not what you asked for. '
+              'Run with --help for what this accepts.')
+        return 2
+    if '--source' in argv and argv.index('--source') + 1 >= len(argv):
+        print('--source needs a value: google, bing or both.')
+        return 2
+    if '--rescore' in argv:
         return rescore()
     if "--status" in argv:
         return status()
