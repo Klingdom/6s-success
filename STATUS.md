@@ -56,7 +56,9 @@ only moment it is cheap.
 
 ## Open claims
 
-**CLAIMED 2026-10-02, owner-directed session: `content/manual/source/content.json`, the `variants` and `capacity` fields, for the 13 rooms that lack them.** Phil asked for micro zones to carry primary function, common items, step-by-step instructions and pitfalls. Measured first: 11 of 14 fields are already complete on all 114 zones (purpose, done_looks_like, the six passes, the_call, watch_for, leave_behind, shine_detail with per-surface method, diagnosis). The real gaps are **variants and capacity, present on 44 of 114**, and **common items, which has no field at all**. Taking variants and capacity first because the rendering already exists and only the data is missing. Rooms: Pantry, Dining Room, Living Room, Family Room, Guest Bedroom, Kids Bedroom, Nursery, Guest Bathroom, Workshop, Mudroom, Hall Closet, Stair Landing, Patio or Deck. Release when done.
+**RELEASED 2026-10-02: all 114 micro zones now carry `variants` and `capacity`, up from 44.** Seventy zones authored across thirteen rooms, every line grounded in that zone's own existing text. Also fixed on the way: 19 of the 114 zone nouns are plural, and both section templates forced singular agreement onto them, so "How much this utensil and utility drawers can actually hold" was already live before this work started. Held now by `ops/tests/test_zone_headings_number_safe.py`.
+
+**Still open from Phil's request, and deliberately not started in the same stretch:** a `common_items` field, which is the one thing he asked for that has no field anywhere in the corpus. Primary function (`purpose`), step-by-step instructions (the six `passes` plus `shine_detail`'s per-surface method) and pitfalls (`watch_for`, plus `the_call` and `diagnosis`) were all already complete on all 114 before today.
 
 No active claims as of 2026-10-02. Every entry previously logged here
 (content-level visitor reads of all 20 rooms, the five "also called" room
