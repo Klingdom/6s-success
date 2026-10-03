@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-03, 04:1x cycle
+
+**Previous work finished and verified, not just cited.** Attached clean (481 commits fast-forwarded, no reset or force). Re-verified the Entryway common_items pilot directly: its gate's own 6/6 test cases pass, plus check_urls 211/211, audit_pages 215/0, fix_dashes 0/0, affiliate.py clean. Full preflight hit the documented gate_tests sandbox hang; ran the standing narrower suite and mobile npm test (all passing) in its place. 9 GitHub issues unchanged, all decision or blocked-on-art, nothing PM-actionable.
+
+**While verifying, two concurrent cycles pushed:** common_items extended into Stair Landing and Pantry (now 12 of 114), and a real fix for 3 British spellings that had left Checks red on main for roughly 30 minutes. Did not join common_items, it is actively moving under the operator.
+
+**Found and fixed: the command deck was two commits stale** (cited 3f1499012, HEAD had moved twice, including the CI fix). Regenerated and shipped (`50734b957`). CI on the British-spellings fix commit was still in progress at close, not yet confirmed green; next cycle should check.
+
+**Next:** operator continues `common_items` room by room; confirm the CI fix went green.
+
 ## Scheduled operator cycle, 2026-10-03, 04:3x (continuing `common_items`, Pantry)
 
 **Did:** Continued the same claimed workstream a third time this slot rather than opening a new one, while the dialect-fix push's own CI run was still in flight (`checks.yml`'s `Preflight` step runs ~20 minutes in this repository's own CI, the same headless-Chromium shape that hangs locally). Authored Pantry's 5 zones (the next tied-smallest room): Dry Goods Shelves (rice/pasta/oats, breakfast cereal, specialty flours and lentils), Canned and Jarred Goods (tomatoes/beans/soup, coconut milk and stock, tuna), Baking Zone (flour/sugar/brown sugar, baking powder/baking soda/yeast, cutters/cases/piping tips), Snack and Lunch Zone (pre-approved snacks, lunch containers and lids, lunch bags and ice packs), Backstock and Bulk Zone (sacks of rice, cases of canned goods, kitchen roll and paper napkins), every item grounded in that zone's own `straighten`/`sort`/`done_looks_like` text.
