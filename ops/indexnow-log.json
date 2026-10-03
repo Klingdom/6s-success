@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-28T18:31:53Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T02:09:11Z",
    "mode": "changed",
    "offered": 22,
@@ -633,6 +626,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-03T04:55:43Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -708,11 +708,11 @@
   "https://6s-success.com/rooms/primary-bedroom": "002c862aa2230f08",
   "https://6s-success.com/rooms/stair-landing": "8a23521591a2b41a",
   "https://6s-success.com/rooms/workshop": "7e446d315a6efb35",
-  "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "22898289149c4937",
-  "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "c3af5b38601c7245",
-  "https://6s-success.com/zones/dining-room-the-dining-table": "f3f784d27b3cb144",
-  "https://6s-success.com/zones/dining-room-the-sideboard-storage": "5bb4258ae21c9f8f",
-  "https://6s-success.com/zones/dining-room-the-sideboard-surface": "4f0b7e26ed5d417d",
+  "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "708b153fcb4272f4",
+  "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "7d23175296ff4a8d",
+  "https://6s-success.com/zones/dining-room-the-dining-table": "14367bc3652d5ab9",
+  "https://6s-success.com/zones/dining-room-the-sideboard-storage": "48d0849a6e83331b",
+  "https://6s-success.com/zones/dining-room-the-sideboard-surface": "6a8eed2eafa81bb4",
   "https://6s-success.com/zones/entryway-the-bench-or-console": "580333e55a351184",
   "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "82323b838659484f",
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "f2565a15ad6d755e",
