@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-03 18:47",
+ "generated": "2026-10-03 18:44",
  "commit": "dd273c58a",
  "commit_msg": "Re-sync mcp/content.json and build-id after sort_scope drift",
  "commits_7d": 1485,
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-10-03 11:01",
  "affiliate_trigger_carried_from": "2026-10-03 11:01",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,

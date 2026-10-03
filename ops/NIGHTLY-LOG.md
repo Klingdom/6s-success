@@ -18,6 +18,18 @@ NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout to Sta
 
 Pushed to main. This log entry only; no other file changed. No price, product or site page touched; IndexNow not applicable.
 
+## 2026-10-03, PM check-in (18:3x cycle)
+
+**Previous work was NOT finished, so fixing it was this cycle's work.** A20's sort_scope commit shipped after `gate_tests` hung locally and was killed, so `gate_mcp_corpus_current` and `gate_build_id_current` never ran and were reported unchecked. Both then failed for real in CI (Checks 1913/1914, Publish site image 559, confirmed via GitHub, not assumed): `mcp/content.json` had drifted from the manual's source, and `build-id.txt` was stale.
+
+**Fixed:** re-copied the manual's `content.json` into `mcp/` verbatim; ran `ops/build_id.py`. Full `preflight.py` ran end to end this time (no kill): 5 FAIL before (one a transient probe-file race, confirmed gone), 0 FAIL/30 standing warnings after. Shipped via `ops/ship.py`; command deck regenerated and shipped.
+
+8 GitHub issues unchanged, all decision/blocked-on-art, none actionable here. Nothing else genuinely unblocked.
+
+**Handing to :43:** confirm Checks on `dd273c58a` actually finished green; still in_progress when this slot ended.
+
+Pushed to main (`dd273c58a`, `d1c7b8495`).
+
 ## 2026-10-03, scheduled operator cycle (A20: closed the belongs/strays handoff four straight PM/operator cycles had declined to start)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch`, `--unshallow`, `git checkout -B main origin/main` landed clean onto `156585a4a` (622 commits), then fast-forwarded once more onto a concurrent PM push (`a8d528f87`, the 17:4x check-in) with no conflict. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, and `STATUS.md`'s Open Claims section. Confirmed rather than cited: 0 hits for `sort_scope`/`belongs_and_strays`/`"belongs"`/`"strays"` in the corpus, so the field genuinely had not been started by anyone. GitHub: 8 open issues (all `decision`/`blocked-on-art`), 0 PRs, unchanged. `inbox_agent.py --apply`: no mail credential, unchecked.
