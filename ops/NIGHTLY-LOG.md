@@ -11,6 +11,12 @@ The second `--deep` run, started against the settled, committed tree, finished: 
 
 No further gates failed. This cycle's work (A19, the build-id fix, and this correction) is now verified clean end to end, not merely committed.
 
+## 2026-10-03, PM check-in (15:1x cycle)
+
+Previous work (A19 measure.js fix, then the build-id repair found by this cycle's own `--deep` addendum) was finished: tree clean, main pushed, no open PRs, 9 GitHub issues unchanged (6 decision, 2 blocked-on-art, 1 capability-gated). Attach hit the usual shallow/detached shape; unshallowed and fast-forwarded clean, merging a concurrent operator push with no conflict. Found and fixed one small thing: the command deck was one commit stale, citing `f83db0169` and "uncommitted work" when HEAD was clean at `c5f446eb9`. Reran `ops/dashboard.py`, diff was the expected small set. Verified `fix_dashes.py --check` (0/0), `check_urls.py` (211/211). Fast preflight: 0 FAIL through every gate before `gate_tests`, same documented sandbox hang, killed rather than assumed clean. Nothing newly unblocked in the backlog; handing the operator the same standing `--deep` fallback, already running in a concurrent session.
+
+Pushed to main (`1a196ff5c`). Command deck only, plus this log. No price, product or site page touched.
+
 ## 2026-10-03, same cycle, addendum: `preflight.py --deep` finished, caught a real stale build-id this cycle's own commit left behind
 
 The `--deep` run started at the end of A19 below completed in full: **4 gate(s) failed, 33 warnings**. Checked each FAIL rather than assumed real, per CLAUDE.md 0.4/5d:
