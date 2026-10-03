@@ -437,9 +437,9 @@
       "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (db106800b, a live false-claim/misclassification fix; ac631cf48, give Bluesky the drafting pipeline). Reran ops/tests/test_corpus_posts.py: 36/36 cases pass. No defect found."
     },
     "crawl_report.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 640ac7414 ('77% of this site's traffic is this repository, and the crawl report called it human', excluding this repo's own tooling user-agents from the human/unknown bucket). Reran all four ops/tests/test_crawl_report_*.py files: all clean (line parsing, own-tooling exclusion, purpose classification, unparsed reporting). No defect found."
+      "status": "fixed",
+      "date": "2026-10-03",
+      "note": "Extended rather than merely read: it could say how many distinct paths crawlers fetched and never which of our own pages they had missed. sitemap_coverage() added; its first answer (210 of 211, naming the one page) corrected a hand-written grep pipeline that had said 211 of 211. ops/tests/test_crawl_sitemap_coverage.py, 5 checks, fail-then-pass proved. Finding recorded as LEARNINGS.md LRN-0036."
     },
     "dashboard.py": {
       "status": "fixed",
@@ -567,14 +567,14 @@
       "note": "OWNER_DOMAINS matched the bare domain gmail.com, so any customer emailing from a Gmail address (not just Phil) classified as kind=owner, bypassing delivery-problem detection. Fixed: match only the exact OWNER_EMAIL address, same convention owner_inbox.py uses. See NIGHTLY-LOG 2026-09-27."
     },
     "indexnow.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full (405 lines). Checked --new/--changed/--submit/--status modes, key_is_live() three-state (True/False/None) handling, withhold_undeployed() skipping undeployed URLs, content_hashes() baseline-vs-changed logic and its own documented 2026-09-08 fix (hashes recorded only for accepted_now, not all of log[submitted]). run() only appends to log[runs] on an actual submission attempt (not on key-unreachable or refused-to-submit early returns), so status() last-submission line reflects last real submission, not last invocation; correct per this file's own stated purpose (when did we last submit), not a gap. No exit-code-lies-about-success shape (each mode returns rc from run() or an explicit failure code). No defect found."
+      "status": "fixed",
+      "date": "2026-10-03",
+      "note": "Read for the IndexNow submission log's own shape, not line by line. Real defect found and fixed: content_hashes() hashed working-copy bytes, so CI (LF) and this workstation (core.autocrlf=true, CRLF) disagreed on every page and each alternation re-announced all 210 URLs. Measured first: 211 of 211 stored hashes matched a raw read, 1 matched an LF-normalised one. page_hash() now normalises, HASH_ALGO names the recipe, and --changed refuses to compare across recipes. ops/tests/test_indexnow_page_hash.py, 4 checks, fail-then-pass proved."
     },
     "keyword_demand.py": {
-      "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02, PM check-in. Harvester correctly distinguishes a genuine empty autocomplete result from a rate-limited/blocked endpoint via start/end canary plus per-seed ok/empty/error accounting, and refuses to overwrite a complete harvest with a partial one. --status shows a healthy 2026-10-01 harvest (238 ok, 36 empty, 0 errored, both canaries ok); ops/tests/test_keyword_demand.py exists."
+      "status": "fixed",
+      "date": "2026-10-03",
+      "note": "Defect found by running it rather than reading it: --help was not a recognised flag, so it fell through every branch in main() and started a full live harvest of both engines that overwrites ops/keyword-demand.json. Any typo did the same. main() now refuses unknown arguments with exit 2, prints the docstring for --help, and catches a bare --source. Case 16 in ops/tests/test_keyword_demand.py, fail-then-pass proved."
     },
     "launch_plan_pdf.py": {
       "status": "clean",
