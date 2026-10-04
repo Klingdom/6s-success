@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T21:06:31Z",
-   "mode": "changed",
-   "offered": 29,
-   "accepted": 29,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T21:30:05Z",
    "mode": "changed",
    "offered": 109,
@@ -633,6 +626,13 @@
    "offered": 12,
    "accepted": 12,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-04T04:46:06Z",
+   "mode": "changed",
+   "offered": 12,
+   "accepted": 12,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -746,12 +746,12 @@
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "d7d79c4d9540a4de",
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "c320d91f1e79d341",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "dd6d3846c844d01e",
-  "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "8e39817c5bbb404e",
-  "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "3f26178e087e91c3",
-  "https://6s-success.com/zones/home-office-the-file-storage": "969d665b98d6f251",
-  "https://6s-success.com/zones/home-office-the-primary-desk": "cd68246b3dde8919",
-  "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "8b789b0c271e55fd",
-  "https://6s-success.com/zones/home-office-the-supply-cabinet": "e8f86878b032edd6",
+  "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "aa23cc88ecd63b06",
+  "https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal": "55e7abca7b343419",
+  "https://6s-success.com/zones/home-office-the-file-storage": "c7f9737c2a13ddfb",
+  "https://6s-success.com/zones/home-office-the-primary-desk": "b83420a3be12aaf5",
+  "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "efefa3ca954cfc02",
+  "https://6s-success.com/zones/home-office-the-supply-cabinet": "fd1cb3e1233a7168",
   "https://6s-success.com/zones/": "53c6c1ea2e6cf079",
   "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "64ea610ea0efe660",
   "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "965c57e8241f947b",
@@ -817,12 +817,12 @@
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "d18afed0e8fd1cef",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "44e869d732d723c5",
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "1633ca98367aa8f3",
-  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "9e88d797bb46e5a4",
-  "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "6c9abf1a0cbf30cd",
-  "https://6s-success.com/zones/workshop-the-main-workbench": "f4a91e0d3d93b397",
-  "https://6s-success.com/zones/workshop-the-material-rack": "3a5a776c5c1e75f5",
-  "https://6s-success.com/zones/workshop-the-power-tool-storage": "ee9fa26a6912ac99",
-  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "dee6f20715eb0bcf",
+  "https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone": "531b51abd2d83be3",
+  "https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone": "6f73931c108f240e",
+  "https://6s-success.com/zones/workshop-the-main-workbench": "74d478d20e9e5891",
+  "https://6s-success.com/zones/workshop-the-material-rack": "6a0d30d251baa264",
+  "https://6s-success.com/zones/workshop-the-power-tool-storage": "bce9c6898d61ab2d",
+  "https://6s-success.com/zones/workshop-the-safety-and-ppe-station": "2f5121ea87497c50",
   "https://6s-success.com/kitchen-deck.html": "b36d9e1f6d8b0387",
   "https://6s-success.com/bundle.html": "1e60427d54d18880",
   "https://6s-success.com/articles/what-a-5s-engagement-costs": "6b28a9ddeaf7406f",
