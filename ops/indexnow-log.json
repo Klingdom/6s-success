@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T21:30:05Z",
-   "mode": "changed",
-   "offered": 109,
-   "accepted": 109,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T22:08:27Z",
    "mode": "changed",
    "offered": 113,
@@ -633,6 +626,13 @@
    "offered": 12,
    "accepted": 12,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-04T04:58:54Z",
+   "mode": "changed",
+   "offered": 12,
+   "accepted": 12,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -778,12 +778,12 @@
   "https://6s-success.com/zones/living-room-the-media-center": "35755dd3c899f439",
   "https://6s-success.com/zones/living-room-the-side-tables-and-lighting": "5a31d2806c2552d7",
   "https://6s-success.com/zones/living-room-the-sofa-and-seating": "8336702a246d24f7",
-  "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "fe914382251f644c",
-  "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "d283931d7d669eb2",
-  "https://6s-success.com/zones/mudroom-the-family-hook-zone": "7dc8781132a5ed6e",
-  "https://6s-success.com/zones/mudroom-the-pet-station": "78f577bd551252b4",
-  "https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear": "c97a67e1f7436250",
-  "https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage": "a1a01da57a3735b6",
+  "https://6s-success.com/zones/mudroom-the-bench-and-transition-surface": "6ad6057060b13439",
+  "https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone": "bcb2ebc88ae3da2a",
+  "https://6s-success.com/zones/mudroom-the-family-hook-zone": "9d8110f3f91b1d04",
+  "https://6s-success.com/zones/mudroom-the-pet-station": "e8beef9ae079781b",
+  "https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear": "fecf92a1ad6f718e",
+  "https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage": "55c7b4015031e535",
   "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "d7646a25003078b2",
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "581b1d9e01db9d2e",
   "https://6s-success.com/zones/nursery-the-changing-station": "e41c049c8376cd77",
@@ -795,12 +795,12 @@
   "https://6s-success.com/zones/pantry-the-canned-and-jarred-goods": "2d8835c71f46dd03",
   "https://6s-success.com/zones/pantry-the-dry-goods-shelves": "a2935207a9a8017e",
   "https://6s-success.com/zones/pantry-the-snack-and-lunch-zone": "62cffad21f2d73b0",
-  "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "d5041066bfec7abc",
-  "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "a3bea3175b0654dc",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "7297e9e3fc317900",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "29f251d1ffa39146",
-  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "8528c95f29dc2ac3",
-  "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "68b49bcdcd28c337",
+  "https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone": "bbaa2f101b8d7300",
+  "https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone": "71dac9a1989402ab",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone": "6fab959060e6440b",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone": "ac87338ef4899d79",
+  "https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone": "fe5b73a3d9f653b9",
+  "https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone": "5ca9665497f2cc8e",
   "https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage": "3c6b49f786b4dfc5",
   "https://6s-success.com/zones/primary-bathroom-the-medicine-cabinet": "57238ee0b4ac1a7e",
   "https://6s-success.com/zones/primary-bathroom-the-shower-or-tub": "3fd8a9e8b2ba7d12",
