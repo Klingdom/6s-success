@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (04:1x cycle, 30-minute triage, a real stale build-id found and fixed, plus a reopened deploy gap caught and corrected in STATUS.md)
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `e916781c9`, tree clean). Read `git log -12`, `ops/NIGHTLY-LOG.md`'s real head (not its tail, which lands mid-file in this 6.7MB newest-first log), `BACKLOG-2026-09-07.md` section 2 (A20, the `sort_scope` rollout, is the only unblocked workstream, now at 81 of 114 zones per the last operator cycle), `EXECUTIVE-DASHBOARD-LIVE.md`, and 8 open GitHub issues directly (all `decision`/`blocked-on-art`, two also `P0`; 0 open PRs; none newly actionable, none mine to decide).
+
+**Verified the previous cycle's claim rather than citing it:** independently counted `content.json`'s `sort_scope` field by room (81 of 114 zones, 15 of 20 rooms, matching the backlog's own figure exactly) and confirmed the remaining 5 rooms (Mudroom, Patio or Deck, Kitchen, Primary Bathroom, Garage) carry none. Previous work genuinely finished, not merely committed.
+
+**Found two real problems while verifying, not by citation.** First: `python ops/preflight.py` run to completion (it did not hang on `gate_tests` this run, unlike recent cycles) returned 1 FAIL: `site/build-id.txt` said `dbab744f6e1567ea` but the tree hashed to `7e25cf715425514a`. The last commit (`e916781c9`, the Home Office/Workshop `sort_scope` rollout) had touched `site/` content but never restamped `build-id.txt`, the exact "a commit changed site/ and left build-id.txt describing the older tree" defect this file's own history has caught and named at least twice before. Fixed: `python ops/build_id.py`, reran `--check`, now current.
+
+**Second: `STATUS.md`'s deploy-gap citations (`BLOCKER-001`, the "Production Knowledge" paragraph, the "Immediate Focus" line, and the "Public website"/"Production traceability" rows) all still read "0 commits" against the fourth deploy (`dbab744f6e1567ea`, 03:11:15Z), but `e916781c9` landed after that deploy and touches `site/`.** Re-derived directly with `deploy_gap_material_commits('fe383721c')`: real gap is now 1 commit, 1 material (`e916781c9` itself). Corrected all five citations in place, same append-don't-rewrite convention as every prior correction; re-ran `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` directly against the edited file, both return `''`.
+
+**Not acted on:** the deploy gap itself. No operator sandbox holds `~/.ssh/6s_deploy` or has VPS egress (confirmed again this cycle), and `publish-image.yml`/`deploy.yml` both need `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35, open 10+ days, zero comments), which only Phil can set. Not starting the next leg of the `sort_scope` rollout (Mudroom, Patio or Deck, then Kitchen/Primary Bathroom/Garage) myself: operator-cycle-sized, not a 30-minute slot, same standing PM practice.
+
+**Verified after the fixes:** full `preflight.py` rerun, every gate clean except the one test that refuses to run against an uncommitted tree (resolves on this commit) and the standing sandbox-limited warnings (no Stripe/mail/SSH credential, no Pillow, no JRE, all previously diagnosed). `fix_dashes.py --check` 0/0, `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean, 165 documents. Dashboard regenerated.
+
+**Handing to the operator (:43):** continue the `sort_scope` rollout at Mudroom and Patio or Deck (6 zones each), then Kitchen, Primary Bathroom and Garage (7 zones each) last, closing the rollout at 114 of 114, unchanged from the prior handoff. The deploy gap (1 commit) is informational only; nothing here needs Phil's redeploy urgently, it is already-correct content sitting undeployed.
+
+Pushed to main. `STATUS.md`, `site/build-id.txt`, command deck, this entry. No price or product touched, no new page, IndexNow not applicable (no content page changed).
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout, Home Office and Workshop)
 
 **Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, and the real head of this log (confirmed it is newest-first, not newest-last; a tail-based check earlier in this cycle wrongly suggested the log had stalled on 2026-09-04). Took the standing handoff named by four straight prior cycles: continued the sort_scope (belongs/strays) rollout at Home Office and Workshop, 6 zones each. Authored belongs/strays for all 12 zones grounded in each zone's own done_looks_like/passes.sort/common_items text, nothing invented. Edited content.json and mcp/content.json via a scratchpad script, dry-run proved first against a scratch copy. Ran ops/build_zone_pages.py for real rather than hand-editing site/.
