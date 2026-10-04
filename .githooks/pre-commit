@@ -123,4 +123,32 @@ if [ -n "$PAGES_CHANGED" ]; then
         exit 1
     fi
 fi
+
+# Refuse a commit that changes the corpus while mcp/content.json still holds
+# the previous one.
+#
+# The third instance of the same shape, after build-id and the sitemap, and the
+# reason it is worth a fourth control rather than a fourth warning: on
+# 2026-10-04 this blocked the image build (gate_mcp_corpus FAIL, run against
+# 65715c93c) while a sort_scope cohort sat at 69 zones in the manual and 57 in
+# the MCP copy. Every AI assistant query would have been answered from the
+# stale one while the site served the current one.
+#
+# Reads and reports, like the sitemap control: it does NOT copy the file,
+# because which direction the copy should go is a judgement (somebody could be
+# editing the MCP copy on purpose) and a hook that guesses would eventually
+# overwrite real work.
+CORPUS_CHANGED=$(printf '%s\n' "$FILES" | grep -E '^(content/manual/source/content\.json|mcp/content\.json)$')
+if [ -n "$CORPUS_CHANGED" ]; then
+    if ! cmp -s "$HOOK_DIR/../content/manual/source/content.json" "$HOOK_DIR/../mcp/content.json"; then
+        echo "  pre-commit: mcp/content.json does not match"
+        echo "  content/manual/source/content.json. The MCP server ships a"
+        echo "  self-contained copy, and a drifted one answers every assistant"
+        echo "  query from a stale corpus."
+        echo "  Run: cp content/manual/source/content.json mcp/content.json"
+        echo "  Bypass, only with a real reason: git commit --no-verify"
+        exit 1
+    fi
+fi
+
 exit 0
