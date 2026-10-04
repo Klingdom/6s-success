@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle (sort_scope rollout, Mudroom and Patio or Deck)
+
+**Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7, ROADMAP-2026-2029.md, CLAUDE.md, and the real head of this log (confirmed newest-first by its own header, not the tail, after the prior cycle's note that a tail-based read lands mid-file on a 6.7MB log). Confirmed `content.json` directly before starting: 81 of 114 zones carried `sort_scope`, matching the standing handoff; the next tied-smallest unclaimed rooms were Mudroom and Patio or Deck (6 zones each). Authored belongs/strays for all 12 zones, every item grounded in that zone's own `done_looks_like` (what stays) and `passes.sort` (what leaves) text, nothing invented.
+
+**Verified:** Dry-run against a scratch copy first via a scratchpad script, diff confirmed exactly 12 zones changed, each gaining only the `sort_scope` key; wrote with `indent=1` to match the file's existing 1-space-indented style, so the real diff stayed at 156 insertions/12 deletions rather than reformatting the whole 1.3MB file. `mcp/content.json` edited the same way, confirmed byte-identical to the source copy. Ran the real generator (`ops/build_zone_pages.py`, not a hand edit of `site/`), which touched only the 12 target pages plus the usual sitemap bookkeeping (215 pages, 211 sitemap URLs). `gate_sort_scope_rendered` clean via direct call; `ops/tests/test_gate_sort_scope_rendered.py` 6/6; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `affiliate.py --check` clean (165 documents); `link_graph_report.py` 0 orphans; `check_sellable.py` unchanged (124/126, same 2 person-delivered services excluded); `ops/audit_visual.py` on all 12 changed pages at both desktop and mobile viewports, 0 findings across both runs. Mobile `npm test`, 3 suites, unaffected (no mobile code touched). GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Full `preflight.py` run in the background rather than skipped or merely cited.** It reached `gate_tests` with 0 FAIL on every gate before it, same as every recent cycle's own account, then stalled there. Rather than trust the documented sandbox-hang explanation on faith, checked it directly: polled the process's CPU time twice several minutes apart and found it flat (3 seconds of CPU time across more than 4 minutes of wall clock), confirming it was genuinely stuck rather than slowly computing, before killing it. Reported unchecked past `gate_tests`, not assumed passing.
+
+**Went well:** verifying the sandbox-hang claim by actually checking CPU time rather than citing the standing explanation; the dry-run-then-diff discipline again caught nothing wrong, which is the cheap insurance paying for itself.
+
+**Did not go well:** nothing new; same standing `gate_tests`/`audit_visual` (when it does hang) sandbox limitation this environment has reported for weeks.
+
+**Changing next cycle:** none; the existing gates and dry-run discipline are sufficient and proved themselves again.
+
+**Next:** Kitchen, Primary Bathroom and Garage (7 zones each, 21 zones), the last three rooms, closing the rollout at 114 of 114.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 12 `site/zones/*.html` pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page. IndexNow not applicable (existing pages edited, none added).
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout, Home Office and Workshop)
 
 **Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, and the real head of this log (confirmed it is newest-first, not newest-last; a tail-based check earlier in this cycle wrongly suggested the log had stalled on 2026-09-04). Took the standing handoff named by four straight prior cycles: continued the sort_scope (belongs/strays) rollout at Home Office and Workshop, 6 zones each. Authored belongs/strays for all 12 zones grounded in each zone's own done_looks_like/passes.sort/common_items text, nothing invented. Edited content.json and mcp/content.json via a scratchpad script, dry-run proved first against a scratch copy. Ran ops/build_zone_pages.py for real rather than hand-editing site/.

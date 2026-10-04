@@ -16368,7 +16368,18 @@
       "One coat, one bag and one hat per person, each on a named column",
       "Hooks, set to each person's own reach",
       "Scarves and cords, kept off the lowest hooks"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two coats and one bag per person, each on a named column",
+       "Hooks, set to the shortest person's reach",
+       "Bare floor, along the whole run of wall beneath the hooks"
+      ],
+      "strays": [
+       "Any coat, bag, hat or scarf without a named owner",
+       "Anything unworn since the last change of season"
+      ]
+     }
     },
     {
      "zone": "Bench and Transition Surface",
@@ -16518,7 +16529,18 @@
       "A bare seat, wide enough for two to lace boots at once",
       "No more than three objects, on the surface",
       "One labeled basket, for what's leaving tomorrow"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A bare seat, wide enough for two to lace boots at once",
+       "No more than three objects, on the surface",
+       "One labeled basket, holding only what's leaving tomorrow"
+      ],
+      "strays": [
+       "Anything that belongs in another room",
+       "Items slid to the far end instead of carried out"
+      ]
+     }
     },
     {
      "zone": "Shoe and Boot Storage",
@@ -16674,7 +16696,18 @@
       "Two pairs per person, soles down and toes out",
       "One lipped tray, by the door, for wet pairs",
       "Clear floor, between the tray and the doorway"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two pairs per person, soles down and toes out",
+       "One lipped tray, by the door, for wet pairs",
+       "Clear floor, between the tray and the doorway"
+      ],
+      "strays": [
+       "Outgrown pairs, split soles and unmatched singles",
+       "Anything for the opposite season"
+      ]
+     }
     },
     {
      "zone": "Pet Station",
@@ -16829,7 +16862,20 @@
       "An old towel, folded within arm's reach",
       "Food, sealed in a bin with the scoop inside",
       "Treatments, behind a closed door above reach"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Lead clipped to collar on one hook, a full roll of waste bags attached",
+       "An old towel, folded within arm's reach of the door",
+       "Food, sealed in a bin with the scoop inside",
+       "Every treatment, behind a closed door above reach"
+      ],
+      "strays": [
+       "The outgrown collar",
+       "The harness that never fitted",
+       "The retired long line"
+      ]
+     }
     },
     {
      "zone": "Seasonal Outdoor Gear",
@@ -16979,7 +17025,18 @@
       "One open bin per person, holding this season's matched gloves and hat",
       "Umbrellas, standing points down in one stand",
       "The off-season bin, closed and labeled with the month, on the high shelf"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One open bin per person, this season's gloves and hat, every pair matched",
+       "Umbrellas, standing points down in one stand",
+       "The off-season bin, closed, labeled with the month, on the high shelf"
+      ],
+      "strays": [
+       "Unmatched gloves and mittens, the singles",
+       "Sun cream or insect repellent past its printed date"
+      ]
+     }
     },
     {
      "zone": "Cleaning and Utility Zone",
@@ -17137,7 +17194,18 @@
       "Broom, mop and dustpan, clipped to the wall, heads clear of the floor",
       "The vacuum, parked inside its marked outline",
       "One caddy, holding four labeled cleaners"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Broom, mop and dustpan, clipped to the wall, heads clear of the floor",
+       "The vacuum, parked inside its marked outline",
+       "One caddy, holding the four cleaners you genuinely use"
+      ],
+      "strays": [
+       "The last inch in six other bottles, once the four you use are kept",
+       "Any cleaner you do not actually reach for"
+      ]
+     }
     }
    ]
   },
@@ -18776,7 +18844,19 @@
       "Four chairs, close enough to talk without raising your voice",
       "One cushion per seat, none spare, kept in the deck box",
       "A photo of the usual arrangement, taped inside the deck box lid"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Four chairs, sat in without testing, close enough to talk across",
+       "Every cushion, in the deck box"
+      ],
+      "strays": [
+       "The chair that wobbles",
+       "The chair with the cracked resin arm",
+       "A cushion you would not offer a guest",
+       "A cover, crumpled on the ground behind a planter"
+      ]
+     }
     },
     {
      "zone": "Grill and Outdoor Cooking Zone",
@@ -18946,7 +19026,21 @@
       "One long-handled tong, one spatula, one thermometer, one basting brush, on the grill's own hooks",
       "The propane tank, upright, its level written on the collar",
       "The grease tray, emptied and back in its rails"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Grates, scraped bare",
+       "The grease tray, emptied and back in its rails",
+       "Four tools, on the grill's own hooks, no fifth anywhere",
+       "The propane tank, upright, its level written on the collar"
+      ],
+      "strays": [
+       "A bag of dried-out lighter cubes",
+       "Spare sets of tongs, beyond the one you keep",
+       "A thermometer with a dead battery",
+       "Sauce bottles that spent a summer at outdoor temperature"
+      ]
+     }
     },
     {
      "zone": "Outdoor Dining Zone",
@@ -19111,7 +19205,20 @@
       "The umbrella and one weighted tray, the table's resting state",
       "Six chairs, tucked fully under",
       "String lights, clipped along the rail"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The umbrella and one weighted tray, the table's resting state",
+       "Six chairs, tucked fully under",
+       "String lights, clipped along the rail"
+      ],
+      "strays": [
+       "A citronella bucket burned to the rim",
+       "A lighter that no longer sparks",
+       "Placemats gone pale on one side",
+       "Melamine plates from a barbecue two summers ago"
+      ]
+     }
     },
     {
      "zone": "Garden and Plant Care Zone",
@@ -19277,7 +19384,19 @@
       "One tool caddy: trowel, pruners and gloves",
       "Pots, nested by size along the wall",
       "A latched chemical box, above the tools"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One tool caddy: trowel, pruners and gloves",
+       "Pots, nested by size along the wall, drain holes clear",
+       "A latched chemical box, above the tools"
+      ],
+      "strays": [
+       "A pot with no drainage hole",
+       "A pot still holding last year's dead root ball",
+       "Bagged potting soil gone solid and sour"
+      ]
+     }
     },
     {
      "zone": "Outdoor Storage Zone",
@@ -19442,7 +19561,20 @@
       "Cushions, in one layer on top",
       "Two labeled totes beneath: games and covers",
       "A lid that closes flat, without being pressed down"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Cushions, in one layer on top",
+       "Two labeled totes beneath: games and covers",
+       "A lid that closes flat, without being pressed down"
+      ],
+      "strays": [
+       "Cushions that went in damp and still smell of mildew",
+       "A croquet set missing two mallets",
+       "Covers for furniture you no longer own",
+       "A bag of charcoal that has drawn moisture"
+      ]
+     }
     },
     {
      "zone": "Surface, Rail, and Safety Zone",
@@ -19616,7 +19748,19 @@
       "A mat, square at the threshold",
       "Step lights, lit at every stair",
       "A dated tag, inside the back door"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Nothing but furniture, on the deck itself",
+       "Daylight, visible through the gaps between boards",
+       "Every rail post, immovable when pushed hard"
+      ],
+      "strays": [
+       "A planter that has drifted into the walking route",
+       "A hose, coiled across the top step",
+       "A bag of paving sand, leaning on a rail post"
+      ]
+     }
     }
    ]
   }
