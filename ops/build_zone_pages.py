@@ -39,14 +39,12 @@ import json
 import math
 import os
 import re
-import shutil
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 SRC = os.path.join(ROOT, "content", "manual", "source", "content.json")
-MCP_COPY = os.path.join(ROOT, "mcp", "content.json")
 BASE = "https://6s-success.com"
 UMAMI = ('<script defer src="/stats/script.js" '
          'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
@@ -3858,16 +3856,6 @@ def main():
     header, footer = load_chrome()
     os.makedirs(os.path.join(SITE, "rooms"), exist_ok=True)
     os.makedirs(os.path.join(SITE, "zones"), exist_ok=True)
-
-    # gate_mcp_corpus_current polices mcp/content.json as a byte-identical
-    # copy of SRC, and the copy has drifted out from under it repeatedly
-    # (NIGHTLY-LOG.md records at least four separate recurrences), every
-    # time because resyncing it was a manual step a content.json edit's own
-    # author had to remember. This is the generator an operator actually
-    # runs after a content.json edit, so the sync belongs in the chain, not
-    # in another reminder to do it by hand.
-    if os.path.exists(MCP_COPY):
-        shutil.copyfile(SRC, MCP_COPY)
 
     _validate_room_job(data["rooms"])
 
