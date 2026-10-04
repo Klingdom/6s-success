@@ -22,8 +22,12 @@ So each check asserts something only the real service can produce:
                         worth saying so: any host that 404s passes it, so it
                         can catch a misconfigured proxy but cannot confirm
                         Umami is behind it. The tracker check above does that.
-  /subscribe            Listmonk's public form carries its own title. A proxy
-                        error would not.
+  /subscribe            must NOT serve another business's mailing lists. This
+                        used to assert the opposite: that Listmonk's public
+                        form was reachable here, which it was, rendering two
+                        Compassion Benchmark lists pre-ticked beside ours. A
+                        404 is the correct answer until a 6S-only subscription
+                        surface exists.
   website id            the id the live pages send must match the one this
                         repository ships, or events are being counted against
                         a different site, or none.
@@ -52,6 +56,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 BASE = "https://6s-success.com"
 
+
+# The exact list names Listmonk rendered on /subscribe on 2026-10-04,
+# alongside 6S Success Readers and all three pre-ticked. Hardcoded on purpose:
+# a pattern like "any list that is not ours" would need to know every list
+# this instance will ever hold, and these two are the ones measured live.
+FOREIGN_LISTS = (
+    "Compassion Benchmark Weekly Digest",
+    "Compassion Benchmark Product",
+)
 
 def fetch(path: str, method: str = "GET", timeout: int = 25) -> tuple:
     """(status, body) or (None, None) when the request could not be made."""
@@ -112,17 +125,41 @@ def check() -> dict:
         record("analytics beacon rejects GET", ok2,
                "%s%s" % (status2, "" if ok2 else ", expected 405 or 404"))
 
-    # Listmonk's own public subscription page.
+    # THIS CHECK USED TO ASSERT THE DEFECT WAS PRESENT AND CALL IT HEALTHY.
+    #
+    # It fetched /subscribe and passed if the body contained the word
+    # subscribe and an <html> tag, i.e. if Listmonk's public form was being
+    # served under our domain. On 2026-10-04 that page was READ rather than
+    # pattern-matched, and it rendered three list checkboxes with every one
+    # pre-ticked, two of them belonging to a different business sharing this
+    # Listmonk instance. So the healthy result this check reported for weeks
+    # was a page that opted a 6S Success visitor into Compassion Benchmark's
+    # two lists by default.
+    #
+    # The route is gone (see site/nginx/default.conf, which carries the full
+    # account). What this now checks is the opposite thing: our domain must
+    # not serve another business's consent checkboxes. A 404 is the correct,
+    # expected answer today and reports as ok, with the honest note that email
+    # capture is consequently NOT working, which it was not before either.
     status3, body3 = fetch("/subscribe")
+    foreign = [name for name in FOREIGN_LISTS if name in (body3 or "")]
     if status3 is None:
-        record("mailing list form", None, "could not be reached")
+        record("no foreign consent on our domain", None,
+               "/subscribe could not be reached, so it was not checked")
+    elif foreign:
+        record("no foreign consent on our domain", False,
+               "/subscribe returns %s and renders %d list(s) belonging to "
+               "another business: %s. A visitor submitting this form is "
+               "opted into them." % (status3, len(foreign), foreign))
+    elif status3 == 404:
+        record("no foreign consent on our domain", True,
+               "404, as intended: no subscription surface is exposed here "
+               "until a 6S-only one exists. Email capture is NOT working, "
+               "by decision, not by accident (OWNER-ACTIONS item 7).")
     else:
-        ok3 = (status3 == 200 and body3 is not None
-               and "subscribe" in (body3 or "").lower()
-               and "<html" in (body3 or "").lower())
-        record("mailing list form", ok3,
-               "%s, %d bytes%s" % (status3, len(body3 or ""),
-                                   "" if ok3 else ", not Listmonk's form"))
+        record("no foreign consent on our domain", True,
+               "%s, %d bytes, and no other business's list names in it"
+               % (status3, len(body3 or "")))
 
     # The id the live pages send has to be the id this repository ships.
     want = repo_website_id()

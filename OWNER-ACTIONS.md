@@ -1250,6 +1250,26 @@ as a shared code rather than a social graph.
 
 ### 7. Listmonk cannot send, AND the site was never wired to it.
 
+**THIRD FINDING, 2026-10-04, and it reverses part of the paragraph below: the route DID exist, and what it served was worse than nothing.** The 2026-09-04 note below says there is no route to Listmonk from the site at all. That stopped being true at some point after it was written: `site/nginx/default.conf` carried a `location = /subscribe` proxying `172.17.0.1:8081/subscription/form`, and `https://6s-success.com/subscribe` returned 200 with Listmonk's own public form.
+
+That page was fetched and READ rather than assumed from its status code. It rendered three list checkboxes, **every one of them pre-ticked**:
+
+```
+[x] Compassion Benchmark Weekly Digest
+[x] Compassion Benchmark Product & Research Updates
+[x] 6S Success Readers
+```
+
+So a visitor to 6s-success.com who submitted it subscribed himself, by default, to two mailing lists belonging to a company he had never heard of. `CLAUDE.md` section 8 rules out a pre-ticked consent by name and section 47 says sharing must be intentional. The site's own footer form says in so many words that nothing here pre-ticks a consent, which was true of our form and false of the page our domain served.
+
+**Nobody was harmed, and that was checked rather than hoped.** Of 549 requests to `/subscribe` in the whole retained access log, 547 are this repository's own `ops/check_integrations.py` probe and 2 are `curl`. No crawler, no visitor, and zero POSTs, ever. The list still has 0 subscribers. Nothing on the site links to it, it is in no sitemap and no robots rule.
+
+**Also worth stating because it is the more embarrassing half: `ops/check_integrations.py` had been reporting this page as a HEALTHY integration for weeks.** It passed if the body contained the word subscribe and an `<html>` tag, so it asserted the defect was present and called it green. It now checks the opposite: our domain must not serve another business's consent checkboxes, and a 404 is the correct answer.
+
+**Fixed by removing the route**, which is reversible and costs nothing measurable at 0 inbound links and 0 subscribers. Listmonk's public form cannot be scoped to one list by URL (it renders every public list on the instance), and making the other two non-public is a change to another live business's configuration, which is not ours to make. So the prerequisite for email capture is unchanged and is still what this item has always said: a 6S-only subscription surface. `ops/tests/test_no_foreign_consent_on_our_domain.py` now fails if any route reaches that instance again, at any path.
+
+**What this does NOT change:** the ordering argument below still stands. Email capture compounds only once people arrive, and arrivals are still the constraint. This was not work done to advance O2; it was a live consent defect removed on the way past.
+
 **Second defect found 2026-09-04, which changes the size of this job.** The
 nginx proxy host for 6s-success.com (`proxy_host/4.conf`) contains exactly one
 `location`, which is `/`. There is no route to Listmonk from the site at all.

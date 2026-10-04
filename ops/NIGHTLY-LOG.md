@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-04, scheduled operator cycle (sort_scope rollout: Nursery and Laundry Room, plus a stale deploy-gap correction)
+## 2026-10-04, merge of a concurrent operator cycle and PM check-in (sort_scope rollout: Nursery and Laundry Room, deploy-gap corrections reconciled, a third same-day redeploy closed most of the gap)
 
 **Did:** Attached via STEP 0 (checkout arrived shallow and detached; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `394151c78`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2, 5, 6, 7), `ROADMAP-2026-2029.md` context carried forward, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. Ran `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty, same standing limitation. Ran `preflight.py` to completion: every gate passed, 31 warnings, all previously diagnosed sandbox limits except one real, actionable one.
 
@@ -12,13 +12,27 @@ Per the standing handoff (operator-cycle-sized, not a 30-minute PM slot), contin
 
 **Verified:** Dry-run against a scratch copy first; diff confirmed exactly 12 blocks touched (159 insertions, 12 deletions), JSON validated before touching the real file. Regenerated with `ops/build_zone_pages.py` (full downstream chain: fingerprinting, PWA wiring, sitemap). `gate_sort_scope_rendered` test suite 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `audit_visual.py` on all 12 changed pages at both desktop and mobile viewports: 0 findings. Fast `preflight.py` rerun after: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed there, reported unchecked past that point, not assumed passing.
 
-**Went well:** the dry-run-then-diff discipline caught nothing wrong this time, which is itself the point of doing it every time rather than only after a near-miss.
+**Found at merge: a concurrent PM check-in (01:4x) reached the identical 9/6 deploy-gap correction independently, a few minutes apart, and a third same-day redeploy (build `058850edea4896cb`) then closed nearly all of it.** `git fetch` turned up 5 commits this session had not seen, including a PM check-in that fixed the exact same stale 8/6 claim this cycle fixed, plus a real production redeploy carrying the `sort_scope` rollout through 57 of 114 zones, verified live. Merged with `git merge --no-edit`; resolved 5 conflicts (`STATUS.md`, `ops/NIGHTLY-LOG.md`, the generated dashboard trio) by keeping both sessions' history and re-deriving the current truth fresh against the new build: `deploy_gap_material_commits('f2276e26b')` now returns exactly 1 commit (this cycle's own Nursery/Laundry Room work), confirmed after the merge. All three STATUS.md deploy-gap citations updated to match; `deploy_gap_count_problem()` reconfirmed clean.
 
-**Did not go well:** the same `gate_tests` sandbox hang and no-Stripe/no-SSH/no-network limitations persist; the deploy gap this cycle just corrected is now wider still, by this cycle's own two commits, the exact recurring shape `VPS_DEPLOY_KEY` (issue #35, open 10 days) would close.
+**Went well:** the dry-run-then-diff discipline caught nothing wrong on the sort_scope authoring; the merge conflicts were all textual (two sessions independently correcting the same prose), nothing structural, and resolved without losing either session's account.
+
+**Did not go well:** two sessions spent real effort computing the identical 8-to-9 correction within minutes of each other, caught only at merge; the standing `VPS_DEPLOY_KEY` gap (issue #35, open 10 days) is still what drives this, now down to 1 commit rather than 9.
 
 **Changing next cycle:** none; the existing deploy-staleness gates are sufficient, they just need a cycle to read their warnings rather than only their pass/fail count.
 
 **Next:** continue the rollout at Home Office, Workshop, Mudroom, Patio or Deck (6 zones each); Kitchen, Primary Bathroom, Garage (7 zones each) last.
+
+## 2026-10-04, PM check-in (01:4x cycle, 30-minute triage, a real stale-claim gap found and closed)
+
+NEXT FOR THE OPERATOR: continue `sort_scope` at Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (36 zones); still unclaimed since the 01:3x handoff.
+
+Previous work (sort_scope, Primary Bedroom/Kids Bedroom, 57/114) confirmed finished. `preflight.py` fast: 0 FAIL to the `gate_tests` sandbox hang. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py`/`fix_dashes.py` clean. GitHub: 8 issues unchanged.
+
+**Fixed a stale-claim gap instead of citing it:** the 01:3x entry's own "8/6" figure went stale the moment that commit landed (real count 9, still 6 material). A sibling row ("Production traceability") was stuck at 7/5 since 23:5x, never told the row above it was corrected twice. Both widened to 9/6, re-derived directly; both gates clean after.
+
+Not starting the 36-zone rollout myself, operator-sized.
+
+Pushed to main. `STATUS.md`, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
 ## 2026-10-04, PM check-in (01:3x cycle, 30-minute triage, previous work confirmed finished, one stale claim corrected)
 
