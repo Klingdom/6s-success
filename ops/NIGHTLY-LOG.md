@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (10:1x cycle, 30 minute triage, previous work finished, nothing new to start)
+
+**Attached clean.** Shallow/detached checkout; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (762 commits, no "unrelated histories" error, no conflict).
+
+**Previous work finished, independently re-checked, not just cited.** A24 (the Kitchen drying-racks synonym fix) and the `sort_scope` rollout close at 114/114 are both committed and pushed; working tree clean. Local `preflight.py` run fresh in the background: 0 FAIL through every gate up to `gate_tests`, confirmed the documented headless-Chromium sandbox hang is real (CPU time flat across 3s of wall clock) before killing it, not assumed stuck. Ran the standalone checks that gate covers in CI: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124/126 (the other 2 are person-delivered services, correctly excluded), mobile `npm test` all suites pass. Called `gate_status_deploy_gap_count_current` directly: clean, so the 09:4x check-in's stale-citation fix held.
+
+**Checked CI directly rather than trusting a local pass.** Both `Checks` runs for the last two pushes (`82cfbf8ee`, `2bc49796f`) were still `in_progress` on GitHub; read their job steps rather than assuming: `82cfbf8ee`'s own `Preflight` step completed `success` at 21 minutes (CI's sandbox does not hit the headless-Chromium hang this one does), now correctly on `The ops test suite`; `2bc49796f`'s `Preflight` step was in progress at the 19-minute mark, same normal pace as every recent run. Neither is stalled.
+
+**Did not start anything new.** GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable without Phil; 0 open PRs. `ops/keyword_demand.py --status`: 204 of 2821 queries still `gap` (last harvest 2026-10-04T07:58:59Z); this is the same tier A20-A24 have been mining one real match at a time, each requiring a full read of the tier to separate the few genuine page-attribution errors from the many out-of-scope rows (declined rooms, brand names, construction/decor intent). That is operator-cycle work, not a 30-minute slot, same judgement three prior PM cycles today (08:4x/09:1x/09:4x) already made about this exact tier.
+
+**Went well:** verifying CI's actual job steps instead of treating "in_progress" as ambiguous; confirming the local sandbox hang is sandbox-specific (CI's own Preflight step passes) rather than a real gate regression.
+
+**Did not go well:** nothing new; the standing Phil-blocked list is unchanged for the fourth consecutive cycle this hour.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue reading `ops/keyword-demand.json`'s `gap` tier (204 rows) for the next real page-attribution mismatch, same method as A20-A24. Standing Phil-blocked list unchanged (`OWNER-ACTIONS.md` items 0 VPS_DEPLOY_KEY, 1a Search Console, 1 YouTube OAuth, 1b Gemini billing, 4 Amazon KDP/Etsy) and the 8 open decision/blocked-on-art GitHub issues.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle: A24, a zone-level synonym gap closed, "drying racks for dishes/pans/trays" mis-attributed to the laundry room
 
 **Did:** Checkout arrived shallow and detached; unshallowed and attached clean (`fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 758 then 1 more commit, no "unrelated histories" error). Read `BACKLOG-2026-09-07.md` sections 0-7 and `STATUS.md`'s Open claims in full, `ROADMAP-2026-2029.md`'s header, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md`. Confirmed epics 1-4 (micro zones, decks, images/video) are again done or Phil-gated: `sort_scope` and `common_items` both closed at 114/114, every A/B/C row done or owner-blocked, 8 GitHub issues unchanged (`decision`/`blocked-on-art`), no mail credential. `preflight.py` run to genuine completion in the background (timeout 300s): 0 FAIL through every gate before `gate_tests`, confirmed the documented headless-Chromium sandbox hang is real (`EXIT 124`), not assumed.
