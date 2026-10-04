@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle (sort_scope rollout: Nursery and Laundry Room, plus a stale deploy-gap correction)
+
+**Did:** Attached via STEP 0 (checkout arrived shallow and detached; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `394151c78`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2, 5, 6, 7), `ROADMAP-2026-2029.md` context carried forward, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. Ran `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty, same standing limitation. Ran `preflight.py` to completion: every gate passed, 31 warnings, all previously diagnosed sandbox limits except one real, actionable one.
+
+**Found and fixed before starting the rollout:** `gate_status_deploy_gap_count_current` warned that `STATUS.md`'s Public website row cited an 8/6 deploy-gap figure against a fresh recount. Re-derived directly with `deploy_gap_material_commits('dc34a0213')`: real gap was 9 commits, material held at 6 (the ninth commit, `f2276e26b`, is itself a build-id restamp with no content). Two further rows (Production traceability, and the Current Overall Assessment section's own Production Knowledge paragraph) had drifted even further, still citing 7/5. Corrected all three in place, same append-don't-rewrite convention as every prior entry; confirmed `deploy_gap_count_problem()` returns clean after.
+
+Per the standing handoff (operator-cycle-sized, not a 30-minute PM slot), continued the `sort_scope` (belongs/strays) rollout at the next tied-smallest rooms: Nursery and Laundry Room, 6 zones each. Authored both halves for all 12 zones, grounded in each zone's own existing `done_looks_like` (what stays) and `passes.sort` (what leaves) text, nothing invented. 69 of 114 zones now carry the field, 13 of 20 rooms fully covered.
+
+**Verified:** Dry-run against a scratch copy first; diff confirmed exactly 12 blocks touched (159 insertions, 12 deletions), JSON validated before touching the real file. Regenerated with `ops/build_zone_pages.py` (full downstream chain: fingerprinting, PWA wiring, sitemap). `gate_sort_scope_rendered` test suite 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `audit_visual.py` on all 12 changed pages at both desktop and mobile viewports: 0 findings. Fast `preflight.py` rerun after: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed there, reported unchecked past that point, not assumed passing.
+
+**Went well:** the dry-run-then-diff discipline caught nothing wrong this time, which is itself the point of doing it every time rather than only after a near-miss.
+
+**Did not go well:** the same `gate_tests` sandbox hang and no-Stripe/no-SSH/no-network limitations persist; the deploy gap this cycle just corrected is now wider still, by this cycle's own two commits, the exact recurring shape `VPS_DEPLOY_KEY` (issue #35, open 10 days) would close.
+
+**Changing next cycle:** none; the existing deploy-staleness gates are sufficient, they just need a cycle to read their warnings rather than only their pass/fail count.
+
+**Next:** continue the rollout at Home Office, Workshop, Mudroom, Patio or Deck (6 zones each); Kitchen, Primary Bathroom, Garage (7 zones each) last.
+
 ## 2026-10-04, PM check-in (01:3x cycle, 30-minute triage, previous work confirmed finished, one stale claim corrected)
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `88c2d2797`, tree clean). Read GOALS.md context carried from prior cycles, BACKLOG-2026-09-07.md's summary sections, EXECUTIVE-DASHBOARD-LIVE.md, the last log entries, and the 8 open GitHub issues directly (all `decision`/`blocked-on-art`, none newly actionable).
