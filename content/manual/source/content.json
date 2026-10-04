@@ -13077,7 +13077,20 @@
       "One notebook",
       "One inbox tray, under a dozen sheets",
       "The power strip, hooked off the floor"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The monitor, keyboard and mouse, in their fixed positions",
+       "One notebook",
+       "One inbox tray, holding fewer than a dozen sheets",
+       "The power strip, hooked off the floor"
+      ],
+      "strays": [
+       "Dead pens that do not write",
+       "The second mug",
+       "A fringe of sticky notes around the screen bezel"
+      ]
+     }
     },
     {
      "zone": "Desk Drawers and Pedestal",
@@ -13226,7 +13239,19 @@
       "A divided tray: pens that all write, one stapler, scissors point-down",
       "Hanging files, tabs running in one line",
       "One spare of each connector type, coiled and banded"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A divided tray of pens that all write, one stapler, scissors point-down in their own slot",
+       "Hanging files, tabs standing in one line",
+       "One spare of each connector type, coiled and banded"
+      ],
+      "strays": [
+       "Dried highlighters and bent paperclips",
+       "Loose staples and dead batteries",
+       "A charger whose device you cannot point at in this house"
+      ]
+     }
     },
     {
      "zone": "File Storage",
@@ -13379,7 +13404,19 @@
       "Hanging folders, labeled by the question you'd ask",
       "A closed fireproof box, for permanent originals",
       "A shred bag, by the door"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Hanging folders, labeled by the question you would ask when looking",
+       "A closed fireproof box, holding the permanent originals",
+       "A full shred bag, by the door"
+      ],
+      "strays": [
+       "Tax paper outside the year it belongs to",
+       "A warranty or manual for a machine that already left the house",
+       "A folder for anything the issuer will reprint on request"
+      ]
+     }
     },
     {
      "zone": "Bookshelf and Reference Zone",
@@ -13527,7 +13564,19 @@
       "Working reference, at seated eye level",
       "Heavy binders and box files, on the bottom two shelves",
       "A bookend, closing each group"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Working reference, at seated eye level from the desk chair",
+       "Heavy binders and box files, on the bottom two shelves",
+       "A bookend, closing each group"
+      ],
+      "strays": [
+       "An appliance manual for a machine that left the house",
+       "A superseded edition with a year in the title",
+       "A binder from a project that already finished"
+      ]
+     }
     },
     {
      "zone": "Printer and Scanning Station",
@@ -13685,7 +13734,19 @@
       "Paper, in a bin with a min and max line",
       "One spare cartridge, in a labeled box",
       "A scan tray: a to-do side and a done side"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Paper, in a bin with a min line and a max line drawn inside it",
+       "One spare cartridge, in a labeled box beside the printer",
+       "A scan tray, with a to-do side and a done side"
+      ],
+      "strays": [
+       "Ink or toner that does not match the model number currently plugged in",
+       "A half ream of odd paper",
+       "Letterhead with the old address, or envelopes from two houses ago"
+      ]
+     }
     },
     {
      "zone": "Supply Cabinet",
@@ -13839,7 +13900,19 @@
       "One open pack of each consumable, backstock directly behind",
       "Reams of paper, on the bottom shelf",
       "A step stool, in the corner"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One open pack of each consumable at hand height, its backstock directly behind it",
+       "Reams of paper, on the bottom shelf",
+       "Min and max written on a card at the front edge of each shelf"
+      ],
+      "strays": [
+       "A dried glue stick or a dead marker",
+       "A cracked folder",
+       "An adapter nobody in the house can identify"
+      ]
+     }
     }
    ]
   },
@@ -15252,7 +15325,19 @@
       "The vise and the task lamp, the only things on the bench top",
       "One project tray, for the current job's parts",
       "Chisels and squares, on their traced outlines"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The vise and the task lamp, the only things on the bench top",
+       "One project tray, holding the current job's parts",
+       "Every chisel and square, back on its traced outline"
+      ],
+      "strays": [
+       "A half-finished project with no date and no verdict",
+       "A snapped blade or a glue bottle gone solid",
+       "A bracket you cannot identify"
+      ]
+     }
     },
     {
      "zone": "Power Tool Storage",
@@ -15414,7 +15499,19 @@
       "Each tool, in its own labeled home with the guard closed",
       "Blade wrenches and chuck keys, attached to their tool",
       "Batteries, resting on a shelf off the chargers"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Each tool, in its own labeled home with the guard closed",
+       "Blade wrenches and chuck keys, attached to their own tool",
+       "Batteries, resting on a shelf off the chargers"
+      ],
+      "strays": [
+       "The second drill, or the sander you replaced but kept",
+       "A battery pack that no longer holds a charge through one job",
+       "A cord repaired with electrical tape"
+      ]
+     }
     },
     {
      "zone": "Fastener and Hardware Zone",
@@ -15568,7 +15665,19 @@
       "One fastener type and size, per compartment",
       "A sample screw, glued to each drawer face",
       "A marked minimum line, inside the compartments you empty most"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One fastener type and size, per compartment",
+       "A sample screw, glued to the outside of each drawer face",
+       "A marked minimum line, inside the compartments you empty most"
+      ],
+      "strays": [
+       "A rusted screw or a bent nail",
+       "An anchor that came free with a shelf you no longer own",
+       "A coffee tin of mixed hardware you cannot name by size and type"
+      ]
+     }
     },
     {
      "zone": "Material Rack",
@@ -15731,7 +15840,19 @@
       "Boards, lying flat and supported along their length",
       "Sheet goods, standing on edge against the wall",
       "An offcut bin, with its size floor marked on the front"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Boards, lying flat and supported along their length, longest and heaviest at the bottom",
+       "Sheet goods, standing on edge against the wall",
+       "An offcut bin, with its size floor written on the front in marker"
+      ],
+      "strays": [
+       "A twisted or badly cupped board",
+       "Anything with hidden nails or an unknown coating",
+       "Pressure treated scrap kept past the written size floor"
+      ]
+     }
     },
     {
      "zone": "Finishing and Chemical Zone",
@@ -15887,7 +16008,19 @@
       "Each lid, dated in marker",
       "A self-closing metal can, for oily rags",
       "A drip tray, under the solvent shelf"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Paint, glue, stain and solvent, in original labeled containers",
+       "Each lid, dated in marker",
+       "A self-closing metal can, for oily rags"
+      ],
+      "strays": [
+       "Paint with a thick skin or a sour smell",
+       "Wood glue gone stringy or granular",
+       "Cured polyurethane left in a half bottle"
+      ]
+     }
     },
     {
      "zone": "Safety and PPE Station",
@@ -16048,7 +16181,19 @@
       "Hearing protection and dust masks, in a dated box",
       "A wall-mounted extinguisher, gauge in the green",
       "A first aid kit, stocked with burn dressings"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Safety glasses, one labeled pair per regular user",
+       "Hearing protection and dust masks, in a dated box",
+       "A first aid kit, stocked with burn dressings and more than three plasters"
+      ],
+      "strays": [
+       "Scratched or hazed safety glasses",
+       "A perished glove or a respirator cartridge past its date",
+       "A household plaster quietly taken from the kit"
+      ]
+     }
     }
    ]
   },

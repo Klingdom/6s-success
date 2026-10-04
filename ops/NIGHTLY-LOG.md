@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle (sort_scope rollout, Home Office and Workshop)
+
+**Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, and the real head of this log (confirmed it is newest-first, not newest-last; a tail-based check earlier in this cycle wrongly suggested the log had stalled on 2026-09-04). Took the standing handoff named by four straight prior cycles: continued the sort_scope (belongs/strays) rollout at Home Office and Workshop, 6 zones each. Authored belongs/strays for all 12 zones grounded in each zone's own done_looks_like/passes.sort/common_items text, nothing invented. Edited content.json and mcp/content.json via a scratchpad script, dry-run proved first against a scratch copy. Ran ops/build_zone_pages.py for real rather than hand-editing site/.
+
+**Verified:** gate_sort_scope_rendered, gate_mcp_corpus_current, gate_sitemap_lastmod_current, gate_build_id_current, gate_common_items_rendered all clean direct calls; test_gate_sort_scope_rendered.py 6/6; check_urls.py 211/211; audit_pages.py 215/0; fix_dashes.py and fix_dialect.py both clean; affiliate.py --check clean; link_graph_report.py 0 orphans; fast preflight.py clean through every gate up to the documented gate_tests sandbox hang (killed there, unchecked past it, not assumed passing, same as every recent cycle). audit_visual.py hit the same headless-Chromium sandbox hang; reported unchecked rather than run and ignored.
+
+**Went well:** The dry-run-on-a-copy discipline caught nothing wrong this time, which is itself the point: it is cheap insurance that would have caught a collision with the existing common_items field, the exact mistake a 2026-10-03 cycle narrowly avoided.
+
+**Did not go well:** Lost real time early in the cycle misreading ops/NIGHTLY-LOG.md's tail as its end; the file is newest-first and 6.7MB, so tail -N lands mid-file, not at the latest entry.
+
+**Changing next cycle:** Nothing structural; the gates already exist for this workstream and proved themselves again.
+
+**Next:** Mudroom and Patio or Deck (6 zones each), then Kitchen, Primary Bathroom and Garage (7 zones each) last, closing the rollout at 114 of 114.
+
 ## 2026-10-04, PM check-in (03:4x cycle, 30-minute triage, clean verification pass, no new defect)
 
 NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Home Office, Workshop, Mudroom and Patio or Deck (6 zones each), then Kitchen, Primary Bathroom and Garage (7 zones each) last, because this is the standing handoff the last several cycles have named, content.json still shows 69/114 zones (confirmed by direct count against the live file, not cited), and it remains the only non-Phil-gated workstream in BACKLOG-2026-09-07.md's section 2 that is not already done.
