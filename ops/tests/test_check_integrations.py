@@ -25,7 +25,19 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 import check_integrations as C                                # noqa: E402
 
 UMAMI_JS = "x" * 1500 + "doNotTrack navigator"
-LISTMONK_PAGE = "<html><body>Subscribe to our list</body></html>"
+# The check on /subscribe was INVERTED on 2026-10-04. It used to pass when
+# Listmonk's public form was reachable under our domain; that page rendered two
+# Compassion Benchmark lists pre-ticked beside ours, so the old assertion
+# reported the defect as healthy. It now passes only when no other business's
+# list names appear. These two fixtures are what the live page actually served
+# and what a correctly scoped one would.
+FOREIGN_PAGE = ("<html><body>Subscribe"
+                "<label>Compassion Benchmark Weekly Digest</label>"
+                "<label>Compassion Benchmark Product &amp; Research Updates</label>"
+                "<label>6S Success Readers</label></body></html>")
+OUR_PAGE = "<html><body>Subscribe<label>6S Success Readers</label></body></html>"
+NOT_FOUND = "<html><body>That page is not here</body></html>"
+CHECK = "no foreign consent on our domain"
 HOME_PAGE = '<html data-website-id="abc-123">home</html>'
 
 
@@ -56,7 +68,7 @@ def main() -> int:
     r = run({
         "/stats/script.js": (200, UMAMI_JS),
         "/stats/api/send": (None, None),
-        "/subscribe": (200, LISTMONK_PAGE),
+        "/subscribe": (404, NOT_FOUND),
         "/": (200, HOME_PAGE),
     })
     c = by_name(r, "analytics beacon rejects GET")
@@ -76,7 +88,7 @@ def main() -> int:
         "/subscribe": (None, None),
         "/": (200, HOME_PAGE),
     })
-    c = by_name(r, "mailing list form")
+    c = by_name(r, CHECK)
     if c["ok"] is not None:
         fails.append(f"a fetch() failure on /subscribe must record ok=None, "
                       f"got ok={c['ok']!r}")
@@ -88,24 +100,40 @@ def main() -> int:
     r = run({
         "/stats/script.js": (200, UMAMI_JS),
         "/stats/api/send": (200, "ok"),          # should have rejected GET
-        "/subscribe": (200, "<html>nothing to do with a list</html>"),
+        "/subscribe": (200, FOREIGN_PAGE),
         "/": (200, HOME_PAGE),
     })
     if by_name(r, "analytics beacon rejects GET")["ok"] is not False:
         fails.append("a 200 answer to the beacon's GET is a real defect and "
                       "must still record ok=False")
-    if by_name(r, "mailing list form")["ok"] is not False:
-        fails.append("a page with no subscribe content is a real defect and "
-                      "must still record ok=False")
+    if by_name(r, CHECK)["ok"] is not False:
+        fails.append("a /subscribe page rendering another business's "
+                      "pre-ticked lists is the real, measured defect and "
+                      "must record ok=False")
     if r["verdict"] != "broken":
         fails.append(f"a genuine wrong answer must still read as broken, "
                       f"got {r['verdict']!r}")
 
+    # A correctly scoped subscription page must PASS. Without this case the
+    # check could be "anything other than 404 is a defect", which would block
+    # the thing it is meant to make safe: a 6S-only capture surface is the
+    # whole point of OWNER-ACTIONS item 7, and the guard must not stand in its
+    # way once it exists.
+    r = run({
+        "/stats/script.js": (200, UMAMI_JS),
+        "/stats/api/send": (405, ""),
+        "/subscribe": (200, OUR_PAGE),
+        "/": (200, HOME_PAGE),
+    })
+    if by_name(r, CHECK)["ok"] is not True:
+        fails.append("a /subscribe page listing only this business's own list "
+                      "must pass, or this guard blocks the email capture it "
+                      "exists to make safe: %r" % (by_name(r, CHECK),))
     # Everything genuinely fine reads as ok.
     r = run({
         "/stats/script.js": (200, UMAMI_JS),
         "/stats/api/send": (405, ""),
-        "/subscribe": (200, LISTMONK_PAGE),
+        "/subscribe": (404, NOT_FOUND),
         "/": (200, HOME_PAGE),
     })
     if r["verdict"] != "ok":
