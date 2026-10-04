@@ -1,61 +1,61 @@
 {
- "checked_at": "2026-10-03T20:20:28Z",
+ "checked_at": "2026-10-04T07:54:06Z",
  "confirmed": {
   "https://6s-success.com/": {
    "section": "home",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/contact.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/about.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/method.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/consulting.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/articles/": {
    "section": "article",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/resources.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": {
    "section": "article",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/shop.html": {
    "section": "other",
@@ -67,9 +67,23 @@
   "https://6s-success.com/rooms/home-office": {
    "section": "room",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-04T07:54:06Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
+  },
+  "https://6s-success.com/quest.html?zone=home-office-the-bookshelf-and-reference-zone": {
+   "section": "other",
+   "first_seen": "2026-10-04T07:54:06Z",
+   "last_seen": "2026-10-04T07:54:06Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "bing_rss"
+  },
+  "http://www.bing.com:80/search?q=site%3a6s-success.com": {
+   "section": "other",
+   "first_seen": "2026-10-04T07:54:06Z",
+   "last_seen": "2026-10-04T07:54:06Z",
+   "first_engine": "bing_rss",
+   "last_engine": "bing_rss"
   }
  },
  "runs": [
@@ -85,6 +99,21 @@
      "status": "ok",
      "url_count": 1,
      "voided": true
+    }
+   }
+  },
+  {
+   "checked_at": "2026-10-04T07:54:06Z",
+   "engines": {
+    "duckduckgo": {
+     "status": "ok",
+     "url_count": 10,
+     "voided": false
+    },
+    "bing_rss": {
+     "status": "ok",
+     "url_count": 11,
+     "voided": false
     }
    }
   }
