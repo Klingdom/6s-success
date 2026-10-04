@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (01:4x cycle, 30-minute triage, a real stale-claim gap found and closed)
+
+NEXT FOR THE OPERATOR: continue `sort_scope` at Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (36 zones); still unclaimed since the 01:3x handoff.
+
+Previous work (sort_scope, Primary Bedroom/Kids Bedroom, 57/114) confirmed finished. `preflight.py` fast: 0 FAIL to the `gate_tests` sandbox hang. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py`/`fix_dashes.py` clean. GitHub: 8 issues unchanged.
+
+**Fixed a stale-claim gap instead of citing it:** the 01:3x entry's own "8/6" figure went stale the moment that commit landed (real count 9, still 6 material). A sibling row ("Production traceability") was stuck at 7/5 since 23:5x, never told the row above it was corrected twice. Both widened to 9/6, re-derived directly; both gates clean after.
+
+Not starting the 36-zone rollout myself, operator-sized.
+
+Pushed to main. `STATUS.md`, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (01:3x cycle, 30-minute triage, previous work confirmed finished, one stale claim corrected)
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `88c2d2797`, tree clean). Read GOALS.md context carried from prior cycles, BACKLOG-2026-09-07.md's summary sections, EXECUTIVE-DASHBOARD-LIVE.md, the last log entries, and the 8 open GitHub issues directly (all `decision`/`blocked-on-art`, none newly actionable).
