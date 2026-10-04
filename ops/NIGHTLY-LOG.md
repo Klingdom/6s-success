@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle (two concurrent-session collisions found and resolved on fetch, sort_scope rollout CLOSED at 114 of 114)
+
+**Did:** Attached via STEP 0 (fetch, unshallow, `checkout main`/`checkout -B main origin/main`, ff-only merge, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the last four log entries, `STATUS.md`'s Open claims. `preflight.py` FAILed first: `mcp/content.json` 12 zones behind `content.json` (a prior sort_scope commit landed minutes before Phil's new corpus pre-commit hook went live). Fixed per step 2.
+
+**First attempt at a permanent fix duplicated an owner decision made hours earlier.** Chained the mcp resync into `build_zone_pages.py`; on fetching before push, found Phil had already closed the gap with a deliberately different design, a refuse-and-report pre-commit hook rather than an auto-copy, reasoned explicitly against guessing the copy direction. Reverted the generator-side change, kept the hook. Pushed clean.
+
+Claimed Home Office and Workshop for the sort_scope rollout, authored both rooms' 12 zones, verified clean locally. **On fetching before push, found a concurrent session had independently authored and already pushed the identical content moments earlier.** Rather than reconcile two copies of the same JSON, created a fresh branch from the new origin tip (non-destructive: no reset, no checkout --theirs, nothing of this session's own unpushed work was lost, since none of it had been pushed) and continued from the shipped state.
+
+That state had its own defect: the concurrent commit never reran `ops/build_id.py` after editing 12 pages, failing CI's `Checks` and `Publish site image`. Fixed, committed, fetched again before push, **found a PM check-in had already made the identical fix and a separate operator cycle had already completed Mudroom and Patio or Deck in the interim.** Created another fresh branch from the new tip rather than reconcile again.
+
+Claimed Kitchen, Primary Bathroom and Garage (the last three rooms, 21 zones) and pushed the claim immediately given the observed collision rate. Authored belongs/strays for all 21 zones, every item grounded in each zone's own `done_looks_like`/`passes.sort` text, nothing invented.
+
+**114 of 114 zones now carry `sort_scope`. The rollout, started 2026-10-03, is complete.**
+
+**Verified:** Dry-run against a scratch copy, diff confirmed exactly 21 blocks touched, JSON validated before touching the real file. `mcp/content.json` resynced manually. Regenerated with `ops/build_zone_pages.py`, which itself reported "114 of 114 zones carry all three moat fields (100.0%), 20 rooms complete." `ops/build_id.py` rerun against the staged tree, current. `ops/tests/test_gate_sort_scope_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `ops/audit_visual.py --all --mobile` and desktop on all 21 changed pages: 0 findings. Full `preflight.py` clean: every gate passed, 30 warnings, all previously diagnosed sandbox limits.
+
+**Went well:** fetching before every push, not only before starting work, caught both collisions before anything conflicting shipped; discarding a local duplicate via a fresh branch rather than any git history rewrite meant nothing was ever at risk of being destroyed.
+
+**Did not go well:** built two separate fixes for problems other concurrent sessions had already solved, minutes apart each time, in a cycle with unusually high concurrent-session activity on this exact workstream. Real time was spent on reconciliation that produced no net new content.
+
+**Changing next cycle:** on a workstream with visible recent collision risk (multiple claims/releases on the same rooms within the hour), fetch immediately after claiming and again immediately before every push, not only at the start of the cycle.
+
+**Next:** the sort_scope rollout (A20) is done. Remaining unblocked work per `BACKLOG-2026-09-07.md`: B9 (five more room decks from the diagnosis layer) and B8 (trimming Primary Bathroom/Garage and filling Entryway to the 18-card print step), both category 5, neither yet started.
+
+Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 21 zone pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page; IndexNow will pick up the 21 changed pages on the next successful hourly run.
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout, Mudroom and Patio or Deck)
 
 **Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7, ROADMAP-2026-2029.md, CLAUDE.md, and the real head of this log (confirmed newest-first by its own header, not the tail, after the prior cycle's note that a tail-based read lands mid-file on a 6.7MB log). Confirmed `content.json` directly before starting: 81 of 114 zones carried `sort_scope`, matching the standing handoff; the next tied-smallest unclaimed rooms were Mudroom and Patio or Deck (6 zones each). Authored belongs/strays for all 12 zones, every item grounded in that zone's own `done_looks_like` (what stays) and `passes.sort` (what leaves) text, nothing invented.

@@ -1041,7 +1041,19 @@
       "The knife block or wall strip, on your dominant side",
       "Oil and salt, behind the board rather than beside it",
       "The kettle and the toaster, pushed back against the wall with cords coiled"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One clear run of counter holding the cutting board, the knife block or strip, and the salt",
+       "The kettle and the toaster, standing back against the wall with their cords coiled"
+      ],
+      "strays": [
+       "Vitamins",
+       "A second cutting board",
+       "A bread bag",
+       "A pile of receipts"
+      ]
+     }
     },
     {
      "zone": "Cooking Zone",
@@ -1210,7 +1222,19 @@
       "Oil, salt, and pepper, within one reach of the burners",
       "Pot holders, on a hook you can find without looking",
       "The spices you reach for weekly, at the front of the rack"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Oil, salt and pepper, within one reach of the burners",
+       "A utensil crock holding no more than six tools, each used this month",
+       "Pot holders, on a hook you can find without looking"
+      ],
+      "strays": [
+       "A warped plastic turner",
+       "Corn holders",
+       "A third pair of tongs"
+      ]
+     }
     },
     {
      "zone": "Sink and Dishwashing Zone",
@@ -1370,7 +1394,18 @@
       "Dish soap, dishwasher tablets, and one all-purpose cleaner, on a single tray under the sink",
       "The drying rack, empty or holding only what is still wet",
       "A hand towel, on a bar within reach of the basin"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One brush and one sponge, standing upright where they drain",
+       "A single tray under the sink, holding dish soap, dishwasher tablets and one all-purpose cleaner"
+      ],
+      "strays": [
+       "A second half-empty bottle of the same spray",
+       "Anything not dish, sink or plumbing related",
+       "Spare bulbs, paper goods or vases stored under the sink"
+      ]
+     }
     },
     {
      "zone": "Upper Cabinet Zone",
@@ -1524,7 +1559,18 @@
       "Everyday mugs and plates, at eye level where you can lift one without moving another",
       "Stacked bowls, no more than six high",
       "The platter for eight and other once-a-year pieces, on the top shelf"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Everything used daily, between shoulder and eye height, one category per stack",
+       "The platter for eight, on the top shelf"
+      ],
+      "strays": [
+       "The conference giveaway mug",
+       "The chipped mug",
+       "The mug nobody ever chooses off the shelf"
+      ]
+     }
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
@@ -1677,7 +1723,19 @@
       "Lids, in a rack or on a door rail instead of loose",
       "Baking sheets, standing on end in a divider",
       "The two pans you cook with nightly, at the front nearest the hob"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Pans nested no more than three deep, or stood on edge in a divider",
+       "Lids in a rack or on a door rail, instead of loose",
+       "The two pans you cook with nightly, at the front nearest the hob"
+      ],
+      "strays": [
+       "The third saucepan",
+       "The wok bought for one weekend",
+       "Nonstick worn through to the metal"
+      ]
+     }
     },
     {
      "zone": "Utensil and Utility Drawers",
@@ -1829,7 +1887,21 @@
       "Spatulas, peelers, and other cooking tools, nearest the hob",
       "Measuring spoons, beside the baking cupboard",
       "Foil, cling film, and baking paper, standing on end so the boxes read from above"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Flatware in a divided insert, nothing loose beside it",
+       "Foil, cling film and baking paper, standing on end",
+       "Each drawer named on its own front edge"
+      ],
+      "strays": [
+       "A second can opener",
+       "Takeaway chopsticks",
+       "Rubber bands",
+       "An unlabeled key",
+       "Loose batteries"
+      ]
+     }
     },
     {
      "zone": "Refrigerator and Freezer",
@@ -1989,7 +2061,18 @@
       "Leftovers, in clear containers with a name and a date on the lid",
       "The eat-this-week bin, at the front where the door opens onto it",
       "Condiments, in the door, with everything else inside the body of the fridge"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Raw meat, sealed on the lowest shelf",
+       "Leftovers in clear containers at eye level, each with a name and a date on the lid",
+       "One bin marked for what must be eaten this week"
+      ],
+      "strays": [
+       "Anything frozen past recognition and unlabeled",
+       "An opened jar, sauce or dressing past the date on its lid"
+      ]
+     }
     }
    ]
   },
@@ -10025,7 +10108,17 @@
       "Toothbrush holder",
       "Up to four daily products",
       "A liftable tray"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One tray you can lift with one hand, holding soap, the toothbrush holder, and no more than four daily products"
+      ],
+      "strays": [
+       "A travel bottle",
+       "A sample sachet",
+       "The hair tie graveyard"
+      ]
+     }
     },
     {
      "zone": "Vanity Drawers",
@@ -10181,7 +10274,21 @@
       "Grooming tools by routine",
       "Products within their open-jar window",
       "Razor blades, capped or boxed"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every drawer divided, nothing past its open-jar window",
+       "Razor blades, capped or in a lidded box in one corner",
+       "A top drawer you can read in a single look without moving anything"
+      ],
+      "strays": [
+       "Mascara past its open-jar window",
+       "Liquid foundation past its open-jar window",
+       "Sunscreen past its date",
+       "A dead hair tie",
+       "An orphan bobby pin"
+      ]
+     }
     },
     {
      "zone": "Under-Sink Cabinet",
@@ -10342,7 +10449,18 @@
       "One open bottle per job",
       "Backstock, capped at two",
       "A pale tray on the cabinet floor"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two pull-out bins, clear of the P-trap",
+       "A pale tray on the cabinet floor, nothing stacked on it",
+       "One open bottle per job"
+      ],
+      "strays": [
+       "A second half-full bottle of the same thing",
+       "The bottle you cannot identify"
+      ]
+     }
     },
     {
      "zone": "Medicine Cabinet or Wall Storage",
@@ -10499,7 +10617,18 @@
       "Stomach and cold remedies",
       "First aid supplies",
       "Prescriptions, grouped by name"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three labeled bins, pain relief, stomach and cold, first aid, each holding only in-date items",
+       "Prescriptions, grouped by the name on the label"
+      ],
+      "strays": [
+       "Anything expired",
+       "Anything unlabeled",
+       "Anything prescribed for a condition nobody here has now"
+      ]
+     }
     },
     {
      "zone": "Shower or Tub",
@@ -10659,7 +10788,18 @@
       "One shampoo, conditioner, wash and bar per person",
       "A squeegee on its hook",
       "Grip strips or a mat"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One shampoo, one conditioner, one wash and one bar per person, in the caddy",
+       "A squeegee on its hook inside the enclosure"
+      ],
+      "strays": [
+       "A bottle you cannot remember using this month",
+       "The conditioner that did nothing",
+       "A hotel bottle"
+      ]
+     }
     },
     {
      "zone": "Toilet Area",
@@ -10822,7 +10962,20 @@
       "Two reserve rolls within reach",
       "The brush, emptied and dried, in its holder",
       "A lined bin with a lid"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Two reserve rolls within reach from a seated position",
+       "The brush, in a holder that has been emptied and dried",
+       "A lined bin with a lid"
+      ],
+      "strays": [
+       "A candle on the cistern lid",
+       "A spare hand cream",
+       "A phone charger",
+       "A stack of reading material"
+      ]
+     }
     },
     {
      "zone": "Linen and Towel Storage",
@@ -10983,7 +11136,18 @@
       "Guest towel sets, nested in pillowcases",
       "Hand towels and washcloths, in labeled columns",
       "A spare bath mat"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three bath towels per person, one in use, one in the wash, one folded on the shelf",
+       "Each guest set, nested in its own pillowcase"
+      ],
+      "strays": [
+       "A thin or stiff towel",
+       "A shedding towel",
+       "An odd single from a lost set"
+      ]
+     }
     }
    ]
   },
@@ -14100,7 +14264,18 @@
       "The task light",
       "One tray for the current job",
       "Clamps, racked on the rail"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The vise and the task light, on an otherwise bare bench top",
+       "One tray holding the current job"
+      ],
+      "strays": [
+       "A screw living loose in a jar lid",
+       "A glue bottle with a plugged nozzle",
+       "An offcut saved because the grain looked too good to bin"
+      ]
+     }
     },
     {
      "zone": "Hand Tool Wall and Cabinets",
@@ -14259,7 +14434,18 @@
       "Hand tools, each on its own drawn outline",
       "The hammer and adjustable wrench, at chest height",
       "Saws, sheathed"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every hand tool hanging on its own drawn outline, no blank silhouettes",
+       "One hammer and one adjustable wrench, at chest height nearest the door"
+      ],
+      "strays": [
+       "Pliers rusted shut",
+       "A wrench with rounded jaws",
+       "A driver with chewed tips"
+      ]
+     }
     },
     {
      "zone": "Power Tool and Battery Zone",
@@ -14423,7 +14609,18 @@
       "Chargers, mounted at the front edge",
       "Drills and saws, in their cases or on hooks",
       "Bits, blades and sanding discs"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One shelf per battery system, its charger mounted at the front edge",
+       "Every drill and saw, in its case or on a labeled hook"
+      ],
+      "strays": [
+       "A pack that dies in a minute",
+       "A charger for a tool you sold",
+       "A sander with a taped cord"
+      ]
+     }
     },
     {
      "zone": "Automotive Care Zone",
@@ -14602,7 +14799,18 @@
       "Fluid bottles, upright with opened dates",
       "Jumper cables and a tire gauge, bagged together",
       "Rags, in a closed metal can"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every fluid bottle standing upright on a clean drip tray, its opened date written on the shoulder",
+       "Jumper cables and tire gauge, together in one bag by the door"
+      ],
+      "strays": [
+       "Oil in a weight your current engine does not take",
+       "Coolant for a car you sold",
+       "A bottle whose label has soaked away into unreadable gray"
+      ]
+     }
     },
     {
      "zone": "Sports and Recreation Zone",
@@ -14783,7 +14991,18 @@
       "One labeled bin per activity",
       "This season's kit, at the front of the shelf",
       "Helmets, one per head that still wears one"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Bikes on wall hooks, bare floor beneath them",
+       "One labeled bin per activity, this season's kit at the front of the shelf"
+      ],
+      "strays": [
+       "Cleats a size too small",
+       "The paddle from one river trip",
+       "A helmet belonging to nobody who still wears it"
+      ]
+     }
     },
     {
      "zone": "Lawn and Garden Tool Zone",
@@ -14965,7 +15184,19 @@
       "Long-handled tools, hanging head-up",
       "The hose, coiled on its reel",
       "Garden chemicals, latched above head height"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every long-handled tool hanging head-up on the rail",
+       "The hose, coiled on its reel beside the door it goes out of",
+       "Garden chemicals in their original labeled containers, behind a latch above head height"
+      ],
+      "strays": [
+       "A rake with three tines left",
+       "A hose with a long-unpatched split",
+       "Cracked nursery pots kept for seedlings never started"
+      ]
+     }
     },
     {
      "zone": "Bulk and Overhead Storage",
@@ -15145,7 +15376,17 @@
       "Overhead bins, labeled and dated",
       "Heaviest bins, on the lowest rack",
       "A map taped beside the light switch"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Every overhead bin labeled in letters you can read standing on the slab",
+       "A last-opened month and year on the end of each bin, heaviest on the lowest rack"
+      ],
+      "strays": [
+       "The holiday bin that has not come down in three Decembers",
+       "The box marked \"misc\""
+      ]
+     }
     }
    ]
   },
