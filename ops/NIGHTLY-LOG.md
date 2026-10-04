@@ -22,6 +22,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/zone-also-called.json`, `site/zones/garage-the-automotive-care-zone.html`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page; IndexNow not applicable from this sandbox (no egress), picked up by `hourly-brief.yml`'s existing `--changed` step.
 
+## 2026-10-04, PM check-in (06:4x cycle, 30-minute triage, previous work genuinely finished, clean independent re-verification, no new defect, cold-read lane now fully exhausted)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion in the background and work the standing Phil-blocked list in `OWNER-ACTIONS.md` while it runs, because the fast lane and the cold-read ledger are both clean right now and `--deep` is the one check this slot's 30 minutes does not have room to wait out.
+
+**Previous work finished.** The 06:1x cycle closed the sort_scope rollout's own verification and found no defect; this cycle re-derived that conclusion independently rather than citing it.
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `8e5f8e3da`, HEAD already matched origin exactly, tree clean). Read `git log -12`, the real head of this log, `BACKLOG-2026-09-07.md` sections 0, 6 and 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md`'s "Start here" block. GitHub checked directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0` (#35, #33, #31, #29, #21, #18, #15, #2), none newly actionable; 0 open PRs.
+
+**Verified, not cited.** `preflight.py` (fast) run to genuine completion in the background: 0 FAIL through every gate up to `gate_tests`; confirmed truly stalled there before killing it (0s CPU time flat across 93s wall-clock, the same documented headless-Chromium sandbox limitation), reported unchecked past that point. Called `gate_status_deploy_gap_count_current()`, `gate_status_deploy_verdict_current()`, `gate_build_id_current()` and `gate_dashboard_self_description_fresh()` directly: all clean. `cold_read_ledger.py --stale`: 0 stale; `--next`: 196 of 196 files now in the ledger, that lane genuinely exhausted (was not fully exhausted as of two cycles ago). `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions. `inbox_agent.py --apply`: no mail credential, reported unchecked. Re-fetched before writing anything: no concurrent push landed.
+
+**Checked, not re-fixed: the dashboard's "Last commit" line reads `804eaeaea` while HEAD is `8e5f8e3da`.** This looks like the same staleness shape two prior cycles fixed, but it is not one: `8e5f8e3da` is itself the commit that regenerated the dashboard, so the citation necessarily names the commit before it, the one-commit lag `dashboard.py`'s own `dashboard_citation_gap()` docstring already names as unavoidable (it cannot know its own commit's hash before that commit exists). `gate_dashboard_self_description_fresh()` called directly: clean, 0 real commits unaccounted for. Regenerating here would only reproduce the identical lag against this cycle's own commit, so it was left alone rather than churned.
+
+**Went well:** recognising the one-commit dashboard lag as the documented, gated, expected shape rather than re-doing the same no-op regeneration a third time.
+
+**Did not go well:** nothing new; no unrelated-history checkout this cycle, no concurrent collision.
+
+**Next:** no genuinely unblocked, non-Phil-gated workstream is open; the cold-read ledger is now fully populated (196/196) for the first time, so even that fallback lane is exhausted until a file's own last-touched date moves past its ledger date again. `OWNER-ACTIONS.md`'s "Start here" list (VPS_DEPLOY_KEY, Search Console verification, YouTube OAuth, Gemini billing) remains the highest-value action available, and it is Phil's. Handing the operator `preflight.py --deep` (not run this calendar day per this log) as the one standing check with room left to run.
+
+Pushed to main. This entry only; no dashboard regeneration this cycle since the citation is already correct. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (06:1x cycle, 30-minute triage, previous work genuinely finished, clean independent re-verification, no new defect)
 
 **Previous work finished.** The sort_scope rollout (A20) closed at 114 of 114 zones two cycles ago, and the cycle immediately before this one ran an exhaustive verification pass and found nothing. Did not inherit that clean claim; re-derived it independently.
