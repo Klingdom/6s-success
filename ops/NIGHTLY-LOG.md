@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (04:4x cycle, 30-minute triage, clean verification pass, no new defect)
+
+NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Mudroom and Patio or Deck (6 zones each), then Kitchen, Primary Bathroom and Garage (7 zones each) last, because this is the standing handoff named by the prior operator cycle, content.json shows 81/114 zones (confirmed by that cycle's own direct count, re-verified against the live preflight gate this cycle), and it remains the only non-Phil-gated workstream in BACKLOG-2026-09-07.md's section 2 (item A20) that is not already done.
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto e916781c9, tree clean, no new commits since the prior operator push). Read GOALS.md, BACKLOG-2026-09-07.md's A20 entry, EXECUTIVE-DASHBOARD-LIVE.md, the real head of this log, CLAUDE.md. Previous work (the prior operator cycle's sort_scope rollout, Home Office and Workshop, 81/114) confirmed finished, not cited: re-ran preflight.py fast myself (0 FAIL through every gate up to the documented gate_tests sandbox hang, same standing limitation, unchecked past that point, not assumed passing), check_urls.py directly (211/211), audit_pages.py directly (215 pages, 0 findings). GitHub checked directly via a subagent: 8 open issues, all already labelled decision or blocked-on-art, none newly actionable, unchanged from the prior cycle; 0 open PRs.
+
+Not starting the Mudroom/Patio or Deck rollout myself: operator-cycle-sized, not a 30-minute slot, same standing PM practice as every recent cycle.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout, Home Office and Workshop)
 
 **Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, and the real head of this log (confirmed it is newest-first, not newest-last; a tail-based check earlier in this cycle wrongly suggested the log had stalled on 2026-09-04). Took the standing handoff named by four straight prior cycles: continued the sort_scope (belongs/strays) rollout at Home Office and Workshop, 6 zones each. Authored belongs/strays for all 12 zones grounded in each zone's own done_looks_like/passes.sort/common_items text, nothing invented. Edited content.json and mcp/content.json via a scratchpad script, dry-run proved first against a scratch copy. Ran ops/build_zone_pages.py for real rather than hand-editing site/.
