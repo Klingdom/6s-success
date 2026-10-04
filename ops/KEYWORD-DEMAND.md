@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-04T07:58:59Z from google, bing, 151 seeds, 302 attempts: 263 returned completions, 39 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** not recorded, so treat every status here as of unknown age against 218 page(s). Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-04T08:03:20Z against 218 page(s) at commit a711aad5d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2821. Checked against 218 published page titles: 1137 covered, 1479 partial, 205 gap.
+**Queries found:** 2821. Checked against 218 published page titles: 1140 covered, 1477 partial, 204 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 205, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 204, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -33,7 +33,6 @@ Showing the top 80 of 205, ordered by the best rank the phrase reached in any on
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | how to organize snacks | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | attic storage ideas with trusses | - | More storage will not fix a messy room (0.33) |
@@ -101,10 +100,11 @@ Showing the top 80 of 205, ordered by the best rank the phrase reached in any on
 | 8 | how to plan a workshop templates | Workshop | Venture plan (0.33) |
 | 8 | how to store extra blankets | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
+| 8 | stove on floor plan | - | Venture plan (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1479.
+Showing the top 60 of 1477.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -187,7 +187,7 @@ Showing the top 60 of 1479.
 | Living Room | 93 | 2 | 62 | 29 |
 | Mudroom | 45 | 1 | 22 | 22 |
 | Nursery | 57 | 2 | 25 | 30 |
-| Pantry | 59 | 1 | 33 | 25 |
+| Pantry | 59 | 1 | 32 | 26 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |

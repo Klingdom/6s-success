@@ -29460,10 +29460,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-snack-and-lunch-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize soap making supplies",
@@ -32743,10 +32743,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-snack-and-lunch-zone.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to store sports equipment",
@@ -42778,10 +42778,10 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-snack-and-lunch-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "pantry organization ideas for wire shelving",
@@ -51612,5 +51612,7 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ]
+  ],
+  "scored_at": "2026-10-04T08:03:20Z",
+  "scored_against_commit": "a711aad5d"
 }
