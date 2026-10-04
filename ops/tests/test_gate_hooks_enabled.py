@@ -59,7 +59,7 @@ def _write_hook(path, executable):
                           "so a non-executable hook cannot be simulated")
 
 
-def _run_gate(hooks, hooks_path_set=True):
+def _run_gate(hooks, hooks_path_set=True, preset=None, probe=None):
     """hooks: {"pre-commit": True/False/None, "pre-push": True/False/None}.
 
     True/False = present with that executable bit; None = file absent.
@@ -67,7 +67,9 @@ def _run_gate(hooks, hooks_path_set=True):
     tmp_dir = tempfile.mkdtemp()
     try:
         _git("init", "-q", cwd=tmp_dir)
-        if hooks_path_set:
+        if preset is not None:
+            _git("config", "core.hooksPath", preset, cwd=tmp_dir)
+        elif hooks_path_set:
             _git("config", "core.hooksPath", ".githooks", cwd=tmp_dir)
         hooks_dir = os.path.join(tmp_dir, ".githooks")
         os.makedirs(hooks_dir)
@@ -83,6 +85,12 @@ def _run_gate(hooks, hooks_path_set=True):
             preflight.gate_hooks_enabled()
         finally:
             preflight.ROOT = real_root
+        if probe is not None:
+            # Read AFTER the gate ran: it may have set this itself, and
+            # whether it did is the whole point of the cases below.
+            probe["hooks_path"] = subprocess.run(
+                ["git", "config", "core.hooksPath"], cwd=tmp_dir,
+                capture_output=True, text=True).stdout.strip()
         return preflight.FAIL[before_fail:], preflight.WARN[before_warn:]
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
@@ -95,12 +103,50 @@ def test_both_executable_and_path_set_is_clean():
     print("ok  both hooks executable, hooksPath set: clean")
 
 
-def test_hooks_path_unset_warns():
+def test_hooks_path_unset_warns_and_is_switched_on():
+    """Unset is not a report, it is a thing to fix.
+
+    The gate only warned until 2026-10-04, correctly, every time, while the
+    thing it warns about blocked the image build three times in two days:
+    three commits changed site/ and left site/build-id.txt describing the
+    older tree, each from a clone where this was unset, each one that
+    .githooks/pre-commit would have refused. One warning among thirty-three
+    is not a control.
+    """
+    probe = {}
     fails, warns = _run_gate({"pre-commit": True, "pre-push": True},
-                              hooks_path_set=False)
+                              hooks_path_set=False, probe=probe)
     assert not fails, fails
-    assert any(name == "hooks-enabled" for name, _ in warns), warns
-    print("ok  core.hooksPath unset: warns")
+    msgs = [m for name, m in warns if name == "hooks-enabled"]
+    assert msgs, warns
+    assert probe["hooks_path"] == ".githooks", (
+        "the gate left core.hooksPath as %r, so the hooks are still inert "
+        "and it only talked about it" % probe["hooks_path"])
+    assert "ENABLED IT" in msgs[0], (
+        "the config was set but the warning does not say so, so a reader "
+        "cannot tell a fixed state from a broken one: %s" % msgs[0])
+    print("ok  core.hooksPath unset: warns AND switches it on")
+
+
+def test_a_deliberate_different_hooks_path_is_left_alone():
+    """Somebody else's choice is not a defect to overwrite.
+
+    A repository pointed at a different hooks directory on purpose must be
+    reported and not silently repointed at ours. Only UNSET is fixed.
+    """
+    probe = {}
+    fails, warns = _run_gate({"pre-commit": True, "pre-push": True},
+                              preset="my-own-hooks", probe=probe)
+    assert not fails, fails
+    msgs = [m for name, m in warns if name == "hooks-enabled"]
+    assert msgs, "a non-standard hooksPath was not reported at all"
+    assert probe["hooks_path"] == "my-own-hooks", (
+        "the gate overwrote a deliberate core.hooksPath (%r), which is not "
+        "its business" % probe["hooks_path"])
+    assert "ENABLED IT" not in msgs[0], (
+        "the gate claims it enabled something while leaving the setting "
+        "alone: %s" % msgs[0])
+    print("ok  a deliberate different hooksPath: reported, not overwritten")
 
 
 def test_pre_commit_not_executable_warns_by_name():

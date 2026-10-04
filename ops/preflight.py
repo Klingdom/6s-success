@@ -10732,7 +10732,39 @@ def gate_hooks_enabled() -> None:
                              timeout=60).stdout.strip()
     except Exception:                                         # noqa: BLE001
         return
-    if got != ".githooks":
+    if got != '.githooks':
+        # SWITCH IT ON RATHER THAN MENTION IT AGAIN.
+        #
+        # This warned for weeks and was correct every time, and on 2026-10-03
+        # and -04 the thing it warns about blocked the image build three
+        # times: three commits changed site/ and left site/build-id.txt
+        # describing the older tree, each from a clone where this was unset,
+        # each refused by .githooks/pre-commit had it been running. One
+        # warning among thirty-three is not a control (CLAUDE.md 0.2).
+        #
+        # Only when it is UNSET. A different value is somebody's deliberate
+        # choice and is left alone and still reported. The change is one line
+        # of repository-local git config, affects no other repository, and is
+        # undone with `git config --unset core.hooksPath`.
+        fixed = False
+        if not got:
+            try:
+                r = subprocess.run(['git', 'config', 'core.hooksPath',
+                                    '.githooks'], cwd=ROOT,
+                                   capture_output=True, text=True, timeout=60)
+                fixed = r.returncode == 0
+            except Exception:                                 # noqa: BLE001
+                fixed = False
+        if fixed:
+            warn('hooks-enabled',
+                 '%s %s present but core.hooksPath was UNSET here, so none of '
+                 'them has been running. ENABLED IT (git config '
+                 'core.hooksPath .githooks); it takes effect from the next '
+                 'commit, not retroactively, so anything already committed in '
+                 'this session went unchecked.'
+                 % (' and '.join(hooks),
+                    'are' if len(hooks) > 1 else 'is'))
+            return
         warn("hooks-enabled",
              "%s that %s is "
              "present but not enabled here (core.hooksPath is %r). Run: "
