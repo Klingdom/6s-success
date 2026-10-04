@@ -6024,7 +6024,21 @@
       "Two sleeping pillows per person",
       "One throw, folded at the foot",
       "Two complete sheet sets, one on the bed and one on the shelf"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person",
+       "One throw, folded at the foot",
+       "Two complete sheet sets, one on the bed and one folded on the linen shelf",
+       "Under the bed, either nothing or two labeled flat bins"
+      ],
+      "strays": [
+       "Sheets worn thin at the hip",
+       "Blankets gone pilled and scratchy",
+       "Pillows that stay folded in half when you bend them",
+       "Spare sheets kept for a guest who never comes"
+      ]
+     }
     },
     {
      "zone": "Nightstand Left",
@@ -6177,7 +6191,20 @@
       "A lidded bottle or a coaster",
       "One book",
       "A small dish for glasses"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A lamp, a lidded bottle or a coaster, one book, and a small dish for glasses",
+       "Five things or fewer on top, no cable crossing the surface",
+       "Three divided drawer sections, with room left in each"
+      ],
+      "strays": [
+       "A dead pen",
+       "A charger for a phone you no longer own",
+       "Hotel earplugs still in their wrapper",
+       "More than one book you are not reading this week"
+      ]
+     }
     },
     {
      "zone": "Nightstand Right",
@@ -6336,7 +6363,18 @@
       "A lidded bottle or a coaster",
       "One book",
       "Medication, in date, capped and closed away"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A lamp, its cord run behind the leg rather than across the floor",
+       "Medication, in date, capped, and closed away from a child or a dog who can climb onto the bed"
+      ],
+      "strays": [
+       "A lamp cord crossing the floor beside the bed",
+       "Anything on top that a mug cannot be set down without moving first",
+       "Medication that is expired, uncapped, or left where a child or dog could reach it"
+      ]
+     }
     },
     {
      "zone": "Dresser Top",
@@ -6490,7 +6528,20 @@
       "A valet tray holding keys, wallet, watch and rings",
       "Fragrance bottles, grouped on a small dish",
       "An anti-tip strap anchoring the dresser to the wall"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One valet tray holding keys, wallet, watch and rings",
+       "Fragrance bottles, grouped on a small dish set back from the front edge",
+       "An anti-tip strap anchoring the dresser to the wall"
+      ],
+      "strays": [
+       "Loose change",
+       "A receipt",
+       "A single earring or a snapped chain",
+       "Jewelry you love but never put on"
+      ]
+     }
     },
     {
      "zone": "Dresser Drawers",
@@ -6641,7 +6692,20 @@
       "Sleepwear, one drawer",
       "T-shirts, one drawer",
       "Workout clothes, one drawer"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One category per drawer: underwear and socks, sleepwear, t-shirts, workout clothes",
+       "Clothes folded to stand upright, readable from above",
+       "A hand's width of free space in each drawer"
+      ],
+      "strays": [
+       "A sock whose partner never turned up",
+       "A waistband that has given up",
+       "Workout tops beyond the two you actually wear",
+       "A t-shirt from an event you no longer think about"
+      ]
+     }
     },
     {
      "zone": "Primary Closet",
@@ -6799,7 +6863,21 @@
       "Shoes, in pairs on a rack",
       "Bags, standing upright on the shelf",
       "Belts, on one hook"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Hanging clothes, one hanger style throughout, grouped by type and then shade",
+       "Shoes in pairs on a rack, not a floor heap",
+       "Bags standing upright on the shelf, belts on one hook",
+       "Two fingers of space between hanging items, a bare stretch of rod at one end"
+      ],
+      "strays": [
+       "Anything not worn in a year",
+       "Anything waiting on a repair you are never going to make",
+       "A wire hanger or plastic sheath the dry cleaner sent home",
+       "A winter coat or heavy knit crowding a rod that should carry only this month's clothes"
+      ]
+     }
     }
    ]
   },
@@ -7839,7 +7917,20 @@
       "A handful of stuffed animals",
       "A basket for the rest of the animals",
       "A nightlight"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Duvet pulled flat, one pillow squared at the head",
+       "Three or four stuffed animals on the bed, the rest in an open basket at the foot",
+       "Nightlight cord run behind the bed leg",
+       "A clear walkable path from the pillow to the door"
+      ],
+      "strays": [
+       "A stuffed animal beyond the handful that actually gets slept with",
+       "Stuffed animals kept because they arrived, not because they were chosen",
+       "Anything left on the floor blocking the path from pillow to door"
+      ]
+     }
     },
     {
      "zone": "Toy Storage Zone",
@@ -7998,7 +8089,20 @@
       "Vehicles",
       "Small figures",
       "A dated rotation box"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Six open bins, none higher than the child's shoulder, one category each, with a photo of the contents taped to the front",
+       "Enough clear carpet to lie down on",
+       "One rotation box on the wardrobe top shelf, out of reach and dated"
+      ],
+      "strays": [
+       "A broken toy",
+       "An orphan puzzle piece",
+       "Party bag plastic",
+       "A decide-later pile that becomes a seventh bin"
+      ]
+     }
     },
     {
      "zone": "Study Desk",
@@ -8163,7 +8267,20 @@
       "A pen cup",
       "A tray for live work",
       "Books on the shelf"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A bare surface except a lamp, a pen cup and one tray for live work",
+       "Laptop charger threaded through a clip on the desk edge",
+       "Books on the shelf above, none stacked on the surface",
+       "An empty chair"
+      ],
+      "strays": [
+       "A worksheet from a finished term",
+       "Paper that has not yet gone to live work, the memory box, or recycling",
+       "Books stacked on the desk surface instead of the shelf"
+      ]
+     }
     },
     {
      "zone": "Clothing Closet",
@@ -8324,7 +8441,20 @@
       "Shoes in pairs",
       "A backpack on a low hook",
       "A labeled next-size box"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A rod lowered to the child's own reach",
+       "Shirts, dresses, and jackets grouped with a hand's width gap between groups",
+       "Shoes in pairs on the floor rack, backpack on its own low hook",
+       "The next size up, in one labeled box on the top shelf, not mixed into the rod"
+      ],
+      "strays": [
+       "A sleeve that sits above the wrist bone",
+       "A waistband that leaves a mark",
+       "Shoes where the toe is already touching the end"
+      ]
+     }
     },
     {
      "zone": "Dresser Drawers",
@@ -8479,7 +8609,19 @@
       "Folded shirts",
       "Folded pants",
       "A picture label on each drawer"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Five drawers, one category each, picture label on the front",
+       "Socks and underwear standing upright in rows, every pair visible from above",
+       "Nothing on top of the dresser worth climbing for"
+      ],
+      "strays": [
+       "A single sock with no pair",
+       "Underwear with dead elastic",
+       "Pyjama bottoms that stop above the ankle"
+      ]
+     }
     },
     {
      "zone": "School and Activity Launch Zone",
@@ -8636,7 +8778,20 @@
       "Shoes underneath",
       "Signed forms in the front pocket",
       "A sports bag or instrument case"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Backpack on its hook at child height, packed and zipped",
+       "Shoes side by side directly underneath it",
+       "Signed forms in the front pocket",
+       "Sports bag on the second hook, instrument case upright against the wall"
+      ],
+      "strays": [
+       "Leftover lunch left in the backpack",
+       "A dead permission slip or a newsletter from weeks ago",
+       "Damp sports kit put back in the bag instead of the wash basket"
+      ]
+     }
     }
    ]
   },
