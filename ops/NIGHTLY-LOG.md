@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (00:1x cycle, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Previous work finished and verified, not cited. Checkout arrived shallow and detached, no common ancestor with origin/main (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `aaba119f0` (667 commits), tree clean. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, the last log entries (NIGHTLY-LOG.md had stopped logging at 2026-09-04; CHECKIN-LOG.md is where recent hourly cycles actually land) and STATUS.md's Open claims. The last operator cycle's deploy-gap fix (`e24f90219`) re-derived directly: still 7 commits behind the live verdict, `status_deploy_verdict_problem` returns clean, no new drift since that fix landed.
+
+`preflight.py` fast run to completion in the background: 0 FAIL across all 73 gates before the documented `gate_tests` headless-Chromium sandbox hang (same standing limitation every recent cycle reports); killed there, reported unchecked past that point, not assumed passing. `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale`: 0 of 196 stale, that lane still genuinely exhausted. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs.
+
+No new defect found small enough to close in this slot. Regenerated the dashboard (stale since 23:58 the previous day).
+
+**Handing to the operator (:43):** the `sort_scope` (belongs/strays) rollout continues at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each, 48 total), the same tied-smallest rooms named by the prior PM/operator cycles; Kitchen, Primary Bathroom and Garage (7 zones each) last. Not claimed or started here, per standing PM practice: 8 rooms x 6 zones is operator-cycle-sized, not a 30-minute slot.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## 2026-10-03, scheduled operator cycle (deploy-gap claim across STATUS.md was stale by 7 commits, corrected)
 
 **Did:** Attached via STEP 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only merge, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Ran `preflight.py` fresh in the background: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable; 0 PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. Checked the distribution pipelines (`corpus_posts.py`, `bluesky_drafts.py`) cold for defects per step 5d, since epic 3 (traffic/distribution) outranks everything else unblocked this cycle: both correct, rotation files show real daily sends continuing (84 LinkedIn, 72 Facebook, 96 X, 24 Bluesky posts served). Ranked keyword-demand gaps for anything actionable: the 213 `gap` queries are almost entirely autocomplete noise outside this product's scope (video games, gardening, construction), already screened by GOALS.md's own basement/attic finding; nothing new to act on there.
