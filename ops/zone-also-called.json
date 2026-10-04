@@ -3,6 +3,7 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-02T08:12:24Z",
  "zones": {
-  "Nursery|Diaper and Care Backstock": {"names": ["diaper caddy"], "queries": 3, "covered": 0}
+  "Nursery|Diaper and Care Backstock": {"names": ["diaper caddy"], "queries": 3, "covered": 0},
+  "Garage|Automotive Care Zone": {"names": ["car maintenance zone"], "queries": 7, "covered": 0}
  }
 }
