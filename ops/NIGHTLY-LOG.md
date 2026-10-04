@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (10:4x cycle, 30 minute triage, previous work NOT finished, a live stale deploy-gap citation found and closed)
+
+NEXT FOR THE OPERATOR: continue reading `ops/keyword-demand.json`'s `gap` tier (204 rows, re-scanned this cycle at a glance; the top ranks are still attic/basement/dollar-tree/bathroom-medical/gaming rows already out of scope or already declined in D-030) for the next real zone-level synonym gap, same method as A20-A24, because that is still the only unexhausted, unblocked, non-Phil-gated lane.
+
+**Attached clean.** Shallow/detached checkout; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (762 commits, no conflict, no "unrelated histories" error).
+
+**Previous work was NOT finished: the 10:1x PM check-in's own claim that `gate_status_deploy_gap_count_current` read clean was wrong, and this cycle's job was closing that, not starting anything new, per STEP 2.** Called `deploy_gap_count_problem()` directly against the live `STATUS.md`/`ops/deploy-verdict.json` rather than citing any prior cycle's account: it fired. `BLOCKER-001`'s latest entry (08:2x) still said the gap was "9 commits, 6 material" against build `dbab744f6e1567ea`; `deploy_gap_material_commits('fe383721c')` re-derived directly now returns 10. Read the one new commit against its own `site/` diff before citing a number: `2bc49796f` (A24, the Kitchen drying-racks synonym fix, landed between the 08:2x entry and the 10:1x check-in), which touches two files under `site/zones/` and `ops/sitemap-content-hashes.json`, so it is material. Real gap is now 10 commits, 7 material.
+
+**Fixed:** appended a dated `BLOCKER-001` entry with the real 10/7 count, and updated both the "Public website" and "Production traceability" table rows to match, same append-only convention every prior correction in this section uses. No new gate needed: the existing gate caught this correctly the moment it was actually called; the gap was that the 10:1x cycle's own account of calling it clean does not match what calling it now returns, and nothing further investigates why, since the current state is now correct either way.
+
+**Verified:** `deploy_gap_count_problem()` and `status_deploy_verdict_problem()` both called directly after the edit, both return `''`. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. Re-fetched `origin/main` before writing anything: no concurrent push had landed, still at `45aebcad6`. `preflight.py` fast run in the background: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang (confirmed genuinely stalled there before killing it), unchecked past that point, not assumed passing. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Went well:** treating "a prior cycle said this gate was clean" as a claim to re-verify rather than a fact to cite, exactly per STEP 2; it was wrong, and re-deriving it directly rather than trusting it is what caught that.
+
+**Did not go well:** the 10:1x cycle's own account of a direct gate call does not match a direct call now; not chased further here (the current state is correct either way and a root-cause investigation into exactly what the 10:1x cycle actually ran is not this slot's 30 minutes).
+
+**Changing next cycle:** none; the existing gate worked correctly when actually called. Worth a future cycle's attention only if a "called the gate, it was clean" claim and a fresh call disagree again, since that would point at something more specific than one cycle's bookkeeping.
+
+**Next for the operator:** same handoff as the 10:1x cycle gave, restated above, since this slot's work was closing a correctness gap, not advancing the backlog. Standing Phil-blocked list unchanged (`OWNER-ACTIONS.md` items 0 VPS_DEPLOY_KEY, 1a Search Console, 1 YouTube OAuth, 1b Gemini billing, 4 Amazon KDP/Etsy) and the 8 open decision/blocked-on-art GitHub issues.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (10:1x cycle, 30 minute triage, previous work finished, nothing new to start)
 
 **Attached clean.** Shallow/detached checkout; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (762 commits, no "unrelated histories" error, no conflict).
