@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T22:31:41Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-30T00:02:34Z",
    "mode": "new",
    "offered": 1,
@@ -633,6 +626,13 @@
    "offered": 21,
    "accepted": 21,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-04T07:02:31Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -724,7 +724,7 @@
   "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "2a6f0bab8b872acd",
   "https://6s-success.com/zones/family-room-the-primary-media-zone": "6f5a464e37eb3ee8",
   "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "39b558ae7f74457b",
-  "https://6s-success.com/zones/garage-the-automotive-care-zone": "cdb13266e11a19a3",
+  "https://6s-success.com/zones/garage-the-automotive-care-zone": "a8bf1fc398bc1a2e",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "ffd43279ecc6c84c",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "7b5506d5a220cf6c",
   "https://6s-success.com/zones/garage-the-lawn-and-garden-tool-zone": "191831b2f82af4e2",
