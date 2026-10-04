@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-29T20:29:40Z",
-   "mode": "new",
-   "offered": 3,
-   "accepted": 3,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-29T20:32:52Z",
    "mode": "changed",
    "offered": 3,
@@ -633,6 +626,13 @@
    "offered": 12,
    "accepted": 12,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-04T01:04:45Z",
+   "mode": "changed",
+   "offered": 12,
+   "accepted": 12,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -753,12 +753,12 @@
   "https://6s-success.com/zones/home-office-the-printer-and-scanning-station": "8b789b0c271e55fd",
   "https://6s-success.com/zones/home-office-the-supply-cabinet": "e8f86878b032edd6",
   "https://6s-success.com/zones/": "53c6c1ea2e6cf079",
-  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "8d889d683bb5456c",
-  "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "8ef1323524e7292f",
-  "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "13d6e8d5c9458e00",
-  "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "3335d82a0dab3da4",
-  "https://6s-success.com/zones/kids-bedroom-the-study-desk": "761efeeb20a2190f",
-  "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "5e96ca596b20aa29",
+  "https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone": "64ea610ea0efe660",
+  "https://6s-success.com/zones/kids-bedroom-the-clothing-closet": "965c57e8241f947b",
+  "https://6s-success.com/zones/kids-bedroom-the-dresser-drawers": "48194f06543e29ae",
+  "https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone": "5ed1a36486d4623d",
+  "https://6s-success.com/zones/kids-bedroom-the-study-desk": "587b4b324ca3ff64",
+  "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "140b6cfcb1d5c89a",
   "https://6s-success.com/zones/kitchen-the-cooking-zone": "79362fbebbc33698",
   "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "65cafff00b60fa69",
   "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "b936430832ec870f",
@@ -808,12 +808,12 @@
   "https://6s-success.com/zones/primary-bathroom-the-under-sink-cabinet": "17cb427329697f01",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-counter": "e6bb427d8b716168",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-drawers": "0093784bff52162b",
-  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "a536134967c40475",
-  "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "b50fdd60de73c40b",
-  "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "54965acc0e2306be",
-  "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "46a1d92047b945a1",
-  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "ea08fbe3068436c6",
-  "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "61e6103a69a4d20e",
+  "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "f67d139a1e018b7e",
+  "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "7ac72a04bacd8dd5",
+  "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "55ebbcc5db62eb3d",
+  "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "5b057ccd443ec29f",
+  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "6cffe4b6dc6fddf4",
+  "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "46582694bc8d1b3c",
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "d18afed0e8fd1cef",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "44e869d732d723c5",
   "https://6s-success.com/zones/stair-landing-the-wall-and-display-zone": "1633ca98367aa8f3",
