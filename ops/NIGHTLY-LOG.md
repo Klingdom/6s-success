@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (02:4x cycle, 30-minute triage, two sibling deploy-gap citations left behind by the 02:2x fix, found and closed)
+
+NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout at Kitchen, Primary Bathroom, Home Office, Garage, Workshop, Mudroom and Patio or Deck (45 zones across 7 rooms), because this is the standing handoff every recent cycle has named and `content.json` still shows 69/114 zones, unchanged since the 01:5x redeploy, so it remains unclaimed and genuinely unblocked.
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `0f0291350`, tree clean; the only commits ahead of the 02:2x check-in were two of Phil's own, fixing a broken image build the consent-fix commit had caused, no `site/sort_scope` content). Read `GOALS.md` context carried forward, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last log entries, and 8 open GitHub issues directly (all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs). `preflight.py` fast, backgrounded: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, same standing limitation; killed there, reported unchecked past that point, not assumed passing.
+
+Previous work (the 02:2x cycle's own deploy-gap fix) confirmed finished, not cited: re-derived `deploy_gap_material_commits('f2276e26b')` directly rather than trust it, and it still returned 4 commits, 2 material, same as that cycle wrote.
+
+**Found a real stale-claim gap instead of stopping there.** Two sibling citations of the identical fact, both inside `STATUS.md`, had not been told about the 02:2x correction: the "Production Knowledge" paragraph under section 30 (still reading the superseded "3 commits, 2 material") and the all-caps "Immediate Focus" line beneath it (still reading "7 commits, 5 material", two corrections behind). Same "source corrected, sibling never told" shape this file's own gates exist to catch, both one section past where `gate_status_deploy_verdict_current`/`gate_status_deploy_gap_count_current` actually parse. Corrected both in place, re-ran `status_deploy_verdict_problem()` and `deploy_gap_count_problem()` directly against the edited file: both return `''`.
+
+Not starting the 45-zone rollout myself, per standing PM practice: operator-cycle-sized, not a 30-minute slot.
+
+Pushed to main. `STATUS.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (02:2x cycle, 30-minute triage, a one-commit stale deploy-gap count found and closed)
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 014d3aa69, tree clean). Read GOALS.md context carried forward, BACKLOG-2026-09-07.md sections 0/1b/2/6/7, STATUS.md Open claims and BLOCKER-001, the last NIGHTLY-LOG entries, and 8 open GitHub issues directly (all decision/blocked-on-art, none newly actionable, unchanged from every recent cycle).
