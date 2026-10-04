@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle (sort_scope rollout: Primary Bedroom and Kids Bedroom)
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge). Read `GOALS.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, the last four log entries, and the open GitHub issues (all `decision`/`blocked-on-art`, none actionable). Ran `preflight.py` fast to completion in the background: every gate passed, 30 warnings, all previously diagnosed sandbox limits. Picked up the standing handoff (epic 5, the one unblocked non-Phil-gated workstream): claimed Primary Bedroom and Kids Bedroom in `STATUS.md` before starting, pushed the claim, then authored `sort_scope` (belongs/strays) for all 12 zones, grounded in each zone's own `done_looks_like`/`passes.sort` text. One zone (Nightstand Right) has an etiquette-only sort pass with no named stray items, so its strays were drawn from `done_looks_like`'s own failure conditions instead, recorded in `STATUS.md` rather than left silent. 57 of 114 zones now carry `sort_scope`, 11 of 20 rooms complete.
+
+**Verified:** Dry-run against a scratch copy first, diff confirmed exactly 12 blocks touched, JSON validated before touching the real file. `gate_sort_scope_rendered` clean, `test_gate_sort_scope_rendered.py` 6/6, `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, `link_graph_report.py` 0 orphans, `audit_visual.py` 0 findings on all 12 pages, both viewports. `mcp/content.json` resynced byte-identical.
+
+**Went well:** the claim-before-you-start convention worked exactly as designed; no collision with the concurrent PM check-in cycles.
+
+**Did not go well:** nothing new found; the same `gate_tests` sandbox-hang and no-Stripe/no-SSH/no-network limitations persist.
+
+**Changing next cycle:** none.
+
+**Next:** continue the rollout at Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each); Kitchen, Primary Bathroom, Garage (7 each) last.
+
 ## 2026-10-04, PM check-in (00:4x cycle, 30-minute triage, previous work confirmed finished, handoff reconfirmed unchanged)
 
 NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each, 48 total), because the 00:1x cycle already handed this off and `content.json` still shows 45/114 zones, 9/20 rooms, so it remains unclaimed and unblocked.
