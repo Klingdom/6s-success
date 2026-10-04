@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (00:4x cycle, 30-minute triage, previous work confirmed finished, handoff reconfirmed unchanged)
+
+NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck (6 zones each, 48 total), because the 00:1x cycle already handed this off and `content.json` still shows 45/114 zones, 9/20 rooms, so it remains unclaimed and unblocked.
+
+**Previous work (the 00:1x cycle's deploy-gap fix) confirmed finished, not cited:** re-attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `aaba119f0`, tree clean). Checked `sort_scope` coverage directly: still 45/114 zones, 9/20 rooms, unchanged since 00:1x, confirming the operator has not yet taken the handoff (this cycle landed at 00:43, the operator's own slot, before its commit appeared).
+
+**Verified rather than assumed:** `preflight.py` fast run to completion in the background: 0 FAIL across every gate before the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation; killed there, reported unchecked past that point. `check_urls.py` 211/211. `fix_dashes.py --check` 0 em/en dashes. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable (checked directly via the GitHub API, not cited); 0 open PRs. Working tree was clean before this cycle touched anything.
+
+No new defect found small enough to close in this slot. Regenerated the dashboard (stale since 00:21, now YELLOW: revenue $0 of $20,000, carried forward from 2026-10-03 because this run could not reach Stripe this month).
+
+Not starting the 48-zone rollout myself, per standing PM practice: it is operator-cycle-sized, not a 30-minute slot, and the operator's own slot is the one this cycle lands in.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## 2026-10-04, PM check-in (00:1x cycle, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work finished and verified, not cited. Checkout arrived shallow and detached, no common ancestor with origin/main (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `aaba119f0` (667 commits), tree clean. Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, the last log entries (NIGHTLY-LOG.md had stopped logging at 2026-09-04; CHECKIN-LOG.md is where recent hourly cycles actually land) and STATUS.md's Open claims. The last operator cycle's deploy-gap fix (`e24f90219`) re-derived directly: still 7 commits behind the live verdict, `status_deploy_verdict_problem` returns clean, no new drift since that fix landed.
