@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (01:3x cycle, 30-minute triage, previous work confirmed finished, one stale claim corrected)
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `88c2d2797`, tree clean). Read GOALS.md context carried from prior cycles, BACKLOG-2026-09-07.md's summary sections, EXECUTIVE-DASHBOARD-LIVE.md, the last log entries, and the 8 open GitHub issues directly (all `decision`/`blocked-on-art`, none newly actionable).
+
+**Previous work (sort_scope rollout, Primary Bedroom and Kids Bedroom) confirmed finished, not cited:** `content.json` shows 57 of 114 zones carrying `sort_scope`, matching the operator's own claim exactly; `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `audit_pages.py` 215/0. `preflight.py` fast run in the background: no FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (same standing limitation every recent cycle reports); killed there at 139s, reported unchecked past that point, not assumed passing.
+
+**Found and fixed a stale claim rather than report it twice:** `STATUS.md`'s `BLOCKER-001` deploy-gap row still cited 7 commits, 5 material from the 23:5x cycle. Re-derived directly with `deploy_gap_material_commits('dc34a0213')`: real gap is now 8 commits, 6 material, the extra one being the Primary Bedroom/Kids Bedroom commit itself (`1bffc3848`). Corrected the summary table row and appended a widened entry to the section, same convention as every prior entry. Verified `gate_status_deploy_gap_count_current` and `gate_status_deploy_verdict_current` both clean against the correction before shipping.
+
+Not starting the next rollout slice myself (Nursery, Laundry Room, Home Office, Workshop, Mudroom, Patio or Deck, 36 zones): operator-cycle-sized, not a 30-minute slot, same standing PM practice.
+
+**Handing to the operator (:43):** continue `sort_scope` at the six tied-smallest remaining rooms named above; Kitchen, Primary Bathroom, Garage (7 zones each) last.
+
+Pushed to main. `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout: Primary Bedroom and Kids Bedroom)
 
 **Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge). Read `GOALS.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, the last four log entries, and the open GitHub issues (all `decision`/`blocked-on-art`, none actionable). Ran `preflight.py` fast to completion in the background: every gate passed, 30 warnings, all previously diagnosed sandbox limits. Picked up the standing handoff (epic 5, the one unblocked non-Phil-gated workstream): claimed Primary Bedroom and Kids Bedroom in `STATUS.md` before starting, pushed the claim, then authored `sort_scope` (belongs/strays) for all 12 zones, grounded in each zone's own `done_looks_like`/`passes.sort` text. One zone (Nightstand Right) has an etiquette-only sort pass with no named stray items, so its strays were drawn from `done_looks_like`'s own failure conditions instead, recorded in `STATUS.md` rather than left silent. 57 of 114 zones now carry `sort_scope`, 11 of 20 rooms complete.
