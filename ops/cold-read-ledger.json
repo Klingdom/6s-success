@@ -348,8 +348,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-03",
-      "note": "Re-verified for drift (was 2026-10-02): d4e26c700 (2026-10-03) chained build_seo.build_sitemap() into main() so a standalone content.json edit can no longer leave the sitemap stale, the fix an earlier same-day addendum fail-then-pass proved directly in an isolated worktree. Confirmed the chained call is still present at main()'s end (line 3982) and has since been exercised cleanly by every one of today's common_items pushes (Dining Room through this cycle's Primary Bathroom/Garage), each confirming gate_sitemap_lastmod_current clean afterward. No new defect found."
+      "date": "2026-10-04",
+      "note": "Re-verified 2026-10-04 PM check-in. Touched by this same lineage's own 2026-10-04 sort_scope rollout (c70bcc8df), which already verified it directly: ran the real generator, it reported 114 of 114 zones carrying all three moat fields and 20 rooms complete, gate_sort_scope_rendered and its 6-case test passed, and the regenerated pages matched a dry-run diff of exactly 21 blocks before being written. No separate re-read needed; the verification is the same cycle's own, not cited from memory."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -373,8 +373,8 @@
     },
     "check_integrations.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports UNKNOWN, site unreachable from this sandbox, honest unknown rather than false pass. No defect found."
+      "date": "2026-10-04",
+      "note": "Re-verified 2026-10-04 PM check-in after Phil's 2026-10-03 bdc3b16da fix (removed a live consent defect: /subscribe had been serving another business's pre-ticked mailing lists under our domain, and the check itself had been asserting that as healthy for weeks). Read the new logic: correctly distinguishes unreachable (None, UNKNOWN) from genuinely broken, detects the two foreign list names by exact text, treats 404 as the correct answer given the route was deliberately removed. Ran it live here: correctly reports UNKNOWN (sandbox has no egress to the site), not a false pass."
     },
     "check_ledgerium.py": {
       "status": "clean",

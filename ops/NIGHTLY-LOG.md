@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (05:4x cycle, previous work genuinely finished, corrected a stale handoff, closed the two stale cold-read-ledger entries)
+
+NEXT FOR THE OPERATOR: there is no genuinely unblocked, non-Phil-gated work item left standing right now, because B8 and B9 are both already closed, not "neither yet started" as the 05:3x operator cycle's own handoff said; pick up a fresh cold-read pass (`python ops/cold_read_ledger.py --next`, which this cycle emptied to 0 un-ledgered files, so re-reading a low-mention tier or re-checking a file whose last ledger note is weeks old is the only lane left) or watch CI finish on `48efed3c8` and confirm it green before claiming anything new.
+
+**Attached clean** (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `2cc34deb0`; working tree already clean, main already matched origin exactly).
+
+**Step 2: was the previous work actually finished? Yes, verified rather than assumed.** The sort_scope rollout (A20) closed at 114 of 114 zones in the prior cycle (`c70bcc8df`), merged clean (`48efed3c8`). Ran `preflight.py` to the documented sandbox limit: 73 gates checked, 0 FAIL, then the known headless-Chromium hang at `gate_tests` (CPU time flat at 3s across 56s wall-clock, confirmed before killing, not assumed). Working tree clean, main pushed, nothing ahead or behind origin. GitHub: 8 open issues unchanged, all `decision`/`blocked-on-art`/`P0`, matching the dashboard exactly; CI on the merge commit green on 6 of 8 workflows, `Checks`/`Publish site image` still `in_progress` (normal lag on a just-pushed merge, not a failure).
+
+**The actual finding: the prior cycle's own closing line was wrong.** Its handoff read "Remaining unblocked work per BACKLOG-2026-09-07.md: B9 (five more room decks) and B8 (trimming Primary Bathroom/Garage... 18-card print step), both category 5, neither yet started." Checked rather than inherited: `python ops/b9_claims.py --status` returns zero undiagnosed rooms; `ls site/*-deck.html` shows all 20 room decks already on disk; `BACKLOG-2026-09-07.md` itself records B9 "DONE 2026-09-29" and B8 "CLOSED 2026-09-25, by decision rather than by trimming or filling (DECISIONS.md D-027)"; `STATUS.md` says the same in three places. The backlog and status files were never wrong, only the one sentence the last cycle wrote without checking them was. Left uncorrected it would have sent the 05:43 operator to rebuild five decks that already exist. Not fixing a document for this: it is one cycle's own transient handoff line, not a standing claim anywhere else, and the correction belongs here, not as a rewrite of someone else's log entry.
+
+**Small closing job: the two stale cold-read-ledger entries.** `ops/cold_read_ledger.py --stale` named two: `ops/check_integrations.py` (ledgered 2026-09-30, touched 2026-10-03) and `ops/build_zone_pages.py` (ledgered 2026-10-03, touched 2026-10-04). Checked both rather than re-stamped blind. `check_integrations.py`: Phil's own `bdc3b16da` (2026-10-03) fixed a real, live privacy defect this file's own earlier logic had been reporting as healthy (`/subscribe` served another business's pre-ticked mailing-list consent under our domain for weeks; CLAUDE.md 8/47). Read the new check: correctly separates unreachable (None) from genuinely broken, matches the two foreign list names by exact text, treats 404 as correct given the route is now deliberately removed. Ran it here: reports UNKNOWN (no egress to the live site from this sandbox), not a false pass. `build_zone_pages.py`: touched only by this same lineage's own sort_scope rollout a few minutes before this cycle started, which already verified it directly (114/114 zones, gate and test both passed, dry-run diff confirmed before writing); no separate re-read needed. Both re-ledgered clean with a dated note. `cold_read_ledger.py --stale` now reports 0.
+
+**Verified after:** `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0 em/en dashes.
+
+**Went well:** checking the prior cycle's handoff against the authoritative files instead of forwarding it, which is exactly the "source corrected, artifact never re-derived" defect class this repository's own history keeps naming.
+
+**Did not go well:** nothing new; the shallow/detached checkout did not recur this cycle.
+
+**Next:** as stated above. The main constraint chain is entirely Phil-blocked today (Umami share key, Listmonk identity decision issue #15, IndexNow/VPS egress), so the only genuinely open lane is cold-read verification.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (two concurrent-session collisions found and resolved on fetch, sort_scope rollout CLOSED at 114 of 114)
 
 **Did:** Attached via STEP 0 (fetch, unshallow, `checkout main`/`checkout -B main origin/main`, ff-only merge, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, the last four log entries, `STATUS.md`'s Open claims. `preflight.py` FAILed first: `mcp/content.json` 12 zones behind `content.json` (a prior sort_scope commit landed minutes before Phil's new corpus pre-commit hook went live). Fixed per step 2.
