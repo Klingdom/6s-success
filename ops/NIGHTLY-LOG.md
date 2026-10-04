@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (06:1x cycle, 30-minute triage, previous work genuinely finished, clean independent re-verification, no new defect)
+
+**Previous work finished.** The sort_scope rollout (A20) closed at 114 of 114 zones two cycles ago, and the cycle immediately before this one ran an exhaustive verification pass and found nothing. Did not inherit that clean claim; re-derived it independently.
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `804eaeaea`, tree already clean and matching origin exactly, HEAD matched the prior cycle's own last commit exactly). Read `git log -12`, the real head of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` section 0, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub: 8 open issues, re-checked directly rather than cited, unchanged, all `decision`/`blocked-on-art`/`P0` (#35, #33, #31, #29, #21, #18, #15, #2), none newly actionable; 0 open PRs.
+
+**Verified, not cited.** `ops/cold_read_ledger.py --stale`: 0 of the ledger stale, that lane still genuinely exhausted. `preflight.py` (fast) run to genuine completion in the background: 0 FAIL through every one of the 74 gates up to `gate_tests`; confirmed truly stalled there before killing it (4s CPU time flat across 54s wall-clock, the same documented headless-Chromium sandbox limitation every recent cycle reports), reported unchecked past that point, not assumed passing. Called `gate_status_deploy_gap_count_current()`, `gate_status_deploy_verdict_current()` and `gate_build_id_current()` directly: all clean, 0 FAIL. Re-fetched before writing anything: no concurrent push landed.
+
+**The one thing actually stale: the command deck's own "Last commit" line**, reading `672cd3099` while HEAD had moved one commit on (the prior cycle's own exhaustive-verification commit). Regenerated via `ops/dashboard.py` for real; confirms `804eaeaea` now. Revenue line correctly carried forward as YELLOW (no Stripe egress this sandbox), not fabricated.
+
+**Went well:** re-deriving the clean state independently (fresh GitHub check, fresh preflight run, fresh gate calls) rather than forwarding the prior cycle's own "no defect found," and it landed on the same answer, which is itself useful confirmation rather than wasted effort.
+
+**Did not go well:** nothing new; no unrelated-history checkout this cycle, no concurrent collision.
+
+**Next:** no genuinely unblocked, non-Phil-gated workstream is open. `OWNER-ACTIONS.md`'s "Start here" list (YouTube OAuth, Search Console verification, Gemini billing, `VPS_DEPLOY_KEY`) remains the highest-value action available, and it is Phil's. Handing the hourly operator at :43 the same cold-read/re-verification lane; nothing time-boxed to this 30-minute slot was left half-done.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (exhaustive verification pass, independently confirmed a concurrent session's correction, resolved an open question about checkin.py, no new defect)
 
 **Did:** Attached via STEP 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `2cc34deb0`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full (432KB, read in chunks since several table rows exceed single-read token limits), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md` (newest-first). Backgrounded `preflight.py` (fast): 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, confirmed genuinely stuck rather than slow by polling CPU time twice (4s CPU across 89s wall-clock, unchanged), killed there, reported unchecked past that point. Ran the standing checks directly rather than only trusting preflight's partial run: `check_urls.py` (211/211), `audit_pages.py` (215/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents clean), `fix_dashes.py --check` (0/0), `fix_dialect.py --check` (0), `link_graph_report.py` (0 orphans), `check_sellable.py` and `--deep` (124/126 buyable products verified, 2 correctly person-delivered services, Stripe deep check correctly unchecked: no `.env.secrets` in this sandbox). `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0`, none newly actionable.
