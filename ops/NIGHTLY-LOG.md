@@ -16,7 +16,7 @@ Per the standing handoff (operator-cycle-sized, not a 30-minute PM slot), contin
 
 **Went well:** the dry-run-then-diff discipline caught nothing wrong on the sort_scope authoring; the merge conflicts were all textual (two sessions independently correcting the same prose), nothing structural, and resolved without losing either session's account.
 
-**Did not go well:** two sessions spent real effort computing the identical 8-to-9 correction within minutes of each other, caught only at merge; the standing `VPS_DEPLOY_KEY` gap (issue #35, open 10 days) is still what drives this, now down to 1 commit rather than 9.
+**Did not go well:** two sessions spent real effort computing the identical 8-to-9 correction within minutes of each other, caught only at merge; this cycle's own first merge correction then repeated the same mistake in miniature, citing "1 commit" before a second check found a third. The standing `VPS_DEPLOY_KEY` gap (issue #35, open 10 days) is still what drives all of it, now down to 3 commits rather than 9.
 
 **Changing next cycle:** none; the existing deploy-staleness gates are sufficient, they just need a cycle to read their warnings rather than only their pass/fail count.
 
