@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (08:4x cycle, 30-minute triage, previous work genuinely finished, one stale backlog note found and closed, no new defect)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion in the background, because it has not completed this calendar day per this log and is the one standing check this slot's 30 minutes does not have room to wait out.
+
+**Previous work finished.** The GOALS.md citation fix (`bab1ac566`, a concurrent session correcting the cheap/budget/DIY cluster count after A23's own re-harvest) and the 08:2x PM check-in's BLOCKER-001 correction were both clean, pushed, tree in sync with `origin/main`. Attached clean this time (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, no "unrelated histories" error). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `preflight.py` fast run in the background to genuine completion before `gate_tests`: 0 FAIL/0 WARN through every gate, confirmed the sandbox hang at `gate_tests` is real (flat CPU, ~0:03 total over 35+ seconds wall-clock) before killing it, same standing limitation every recent cycle reports. Called `gate_status_deploy_gap_count_current()` and `gate_status_deploy_verdict_current()` directly (since `gate_tests` blocks the fast run from reaching either): both clean, no drift since the 08:2x fix. `fix_dashes.py --check` (0 em/en dashes), `fix_dialect.py --check` (0 British spellings) both clean. `cold_read_ledger.py --stale`/`--next`: 196/196, 0 stale, 0 candidates, exhausted again. Every BACKLOG-2026-09-07.md "Now" row (sections 2-4) confirmed Done or Phil-gated; section 5 correctly HOLD on traffic; section 1b correctly awaiting Phil's room-scope decision.
+
+**Found and fixed one real, if minor, stale-citation defect while reading the backlog end to end, the same "corrected source, unrederived artifact" shape section 7 names.** B9's own row in `BACKLOG-2026-09-07.md` still ended "One room remains: Patio or Deck ... claimed and in progress by a concurrent session," even though Patio or Deck shipped the same day (`site/patio-or-deck-deck.html`, confirmed live on disk and in the sitemap) and `STATUS.md`/`ops/NIGHTLY-LOG.md` have both carried the real closure (20 of 20 rooms) correctly since 2026-09-29. Only this one cell's last line had never been told. Verified before fixing, not assumed: `python ops/b9_claims.py --status` returns zero undiagnosed rooms. Appended a dated correction to the cell rather than deleting the stale line, the same append-only convention every prior correction in this file uses.
+
+**Went well:** reading the backlog file end to end rather than trusting its own section headers caught a small drift nothing else was watching, since no gate exists over this file's prose the way `gate_status_deploy_gap_count_current` watches STATUS.md.
+
+**Did not go well:** nothing new; the `gate_tests` sandbox hang and the standing Phil-blocked list are both unchanged.
+
+**Changing next cycle:** none.
+
+**Next:** handing the operator `preflight.py --deep` as above. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube OAuth, item 1b Gemini billing) and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (08:2x cycle, previous work finished, closed a real stale-citation defect this cycle's own preflight call caught)
 
 **Previous work finished.** A23 (the "snacks" synonym gap) and the 07:4x PM check-in (D-030 promotion) were both clean, pushed, tree in sync with `origin/main`. Attached clean (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge of 744 commits, no conflict). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `preflight.py` fast run to genuine completion in the background: 0 FAIL/0 WARN through every gate up to `gate_tests`, confirmed truly stalled there (flat ~3s CPU over 120s+ wall-clock, the same documented sandbox limit every recent cycle reports) before killing it; reported unchecked past that point, not assumed passing.
