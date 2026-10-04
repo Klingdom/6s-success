@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-04, PM check-in (03:1x cycle, 30-minute triage, clean verification pass, no new defect)
+## 2026-10-04, PM check-in (03:4x cycle, 30-minute triage, clean verification pass, no new defect)
+
+NEXT FOR THE OPERATOR: continue the sort_scope (belongs/strays) rollout at Home Office, Workshop, Mudroom and Patio or Deck (6 zones each), then Kitchen, Primary Bathroom and Garage (7 zones each) last, because this is the standing handoff the last several cycles have named, content.json still shows 69/114 zones (confirmed by direct count against the live file, not cited), and it remains the only non-Phil-gated workstream in BACKLOG-2026-09-07.md's section 2 that is not already done.
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge; no new commits since the 03:1x push, tree clean, reconfirmed with a second fetch before writing this entry). Previous work (03:1x's clean pass) confirmed finished, not cited: re-ran preflight.py fast myself (0 FAIL through every gate up to the documented gate_tests sandbox hang, same standing limitation, unchecked past that point), fix_dashes.py --check (0/0), check_urls.py (211/211). GitHub: 8 open issues, unchanged, all decision/blocked-on-art, none newly actionable, none mine. Read BACKLOG-2026-09-07.md sections 0 through 7 in full: every item in section 2 (micro zones/app) is done except A20 (sort_scope, in progress); sections 3 to 4 have two open product items (B9, building five more room decks from the diagnosis layer the corpus already carries; B8, trimming Primary Bathroom/Garage and filling Entryway to the 18-card print step) and two explicitly Phil-gated ones (C5 Gemini billing, C6 publishing 102 videos); neither open product item outranks sort_scope by the ordering rule (both are the same category 5 tier, sort_scope is already mid-rollout).
+
+Noted, not acted on: CHECKIN-LOG.md's last nine hourly entries (2026-10-03 20:25 through 2026-10-04 03:16) each read "nothing measurable moved," against 226 to 251 commits per 24h each time. That is exactly the shape CLAUDE.md 0.2 and 0.9 warn about, activity without outcome, but diagnosing why belongs to a cycle with time to look past this slot's 30 minutes, not this one.
+
+Not starting the sort_scope rollout or B9/B8 myself: operator-cycle-sized, not a 30-minute slot, same standing practice as every recent cycle.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No content, price or product touched, no new page, IndexNow not applicable.
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge; no new commits since the 02:4x push, tree clean). Previous work (02:4x's two sibling deploy-gap fixes) confirmed finished, not cited: re-derived deploy_gap_material_commits('f2276e26b') directly, still 4 commits, 2 material, and all three citations (STATUS.md Public website row, Production traceability row, Production Knowledge paragraph, Immediate Focus line) already agree with it. preflight.py fast: 0 FAIL through every gate up to the documented gate_tests sandbox hang, unchecked past that point. fix_dashes.py --check clean (0/0), check_urls.py 211/211. GitHub: 8 open issues, unchanged, all decision/blocked-on-art, none newly actionable, none mine. Regenerated EXECUTIVE-DASHBOARD-LIVE.md; only timestamp and 7-day commit-window figures moved, no content drift.
 
