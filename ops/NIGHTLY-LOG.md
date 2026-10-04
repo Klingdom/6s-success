@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (03:1x cycle, 30-minute triage, clean verification pass, no new defect)
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge; no new commits since the 02:4x push, tree clean). Previous work (02:4x's two sibling deploy-gap fixes) confirmed finished, not cited: re-derived deploy_gap_material_commits('f2276e26b') directly, still 4 commits, 2 material, and all three citations (STATUS.md Public website row, Production traceability row, Production Knowledge paragraph, Immediate Focus line) already agree with it. preflight.py fast: 0 FAIL through every gate up to the documented gate_tests sandbox hang, unchecked past that point. fix_dashes.py --check clean (0/0), check_urls.py 211/211. GitHub: 8 open issues, unchanged, all decision/blocked-on-art, none newly actionable, none mine. Regenerated EXECUTIVE-DASHBOARD-LIVE.md; only timestamp and 7-day commit-window figures moved, no content drift.
+
+Not starting the sort_scope rollout (Home Office, Workshop, Mudroom, Patio or Deck, then Kitchen/Primary Bathroom/Garage; 69/114 zones done) myself: operator-cycle-sized, not a 30-minute slot, same standing practice as every recent cycle.
+
+Handing to the operator (:43): continue sort_scope at the rooms named above, unchanged from the prior handoff.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (02:4x cycle, 30-minute triage, two sibling deploy-gap citations left behind by the 02:2x fix, found and closed)
 
 NEXT FOR THE OPERATOR: continue the `sort_scope` (belongs/strays) rollout at Kitchen, Primary Bathroom, Home Office, Garage, Workshop, Mudroom and Patio or Deck (45 zones across 7 rooms), because this is the standing handoff every recent cycle has named and `content.json` still shows 69/114 zones, unchanged since the 01:5x redeploy, so it remains unclaimed and genuinely unblocked.
