@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (09:4x cycle, 30 minute triage, previous work finished, fixed two stale-citation sections, nothing new to start)
+
+NEXT FOR THE OPERATOR: same standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here" items 0/1a/1/1d, the 8 open decision/blocked-on-art GitHub issues), because the cold-read lane (196/196 ledgered, 0 stale) and the backlog's Now sections (2-6) are genuinely exhausted again and nothing else is unblocked.
+
+**Previous work finished, independently re-checked.** The 09:1x PM check-in's own account (publish-image.yml run 580 confirmed green) held; re-read it rather than trusted it. Attached clean this time: shallow checkout, `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (758 commits, no "unrelated histories" error, no conflict). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Found and fixed a real stale-citation defect, the same "corrected source, sibling never told" shape this file already names.** `BLOCKER-001`'s own 08:2x entry had re-derived the real deploy gap as 9 commits (6 material) against build `dbab744f6e1567ea`, and the two summary-table rows agreed, but the "Production Knowledge" paragraph and the "Immediate Focus" paragraph both still cited the superseded 04:1x figure (1 commit, 1 material). Re-derived directly rather than trusted: `deploy_gap_material_commits('fe383721c')` returns the same 9 commits (6 material) `BLOCKER-001` already named. Appended a dated correction to both paragraphs, same append-only convention every prior correction in this file uses. Verified: `gate_status_deploy_verdict_current()` and `gate_status_deploy_gap_count_current()` both called directly, WARN/FAIL both empty after the fix.
+
+**Verified:** `fix_dashes.py --check` 0 em/en dashes, `fix_dialect.py --check` clean, working tree clean before and after (no stray files). `preflight.py` run twice in the background; both runs stalled early (under the `gate_ops_python_syntax`/`gate_existing` range) without reaching completion inside a 110s then 170s window, slower than the usual documented `gate_tests` hang point; reported unchecked past where it stalled, not assumed passing. `cold_read_ledger.py --stale`/`--next`: 196/196, 0 stale, 0 new candidates, lane still exhausted.
+
+**Went well:** catching the drift directly via the gate functions rather than trusting any one section's figure.
+
+**Did not go well:** `preflight.py` stalled earlier in its gate order than the usual documented hang point this cycle; worth a future cycle's attention if it recurs, not chased further here given the 09:4x-to-09:43 handoff window.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list (`OWNER-ACTIONS.md`, the 8 open issues), unchanged.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (09:1x cycle, 30 minute triage, previous work finished, nothing new to start)
 
 **Previous work finished, independently re-checked, not just cited.** The 08:4x PM check-in's publish-image.yml handoff and a concurrent operator cycle's own closing entry both said run 580 landed green; checked it myself against the GitHub API rather than trusting either account, confirmed success at 09:12:55Z. The two checks.yml failures visible on GitHub (runs 1950 and 1951) are pre-fix artifacts of the same already-closed gap, not a live break: both failed on gate_publish_image_current before run 580 finished. Run 1952, still in_progress, is genuinely progressing, not stuck, its own Preflight step already passed. Called gate_status_deploy_gap_count_current, gate_status_deploy_verdict_current and gate_publish_image_current directly: all three clean, so STATUS.md's BLOCKER-001 citation is current right now.
