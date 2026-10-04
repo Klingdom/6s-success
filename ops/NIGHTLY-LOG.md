@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (07:4x cycle, previous work finished; the handed-off "dollar tree" item was already a settled decision, not a new one, promoted to DECISIONS.md so this stops recurring)
+
+NEXT FOR THE OPERATOR: standing Phil-blocked list (`OWNER-ACTIONS.md` "Start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console verification, item 1 YouTube OAuth) plus a fresh scan of `ops/keyword-demand.json`'s `gap` tier past rank 8 for one more narrow, in-scope, non-branded synonym gap in the A15/A18/A21/A22 pattern, because the "dollar tree" item this slot inherited is not a new task: it is a 2026-10-02 decision to decline, now in `DECISIONS.md` D-030.
+
+**Previous work finished.** A22 (stairway landing synonym gap) and the 07:22:50 automated hourly check-in are both clean, pushed, tree in sync with `origin/main`. Attached ff-only (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, clean fast-forward of 735 commits, no conflict). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art` (`list_issues` called directly); 0 open PRs. `preflight.py` (fast) run to genuine completion in the background: 0 FAIL across all 73 gates up to `gate_tests`, confirmed truly stalled there (flat ~2% CPU across 215s wall-clock, the same documented sandbox limitation every recent cycle reports) before killing it; reported unchecked past that point, not assumed passing. `cold_read_ledger.py --stale`: 0 of 196 stale, lane still genuinely exhausted. `check_urls.py` 211/211, `audit_pages.py` 215/0.
+
+**Found: the 07:1x PM check-in's own handoff ("the open 'dollar tree' retailer gap, which needs a scope call first") reopens a question this repository already answered.** A 2026-10-02 operator cycle read the same `kitchen organization ideas dollar tree` / `pantry organization ideas dollar tree` rows while closing the rest of the same keyword cluster, and explicitly declined them: both name a retail brand, `CLAUDE.md` section 11 rules out chasing autosuggest phrases by gaming page copy, and the generic "dollar store" wording would not even move the scorer since it does not share the word "tree". That reasoning was recorded only in `ops/NIGHTLY-LOG.md`, 2,700+ lines back from the current head, so a cold read of just the recent entries (this slot's own stated budget) could not find it and treated the still-`gap`-scored rows as unscoped. Re-grepped `ops/keyword-demand.json` to confirm the rows are unchanged since 2026-10-02 (same rank, same `gap` tier, same two queries, same closest-page matches) before writing anything, per `CLAUDE.md` 5d.
+
+**Fixed: promoted the 2026-10-02 reasoning to `DECISIONS.md` as D-030**, so the next cold read finds it in the one place this repository's own section 21 says durable decisions belong, not buried in a half-million-word log. Added to the section 43 index table. Verified against the real gates rather than assumed: `python3 -c "...gate_decisions_index_current()..."` and `gate_decisions_owner_action_citations_current()` both called directly, both PASS. `fix_dashes.py --check`: 0 em dashes, 0 en dashes in the new text.
+
+**Went well:** treating a stale handoff as a defect to close rather than as a task to execute; the backlog's own A15/A18/A21/A22 pattern made it fast to recognise these two rows had already been triaged once.
+
+**Did not go well:** this is the second time a settled call that lived only in `ops/NIGHTLY-LOG.md` almost got redone from scratch (`checkin.py`'s "nothing moved" question, resolved 2026-09-27, is the first); a log entry alone is not durable enough for anything a future cycle might act on, only `DECISIONS.md` is.
+
+**Changing next cycle:** when declining a measured, named item (not just noting "no new defect"), promote the reasoning to `DECISIONS.md` in the same cycle, not after someone nearly reopens it.
+
+**Next:** no other genuinely unblocked, non-Phil-gated workstream found this slot. Workstream 3 stays closed (`STATUS.md`); 2 of 3 WIP slots remain open but nothing in the current backlog is both unblocked and workstream-sized. The gap-tier rows at rank 9 and below in `ops/keyword-demand.json` have not been read this cycle; that is genuinely unstarted work, not exhausted, and is what the handoff above points the operator to instead of the dead end.
+
+Pushed to main. `DECISIONS.md`, this entry. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (07:1x cycle, previous work finished, one more measured synonym gap found and closed, A22)
 
 Previous work (A21, hourly check-in) finished: clean, pushed; re-verified independently. Attached clean; 8 open issues unchanged, all decision/blocked-on-art; 0 PRs. preflight fast: 0 FAIL to the documented gate_tests sandbox hang (stalled, flat CPU), killed, unchecked past it. cold_read_ledger: 0/196 stale.

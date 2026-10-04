@@ -1413,6 +1413,7 @@ Maintain a compact index as the file grows.
 | D-027 | Room-deck card counts stay corpus-honest; print-tier alignment waits for a real print order; B8 closed | ACTIVE | Product |
 | D-028 | The MCP server has never run; corpus stays in sync and the image keeps building, but deploying and exposing it is the owner's call | ACTIVE | Infrastructure |
 | D-029 | S1-S4 (the structured `sustain_detail` schema) are dropped, not deferred; the prose Sustain pass already covers the content gap and no distribution exists to protect with a stricter gate | ACTIVE | Product |
+| D-030 | The two "dollar tree" keyword-gap queries stay uncovered; writing the brand name into page copy to chase them is declined | ACTIVE | Content |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact
@@ -2788,3 +2789,58 @@ handful of sessions in a 30-day window) in the Umami database. This is the
 same condition `DECISIONS.md` D-021/D-026 already use to gate M6 (the
 remaining 102 zones' diagnosis layer), since both ask the same underlying
 question: is anyone reading the pages this would protect.
+
+---
+
+## D-030 | 2026-10-02 | The two "dollar tree" keyword-gap queries stay uncovered; writing the brand name into page copy to chase them is declined
+
+**Decision.** `pantry organization ideas dollar tree` and `kitchen
+organization ideas dollar tree`, both in `ops/keyword-demand.json`'s `gap`
+tier, stay uncovered. Do not add the words "Dollar Tree" to
+`site/pantry-deck.html` or `site/kitchen-deck.html`, their also-called
+tables, or any FAQ entry, to chase these two autosuggest phrases.
+
+**Why.** Both queries name a specific retail brand this site has no
+relationship with. `CLAUDE.md` section 9 calls for concrete, specific
+content, not keyword-stuffing, and section 11 rules out manipulating search
+engines; writing a competitor's trademark into page copy purely because an
+autosuggest API predicted it is exactly that trade, for two queries out of
+2,827 measured. The honest generic equivalent, "dollar store," does not
+share the literal word "tree" with the brand phrase, so the project's own
+bag-of-words scorer correctly cannot and should not count these as covered
+by generic wording either; that is the scorer working as intended, not a
+gap in it.
+
+**First made:** a 2026-10-02 operator cycle, closing the rest of the same
+Kitchen/Pantry keyword cluster (`kitchen organization ideas for pots and
+pans`, `pantry organization ideas for wire shelving`) while declining these
+two, recorded only in `ops/NIGHTLY-LOG.md`. **Promoted here 2026-10-04**
+after a later PM check-in re-surfaced the same two queries as an open,
+unscoped item ("the 'dollar tree' retailer gap, which needs a scope call")
+without finding the earlier decision, because nothing outside a 49,000-line
+log named it. That is the defect this entry exists to prevent: a settled
+decision with real reasoning behind it, invisible to the next cold read.
+
+**Alternatives considered.**
+
+- *Use the generic "dollar store" wording to pick up adjacent, non-branded
+  search intent.* Still open as a legitimate, separate idea (budget-retailer
+  organizing content in general), but it covers a different, broader query
+  and should be evaluated on its own evidence, not justified as a stand-in
+  for these two branded phrases.
+- *Write the brand name in once, in a single FAQ answer, as a factual
+  reference rather than a heading.* Rejected: the query volume (2 of 2,827
+  measured queries) does not clear the bar for spending the trademark/SEO
+  trade-off either way, and `CLAUDE.md` section 11 does not carve out an
+  exception for FAQ placement.
+
+**Consequences.** `kitchen-deck.html` and `pantry-deck.html` keep their
+current titles and also-called entries; `ops/keyword_demand.py`'s scorer
+continues to report these two rows as `gap`, correctly, and that is not a
+defect to fix on sight.
+
+**Revisit condition.** New evidence that the "dollar tree"-specific phrasing
+(not the generic "dollar store" variant) represents materially more than 2
+of ~2,800 measured queries, or a product/partnership reason to reference the
+brand by name exists. Until then, a future cold read should treat these two
+rows as closed, not as an unscoped opportunity.
