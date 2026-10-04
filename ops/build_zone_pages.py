@@ -235,9 +235,13 @@ def sort_scope_html(zone: dict) -> str:
     halves are grounded in the zone's own existing `passes.sort` (what
     leaves) and `done_looks_like` (what stays) text, never invented.
 
-    A zone with no `sort_scope` yet (109 of 114, as this is authored a
-    pilot cohort at a time) renders nothing here; additive, never a reason
-    a page fails to build.
+    A zone with no `sort_scope` yet renders nothing here: additive, never a
+    reason a page fails to build. The count is deliberately NOT written down
+    here. It said 109 of 114 while the real figure was 57 of 114, because the
+    rollout moves a cohort at a time and a number in a docstring does not.
+    content.json is the only copy of that number which cannot go stale, and
+    `ops/build_microzone_coverage.py` does not track this field (it tracks
+    capacity, variants and diagnosis), so do not look for it there either.
     """
     scope = zone.get("sort_scope")
     if not scope:

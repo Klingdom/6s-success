@@ -92,6 +92,32 @@ jobs:
         run: |
           python3 ops/fingerprint_assets.py --check
 
+      - name: Refuse to publish a stale build id
+        # The same failure twice on 2026-10-03/04, runs 37162xxx and 37166876121:
+        # a commit changed site/ and left site/build-id.txt describing the older
+        # tree, so this whole job failed. Both times the message that explained
+        # it came out of Preflight below, about seventeen minutes in, and both
+        # times the consequence was that nothing could deploy until somebody
+        # pushed a one-line restamp.
+        #
+        # There IS already a local control: .githooks/pre-commit refuses exactly
+        # this commit. It did not fire, because git does not enable hooks on
+        # clone and these commits came from fresh checkouts where core.hooksPath
+        # was never set. gate_hooks_enabled warns about that, correctly, and it
+        # is one warning among thirty-three. A correctly reported problem nobody
+        # acts on costs what an undetected one costs (CLAUDE.md 0.2).
+        #
+        # This does not prevent the mistake. It makes it cost thirty seconds
+        # instead of seventeen minutes, and it names the exact fix in the first
+        # thing a reader sees rather than buried in a gate list. Deliberately
+        # placed beside the fingerprint check above, which exists for the same
+        # class of defect: a derived file in site/ that a generator left behind.
+        #
+        # It must NOT restamp and continue. Deploy verification compares the
+        # live build id against the one COMMITTED in the repository, so an image
+        # stamped with a value no commit carries would make production
+        # permanently unable to report itself current.
+        run: python3 ops/build_id.py --check
       - name: Build the gitignored catalogue
         # The 155 zone/room/situation/area product pages live under
         # build/products/, which is gitignored, so they do not exist on a
