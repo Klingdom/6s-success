@@ -2,9 +2,11 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-04, PM check-in (08:4x cycle, 30-minute triage, previous work genuinely finished, one stale backlog note found and closed, no new defect)
+## 2026-10-04, PM check-in (08:4x cycle, 30-minute triage, previous work genuinely finished, one stale backlog note found and closed, plus a real CI/publish gap caught in progress)
 
-NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion in the background, because it has not completed this calendar day per this log and is the one standing check this slot's 30 minutes does not have room to wait out.
+NEXT FOR THE OPERATOR: confirm `publish-image.yml` run 580 (workflow_dispatch on `a348999ad`, in progress as of 08:54 UTC) finished green, because the prior push-triggered run failed on A23's commit and nothing site-touching has pushed since to retrigger it on its own.
+
+**Found while checking CI state, not something this cycle caused: the image-publish pipeline has been stuck red since A23.** A23's push (`9f8a0de47`) failed `checks.yml`'s Preflight step on `test_gate_goals_keyword_cluster_citation_current.py` (the stale GOALS.md citation, already described below) and, because `publish-image.yml` runs the same preflight gate before it will build, that run (579) failed too, in both cases on the exact same cause. `bab1ac566` fixed the citation, but it only touched `GOALS.md`, so `publish-image.yml`'s own path filter (`site/`, `Dockerfile`) never retriggered it on push; `085c05a56` and this cycle's two commits are the same shape, neither touches `site/`. `gate_publish_image_current` confirmed this live: HEAD's `site/` still differs from the last commit actually shipped (`56164c4e`, A22, the last run that passed). By the time this entry is written, a `workflow_dispatch` run (580, on `a348999ad`) is already in progress, started by a concurrent session or workflow rather than by this cycle; not watched to completion here; given the fix it is building on, it should pass, but that is not yet confirmed. If it has not finished green by the time the operator reads this, re-trigger `publish-image.yml` by hand (`workflow_dispatch`) rather than waiting on another site-touching push to do it by accident.
 
 **Previous work finished.** The GOALS.md citation fix (`bab1ac566`, a concurrent session correcting the cheap/budget/DIY cluster count after A23's own re-harvest) and the 08:2x PM check-in's BLOCKER-001 correction were both clean, pushed, tree in sync with `origin/main`. Attached clean this time (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, no "unrelated histories" error). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `preflight.py` fast run in the background to genuine completion before `gate_tests`: 0 FAIL/0 WARN through every gate, confirmed the sandbox hang at `gate_tests` is real (flat CPU, ~0:03 total over 35+ seconds wall-clock) before killing it, same standing limitation every recent cycle reports. Called `gate_status_deploy_gap_count_current()` and `gate_status_deploy_verdict_current()` directly (since `gate_tests` blocks the fast run from reaching either): both clean, no drift since the 08:2x fix. `fix_dashes.py --check` (0 em/en dashes), `fix_dialect.py --check` (0 British spellings) both clean. `cold_read_ledger.py --stale`/`--next`: 196/196, 0 stale, 0 candidates, exhausted again. Every BACKLOG-2026-09-07.md "Now" row (sections 2-4) confirmed Done or Phil-gated; section 5 correctly HOLD on traffic; section 1b correctly awaiting Phil's room-scope decision.
 
@@ -12,11 +14,11 @@ NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion in the background
 
 **Went well:** reading the backlog file end to end rather than trusting its own section headers caught a small drift nothing else was watching, since no gate exists over this file's prose the way `gate_status_deploy_gap_count_current` watches STATUS.md.
 
-**Did not go well:** nothing new; the `gate_tests` sandbox hang and the standing Phil-blocked list are both unchanged.
+**Did not go well:** the `publish-image.yml` path filter leaves a citation-only fix commit unable to retrigger the pipeline it just unblocked, so a red run can sit red until something else happens to touch `site/` or someone fires it by hand; worth a future cycle's attention as its own gap, not fixed here since the in-progress run already addresses this specific instance.
 
-**Changing next cycle:** none.
+**Changing next cycle:** none beyond watching the in-progress run above.
 
-**Next:** handing the operator `preflight.py --deep` as above. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube OAuth, item 1b Gemini billing) and the 8 open decision/blocked-on-art issues, unchanged.
+**Next:** handing the operator the `publish-image.yml` confirmation above. If that comes back green, `preflight.py --deep` (not run this calendar day per this log) is the next standing check with room to run. Standing Phil-blocked list (`OWNER-ACTIONS.md` item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube OAuth, item 1b Gemini billing) and the 8 open decision/blocked-on-art issues, unchanged.
 
 Pushed to main. `BACKLOG-2026-09-07.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
 
