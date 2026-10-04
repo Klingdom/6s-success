@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-30T00:44:01Z",
-   "mode": "changed",
-   "offered": 209,
-   "accepted": 209,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-09-30T07:06:08Z",
    "mode": "changed",
    "offered": 6,
@@ -633,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-04T10:00:21Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -763,7 +763,7 @@
   "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "f3f32556a2a317bd",
   "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "b13926053e802dae",
   "https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer": "8bae83eea6a8e55b",
-  "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "ee6eb6a7935d492b",
+  "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "1492894030e6a11b",
   "https://6s-success.com/zones/kitchen-the-upper-cabinets": "743e32557972ce82",
   "https://6s-success.com/zones/kitchen-the-utensil-and-utility-drawers": "479d99a217137331",
   "https://6s-success.com/zones/laundry-room-the-detergent-and-treatment-zone": "b2fa927fb612190d",
