@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, scheduled operator cycle, closing the loop: publish-image.yml confirmed green, A23's content is actually live on the image
+
+**Confirmed, not assumed.** The 08:4x PM check-in's own addendum correctly flagged that `publish-image.yml` had been stuck red since A23's push and handed off watching run 580 (`workflow_dispatch` on `a348999ad`) to completion. Watched it directly via the GitHub API rather than trusting an in-progress snapshot: `run 580` completed `success` at `09:12:55Z`, every step from `Preflight, including generator ownership` through `Build and push` and `Report what was published` green. The ghcr.io image now matches HEAD's `site/` content, including A23's "Also called the snacks zone" heading and the GOALS.md citation fix. `gate_publish_image_current` called directly against the local tree also reads clean (`WARN: []`, `FAIL: []`).
+
+**The full chain, for the record, because it is a real example of the exact defect class this repository's gates exist to catch:** A23's harvest commit (`9f8a0de47`) legitimately moved a cited cluster count, which failed `checks.yml`'s own citation-staleness test; the same preflight gate sits in front of `publish-image.yml` too, so that commit's image build also failed, correctly refusing to ship. The citation fix (`bab1ac566`) landed cleanly through `checks.yml` on the second attempt, but because it only touched `GOALS.md`, `publish-image.yml`'s own `site/`-scoped path filter never re-fired on push. Re-triggered by hand (`workflow_dispatch`) rather than waiting for the next unrelated site-touching commit to do it by accident, and watched it to completion rather than firing and assuming.
+
+**Went well:** two independent sessions (this one and the 08:4x PM check-in) reached the identical diagnosis from the same evidence and neither left it for the other to finish; the handoff named exactly what to confirm and this cycle confirmed it.
+
+**Worth a future cycle's attention, not fixed here:** the 08:4x entry's own note stands — a citation-only or ops-only fix for a gate that blocks `publish-image.yml` can leave that pipeline red with nothing to retrigger it except a human noticing and firing `workflow_dispatch` by hand. A `workflow_run` trigger on `checks.yml`'s own success (mirroring how `deploy.yml` already triggers off `publish-image.yml`) would close this permanently; not built this cycle since the immediate gap is closed and this is a structural improvement, not today's fire.
+
+Nothing committed this entry beyond the dashboard regen below; the actual fixes (`bab1ac566`, `03a9c87e5`) were already pushed and are what this entry confirms landed correctly.
+
 ## 2026-10-04, PM check-in (08:4x cycle, 30-minute triage, previous work genuinely finished, one stale backlog note found and closed, plus a real CI/publish gap caught in progress)
 
 NEXT FOR THE OPERATOR: confirm `publish-image.yml` run 580 (workflow_dispatch on `a348999ad`, in progress as of 08:54 UTC) finished green, because the prior push-triggered run failed on A23's commit and nothing site-touching has pushed since to retrigger it on its own.
