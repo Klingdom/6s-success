@@ -8975,7 +8975,20 @@
       "A fitted sheet",
       "A sleep sack",
       "A wall-mounted monitor"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One fitted sheet, pulled tight to the corners",
+       "The sleep sack, folded on the dresser",
+       "The monitor, mounted on the wall with its cable clipped high and back from the rails"
+      ],
+      "strays": [
+       "A quilt draped over the top rail",
+       "The plush pile left in the crib, belongs in the toy basket",
+       "The bumper and the wedge",
+       "A stack of muslins left in the crib, belongs at the changing station"
+      ]
+     }
     },
     {
      "zone": "Changing Station",
@@ -9134,7 +9147,20 @@
       "A lined pail",
       "Two spare outfits",
       "A burp cloth"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Diapers, wipes, and cream, within reach of one hand",
+       "A burp cloth",
+       "A lined pail within one step",
+       "Two spare outfits in the drawer beneath the pad"
+      ],
+      "strays": [
+       "The lamp",
+       "The framed scan photo",
+       "A bottle of lotion nobody has opened"
+      ]
+     }
     },
     {
      "zone": "Baby Clothing Zone",
@@ -9292,7 +9318,18 @@
       "Sleepers and bodysuits, filed upright",
       "A next-size bin",
       "An outgoing bag"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One size per drawer, the size written on the drawer front",
+       "Sleepers and bodysuits filed upright, collars readable from above",
+       "A next-size bin on the closet shelf",
+       "An outgoing bag on the door hook"
+      ],
+      "strays": [
+       "Anything smaller than the size your baby is wearing today, goes to the outgoing bag or the keepsake box"
+      ]
+     }
     },
     {
      "zone": "Feeding Station",
@@ -9454,7 +9491,19 @@
       "A drying rack",
       "The formula scoop, inside the tin",
       "Burp cloths"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One bin of clean, assembled bottles, teats and collars on",
+       "A second bin of used parts waiting to be washed",
+       "The formula scoop, inside the tin with the lid shut",
+       "A stack of burp cloths"
+      ],
+      "strays": [
+       "Teats gone cloudy or split at the slit",
+       "Parts belonging to a pump or bottle brand you have stopped using"
+      ]
+     }
     },
     {
      "zone": "Diaper and Care Backstock",
@@ -9608,7 +9657,18 @@
       "Diaper packs, current and next size",
       "A wipes carton",
       "Creams and a thermometer, in a lidded box"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One unopened pack of the current size, no more than two of the next size",
+       "A wipes carton with its count visible",
+       "Creams and thermometer, in one lidded box"
+      ],
+      "strays": [
+       "Anything smaller than the size in use today, opened or not",
+       "Anything stored on a shelf above the crib"
+      ]
+     }
     },
     {
      "zone": "Books and Quiet Play Zone",
@@ -9767,7 +9827,20 @@
       "Board books, covers out",
       "A basket of soft toys",
       "A rotation box in the closet"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Twelve board books, standing cover out on the low ledge",
+       "One basket of soft toys, filled level with the rim, no higher",
+       "Rotation stock, boxed in the closet"
+      ],
+      "strays": [
+       "Paper-page books",
+       "Torn spines",
+       "Loose stitched eyes",
+       "Any toy with a battery flap that will not screw shut"
+      ]
+     }
     }
    ]
   },
@@ -11976,7 +12049,20 @@
       "A vent brush and a pack of machine cleaner tablets, on the shelf above",
       "The lint screen, clean and back in its slot",
       "A strip of masking tape on the dryer, dated"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Both drums empty, washer door propped ajar",
+       "A clean lint screen, back in its slot",
+       "The duct-clearing date, marked on tape on the dryer"
+      ],
+      "strays": [
+       "Anything sitting on either lid",
+       "A sock behind the agitator",
+       "A hardened box of dryer sheets",
+       "A bottle of softener you stopped using"
+      ]
+     }
     },
     {
      "zone": "Detergent and Treatment Zone",
@@ -12132,7 +12218,20 @@
       "A wipeable tray, under all four",
       "The pod tub, latched and above shoulder height",
       "The true dose line, inked on each cap"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "One working detergent, one bleach, one tub of oxygen powder, one stain treatment, on a wipeable tray",
+       "The pod tub, latched and above shoulder height",
+       "One jug in use and one refill, for any detergent"
+      ],
+      "strays": [
+       "Anything crusted shut at the neck",
+       "Anything with the label washed off",
+       "A treatment bought for one stain that already came out",
+       "Any unlabeled bottle"
+      ]
+     }
     },
     {
      "zone": "Sorting and Hamper Zone",
@@ -12281,7 +12380,17 @@
       "Three bags, labeled by load: hot towels, cold darks, gentle",
       "A small dish on the shelf, for pocket finds",
       "A mesh bag inside the drum, for the gentle load"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Three labeled bags, clear of the walking line, each below half full",
+       "A small dish on the shelf, holding nothing older than today",
+       "Bare floor in front of the washer door"
+      ],
+      "strays": [
+       "A spare hamper held for a stream that never fills on its own"
+      ]
+     }
     },
     {
      "zone": "Folding Surface",
@@ -12439,7 +12548,20 @@
       "One basket per bedroom, stacked underneath",
       "Six spare hangers, on the end rail",
       "A shoebox for unmatched socks"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "A bare counter",
+       "One empty basket per bedroom, stacked underneath",
+       "Six spare hangers on the rail at the end"
+      ],
+      "strays": [
+       "The post",
+       "A toolbox",
+       "A parcel waiting to be returned",
+       "A vase or other decor parked on the counter"
+      ]
+     }
     },
     {
      "zone": "Hanging and Air-Dry Zone",
@@ -12588,7 +12710,19 @@
       "The drying rack, folded flat against the wall when not in use",
       "A drip tray, underneath",
       "Six spare hangers, on the rail"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "The rack, folded flat against the wall, with dry bars",
+       "An empty, wiped drip tray",
+       "Six spare hangers on the rail",
+       "Items washed today, still drying"
+      ],
+      "strays": [
+       "Anything hanging that was washed before today",
+       "A jumper or garment left draped over the end rung long-term"
+      ]
+     }
     },
     {
      "zone": "Utility and Cleaning Zone",
@@ -12747,7 +12881,20 @@
       "One labeled caddy, holding every vacuum attachment",
       "The bucket, inside its own taped floor square",
       "One rag bin"
-     ]
+     ],
+     "sort_scope": {
+      "belongs": [
+       "Broom, mop, and dustpan, hanging heads up on their painted outlines",
+       "One labeled caddy, holding every vacuum attachment",
+       "A dry mop head",
+       "The bucket, in its taped floor square, empty"
+      ],
+      "strays": [
+       "A second broom",
+       "A crevice tool or attachment that fits no vacuum you still own",
+       "Anything stored inside the bucket"
+      ]
+     }
     }
    ]
   },
