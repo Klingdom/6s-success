@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (08:2x cycle, previous work finished, closed a real stale-citation defect this cycle's own preflight call caught)
+
+**Previous work finished.** A23 (the "snacks" synonym gap) and the 07:4x PM check-in (D-030 promotion) were both clean, pushed, tree in sync with `origin/main`. Attached clean (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge of 744 commits, no conflict). Re-derived rather than cited: 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `preflight.py` fast run to genuine completion in the background: 0 FAIL/0 WARN through every gate up to `gate_tests`, confirmed truly stalled there (flat ~3s CPU over 120s+ wall-clock, the same documented sandbox limit every recent cycle reports) before killing it; reported unchecked past that point, not assumed passing.
+
+**Found: `gate_status_deploy_gap_count_current`, called directly since the full run could not reach it, fired a real WARN.** `STATUS.md`'s `BLOCKER-001` latest entry (04:1x) still said the undeployed gap was "1 commit, 1 material" against build `dbab744f6e1567ea`; `deploy_gap_material_commits('fe383721c')` re-derived directly now returns 9, not 1. Read each of the 9 against its own `site/`/`Dockerfile` diff before citing a number: 6 are real (A21/A22/A23's synonym fixes, and the three `sort_scope` cohort commits including the one already named), 3 are pure `build-id.txt` restamps or a merge no-op. The two summary-table rows ("Public website", "Production traceability") were citing the same stale "1 commit" figure and would have kept disagreeing with the corrected `BLOCKER-001` entry if left alone.
+
+**Fixed:** appended a dated `BLOCKER-001` entry with the real 9/6 count and the per-commit breakdown, and updated both table rows to match, same append-only convention every prior correction in this section uses (new bold note on top, old note kept below as "Prior state, kept because the shape recurs"). No new gate needed; the existing one caught this correctly, the gap was that `gate_tests` sits ahead of it in the fast run's own gate order and blocks it from firing in the normal flow whenever the sandbox hang happens, which is every cycle.
+
+**Verified:** called `gate_status_deploy_gap_count_current()` directly after the edit, WARN list empty. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `fix_dialect.py --check`: clean. Regenerated the command deck (`ops/dashboard.py`).
+
+**Went well:** calling the gate function directly to get a real answer rather than letting the `gate_tests` hang leave this unchecked for another cycle.
+
+**Did not go well:** nothing new; the `gate_tests` sandbox hang is the same standing limitation every recent cycle has hit.
+
+**Changing next cycle:** none; worth a future cycle's attention only if `gate_tests` keeps blocking every gate after it in the fast run, since that is a real, recurring coverage gap, not just this one gate's.
+
+**Next:** handing the operator the same standing Phil-blocked list (`OWNER-ACTIONS.md` item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube OAuth) and the 8 open decision/blocked-on-art issues. The keyword-demand gap tier past rank 4 was scanned this cycle and found to be either noise (single-content-word scorer artefacts matching an unrelated page) or a real but out-of-scope content gap (no attic or basement room/zone exists on the site at all, so "attic organization ideas" is not a synonym fix, it is a new-room decision); neither is this slot's work.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (A23: a real zone-level synonym gap found by a fresh live harvest, not the offline scorer)
 
 **Did:** Unshallowed and attached clean this time (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, no "unrelated histories" error for once). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in chunks (432KB), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md`. `preflight.py` run in the background: 0 FAIL, 0 WARN through every gate before the documented `gate_tests` sandbox hang, confirmed genuinely stalled (flat CPU, ~0:03 total over several minutes) before killing it. `affiliate.py --check` and `check_sellable.py --deep` both clean, no Stripe credential as always. `inbox_agent.py --apply`: no mail credential. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`. `cold_read_ledger.py --stale` and `--next`: 196/196 ledgered, 0 stale, 0 candidates. Every A-row in the backlog was done or Phil-gated.
