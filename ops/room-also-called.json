@@ -7,6 +7,7 @@
   "Primary Bathroom": {"names": ["master bathroom"], "queries": 13, "covered": 0},
   "Entryway": {"names": ["foyer", "entrance hall"], "queries": 25, "covered": 0},
   "Pantry": {"names": ["larder"], "queries": 11, "covered": 0},
-  "Family Room": {"names": ["den", "bonus room"], "queries": 19, "covered": 0}
+  "Family Room": {"names": ["den", "bonus room"], "queries": 19, "covered": 0},
+  "Stair Landing": {"names": ["stairway landing"], "queries": 3, "covered": 0}
  }
 }

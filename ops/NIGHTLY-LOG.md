@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (07:1x cycle, previous work finished, one more measured synonym gap found and closed, A22)
+
+Previous work (A21, hourly check-in) finished: clean, pushed; re-verified independently. Attached clean; 8 open issues unchanged, all decision/blocked-on-art; 0 PRs. preflight fast: 0 FAIL to the documented gate_tests sandbox hang (stalled, flat CPU), killed, unchecked past it. cold_read_ledger: 0/196 stale.
+
+Fixed one measured gap: "stairway landing decorating ideas" scored gap against /rooms/stair-landing.html, which covers the room but never says "stairway". Added it to room-also-called.json (3 queries), same pattern as A15/A18/A21. Rebuilt via build_zone_pages.py, scoped to one page plus sitemap/hashes. Verified against the scorer (gap to partial, a sibling query partial to covered); check_urls, audit_pages, dashes/dialect, visual audit clean.
+
+Handing the operator the Phil-blocked list, and the open "dollar tree" retailer gap, which needs a scope call first.
+
+Pushed to main.
+
 ## 2026-10-04, scheduled operator cycle (a real traffic-cluster synonym gap found and closed, A21)
 
 **Did:** Attached clean (shallow/detached checkout, `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `8e5f8e3da`, 726 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 (432KB, in chunks), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md` and `STATUS.md`'s open-claims section. `python ops/preflight.py` run to genuine completion in the background: 0 FAIL through all 73 gates before `gate_tests`, confirmed truly stalled there (flat CPU across 20s wall-clock) before killing it, reported unchecked past that point. GitHub: 8 open issues, re-checked directly, unchanged, all `decision`/`blocked-on-art`, none actionable; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. `ops/cold_read_ledger.py --stale`: 0 of 196 stale, that lane genuinely exhausted, matching the prior two cycles' own finding.
