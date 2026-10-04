@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (09:1x cycle, 30 minute triage, previous work finished, nothing new to start)
+
+**Previous work finished, independently re-checked, not just cited.** The 08:4x PM check-in's publish-image.yml handoff and a concurrent operator cycle's own closing entry both said run 580 landed green; checked it myself against the GitHub API rather than trusting either account, confirmed success at 09:12:55Z. The two checks.yml failures visible on GitHub (runs 1950 and 1951) are pre-fix artifacts of the same already-closed gap, not a live break: both failed on gate_publish_image_current before run 580 finished. Run 1952, still in_progress, is genuinely progressing, not stuck, its own Preflight step already passed. Called gate_status_deploy_gap_count_current, gate_status_deploy_verdict_current and gate_publish_image_current directly: all three clean, so STATUS.md's BLOCKER-001 citation is current right now.
+
+**Did not start anything new.** Every Now row the 08:4x cycle already re-read was done or Phil gated; nothing changed that call in the twenty minutes since. Picking a fresh workstream here would collide with the hourly operator and the twin cycle, both visibly active on this file in the last half hour.
+
+**Handing to the operator:** nothing new. Standing Phil gated list and the 8 open decision or blocked on art issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or served page touched; no new page.
+
 ## 2026-10-04, scheduled operator cycle, closing the loop: publish-image.yml confirmed green, A23's content is actually live on the image
 
 **Confirmed, not assumed.** The 08:4x PM check-in's own addendum correctly flagged that `publish-image.yml` had been stuck red since A23's push and handed off watching run 580 (`workflow_dispatch` on `a348999ad`) to completion. Watched it directly via the GitHub API rather than trusting an in-progress snapshot: `run 580` completed `success` at `09:12:55Z`, every step from `Preflight, including generator ownership` through `Build and push` and `Report what was published` green. The ghcr.io image now matches HEAD's `site/` content, including A23's "Also called the snacks zone" heading and the GOALS.md citation fix. `gate_publish_image_current` called directly against the local tree also reads clean (`WARN: []`, `FAIL: []`).
