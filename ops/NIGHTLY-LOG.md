@@ -28,6 +28,28 @@ Claimed Kitchen, Primary Bathroom and Garage (the last three rooms, 21 zones) an
 
 Pushed to main. `content/manual/source/content.json`, `mcp/content.json`, 21 zone pages, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`, `site/build-id.txt`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price or product touched, no new page; IndexNow will pick up the 21 changed pages on the next successful hourly run.
 
+## 2026-10-04, PM check-in (05:1x cycle, 30-minute triage, previous work genuinely in progress not finished, clean verification pass, no new defect)
+
+**Previous work not finished, and correctly so.** `STATUS.md`'s Open claims section shows `sort_scope` rollout (A20) at 93 of 114 zones, with Kitchen/Primary Bathroom/Garage (the last three rooms, 21 zones) claimed at 05:07:36Z, 13 minutes before this cycle started, "Starting now." Too fresh to be an abandoned claim mid a 30-minute PM slot; treated as a concurrent session's live work per STEP 8, not duplicated.
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `680f3387d`, tree clean). Read `git log -12`, the real head of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` sections 0-7, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`/`P0` (2 P0: #15, #2; 2 blocked-on-art: #29, #2; counts cross-checked against the dashboard's own "2 P0"/"6 need your call", both correct), 0 open PRs.
+
+**Verified, not cited.** `python ops/preflight.py` run to genuine completion in the background: 0 FAIL through every gate up to `gate_tests`, confirmed truly stalled there (CPU time flat, 4s across 20+ seconds of wall clock) before killing it, same documented sandbox limitation, reported unchecked past that point. Called `gate_status_deploy_gap_count_current()`, `gate_status_deploy_verdict_current()` and `gate_build_id_current()` directly: all clean. Checked CI on the actual current head (`680f3387d`) via the GitHub API directly: `checks.yml` in progress, every other workflow (`Deploy to production`, `Bluesky drafts`, `LinkedIn drafts`, `Hourly brief`, `Deliver paid orders`, `Social drafts`) green. Opened the `Deploy to production` run's own job log rather than trusting "success": its "Deploy" step is `skipped`, confirming no `VPS_DEPLOY_KEY` means no real deploy happened, consistent with `STATUS.md` and issue #35, not a new gap.
+
+**The one thing actually stale: the command deck's own "Last commit" line**, reading `00f69803a` while HEAD had moved two commits on (the sort_scope claim stake, then a merge). Regenerated via `ops/dashboard.py` for real; confirms `680f3387d` now.
+
+**Not acted on:** the sort_scope rollout itself (claimed by someone else, in progress); the standing Phil-blocked list in `OWNER-ACTIONS.md` (VPS redeploy, deploy key secret, LinkedIn-link verification due tomorrow, Ledgerium's crash-looping container, all unchanged from the last several cycles' own accounts).
+
+**Went well:** confirming the claim's timestamp before deciding not to duplicate it, rather than assuming either "finished" or "stalled."
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** handing the sort_scope rollout's final leg (Kitchen, Primary Bathroom, Garage, 21 zones, closing at 114 of 114) to whichever session already claimed it; nothing else genuinely unblocked and un-Phil-gated this cycle.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, scheduled operator cycle (sort_scope rollout, Mudroom and Patio or Deck)
 
 **Did:** Unshallowed and attached to main per Step 0, no issue. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7, ROADMAP-2026-2029.md, CLAUDE.md, and the real head of this log (confirmed newest-first by its own header, not the tail, after the prior cycle's note that a tail-based read lands mid-file on a 6.7MB log). Confirmed `content.json` directly before starting: 81 of 114 zones carried `sort_scope`, matching the standing handoff; the next tied-smallest unclaimed rooms were Mudroom and Patio or Deck (6 zones each). Authored belongs/strays for all 12 zones, every item grounded in that zone's own `done_looks_like` (what stays) and `passes.sort` (what leaves) text, nothing invented.
