@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-04, PM check-in (02:2x cycle, 30-minute triage, a one-commit stale deploy-gap count found and closed)
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 014d3aa69, tree clean). Read GOALS.md context carried forward, BACKLOG-2026-09-07.md sections 0/1b/2/6/7, STATUS.md Open claims and BLOCKER-001, the last NIGHTLY-LOG entries, and 8 open GitHub issues directly (all decision/blocked-on-art, none newly actionable, unchanged from every recent cycle).
+
+Previous work confirmed finished, not cited: the prior merge cycle's sort_scope rollout (Nursery and Laundry Room, 69/114 zones) and Phil's own pre-ticked-consent fix (bdc3b16da, removing a route that silently opted visitors into another company's mailing lists) were already shipped, logged in detail, and preflight-clean per that entry. Since then one more real commit landed (014d3aa69, Phil switching core.hooksPath on by default so .githooks/pre-commit actually fires on fresh checkouts). preflight.py fast: 0 FAIL through every gate up to the documented gate_tests sandbox hang, same standing limitation; unchecked past that point, not assumed passing.
+
+Fixed a stale-claim gap instead of citing it: gate_status_deploy_gap_count_current warned that BLOCKER-001's latest entry cited "3 commits, 2 material" against build 058850edea4896cb, while a fresh count was 4 (the fourth, fe383721c, a build-id-only restamp from the same Nursery/Laundry Room cycle, confirmed by diffing it against its own parent). Material count unchanged at 2. Corrected BLOCKER-001's own entry plus both sibling rows that restate the same figure (Public website, Production traceability), the exact same-shape drift three of the last four cycles have each caught once. Gate reconfirmed clean after.
+
+Not starting the sort_scope rollout myself (Home Office, Workshop, Mudroom, Patio or Deck, then Kitchen/Primary Bathroom/Garage last): operator-cycle-sized, not a 30-minute slot, same standing PM practice.
+
+Handing to the operator (:43): continue sort_scope at the rooms named above; unchanged from the prior cycle's handoff.
+
+Pushed to main. STATUS.md, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-04, merge of a concurrent operator cycle and PM check-in (sort_scope rollout: Nursery and Laundry Room, deploy-gap corrections reconciled, a third same-day redeploy closed most of the gap)
 
 **Did:** Attached via STEP 0 (checkout arrived shallow and detached; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `394151c78`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2, 5, 6, 7), `ROADMAP-2026-2029.md` context carried forward, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Checked GitHub directly: 8 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. Ran `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty, same standing limitation. Ran `preflight.py` to completion: every gate passed, 31 warnings, all previously diagnosed sandbox limits except one real, actionable one.
