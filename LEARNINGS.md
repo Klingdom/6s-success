@@ -340,6 +340,7 @@ Maintain:
 | LRN-0035 | A repeated "needs live network reach" finding is a sandbox property, not a data property, and the fix is a workflow, not another cycle | ENGINEERING / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0036 | Every page is crawled and almost none is ranked: crawl coverage is 210 of 211 and search sent 6 requests in 14 days | SEO / ANALYTICS | SUPPORTED | HIGH |
 | LRN-0037 | A metric protected only by a third-party heuristic is unprotected: our own headless browser sent 9,113 beacons | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0038 | A page our domain serves is our page, whoever renders it, and a checker can assert a defect is present and call it green | TRUST / PRIVACY | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1494,6 +1495,66 @@ analysis over September must still exclude them, which is what
 `/stats/api/send` by user agent after the next deploy and confirm the
 HeadlessChrome 200s have become 204s, which is a before-and-after this log can
 answer on its own.
+#### LRN-0038: A page our domain serves is our page, whoever renders it, and the checker watching it was asserting the defect was present
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (the page was fetched and read; the access log was counted)
+**Domain:** TRUST / PRIVACY
+**Measured:** 2026-10-04
+
+**Observation.** `https://6s-success.com/subscribe` was proxied to Listmonk's
+public subscription form. Read rather than pattern-matched, that page rendered
+three list checkboxes with every one pre-ticked, and two of them belonged to a
+different business sharing the Listmonk instance. A visitor who submitted it
+subscribed himself by default to two lists from a company he had never heard
+of. `CLAUDE.md` section 8 forbids a pre-ticked consent by name; section 47 says
+sharing must be intentional.
+
+**Evidence.** Three checkbox `<label>` elements in the live HTML, all with
+`checked="true"`: Compassion Benchmark Weekly Digest, Compassion
+Benchmark Product and Research Updates, 6S Success Readers. Of 549 requests to
+that path in the whole retained access log, 547 are this repository's own
+`ops/check_integrations.py` probe and 2 are `curl`: no crawler, no visitor, zero
+POSTs ever, 0 subscribers on the list, no internal link, no sitemap entry.
+
+**Learning, first half.** The boundary of responsibility is the domain, not the
+codebase. Nothing in `site/` was wrong; `site/assets/js/site.js` was careful
+enough to state in a comment that nothing here pre-ticks a consent, and that was
+true of the form it wrote. The defect was four lines of `proxy_pass` handing a
+URL on our domain to a service whose output nobody had looked at since the
+instance became shared. Anything served under our name is ours to read, however
+it is produced.
+
+**Learning, second half, and the more useful one.** `ops/check_integrations.py`
+had been reporting that page as a HEALTHY integration for weeks. Its test was
+whether the body contained the word "subscribe" and an `<html>` tag, which the
+defective page satisfied perfectly. So the check was asserting the defect was
+present and calling it green, and the greener it looked the less likely anybody
+was to open the page.
+
+That is not the familiar shape where a check cannot fail. It is worse: this one
+could fail, and failing meant the defect had been REMOVED. The general form to
+watch for is a check whose pass condition is satisfied by the thing going wrong,
+which happens whenever a check tests "is the service reachable" for a service
+whose reachability is the risk. The fix was to invert it: our domain must not
+serve another business's consent checkboxes, and a 404 is the correct answer.
+It was then run against production BEFORE deploying the fix and FAILED, naming
+both foreign lists, which is how an inverted check earns belief.
+
+**One guard built deliberately in both directions.** A rule saying "no
+subscription surface" would forbid the very thing this business needs next
+(`GOALS.md` O2, email capture). `ops/tests/test_no_foreign_consent_on_our_
+domain.py` and the checker both PASS a page that lists only our own list, and
+that case exists precisely so the guard cannot block its own fix. The first
+version of that test was itself unable to fail: it matched `proxy_pass` at four
+leading spaces when every one in the file sits at eight, so a restored route
+reported OK. Only a planted defect found it.
+
+**Next action.** None outstanding; the route is gone, verified 404 live, and the
+prerequisite for email capture is unchanged (a 6S-only surface,
+`OWNER-ACTIONS.md` item 7). The transferable habit is the one this entry is
+really about: when a check reports a third-party surface as healthy, read the
+surface once. The check is reporting on reachability and calling it correctness.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
