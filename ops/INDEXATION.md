@@ -8,17 +8,18 @@ whose canary check passed that run. Absence is NOT evidence of
 non-indexation: an engine shows a short ranked list, not the whole
 index.
 
-Last checked: 2026-10-04T07:54:06Z
+Last checked: 2026-10-07T17:25:01Z
 
 | Section | URLs ever confirmed indexed |
 |---|---|
 | home | 1 |
 | room | 1 |
-| zone | 0 |
+| zone | 1 |
 | article | 2 |
-| other | 8 |
+| other | 9 |
 
-**No /zones/ page has ever been confirmed indexed by this ledger.** That is the open question GOALS.md O1 names: indexed-and-not-ranking (an intent/competition problem) versus not indexed at all (an authority problem), and they need opposite fixes. Still unresolved after 2 run(s).
+**Zone pages confirmed indexed at least once:**
+- https://6s-success.com/zones/ (first seen 2026-10-07T17:25:01Z, duckduckgo)
 
 Last run detail:
 - bing_rss: ok, 11 URL(s)
