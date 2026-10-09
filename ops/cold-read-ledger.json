@@ -348,8 +348,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-04",
-      "note": "Re-verified 2026-10-04 PM check-in. Touched by this same lineage's own 2026-10-04 sort_scope rollout (c70bcc8df), which already verified it directly: ran the real generator, it reported 114 of 114 zones carrying all three moat fields and 20 rooms complete, gate_sort_scope_rendered and its 6-case test passed, and the regenerated pages matched a dry-run diff of exactly 21 blocks before being written. No separate re-read needed; the verification is the same cycle's own, not cited from memory."
+      "date": "2026-10-09",
+      "note": "PM check-in :40, 2026-10-09: re-read the 2026-10-08 jump-list addition (Phil + Claude Opus, a582ca349) against the file. Own test (test_zone_jump_nav.py) reruns clean on all 114 pages; marker-replacement and the AssertionError guard against a surviving marker both read correctly. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -652,9 +652,9 @@
       "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Found 2026-10-03 (stale-ledger re-check on ops/service_orders.py triggered a full preflight run): gate_footer_consistent and gate_page_ownership_registry both glob site/ directly without skipping a leading underscore, so a transient, gitignored, self-cleaning scratch probe (ops/audit_catalog.py's own _audit_catalog_fixture_<pid>.html, left on disk mid-flight by a concurrent or killed run) FAILed preflight as a missing footer / unclassified page, a false defect on a page that was never shipped. all_pages()'s own docstring already prescribes filtering this locally per-caller (precedent: gate_roadmap_prices_current); these two had not been updated to match. Fixed both with the same 'startswith(\"_\")' skip. Proved against the real stray file (reproduced the FAIL, then rm'd it and confirmed both gates clean), and the three tests that encode 'real site/ directory clean today' (test_gate_footer_consistent_missing_fails.py, test_gate_page_ownership_registry.py) now pass fully."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "2026-10-09, re-ledgered after b284bf7c7 (Phil/Opus): gate_every_payment_fulfilled docstring corrected to the real measured grace-period gap (540 min, not 367), plus test_cron_delivery_cadence.py and test_cron_effective_latency.py hardened to assert invariants rather than a past measurement. Both test files reran clean (9/9, 7/7). No defect found; this was the authors' own fail-then-pass-proved fix, not a cold-read finding."
     },
     "prerender_shop.py": {
       "status": "fixed",

@@ -88,16 +88,18 @@ def _last_confirmed_deploy_line():
 
 BLOCKING = [
     ("Check your Claude Code usage limit or plan status",
-     "Open Claude Code and look at the usage limit or plan status on the "
-     "account the scheduled Routines run under. This is an account-level "
-     "setting no sandboxed session can see or change.",
-     "The autonomous PM and operator Routines went dark for about five days, "
-     "2026-10-04 to 2026-10-09, and nothing noticed. Both Routines failed "
-     "their most recent run with USAGE_LIMIT_REACHED, while the hourly "
-     "check-in bot kept committing, so the log looked busy and the business "
-     "got no attention at all. Nothing in the product broke; the cost was "
-     "five days of nobody working on it. See STATUS.md INCIDENT-002 and "
-     "issue #40. It is first on the list because every other item below it "
+     "Open claude.ai/code, or wherever you manage the plan, and confirm "
+     "the account the scheduled Routines run under is not rate-limited. "
+     "This is an account-level setting no sandboxed session can see or "
+     "change.",
+     "The autonomous PM and operator Routines went completely dark for "
+     "roughly five days, 2026-10-04 to 2026-10-09: every commit in that "
+     "window came from the dumb hourly check-in bot, none from an agent, so "
+     "the log looked busy while the business got no attention at all. "
+     "list_triggers showed both Routines failing on USAGE_LIMIT_REACHED. "
+     "Nothing in the product broke; the cost was five days of nobody "
+     "working on it. Full account in STATUS.md INCIDENT-002 and GitHub "
+     "issue #40. It is first on this list because every other item below it "
      "depends on there being a session awake to act on your answer.",
      "2 minutes"),
     ("Add VPS_DEPLOY_KEY as a GitHub Actions secret",
