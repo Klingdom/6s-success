@@ -26,7 +26,7 @@ Ledgered all 6 files in `ops/cold-read-ledger.json` (2 `fixed`, 4 `clean`), date
 
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` (led by item -1, usage-limit check, already re-verified recovered) and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. `BLOCKER-001` (3 commits undeployed) stands on the same VPS-key gate as always.
 
-Pushed to main. `ops/media_capability.py`, `ops/owner_inbox.py`, `ops/tests/test_owner_inbox.py`, `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+Pushed to main (commit `1cc785288`). `ops/media_capability.py`, `ops/owner_inbox.py`, `ops/tests/test_owner_inbox.py`, `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or served page touched; no new page; IndexNow not applicable. **CI not yet confirmed on this commit as of this writing:** `checks.yml` run 1995 was still queued/in-progress when this cycle ended. Local test files for both fixes pass, which is strong evidence, not proof; reported unchecked rather than assumed green. The next cycle should read run 1995's actual conclusion on GitHub before trusting this fix landed clean.
 
 ## 2026-10-09, addendum: CI confirmed green on the two-defect cold-read fix, watched rather than assumed
 
