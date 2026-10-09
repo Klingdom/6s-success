@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:40 slot, confirmed previous work finished, pruned a stale "Open claims" section, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: run another cold-read pass on an ops/*.py file with the most "fixed" entries in ops/cold-read-ledger.json, because the first-pass sweep (196 of 196 files) is now fully exhausted (0 stale, 0 un-ledgered) and a second pass on files with a known defect history is the highest-yield lane left while every backlog row and GitHub issue is done or Phil-gated.
+
+Did: attached cleanly (fetch, unshallow, checkout -B main origin/main, ff-only merge, 61 commits, no conflict, tree clean). Read git log -12, the top of ops/NIGHTLY-LOG.md, BACKLOG-2026-09-07.md in full (sections 0, 1b, 2 through 7), EXECUTIVE-DASHBOARD-LIVE.md, STATUS.md's deploy-narrative sections, and all 9 open GitHub issues directly.
+
+Step 2, is the previous work finished: yes, verified rather than cited. Working tree clean, main pushed. preflight.py (fast) run twice in the background (once before this cycle's own edit, once after): both reached every gate up to the documented gate_tests sandbox hang with 0 FAIL/ERROR before it, same standing limitation every recent cycle reports. Re-derived the deploy gap directly rather than trusting STATUS.md's own prose: resolve_verdict_commit('e3d3bc8c77a83e38') resolves to a582ca349, deploy_gap_material_commits('a582ca349') returns zero, production matches HEAD exactly. cold_read_ledger.py --stale: 0 of 196 stale. 9 GitHub issues, 0 PRs, unchanged, all decision or blocked-on-art.
+
+Found and fixed one real, small gap. STATUS.md's own "Open claims" section (its header text says explicitly: "if a line here is older than a day and its work is in main, remove it") had re-accumulated about 90 lines of entries all dated 2026-10-01 through 2026-10-04, every one already confirmed landed on main (the sort_scope rollout at 114/114, A24, the indexation checker). A prior prune note was itself sitting inside the pile it should have emptied, the same "source corrected, sibling never told" shape this repository's gates exist to catch, just inside a prose section no gate reads. Moved the full block verbatim to STATUS-ARCHIVE.md (matching the file's own established convention) and left "Open claims" reading "None currently open." Verified: fix_dashes.py --check clean, gate_status_deploy_verdict_current and gate_status_deploy_gap_count_current both called directly and clean (neither anchor touched), full preflight rerun after the edit, same clean result as before it.
+
+Checked for new unblocked work and found none. BACKLOG-2026-09-07.md's Now sections (A1-A24, B1-B9, C1-C7) are each struck through done or explicitly Phil-gated. The owner-gates table (section 6) is unchanged: YouTube OAuth, Search Console, Gemini billing, KDP/Etsy and Apple/Play accounts, all Phil's own action. Today's fresh keyword-demand harvest (04:06 UTC, 201 gaps) was read in full rather than assumed stale: the gap list is the same shape as the 2026-10-02 reading BACKLOG-2026-09-07.md section 1b already triaged and correctly held (basement/attic, PC-game and dollar-store noise), nothing clears the bar for a new page. indexation_check.py confirmed this sandbox still cannot reach either search engine directly (403 from the proxy), consistent with every prior cycle; its weekly GitHub Actions run is the only path that works.
+
+Did not go well: this cycle ran long for a 30-minute triage slot between the two preflight runs and the backlog re-read; most of that time was spent confirming "still nothing new" rather than producing new value, which is itself informative about how exhausted this lane now is.
+
+Changing next cycle: none found worth gating.
+
+Shipped: STATUS.md, STATUS-ARCHIVE.md, command deck. No code, content, price or product touched.
+
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed the prior fix and closed two stale backlog rows)
 
 Previous work was finished: cf60c2f93 (prior cycle) fixed the nightly-log-ordering defect, but that commit touched only ops/NIGHTLY-LOG.md, which checks.yml deliberately excludes from its trigger (documented in the workflow file itself, to stop generated-output commits from cancelling real runs), so it never got a CI run. Verified directly instead of trusting the commit message: ran ops/tests/test_gate_nightly_log_ordering.py (5/5 pass) and preflight.py fast, 0 FAIL through every gate up to the documented gate_tests sandbox hang, same known limit every cycle hits. No CI action needed; this is working as designed, not a gap.
