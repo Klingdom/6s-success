@@ -112,9 +112,65 @@ def main() -> int:
                      "one page it is probed on could not be fetched: "
                      f"{printed!r}")
 
+    # resolve_asset_ref() must resolve an href against the page it was found
+    # on, not blindly against site/ root. Found 2026-10-09, second-pass cold
+    # read: site/downloads/assets/book.css is referenced from a downloads/
+    # page as the bare href "assets/book.css", which means
+    # downloads/assets/book.css on disk, not site/assets/book.css; the old
+    # code joined every match straight onto SITE and so could never resolve
+    # (or even discover, since DISCOVERY_PAGES named no downloads/ page) the
+    # real file, silently treating it as uncovered rather than comparing it.
+    cases = [
+        ("/", "assets/css/site.css", "assets/css/site.css"),
+        ("/invest.html", "assets/css/fonts.css", "assets/css/fonts.css"),
+        ("/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+         "assets/book.css", "downloads/assets/book.css"),
+        ("/zones/entryway-the-landing-spot.html", "../assets/css/site.css",
+         "assets/css/site.css"),
+    ]
+    for page, href, want in cases:
+        got = D.resolve_asset_ref(page, href)
+        if got != want:
+            fails.append(f"resolve_asset_ref({page!r}, {href!r}) = {got!r}, "
+                         f"wanted {want!r}")
+
+    # DISCOVERY_PAGES must actually include the one page that references
+    # book.css, or the resolver fix above is unreachable from check() itself.
+    if not any("book.css" in "".join(D.DISCOVERY_PAGES)
+              or "Sample" in p for p in D.DISCOVERY_PAGES):
+        fails.append("no DISCOVERY_PAGES entry references the book.css "
+                     "sample page; the coverage gap would still be live")
+
+    # End to end: a page below site/ root (not just the downloads sample)
+    # whose only asset reference uses a bare, page-relative href must still
+    # be found and correctly matched against the real local file, not
+    # silently skipped as "not current" for being compared at the wrong path.
+    book_css_local = os.path.join(D.SITE, "downloads", "assets", "book.css")
+    if os.path.exists(book_css_local):
+        book_hash = D.digest(book_css_local)
+
+        def serve_with_book_css(u, timeout=25):
+            if u.endswith("/"):
+                return home(ok)
+            if "Sample" in u:
+                return f'<link href="assets/book.css?v={book_hash}">'
+            return MARKER_PRESENT
+
+        r = run(serve_with_book_css)
+        book_entries = [a for a in r["assets"] if a["path"] == "downloads/assets/book.css"]
+        if not book_entries:
+            fails.append("downloads/assets/book.css was not discovered or "
+                         "checked at all")
+        elif not book_entries[0]["current"]:
+            fails.append("downloads/assets/book.css matched its own real "
+                         f"hash but was reported stale: {book_entries[0]}")
+    else:
+        fails.append("cannot run the book.css case: site/downloads/assets/"
+                     "book.css is missing from this checkout")
+
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {6 - len(fails)} of 6 cases pass")
+    print(f"  {12 - len(fails)} of 12 cases pass")
     return 1 if fails else 0
 
 

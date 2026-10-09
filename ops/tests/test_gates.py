@@ -290,17 +290,40 @@ def main() -> int:
     finally:
         _oi.unread_from_owner, _oi.unread_needing_action = _real_owner, _real_third
 
+    # gate_checker_scope must notice a fingerprinted asset that no
+    # deploy_freshness discovery page sees, including one in downloads/,
+    # which all_pages() otherwise excludes entirely (that function's own
+    # docstring: "the book sample is a shipped artefact rather than a page
+    # of the site", true for the dash/claim gates it exists for, not for
+    # this one). Found 2026-10-09, second-pass cold read: this was exactly
+    # the live shape of site/downloads/assets/book.css, uncovered by every
+    # discovery page and resolved at the wrong (SITE-root) path by this
+    # gate's own existence check, so it reported clean the whole time.
+    with Planted("downloads/_gate_fixture_scope.html",
+                 PAGE % {"head": '<link rel="stylesheet" '
+                                 'href="assets/_gate_fixture_scope.css'
+                                 '?v=abc1234567">',
+                         "body": "<h1>Fixture</h1>"}), \
+         Planted("downloads/assets/_gate_fixture_scope.css", "body{}"):
+        if not fired(P.gate_checker_scope, "checker-scope"):
+            bad.append("checker-scope: a downloads/ page's uncovered "
+                       "fingerprinted asset was not caught")
+    if fired(P.gate_checker_scope, "checker-scope"):
+        bad.append("checker-scope: fires on the clean tree, so it cannot "
+                   "distinguish a fault")
+
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  10 gates fire on a planted fault and stay quiet without "
+        print("  ok  11 gates fire on a planted fault and stay quiet without "
               "it; stale-claims counts visitor copy only, bundle-maths "
               "accepts the true figures and looks in subdirectories, "
               "price-matches-its-own-link judges a price against the SKU "
               "its own surrounding link sells, roadmap-prices-current "
-              "ignores a stray scratch page, and owner-waiting surfaces "
+              "ignores a stray scratch page, owner-waiting surfaces "
               "owner_inbox's third-party check even with OWNER_EMAIL "
-              "missing")
+              "missing, and checker-scope catches an uncovered asset in "
+              "downloads/")
     return 1 if bad else 0
 
 

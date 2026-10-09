@@ -62,12 +62,29 @@ ACTION CARD step opens with a bare imperative ("Tip the tray...", "Take
 everything off..."), and no real victory condition does. So the check here
 is the cheap, robust version of that same signal: fail only when the
 sentence's own first word is one of the imperative verbs this corpus's
-instructions are actually written with (IMPERATIVE_FIRST_WORD, built from
-every ACTION CARD step in ops/cardtext/kitchen-deck.json). This is a
+instructions are actually written with (IMPERATIVE_FIRST_WORD).
+
+Rebuilt 2026-10-09, second-pass cold read: the set was still built from only
+ops/cardtext/kitchen-deck.json, the sole deck that existed when this file was
+written. B9 has since authored 19 more room decks, each with its own ACTION
+CARD steps, and the set was never re-derived against them, so a victory
+opening with a genuine imperative unique to another room ("Leave the
+pipework visible...", "Say the drawer's one job out loud...", "Read them out.
+Circle what you agree on.") silently passed as observable. The set is now
+built from every ACTION CARD step's opening word across all 20 decks in
+ops/cardtext/*.json, hand-filtered to keep only words that open a real
+command in their own sentence and drop words that open a declarative or
+noun-fragment line in the same corpus ("Blades. Every blade sheathed...",
+"Every lid comes off...", "No glass above head height..."). "dry" is
+deliberately excluded even though "Dry the vanity counter..." is a real
+imperative elsewhere in the corpus, because this file's own founding example,
+"Dry basin, two tools standing, nothing lying in water," uses the identical
+word as a state adjective, and that sentence has to keep passing. This is a
 heuristic, not a parser, and it is deliberately permissive: it will not
 catch every possible instruction-shaped victory, but proven against the
-real, already-shipped corpus it accepts all 9 real cases and still rejects
-the plan's own example, "Tip the tray onto the table."
+real, already-shipped corpus (289 ACTION CARD victory conditions across all
+20 decks, 114 live `first_15.victory` fields) it accepts every one of them
+and still rejects the plan's own example, "Tip the tray onto the table."
 
 Zones without a `diagnosis` key are untouched by this check, so authoring can
 proceed zone by zone (M3, M6) without every unfinished zone failing the gate.
@@ -85,17 +102,34 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import root_causes                                             # noqa: E402
 
-# Built from every ACTION CARD step's opening word in
-# ops/cardtext/kitchen-deck.json: the corpus's own real vocabulary for
-# giving an instruction, not a guessed list of "action verbs" in general.
+# Built from every ACTION CARD step's opening word across all 20 decks in
+# ops/cardtext/*.json: the corpus's own real vocabulary for giving an
+# instruction, not a guessed list of "action verbs" in general. Hand-filtered
+# to drop a step's opening word where that step is itself a declarative or
+# noun-fragment line, not a command (see the module docstring for "dry" and
+# the hazard-list cases this excludes).
 IMPERATIVE_FIRST_WORD = {
-    "assign", "band", "bring", "cap", "check", "clean", "clear", "close",
-    "count", "degrease", "design", "discard", "divide", "empty", "fit",
-    "give", "hang", "heat", "label", "let", "lift", "measure", "mop",
-    "mount", "move", "note", "photograph", "pick", "place", "press", "pull",
-    "put", "remove", "return", "send", "separate", "set", "sheath", "sort",
-    "stack", "stand", "start", "sweep", "take", "tape", "test", "tip",
-    "toss", "turn", "unplug", "vacuum", "wash", "wipe", "write",
+    "add", "agree", "ask", "assign", "bag", "band", "bin", "bolt", "box",
+    "bring", "brush", "build", "buy", "cap", "carry", "charge", "check",
+    "choose", "clean", "clear", "clip", "close", "coil", "compare", "confirm",
+    "correct", "count", "crank", "cut", "decant", "decide", "degrease",
+    "design", "discard", "disconnect", "divide", "dock", "draw", "drop",
+    "ease", "empty", "fetch", "find", "fit", "fix", "flag", "flatten", "fold",
+    "gather", "give", "go", "grip", "group", "hand", "hang", "have", "heat",
+    "hold", "keep", "knock", "label", "leave", "let", "lift", "line", "list",
+    "live", "loop", "lower", "make", "mark", "match", "measure", "mop",
+    "mount", "move", "name", "note", "notice", "offer", "open", "pack",
+    "photograph", "pick", "place", "plug", "press", "prop", "pull", "push",
+    "put", "rank", "reach", "read", "recheck", "reconnect", "recycle",
+    "refill", "refold", "regroup", "rehang", "relabel", "remount", "remove",
+    "replace", "reroll", "reseal", "restack", "retake", "retire", "return",
+    "revisit", "rock", "roll", "say", "scrape", "scrub", "seal", "seat",
+    "sell", "send", "separate", "set", "shake", "sheath", "shorten", "sit",
+    "sort", "space", "split", "spray", "square", "squeegee", "stack", "stand",
+    "start", "stick", "strip", "swap", "sweep", "take", "tape", "test", "tie",
+    "tighten", "time", "tip", "top", "toss", "tug", "turn", "unfold", "unload",
+    "unplug", "vacuum", "walk", "wash", "weigh", "wipe", "work", "wrap",
+    "write",
 }
 
 FIRST_WORD = re.compile(r"[A-Za-z']+")

@@ -10644,6 +10644,20 @@ def gate_checker_scope() -> None:
     Deliberately about coverage, not correctness. It does not care whether the
     assets match, only that nothing the site ships is outside what the checker
     can see.
+
+    Found 2026-10-09, second-pass cold read: this gate used its own inline
+    copy of deploy_freshness's asset regex, which (like that file's own
+    scanning loop before the same cold read) joined every match straight onto
+    SITE, correct only for a page sitting directly in site/. It also built
+    `shipped` from all_pages(), which deliberately excludes downloads/ for
+    unrelated reasons (dash/claim gates should not scan the book sample's hand
+    -written prose) but is wrong here, since downloads/ is still something
+    the site ships. Both meant site/downloads/assets/book.css, referenced
+    only from a downloads/ page, could never appear in `shipped` at all, and
+    even if it had, the wrong-path join would have called it nonexistent and
+    silently dropped it rather than flagging it uncovered. Now shares
+    deploy_freshness's own resolver so the two cannot drift apart again, and
+    scans downloads/ html explicitly for `shipped` alongside all_pages().
     """
     try:
         sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -10652,8 +10666,6 @@ def gate_checker_scope() -> None:
         warn("checker-scope", "ops/deploy_freshness.py could not be imported, "
                               "so its coverage was not checked.")
         return
-
-    pat = re.compile(r"assets/[A-Za-z0-9_./-]+\.(?:css|js)")
 
     # What the discovery pages can see, read from disk rather than the network
     # so this needs no egress.
@@ -10671,14 +10683,20 @@ def gate_checker_scope() -> None:
         if not os.path.exists(fp):
             missing_pages.append(rel)
             continue
-        seen.update(pat.findall(io.open(fp, encoding="utf-8",
-                                        errors="replace").read()))
+        body = io.open(fp, encoding="utf-8", errors="replace").read()
+        seen.update(DF.resolve_asset_ref(rel, href)
+                   for href, _ in DF.ASSET_REF.findall(body))
 
-    # Everything the site actually references anywhere.
+    # Everything the site actually references anywhere, including
+    # downloads/, which all_pages() leaves out for reasons that do not apply
+    # to this gate (see docstring).
     shipped = set()
-    for f in all_pages():
-        shipped.update(pat.findall(io.open(f, encoding="utf-8",
-                                           errors="replace").read()))
+    downloads_html = glob.glob(os.path.join(SITE, "downloads", "*.html"))
+    for f in all_pages() + downloads_html:
+        page_rel = "/" + os.path.relpath(f, SITE).replace(os.sep, "/")
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        shipped.update(DF.resolve_asset_ref(page_rel, href)
+                      for href, _ in DF.ASSET_REF.findall(body))
 
     uncovered = sorted(a for a in shipped - seen
                        if os.path.exists(os.path.join(SITE,
