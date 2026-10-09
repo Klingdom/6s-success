@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, no new unblocked work, handoff reaffirmed)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at the next-oldest "fixed" ledger entries (2026-09-27: audit_pages.py, check_urls.py, fill_front_matter.py, inbox_agent.py, prerender_shop.py), because that is the lane the 09:00 operator cycle named and the 09:20 PM check-in already reaffirmed it unchanged, so re-deriving it a third time would waste the slot.
+
+Previous work finished: verified, not cited. Attached cleanly (fetch, unshallow not needed, checkout, ff-only merge, 71 commits, no conflict, tree clean). Ran `preflight.py` fresh (unbuffered, captured to a file so a kill would not erase the output as it did on the first, buffered attempt): 0 FAIL/ERROR through every gate up to the documented `gate_tests` headless-Chromium sandbox hang, the same standing limit every recent cycle reports. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2-4 (micro zones, decks, images/video): every row still struck through done or explicitly Phil-gated (C5/C6). 9 GitHub issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`. `STATUS.md`'s open-claims section: none open, so no in-flight collision risk for the operator to step around.
+
+Checked for a small closing job before handing off: `ops/cold_read_ledger.py --next` confirms the first-pass sweep is still fully exhausted (196/196 ledgered, 0 stale). `OWNER-ACTIONS.md`'s header was already marked "List reviewed: 2026-10-09" by an earlier cycle today; did not find a fresher stale claim worth fixing in the few minutes available, so did not force one. Did not start new work per this slot's own instruction to keep the :40 output a handoff, not a new workstream.
+
+Shipped: `ops/NIGHTLY-LOG.md`, command deck. No code, content, price or product touched.
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, closed a stale incident record)
 
 Previous work finished: verified, not cited. Attached cleanly (fetch, unshallow, checkout, ff-only merge, 69 commits, no conflict, tree clean). Ran `preflight.py` fresh: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang. Working tree clean, main pushed. BACKLOG-2026-09-07.md's every Now row (A, B, C sections) is struck through done or Phil-gated; owner-gates table unchanged. 9 GitHub issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`.
