@@ -12,6 +12,8 @@ Run:  python ops/send_questions.py --preview
       python ops/send_questions.py --send ADDRESS
 """
 import datetime
+import io
+import json
 import os
 import mailer
 import sys
@@ -62,7 +64,42 @@ def ics(summary, description, start, minutes, organizer, attendee):
             "END:VCALENDAR\r\n").encode()
 
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _last_confirmed_deploy_line():
+    """One line about the last deploy anybody actually confirmed.
+
+    ops/deploy-verdict.json is written by ops/deploy.py and only ever by a
+    session that just verified production live, so it is the one honest
+    source for this. Unreadable means unknown, not 'never'.
+    """
+    path = os.path.join(ROOT, 'ops', 'deploy-verdict.json')
+    try:
+        v = json.loads(io.open(path, encoding='utf-8').read())
+    except Exception:                                         # noqa: BLE001
+        return ('  When production was last confirmed live is UNKNOWN here '
+                '(the verdict file could not be read).')
+    at = v.get('checked_at') or 'an unrecorded time'
+    build = (v.get('build_id') or '?')[:16]
+    return ('  Last confirmed live: %s, build %s, by a key-holding session '
+            'running ops/deploy.py.' % (at, build))
+
+
 BLOCKING = [
+    ("Check your Claude Code usage limit or plan status",
+     "Open Claude Code and look at the usage limit or plan status on the "
+     "account the scheduled Routines run under. This is an account-level "
+     "setting no sandboxed session can see or change.",
+     "The autonomous PM and operator Routines went dark for about five days, "
+     "2026-10-04 to 2026-10-09, and nothing noticed. Both Routines failed "
+     "their most recent run with USAGE_LIMIT_REACHED, while the hourly "
+     "check-in bot kept committing, so the log looked busy and the business "
+     "got no attention at all. Nothing in the product broke; the cost was "
+     "five days of nobody working on it. See STATUS.md INCIDENT-002 and "
+     "issue #40. It is first on the list because every other item below it "
+     "depends on there being a session awake to act on your answer.",
+     "2 minutes"),
     ("Add VPS_DEPLOY_KEY as a GitHub Actions secret",
      "Settings -> Secrets and variables -> Actions -> New repository secret, "
      "named exactly VPS_DEPLOY_KEY, pasting the contents of the "
@@ -166,10 +203,32 @@ def site_status_lines():
     return [
         "SITE STATUS",
         line,
+        # DERIVED, not asserted. These three lines were hardcoded prose and
+        # two of them had become false, in an email to the owner:
+        #
+        #   "neither is available here" said no session can make a build
+        #   live. Five deploys were made from a key-holding session between
+        #   2026-10-03 and 2026-10-09, each recorded in ops/deploy-verdict.json
+        #   by ops/deploy.py itself.
+        #
+        #   "Analytics is wired and waiting on one proxy path" has been wrong
+        #   for weeks: /stats/script.js and /stats/api/send both answer, the
+        #   website id on the live pages matches the one shipped, and real
+        #   pageviews are in the database.
+        #
+        # An owner deciding what to spend his morning on from a status block
+        # deserves the measured state, so the deploy line now comes from the
+        # verdict file and the analytics line says what check_integrations
+        # can actually confirm.
         "  A push to main builds the image automatically. Making it live",
-        "  still needs a Redeploy click in Hostinger's Docker Manager, or a",
-        "  session holding the deploy key; neither is available here.",
-        "  Analytics is wired and waiting on one proxy path.",
+        "  still needs a hand: deploy.yml has no VPS_DEPLOY_KEY, so it is",
+        "  either your Redeploy click in Hostinger, or a session holding",
+        "  ~/.ssh/6s_deploy running ops/deploy.py. Item 0 below closes this.",
+        _last_confirmed_deploy_line(),
+        "  Analytics is recording: the tracker and the beacon both answer on",
+        "  our own domain and the live pages send the id this repository",
+        "  ships. Figures are in EXECUTIVE-DASHBOARD-LIVE.md, not quoted here",
+        "  where they would go stale.",
         "  Both consulting offers have working live payment links. Stripe has",
         "  been in live mode and has taken one real sale since 2026-08-21.",
         "",
