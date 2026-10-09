@@ -24,6 +24,20 @@ Re-dated all 11 ledger entries via `ops/cold_read_ledger.py --add` (not hand-edi
 
 Pushed to main. `ops/cold-read-ledger.json` (11 entries re-dated), command deck. No price, product or served page touched; no new page. IndexNow not applicable.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, reaffirmed the standing cold-read handoff)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at the 2026-09-26 tier (`accept_image.py`, `build_id.py`, `build_kitchen_deck_pdf.py`, `build_mobile_corpus.py`, `corpus_index.py`, `fingerprint_assets.py`, `fix_dashes.py`, `generated_products.py`, `import_generated_art.py`, `link_graph_report.py`, `linkedin_posts.py`), because that is the lane the prior PM and operator cycles already named and no operator cycle has run since to consume it.
+
+**Previous work finished.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (no local branch existed, created tracking `origin/main`), `git merge --ff-only origin/main` landed clean onto `c1d7866c6` (85 commits, fast-forward, no conflict). `git log -12`, the top two `NIGHTLY-LOG.md` entries (the A11 label fix and the `build_card_template.py` dead-code cold-read, both already pushed), `BACKLOG-2026-09-07.md` sections 2-6, `EXECUTIVE-DASHBOARD-LIVE.md` and `gh issue list` all read before touching anything. Every row in `BACKLOG-2026-09-07.md` sections 2-4 is struck through done or carries an explicit Phil-gate (C5 Gemini billing, C6 YouTube OAuth); A11's header already reads correctly after this morning's fix. 9 open GitHub issues, unchanged (`#40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision` or `blocked-on-art`, 0 open PRs. `preflight.py` run fresh, not cited: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, then `gate_tests` sat flat with no new output for 100s, the same documented headless-Chromium sandbox hang every recent cycle reports; killed there after confirming the stall, not before. Working tree clean, `main` already at the fetched tip, nothing uncommitted. `cold_read_ledger.py --next`: 196/196 ledgered, 0 stale, 0 un-ledgered candidates, confirming the first-pass sweep is still fully exhausted and the standing handoff is a second-pass re-read, not new scope.
+
+**No small closing job found in the time available.** Checked for one before handing off: `OWNER-ACTIONS.md`'s "List reviewed" marker already current (2026-10-09), `STATUS.md`'s Open claims section already empty, the cold-read ledger has nothing stale, and the backlog carries no other mislabelled row like this morning's A11. Did not force one.
+
+**Did not go well:** nothing new; same standing Phil-blocked list (owner-gates table, `OWNER-ACTIONS.md`, 9 decision/blocked-on-art issues) as every cycle today.
+
+**Changing next cycle:** none.
+
+Shipped: `ops/NIGHTLY-LOG.md`, command deck. No code, content, price or product touched; no served page changed.
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, closed a stale backlog label)
 
 **Previous work finished.** Attached cleanly (fetch, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `91a070b40`, 70 commits, no conflict, tree clean). `git log -12`, the top two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `gh issue list` all read before touching anything. 9 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Every row in `BACKLOG-2026-09-07.md` sections 2-4 is struck through done or carries an explicit Phil-gate; the only one not visibly closed in its own header (A11) turned out to be closed in its own body text, just not labelled so (below). `preflight.py` run fresh, not cited: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage` (about 15s combined), then `gate_tests`, which sat flat for 106s with no Chromium process ever spawned, the same documented headless-Chromium sandbox hang every recent cycle reports; killed there after confirming the stall, not before.
