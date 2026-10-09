@@ -352,9 +352,9 @@
       "note": "PM check-in :40, 2026-10-09: re-read the 2026-10-08 jump-list addition (Phil + Claude Opus, a582ca349) against the file. Own test (test_zone_jump_nav.py) reruns clean on all 114 pages; marker-replacement and the AssertionError guard against a surviving marker both read correctly. No defect found."
     },
     "canonical_links.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-09",
-      "note": "Second-pass cold read, full file. Logic unchanged since the sibling-link fix; --check confirms 0 rewrites needed, 0 .html internal links, 169/49 canonical split matching the documented split. No defect found."
+      "note": "Second-pass cold read found a real defect: LINK regex and the tally regex both required .html immediately before the closing quote, so a fragment-bearing link (CAPACITY_ARTICLE's zone-too-small-for-what-it-holds.html#honest-count, on all 114 zone pages) was invisible to both the rewrite pass and the N-.html tally, which silently reported 0 instead of 114. Fixed both regexes to capture and reattach an optional trailing fragment; ran the real rewrite (114 pages). ops/tests/test_canonical_links.py added, fail-then-pass proved."
     },
     "card_spec.py": {
       "status": "clean",
@@ -367,9 +367,9 @@
       "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports T2 unevaluated (no SSH/analytics access in this sandbox), honest unknown rather than false pass. No defect found."
     },
     "check_cron_cadence.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone against live GitHub Actions run history: all workflows ok except bluesky-drafts.yml correctly reported as too few runs to measure rather than false pass/fail. No defect found."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "Second-pass cold read found WORKFLOWS missing 2 of 9 real cron-scheduled workflow files (indexation-check.yml, keyword-demand.yml), the exact gap the file's own docstring warns against. Added both; verified live (reports too few runs to measure, the safe fallback, not a false pass). New Case 11 in ops/tests/test_check_cron_cadence.py cross-checking WORKFLOWS against a fresh grep of .github/workflows/*.yml, fail-then-pass proved."
     },
     "check_integrations.py": {
       "status": "clean",
