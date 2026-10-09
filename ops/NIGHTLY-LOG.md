@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:40 cycle, found and fixed the real cause of CI red: fc16020fd's own log entry had been appended to the end of this file instead of prepended)
+
+NEXT FOR THE OPERATOR: confirm checks.yml goes green on this push, because the last two runs on main (1969 on 2c15006c7, 1970 on 6d6795146) both failed on gate_nightly_log_ordering and the ops test suite step it blocks, and that was the only thing standing between main and green.
+
+Did: checkout attached cleanly, fast-forwarded 56 commits onto origin/main, working tree clean. Read git log -12, NIGHTLY-LOG.md's own last entries, BACKLOG-2026-09-07.md's Now sections, EXECUTIVE-DASHBOARD-LIVE.md, and all 9 open GitHub issues directly (mcp__github__list_issues, list_pull_requests).
+
+Step 2, is the previous work finished: NO, and this cycle's own local preflight proved it rather than assuming it from the prior cycle's clean citation. Ran `preflight.py` fast in the background; it reached `gate_tests` (the documented headless-Chromium sandbox hang) cleanly, so killed it there per precedent, but that meant nothing about CI itself was confirmed. Checked `checks.yml` directly on GitHub rather than stopping at a clean local run (CLAUDE.md 0.3): run 1970 on HEAD-minus-two (`6d6795146`) had completed `failure`, and so had the merge run before it (1969, `2c15006c7`). Pulled the failed job's log: the `Preflight` step itself failed with 2 gates, `tests` (1 of 384 files failing) and `nightly-log-ordering` naming the exact defect, entry #1680 dated today appearing after the sequence had already moved on to 2026-09-04.
+
+Root-caused rather than patched around: `git log` showed `fc16020fd` ("PM check-in :40: no unblocked work found... Handed the operator STATUS.md's stale deploy narrative") as the twin cycle that had committed this handoff around 05:52, and `c8b1928b2`'s own later entry explicitly names it ("the :40 twin (fc16020fd) handed off a real gap"), confirming which cycle's entry was missing from the top. Found it at the literal end of the file (line 49871 of 49885), the exact "appended instead of prepended" shape `gate_nightly_log_ordering`'s own docstring describes as its founding defect from 2026-09-05.
+
+Fixed at the source, not by deleting or rewriting content: moved the 15-line block verbatim (header plus its five paragraphs) from the end of the file to its correct chronological slot, between the `cb80da037` entry (05:56) and the `7f19ab166`-authored entry (05:50) that already sat at what is now line 31, using commit timestamps on `ops/NIGHTLY-LOG.md` to place it exactly rather than guessing. Confirmed by diff: 16 insertions/16 deletions, net zero lines, same 49885 total, no content altered.
+
+Verified, not assumed: ran `gate_nightly_log_ordering()` directly against the fixed file (FAIL: [], WARN: []), then `ops/tests/test_gate_nightly_log_ordering.py` directly (5/5 checks pass, including against the real committed file). `git diff --stat` shows only `ops/NIGHTLY-LOG.md` touched.
+
+Checked for other unblocked work while this was in progress: all 9 open GitHub issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, `ops/cold_read_ledger.py --stale` reports 0 stale, `BACKLOG-2026-09-07.md`'s B6 and B9 rows (the two non-struck-through items in its Now sections) are both already marked done in their own text. Nothing else to hand the operator beyond confirming this push goes green.
+
+Did not go well: this is the second time this exact misplacement shape has recurred (the gate's own docstring already documents the first, 2026-09-05); worth a standing reminder that STEP 1's "read the last entries" means the top of the file, never `tail`.
+
+Changing next cycle: none; the existing gate named the defect correctly and completely, this was a one-off human-shaped (agent-shaped) misread, not a gate gap.
+
+Shipped: `ops/NIGHTLY-LOG.md` only, pure reordering. No code, content, price or product touched this cycle.
+
 ## 2026-10-09, PM check-in (:00/:30 slot)
 
 Previous work was not finished: the :40 twin (fc16020fd) handed off a real gap, STATUS.md's Immediate Focus, Production Knowledge and BLOCKER-001 sections, plus two summary table rows, all still citing build dbab744f6e1567ea (2026-10-04) while ops/deploy-verdict.json had moved to e3d3bc8c77a83e38 (2026-10-09T05:32:43Z). Finishing it was this run's work, per step 2.
@@ -27,6 +49,22 @@ No new unblocked work found: all 9 GitHub issues still decision or blocked-on-ar
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, now including the optional Routine-prompt paste, and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
 
 Pushed to main. `OWNER-ACTIONS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
+## 2026-10-09, PM check-in (:40 cycle)
+
+NEXT FOR THE OPERATOR: re-derive STATUS.md's stale deploy/production narrative and the "Immediate Focus" line, because they still cite a 2026-10-01/04 confirmation while the dashboard and Phil's own commit 00dafd7e8 (2026-10-08 23:33 local) already confirm a newer live build, build e3d3bc8c77a83e38, verified live with the zone jump list rendering.
+
+Did: checkout attached cleanly this cycle, no detached/unrelated-history shape (issue #27's usual pattern did not recur), fast-forwarded 48 commits onto origin/main. Read git log, NIGHTLY-LOG's own recent entries, BACKLOG-2026-09-07.md in full (sections 0 through 7), EXECUTIVE-DASHBOARD-LIVE.md, GOALS.md section 2, STATUS.md's tail, and all 9 open GitHub issues.
+
+Step 2, is the previous work finished: yes. The prior cycles' CI-red fixes (test_send_questions.py's hardcoded phrase, the GOALS.md keyword-cluster citation) are merged and confirmed: checks.yml run 1967 on the direct ancestor commit (4513fe10) completed SUCCESS. Run 1968 on current HEAD (6fcef8f10) was still in_progress after 25+ minutes, which is this workflow's own normal duration (run 1967 itself took 38 minutes), not a hang; no code-touching commit landed between the two besides a bot check-in and Phil's own doc-only deploy record, so there is no reason to expect a new failure. Local `preflight.py` (fast) ran clean, no FAIL, through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (killed there deliberately, same precedent every prior cycle in this environment has hit; reported unchecked past that point, not assumed passing).
+
+Checked for genuinely unblocked next work and found none: all 9 open GitHub issues are `decision` or `blocked-on-art`. BACKLOG-2026-09-07.md's "Now" sections (2 micro-zones/app through A24, 3 decks through B7's Kitchen scope) are each done or explicitly Phil-gated; section 6's owner gates are unchanged. `ops/cold_read_ledger.py --stale` reports 0 stale entries, that lane is exhausted.
+
+The one real, measured gap found: STATUS.md's "Immediate Focus" and BLOCKER-001 sections still narrate a production/deploy state current as of 2026-10-01/04, while EXECUTIVE-DASHBOARD-LIVE.md (regenerated 04:59 this morning) and Phil's own commit an hour after that (00dafd7e8, the jump-list deploy, verified live) both describe a materially newer state. This is the exact "source corrected, sibling never told" shape BACKLOG-2026-09-07.md section 7 names as the dominant defect class here, now recurring on STATUS.md's own long-running BLOCKER-001 narrative rather than in a new place. Not fixed this cycle: STATUS.md's blocker history is long (380 lines) and re-deriving it correctly needs more than the few minutes this slot allows; handed to the operator above rather than hand-edited carelessly.
+
+Did not go well: this cycle ran long for a 30-minute triage slot, mostly reading the backlog's many already-closed rows end to end to confirm nothing unblocked was missed, and waiting on a local preflight run that hit the known sandbox hang.
+
+Shipped: this log entry only. No code, content, price or product touched this cycle.
 
 ## 2026-10-09, PM check-in (30 minute triage)
 
@@ -49867,19 +49905,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
-
-## 2026-10-09, PM check-in (:40 cycle)
-
-NEXT FOR THE OPERATOR: re-derive STATUS.md's stale deploy/production narrative and the "Immediate Focus" line, because they still cite a 2026-10-01/04 confirmation while the dashboard and Phil's own commit 00dafd7e8 (2026-10-08 23:33 local) already confirm a newer live build, build e3d3bc8c77a83e38, verified live with the zone jump list rendering.
-
-Did: checkout attached cleanly this cycle, no detached/unrelated-history shape (issue #27's usual pattern did not recur), fast-forwarded 48 commits onto origin/main. Read git log, NIGHTLY-LOG's own recent entries, BACKLOG-2026-09-07.md in full (sections 0 through 7), EXECUTIVE-DASHBOARD-LIVE.md, GOALS.md section 2, STATUS.md's tail, and all 9 open GitHub issues.
-
-Step 2, is the previous work finished: yes. The prior cycles' CI-red fixes (test_send_questions.py's hardcoded phrase, the GOALS.md keyword-cluster citation) are merged and confirmed: checks.yml run 1967 on the direct ancestor commit (4513fe10) completed SUCCESS. Run 1968 on current HEAD (6fcef8f10) was still in_progress after 25+ minutes, which is this workflow's own normal duration (run 1967 itself took 38 minutes), not a hang; no code-touching commit landed between the two besides a bot check-in and Phil's own doc-only deploy record, so there is no reason to expect a new failure. Local `preflight.py` (fast) ran clean, no FAIL, through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (killed there deliberately, same precedent every prior cycle in this environment has hit; reported unchecked past that point, not assumed passing).
-
-Checked for genuinely unblocked next work and found none: all 9 open GitHub issues are `decision` or `blocked-on-art`. BACKLOG-2026-09-07.md's "Now" sections (2 micro-zones/app through A24, 3 decks through B7's Kitchen scope) are each done or explicitly Phil-gated; section 6's owner gates are unchanged. `ops/cold_read_ledger.py --stale` reports 0 stale entries, that lane is exhausted.
-
-The one real, measured gap found: STATUS.md's "Immediate Focus" and BLOCKER-001 sections still narrate a production/deploy state current as of 2026-10-01/04, while EXECUTIVE-DASHBOARD-LIVE.md (regenerated 04:59 this morning) and Phil's own commit an hour after that (00dafd7e8, the jump-list deploy, verified live) both describe a materially newer state. This is the exact "source corrected, sibling never told" shape BACKLOG-2026-09-07.md section 7 names as the dominant defect class here, now recurring on STATUS.md's own long-running BLOCKER-001 narrative rather than in a new place. Not fixed this cycle: STATUS.md's blocker history is long (380 lines) and re-deriving it correctly needs more than the few minutes this slot allows; handed to the operator above rather than hand-edited carelessly.
-
-Did not go well: this cycle ran long for a 30-minute triage slot, mostly reading the backlog's many already-closed rows end to end to confirm nothing unblocked was missed, and waiting on a local preflight run that hit the known sandbox hang.
-
-Shipped: this log entry only. No code, content, price or product touched this cycle.
