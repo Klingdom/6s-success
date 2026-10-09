@@ -498,8 +498,8 @@
     },
     "generate_card_art.py": {
       "status": "fixed",
-      "date": "2026-09-25",
-      "note": "torch_status() extracted so the NO-PROVIDER branch reports absent/CPU-only/CUDA honestly instead of a hardcoded false CPU-only claim; ops/tests/test_generate_card_art.py added. Entry lost from an earlier ledger write (concurrent-session merge), backfilled here; the code fix and test were already live and unaffected."
+      "date": "2026-10-09",
+      "note": "Re-verified 2026-10-09, PM check-in. Found and fixed one real stale-docs defect: the module docstring's 'Run:' examples advertised a third invocation form, 'python ops/generate_card_art.py --room Entryway --apply', that main() never implemented (it only ever parses --check or --one <subject>, by design, per its own 'never start a batch without looking at one first' refusal). Corrected the docstring to say so rather than leave a dead example. --check runs clean (no provider key, same honest state as every prior cycle); torch-status and cost-table logic read correct."
     },
     "generate_card_heroes.py": {
       "status": "fixed",
@@ -542,9 +542,9 @@
       "note": "Read in full (81 lines). parseBackup validates and drops non-finite/non-positive timestamps before mergeDone ever sees them; mergeDone additionally sanitizes both sides itself (sanitizeTimestamp) so it cannot be poisoned even by a caller that skips parseBackup, matching its own comment's stated goal. Falls back to rawA rather than undefined when both sides are invalid, correctly avoiding JSON.stringify silently dropping the key. Confirmed wired: App.js imports both and uses them at the one backup-restore call site. Ran the test directly (node lib/importProgress.test.js): 18/18 cases pass, including the corruption/poisoning edge cases the comments describe. No defect found."
     },
     "import_chapter_svgs.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Docstring's own 'WHAT THIS IMPORTS' section said 'Two verified figures... 34 of them have not been read', stale since d83241a2 grew FIGURES from 2 to 6 (2026-09-xx) without updating this line; preflight's own gate_chapter_svgs_current docstring already correctly says six. Corrected to 'Six verified figures... 30 of them have not been read'; no functional change, verified live (6/6 wired, idempotent, 0 newly this run)."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "Re-verified 2026-10-09, PM check-in. Read in full (395 lines). main() re-run live: idempotent, 0 newly wired (all 6 of 36 chapter figures already present on their zone pages), every gate (no dash, no QR code, no external ref, no raster embed, site-palette check, size floor) still passes against the real chapter HTML. fresh_state()/committed_state() byte-match (gate_chapter_svgs_current's own precondition). No defect found."
     },
     "import_generated_art.py": {
       "status": "clean",

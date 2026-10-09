@@ -50,7 +50,12 @@ deliberately not planned until the free Entryway deck has produced evidence
 
 Run:  python ops/generate_card_art.py --check
       python ops/generate_card_art.py --one EM-003
-      python ops/generate_card_art.py --room Entryway --apply
+
+There is no --room/--apply batch mode: main() only ever accepts --check or
+--one <subject>, deliberately, per the line below that refuses to run
+without one ("Never start a batch without looking at one first"). An
+earlier draft of this comment advertised one anyway; a caller script loops
+this one subject at a time instead.
 """
 from __future__ import annotations
 
