@@ -967,6 +967,39 @@ def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str,
             "deploy_checked_assets": checked}
 
 
+def zone_photo_deploy_note(zone_photos_undeployed, zone_pages_with_image):
+    """The photography half of the standing 'Redeploy the site' owner note.
+
+    Pure, so a gate can prove it with synthetic inputs rather than trusting
+    the git diff that produces zone_photos_undeployed.
+
+    Found 2026-10-09: the owner note used to claim "no zone page carries
+    its photograph yet" unconditionally, any time deploy_verdict == "stale".
+    That stayed true for three cycles after the 2026-10-09T05:32:43Z
+    confirmed deploy, which already shipped the zone photographs (confirmed
+    by reading the verdict's own commit directly: it already carried
+    site/assets/zones/*.jpg and the zone-hero markup); the three commits
+    since then (a sitemap dedup, a canonical-link fix, a cron-cadence fix)
+    never touched a zone page or a zone asset. The note kept telling the
+    owner a real, finished piece of customer-facing work was still waiting
+    on them, when it had already shipped. zone_photos_undeployed is None
+    when the verdict's own commit could not be resolved (shallow history,
+    no marker); treated the same as True, the cautious direction, since
+    "cannot tell" must never read as "confirmed live."
+
+    Returns (clause, tail): `clause` fits after "...homepage differ from
+    this repository, " and `tail` is an optional trailing sentence (empty
+    when there is none).
+    """
+    if zone_photos_undeployed is False:
+        return (f"and zone photography already matches the last confirmed "
+                f"deploy ({zone_pages_with_image} zone pages carrying their "
+                f"reviewed picture); this gap is elsewhere.", "")
+    return ("and no zone page carries its photograph yet.",
+            f" Until then {zone_pages_with_image} reviewed pictures and "
+            f"every fix since the last deploy reach nobody.")
+
+
 def _load_deploy_marker():
     p = os.path.join(ROOT, "ops", "deploy-verdict.json")
     try:
@@ -1089,6 +1122,42 @@ def resolve_video_count(prefix: str, built: int, prev: dict, generated: str) -> 
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
      if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
+
+def _verdict_commit_for_marker(marker):
+    """Which commit's site/build-id.txt first became the marker's build_id.
+
+    Mirrors preflight.resolve_verdict_commit (not imported, to keep this
+    module's own git calls next to its own sh() helper); None if the
+    marker has no build_id or the string predates this checkout's visible
+    history.
+    """
+    build_id = (marker or {}).get("build_id")
+    if not build_id:
+        return None
+    out = sh(["git", "log", "-S%s" % build_id, "--format=%H", "--",
+              "site/build-id.txt"])
+    hashes = [ln.strip() for ln in out.splitlines() if ln.strip()]
+    return hashes[-1] if hashes else None
+
+_verdict_commit = _verdict_commit_for_marker(_load_deploy_marker())
+if _verdict_commit:
+    # --name-only alone is too broad: a582ca34..HEAD touches 117 zone
+    # pages with a 2-line canonical-link fragment fix (unrelated commit,
+    # confirmed by reading the actual diff before trusting this), which
+    # would have misread as "zone photography undeployed" again under a
+    # different cause than the one this function was written to fix.
+    # Must match an actual added/removed hero or jpg-asset line, not
+    # merely a changed file under either path.
+    _zone_diff = sh(["git", "diff", _verdict_commit, "HEAD", "--",
+                      "site/zones/", "site/assets/zones/"])
+    S["zone_photos_undeployed"] = bool(re.search(
+        r'^[+-].*(zone-hero|assets/zones/[^"]*\.jpg)', _zone_diff, re.M))
+else:
+    # Cannot resolve the verdict's own commit (shallow history, no marker):
+    # None, not False, so the cautious "no zone page carries its
+    # photograph yet" wording below stays the default rather than being
+    # silently read as "confirmed already live."
+    S["zone_photos_undeployed"] = None
 
 open_issues = gh_issues("open")
 S["issues_available"] = open_issues is not None
@@ -2136,13 +2205,14 @@ md = f"""# 6S Success: Live Executive Dashboard
 # and because it is the one step this system cannot take itself: the redeploy
 # lives behind the owner's hPanel.
 if S["deploy_verdict"] == "stale":
+    _photo_clause, _photo_tail = zone_photo_deploy_note(
+        S.get("zone_photos_undeployed"), S["zone_pages_with_image"])
     md += (f"- **Redeploy the site.** Production is serving an older build: "
            f"{S['deploy_stale_assets']} of {S['deploy_checked_assets']} "
-           f"assets on the live homepage differ from this repository, and no "
-           f"zone page carries its photograph yet. The image is built and "
+           f"assets on the live homepage differ from this repository, "
+           f"{_photo_clause} The image is built and "
            f"pushed to ghcr.io; the Redeploy button in Hostinger is the only "
-           f"step left. Until then {S['zone_pages_with_image']} reviewed "
-           f"pictures and every fix since the last deploy reach nobody.\n")
+           f"step left.{_photo_tail}\n")
 
 # The three items OWNER-ACTIONS.md's own "Start here" table ranks above
 # everything else on that page go next, above the decision queue: they are
@@ -2355,13 +2425,15 @@ owner_actions_html = "".join(
 needs = owner_actions_html + needs
 
 if S["deploy_verdict"] == "stale":
+    _photo_clause, _photo_tail = zone_photo_deploy_note(
+        S.get("zone_photos_undeployed"), S["zone_pages_with_image"])
     needs = (f'<li><b>Redeploy the site.</b> Production is serving an older '
              f'build: {S["deploy_stale_assets"]} of '
              f'{S["deploy_checked_assets"]} assets on the live homepage '
-             f'differ from this repository, and no zone page carries its '
-             f'photograph yet. The image is built and pushed; the Redeploy '
-             f'button in Hostinger is the only step left, and the one step '
-             f'this system cannot take itself.</li>') + needs
+             f'differ from this repository, {esc(_photo_clause)} The image '
+             f'is built and pushed; the Redeploy button in Hostinger is the '
+             f'only step left, and the one step this system cannot take '
+             f'itself.{esc(_photo_tail)}</li>') + needs
 
 tone = SEVERITY[S["overall"]]
 

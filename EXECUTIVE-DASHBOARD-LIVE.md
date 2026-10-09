@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-09 20:08 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-09 20:26 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 31 |
-| Commits (7 days) | 538 of 5818 total |
+| Commits (7 days) | 538 of 5819 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `1cc785288` Second-pass cold read: fix stale sibling-file cost and a lyi |
+| Last commit | `2d03a537b` Note CI not yet confirmed on the cold-read fix commit; regen |
 
 ## Product readiness
 
@@ -56,7 +56,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 0 of 10 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 114 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 0 of 10 assets on the live homepage differ from this repository, and zone photography already matches the last confirmed deploy (114 zone pages carrying their reviewed picture); this gap is elsewhere. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left.
 - **Check your Claude Code usage limit or plan status** (2 min). **Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **Verify the site in Google Search Console** (3 min). Google fetched all 114 zone pages on 23 to 27 August, twice each, and has barely returned since.
