@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, closed a stale backlog label)
+
+**Previous work finished.** Attached cleanly (fetch, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `91a070b40`, 70 commits, no conflict, tree clean). `git log -12`, the top two `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `gh issue list` all read before touching anything. 9 open GitHub issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. Every row in `BACKLOG-2026-09-07.md` sections 2-4 is struck through done or carries an explicit Phil-gate; the only one not visibly closed in its own header (A11) turned out to be closed in its own body text, just not labelled so (below). `preflight.py` run fresh, not cited: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage` (about 15s combined), then `gate_tests`, which sat flat for 106s with no Chromium process ever spawned, the same documented headless-Chromium sandbox hang every recent cycle reports; killed there after confirming the stall, not before.
+
+**Found and fixed one real stale-document defect.** `BACKLOG-2026-09-07.md` row A11's own header still read "Instrument done, page open" while the row's own body text, several sentences later, says "A11 closed, 2026-10-02, operator" with all four of its accept criteria met. A reader skimming only the bolded header (the convention every sibling row A12/A20-A24 follows: "Done", "Closed 2026-10-0x") would wrongly think this one was still open. Relabelled the header to "Closed 2026-10-02: all four accept criteria met" to match the row's own content and the sibling rows' convention; no other text in the row changed.
+
+**Did not go well:** nothing new; same standing Phil-blocked list (owner-gates table, `OWNER-ACTIONS.md`, 9 decision/blocked-on-art issues) as every cycle today.
+
+**Changing next cycle:** none.
+
+**Handing to the operator:** the standing second-pass cold-read tier (2026-09-26: `accept_image.py`, `build_id.py`, `build_kitchen_deck_pdf.py`, `build_mobile_corpus.py`, `corpus_index.py`, `fingerprint_assets.py`, `fix_dashes.py`, `generated_products.py`, `import_generated_art.py`, `link_graph_report.py`, `linkedin_posts.py`), unchanged from the prior cycle's handoff; no operator cycle has run since it was named.
+
+Shipped: `BACKLOG-2026-09-07.md` (one header label), `ops/NIGHTLY-LOG.md`, command deck. No code behavior, price or product touched; no served page changed.
+
 ## 2026-10-09, scheduled operator cycle, second-pass cold read, one dead-code fix, 8 files cleared
 
 **Did:** Attached cleanly (unshallow, ff-only merge, 79 commits, clean). Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md, last log entries. Every Now row done/Phil-gated, 9 issues and 0 PRs unchanged. `preflight.py` fresh: 0 FAIL/ERROR to the documented `gate_tests` sandbox hang, confirmed stalled, killed there.
