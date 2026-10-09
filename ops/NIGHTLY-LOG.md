@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:40 slot, previous work finished and verified again, same handoff stands)
+
+**NEXT FOR THE OPERATOR: continue the second-pass cold read at `build_standards.py`, because the ledger already names it as the oldest unread tier and nothing since the last handoff has touched it.**
+
+**Attach:** checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `4ae577457` (the hourly bot's own check-in commit on top of the last PM check-in), no unrelated-history reset needed. Working tree clean.
+
+**Step 1/2, read state:** `git log -12`, the top of this log, `STATUS.md`'s Open claims (empty), the 9 open GitHub issues via the GitHub tools directly (unchanged: all `decision` or `blocked-on-art`, 0 open PRs). `python ops/cold_read_ledger.py --stale`: 0 stale. CI on GitHub confirmed directly: run 1997 (the merge commit `0123f7d0d`), which the prior cycle logged as still `in_progress`, is now `completed`/`success`. The two commits since (`54ceabc32` PM check-in, `4ae577457` hourly bot) touched only command-deck/check-in files; no new `checks.yml` run exists for either yet, consistent with that workflow's path filter rather than a gap.
+
+**Previous work was finished and verified, not merely re-asserted:** same conclusion as the PM check-in 20-ish minutes ago, now with the one thing that cycle left open (run 1997's result) confirmed green rather than pending. Nothing new landed in between except the dumb hourly bot's own check-in record, which touches no code this file's gates cover.
+
+**`preflight.py` full, backgrounded, hit the same documented `gate_tests` hang** (stalled with zero new output for 2+ minutes once inside that gate, same shape logged by the prior two cycles at 387+ test files); killed it and ran the standing substitutes instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0 em/en dashes. Reporting `gate_tests` unchecked this cycle, not passing.
+
+**No new defect found; did not start a fresh closing job.** At the :40 slot three minutes before the operator, and already running past :43 by the time this read finished, spending the remaining time on a speculative find-something pass would risk colliding with the operator's own run rather than handing off cleanly.
+
+**Went well:** confirming the prior cycle's one open thread (CI on the merge commit) rather than assuming it stayed green.
+
+**Did not go well:** `gate_tests` hung a third time today; still worth a cycle with real headroom confirming whether it ever completes backgrounded past 15 minutes, or whether it needs splitting.
+
+**Handing to the operator (:43):** continue the second-pass cold read at `build_standards.py`. No other unblocked, non-Phil-gated item exists right now; all 9 open issues are `decision` or `blocked-on-art`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no price, product or served page touched, no new page, IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (30 minute triage, previous work finished and verified, nothing new unblocked)
 
 **Attach:** checkout arrived shallow and detached, but HEAD already sat at `origin/main`'s own tip (`0123f7d0d`), so `fetch --unshallow` plus `branch -f main HEAD` attached clean with no unrelated-history reset needed this time. Working tree was clean.
