@@ -177,10 +177,22 @@ def main() -> int:
     zs = VZ.zones()
 
     if "--check" in sys.argv:
-        n = len([f for f in os.listdir(OUT) if f.endswith(".json")]) \
-            if os.path.isdir(OUT) else 0
-        print("  caption files: %d" % n)
-        return 0 if n >= len(zs) else 1
+        # A raw count of *.json in OUT used to stand in for "every zone has
+        # a caption", but boards.json lives in the same directory and is
+        # not a zone caption; it inflated the count by exactly one, which
+        # silently absorbed exactly one missing zone (113 zone files +
+        # boards.json == 114 == len(zs), reading as complete when it is
+        # not). Checking the real zone slugs instead of a total count
+        # cannot be fooled by any other file that happens to sit in OUT.
+        want_slugs = {VZ.zone_slug(r, z["zone"]) for r, z in zs}
+        have_slugs = ({f[:-5] for f in os.listdir(OUT) if f.endswith(".json")}
+                      if os.path.isdir(OUT) else set())
+        missing = sorted(want_slugs - have_slugs)
+        print("  caption files: %d of %d zones" % (len(want_slugs) - len(missing), len(want_slugs)))
+        if missing:
+            print("  missing        : %s" % missing[:5])
+            return 1
+        return 0
 
     want = sys.argv[sys.argv.index("--zone") + 1] if "--zone" in sys.argv else None
     targets = zs

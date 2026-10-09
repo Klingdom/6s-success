@@ -128,8 +128,8 @@
     },
     "build_epub.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 06:4x check-in: pip-installed reportlab, regenerated; container bytes differ from committed (known zlib/non-determinism, gate_generator_ownership already compares by content), full unzip diff of all entries shows 0 content differences; restored HEAD, did not commit the rebuild"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_family_room_deck_page.py": {
       "status": "clean",
@@ -137,9 +137,9 @@
       "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_feed.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified for drift (was 2026-09-10, the ledger's oldest entry). --check reports feed current, 29 entries; gate_feed_current already wired in preflight and passed. No drift."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read: no feed-level atom:author, RFC 4287 violation; fixed"
     },
     "build_garage_deck_page.py": {
       "status": "clean",
@@ -168,8 +168,8 @@
     },
     "build_icons.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: PIL absent by default in this sandbox, installed via pip; regenerated all 5 outputs, byte-for-byte cmp differs on every file but decoded RGB pixel content is 0% different (checked icon-192.png directly, pixel by pixel), a PNG-encoder/zlib version artifact, not a content defect, the same class build_app_icons.py's own 2026-09-30 re-verify already found for its feature-graphic PNG. Reverted the regenerated files rather than ship byte-noise with no visual change. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_id.py": {
       "status": "clean",
@@ -223,8 +223,8 @@
     },
     "build_microzone_coverage.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified for drift (last checked 2026-09-24, fixed a have[diagnosis]-as-proxy bug). moat_complete still uses the real all() intersection, not a proxy. --check output (44 of 114 zones, 38.6%, 7 rooms complete) matches STRATEGY-MICROZONES.md verbatim, git status clean on that file. No drift found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_mobile_corpus.py": {
       "status": "clean",
@@ -263,23 +263,23 @@
     },
     "build_printpack.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified for drift (last checked 2026-09-17, fixed the sheet-overflow bug). Ran directly: 20 rooms, 114 zones, 684 cards, 76 sheets, matches live PACK-HOUSE SKU claims in data.js (684 cards, $19) and resources.html/deck-gallery.html copy verbatim. Own assertions (card count matches manual, Safety is fourth S) pass. No drift found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_product_schema.py": {
-      "status": "fixed",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, this operator: product_ld()'s url falls back to shop.html when an item has no href, and CN-VIRTUAL/CN-INHOME had none even though consulting.html#virtual/#in-home is where each one's real book-and-pay button lives, so both products' Product schema (on shop.html AND on consulting.html itself) told a crawler the wrong home page. Fixed by adding the missing href to data.js; ran the full wiring chain (build_product_schema.py, prerender_shop.py, fingerprint_assets.py, build_seo.py), all idempotent on a second run. New gate_product_schema_url_honest in preflight.py, fail-then-pass proved directly (planted the exact old shop.html url, watched it fail by name citing both SKUs, restored, reran clean); ops/tests/test_gate_product_schema_url_honest.py (5/5, including the real committed site)."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_pwa.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per prior cycle's handoff (already clean on 5+ prior reads per this ledger/NIGHTLY-LOG). Ran standalone: byte-identical site/sw.js and manifest.webmanifest, zero git diff. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_quest.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 80a111d1d (A10, split quest-data.js so the symptom picker does not wait on the manual), already logged in ops/NIGHTLY-LOG.md 2026-09-28 with its own fail-then-pass proof (gate_quest_symptom_picker_lazy_rooms) and all 8 ops/tests/test_quest_*.py e2e scripts passing. Full preflight.py this cycle clean through every quest-related gate. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_resources.py": {
       "status": "fixed",
@@ -288,8 +288,8 @@
     },
     "build_sample_html.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified per prior cycle's handoff. Read in full. degrade_images()/font-repoint/analytics-tag/figalt-CSS logic all sound; the book.css print-diagnostic line re-reads BOOK_CSS_SRC fresh each time (by design, since the source is deliberately never modified, only the shipped copy), so it always reports adding the rule, which is accurate for the source but could read oddly out of context; not a functional defect, no output or behavior wrong. Ran --apply standalone: zero git diff against committed tree. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_seo.py": {
       "status": "clean",
@@ -297,14 +297,14 @@
       "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_social_captions.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Read in full (231 lines). Ran --all: 114 captions + boards.json written, 0 warnings (titles/descriptions/captions all within Pinterest/Instagram limits). Regenerated output byte-identical to committed tree (git diff clean). Reuses build_youtube_metadata.py's title_for()/zone_page_slug() and build_social_pins.py's done_items(), so fixes to those propagate here too. No defect found."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read: --check count inflated by boards.json, masked exactly one missing zone caption; fixed"
     },
     "build_social_pins.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Read in full (385 lines). Ran --zone 'Landing Zone': both pinterest/instagram cards render at correct dimensions; regenerated PNG differs from committed only because Pillow is missing in this sandbox so palette_png()'s 256-colour quantization step is honestly skipped (full-colour fallback, as the code's own docstring says it will), not a code defect; reverted the two test renders rather than ship a full-colour regression. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, no defect"
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",

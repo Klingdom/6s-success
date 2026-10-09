@@ -114,6 +114,25 @@ def main() -> int:
         fails.append("site/articles/index.html was wrongly included as an "
                      "article entry")
 
+    # 7. RFC 4287 section 4.1.1: atom:feed MUST carry an atom:author unless
+    #    every entry does. The real corpus does not (one article has no
+    #    "author" JSON-LD at all, and the ones that do split between "6S
+    #    Success" and "Philip Kling"), confirmed directly against the
+    #    committed site/articles/*.html, so the feed needs its own. Checked
+    #    on the real rendered output, not a synthetic page: a reader or
+    #    validator that enforces this would otherwise flag every build.
+    doc = minidom.parseString(xml.encode("utf-8"))
+    feed_el = doc.documentElement
+    author_els = [c for c in feed_el.childNodes
+                  if getattr(c, "tagName", None) == "author"]
+    if len(author_els) != 1:
+        fails.append("feed-level <author> missing or duplicated: found %d"
+                     % len(author_els))
+    else:
+        names = author_els[0].getElementsByTagName("name")
+        if not names or not names[0].firstChild or not names[0].firstChild.data.strip():
+            fails.append("feed-level <author><name> is missing or empty")
+
     import shutil
     shutil.rmtree(tmp)
 
@@ -122,7 +141,7 @@ def main() -> int:
         for x in fails:
             print(" -", x)
         return 1
-    print("OK: build_feed, 6/6 checks pass")
+    print("OK: build_feed, 7/7 checks pass")
     return 0
 
 

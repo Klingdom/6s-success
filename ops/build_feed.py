@@ -64,6 +64,13 @@ ARTICLES = os.path.join(SITE, "articles")
 BASE = "https://6s-success.com"
 FEED_URL = BASE + "/feed.xml"
 OUT = os.path.join(SITE, "feed.xml")
+# Every article's own JSON-LD "publisher" names the same organization (checked
+# directly against all 31 articles, no exceptions); RFC 4287 section 4.1.1
+# requires a feed-level atom:author unless every entry carries its own, which
+# is not true here (one article has no "author" field, and the ones that do
+# split between "6S Success" and "Philip Kling"). A feed-level author drawn
+# from the one field that actually is uniform covers all entries at once.
+AUTHOR_NAME = "6S Success"
 
 
 def _entry(fp: str) -> dict | None:
@@ -138,7 +145,8 @@ def render(rows: list[dict]) -> str:
         '  <link href="%s/articles/"/>\n'
         '  <id>%s/articles/</id>\n'
         '  <updated>%s</updated>\n'
-        % (esc(title), esc(subtitle), FEED_URL, BASE, BASE, updated_ts)
+        '  <author><name>%s</name></author>\n'
+        % (esc(title), esc(subtitle), FEED_URL, BASE, BASE, updated_ts, esc(AUTHOR_NAME))
         + "\n".join(items) + "\n</feed>\n"
     )
     return xml

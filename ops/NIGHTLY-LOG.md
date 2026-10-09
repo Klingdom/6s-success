@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle, continued the second-pass cold read (2026-09-30 tier), two real defects found and fixed, one real CI-red gate fix
+
+**Did:** Attached clean (unshallow, fetch, checkout main, ff-only merge, 105 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, CLAUDE.md, last four log entries. Backlog Now sections all done/Phil-gated; 9 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential; cold-read ledger 0 stale. CI showed run 1983 FAILed on `gate_nightly_log_ordering`; traced and confirmed already fixed at HEAD by a commit 16 seconds later. Took the standing handoff: continued the second-pass cold read, the 11 named files (`build_epub.py` through `build_social_pins.py`).
+
+**Found and fixed two real defects.** (1) `build_feed.py`'s Atom feed had no `atom:author` anywhere, feed-level or per-entry (RFC 4287 4.1.1 requires one); the site's own articles split between two author identities and one has none, so no per-entry fix covers all cases. Added a feed-level author from the one field that is actually uniform across all 31 articles (`publisher`, confirmed, not invented). (2) `build_social_captions.py --check` counted `*.json` in its output dir against 114 zones, but `boards.json` lives in the same dir and inflated the count by exactly one, silently masking one missing zone caption (113 files + boards.json = 114, read as complete). Fixed to check real zone slugs. Both fail-then-pass proved against reverted scratch copies. Also found and fixed a live CI-red instance of `gate_nightly_log_ordering`: two 2026-10-09 entries (lines 50255-50273) had been appended to the file's end behind the whole 2026-09-04 legacy section instead of prepended; moved them into the contiguous 2026-10-09 block.
+
+**Verified:** `check_urls.py` 211/211, `audit_pages.py` 0 findings, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, fresh `preflight.py` 0 FAIL through every gate before the documented `gate_tests` sandbox hang (confirmed twice, before and after the fixes). Nine files read with no defect (`build_epub.py`, `build_icons.py`, `build_microzone_coverage.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`, `build_quest.py`, `build_sample_html.py`, `build_social_pins.py`), all re-dated clean in the ledger.
+
+**Went well:** running each generator against the real committed output rather than trusting the code reading, which is what surfaced both defects (neither was visible from the source alone without checking what it actually produces/counts).
+
+**Did not go well:** same standing Phil-gated list; nothing new there.
+
+**Changing next cycle:** none; `gate_tests()` already globs new test files.
+
+**Next:** continue the second-pass cold read at the 2026-09-30 tier, next alphabetical batch after `build_social_pins.py`.
+
+Pushed to main. `ops/build_feed.py`, `ops/build_social_captions.py`, their tests, `site/feed.xml`, `ops/NIGHTLY-LOG.md` ordering fix, `ops/cold-read-ledger.json`, command deck. No price or product touched, no new site page.
+
 ## 2026-10-09, scheduled operator cycle, continued the second-pass cold read into the 2026-09-30 tier, no defect found
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed clean onto `c1ee82fd2` (96 commits, fast-forward, no conflict, no reset). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b and 2-7, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Every row in `BACKLOG-2026-09-07.md` sections 2-5 is struck through done or carries an explicit Phil-gate; section 6's owner gates (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy, Apple/Play) are all still Phil's alone. `preflight.py` run fresh, confirmed genuinely stalled (CPU time flat at 4s over 8s elapsed) at the documented `gate_tests` headless-Chromium sandbox hang before killing it there: 0 FAIL/ERROR through 75 gates. 9 open GitHub issues unchanged (`#40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`, verified directly via the GitHub tools, 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
@@ -542,6 +560,25 @@ NEXT FOR THE OPERATOR: nothing new to start. Every backlog Now section (2-6) is 
 
 Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
 
+## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: nothing new to start. Same conclusion the :40 cycle reached four minutes before this one, now independently re-derived rather than cited: `cold_read_ledger.py --next` shows 196 of 196 files ledgered, `--stale` shows 0 entries needing a re-read; the standing second-pass sweep through already-ledgered tiers is the only remaining lane, and it is already in progress.
+
+Previous work was finished and verified, not assumed. Attached clean (fetch, unshallow, checkout main, ff-only merge, 94 commits, no conflict). Working tree was clean before I started and `main` was already pushed. `preflight.py` run fresh: 0 FAIL printed through every gate before `gate_tests`, confirmed genuinely stalled there (no new gate output for 90s) before accepting the timeout, same documented sandbox limit every prior cycle has hit, not a new regression. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. Issue #40 (the 5-day usage-limit stall) already has its recovery evidence posted by an earlier cycle today; `list_triggers` now shows all three Routines firing on schedule, including this one, so the stall has not recurred.
+
+Did not find a new small closing item this slot: checked `OWNER-ACTIONS.md`'s recent entries and the deploy-gap citations, both already current per the preceding cycle's own re-derivation. Regenerated the command deck as required every run.
+
+Pushed to main. Command deck only. No price, product or served page touched; no new site page; IndexNow not applicable.
+
+## 2026-10-09, PM check-in (30 minute triage, confirmed finished, nothing new unblocked)
+
+Attached clean (fetch, unshallow, checkout main, ff-only merge onto origin, 101 commits, no conflict). Working tree was clean before I started and main was already pushed (5c14a8a37, matching the dashboard's own last-regenerated commit, so the deck was not stale).
+
+Previous work was finished and verified. preflight.py run fresh: 0 FAIL printed through every gate before gate_tests, which stalled at the same point for over 10 minutes with no new output before I killed it and accepted the timeout, the same documented sandbox limit every prior cycle has hit today, not a new regression. GitHub: 9 open issues unchanged, all decision or blocked-on-art, none waiting on anyone but Phil. cold_read_ledger.py --stale: 0 stale entries; --next confirms 196 of 196 files ledgered, same exhausted state the prior cycle found. STATUS.md open claims: none. OWNER-ACTIONS.md: reviewed today, unchanged.
+
+Did not find a new small closing item this slot: no FAIL to fix, no stale claim, no unledgered file, no non-Phil-blocked issue. Regenerated the command deck as required every run.
+
+Pushed to main. Command deck only. No price, product or served page touched; no new site page; IndexNow not applicable. Handing nothing specific to the :43 operator beyond the standing cold-read second-pass sweep already in progress.
 ## 2026-10-04, PM check-in (11:1x cycle, 30 minute triage, previous work finished, two stale sibling deploy-gap citations found and closed)
 
 Previous work was finished: the keyword-demand gap tier re-read concluded genuinely exhausted and the operator pushed command-deck files only, no site change, no false claim. But STATUS.md itself was not current. Attached clean (fetch, unshallow, checkout main, ff-only merge, no conflict, 766 commits). Called `deploy_gap_count_problem()` and `status_deploy_verdict_problem()` directly against live `STATUS.md`/`ops/deploy-verdict.json` rather than citing the 10:4x check-in: `BLOCKER-001`'s own latest entry already correctly said 10 commits, 7 material, but the "Production Knowledge" paragraph and the "Immediate Focus" line, two of the three sibling sections `status_deploy_verdict_problem` is supposed to keep in sync, both still said 9 commits, 6 material, one correction cycle behind, the exact "source corrected, sibling never told" shape this file's own gates exist to catch (these two gates only check build_id presence and BLOCKER-001's own count, not every sibling's prose). Fixed both with a dated append, same convention every prior correction in this file uses, not a rewrite of the stale text. Re-verified directly after the edit: `deploy_gap_material_commits('fe383721c')` returns 10, `deploy_gap_count_problem` and `status_deploy_verdict_problem` both return ''. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `preflight.py` run fresh: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, confirmed genuinely stalled (138s elapsed, 3s CPU time) before killing it, not assumed passing past that point. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs.
@@ -50252,22 +50289,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
 
-## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, confirmed finished, nothing new unblocked)
-
-NEXT FOR THE OPERATOR: nothing new to start. Same conclusion the :40 cycle reached four minutes before this one, now independently re-derived rather than cited: `cold_read_ledger.py --next` shows 196 of 196 files ledgered, `--stale` shows 0 entries needing a re-read; the standing second-pass sweep through already-ledgered tiers is the only remaining lane, and it is already in progress.
-
-Previous work was finished and verified, not assumed. Attached clean (fetch, unshallow, checkout main, ff-only merge, 94 commits, no conflict). Working tree was clean before I started and `main` was already pushed. `preflight.py` run fresh: 0 FAIL printed through every gate before `gate_tests`, confirmed genuinely stalled there (no new gate output for 90s) before accepting the timeout, same documented sandbox limit every prior cycle has hit, not a new regression. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. Issue #40 (the 5-day usage-limit stall) already has its recovery evidence posted by an earlier cycle today; `list_triggers` now shows all three Routines firing on schedule, including this one, so the stall has not recurred.
-
-Did not find a new small closing item this slot: checked `OWNER-ACTIONS.md`'s recent entries and the deploy-gap citations, both already current per the preceding cycle's own re-derivation. Regenerated the command deck as required every run.
-
-Pushed to main. Command deck only. No price, product or served page touched; no new site page; IndexNow not applicable.
-
-## 2026-10-09, PM check-in (30 minute triage, confirmed finished, nothing new unblocked)
-
-Attached clean (fetch, unshallow, checkout main, ff-only merge onto origin, 101 commits, no conflict). Working tree was clean before I started and main was already pushed (5c14a8a37, matching the dashboard's own last-regenerated commit, so the deck was not stale).
-
-Previous work was finished and verified. preflight.py run fresh: 0 FAIL printed through every gate before gate_tests, which stalled at the same point for over 10 minutes with no new output before I killed it and accepted the timeout, the same documented sandbox limit every prior cycle has hit today, not a new regression. GitHub: 9 open issues unchanged, all decision or blocked-on-art, none waiting on anyone but Phil. cold_read_ledger.py --stale: 0 stale entries; --next confirms 196 of 196 files ledgered, same exhausted state the prior cycle found. STATUS.md open claims: none. OWNER-ACTIONS.md: reviewed today, unchanged.
-
-Did not find a new small closing item this slot: no FAIL to fix, no stale claim, no unledgered file, no non-Phil-blocked issue. Regenerated the command deck as required every run.
-
-Pushed to main. Command deck only. No price, product or served page touched; no new site page; IndexNow not applicable. Handing nothing specific to the :43 operator beyond the standing cold-read second-pass sweep already in progress.
