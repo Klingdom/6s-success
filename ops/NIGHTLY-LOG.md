@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, previous work finished and verified, nothing new unblocked)
+
+**Attach:** checkout arrived shallow and detached, but HEAD already sat at `origin/main`'s own tip (`0123f7d0d`), so `fetch --unshallow` plus `branch -f main HEAD` attached clean with no unrelated-history reset needed this time. Working tree was clean.
+
+**Step 1/2, read state:** `git log -12`, the top of `ops/NIGHTLY-LOG.md`, `BACKLOG-2026-09-07.md` sections 2 through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s Open claims (empty), and the 9 open GitHub issues (unchanged: all `decision` or `blocked-on-art`, 0 open PRs). Every "Now" row in the backlog (A1-A24, B1-B9) is struck through, Done, or Phil-gated; section 5 is correctly HOLD; section 6 is owner gates. `python ops/cold_read_ledger.py --stale` reports 0 stale. CI direct on GitHub: run 1996 (`0afce3776`) `completed`/`success`; run 1997, on this cycle's own merge commit, still `in_progress` within its normal ~20 minute window, not stalled.
+
+**Previous work was finished and verified**, not merely committed: CI green on the last confirmed commit, backlog and STATUS.md both correctly show nothing unblocked and non-Phil-gated, cold-read ledger clean, no new GitHub activity since the last cycle.
+
+**One routine action, not a defect:** a concurrent session's merge commit (`0123f7d0d`) had hand-resolved a conflict in the three generated command-deck files rather than regenerating, which this file's own STEP 8 prefers. Diffed before and after: `ops/dashboard.py` only refreshed its own timestamp and correctly flipped "Working tree: uncommitted or unpushed" to "clean, in sync" now that the merge is in; commit/total counts moved by the expected small amount (540/5823 to 536/5825). No stale figure, no lost information from the hand-merge.
+
+**preflight.py, full, backgrounded with no external timeout, hit the documented `gate_tests` hang again** (387 test files now, up from the 21-22 of early September): 0 FAIL printed through every other gate, then 5+ minutes with zero new output once inside `gate_tests`, confirmed genuinely stalled rather than just slow, killed rather than left running past this slot. Ran the standing substitutes instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 documents clean, mobile `npm test` all 4 suites (`importProgress`, `pickCard`, `eventLog`, `videoLink`) passing. Also ran the 5 test files most relevant to this cycle's own read directly rather than only citing the substitutes: `test_dashboard_dead_links.py`, `test_dashboard_prev_state_fallback.py`, `test_carry_forward.py`, `test_owner_inbox.py`, `test_media_capability.py`, all pass. Reporting `gate_tests` as unchecked this cycle, not passing: a run that could not look must say so.
+
+**No new defect found to fix.** Did not start the second-pass cold read myself; that lane is hours-sized, not a 30 minute slot's work.
+
+**Went well:** attaching cleanly without a reset for once; killing the stalled gate rather than waiting out the slot on it, and reporting it unchecked rather than silently treating the earlier fast/substitute passes as a full green.
+
+**Did not go well:** `gate_tests` is now slow enough (387 files) that it did not finish in this slot either of the two times tried today; worth the next cycle with headroom confirming whether it completes at all backgrounded past 10-15 minutes, since one earlier cycle today did get it to finish.
+
+**Handing to the operator (:43):** continue the second-pass cold read at `build_standards.py`, confirmed still correct and current (alphabetically first of the 24 files in `ops/cold-read-ledger.json` dated `2026-09-30`, the oldest remaining tier; nothing has touched that tier since the handoff naming it). Also worth a longer, unhurried run of `preflight.py --deep`/full `gate_tests` if the operator's hourly slot has more room than this one did.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (regenerated, timestamp and working-tree status only), command deck, this log entry. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-09, scheduled operator cycle (re-verified and re-ledgered ops/dashboard.py, the one stale cold-read entry preflight itself was flagging)
 
 **Did:** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, fast-forwarded cleanly onto `b39d01fe2`, no conflict. Read `BACKLOG-2026-09-07.md` (sections 0-7, every Now row done, HOLD or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top of `ops/NIGHTLY-LOG.md`. GitHub: 9 open issues, all `decision`/`blocked-on-art`, none actionable but Phil's; issue #40 (the usage-limit stall) already found resolved and commented twice by an earlier cycle today, nothing further to add. `inbox_agent.py --apply`: no mail credential, reported unchecked, not clean.
