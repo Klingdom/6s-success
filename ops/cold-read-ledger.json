@@ -8,8 +8,8 @@
     },
     "affiliate.py": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (476 lines). Checked all 9 call sites of A.disclosure()/A.retailer_link() across build_kit_page.py (1) and zone_supplies.py (4, plus product_links.py's read-only uses): every has_links=True call is correctly gated behind an any(kind) check first, so the has_links vs has_amazon conflation this file's own docstring already records as a fixed historical bug is not currently live anywhere. Checked the AFF tracking-parameter regex against every network in affiliate-accounts.json (10 programmes, CJ/Impact/Rakuten/in-house): all their known redirect domains (anrdoezrs, linksynergy, etc) are already in the regex, so a future approval would still be caught by the disclosure-placement and no-affiliate-in-documents checks without a code change. Ran affiliate.py --check (165 delivered documents clean, every disclosed page orders correctly) and --status (0 of 10 programmes approved, 0 of 123 products linkable) directly against the live catalogue rather than trusting a prior citation. No live defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "affiliate_report.py": {
       "status": "clean",
@@ -33,8 +33,8 @@
     },
     "b9_claims.py": {
       "status": "clean",
-      "date": "2026-09-29",
-      "note": "Cold-read 2026-09-29 scheduled operator: read in full. Claim/release/stale-timeout logic correct, next_room() sorts smallest-zone-count-first as documented, cmd_claim rejects unknown room names and double-claims by a different note. Live ops/b9-claims.json confirms all 20 rooms now diagnosed and every claim released as done, consistent with B9's closure this same day. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full (claim/release/stale logic), no defect; B9 itself fully closed so file is currently dormant but correct"
     },
     "backup_analytics.py": {
       "status": "clean",
@@ -178,8 +178,8 @@
     },
     "build_image_prompts.py": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified after the 09-17 comment-only edit fixing the stale nine-image count to six; no logic change, TIER0 list and load() unaffected."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
@@ -463,8 +463,8 @@
     },
     "eventLog.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (65 lines): logEvent (append, cap at MAX_EVENTS=300, oldest dropped via slice from the end), summarize (counts by type + span), formatForDisplay (human text, not JSON, by design per its own comment). Confirmed wired: App.js imports logEvent and formatForDisplay and uses both at their call sites (event capture, diagnostics screen). npm test's eventLog cases (empty log, cap enforcement, formatForDisplay on empty vs populated) all pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "experiments.py": {
       "status": "clean",
@@ -493,8 +493,8 @@
     },
     "format.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (23 lines). Single string builder, zonesHoldingLine, extracted after a real 2026-09-05 JSX-whitespace bug (two adjacent text nodes collapsed with no space). Confirmed wired: App.js imports it and uses it at the one call site (finish screen note). npm test's format.js cases (singular/plural/zero, word-boundary check) all pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "generate_card_art.py": {
       "status": "fixed",
@@ -538,8 +538,8 @@
     },
     "importProgress.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (81 lines). parseBackup validates and drops non-finite/non-positive timestamps before mergeDone ever sees them; mergeDone additionally sanitizes both sides itself (sanitizeTimestamp) so it cannot be poisoned even by a caller that skips parseBackup, matching its own comment's stated goal. Falls back to rawA rather than undefined when both sides are invalid, correctly avoiding JSON.stringify silently dropping the key. Confirmed wired: App.js imports both and uses them at the one backup-restore call site. Ran the test directly (node lib/importProgress.test.js): 18/18 cases pass, including the corruption/poisoning edge cases the comments describe. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "import_chapter_svgs.py": {
       "status": "clean",
@@ -583,8 +583,8 @@
     },
     "launch_plan_pdf.py": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified the 09-26 cards_total None-handling fix (part of the gate_dashboard_deck_readiness fail-then-pass commit aed56b96). S['cards_total'] is only read after S.get('cards_total') is not None, so the direct-index access is safe; falls back to 'an unmeasured' text otherwise. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "ledgerium_price_check.py": {
       "status": "clean",
@@ -643,13 +643,13 @@
     },
     "photos.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (161 lines). IndexedDB wrapper for Home Quest before/after photos: no network call anywhere in the file, matches its own privacy claim (CLAUDE.md household-photo privacy rule). Cross-checked the objectUrl()/releaseUrls() blob-URL-leak invariant this file's neighbour quest.js documents: confirmed the 2026-09-2x fix is real and live, and actually stronger than the log described it (renderKeep() now calls releaseUrls() unconditionally at its own top, line 611, so all 5 call sites are covered by construction rather than by each caller remembering to call it). tx()'s undefined-vs-truthy-IDBRequest guard (line 70) matches its own comment's described past bug. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "pickCard.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (51 lines). pickCard walks corpus in order, skips done, prefers an unskipped card but falls back to the first unfinished-but-skipped one so the player is never left with nothing (matches its own comment); returns null only when every card is done. isCardVisible and cardId both simple and correctly composed. Confirmed wired: App.js imports all three and uses them at multiple call sites (card selection, progress calc, visibility, per-step done check). npm test's pickCard cases (including the fallback-when-all-skipped edge case) all pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
       "status": "clean",
@@ -733,8 +733,8 @@
     },
     "room_image_variants.py": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: re-verified the 09-15 PAGE_PHOTOS/PAGE_OUT extension for hand-maintained page photos. made/skipped counters initialized once before both loops, idempotent mtime check correct, output paths (site/assets/img/w/<stem>-<w>.<ext>) match what home/about/method/consulting/book/shop/bundle/index.html actually reference. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "root_causes.py": {
       "status": "clean",
@@ -768,8 +768,8 @@
     },
     "shop.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (114 lines). Renders the catalogue grid and builds the category filter row from window.CATALOG rather than hardcoded buttons (a real 2026-09-22 fix for retired-SKU categories going stale is documented and confirmed still correct: CAT_ORDER has no Situation Kits/Area Bundles). buildFilters() replaces the row then the button NodeList is recaptured (a documented past bug: stale detached-node handlers). Verified script load order on site/shop.html (data.js, site.js, shop.js) matches this file's own dependency comment. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "shrink_sample.py": {
       "status": "clean",
@@ -788,8 +788,8 @@
     },
     "social_pin_fit.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Cold-read in full (76 lines), PM check-in 2026-09-27 13:4x. Fits a social-pin card's checklist/picture to canvas via bounded shrink-type/drop-trailing/remove-art fallback chain, then records the steps taken on data-fit/data-steps for ops/build_social_pins.py's DOM-dump reader. Traced every branch: art-present path (drop purpose line, shrink art height, shrink type, drop up to 1 trailing item, then remove art entirely and rebuild the full item list from #full-items if still overflowing) and the no-art/post-removal fallback (shrink type, drop up to 99 trailing items down to a floor of 3). All three while-loops are bounded (height/font-size floors, maxDrop counts) so none can spin. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "specific_articles.py": {
       "status": "clean",
@@ -878,8 +878,8 @@
     },
     "videoLink.js": {
       "status": "clean",
-      "date": "2026-09-27",
-      "note": "Read in full (26 lines) plus its 8-case test (videoLink.test.js), ran the test directly (node lib/videoLink.test.js, all pass including the live corpus check: 12 of 114 zones carry a usable video id). Confirmed the export is actually wired: App.js imports videoUrl and calls it against card.zone at the one call site that renders the zone's watch link. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "video_narrated.py": {
       "status": "clean",
