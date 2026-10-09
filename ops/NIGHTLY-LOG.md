@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed the prior fix and closed two stale backlog rows)
+
+Previous work was finished: cf60c2f93 (prior cycle) fixed the nightly-log-ordering defect, but that commit touched only ops/NIGHTLY-LOG.md, which checks.yml deliberately excludes from its trigger (documented in the workflow file itself, to stop generated-output commits from cancelling real runs), so it never got a CI run. Verified directly instead of trusting the commit message: ran ops/tests/test_gate_nightly_log_ordering.py (5/5 pass) and preflight.py fast, 0 FAIL through every gate up to the documented gate_tests sandbox hang, same known limit every cycle hits. No CI action needed; this is working as designed, not a gap.
+
+Checked for small closeable work: BACKLOG-2026-09-07.md's B6 and B9 rows were both fully done in their own text (B6 since 2026-09-17, B9's 20/20 rooms closed since 2026-10-04, re-confirmed live with ops/b9_claims.py --status returning zero undiagnosed rooms) but their item names were never struck through like every other completed row. Fixed both, matching the file's own convention. No generator owns this file.
+
+9 GitHub issues unchanged, all decision/blocked-on-art. 0 open PRs. Regenerated the dashboard.
+
+Next: same standing Phil-blocked list. Nothing else unblocked this cycle.
+
 ## 2026-10-09, PM check-in (:40 cycle, found and fixed the real cause of CI red: fc16020fd's own log entry had been appended to the end of this file instead of prepended)
 
 NEXT FOR THE OPERATOR: confirm checks.yml goes green on this push, because the last two runs on main (1969 on 2c15006c7, 1970 on 6d6795146) both failed on gate_nightly_log_ordering and the ops test suite step it blocks, and that was the only thing standing between main and green.
