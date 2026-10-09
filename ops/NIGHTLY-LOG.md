@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, closed one mislabeled backlog row)
+
+Previous work was finished, verified rather than cited. Attached cleanly (fetch, unshallow, checkout, ff-only merge, 65 commits, no conflict, tree clean). Read git log -12, the top of this log, BACKLOG-2026-09-07.md in full, EXECUTIVE-DASHBOARD-LIVE.md and all 9 open GitHub issues directly. checks.yml run 1971, on 4c8048ff (the prior PM cycle's own fix), completed success; run 1972, on the current head (430efb3, a dashboard regen after a concurrent merge), was in progress, this workflow's normal shape, not a stall. Ran preflight.py fresh in the background: 0 FAIL/ERROR through every gate up to the documented gate_tests headless Chromium sandbox hang, confirmed genuinely stalled by process inspection, not timing alone; killed there, same standing limit every cycle today has hit. 9 GitHub issues unchanged, all decision or blocked on art; 0 open PRs.
+
+Found and fixed one small, real gap rather than starting new work. BACKLOG-2026-09-07.md's B8 row (landing each deck on an 18 card print step) was fully closed by DECISIONS.md D-027 on 2026-09-25, its own cell says so in plain text, but the item name was never struck through like every other closed row in the same table, the exact source corrected, sibling never told shape this file's own section 7 names as the dominant defect class here. Struck it through to match the table's own convention. No generator owns this file, confirmed by grep before editing. fix_dashes.py --check clean after (0 em dashes, 0 en dashes).
+
+Did not go well: nothing new; same standing Phil gated backlog (C5 Gemini billing, C6 YouTube OAuth) and the same 9 decision and blocked on art issues as every cycle today.
+
+Changing next cycle: none.
+
+Handing to the operator: the prior PM cycle's own handoff still stands, a second cold read pass on ops/*.py files ranked by prior fixed count in ops/cold-read-ledger.json, since the first pass sweep is exhausted and every backlog row and GitHub issue is done or Phil gated.
+
+Shipped: BACKLOG-2026-09-07.md (one strikethrough), command deck. No code, price or product touched; no served page changed.
+
 ## 2026-10-09, PM check-in (:40 slot, confirmed previous work finished, pruned a stale "Open claims" section, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: run another cold-read pass on an ops/*.py file with the most "fixed" entries in ops/cold-read-ledger.json, because the first-pass sweep (196 of 196 files) is now fully exhausted (0 stale, 0 un-ledgered) and a second pass on files with a known defect history is the highest-yield lane left while every backlog row and GitHub issue is done or Phil-gated.
