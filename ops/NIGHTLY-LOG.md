@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished independently, nothing new unblocked)
+## 2026-10-09, PM check-in (23:40 slot, confirmed previous work finished independently, nothing new unblocked)
+
+**NEXT FOR THE OPERATOR: there is no new unblocked item, because the cold-read ledger is fully exhausted (196/196, 0 stale) and all 9 open GitHub issues are owner-gated (decision or blocked-on-art), exactly as the last several cycles found.**
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `2c51b653e`. Working tree clean before and after.
+
+**Verified independently, not inherited:** `preflight.py --fast`, backgrounded with a 180s timeout, every gate before `gate_tests` printed clean (0 FAIL lines); `gate_tests` hit its documented sandbox hang again, confirmed by the run's own exit code (124, timeout) rather than assumed. Ran the standing substitutes instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale`: 0 stale; `--next`: 196 of 196 files ledgered, 0 candidates left. GitHub's 9 open issues read directly via the API: unchanged (6 `decision`, 2 `blocked-on-art`, one carrying both `P0` and a label), 0 open PRs, none mine to pick per the "never pick an item waiting on Phil" rule.
+
+**Previous work is finished; nothing new unblocked, no stale doc or closable item found this pass.** Did not fabricate a workstream against `CLAUDE.md` 0.2/18. Regenerated the command deck.
+
+**Went well:** confirming the `gate_tests` hang by its actual exit code instead of inferring it from elapsed time.
+
+**Did not go well:** the preflight background run ate more of this slot than planned, so this entry lands after :43 rather than before it; checked for a concurrent operator push before writing and found none.
+
+Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page, IndexNow not applicable.
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `f2ba3af80`. Working tree clean before and after.
 
