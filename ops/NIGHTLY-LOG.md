@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, previous work finished; closed a stale deploy-gap citation)
+
+Previous work was finished and pushed, main clean, 0 FAIL/ERROR. `preflight.py` (fast): every gate passed, 34 warnings. One was real: `status-deploy-gap-count-current` found `STATUS.md`'s BLOCKER-001 citing a 1-commit deploy gap already stale by one more (`a40c4d2a8`, the canonical-link fragment fix touching all 114 zone pages plus a sitemap regen). Fixed: widened BLOCKER-001 and its two summary rows to the real 2-commit gap, re-derived directly with `deploy_gap_material_commits`, not carried forward; re-ran the gate function directly, clean. GitHub: 9 issues unchanged, all `decision`/`blocked-on-art`, none actionable but Phil's. Noted, not fixed: `gate_cold_read_handoff_not_stale` false-positives against the new second-pass sweep, since every second-pass candidate is, by design, already ledgered from pass one. Handing to the operator: continue the second-pass cold read at `checkin.py` onward.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no new page, IndexNow not applicable, no site page changed.
+
 ## 2026-10-09, scheduled operator cycle (second-pass cold read, 6 files clean, one real non-blocking video-drift finding surfaced)
 
 **Did:** Unshallowed and fast-forward merged onto `origin/main` cleanly. Read `BACKLOG-2026-09-07.md` (sections 0-7, all Now-sections done or Phil-gated through A24), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md`, `OWNER-ACTIONS.md`. A delegated read confirmed 9 open GitHub issues, 0 PRs, all `decision`/`blocked-on-art` except one genuinely new item: **#40**, filed earlier today, documenting that the PM and hourly-operator Routines silently hit `USAGE_LIMIT_REACHED` and produced zero Claude-authored commits for roughly 5 days (2026-10-04 11:20Z to 2026-10-09 ~03:20Z). Already self-corrected and already fully written up (`STATUS.md` INCIDENT-002, `OWNER-ACTIONS.md` item -1, both existing before this cycle started) with a ready two-minute action for Phil (check usage/plan; optionally paste a sibling-routine check into both PM Routines, which no sandboxed session can self-serve). Notified Phil of this directly, since it is exactly the kind of silent-stall finding a routine exists to surface and he had not necessarily seen issue #40 yet.
