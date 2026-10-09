@@ -418,13 +418,13 @@
     },
     "checkin.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (95d3c60eb, fix the deploy-behind warning silently inert on every sandboxed run; bcf6fa1b0, throttle to roughly hourly). Reran ops/tests/test_checkin.py: 29 assertions pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, ran it live, every pure measure verified against ground truth (repo_product_count, commits_24h_count, media counts, verify_media_delivery parsing). No defect."
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, this cycle: added last_touched()/stale_entries() and the --stale CLI flag, closing the exact gap this re-verification pass exists to find (a ledger entry's clean/fixed date silently outliving the file's own git history, as this cycle found live in ops/deploy_freshness.py). New ops/tests/test_cold_read_ledger_stale.py (7/7 cases), new preflight gate gate_cold_read_ledger_entries_not_stale (a WARNING, matching gate_cold_read_handoff_not_stale's own precedent), fail-then-pass proved directly. No other defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, independently recomputed the 196-candidate set and the 0-stale verdict, both match exactly. No defect."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -433,8 +433,8 @@
     },
     "corpus_posts.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (db106800b, a live false-claim/misclassification fix; ac631cf48, give Bluesky the drafting pipeline). Reran ops/tests/test_corpus_posts.py: 36/36 cases pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, ran --stats, verified FREE_THROUGH_CHAPTER against the real shipped sample filename, no duplicate ids in corpus-rotation.json. No defect."
     },
     "crawl_report.py": {
       "status": "fixed",
@@ -448,18 +448,18 @@
     },
     "deploy.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator cycle: Phil's own f04fe151a added classify_publish() (four-way build-state classification: building/ready/failed/none/unknown, replacing one-size-fits-all retry advice that told an operator to retry a build that had already failed) plus 14 new test cases, all passing. Clean, well-tested, no defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, --check correctly reports no deploy key in this sandbox, classify_publish() tested directly with synthetic inputs, HOST IP consistent across 4 other files. No defect."
     },
     "deploy_freshness.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 (the ledger's own oldest-first re-verification lane, which surfaced the gap this cycle's own gate_cold_read_ledger_entries_not_stale now catches): the 2026-09-25 clean note was stale. A real defect landed and was fixed 2026-09-29 (Phil's own 46b111b56, 'Our own monitoring made 94% of the redirects...'): the probe URL was built from the local filename and asked production for the .html form of a zone page, drawing 2,270 self-inflicted redirects in 8 days. canonical_path() now strips .html for /rooms/ and /zones/ only. Reran ops/tests/test_deploy_freshness.py: 6/6 cases pass. A concurrent 11:4x PM check-in re-verified the same file the same minute by running --check live (correctly UNKNOWN, no egress from that sandbox either); its note is folded in here rather than kept as a separate, less complete entry, since it did not catch the 2026-09-25-to-2026-09-29 source change this note documents. No further defect found on this pass."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: DISCOVERY_PAGES' comment claimed these pages reference every fingerprinted asset the site ships; site/downloads/assets/book.css was the one that didn't, referenced only from the downloads/ sample page at a bare page-relative href that this file's own SITE-root join resolved to the wrong, nonexistent path. Added resolve_asset_ref() (resolves per the referencing page's own directory) and the one missing discovery page; fixed the identical bug in preflight.py's gate_checker_scope (shared resolver now, plus it scans downloads/ html, which all_pages() excludes for unrelated reasons). Fail-then-pass proved in both ops/tests/test_deploy_freshness.py (new cases) and ops/tests/test_gates.py (new checker-scope case)."
     },
     "diagnosis.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "ran against real content/manual/source/content.json: diagnosis present on 114 of 114 zones, every zone passes schema; module logic read in full, no defect found"
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: IMPERATIVE_FIRST_WORD was still built from Kitchen alone (the only deck when this file was written); B9 has since authored 19 more room decks and the set was never re-derived. leave/say/read (and 105 other genuine imperative openers across all 20 decks) silently passed as observable victories. Rebuilt the set from all 20 decks' real ACTION CARD steps, hand-filtered to exclude declarative/noun-fragment openers and the one genuinely ambiguous word (dry) that is a state adjective in the one place it matters (the Dry basin... example this file's own docstring protects). Verified against all 289 real victory_conditions across all 20 decks plus all 114 live first_15.victory fields: zero newly rejected. New cases 10-11 in ops/tests/test_diagnosis_schema.py, fail-then-pass proved against the reverted set."
     },
     "eventLog.js": {
       "status": "clean",
@@ -518,8 +518,8 @@
     },
     "hazard_icons.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "--check: 252 of 252 hazard entries covered by 5 drawn icons, no missing category; confirmed wired into ops/build_zone_pages.py and actually rendered (class=\"hz\") in all 114 shipped site/zones/*.html pages, not just the generator self-test"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): ran it live, 252 of 252 hazard entries covered, the module's own stale historical counts in its docstring are explicitly self-documented as stale-by-design. No defect."
     },
     "hourly_brief.py": {
       "status": "clean",

@@ -56,9 +56,20 @@ only moment it is cheap.
 
 ## Open claims
 
-- **2026-10-09, scheduled operator cycle:** second-pass cold read, 2026-09-30 ledger tier, `checkin.py` through `hazard_icons.py` (7 files). In progress.
+**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+second-pass cold read of `checkin.py` through `hazard_icons.py` (7 files,
+2026-09-30 ledger tier) landed, two real defects found and fixed (see this
+date's `ops/NIGHTLY-LOG.md` entry): `ops/diagnosis.py`'s `IMPERATIVE_FIRST_WORD`
+set was still built from the Kitchen deck alone from before B9 authored 19
+more room decks, so a victory opening with a genuine imperative unique to
+another room ("Leave...", "Say...", "Read...", 105 more) silently passed as
+observable; and `ops/deploy_freshness.py`'s `DISCOVERY_PAGES` list did not
+cover `site/downloads/assets/book.css`, and the sibling coverage gate in
+`ops/preflight.py` (`gate_checker_scope`) could not have caught it either,
+since it resolved every asset reference at the wrong (SITE-root) path. Both
+fixed with fail-then-pass proof; full account in the nightly log.
 
-**None currently open before this.** Released 2026-10-09, scheduled operator cycle: the
+Earlier, released 2026-10-09, scheduled operator cycle: the
 `check_ledgerium.py` through `check_video_standard.py` claim landed clean,
 no defect in any of the 6 files, one real non-blocking finding (15 rendered
 zone videos drifted from the dialect fix, already correctly WARNed by

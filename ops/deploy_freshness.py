@@ -47,6 +47,7 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -67,6 +68,14 @@ PROBES = [
 # ops/preflight.py's gate_checker_scope can check this list still covers every
 # fingerprinted asset the site ships: the list going stale as the site grows is
 # how quest.js came to be uncompared for months.
+#
+# Not actually every fingerprinted asset, corrected 2026-10-09: this comment
+# used to claim it. site/downloads/assets/book.css is fingerprinted
+# (ops/build_sample_html.py writes it, ops/fingerprint_assets.py stamps it)
+# and was referenced by no page in this list, so it was never compared to
+# production at all, and the sibling gate below could not catch the gap
+# either, because os.path.exists() checked it at the wrong path (see
+# resolve_asset_ref()). Added the one page that references it.
 DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html",
                    # fonts.css used to be pulled in on every page through an
                    # @import inside site.css, which this list never had to
@@ -79,7 +88,40 @@ DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html",
                    # instead of site.css. invest.html is the one of those
                    # still in site/ outside content/book, so it is what
                    # keeps fonts.css itself inside this list's coverage.
-                   "/invest.html")
+                   "/invest.html",
+                   # The only page that references site/downloads/assets/
+                   # book.css. Its href is "assets/book.css", relative to
+                   # THIS page's own directory (site/downloads/), not to
+                   # site/ root like every other page above; see
+                   # resolve_asset_ref().
+                   "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html")
+
+
+def resolve_asset_ref(page_rel: str, href: str) -> str:
+    """The site-relative path (no leading slash) the asset `href` actually
+    names, resolved against the page it was found on, the way a browser
+    resolves a relative URL.
+
+    Found 2026-10-09: every caller of this file's own asset regex used to
+    join the raw match straight onto SITE, which is only correct for a page
+    sitting directly in site/ (every DISCOVERY_PAGES entry, until now). The
+    one page one level deeper, the downloads/ sample, writes a bare
+    "assets/book.css" href that means downloads/assets/book.css on disk, not
+    site/assets/book.css; the old code looked for the latter, found nothing,
+    and silently treated the asset as uncovered rather than as what it
+    hashes to. `href` may also carry a leading "../" (a zone or room page,
+    not currently in DISCOVERY_PAGES, would), which this resolves the same
+    way.
+    """
+    page_dir = os.path.dirname(page_rel.lstrip("/"))
+    return os.path.normpath(os.path.join(page_dir, href)).replace(os.sep, "/")
+
+
+# Captures the href/src text itself, including any leading "../" segments,
+# so resolve_asset_ref() can resolve it against the page it was found on
+# instead of assuming every page sits directly in site/ (see that function).
+ASSET_REF = re.compile(
+    r'((?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=([0-9a-f]+)')
 
 
 def digest(path: str) -> str:
@@ -138,17 +180,18 @@ def check() -> dict:
     # are dead, so "production matches this repository" could have been printed
     # with the Quest arbitrarily out of date.
     #
-    # These four pages between them reference every fingerprinted asset the
-    # site ships. A page that cannot be fetched is skipped rather than fatal,
-    # and the probe line below says how many were actually read.
+    # These pages between them reference every fingerprinted asset the site
+    # ships (gate_checker_scope in ops/preflight.py fails if a new one does
+    # not). A page that cannot be fetched is skipped rather than fatal, and
+    # the probe line below says how many were actually read.
     seen, read_pages = {}, []
     for rel in DISCOVERY_PAGES:
-        body = home if rel == "/" else fetch(BASE + rel)
+        body = home if rel == "/" else fetch(BASE + urllib.parse.quote(rel))
         if body is None:
             continue
         read_pages.append(rel)
-        for path, hsh in re.findall(
-                r'(assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=([0-9a-f]+)', body):
+        for href, hsh in ASSET_REF.findall(body):
+            path = resolve_asset_ref(rel, href)
             seen.setdefault(path, hsh)
 
     for path, hsh in sorted(seen.items()):
@@ -164,7 +207,7 @@ def check() -> dict:
         # that already differ, so this costs nothing on a current deploy.
         live_bytes = repo_bytes = None
         if not same:
-            body = fetch(BASE + "/" + path)
+            body = fetch(BASE + "/" + urllib.parse.quote(path))
             if body is not None:
                 live_bytes = len(body.encode("utf-8", "replace"))
             if os.path.exists(local):

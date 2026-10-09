@@ -127,13 +127,53 @@ def main() -> int:
     if bad:
         fails.append("real victory condition(s) wrongly flagged: %s" % bad)
 
+    # 10. IMPERATIVE_FIRST_WORD must cover every ACTION CARD step's opening
+    #     imperative across all 20 decks, not just Kitchen (the sole deck
+    #     when this file was written). Second-pass cold read, 2026-10-09:
+    #     "leave", "say" and "read" open real imperative steps in other
+    #     rooms' decks and were silently absent, so a victory starting with
+    #     any of them passed as observable when it was really an
+    #     instruction. These three are a representative sample, not the
+    #     whole gap; the point is the mechanism, not the exact word list.
+    for bad_victory in ("Leave the counter clear and wiped.",
+                        "Say the drawer is done.",
+                        "Read the label twice."):
+        if diagnosis.victory_is_observable(bad_victory):
+            fails.append("instruction-shaped victory wrongly accepted: %r"
+                          % bad_victory)
+
+    # 11. Every real ACTION CARD victory_condition across all 20 room decks
+    #     still passes, including the one case ("Dry basin...") that uses a
+    #     word ("dry") imperative elsewhere in the same corpus as a state
+    #     adjective here. Case 9 above only covers Kitchen; this covers the
+    #     other 19 decks B9 built, so a future word added to the set cannot
+    #     silently break another room's already-shipped victory text.
+    import glob
+    all_decks = sorted(f for f in glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json"))
+                        if "batch-" not in f)
+    all_real_victories = []
+    for deck_path in all_decks:
+        deck = json.load(open(deck_path, encoding="utf-8"))
+        all_real_victories.extend(
+            c["victory_condition"] for c in deck["cards"]
+            if c["type"] == "ACTION CARD" and c.get("victory_condition"))
+    if len(all_real_victories) < 200:
+        fails.append("expected >= 200 real victory conditions across all 20 "
+                      "decks, found %d" % len(all_real_victories))
+    all_bad = [v for v in all_real_victories if not diagnosis.victory_is_observable(v)]
+    if all_bad:
+        fails.append("real victory condition(s), some room outside Kitchen, "
+                      "wrongly flagged: %s" % all_bad)
+
     if fails:
         print("FAILED %d case(s):" % len(fails))
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED %d cases (root causes: %d known, %d real victories checked)"
-          % (10, len(diagnosis.root_causes.BY_ID), len(real_victories)))
+    print("PASSED %d cases (root causes: %d known, %d Kitchen victories, "
+          "%d victories across all 20 decks checked)"
+          % (12, len(diagnosis.root_causes.BY_ID), len(real_victories),
+             len(all_real_victories)))
     return 0
 
 
