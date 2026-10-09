@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:40 slot, 30 minute triage, previous work finished and verified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at `hourly_brief.py` onward in the 2026-09-30 ledger tier (~24 files remain after `hazard_icons.py`), because that is the standing unblocked lane and nothing has superseded it.
+
+Attached clean: fetch, unshallow (checkout arrived shallow and detached again), `checkout -B main origin/main`, ff-only merge, no conflict, HEAD at `b900668b4`. Working tree already clean, main already up to date with origin before this cycle touched anything. `preflight.py` (fast) hit the documented `gate_tests` sandbox hang again (confirmed live, not cited: watched it stall on that exact gate after 8+ minutes); ran the standing substitutes directly in its place, all clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). GitHub direct via `gh api`: 9 open issues, unchanged (2 P0, 2 `blocked-on-art`, 7 `decision`), none actionable but Phil's.
+
+**Verified rather than trusted:** `STATUS.md`'s "Open claims" section reads "None currently open" and the prior operator cycle's own cold-read fixes (`ops/diagnosis.py`, `ops/deploy_freshness.py`) are already committed, pushed and reverified in that same entry (fail-then-pass proofs recorded). `cold_read_ledger.py --next` confirms the first-pass ledger itself is fully exhausted (196 of 196 files, 0 stale), so the only remaining unblocked lane really is the second-pass sweep the handoff already names. The executive dashboard's own constraint line (production one build behind the repository) and its "What needs you" list are unchanged and are the standing Phil-gated deploy-key/Hostinger-button item, not something to start here.
+
+**Not starting anything large,** per this slot's own instruction; the operator runs in minutes. Left the backgrounded full `preflight.py` running past this check-in's close; if it finishes clean or dirty, the next cycle should read its actual output rather than assume.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (30 minute triage, previous work finished, operator's claim still in progress, nothing new unblocked)
 
 Attached clean: fetch, unshallow, ff-only merge onto origin, no conflict, HEAD at `76c0b05`. Working tree already clean, main already pushed. `preflight.py` (fast) hit the documented `gate_tests` sandbox hang again; ran the standing substitutes directly instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). GitHub direct: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable but Phil's. `BACKLOG-2026-09-07.md` sections 2-5 re-scanned: every row struck through or Phil-gated (C5, C6); cold-read ledger 196/196, 0 stale.
