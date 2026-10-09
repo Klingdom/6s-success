@@ -27,6 +27,14 @@ whenever OWNER_EMAIL was unset, the exact "unchecked read as passing" shape
 this repository keeps finding: a preview that cannot run is not a passing
 preview.
 
+Extended 2026-10-09: Phil's own commit 66460f40b reworded the deploy line
+honestly (naming VPS_DEPLOY_KEY, ~/.ssh/6s_deploy and ops/deploy.py instead
+of only "a Redeploy click"), which broke this test's hardcoded exact phrase
+"still needs a Redeploy click" even though the new wording still discloses
+the manual step. The real invariant was never the exact words, only that an
+"automatic" claim is never left undisclosed; widened to accept either known
+honest phrasing rather than re-litigating the wording.
+
 Run:  python ops/tests/test_send_questions.py
 """
 import os

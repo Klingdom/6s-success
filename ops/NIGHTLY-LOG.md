@@ -2,6 +2,44 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle
+
+**Did:** Attached to main cleanly per the fixed STEP 0 procedure (unshallow, checkout, ff-only merge, no issues). Read BACKLOG-2026-09-07.md, GOALS.md, ROADMAP-2026-2029.md, CLAUDE.md and the last NIGHTLY-LOG entries via a delegated digest to avoid burning context on files that have grown to hundreds of KB. Confirmed every backlog item in sections 2-4 is done or Phil-gated, and all 9 open GitHub issues are `decision`/`blocked-on-art`. Checked `checks.yml` directly on GitHub (not just a local pass, per CLAUDE.md 0.3) and found `main` had been red across runs 1961-1964. Pulled the failed job log for run 1964: two test files failing. The GOALS.md keyword-citation half was already fixed by Phil's own `89c936d65` and confirmed by a concurrent PM `:40` cycle. The remaining failure, `test_send_questions.py`, was real and unfixed: it hardcoded the exact phrase "still needs a Redeploy click" as the only acceptable disclosure whenever "automatic" appears in the SITE STATUS email, and Phil's own commit `66460f40b` had correctly reworded that line to something more honest and complete ("still needs a hand: deploy.yml has no VPS_DEPLOY_KEY... or a session holding ~/.ssh/6s_deploy running ops/deploy.py") without updating the test. Widened the assertion to accept either known honest wording; the real invariant (an "automatic" claim is never left undisclosed) holds either way.
+
+**Verified:** Ran the fixed test directly (10/10 pass) and the other previously-failing test (`test_gate_goals_keyword_cluster_citation_current.py`, 7/7, confirming Phil's fix already covers it). Ran a fresh full local `preflight.py`: 0 FAIL printed through every gate reached before the documented `gate_tests` headless-Chromium sandbox hang (confirmed genuinely stalled, flat CPU time, same limitation prior cycles have hit at this exact point, not a new defect). Checked `list_triggers` directly: all three scheduled Routines (PM :10, PM :40, hourly operator) show their latest run `SUCCEEDED`, confirming issue #40's five-day `USAGE_LIMIT_REACHED` stall has genuinely cleared, not just been reported.
+
+**Went well:** Reading the actual CI job log instead of trusting a local pass is what surfaced the real, still-open failure; the GOALS.md half had already been claimed fixed by two different sessions, so checking which of the two reported failures was actually still open (rather than re-fixing something already fixed) avoided duplicate work.
+
+**Did not go well:** This is the second time in one afternoon a legitimately improved, more honest line of prose has broken a test that hardcoded the old exact wording. The fix is correct, but the pattern (honest rewording treated as a regression by a brittle string match) is worth naming so the next person who edits this file's prose does not get blocked by it again.
+
+**Changing next cycle:** None needed yet; this is the first occurrence of this specific brittle-assertion shape, not a third, so no new preflight gate was written per CLAUDE.md step 10b's own threshold.
+
+**Next:** Nothing in the backlog is unblocked and unclaimed; every remaining item is in `OWNER-ACTIONS.md`'s "Start here" table (usage-limit check, VPS_DEPLOY_KEY, Search Console verification, YouTube authorisation, Stripe business description), all genuinely needing Phil's own hand. The next session should re-check `checks.yml`'s conclusion on this push before starting anything else.
+
+No price or product touched. Pushed to main (`28bde8a30`); command deck regenerated and committed in the same push.
+
+## 2026-10-09, PM check-in (:40 cycle, 30 minute triage, found CI had actually been red for four straight commits, root-caused and fixed it, then found Phil had already pushed the identical fix seconds ahead)
+
+NEXT FOR THE OPERATOR: read run 1965's (`checks.yml`, commit `89c936d65`) actual conclusion before trusting `main` is clean again. It was still `in_progress` when this cycle ended. If it is green, there is nothing else queued: every backlog Now section is done or Phil-gated, all 9 GitHub issues are `decision`/`blocked-on-art`, and no new work is unblocked.
+
+**Previous work was NOT finished, and not in the narrow sense the :10 cycle's own handoff described.** That handoff asked only to read run 1962's conclusion. Checking it directly on GitHub instead of trusting a clean local pass (CLAUDE.md 0.3) showed run 1962 itself had completed `failure`, and so had the two runs after it (1963, 1964): `main` had been red across four consecutive commits, not merely "pending one check."
+
+**Root-caused rather than re-reporting.** Pulled the actual failed-job log for run 1963: one real gate, `gate_goals_keyword_cluster_citation_current`, failing on a genuine content drift, not a flake. `GOALS.md` cited the "cheap/budget/DIY" keyword cluster as 28 covered / 66 partial / 4 gap of 98; the committed `ops/keyword-demand.json`, refreshed by the operator's own hand-fired harvest earlier this cycle (04:06:01Z, after fixing the zombie cron run), now scores it 28 / 65 / 4 of 97 (one query left the cluster's autocomplete results between harvests). Re-derived the live numbers directly with `keyword_demand.cluster_counts()` rather than trusting the warning text, edited the sentence, and proved the fix with `ops/tests/test_gate_goals_keyword_cluster_citation_current.py` (7/7). `fix_dashes.py --check` clean on the edit.
+
+**Collided with Phil on push, and it was a genuine race, not a miss.** `ops/ship.py` refused with a real conflict on `GOALS.md`. Fetching showed commit `89c936d65`, authored by Phil (with Claude Opus, 1M context) at 2026-10-08T22:44:01-06:00, the same minute this cycle was mid-diagnosis, citing the identical 28/65/4/97 correction, worded better than mine (it names this as the third correction to the same sentence and explains why the total itself drifts harmlessly between harvests while the covered count has held steady for three). Diffed the two fixes to confirm they were substantively identical before standing down, then reset this session's local branch to `origin/main` rather than push a redundant duplicate commit on top of a real one. No further push needed from this cycle.
+
+**Verified rather than assumed:** `preflight.py` run fresh, unbuffered, in the background to the documented `gate_tests` sandbox hang, confirmed genuinely stalled (no new gate-name output for 200s) before accepting it, 0 FAIL printed through every gate before that point. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs.
+
+**Went well:** checking the actual GitHub conclusion rather than the narrower question the prior handoff posed, which is what surfaced three further red runs nobody had named yet; recognising a genuine same-moment collision and standing down cleanly instead of forcing a duplicate commit through.
+
+**Did not go well:** `main` sat red across four pushed commits (1958's zombie-run fix through 1964's merge) before anyone's fix actually landed; the gap between a gate failing and someone reading its actual log, rather than a clean local fast pass, is still the recurring shape.
+
+**Changing next cycle:** when a prior cycle's handoff names one specific check to read, read it, but also check whether the commits around it are clean; a named pending check is not evidence the ones before or after it are fine.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+No push from this cycle (the one local commit was a duplicate of Phil's own fix and was discarded via reset rather than pushed). No price, product or served page touched.
+
 ## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, previous work was one unconfirmed CI check away from finished, closed a stale ledger entry, left the actual CI read to the operator since it needs 15 more minutes)
 
 NEXT FOR THE OPERATOR: read run 1962's (`checks.yml`, commit `51c665461`) actual conclusion on GitHub before trusting the two owner-action gate fixes landed clean, exactly as the prior cycle's own log asked. It was still `in_progress` at 04:21 UTC (started 04:16, this check runs 20+ minutes in CI), so it should be done by your :43 slot.
