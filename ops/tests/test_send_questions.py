@@ -72,15 +72,34 @@ def main() -> int:
     if "OUT-OF-DATE" not in text:
         fails.append("stale case did not say so: %r" % text)
 
-    # 4. The exact regression: no path may claim deploys are automatic, and
-    #    every path must mention the real Redeploy-click mechanism.
+    # 4. The exact regression: no path may claim deploys are automatic without
+    #    also saying what is still manual, and naming at least one real way to
+    #    do it.
+    #
+    #    WIDENED 2026-10-09. This required the literal phrase 'still needs a
+    #    Redeploy click'. The block was reworded to say 'still needs a hand:
+    #    deploy.yml has no VPS_DEPLOY_KEY, so it is either your Redeploy click
+    #    in Hostinger, or a session holding ~/.ssh/6s_deploy running
+    #    ops/deploy.py', which satisfies the invariant better than the old
+    #    wording did and failed the build anyway. A test that pins one phrasing
+    #    of a true statement blocks improving the sentence, so it now checks
+    #    the substance: the caveat and at least one named mechanism.
     for verdict in ({"reachable": True, "verdict": "current"},
                      {"reachable": True, "verdict": "stale"},
                      {"reachable": False, "verdict": "unknown"}):
         with mock.patch.object(deploy_freshness, "check", return_value=verdict):
             text = "\n".join(sq.site_status_lines())
-        if "automatic" in text and "still needs a Redeploy click" not in text:
-            fails.append("deploy claim regressed for %r: %r" % (verdict, text))
+        if "automatic" in text:
+            caveat = ("still needs" in text or "does not make it live" in text)
+            mechanism = ("Redeploy" in text or "ops/deploy.py" in text)
+            if not (caveat and mechanism):
+                fails.append(
+                    "deploy claim regressed for %r: the text says deploys are "
+                    "automatic with%s%s: %r"
+                    % (verdict,
+                       "" if caveat else " no caveat that something is still manual",
+                       "" if mechanism else " no named way to actually do it",
+                       text))
         if "Redeploy click" not in text:
             fails.append("missing the real deploy mechanism for %r" % verdict)
 
