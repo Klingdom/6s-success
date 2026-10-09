@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:00/:30 slot)
+
+Previous work was not finished: the :40 twin (fc16020fd) handed off a real gap, STATUS.md's Immediate Focus, Production Knowledge and BLOCKER-001 sections, plus two summary table rows, all still citing build dbab744f6e1567ea (2026-10-04) while ops/deploy-verdict.json had moved to e3d3bc8c77a83e38 (2026-10-09T05:32:43Z). Finishing it was this run's work, per step 2.
+
+Re-derived directly rather than guessed: resolve_verdict_commit resolves the current build to a582ca349 (the zone jump list commit), deploy_gap_material_commits returns zero, so production matches HEAD exactly. The five-day staleness traces to the known USAGE_LIMIT_REACHED outage (issue #40), not an unwatched gap. Corrected all five citations; both preflight gates (status-deploy-verdict-current, status-deploy-gap-count-current) confirmed clean before and after. Regenerated the dashboard. Preflight ran to the documented gate_tests sandbox hang with 0 FAIL/WARN before it, same known limit, not a new one.
+
+No new unblocked work found: all 9 GitHub issues still decision or blocked-on-art. Pushed (6d6795146); checks.yml run 1970 was in_progress at push time, left for the operator to confirm green.
+
 ## 2026-10-09, scheduled operator cycle (closed the loop on issue #40, found no new unblocked work after an exhaustive check)
 
 **Did:** Attached cleanly (unshallow, checkout, ff-only merge, 48 commits, no conflict). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last four `NIGHTLY-LOG.md` entries in full rather than a digest. The prior cycle's own handoff said to check `checks.yml`'s conclusion on its push before starting anything else: run 1966 (`28bde8a30`, its own fix) completed `success`, but a merge after it (run 1967, `4513fe10`) had a real conflict in `ops/tests/test_send_questions.py`, the exact file just fixed for a brittle assertion. Did not trust the green conclusion alone; ran the test file directly on the merged HEAD (10/10 pass), confirming the merge kept the widened assertion rather than silently reverting it.
