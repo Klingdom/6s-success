@@ -507,8 +507,19 @@ def main() -> int:
         f"{named - got} zone(s) named in a situation kit do not exist in "
         "content.json. Fix the name or the kit ships short.")
 
-    print(f"\n  checked: no empty products, no duplicate SKUs, and all {named} "
-          "hand named zones resolve")
+    # AREAS names whole rooms, not individual zones, so it never went through
+    # the named==got check above. A mistyped room name silently resolves to
+    # zero zones from zones_of() with no error, the same risk already guarded
+    # for SITUATIONS; this closes the same gap for AREAS before it ships short.
+    missing_rooms = [(key, room) for key, _, _, rooms in AREAS for room in rooms
+                      if not zones_of(d, room)]
+    assert not missing_rooms, (
+        f"{len(missing_rooms)} area room(s) do not resolve to any zone in "
+        f"content.json: {missing_rooms[:4]}. Fix the name or the area ships "
+        "short.")
+
+    print(f"\n  checked: no empty products, no duplicate SKUs, all {named} "
+          "hand named situation zones resolve, and all area rooms resolve")
     print(f"  existing catalogue adds 6 buyable and 3 free, so the shop would "
           f"carry {len(items) + 9}")
 

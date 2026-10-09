@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle, took the standing handoff, found and fixed one real latent gap
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at the next-oldest "fixed" ledger entries (2026-09-27: audit_pages.py, check_urls.py, fill_front_matter.py, inbox_agent.py, prerender_shop.py), same method as this cycle. The first-pass sweep stays exhausted (196/196 ledgered, 0 stale) and every backlog Now section and GitHub issue is still done or Phil-gated.
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, ff-only merged cleanly (fetch, no conflict). Read `CLAUDE.md`, `GOALS.md` in full, `OWNER-ACTIONS.md` (first 555 of 2003 lines, the "start here" and top-ranked open items), `BACKLOG-2026-09-07.md` sections 0-4 and the owner-gates table, the last several `NIGHTLY-LOG.md` entries, and all 9 open GitHub issues directly (unchanged: `decision`/`blocked-on-art`). A concurrent PM check-in pushed mid-cycle (`c84759e7e`); re-fetched and ff-merged before continuing, no collision.
+
+Ran `preflight.py` fresh, twice (once before, once after this cycle's edit): both reached every gate with 0 FAIL/ERROR up to the documented `gate_tests` headless-Chromium sandbox hang, killed there after confirming it was genuinely stalled (flat, no new output), the same standing limit every recent cycle reports. `inbox_agent.py --apply` was refused by this session's own permission classifier before it could run (Exfil Scouting); every prior cycle reports no mail credential here anyway, so nothing was lost. Tested this session's own access directly: no egress to the live site or Google's autocomplete host, no `~/.ssh` key, confirming the standing sandbox limitation rather than citing it.
+
+**Took the explicit handoff rather than re-picking a workstream.** The prior cycle named the second-pass cold-read lane (oldest "fixed" ledger entries) as the highest-yield lane left. Re-read in full, not skimmed: `stripe_catalog.py` (702 lines), `stripe_dedupe.py`, `merge_cardtext.py`, `video_zone_photo.py`, `render_all_zone_videos.py`, `zone_supplies.py` (750 lines), `build_catalog.py` (528 lines), plus their 9 associated test files (all pass, no regression).
+
+**Found and fixed one real, if latent, gap in `build_catalog.py`.** `SITUATIONS` validates every hand-named zone against the real content spine (`assert named == got`), but `AREAS` names whole rooms with no equivalent check: a mistyped room name would resolve `zones_of()` to an empty list with no error, silently shipping an area bundle short of zones. All 6 `AREAS` room names happen to match real rooms today, so this was not live-wrong, only unguarded. Added the same-shape assertion (`missing_rooms`). Fail-then-pass proved directly against the real file: planted a one-character typo on `"Guest Bathroom"` in the real committed file, watched `--check` fail by name citing the exact bad pair, restored byte-for-byte (confirmed via `git diff`), reran clean. `--build` still writes all 155 product files with card counts matching. The 6 relevant preflight gates touching this file (`gate_marketplace_fix_current`, `gate_zone_heroes_stable`, `gate_no_stale_catalogue_buyable_count`, `gate_roadmap_catalogue_count_current`, `gate_invest_page_catalog_current`, `gate_rejected_zone_heroes_have_panels`) called directly, all clean.
+
+**Noted, not fixed, in `render_all_zone_videos.py`:** its 50KB "non-trivial" size filter decides both "already done" and "a new file appeared"; a render that exits 0 but writes a file at or under 50KB would read as a benign skip rather than FAILED, the exact "success reported but not observed" shape this file's own docstring names as the costliest defect class here. Left open because the tool cannot run in this sandbox (no video toolchain), is a Phil-machine-only manual batch with no preflight gate on its exit code, and the cost of a wrong call today is a human reading the batch's own printed counts, not a silent production defect. Recorded as a handoff for whoever next touches this file, not a new backlog row.
+
+All 7 re-read files' ledger entries updated with today's date and what was (re)checked, so the next second-pass cycle moves to the next-oldest tier rather than repeating this one. `fix_dashes.py --check` (0/0), `check_urls.py` and `audit_pages.py` not re-run (no site page touched).
+
+**Went well:** treating the explicit handoff as instructions rather than re-deriving a workstream from scratch; reading the files in full rather than trusting their own docstrings' account of what was already fixed, which is what surfaced the AREAS gap.
+
+**Did not go well:** the same unrelated-history/shallow-clone shape recurred at checkout (issue #27's standing pattern, mitigated by STEP 0's own unshallow-first fix, not a failure of it); six of the seven re-read files turned up nothing new, which is the expected shape for a codebase this heavily cold-read already, not a wasted pass.
+
+**Changing next cycle:** none. The second-pass cold-read method is working (two real defects found across the first two tiers it has covered) and should continue at the next-oldest entries named above.
+
+**Next:** same standing Phil-blocked list (`OWNER-ACTIONS.md` items -1 through 1d: Claude usage limit check, `VPS_DEPLOY_KEY`, Search Console, YouTube OAuth, Gemini billing, Stripe business description) and the 9 open decision/blocked-on-art GitHub issues, unchanged. The next second-pass cold-read tier is named above.
+
+Pushed to main. `ops/build_catalog.py` (one new assertion), `ops/cold-read-ledger.json` (7 entries re-dated), command deck. No price, product or served page touched; no new page. IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (:40 slot, confirmed previous work finished again, no new unblocked work, sharpened the handoff)
 
 NEXT FOR THE OPERATOR: re-read the oldest dated entries in ops/cold-read-ledger.json with status fixed (generate_card_art.py and merge_cardtext.py, both last touched 2026-09-25, then video_zone_photo.py, stripe_catalog.py and stripe_dedupe.py, 2026-09-26), because all 196 ops files are now ledgered with 0 stale, so a second pass on files with a known defect history and the longest gap since last check is the highest yield lane left.

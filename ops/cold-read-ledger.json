@@ -83,8 +83,8 @@
     },
     "build_catalog.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "Docstring described 15 Situation Kits and 6 Area Bundles as live sellable tiers; D-023 (2026-09-22) retired all 21, and generated_products.py already excludes them by SKU. Fixed the module docstring to state retirement status and point at the exclusion list. No logic change; catalogue() output unchanged (155 products, all assertions pass). No new gate: comment-only fix, same shape as the youtube_upload.py precedent. (A concurrent same-minute cold-read of catalogue()'s own logic and its two live consumers found 0 empty products, 0 duplicate SKUs, 60 hand-named zones resolving, and byte-for-byte SKU-truncation agreement with build_zone_pages.py; this docstring gap was outside that check's scope.)"
+      "date": "2026-10-09",
+      "note": "Second-pass cold read per this morning's handoff. AREAS' room list had no spine-resolution check the way SITUATIONS' named zones already do (named==got assert); a mistyped room name would silently drop that room's zones from an area bundle with no error. All 6 AREAS room names happen to resolve correctly today, so this was latent, not live-wrong. Added the same-shape assert (missing_rooms), fail-then-pass proved directly against the real file (planted a typo'd room name, watched it fail by name citing the exact bad pair, restored, reran clean). main() --build still writes 155 product files, card counts verified matching. No other defect found in a full read."
     },
     "build_cleaning_index.py": {
       "status": "clean",
@@ -628,8 +628,8 @@
     },
     "merge_cardtext.py": {
       "status": "fixed",
-      "date": "2026-09-25",
-      "note": "A concurrent PM check-in the same day cold-read this file and recorded it clean (KNOWN_AMBIGUOUS_DUPES reasoning only). A later cycle the same day found a real defect that read missed: main() computed dangling links and a banned em/en dash but wrote the merged corpus and exited 0 regardless. preflight's own gate_card_related_links docstring claimed since 2026-09-10 that this script already refuses in that case, which was false. Fixed: now refuses to write and exits 1 on either; duplicate ids and brand_visible notes stay non-fatal on purpose (see source comment). New ops/tests/test_merge_cardtext_refuses_on_defect.py, fail-then-pass proved."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. The 2026-09-25 refuse-to-write-on-dangling-link-or-dash fix still intact; KNOWN_AMBIGUOUS_DUPES handling and the unexplained-duplicate-title check both read correctly. test_merge_cardtext_refuses_on_defect.py passes (6/6 plus real committed batches). No new defect found."
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
@@ -698,8 +698,8 @@
     },
     "render_all_zone_videos.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "main() returned 0 unconditionally even when failed[] was non-empty, the exact 'success it never observed' defect the file's own docstring names; fixed to return 1 if failed, fail-then-pass proved"
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. Noted one narrow latent edge case, not fixed: mp4s()'s 50KB-non-trivial filter is used both to decide a zone is already done and to detect a newly-made file; a render that exits 0 but writes a file at or under 50KB would be recorded as a benign 'skip' (already present or no-op) rather than FAILED, the exact 'success reported but not observed' shape this file's own docstring names as the costliest defect class here. Left unfixed this cycle: the file cannot run in this sandbox (no video toolchain) and is a Phil-machine-only manual batch tool, not wired into any preflight gate, so the cost of a wrong call is a human watching the batch's own printed output, not a silent production defect. Worth a future cycle's fix if this tool ever gets gated."
     },
     "render_cards.py": {
       "status": "clean",
@@ -818,8 +818,8 @@
     },
     "stripe_catalog.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "ensure_link()'s orphan-link-adoption loop matched an unmetadated payment link by price alone, with no active check; a retired link sharing a price with a live SKU would be tagged with that SKU and its dead URL returned as the buy link. Fixed by skipping inactive orphans. Gated by ops/tests/test_stripe_catalog_orphan_link_active.py, fail-then-pass proved."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff (oldest fixed-status files). The 2026-09-26 orphan-adoption fix (skip inactive orphans) is still intact; ensure_link()'s refuse-to-retire-while-served logic, sync_site_links()'s pagination and the price-immutability handling all read correctly. test_stripe_catalog_deliverable.py and test_stripe_catalog_orphan_link_active.py both pass. No new defect found."
     },
     "stripe_check.py": {
       "status": "clean",
@@ -828,8 +828,8 @@
     },
     "stripe_dedupe.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "main() returned before ever calling dedupe_links() whenever duplicate PRODUCTS existed, so a duplicate payment LINK on the same SKU went completely unchecked in that run; and --check's exit code was unconditionally 0 no matter what was found, for both products and links. Fixed: main() always calls dedupe_links() now, and both it and dedupe_links() return non-zero only when something is left duplicated. Gated by fail-then-pass tests in test_stripe_dedupe.py and test_stripe_dedupe_links.py; no live gate change needed since preflight's own gates already call duplicates()/duplicate_active_links() directly, not main()."
+      "date": "2026-10-09",
+      "note": "Re-read per second-pass handoff. The 2026-09-26 fix (main() always calling dedupe_links(), non-zero exit on leftover duplicates) still intact. test_stripe_dedupe.py and test_stripe_dedupe_links.py both pass (7+7 cases). No new defect found."
     },
     "stripe_fulfil.py": {
       "status": "fixed",
@@ -898,8 +898,8 @@
     },
     "video_zone_photo.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "same defect: --build's main() returned 0 unconditionally even when a render raised or verify() found a problem; fixed to return 1 if failed, fail-then-pass proved"
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. The 2026-09-26 exit-code fix (return 1 if failed) still intact; approved()'s sha-pinned verdict matching and timed()'s caption-hold logic both read correctly. test_video_zone_photo_exit_code.py passes (3/3). No new defect found."
     },
     "wire_aria_current.py": {
       "status": "clean",
@@ -978,8 +978,8 @@
     },
     "zone_supplies.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "render_room() passed bool(tracked) as A.disclosure()'s has_links, claiming no room page has an outbound link whenever no affiliate programme is approved; true on all 20 rooms today. Fixed to True, matching render()/render_storage(); regenerated all 20 site/rooms/*.html; new test_gate_room_kit_disclosure_honest.py"
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff (750 lines). The storage-before-Sort split (A7), the subject-verb-agreement fix, the promise-gate host-disclosure check and the three-link-state logic all read correctly and match their own docstrings. No new defect found."
     }
   }
 }
