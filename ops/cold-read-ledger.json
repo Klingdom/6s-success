@@ -3,8 +3,8 @@
   "entries": {
     "accept_image.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "self-test 4/4, --check 89 cards + 114 zones/0 errors, both gates (gate_accept_image_derivation, gate_accept_image_contradicts_name_an_object) already wired and passing; no defect found"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "affiliate.py": {
       "status": "clean",
@@ -173,8 +173,8 @@
     },
     "build_id.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold read, no defect: hash excludes itself correctly, git-blob-based so platform-independent, --check exit code correct"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "build_image_prompts.py": {
       "status": "clean",
@@ -198,8 +198,8 @@
     },
     "build_kitchen_deck_pdf.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26. check() never raises, gate_kitchen_deck_pdf_current only calls check(). main()'s subprocess.run has no timeout guard against a raw TimeoutExpired traceback, but it is never invoked from CI/a generator chain, only run manually by an operator, so a loud crash there is acceptable, not a silent-failure class this repo gates against."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "build_laundry_room_deck_page.py": {
       "status": "clean",
@@ -228,8 +228,8 @@
     },
     "build_mobile_corpus.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26 (scheduled operator). Verified live: --check reports the mobile corpus matches quest-data.js (114 zones, 684 cards), git status clean after. hero_plan()/hero_problems()/write_heroes() correctly derive zone pictures from the site's own approved -sm.jpg files, hard-erroring on any approved stem with no source file rather than silently skipping. Already gated (gate_mobile_corpus_current in preflight.py) and already imported by build_social_pins.py and wire_generated_catalog.py, so it is wired, not orphaned. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "build_mudroom_deck_page.py": {
       "status": "clean",
@@ -428,8 +428,8 @@
     },
     "corpus_index.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26 (scheduled operator). Ran live: 2745 files, 1050 ready, 4939 postable units, matches ops/corpus-index.json on disk. Sampled 15 of the 1195 'other' files by hand rather than trusting the count (CLAUDE.md 5c): they are manuscript chapters, internal strategy docs, and web-metadata fragments, correctly excluded as not finished postable prose, not a mis-classification. KINDS ordering and units_in() per-kind counting logic checked, both consistent with the file's own docstring. Already wired: imported by corpus_posts.py, dashboard.py, send_questions.py, and checked by two preflight gates. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "corpus_posts.py": {
       "status": "clean",
@@ -478,13 +478,13 @@
     },
     "fingerprint_assets.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26. REF regex requires double-quoted href/src and a relative (assets/ or ../assets/) path; checked live site for single-quoted or absolute-path (/assets/...) refs that would silently bypass it: zero occurrences in site/**/*.html. --check reports 609 refs across 205 pages, all current. Rewrite-in-place logic (only advancing pos on a stale match) is correct: unchanged spans are swept into the next flush, not skipped."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "fix_dashes.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read cold end to end; --check reports clean, ops/tests/test_fix_dashes.py 10/10 pass. Scope (root/claude/retro *.md only) is deliberate per its own docstring, distinct from the sitewide em/en-dash gate in preflight.py that already covers ops/*.py and site/**."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "fix_dialect.py": {
       "status": "fixed",
@@ -513,8 +513,8 @@
     },
     "generated_products.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Correctly implemented: computed exclusions (already-free, at/above whole-house ceiling) plus the hand-picked RETIRED list, matches its own docstring. Ran check(): 0 missing files, 0 undersized, 120 products honest to sell. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "hazard_icons.py": {
       "status": "clean",
@@ -548,8 +548,8 @@
     },
     "import_generated_art.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Card-sheet vs hero-photo router for the illustrated Entryway/Mudroom art pipeline (the two decks that use photographed card sheets, distinct from the newer typeset glyph-panel decks). Ran --check live: both Desktop drop folders correctly report missing, 126 cards indexed, 0 files found, no error. Verdicts/staging logic (sha-checked approval, promote() safe with no staged files) read correct. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "import_room_diagrams.py": {
       "status": "clean",
@@ -593,8 +593,8 @@
     },
     "link_graph_report.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold read, no defect: orphan/thin/dead-end reporting all correct, exit code correctly reflects orphans/depth failures"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "link_standards.py": {
       "status": "clean",
@@ -608,8 +608,8 @@
     },
     "linkedin_posts.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "10 posts run clean, all well under the 1400-char cap, with-link/without-link count derived live not hardcoded, no fabricated claim. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "mailer.py": {
       "status": "clean",
