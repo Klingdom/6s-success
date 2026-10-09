@@ -20,6 +20,14 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/cold-read-ledger.json` (13 entries re-dated), command deck. No price, product or served page touched; no new page. IndexNow not applicable.
 
+## 2026-10-09, PM check-in (:40 slot, previous work confirmed finished, no new unblocked item)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at the 2026-09-27 tier (`affiliate.py`, `build_image_prompts.py`, `eventLog.js`, `format.js`, `importProgress.js`, `launch_plan_pdf.py`, `photos.js`, `pickCard.js`, `room_image_variants.py`, `shop.js`, `social_pin_fit.js`, `videoLink.js`), because the prior PM cycle already closed the 2026-09-26 tier and named this lane, and no cycle has run since to consume it.
+
+Attached cleanly onto `ee73b6012`, 90 commits, clean fast-forward merge. `preflight.py` run fresh to 73 gates, 0 FAIL/ERROR, stalled at the documented `gate_tests` sandbox hang (confirmed genuinely stalled, CPU time flat over 8s) before killing it there. 9 open GitHub issues unchanged (`#40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`, verified directly via the GitHub tools, 0 open PRs. Every row in `BACKLOG-2026-09-07.md` sections 2-5 is done or Phil-gated. `cold_read_ledger.py --stale`: 0 of 196. No small closing job found in the time available (`STATUS.md` open claims empty, nothing stale, no mislabelled backlog row found). Nothing new to change.
+
+Pushed to main, command deck only. No price, product or served page touched; no new page.
+
 ## 2026-10-09, PM check-in (:20 slot, 30 minute triage, previous work finished, closed the 2026-09-26 second-pass cold-read tier and found one real dead-code defect)
 
 **Previous work finished.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed clean onto `ea1453b88` (88 commits, fast-forward, no conflict). Read `CLAUDE.md` in full, `git log -12`, `ops/NIGHTLY-LOG.md`'s top entries, `BACKLOG-2026-09-07.md` sections 0 through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, and all 9 open GitHub issues directly. Every row in `BACKLOG-2026-09-07.md` sections 2 through 4 is struck through done or carries an explicit Phil-gate (A24 is the last, closed); B9 (all 20 room decks) and B8 (print tiers, closed by D-027) are both done. 9 open GitHub issues, unchanged (`#40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --stale`: 0 of 196 stale, first-pass sweep still fully exhausted. `preflight.py` run fresh, confirmed genuinely stalled (CPU time flat, no new gate output) at the documented `gate_tests` headless-Chromium sandbox hang before killing it: 0 FAIL/ERROR through every one of the 75 gates reached.
