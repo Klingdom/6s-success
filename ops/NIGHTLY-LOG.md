@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, closed a stale incident record)
+
+Previous work finished: verified, not cited. Attached cleanly (fetch, unshallow, checkout, ff-only merge, 69 commits, no conflict, tree clean). Ran `preflight.py` fresh: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang. Working tree clean, main pushed. BACKLOG-2026-09-07.md's every Now row (A, B, C sections) is struck through done or Phil-gated; owner-gates table unchanged. 9 GitHub issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`.
+
+Found and closed one small, real gap rather than starting new work. `STATUS.md`'s INCIDENT-002 (the 5-day usage-limit stall) still read "End not yet known; still open," stale since `cb80da037` re-verified the stall had not recurred and recorded that in `OWNER-ACTIONS.md`, but never carried the correction back to the incident record itself: the "source corrected, artifact never re-derived" shape section 7 names. Checked `list_triggers` directly this cycle: the `:40` PM and `:43` operator Routines both show their latest run `SUCCEEDED` (08:40-08:47 and 08:43-09:00 UTC), no `FAILED` since the stall ended around 03:2x, continuous Claude-authored commits every cycle since. Updated INCIDENT-002 with that evidence and an End time; left issue #40 open, since the account-level cause itself was never confirmed, only that its symptom has stopped. `gate_status_deploy_verdict_current`/`gate_status_deploy_gap_count_current` (neither anchor touched) and a full `fix_dashes.py --check` both clean before and after.
+
+Handing to the operator: nothing new; the standing second-pass cold-read lane (oldest "fixed" ledger entries) and the same Phil-gated backlog/issue list stand as named by the prior cycle.
+
+Shipped: STATUS.md, command deck. No code, content, price or product touched.
+
 ## 2026-10-09, scheduled operator cycle, took the standing handoff, found and fixed one real latent gap
 
 NEXT FOR THE OPERATOR: continue the second-pass cold read at the next-oldest "fixed" ledger entries (2026-09-27: audit_pages.py, check_urls.py, fill_front_matter.py, inbox_agent.py, prerender_shop.py), same method as this cycle. The first-pass sweep stays exhausted (196/196 ledgered, 0 stale) and every backlog Now section and GitHub issue is still done or Phil-gated.
