@@ -163,7 +163,26 @@ def main() -> int:
                      f"workflow_dispatch run cannot be counted as a scheduled "
                      f"one; got url {captured.get('url')!r}")
 
-    total = 10
+    # Case 11: WORKFLOWS must name every workflow file that actually carries
+    # a cron line, not just the ones remembered when the list was last
+    # edited. Found live 2026-10-09: indexation-check.yml and
+    # keyword-demand.yml had carried real cron lines since 2026-10-02/03 but
+    # were never added, so this check silently covered 7 of 9 scheduled
+    # workflows for a week. Proven by reading the real repository state
+    # rather than a synthetic fixture, since the whole point is that the
+    # list must track the directory, not the other way round.
+    import glob
+    real_scheduled = set()
+    for path in glob.glob(os.path.join(ROOT, ".github", "workflows", "*.yml")):
+        text = open(path, encoding="utf-8").read()
+        if "cron:" in text:
+            real_scheduled.add(os.path.basename(path))
+    missing = real_scheduled - set(C.WORKFLOWS)
+    if missing:
+        fails.append("WORKFLOWS is missing real cron-scheduled file(s): "
+                     f"{sorted(missing)}")
+
+    total = 11
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

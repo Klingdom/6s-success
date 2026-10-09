@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 import preflight                                               # noqa: E402
 import build_zone_pages as bzp                                 # noqa: E402
 
-ANCHOR = ('<a href="../articles/zone-too-small-for-what-it-holds.html'
+ANCHOR = ('<a href="../articles/zone-too-small-for-what-it-holds'
           '#honest-count">Run the honest count</a>')
 
 
