@@ -523,8 +523,8 @@
     },
     "hourly_brief.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: two commits since the 2026-09-26 clean note (520709eea, fix false-zero subject line when Stripe is unreadable; 4d334a0ab, fix the real cron cadence with a throttled push trigger). Reran ops/tests/test_hourly_brief_throttle.py: pass. No defect found."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: ran live, honestly reports no-credential as UNCHECKED never false-clean; build_line() verified against real state.json keys. No defect."
     },
     "image_local.py": {
       "status": "fixed",
@@ -533,8 +533,8 @@
     },
     "image_style.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Subject-first + 20-token style prompt for local SDXL generation; honest UNVERIFIED when transformers/CLIP tokenizer unavailable (this sandbox). Ran directly: correctly reports UNVERIFIED, no crash. No defect."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: ran live, correctly reports UNVERIFIED when CLIP tokenizer unavailable rather than silently passing; callers use is_unverified() correctly. No defect."
     },
     "importProgress.js": {
       "status": "clean",
@@ -588,8 +588,8 @@
     },
     "ledgerium_price_check.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "cold read 2026-09-30 scheduled operator, no defect"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: EXPECTED price IDs/amounts/webhook/events cross-checked against LEDGERIUM-BILLING.md, all match the current post-correction state; check_ledgerium.py imports these constants rather than duplicating. No defect."
     },
     "link_graph_report.py": {
       "status": "clean",
@@ -598,8 +598,8 @@
     },
     "link_standards.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Prior PM cycle (03:1x) claimed the four 09-23/24 files were the ledger's genuinely oldest; they were not, this file (2026-09-11) was still older and got missed by an incomplete check. Re-verified live: 0 pages need the link (212 of 218 already carry it, the rest legitimate exclusions per 09-11's own note), every existing standards.html link resolves. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: ran against site/, idempotent as claimed (0 added on rerun). 6 pages silently skipped (invest.html, 3 download deliverables, print-and-play) are genuinely standalone pages with no shared footer, intentional not a gap."
     },
     "linkedin_drafts.py": {
       "status": "clean",
@@ -622,9 +622,9 @@
       "note": "Fresh second-pass cold-read. page() classified by substring (indexOf), so /workshop-deck.html (contains 'shop') was mislabeled as the shop page in buy-click/outbound-click/quote-click/service-cta/free-download 'from' fields, folding that deck's clicks into the online store's own funnel numbers. Fixed to exact equality on /quest.html and /shop.html. New gate_measure_page_type_exact_match in preflight.py and probe H in test_measure_events.py, both fail-then-pass proved."
     },
     "media_capability.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Credential-probe tool for 7 image/video providers, cheapest-call auth check, never prints secrets. Ran directly: 0/7 present (no keys in this sandbox, expected), cost_key()/cheapest_first() sort logic correct, GEMINI_API_KEY|GOOGLE_API_KEY either-name handling correct. No defect."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: PROVIDERS' gemini cost was stale (0.03-0.06) against generate_card_art.py's own 2026-09-04 correction to (0.045, 0.101), the sibling file's comment explicitly flagging the old range as understated by ~40%. Fixed to match."
     },
     "merge_cardtext.py": {
       "status": "fixed",
@@ -637,9 +637,9 @@
       "note": "Second-pass cold-read: re-verified clean. Ran --apply's effect live via /usr/bin/python3 (this sandbox's default python3 lacks pypdf, a sandbox quirk, not a repo defect; pypdf is deliberately absent from ops/requirements.txt since this is a human/operator-run tool, never called by preflight.py or a workflow, unlike pymupdf which that file documents CI actually needs). --check confirms the sample PDF is already optimised: 0 PNGs remaining, correct chapters-1-to-30 title, 31.2 MB."
     },
     "owner_inbox.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 9915548c4 (read four third-party messages that sat unread for a month, stop them repeating). Reran ops/tests/test_owner_inbox.py: 3/3 cases pass. No defect found."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09: main()'s exit code collapsed unchecked (None) and checked-clean ([]) into the same falsy 0 via 'p or third'. Gave unchecked its own exit code (2); gate_owner_waiting unaffected (calls the functions directly, never main())."
     },
     "photos.js": {
       "status": "clean",

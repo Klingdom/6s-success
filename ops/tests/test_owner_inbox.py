@@ -59,15 +59,29 @@ def main() -> int:
                      f"message pending, got {rc}")
 
     # Both unavailable: both "not checked" messages must appear, and the
-    # return code must be 0 (nothing known to be waiting, not nothing to do).
+    # return code must be its own distinct value, not 0. `p or third` alone
+    # collapses None (unchecked) and [] (checked, clean) into the same
+    # falsy branch, so a shell script piping this through $? could not
+    # tell "never opened the mailbox" from "opened it, nothing pending",
+    # the exact "unchecked reported as empty" shape this file's own
+    # docstring exists to avoid. Found 2026-10-09 cold-reading this file.
     rc, out = with_stubs(None, None, oi.main)
     if out.count("NOT checked") < 1 or "inbox was NOT checked" not in out:
         fails.append("owner-check unchecked message missing: " + repr(out))
     if "third-party mail NOT checked" not in out:
         fails.append("third-party unchecked message missing when both are "
                      "unavailable: " + repr(out))
+    if rc != 2:
+        fails.append(f"main() with nothing knowable should return a distinct "
+                     f"unchecked code (2), not overload success, got {rc}")
+
+    # Both genuinely checked and both empty: this is the only case that may
+    # return 0, since it is the only one where "nothing pending" was
+    # actually verified rather than assumed.
+    rc, out = with_stubs([], [], oi.main)
     if rc != 0:
-        fails.append(f"main() with nothing knowable should return 0, got {rc}")
+        fails.append(f"main() with both checked and both clean should "
+                     f"return 0, got {rc}")
 
     # Owner has a real unread message: still reported, and third-party still
     # runs alongside it rather than being replaced by it.
@@ -85,7 +99,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("owner_inbox.main() independent-checks: 3 case(s) passed")
+    print("owner_inbox.main() independent-checks: 4 case(s) passed")
     return 0
 
 

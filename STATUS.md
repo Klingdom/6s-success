@@ -56,7 +56,23 @@ only moment it is cheap.
 
 ## Open claims
 
-**Claimed 2026-10-09, scheduled operator cycle: second-pass cold read of `hourly_brief.py` through `owner_inbox.py` (6 files, the oldest-dated remaining entries in the 2026-09-30 ledger tier), per the :40 PM check-in's own handoff.** Release when landed.
+**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+second-pass cold read of `hourly_brief.py` through `owner_inbox.py` (6 files)
+landed, two real defects found and fixed, delegated to a sub-agent and
+independently re-verified before fixing: `ops/media_capability.py`'s
+`PROVIDERS` still quoted Gemini's per-image cost as "0.03 to 0.06", the exact
+stale range `ops/generate_card_art.py`'s own 2026-09-04 fix (`cost: (0.045,
+0.101)`) already flags in its own comment as understating the top of the
+range by about 40%, never ported to this sibling file; and `ops/owner_inbox.py`'s
+`main()` returned `1 if (p or third) else 0`, which collapses "unchecked"
+(`None`, no mail credential) and "checked and clean" (`[]`) into the
+identical exit code 0, so a shell script branching on `$?` could not tell a
+never-opened mailbox from a verified-empty one, the exact "unchecked read as
+nothing to do" shape this file's own docstring already names as an eight-day
+incident, one layer up. Fixed: unchecked now returns 2, a real pending
+message on either side still wins and returns 1 first. `gate_owner_waiting`
+unaffected (calls the two functions directly, never `main()`'s return value).
+Both fail-then-pass proved; full account in `ops/NIGHTLY-LOG.md` this date.
 
 **Earlier, released 2026-10-09, scheduled operator cycle: the
 second-pass cold read of `checkin.py` through `hazard_icons.py` (7 files,

@@ -68,7 +68,10 @@ PROVIDERS = [
                    {"x-goog-api-key": e.get("GEMINI_API_KEY")
                     or e.get("GOOGLE_API_KEY")}),
      "Imagen and Gemini image, strong photoreal interiors",
-     "0.03 to 0.06"),
+     # Google's published prices: $0.045 at 0.5K, $0.067 at 1K, $0.101 at
+     # 2K (generate_card_art.py's PROVIDERS, corrected 2026-09-04; the old
+     # 0.03-0.06 here understated the top of the range by about 40%).
+     "0.045 to 0.101"),
     ("cloudflare", ["CLOUDFLARE_API_TOKEN", "CF_ACCOUNT_ID"],
      lambda e: get(f"https://api.cloudflare.com/client/v4/accounts/"
                    f"{e['CF_ACCOUNT_ID']}/ai/models/search?per_page=1",

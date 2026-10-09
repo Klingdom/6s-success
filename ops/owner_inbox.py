@@ -246,7 +246,21 @@ def main() -> int:
               "Update' was a decline.")
     else:
         print("  nothing unread from a third party that looks actionable")
-    return 1 if (p or third) else 0
+
+    # Exit code is the one signal a calling shell script actually branches
+    # on. A real pending message always wins first, even if the OTHER check
+    # could not run; only once neither side has anything pending does the
+    # unchecked-vs-clean distinction matter. `p or third` alone collapsed
+    # "unchecked" (None) into the same falsy value as "checked, nothing
+    # pending", so a cron job piping this through `$?` would read a
+    # never-opened mailbox as all clear, the exact "unchecked reported as
+    # empty" shape this file exists to avoid. Give unchecked its own code
+    # rather than let it default to success.
+    if p or third:
+        return 1
+    if p is None or third is None:
+        return 2
+    return 0
 
 
 
