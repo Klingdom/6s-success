@@ -217,7 +217,16 @@ def classify(frm: str, subject: str, text: str, extra: dict | None = None,
         return {"kind": "bulk", "action": "ignore",
                 "why": "automated or bulk mail, no reply is expected or wanted"}
 
-    low_t = (text or "").lower()
+    # Checked against the subject too, not just the body: a customer whose
+    # subject line IS the signal ("Never received my download") and whose
+    # body is a terse "please check on this" has no delivery-problem words
+    # in the body at all, and fell into the ordinary draft-for-human branch
+    # below, silently losing the "paying customer may not have received what
+    # they bought" urgency CLAUDE.md 0.2 exists to force. Found live
+    # 2026-10-09, cold-reading this file: classify("buyer@example.com",
+    # "Never received my download", "Hi, can you check on this please?")
+    # returned kind="customer" before this fix.
+    low_t = f"{subject or ''} {text or ''}".lower()
     if any(w in low_t for w in ("did not receive", "never arrived", "no email",
                                 "did not get", "missing file", "cannot download")):
         return {"kind": "delivery-problem", "action": "flag-urgent",

@@ -114,6 +114,27 @@ def main() -> int:
                       f"OWNER_EMAIL is a different Gmail address, got "
                       f"kind={c['kind']!r}")
 
+    # A real delivery-problem signal that lives in the SUBJECT, not the body.
+    # Found 2026-10-09, cold-reading this file: low_t used to be built from
+    # text alone, so a customer whose subject line IS the signal ("Did not
+    # receive my download") and whose body is a terse "please check on this"
+    # had no delivery-problem words anywhere the classifier looked, and fell
+    # into the ordinary draft-for-human "customer" branch, silently losing
+    # the flag-urgent CLAUDE.md 0.2 exists to force.
+    c = ia.classify("buyer@example.com", "Did not receive my download",
+                     "Hi, can you check on this please? Thanks.")
+    if c["kind"] != "delivery-problem":
+        fails.append(f"a delivery-problem signal in the subject line alone "
+                      f"must still classify as delivery-problem, got "
+                      f"kind={c['kind']!r}")
+
+    # Same shape for billing: "refund" in the subject, not the body.
+    c = ia.classify("buyer@example.com", "Refund request please",
+                     "Hello, this is not working for me.")
+    if c["kind"] != "billing":
+        fails.append(f"a billing signal in the subject line alone must "
+                      f"still classify as billing, got kind={c['kind']!r}")
+
     # The exact configured owner address must still be recognised.
     c = ia.classify("Phil Kling <philklingmbb@gmail.com>", "status",
                      "go ahead and ship it",
@@ -127,7 +148,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("inbox_agent.classify() owner-priority: 8 case(s) passed")
+    print("inbox_agent.classify() owner-priority: 10 case(s) passed")
     return 0
 
 

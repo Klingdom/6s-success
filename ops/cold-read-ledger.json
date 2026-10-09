@@ -23,8 +23,8 @@
     },
     "audit_pages.py": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Fixed a real hero-lazy false-negative: html.find(tag) resolved duplicate-markup img tags to the wrong occurrence's position, so a genuine lazy above-fold hero could silently escape the check whenever its markup matched an earlier video-play thumbnail. Not live today (0 pages currently trigger it), preventive. Fixed in fe566979f."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff (2026-09-27 tier). The hero-lazy position fix (img_spans over html.find) still intact; link resolution via check_urls.resolve(), the probe/fixture exclusion list, and the duplicate-title/description grouping all read correctly. Ran directly: 215 pages, 0 findings. No new defect found."
     },
     "audit_visual.py": {
       "status": "clean",
@@ -403,8 +403,8 @@
     },
     "check_urls.py": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "docstring, resolve()'s directory-403 comments, check_static()'s printed message, and the same claim duplicated in ops/audit_pages.py's link-403 comment and both files' tests all said a directory with no index.html answers 403 Forbidden to the visitor. Checked live against site/nginx/default.conf (the exact file COPY'd into the image, per Dockerfile): error_page 403 =404 /404.html; was added 2026-08-30, one day before check_urls.py's own first commit, and remaps that internal 403 to a 404 before it reaches a crawler or visitor. Verdict/behaviour unchanged (still a failure either way, directory-403 vs missing still told apart for the different fix each needs); only the prose claiming what a client actually receives was wrong. Fixed in all four locations. No preflight gate: no functional behaviour changed to regress-test, only comment/message accuracy."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. The 2026-08-30 error_page 403=404 remap is still correctly reflected in resolve()'s docstring and directory-403 naming; check_live()'s unreachable-vs-bad accounting still distinguishes nothing-measured from everything-resolved. Ran directly: 211/211 sitemap URLs resolve. No new defect found."
     },
     "check_video_links.py": {
       "status": "clean",
@@ -473,8 +473,8 @@
     },
     "fill_front_matter.py": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "PM cold-read 2026-09-27: found and fixed a real regression from the 09-26 colon-field change. The fill loop had switched from text.replace(token, value) to token.sub(value, text); re.sub's repl string treats backslashes as backreferences/\\g<name> and raises on a bare backslash before a letter, so any future front-matter.json answer containing a backslash would crash the script or corrupt output. Today's answers happen to be backslash-free so it had not fired live. Fixed with a callable repl (token.sub(lambda _m, v=value: v, text)), which re.sub never post-processes. Proved fail-then-pass against the raw string-repl call and extended ops/tests/test_fill_front_matter_colon_field.py with a permanent case."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. The 2026-09-27 callable-repl fix (token.sub(lambda ...)) is still intact, so a future backslash-bearing answer still cannot crash or corrupt output; DROP sentinel and ALIASES expansion both read correctly. No new defect found."
     },
     "fingerprint_assets.py": {
       "status": "clean",
@@ -563,8 +563,8 @@
     },
     "inbox_agent.py": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "OWNER_DOMAINS matched the bare domain gmail.com, so any customer emailing from a Gmail address (not just Phil) classified as kind=owner, bypassing delivery-problem detection. Fixed: match only the exact OWNER_EMAIL address, same convention owner_inbox.py uses. See NIGHTLY-LOG 2026-09-27."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. Found and fixed a real, live gap: delivery-problem and billing detection built low_t from the message BODY only, never the subject. A customer whose subject line carries the signal (Did not receive my download) and whose body is a terse please check on this had no matching words anywhere the classifier looked, and fell into the ordinary draft-for-human customer branch instead of flag-urgent, silently losing the urgency CLAUDE.md 0.2 exists to force. Reproduced directly before the fix (classify returned kind=customer), fixed by folding subject into low_t, reproduced as fixed after (kind=delivery-problem/billing). Two new cases added to ops/tests/test_inbox_agent.py (now 10), both fail-then-pass proved via git stash against the real module. No new preflight gate needed: gate_tests() already globs ops/tests/test_*.py."
     },
     "indexation_check.py": {
       "status": "clean",
@@ -658,8 +658,8 @@
     },
     "prerender_shop.py": {
       "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
+      "date": "2026-10-09",
+      "note": "Re-read in full per second-pass handoff. The lambda-repl backslash-safety fix is still intact; the empty-grid and under-100-card refusal guards, and the start/end marker idempotency, all read correctly. --check reports the pre-rendered block present. No new defect found."
     },
     "product_links.py": {
       "status": "clean",
