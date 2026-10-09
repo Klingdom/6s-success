@@ -56,13 +56,14 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-10-09, scheduled operator cycle: continuing the second-pass cold read,
-  2026-09-30 tier, alphabetical from `check_ledgerium.py` (per the 17:5x PM
-  check-in's own handoff), through `check_video_standard.py` (6 files).
-  Delegating to a sub-agent instructed to run each file's own check mode
-  against live state, not just read the code.
+**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+`check_ledgerium.py` through `check_video_standard.py` claim landed clean,
+no defect in any of the 6 files, one real non-blocking finding (15 rendered
+zone videos drifted from the dialect fix, already correctly WARNed by
+`gate_zone_videos_match_standard`, publish already blocked by
+`youtube_upload.py`); full account in this date's `ops/NIGHTLY-LOG.md` entry.
 
-**None currently open.** Pruned 2026-10-09, PM check-in (:40 slot), per this
+Earlier: pruned 2026-10-09, PM check-in (:40 slot), per this
 section's own rule ("if a line here is older than a day and its work is in
 main, remove it"): every entry below this line dated 2026-10-01 through
 2026-10-04, all confirmed landed on `main` (sort_scope rollout complete at

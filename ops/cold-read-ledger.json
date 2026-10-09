@@ -378,18 +378,18 @@
     },
     "check_ledgerium.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 09:1x re-verify: still correctly reports unchecked (no Stripe credential in this sandbox), matches existing note. No defect."
+      "date": "2026-10-09",
+      "note": "Second-pass re-read in full, plus ledgerium_price_check.py it imports from. Design confirmed sound: single EXPECTED/WEBHOOK source, account-id check before falling back to VPS-shipout, never reports ok without a live credential. Ran live: no Stripe credential/no egress here, correctly UNCHECKED. Ran ops/tests/test_ledgerium_check.py (5/5 pass). Cross-checked the hardcoded VPS IP/ssh-key path against 6 other ops/*.py files and LEDGERIUM-BILLING.md: consistent, not stale. No defect."
     },
     "check_live_links.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-26 clean note, 46b111b56 (the same redirect-probe fix documented against ops/deploy_freshness.py above; this file's own two hardcoded .html paths were fixed in the same commit). Reran ops/tests/test_check_live_links.py: 8/8 cases pass. No defect found."
+      "date": "2026-10-09",
+      "note": "Read in full. Ran live: no Stripe credential here, correctly UNKNOWN rather than a false ok. Ran ops/tests/test_check_live_links.py (8/8 pass), including a live run of repo_links() against the real site/ tree. Pagination, PAGES sample (incl. consulting.html, data.js, quest.js, shop.js) and the SLUG regex all check out. No defect."
     },
     "check_pack_pages.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 09:1x re-verify: still correctly reports UNCHECKED for all 5 printables (pypdf not installed here), matches existing note. No defect."
+      "date": "2026-10-09",
+      "note": "Read in full. Installed pypdf+cffi (missing in this sandbox) to actually render: all 5 PRINTABLES print clean (Standards Pack 20/20 pages no orphans, Kitchen/Entryway decks, Micro Zone Map, scoring template all 0 blank pages). MARKER/blank-page logic correct. No defect."
     },
     "check_sellable.py": {
       "status": "fixed",
@@ -398,8 +398,8 @@
     },
     "check_sitemap_current.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: 210/210 pages match recorded content hash. No defect found."
+      "date": "2026-10-09",
+      "note": "Read in full. Ran live: 211/211 pages match recorded content hash. Correctly imports build_seo rather than re-deriving hash logic. No defect."
     },
     "check_urls.py": {
       "status": "fixed",
@@ -408,13 +408,13 @@
     },
     "check_video_links.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "re-verified 2026-09-30: correctly reports UNCHECKED (12 video ids, network blocked in this sandbox, HTTPError/URLError caught), does not report a false clean when it cannot look; no defect"
+      "date": "2026-10-09",
+      "note": "Read in full. Ran live: 12 ids found, all UNCHECKED (egress to youtube.com blocked here), correctly not reported as alive. Ran ops/tests/test_check_video_links.py (8/8 pass). ID regex covers watch/youtu.be/embed/-nocookie/data-yt/quest-data.js video field. No defect."
     },
     "check_video_standard.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "re-verified 2026-09-30: compared all 114 rendered videos' captions against video_zone.done_items() live, 0 stale, matches the 2026-09-25 note; no defect"
+      "date": "2026-10-09",
+      "note": "Read in full, ran live against the real 114-zone corpus and ops/tests/test_check_video_standard.py (7/7 pass). The checker itself is correct and found a REAL, new regression (not a checker bug): 15 of 114 rendered videos (e.g. living-room--media-center, garage--automotive-care-zone) now mismatch their own zone standard because content.json's British-to-American dialect fix (8aa7a6589, 2026-10-02) landed after those videos were rendered (928e5aa5c, 2026-09-20) -- e.g. video captions still say labelled/tyre, standard now says labeled/tire. Confirmed via git log the drift is real, not a false positive. Already correctly surfaced: gate_zone_videos_match_standard WARNs (not fails) with the exact 15-zone list, matching the gate's own documented design (customer-facing publish path already blocked by youtube_upload.py, not preflight). No code defect in check_video_standard.py; flagging the 15-video re-render as a real backlog item for the operator."
     },
     "checkin.py": {
       "status": "clean",
