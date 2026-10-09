@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle
+
+**Did:** Attached to main cleanly per the fixed STEP 0 procedure (unshallow, checkout, ff-only merge, no issues). Read BACKLOG-2026-09-07.md, GOALS.md, ROADMAP-2026-2029.md, CLAUDE.md and the last NIGHTLY-LOG entries via a delegated digest to avoid burning context on files that have grown to hundreds of KB. Confirmed every backlog item in sections 2-4 is done or Phil-gated, and all 9 open GitHub issues are `decision`/`blocked-on-art`. Checked `checks.yml` directly on GitHub (not just a local pass, per CLAUDE.md 0.3) and found `main` had been red across runs 1961-1964. Pulled the failed job log for run 1964: two test files failing. The GOALS.md keyword-citation half was already fixed by Phil's own `89c936d65` and confirmed by a concurrent PM `:40` cycle. The remaining failure, `test_send_questions.py`, was real and unfixed: it hardcoded the exact phrase "still needs a Redeploy click" as the only acceptable disclosure whenever "automatic" appears in the SITE STATUS email, and Phil's own commit `66460f40b` had correctly reworded that line to something more honest and complete ("still needs a hand: deploy.yml has no VPS_DEPLOY_KEY... or a session holding ~/.ssh/6s_deploy running ops/deploy.py") without updating the test. Widened the assertion to accept either known honest wording; the real invariant (an "automatic" claim is never left undisclosed) holds either way.
+
+**Verified:** Ran the fixed test directly (10/10 pass) and the other previously-failing test (`test_gate_goals_keyword_cluster_citation_current.py`, 7/7, confirming Phil's fix already covers it). Ran a fresh full local `preflight.py`: 0 FAIL printed through every gate reached before the documented `gate_tests` headless-Chromium sandbox hang (confirmed genuinely stalled, flat CPU time, same limitation prior cycles have hit at this exact point, not a new defect). Checked `list_triggers` directly: all three scheduled Routines (PM :10, PM :40, hourly operator) show their latest run `SUCCEEDED`, confirming issue #40's five-day `USAGE_LIMIT_REACHED` stall has genuinely cleared, not just been reported.
+
+**Went well:** Reading the actual CI job log instead of trusting a local pass is what surfaced the real, still-open failure; the GOALS.md half had already been claimed fixed by two different sessions, so checking which of the two reported failures was actually still open (rather than re-fixing something already fixed) avoided duplicate work.
+
+**Did not go well:** This is the second time in one afternoon a legitimately improved, more honest line of prose has broken a test that hardcoded the old exact wording. The fix is correct, but the pattern (honest rewording treated as a regression by a brittle string match) is worth naming so the next person who edits this file's prose does not get blocked by it again.
+
+**Changing next cycle:** None needed yet; this is the first occurrence of this specific brittle-assertion shape, not a third, so no new preflight gate was written per CLAUDE.md step 10b's own threshold.
+
+**Next:** Nothing in the backlog is unblocked and unclaimed; every remaining item is in `OWNER-ACTIONS.md`'s "Start here" table (usage-limit check, VPS_DEPLOY_KEY, Search Console verification, YouTube authorisation, Stripe business description), all genuinely needing Phil's own hand. The next session should re-check `checks.yml`'s conclusion on this push before starting anything else.
+
+No price or product touched. Pushed to main (`28bde8a30`); command deck regenerated and committed in the same push.
+
 ## 2026-10-09, PM check-in (:40 cycle, 30 minute triage, found CI had actually been red for four straight commits, root-caused and fixed it, then found Phil had already pushed the identical fix seconds ahead)
 
 NEXT FOR THE OPERATOR: read run 1965's (`checks.yml`, commit `89c936d65`) actual conclusion before trusting `main` is clean again. It was still `in_progress` when this cycle ended. If it is green, there is nothing else queued: every backlog Now section is done or Phil-gated, all 9 GitHub issues are `decision`/`blocked-on-art`, and no new work is unblocked.
