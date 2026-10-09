@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, addendum: CI confirmed green on the two-defect cold-read fix, watched rather than assumed
+
+`checks.yml` run 1993 (commit `488025413`, the diagnosis.py/deploy_freshness.py fix below) completed with conclusion `success` after being watched start to finish: checkout, deps, "every ops file must parse", "no control characters", catalogue build, **Preflight** (20 minutes, passed on the real CI runner, not just this sandbox's own copy), **the ops test suite** (another 13 minutes, passed), "product copy has not drifted". Per CLAUDE.md 0.3/0.4, a push is not done until it is seen to pass somewhere that is not this operator's own sandbox; this is that confirmation, not an assumption. No further action needed on this commit.
+
 ## 2026-10-09, PM check-in (:40 slot, 30 minute triage, previous work finished and verified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the second-pass cold read at `hourly_brief.py` onward in the 2026-09-30 ledger tier (~24 files remain after `hazard_icons.py`), because that is the standing unblocked lane and nothing has superseded it.
