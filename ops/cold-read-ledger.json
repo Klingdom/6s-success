@@ -78,8 +78,8 @@
     },
     "build_card_template.py": {
       "status": "fixed",
-      "date": "2026-09-26",
-      "note": "fit_front()'s main fitting loop used range(need, 1, -1), which is empty when a card's action text needs exactly 1 line, so any such card fell into the 'nothing fitted' fallback: falsely reported trimmed=True and unconditionally dropped the tagline (tag=''), even with room to spare. None of the 89 live Entryway cards currently has a 1-line action (checked directly), so no visible defect shipped, but the next short card would silently lose its tagline. Fixed by widening to range(need, 0, -1). Fail-then-pass proved via git stash against the real module; real-corpus trimmed count (2/89) unchanged before and after. New ops/tests/test_build_card_template_fit_front.py."
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: removed fit(text,chars), a dead character-budget trimmer superseded by the width-based fit_lines/word_lines and never called from anywhere in the repo (confirmed via grep). base_css()'s forward reference to CONCEPT_PAD_X/CONCEPT_GLYPH (defined later in the module) checked safe: only called from card_html/back_html inside main(), after module-level code has run. Re-verified fit_front/fit_back/title_fit logic and the 2026-09-26 one-line-action fix still intact; test_build_card_template_fit_front.py 2/2 passing, --list runs clean."
     },
     "build_catalog.py": {
       "status": "fixed",
@@ -633,8 +633,8 @@
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: static review only, pypdf/PIL unavailable in this sandbox (standing gap); not wired into any preflight gate, no defect found"
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Ran --apply's effect live via /usr/bin/python3 (this sandbox's default python3 lacks pypdf, a sandbox quirk, not a repo defect; pypdf is deliberately absent from ops/requirements.txt since this is a human/operator-run tool, never called by preflight.py or a workflow, unlike pymupdf which that file documents CI actually needs). --check confirms the sample PDF is already optimised: 0 PNGs remaining, correct chapters-1-to-30 title, 31.2 MB."
     },
     "owner_inbox.py": {
       "status": "clean",
@@ -683,8 +683,8 @@
     },
     "reflow.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Ran reflow() against the ENTIRE real linkedin-post and facebook-post corpus pools (raw=True): 0 posts emptied, 0 shrank by more than 70%. Theoretical all-filler-blocks-emptied edge case considered but not reachable by any real post in the corpus, so not gated. No defect."
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Ran --demo and a synthetic chopped-post sample by hand: filler-opener stripping, colon-merge with the pronoun-I capitalisation guard, the CTA tail isolation and the short-opener merge all behave as documented. test_reflow.py (17 cases) passes."
     },
     "refresh_hero_fallback.py": {
       "status": "clean",
@@ -723,8 +723,8 @@
     },
     "review_heroes.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "cold-read 2026-09-25 scheduled operator cycle: --status correctly reports honest 0/0/0 with no build/heroes/ present here, sha-based verdict invalidation on regeneration verified correct, no defect"
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. sha-bound verdicts (a regenerated image drops its old verdict), why-preservation on re-mark (fixed 2026-09-21, still intact), SETS dict keeps zones/cards review independent of ops/review_deck_art.py's separate later-stage gate on purpose. --status run live for both sets: 0 images (build/heroes/* is gitignored and not present in this checkout), consistent with every image-pipeline file in this sandbox."
     },
     "roadmap_report.py": {
       "status": "clean",
@@ -883,8 +883,8 @@
     },
     "video_narrated.py": {
       "status": "clean",
-      "date": "2026-09-25",
-      "note": "Cold-read for defects (PM check-in). Verified the known ffmpeg concat gotcha (last file's duration entry ignored) is correctly handled by repeating the last PNG path unduration'd after the loop. Silent-beat placeholder, retry/backoff on TTS throttling, audio/video hold durations staying in lockstep via apad(TAIL), and Desktop delivery failing soft rather than raising all check out. No defect."
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Cannot run live (ffmpeg/edge-tts video toolchain, Phil-machine-only manual batch, same class as render_all_zone_videos.py). Read closely for the two documented past defects (srt span computed once per beat, not recomputed from an already-advanced start; the ffmpeg concat demuxer's required repeat-the-last-file-with-no-duration line) and both are correctly in place. Retry/backoff loop in narrate() sleeps only on failure, not after a successful attempt, confirmed by tracing the break path."
     },
     "video_srt.py": {
       "status": "fixed",
@@ -937,9 +937,9 @@
       "note": "Second-pass reread for drift, not just freshness. --check clean: every legal strip matches the table, no stale page."
     },
     "wire_measure.py": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Idempotent MARK/END rewrite uses a lambda re.sub callback (not a literal replacement string), so a backslash in measure.js's path can never be misinterpreted as a backreference. Chains fingerprint_assets.main(False) at the end since the block it writes has no cache-busting hash of its own. Live-path assertion checks every emitted src= resolves."
     },
     "wire_nav.py": {
       "status": "clean",
@@ -952,14 +952,14 @@
       "note": "PM check-in re-verify: rerun idempotent, 214 pages marked 5 skipped, 0 site/ diff after; matches 2026-09-25 note, no regression"
     },
     "wire_pwa.py": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Same safe lambda re.sub pattern as wire_measure.py/wire_signup.py. Only quest.html gets the manifest/service-worker (the one real app), every other page gets icons only. Live-path assertion checks href= targets and the register() string separately, since the SW path never appears as href=."
     },
     "wire_signup.py": {
-      "status": "fixed",
-      "date": "2026-09-27",
-      "note": "Same re.sub-backreference bug as fill_front_matter.py (2026-09-27): the built HTML block was passed directly as repl instead of a callable, so a future value containing a bare backslash would raise re.error or corrupt the page. Not yet fired live (no backslash in today's content). Fixed: repl is now lambda _m: block (or block with the group already captured), matching wire_zone_heroes.py's existing safe pattern. Proved fail-then-pass with a planted backslash; new test ops/tests/test_wire_scripts_backslash_repl.py guards all four files. This revises the earlier 'clean' verdict, which missed it."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "Second-pass cold-read: re-verified clean. Confirmed live against site/*.html: all 6 target pages still correctly show the withdrawal comment, matching the script's own docstring reason (shared Listmonk SMTP identity belongs to Compassion Benchmark, 553s every 6S opt-in). GitHub issue #15 (P0, decision) confirmed still open via the API, so the --force refusal remains correct. List-UUID live-check and the no-wrong-list assertion both sound."
     },
     "wire_zone_heroes.py": {
       "status": "clean",

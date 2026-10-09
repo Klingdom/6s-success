@@ -519,27 +519,6 @@ def clean(v) -> str:
     return re.sub(r"\s+", " ", str(v)).strip()
 
 
-def fit(text: str, chars: int) -> str:
-    """Trim to a whole-sentence boundary inside the budget.
-
-    Never mid-word, never with an ellipsis. On a printed card an ellipsis is a
-    promise of more text the reader cannot reach. If not even the first
-    sentence fits, this returns "" and the caller decides whether to drop the
-    block or give it another line; it will not hand back a mangled sentence.
-    """
-    t = clean(text)
-    if not t or len(t) <= chars:
-        return t
-    kept, total = [], 0
-    for part in _SENT.split(t):
-        add = len(part) + (1 if kept else 0)
-        if total + add > chars:
-            break
-        kept.append(part)
-        total += add
-    return " ".join(kept)
-
-
 SIX_WORDS = ("Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain")
 
 

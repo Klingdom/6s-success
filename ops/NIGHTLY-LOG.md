@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle, second-pass cold read, one dead-code fix, 8 files cleared
+
+**Did:** Attached cleanly (unshallow, ff-only merge, 79 commits, clean). Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md, last log entries. Every Now row done/Phil-gated, 9 issues and 0 PRs unchanged. `preflight.py` fresh: 0 FAIL/ERROR to the documented `gate_tests` sandbox hang, confirmed stalled, killed there.
+
+Took the standing handoff: second-pass cold read, oldest tier. Read eight files: `build_card_template.py` (too large last slot), `wire_measure.py`, `wire_pwa.py`, `wire_signup.py`, `optimize_sample_pdf.py`, `reflow.py`, `review_heroes.py`, `video_narrated.py`.
+
+**Found and fixed one real defect.** `build_card_template.py`'s `fit(text, chars)`, a character-budget trimmer, was dead code (grepped the repo, no caller), superseded by the width-based `fit_lines`/`word_lines` every other trim decision here uses, and was a wrong worked example for the next reader. Removed; `--list` and `test_build_card_template_fit_front.py` (2/2) pass.
+
+**Seven files re-verified clean**: `wire_measure.py`/`wire_pwa.py` (safe lambda re.sub, paths assert), `wire_signup.py` (live-checked, correct withdrawal note, issue #15 still open), `optimize_sample_pdf.py` (ran via /usr/bin/python3, sandbox python version gap; already optimised), `reflow.py` (--demo plus a sample, tests 17/17), `review_heroes.py` (sha-bound verdicts intact), `video_narrated.py` (no toolchain here; read-only, past fixes intact).
+
+**Verified:** check_urls 211/211, audit_pages 215/0, fix_dashes 0/0, affiliate 165 docs clean. inbox_agent: no mail credential, unchecked.
+
+**Went well:** splitting the large handed-off file let the named tier finish this slot.
+
+**Did not go well:** none.
+
+**Changing next cycle:** none. Continue the next tier (2026-09-26: accept_image.py, build_id.py, build_kitchen_deck_pdf.py, build_mobile_corpus.py, corpus_index.py, fingerprint_assets.py, fix_dashes.py, generated_products.py, import_generated_art.py, link_graph_report.py, linkedin_posts.py).
+
+**Next:** same owner-gates table and 9 open issues, unchanged.
+
+Pushed to main. `ops/build_card_template.py`, `ops/cold-read-ledger.json`, command deck. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, continued the second-pass cold read tier)
 
 Previous work finished: verified, not cited. Attached cleanly (fetch, unshallow, checkout, ff-only merge, 74 commits, no conflict, tree clean). Fast `preflight.py` reached every gate with 0 FAIL/ERROR up to the documented `gate_tests` headless-Chromium sandbox hang, confirmed genuinely stalled (flat CPU, no Chromium process, unchanged output) before killing it there, same standing sandbox limit every recent cycle reports. `BACKLOG-2026-09-07.md` sections 2-4: every row through A24 still done or Phil-gated. GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`. `STATUS.md`'s Open claims section already empty.
