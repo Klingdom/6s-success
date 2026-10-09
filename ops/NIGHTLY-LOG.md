@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, closed a stale owner-facing dashboard claim)
+
+Attached clean, tree clean. `preflight.py` hit the documented `gate_tests` hang; ran substitutes instead, clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` 0/0, `affiliate.py` clean. GitHub: 9 issues unchanged, 0 PRs. CI on the operator's last two commits in progress 20+ minutes; reporting unchecked. Backlog sections 2-4: every row struck through or Phil-gated.
+
+**Fixed one real defect:** the dashboard's Redeploy note claimed "no zone page carries its photograph yet" unconditionally whenever stale. The verdict commit (deployed 05:32:43Z) already had the photos; the 3 commits since never touched them. New `zone_photo_deploy_note()`, fail-then-pass proved, gates clean.
+
+Pushed `0afce3776`, no deploy. Operator: continue cold read at `hourly_brief.py`; watch run 1994/1995's CI first.
+
 ## 2026-10-09, scheduled operator cycle (second-pass cold read of 6 more files, two real defects found and fixed: a stale sibling-file cost and an exit code that lied about unchecked)
 
 **Did:** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no conflict. Read `BACKLOG-2026-09-07.md` (sections 0-7, every Now row done, HOLD or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several `ops/NIGHTLY-LOG.md` entries. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, reported unchecked. `affiliate.py --check`: clean, 165 documents.
