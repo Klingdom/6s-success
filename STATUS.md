@@ -56,7 +56,9 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+**Claimed 2026-10-09, scheduled operator cycle: second-pass cold read of `hourly_brief.py` through `owner_inbox.py` (6 files, the oldest-dated remaining entries in the 2026-09-30 ledger tier), per the :40 PM check-in's own handoff.** Release when landed.
+
+**Earlier, released 2026-10-09, scheduled operator cycle: the
 second-pass cold read of `checkin.py` through `hazard_icons.py` (7 files,
 2026-09-30 ledger tier) landed, two real defects found and fixed (see this
 date's `ops/NIGHTLY-LOG.md` entry): `ops/diagnosis.py`'s `IMPERATIVE_FIRST_WORD`
