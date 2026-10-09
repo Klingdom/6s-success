@@ -747,9 +747,9 @@
       "note": "Read in full. Run live (--preview): subject/text/html all built correctly from the real ops/state.json, needs_phil math matches live GitHub issue count (6 decision-labelled), issues_available fallback (GitHub-unreachable case) correctly distinguished from a real zero. No defect. Independently re-read the same day by a concurrent cycle: needs_phil filter re-confirmed against dashboard.py's own definition, staleness refusal confirmed. Two independent reads, same verdict."
     },
     "send_questions.py": {
-      "status": "fixed",
-      "date": "2026-09-26",
-      "note": "BLOCKING item 4's YouTube claim hardcoded 'publishes the 14 that already match... the rest are being re-rendered on a local machine', frozen from 2026-09-17 (100/114 stale). OWNER-ACTIONS.md item 1 recorded that re-render finishing overnight 2026-09-18 (114/114 matching, 102 ready) but this owner-facing email never caught up, understating the payoff by 88 videos for over a week -- the exact class gate_send_questions_current exists to prevent, just not this specific claim. Fixed by adding youtube_claim(), which reads ops/check_video_standard.compare() and ops/youtube_upload.ledger() live and states the real ready/held-back count either direction; verified live (currently: 'publishes all 102, nothing held back', matching OWNER-ACTIONS.md). gate_send_questions_current extended with two new checks (the exact old string, and youtube_claim wiring), fail-then-pass proved directly on both. ops/tests/test_send_questions.py, test_gate_send_questions_covers_top_owner_actions.py, test_youtube_upload.py, test_gate_youtube_sustain_anchor.py all still pass."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "PM check-in (:10 cycle): verified the :43 operator's own commit 51c665461 (added the usage-limit BLOCKING item to send_questions.py, matching OWNER-ACTIONS.md item -1). Reran test_send_questions.py (10/10) and test_gate_send_questions_covers_top_owner_actions.py (5/5) fresh, both pass. Legitimate fix, not a defect."
     },
     "service_orders.py": {
       "status": "fixed",

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, previous work was one unconfirmed CI check away from finished, closed a stale ledger entry, left the actual CI read to the operator since it needs 15 more minutes)
+
+NEXT FOR THE OPERATOR: read run 1962's (`checks.yml`, commit `51c665461`) actual conclusion on GitHub before trusting the two owner-action gate fixes landed clean, exactly as the prior cycle's own log asked. It was still `in_progress` at 04:21 UTC (started 04:16, this check runs 20+ minutes in CI), so it should be done by your :43 slot.
+
+**Previous work was not quite finished, in the specific way the operator's own log said: shipped, not yet CI-verified.** Attached clean (fetch, unshallow, checkout main, ff-only merge twice as a new commit landed mid-cycle, no conflict). `preflight.py` run fresh, unbuffered: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, confirmed genuinely stalled there (no new output for 180s) before accepting it. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. Checked `checks.yml` run 1962 directly rather than trusting the local pass: still running, not yet resolved either way.
+
+**Did:** `ops/cold_read_ledger.py --stale` found one real entry, `ops/send_questions.py` ledgered 2026-09-26 but touched again this cycle (`51c665461`, the operator's own fix adding the usage-limit item to `BLOCKING`). Reran both test files directly rather than trusting the commit message: `test_send_questions.py` (10/10) and `test_gate_send_questions_covers_top_owner_actions.py` (5/5), both pass. Legitimate fix, re-ledgered clean with that evidence.
+
+**Went well:** not declaring the prior cycle's work done on the strength of a clean local pass, since that cycle's own log explicitly flagged CI as unverified and named the exact check to read next.
+
+**Did not go well:** nothing new; same `gate_tests` sandbox limit as every cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-09, scheduled operator cycle (fixed the handed-off keyword-demand.yml cron staleness, then found and fixed two gates CI itself was failing on)
 
 **Attached clean.** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (no "unrelated histories" error, no conflict). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the real head of `ops/NIGHTLY-LOG.md`. Confirmed rather than assumed: every Now section (2-6) is again done or Phil-gated, 9 GitHub issues unchanged (`decision`/`blocked-on-art`), no mail credential, Workstreams 1 and 2 both BLOCKED on Phil per `STATUS.md`, Workstream 3 CLOSED.
