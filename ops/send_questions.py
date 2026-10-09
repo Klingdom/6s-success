@@ -63,6 +63,17 @@ def ics(summary, description, start, minutes, organizer, attendee):
 
 
 BLOCKING = [
+    ("Check your Claude Code usage limit or plan status",
+     "Open claude.ai/code (or wherever you manage the plan) and confirm "
+     "the account is not rate-limited.",
+     "The autonomous PM and operator Routines went completely dark for "
+     "roughly 5 days (2026-10-04 to 2026-10-09): every commit in that "
+     "window came from the dumb hourly check-in bot, none from an agent. "
+     "list_triggers showed both Routines failing on USAGE_LIMIT_REACHED. "
+     "This is an account-level setting no sandboxed session can see or "
+     "change, so only you can confirm it is clear. Full account in "
+     "STATUS.md INCIDENT-002 and GitHub issue #40.",
+     "2 minutes"),
     ("Add VPS_DEPLOY_KEY as a GitHub Actions secret",
      "Settings -> Secrets and variables -> Actions -> New repository secret, "
      "named exactly VPS_DEPLOY_KEY, pasting the contents of the "

@@ -25,7 +25,7 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
-**List reviewed:** 2026-10-04. A separate marker from "Last measured" above
+**List reviewed:** 2026-10-09. A separate marker from "Last measured" above
 (issue #38, 2026-10-02): that header is the exact sentence the dashboard
 parses for the real traffic-measurement date, and bumping it to mark this
 list as reviewed was quietly telling the dashboard a fresh database read
