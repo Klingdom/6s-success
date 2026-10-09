@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:20 slot, 30 minute triage, previous work finished, closed the 2026-09-26 second-pass cold-read tier and found one real dead-code defect)
+
+**Previous work finished.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` landed clean onto `ea1453b88` (88 commits, fast-forward, no conflict). Read `CLAUDE.md` in full, `git log -12`, `ops/NIGHTLY-LOG.md`'s top entries, `BACKLOG-2026-09-07.md` sections 0 through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, and all 9 open GitHub issues directly. Every row in `BACKLOG-2026-09-07.md` sections 2 through 4 is struck through done or carries an explicit Phil-gate (A24 is the last, closed); B9 (all 20 room decks) and B8 (print tiers, closed by D-027) are both done. 9 open GitHub issues, unchanged (`#40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --stale`: 0 of 196 stale, first-pass sweep still fully exhausted. `preflight.py` run fresh, confirmed genuinely stalled (CPU time flat, no new gate output) at the documented `gate_tests` headless-Chromium sandbox hang before killing it: 0 FAIL/ERROR through every one of the 75 gates reached.
+
+**No genuinely unblocked work in categories 1 through 5** (measurement, broken/dishonest, traffic/distribution, conversion, product): all are done or Phil-gated, matching the last several cycles' own finding. Took the standing second-pass cold-read handoff (category 6) instead of forcing new scope, scoped to what fits a 30-minute PM slot rather than the hours-scale handoff already sitting with the operator: read the five remaining 2026-09-26-tier files in full (`ops/mailer.py`, `ops/stripe_invoice.py`, `ops/ship.py`, `ops/render_cards.py`, `ops/video.py`), closing that tier.
+
+**Found and fixed one real defect.** `ops/video.py`'s `wrap(words, per_line=3)` was dead code: defined, never called anywhere in the repo (grepped for callers; confirmed no other `wrap` found is this one), superseded by `build_ass()`'s own inline 4-word chunking, and left behind a stale `per_line=3` default as a wrong worked example for the next reader, the exact same shape a prior cycle already found and fixed in `build_card_template.py`'s dead `fit()`. Removed; `ops/tests/test_video_srt.py` (6/6), `test_video_ass_timestamps.py` (3/3), `test_check_video_links.py` and `test_check_video_standard.py` all rerun clean after.
+
+**Four files re-verified clean, no defect**: `mailer.py` (credential precedence, the `owner()` guard against reporting into our own `@6s-success.com` inbox, TLS verified on both the implicit-TLS and STARTTLS paths); `stripe_invoice.py` (checked its hardcoded refund-terms footer word for word against the live `site/terms.html` Consulting section, still in sync, no drift; `STRIPE_ALLOW_LIVE` guard and draft-by-default intact; `ops/tests/test_stripe_invoice.py` 4/4); `ship.py` (every documented past incident in its own comments, untracked-only commits, `--help` falling through to a live push, build-id staged after not before, conflict markers surviving a bad rebase, still has its fix in place; `test_ship_conflict_safety.py` 3/3, `test_ship_help_flag.py` 2/2, `test_ship_new_file_committed.py` 2/2); `render_cards.py` (the unchecked/bad/ok three-way split in `verify_png()` still correctly keeps a missing-PIL environment from overwriting a real screenshot; `test_render_cards.py` 6/6). All five ledger entries re-dated via `ops/cold_read_ledger.py --add` (not hand-edited; `git diff --stat` confirmed a clean incremental diff, not a full rewrite).
+
+**Verified after the fix:** `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, a second full `preflight.py` pass (same 0 FAIL/ERROR to the documented `gate_tests` hang, confirmed stalled by flat CPU time before killing it again).
+
+**Did not go well:** nothing new; same standing Phil-blocked list (owner-gates table, `OWNER-ACTIONS.md`, 9 decision/blocked-on-art issues) as every cycle today.
+
+**Changing next cycle:** none.
+
+**Handing to the operator:** the 2026-09-26 tier is now fully closed (16 of 16 files). Continue the second-pass cold read at the 2026-09-27 tier (`affiliate.py`, `build_image_prompts.py`, `eventLog.js`, `format.js`, `importProgress.js`, `launch_plan_pdf.py`, `photos.js`, `pickCard.js`, `room_image_variants.py`, `shop.js`, `social_pin_fit.js`, `videoLink.js`).
+
+Pushed to main. `ops/video.py` (one dead-code removal), `ops/cold-read-ledger.json` (5 entries re-dated), command deck. No price, product or served page touched; no new page. IndexNow not applicable.
+
 ## 2026-10-09, scheduled operator cycle, continued the second-pass cold read (2026-09-26 tier), 11 files re-read, no new defect
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only`, 85 commits, no conflict, clean tree. Read `CLAUDE.md` in full, `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 (including 1b, the owner-decision rooms), the last several `NIGHTLY-LOG.md` entries, and all 9 open GitHub issues directly. All 9 remain unchanged, `decision`/`blocked-on-art`, every one already waiting on Phil; 0 open PRs.

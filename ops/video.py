@@ -66,10 +66,6 @@ def ass_colour(hexrgb: str, alpha: str = "00") -> str:
     return f"&H{alpha}{b}{g}{r}"
 
 
-def wrap(words: list, per_line: int = 3) -> list:
-    return [words[i:i + per_line] for i in range(0, len(words), per_line)]
-
-
 def build_ass(phrases: list, path: str) -> str:
     """Karaoke captions. phrases is [(start, end, "some words"), ...].
 

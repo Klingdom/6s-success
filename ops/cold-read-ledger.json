@@ -613,8 +613,8 @@
     },
     "mailer.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: load()/owner()/send() read cold end to end (credential precedence, owner-address self-inbox refusal, attachment ordering); no defect found."
+      "date": "2026-10-09",
+      "note": "PM check-in cold read: re-read in full (146 lines). Credential loading correct (env wins over .env.secrets, never printed), owner() correctly refuses an address inside our own domain so a report cannot land back in support@ instead of the owner, connect() verifies TLS certs on both port 465 (implicit TLS) and STARTTLS paths. No defect found."
     },
     "measure.js": {
       "status": "fixed",
@@ -703,8 +703,8 @@
     },
     "render_cards.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Headless-Chromium card renderer + type-fit verifier. Read against its counterpart, build_card_template.py's embedded measuring script (FITREPORT/ENDFIT split across string literals so render_cards.py's own reversed-match regex comment makes sense): sizes/over/safe-area reporting shapes match exactly, including the sh==ch==0 sentinel for a safe-area-only violation. verify_png()'s three-way ok/bad/unchecked correctly distinguishes a missing-PIL environment from a real bad render. Could not exercise live: build/card-fronts (a gitignored build artifact) does not exist in this sandbox, same standing limitation as every other image-pipeline file; py_compile clean. No defect found."
+      "date": "2026-10-09",
+      "note": "PM check-in cold read: re-read in full (241 lines). verify_png()'s unchecked/bad/ok three-way split (CLAUDE.md 0.4: a missing PIL dependency must not overwrite a real screenshot that did succeed) still correctly distinguishes a missing dependency from a genuinely bad render; ran ops/tests/test_render_cards.py directly (6/6 verify_png cases). measure()'s regex takes the LAST FITREPORT match, not the first, which the file's own comment explains is the fix for matching the measuring script's own source text; confirmed the regex and comment still agree. No defect found."
     },
     "retire_stripe_skus.py": {
       "status": "clean",
@@ -758,8 +758,8 @@
     },
     "ship.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "Adversarially tested the rebase-conflict-resolution path against sync_push.py's own sibling logic (isolated bare-origin sandbox scenarios): a generated-only conflict, a two-commit case where a generated-file conflict resolves cleanly then a second, real-file conflict surfaces mid rebase --continue, and a pre-commit hook forcing a non-conflict failure. In every case the existing sync_push.markered() defense-in-depth plus the unknown-conflict abort already catch it correctly; no exploitable gap found. fix_dashes.py: --check clean (0 em/en dashes), 10/10 own tests pass, deliberately scoped to root/claude/retro control docs per its own docstring (a separate sitewide gate already covers code/site dash usage)."
+      "date": "2026-10-09",
+      "note": "PM check-in cold read: re-read in full (214 lines). Every documented past incident in its own comments (untracked-only commit silently skipping staging, --help falling through to a live push, build_id stamped before staging, conflict markers surviving a bad rebase resolution) still has its fix in place. Ran ops/tests/test_ship_conflict_safety.py (3/3), test_ship_help_flag.py (2/2) and test_ship_new_file_committed.py (2/2) directly. No defect found."
     },
     "shoot_mobile.py": {
       "status": "clean",
@@ -838,8 +838,8 @@
     },
     "stripe_invoice.py": {
       "status": "clean",
-      "date": "2026-09-26",
-      "note": "cold-read 2026-09-26 scheduled operator cycle: STRIPE_ALLOW_LIVE guard, customer-match-by-email, invoice/invoiceitem/send call order all read cold and checked against Stripe's own API shape; failures print the real API error rather than a false success. No defect found."
+      "date": "2026-10-09",
+      "note": "PM check-in cold read: re-read in full (142 lines). Checked the hardcoded FOOTER refund terms against the live site/terms.html Consulting section word for word (full refund >7 days, half 2-7 days, no refund but one free reschedule inside 48 hours, full refund if we cancel, refund within 7 days if not useful): still in sync, no drift. STRIPE_ALLOW_LIVE guard, draft-by-default, and email-match-before-create logic all correct; ran ops/tests/test_stripe_invoice.py (4/4 cases) directly rather than trusting the file. No defect found."
     },
     "stripe_links.py": {
       "status": "clean",
@@ -872,9 +872,9 @@
       "note": "Second-pass cold-read 2026-10-01. Read end to end: differs() correctly normalizes CRLF/LF for text sidecars and falls back to a size compare for video; scan() is pure and testable (desktop_root is a parameter, never hardcoded, so a test can point it at a scratch dir); the three-way exit code (0 clean, 1 real gap, 2 no Desktop folder here at all) already correctly distinguishes 'cannot check' from 'confirmed fine' per CLAUDE.md 0.4, matching this file's own docstring. --fix copies only the real gap and resets it to empty before tallying missing_total, so a fixed run reports 0 missing rather than double-counting. No defect found."
     },
     "video.py": {
-      "status": "clean",
-      "date": "2026-09-26",
-      "note": "Read in full 2026-09-26 (scheduled operator). Core caption/render/verify logic is already hardened against two documented past incidents (the 0:00:60.00 ASS timestamp overflow, the edge-to-edge unwrapped caption). verify() checks dimensions, duration, file size and a mid-frame flatness test rather than trusting a written file exists. One minor robustness gap noted but not fixed: the PIL import inside verify() is unguarded, so a missing Pillow would raise past a bare call site (video_zone.py's --zone demo path, line 567); the batch caller in video_zone_photo.py already wraps V.verify() in try/except so a missing Pillow there is caught and reported as a per-item failure, not a crash. Could not exercise render()/verify() here: this sandbox has no ffmpeg/ffprobe (confirmed via --probe), the same standing limitation already recorded for every other video-rendering file in this repository. No defect meeting this repo's bar (a check that cannot fail, a silent drift, a wrong default)."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "PM check-in cold read: re-read in full (232 lines, now 229). Found and removed one real dead-code defect, same shape as build_card_template.py's fit(): wrap(words, per_line=3) was defined but never called anywhere in the repo (grepped for callers; the other wrap() hits in zone_graphics.py/experiments.py/tests are unrelated same-named functions), superseded by build_ass()'s own inline 4-word chunking and left a stale per_line=3 default as a wrong worked example. Removed; ops/tests/test_video_srt.py (6/6), test_video_ass_timestamps.py (3/3), test_check_video_links.py and test_check_video_standard.py all rerun clean after."
     },
     "videoLink.js": {
       "status": "clean",
