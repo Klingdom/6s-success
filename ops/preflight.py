@@ -13665,11 +13665,25 @@ def gate_every_payment_fulfilled() -> None:
     worth knowing and was not written down anywhere either.
 
     The grace period is six hours because the fulfilment schedule does not fire
-    when it is asked to: measured 2026-09-09, its real gaps average 216 minutes
+    when it is asked to: measured 2026-09-09, its real gaps averaged 216 minutes
     against a configured 30, worst 367. Failing at 30 minutes would fail on
-    GitHub's scheduler rather than on a delivery problem. Six hours is past the
-    worst observed gap and still well inside the "within a few hours" that
-    thanks.html promises.
+    GitHub's scheduler rather than on a delivery problem.
+
+    RE-MEASURED 2026-10-09, and the old justification for this number is no
+    longer true. It said six hours is past the worst observed gap. Including
+    the push-triggered fallback, fulfil-orders.yml now measures an effective
+    median of 28.8 minutes, an effective mean of 144, and a worst gap of 540,
+    which is nine hours. So six hours is no longer past the worst observed gap
+    and a genuinely delayed delivery can now trip this gate.
+
+    The number is deliberately NOT being raised to suit the measurement. A
+    paying customer who has waited more than six hours for a download is
+    something a person should look at, whoever is at fault, and a grace period
+    that rises to meet whatever GitHub is doing this month would quietly
+    normalise the drift until the check stopped meaning anything. thanks.html
+    promises "within a few hours", which the median and the mean both still
+    sit inside; the tail does not, and this gate firing is the intended way to
+    find out that it happened to a real order.
 
     No credential means UNCHECKED, never clean. In CI there is no Stripe key,
     and a silent pass here would be a check that reassures precisely when it

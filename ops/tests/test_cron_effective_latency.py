@@ -87,22 +87,48 @@ def case_comment_mentioning_push_is_not_a_trigger():
 
 
 def case_effective_fields_appear_only_when_covered():
-    """Shape check against the real API result, when a token is available."""
-    res = C.check()
-    got = False
-    for r in res.get("workflows", []):
-        if r.get("verdict") != "measured":
-            continue
-        covered = r.get("cron_late_but_covered")
-        has_eff = "effective_median_gap_min" in r
-        assert covered == has_eff or (not covered and not has_eff), r
-        if covered:
-            got = True
-            assert r["effective_median_gap_min"] <= r["median_gap_min"], r
-            assert r.get("degraded") is False, r
-    if not got:
-        print("      (no covered workflow measured here, shape check only)")
+    """Shape check against the real API result, when a token is available.
 
+    REWRITTEN 2026-10-09, because the old version asserted the weather.
+
+    It required that any workflow carrying effective_* fields also has
+    degraded False. That was true when it was written and it is not a law:
+    the fields appear whenever a push-triggered fallback was MEASURED, and
+    degraded is cleared separately, only when the effective MEAN comes in
+    under 2.5x the configured interval. Today fulfil-orders.yml reports an
+    effective median of 28.8 minutes against a configured 30, which is on
+    time, and an effective mean of 144 dragged up by a single 540 minute gap,
+    which is not. So the fields are present and degraded is correctly True,
+    and the test failed the image build for four days over a fact about
+    GitHub's scheduler rather than a defect in this repository.
+
+    What is actually invariant, and what this now asserts:
+      * the fields travel together, never half of them
+      * the effective median can never be WORSE than the schedule-only
+        median, because the effective series is the schedule plus extra runs
+      * if degraded was cleared by coverage (cron_late_but_covered), the
+        effective fields must be there to justify it
+    """
+    res = C.check()
+    measured = [r for r in res.get("workflows", [])
+                if r.get("verdict") == "measured"]
+    if not measured:
+        print("      NOT VERIFIED: no workflow could be measured here (no "
+              "token or no run history), so nothing below was checked.")
+        return
+    for r in measured:
+        eff = [k for k in ("effective_mean_gap_min", "effective_median_gap_min",
+                           "effective_worst_gap_min", "effective_sample_size")
+               if k in r]
+        assert len(eff) in (0, 4), (
+            "effective_* fields must travel together; got %r" % (eff,))
+        if eff:
+            assert r["effective_median_gap_min"] <= r["median_gap_min"], r
+        if r.get("cron_late_but_covered"):
+            assert eff, (
+                "degraded was cleared as covered with no effective figures "
+                "to justify it: %r" % (r,))
+            assert r.get("degraded") is False, r
 
 def case_coverage_is_earned_not_assumed():
     """The defect ops/tests/test_check_cron_cadence.py caught, pinned here too.
