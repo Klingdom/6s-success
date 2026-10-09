@@ -261,9 +261,6 @@ def main() -> int:
     # Counts the opening tag, not one exact class string: a sheet with 7 or
     # more zones carries "sheet dense" so it can fit its page, and the
     # older exact match silently turned that into "a sheet was lost".
-    # Counts the opening tag, not one exact class string: a sheet with 7
-    # or more zones carries "sheet dense" so it can fit its page, and the
-    # older exact match silently turned that into "a sheet was lost".
     assert html.count(chr(60) + 'section class="sheet') == total, (
         "a sheet was lost in layout")
     print(f"  claims checked: {zones} standards and {trigs} triggers "

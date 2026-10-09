@@ -312,9 +312,9 @@
       "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_standards.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "dedupe cycle: removed a duplicated comment block above the sheet-count assert (identical 3-line comment pasted twice back to back); verified the generator's own self-checks still pass and build/6S-Standards-Pack.html stays byte-identical to site/downloads/6S-Standards-Pack.html. Also checked the per-room zs.index(z) numbering against actual content.json for duplicate zone dicts (0 found), so the fragile-but-currently-safe numbering is not a live defect. No gate change needed; this is cosmetic, not a found defect class."
     },
     "build_standards_page.py": {
       "status": "clean",
@@ -322,9 +322,9 @@
       "note": "Read in full: live PACK-HOUSE price/link read, verbatim hero/FAQ assertions against content.json, missing-zone-link guard, full wiring chain all correct. No defect."
     },
     "build_thumbnails.py": {
-      "status": "fixed",
-      "date": "2026-09-30",
-      "note": "Read in full (166 lines). Found and fixed a real defect: html_for() substituted vz.FONTS (a bare filesystem directory path) directly into <style> in place of an @font-face rule, so none of the 114 thumbnails ever actually loaded the Inter font; 'font-family: Inter' silently fell back to whatever system font the render machine has. Confirmed with a pixel diff (Pillow+numpy installed for the check): 8.8% of pixels differed, max channel delta 204/255, before the fix. Added the missing @font-face for Inter-800 (the weight .room/.zone actually use; the real Inter-800-normal.woff2 file already existed on disk, just unlinked), regenerated all 114 thumbnails, new gate_thumbnail_font_face in preflight.py (fail-then-pass proved 4 ways in ops/tests/test_gate_thumbnail_font_face.py: bare-path bug, no @font-face at all, wrong declared weight, and the real fixed shape)."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Correctly implemented: --check counts PNGs against 114 (ran it: 114/114), MAX_BYTES guard checked against actual files (largest 46KB, far under 2MB), zone_slug() used from video_zone.py rather than a hand-copied slug (the single-source-of-truth bug class gate_video_slug_single_source exists to catch). Wired into preflight via gate_dashboard_thumbnails_live. No defect found."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -338,8 +338,8 @@
     },
     "build_zone_index.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: byte-identical regeneration, zero git diff. No defect found."
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Ran the full generator standalone (chains canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets, same as the file's own comments describe): regenerated site/zones/index.html byte-identical, 0 pages rewritten beyond its own header, 0 drift anywhere else on the site, both internal asserts (links resolve, 114 zones) passed. The r['zones'].index(z) numbering (same pattern as build_standards.py) checked against content.json: no duplicate zone dicts, so not a live defect. No defect found."
     },
     "build_zone_map_pack.py": {
       "status": "fixed",
@@ -358,13 +358,13 @@
     },
     "card_spec.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified for drift (was 2026-09-11). Ran directly: the module-level assert (all ten families' band_bg() output >= 4.5:1 against on()) passed, exit 0. The CLI table's own printed contrast column shows several families below 4.5 (Problem 4.09, Habit 4.44, Win/Win-Reward 4.02) but that is the documented pre-band_bg raw colour, not what actually renders on cards; confirmed against the file's own docstring rather than reading the table at face value. No drift."
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Ran the module directly (exit 0, self-asserts WCAG AA on band_bg() for all 10 FAMILY entries at import time). Confirmed the historic family_of()-falls-back-to-Room defect class (D found 2026-09-07, 65/72 Kitchen cards mislabeled) is now covered by preflight's gate_card_family_known, and all five chain-vocabulary keys (Zone, Friction, Root Cause, Action, Standard) are present in FAMILY. The __main__ diagnostic table prints raw-colour contrast (e.g. Friction 4.09:1), which looks under the 4.5 target but is expected and documented: real card rendering uses band_bg()'s adjusted colour, not the raw one, and that path's own assertion already passes. No defect found."
     },
     "check_affiliate_trigger.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified (was stale at 2026-09-25). Ran standalone: correctly reports T2 unevaluated (no SSH/analytics access in this sandbox), honest unknown rather than false pass. No defect found."
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Ran it directly in this sandbox (no ssh key): correctly reports 'T2 NOT EVALUATED ... not a reading of zero' rather than a false 0/60. Reads retailer hosts live from product_links.MERCHANTS (no second hardcoded list to drift), excludes who=internal/automated per PLAN-AFFILIATE-MONETISATION.md's T2 wording, wired into preflight (gate reads check_affiliate_trigger directly). SQL host list is built from internal static config (product_links.py), not user input, so the string-formatted IN clause is not an injection surface. No defect found."
     },
     "check_cron_cadence.py": {
       "status": "fixed",
@@ -668,8 +668,8 @@
     },
     "prune_catalog_js.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: --check still reports 5 pages keep data.js, 0 pages need pruning; matches 2026-09-25 note, no regression"
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Ran --check: 5 pages correctly kept (book, contact, index, method, shop), 0 pruned (already clean from prior runs), site.js guard confirmed present. Checked the NEEDS list's id=consulting-grid string against the live site: no page currently has that id, and consulting.html's one data.js mention is a code comment, not a script tag, so it is correctly excluded from the loop entirely (TAG regex does not match a comment). Not a defect, just a marker for a feature that does not exist yet. No defect found."
     },
     "quest.js": {
       "status": "clean",
@@ -688,8 +688,8 @@
     },
     "refresh_hero_fallback.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Ran --check against the live site/zones/*.html: 111 pages with a wired hero, 0 new, 0 dropped, 0 changed. gate_hero_fallback_current wired in preflight.py (line 1274 gens map, check_hero_fallback_current at 9534). No defect."
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Ran --check live: 111 pages with a wired hero, 0 added/dropped/changed vs the committed ops/hero-fallback.json, confirming zero drift right now. Wired into preflight via gate_hero_fallback_current. Logic only records a preview URL when it points at the zone's own image (not the generic room-map fallback), which is the correct guard against the record overclaiming a hero the page does not have. No defect found."
     },
     "render_all_narrated.py": {
       "status": "fixed",
