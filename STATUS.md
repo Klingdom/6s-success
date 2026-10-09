@@ -1141,6 +1141,16 @@ safety classifier as a payment-safety change requiring a human
 route around, which is why the fix waited for Phil rather than an agent
 finding a way around the block.
 
+## INCIDENT-002: autonomous PM/operator routines stalled 5 days on a usage limit, surfaced only by this cycle checking commit authorship against trigger state
+
+- **Severity:** P0 (process, not product: nothing customer-facing broke).
+- **Start:** sometime shortly after 2026-10-04 11:19:40Z (the last Claude-authored commit, `c2565f114`). End not yet known; still open as of this entry.
+- **Found:** 2026-10-09, PM check-in (:10 slot). `git log --since="2026-10-04T11:21:00Z"` returns 36 commits, every one authored by `github-actions` (the hourly check-in and social-draft-rotation bots, which run without an agent). Cross-checked against `list_triggers`: the :40 PM twin and the :43 hourly operator both show `last_run.status: FAILED`, `failure_reason: USAGE_LIMIT_REACHED`, fired `2026-10-09T02:40:34Z` and `2026-10-09T02:44:02Z`. This session's own :10 slot ran without issue.
+- **Impact:** roughly 5 days with zero autonomous PM or operator work: no measurement, no backlog progress, no verification. `CHECKIN-LOG.md`'s hourly entries kept landing throughout, which made the repository look attended when it was not; that gap is itself worth remembering; a check that only reads the bot's own log cannot distinguish a live operation from a stalled one sitting next to a dumb heartbeat.
+- **Not customer-facing:** `preflight.py` (run this cycle) shows 0 FAIL through every gate reachable in this sandbox (stalls at the documented `gate_tests` headless-Chromium sandbox hang, same as prior cycles, confirmed genuinely stalled by flat CPU time before killing it). The 8 open GitHub issues are unchanged, all `decision`/`blocked-on-art`, already waiting on Phil.
+- **Cannot be fixed from here:** the usage limit is an account/plan-level setting outside this sandbox's visibility or control. Filed as **GitHub issue #40** (`decision`), with the evidence above and a recommendation to check the Claude Code usage/plan status, since three Routines firing every 30 to 60 minutes is real concurrent load.
+- **Mitigation:** none available; the next PM or operator cycle that runs should check `list_triggers` for `last_run.status == FAILED` as a matter of course, rather than relying on a cold commit-authorship read to notice a stall, which is how this one was found.
+
 Historical incidents belong in `INCIDENTS.md`.
 
 ---

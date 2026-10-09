@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, found the autonomous system had been dark for 5 days)
+
+NEXT FOR THE OPERATOR: nothing new to start. Every backlog Now section (2-6) is still done or Phil-gated, all 8 GitHub issues (now 9, see below) are `decision`/`blocked-on-art`, and this cycle's real work was surfacing and documenting a 5-day stall, not advancing product work.
+
+**Previous work was NOT finished, but not in the usual sense: there was no previous work to check, because nothing had run.** Attached clean (fetch, unshallow, checkout main, ff-only merge onto `origin/main`, 23 commits, no conflict). `git log --since="2026-10-04T11:21:00Z"` returns 36 commits, every one authored by `github-actions` (the hourly check-in / social-rotation bots, no agent involved); the last Claude-authored commit anywhere in this repository is `c2565f114`, 2026-10-04 11:19:40Z. Checked `list_triggers` directly: the :40 PM twin and :43 hourly operator both show `last_run.status: FAILED`, `failure_reason: USAGE_LIMIT_REACHED`. My own :10 slot ran without issue, so the limit is not wall-to-wall right now, but the 5-day commit gap says it has been blocking most runs since 2026-10-04.
+
+**Not customer-facing.** `preflight.py` run fresh this cycle: 0 FAIL through every gate before `gate_tests`, confirmed genuinely stalled there (flat CPU time across 15s) before killing it, the same documented sandbox limit every prior cycle has hit, not a new regression. GitHub: 8 open issues unchanged, all `decision`/`blocked-on-art`.
+
+**Did:** filed GitHub issue #40 (`decision`) with the full evidence; added `STATUS.md` INCIDENT-002 and `OWNER-ACTIONS.md` "Start here" item -1, both citing the same evidence rather than restating it differently in three places. Sent Phil a push notification, since a 5-day silent stall of the whole autonomous operation is exactly the kind of thing this routine exists to surface, not just log.
+
+**Went well:** cross-checking commit authorship against `list_triggers` rather than trusting `CHECKIN-LOG.md`'s own busy-looking hourly entries, which kept landing the whole time and would have read as "everything is fine" to a check that only reads the bot's own log.
+
+**Did not go well:** nobody and nothing caught this for up to 5 days; the gap itself is the finding.
+
+**Changing next cycle:** the next PM or operator cycle should check `list_triggers` for `last_run.status == FAILED` as a matter of course, not only when something else prompts a cold commit-authorship read.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (now led by item -1, the usage-limit check) and the 8 pre-existing `decision`/`blocked-on-art` issues plus new issue #40.
+
+Pushed to main. `STATUS.md`, `OWNER-ACTIONS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-04, PM check-in (11:1x cycle, 30 minute triage, previous work finished, two stale sibling deploy-gap citations found and closed)
 
 Previous work was finished: the keyword-demand gap tier re-read concluded genuinely exhausted and the operator pushed command-deck files only, no site change, no false claim. But STATUS.md itself was not current. Attached clean (fetch, unshallow, checkout main, ff-only merge, no conflict, 766 commits). Called `deploy_gap_count_problem()` and `status_deploy_verdict_problem()` directly against live `STATUS.md`/`ops/deploy-verdict.json` rather than citing the 10:4x check-in: `BLOCKER-001`'s own latest entry already correctly said 10 commits, 7 material, but the "Production Knowledge" paragraph and the "Immediate Focus" line, two of the three sibling sections `status_deploy_verdict_problem` is supposed to keep in sync, both still said 9 commits, 6 material, one correction cycle behind, the exact "source corrected, sibling never told" shape this file's own gates exist to catch (these two gates only check build_id presence and BLOCKER-001's own count, not every sibling's prose). Fixed both with a dated append, same convention every prior correction in this file uses, not a rewrite of the stale text. Re-verified directly after the edit: `deploy_gap_material_commits('fe383721c')` returns 10, `deploy_gap_count_problem` and `status_deploy_verdict_problem` both return ''. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `preflight.py` run fresh: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, confirmed genuinely stalled (138s elapsed, 3s CPU time) before killing it, not assumed passing past that point. GitHub: 8 open issues, unchanged, all `decision`/`blocked-on-art`; 0 PRs.
