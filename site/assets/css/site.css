@@ -1107,3 +1107,25 @@ main:focus{outline:none}
 .clean-zone{margin:26px 0 6px}
 .clean-zone a{display:inline-block;padding:9px 2px;min-height:44px;
   box-sizing:border-box;line-height:1.35}
+
+/* JUMP LIST on a zone page.
+
+   Measured 2026-10-09: the median zone page is 4,462 words across 22 h2
+   sections, and on the Entryway Landing Spot the step-by-step instructions
+   start at word 1,005, behind five sections. The ordering is deliberate
+   (CLAUDE.md 6, root cause before solution) so it stays; this is the one-tap
+   way past it for somebody who already knows what is wrong.
+
+   Touch targets are 44px tall, which is the same floor .clean-zone a above
+   was fixed to. The list wraps rather than scrolls sideways: a horizontal
+   scroller hides its own last item on a narrow phone, which is the opposite
+   of what this is for. */
+.zone-jump{margin:18px 0 26px;padding:14px 16px;border-radius:10px;
+  background:var(--panel);border:1px solid var(--line)}
+.zone-jump-lead{margin:0 0 6px;font-size:.94rem;font-weight:600}
+.zone-jump ul{list-style:none;margin:0;padding:0;display:flex;
+  flex-wrap:wrap;gap:4px 18px}
+.zone-jump li{margin:0}
+.zone-jump a{display:inline-flex;align-items:center;min-height:44px;
+  padding:4px 2px;box-sizing:border-box;line-height:1.3;font-size:.96rem}
+@media print{.zone-jump{display:none}}

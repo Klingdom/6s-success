@@ -220,6 +220,71 @@ def common_items_html(zone: dict) -> str:
     return (f'<h2>Common items here</h2><ul class="common-items">{rows}</ul>')
 
 
+JUMP_MARKER = '<!--ZONE-JUMP-->'
+
+# Section id -> the label the jump list shows. Each label is the destination
+# heading's own words, shortened, never a new phrase invented for the nav: a
+# label that does not match where it lands is the same copy-and-control
+# disagreement gate_price_matches_its_own_link exists for, one level up.
+# Order is reading order, so the list never sends anybody backwards.
+JUMP_TARGETS = [
+    ('diagnosis', 'Which of these is true here?'),
+    ('passes', 'The six passes, in order'),
+    ('what-to-store-it-in', 'What to store it in'),
+    ('shine-detail', 'Cleaning it, surface by surface'),
+    ('capacity', 'How much it holds'),
+    ('variants', 'When this is not your home'),
+]
+
+
+def jump_nav_html(page: str) -> str:
+    """A short jump list, built from the page that was actually assembled.
+
+    WHY
+    ---
+    Measured 2026-10-09 across all 114 zone pages: median 4,462 words and 22
+    h2 sections, against about 2,100 words in early September. Each addition
+    was defensible on its own (common_items, sort_scope, capacity, variants,
+    the kit, the surface-by-surface clean) and nobody measured the total.
+
+    On the Entryway Landing Spot the step-by-step instructions, which are the
+    thing a person standing in their entryway actually wants, begin at word
+    1,005, behind five sections. That ordering is deliberate and stays:
+    CLAUDE.md section 6 is explicit that root cause comes before solution, and
+    the diagnosis block is what makes this more than a listicle. What was
+    missing is any way to skip it when you already know what is wrong. The
+    page had thirteen in-page links and every one of them sat at word 1,318 or
+    later, inside the kit copy, pointing backwards.
+
+    So this is a jump list and not a rewrite. CLAUDE.md 0.7 puts ease of use
+    at P2 and names less text and a clearer first step; 44 asks for short
+    flows and low cognitive load on a phone. One tap is the cheapest honest
+    answer to both, and it removes nothing.
+
+    BUILT FROM THE RENDERED PAGE, ON PURPOSE
+    ----------------------------------------
+    Half of these sections are conditional: a zone with no `capacity`, no
+    `variants`, no storage block or no surface-by-surface clean renders none
+    of them. Predicting which ones will appear would put dead anchors on real
+    pages, which is the defect this repository has shipped before (44 dead
+    deck anchors, 223f5111). So the caller assembles the whole page first and
+    this reads it back: a link exists only because its target does.
+
+    Returns '' when fewer than three targets are present, because a two-item
+    jump list costs a visitor more attention than it saves.
+    """
+    items = []
+    for anchor, label in JUMP_TARGETS:
+        if ('id=' + chr(34) + anchor + chr(34)) in page:
+            items.append('<li><a href="#%s">%s</a></li>'
+                         % (anchor, esc(label)))
+    if len(items) < 3:
+        return ''
+    return ('<nav class="zone-jump" aria-label="Jump to a section of this page">'
+            '<p class="zone-jump-lead">Already know what is wrong here? Jump straight to it.</p>'
+            '<ul>' + ''.join(items) + '</ul></nav>')
+
+
 def sort_scope_html(zone: dict) -> str:
     """The belongs/strays field, piloted on Entryway's 5 zones (per the
     pilot-before-rollout rule this file already follows for `common_items`
@@ -2968,6 +3033,13 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     if _ans:
         out.append(_ans)
 
+    # The jump list goes here, right after the short version and before the
+    # diagram, so it is the second thing a phone meets. It cannot be built
+    # yet: which sections exist is only known once the page is assembled, so
+    # a marker holds the place and the end of this function resolves it. See
+    # jump_nav_html().
+    out.append(JUMP_MARKER)
+
     # THE MICRO ZONE, DRAWN.
     #
     # Added 2026-09-18. Every picture on these pages was a generated room
@@ -3082,7 +3154,15 @@ def zone_page(room, zone, header, footer, all_rooms=()):
             print(f"  WARNING: no kit rendered for {room['room']} / {name}: {e}")
 
     out.append(diagnosis_html(thing, zone))
-    out.append('<h2>The six passes, in order</h2>')
+    # id on the SECTION HEADING, not on the first pass inside it.
+    #
+    # The jump list first pointed at #sort, which is the Sort pass, one
+    # heading below this one, so a reader who tapped 'The six passes, in
+    # order' landed mid-section with the title they had just read now above
+    # them and off screen. The test caught it on all 114 pages by checking
+    # that the label's own words appear AFTER the anchor, which is a cheap way
+    # to catch a link that lands near the right place rather than on it.
+    out.append('<h2 id="passes">The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
     if _compact_kit:
@@ -3363,7 +3443,15 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     out.append(UMAMI)
     out.append('<script src="../assets/js/data.js"></script>'
                '<script src="../assets/js/site.js"></script></body></html>')
-    return "\n".join(out)
+    page = "\n".join(out)
+    # Resolved against the FINISHED page, so a jump link cannot point at a
+    # section this zone did not render. See jump_nav_html().
+    page = page.replace(JUMP_MARKER, jump_nav_html(page), 1)
+    if JUMP_MARKER in page:
+        raise AssertionError(
+            'the jump marker survived into a rendered zone page, which would '
+            'ship an HTML comment where the nav belongs')
+    return page
 
 
 def _iso_time(session):
