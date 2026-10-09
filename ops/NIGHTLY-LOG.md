@@ -20,9 +20,21 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none; the gate did its job without needing a change.
 
-**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. The real next unblocked lane is the second-pass cold read continuing at the next alphabetical file after `owner_inbox.py` in the 2026-09-30 ledger tier (`ops/cold-read-ledger.json`'s own dates are authoritative over any single log entry's handoff line, which can and did drift out of sync with it).
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. **Correction while merging a concurrent PM entry below:** that cycle had already run one minute ahead of this one and named the real next file precisely, `build_standards.py` (alphabetically first of the 24 still dated 2026-09-30), since `owner_inbox.py`'s own sweep had already landed before this entry's handoff was drafted. Follow that, not the "next alphabetical file after owner_inbox.py" phrasing above.
 
 Pushed to main. `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+
+## 2026-10-09, PM check-in (:40 slot, 30 minute triage, previous work verifying, corrected a stale handoff)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at `build_standards.py` (alphabetically first of the 24 files still dated 2026-09-30, the oldest remaining tier in `ops/cold-read-ledger.json`), because the prior PM entry's own handoff named `hourly_brief.py`, but that file was already re-read and fixed one minute earlier in the same cycle's own operator commit (`1cc785288`, confirmed landed and dated 2026-10-09 in the ledger) before the stale handoff was written; `build_standards.py` is the real next unread file.
+
+Attached clean: fetch, `fetch --unshallow` (arrived shallow and detached again), `checkout -B main origin/main`, ff-only merge onto origin, no conflict, HEAD at `b39d01fe2`. Working tree already clean. GitHub direct: 9 open issues, unchanged (all `decision`/`blocked-on-art`), 0 actionable but Phil's. `BACKLOG-2026-09-07.md` sections 2-5 re-scanned: every row struck through, Done, or Phil-gated; no new unblocked item. `STATUS.md` Open claims: none.
+
+**Verified rather than trusted:** checked CI directly on GitHub rather than assuming green. Run 1995 (`1cc785288`, the operator's media_capability.py/owner_inbox.py fix) is now `completed`/`success`, confirmed. Run 1996 (`0afce3776`, the prior PM cycle's own dashboard-note fix) was still `in_progress` on the Preflight step after ~19 minutes, inside its documented ~20-minute normal duration, not stalled; reported unchecked, not assumed passing. Also ran the standing substitute checks directly: `check_urls.py` 211/211, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0. `affiliate.py --check` first FAILed closed on 3 unreadable delivered PDFs; root-caused to this sandbox's `pip` targeting Python 3.13 while the running `python3` is 3.11, so `pymupdf` installed into the wrong interpreter's site-packages (a fresh-sandbox artifact, not a repo defect: the file's own fail-closed behavior on an unreadable PDF worked exactly as designed). Reinstalled with `python3 -m pip install -r ops/requirements.txt` against the correct interpreter; reran clean, 10 delivered documents, no affiliate link, confirmed.
+
+**Did not start anything large,** per this slot's own instruction.
+
+Pushed to main (this log entry only; no code change this cycle). No price, product or page touched; IndexNow not applicable.
 
 ## 2026-10-09, PM check-in (30 minute triage, closed a stale owner-facing dashboard claim)
 
