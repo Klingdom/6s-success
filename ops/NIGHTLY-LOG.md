@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle (re-verified and re-ledgered ops/dashboard.py, the one stale cold-read entry preflight itself was flagging)
+
+**Did:** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, fast-forwarded cleanly onto `b39d01fe2`, no conflict. Read `BACKLOG-2026-09-07.md` (sections 0-7, every Now row done, HOLD or Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the top of `ops/NIGHTLY-LOG.md`. GitHub: 9 open issues, all `decision`/`blocked-on-art`, none actionable but Phil's; issue #40 (the usage-limit stall) already found resolved and commented twice by an earlier cycle today, nothing further to add. `inbox_agent.py --apply`: no mail credential, reported unchecked, not clean.
+
+**preflight.py, full, backgrounded with no external timeout:** completed this time (did not hit the documented `gate_tests` hang), every gate passed, 31 warnings, all previously diagnosed sandbox limits (no Stripe/mail/ssh credential, no egress, Pillow/screen-reader checks unavailable here) plus one new one worth acting on: `gate_cold_read_ledger_entries_not_stale` named `ops/dashboard.py` (ledgered clean 2026-10-03, touched 2026-10-09 by three commits since). `STATUS.md`'s Open claims section was empty, so claimed this lane before starting.
+
+**Verified rather than trusted:** read all three commits that touched the file since its last ledger date (`0afce3776` zone-photo deploy note, `934510664` revenue cross-month carry, `03fd9536d` customer-count carry) end to end, not just their messages. Ran `ops/dashboard.py` live and read the actual output: the redeploy note now correctly says "zone photography already matches the last confirmed deploy ... this gap is elsewhere" instead of repeating a claim that was already shipped; the revenue/customer lines correctly stayed a same-month carry (measured 2026-10-03, this run 2026-10-09, both October) rather than the cross-month relabel the fix exists to prevent, which only fires when the two dates cross a calendar boundary. Ran all 8 dashboard/carry-forward test files directly (no pytest in this sandbox): `test_carry_forward.py` (18/18), `test_traffic_carry_forward.py` (14/14), `test_dashboard_dead_links.py` (5/5), `test_dashboard_prev_state_fallback.py` (3/3), `test_gate_dashboard_covers_top_owner_actions.py`, `test_gate_dashboard_issue_payload.py` (9/9), `test_gate_dashboard_owner_actions_traffic_citation_current.py` (8/8), `test_gate_dashboard_self_description_fresh.py` (9/9), all pass.
+
+**No defect found this pass.** Re-ledgered `ops/dashboard.py` clean with today's date via `ops/cold_read_ledger.py --add`; `--stale` now reports 0 entries, and calling `gate_cold_read_ledger_entries_not_stale()` directly confirms it returns clean. Also noted, not acted on: the gate also flagged the top nightly-log handoff itself as stale (it named `ops/hourly_brief.py` as the next cold-read candidate, but the ledger already records that file as read from the earlier six-file sweep today); not fixing historic log text, since this file is append-only by convention, but this entry's own handoff below points to the real next file so the error does not propagate.
+
+`check_urls.py` (211/211), `audit_pages.py` (0 duplicate titles/descriptions), `fix_dashes.py --check` (0 em/en dashes), `affiliate.py --check` (165 documents) all clean after. No price, product or served page touched; no new page; IndexNow not applicable.
+
+**Went well:** the gate that exists specifically to catch "ledgered clean, then quietly edited" caught exactly that, by name, on the first full preflight run that got far enough to report it.
+
+**Did not go well:** nothing new this cycle; same standing shallow-checkout-on-attach shape, resolved the same way every cycle resolves it.
+
+**Changing next cycle:** none; the gate did its job without needing a change.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. The real next unblocked lane is the second-pass cold read continuing at the next alphabetical file after `owner_inbox.py` in the 2026-09-30 ledger tier (`ops/cold-read-ledger.json`'s own dates are authoritative over any single log entry's handoff line, which can and did drift out of sync with it).
+
+Pushed to main. `ops/cold-read-ledger.json`, `STATUS.md`, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (30 minute triage, closed a stale owner-facing dashboard claim)
 
 Attached clean, tree clean. `preflight.py` hit the documented `gate_tests` hang; ran substitutes instead, clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py` 0/0, `affiliate.py` clean. GitHub: 9 issues unchanged, 0 PRs. CI on the operator's last two commits in progress 20+ minutes; reporting unchecked. Backlog sections 2-4: every row struck through or Phil-gated.

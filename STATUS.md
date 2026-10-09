@@ -56,7 +56,22 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+**None currently open.** Released 2026-10-09, scheduled operator cycle:
+re-verified `ops/dashboard.py`, the one stale cold-read-ledger entry
+`preflight.py` itself was flagging (ledgered clean 2026-10-03, touched
+2026-10-09 by three commits since). Read all three diffs (the zone-photo
+deploy note, the revenue cross-month carry fix, the customer-count carry
+fix) and ran the dashboard live: the redeploy note now correctly says zone
+photography already matches the deploy instead of repeating a finished
+claim, and the revenue/customer carry-forward correctly stays same-month
+(Oct 3 to Oct 9) rather than relabelling a stale figure. All 8
+dashboard/carry-forward test files pass. No defect found this pass; this
+was re-verification, not a fix. Re-ledgered with today's date
+(`ops/cold_read_ledger.py --add`); `--stale` now reports 0 and
+`gate_cold_read_ledger_entries_not_stale` is clean. Full account in
+`ops/NIGHTLY-LOG.md` this date.
+
+**Earlier, released 2026-10-09, scheduled operator cycle: the
 second-pass cold read of `hourly_brief.py` through `owner_inbox.py` (6 files)
 landed, two real defects found and fixed, delegated to a sub-agent and
 independently re-verified before fixing: `ops/media_capability.py`'s
