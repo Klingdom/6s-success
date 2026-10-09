@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, continued the second-pass cold read tier)
+
+Previous work finished: verified, not cited. Attached cleanly (fetch, unshallow, checkout, ff-only merge, 74 commits, no conflict, tree clean). Fast `preflight.py` reached every gate with 0 FAIL/ERROR up to the documented `gate_tests` headless-Chromium sandbox hang, confirmed genuinely stalled (flat CPU, no Chromium process, unchanged output) before killing it there, same standing sandbox limit every recent cycle reports. `BACKLOG-2026-09-07.md` sections 2-4: every row through A24 still done or Phil-gated. GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`. `STATUS.md`'s Open claims section already empty.
+
+Took the standing handoff (continue the second-pass cold read at the next-oldest "fixed" ledger tier) rather than re-deriving a workstream. Re-read `ops/generate_card_art.py` and `ops/import_chapter_svgs.py` (2026-09-25/26, the two oldest untouched "fixed" entries) in full.
+
+Found and fixed one small, real defect. `generate_card_art.py`'s own module docstring advertised a third invocation form, `python ops/generate_card_art.py --room Entryway --apply`, that `main()` never implemented: it only ever parses `--check` or `--one <subject>`, deliberately, per its own refusal to run without one ("Never start a batch without looking at one first"). Confirmed by reading `main()` directly and grepping the file and its test for `--room`/`--apply`: neither exists anywhere outside that one stale comment line. Corrected the docstring to say so instead of leaving a dead example for the next reader to try and fail on. `--check` reran clean (no provider key, same honest state as every prior cycle); `ops/tests/test_generate_card_art.py` passes.
+
+`import_chapter_svgs.py` re-verified clean: ran live, idempotent, 0 newly wired (all 6 of 36 chapter figures already present), every gate (dash, QR code, external ref, raster embed, site palette, size floor) still passes against the real chapter HTML. Both files' ledger entries re-dated via `ops/cold_read_ledger.py --add` (10-line diff, not a hand-edited rewrite). Left `ops/build_card_template.py` (1,292 lines, same tier) for the hourly operator: too large to read properly inside this slot.
+
+`fix_dashes.py --check` (0/0), `git diff --stat` confirmed only the intended two files changed before shipping.
+
+Did not go well: nothing new; same standing Phil-blocked list (owner-gates table, `OWNER-ACTIONS.md`, 9 decision/blocked-on-art issues) as every cycle today.
+
+Changing next cycle: none.
+
+Handing to the operator: continue the second-pass cold read at the same tier, starting with `ops/build_card_template.py` (2026-09-26, 1,292 lines, not read this cycle), then `ops/wire_measure.py`, `ops/wire_pwa.py`, `ops/wire_signup.py` (2026-09-27).
+
+Shipped: `ops/generate_card_art.py` (one docstring fix), `ops/cold-read-ledger.json` (2 entries re-dated), command deck. No code behavior, content, price or product touched; no served page changed.
+
 ## 2026-10-09, scheduled operator cycle (second-pass cold read found a real, live customer-support defect: delivery-problem and billing detection were subject-blind)
 
 **Did:** Attached cleanly (fetch, unshallow, checkout main, ff-only merge, 71 commits, no conflict, tree clean). Read CLAUDE.md, GOALS.md, BACKLOG-2026-09-07.md sections 0 through 7 and the owner-gates table, ROADMAP-2026-2029.md, and the last several NIGHTLY-LOG.md entries. Every backlog Now row (A, B, C sections) is again done or struck through, section 5's HOLD list unchanged, and all 9 GitHub issues are still `decision`/`blocked-on-art` with 0 open PRs. Took the explicit standing handoff rather than re-deriving a workstream: continue the second-pass cold read at the next-oldest "fixed" ledger tier (2026-09-27: `audit_pages.py`, `check_urls.py`, `fill_front_matter.py`, `inbox_agent.py`, `prerender_shop.py`).
