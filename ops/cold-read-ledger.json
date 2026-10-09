@@ -13,8 +13,8 @@
     },
     "affiliate_report.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 scheduled operator for drift. Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv live: byte-identical to committed (git status clean after, only this session's ledger file shows as changed). 10 programmes tracked, 0 approved, matching GOALS.md O4. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "audit_catalog.py": {
       "status": "fixed",
@@ -38,8 +38,8 @@
     },
     "backup_analytics.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: read in full, scope correctly restricted to website_id via website_event/event_data/session_data joins, CSV write-then-reread row-count verification present, no SSH key in this sandbox so it correctly exits 2 with an honest message rather than a false success. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "bluesky_drafts.py": {
       "status": "clean",
@@ -48,18 +48,18 @@
     },
     "browser.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: find_browser() run live, correctly returns /opt/pw-browsers/chromium with --no-sandbox in this sandbox, Edge candidates correctly absent. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_all_prompts.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: run live, correctly refuses with an honest message when Phil's Desktop card-image sources are absent from this sandbox rather than reporting a false prompt count. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_app_icons.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: PIL absent by default in this sandbox, installed via pip; regenerated all 5 outputs, 4 pixel-identical to committed, feature-graphic-1024x500.png differs only in font anti-aliasing (1.2% of pixels, text area only, same words, confirmed by eye), a PIL/freetype version artifact not a content defect. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_articles.py": {
       "status": "clean",
@@ -68,13 +68,13 @@
     },
     "build_avif.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: --check reports 935/935 webp files have an avif sibling; wire() run against an isolated copy of site/ is idempotent (0 pages rewritten on both the first and second run, already fully wired). No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_card_prompts.py": {
-      "status": "fixed",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, this operator: build/prompts/kitchen/KZ-002.txt (and the aggregate ALL.md) still read 'The step of space either side of the burners...', the wrong word, while ops/cardtext/kitchen-deck.json had already been corrected to 'The strip of space...'. Source corrected, artifact never re-derived, the dominant defect class this log names. Fixed by regenerating build/prompts/kitchen/ (python ops/build_card_prompts.py --deck kitchen); no other card affected (git diff --stat showed only these two files). New gate_kitchen_card_prompts_current in preflight.py re-derives all 72 Kitchen prompts live from the corpus and diffs them against the committed files on every run; fail-then-pass proved directly (stashed the fix, watched the gate fail by name citing KZ-002, restored, reran clean). ops/tests/test_gate_kitchen_card_prompts_current.py (3/3). Entryway and Mudroom decks under this same generator still need Phil's Desktop and are not checked here."
+      "status": "clean",
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_card_template.py": {
       "status": "fixed",
@@ -88,23 +88,23 @@
     },
     "build_cleaning_index.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 scheduled operator for drift. Regenerated site/how-to-clean-anything.html and its full asset-wiring chain live (icons into 214 pages, manifest/SW into the Quest, fingerprints for every asset): byte-identical to committed, git status clean after. 114 zones, 762 surfaces, 20 rooms, matching current catalogue. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: called build() directly (no side effects) and diffed against the committed site/corporate.html; the only differences are the wiring-chain artifacts main() always adds after build() (fingerprints, skip link, PWA/progressive/measure markers, aria-current), zero content drift. main()'s no-dollar-figure assertion re-confirmed live against a fresh build(). No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_corporate_asset.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 scheduled operator for drift (was the ledger's oldest untouched entry, named by name across several prior cycles today but never actually re-checked). Ran the generator live: build/ and site/downloads/ copies regenerated byte-identical to committed (git status clean after), 6 scoring sheets, 16 audit log rows, still blank with no fabricated client result. No drift."
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_cover.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 06:4x check-in: pip-installed Pillow in sandbox, regenerated, byte-identical to committed cover.png/cover.jpg"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_deck_gallery.py": {
       "status": "clean",
@@ -113,8 +113,8 @@
     },
     "build_deck_pdf.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM 06:4x check-in: needs build/cards-rendered/ source PNGs, gitignored/Desktop-only, absent here; genuinely unchecked, standing sandbox limit, not a new gap"
+      "date": "2026-10-09",
+      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "build_dining_room_deck_page.py": {
       "status": "clean",
