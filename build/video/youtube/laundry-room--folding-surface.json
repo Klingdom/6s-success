@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "laundry-room--folding-surface.srt",
- "video_vertical": "build/video/zones/laundry-room--folding-surface.mp4",
- "video_wide": "build/video/zones-16x9/laundry-room--folding-surface.mp4"
+ "captions": "build/video/zones-narrated/laundry-room--folding-surface-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/laundry-room--folding-surface.mp4",
+ "video_wide": "build/video/zones-narrated/laundry-room--folding-surface-16x9.mp4"
 }

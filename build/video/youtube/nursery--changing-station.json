@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "nursery--changing-station.srt",
- "video_vertical": "build/video/zones/nursery--changing-station.mp4",
- "video_wide": "build/video/zones-16x9/nursery--changing-station.mp4"
+ "captions": "build/video/zones-narrated/nursery--changing-station-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/nursery--changing-station.mp4",
+ "video_wide": "build/video/zones-narrated/nursery--changing-station-16x9.mp4"
 }

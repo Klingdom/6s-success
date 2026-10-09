@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "nursery--feeding-station.srt",
- "video_vertical": "build/video/zones/nursery--feeding-station.mp4",
- "video_wide": "build/video/zones-16x9/nursery--feeding-station.mp4"
+ "captions": "build/video/zones-narrated/nursery--feeding-station-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/nursery--feeding-station.mp4",
+ "video_wide": "build/video/zones-narrated/nursery--feeding-station-16x9.mp4"
 }

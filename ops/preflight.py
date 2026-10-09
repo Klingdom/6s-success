@@ -15104,6 +15104,62 @@ def gate_dashboard_youtube_metadata_live() -> None:
              f"instead of unmeasured: {unmeasured!r}")
 
 
+def gate_youtube_metadata_asset_paths_current() -> None:
+    """The committed per-zone YouTube metadata must describe the file
+    ops/youtube_upload.py actually uploads, not an earlier, superseded render.
+
+    Found 2026-10-09, second-pass cold read of ops/build_youtube_metadata.py:
+    its "captions"/"video_vertical"/"video_wide" fields pointed at
+    build/video/zones/ and build/video/zones-16x9/, the silent portrait/wide
+    pair OWNER-ACTIONS.md already records as stale (re-rendered after a
+    30s-against-75-93s duration mismatch). ops/youtube_upload.py's own VIDEO
+    constant and jobs() read "<slug>-16x9.mp4"/"<slug>-16x9.srt" out of
+    build/video/zones-narrated instead, so every one of the 114 committed
+    JSON files was quietly wrong about which asset it described. Nothing in
+    this repository reads those three fields back (confirmed by grepping for
+    both names outside build_youtube_metadata.py itself), so this was never
+    a live upload bug, but a committed "ready to upload" file naming the
+    wrong folder is the same hiding-finished-work/wrong-single-source shape
+    gate_video_slug_single_source and gate_dashboard_thumbnails_live already
+    exist to catch for sibling generators.
+
+    Proved by reconstructing both the uploader's own path shape and the
+    generator's asset_paths() output and requiring they agree, rather than
+    comparing against a hand-typed string that could rot the same way the
+    original field did.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    bym = importlib.import_module("build_youtube_metadata")
+    yu = importlib.import_module("youtube_upload")
+    slug = "dining-room--beverage-or-coffee-station"
+    got = bym.asset_paths(slug)
+    video_dir = os.path.relpath(yu.VIDEO, ROOT).replace(os.sep, "/")
+    want_mp4 = "%s/%s-16x9.mp4" % (video_dir, slug)
+    want_srt = "%s/%s-16x9.srt" % (video_dir, slug)
+    if got["video_wide"] != want_mp4:
+        fail("youtube-metadata-asset-paths",
+             f"video_wide {got['video_wide']!r} does not match what "
+             f"youtube_upload.py's jobs() actually reads ({want_mp4!r})")
+    if got["captions"] != want_srt:
+        fail("youtube-metadata-asset-paths",
+             f"captions {got['captions']!r} does not match what "
+             f"youtube_upload.py's jobs() actually reads ({want_srt!r})")
+    if not got["video_vertical"].startswith(video_dir + "/"):
+        fail("youtube-metadata-asset-paths",
+             f"video_vertical {got['video_vertical']!r} is not even in the "
+             f"same folder as the real uploaded asset ({video_dir!r})")
+    # Proves this gate can fail: a deliberately stale shape (the exact one
+    # this file was fixed from) must be rejected, not silently accepted.
+    stale = {"captions": "build/video/zones/%s.srt" % slug,
+             "video_vertical": "build/video/zones/%s.mp4" % slug,
+             "video_wide": "build/video/zones-16x9/%s.mp4" % slug}
+    if stale["video_wide"] == want_mp4:
+        fail("youtube-metadata-asset-paths",
+             "this gate's own stale fixture matches the real path; it "
+             "cannot prove anything")
+
+
 def gate_dashboard_thumbnails_live() -> None:
     """The dashboard must not hide the YouTube thumbnails either.
 
@@ -28183,6 +28239,7 @@ def main() -> int:
     run_gate(gate_dashboard_zone_video_16x9_live)
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
+    run_gate(gate_youtube_metadata_asset_paths_current)
     run_gate(gate_dashboard_thumbnails_live)
     run_gate(gate_thumbnail_font_face)
     run_gate(gate_dashboard_narrated_videos_live)

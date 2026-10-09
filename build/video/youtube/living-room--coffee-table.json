@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "living-room--coffee-table.srt",
- "video_vertical": "build/video/zones/living-room--coffee-table.mp4",
- "video_wide": "build/video/zones-16x9/living-room--coffee-table.mp4"
+ "captions": "build/video/zones-narrated/living-room--coffee-table-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/living-room--coffee-table.mp4",
+ "video_wide": "build/video/zones-narrated/living-room--coffee-table-16x9.mp4"
 }

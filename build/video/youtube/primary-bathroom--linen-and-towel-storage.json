@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "primary-bathroom--linen-and-towel-storage.srt",
- "video_vertical": "build/video/zones/primary-bathroom--linen-and-towel-storage.mp4",
- "video_wide": "build/video/zones-16x9/primary-bathroom--linen-and-towel-storage.mp4"
+ "captions": "build/video/zones-narrated/primary-bathroom--linen-and-towel-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/primary-bathroom--linen-and-towel-storage.mp4",
+ "video_wide": "build/video/zones-narrated/primary-bathroom--linen-and-towel-storage-16x9.mp4"
 }

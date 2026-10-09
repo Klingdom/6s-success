@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "mudroom--shoe-and-boot-storage.srt",
- "video_vertical": "build/video/zones/mudroom--shoe-and-boot-storage.mp4",
- "video_wide": "build/video/zones-16x9/mudroom--shoe-and-boot-storage.mp4"
+ "captions": "build/video/zones-narrated/mudroom--shoe-and-boot-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/mudroom--shoe-and-boot-storage.mp4",
+ "video_wide": "build/video/zones-narrated/mudroom--shoe-and-boot-storage-16x9.mp4"
 }

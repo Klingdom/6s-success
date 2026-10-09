@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "home-office--file-storage.srt",
- "video_vertical": "build/video/zones/home-office--file-storage.mp4",
- "video_wide": "build/video/zones-16x9/home-office--file-storage.mp4"
+ "captions": "build/video/zones-narrated/home-office--file-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/home-office--file-storage.mp4",
+ "video_wide": "build/video/zones-narrated/home-office--file-storage-16x9.mp4"
 }

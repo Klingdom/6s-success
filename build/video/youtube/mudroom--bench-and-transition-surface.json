@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "mudroom--bench-and-transition-surface.srt",
- "video_vertical": "build/video/zones/mudroom--bench-and-transition-surface.mp4",
- "video_wide": "build/video/zones-16x9/mudroom--bench-and-transition-surface.mp4"
+ "captions": "build/video/zones-narrated/mudroom--bench-and-transition-surface-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/mudroom--bench-and-transition-surface.mp4",
+ "video_wide": "build/video/zones-narrated/mudroom--bench-and-transition-surface-16x9.mp4"
 }

@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "pantry--backstock-and-bulk-zone.srt",
- "video_vertical": "build/video/zones/pantry--backstock-and-bulk-zone.mp4",
- "video_wide": "build/video/zones-16x9/pantry--backstock-and-bulk-zone.mp4"
+ "captions": "build/video/zones-narrated/pantry--backstock-and-bulk-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/pantry--backstock-and-bulk-zone.mp4",
+ "video_wide": "build/video/zones-narrated/pantry--backstock-and-bulk-zone-16x9.mp4"
 }

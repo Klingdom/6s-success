@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "dining-room--dining-table.srt",
- "video_vertical": "build/video/zones/dining-room--dining-table.mp4",
- "video_wide": "build/video/zones-16x9/dining-room--dining-table.mp4"
+ "captions": "build/video/zones-narrated/dining-room--dining-table-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/dining-room--dining-table.mp4",
+ "video_wide": "build/video/zones-narrated/dining-room--dining-table-16x9.mp4"
 }

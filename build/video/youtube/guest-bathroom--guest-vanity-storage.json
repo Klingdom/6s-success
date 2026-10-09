@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "guest-bathroom--guest-vanity-storage.srt",
- "video_vertical": "build/video/zones/guest-bathroom--guest-vanity-storage.mp4",
- "video_wide": "build/video/zones-16x9/guest-bathroom--guest-vanity-storage.mp4"
+ "captions": "build/video/zones-narrated/guest-bathroom--guest-vanity-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/guest-bathroom--guest-vanity-storage.mp4",
+ "video_wide": "build/video/zones-narrated/guest-bathroom--guest-vanity-storage-16x9.mp4"
 }

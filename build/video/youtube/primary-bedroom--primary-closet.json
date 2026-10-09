@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "primary-bedroom--primary-closet.srt",
- "video_vertical": "build/video/zones/primary-bedroom--primary-closet.mp4",
- "video_wide": "build/video/zones-16x9/primary-bedroom--primary-closet.mp4"
+ "captions": "build/video/zones-narrated/primary-bedroom--primary-closet-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/primary-bedroom--primary-closet.mp4",
+ "video_wide": "build/video/zones-narrated/primary-bedroom--primary-closet-16x9.mp4"
 }

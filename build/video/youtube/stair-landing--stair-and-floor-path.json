@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "stair-landing--stair-and-floor-path.srt",
- "video_vertical": "build/video/zones/stair-landing--stair-and-floor-path.mp4",
- "video_wide": "build/video/zones-16x9/stair-landing--stair-and-floor-path.mp4"
+ "captions": "build/video/zones-narrated/stair-landing--stair-and-floor-path-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/stair-landing--stair-and-floor-path.mp4",
+ "video_wide": "build/video/zones-narrated/stair-landing--stair-and-floor-path-16x9.mp4"
 }

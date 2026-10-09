@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "family-room--toy-and-play-zone.srt",
- "video_vertical": "build/video/zones/family-room--toy-and-play-zone.mp4",
- "video_wide": "build/video/zones-16x9/family-room--toy-and-play-zone.mp4"
+ "captions": "build/video/zones-narrated/family-room--toy-and-play-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/family-room--toy-and-play-zone.mp4",
+ "video_wide": "build/video/zones-narrated/family-room--toy-and-play-zone-16x9.mp4"
 }

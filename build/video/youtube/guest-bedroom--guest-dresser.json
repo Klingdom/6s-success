@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "guest-bedroom--guest-dresser.srt",
- "video_vertical": "build/video/zones/guest-bedroom--guest-dresser.mp4",
- "video_wide": "build/video/zones-16x9/guest-bedroom--guest-dresser.mp4"
+ "captions": "build/video/zones-narrated/guest-bedroom--guest-dresser-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/guest-bedroom--guest-dresser.mp4",
+ "video_wide": "build/video/zones-narrated/guest-bedroom--guest-dresser-16x9.mp4"
 }

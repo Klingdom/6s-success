@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "pantry--canned-and-jarred-goods.srt",
- "video_vertical": "build/video/zones/pantry--canned-and-jarred-goods.mp4",
- "video_wide": "build/video/zones-16x9/pantry--canned-and-jarred-goods.mp4"
+ "captions": "build/video/zones-narrated/pantry--canned-and-jarred-goods-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/pantry--canned-and-jarred-goods.mp4",
+ "video_wide": "build/video/zones-narrated/pantry--canned-and-jarred-goods-16x9.mp4"
 }

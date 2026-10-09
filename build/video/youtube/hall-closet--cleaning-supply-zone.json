@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "hall-closet--cleaning-supply-zone.srt",
- "video_vertical": "build/video/zones/hall-closet--cleaning-supply-zone.mp4",
- "video_wide": "build/video/zones-16x9/hall-closet--cleaning-supply-zone.mp4"
+ "captions": "build/video/zones-narrated/hall-closet--cleaning-supply-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/hall-closet--cleaning-supply-zone.mp4",
+ "video_wide": "build/video/zones-narrated/hall-closet--cleaning-supply-zone-16x9.mp4"
 }

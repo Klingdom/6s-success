@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "garage--power-tool-and-battery-zone.srt",
- "video_vertical": "build/video/zones/garage--power-tool-and-battery-zone.mp4",
- "video_wide": "build/video/zones-16x9/garage--power-tool-and-battery-zone.mp4"
+ "captions": "build/video/zones-narrated/garage--power-tool-and-battery-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/garage--power-tool-and-battery-zone.mp4",
+ "video_wide": "build/video/zones-narrated/garage--power-tool-and-battery-zone-16x9.mp4"
 }

@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "dining-room--china-or-display-cabinet.srt",
- "video_vertical": "build/video/zones/dining-room--china-or-display-cabinet.mp4",
- "video_wide": "build/video/zones-16x9/dining-room--china-or-display-cabinet.mp4"
+ "captions": "build/video/zones-narrated/dining-room--china-or-display-cabinet-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/dining-room--china-or-display-cabinet.mp4",
+ "video_wide": "build/video/zones-narrated/dining-room--china-or-display-cabinet-16x9.mp4"
 }

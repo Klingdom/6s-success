@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "mudroom--cleaning-and-utility-zone.srt",
- "video_vertical": "build/video/zones/mudroom--cleaning-and-utility-zone.mp4",
- "video_wide": "build/video/zones-16x9/mudroom--cleaning-and-utility-zone.mp4"
+ "captions": "build/video/zones-narrated/mudroom--cleaning-and-utility-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/mudroom--cleaning-and-utility-zone.mp4",
+ "video_wide": "build/video/zones-narrated/mudroom--cleaning-and-utility-zone-16x9.mp4"
 }

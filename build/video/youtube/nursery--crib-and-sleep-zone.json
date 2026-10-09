@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "nursery--crib-and-sleep-zone.srt",
- "video_vertical": "build/video/zones/nursery--crib-and-sleep-zone.mp4",
- "video_wide": "build/video/zones-16x9/nursery--crib-and-sleep-zone.mp4"
+ "captions": "build/video/zones-narrated/nursery--crib-and-sleep-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/nursery--crib-and-sleep-zone.mp4",
+ "video_wide": "build/video/zones-narrated/nursery--crib-and-sleep-zone-16x9.mp4"
 }

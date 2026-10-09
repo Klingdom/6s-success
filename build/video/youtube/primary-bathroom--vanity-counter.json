@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "primary-bathroom--vanity-counter.srt",
- "video_vertical": "build/video/zones/primary-bathroom--vanity-counter.mp4",
- "video_wide": "build/video/zones-16x9/primary-bathroom--vanity-counter.mp4"
+ "captions": "build/video/zones-narrated/primary-bathroom--vanity-counter-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/primary-bathroom--vanity-counter.mp4",
+ "video_wide": "build/video/zones-narrated/primary-bathroom--vanity-counter-16x9.mp4"
 }

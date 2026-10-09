@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kids-bedroom--school-and-activity-launch-zone.srt",
- "video_vertical": "build/video/zones/kids-bedroom--school-and-activity-launch-zone.mp4",
- "video_wide": "build/video/zones-16x9/kids-bedroom--school-and-activity-launch-zone.mp4"
+ "captions": "build/video/zones-narrated/kids-bedroom--school-and-activity-launch-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kids-bedroom--school-and-activity-launch-zone.mp4",
+ "video_wide": "build/video/zones-narrated/kids-bedroom--school-and-activity-launch-zone-16x9.mp4"
 }

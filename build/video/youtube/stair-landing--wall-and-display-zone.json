@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "stair-landing--wall-and-display-zone.srt",
- "video_vertical": "build/video/zones/stair-landing--wall-and-display-zone.mp4",
- "video_wide": "build/video/zones-16x9/stair-landing--wall-and-display-zone.mp4"
+ "captions": "build/video/zones-narrated/stair-landing--wall-and-display-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/stair-landing--wall-and-display-zone.mp4",
+ "video_wide": "build/video/zones-narrated/stair-landing--wall-and-display-zone-16x9.mp4"
 }

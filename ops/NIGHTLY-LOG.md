@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle (full STEP 0-13 run, one real fix)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`'s current incidents/blockers, `OWNER-ACTIONS.md`. `preflight.py` genuinely stalls at `gate_tests` in this sandbox (confirmed by flat CPU time over 50s, not assumed); ran every other gate directly instead, 0 FAIL on the pre-existing suite. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. No mail credential. A concurrent PM check-in pushed mid-cycle (`46a3de33e`); re-fetched clean, no conflict.
+
+**Picked up the exact handoff the prior PM check-in left**, rather than restart triage: continue the second-pass cold-read of the 2026-09-30 ledger tier from `build_standards.py`. Read `build_standards.py`, `build_thumbnails.py`, `canonical_links.py` cold; all three run clean against live data, recorded in the ledger. `build_youtube_metadata.py` had a real defect: its committed `captions`/`video_vertical`/`video_wide` fields (114 files, all tracked in git) named `build/video/zones/` and `zones-16x9/`, the silent, previously-stale portrait/wide pair, while the actual uploader (`youtube_upload.py`) reads the narrated master from `zones-narrated`. Nothing reads those three fields back, so it was dead metadata, not a live upload bug, but a committed "ready to upload" file naming the wrong folder.
+
+**Fixed:** factored the three fields into `asset_paths()`, pointed them at `zones-narrated`, regenerated all 114 committed JSON files, confirmed every caption path now resolves on disk. Added `gate_youtube_metadata_asset_paths_current` to `preflight.py`, fail-then-pass proved in a scratch copy before wiring it into `main()`.
+
+**Verified:** full gate sweep (all gates except `gate_tests`) clean after the change; `python -m py_compile` on both edited files; the two transient `_deck_probe_*`/`_deck_wrapper_*` FAILs seen mid-sweep were gone on re-check, self-cleaned debris from an earlier killed `preflight.py` run, not a persistent defect.
+
+**Went well:** reading the log in the right direction (newest-first) caught a handoff instruction I'd have otherwise duplicated.
+
+**Did not go well:** `gate_tests` remains unreachable from this sandbox; same standing limit every prior cycle has hit.
+
+**Changing next cycle:** none.
+
+**Next:** continue the second-pass sweep from `build_zone_index.py` (skimmed, not fully read this cycle) through `check_cron_cadence.py`. No new unblocked GOALS.md item; the standing Phil-blocked list (usage-limit check, VPS_DEPLOY_KEY, Search Console) is unchanged.
+
+Pushed to main. `ops/build_youtube_metadata.py`, `ops/preflight.py`, 114 `build/video/youtube/*.json`, `ops/cold-read-ledger.json`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, no new unblocked item)
 
 NEXT FOR THE OPERATOR: continue the standing second-pass cold-read sweep through the 2026-09-30 ledger tier, next alphabetical batch starting at `build_standards.py` (46 files remain in that tier, verified directly against the ledger, not assumed from the prior entry's own count), because the ledger itself is still exhausted and GitHub has no unblocked item.

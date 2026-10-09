@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "workshop--main-workbench.srt",
- "video_vertical": "build/video/zones/workshop--main-workbench.mp4",
- "video_wide": "build/video/zones-16x9/workshop--main-workbench.mp4"
+ "captions": "build/video/zones-narrated/workshop--main-workbench-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/workshop--main-workbench.mp4",
+ "video_wide": "build/video/zones-narrated/workshop--main-workbench-16x9.mp4"
 }

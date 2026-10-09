@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "family-room--blanket-and-comfort-zone.srt",
- "video_vertical": "build/video/zones/family-room--blanket-and-comfort-zone.mp4",
- "video_wide": "build/video/zones-16x9/family-room--blanket-and-comfort-zone.mp4"
+ "captions": "build/video/zones-narrated/family-room--blanket-and-comfort-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/family-room--blanket-and-comfort-zone.mp4",
+ "video_wide": "build/video/zones-narrated/family-room--blanket-and-comfort-zone-16x9.mp4"
 }

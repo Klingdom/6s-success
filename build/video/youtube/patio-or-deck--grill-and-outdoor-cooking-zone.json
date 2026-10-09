@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "patio-or-deck--grill-and-outdoor-cooking-zone.srt",
- "video_vertical": "build/video/zones/patio-or-deck--grill-and-outdoor-cooking-zone.mp4",
- "video_wide": "build/video/zones-16x9/patio-or-deck--grill-and-outdoor-cooking-zone.mp4"
+ "captions": "build/video/zones-narrated/patio-or-deck--grill-and-outdoor-cooking-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/patio-or-deck--grill-and-outdoor-cooking-zone.mp4",
+ "video_wide": "build/video/zones-narrated/patio-or-deck--grill-and-outdoor-cooking-zone-16x9.mp4"
 }

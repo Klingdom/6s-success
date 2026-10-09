@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "primary-bathroom--medicine-cabinet-or-wall-storage.srt",
- "video_vertical": "build/video/zones/primary-bathroom--medicine-cabinet-or-wall-storage.mp4",
- "video_wide": "build/video/zones-16x9/primary-bathroom--medicine-cabinet-or-wall-storage.mp4"
+ "captions": "build/video/zones-narrated/primary-bathroom--medicine-cabinet-or-wall-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/primary-bathroom--medicine-cabinet-or-wall-storage.mp4",
+ "video_wide": "build/video/zones-narrated/primary-bathroom--medicine-cabinet-or-wall-storage-16x9.mp4"
 }

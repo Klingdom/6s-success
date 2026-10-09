@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "garage--bulk-and-overhead-storage.srt",
- "video_vertical": "build/video/zones/garage--bulk-and-overhead-storage.mp4",
- "video_wide": "build/video/zones-16x9/garage--bulk-and-overhead-storage.mp4"
+ "captions": "build/video/zones-narrated/garage--bulk-and-overhead-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/garage--bulk-and-overhead-storage.mp4",
+ "video_wide": "build/video/zones-narrated/garage--bulk-and-overhead-storage-16x9.mp4"
 }

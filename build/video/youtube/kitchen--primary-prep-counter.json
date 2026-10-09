@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kitchen--primary-prep-counter.srt",
- "video_vertical": "build/video/zones/kitchen--primary-prep-counter.mp4",
- "video_wide": "build/video/zones-16x9/kitchen--primary-prep-counter.mp4"
+ "captions": "build/video/zones-narrated/kitchen--primary-prep-counter-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kitchen--primary-prep-counter.mp4",
+ "video_wide": "build/video/zones-narrated/kitchen--primary-prep-counter-16x9.mp4"
 }

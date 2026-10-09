@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "workshop--power-tool-storage.srt",
- "video_vertical": "build/video/zones/workshop--power-tool-storage.mp4",
- "video_wide": "build/video/zones-16x9/workshop--power-tool-storage.mp4"
+ "captions": "build/video/zones-narrated/workshop--power-tool-storage-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/workshop--power-tool-storage.mp4",
+ "video_wide": "build/video/zones-narrated/workshop--power-tool-storage-16x9.mp4"
 }

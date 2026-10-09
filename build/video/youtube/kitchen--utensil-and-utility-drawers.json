@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kitchen--utensil-and-utility-drawers.srt",
- "video_vertical": "build/video/zones/kitchen--utensil-and-utility-drawers.mp4",
- "video_wide": "build/video/zones-16x9/kitchen--utensil-and-utility-drawers.mp4"
+ "captions": "build/video/zones-narrated/kitchen--utensil-and-utility-drawers-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kitchen--utensil-and-utility-drawers.mp4",
+ "video_wide": "build/video/zones-narrated/kitchen--utensil-and-utility-drawers-16x9.mp4"
 }

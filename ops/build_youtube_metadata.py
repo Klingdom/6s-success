@@ -147,6 +147,29 @@ def zone_page_slug(room: str, zone: str) -> str:
     return "%s-%s" % (bz.slug(room), bz.slug(bz.display(room, zone)))
 
 
+def asset_paths(slug: str) -> dict:
+    """The committed-metadata description of the file ops/youtube_upload.py
+    actually uploads for this slug, kept as its own function so a gate can
+    test it without regenerating all 114 files.
+
+    Found 2026-10-09: this used to point at build/video/zones/ and
+    zones-16x9/, the silent portrait/wide pair OWNER-ACTIONS.md already
+    records as stale and superseded. The real uploader (ops/youtube_upload.py,
+    VIDEO = .../zones-narrated, jobs()) reads "<slug>-16x9.mp4" and
+    "<slug>-16x9.srt" from zones-narrated. Nothing in this repository reads
+    these three fields back, so the old paths were dead metadata rather than
+    a live bug, but a committed file describing "ready to upload" that names
+    the wrong folder is the exact shape prior cycles have fixed in sibling
+    generators (build_thumbnails.py's hand-copied slug, the og:image fix).
+    """
+    base = "build/video/zones-narrated/%s" % slug
+    return {
+        "captions": base + "-16x9.srt",
+        "video_vertical": base + ".mp4",
+        "video_wide": base + "-16x9.mp4",
+    }
+
+
 def tags_for(room: str, zone: str) -> list:
     base = ["home organization", "declutter", "organizing", "6S", "5S at home",
             "home reset", "cleaning routine", "tidy home"]
@@ -188,9 +211,7 @@ def main() -> int:
             "tags": tags_for(room, z["zone"]),
             "categoryId": "26",          # Howto & Style
             "privacyStatus": "public",
-            "captions": s + ".srt",
-            "video_vertical": "build/video/zones/%s.mp4" % s,
-            "video_wide": "build/video/zones-16x9/%s.mp4" % s,
+            **asset_paths(s),
         }
         if len(title) > 100:
             warn.append("%s: title too long" % s)

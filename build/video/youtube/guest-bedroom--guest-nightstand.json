@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "guest-bedroom--guest-nightstand.srt",
- "video_vertical": "build/video/zones/guest-bedroom--guest-nightstand.mp4",
- "video_wide": "build/video/zones-16x9/guest-bedroom--guest-nightstand.mp4"
+ "captions": "build/video/zones-narrated/guest-bedroom--guest-nightstand-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/guest-bedroom--guest-nightstand.mp4",
+ "video_wide": "build/video/zones-narrated/guest-bedroom--guest-nightstand-16x9.mp4"
 }

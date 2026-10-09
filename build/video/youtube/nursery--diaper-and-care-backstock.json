@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "nursery--diaper-and-care-backstock.srt",
- "video_vertical": "build/video/zones/nursery--diaper-and-care-backstock.mp4",
- "video_wide": "build/video/zones-16x9/nursery--diaper-and-care-backstock.mp4"
+ "captions": "build/video/zones-narrated/nursery--diaper-and-care-backstock-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/nursery--diaper-and-care-backstock.mp4",
+ "video_wide": "build/video/zones-narrated/nursery--diaper-and-care-backstock-16x9.mp4"
 }

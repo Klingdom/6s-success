@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "laundry-room--hanging-and-air-dry-zone.srt",
- "video_vertical": "build/video/zones/laundry-room--hanging-and-air-dry-zone.mp4",
- "video_wide": "build/video/zones-16x9/laundry-room--hanging-and-air-dry-zone.mp4"
+ "captions": "build/video/zones-narrated/laundry-room--hanging-and-air-dry-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/laundry-room--hanging-and-air-dry-zone.mp4",
+ "video_wide": "build/video/zones-narrated/laundry-room--hanging-and-air-dry-zone-16x9.mp4"
 }

@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "guest-bedroom--guest-welcome-and-work-surface.srt",
- "video_vertical": "build/video/zones/guest-bedroom--guest-welcome-and-work-surface.mp4",
- "video_wide": "build/video/zones-16x9/guest-bedroom--guest-welcome-and-work-surface.mp4"
+ "captions": "build/video/zones-narrated/guest-bedroom--guest-welcome-and-work-surface-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/guest-bedroom--guest-welcome-and-work-surface.mp4",
+ "video_wide": "build/video/zones-narrated/guest-bedroom--guest-welcome-and-work-surface-16x9.mp4"
 }

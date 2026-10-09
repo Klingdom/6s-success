@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "garage--automotive-care-zone.srt",
- "video_vertical": "build/video/zones/garage--automotive-care-zone.mp4",
- "video_wide": "build/video/zones-16x9/garage--automotive-care-zone.mp4"
+ "captions": "build/video/zones-narrated/garage--automotive-care-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/garage--automotive-care-zone.mp4",
+ "video_wide": "build/video/zones-narrated/garage--automotive-care-zone-16x9.mp4"
 }

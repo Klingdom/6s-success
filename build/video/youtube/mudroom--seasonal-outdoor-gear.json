@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "mudroom--seasonal-outdoor-gear.srt",
- "video_vertical": "build/video/zones/mudroom--seasonal-outdoor-gear.mp4",
- "video_wide": "build/video/zones-16x9/mudroom--seasonal-outdoor-gear.mp4"
+ "captions": "build/video/zones-narrated/mudroom--seasonal-outdoor-gear-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/mudroom--seasonal-outdoor-gear.mp4",
+ "video_wide": "build/video/zones-narrated/mudroom--seasonal-outdoor-gear-16x9.mp4"
 }

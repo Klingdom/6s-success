@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "garage--lawn-and-garden-tool-zone.srt",
- "video_vertical": "build/video/zones/garage--lawn-and-garden-tool-zone.mp4",
- "video_wide": "build/video/zones-16x9/garage--lawn-and-garden-tool-zone.mp4"
+ "captions": "build/video/zones-narrated/garage--lawn-and-garden-tool-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/garage--lawn-and-garden-tool-zone.mp4",
+ "video_wide": "build/video/zones-narrated/garage--lawn-and-garden-tool-zone-16x9.mp4"
 }

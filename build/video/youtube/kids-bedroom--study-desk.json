@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kids-bedroom--study-desk.srt",
- "video_vertical": "build/video/zones/kids-bedroom--study-desk.mp4",
- "video_wide": "build/video/zones-16x9/kids-bedroom--study-desk.mp4"
+ "captions": "build/video/zones-narrated/kids-bedroom--study-desk-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kids-bedroom--study-desk.mp4",
+ "video_wide": "build/video/zones-narrated/kids-bedroom--study-desk-16x9.mp4"
 }

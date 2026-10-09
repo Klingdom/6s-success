@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kitchen--refrigerator-and-freezer.srt",
- "video_vertical": "build/video/zones/kitchen--refrigerator-and-freezer.mp4",
- "video_wide": "build/video/zones-16x9/kitchen--refrigerator-and-freezer.mp4"
+ "captions": "build/video/zones-narrated/kitchen--refrigerator-and-freezer-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kitchen--refrigerator-and-freezer.mp4",
+ "video_wide": "build/video/zones-narrated/kitchen--refrigerator-and-freezer-16x9.mp4"
 }

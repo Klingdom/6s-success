@@ -332,9 +332,9 @@
       "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
     },
     "build_youtube_metadata.py": {
-      "status": "clean",
-      "date": "2026-09-30",
-      "note": "Read in full while tracing build_social_captions.py's imports (title_for, zone_page_slug). Both functions are the single source of truth five sibling files already depend on. No defect found in this pass; not independently re-run standalone this cycle."
+      "status": "fixed",
+      "date": "2026-10-09",
+      "note": "Second-pass read found the committed captions/video_vertical/video_wide fields pointed at build/video/zones/ and zones-16x9/, the stale silent portrait/wide pair; the real uploader (ops/youtube_upload.py) reads <slug>-16x9.mp4/.srt from zones-narrated. Factored the three fields into asset_paths(), fixed to point at zones-narrated, regenerated all 114 committed JSON files, and added gate_youtube_metadata_asset_paths_current (preflight.py), fail-then-pass proved."
     },
     "build_zone_index.py": {
       "status": "clean",
@@ -353,8 +353,8 @@
     },
     "canonical_links.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified for drift (was 2026-09-11). Live run: 0 links would rewrite, canonicals 168 extensionless/49 .html (the 49 are top-level pages whose own canonical is .html, by design), internal links 2925 extensionless/0 .html. Counts grew with the site (was 2301 extensionless) but the ratio the fix enforces (0 .html) held. No drift."
+      "date": "2026-10-09",
+      "note": "Second-pass cold read, full file. Logic unchanged since the sibling-link fix; --check confirms 0 rewrites needed, 0 .html internal links, 169/49 canonical split matching the documented split. No defect found."
     },
     "card_spec.py": {
       "status": "clean",

@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kids-bedroom--toy-storage-zone.srt",
- "video_vertical": "build/video/zones/kids-bedroom--toy-storage-zone.mp4",
- "video_wide": "build/video/zones-16x9/kids-bedroom--toy-storage-zone.mp4"
+ "captions": "build/video/zones-narrated/kids-bedroom--toy-storage-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kids-bedroom--toy-storage-zone.mp4",
+ "video_wide": "build/video/zones-narrated/kids-bedroom--toy-storage-zone-16x9.mp4"
 }

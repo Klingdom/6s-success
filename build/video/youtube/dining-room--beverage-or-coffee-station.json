@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "dining-room--beverage-or-coffee-station.srt",
- "video_vertical": "build/video/zones/dining-room--beverage-or-coffee-station.mp4",
- "video_wide": "build/video/zones-16x9/dining-room--beverage-or-coffee-station.mp4"
+ "captions": "build/video/zones-narrated/dining-room--beverage-or-coffee-station-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/dining-room--beverage-or-coffee-station.mp4",
+ "video_wide": "build/video/zones-narrated/dining-room--beverage-or-coffee-station-16x9.mp4"
 }

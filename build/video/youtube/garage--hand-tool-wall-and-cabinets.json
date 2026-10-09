@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "garage--hand-tool-wall-and-cabinets.srt",
- "video_vertical": "build/video/zones/garage--hand-tool-wall-and-cabinets.mp4",
- "video_wide": "build/video/zones-16x9/garage--hand-tool-wall-and-cabinets.mp4"
+ "captions": "build/video/zones-narrated/garage--hand-tool-wall-and-cabinets-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/garage--hand-tool-wall-and-cabinets.mp4",
+ "video_wide": "build/video/zones-narrated/garage--hand-tool-wall-and-cabinets-16x9.mp4"
 }

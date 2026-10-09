@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "hall-closet--linen-shelf-zone.srt",
- "video_vertical": "build/video/zones/hall-closet--linen-shelf-zone.mp4",
- "video_wide": "build/video/zones-16x9/hall-closet--linen-shelf-zone.mp4"
+ "captions": "build/video/zones-narrated/hall-closet--linen-shelf-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/hall-closet--linen-shelf-zone.mp4",
+ "video_wide": "build/video/zones-narrated/hall-closet--linen-shelf-zone-16x9.mp4"
 }

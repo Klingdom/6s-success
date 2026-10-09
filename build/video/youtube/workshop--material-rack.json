@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "workshop--material-rack.srt",
- "video_vertical": "build/video/zones/workshop--material-rack.mp4",
- "video_wide": "build/video/zones-16x9/workshop--material-rack.mp4"
+ "captions": "build/video/zones-narrated/workshop--material-rack-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/workshop--material-rack.mp4",
+ "video_wide": "build/video/zones-narrated/workshop--material-rack-16x9.mp4"
 }

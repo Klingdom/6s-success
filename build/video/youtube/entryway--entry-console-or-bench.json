@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "entryway--entry-console-or-bench.srt",
- "video_vertical": "build/video/zones/entryway--entry-console-or-bench.mp4",
- "video_wide": "build/video/zones-16x9/entryway--entry-console-or-bench.mp4"
+ "captions": "build/video/zones-narrated/entryway--entry-console-or-bench-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/entryway--entry-console-or-bench.mp4",
+ "video_wide": "build/video/zones-narrated/entryway--entry-console-or-bench-16x9.mp4"
 }

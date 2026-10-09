@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "hall-closet--paper-and-household-backstock.srt",
- "video_vertical": "build/video/zones/hall-closet--paper-and-household-backstock.mp4",
- "video_wide": "build/video/zones-16x9/hall-closet--paper-and-household-backstock.mp4"
+ "captions": "build/video/zones-narrated/hall-closet--paper-and-household-backstock-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/hall-closet--paper-and-household-backstock.mp4",
+ "video_wide": "build/video/zones-narrated/hall-closet--paper-and-household-backstock-16x9.mp4"
 }

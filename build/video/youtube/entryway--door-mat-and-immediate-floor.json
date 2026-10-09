@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "entryway--door-mat-and-immediate-floor.srt",
- "video_vertical": "build/video/zones/entryway--door-mat-and-immediate-floor.mp4",
- "video_wide": "build/video/zones-16x9/entryway--door-mat-and-immediate-floor.mp4"
+ "captions": "build/video/zones-narrated/entryway--door-mat-and-immediate-floor-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/entryway--door-mat-and-immediate-floor.mp4",
+ "video_wide": "build/video/zones-narrated/entryway--door-mat-and-immediate-floor-16x9.mp4"
 }

@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "guest-bathroom--toilet-area.srt",
- "video_vertical": "build/video/zones/guest-bathroom--toilet-area.mp4",
- "video_wide": "build/video/zones-16x9/guest-bathroom--toilet-area.mp4"
+ "captions": "build/video/zones-narrated/guest-bathroom--toilet-area-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/guest-bathroom--toilet-area.mp4",
+ "video_wide": "build/video/zones-narrated/guest-bathroom--toilet-area-16x9.mp4"
 }

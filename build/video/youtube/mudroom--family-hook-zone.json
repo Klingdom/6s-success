@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "mudroom--family-hook-zone.srt",
- "video_vertical": "build/video/zones/mudroom--family-hook-zone.mp4",
- "video_wide": "build/video/zones-16x9/mudroom--family-hook-zone.mp4"
+ "captions": "build/video/zones-narrated/mudroom--family-hook-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/mudroom--family-hook-zone.mp4",
+ "video_wide": "build/video/zones-narrated/mudroom--family-hook-zone-16x9.mp4"
 }

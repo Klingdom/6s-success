@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "nursery--books-and-quiet-play-zone.srt",
- "video_vertical": "build/video/zones/nursery--books-and-quiet-play-zone.mp4",
- "video_wide": "build/video/zones-16x9/nursery--books-and-quiet-play-zone.mp4"
+ "captions": "build/video/zones-narrated/nursery--books-and-quiet-play-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/nursery--books-and-quiet-play-zone.mp4",
+ "video_wide": "build/video/zones-narrated/nursery--books-and-quiet-play-zone-16x9.mp4"
 }

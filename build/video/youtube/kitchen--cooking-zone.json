@@ -22,7 +22,7 @@
  ],
  "categoryId": "26",
  "privacyStatus": "public",
- "captions": "kitchen--cooking-zone.srt",
- "video_vertical": "build/video/zones/kitchen--cooking-zone.mp4",
- "video_wide": "build/video/zones-16x9/kitchen--cooking-zone.mp4"
+ "captions": "build/video/zones-narrated/kitchen--cooking-zone-16x9.srt",
+ "video_vertical": "build/video/zones-narrated/kitchen--cooking-zone.mp4",
+ "video_wide": "build/video/zones-narrated/kitchen--cooking-zone-16x9.mp4"
 }
