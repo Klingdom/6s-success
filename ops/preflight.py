@@ -23337,7 +23337,13 @@ def check_capacity_rendered(capacity_map: dict, page_bodies: dict,
                          "to does not exist on the target article")
 
     seen_rule = {}
-    anchor_href = "zone-too-small-for-what-it-holds.html#honest-count"
+    # Extensionless, matching the article's own canonical: ops/canonical_
+    # links.py rewrites this exact link on all 114 zone pages (found and
+    # fixed 2026-10-09, second-pass cold read: its regex could not see a
+    # .html link carrying a #fragment at all, so this anchor_href sat here
+    # unrewritten and uncounted). Checking for the pre-rewrite ".html" form
+    # here would silently re-tolerate that same blind spot reopening.
+    anchor_href = "zone-too-small-for-what-it-holds#honest-count"
     for f in sorted(want_files & got_files):
         body = rendered[f]
         m = re.search(r'<section id="capacity">.*?</section>', body, re.S)

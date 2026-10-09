@@ -2,15 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle (full STEP 0-13 run, two real defects found and fixed via a delegated cold read)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly (114 commits, no conflict). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md` and `OWNER-ACTIONS.md`. Confirmed directly via GitHub (not from memory): 9 open issues, unchanged, all `decision`/`blocked-on-art`, one P0 (`#15`, Listmonk shared-sending-identity, owner-gated); 0 open PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 165 documents. `BACKLOG-2026-09-07.md` sections 2-5 are fully struck through or Phil-gated (confirmed by a delegated agent reading the file in full, not by trusting the section titles), so the standing fallback lane applied: continue the second-pass cold read.
+
+**preflight.py (fast) ran clean before any edit: every gate passed, 31 warnings, all previously diagnosed sandbox limits** (no Stripe/mail/SSH credential, no egress, no Pillow, the documented `gate_tests` sandbox hang). Two of the warnings were worth a direct fix rather than a re-citation: `status-deploy-gap-count-current` (BLOCKER-001's "0 commit gap" citation had gone stale by one real commit, `47a3f3368`, the prior cycle's own feed-author fix) and `dashboard-self-description-fresh`. Corrected `STATUS.md`'s BLOCKER-001 with a new WIDENED entry, re-derived directly (`deploy_gap_material_commits`), not carried forward.
+
+**Delegated a full cold read of the handoff's named files (`build_zone_index.py` through `check_cron_cadence.py`, 7 files, ~5,850 lines) to a sub-agent, instructed to verify claims by running each script's own `--check` mode against live repo state, not just read the code.** Found two real, verified defects:
+
+1. **`ops/canonical_links.py`: its `LINK` regex and tally regex both required `.html` to sit immediately before the closing quote, so any link carrying a URL fragment was invisible to the tool, both to the rewrite pass and to its own "N .html" tally.** Verified live: `build_zone_pages.py`'s `CAPACITY_ARTICLE` constant emits `href="../articles/zone-too-small-for-what-it-holds.html#honest-count"` on all 114 zone pages, and the article's own canonical is extensionless, yet this tool had been silently leaving all 114 unrewritten and uncounted (reporting "0 .html" when there were 114). Fixed both regexes to capture an optional trailing `(#[^"]*)?`/strip-and-reattach the fragment; fail-then-pass proved against the real repository (`0 would rewrite` before, `114` after). Ran the real (non-`--check`) pass: 114 pages rewritten to the canonical extensionless form, verified by diff (one line changed per page, nothing else). New `ops/tests/test_canonical_links.py` (3 cases), fail-then-pass proved against the reverted regex.
+
+   **This broke a sibling gate, found immediately rather than left for a future cycle.** `preflight.py`'s `check_capacity_rendered()` hardcoded the pre-rewrite `.html#honest-count` anchor string, so its own test suite (`test_gate_capacity_rendered.py`) started failing on all 114 real pages the moment the rewrite landed, the exact "source corrected, sibling never told" shape this repository's own staleness gates exist to catch. Fixed the hardcoded `anchor_href` in `preflight.py` to the extensionless form and the matching fixture constant in the test; reran: 8 of 8 cases pass, including against the real committed site. Also regenerated `site/sitemap.xml` (`ops/build_seo.py`) since the 114 content-changed pages had gone stale against their recorded `lastmod`, caught by `test_gate_sitemap_lastmod_current.py`.
+
+2. **`ops/check_cron_cadence.py`'s `WORKFLOWS` list was missing 2 of 9 real cron-scheduled workflow files** (`indexation-check.yml`, `keyword-demand.yml`, cron lines added 2026-10-02/03), the exact coverage gap the file's own docstring warns against by name. Added both; verified live (`check_cron_cadence.py` now reports them "too few runs to measure" rather than silently omitting them, the safe fallback, not a false pass). New Case 11 in `ops/tests/test_check_cron_cadence.py`, asserting `WORKFLOWS` covers every file a fresh `grep -rl "cron:"` finds; fail-then-pass proved (fails naming both files when reverted, passes restored).
+
+**Verified:** `check_urls.py` 211/211 sitemap URLs resolve. Ran every `ops/tests/test_*.py` file individually (385 files): all pass except two pre-existing, unrelated sandbox timeouts (`test_audit_catalog.py`, `test_generator_ownership.py`, confirmed slow/stuck against the clean `origin/main` baseline too, via `git stash`, not caused by this cycle's edits) and one expected precondition fail (`test_wire_nav_preserves_aria_current.py` refuses to run against a dirty working tree, which is this cycle's own uncommitted state, not a defect). `ops/dashboard.py` regenerated after all content changes landed, not before.
+
+**Went well:** delegating the deep file reads to a sub-agent with an explicit instruction to run each script's own check mode against live state, which is what surfaced both defects; treating the sibling gate break as this cycle's own responsibility rather than a note for later.
+
+**Did not go well:** the two timeout-prone test files remain unresolved; worth a dedicated cycle to find out whether they hang on real work or on an unreachable dependency.
+
+**Changing next cycle:** none; both new gates (the WORKFLOWS coverage test, the canonical-links fragment test) proved they can fail before being trusted.
+
+**Next:** no new unblocked `BACKLOG-2026-09-07.md` item; standing Phil-gated list unchanged (`VPS_DEPLOY_KEY` issue #35, Listmonk issue #15, YouTube OAuth, Search Console, Gemini billing). Continue the second-pass cold read at the next alphabetical batch after `check_cron_cadence.py`. Worth a dedicated look: `test_audit_catalog.py` and `test_generator_ownership.py`'s timeouts, to tell apart a real hang from a slow but finishing check.
+
+Pushed to main. `ops/canonical_links.py`, `ops/check_cron_cadence.py`, `ops/preflight.py` (one hardcoded anchor string), `ops/tests/test_canonical_links.py` (new), `ops/tests/test_check_cron_cadence.py`, `ops/tests/test_gate_capacity_rendered.py`, 114 `site/zones/*.html` (one link per page, canonicalised), `site/sitemap.xml`, `STATUS.md`, command deck. No price or product touched. `ops/indexnow.py --submit` attempted for the 114 changed pages: could not reach the site to confirm the key file is served from this sandbox, so submission was refused rather than guessed, same standing network limit as every prior cycle.
+
 ## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, nothing new unblocked)
 
-Attached clean, ff-only onto origin (115 commits). Tree already clean, main already pushed at `06fc18b03`.
+Attached clean, ff-only onto origin (115 commits). Tree already clean, main already pushed at `06fc18b03`, written before this cycle fetched the operator's two-defect fix above; merged rather than forced once the conflict surfaced.
 
-Previous work finished and verified, re-derived rather than cited. Fresh `preflight.py`: 0 FAIL before `gate_tests`, which stalled (flat CPU), the documented sandbox limit. Ran `check_urls.py` (211/211), `audit_pages.py` (0 findings), `affiliate.py --check` (165 docs) myself, all clean. Called `gate_youtube_metadata_asset_paths_current` directly, still fires correctly. GitHub direct: 9 issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`. `cold_read_ledger.py`: 0 stale, 196/196 ledgered. `BACKLOG-2026-09-07.md` sections 2-4: all rows struck through except C5/C6, both "YES, Phil".
+Previous work finished and verified, re-derived rather than cited. Fresh `preflight.py`: 0 FAIL before `gate_tests`, which stalled (flat CPU), the documented sandbox limit. Ran `check_urls.py` (211/211), `audit_pages.py` (0 findings), `affiliate.py --check` (165 docs) myself, all clean. Called `gate_youtube_metadata_asset_paths_current` directly, still fires correctly. GitHub direct: 9 issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`. `cold_read_ledger.py`: 0 stale, 196/196 ledgered at the time of my own read, before the operator's cycle above advanced it further. `BACKLOG-2026-09-07.md` sections 2-4: all rows struck through except C5/C6, both "YES, Phil".
 
-No new small closing item found. Leaving the standing cold-read sweep for the operator at :43.
+No new small closing item found on my own pass. Leaving the cold-read sweep's next alphabetical batch (after `check_cron_cadence.py`, per the operator cycle above) for the next operator slot.
 
-Pushed to main. Command deck only. No price, product or page touched; IndexNow not applicable.
+Pushed to main (merged). Command deck only. No price, product or page touched; IndexNow not applicable.
 
 ## 2026-10-09, PM check-in (:40 slot, 30 minute triage, confirmed previous work finished, nothing new unblocked)
 

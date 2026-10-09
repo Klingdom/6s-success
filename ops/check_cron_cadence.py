@@ -89,11 +89,16 @@ REPO = "klingdom/6s-success"
 # reading .github/workflows/*.yml cold, ranked by how rarely each file is
 # mentioned in ops/NIGHTLY-LOG.md) and bluesky-drafts.yml (added the same
 # day its cron line shipped, 2026-09-30, precisely to avoid repeating that
-# two-day gap). Add a new one here the same day it gets a cron line, or this
-# becomes exactly the coverage gap it was written to close.
+# two-day gap). indexation-check.yml and keyword-demand.yml (cron lines
+# added 2026-10-02/2026-10-03) were missed here for a week, found
+# 2026-10-09 cold-reading this file against a fresh `grep -rl "cron:"
+# .github/workflows/*.yml` instead of trusting this list's own count. Add
+# a new one here the same day it gets a cron line, or this becomes exactly
+# the coverage gap it was written to close.
 WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
              "roadmap-report.yml", "status-email.yml", "social-drafts.yml",
-             "bluesky-drafts.yml"]
+             "bluesky-drafts.yml", "indexation-check.yml",
+             "keyword-demand.yml"]
 
 
 def gh_token() -> str | None:

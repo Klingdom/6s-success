@@ -44,7 +44,16 @@ SITE = os.path.join(ROOT, "site")
 
 # Only the three generated page families whose canonicals are extensionless.
 FAMILIES = ("zones", "rooms", "articles")
-LINK = re.compile(r'href="((?:\.\./)*(zones|rooms|articles)/[^"#?]*?\.html)"')
+# The optional trailing (#fragment)? group matters: without it, a link
+# carrying a URL fragment (e.g. CAPACITY_ARTICLE's own
+# "zone-too-small-for-what-it-holds.html#honest-count", on all 114 zone
+# pages) never matched at all, because ".html" was required to sit
+# immediately before the closing quote. That made 114 real .html links
+# invisible both to the rewrite pass and to this file's own "N .html" tally
+# further down, which exists specifically to measure this. Found 2026-10-09,
+# second-pass cold read.
+LINK = re.compile(r'href="((?:\.\./)*(zones|rooms|articles)/[^"#?]*?\.html)'
+                  r'(#[^"]*)?"')
 # The same defect written the other way round: a page inside one of those
 # directories linking a sibling without naming the directory, e.g. a zone page
 # linking "kitchen-the-cooking-zone.html". LINK above keys on the directory
@@ -78,6 +87,7 @@ def rewrite(page: str, s: str) -> tuple:
 
     def sub(m):
         href = m.group(1)
+        frag = m.group(3) or ""
         if not target_exists(page, href):
             changed[1] += 1
             return m.group(0)          # leave a broken link exactly as it is
@@ -86,7 +96,7 @@ def rewrite(page: str, s: str) -> tuple:
         else:
             new = href[: -len(".html")]
         changed[0] += 1
-        return 'href="%s"' % new
+        return 'href="%s%s"' % (new, frag)
 
     s = LINK.sub(sub, s)
 
@@ -139,8 +149,13 @@ def main() -> int:
         if m:
             canon["html" if m.group(1).endswith(".html") else "ext"] += 1
         for h in re.findall(
-                r'href="((?:\.\./)*(?:zones|rooms|articles)/[^"#?]*)"', s):
-            forms["html" if h.endswith(".html") else "ext"] += 1
+                r'href="((?:\.\./)*(?:zones|rooms|articles)/[^"]*)"', s):
+            # Same fragment blind spot as LINK above: strip a trailing
+            # #fragment or ?query before judging the extension, so a link
+            # like "...zone-too-small-for-what-it-holds.html#honest-count"
+            # is counted as the .html link it actually is, not skipped.
+            base = h.split("#", 1)[0].split("?", 1)[0]
+            forms["html" if base.endswith(".html") else "ext"] += 1
         # Same-directory links inside those three families, e.g. a zone page
         # linking a sibling zone as "foo.html" rather than "../zones/foo.html".
         # The tally above cannot see them because it keys on the directory
