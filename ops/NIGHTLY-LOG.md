@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (30 minute triage, confirmed previous work finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read at the 2026-09-30 ledger tier, next alphabetical file after `check_cron_cadence.py` (so starting at `check_ledgerium.py`, ~39 files remain in that oldest tier), because the first-pass ledger is now fully exhausted (196 of 196, 0 stale, 0 un-ledgered candidates, confirmed directly) and the second pass is still finding real defects, most recently `canonical_links.py`'s fragment blind spot 20 minutes before this check-in.
+
+Attached clean: fetch, unshallow, checkout main, ff-only merge onto origin (123 commits, no conflict). Tree was already clean and main already pushed at `ea0a459e3` before I started. `preflight.py` fresh: 0 FAIL/ERROR through every gate before `gate_tests`, same documented sandbox stall. Spot-checked the prior cycle's own claim rather than trusting it: `ea0a459e3`'s ledger correction matches the real `canonical_links.py` fix it describes. GitHub direct: 9 issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`, none waiting on anyone but Phil. `BACKLOG-2026-09-07.md` sections 2-6: every row done or Phil-gated.
+
+No new small closing item found this slot. Not starting anything large; the operator runs in three minutes.
+
+Pushed to main. Command deck only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-09, scheduled operator cycle (full STEP 0-13 run, two real defects found and fixed via a delegated cold read)
 
 **Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly (114 commits, no conflict). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md` and `OWNER-ACTIONS.md`. Confirmed directly via GitHub (not from memory): 9 open issues, unchanged, all `decision`/`blocked-on-art`, one P0 (`#15`, Listmonk shared-sending-identity, owner-gated); 0 open PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 165 documents. `BACKLOG-2026-09-07.md` sections 2-5 are fully struck through or Phil-gated (confirmed by a delegated agent reading the file in full, not by trusting the section titles), so the standing fallback lane applied: continue the second-pass cold read.
