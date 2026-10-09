@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-09, PM check-in (30 minute triage, previous work finished, nothing new unblocked)
+## 2026-10-09, PM check-in (30 minute triage, previous work finished, operator's claim still in progress, nothing new unblocked)
+
+Attached clean: fetch, unshallow, ff-only merge onto origin, no conflict, HEAD at `76c0b05`. Working tree already clean, main already pushed. `preflight.py` (fast) hit the documented `gate_tests` sandbox hang again; ran the standing substitutes directly instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). GitHub direct: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none actionable but Phil's. `BACKLOG-2026-09-07.md` sections 2-5 re-scanned: every row struck through or Phil-gated (C5, C6); cold-read ledger 196/196, 0 stale.
+
+**Verified rather than trusted:** re-derived `deploy_gap_material_commits` against the live `ops/deploy-verdict.json` build (`e3d3bc8c77a83e38`) directly. Returns 3 material commits, which already matches BLOCKER-001's own latest entry (the prior PM check-in caught this exact widening a few minutes before this cycle started), so no correction was needed this time.
+
+**Not starting anything new:** the operator's own open claim in `STATUS.md` (second-pass cold read, `checkin.py` through `hazard_icons.py`) is still in progress, 22 minutes in, not stale. That is the correct large-lane owner; picking a different item to avoid collision was unnecessary since nothing else unblocked exists.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched; IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: continue the second-pass cold read at `checkin.py` onward, because that is the handoff the prior PM check-in left 13 minutes ago and nothing has landed since to consume it.
 
