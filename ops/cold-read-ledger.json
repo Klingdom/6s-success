@@ -708,8 +708,8 @@
     },
     "retire_stripe_skus.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30 scheduled operator for drift. Ran --check (the safe, read-only mode; --apply was not run, no live Stripe credential in this sandbox and nothing new needs retiring). Reports 65 SKUs on record in ops/retired-skus.json (the full historical registry of every never-launched or withdrawn SKU, not only D-023's 21), correctly refuses to authenticate without .env.secrets rather than silently proceeding. Spot-checked retired-skus.json content directly: entries carry real _why reasons (hardcover with no printer, illustrated deck with no art, courses never built), consistent with prior description. No drift."
+      "date": "2026-10-09",
+      "note": "Cold read, 2026-10-09 scheduled operator. Read cold (no live mutation attempted: --apply needs STRIPE_ALLOW_LIVE=1, correctly refused otherwise). Guards checked by reading, not assumed: refuses on metadata.ledgerium_plan (CLAUDE.md 36b), refuses to apply unless live_is_clean() scans the real sitemap plus data.js/shop.js and finds 0 references, treats an unreadable page as NOT clean rather than skipping it. Cross-checked its ledger: all 65 SKUs in ops/retired-skus.json have a matching entry in ops/retired-skus-stripe-status.json (0 pending), matching gate_retired_skus_stripe_archived's own live read and OWNER-ACTIONS.md R6's 'Done 2026-09-23' note. The status file's own _note text is slightly stale phrasing (says the original batch is 'correctly still reported pending' when the archived dict actually shows all 65 confirmed) but no gate reads that prose field, only the archived dict's keys, so it is not a functional defect. No defect found."
     },
     "revenue_model.py": {
       "status": "clean",

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle (one real fix, one confirmed flake, cold read of 8 files)
+
+**Did:** Attached clean onto `4ae577457` after unshallowing. Had a subagent independently re-check the backlog, roadmap, owner-actions and GitHub (9 issues, all `decision`/`blocked-on-art`) against the standing "nothing unblocked" claim rather than trust it. Continued the cold-read lane: `build_standards.py`, `build_thumbnails.py`, `build_zone_index.py`, `card_spec.py`, `check_affiliate_trigger.py`, `prune_catalog_js.py`, `refresh_hero_fallback.py`, `retire_stripe_skus.py`. Ran preflight full.
+
+**Verified:** Claim confirmed true. `build_standards.py` had an identical 3-line comment pasted twice; removed, regenerated output byte-identical. The other 7 confirmed clean against a live run, not just a read (generator chains rerun standalone, 0 site drift; Stripe-retirement ledger cross-checked, all 65 SKUs archived). Preflight: 1 FAIL (`test_deck_pages_interactive.py`, `kids-bedroom-deck.html`), 32 warnings (known sandbox limits). The fail did not reproduce in 3 isolated reruns (17/17 clean), no stray probe files, static HTML has the markup: a CPU-contention flake, not a defect.
+
+**Went well:** checking both the unblocked-claim and the FAIL instead of trusting either.
+
+**Did not go well:** `gate_tests` again needed nearly the full 1100s window.
+
+**Changing next cycle:** none; no recurring defect class found that isn't already gated.
+
+**Next:** cold read at `root_causes.py`. Phil-gated list unchanged.
+
+Pushed: `ops/build_standards.py`, `ops/cold-read-ledger.json`, command deck, this entry.
+
 ## 2026-10-09, PM check-in (:40 slot, previous work finished and verified again, same handoff stands)
 
 **NEXT FOR THE OPERATOR: continue the second-pass cold read at `build_standards.py`, because the ledger already names it as the oldest unread tier and nothing since the last handoff has touched it.**
