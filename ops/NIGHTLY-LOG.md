@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, scheduled operator cycle (closed the loop on issue #40, found no new unblocked work after an exhaustive check)
+
+**Did:** Attached cleanly (unshallow, checkout, ff-only merge, 48 commits, no conflict). Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the last four `NIGHTLY-LOG.md` entries in full rather than a digest. The prior cycle's own handoff said to check `checks.yml`'s conclusion on its push before starting anything else: run 1966 (`28bde8a30`, its own fix) completed `success`, but a merge after it (run 1967, `4513fe10`) had a real conflict in `ops/tests/test_send_questions.py`, the exact file just fixed for a brittle assertion. Did not trust the green conclusion alone; ran the test file directly on the merged HEAD (10/10 pass), confirming the merge kept the widened assertion rather than silently reverting it.
+
+**Verified rather than assumed clean.** `preflight.py` run fresh in the background to the documented `gate_tests` sandbox hang: 0 FAIL, 0 WARN printed through every gate before it, confirmed genuinely stalled (no new gate-name output for 90s). `cold_read_ledger.py --stale`: 0 stale entries, nothing left for the usual fallback method. Every `BACKLOG-2026-09-07.md` section 2 to 4 row checked is `Done` or already Phil-gated; GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, reported unchecked. `affiliate.py --check`: clean, 165 documents. `fix_dashes.py --check`: 0/0.
+
+**Closed a real loop instead.** `list_triggers` confirmed the 5-day usage-limit stall (issue #40) has not recurred: all three Routines show successful or in-flight runs since 03:2x. Posted that evidence to #40. Tried to build the fix #40 itself recommended (a `list_triggers` sibling-health check wired into both PM Routines' own prompts) via `update_trigger`: refused, since these Routines were created via `http_api`, not by an agent session, so no sandboxed session can self-edit them. Recorded the exact paragraph to paste and both edit URLs in `OWNER-ACTIONS.md` item -1 rather than leaving the recommendation undone.
+
+**Went well:** not trusting a green CI conclusion on a merge commit without directly re-running the specific test the conflict touched.
+
+**Did not go well:** the gate-equivalent fix for issue #40 cannot be self-served by any agent session, only discovered by trying.
+
+**Changing next cycle:** none; no new defect class, same standing sandbox and permission limits.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, now including the optional Routine-prompt paste, and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No price, product or served page touched; no new site page; IndexNow not applicable.
+
 ## 2026-10-09, scheduled operator cycle
 
 **Did:** Attached to main cleanly per the fixed STEP 0 procedure (unshallow, checkout, ff-only merge, no issues). Read BACKLOG-2026-09-07.md, GOALS.md, ROADMAP-2026-2029.md, CLAUDE.md and the last NIGHTLY-LOG entries via a delegated digest to avoid burning context on files that have grown to hundreds of KB. Confirmed every backlog item in sections 2-4 is done or Phil-gated, and all 9 open GitHub issues are `decision`/`blocked-on-art`. Checked `checks.yml` directly on GitHub (not just a local pass, per CLAUDE.md 0.3) and found `main` had been red across runs 1961-1964. Pulled the failed job log for run 1964: two test files failing. The GOALS.md keyword-citation half was already fixed by Phil's own `89c936d65` and confirmed by a concurrent PM `:40` cycle. The remaining failure, `test_send_questions.py`, was real and unfixed: it hardcoded the exact phrase "still needs a Redeploy click" as the only acceptable disclosure whenever "automatic" appears in the SITE STATUS email, and Phil's own commit `66460f40b` had correctly reworded that line to something more honest and complete ("still needs a hand: deploy.yml has no VPS_DEPLOY_KEY... or a session holding ~/.ssh/6s_deploy running ops/deploy.py") without updating the test. Widened the assertion to accept either known honest wording; the real invariant (an "automatic" claim is never left undisclosed) holds either way.
