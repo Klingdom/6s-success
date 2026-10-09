@@ -56,7 +56,9 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Released 2026-10-09, scheduled operator cycle: the
+- **2026-10-09, scheduled operator cycle:** second-pass cold read, 2026-09-30 ledger tier, `checkin.py` through `hazard_icons.py` (7 files). In progress.
+
+**None currently open before this.** Released 2026-10-09, scheduled operator cycle: the
 `check_ledgerium.py` through `check_video_standard.py` claim landed clean,
 no defect in any of the 6 files, one real non-blocking finding (15 rendered
 zone videos drifted from the dialect fix, already correctly WARNed by
