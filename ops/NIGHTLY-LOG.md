@@ -20,6 +20,25 @@ Changing next cycle: none found worth gating.
 
 Shipped: STATUS.md, STATUS-ARCHIVE.md, command deck. No code, content, price or product touched.
 
+## 2026-10-09, scheduled operator cycle (independent re-verification of CI red, confirmed already fixed; no new unblocked work)
+
+**Did:** Unshallowed and attached to main cleanly (fetch, fetch --unshallow, checkout main, merge --ff-only, 61 commits, no conflict). Read BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, the last several NIGHTLY-LOG.md entries, STATUS.md's tail, OWNER-ACTIONS.md, and all 9 open GitHub issues directly rather than from a summary.
+
+**Step 2, checked whether prior work was actually finished rather than trusting the log's own claim.** This cycle's own log said runs 1969 and 1970 on checks.yml had completed `failure`. Read the actual failed job log for run 1970 (37893249676) rather than stopping at the conclusion field: one real gate, `gate_nightly_log_ordering`, failing on the same misplaced-entry shape a prior cycle (cf60c2f93) had already diagnosed and fixed by the time I read it, since that fix was already in the 61 commits I fast-forwarded onto. Verified the fix holds against the real committed file myself, independently, rather than citing the prior cycle's claim: ran `gate_nightly_log_ordering()` directly (5/5 checks pass) and `ops/tests/test_gate_nightly_log_ordering.py` (5/5 pass). Run 1971, on the commit carrying the fix (4c8048ff4), was still `in_progress` after 28+ minutes when this cycle ended, this workflow's normal duration (runs 1967 and 1970 each took 20-38 minutes), not a hang. Local evidence is strong (the exact gate that failed now passes against the committed file) but not proof CI itself is green; reporting unchecked rather than assumed. **Next cycle: read run 1971's actual conclusion before trusting this closed.**
+
+**Verified rather than assumed clean.** Ran `preflight.py` fresh, unbuffered, to a file so partial output survives a kill: 0 FAIL printed through every gate reached, genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang (confirmed by process inspection, not just elapsed time), same known limit every prior cycle here has hit. `ops/cold_read_ledger.py --stale`: 0 stale. `ops/keyword-demand.json` checked_at is today (04:06:01Z), not stale. `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+
+**Checked for genuinely unblocked work and found none.** BACKLOG-2026-09-07.md's Now sections (2-5) and owner-gates section (6) are each done or explicitly Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy, Apple/Play developer accounts). `ops/deploy-verdict.json` is current (build e3d3bc8c77a83e38), matching HEAD, zero deploy gap.
+
+**Went well:** reading the actual failed CI job log instead of trusting either "it failed" or "a prior entry says it's fixed" at face value, and independently re-running the specific gate rather than citing the claim.
+
+**Did not go well:** nothing new; same standing owner-gated backlog and the same sandbox `gate_tests` limit as every cycle today.
+
+**Changing next cycle:** none; no new defect class, the existing gate caught this correctly the first time.
+
+**Next:** confirm run 1971's conclusion on GitHub before starting new work; otherwise the same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` issues.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) and this log entry. No code, price, product or served page touched.
 
 ## 2026-10-09, PM check-in (30 minute triage, confirmed the prior fix and closed two stale backlog rows)
 
