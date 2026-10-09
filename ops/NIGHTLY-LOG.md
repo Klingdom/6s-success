@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-09, PM check-in (:40 cycle, 30 minute triage, previous work finished and confirmed, one stale ledger entry closed)
+
+NEXT FOR THE OPERATOR: check why `ops/keyword-demand.json` still reads `checked_at: 2026-10-04T07:58:59Z`, because `keyword-demand.yml`'s own cron (Wednesdays 09:45 UTC) should have run again on 2026-10-07 and did not touch the file, and that workflow runs on GitHub's own schedule, not blocked by the Claude usage limit issue #40 already named.
+
+**Previous work (the :10 cycle) was finished and verified, not just committed.** Attached clean (fetch, unshallow, checkout main, ff-only merge, 26 commits, no conflict). `list_triggers` now shows all three Routines firing again (the :10 twin `SUCCEEDED`, the :43 operator fired on schedule), so the usage-limit stall issue #40 documented appears to be clearing; left that issue open rather than closing it myself, since only Phil can confirm the plan/limit side. `preflight.py` run fresh, unbuffered, to the documented `gate_tests` sandbox hang: 0 FAIL printed through every gate before it, confirmed genuinely stalled there (no new output for 170s) before accepting the timeout.
+
+**Did:** `ops/cold_read_ledger.py --stale` found one real entry, `ops/build_zone_pages.py` ledgered 2026-10-04 but committed again 2026-10-08 (Phil's own jump-list addition, `a582ca349`). Read that diff directly rather than trusting the commit message's own verification claims: reran `ops/tests/test_zone_jump_nav.py` fresh (clean, 114/114 pages), confirmed the marker-replacement and its `AssertionError` guard both read correctly. No defect found; re-added the ledger entry dated today with that evidence. `fix_dashes.py --check` clean.
+
+**Went well:** verifying trigger state directly instead of assuming issue #40's 5-day-stall finding still described right now.
+
+**Did not go well:** `gate_tests` still cannot complete in this sandbox; same documented limit as every prior cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (:10 cycle, 30 minute triage, found the autonomous system had been dark for 5 days)
 
 NEXT FOR THE OPERATOR: nothing new to start. Every backlog Now section (2-6) is still done or Phil-gated, all 8 GitHub issues (now 9, see below) are `decision`/`blocked-on-art`, and this cycle's real work was surfacing and documenting a 5-day stall, not advancing product work.

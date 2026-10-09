@@ -348,8 +348,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-04",
-      "note": "Re-verified 2026-10-04 PM check-in. Touched by this same lineage's own 2026-10-04 sort_scope rollout (c70bcc8df), which already verified it directly: ran the real generator, it reported 114 of 114 zones carrying all three moat fields and 20 rooms complete, gate_sort_scope_rendered and its 6-case test passed, and the regenerated pages matched a dry-run diff of exactly 21 blocks before being written. No separate re-read needed; the verification is the same cycle's own, not cited from memory."
+      "date": "2026-10-09",
+      "note": "PM check-in :40, 2026-10-09: re-read the 2026-10-08 jump-list addition (Phil + Claude Opus, a582ca349) against the file. Own test (test_zone_jump_nav.py) reruns clean on all 114 pages; marker-replacement and the AssertionError guard against a surviving marker both read correctly. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",
