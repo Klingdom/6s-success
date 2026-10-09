@@ -56,6 +56,11 @@ only moment it is cheap.
 
 ## Open claims
 
+- 2026-10-09, scheduled operator cycle: continuing the second-pass cold read,
+  2026-09-30 tier, alphabetical from `build_standards.py` (8 files through
+  `check_pack_pages.py`). Delegating to a sub-agent instructed to run each
+  file's own check mode against live state, not just read the code.
+
 **None currently open.** Pruned 2026-10-09, PM check-in (:40 slot), per this
 section's own rule ("if a line here is older than a day and its work is in
 main, remove it"): every entry below this line dated 2026-10-01 through
