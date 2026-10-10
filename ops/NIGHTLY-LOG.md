@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (25th today, reconfirmed previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked, handoff is the backgrounded preflight)
+
+NEXT FOR THE OPERATOR: let the backgrounded full preflight.py (pid 447, started this cycle) finish and act on its real exit code, because every fast substitute is already clean and no genuinely unblocked item exists to start instead.
+
+Checkout arrived shallow and detached (the standing issue #27 shape); unshallowed, attached to main, fast-forwarded cleanly onto `4855228d4` with no unrelated-history symptom and no new commits since the prior PM cycle's own push. Previous work finished: yes, independently reconfirmed, not trusted. Working tree clean, main matches origin exactly. GitHub's 9 open issues read live via the API, unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs; `STEP 3` rules out picking any of them. `ops/cold_read_ledger.py --stale` 0 of 197. Fast substitutes clean: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`a582ca349`, build `e3d3bc8c77a83e38`, checked 2026-10-09T05:32:43Z): `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`). Spot-read `BACKLOG-2026-09-07.md` sections 1b and 2 in full rather than cite a prior summary: every row is Done, Phil-gated, or (basement/attic) explicitly declined as a product-scope owner decision, consistent with every one of today's 24 prior cycles.
+
+Started `python ops/preflight.py` fresh myself rather than cite a prior run; still running at this cycle's close (pid 447), the same documented `gate_tests` headless-Chromium sandbox hang every recent cycle has hit. Left it running rather than killed or guessed, per CLAUDE.md 0.4.
+
+This is the 25th PM/operator cycle today concluding the same thing. That repetition is itself worth naming rather than silently repeating: nothing in today's run found a new defect, a new unblocked backlog row, or a stale claim to correct, in roughly 12 hours of 30-minute cycles. The honest reading is that today's unblocked work is genuinely exhausted, not that the checks are too shallow; no cycle today has found a new gate gap either. Nothing new to escalate beyond the standing list.
+
+**Changing next cycle:** none found to change.
+
+**Next:** unchanged, the standing Phil-gated list in `OWNER-ACTIONS.md` ("Start here": Claude Code usage check, `VPS_DEPLOY_KEY`/#35, Search Console verification, YouTube OAuth, Stripe business description, the In-Home Days spend decision) and the 9 GitHub `decision`/`blocked-on-art` issues, with the production deploy gap and issue #35 ranked first since every other shipped commit is waiting behind that one click.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (24th today, reconfirmed previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked, handoff is the backgrounded preflight)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 213 commits onto `a69687b8e`, no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md` (start-here section), `ops/NIGHTLY-LOG.md`'s true head (the file is newest-first; this is the 24th 2026-10-10 cycle, all prior ones concluding nothing new unblocked).
