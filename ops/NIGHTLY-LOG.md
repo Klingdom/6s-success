@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle, correction (a preflight gate_tests failure this cycle was a race with concurrent git surgery, not a real regression)
+
+**Correcting a scare from this same cycle, written before it could mislead a later one.** After pushing the nightly_log.py atomic-write fix (fd9d954fe), ran a second full `preflight.py` in the background to confirm the final state, but kept working the git merge (checkout, rebase --continue) on the same tree while it ran. That run reported `1 gate(s) failed`: `gate_tests` named `test_gate_affiliate_trigger_citation_current.py` failing with `json.decoder.JSONDecodeError`.
+
+**Verified before believing it.** Ran that one test file standalone against the settled, pushed tree: `OK: gate_affiliate_trigger_citation_current, 5/5 checks pass`. Ran a third full `preflight.py`, this time touching nothing else while it ran: `every gate passed, 29 warning(s)`, clean.
+
+**The lesson:** a backgrounded preflight run reads real files from the working tree as it goes; running `git checkout`/`rebase --continue` concurrently on the same tree can catch a JSON file mid-rewrite and report a false test failure that looks exactly like a real regression. Per CLAUDE.md 0.4, this is recorded rather than quietly dropped, so a future cycle that sees this same test named in a failure does not skip re-verifying it standalone first. No gate needed: the fix is procedural (do not run git surgery and a backgrounded preflight against the same tree at once), not a code defect, and this is a first occurrence, not a recurring pattern.
+
+No files changed by this entry beyond itself and the command deck.
+
 ## 2026-10-10, scheduled operator cycle (cold-read of ops/nightly_log.py itself, atomic-write fix proven against its own regression)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fetched origin main, checkout main, merge --ff-only fast-forwarded 181 commits cleanly onto 23a5508ad. Working tree clean before and after.
