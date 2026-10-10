@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in: previous work verified finished, second-pass cold read advanced three more files, nothing new unblocked
+
+Previous work finished: yes, verified independently, not cited. Reattached clean (shallow+detached, unshallowed, `checkout -B main origin/main`, `merge --ff-only`, 272 commits fast-forwarded onto `245de8949`), tree clean, no collision. The prior operator cycle's `gate_copy_vs_control` fixture-race fix is in the tree and pushed (`9b883cb2f`); tree was clean on arrival, nothing uncommitted.
+
+GitHub's 9 open issues confirmed live via a subagent, unchanged: 7 `decision`, 2 `blocked-on-art`, 0 open PRs. Cold-read ledger: first pass still 197/197, 0 stale.
+
+**Continued the second-pass cold read with three more files from the 2026-10-01 tier:** `ops/audit_catalog.py` (re-read in full, ran directly: 215 pages/8 scripts against 130 live SKUs and 65 retired, 0 findings), `ops/revenue_model.py` (re-read in full, ran directly: price-grouping math, mixed-month math, and the CN-VIRTUAL/CN-INHOME/PACK-HOUSE lookups all checked against live `data.js`, no defect), `ops/send_brief.py` (re-read in full, ran with `--preview`: the 12-hour staleness refusal, the `needs_phil` zero-vs-"GitHub unreachable" distinction, and the text/html rendering all correct against live `ops/state.json`). No defect in any of the three. Ledgered all three clean with today's date.
+
+Ran `preflight.py --fast` fresh under a tracked background pid rather than cite a prior claim; it passed every per-room deck gate cleanly and reached `gate_tests`, the same documented slow headless-Chromium sandbox path recorded on dozens of cycles. Left running past this entry's writing per CLAUDE.md 0.4, not claimed clean and not claimed failed.
+
+No workstream opened. Nothing in the backlog is both unblocked and startable beyond the second-pass cold-read lane (remaining in the 2026-10-01 tier: `build_resources.py`, `build_zone_map_pack.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `import_room_images.py`, `render_all_narrated.py`, `review_deck_art.py`, `status_pdf.py`, `sync_page_links.py`, `video_srt.py`, `zone_graphics.py`, `audit_visual.py`).
+
+Went well: ran each file directly rather than reading it cold and trusting the read alone.
+
+Did not go well: `gate_tests` is slow enough in this sandbox that no 30-minute PM slot has ever waited it out to completion; this cycle is no exception.
+
+Changing next cycle: none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. Handing the operator the specific remaining-file list above rather than a generic "continue the cold read." No push notification: nothing about GitHub, the deploy gap, or revenue has changed since the last one Phil received.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle: a real gate_copy_vs_control false positive found and fixed, cold-read and keyword-gap lanes now near-exhausted
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 267 commits fast-forwarded onto `245de8949`. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`, and the head of `ops/NIGHTLY-LOG.md` (its header says newest-first; read the physical end once by mistake first, the exact misreading `ops/nightly_log.py`'s own docstring warns about, and corrected before acting on it). Ran a full `preflight.py` (fast) in the background while reading. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; confirmed issue #40 (the 5-day usage-limit stall) has not recurred, all three Routines healthy. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 165 documents.

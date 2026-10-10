@@ -17,9 +17,9 @@
       "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
     },
     "audit_catalog.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Re-verified 2026-10-01: file was touched same day by this morning's fix (fixture-collision false-positive, excluding _audit_catalog_fixture_<pid>.html from pages() by default, opt-in via --include-fixtures), already fail-then-pass proved and pushed. Re-confirmed directly rather than carried forward: ops/audit_catalog.py parses clean, the PROBE_PREFIX/INCLUDE_FIXTURES exclusion is present in the source, and ops/tests/test_audit_catalog.py (drift comparison, correct/wrong prices, unknown buy links) passes end to end, exit 0."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold, ran directly (215 pages, 8 scripts, 130 live SKUs, 65 retired SKUs checked), 0 findings, matches its own documented behavior. No defect."
     },
     "audit_pages.py": {
       "status": "fixed",
@@ -718,8 +718,8 @@
     },
     "revenue_model.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "PM cycle second-pass re-read: pure arithmetic over live catalogue, assumptions clearly labelled, live run output sane"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold and ran directly. Grouping-by-price, mixed-month math and the CN-VIRTUAL/CN-INHOME/PACK-HOUSE lookups all checked against live data.js; output sane, no crash, no defect."
     },
     "review_deck_art.py": {
       "status": "fixed",
@@ -748,8 +748,8 @@
     },
     "send_brief.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Read in full. Run live (--preview): subject/text/html all built correctly from the real ops/state.json, needs_phil math matches live GitHub issue count (6 decision-labelled), issues_available fallback (GitHub-unreachable case) correctly distinguished from a real zero. No defect. Independently re-read the same day by a concurrent cycle: needs_phil filter re-confirmed against dashboard.py's own definition, staleness refusal confirmed. Two independent reads, same verdict."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold and ran with --preview. Staleness refusal, issues_available/needs_phil zero-vs-unknown distinction, and text/html rendering all correct against live ops/state.json. No defect."
     },
     "send_questions.py": {
       "status": "clean",
