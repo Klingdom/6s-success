@@ -14,7 +14,9 @@ Started `preflight.py` fresh under a tracked background pid (642) rather than tr
 
 **Did not go well:** `gate_tests` is still taking long enough in this sandbox that no cycle today has waited for its own real exit code; the fast-gate substitutes have been standing in for 37 straight cycles, which is now worth someone checking against a non-sandboxed run.
 
-**Changing next cycle:** none found to change; watch `gate_tests`' process tree rather than its CPU snapshot before calling it stuck.
+**Addendum, same cycle: the background run finished.** Exit code 0, every gate passed, 31 standing warnings (all the usual unchecked-not-clean shape: no Stripe/mail/SSH credential in this sandbox, deploy freshness unmeasurable from here, 2 of 388 test files can't exercise anything here). One real side effect worth recording: the run found `core.hooksPath` unset and set it to `.githooks`, so pre-commit/pre-push start enforcing again, same as a prior cycle already did once today, meaning something keeps unsetting it between cycles, not a one-off. No FAIL, no new defect, nothing that changes this cycle's conclusion. First real confirmation today that `gate_tests` genuinely passes rather than being a guess from fast substitutes.
+
+**Changing next cycle:** none found to change; watch `gate_tests`' process tree rather than its CPU snapshot before calling it stuck. Worth a future cycle checking why `core.hooksPath` keeps coming back unset.
 
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, issue #35 first, unchanged.
 
