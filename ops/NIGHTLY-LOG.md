@@ -2,17 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-10, scheduled operator cycle: independent re-verification, nothing new unblocked
+## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, deploy gap widened by one commit, handoff is the backgrounded preflight)
+
+NEXT FOR THE OPERATOR: let the backgrounded full preflight.py (pid 394, started 05:42) finish and act on its real exit code, because fast substitutes are already clean and no genuinely unblocked item exists to start instead.
+
+Previous work finished: yes, independently reconfirmed, not trusted. The prior cycle's own fix (gate_cold_read_handoff_not_stale, 8th occurrence of that false-positive class) is HEAD (1d3722ff4), already pushed, already matching origin, working tree clean. Did not re-derive the fix's correctness from scratch (its own addendum entry already proved fail-then-pass on 19 cases); confirmed instead that it actually landed and that nothing since has touched it.
+
+Checked state directly rather than citing prior cycles: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Cold-read ledger 0 stale, 197/197 ledgered, fully exhausted. Fast substitutes clean: check_urls.py 211/211, audit_pages.py 215 pages/0 findings/0 duplicate titles or descriptions, fix_dashes.py 0 em or en dashes. Deploy gap re-derived from ops/deploy-verdict.json directly (resolved commit a582ca349, build e3d3bc8c77a83e38): 3 material site/Dockerfile commits behind now, not 2, one more than the last PM cycle's figure (48a4c07c4, a40c4d2a8, 47a3f3368); still the same standing wait on VPS_DEPLOY_KEY/#35, not grown by anything actionable from here. Commit timestamps show no gap in cycle cadence (operator and PM both running on schedule through the morning), so issue #40's 5-day stall is historical, not current.
+
+Started preflight.py fresh myself rather than cite a prior run; it is still running past several minutes at this cycle's close, the same documented gate_tests sandbox hang every recent cycle has hit. Left it running rather than killed or guessed.
+
+Nothing new unblocked beyond the standing Phil-gated list (OWNER-ACTIONS.md's "start here" items, VPS_DEPLOY_KEY/#35 first) and the 9 owner-gated GitHub issues. No small closing job found this slot: cold-read lane exhausted, no stale citation, no failing gate in the fast substitutes.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-10-10, scheduled operator cycle: independent re-verification, nothing new unblocked (deploy-gap figure corrected on merge: 3 commits, not 2)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 206 commits onto `1d3722ff4`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` (sections 0, 2-7), `OWNER-ACTIONS.md` in full, `GOALS.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (the log is newest-first; the earlier tail read was the oldest entries, corrected by reading the head instead).
 
-**Verified directly, not cited:** GitHub's 9 open issues read live via the API, unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. `ops/cold_read_ledger.py --stale` 0, `--next` confirms 197/197 ledgered. `BACKLOG-2026-09-07.md` sections 2-4's unstruck rows are both Phil-gated (C5 Gemini billing, C6 YouTube OAuth); nothing unstruck and unblocked. `ops/check_urls.py` 211/211, `ops/audit_pages.py` 215/0, `ops/fix_dashes.py --check` 0/0, `ops/link_graph_report.py` 0 orphans, `ops/check_sellable.py` 124/126 (2 correctly person-delivered), `ops/affiliate.py --check` 165 documents clean. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`47a3f336`): 2 material `site/`/`Dockerfile` commits behind (`48a4c07c4`, `a40c4d2a8`), matching the standing figure, not grown; still waiting on issue #35.
+**Verified directly, not cited:** GitHub's 9 open issues read live via the API, unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. `ops/cold_read_ledger.py --stale` 0, `--next` confirms 197/197 ledgered. `BACKLOG-2026-09-07.md` sections 2-4's unstruck rows are both Phil-gated (C5 Gemini billing, C6 YouTube OAuth); nothing unstruck and unblocked. `ops/check_urls.py` 211/211, `ops/audit_pages.py` 215/0, `ops/fix_dashes.py --check` 0/0, `ops/link_graph_report.py` 0 orphans, `ops/check_sellable.py` 124/126 (2 correctly person-delivered), `ops/affiliate.py --check` 165 documents clean. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
 
-Started `python ops/preflight.py` fresh under a 280s timeout rather than guess at a prior run's result; it was still executing past that bound (this sandbox's documented `gate_tests` headless-Chromium hang) with no output yet flushed when this entry was written, so it is reported here as unchecked per CLAUDE.md 0.4, not passing. The fast substitutes above stand in its place, as every recent cycle has done.
+**Correction found during this merge, not left standing:** this entry first wrote the deploy gap as "2 commits behind `47a3f3368`", picking the wrong one of two `git log -S` hits for the build id without checking which actually introduced it. `git show 47a3f3368:site/build-id.txt` is `3733f73d...`, not the confirmed `e3d3bc8c77a83e38`; `git show a582ca349:site/build-id.txt` is the match, and `a582ca349` is an ancestor of `47a3f3368`, confirmed with `merge-base --is-ancestor`. The concurrent PM check-in entry immediately above got this right independently (resolved commit `a582ca349`, 3 commits: `48a4c07c4`, `a40c4d2a8`, `47a3f3368`). Re-derived the same way here and confirmed: 3, not 2. No gate exists yet for "picked the wrong commit out of several `git log -S` hits for the same string"; worth a cold-read note if it recurs, not yet a pattern of three.
 
-**Went well:** re-derived every claim above independently (GitHub, ledger, gates) rather than trusting the prior dozen 2026-10-10 cycles' identical conclusion.
+Started `python ops/preflight.py` fresh under a 280s timeout rather than guess at a prior run's result; it was killed by that timeout with no output flushed (this sandbox's documented `gate_tests` headless-Chromium hang), so it is reported here as unchecked per CLAUDE.md 0.4, not passing. The fast substitutes above stand in its place, as every recent cycle has done.
 
-**Did not go well:** `gate_tests` again could not complete inside a reasonable window in this sandbox; same standing limitation as every recent cycle, no new information.
+**Went well:** re-derived every claim above independently (GitHub, ledger, gates) rather than trusting the prior dozen 2026-10-10 cycles' identical conclusion; caught and fixed my own miscount before it became the permanent record, rather than after.
+
+**Did not go well:** picked the wrong commit on the first pass of a `git log -S` lookup with two hits; `gate_tests` again could not complete inside a reasonable window in this sandbox, same standing limitation as every recent cycle.
 
 **Changing next cycle:** none; no new defect class found, so no new gate per step 10b.
 
