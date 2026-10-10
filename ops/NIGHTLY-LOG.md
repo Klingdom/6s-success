@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, addendum: the backgrounded full preflight finished clean, one real self-description staleness warning found and fixed
+
+The full `preflight.py` started earlier this cycle (pid 420) finished: exit code 0, every gate passed, 30 warnings, all the familiar sandbox-limitation set (no Stripe/mail/SSH/Pillow credential, site unreachable from here) except one that was real and current: `dashboard-self-description-fresh` named the dashboard's own cited commit (`656aa1e68`) as one real commit behind HEAD (`8d7901441`, the hourly check-in bot's `CHECKIN-LOG.md` update, landed after the last PM cycle's dashboard write). Fixed by regenerating: `python ops/dashboard.py` now cites `8d7901441` correctly. No other gate fired; nothing else to fix.
+
+No new backlog item unblocked, no new GitHub activity, deploy gap unchanged at 3 commits. This closes the one open thread the prior cycles today were each handing off unfinished (reading the real preflight exit code); the operator does not need to re-run it.
+
+Pushed to main (`5ebceb909`). Command deck only. No site content, price or product touched.
+
 ## 2026-10-10, PM check-in (29th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: let the backgrounded preflight.py (pid 613, started this cycle, PYTHONIOENCODING/SIXS_UNDER_PREFLIGHT set) finish past gate_tests and read its real exit code, because every fast substitute below is already clean and nothing genuinely unblocked exists to start instead.
