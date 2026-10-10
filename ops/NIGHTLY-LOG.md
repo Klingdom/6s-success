@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:43-adjacent slot, closed the recurring nightly-log-ordering hand-edit defect at its root)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fetched origin main, checkout main, merge --ff-only fast-forwarded 2 commits cleanly onto 2dc954701. While working, a concurrent cycle pushed 2 more commits (10a465c52 fixing a real gate_nightly_log_ordering failure found by that cycle's own preflight --deep, handed off by the prior :40 PM twin; 22ed1246b the hourly bot); fetched and fast-forwarded again mid-cycle rather than force, per STEP 8, after confirming the working tree was clean both times.
+
+**Step 2, was previous work finished:** yes. The :40 twin's handoff ("run preflight.py --deep, not cited in this log in over five weeks") was carried out and closed by the operator cycle immediately before this one: one real gate failure found (gate_nightly_log_ordering, this operator's own prior commit had appended instead of prepended), fixed and verified 5/5 passing. Confirmed independently rather than trusted: read the commit diff directly.
+
+**Step 3, checked for new unblocked work:** cold-read ledger still 196/196, 0 stale, 0 un-ledgered candidates. GitHub's 9 open issues unchanged, all decision/blocked-on-art, 0 open PRs. BACKLOG-2026-09-07.md sections 2-6 re-scanned for any row not marked Done: every one left is explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth, section 6's owner-gate table). Per my own standing instruction, never picked one of these.
+
+**What I actually did:** `gate_nightly_log_ordering`'s own docstring and this file's history show the identical hand-edit mistake (append to the physical end instead of prepending to the top) recurring across at least 5 separately diagnosed cycles since 2026-09-05, each caught only after the fact by preflight --deep or a failed CI check, because nothing before now actually wrote this file, every cycle hand-edited it. Root cause before a sixth retelling (CLAUDE.md section 6): built `ops/nightly_log.py`, a small `--title`/`--body`/`--body-file` CLI that always inserts directly below the file's three-line header, so there is no "end of the file" left to misread. New `ops/tests/test_nightly_log.py` (5/5 cases): correct placement, a leading `## ` in the title not doubled, two consecutive prepends staying newest-first, a malformed header refused rather than guessed at, and the tool's own output checked directly against the real `gate_nightly_log_ordering`. Used it to write this very entry, the first one written by the tool instead of by hand.
+
+**Verified:** full `python ops/preflight.py` run to genuine completion (not timeout-wrapped): every gate passed, 30 warnings, all the standing environment-access set (no Stripe/.env.secrets, SSH deploy key, mail credential, Pillow, network egress) plus the usual measurement caveats already named in STATUS.md and the dashboard. `ops/tests/test_nightly_log.py` 5/5 directly. `check_urls.py` 211/211, `audit_pages.py` 0 findings/0 duplicate titles, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, mobile `npm test` all 3 suites passing.
+
+**Went well:** closing a defect class that has cost at least 5 separate cycles' worth of after-the-fact cleanup, at its root, instead of leaving it for a sixth.
+
+**Did not go well:** nothing new; the standing Phil-gated list is unchanged.
+
+**Handing to the operator:** no un-ledgered cold-read candidate and no unblocked backlog row exist; the honest next step remains Phil's own gates in `OWNER-ACTIONS.md`, or a fresh drift re-read of an already-ledgered file.
+
+Pushed to main. `ops/nightly_log.py`, `ops/tests/test_nightly_log.py`, this entry (written by the new tool), command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (:40 slot, handing the operator a genuinely new lane instead of repeating "nothing unblocked")
 
 **NEXT FOR THE OPERATOR: run `preflight.py --deep`, because it has not been run or mentioned anywhere in this log since the 2026-09-04 cycle that used it to catch a real WCAG contrast defect the fast gates never would have found, while every other standing lane (fast preflight substitutes, the cold read ledger, GitHub issues) is reconfirmed exhausted this cycle.**
