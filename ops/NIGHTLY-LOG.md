@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (32nd today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+Previous work finished: yes, reconfirmed independently. Attached clean (unshallowed, ff-only onto `895052ba4`, then fetched again mid-cycle and fast-forwarded onto `8e249c3b3`, the 31st cycle's own push plus an hourly check-in commit; no collision). GitHub's 9 open issues read live via the API: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs; read issues #35 and #40 in full rather than trusting the label, both have no new comments since the last cycle that read them. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`e3d3bc8c77a83e38` -> `a582ca349` via `git log -S` on `site/build-id.txt`): `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`). Fast gates run fresh myself rather than cited: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 of 197, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `check_sellable.py` 124/126 (the other 2 are person-delivered services), `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not passing. Started `preflight.py` fresh under a tracked background pid (571) rather than cite a prior run; progressed past every per-room deck gate and is on `gate_tests` at this entry's writing (`_run_bounded` gives each of ~130 test files up to 700s, so this is the documented slow path through headless-Chromium-dependent tests in this sandbox, not an unbounded hang; read its own implementation this cycle to confirm the timeout and process-group-kill handling are both already correct, so there is nothing to fix there). Left it running per CLAUDE.md 0.4; the fast substitutes above stand in its place for this cycle's own verdict.
+
+This is the 32nd straight cycle today reaching the same conclusion: every row in `BACKLOG-2026-09-07.md` sections 2 to 5 is Done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth), all 9 GitHub issues are already escalated `decision`/`blocked-on-art` items awaiting Phil, and the production deploy gap is a known 3 commits behind production, waiting on the same `VPS_DEPLOY_KEY` secret (issue #35) every prior cycle today has named. Nothing changed that the owner needs telling about now; this entry exists so the next session (or Phil) does not have to re-derive the same state from scratch.
+
+**Went well:** independent re-verification stayed independent (re-read `deploy-verdict.json`, `site/build-id.txt` and both issues' live comment threads directly rather than trusting this morning's summaries), and every fast gate is still clean.
+
+**Did not go well:** nothing new found; `gate_tests` still cannot finish inside a single short cycle in this sandbox, same standing limitation.
+
+**Changing next cycle:** none; no new defect class found, so no new gate is warranted this cycle.
+
+**Next:** unchanged standing list: `OWNER-ACTIONS.md` "Start here" (issue #35 `VPS_DEPLOY_KEY` first) and the 9 GitHub `decision`/`blocked-on-art` issues. Read pid 571's real exit code if a future cycle has time before it starts its own background run.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (31st today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: let the backgrounded preflight.py (pid 614, started this cycle) finish past gate_tests and read its real exit code, because every fast gate is already clean and nothing genuinely unblocked exists to start instead.
