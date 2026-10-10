@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-10, same operator cycle, addendum: the earlier "unchecked" preflight run finished, two real drifts fixed
+## 2026-10-10, PM check-in: a stale GitHub-issue citation in Phil's own status reports fixed, two CI reds confirmed already resolved
+
+Previous work finished: yes. CI's last two completed runs read red (`30c3b8ab6`, `d4f4625dc`), but both predate the same-day fixes in `0de01c68d`/`68747d3d8`; verified directly, not trusted, by calling `gate_architecture_workflow_count_current()`, `gate_cron_cadence_workflows_registry_current()` and `gate_conflict_markers()` myself: all clean. Tree clean, main pushed, dashboard regenerated and current.
+
+**Real find:** `status_report.py` and `status_pdf.py`, both read by Phil, cited "issues #1 and #2" as why 18 Entryway cards are withheld. Issue #1 closed 2026-09-08 on the print PDF alone, the live gallery never re-checked (confirmed still withholding EE-001/EP-005, 72 of 90 cards live); issue #2 is a different, unrelated image set. Fixed both to name the real open blocker, issue #29, and state the #1/live-gallery gap honestly. `review_deck_art.py` cold-read clean (0 staged, correct). Ledger updated via its own CLI, 0 stale. `fix_dashes.py --check` and `check_urls.py` (211/211) clean.
+
+**Next:** second-pass cold read continues with `build_resources.py`, `generate_zone_heroes.py`, `zone_graphics.py`, `audit_visual.py`. Standing Phil-gated list (9 issues, all decision/blocked-on-art) unchanged. No push notification: nothing revenue/GitHub-material changed since Phil's last one.
+
+Pushed to main. `ops/status_report.py`, `ops/status_pdf.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched.
 
 **The full `preflight.py` run left running past the earlier entry in this cycle finished: 3 FAIL, 32 warn.** Checked each FAIL rather than trusting the summary line:
 

@@ -208,7 +208,8 @@ def build(path=None):
          "Live, buyable", "nothing"],
         *deck_rows,
         [f"  of which, {d.get('decks_withheld', {}).get('Entryway', '?')} Entryway cards",
-         "Withheld", "art fix, issues 1 and 2"],
+         "Withheld", "16 on open issue #29; 2 more (EE-001/EP-005) live-gallery "
+         "unverified since issue #1 closed on the PDF alone"],
         [f"Video, {c['video']}", "Not started", "filming"],
     ], [2.5 * inch, 1.5 * inch, 2.7 * inch]))
 

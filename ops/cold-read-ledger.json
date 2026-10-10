@@ -367,9 +367,9 @@
       "note": "Cold read, 2026-10-09 scheduled operator. Ran it directly in this sandbox (no ssh key): correctly reports 'T2 NOT EVALUATED ... not a reading of zero' rather than a false 0/60. Reads retailer hosts live from product_links.MERCHANTS (no second hardcoded list to drift), excludes who=internal/automated per PLAN-AFFILIATE-MONETISATION.md's T2 wording, wired into preflight (gate reads check_affiliate_trigger directly). SQL host list is built from internal static config (product_links.py), not user input, so the string-formatted IN clause is not an injection surface. No defect found."
     },
     "check_cron_cadence.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Second-pass cold read found WORKFLOWS missing 2 of 9 real cron-scheduled workflow files (indexation-check.yml, keyword-demand.yml), the exact gap the file's own docstring warns against. Added both; verified live (reports too few runs to measure, the safe fallback, not a false pass). New Case 11 in ops/tests/test_check_cron_cadence.py cross-checking WORKFLOWS against a fresh grep of .github/workflows/*.yml, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Re-verified live rather than trust the --stale flag alone: ran directly, 7/10 workflows [ok], 3 [??] (too few completed runs to measure, the known owner-questions.yml/keyword-demand.yml/indexation-check.yml shape, not a defect). The gap --stale flagged was the prior same-day cycle's own fix (owner-questions.yml added to the WORKFLOWS registry, commit 0de01c68d) landing after the last ledger date; re-ledgered to the current commit, 0 stale."
     },
     "check_integrations.py": {
       "status": "clean",
@@ -807,14 +807,14 @@
       "note": "main() returned 0 unconditionally in both the --check and --apply branches regardless of how many cards came out usable, so a run where every source sheet failed verification still reported success. Now fails (return 1) when there were source sheets and none produced a usable card. New test_split_deck_cards.py (fake PIL/numpy, this sandbox has neither), fail-then-pass proved."
     },
     "status_pdf.py": {
-      "status": "clean",
-      "date": "2026-10-01",
-      "note": "Read in full (332 lines). site_state()/dec/stale logic correctly reads live fields (live_links_verdict, site_live, deploy_verdict) off the same ops/state.json dashboard.py writes, no second hand-typed copy to drift. Cannot execute the actual PDF build here: reportlab is not installed in this sandbox (ModuleNotFoundError), so the Table/Paragraph rendering itself is UNVERIFIED here, not guessed, same class as shrink_sample.py's PIL gap; the data-wiring half it shares with status_report.py is independently covered by gate_status_report_products_consistent/gate_status_report_mail_unknown. No defect found in what could be checked."
+      "status": "fixed",
+      "date": "2026-10-10",
+      "note": "Same stale \"issues 1 and 2\" citation as status_report.py's identical table row, fixed identically. Cannot execute the actual PDF build here: reportlab is not importable under this sandbox's python3.11 (pip shows it only under a separate python3.13 dist-packages), the same gap this file's own 2026-10-01 ledger entry already recorded. Verified the edit by ast.parse and by reading the surrounding table-row structure, not by rendering a PDF, and said so rather than claiming a clean build."
     },
     "status_report.py": {
       "status": "fixed",
-      "date": "2026-10-02",
-      "note": "the HTML summary table's 'Experiments run' row and the email subject line both hardcoded '0 of N designed/running' instead of reading x['executed'] (which the plain-text body already used correctly, and which gather() already computes via executed_count()). Masked today since every EXPERIMENTS.md entry is still IDEA; would have silently under-reported the moment one moved to RUNNING/DONE. New test_status_report_render_executed.py, fail-then-pass proved."
+      "date": "2026-10-10",
+      "note": "render()'s Entryway deck line hardcoded \"issues #1 and #2\" as why 18 cards are withheld. Issue #1 closed 2026-09-08 on the print PDF only, never the live gallery; issue #2 is a different, unrelated image set. The real open blocker for 16 of 18 (CANON_EXCLUDE) is issue #29; the other 2 (BRAND_EXCLUDE: EE-001, EP-005) have no open tracking issue, since #1 closed on PDF evidence while the live-gallery withholding (confirmed still active: both codes absent from site/assets/cards/entryway/index.json, 72 of 90 live) was never separately re-verified. Fixed the citation here and in status_pdf.py to name #29 and state the #1/live-gallery gap honestly. Verified by calling render() directly and reading the rendered lines."
     },
     "stripe_brand.py": {
       "status": "clean",
