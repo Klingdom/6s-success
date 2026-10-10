@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (34th today, previous work finished independently, deploy gap unchanged at 3 commits, issue #35 stale 16 days, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: read pid 728's real `preflight.py` exit code (started this cycle at :40, should finish well before :43) and treat a FAIL there as this cycle's own work; if it is clean, there is no genuinely unblocked item left to start, because the two remaining open rows are owner-only (issue #35 `VPS_DEPLOY_KEY`, issue #40 usage-limit check), so continue the standing re-verification rather than opening new work.
+
+Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape, forced update on fetch); unshallowed, fast-forwarded cleanly onto `origin/main` (`f4ed60741`), tree clean, no collision with the twin or the operator. GitHub's 9 open issues read live via the API, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs; issue #35 (`VPS_DEPLOY_KEY`) last touched 2026-09-24, sixteen days with no owner action on a 2-minute fix. Deploy gap re-derived from scratch rather than trusted: `git log -S` on `site/build-id.txt` traces the last confirmed-live build to `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35. `ops/deploy_freshness.py` correctly reported UNKNOWN (site unreachable from this sandbox) rather than reusing the stale cached "current" verdict. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale. `CHECKIN-LOG.md`'s last three hourly entries (07:52, 08:50, 09:50) each independently confirm no outcome metric moved despite 161 commits/24h. Started `preflight.py` fresh under a tracked background pid (728); it progressed past every per-room deck gate and is sitting on `gate_tests` at this entry's writing, the documented headless-Chromium sandbox slow path, not a hang. Left it running per CLAUDE.md 0.4; the fast substitutes above stand in its place for this cycle's own verdict.
+
+This is the 34th straight cycle today reaching the same conclusion: every row in `BACKLOG-2026-09-07.md` is Done or Phil-gated, all 9 GitHub issues are already escalated, and the production deploy gap is a known 3 commits behind, waiting on a `VPS_DEPLOY_KEY` secret that has sat untouched for sixteen days. A push notification was sent this cycle flagging the duration and cost of that stall directly, since the standing weekly email brief (`ops/send_questions.py`, last sent 09:50 today) and 33 prior same-day log entries evidently have not moved it.
+
+**Went well:** re-derived the deploy gap, issue state and outcome-metric claim independently rather than citing this morning's entries.
+
+**Did not go well:** `gate_tests` still cannot finish inside a single short cycle in this sandbox; issue #35 still untouched after sixteen days despite being a 2-minute paste.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** unchanged standing list: `OWNER-ACTIONS.md` "Start here" (issue #35 `VPS_DEPLOY_KEY` first) and the 9 GitHub `decision`/`blocked-on-art` issues. Operator: read pid 728's real exit code.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (33rd today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently. Checkout arrived shallow and detached (issue #27's usual shape, forced update on fetch); unshallowed, fast-forwarded cleanly onto `origin/main` (`79fc0e5ae`), no unrelated-history symptom this run, tree clean before this cycle's own write, no collision with the operator or the twin.
