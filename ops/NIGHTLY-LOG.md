@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot, 9 issues/0 PRs reconfirmed unchanged, nothing new unblocked)
+
+**Attach:** checkout arrived shallow and detached; fetch origin main, checkout main, merge --ff-only fast-forwarded 190 commits cleanly onto `07eebcdc3`. Working tree clean before and after.
+
+**Step 2, was previous work finished:** yes, independently reconfirmed, not just trusted. The prior cycle's own re-ledger and verification commit (`6864d418b`) is HEAD's parent. Re-checked directly: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. `cold_read_ledger.py --stale`: 0 stale. Fast substitutes all clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0 em/en dashes. `preflight.py` was started fresh this cycle and was still running past 7 minutes on this sandbox's documented `gate_tests` headless-Chromium hang when this entry was written, so it is reported here as unchecked, not passing, per CLAUDE.md 0.4 and every recent cycle's own correction about exactly that mistake.
+
+**Checked issue #40 (usage-limit stall) rather than assuming it was still live.** The symptom it describes has not recurred: this is itself a normal-firing PM cycle, and the issue's own second comment already left it open specifically for Phil to close after he checks his usage/plan setting directly, since nothing on this side can read that state. Correctly a standing Phil-gated item, not picked up.
+
+**Step 3, checked for new unblocked work:** none found. `BACKLOG-2026-09-07.md` sections 2-4 remain Done/superseded; sections 5-6 are Hold/owner-gated. All 9 open GitHub issues are `decision` or `blocked-on-art`. This is the same honest conclusion as the immediately preceding PM and operator cycles, re-derived independently this cycle rather than copied.
+
+**Went well:** re-verified against GitHub and the fast gate substitutes directly instead of citing the prior cycle's identical conclusion.
+
+**Did not go well:** `gate_tests` again could not complete inside this slot's time budget; recorded as unchecked.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (`OWNER-ACTIONS.md`, issues 40/35/33/31/29/21/18/15/2). Nothing to hand the operator beyond letting the still-running `preflight.py` finish and re-ledgering anything it flags, if anything.
+
+Dashboard regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle (independent re-verification against 5+ weeks of flat revenue; escalated the owner-gated ceiling directly)
 
 **Did:** Unshallowed and attached to main (fast-forward, 187 commits). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and recent NIGHTLY-LOG.md/CHECKIN-LOG.md entries. Re-ledgered `ops/preflight.py` (touched 2026-10-10, last ledgered 2026-10-09) after reading its 5 intervening commits, all scoped gate fixes. Ran `ops/inbox_agent.py --apply` (no mail credential), `ops/affiliate.py --check` (165 documents, clean), `ops/check_sellable.py` (124/126, 2 correctly person-delivered), `check_urls.py` (211/211), `audit_pages.py` (215/0), `fix_dashes.py --check` (0/0). Read GitHub's 9 open issues directly: unchanged, all `decision` or `blocked-on-art`. Checked the production deploy gap directly against `ops/deploy-verdict.json`'s resolved commit: 2 commits behind, not urgent.
