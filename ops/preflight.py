@@ -1937,6 +1937,52 @@ def gate_no_stale_hardcoded_stripe_link() -> None:
              f"a dead or wrong checkout: (file, link) {uniq}")
 
 
+SECRET_KEY_PATTERN = re.compile(r"\b(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{10,}")
+
+
+def site_secret_key_leaks() -> list:
+    """Return relpaths under site/ whose bytes contain a Stripe secret or
+    restricted key pattern. Pure and credential-free, so it is checkable
+    (and testable) on every run, with nothing loaded.
+    """
+    bad = []
+    for f in sorted(glob.glob(os.path.join(SITE, "**", "*"), recursive=True)):
+        if not os.path.isfile(f):
+            continue
+        try:
+            with io.open(f, encoding="utf-8", errors="ignore") as fh:
+                if SECRET_KEY_PATTERN.search(fh.read()):
+                    bad.append(os.path.relpath(f, ROOT))
+        except Exception:                                      # noqa: BLE001
+            continue
+    return bad
+
+
+def gate_no_live_secret_key_in_site() -> None:
+    """A Stripe secret or restricted key must never appear under site/,
+    which is served verbatim to anyone who asks.
+
+    Found 2026-10-10: ops/stripe_check.py already runs this exact scan
+    (`leak_scan()`), but its own `main()` only reached it after confirming
+    `STRIPE_SECRET_KEY` was loaded locally (`if not sk: return 1` ran
+    first), so the one part of that tool that needs no credential at all
+    was skipped in precisely the condition every sandboxed cycle this
+    repository has ever run in: no Stripe credential present. That means
+    this specific safety check had never actually executed from any of the
+    many autonomous cycles recorded in ops/NIGHTLY-LOG.md. Fixed
+    stripe_check.py's own ordering too, but a check this cheap and this
+    close to real money (CLAUDE.md section 32, 37) should not depend on a
+    human happening to run the credentialed tool; it belongs here, where
+    every cycle runs it unconditionally.
+    """
+    bad = site_secret_key_leaks()
+    if bad:
+        fail("no-live-secret-key-in-site",
+             "%d file(s) under site/ contain a Stripe secret/restricted "
+             "key pattern, and site/ is served verbatim to the public: %s"
+             % (len(bad), bad[:5]))
+
+
 def gate_bundle_maths() -> None:
     """The bundle's saving must equal its parts minus its price.
 
@@ -27979,6 +28025,7 @@ def main() -> int:
     run_gate(gate_copy_vs_control)
     run_gate(gate_price_matches_its_own_link)
     run_gate(gate_no_stale_hardcoded_stripe_link)
+    run_gate(gate_no_live_secret_key_in_site)
     run_gate(gate_bundle_maths)
     run_gate(gate_product_schema_url_honest)
     run_gate(gate_affiliate)

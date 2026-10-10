@@ -683,8 +683,8 @@
     },
     "receive_deploy_key.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "PM cycle second-pass re-read: IMAP harvest/dedupe/existing() all correct, --check correctly reports no IMAP creds in this sandbox"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 PM cycle: re-read in full, correctly self-checking (raises a clear error rather than silently proceeding when no IMAP credential is present, matching every sandboxed cycle), no defect found"
     },
     "reflow.py": {
       "status": "clean",
@@ -827,9 +827,9 @@
       "note": "Re-read in full per second-pass handoff (oldest fixed-status files). The 2026-09-26 orphan-adoption fix (skip inactive orphans) is still intact; ensure_link()'s refuse-to-retire-while-served logic, sync_site_links()'s pagination and the price-immutability handling all read correctly. test_stripe_catalog_deliverable.py and test_stripe_catalog_orphan_link_active.py both pass. No new defect found."
     },
     "stripe_check.py": {
-      "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01, scheduled operator: re-read in full and ran live (python ops/stripe_check.py). Correctly reports empty keys and refuses with exit 1, never prints a real key, leak_scan() and mask() logic unchanged and still correct. No defect."
+      "status": "fixed",
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 PM cycle: found and fixed a real defect, leak_scan() for a published Stripe secret/restricted key only ran after confirming a local STRIPE_SECRET_KEY was present, so it never executed in any sandboxed cycle (none ever hold that credential); reordered to run unconditionally, and the same check is now also a credential-free preflight gate (gate_no_live_secret_key_in_site)"
     },
     "stripe_dedupe.py": {
       "status": "fixed",

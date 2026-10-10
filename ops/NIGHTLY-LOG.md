@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30-minute triage): a real credential-gated security check closed, now runs on every cycle
+
+**Did:** Reattached clean (shallow+detached, unshallowed, `merge --ff-only`, 266 commits fast-forwarded onto `9b05ad1`), tree clean, no collision. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` section 6 (owner gates, all unchanged), `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries. GitHub's 9 open issues confirmed live via a sub-agent, unchanged: 7 `decision`, 2 `blocked-on-art`.
+
+**Previous work verified finished:** the prior operator cycle's claimed `gate_tests` fix (payment-links-nofollow false positive on a concurrent test fixture) is in the tree and pushed; tree clean, main matches origin.
+
+**Started the second-pass cold read the prior cycle handed off**, two files from the oldest-dated (2026-10-01) tier: `receive_deploy_key.py` (correctly self-checking, no defect) and `stripe_check.py`. **Real find in the second:** its own `leak_scan()`, which checks whether a Stripe secret/restricted key pattern has leaked into the published `site/` (served verbatim to the world), only ran after confirming a local `STRIPE_SECRET_KEY` was present (`if not sk: return 1` ran first). No sandboxed cycle this repository has ever run from holds that credential, so the one part of this tool that needs no credential at all had never actually executed from any of the many autonomous cycles in this log. CLAUDE.md sections 32/37 name exactly this class as P0.
+
+**Fixed:** reordered `stripe_check.py` so the leak scan runs unconditionally, before the credential check. Also added `gate_no_live_secret_key_in_site()` to `ops/preflight.py` (credential-free, runs on every cycle regardless of what's loaded) so this does not depend on a human happening to run the credentialed tool again. New regression test (`test_gate_no_live_secret_key_in_site.py`) proves fail-then-pass directly against the real gate function: clean on the real committed site, fails when a `sk_live_`/`rk_test_` pattern is planted under `site/`, passes again once removed. 4/4.
+
+**Verified:** both edited files parse clean (`ast.parse`); new test 4/4; `check_urls.py` 211/211; `fix_dashes.py --check` 0/0; `affiliate.py --check` clean, 165 documents; ran `stripe_check.py` directly with no credential loaded, confirmed the leak scan now runs and PASSes (previously it never printed at all in this state). Started a fresh full `preflight.py --fast` under a tracked background pid after the edits (the gate list changed, so a pre-edit run would not have exercised the new gate); it ran past the new gate with no crash and reached `gate_tests`, the documented slow sandbox path, left running per CLAUDE.md 0.4. Ran the full `ops/tests/test_*.py` suite in the background in parallel; no real failure surfaced in the files this change touched.
+
+**Went well:** reading `stripe_check.py` cold rather than trusting its own docstring ("it also refuses to continue if a secret key has leaked") at face value, which is what surfaced that the refusal path was unreachable in the one credential state every cycle here actually runs in.
+
+**Did not go well:** the same shallow-checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none beyond the fix itself; `receive_deploy_key.py` and `stripe_check.py` are now ledgered clean/fixed with today's date. Continue the second-pass cold read into the rest of the 2026-10-01 tier (`audit_catalog.py`, `audit_visual.py`, `build_resources.py`, `build_zone_map_pack.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `import_room_images.py`, `render_all_narrated.py`, `revenue_model.py`, `review_deck_art.py`, `send_brief.py`, `status_pdf.py`, `sync_page_links.py`).
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. No push notification: this is a closed maintenance fix, not a new condition Phil needs to act on.
+
+Pushed to main. `ops/preflight.py`, `ops/stripe_check.py`, `ops/tests/test_gate_no_live_secret_key_in_site.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle (second-pass cold read, 11 files, plus a real gate_tests failure found and fixed)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 261 commits fast-forwarded. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`'s top section, and the last several `NIGHTLY-LOG.md` entries. Delegated a genuine second-pass cold read of the 11 longest-overdue ledger files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last checked 2026-09-30) to a subagent instructed to run every live check or test, not just read. Unlike every prior cycle today, let the full `preflight.py --fast` run to genuine completion in the background rather than leaving it open on `gate_tests`.

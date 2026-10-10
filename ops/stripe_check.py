@@ -87,15 +87,13 @@ def main():
     print("Keys found in .env.secrets")
     print(f"  publishable  {mask(pk)}")
     print(f"  secret       {mask(sk)}")
-    if not sk:
-        print("\nNo secret key yet. Paste it into .env.secrets and run this again.")
-        return 1
 
-    live = sk.startswith(("sk_live_", "rk_live_"))
-    print(f"  mode         {'LIVE, real money' if live else 'test, no real money'}")
-    if sk.startswith("rk_"):
-        print("  type         restricted key (good, least privilege)")
-
+    # Runs before the "no key yet" return, and regardless of whether sk is
+    # set: this checks whether a key leaked into the PUBLISHED site, which
+    # has nothing to do with whether this particular run holds a copy of
+    # one. Gating it behind `sk` meant it never ran in any session that
+    # never holds a Stripe credential, which is every sandboxed cycle this
+    # repository runs.
     print("\nLeak scan")
     bad = leak_scan()
     if bad:
@@ -105,6 +103,15 @@ def main():
         print("  Remove it before anything is deployed. site/ is public.")
         return 1
     print("  PASS no secret key pattern under site/")
+
+    if not sk:
+        print("\nNo secret key yet. Paste it into .env.secrets and run this again.")
+        return 1
+
+    live = sk.startswith(("sk_live_", "rk_live_"))
+    print(f"  mode         {'LIVE, real money' if live else 'test, no real money'}")
+    if sk.startswith("rk_"):
+        print("  type         restricted key (good, least privilege)")
 
     print("\nWhat the key can reach")
     code, acct = call("account", sk)
