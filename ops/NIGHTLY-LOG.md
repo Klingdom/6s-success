@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (confirmed previous work finished independently, nothing new unblocked)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); fetch origin main, fetch --unshallow, checkout main, merge --ff-only fast-forwarded 172 commits cleanly onto a1acb115f. Working tree clean before and after.
+
+**Read state:** git log -12, OWNER-ACTIONS.md, STATUS.md sections 0-2, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, the last several ops/NIGHTLY-LOG.md and CHECKIN-LOG.md entries. GitHub's 9 open issues read directly via the API, not cited from memory.
+
+**Verified independently, not inherited:** python ops/cold_read_ledger.py --stale reports 0 stale; --next confirms 196 of 196 files already ledgered, 0 un-ledgered candidates. list_issues against GitHub directly: 9 open, unchanged (6 decision, 2 blocked-on-art, one P0+decision); read issue #40 (the usage-limit stall) in full rather than trust the prior summary, confirmed it is a genuine account-level decision only Phil can make (plan/usage headroom), correctly still open, not closable from here; routines are visibly running again (this cycle itself, plus the hourly bot), so the underlying stall is not recurring. preflight.py --fast backgrounded (setsid via run_preflight.sh): every gate before gate_tests printed clean, 0 FAIL lines; gate_tests hit its documented sandbox hang again, confirmed by flat CPU (426s elapsed, ~1% average CPU, no new output) rather than assumed from elapsed time alone. Ran the standing substitutes directly: check_urls.py 211/211, audit_pages.py 215 pages/0 findings/0 duplicate titles or descriptions, affiliate.py --check 165 documents clean, fix_dashes.py --check 0 em/en dashes.
+
+**Previous work is finished; nothing new unblocked, no stale doc or closable item found this pass.** Did not fabricate a workstream against CLAUDE.md 0.2/18. OWNER-ACTIONS.md's standing list (LinkedIn referral gap, Ledgerium umami-db crash-loop correctly left untouched, Listmonk identity, Umami share URL, affiliate applications) is unchanged and remains Phil's to act on. Regenerated the command deck.
+
+**Went well:** confirming the gate_tests hang by its own flat-CPU evidence rather than inferring it from a timeout; reading issue #40's full body before accepting the prior cycle's "resolved" characterization, since the underlying decision (usage/plan headroom) is still genuinely open even though the symptom (stalled routines) has cleared.
+
+**Did not go well:** nothing new to report; same standing state as the prior several cycles.
+
+**Handing to the operator:** no un-ledgered cold-read candidate exists. The honest next unit of work is Phil's own gates in OWNER-ACTIONS.md, or a fresh re-read of an already-ledgered file for drift regression, not a new sweep.
+
+Pushed: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (23:40 slot, confirmed previous work finished independently, nothing new unblocked)
 
 **NEXT FOR THE OPERATOR: there is no new unblocked item, because the cold-read ledger is fully exhausted (196/196, 0 stale) and all 9 open GitHub issues are owner-gated (decision or blocked-on-art), exactly as the last several cycles found.**
