@@ -342,9 +342,9 @@
       "note": "Cold read, 2026-10-09 scheduled operator. Ran the full generator standalone (chains canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets, same as the file's own comments describe): regenerated site/zones/index.html byte-identical, 0 pages rewritten beyond its own header, 0 drift anywhere else on the site, both internal asserts (links resolve, 114 zones) passed. The r['zones'].index(z) numbering (same pattern as build_standards.py) checked against content.json: no duplicate zone dicts, so not a live defect. No defect found."
     },
     "build_zone_map_pack.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran it 2026-10-10: regenerated both outputs, byte-identical to committed (git status clean after), assertions (20 rooms, 114 zones) held. No defect."
     },
     "build_zone_pages.py": {
       "status": "clean",
@@ -502,9 +502,9 @@
       "note": "Re-verified 2026-10-09, PM check-in. Found and fixed one real stale-docs defect: the module docstring's 'Run:' examples advertised a third invocation form, 'python ops/generate_card_art.py --room Entryway --apply', that main() never implemented (it only ever parses --check or --one <subject>, by design, per its own 'never start a batch without looking at one first' refusal). Corrected the docstring to say so rather than leave a dead example. --check runs clean (no provider key, same honest state as every prior cycle); torch-status and cost-table logic read correct."
     },
     "generate_card_heroes.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01: main()'s --run path returned 0 unconditionally even when the batch loop appended to failed, same shape as render_all_narrated.py/video_srt.py found the same cycle and the two 2026-09-26 sibling fixes. Fixed to return 1 if failed else 0. New ops/tests/test_generate_card_heroes.py (fakes image_local via sys.modules, writes only to a scratch dir, no real model/GPU needed), fail-then-pass proved directly. This recurring shape (6th instance) was turned into a gate this cycle: new gate_batch_main_ignores_failed in preflight.py, AST-based, scoped to the literal variable name 'failed' to avoid false positives on files that already guard it correctly (build_quest.py, backup_analytics.py, check_sellable.py all checked clean). Fail-then-pass proved against synthetic sources in ops/tests/test_gate_batch_main_ignores_failed.py (6/6), and against this exact file's pre-fix source directly."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran --plan 2026-10-10: correctly reports 'transformers not installed' and marks all 89 token-budget checks unverified (not falsely clean), matching the known sandbox gap (no local image-gen deps, Gemini billing not enabled, OWNER-ACTIONS item 3). Prompt-building logic (rule-word filtering, Problem-card mess state) correct. No defect."
     },
     "generate_zone_heroes.py": {
       "status": "fixed",
@@ -558,8 +558,8 @@
     },
     "import_room_images.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01. Read end to end. The one real risk this file carries (issue #26 shape: a rerun with fewer source figures than already committed silently shrinking a room) is already solid: reconcile() keeps the committed entries and prints a WARNING, gate_room_images_stable in preflight.py imports fresh_manifest()/reconcile() directly (not reimplemented) so the gate tests the same shape the real run uses, and the docstring records the exact 2026-09-06 bug (wrong dict shape) that already got fixed here. main() always returns 0 even when figures are MISSING on disk, but that is correct in this sandbox: MASTER is a Windows path on Phil's own machine, so every figure is expected to read MISSING here and that is an environment fact, not a run failure; the tool is explicitly --check/--apply only Phil can meaningfully run. No defect found."
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran (non-apply) 2026-10-10: correctly reports all source files MISSING (Phil's Desktop master folder not reachable from this sandbox) and correctly refuses to shrink any room's manifest, hitting the issue #26 safety path (9 rooms kept at committed counts). No apply, nothing written except the ledger. No defect."
     },
     "inbox_agent.py": {
       "status": "fixed",
@@ -697,9 +697,9 @@
       "note": "Cold read, 2026-10-09 scheduled operator. Ran --check live: 111 pages with a wired hero, 0 added/dropped/changed vs the committed ops/hero-fallback.json, confirming zero drift right now. Wired into preflight via gate_hero_fallback_current. Logic only records a preview URL when it points at the zone's own image (not the generic room-map fallback), which is the correct guard against the record overclaiming a hero the page does not have. No defect found."
     },
     "render_all_narrated.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01: main()'s real-render path returned 0 unconditionally even when the loop appended jobs to failed, the exact shape found and fixed in video_zone_photo.py and render_all_zone_videos.py on 2026-09-26 but missed here. Fixed to return 1 if failed else 0. New case in test_render_all_narrated.py (mocks subprocess.run and done() so no real render/network), fail-then-pass proved directly: reverted the fix, confirmed the new case fails by name, restored, reran clean (4/4). Not wired into preflight's exit code (manual batch tool, same as its two siblings), so no new gate needed, matching established precedent."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran --check 2026-10-10: 0 of 228, expected (mp4s gitignored per Phil's 2026-09-03 decision, live only on his Desktop). Failure-reporting and room-filtered counting logic both correct. No defect."
     },
     "render_all_zone_videos.py": {
       "status": "fixed",
@@ -753,8 +753,8 @@
     },
     "send_questions.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in (:10 cycle): verified the :43 operator's own commit 51c665461 (added the usage-limit BLOCKING item to send_questions.py, matching OWNER-ACTIONS.md item -1). Reran test_send_questions.py (10/10) and test_gate_send_questions_covers_top_owner_actions.py (5/5) fresh, both pass. Legitimate fix, not a defect."
+      "date": "2026-10-10",
+      "note": "Re-verified 2026-10-10: parses clean, --preview runs correctly, new SENT_RECORD tracking (last-owner-questions-sent.json) and owner-questions.yml workflow confirmed wired."
     },
     "service_orders.py": {
       "status": "fixed",
@@ -858,8 +858,8 @@
     },
     "sync_page_links.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Read in full (162 lines). Logic sound: resolves dead hardcoded buy.stripe.com links by SKU metadata lookup against Stripe's live catalogue, covers both *.html and *.js (data.js, quest.js), leaves orphan/sku-less dead links alone rather than guessing, --apply re-verifies after writing. --check correctly reports 'nothing to authenticate with' and exits 1 (honest unchecked, not a false pass) with no Stripe credential in this sandbox, same standing credential gap as every other Stripe-touching tool here. No defect. Independently re-read the same day by a concurrent cycle: discover_files() *.html/*.js coverage re-confirmed. Two independent reads, same verdict."
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran --check 2026-10-10: logic correct (sku-based repoint, active-link tracking fixed for sku-less live links, .js files included). No Stripe credential in this sandbox, reported 'nothing to authenticate with' rather than a false pass; unchecked, not a defect."
     },
     "sync_push.py": {
       "status": "clean",
@@ -892,9 +892,9 @@
       "note": "Second-pass cold-read: re-verified clean. Cannot run live (ffmpeg/edge-tts video toolchain, Phil-machine-only manual batch, same class as render_all_zone_videos.py). Read closely for the two documented past defects (srt span computed once per beat, not recomputed from an already-advanced start; the ffmpeg concat demuxer's required repeat-the-last-file-with-no-duration line) and both are correctly in place. Retry/backoff loop in narrate() sleeps only on failure, not after a successful attempt, confirmed by tracing the break path."
     },
     "video_srt.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01: main()'s real-write path returned 0 unconditionally even when empty was non-empty (a zone produced no caption text), the same silent-success shape fixed in two sibling batch tools on 2026-09-26. Confirmed 0 of 114 zones currently empty, so not live-impacting, but the exit code would have lied the day one did. Fixed to return 1 if empty else 0. New case in test_video_srt.py (patches srt_for() to return empty, writes only to a scratch dir), fail-then-pass proved directly: reverted the fix, confirmed the new case fails by name, restored, reran clean (6/6). Not wired into preflight's exit code (preflight does its own independent freshness check via srt_for(), never calls main()), so no new gate needed."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Re-read in full + ran --check 2026-10-10: correct caption-timing/wrapping logic. 'videos: 0' in this sandbox is expected (Phil's 2026-09-03 decision: mp4s deliberately gitignored, live only on his Desktop), not a defect; all 114 srt sidecars present and tracked."
     },
     "video_zone.py": {
       "status": "fixed",

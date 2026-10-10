@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: ledger hygiene fix, six more second-pass cold-read files cleared, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 276 commits fast-forwarded onto `d4f4625dc`, tree clean. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full (every "Now" row done or Phil-gated, HOLD rows correctly waiting on traffic), `ROADMAP-2026-2029.md`'s referenced arithmetic via GOALS.md, `GOALS.md`, and the head (newest-first) of this file, not the physical end, the exact misreading a prior cycle's own note already warned about. GitHub's 9 open issues confirmed live: 7 `decision`, 2 `blocked-on-art`, 0 PRs, unchanged, all genuinely Phil-gated (re-read issue #40's usage-limit stall and #35's deploy-key decision in full rather than trusting the backlog's summary). `inbox_agent.py --apply`: no mail credential, reported unchecked.
+
+**Fixed:** `ops/cold_read_ledger.py --stale` flagged `ops/send_questions.py` as ledgered 2026-10-09 but last touched 2026-10-10 (the owner-questions.yml delivery-tracking fix, already landed and verified sound by reading the diff). Re-verified by running `--preview` directly, re-ledgered clean. `--stale` now reports 0.
+
+**Continued the second-pass cold read with six more files** (the exact list the 16:21 PM check-in handed off): `sync_page_links.py` (correct SKU-based repoint logic; `--check` reports "no Stripe credential" rather than a false pass), `video_srt.py` (`--check` correctly reports 0 videos, expected since Phil's 2026-09-03 decision keeps mp4s out of git), `build_zone_map_pack.py` (ran it for real: regenerated output byte-identical to committed, both size assertions held), `render_all_narrated.py` (`--check` correctly reports 0 of 228, same gitignored-video reason), `import_room_images.py` (ran it: correctly reports every source MISSING, no Desktop master folder here, and correctly refused to shrink any of the 9 rooms already committed, the issue #26 safety path working as designed), `generate_card_heroes.py` (`--plan` correctly marks all 89 cards' token budget unverified rather than falsely clean, `transformers` genuinely not installed here). No defect in any of the six; all ledgered clean with today's date and a note on what was actually run, not just read.
+
+**Verified:** `check_cron_cadence.py`: all 9 scheduled workflows `[ok]` except `keyword-demand.yml` (0 completed runs on record, the known orphaned-queued-run shape from 2026-10-07, self-resolves next Wednesday). Deploy gap re-measured directly: 2 commits behind production (`47a3f33..HEAD -- site/ Dockerfile`), down from 3, still blocked on `VPS_DEPLOY_KEY`/issue #35, no VPS credential here. Started a full `preflight.py` under a tracked background pid at the start of this cycle; let it run the whole time rather than abandoning it on `gate_tests` like most same-day cycles report doing. It progressed steadily through the suite (confirmed by repeated `ps` checks showing a new test file executing each time, not a stall) but had not reached the final summary by the time this entry was written; reporting unchecked past the point last confirmed, not claimed clean, per CLAUDE.md 0.4.
+
+**Went well:** treating the ledger's own `--stale` flag as a real finding rather than noise, and running every cold-read file's actual check/plan mode instead of reading code and trusting the docstring.
+
+**Did not go well:** `gate_tests` is the same standing slow-sandbox item essentially every cycle today has logged; this one let it run longer than most but still could not confirm a final verdict within the cycle.
+
+**Changing next cycle:** none beyond the ledger fix; if `gate_tests` under a tracked background pid still has not produced a final PASS/FAIL by the time a future cycle checks it, that is worth a dedicated pass to see exactly how far it gets and why, rather than another cycle restarting it from zero.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. Remaining second-pass tier: `build_resources.py`, `generate_zone_heroes.py`, `review_deck_art.py`, `status_pdf.py`, `zone_graphics.py`, `audit_visual.py`. No push notification: nothing about GitHub, the deploy gap, or revenue has changed since the last one Phil received.
+
+Pushed to main. `ops/send_questions.py` not touched this cycle (already landed), `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in: previous work verified finished, second-pass cold read advanced three more files, nothing new unblocked
 
 Previous work finished: yes, verified independently, not cited. Reattached clean (shallow+detached, unshallowed, `checkout -B main origin/main`, `merge --ff-only`, 272 commits fast-forwarded onto `245de8949`), tree clean, no collision. The prior operator cycle's `gate_copy_vs_control` fixture-race fix is in the tree and pushed (`9b883cb2f`); tree was clean on arrival, nothing uncommitted.
