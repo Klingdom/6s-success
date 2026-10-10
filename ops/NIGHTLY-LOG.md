@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot): Phil's own fix verified, one stale ledger entry closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read into the remaining 2026-10-01 tier (`build_resources.py`, `build_zone_map_pack.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `import_room_images.py`, `render_all_narrated.py`, `review_deck_art.py`, `status_pdf.py`, `sync_page_links.py`, `video_srt.py`, `zone_graphics.py`, `audit_visual.py`), because it remains the only genuinely unblocked, non-Phil-gated lane with a track record of finding real defects.
+
+Previous work finished: yes, verified independently. Reattached clean (shallow+detached, unshallowed, `checkout -B main origin/main`, `merge --ff-only`, fast-forwarded onto `ba043e54a`), tree clean, no collision.
+
+**Phil pushed real work himself this morning (`ba043e54a`, 10:40 local):** `.github/workflows/owner-questions.yml` now actually sends the owner-questions email (it previously had no workflow at all, the gap that let it go silent for 5 days during the usage-limit incident while the unrelated hourly brief kept arriving), `send_questions.py` now records its own send timestamp, and a new `gate_owner_questions_not_stale` watches for another silent gap. Verified rather than trusted: workflow YAML parses and fires weekly Monday 14:17 UTC / 08:17 Denver as described, `test_gate_owner_questions_not_stale.py` 7/7, `send_questions.py` parses clean.
+
+**The one real find this cycle:** `cold_read_ledger.py --stale` flagged `ops/send_questions.py` as touched since its last ledger date, exactly because of the commit above. Re-verified it directly (not re-cited the ledger) and re-ledgered clean with today's date and a note on what changed. `--stale` now reports 0 again.
+
+GitHub's 9 open issues confirmed live, unchanged: 7 `decision`, 2 `blocked-on-art`, 0 open PRs. Deploy gap re-derived from scratch, not cited: `ops/deploy-verdict.json` resolves to `47a3f3368`; `git log 47a3f3368..HEAD -- site/ Dockerfile` is 2 commits, still waiting on issue #35 (`VPS_DEPLOY_KEY`). Cold-read ledger otherwise unchanged: 197/197 covered.
+
+Ran `preflight.py --fast` fresh under a tracked background pid rather than cite a prior claim; every gate through `gate_image_coverage` passed, then reached `gate_tests`, the same documented slow headless-Chromium sandbox path recorded on dozens of cycles. Left running past this entry's writing per CLAUDE.md 0.4, not claimed clean and not claimed failed.
+
+No workstream opened, per this slot's own instruction not to start something large.
+
+Went well: treating the ledger's own staleness flag as real work instead of re-stating "nothing new" when something had, in fact, changed under it.
+
+Did not go well: same shallow-checkout shape; issue #27 still open.
+
+Changing next cycle: none.
+
+No push notification: Phil's own commit this morning already shows he has eyes on the repository and the specific gap it closed; the standing owner-gated list (issue #35 first) was already pushed to him on an earlier cycle today and nothing about it has changed since.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in: previous work verified finished, second-pass cold read advanced three more files, nothing new unblocked
 
 Previous work finished: yes, verified independently, not cited. Reattached clean (shallow+detached, unshallowed, `checkout -B main origin/main`, `merge --ff-only`, 272 commits fast-forwarded onto `245de8949`), tree clean, no collision. The prior operator cycle's `gate_copy_vs_control` fixture-race fix is in the tree and pushed (`9b883cb2f`); tree was clean on arrival, nothing uncommitted.

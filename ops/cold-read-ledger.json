@@ -753,8 +753,8 @@
     },
     "send_questions.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in (:10 cycle): verified the :43 operator's own commit 51c665461 (added the usage-limit BLOCKING item to send_questions.py, matching OWNER-ACTIONS.md item -1). Reran test_send_questions.py (10/10) and test_gate_send_questions_covers_top_owner_actions.py (5/5) fresh, both pass. Legitimate fix, not a defect."
+      "date": "2026-10-10",
+      "note": "Re-verified 2026-10-10 PM check-in: Phil's own commit (ba043e54a) added _record_sent()/SENT_RECORD and wired gate_owner_questions_not_stale. Workflow YAML parses, test_gate_owner_questions_not_stale.py 7/7, file parses clean. No defect."
     },
     "service_orders.py": {
       "status": "fixed",
