@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: full preflight to completion, cold-read lane confirmed exhausted, no new defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`) then attached cleanly to `main` and fast-forwarded onto `origin/main` (`6d12414d8`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` in full (all four "Now" sections: micro zones/app, decks, images/video), `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s current blocker, and the last several `CHECKIN-LOG.md`/`ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion rather than trusting a partial run: every one of ~380 gates passed, 31 warnings, all the standing environment limits (no Stripe/.env.secrets, no SSH key to the VPS, no mail credential, site unreachable, Pillow absent) plus one gate that corrected a real local condition (`core.hooksPath` was unset here; the gate set it). Checked GitHub directly: 9 open issues, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs; `checks.yml` green on the current and several recent heads. `ops/cold_read_ledger.py --next` returned zero un-ledgered candidates (197 of 197 files ledgered, 0 stale), so the non-Phil-gated cold-read lane is genuinely exhausted, not merely unexamined. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked per CLAUDE.md 0.4, not empty. Regenerated the command deck (`ops/dashboard.py`): `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, clearing the `dashboard-self-description-fresh` warning preflight had just raised (one real commit had landed since the dashboard's last regeneration).
+
+**Verified:** Preflight's own PASS/FAIL/UNCHECKED breakdown, not a summary of it; GitHub issue list and PR list read directly via the API, not carried forward; cold-read ledger's `--stale` and `--next` run live. Dashboard diff reviewed before committing: only the generation timestamp, commit pointer/counts and working-tree status lines changed, nothing fabricated.
+
+**Went well:** the unshallow-then-attach sequence worked on the first try, no `git status` surprises.
+
+**Did not go well:** nothing new to fix. Every item in `BACKLOG-2026-09-07.md`'s "Now" sections is marked done or Phil-gated; all 9 GitHub issues are owner-gated; the cold-read ledger has no fresh candidate left. This is the same conclusion the last several PM/operator cycles independently reached.
+
+**Changing next cycle:** none. No new defect, so no new gate per step 10b.
+
+**Next:** The standing Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues are what remain, starting with the production deploy gap (`STATUS.md`'s `BLOCKER-001`: HEAD has moved since the last confirmed redeploy) and issue #35 (automate it with `VPS_DEPLOY_KEY`) ranked above the rest, since every other shipped commit is waiting behind exactly that one click.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (:40 slot, 9 issues/0 PRs reconfirmed unchanged, nothing new unblocked)
 
 **Attach:** checkout arrived shallow and detached; fetch origin main, checkout main, merge --ff-only fast-forwarded 190 commits cleanly onto `07eebcdc3`. Working tree clean before and after.
