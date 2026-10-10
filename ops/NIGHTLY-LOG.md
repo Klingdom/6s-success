@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (independent reverification, no credentials in this sandbox, nothing genuinely unblocked found)
+
+**Did:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` landed clean on `00e1ce164`, then a second fast-forward onto `b5cec1c7b` after a concurrent PM check-in and the hourly bot both landed mid-cycle; tree clean throughout, no collision. Read `BACKLOG-2026-09-07.md` sections 0, 1b and 2 (A1-A24, all Done or explicitly held) directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` in full, and the top of `ops/NIGHTLY-LOG.md` (newest-first, not the tail).
+
+**Verified independently rather than cited:** GitHub's 9 open issues read live via the API: unchanged, 7 `decision` + 2 `blocked-on-art`, 0 open PRs. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. Checked this session's own credentials directly rather than trusting the log's claim that none exist: no `STRIPE_SECRET_KEY`/`STRIPE_API_KEY` in env, no key under `~/.ssh`, no `.env.secrets` file. Matches every prior cycle today. `cold_read_ledger.py --stale` 0, `--next` 0 un-ledgered (197/197), genuinely exhausted on the first pass. Deploy gap re-derived from scratch: `ops/deploy-verdict.json` resolves (`git log -S` on `site/build-id.txt`) to commit `47a3f336`; `git log 47a3f336..HEAD -- site/ Dockerfile` is 2 commits (`48a4c07c4`, `a40c4d2a8`), still waiting on issue #35 (`VPS_DEPLOY_KEY`). Ran `check_urls.py` (211/211), `audit_pages.py` (215/0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126, same 2 person-delivered services) fresh myself rather than citing them: all clean, matching every prior cycle.
+
+**Ran `preflight.py --fast` fresh under a tracked background process** rather than cite a prior claim; it progressed past every per-room deck gate and reached `gate_tests`, the same documented slow headless-Chromium sandbox path recorded repeatedly today. Left running past this entry's writing per `CLAUDE.md` 0.4.
+
+**No workstream opened.** WIP is 0/3 (workstreams 1-2 BLOCKED on Phil, 3 CLOSED), which leaves room under the section 18 cap, but nothing in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and startable, matching the conclusion of roughly 39 prior cycles today. Did not fabricate a workstream against `CLAUDE.md` 0.1/0.2/18.
+
+**Did not send a push notification.** Nothing about GitHub, the deploy gap, the usage-limit issue, or mail has changed since the last cycle's notification; a repeat now would restate a condition Phil already has, which the routine's own silence rule argues against.
+
+**Went well:** independently re-derived every standing figure (GitHub state, deploy gap, cold-read ledger, credential availability, fast gates) rather than trusting this morning's citations; all matched exactly, which is itself the useful confirmation.
+
+**Did not go well:** this is roughly the 40th straight cycle today reaching the identical conclusion. Commit volume keeps climbing while revenue, traffic and deploy currency have not moved, the exact shape `GOALS.md`'s own opening section and several of today's prior entries already name. Adding this entry is itself an instance of that pattern, done only because `CLAUDE.md` steps 10-11b require the command deck to carry today's date rather than go stale.
+
+**Changing next cycle:** none new; the standing recommendation on record (narrow or widen this scheduled lane until a Phil action unblocks something) is not mine to execute, since the Routine that fires this prompt was created via `http_api` and only Phil can edit it (confirmed by a prior cycle's own `update_trigger` refusal).
+
+**Next:** the same standing Phil-gated list: issue #35 (`VPS_DEPLOY_KEY`) first, then the 9 GitHub `decision`/`blocked-on-art` issues, then `OWNER-ACTIONS.md`'s "Start here" items (Search Console verification, YouTube authorisation, Stripe business description).
+
+Pushed to main. Command deck regenerated only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (30-minute triage, previous work independently re-verified finished, deploy gap and cold-read ledger unchanged, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: continue the second-pass cold-read lane (first-pass ledger is 197/197 clean, 0 stale, 0 un-ledgered), because that remains the only genuinely unblocked, non-Phil-gated lane with a track record of finding real defects; nothing else cleared this cycle.
