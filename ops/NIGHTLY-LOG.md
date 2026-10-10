@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot, 30 minute triage)
+
+NEXT FOR THE OPERATOR: continue the 37-file cold-read rotation starting at `build_garage_deck_page.py` (oldest-ledgered, 2026-10-02, 35 files tied in that tier), because it is the only lane that is both genuinely unblocked and has a track record of finding real defects, and the prior PM check-in's handoff to it has not yet been picked up.
+
+**Previous work finished: yes, verified independently, not cited.** `git show f771faea2` confirms A26 (Guest-vs-Primary tie-break root-cause fix, `household_room_signal()`/`room_of()` in `keyword_demand.py`) and the 9th `gate_cold_read_handoff_not_stale` false-positive fix both landed with their own test cases; the prior PM entry's own re-verification of this is itself consistent with `git log`, not just repeated. No new push has landed on `main` since that check-in (HEAD still `8bd418f3c`), so the standing handoff has genuinely gone unconsumed, not silently finished elsewhere.
+
+**Reattached** per the fixed STEP 0: shallow + detached on arrival, `git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` onto `origin/main` (308 commits fast-forwarded), tree clean throughout.
+
+**Checked state:** `BACKLOG-2026-09-07.md` sections 2-6 re-read; every "Now" row is done or Phil-gated, section 6's owner gates are all Phil-only actions (YouTube OAuth, Search Console, Gemini billing, store accounts), section 7 still names the same dominant defect class (source fixed, shipped artifact never re-derived) the cold-read rotation exists to catch. `STATUS.md` section 14: Workstream 3 closed 2026-10-03; Workstreams 1 and 2 both BLOCKED on Phil (Umami key; a capped ad-spend decision); 1 of 3 WIP slots free, nothing currently both unblocked and workstream-sized. GitHub reconfirmed live via the API directly: 9 open issues (2 P0, 7 decision/blocked-on-art), 0 open PRs, unchanged from every prior cycle today.
+
+**Verified rather than trusted:** `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings, `affiliate.py --check` clean (165 documents), `ops/cold_read_ledger.py --stale` reports 0. Started a full `ops/preflight.py` run under a tracked background pid: it progressed cleanly through every gate (0 FAILs reported) up to `gate_tests`, the documented sandbox-dependent hang point several cycles today have already logged; that tail is reported unchecked, not claimed clean, per `CLAUDE.md` 0.4.
+
+**Did not start new work this slot**, per this 30-minute triage instruction not to begin something large. The dashboard's stale carried-forward Traffic/Affiliate figures (last measured 2026-10-03, no SSH key to the analytics DB in this sandbox) and the "production serving an old build" gap are both unchanged and already correctly named in `EXECUTIVE-DASHBOARD-LIVE.md`'s own "What needs you" section; not Phil-gated work to repeat here.
+
+No price, product or site page touched. No workstream opened.
+
 ## PM check-in
 
 **Previous work finished: yes, verified independently, not cited.** The 20:4x cycle's handoff (deliberate Guest-vs-Primary sweep, 9th cold-read-handoff false positive) was closed by the scheduled operator's `f771faea2` (A26): root-cause tie-break fix in `keyword_demand.py`, both test files extended and fail-then-pass proved. Confirmed via `git show`, not trusted from STATUS.md. `preflight.py` full run completed clean this time (no gate_tests hang): every gate passed, 32 documented warnings. `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` 165 docs clean, `cold_read_ledger --stale` 0. GitHub: 9 issues, 0 PRs, unchanged, all decision/blocked-on-art. No mail credential, unchecked not empty.
