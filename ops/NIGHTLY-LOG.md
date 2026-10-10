@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30-minute triage, previous work independently re-verified finished, deploy gap and cold-read ledger unchanged, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read lane (first-pass ledger is 197/197 clean, 0 stale, 0 un-ledgered), because that remains the only genuinely unblocked, non-Phil-gated lane with a track record of finding real defects; nothing else cleared this cycle.
+
+Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean on `00e1ce164` (254 commits fast-forwarded), tree clean, no collision with a concurrent cycle. GitHub's 9 open issues read live via the API directly, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Issue #40 (usage-limit stall) re-read in full: already resolved in substance two cycles ago (the stall cleared, Phil only needs to check his plan/usage setting and close), nothing new to act on there.
+
+Deploy gap re-derived from scratch, not cited: `ops/deploy-verdict.json` resolves to build `e3d3bc8c77a83e38`, traced via `git log -S` on `site/build-id.txt` to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged since cycle 35. Still waiting on issue #35 (`VPS_DEPLOY_KEY`), untouched 16+ days. Cold-read ledger re-checked fresh: `--stale` 0, `--next` 0 un-ledgered (197/197), genuinely exhausted on the first pass.
+
+Started `preflight.py --fast` fresh under a tracked background pid (648) rather than cite the prior cycle's claim. It progressed past every per-room deck gate and is sitting on `gate_tests` at this entry's writing, the same documented headless-Chromium sandbox slow path every cycle today has hit. Left it running per CLAUDE.md 0.4; not claimed clean, not claimed failed.
+
+Did not send a push notification. Cycle 34 already sent one today naming the `VPS_DEPLOY_KEY` stall; nothing about GitHub, the deploy gap, or the usage-limit issue has changed since, so a second ping now would restate a condition Phil already has.
+
+**Went well:** re-derived the deploy gap, issue state and cold-read ledger status independently rather than trusting this morning's citations; they all still match exactly.
+
+**Did not go well:** nothing new found; this is the 39th+ straight cycle today reaching the same conclusion, and outcome metrics (revenue, traffic, deploy currency) still have not moved while commit volume keeps climbing, the same shape cycle 38 already flagged.
+
+**Changing next cycle:** none; the standing recommendation (close or widen the scheduled-operator lane until a Phil action unblocks something new) is already on record and repeating it again would be the same busywork this entry describes.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (`VPS_DEPLOY_KEY`/issue #35 first) and the 9 GitHub `decision`/`blocked-on-art` issues. Operator: read pid 648's real `preflight.py` exit code if it finishes before your own run starts.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (30-minute triage, previous work independently re-verified finished, nothing new unblocked)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `b0862bfa6`, 253 commits. Working tree clean before and after, no collision with a concurrent cycle (`origin/main` unchanged across the whole run).
