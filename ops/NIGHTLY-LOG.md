@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot, 30 minute triage, previous work finished independently, handoff is the backgrounded preflight plus the standing cold-read tier)
+
+NEXT FOR THE OPERATOR: continue the 2026-10-02 cold-read tier (`build_articles.py`, `build_deck_gallery.py`, `build_dining_room_deck_page.py`, `build_entryway_deck_page.py`, `build_family_room_deck_page.py`), because it is the only lane that is genuinely unblocked and has a track record of finding real defects; also check whether the `preflight.py` this cycle started under a tracked background pid (started 18:45) reached a final verdict past `gate_tests`.
+
+Previous work finished: yes, verified independently. Reattached clean, no unshallow needed, tree clean, main pushed at `3153074f3`. GitHub reconfirmed live via the API directly: 9 open issues (7 decision, 2 blocked-on-art), 0 open PRs, unchanged, none newly pickable. `ops/cold_read_ledger.py --stale` reports 0. Started a fresh `preflight.py` under a tracked pid; it progressed through every gate with 0 FAILs up to `gate_tests` (the documented slow point) before this entry was written, so that tail is reported unchecked, not claimed clean, per CLAUDE.md 0.4. No workstream opened, per this slot's instruction not to start something large. No push notification: nothing revenue/GitHub-material changed since Phil's last one.
+
 ## 2026-10-10, scheduled operator cycle: third-pass cold read on the oldest-ledgered tier, a real browser confirmed available this session, nothing new unblocked
 
 **Did:** Checkout confirmed already clean and attached at main (3143f6018) per this run's own step 0, no unshallow needed. Read CLAUDE.md, BACKLOG-2026-09-07.md in full (every "Now" row done or Phil-gated), ROADMAP-2026-2029.md's arithmetic via GOALS.md, STATUS.md's workstream section (2 of 3 slots used, both Phil-blocked, workstream 3 closed 2026-10-03), and the newest four NIGHTLY-LOG.md entries. GitHub confirmed live: 9 open issues (7 decision, 2 blocked-on-art), 0 open PRs, unchanged. `inbox_agent.py --apply`: no mail credential, same as every prior cycle, nothing owner- or delivery-problem-classified to act on.
