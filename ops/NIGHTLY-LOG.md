@@ -24,6 +24,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_copy_vs_control.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
 
+## 2026-10-10, PM check-in (:40 slot, second-pass cold read advanced by two more files, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read into the rest of the 2026-10-01 ledger tier (audit_catalog.py, audit_visual.py, build_resources.py, build_zone_map_pack.py, generate_card_heroes.py, generate_zone_heroes.py, import_room_images.py, render_all_narrated.py, revenue_model.py, review_deck_art.py, send_brief.py, status_pdf.py, sync_page_links.py, video_srt.py, zone_graphics.py), because that remains the only genuinely unblocked, non-Phil-gated lane with a track record of finding real defects, and this cycle only had time to clear two more of it.
+
+**Did:** Reattached clean (shallow+detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 266 commits fast-forwarded onto `245de8949`), tree clean, no collision confirmed by a fresh `git fetch` immediately before writing this entry. Read `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section 0, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub's 9 open issues confirmed live, unchanged: 7 `decision`, 2 `blocked-on-art`.
+
+**Previous work verified finished, not cited:** the prior PM cycle's `gate_no_live_secret_key_in_site` fix and the operator cycle's `gate_payment_links_nofollow` fixture-race fix are both in the tree and pushed; tree was clean on arrival. Cold-read ledger re-checked fresh: `--stale` 0, confirming no ledgered file has drifted since its recorded date.
+
+**Continued the second-pass cold read with two more files from the 2026-10-01 tier.** `ops/verify_media_delivery.py`: ran it directly in this sandbox; correctly reports exit 2 ("no Desktop delivery folder here... not the same as a confirmed gap") rather than fabricating a 228-missing alarm, matching its own docstring's stated lesson. No defect. `ops/sync_push.py`: traced the rebase-conflict-resolution path for both the all-generated-conflicted and mixed-conflict cases; the `git diff --cached --quiet` check after `regenerate()` correctly distinguishes "patch fully superseded by fresh regeneration" (skip) from "patch has other real content" (continue) in both cases. No defect. Both ledgered clean with today's date and a note.
+
+**Did not start anything large this slot**, per this routine's own instruction. Ran `preflight.py --fast` fresh under a tracked background pid rather than cite a prior claim; it passed every per-room deck gate cleanly and reached `gate_tests`, the same documented slow headless-Chromium sandbox path recorded on dozens of cycles today. Left running past this entry's writing, not claimed clean, not claimed failed.
+
+**No workstream opened.** Nothing in the backlog is both unblocked and startable beyond the second-pass cold-read lane named above; the deploy gap (issue #35, `VPS_DEPLOY_KEY`) and all 9 GitHub issues remain Phil-gated, unchanged.
+
+**Went well:** verifying `verify_media_delivery.py`'s sandbox-exit-code claim by actually running it rather than trusting the docstring.
+
+**Did not go well:** the same shallow-checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; continue the second-pass cold read as the standing lane.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. No push notification: nothing about GitHub, the deploy gap, or revenue has changed since the last one Phil received.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (30-minute triage): a real credential-gated security check closed, now runs on every cycle
 
 **Did:** Reattached clean (shallow+detached, unshallowed, `merge --ff-only`, 266 commits fast-forwarded onto `9b05ad1`), tree clean, no collision. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` section 6 (owner gates, all unchanged), `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries. GitHub's 9 open issues confirmed live via a sub-agent, unchanged: 7 `decision`, 2 `blocked-on-art`.

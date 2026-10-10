@@ -863,8 +863,8 @@
     },
     "sync_push.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "PM cycle second-pass re-read: rebase/regenerate/conflict-marker guard correct, --check ran clean (0 markers, in sync with origin)"
+      "date": "2026-10-10",
+      "note": "Second-pass cold read: rebase-and-push loop traced for the generated-files-only-conflict case; staged-diff check after regenerate() correctly covers both all-generated-conflicted and mixed-conflict cases. No defect found."
     },
     "verify_deploy.py": {
       "status": "fixed",
@@ -873,8 +873,8 @@
     },
     "verify_media_delivery.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01. Read end to end: differs() correctly normalizes CRLF/LF for text sidecars and falls back to a size compare for video; scan() is pure and testable (desktop_root is a parameter, never hardcoded, so a test can point it at a scratch dir); the three-way exit code (0 clean, 1 real gap, 2 no Desktop folder here at all) already correctly distinguishes 'cannot check' from 'confirmed fine' per CLAUDE.md 0.4, matching this file's own docstring. --fix copies only the real gap and resets it to empty before tallying missing_total, so a fixed run reports 0 missing rather than double-counting. No defect found."
+      "date": "2026-10-10",
+      "note": "Second-pass cold read: correctly reports exit 2 (unknown) when no Desktop delivery folder exists rather than fabricating a gap; verified by running directly in this sandbox. No defect."
     },
     "video.py": {
       "status": "fixed",
