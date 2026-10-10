@@ -12,6 +12,8 @@ A concurrent PM check-in (38th today) landed while the prior entry below was in 
 
 Ran `python ops/dashboard.py`, `check_urls.py` (211/211), `fix_dashes.py --check` (0/0) again after the ledger update; all clean. The full, non-`--fast` `preflight.py` started earlier this cycle was still on `gate_tests` after roughly 9 minutes elapsed (documented sandbox hang); left running, not re-claimed as finished.
 
+**Closing this cycle's own handoff: the full preflight finished.** Every gate passed, 30 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, Pillow missing, deploy gap, Search Console unverified). One new, honest, self-correcting warning: `dashboard-self-description-fresh` named one real commit landed after the dashboard's last citation (the cold-read commit itself, caught by its own commit hash); fixed by regenerating the dashboard again. No regression. `gate_tests` exercising the Etsy PDF builder as a live side effect left `build/listings/etsy/**` genuinely modified mid-run and that landed in the cold-read commit alongside the intended changes; checked the resulting PDFs/PNGs are valid (`file` reports correct PDF/PNG signatures, correct page/pixel counts), not corrupted, so left as is rather than reverted, but noting the mechanism here since it is the same working-tree-overlap class this log has named before (RISK-0014) and is worth a cleaner split next time it recurs.
+
 Pushed to main. `ops/cold-read-ledger.json` and the command deck changed; no price, product or site page touched; IndexNow not applicable.
 
 ## 2026-10-10, scheduled operator cycle (38th today, independent re-verification, nothing new unblocked, deploy gap still open)
