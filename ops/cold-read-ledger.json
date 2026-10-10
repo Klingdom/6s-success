@@ -657,9 +657,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-10",
-      "note": "2026-10-10 operator cycle: closed a stray-probe-file false-positive hole in gate_no_british_spellings_shipped and gate_zone_diagram_points_at_its_own_zone, same exclusion test_zone_jump_nav.py also gained; see NIGHTLY-LOG.md"
+      "note": "2026-10-10, scheduled operator cycle: gate_copy_vs_control() hardened with the same local _-prefix filter gate_no_stale_hardcoded_stripe_link and gate_footer_consistent already carry, after a live run genuinely false-warned on a concurrent test_audit_catalog.py fixture's fake $34 price. Reproduced fail-then-pass directly against the real gate function (new ops/tests/test_gate_copy_vs_control.py, 2/2)."
     },
     "prerender_shop.py": {
       "status": "fixed",

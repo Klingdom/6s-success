@@ -1728,6 +1728,18 @@ def gate_copy_vs_control() -> None:
     and a free offer once sat above a button asking for nineteen dollars. Both
     were found by accident. A price written into prose is checked against the
     catalogue here.
+
+    Found 2026-10-10: this gate needs the same local filter
+    `gate_no_stale_hardcoded_stripe_link` and `gate_footer_consistent` already
+    carry against a stray site/**/_*.html scratch file, which all_pages()
+    deliberately does not exclude (see its own docstring). A concurrent
+    `test_audit_catalog.py` run plants `_audit_catalog_fixture_<pid>.html`
+    with "Buy it now for just $34..." to test audit_catalog.py; this gate's
+    own scan then read that fake price as a real one written into site copy.
+    Reproduced directly: planting the fixture turns a clean run into a false
+    "1 price(s) written in prose that match nothing in the catalogue"
+    warning; removing it clears again. No real page starts with an
+    underscore, so filtering the prefix here costs nothing real.
     """
     js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                  encoding="utf-8").read()
@@ -1737,6 +1749,8 @@ def gate_copy_vs_control() -> None:
 
     bad = []
     for f in all_pages():
+        if os.path.basename(f).startswith("_"):
+            continue
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", s, flags=re.S)
         text = re.sub(r"<[^>]+>", " ", body)

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: a real gate_copy_vs_control false positive found and fixed, cold-read and keyword-gap lanes now near-exhausted
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 267 commits fast-forwarded onto `245de8949`. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`, and the head of `ops/NIGHTLY-LOG.md` (its header says newest-first; read the physical end once by mistake first, the exact misreading `ops/nightly_log.py`'s own docstring warns about, and corrected before acting on it). Ran a full `preflight.py` (fast) in the background while reading. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; confirmed issue #40 (the 5-day usage-limit stall) has not recurred, all three Routines healthy. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 165 documents.
+
+**Checked whether the standing cold-read lane still had unblocked work: it does not.** `ops/cold_read_ledger.py --next` and `--stale` both report 197 of 197 files covered, 0 stale. The keyword-demand gap list (201 gaps) was re-read for a clean, closeable synonym mismatch in the A13/A14/A21-style pattern; what remains is thin and mostly unrelated noise (video games, hardware, generic autocomplete collisions), not a real product-vocabulary gap worth starting.
+
+**The real find:** `check_cron_cadence.py` flagged `keyword-demand.yml` as unmeasurable; tracing why, its one real `schedule`-triggered run (2026-10-07, run #3) has sat `queued` with zero jobs ever created, un-cancellable via the API (409, "not queued yet" despite reporting `queued`) — a harmless, GitHub-platform-level orphaned run, not blocking the workflow (`workflow_dispatch` ran fine after it). Self-resolves at the next Wednesday cron; nothing to fix, recorded so the next cycle does not re-diagnose it from scratch.
+
+**A second, smaller, real find and fix.** This cycle's own first `preflight.py` run genuinely warned `copy-vs-control: 1 price(s) written in prose that match nothing in the catalogue: [('_audit_catalog_fixture_620.html', '$34')]`, a live false positive, not noise: a concurrent `test_audit_catalog.py` run plants that exact fixture with a fake price to test `audit_catalog.py`, and `gate_copy_vs_control()`'s own `all_pages()` scan (which deliberately does not exclude underscore-prefixed files, by design, for three unrelated planted-fixture tests) read the fake price as real site copy. The same race already has two closed instances (`gate_no_stale_hardcoded_stripe_link`, `gate_footer_consistent`), each fixed with a local `startswith("_")` filter; applied the identical fix here. Reproduced directly against the real gate function before fixing (planting the fixture turned a clean run into the exact warning text above) and after (clean again); new `ops/tests/test_gate_copy_vs_control.py`, 2/2.
+
+**Verified:** `ast.parse` on the edited file; new test 2/2; `check_urls.py` 211/211; `audit_pages.py` 215/0; `affiliate.py --check` clean (165 documents); a second full `preflight.py` run after the fix, in the background, to confirm no regression. Deploy gap re-measured directly (not carried forward): 3 commits behind production (`a582ca349..HEAD -- site/ Dockerfile`), matching the dashboard's own citation; unchanged, still the standing item 0/issue #35, no VPS credential here to act on it.
+
+**Went well:** treating a warning that fired live as worth reproducing and fixing rather than dismissing as sandbox noise, the same discipline that closed the two prior instances of this exact race.
+
+**Did not go well:** the cold-read and keyword-gap lanes, this cycle's two most reliable sources of small real defects over the past week, are both now close to exhausted; the next few cycles may need to accept more verification-only passes, or look for a genuinely new lane, rather than expecting another clean A-series-style find every time.
+
+**Changing next cycle:** none beyond the fix itself.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. No push notification: nothing here is a new condition Phil needs to act on.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_copy_vs_control.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (30-minute triage): a real credential-gated security check closed, now runs on every cycle
 
 **Did:** Reattached clean (shallow+detached, unshallowed, `merge --ff-only`, 266 commits fast-forwarded onto `9b05ad1`), tree clean, no collision. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` section 6 (owner gates, all unchanged), `EXECUTIVE-DASHBOARD-LIVE.md`, the last several `NIGHTLY-LOG.md` entries. GitHub's 9 open issues confirmed live via a sub-agent, unchanged: 7 `decision`, 2 `blocked-on-art`.
