@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (38th today, independent re-verification, nothing new unblocked, deploy gap still open)
+
+**Did:** checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` landed clean on `3013f83b8`, 247 commits fast-forwarded, tree clean. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2 (A1-A9 sample), 5, 6, 7 directly rather than citing a summary; `GOALS.md` in full; `STATUS.md` sections 0 and 14 (workstreams); the last four `ops/NIGHTLY-LOG.md` entries (cycles 34-37 today). GitHub re-checked live, not cited: 9 open issues, unchanged (`decision` x7, `blocked-on-art` x2), 0 PRs; same set every cycle today has read. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.
+
+**Verified independently rather than trusted:** `cold_read_ledger.py --stale` reports 0, `--next` reports 0 un-ledgered candidates (197 of 197 files covered) -- the cold-read lane that found most of today's real fixes is genuinely exhausted, not just reported as such. `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` clean on 165 documents. Workstreams: 1 and 2 still BLOCKED on Phil (Umami access, a capped spend decision), 3 CLOSED 2026-10-03; WIP 0/3, and nothing in `BACKLOG-2026-09-07.md` sections 2-5 is both unblocked and workstream-sized, matching the last several cycles. `ops/deploy-verdict.json` still reads `current` at build `e3d3bc8c77a83e38` (checked 2026-10-09T05:32:43Z); the repository has moved since, so production is still behind, same structural gap as every cycle since issue #35 opened, 16 days with zero comments.
+
+**Did not re-send a push notification.** Cycle 34 already sent one today naming the `VPS_DEPLOY_KEY` stall, its duration and the one-line fix; nothing about GitHub, the deploy gap, revenue, or mail has changed since, so a second ping now would restate a condition Phil already has rather than surface new information, matching the cadence every push-notification decision in this log already uses.
+
+**Ran a full, non-`--fast` `preflight.py` in the background** (tracked pid, not the quick path): reached `gate_tests` and was still there after several minutes, the same documented headless-Chromium sandbox hang this log has recorded repeatedly. Left running per `CLAUDE.md` 0.4 rather than killed or claimed clean; the fast gates that do finish here (`check_urls`, `fix_dashes --check`, `affiliate --check`, the cold-read ledger) are all clean, and that is what this entry claims, no more.
+
+**Went well:** did not skip straight to "nothing to do" on the strength of the prior cycles' own conclusion; re-ran the checks that would have caught a change (GitHub, cold-read ledger, deploy verdict, fast gates) myself before agreeing with them.
+
+**Did not go well:** the business outcome metrics (revenue, traffic, deploy currency) have not moved in days while well over 150 commits/24h keep landing, almost all of it maintenance on an already-exhausted backlog. That is exactly the shape `CLAUDE.md` 0.2 and `GOALS.md`'s own opening section warn against, and today's commit volume is itself now the clearest evidence for it.
+
+**Changing next cycle:** none proposed; the standing recommendation (close this scheduled-operator lane, or widen its scope beyond maintenance, until a Phil action changes what is unblocked) is already on record in earlier cycles and repeating it again here would be the same busywork this entry is describing.
+
+**Next:** the six owner gates in `OWNER-ACTIONS.md`/`BACKLOG-2026-09-07.md` section 6, unchanged: `VPS_DEPLOY_KEY` (issue #35, 16 days), Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the free on-device screenshot pass. All are 5-30 minutes each and unblock real, already-built work; none are mine to do.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in (37th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `git checkout -B main origin/main`, `merge --ff-only` landed clean on `298d8aa51`, tree clean, no collision. GitHub's 9 open issues read live via the API, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Deploy gap re-derived from scratch with `git log -S` on `build-id.txt` and `git log a582ca349..HEAD -- site/ Dockerfile`: still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged since cycle 35. `STATUS.md` open claims: none. Workstreams: 1 and 2 still BLOCKED on Phil, 3 CLOSED 2026-10-03, WIP 0/3, so no workstream-sized item is both unblocked and startable. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `CHECKIN-LOG.md`'s last four hourly entries (08:50 through 11:55) each independently confirm no outcome metric moved despite 153-168 commits/24h.
