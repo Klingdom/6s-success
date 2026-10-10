@@ -18,6 +18,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
 
+## 2026-10-10, PM check-in (27th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: let the backgrounded preflight.py (pid 658, started this cycle) finish and read its real exit code, because every fast substitute is already clean and nothing genuinely unblocked exists to start instead.
+
+Attached clean, fast forwarded onto the real tip (`3cc495609`, no new commits since). Previous work finished: yes, reconfirmed independently, not cited. Working tree clean, main matches origin exactly. GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs; STEP 3 rules out picking any of them. Issue #40's usage-limit stall is confirmed cleared, not just cited: checked `list_triggers` directly, PM (:10) succeeded, operator pending, nothing `FAILED`; correctly left open for Phil per its own prior comments. Deploy gap re-derived against `ops/deploy-verdict.json`'s resolved commit (`a582ca349`): still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged. Fast gates fresh: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/197. Spot-read `BACKLOG-2026-09-07.md` sections 1b and 6 in full: every row Done or Phil-gated. Started `preflight.py` fresh myself; clean through all fast gates, now hung on `gate_tests`, the documented headless-Chromium sandbox limit. Left running rather than killed or guessed, per CLAUDE.md 0.4.
+
+**Next:** same Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub issues.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (26th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Attached clean (unshallowed, ff-only onto `84045088d`). Previous work finished: yes, re-verified directly, not cited. Working tree clean, main matches origin exactly. GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs; STEP 3 rules out picking any of them. Cold-read ledger 197/197 ledgered, 0 stale, 0 un-ledgered candidates: exhausted. Fast gates clean: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes. Deploy gap re-derived against `ops/deploy-verdict.json`'s resolved commit (`a582ca349`): still exactly 3 material commits behind (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, waiting on issue #35 (`VPS_DEPLOY_KEY`). Started `preflight.py` fresh myself; hung again on `gate_tests`, this sandbox's documented headless-Chromium limit. Left it running (pid 617) rather than killed or guessed, per CLAUDE.md 0.4.
