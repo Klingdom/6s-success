@@ -28,8 +28,8 @@
     },
     "audit_visual.py": {
       "status": "clean",
-      "date": "2026-10-01",
-      "note": "Flagged stale by cold_read_ledger.py --stale (last touched 2026-09-30, after the 2026-09-26 fixed date). Diffed the touching commit (d526b07af) directly: all 27 changed lines are a comment block or blank lines documenting Phil's own font-loading investigation (virtual-time budget does not fix the 20 heavy-page fallback-font caveat); zero executable lines changed. The 2026-09-26 fixed verdict (exit code reflects all 9 categories, stale retry comment corrected) still describes the real logic. Independently re-verified the same day by reading the full 795-line file end to end (missing-page resolution, probe lifecycle, contrast/gradient compositing, focus-visibility and target-crowding logic all sound). Could not re-run the live 218-page browser audit in this sandbox within a reasonable time (python ops/audit_visual.py and even --help hang past 120s needing a real browser, the same class of limitation Phil's own commit message names: 'CI cannot run it at all because it needs a browser'); re-verified by diff and by reading, not by execution, and recorded as such rather than claiming a run that did not happen."
+      "date": "2026-10-10",
+      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (795 lines): contrast/gradient compositing, effOpacity, bgAt recursion, target-crowding spacing exception, focus-visibility before/after comparison, heading-jump and landmark checks, exit-code-reflects-all-9-categories fix (2026-09-26) all sound. Unlike the 2026-10-01 entry, a real headless Chromium WAS available this session (/opt/pw-browsers/chromium): ran it for real against site/book.html, completed in well under 30s with 0 findings, confirming the tool executes correctly end to end, not just by static read. No defect found."
     },
     "b9_claims.py": {
       "status": "clean",
@@ -282,9 +282,9 @@
       "note": "second-pass cold read, no defect"
     },
     "build_resources.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (359 lines). Verified live/data.js reads, zone-name-map-based href construction matches build_zone_pages.py's own fp/url derivation exactly (rs=slug(room), display() via NAME_MAP, same slug() fn), chapter map and zone_products.json key format both correct. Ran for real: regenerated resources.html byte-identical to committed (0 diff), full chained wiring (canonical_links, wire_landmarks, etc, fingerprint_assets) ran clean. No defect found."
     },
     "build_sample_html.py": {
       "status": "clean",
@@ -507,9 +507,9 @@
       "note": "Re-read in full + ran --plan 2026-10-10: correctly reports 'transformers not installed' and marks all 89 token-budget checks unverified (not falsely clean), matching the known sandbox gap (no local image-gen deps, Gemini billing not enabled, OWNER-ACTIONS item 3). Prompt-building logic (rule-word filtering, Problem-card mess state) correct. No defect."
     },
     "generate_zone_heroes.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read 2026-10-01: identical shape to generate_card_heroes.py found the same cycle: main()'s --run path returned 0 unconditionally even when failed was non-empty. Fixed to return 1 if failed else 0. New ops/tests/test_generate_zone_heroes.py (fakes image_local and the machine-can-generate subprocess probe, writes only to a scratch dir), fail-then-pass proved directly. Covered by the new gate_batch_main_ignores_failed in preflight.py (see generate_card_heroes.py's ledger note for the gate's own account)."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (309 lines). subject_for()/zone_noun()/RULE_WORDS logic sound, OVERRIDES lookup correct, exit-code fix (return 1 if failed else 0, fixed 2026-10-01) still intact. Ran --plan directly: 114 zones planned, correctly reports token-budget unverified (transformers not installed here), matches documented behavior. No defect found."
     },
     "generated_products.py": {
       "status": "clean",
@@ -722,9 +722,9 @@
       "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold and ran directly. Grouping-by-price, mixed-month math and the CN-VIRTUAL/CN-INHOME/PACK-HOUSE lookups all checked against live data.js; output sane, no crash, no defect."
     },
     "review_deck_art.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "Second-pass cold-read, scheduled operator cycle. The first pass (2026-09-25) said mark() was correct but never checked it against review_heroes.py's own documented history: that sibling file's mark() carried a data-destroying defect until 2026-09-21 (a fresh two-key {verdict, sha} dict on every mark, silently erasing any --why reason recorded beside a prior verdict the next time the same image was re-marked). review_deck_art.py never got that fix and never had --why at all, even though it reviews the same kind of one-off human judgement call on card sheets. No live data loss yet: ops/deck-art-verdicts.json has never been created, because card generation is still billing-gated (OWNER-ACTIONS.md 1b), so this is closing the gap before the first real rejection reason is lost, not recovering from one. Fixed: mark() now merges into any prior record instead of replacing it, and gained --why, matching review_heroes.py exactly. New ops/tests/test_review_deck_art.py (5/5), fail-then-pass proved directly (reverted the fix, watched the test fail with the old 2-arg mark() signature, restored, reran clean)."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (203 lines). mark()'s merge-not-replace fix (2026-10-01) and --why support still intact; sha()-gated verdict_of() correctly treats a sha-mismatched or missing verdict as unjudged, not as a stale ok/no. Ran --status directly: 0 staged (card generation still billing-gated per OWNER-ACTIONS.md), matches documented behavior exactly. No defect found."
     },
     "review_heroes.py": {
       "status": "clean",
@@ -977,9 +977,9 @@
       "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "zone_graphics.py": {
-      "status": "fixed",
-      "date": "2026-10-01",
-      "note": "2026-10-01: fixed a false zone-order claim in this generator's own output (room/zone page heading, figcaption, or meta description claiming the zone list was the work order); see ops/NIGHTLY-LOG.md this date."
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (403 lines), zone_diagram_svg/room_map_svg height-computed-not-truncated logic, zone_diagram_html/room_map_html reflow markup all sound; zone-order-claim fix (2026-10-01) still intact in room_map_svg's own comment. Ran main() directly: wrote both demo SVGs, parsed both as well-formed XML with xml.dom.minidom to confirm no malformed markup. No defect found."
     },
     "zone_supplies.py": {
       "status": "fixed",

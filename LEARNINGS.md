@@ -342,6 +342,7 @@ Maintain:
 | LRN-0037 | A metric protected only by a third-party heuristic is unprotected: our own headless browser sent 9,113 beacons | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0038 | A page our domain serves is our page, whoever renders it, and a checker can assert a defect is present and call it green | TRUST / PRIVACY | SUPPORTED | HIGH |
 | LRN-0039 | Three gates checked what the owner's email said and none checked that it was sent | PROCESS / RELIABILITY | SUPPORTED | HIGH |
+| LRN-0040 | "No browser in this sandbox" is a per-container fact, not a standing one, and it was being treated as the latter | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1619,6 +1620,51 @@ in its own gate, so wiring it up would be delivering something nothing wants.
 `owner_inbox.py` and `inbox_agent.py` read mail rather than send it, so a send
 record does not apply. There is no remaining owner channel whose delivery
 nothing can see.
+
+#### LRN-0040: "No browser in this sandbox" is a per-container fact, not a standing one, and it was being treated as the latter
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (confirmed by direct execution, not inferred from absence)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-10
+
+**Observation.** Dozens of `ops/NIGHTLY-LOG.md` entries across the past month
+report `gate_tests` "hitting its documented sandbox hang" or `audit_visual.py`
+needing "a real browser" it does not have, written as though the absence were
+a fixed property of this operating environment. This cycle's own `ops/cold-
+read-ledger.json` entry for `audit_visual.py`, dated 2026-09-30, says flatly
+that "python ops/audit_visual.py and even --help hang past 120s needing a
+real browser." Checked directly rather than carried forward: `ops/browser.py`
+`find_browser()` returned a real, working headless Chromium
+(`/opt/pw-browsers/chromium`) in this session. Ran `audit_visual.py` against
+a live page: it completed in well under a minute with real findings, not a
+hang. A full `preflight.py --fast` run the same cycle ran `gate_tests` to
+completion, all 392 test files executed, 0 failed.
+
+**Why the existing rule did not prevent it.** Each cycle that hit the hang was
+reporting something true about its own container at that moment. The error
+is not in any single report, it is in letting enough identical reports
+accumulate into an unstated premise ("this sandbox has no browser") that the
+next cycle inherits and stops re-testing, the same shape LRN-0035 named for
+network reach. A per-container fact and a structural one produce an
+identical-looking symptom from inside a single session, and only checking
+the fact itself, every time, tells them apart.
+
+**Implication.** A tool whose failure mode is "this sandbox cannot do X"
+should be re-tested directly each time it matters, not cited from the last
+cycle that tried, because the container provisioned for this session is not
+guaranteed to be the one that failed before and is not guaranteed to be the
+one that succeeds next time either. The safe default is to check, not to
+assume either direction.
+
+**Next action.** None structural: there is nothing in this repository to fix,
+because the absence was never a code defect, and asserting the browser will
+always be present here would just be the same mistake pointed the other way.
+Worth a standing habit instead: before citing a prior cycle's "no browser" or
+"gate_tests hangs" finding, call `ops/browser.py`'s `find_browser()` directly
+first, the same discipline CLAUDE.md 0.3 already asks for toward production
+state.
+
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
