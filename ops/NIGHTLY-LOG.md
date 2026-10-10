@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in, addendum: the backgrounded full preflight finished clean, closing this cycle's own handoff
+
+The full `preflight.py` started earlier this cycle (pid 658) finished after the handoff was already written: exit code 0, every gate passed, 0 FAIL, 29 standing warnings, all the familiar sandbox-limitation set (no Stripe/mail/SSH/Pillow credential, site unreachable from here) plus the self-correcting `core.hooksPath` fix. No new finding. This closes the one open thread from this cycle's own handoff; the operator does not need to wait on or re-run it.
+
+Nothing new unblocked beyond the standing Phil-gated list already recorded above.
+
 ## 2026-10-10, PM check-in (27th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: let the backgrounded preflight.py (pid 658, started this cycle) finish and read its real exit code, because every fast substitute is already clean and nothing genuinely unblocked exists to start instead.
