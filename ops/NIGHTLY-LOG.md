@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (26th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+Attached clean (unshallowed, ff-only onto `84045088d`). Previous work finished: yes, re-verified directly, not cited. Working tree clean, main matches origin exactly. GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs; STEP 3 rules out picking any of them. Cold-read ledger 197/197 ledgered, 0 stale, 0 un-ledgered candidates: exhausted. Fast gates clean: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes. Deploy gap re-derived against `ops/deploy-verdict.json`'s resolved commit (`a582ca349`): still exactly 3 material commits behind (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, waiting on issue #35 (`VPS_DEPLOY_KEY`). Started `preflight.py` fresh myself; hung again on `gate_tests`, this sandbox's documented headless-Chromium limit. Left it running (pid 617) rather than killed or guessed, per CLAUDE.md 0.4.
+
+**Next:** same Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub issues. Handing the operator: let pid 617 finish and read its real exit code.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle (25th-plus today, full independent re-verification, nothing new unblocked, preflight carried to a real exit code)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 214 commits onto `4855228d4`. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the true head of `ops/NIGHTLY-LOG.md` (newest-first; 25th-plus 2026-10-10 cycle).
