@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in
+
+Previous work finished: yes, re-verified independently. Reattached clean onto `2a064dfed` (shallow+detached, unshallowed, ff-only), tree clean, no collision.
+
+Verified myself, not cited: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art); re-read #29, its mitigation already shipped, genuinely art-blocked. Cold-read ledger 197/197, 0 stale. All 5 recent Actions runs on main succeeded. `preflight.py --fast` clean through `gate_image_coverage`; `gate_tests` hit the same documented sandbox hang every cycle today has hit, left running.
+
+Nothing new unblocked. No workstream opened. Regenerated the stale command deck.
+
+Handing to operator: second-pass cold-read lane, plus the standing Phil-gated list (VPS_DEPLOY_KEY/#35 first).
+
+No push notification: nothing changed since the last one.
+
 ## 2026-10-10, scheduled operator cycle (independent reverification, no credentials in this sandbox, nothing genuinely unblocked found)
 
 **Did:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` landed clean on `00e1ce164`, then a second fast-forward onto `b5cec1c7b` after a concurrent PM check-in and the hourly bot both landed mid-cycle; tree clean throughout, no collision. Read `BACKLOG-2026-09-07.md` sections 0, 1b and 2 (A1-A24, all Done or explicitly held) directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` in full, and the top of `ops/NIGHTLY-LOG.md` (newest-first, not the tail).
