@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (24th today, reconfirmed previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked, handoff is the backgrounded preflight)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 213 commits onto `a69687b8e`, no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md` (start-here section), `ops/NIGHTLY-LOG.md`'s true head (the file is newest-first; this is the 24th 2026-10-10 cycle, all prior ones concluding nothing new unblocked).
+
+**Previous work finished: yes, independently reconfirmed.** Working tree clean, main matches origin exactly (`git log origin/main..HEAD` and the reverse both empty). GitHub read directly: 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Fast substitutes run fresh, all clean: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 of 197, `check_sellable.py` 124 of 126 (the other 2 are correctly person-delivered services).
+
+**Deploy gap re-derived directly, not cited:** `ops/deploy-verdict.json` resolves to commit `a582ca349` (build `e3d3bc8c77a83e38`, checked 2026-10-09T05:32:43Z); `git log a582ca349..HEAD -- site/ Dockerfile` reads 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), matching the dashboard's existing figure exactly, not grown. Same standing wait on issue #35 (`VPS_DEPLOY_KEY`).
+
+Started `python ops/preflight.py` fresh myself rather than cite a prior cycle's run; it is still running past 90+ seconds at this cycle's close on `gate_tests`, this sandbox's documented headless-Chromium hang. Left it running in the background (pid 611, started 06:15 UTC) rather than killed or guessed, so the next cycle can read its real exit code.
+
+**Nothing new unblocked.** Every GitHub issue is `decision` or `blocked-on-art`, which this prompt's STEP 3 rules out picking. The cold-read ledger is fully exhausted (197/197, 0 stale). No backlog row found neither done nor Phil-gated. No stale document or false claim found to correct.
+
+**Went well:** re-deriving every claim (GitHub, deploy gap, fast gates) independently rather than trusting 23 identical prior citations today.
+
+**Did not go well:** `gate_tests` again could not complete inside this cycle's own window; same standing sandbox limitation as every recent cycle.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` ("Start here": Claude Code usage check, `VPS_DEPLOY_KEY`/#35, Search Console verification, YouTube OAuth, Stripe business description) and the 9 GitHub `decision`/`blocked-on-art` issues. Handing to the operator: let the backgrounded `preflight.py` (pid 611) finish and act on its real exit code if it has not already by then.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in, addendum: the backgrounded full preflight finished clean, closing this cycle's own handoff
 
 The full preflight.py started earlier this cycle (pid 394) finished after this cycle's own handoff was already written: exit code 0, every gate passed, 0 FAIL, 29 standing warnings, all the familiar sandbox-limitation set (no Stripe/mail/SSH/Pillow credential, site unreachable from here) plus the self-correcting hooks-enabled fix. No new finding. This closes the one open thread from this cycle's own handoff; the operator does not need to wait on or re-run it.
