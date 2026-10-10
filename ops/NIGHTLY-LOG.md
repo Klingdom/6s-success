@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, deploy gap widened by one commit, handoff is the backgrounded preflight)
+
+NEXT FOR THE OPERATOR: let the backgrounded full preflight.py (pid 394, started 05:42) finish and act on its real exit code, because fast substitutes are already clean and no genuinely unblocked item exists to start instead.
+
+Previous work finished: yes, independently reconfirmed, not trusted. The prior cycle's own fix (gate_cold_read_handoff_not_stale, 8th occurrence of that false-positive class) is HEAD (1d3722ff4), already pushed, already matching origin, working tree clean. Did not re-derive the fix's correctness from scratch (its own addendum entry already proved fail-then-pass on 19 cases); confirmed instead that it actually landed and that nothing since has touched it.
+
+Checked state directly rather than citing prior cycles: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Cold-read ledger 0 stale, 197/197 ledgered, fully exhausted. Fast substitutes clean: check_urls.py 211/211, audit_pages.py 215 pages/0 findings/0 duplicate titles or descriptions, fix_dashes.py 0 em or en dashes. Deploy gap re-derived from ops/deploy-verdict.json directly (resolved commit a582ca349, build e3d3bc8c77a83e38): 3 material site/Dockerfile commits behind now, not 2, one more than the last PM cycle's figure (48a4c07c4, a40c4d2a8, 47a3f3368); still the same standing wait on VPS_DEPLOY_KEY/#35, not grown by anything actionable from here. Commit timestamps show no gap in cycle cadence (operator and PM both running on schedule through the morning), so issue #40's 5-day stall is historical, not current.
+
+Started preflight.py fresh myself rather than cite a prior run; it is still running past several minutes at this cycle's close, the same documented gate_tests sandbox hang every recent cycle has hit. Left it running rather than killed or guessed.
+
+Nothing new unblocked beyond the standing Phil-gated list (OWNER-ACTIONS.md's "start here" items, VPS_DEPLOY_KEY/#35 first) and the 9 owner-gated GitHub issues. No small closing job found this slot: cold-read lane exhausted, no stale citation, no failing gate in the fast substitutes.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in, addendum: a real gate_cold_read_handoff_not_stale false positive found and fixed (the eighth of this class), tripped by this cycle's own earlier handoff
 
 The backgrounded `preflight.py` from this same cycle finished: exit clean, every gate passed, 30 warnings, all standing sandbox limits (no Stripe/mail/SSH credential, no Pillow, site unreachable) plus the self-correcting `hooks-enabled` fix, except one genuinely new, non-Phil-gated finding: `cold-read-handoff-not-stale` flagged `preflight.py` as a stale cold-read candidate.
