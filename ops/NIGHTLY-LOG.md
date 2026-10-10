@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (independent re-verification, nothing new unblocked, deploy gap unchanged at 3 commits)
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded 219 commits cleanly onto `origin/main` (`3cc495609`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` in full (O1, the stated constraint), and the true head of `ops/NIGHTLY-LOG.md` (newest-first).
+
+**Verified independently, not cited:** GitHub's 9 open issues read live via the API, unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs; read issues #35 and #40 in full rather than trusting the label. `cold_read_ledger.py --stale` 0 of 197, fully exhausted. Fast gates fresh: `check_urls.py` 211/211, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans. Mobile `npm test`: all 4 suites pass. Deploy gap re-derived from `ops/deploy-verdict.json`'s resolved commit (`a582ca349`, confirmed by `git show`, not guessed from a `log -S` ambiguity): still exactly 3 commits behind, unchanged, waiting on issue #35. CI confirmed green on the current head via the GitHub API directly. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked. Started `preflight.py` fresh under a 300s timeout; hit the documented `gate_tests` headless-Chromium sandbox hang, reported here as unchecked, not passing, per CLAUDE.md 0.4.
+
+**Went well:** independently re-deriving every claim (GitHub, ledger, deploy gap, GOALS.md's O1 constraint) rather than trusting 26+ identical prior cycles today.
+
+**Did not go well:** `gate_tests` still cannot complete in this sandbox; same standing limitation as every recent cycle.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY/#35 first) and the 9 GitHub `decision`/`blocked-on-art` issues.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (26th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Attached clean (unshallowed, ff-only onto `84045088d`). Previous work finished: yes, re-verified directly, not cited. Working tree clean, main matches origin exactly. GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs; STEP 3 rules out picking any of them. Cold-read ledger 197/197 ledgered, 0 stale, 0 un-ledgered candidates: exhausted. Fast gates clean: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes. Deploy gap re-derived against `ops/deploy-verdict.json`'s resolved commit (`a582ca349`): still exactly 3 material commits behind (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, waiting on issue #35 (`VPS_DEPLOY_KEY`). Started `preflight.py` fresh myself; hung again on `gate_tests`, this sandbox's documented headless-Chromium limit. Left it running (pid 617) rather than killed or guessed, per CLAUDE.md 0.4.
