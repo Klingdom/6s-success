@@ -183,8 +183,8 @@
     },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "PM check-in: re-verified via regen diff (0 diff, clean tree), whole-room assertion IDs/titles (KBA-013/014/015) match real cards, hero image (kids-bedroom--toy-storage-zone-lg.jpg) matches the zone page's own og:image. No defect."
     },
     "build_kit_page.py": {
       "status": "clean",
