@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle, addendum: picked up the second-pass cold-read handoff, 5 files re-read, no defect found
+
+A concurrent PM check-in (38th today) landed while the prior entry below was in flight and merged cleanly (generated-file conflicts in the command deck and this log resolved by keeping both entries and regenerating the deck fresh, not hand-editing it); its handoff named the second-pass cold-read lane as the only genuinely unblocked, non-Phil-gated work left, since `cold_read_ledger.py --next` reports 0 un-ledgered candidates (197/197). Took that handoff rather than re-running the same "nothing unblocked" triage a third time this cycle.
+
+**Read cold, in full, rather than skimmed:** `ops/youtube_upload.py` (357 lines, the OAuth/upload tool, oldest-dated tier), `ops/wire_generated_catalog.py` (267 lines, the 149-generated-pack catalogue wiring), `ops/specific_articles.py` (79 lines, the six hand-authored direct-answer articles), `ops/stripe_setup.py` (180 lines, the superseded consulting-product script), and `site/assets/js/site.js` (331 lines, shared client-side behavior, the one JS file in this tier). Checked claims against live state rather than trusting the read: `wire_generated_catalog.py` run for real with a backup taken first, output byte-identical to the committed `data.js` (idempotent, confirmed, not assumed); `specific_articles.py`'s six `DIRECT_ANSWERS` entries grepped against their six live `site/articles/*.html` files, all six match verbatim (HTML-entity encoding of apostrophes aside). `youtube_upload.py`'s exit-code logic, channel-confirmation guard and quota-abort path all read correct on this pass. `stripe_setup.py` is accurately self-documented as superseded (the live consulting checkout runs through `stripe_catalog.py`'s SKU-tagged prices, not this file's lookup_key namespace) and still correctly guards live writes behind `STRIPE_ALLOW_LIVE`. `site.js` re-read for the usual classes (XSS via the newsletter form's `addr`, dead cart branches, image-path guessing): the newsletter handler never echoes the typed address as raw HTML, only URI-encoded inside an `href`, and the no-cart branch is documented as deliberately unreachable, matching the live markup.
+
+**No defect found in any of the five.** All five re-ledgered clean with today's date (`ops/cold_read_ledger.py --add`).
+
+Ran `python ops/dashboard.py`, `check_urls.py` (211/211), `fix_dashes.py --check` (0/0) again after the ledger update; all clean. The full, non-`--fast` `preflight.py` started earlier this cycle was still on `gate_tests` after roughly 9 minutes elapsed (documented sandbox hang); left running, not re-claimed as finished.
+
+Pushed to main. `ops/cold-read-ledger.json` and the command deck changed; no price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle (38th today, independent re-verification, nothing new unblocked, deploy gap still open)
 
 **Did:** checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` landed clean on `3013f83b8`, 247 commits fast-forwarded, tree clean. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2 (A1-A9 sample), 5, 6, 7 directly rather than citing a summary; `GOALS.md` in full; `STATUS.md` sections 0 and 14 (workstreams); the last four `ops/NIGHTLY-LOG.md` entries (cycles 34-37 today). GitHub re-checked live, not cited: 9 open issues, unchanged (`decision` x7, `blocked-on-art` x2), 0 PRs; same set every cycle today has read. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty.

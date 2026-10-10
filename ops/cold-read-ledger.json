@@ -783,8 +783,8 @@
     },
     "site.js": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: one commit since the 2026-09-27 clean note, 9ddddd197 (the payment-link nofollow fix touches renderProduct()'s anchor emission). Full preflight.py this cycle's gate_payment_links_nofollow and mobile npm test both clean. No defect found."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "social_drafts.py": {
       "status": "clean",
@@ -798,8 +798,8 @@
     },
     "specific_articles.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Pure data dict (6 direct-answer strings), no logic. Verified all 6 <p class=\"lede\"> openings on the live site/articles/*.html match this module byte for byte. gate_specific_article_direct_answer wired in preflight.py and confirmed present. No defect."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "split_deck_cards.py": {
       "status": "fixed",
@@ -852,9 +852,9 @@
       "note": "cold read 2026-09-30 scheduled operator, no defect"
     },
     "stripe_setup.py": {
-      "status": "fixed",
-      "date": "2026-09-30",
-      "note": "cold read 2026-09-30 scheduled operator: live-guard message disagreed with behaviour under STRIPE_ALLOW_LIVE=1, fixed, gated by test_stripe_setup_live_guard.py"
+      "status": "clean",
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "sync_page_links.py": {
       "status": "clean",
@@ -928,8 +928,8 @@
     },
     "wire_generated_catalog.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: --check still reports 130 entries (10 hand, 120 generated), 126 buyable/4 free; matches 2026-09-25 note, no regression"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "wire_landmarks.py": {
       "status": "fixed",
@@ -973,8 +973,8 @@
     },
     "youtube_upload.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30: touched 2026-09-27 (a090003cf, move the Google account to philklingmbb@gmail.com and refuse to upload to the wrong channel) since the 2026-09-25 clean note. Reran ops/tests/test_youtube_upload.py: ledger corruption-guard, jobs() dedupe/mp4/srt/room filtering, exit-code logic all correct. No defect found in the account-ownership change."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "zone_graphics.py": {
       "status": "fixed",
