@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in
+
+**Previous work finished: yes, verified independently, not cited.** The 20:4x cycle's handoff (deliberate Guest-vs-Primary sweep, 9th cold-read-handoff false positive) was closed by the scheduled operator's `f771faea2` (A26): root-cause tie-break fix in `keyword_demand.py`, both test files extended and fail-then-pass proved. Confirmed via `git show`, not trusted from STATUS.md. `preflight.py` full run completed clean this time (no gate_tests hang): every gate passed, 32 documented warnings. `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` 165 docs clean, `cold_read_ledger --stale` 0. GitHub: 9 issues, 0 PRs, unchanged, all decision/blocked-on-art. No mail credential, unchecked not empty.
+
+**Did:** nothing new to close; this was reverification. Regenerated the dashboard.
+
+**Handing to the operator:** the standing 37-file `ops/*.py` cold-read rotation from `build_garage_deck_page.py`, hours-sized, unstarted since the handoff.
+
+No price/product/page touched.
+
 ## 2026-10-10, scheduled operator cycle: the Guest-vs-Primary tie-break fixed at its root, plus the 9th gate_cold_read_handoff_not_stale false positive
 
 **Did:** Unshallowed and attached cleanly (296+ commits fast-forwarded). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, the newest NIGHTLY-LOG.md entries (top, not tail). Took the handoff: "the deliberate Guest-vs-Primary sweep" plus the standing cold-read rotation tier. Found A25's fix ("master bathroom vanity" only) left siblings open: "master bedroom closet organization ideas" and several "master bath(room) counter/storage" queries still resolved to Guest's near-identical page. Per CLAUDE.md 10b (third occurrence of the same class), fixed the root cause instead of another per-query patch: `keyword_demand.py`'s `best_page()`/`best_by()` now break a genuine score tie by room signal (a query's own room name or a household synonym like "master bedroom") before falling back to URL order, via new `household_room_signal()`/`room_of()`.
