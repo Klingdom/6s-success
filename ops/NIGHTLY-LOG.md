@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (33rd today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+Previous work finished: yes, reconfirmed independently. Checkout arrived shallow and detached (issue #27's usual shape, forced update on fetch); unshallowed, fast-forwarded cleanly onto `origin/main` (`79fc0e5ae`), no unrelated-history symptom this run, tree clean before this cycle's own write, no collision with the operator or the twin.
+
+GitHub's 9 open issues checked live via the API directly, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Deploy gap re-derived directly, not cited: `ops/deploy-verdict.json` resolves to build `e3d3bc8c77a83e38`; `git log -S` on `site/build-id.txt` traces that to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`). `BACKLOG-2026-09-07.md` sections 2-5 reread in full: every row is Done or Phil-gated, nothing newly unblocked.
+
+Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 of 197. Started `preflight.py` fresh under a tracked background pid (609) rather than cite a prior run; it progressed past every per-room deck gate and is sitting on `gate_tests` at this entry's writing, the documented headless-Chromium sandbox slow path, not a hang. Left it running per CLAUDE.md 0.4; the fast substitutes above stand in its place for this cycle's own verdict.
+
+This is the 33rd straight cycle today reaching the same conclusion: every row in the backlog is Done or Phil-gated, all 9 GitHub issues are already escalated, and the production deploy gap is a known 3 commits behind, waiting on the same `VPS_DEPLOY_KEY` secret. Nothing changed that the owner needs telling about beyond what the dashboard and open issues already say.
+
+**Went well:** re-derived the deploy gap and issue count directly rather than trusting this cycle's own prior citation; used `ops/nightly_log.py` to write this entry rather than hand-editing, closing the exact misreading its own docstring warns about.
+
+**Did not go well:** `gate_tests` still cannot finish inside a single short cycle in this sandbox, same standing limitation.
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** unchanged standing list: `OWNER-ACTIONS.md` "Start here" (issue #35 `VPS_DEPLOY_KEY` first) and the 9 GitHub `decision`/`blocked-on-art` issues. Leaving pid 609's real `preflight.py` exit code for the next cycle or the operator to read.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (32nd today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently. Attached clean (unshallowed, ff-only onto `895052ba4`, then fetched again mid-cycle and fast-forwarded onto `8e249c3b3`, the 31st cycle's own push plus an hourly check-in commit; no collision). GitHub's 9 open issues read live via the API: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs; read issues #35 and #40 in full rather than trusting the label, both have no new comments since the last cycle that read them. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`e3d3bc8c77a83e38` -> `a582ca349` via `git log -S` on `site/build-id.txt`): `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`). Fast gates run fresh myself rather than cited: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 of 197, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `check_sellable.py` 124/126 (the other 2 are person-delivered services), `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not passing. Started `preflight.py` fresh under a tracked background pid (571) rather than cite a prior run; progressed past every per-room deck gate and is on `gate_tests` at this entry's writing (`_run_bounded` gives each of ~130 test files up to 700s, so this is the documented slow path through headless-Chromium-dependent tests in this sandbox, not an unbounded hang; read its own implementation this cycle to confirm the timeout and process-group-kill handling are both already correct, so there is nothing to fix there). Left it running per CLAUDE.md 0.4; the fast substitutes above stand in its place for this cycle's own verdict.
