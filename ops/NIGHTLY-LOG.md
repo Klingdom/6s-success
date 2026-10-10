@@ -6,7 +6,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Did:** Unshallowed and fast-forward merged onto `origin/main` (312 commits), tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (every row Done or Phil-gated, re-confirmed not inherited), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, newest log entries. GitHub: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged. No mail credential. `preflight.py --fast`: every gate passed up to the documented `gate_tests` sandbox hang, killed cleanly, no stray probe files left (checked).
 
-**The real work.** Every queue exhausted again, so continued the cold-read rotation from `build_kit_page.py` onward (oldest tier). Cleared six files for real: `build_kit_page.py`, `build_kitchen_deck_page.py`, `build_laundry_room_deck_page.py`, `build_living_room_deck_page.py`, `build_manual_print.py`, `build_messy_article.py`. Each regenerated and diffed (0 diff, all six). Also checked: the hardcoded whole-room card assertions (KA-015..018, LRA-013..015, LVA-013..015) against the real cards, exact match; both decks' hero images against disk and their zone page's `og:image`, exact match; the kit page's 8 WHY entries against the live catalogue; `build_manual_print.py`'s own gates (0 em/en dashes, 114 zone cards, 123 product types) all passed; the messy-house article's FAQ answers confirmed as verbatim visible prose.
+**The real work.** Every queue exhausted again (the concurrent 22:4x PM check-in below reached the same conclusion independently), so continued the cold-read rotation from `build_kit_page.py` onward (oldest tier). Cleared six files for real: `build_kit_page.py`, `build_kitchen_deck_page.py`, `build_laundry_room_deck_page.py`, `build_living_room_deck_page.py`, `build_manual_print.py`, `build_messy_article.py`. Each regenerated and diffed (0 diff, all six). Also checked: the hardcoded whole-room card assertions (KA-015..018, LRA-013..015, LVA-013..015) against the real cards, exact match; both decks' hero images against disk and their zone page's `og:image`, exact match; the kit page's 8 WHY entries against the live catalogue; `build_manual_print.py`'s own gates (0 em/en dashes, 114 zone cards, 123 product types) all passed; the messy-house article's FAQ answers confirmed as verbatim visible prose.
 
 **Verified:** `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` 165 docs, `fix_dashes`/`fix_dialect` 0/0, `link_graph_report` 0 orphans, all clean after.
 
@@ -19,6 +19,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** rotation continues at `build_mudroom_deck_page.py` onward. Standing Phil-gated list unchanged.
 
 Pushed to main. `ops/cold-read-ledger.json`, dashboard files. No price, product or site page touched. IndexNow not applicable.
+
+## 2026-10-10, PM check-in (22:4x slot, 30 minute triage)
+
+NEXT FOR THE OPERATOR: there is no new unblocked item; re-verify the production deploy gap figure before citing it, because that is the one P0 line nothing else can replace.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 312 commits). Previous work finished: cold-read ledger 197/197, 0 stale; the prior cycle's handoff file (`build_kit_page.py`) is already ledgered, so that thread is consumed, not open. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; none mine to pick. `preflight.py` full run hit the documented `gate_tests` sandbox hang again; reported unchecked, not passing.
+
+**Verified, not cited:** recomputed the dashboard's deploy-gap claim independently. Last confirmed deploy was build `e3d3bc8c77a83e38` (commit `a582ca349`, 2026-10-09T05:32:43Z); `git log a582ca349..HEAD -- site/ Dockerfile` is 5 commits, 117 files, matching current `build-id.txt` (`9a2477bcdfe5b6c2`). Dashboard's figure holds.
+
+**No defect found.** Standing Phil-gated list unchanged: the redeploy itself and issue #35 (VPS_DEPLOY_KEY automation).
+
+Pushed to main. Command deck only. No price, product or served page touched.
 
 ## 2026-10-10, PM check-in (22:2x slot, 30 minute triage)
 
