@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-09-30T15:54:09Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-01T02:35:22Z",
    "mode": "changed",
    "offered": 11,
@@ -633,6 +626,13 @@
    "offered": 114,
    "accepted": 114,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-10T20:09:01Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -806,7 +806,7 @@
   "https://6s-success.com/zones/primary-bathroom-the-shower-or-tub": "f8fe11bc15eb1545",
   "https://6s-success.com/zones/primary-bathroom-the-toilet-area": "746a6ce50a1ef1b8",
   "https://6s-success.com/zones/primary-bathroom-the-under-sink-cabinet": "9e17db8ac94bd0fc",
-  "https://6s-success.com/zones/primary-bathroom-the-vanity-counter": "940d979ff102694b",
+  "https://6s-success.com/zones/primary-bathroom-the-vanity-counter": "e27ec75a9895679a",
   "https://6s-success.com/zones/primary-bathroom-the-vanity-drawers": "ed78b66be823dc96",
   "https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone": "a5fde33c5f5e3f05",
   "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "a82be3dcf9b1f813",
