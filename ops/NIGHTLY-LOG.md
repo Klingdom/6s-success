@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (independent re-verification against 5+ weeks of flat revenue; escalated the owner-gated ceiling directly)
+
+**Did:** Unshallowed and attached to main (fast-forward, 187 commits). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and recent NIGHTLY-LOG.md/CHECKIN-LOG.md entries. Re-ledgered `ops/preflight.py` (touched 2026-10-10, last ledgered 2026-10-09) after reading its 5 intervening commits, all scoped gate fixes. Ran `ops/inbox_agent.py --apply` (no mail credential), `ops/affiliate.py --check` (165 documents, clean), `ops/check_sellable.py` (124/126, 2 correctly person-delivered), `check_urls.py` (211/211), `audit_pages.py` (215/0), `fix_dashes.py --check` (0/0). Read GitHub's 9 open issues directly: unchanged, all `decision` or `blocked-on-art`. Checked the production deploy gap directly against `ops/deploy-verdict.json`'s resolved commit: 2 commits behind, not urgent.
+
+**Verified:** cold-read ledger 197/197, 0 stale (confirmed, not inherited). Full `preflight.py` started twice; both runs hit the documented `gate_tests` sandbox hang (headless Chromium) past 280s and past 10 further minutes unbounded, so that gate is reported here as unchecked, not passing, per CLAUDE.md 0.4.
+
+**Went well:** independently re-derived "nothing new unblocked" from GitHub, the ledger and the fast substitutes rather than trusting the prior cycles' identical conclusion.
+
+**Did not go well:** `gate_tests` still cannot complete in this sandbox; same standing limitation as every recent cycle.
+
+**Changing next cycle:** none; no new defect class, this is a further confirmation of the same owner-gated ceiling.
+
+**Next:** Same standing Phil-gated GitHub issues (40, 35, 33, 31, 29, 21, 18, 15, 2) and `OWNER-ACTIONS.md`'s "Start here" four items (VPS_DEPLOY_KEY, Search Console verification, YouTube OAuth, Stripe business description), plus the LinkedIn-channel question. Escalated directly to the owner this cycle: five-plus weeks of high commit volume against flat revenue, with the remaining high-leverage work now entirely gated on a handful of minutes-long owner actions.
+
+Pushed to main. `ops/preflight.py` ledger entry, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (fixed a real false-positive gate, test fixture leaking into site/ race, 4th occurrence of a documented class)
 
 Previous work was finished: prior cycle's preflight ran clean, cold-read ledger 0 stale, 9 GitHub issues unchanged (all decision/blocked-on-art), 0 open PRs, working tree clean on attach.

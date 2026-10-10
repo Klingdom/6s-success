@@ -658,8 +658,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "2026-10-09, re-ledgered after b284bf7c7 (Phil/Opus): gate_every_payment_fulfilled docstring corrected to the real measured grace-period gap (540 min, not 367), plus test_cron_delivery_cadence.py and test_cron_effective_latency.py hardened to assert invariants rather than a past measurement. Both test files reran clean (9/9, 7/7). No defect found; this was the authors' own fail-then-pass-proved fix, not a cold-read finding."
+      "date": "2026-10-10",
+      "note": "cold-read: reviewed 5 commits since 2026-10-09 (stripe-link fixture exclusion, checker_scope widening, canonical_links fragment fix, youtube metadata gate, payment-fulfilled gate fix), all scoped gate additions/fixes, each already fail-then-pass proved per NIGHTLY-LOG.md; no new defect found"
     },
     "prerender_shop.py": {
       "status": "fixed",
