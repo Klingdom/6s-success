@@ -46,6 +46,24 @@ Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, t
 
 Pushed: EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-10, scheduled operator cycle (independent re-verification, one GitHub Actions platform defect found and documented, not fixable from here)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, fetched `origin main`, fast-forwarded clean onto `c8221a207` (175 commits behind), no conflict. Read `BACKLOG-2026-09-07.md` in full (A1 through A24 all Done or Phil-gated, Hold list unchanged), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`'s current-state section, `OWNER-ACTIONS.md`'s ranked list, and recent `CHECKIN-LOG.md` entries (151 commits in the last 24h, every one reporting "nothing measurable moved").
+
+**Verified, not cited:** ran `python ops/preflight.py` myself to genuine completion (about 9 minutes, not a timeout-wrapped partial): exit 0, every gate passed, 29 warnings, all the standing sandbox-credential set (no Stripe, mail, SSH deploy key, Pillow, or network egress). Notably the test suite itself (387 files) actually ran this cycle rather than hitting the "documented sandbox hang" several recent check-ins reported; only 2 files could not exercise anything, for a missing-dependency reason, not a hang. `audit_pages.py` and `affiliate.py --check` both run directly: clean (215/0, 165 documents). `cold_read_ledger.py --stale`: 0. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. GitHub: 9 open issues, all `decision`/`blocked-on-art`, unchanged; 0 open PRs.
+
+**New this cycle:** checked GitHub Actions directly rather than trusting the log. `keyword-demand.yml`'s scheduled run from 2026-10-07 (id 37655510268) has sat `queued` for 3 days with zero attached jobs; the cancel API refuses it ("has not been queued yet"), a GitHub-side zombie this operator cannot clear. Confirmed it is not actually blocking the workflow: a later manual dispatch (2026-10-09) completed successfully despite the concurrency group. No functional harm, left alone, not escalated (not reversible-by-us, not urgent).
+
+**Went well:** independent verification caught no drift between what the logs claimed and what actually re-ran.
+
+**Did not go well:** nothing new to act on; every unblocked backlog row is already Done or Phil-gated, confirming (not just repeating) dozens of prior cycles' identical finding today.
+
+**Changing next cycle:** none; no defect found to gate.
+
+**Next:** same owner-gated list in `OWNER-ACTIONS.md` and GitHub issue #40's context (Claude Code usage limit stall, already resolved and re-verified 2026-10-09). Highest-value unblocked item remains none; watch for the next keyword-demand/indexation-check real-network reading or a GitHub/inbox event.
+
+Pushed to main. Command deck regenerated only (timestamp/commit-count churn). No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-10-09, PM check-in (23:40 slot, confirmed previous work finished independently, nothing new unblocked)
 
 **NEXT FOR THE OPERATOR: there is no new unblocked item, because the cold-read ledger is fully exhausted (196/196, 0 stale) and all 9 open GitHub issues are owner-gated (decision or blocked-on-art), exactly as the last several cycles found.**
@@ -50782,22 +50800,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
-
-
-## 2026-10-10, scheduled operator cycle (independent re-verification, one GitHub Actions platform defect found and documented, not fixable from here)
-
-**Did:** Checkout arrived shallow and detached; unshallowed, fetched `origin main`, fast-forwarded clean onto `c8221a207` (175 commits behind), no conflict. Read `BACKLOG-2026-09-07.md` in full (A1 through A24 all Done or Phil-gated, Hold list unchanged), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`'s current-state section, `OWNER-ACTIONS.md`'s ranked list, and recent `CHECKIN-LOG.md` entries (151 commits in the last 24h, every one reporting "nothing measurable moved").
-
-**Verified, not cited:** ran `python ops/preflight.py` myself to genuine completion (about 9 minutes, not a timeout-wrapped partial): exit 0, every gate passed, 29 warnings, all the standing sandbox-credential set (no Stripe, mail, SSH deploy key, Pillow, or network egress). Notably the test suite itself (387 files) actually ran this cycle rather than hitting the "documented sandbox hang" several recent check-ins reported; only 2 files could not exercise anything, for a missing-dependency reason, not a hang. `audit_pages.py` and `affiliate.py --check` both run directly: clean (215/0, 165 documents). `cold_read_ledger.py --stale`: 0. `inbox_agent.py --apply`: no mail credential, correctly reported unchecked. GitHub: 9 open issues, all `decision`/`blocked-on-art`, unchanged; 0 open PRs.
-
-**New this cycle:** checked GitHub Actions directly rather than trusting the log. `keyword-demand.yml`'s scheduled run from 2026-10-07 (id 37655510268) has sat `queued` for 3 days with zero attached jobs; the cancel API refuses it ("has not been queued yet"), a GitHub-side zombie this operator cannot clear. Confirmed it is not actually blocking the workflow: a later manual dispatch (2026-10-09) completed successfully despite the concurrency group. No functional harm, left alone, not escalated (not reversible-by-us, not urgent).
-
-**Went well:** independent verification caught no drift between what the logs claimed and what actually re-ran.
-
-**Did not go well:** nothing new to act on; every unblocked backlog row is already Done or Phil-gated, confirming (not just repeating) dozens of prior cycles' identical finding today.
-
-**Changing next cycle:** none; no defect found to gate.
-
-**Next:** same owner-gated list in `OWNER-ACTIONS.md` and GitHub issue #40's context (Claude Code usage limit stall, already resolved and re-verified 2026-10-09). Highest-value unblocked item remains none; watch for the next keyword-demand/indexation-check real-network reading or a GitHub/inbox event.
-
-Pushed to main. Command deck regenerated only (timestamp/commit-count churn). No site content, price or product touched. IndexNow not applicable.
