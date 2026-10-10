@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot, handing the operator a genuinely new lane instead of repeating "nothing unblocked")
+
+**NEXT FOR THE OPERATOR: run `preflight.py --deep`, because it has not been run or mentioned anywhere in this log since the 2026-09-04 cycle that used it to catch a real WCAG contrast defect the fast gates never would have found, while every other standing lane (fast preflight substitutes, the cold read ledger, GitHub issues) is reconfirmed exhausted this cycle.**
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 2 commits cleanly onto `c8221a207`. Working tree clean before and after.
+
+**Read state:** `git log -12`, `GOALS.md`, `STATUS.md` section 30, `EXECUTIVE-DASHBOARD-LIVE.md`, `BACKLOG-2026-09-07.md` section 7, the last several `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md` entries. GitHub's 9 open issues read directly via the API, not cited from memory.
+
+**Verified independently, not inherited:** `python ops/cold_read_ledger.py --stale` reports 0 stale; `--next` confirms 196 of 196 files already ledgered, 0 un-ledgered candidates, same as the last several cycles. GitHub's `list_issues` read directly: 9 open, unchanged (6 `decision`, 2 `blocked-on-art`, one carrying both `P0` and `decision`), 0 open pull requests. `preflight.py` fast, backgrounded: every gate through `gate_image_coverage` printed clean, 0 FAIL lines; `gate_tests` was still running past 300 seconds elapsed when this entry was written, so it is reported here as unchecked rather than guessed either way, per the correction entry just below about exactly that mistake. Ran the standing substitutes directly instead, all clean: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/en dashes, `link_graph_report.py` 0 orphans, mobile `npm test` all three suites passing.
+
+**The actual finding this cycle adds:** none of the standing fallbacks (backlog, GitHub issues, cold read ledger) have anything left unexhausted, and `preflight.py --deep`, the WCAG contrast and heading hierarchy audit, has not been run or cited anywhere in this log in over five weeks. That is a real gap in verification coverage, not a manufactured workstream, and it is the honest highest value unblocked unit of work available, ahead of repeating a "nothing new unblocked" conclusion a further time for no new reason.
+
+**Went well:** finding a concrete, not Phil-gated, not-yet-exhausted next action instead of repeating the same verified-clean conclusion again.
+
+**Did not go well:** the backgrounded fast preflight run did not finish inside this slot; left running rather than killed, so a later cycle can read its real exit code instead of guessing.
+
+**Next:** same standing Phil-gated list (issues 40, 35, 33, 31, 29, 21, 18, 15, 2), unchanged. Operator: run `preflight.py --deep` before anything else this slot.
+
+Pushed: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in correction (the full preflight finished clean after all; the sandbox-hang claim below was premature)
 
 **Correcting the entry immediately below, written the same slot, before anything else happened.** It said gate_tests had hit its documented sandbox hang, evidenced by flat CPU at 426 seconds elapsed. That evidence was real but the conclusion was premature: the backgrounded run was never killed, and it finished on its own, well past that point, with exit code 0 and every gate passed, 30 warnings, all the standing environment-access set (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no Pillow) plus one new line, hooks-enabled, which preflight.py fixed itself by setting core.hooksPath. So this is a correction, not a new finding: gate_tests does run to completion here, it is just slower than the window this cycle checked it in before writing a conclusion down. Confirmed no concurrent push landed between the two commits (git fetch, same tip both sides) and nothing else changed, so no part of the underlying "nothing new unblocked" verdict is affected, only the gate_tests characterization and the full clean preflight status it now has behind it. Nothing to ship beyond this correction; command deck unchanged from the prior commit.
