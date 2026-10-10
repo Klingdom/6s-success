@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (29th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: let the backgrounded preflight.py (pid 613, started this cycle, PYTHONIOENCODING/SIXS_UNDER_PREFLIGHT set) finish past gate_tests and read its real exit code, because every fast substitute below is already clean and nothing genuinely unblocked exists to start instead.
+
+Previous work finished: yes, independently reconfirmed, not cited. Checkout arrived shallow and detached; unshallowed and fast-forwarded 227 commits cleanly onto `origin/main` (`21f0b00ae`), no unrelated-history symptom this run, working tree clean before this cycle's own write. GitHub's 9 open issues checked live via the API directly: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs, matching every cycle today. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 entries stale. Deploy gap re-derived directly, not cited: `ops/deploy-verdict.json` resolves to build `e3d3bc8c77a83e38`, traced to commit `a582ca349` via `git log -S`, and `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`).
+
+Started `preflight.py` fresh myself under a tracked background pid rather than cite the prior cycle's run. It progressed past every per-room deck gate and is now on `gate_tests`, the same documented headless-Chromium sandbox hang every cycle today has hit. Left it running (pid 613) rather than killed or guessed, per CLAUDE.md 0.4; the fast substitutes above stand in its place for this cycle's own verdict.
+
+Nothing new unblocked. Every GitHub issue is `decision` or `blocked-on-art`, none of them mine to pick per STEP 3; the cold-read ledger is exhausted; no backlog row was found neither done nor Phil-gated; no stale claim was found to correct. This is the 29th consecutive 2026-10-10 cycle to reach that same conclusion.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY/#35 first, then the Claude Code usage/plan check) and the 9 GitHub `decision`/`blocked-on-art` issues.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, PM check-in (28th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, independently reconfirmed, not cited. Checkout arrived shallow and detached; unshallowed, fast forwarded 226 commits cleanly onto origin main, no unrelated-history symptom this run. Working tree was clean before this cycle's own dashboard write. GitHub's 9 open issues checked live via a subagent call to the API: unchanged (7 decision, 2 blocked on art), 0 open PRs, matching every cycle today. Fast gates run fresh myself: check_urls.py 211/211, fix_dashes.py --check 0 em or en dashes, audit_pages.py 215 pages/0 findings/0 duplicate titles or descriptions, cold_read_ledger.py --stale 0 of 197. Deploy gap re-derived directly against ops/deploy-verdict.json's resolved commit (a582ca349, build e3d3bc8c77a83e38): git log a582ca349..HEAD -- site/ Dockerfile is still exactly 3 commits (48a4c07c4, a40c4d2a8, 47a3f3368), unchanged, still waiting on issue #35 (VPS_DEPLOY_KEY).
