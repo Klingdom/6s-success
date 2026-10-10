@@ -188,13 +188,13 @@
     },
     "build_kit_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Read in full: _rarity() re-derivation, three-state retailer-link rendering, disclosure-order assertions, full generator wiring chain (incl. fingerprint_assets) all correct. No defect."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full, regenerated and diffed against committed site (0 diff), all 8 tier-1 products confirmed to have a WHY entry, catalogue-of-123 docstring figure confirmed against the live CSV (123 rows). No defect found."
     },
     "build_kitchen_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full, regenerated and diffed against committed site (0 diff), the hardcoded whole-kitchen KA-015/016/017/018 assertion and its 'nightly close/safety walk before any rebuild/shopping list loop/two cook treaty' sentence checked against the real built cards' titles and why_it_matters text, exact match. No defect found."
     },
     "build_kitchen_deck_pdf.py": {
       "status": "clean",
@@ -203,23 +203,23 @@
     },
     "build_laundry_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full, regenerated and diffed against committed site (0 diff), LRA-013/014/015 whole-room assertion and its sentence checked against the real cards (exact match), hero_image_url's washer-and-dryer-lg.jpg checked against disk and against that zone's own og:image (exact match). No defect found."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full (diffed structurally against build_laundry_room_deck_page.py, same template), regenerated and diffed against committed site (0 diff), LVA-013/014/015 whole-room assertion and its sentence checked against the real cards (exact match), hero_image_url's sofa-and-seating-zone-lg.jpg checked against disk and against that zone's own og:image (exact match). No defect found."
     },
     "build_manual_print.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full (1366 lines), ran it for real: all internal gates passed (0 em/en dashes, 0 brand names, 114 zone cards, 123 product types, 114 zones in map, balanced tags), 0 diff against committed output. No defect found."
     },
     "build_messy_article.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02, PM check-in. Generator correctly derives all 7 root-cause explanations from ops/root_causes.py rather than retyping them (the exact LRN-0023 drift shape), and is listed in preflight.py's GENERATOR_OWNERSHIP_CHAIN so hand edits are caught. Reran it: output byte-identical to the committed page, 0 em/en dashes, no 'Set in Order', linked twice from site/articles/index.html."
+      "date": "2026-10-10",
+      "note": "third-pass cold read, 2026-10-10 scheduled operator cycle: read in full, regenerated and diffed against committed site (0 diff), spot-checked 3 of 9 FAQ answers appear verbatim as visible prose (the rule the file's own comments require for FAQPage data). No defect found."
     },
     "build_microzone_coverage.py": {
       "status": "clean",

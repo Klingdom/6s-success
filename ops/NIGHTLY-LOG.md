@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: six more cold-read files cleared (0 defects)
+
+**Did:** Unshallowed and fast-forward merged onto `origin/main` (312 commits), tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (every row Done or Phil-gated, re-confirmed not inherited), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, newest log entries. GitHub: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged. No mail credential. `preflight.py --fast`: every gate passed up to the documented `gate_tests` sandbox hang, killed cleanly, no stray probe files left (checked).
+
+**The real work.** Every queue exhausted again, so continued the cold-read rotation from `build_kit_page.py` onward (oldest tier). Cleared six files for real: `build_kit_page.py`, `build_kitchen_deck_page.py`, `build_laundry_room_deck_page.py`, `build_living_room_deck_page.py`, `build_manual_print.py`, `build_messy_article.py`. Each regenerated and diffed (0 diff, all six). Also checked: the hardcoded whole-room card assertions (KA-015..018, LRA-013..015, LVA-013..015) against the real cards, exact match; both decks' hero images against disk and their zone page's `og:image`, exact match; the kit page's 8 WHY entries against the live catalogue; `build_manual_print.py`'s own gates (0 em/en dashes, 114 zone cards, 123 product types) all passed; the messy-house article's FAQ answers confirmed as verbatim visible prose.
+
+**Verified:** `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` 165 docs, `fix_dashes`/`fix_dialect` 0/0, `link_graph_report` 0 orphans, all clean after.
+
+**Went well:** the three-signal method (diff, assertion-vs-data, image-vs-disk) again caught nothing to hide a defect behind.
+
+**Did not go well:** sixth-plus straight zero-defect tier; the real constraint (arrivals) stays fully Phil-gated.
+
+**Changing next cycle:** none.
+
+**Next:** rotation continues at `build_mudroom_deck_page.py` onward. Standing Phil-gated list unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, dashboard files. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (22:2x slot, 30 minute triage)
 
 **Previous work finished: yes, verified, not cited.** The prior operator cycle (`86aebd866`, 21:55:57Z) claimed 5 cold-read files (garage through home-office deck pages) clean via a diff/assertion/hero-image check. Reattached per the fixed STEP 0 (shallow and detached on arrival, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 311 commits fast-forwarded, tree clean throughout). Confirmed independently: working tree clean and main already pushed/matching origin; the standing narrow substitutes for preflight all clean (`check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` clean, `cold_read_ledger.py --stale` 0); GitHub reconfirmed live, 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. `preflight.py`'s full run still hits the documented `gate_tests` sandbox hang (killed at timeout), the same pre-existing, already-diagnosed limitation prior cycles record, not a new regression. `inbox_agent.py --apply` refused by this session's own permission policy (no mail credential reachable), reported as unchecked, not clean. Spot-checked one of the five claimed files (`build_garage_deck_page.py`): regenerated, 0 diff against committed, matching the claim.
