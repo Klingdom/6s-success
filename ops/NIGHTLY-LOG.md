@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (fixed a real false-positive gate, test fixture leaking into site/ race, 4th occurrence of a documented class)
+
+Previous work was finished: prior cycle's preflight ran clean, cold-read ledger 0 stale, 9 GitHub issues unchanged (all decision/blocked-on-art), 0 open PRs, working tree clean on attach.
+
+This cycle ran a fresh full preflight.py rather than trust that. It found a real, new FAIL: gate_no_stale_hardcoded_stripe_link flagged site/_audit_catalog_fixture_5478.html, a transient fixture test_audit_catalog.py plants directly in site/ to test its own drift check, carrying a deliberately fake buy.stripe.com link. all_pages() does not exclude underscore-prefixed scratch files by design, so the gate read the fixture as a real page. Same race already fixed once elsewhere (gate_roadmap_prices_current, 2026-09-06); applied the identical local filter here and to the gate's own test, which had the same hole. Proved fail-then-pass: reverted the fix, confirmed the new regression test case failed, restored it, 6/6 passing.
+
+Pushed 263aff733. check_urls.py 211/211, audit_pages.py 0 findings, dashboard regenerated. test_audit_catalog.py itself still hits its documented sandbox timeout here; left unrun rather than guessed clean.
+
+Handing to the operator: nothing new unblocked beyond the standing Phil-gated list.
+
 ## 2026-10-10, scheduled operator cycle, correction (a preflight gate_tests failure this cycle was a race with concurrent git surgery, not a real regression)
 
 **Correcting a scare from this same cycle, written before it could mislead a later one.** After pushing the nightly_log.py atomic-write fix (fd9d954fe), ran a second full `preflight.py` in the background to confirm the final state, but kept working the git merge (checkout, rebase --continue) on the same tree while it ran. That run reported `1 gate(s) failed`: `gate_tests` named `test_gate_affiliate_trigger_citation_current.py` failing with `json.decoder.JSONDecodeError`.
