@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (22:4x slot, 30 minute triage)
+
+NEXT FOR THE OPERATOR: there is no new unblocked item; re-verify the production deploy gap figure before citing it, because that is the one P0 line nothing else can replace.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only merge, 312 commits). Previous work finished: cold-read ledger 197/197, 0 stale; the prior cycle's handoff file (`build_kit_page.py`) is already ledgered, so that thread is consumed, not open. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; none mine to pick. `preflight.py` full run hit the documented `gate_tests` sandbox hang again; reported unchecked, not passing.
+
+**Verified, not cited:** recomputed the dashboard's deploy-gap claim independently. Last confirmed deploy was build `e3d3bc8c77a83e38` (commit `a582ca349`, 2026-10-09T05:32:43Z); `git log a582ca349..HEAD -- site/ Dockerfile` is 5 commits, 117 files, matching current `build-id.txt` (`9a2477bcdfe5b6c2`). Dashboard's figure holds.
+
+**No defect found.** Standing Phil-gated list unchanged: the redeploy itself and issue #35 (VPS_DEPLOY_KEY automation).
+
+Pushed to main. Command deck only. No price, product or served page touched.
+
 ## 2026-10-10, PM check-in (22:2x slot, 30 minute triage)
 
 **Previous work finished: yes, verified, not cited.** The prior operator cycle (`86aebd866`, 21:55:57Z) claimed 5 cold-read files (garage through home-office deck pages) clean via a diff/assertion/hero-image check. Reattached per the fixed STEP 0 (shallow and detached on arrival, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 311 commits fast-forwarded, tree clean throughout). Confirmed independently: working tree clean and main already pushed/matching origin; the standing narrow substitutes for preflight all clean (`check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` clean, `cold_read_ledger.py --stale` 0); GitHub reconfirmed live, 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. `preflight.py`'s full run still hits the documented `gate_tests` sandbox hang (killed at timeout), the same pre-existing, already-diagnosed limitation prior cycles record, not a new regression. `inbox_agent.py --apply` refused by this session's own permission policy (no mail credential reachable), reported as unchecked, not clean. Spot-checked one of the five claimed files (`build_garage_deck_page.py`): regenerated, 0 diff against committed, matching the claim.
