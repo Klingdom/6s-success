@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: preflight --deep reconfirmed clean, closing the concurrent PM check-in's handoff
+
+**Did:** Picked up the concurrent `2990ef5b1` PM check-in's explicit handoff (merged in, resolved in `343b40b05`): "run `preflight.py --deep` to completion, because it has not been reconfirmed clean since the 01:15 cycle that used it to find and fix `gate_nightly_log_ordering`". Ran it to genuine completion.
+
+**Verified:** Every gate passed (including `gate_visual_audit`, the WCAG contrast/heading-hierarchy check this handoff specifically named), 31 warnings, all the same standing environment limits as the fast run earlier this cycle, no new FAIL. The two fixes the handoff was worried about (`gate_nightly_log_ordering`, and `263aff733`'s `gate_no_stale_hardcoded_stripe_link` fix) are both confirmed safe under the deep audit, not just the fast one. The `build/listings/etsy/**` files `gate_etsy_pdfs_current` regenerates mid-run to check currency left the working tree clean once the run finished (byte-identical regeneration), not a real diff.
+
+**Went well:** a genuinely concrete, non-repeated handoff from a concurrent cycle, closed out the same hour it was written.
+
+**Did not go well:** nothing.
+
+**Changing next cycle:** none.
+
+**Next:** unchanged: the standing Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, with the production deploy gap and issue #35 (`VPS_DEPLOY_KEY`) ranked first since every other shipped commit is waiting behind that one click.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle: full preflight to completion, cold-read lane confirmed exhausted, no new defect
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`) then attached cleanly to `main` and fast-forwarded onto `origin/main` (`6d12414d8`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` in full (all four "Now" sections: micro zones/app, decks, images/video), `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s current blocker, and the last several `CHECKIN-LOG.md`/`ops/NIGHTLY-LOG.md` entries. Ran `python ops/preflight.py` to genuine completion rather than trusting a partial run: every one of ~380 gates passed, 31 warnings, all the standing environment limits (no Stripe/.env.secrets, no SSH key to the VPS, no mail credential, site unreachable, Pillow absent) plus one gate that corrected a real local condition (`core.hooksPath` was unset here; the gate set it). Checked GitHub directly: 9 open issues, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs; `checks.yml` green on the current and several recent heads. `ops/cold_read_ledger.py --next` returned zero un-ledgered candidates (197 of 197 files ledgered, 0 stale), so the non-Phil-gated cold-read lane is genuinely exhausted, not merely unexamined. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked per CLAUDE.md 0.4, not empty. Regenerated the command deck (`ops/dashboard.py`): `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, clearing the `dashboard-self-description-fresh` warning preflight had just raised (one real commit had landed since the dashboard's last regeneration).
