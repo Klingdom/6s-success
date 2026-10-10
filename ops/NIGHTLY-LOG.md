@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (cold-read of ops/nightly_log.py itself, atomic-write fix proven against its own regression)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fetched origin main, checkout main, merge --ff-only fast-forwarded 181 commits cleanly onto 23a5508ad. Working tree clean before and after.
+
+**Read state:** BACKLOG-2026-09-07.md, STATUS.md, ROADMAP-2026-2029.md, CLAUDE.md, and the last several ops/NIGHTLY-LOG.md entries (via a sub-agent for the large files, independently re-verified below). GitHub's 9 open issues read directly: unchanged, all decision or blocked-on-art, 0 open PRs.
+
+**Verified independently, not inherited:** ran python ops/preflight.py to full completion (not timeout-wrapped): exit 0, every gate passed, 30 warnings, all standing sandbox limits (no Stripe credential, no mail credential, no SSH deploy key, no Pillow, no network egress to the live site). python ops/cold_read_ledger.py --stale: 0 stale. check_urls.py 211/211, audit_pages.py 215 pages/0 findings, affiliate.py --check 165 documents clean, fix_dashes.py --check 0/0, link_graph_report.py 0 orphans, mobile npm test all 4 suites passing. inbox_agent.py --apply: no mail credential, reported unchecked.
+
+**The one genuinely new, non-Phil-gated unit of work this cycle found:** cold_read_ledger.py --next showed 196 of 197 files ledgered, with exactly one un-ledgered candidate: ops/nightly_log.py, built by the operator cycle immediately before this one (the fix for the recurring append-instead-of-prepend defect) and never itself cold-read.
+
+**Cold-read finding, fixed:** the tool's main() wrote NIGHTLY-LOG.md by opening it directly in "w" mode, which truncates the file before the new content is written. A crash mid-write (disk full, kill, container eviction) between truncation and completion would have corrupted the one file this operating prompt calls the only reliable account of what has been tried, the exact failure mode this tool exists to prevent for a different defect class. Fixed with a write-to-temp-file-then-os.replace atomic rename, so the real path is only ever replaced by a fully-written file.
+
+**Proved the fix and the test, not just asserted them.** Added two cases to ops/tests/test_nightly_log.py (5/5 to 7/7): one exercises main() end to end against a real file; the other monkeypatches io.open to fail the temp-file write (simulating disk full) and asserts the real log file comes out byte-identical to before, with no stray .tmp left. Confirmed the new test is not theatre by reverting the atomic-write fix, watching it fail with the exact defect it describes ("real log file changed even though the write failed before the rename"), then restoring the fix and watching it pass again, 7/7.
+
+**Went well:** the cold-read ledger surfaced real, fresh, un-exhausted work instead of another "nothing unblocked" conclusion; the fix was proven against its own regression rather than assumed correct from reading the diff.
+
+**Did not go well:** nothing new; same standing Phil-gated list as every recent cycle.
+
+**Changing next cycle:** none; this is a first occurrence of this defect class, not a third recurrence, so no new preflight gate is warranted per CLAUDE.md 10b, only the direct regression test added above.
+
+**Next:** same standing Phil-gated list in OWNER-ACTIONS.md and GitHub issue #40's context (already resolved, re-verified). Highest-value unblocked item remains none in the backlog; a fresh cold-read ledger check or a drift re-read of an already-ledgered file is the honest next unit of work.
+
+Pushed to main. ops/nightly_log.py, ops/tests/test_nightly_log.py, ops/cold-read-ledger.json, command deck (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, handoff to operator)
 
 **NEXT FOR THE OPERATOR: there is no new unblocked item, because the cold-read ledger is fully exhausted (0 stale) and all 9 open GitHub issues are owner-gated (decision or blocked-on-art); if headroom remains, re-read an already-ledgered file for drift regression rather than starting a fresh sweep.**

@@ -96,12 +96,67 @@ def main() -> int:
         finally:
             preflight.ROOT = old_root
 
+    # 6. main() writes via a temp file + rename, never truncating the real
+    #    path directly, so a crash mid-write cannot leave it empty.
+    with tempfile.TemporaryDirectory() as tmp3:
+        path3 = _write(tmp3, HEADER + "\n" + EXISTING)
+        old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
+        sys.argv = ["nightly_log.py", "--title", "C: third call",
+                    "--body", "**Did:** c."]
+        nightly_log.LOG_PATH = path3
+        try:
+            rc = nightly_log.main()
+        finally:
+            sys.argv, nightly_log.LOG_PATH = old_argv, old_log_path
+        if rc != 0:
+            fails.append("main() returned nonzero on a valid call: %r" % (rc,))
+        if os.path.exists(path3 + ".tmp"):
+            fails.append("main() left a .tmp file behind after a successful write")
+        final_text = io.open(path3, encoding="utf-8").read()
+        if "## C: third call" not in final_text or "**Did:** older work." not in final_text:
+            fails.append("main()'s written file is missing content: %r"
+                          % (final_text[:300],))
+
+    # 7. Proving the crash-safety property itself: if the temp-file write
+    #    fails partway (disk full, kill -9), the real path must come out
+    #    byte-identical to before, never truncated.
+    with tempfile.TemporaryDirectory() as tmp4:
+        path4 = _write(tmp4, HEADER + "\n" + EXISTING)
+        before = io.open(path4, encoding="utf-8").read()
+        old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
+        sys.argv = ["nightly_log.py", "--title", "D: crash", "--body", "**Did:** d."]
+        nightly_log.LOG_PATH = path4
+        real_open = io.open
+
+        def failing_open(path, *a, **kw):
+            mode = a[0] if a else kw.get("mode", "r")
+            if path == path4 + ".tmp" and "w" in mode:
+                raise OSError("simulated disk full")
+            return real_open(path, *a, **kw)
+
+        io.open = failing_open
+        try:
+            try:
+                nightly_log.main()
+                fails.append("main() swallowed a write failure instead of raising")
+            except OSError:
+                pass
+        finally:
+            io.open = real_open
+            sys.argv, nightly_log.LOG_PATH = old_argv, old_log_path
+        after = io.open(path4, encoding="utf-8").read()
+        if after != before:
+            fails.append("real log file changed even though the write failed "
+                          "before the rename: %r" % (after[:300],))
+        if os.path.exists(path4 + ".tmp"):
+            fails.append("a failed write left a .tmp file behind")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: ops/nightly_log.py, 5/5 checks pass")
+    print("OK: ops/nightly_log.py, 7/7 checks pass")
     return 0
 
 

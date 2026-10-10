@@ -82,7 +82,10 @@ def main() -> int:
         print("Refusing to prepend an empty entry body.", file=sys.stderr)
         return 1
     new_text = prepend_entry(LOG_PATH, args.title, body)
-    io.open(LOG_PATH, "w", encoding="utf-8").write(new_text)
+    # Write-then-rename so a crash mid-write cannot truncate the real log.
+    tmp_path = LOG_PATH + ".tmp"
+    io.open(tmp_path, "w", encoding="utf-8").write(new_text)
+    os.replace(tmp_path, LOG_PATH)
     print("Prepended %r to %s" % (args.title, LOG_PATH))
     return 0
 

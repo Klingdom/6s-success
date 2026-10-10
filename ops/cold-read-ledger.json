@@ -631,6 +631,11 @@
       "date": "2026-10-09",
       "note": "Re-read in full per second-pass handoff. The 2026-09-25 refuse-to-write-on-dangling-link-or-dash fix still intact; KNOWN_AMBIGUOUS_DUPES handling and the unexplained-duplicate-title check both read correctly. test_merge_cardtext_refuses_on_defect.py passes (6/6 plus real committed batches). No new defect found."
     },
+    "nightly_log.py": {
+      "status": "fixed",
+      "date": "2026-10-10",
+      "note": "Cold-read: implementation sound and tested (5/5), but main() wrote NIGHTLY-LOG.md directly in 'w' mode, truncating it before the write completed; a crash mid-write (disk full, kill) would have corrupted the one file this log calls the only reliable account of what has been tried. Fixed with write-to-temp-then-os.replace atomic rename. Added two tests (now 7/7): one exercising main() end to end, one simulating the write failure and proving the real file is left byte-identical. Proved the new test actually catches the regression by reverting the fix, watching it fail, then restoring it."
+    },
     "optimize_sample_pdf.py": {
       "status": "clean",
       "date": "2026-10-09",
