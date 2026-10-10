@@ -56,7 +56,19 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Released 2026-10-10, scheduled operator cycle:
+**None currently open.** Updated 2026-10-10, scheduled operator cycle: with
+the backlog, cold-read ledger, GitHub issues and mail all confirmed
+exhausted, this cycle read `ops/keyword-demand.json`'s `gap` tier end to
+end and found a real, measured misattribution (`BACKLOG-2026-09-07.md`
+A25): all 5 "master bath(room) vanity/counter" queries scored against
+Guest Bathroom's own vanity-counter zone instead of Primary Bathroom's,
+because `ops/keyword_demand.py`'s tie-break favours the alphabetically
+earlier URL on a near-identical title match. Fixed with the established
+`zone-also-called` mechanism, one zone page edited, verified against the
+real scorer (gap tier 201 to 200) and the full standard suite, no price
+or product touched. Full account in `ops/NIGHTLY-LOG.md` this date.
+
+**Released 2026-10-10, scheduled operator cycle (earlier same day):**
 cold-read the next oldest-ledgered tier (`ops/build_articles.py`,
 `ops/build_deck_gallery.py`, `ops/build_dining_room_deck_page.py`,
 `ops/build_entryway_deck_page.py`, `ops/build_family_room_deck_page.py`),

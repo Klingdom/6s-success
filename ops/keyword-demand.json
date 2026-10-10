@@ -37246,10 +37246,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "master bathroom cabinet organization",
@@ -37466,10 +37466,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "master bedroom closet organization ideas",
@@ -51623,5 +51623,7 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ]
+  ],
+  "scored_at": "2026-10-10T20:02:38Z",
+  "scored_against_commit": "fd0244167"
 }
