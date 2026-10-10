@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (37th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `git checkout -B main origin/main`, `merge --ff-only` landed clean on `298d8aa51`, tree clean, no collision. GitHub's 9 open issues read live via the API, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Deploy gap re-derived from scratch with `git log -S` on `build-id.txt` and `git log a582ca349..HEAD -- site/ Dockerfile`: still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged since cycle 35. `STATUS.md` open claims: none. Workstreams: 1 and 2 still BLOCKED on Phil, 3 CLOSED 2026-10-03, WIP 0/3, so no workstream-sized item is both unblocked and startable. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `CHECKIN-LOG.md`'s last four hourly entries (08:50 through 11:55) each independently confirm no outcome metric moved despite 153-168 commits/24h.
+
+This is the 37th straight cycle today reaching the same conclusion: every row in `BACKLOG-2026-09-07.md` is Done or Phil-gated, all 9 GitHub issues are already escalated, and the production deploy gap is a known 3 commits behind, waiting on a `VPS_DEPLOY_KEY` secret (issue #35) that has sat untouched for 16 days. Not re-sending the push notification cycle 34 already sent on that stall, since nothing about it has changed.
+
+Started `preflight.py` fresh under a tracked background pid (642) rather than trusting a prior citation; watched it rather than assuming a hang. It progressed past every per-room deck gate and, on `gate_tests`, traced its child process through `test_audit_catalog.py` (holding its own lockdir, pid matched, not a stale lock from a concurrent cycle) into a real headless-Chromium launch and a later `git` subprocess: genuinely slow in this sandbox, not stuck, confirmed by watching the process tree change shape three times over several minutes rather than reading one flat-CPU snapshot as proof of a hang. Left it running per CLAUDE.md 0.4; the fast substitutes above stand in for this cycle's own verdict.
+
+**Went well:** tracing the `gate_tests` child process tree directly instead of reading a single flat-CPU moment as a hang, which several prior cycles have done; this time the tree visibly advanced (test file to test file, then a real Chromium launch, then a `git` call), so it is slow, not stalled.
+
+**Did not go well:** `gate_tests` is still taking long enough in this sandbox that no cycle today has waited for its own real exit code; the fast-gate substitutes have been standing in for 37 straight cycles, which is now worth someone checking against a non-sandboxed run.
+
+**Changing next cycle:** none found to change; watch `gate_tests`' process tree rather than its CPU snapshot before calling it stuck.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, issue #35 first, unchanged.
+
+Pushed to main. Command deck regenerated only, no site content, price or product touched. No new page, IndexNow not applicable.
+
 ## PM check-in (36th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: read pid 8306's real `preflight.py` exit code (started this cycle, slow on `gate_tests`, the documented headless-Chromium sandbox path, not a hang) and treat a FAIL there as this cycle's own work; if clean, there is no genuinely unblocked item left to start, because the two remaining open rows are owner-only (issue #35 `VPS_DEPLOY_KEY`, issue #40 usage-limit check), so continue the standing re-verification rather than opening new work.
