@@ -22019,10 +22019,26 @@ def check_payment_links_nofollow(page_bodies) -> list:
 
 
 def gate_payment_links_nofollow() -> None:
-    """No shipped page may hand a crawler a followable checkout link."""
+    """No shipped page may hand a crawler a followable checkout link.
+
+    Found 2026-10-10: this gate needs the same local filter
+    `gate_no_stale_hardcoded_stripe_link` already carries against a stray
+    site/**/_*.html scratch file. `test_audit_catalog.py`'s own
+    `_audit_catalog_fixture_<pid>.html` is planted directly in `site/` and
+    contains a deliberately fake buy.stripe.com link with no rel attribute,
+    to test `audit_catalog.py`; a run of that test overlapping this gate's
+    own scan (two concurrent sessions sharing this sandbox, or this gate and
+    that test inside one `preflight.py` process) makes the fixture's planted
+    fake link look like a real followable checkout link. No real page
+    anywhere in site/ starts with an underscore (same check
+    `gate_no_stray_probe_files` already makes), so filtering the prefix here
+    costs nothing real.
+    """
     bodies = {}
     for fp in sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
                                recursive=True)):
+        if os.path.basename(fp).startswith("_"):
+            continue
         try:
             bodies[os.path.relpath(fp, SITE).replace("\\", "/")] = \
                 io.open(fp, encoding="utf-8", errors="replace").read()

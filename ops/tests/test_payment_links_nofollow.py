@@ -109,6 +109,33 @@ def case_site_js_shop_button_carries_nofollow():
         assert "nofollow" in m.group(0), m.group(0)
 
 
+def case_stray_underscore_fixture_does_not_false_fail_the_gate():
+    """Reproduce the 2026-10-10 false positive directly.
+
+    A concurrent test_audit_catalog.py run's own
+    _audit_catalog_fixture_<pid>.html is planted in the real site/
+    directory with a deliberately fake, non-nofollowed buy.stripe.com
+    link, to test audit_catalog.py. gate_payment_links_nofollow()'s own
+    glob over site/**/*.html did not exclude it, so that fixture made a
+    real preflight run report a followable payment link that was never
+    shipped. Calls the real gate function, not the pure checker, because
+    the bug was in how the gate assembles `bodies`, not in
+    check_payment_links_nofollow() itself.
+    """
+    fixture_path = os.path.join(ROOT, "site", "_audit_catalog_fixture_999999999.html")
+    saved_fail = list(P.FAIL)
+    try:
+        io.open(fixture_path, "w", encoding="utf-8").write(
+            '<a href="%s">Buy</a>' % PAY)
+        P.FAIL.clear()
+        P.gate_payment_links_nofollow()
+        assert P.FAIL == [], P.FAIL
+    finally:
+        if os.path.exists(fixture_path):
+            os.remove(fixture_path)
+        P.FAIL[:] = saved_fail
+
+
 def main() -> int:
     cases = [v for k, v in sorted(globals().items()) if k.startswith("case_")]
     for c in cases:
