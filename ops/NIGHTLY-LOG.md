@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (second-pass cold read, 11 files, no defect found)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 261 commits fast-forwarded. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`'s top section, and the last several `NIGHTLY-LOG.md` entries. Delegated a genuine second-pass cold read of the 11 longest-overdue ledger files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last checked 2026-09-30) to a subagent instructed to run every live check or test, not just read.
+
+**Verified, independently:** GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. Confirmed `deploy.yml` run 196's own Deploy step is still `skipped`: VPS_DEPLOY_KEY/issue #35 remains genuinely unset, not assumed. No mail credential. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), mobile `npm test` all 3 suites pass. CI green on main's latest commit (`checks.yml` run 2006). All 11 cold-read files' live checks/tests reran and passed; no regression against prior notes; one cosmetic-only observation (`wire_footer.py` has no real `--check` flag, unlike its siblings) noted, not fixed, since nothing depends on it having one.
+
+**Went well:** independent re-verification matched every standing claim; the delegated cold read ran real live checks against the repo, not just a read-through.
+
+**Did not go well:** `preflight.py --fast`'s `gate_tests` still hangs in this sandbox on headless Chromium, the same documented limit every cycle today has hit; left running in the background, not claimed finished.
+
+**Changing next cycle:** none new.
+
+**Next:** same Phil-gated list, `VPS_DEPLOY_KEY`/issue #35 first. Continue the second-pass cold read into the next-oldest ledger tier (files dated 2026-10-01).
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in
 
 Previous work finished: yes, re-verified independently. Reattached clean onto `2a064dfed` (shallow+detached, unshallowed, ff-only), tree clean, no collision.

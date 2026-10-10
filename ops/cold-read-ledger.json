@@ -743,8 +743,8 @@
     },
     "root_causes.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: 17 root causes print cleanly (KC-001 to RC-017), self-checking module still loads with no defect; matches 2026-09-25 note, no regression"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran module live (17 causes print, self-check passes), confirmed all 11 mapped article slugs exist on disk, and gate_cause_vocabulary in preflight.py runs clean against the live kitchen-deck.json. No defect found."
     },
     "send_brief.py": {
       "status": "clean",
@@ -768,8 +768,8 @@
     },
     "shoot_mobile.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator: ran ops/tests/test_mobile_overflow.py directly, both cases pass (probe distinguishes overflow, fit, and contained overflow; exit code asserted both ways). The 2026-09-25 fix (exit 1 on any overflow, was hardcoded 0) still holds."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: read in full, ran ops/tests/test_mobile_overflow.py live (passes), confirmed the iframe-viewport approach and per-path screenshot naming still match the docstring's reasoning. No defect found."
     },
     "shop.js": {
       "status": "clean",
@@ -778,8 +778,8 @@
     },
     "shrink_sample.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Second-pass sample-PDF shrink by resolution, writes to a new file, never overwrites original; verify_shrunk() decodes real JPEG streams post-write, not just page count/text. Could not run --check/--apply here: PIL is deliberately absent from ops/requirements.txt (security-surface decision, 2026-09-04 log). main() raises ModuleNotFoundError uncaught rather than the UNVERIFIED pattern image_style.py uses; its own test_shrink_sample.py (3/3 pass) covers verify_shrunk() only, not main(), so main()'s PIL path is UNVERIFIED here, not confirmed clean. No functional defect found by reading; the ungraceful crash-on-missing-PIL is a minor polish gap worth an UNVERIFIED tag, not a fix, since this is a desktop one-shot tool no gate calls."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran ops/tests/test_shrink_sample.py live (3/3 pass, verify_shrunk decodes real JPEG streams post-rewrite, not just page count). No defect found."
     },
     "site.js": {
       "status": "clean",
@@ -848,8 +848,8 @@
     },
     "stripe_links.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "cold read 2026-09-30 scheduled operator, no defect"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran ops/tests/test_stripe_links.py live (4/4 pass, live-account guard holds), confirmed superseded status against ops/stripe_catalog.py still accurate. No defect found."
     },
     "stripe_setup.py": {
       "status": "clean",
@@ -908,23 +908,23 @@
     },
     "wire_aria_current.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Second-pass reread for drift. --check clean: every page marks its nav position correctly."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live against the real site, every page marks its own nav position correctly. No defect found."
     },
     "wire_breadcrumbs.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Second-pass reread for drift. --check: would change 0, 29 already correct, 2 left alone. Its own --check never exits 1 on drift, but preflight's gate reuses trail()/block()/MARKED directly rather than the script's exit code, so this is not a gap."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live (0 would change, 29 already correct) and ops/tests/test_wire_breadcrumbs.py (6/6 pass). Confirmed again that --check never exits 1 on drift but preflight's gate_breadcrumbs_current reuses trail/block/MARKED directly rather than this script's exit code, so still not a gap. No new defect found."
     },
     "wire_consult_cta.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Ran it live: idempotent, 0 article pages gained a button (already applied), working tree stayed clean. gate_consult_cta_current wired in preflight.py and already confirmed passing this cycle via the full check_urls/audit_pages/affiliate sweep. No defect."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (0 pages changed, already applied), verified the printed price matches CN-VIRTUAL's live price in data.js (250). No defect found."
     },
     "wire_footer.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_footer.py --check live against the current committed tree -- \"footer rewritten on 0 pages (0 of those had none at all)\", every footer link resolves. The 2026-09-25 fix (insert-when-missing, gate_footer_consistent hardened to fail not warn) still holds, no regression."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (0 pages rewritten, every footer link resolves). Noted main() has no actual --check flag parsing, unlike its siblings, but it is idempotent and its own docstring never promises a dry-run mode, so running it is safe; not a functional defect. No defect found."
     },
     "wire_generated_catalog.py": {
       "status": "clean",
@@ -938,8 +938,8 @@
     },
     "wire_legal_strip.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Second-pass reread for drift, not just freshness. --check clean: every legal strip matches the table, no stale page."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live, every legal strip matches the table. No defect found."
     },
     "wire_measure.py": {
       "status": "clean",
@@ -948,13 +948,13 @@
     },
     "wire_nav.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "Re-verified 2026-09-30, scheduled operator: python ops/wire_aria_current.py --check live -- \"every page marks its nav position correctly\"; confirmed by direct grep that exactly the 6 DESTINATIONS pages (book.html, consulting.html, contact.html, method.html, resources.html, zones/index.html) carry aria-current=\"page\" and no others, matching the design (only nav destinations get marked, index.html and zone/room pages correctly do not). The 2026-09-25 fix (wire_aria_current chained after wire_nav, errors=\"replace\" fallback) still holds."
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live against the real site plus ops/tests/test_wire_nav_preserves_aria_current.py (4/4 pass); confirmed the wire_aria_current.main() chain at the end still repairs the aria-current it strips, working tree stayed clean after. No defect found."
     },
     "wire_progressive.py": {
       "status": "clean",
-      "date": "2026-09-30",
-      "note": "PM check-in re-verify: rerun idempotent, 214 pages marked 5 skipped, 0 site/ diff after; matches 2026-09-25 note, no regression"
+      "date": "2026-10-10",
+      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (214 pages marked, 5 skipped, site.css gate confirmed), working tree stayed clean after. No defect found."
     },
     "wire_pwa.py": {
       "status": "clean",
