@@ -4,7 +4,7 @@
 
 **Harvested:** 2026-10-09T04:06:01Z from google, bing, 151 seeds, 302 attempts: 262 returned completions, 40 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-10T20:02:38Z against 218 page(s) at commit fd0244167. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-10T20:54:34Z against 218 page(s) at commit 17b7c6655. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
 **Queries found:** 2822. Checked against 218 published page titles: 1141 covered, 1481 partial, 200 gap.
 
@@ -39,7 +39,7 @@ Showing the top 80 of 200, ordered by the best rank the phrase reached in any on
 | 3 | basement organization ideas reddit | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
-| 3 | draw a larder organization chart | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) |
 | 3 | how to arrange golu steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.25) |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -47,7 +47,7 @@ Showing the top 80 of 200, ordered by the best rank the phrase reached in any on
 | 3 | unfinished basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | attic storage ideas for clothes | - | More storage will not fix a messy room (0.33) |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
-| 4 | foyer design ideas photos | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 4 | foyer design ideas photos | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 4 | how to arrange hotel bed | - | How to organize the guest bedroom bed and linens (0.33) |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
@@ -58,7 +58,7 @@ Showing the top 80 of 200, ordered by the best rank the phrase reached in any on
 | 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) |
 | 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | dental organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) |
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
 | 5 | how to organize a garage sale quickly | Garage | The Garage Deck: 80 cards, free to read (0.33) |
@@ -88,7 +88,7 @@ Showing the top 80 of 200, ordered by the best rank the phrase reached in any on
 | 8 | back porch society | - | Why your family won't put things back where they belong (0.33) |
 | 8 | basement storage ideas minecraft | - | More storage will not fix a messy room (0.33) |
 | 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
-| 8 | foyer design ideas pinterest | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 8 | foyer design ideas pinterest | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to attach countertop to vanity | - | How to organize the guest bathroom vanity counter (0.33) |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -96,7 +96,7 @@ Showing the top 80 of 200, ordered by the best rank the phrase reached in any on
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
 | 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to plan a workshop templates | Workshop | Venture plan (0.33) |
+| 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) |
 | 8 | how to store extra blankets | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 8 | stove on floor plan | - | Venture plan (0.33) |
@@ -156,7 +156,7 @@ Showing the top 60 of 1481.
 | 1 | primary bedroom design ideas | The Primary Bedroom Deck: 66 cards, free to read | 0.67 |
 | 1 | stair landing design ideas | How to organize a stair landing, zone by zone | 0.67 |
 | 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
-| 2 | bonus room storage | More storage will not fix a messy room | 0.67 |
+| 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 2 | declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 2 | family room layout ideas | The Family Room Deck: 69 cards, free to read | 0.67 |

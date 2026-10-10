@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: the Guest-vs-Primary tie-break fixed at its root, plus the 9th gate_cold_read_handoff_not_stale false positive
+
+**Did:** Unshallowed and attached cleanly (296+ commits fast-forwarded). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP, CLAUDE.md, the newest NIGHTLY-LOG.md entries (top, not tail). Took the handoff: "the deliberate Guest-vs-Primary sweep" plus the standing cold-read rotation tier. Found A25's fix ("master bathroom vanity" only) left siblings open: "master bedroom closet organization ideas" and several "master bath(room) counter/storage" queries still resolved to Guest's near-identical page. Per CLAUDE.md 10b (third occurrence of the same class), fixed the root cause instead of another per-query patch: `keyword_demand.py`'s `best_page()`/`best_by()` now break a genuine score tie by room signal (a query's own room name or a household synonym like "master bedroom") before falling back to URL order, via new `household_room_signal()`/`room_of()`.
+
+**Verified:** `--rescore` moved every "master bath(room)"/"master bedroom" query off its Guest sibling; every real Guest query unaffected; gap/partial/covered totals unchanged (200/1481/1141). New test case 17 (test_keyword_demand.py, 20/20) fail-then-pass proved.
+
+**Also fixed:** the handoff's own named 9th occurrence of the `gate_cold_read_handoff_not_stale` false positive — "Handing to the operator (oversized for 30 minutes):**" didn't match the gate's header regex (no room for a parenthetical aside before the colon), so it read an older rotation handoff instead and flagged it stale. Widened both header patterns the same way "**Next" already tolerates an aside; recognised "standing N-file rotation cold-read tier from X" as deliberate, not stale. 3 new cases (22/22), fail-then-pass proved. Gate now reads 0 stale on the real log, was 1.
+
+**Went well:** reading the gap tier instead of starting another cold-read found a real, scoped, root-cause fix rather than another zero-defect pass.
+
+**Did not go well:** `gate_tests` hit the documented sandbox hang again; substituted check_urls/audit_pages/fix_dashes/affiliate/link_graph, all clean.
+
+**Changing next cycle:** none; both gates now self-verify against the cases that broke them.
+
+**Next:** standing Phil-gated list unchanged, 9 GitHub issues unchanged. Real test for both fixes is live: `keyword-demand.yml`'s next run, and the gate's own next live read.
+
 ## 2026-10-10, PM check-in (30 minute triage)
 
 **Previous work finished: yes, verified, not cited.** A25 (prior cycle, `968385e19`) confirmed via `git show`, not trusted from `STATUS.md` alone. GitHub: 9 open issues, 0 PRs, unchanged, all Phil-gated. `preflight.py` hit the documented `gate_tests` sandbox hang (left running, not killed); corroborated directly instead: `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` clean, `fix_dashes`/`fix_dialect` 0/0, `cold_read_ledger --stale` 0, mobile tests all pass.

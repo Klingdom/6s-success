@@ -17676,6 +17676,43 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     must start its own line to match) and so fell through to this
     entry. Stripped the same "cite, don't hand off" way as the two
     patterns just above.
+
+    Found live 2026-10-10 (second time, the ninth of this class, and a
+    different shape from the first eight): "the standing 37-file
+    rotation cold-read tier from `build_garage_deck_page.py`" is not a
+    mistaken pointer at an already-covered file, it is the established
+    second/third-pass re-verification queue this log's own entries
+    already use by name ("second-pass cold read", "third-pass cold
+    read"), and every file eligible for it is, by definition, already
+    ledgered clean or fixed: the ledger reached 197 of 197 on 2026-10-02
+    and new candidates ran out, so "already in the ledger" stopped
+    meaning "stale handoff" for this one phrasing the day the rotation
+    model started. The first eight fixes were all "cite, don't hand
+    off"; this one is "hand off, on purpose, to a file the ledger is
+    SUPPOSED to already list", which the plain membership check above
+    cannot tell apart from an accidental repeat. Stripped by name
+    before extraction, the same as the other deliberate non-candidates.
+
+    Found live 2026-10-10 (third time, the real cause of the ninth
+    occurrence above, not just the rotation phrasing): the newest
+    entry's own header was "**Handing to the operator (oversized for 30
+    minutes):**", a parenthetical aside between "operator" and the
+    closing "**" that the header regex, hardcoded to require "operator:"
+    immediately before "**", could not match at all. With the true
+    newest block invisible, `addresses_a_file` stayed False for it and
+    the search fell through two blocks to an older, differently-worded
+    but equally legitimate rotation handoff ("continue the 2026-10-02
+    cold-read tier starting at `build_garage_deck_page.py` (37 files
+    tied oldest...)"), which the rotation-phrase strip above does not
+    cover (different wording) and so still read as stale. The "**Next"
+    alternative already tolerates an arbitrary aside before its closing
+    "**" (`[^*\n]*`, fixed 2026-09-27 for exactly this shape); the two
+    "Handing to operator" alternatives never received the same fix.
+    Widened both the same way: "operator" may now be followed by
+    anything up to the closing "**" or the colon, not only a bare
+    colon. Once the true newest block is recognised, it is
+    authoritative and the older block's different wording is correctly
+    superseded without needing its own strip.
     """
     name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
                r"([A-Za-z0-9_]+\.(?:py|js))`")
@@ -17686,8 +17723,8 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
         addresses_a_file = False
         for m in re.finditer(
                 r"(?m)^(?:\*\*Next\b[^*\n]*\*\*|NEXT FOR[^:\n]*:|"
-                r"\*\*Handing to (?:the )?operator:\*\*|"
-                r"Handing to (?:the )?operator:)"
+                r"\*\*Handing to (?:the )?operator\b[^*\n]*\*\*|"
+                r"Handing to (?:the )?operator\b[^:\n]*:)"
                 r".*(?:\n(?!\n).*)*", block):
             raw = m.group(0)
             # A name mentioned anywhere in the raw line, even one that
@@ -17735,6 +17772,19 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
             live = re.sub(
                 r"(?:the )?(?:still[- ]running|backgrounded|"
                 r"currently running) `[^`]*`",
+                "", live, flags=re.I)
+            # Found live 2026-10-10 (second time): "the standing 37-file
+            # rotation cold-read tier from `build_garage_deck_page.py`"
+            # deliberately hands off a re-read of a file the ledger
+            # already lists, because the rotation model only ever
+            # revisits already-ledgered files (new candidates ran out
+            # at 197 of 197). Being ledgered is the precondition for
+            # this phrasing, not evidence against it, so it is stripped
+            # the same "cite, don't hand off" way as the patterns above
+            # rather than left to trip the plain membership check below.
+            live = re.sub(
+                r"(?:the )?standing \d+-file rotation cold-read tier "
+                r"from `[^`]*`",
                 "", live, flags=re.I)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger

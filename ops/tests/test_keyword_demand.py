@@ -315,6 +315,58 @@ def main():
     finally:
         kd.harvest, kd.write_outputs, kd.build_seeds, kd.canary_ok = saved
 
+    # 17. The alphabetical tie-break silently favoured "Guest X" over its
+    #     "Primary X" sibling on any query that did not name a room of ours
+    #     literally, found live 2026-10-10 via "master bedroom closet
+    #     organization ideas" resolving to Guest Bedroom's closet page. A
+    #     room signal, including a household synonym like "master bedroom",
+    #     must now win a genuine tie over url order.
+    rooms = ["Guest Bedroom", "Primary Bedroom"]
+    synonyms = {"Primary Bedroom": ["master bedroom"]}
+    inv = [
+        {"url": "/zones/guest-bedroom-the-guest-closet.html",
+         "title": "How to organize the guest bedroom closet",
+         "words": set(kd.words("How to organize the guest bedroom closet")),
+         "room": "Guest Bedroom"},
+        {"url": "/zones/primary-bedroom-the-primary-closet.html",
+         "title": "How to organize the primary bedroom closet",
+         "words": set(kd.words("How to organize the primary bedroom closet")),
+         "room": "Primary Bedroom"},
+    ]
+    signal = kd.household_room_signal(
+        "master bedroom closet organization ideas", rooms, synonyms)
+    if signal != "Primary Bedroom":
+        fails.append("household_room_signal missed the synonym: %r" % signal)
+    page, score = kd.best_page(
+        "master bedroom closet organization ideas", inv, signal)
+    if page["url"] != "/zones/primary-bedroom-the-primary-closet.html":
+        fails.append("best_page still favoured Guest on a synonym tie: %r"
+                     % (page,))
+    # A query that genuinely is about the guest room must still win on its
+    # own word match, signal or not: the fix must not invert the pair.
+    page, score = kd.best_page(
+        "guest bedroom closet organization ideas", inv, signal)
+    if page["url"] != "/zones/guest-bedroom-the-guest-closet.html":
+        fails.append("best_page wrongly moved a real Guest query to Primary: %r"
+                     % (page,))
+    # With no room signal at all, url order must still decide, unchanged
+    # from case 10 above: this is the regression a careless fix could cause.
+    page, score = kd.best_page("how to organize a bedroom closet", inv, "")
+    if page["url"] != "/zones/guest-bedroom-the-guest-closet.html":
+        fails.append("best_page tie-break changed with no room signal: %r"
+                     % (page,))
+    # room_of must recover the right room from a page's own URL for every
+    # shape this site actually uses: a zone page, a deck page and a room
+    # page, and must not match a room whose slug is merely a substring.
+    for url, want in (("/zones/guest-bathroom-the-guest-vanity-counter.html",
+                       "Guest Bathroom"),
+                      ("/primary-bathroom-deck.html", "Primary Bathroom"),
+                      ("/rooms/guest-bedroom.html", "Guest Bedroom"),
+                      ("/articles/why-is-my-house-always-messy.html", "")):
+        got = kd.room_of(url, rooms + ["Guest Bathroom", "Primary Bathroom"])
+        if got != want:
+            fails.append("room_of(%r) was %r, wanted %r" % (url, got, want))
+
     if fails:
         print("FAIL")
         for f in fails:

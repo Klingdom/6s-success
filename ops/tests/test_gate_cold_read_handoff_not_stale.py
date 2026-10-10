@@ -369,6 +369,63 @@ def main() -> int:
         fails.append("a 'backgrounded `X`' handoff was wrongly flagged: "
                      "%r" % stale)
 
+    # 12. A genuine "standing N-file rotation cold-read tier from `X`"
+    #     handoff must not be flagged, even though `X` is ledgered clean:
+    #     being ledgered is the precondition for entering the rotation
+    #     (every un-ledgered candidate ran out at 197 of 197), not
+    #     evidence the handoff is stale. Found live 2026-10-10 (second
+    #     time): "the standing 37-file rotation cold-read tier from
+    #     `build_garage_deck_page.py`" tripped the plain membership check.
+    log_rotation = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-10-10\n\n"
+        "**Handing to the operator:** the standing 37-file rotation "
+        "cold-read tier from `build_feed.py`; the deliberate sweep.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_rotation, LEDGER)
+    if stale:
+        fails.append("a 'standing N-file rotation cold-read tier from "
+                     "`X`' handoff was wrongly flagged as stale: %r"
+                     % stale)
+    # And a genuinely fresh, non-rotation name in the SAME block must
+    # still be caught: this strip must not blind the gate to a real
+    # stale candidate sitting right next to a legitimate rotation one.
+    log_rotation_plus_stale = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-10-10\n\n"
+        "**Handing to the operator:** the standing 37-file rotation "
+        "cold-read tier from `build_feed.py`; also re-check "
+        "`canonical_links.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_rotation_plus_stale, LEDGER)
+    if set(stale) != {"canonical_links.py"}:
+        fails.append("the rotation strip swallowed an adjacent real "
+                     "stale candidate: %r" % stale)
+
+    # 13. "**Handing to the operator (oversized for 30 minutes):**" must
+    #     be recognised as a live handoff header, same as the plain
+    #     "**Handing to the operator:**" form: a parenthetical aside
+    #     between "operator" and the closing "**" must not blind the
+    #     gate to the true newest block. Found live 2026-10-10 (third
+    #     time): the real newest entry used this exact header and the
+    #     gate, unable to match it, fell through to an older, different-
+    #     worded rotation handoff two blocks back and flagged it stale.
+    log_aside_header = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-10-10\n\n"
+        "**Handing to the operator (oversized for 30 minutes):** the "
+        "standing 37-file rotation cold-read tier from "
+        "`build_feed.py`; the deliberate sweep.\n\n"
+        "## older entry\n\n"
+        "NEXT FOR THE OPERATOR: cold-read `canonical_links.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_aside_header, LEDGER)
+    if stale:
+        fails.append("a 'Handing to the operator (aside):' header was not "
+                     "recognised, so an older block's stale name leaked "
+                     "through: %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -384,7 +441,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 19/19 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 22/22 cases pass")
     return 0
 
 

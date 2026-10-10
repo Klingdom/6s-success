@@ -96,6 +96,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 CONTENT = os.path.join(ROOT, "mcp", "content.json")
 ZONE_TERMS = os.path.join(ROOT, "ops", "zone-search-terms.json")
+ROOM_ALSO_CALLED = os.path.join(ROOT, "ops", "room-also-called.json")
 OUT_JSON = os.path.join(ROOT, "ops", "keyword-demand.json")
 OUT_MD = os.path.join(ROOT, "ops", "KEYWORD-DEMAND.md")
 
@@ -177,6 +178,79 @@ def room_names():
     with open(CONTENT, encoding="utf-8") as fh:
         data = json.load(fh)
     return [r["room"] for r in data["rooms"]]
+
+
+def room_synonyms():
+    """Household words for a room, keyed back to the room's own real name.
+
+    Reads ops/room-also-called.json, the same measured file
+    gate_also_called_is_heading already holds current. Missing or malformed
+    is read as "no synonyms", never an error: this file must still harvest
+    and score without it.
+    """
+    try:
+        with open(ROOM_ALSO_CALLED, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for room, entry in data.get("rooms", {}).items():
+        names = entry.get("names") if isinstance(entry, dict) else None
+        if names:
+            out[room] = [str(n).lower() for n in names]
+    return out
+
+
+def room_slug(room):
+    return room.lower().replace(" ", "-")
+
+
+def room_of(url, rooms):
+    """Which real room a page belongs to, by its own URL slug, longest room
+    name first so "Guest Bathroom" claims its pages before "Bathroom" would
+    (no room here is literally named that, but the rule is the same one
+    attribute_room already uses and for the same reason).
+
+    Returns "" for a page that is not a room/deck/zone page at all (the
+    homepage, articles, the shop), which is the common case and correctly
+    carries no room signal.
+    """
+    base = url.rsplit("/", 1)[-1]
+    if base.endswith(".html"):
+        base = base[:-5]
+    for room in sorted(rooms, key=len, reverse=True):
+        slug = room_slug(room)
+        if base == slug or base.startswith(slug + "-"):
+            return room
+    return ""
+
+
+def household_room_signal(query, rooms, synonyms):
+    """Which room a query is ABOUT, including a household synonym ("master
+    bedroom", "foyer") the site itself never uses as a room name.
+
+    Found 2026-10-10: attribute_room() alone only catches a query that uses
+    our own room name literally. "master bedroom closet organization ideas"
+    contains no room name of ours, so it returned "", best_page() and
+    best_by() had no room signal to apply, and title/heading word-overlap
+    tied between Guest Bedroom's and Primary Bedroom's near-identical zone
+    pages ("...the guest closet" vs "...the primary closet"). The existing
+    tie-break, alphabetically-earliest URL, then silently favoured Guest on
+    every such query, which is how the identical "master bathroom vanity"
+    shape first surfaced as A25 and was fixed only for that one zone. This
+    closes the whole class: any query naming a room by its household word
+    now carries the same room signal a literal room name would.
+    """
+    exact = attribute_room(query, rooms)
+    if exact:
+        return exact
+    low = query.lower()
+    best_room, best_len = "", 0
+    for room, names in synonyms.items():
+        for name in names:
+            if name in low and len(name) > best_len:
+                best_room, best_len = room, len(name)
+    return best_room
 
 
 def zone_terms():
@@ -277,7 +351,7 @@ def content_words(query):
             if w not in STOPWORDS and w not in FORMAT_WORDS and len(w) > 2]
 
 
-def page_inventory():
+def page_inventory(rooms=None):
     """Every published page as its title and its section headings.
 
     HEADINGS, ADDED 2026-10-01, AND WHY THEY ARE KEPT SEPARATE.
@@ -297,6 +371,8 @@ def page_inventory():
     measurement that quietly got more generous would be the worse outcome
     here than one that was too strict.
     """
+    if rooms is None:
+        rooms = room_names()
     rows = []
     for dirpath, _dirs, files in os.walk(SITE):
         for name in sorted(files):
@@ -319,15 +395,39 @@ def page_inventory():
             heads = " ".join(
                 re.sub(r"<[^>]+>", " ", h)
                 for h in re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body))
-            rows.append({"url": "/" + os.path.relpath(path, SITE)
-                                .replace(os.sep, "/"),
+            url = "/" + os.path.relpath(path, SITE).replace(os.sep, "/")
+            rows.append({"url": url,
                          "title": title,
                          "words": set(words(title)),
-                         "head_words": set(words(title + " " + heads))})
+                         "head_words": set(words(title + " " + heads)),
+                         "room": room_of(url, rooms)})
     return sorted(rows, key=lambda r: r["url"])
 
 
-def best_page(query, inventory):
+def _tie_break(page, best, room_signal):
+    """True if `page` should replace `best` on an exact score tie.
+
+    Found 2026-10-10: with no room signal, a tie always fell to the
+    alphabetically-earliest URL, which silently favoured every "Guest X" page
+    over its "Primary X" sibling (near-identical titles, "guest-" sorts before
+    "primary-"). When the query carries a room signal (its own room name, or a
+    household synonym like "master bedroom", see household_room_signal), a
+    page that is actually IN that room now wins the tie instead; only when
+    neither tied page matches the signal, or there is no signal at all, does
+    url order still decide, which is what the pre-existing test for this
+    function (a query naming no room) still checks.
+    """
+    if room_signal:
+        want = page.get("room") == room_signal
+        have = best.get("room") == room_signal
+        if want and not have:
+            return True
+        if have and not want:
+            return False
+    return page["url"] < best["url"]
+
+
+def best_page(query, inventory, room_signal=""):
     """Best-matching page for a query, by share of its content words covered.
 
     Deliberately crude. It is a triage score for a human reading the report,
@@ -343,7 +443,7 @@ def best_page(query, inventory):
         hit = sum(1 for w in cw if w in page["words"])
         s = hit / len(cw)
         if s > score or (s == score and best is not None
-                         and page["url"] < best["url"]):
+                         and _tie_break(page, best, room_signal)):
             best, score = page, s
     return best, round(score, 3)
 
@@ -366,7 +466,7 @@ def attribute_room(query, rooms):
     return ""
 
 
-def best_by(query, inventory, field):
+def best_by(query, inventory, field, room_signal=""):
     """Best-matching page for a query against one surface of the inventory."""
     cw = content_words(query)
     if not cw:
@@ -376,17 +476,19 @@ def best_by(query, inventory, field):
         hit = sum(1 for w in cw if w in page[field])
         s = hit / len(cw)
         if s > score or (s == score and best is not None
-                         and page["url"] < best["url"]):
+                         and _tie_break(page, best, room_signal)):
             best, score = page, s
     return best, round(score, 3)
 
 
 def score_rows(results, rooms, inventory):
+    synonyms = room_synonyms()
     rows = []
     for q in sorted(results):
         row = dict(results[q])
-        page, score = best_page(q, inventory)
-        hpage, hscore = best_by(q, inventory, "head_words")
+        signal = household_room_signal(q, rooms, synonyms)
+        page, score = best_page(q, inventory, signal)
+        hpage, hscore = best_by(q, inventory, "head_words", signal)
         row["room"] = attribute_room(q, rooms)
         row["best_page"] = page["url"] if page else ""
         row["best_page_title"] = page["title"] if page else ""
@@ -459,7 +561,7 @@ def harvest(sources, seeds, verbose=True, sleep=True):
                           % (i, len(seeds), source, len(suggestions), seed))
             if sleep:
                 time.sleep(random.uniform(*DELAY))
-    inventory = page_inventory()
+    inventory = page_inventory(rooms)
     return (score_rows(results, rooms, inventory), attempts, failures,
             len(inventory))
 
@@ -733,8 +835,9 @@ def rescore():
     results = {r["query"]: {"query": r["query"], "sources": r["sources"],
                             "best_rank": r["best_rank"], "seeds": r["seeds"]}
                for r in payload["rows"]}
-    inventory = page_inventory()
-    payload["rows"] = score_rows(results, room_names(), inventory)
+    rooms = room_names()
+    inventory = page_inventory(rooms)
+    payload["rows"] = score_rows(results, rooms, inventory)
     payload["pages_checked"] = len(inventory)
     payload["scored_at"] = (datetime.datetime.now(datetime.timezone.utc)
                             .strftime("%Y-%m-%dT%H:%M:%SZ"))

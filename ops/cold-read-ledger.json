@@ -578,8 +578,8 @@
     },
     "keyword_demand.py": {
       "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Defect found by running it rather than reading it: --help was not a recognised flag, so it fell through every branch in main() and started a full live harvest of both engines that overwrites ops/keyword-demand.json. Any typo did the same. main() now refuses unknown arguments with exit 2, prints the docstring for --help, and catches a bare --source. Case 16 in ops/tests/test_keyword_demand.py, fail-then-pass proved."
+      "date": "2026-10-10",
+      "note": "2026-10-10, scheduled operator cycle: best_page()/best_by()'s alphabetical tie-break silently favoured any Guest-X page over its Primary-X sibling on a household-synonym query (master bedroom/bathroom). New household_room_signal()/room_of()/_tie_break() prefer the correctly-signalled room on a genuine tie; verified via --rescore (every such query moved off its Guest sibling, totals unchanged, real Guest queries unaffected). Case 17, ops/tests/test_keyword_demand.py, 20/20, fail-then-pass proved."
     },
     "launch_plan_pdf.py": {
       "status": "clean",
@@ -659,7 +659,7 @@
     "preflight.py": {
       "status": "fixed",
       "date": "2026-10-10",
-      "note": "2026-10-10, scheduled operator cycle: gate_copy_vs_control() hardened with the same local _-prefix filter gate_no_stale_hardcoded_stripe_link and gate_footer_consistent already carry, after a live run genuinely false-warned on a concurrent test_audit_catalog.py fixture's fake $34 price. Reproduced fail-then-pass directly against the real gate function (new ops/tests/test_gate_copy_vs_control.py, 2/2)."
+      "note": "2026-10-10, scheduled operator cycle (second fix today): cold_read_handoff_stale_files()'s header match could not tolerate a parenthetical aside between 'operator' and the colon ('Handing to the operator (oversized for 30 minutes):'), so a real newest handoff fell through to an older, differently-worded rotation handoff and flagged it stale; also recognised 'standing N-file rotation cold-read tier from X' as a deliberate non-stale re-read. Gate now reads 0 stale on the real log (was 1). 3 new cases, ops/tests/test_gate_cold_read_handoff_not_stale.py, 22/22, fail-then-pass proved."
     },
     "prerender_shop.py": {
       "status": "fixed",
