@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (25th-plus today, full independent re-verification, nothing new unblocked, preflight carried to a real exit code)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 214 commits onto `4855228d4`. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the true head of `ops/NIGHTLY-LOG.md` (newest-first; 25th-plus 2026-10-10 cycle).
+
+**Verified directly, not cited:** GitHub 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. `cold_read_ledger.py --stale` 0 of 197. Fast gates fresh: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. No mail credential. Ran full `preflight.py` myself to its real exit code (0, every gate passed, 29 standing warnings, no new one). Deploy gap re-derived from `ops/deploy-verdict.json`: resolves to `a582ca349`; gap is exactly 3 commits, matching prior cycles, not grown. Tested production reachability directly: `curl` to `6s-success.com` through the sandbox proxy got a 403 CONNECT rejection, and the proxy's own status log shows the same policy denial on unrelated hosts, so this is environment network policy, not a site outage.
+
+**Nothing new unblocked.** Every GitHub issue is decision or blocked-on-art, cold-read ledger exhausted, no backlog row neither done nor Phil-gated, no stale claim, no defect to gate.
+
+**Went well:** re-deriving every claim independently; carrying the full `preflight.py` run to its real exit code this cycle instead of handing it off unfinished.
+
+**Did not go well:** nothing new; same standing sandbox limits (no live credentials, no egress to production).
+
+**Changing next cycle:** none; no new defect class found.
+
+**Next:** same Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY/#35, Search Console, YouTube OAuth, Stripe description) and the 9 GitHub issues; deploy gap (3 commits) ranked first.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (24th today, reconfirmed previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked, handoff is the backgrounded preflight)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 213 commits onto `a69687b8e`, no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md` (start-here section), `ops/NIGHTLY-LOG.md`'s true head (the file is newest-first; this is the 24th 2026-10-10 cycle, all prior ones concluding nothing new unblocked).
