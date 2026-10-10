@@ -341,6 +341,7 @@ Maintain:
 | LRN-0036 | Every page is crawled and almost none is ranked: crawl coverage is 210 of 211 and search sent 6 requests in 14 days | SEO / ANALYTICS | SUPPORTED | HIGH |
 | LRN-0037 | A metric protected only by a third-party heuristic is unprotected: our own headless browser sent 9,113 beacons | ANALYTICS / MEASUREMENT | SUPPORTED | HIGH |
 | LRN-0038 | A page our domain serves is our page, whoever renders it, and a checker can assert a defect is present and call it green | TRUST / PRIVACY | SUPPORTED | HIGH |
+| LRN-0039 | Three gates checked what the owner's email said and none checked that it was sent | PROCESS / RELIABILITY | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1555,6 +1556,69 @@ prerequisite for email capture is unchanged (a 6S-only surface,
 `OWNER-ACTIONS.md` item 7). The transferable habit is the one this entry is
 really about: when a check reports a third-party surface as healthy, read the
 surface once. The check is reporting on reachability and calling it correctness.
+#### LRN-0039: Three gates checked what the message said, and none checked that it was sent
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (the absence was grepped for across the whole repository)
+**Domain:** PROCESS / RELIABILITY
+**Measured:** 2026-10-10
+
+**Observation.** `ops/send_questions.py` is the email that asks the owner to
+do the things only he can do. Every lever on arrivals sits behind an item in
+it and all nine open GitHub issues are labelled `decision` or
+`blocked-on-art`, so it is the narrowest point in the whole business. Nothing
+in `.github/workflows` referenced it. It was sent by whichever scheduled
+Routine happened to run.
+
+**Evidence.** A repository-wide grep for the script name returns the script,
+three backlog entries, a nightly-log line saying it was "last sent 09:50
+today", and no workflow. Meanwhile `status-email.yml` and `hourly-brief.yml`
+are real workflows with real schedules. So when the Routines went dark
+2026-10-04 to 2026-10-09 on `USAGE_LIMIT_REACHED` (INCIDENT-002), the hourly
+status email kept arriving and the one that asks for the unblocking did not.
+Five days.
+
+**The sharp part.** Three gates already guarded that email:
+`gate_send_questions_current`, `gate_send_questions_covers_top_owner_actions`
+and `gate_no_frozen_deck_link`. They are good gates with a real track record:
+between them they caught a false "deploys are automatic" claim, a list that
+had never been told about two of `OWNER-ACTIONS.md`'s own top three items, and
+a frozen link to an eleven-day-old artifact. Every one of them inspects the
+CONTENT. Not one could tell whether the message left the building.
+
+**Learning.** For any artifact whose purpose is to reach somebody, correctness
+and delivery are two different claims and they need two different checks. A
+stack of content gates produces a strong feeling of coverage precisely because
+it is thorough about the half it looks at. The question to ask of a report, an
+email, a webhook or an alert is not only "is what it says true" but "what in
+this system would notice if it stopped arriving". Here the answer was nothing,
+and the thing it was reporting on was the reason the business was stalled.
+
+**The generalisation worth keeping.** A dependency that is invisible in the
+repository is still a dependency. This email depended on an agent Routine, and
+that dependency appeared in no file: not in a workflow, not in a runbook, not
+in the gate list. The channel and the thing that was broken shared a single
+point of failure that nothing had written down.
+
+**Action taken.** `.github/workflows/owner-questions.yml` sends it weekly from
+GitHub's schedule, independent of any session.
+`send_questions.py --send` now writes `ops/last-owner-questions-sent.json`
+after `send()` returns, so a failed send leaves the last honest timestamp
+rather than claiming a delivery. `gate_owner_questions_not_stale` warns past
+10 days, or on a missing or unparseable record, and reported UNKNOWN honestly
+until the first real send. Fired for real the same day: message id recorded,
+record committed, gate clean.
+
+**Next action: none, because it was asked the same hour rather than written
+down as a to-do.** Every owner-facing sender in `ops/` was checked for both a
+workflow and a delivery record. `status_pdf.py` (`status-email.yml`) and
+`hourly_brief.py` (`hourly-brief.yml`, record `ops/last-brief.json`) both have
+a workflow; `send_questions.py` now has both. The only sender without one is
+`ops/send_brief.py`, and `preflight.py` already calls it "the unused sibling"
+in its own gate, so wiring it up would be delivering something nothing wants.
+`owner_inbox.py` and `inbox_agent.py` read mail rather than send it, so a send
+record does not apply. There is no remaining owner channel whose delivery
+nothing can see.
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
