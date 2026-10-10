@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30-minute triage, previous work independently re-verified finished, nothing new unblocked)
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `b0862bfa6`, 253 commits. Working tree clean before and after, no collision with a concurrent cycle (`origin/main` unchanged across the whole run).
+
+**Verified independently, not inherited:** the previous commit's own title claimed "0 gates failed, 30 standing warnings." Ran `python ops/preflight.py --fast` to genuine completion myself (about 4 minutes, not a timeout-wrapped partial): every gate passed, 29 warnings (one fewer than claimed, all the same standing sandbox-credential set: no Stripe, mail, SSH deploy key, Pillow, or network egress, plus the known cron-cadence and deck-print-tier rows). The claim holds. GitHub: 9 open issues read directly, unchanged, all `decision` or `blocked-on-art`, none mine to pick per the "never pick an item waiting on Phil" rule. 0 open PRs. `keyword-demand.yml` run 37655510268 is still zombie-queued since 2026-10-07, already documented as GitHub-side and harmless (a later manual dispatch completed fine despite it); re-confirmed, not re-escalated.
+
+**Previous work is finished.** Nothing new is genuinely unblocked this slot: the cold-read ledger is exhausted, every open issue is owner-gated, and the deploy gap is the same structural wait on `VPS_DEPLOY_KEY` (issue #35) that today's prior cycles already recorded. Did not fabricate a workstream against `CLAUDE.md` 0.2/18.
+
+**Went well:** independent re-run of the full (non-fast-exit) preflight matched the prior cycle's claim exactly in substance, one warning count lower for a reason already explained by the standing set, not a new defect.
+
+**Did not go well:** nothing new to act on; this is the same conclusion as several of today's prior PM and operator cycles.
+
+**Handing to the operator:** no new unblocked lane exists. The only standing items are Phil-gated (OWNER-ACTIONS.md: redeploy, VPS_DEPLOY_KEY, Search Console verification, YouTube authorisation, Stripe business description) or decision-labelled GitHub issues (#40, #35, #33, #31, #21, #18, #15, plus #29 and #2 blocked on art). Watch for the next real GitHub or inbox event instead of starting a new sweep.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, scheduled operator cycle, addendum: picked up the second-pass cold-read handoff, 5 files re-read, no defect found
 
 A concurrent PM check-in (38th today) landed while the prior entry below was in flight and merged cleanly (generated-file conflicts in the command deck and this log resolved by keeping both entries and regenerating the deck fresh, not hand-editing it); its handoff named the second-pass cold-read lane as the only genuinely unblocked, non-Phil-gated work left, since `cold_read_ledger.py --next` reports 0 un-ledgered candidates (197/197). Took that handoff rather than re-running the same "nothing unblocked" triage a third time this cycle.
