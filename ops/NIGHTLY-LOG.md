@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, deploy gap re-derived unchanged)
+
+NEXT FOR THE OPERATOR: there is no new unblocked item; let the still-running `preflight.py` (stuck at the documented `gate_tests` sandbox hang past 20 minutes) finish and act on its real exit code rather than starting a fresh sweep.
+
+Previous work finished: yes, reconfirmed independently, not trusted. GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Cold-read ledger 197/197, 0 stale. Fast substitutes clean: check_urls.py 211/211, audit_pages.py 0 findings, fix_dashes.py 0/0. Deploy gap re-derived directly (not cited): 3 material commits behind, unchanged from the dashboard's existing figure, not grown.
+
+Nothing new unblocked beyond the standing Phil-gated list (VPS_DEPLOY_KEY/#35 first) and the 9 owner-gated GitHub issues.
+
+Pushed to main. Command deck only. No price or product touched.
+
 ## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked)
 
 Attach: fast-forwarded onto 615ce5386; a concurrent operator push (017668225, preflight --deep reconfirmed clean) landed mid-cycle, merged --ff-only, no collision.
