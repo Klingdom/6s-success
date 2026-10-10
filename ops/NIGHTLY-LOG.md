@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30 minute triage)
+
+**Previous work finished: yes, verified, not cited.** A25 (prior cycle, `968385e19`) confirmed via `git show`, not trusted from `STATUS.md` alone. GitHub: 9 open issues, 0 PRs, unchanged, all Phil-gated. `preflight.py` hit the documented `gate_tests` sandbox hang (left running, not killed); corroborated directly instead: `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` clean, `fix_dashes`/`fix_dialect` 0/0, `cold_read_ledger --stale` 0, mobile tests all pass.
+
+**Did:** checked for a second Guest-vs-Primary title-collision beyond A25; found none in a narrow pass, but did not sweep every room pair, so not claimed exhausted.
+
+**Handing to the operator (oversized for 30 minutes):** the standing 37-file rotation cold-read tier from `build_garage_deck_page.py`; the deliberate Guest-vs-Primary sweep; the known `gate_cold_read_handoff_not_stale` false-positive (needs a test case).
+
+Dashboard regenerated. No price/product/content touched.
+
 ## 2026-10-10, scheduled operator cycle: a zone-level synonym gap systematically favouring Guest Bathroom over Primary Bathroom, found and fixed
 
 **Did:** Checkout arrived shallow and detached per usual; `git fetch --unshallow` then `checkout -B main origin/main` then `merge --ff-only` attached cleanly, 296 commits fast-forwarded, no conflict. Read `BACKLOG-2026-09-07.md` in full (sections 1 through 4, every row Done or Phil-gated, confirmed directly rather than inherited from a summary), `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, the newest four `NIGHTLY-LOG.md` entries (read from the correct end this time, top not tail, after nearly repeating the exact misread `ops/nightly_log.py`'s own docstring names as a recurring mistake). GitHub: 9 open issues, 7 `decision` and 2 `blocked-on-art`, 0 PRs, unchanged. `ops/inbox_agent.py --apply`: no mail credential, same as every prior cycle. Confirmed no network egress from this sandbox: a direct `curl` to `6s-success.com` returned a proxy-level `connect_rejected`, not a timeout. `ops/cold_read_ledger.py --stale`: 0.
