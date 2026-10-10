@@ -17590,6 +17590,20 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     flagged as a stale candidate on a cycle that never actually named
     one. Stripped the same way the "fixed in X" precedent citation
     above already is: cite, don't hand off.
+
+    Found live 2026-10-10: a PM check-in's own real handoff, "NEXT FOR
+    THE OPERATOR: there is no new unblocked item; let the still-running
+    `preflight.py` (stuck at the documented `gate_tests` sandbox hang
+    past 20 minutes) finish and act on its real exit code rather than
+    starting a fresh sweep", named a file that was a mid-execution
+    PROCESS to wait on, not a cold-read candidate. Nothing distinguished
+    "finish running" from "go read this", so a correct, non-stale
+    handoff tripped this gate on a file nobody proposed reading, found
+    by a later cycle whose own newest entry had no recognised handoff
+    line at all (per the convention above, "Handing to the operator:"
+    must start its own line to match) and so fell through to this
+    entry. Stripped the same "cite, don't hand off" way as the two
+    patterns just above.
     """
     name_re = (r"`(?:ops/|site/assets/js/|mobile/quest-app/lib/)?"
                r"([A-Za-z0-9_]+\.(?:py|js))`")
@@ -17636,6 +17650,20 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
             live = re.sub(
                 r"[Ii]f (?:an? )?future \w+ runs `[^`]*`[^.]*\.",
                 "", live)
+            # Found live 2026-10-10: "let the still-running `preflight.py`
+            # (stuck at the documented gate_tests sandbox hang) finish and
+            # act on its real exit code" named a file that was mid-
+            # execution as a running PROCESS to wait on, not a cold-read
+            # candidate to open. Waiting for a tool to finish running and
+            # proposing to read its source are different things the old
+            # code could not tell apart, so a legitimate "let it finish"
+            # handoff tripped this gate on a file nobody proposed reading.
+            # Stripped the same "cite, don't hand off" way as the two
+            # patterns just above.
+            live = re.sub(
+                r"(?:the )?(?:still[- ]running|backgrounded|"
+                r"currently running) `[^`]*`",
+                "", live, flags=re.I)
             # Same three lanes ops/cold_read_ledger.py tracks: ops/*.py,
             # site/assets/js/*.js, mobile/quest-app/lib/*.js. The ledger
             # keys on bare basenames, so the prefix is optional and

@@ -657,9 +657,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-10",
-      "note": "cold-read: reviewed 5 commits since 2026-10-09 (stripe-link fixture exclusion, checker_scope widening, canonical_links fragment fix, youtube metadata gate, payment-fulfilled gate fix), all scoped gate additions/fixes, each already fail-then-pass proved per NIGHTLY-LOG.md; no new defect found"
+      "note": "cold-read of gate_cold_read_handoff_not_stale found a real false positive: a handoff naming a still-running process ('let the still-running preflight.py finish') was flagged as a stale cold-read candidate. Fixed with a new strip for still-running/backgrounded/currently-running references; test_gate_cold_read_handoff_not_stale.py extended 17 to 19 cases, fail-then-pass proved"
     },
     "prerender_shop.py": {
       "status": "fixed",

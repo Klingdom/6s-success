@@ -334,6 +334,41 @@ def main() -> int:
                      "clause was wrongly flagged as a stale handoff: %r"
                      % stale)
 
+    # 11. A genuine "let the still-running `X` finish" handoff, naming a
+    #     file that was a mid-execution PROCESS to wait on rather than a
+    #     cold-read candidate, must not itself be flagged. Found live
+    #     2026-10-10: the real newest entry with a recognised handoff
+    #     line said "NEXT FOR THE OPERATOR: there is no new unblocked
+    #     item; let the still-running `preflight.py` (stuck at the
+    #     documented `gate_tests` sandbox hang past 20 minutes) finish
+    #     and act on its real exit code rather than starting a fresh
+    #     sweep", naming no read candidate at all, yet tripped the gate
+    #     on `preflight.py`, already ledgered clean.
+    log_still_running = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-10-10\n\n"
+        "NEXT FOR THE OPERATOR: there is no new unblocked item; let the "
+        "still-running `build_feed.py` (stuck at the documented "
+        "`gate_tests` sandbox hang past 20 minutes) finish and act on "
+        "its real exit code rather than starting a fresh sweep.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_still_running, LEDGER)
+    if stale:
+        fails.append("a 'let the still-running `X` finish' handoff was "
+                     "wrongly flagged as a stale cold-read candidate: %r"
+                     % stale)
+
+    log_backgrounded = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-10-10, cycle\n\n"
+        "**Next:** let the backgrounded `build_feed.py` finish before "
+        "starting anything new.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_backgrounded, LEDGER)
+    if stale:
+        fails.append("a 'backgrounded `X`' handoff was wrongly flagged: "
+                     "%r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -349,7 +384,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 17/17 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 19/19 cases pass")
     return 0
 
 

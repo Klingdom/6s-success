@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in, addendum: a real gate_cold_read_handoff_not_stale false positive found and fixed (the eighth of this class), tripped by this cycle's own earlier handoff
+
+The backgrounded `preflight.py` from this same cycle finished: exit clean, every gate passed, 30 warnings, all standing sandbox limits (no Stripe/mail/SSH credential, no Pillow, site unreachable) plus the self-correcting `hooks-enabled` fix, except one genuinely new, non-Phil-gated finding: `cold-read-handoff-not-stale` flagged `preflight.py` as a stale cold-read candidate.
+
+Traced rather than assumed. A PM entry earlier today wrote "let the still-running `preflight.py` ... finish and act on its real exit code", naming the tool as a mid-execution PROCESS to wait on, not a cold-read candidate to open. `cold_read_handoff_stale_files()` cannot tell "wait for this to finish running" from "go read this file", the same class of false positive this gate has needed seven prior fixes for (2026-09-25 through 09-27). Confirmed directly against the real log and ledger before touching anything: `stale: ['preflight.py']`.
+
+**Fixed:** added a strip for "the still-running/backgrounded/currently running `X`" phrasing, same "cite, don't hand off" shape as the existing strips just above it in `ops/preflight.py`. Confirmed clean against the real log after. `ops/tests/test_gate_cold_read_handoff_not_stale.py` extended 17 to 19 cases (two new: "let the still-running `X` finish", "backgrounded `X`"); fail-then-pass proved directly (reverted the fix via `git stash`, watched both new cases fail with the exact defect, restored, 19/19 pass). Re-stamped `ops/preflight.py`'s cold-read ledger entry to `fixed`. `check_urls.py` 211/211, `fix_dashes.py` 0/0 unaffected, `py_compile` clean.
+
+Nothing new unblocked beyond the standing Phil-gated list. No handoff needed: this closes the one open thread from this cycle's own earlier entry.
+
 ## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, deploy gap unchanged)
 
 Previous work finished: yes, independently reconfirmed, not trusted. GitHub's 9 open issues read directly via the API, unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Cold-read ledger 197/197, 0 stale. Fast substitutes all clean, run directly: check_urls.py 211/211, audit_pages.py 215/0 (0 duplicate titles/descriptions), fix_dashes.py 0/0, affiliate.py --check 165 documents, link_graph_report.py 0 orphans, mobile npm test all 4 suites passing. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`47a3f336`): 2 material `site/`/`Dockerfile` commits behind, matching the dashboard's existing figure, not grown; still waiting on issue #35 (VPS_DEPLOY_KEY).
