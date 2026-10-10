@@ -754,7 +754,7 @@
     "send_questions.py": {
       "status": "clean",
       "date": "2026-10-10",
-      "note": "Re-verified 2026-10-10: parses clean, --preview runs correctly, new SENT_RECORD tracking (last-owner-questions-sent.json) and owner-questions.yml workflow confirmed wired."
+      "note": "Re-verified 2026-10-10 PM check-in: Phil's own commit (ba043e54a) added _record_sent()/SENT_RECORD and wired gate_owner_questions_not_stale. Workflow YAML parses, test_gate_owner_questions_not_stale.py 7/7, file parses clean. No defect."
     },
     "service_orders.py": {
       "status": "fixed",
