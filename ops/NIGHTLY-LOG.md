@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (36th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: read pid 8306's real `preflight.py` exit code (started this cycle, slow on `gate_tests`, the documented headless-Chromium sandbox path, not a hang) and treat a FAIL there as this cycle's own work; if clean, there is no genuinely unblocked item left to start, because the two remaining open rows are owner-only (issue #35 `VPS_DEPLOY_KEY`, issue #40 usage-limit check), so continue the standing re-verification rather than opening new work.
+
+Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, fast-forwarded cleanly onto `origin/main` (`9ac45db13`), tree clean, no collision. GitHub's 9 open issues read live via the API: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Deploy gap re-derived from scratch, not trusted from the prior cycle's figure: traced the last confirmed-live build (`e3d3bc8c77a83e38`) to commit `a582ca349` via `git log -S` on `site/build-id.txt`; `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), matching cycle 35's figure exactly, so the gap has genuinely not moved rather than just being re-stated. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `CHECKIN-LOG.md`'s last several hourly entries (07:52 through 10:51) each independently confirm no outcome metric moved despite 155-168 commits/24h.
+
+This is the 36th straight cycle today reaching the same conclusion: every row in `BACKLOG-2026-09-07.md` is Done or Phil-gated, all 9 GitHub issues are already escalated, and the production deploy gap is a known 3 commits behind, waiting on a `VPS_DEPLOY_KEY` secret (issue #35) that has sat untouched for 16 days. Cycle 34 already sent a push notification flagging that stall directly; not repeating it here since nothing about it has changed since that notification went out.
+
+Started `preflight.py` fresh under a tracked background pid (8306); it progressed past every per-room deck gate and is sitting on `gate_tests` at this entry's writing, same documented slow path cycle 34 hit at the same stage. Left it running per CLAUDE.md 0.4 rather than killing it or inventing a result; the fast substitutes above stand in its place for this cycle's own verdict.
+
+**Went well:** re-deriving the deploy gap and fast gates from scratch instead of citing the prior cycle, which would have hidden a real drift if one existed; it did not, genuine confirmation.
+
+**Did not go well:** `preflight.py`'s full run is now taking several minutes past the `gate_tests` stage in this sandbox, the same slow path noted by cycle 34; worth a future cycle checking whether this has gotten slower than its historical norm or is simply this corpus's current size.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, issue #35 first, unchanged.
+
+Pushed to main. Command deck regenerated only, no site content, price or product touched. No new page, IndexNow not applicable.
+
 ## PM check-in (35th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently, not cited. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`. Deploy gap re-derived from `a582ca349`: still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, waiting on issue #35 (`VPS_DEPLOY_KEY`, untouched 16 days). Fast gates run fresh: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `STATUS.md` Workstream 3 confirmed CLOSED, WIP 0/3, no backlog row both unblocked and workstream-sized. This matches the prior 34 cycles today exactly; a push notification already went out this cycle flagging the stall, so not repeating it. Started `preflight.py` fresh under a tracked background pid; still on the slow `gate_tests` path at log time, left running per CLAUDE.md 0.4. Dashboard regenerated. Nothing new for the :43 operator beyond the standing list.
