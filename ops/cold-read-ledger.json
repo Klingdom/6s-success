@@ -143,28 +143,28 @@
     },
     "build_garage_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Verified clean 2026-10-10: ran generator, 0 diff against committed site/garage-deck.html; ZONE_ORDER[0] (Primary Workbench) matches hero_image_url's slug and the zone page's own real og:image file on disk; GAA-015/016/017 whole-room assertion text matches live card content; card-type spine sums to 80, matching the page's own title/rendered count."
     },
     "build_guest_bathroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Verified clean 2026-10-10: ran generator, 0 diff; GHA-011/012/013 whole-room assertion text matches live card content; hero_image_url slug matches the real file and the zone page's own og:image."
     },
     "build_guest_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Verified clean 2026-10-10: ran generator, 0 diff; GBA-011/012/013 whole-room assertion text matches live card content; hero image file and og:image match."
     },
     "build_hall_closet_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Verified clean 2026-10-10: ran generator, 0 diff; HCA-011/012/013 whole-closet assertion text matches live card content; hero image (linen-shelf-zone) file and og:image match."
     },
     "build_home_office_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Verified clean 2026-10-10: ran generator, 0 diff; HOA-013/014/015 whole-room assertion text matches live card content; hero image file and og:image match."
     },
     "build_icons.py": {
       "status": "clean",
