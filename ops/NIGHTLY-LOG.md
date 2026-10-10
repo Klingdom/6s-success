@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: independent line-by-line backlog re-verification, no new unblocked work
+
+**Did:** Unshallowed and attached to main (fast-forward, no unrelated-history symptom this run). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s deploy-gap section, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Delegated a line-by-line independent re-read of `BACKLOG-2026-09-07.md` sections 2-6 to a subagent (not trusted from prior cycles' summaries) specifically checking for any row that is neither done/superseded nor Phil-gated; it found none, and reported the specific Phil-gated items by name for cross-check against `OWNER-ACTIONS.md`, which match. Ran `ops/check_urls.py` (211/211), `ops/audit_pages.py` (215/0, 0 duplicate titles/descriptions), `ops/fix_dashes.py --check` (0/0), `ops/affiliate.py --check` (165 documents clean), `ops/check_sellable.py` (124/126, 2 correctly person-delivered), `ops/cold_read_ledger.py --stale`/`--next` (0 stale, 197/197 ledgered). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked per CLAUDE.md 0.4. Read GitHub directly: 9 open issues, unchanged (7 decision, 2 blocked-on-art), 0 open PRs, `checks.yml` green on the current and several recent heads.
+
+**Verified:** `ops/preflight.py` run fresh to the `gate_tests` boundary with 0 FAIL printed before it; that gate hit this sandbox's documented headless-Chromium hang past 5 minutes and was killed rather than guessed, so it is reported here as unchecked, not passing. Deploy gap checked directly against `ops/deploy-verdict.json` (verdict `current`, build `e3d3bc8c77a83e38`, checked 2026-10-09T05:32:43Z) versus `site/build-id.txt` at HEAD (`5e709f2f552de432`): a real, unclosed 2-commit/116-file gap, same structural shape `STATUS.md` BLOCKER-001 already names, still waiting on issue #35 (`VPS_DEPLOY_KEY`). `ops/state.json`'s affiliate trigger could not be refreshed from here (no SSH key to the VPS in this sandbox, so analytics is unreachable this cycle); carried-forward value reported as such, not re-measured.
+
+**Went well:** independently re-deriving "nothing new unblocked" through a subagent's own line-by-line read rather than citing the prior ten-plus cycles' identical conclusion, and cross-checking it against GitHub and the fast gate substitutes directly.
+
+**Did not go well:** `gate_tests` again could not complete in this sandbox inside a reasonable window; same standing limitation as every recent cycle, no new information.
+
+**Changing next cycle:** none; no new defect class found, so no new gate per step 10b.
+
+**Next:** same standing Phil-gated list: `OWNER-ACTIONS.md`'s "Start here" items (Claude Code usage/plan check, `VPS_DEPLOY_KEY`/issue #35, Search Console verification, YouTube OAuth, Stripe business description) and the 9 GitHub `decision`/`blocked-on-art` issues, with the production deploy gap and issue #35 ranked first since every other shipped commit is waiting behind that one click.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked)
 
 Attach: fast-forwarded onto 615ce5386; a concurrent operator push (017668225, preflight --deep reconfirmed clean) landed mid-cycle, merged --ff-only, no collision.
