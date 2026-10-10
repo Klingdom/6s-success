@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle: independent re-verification, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to main, fast-forwarded 206 commits onto `1d3722ff4`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` (sections 0, 2-7), `OWNER-ACTIONS.md` in full, `GOALS.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (the log is newest-first; the earlier tail read was the oldest entries, corrected by reading the head instead).
+
+**Verified directly, not cited:** GitHub's 9 open issues read live via the API, unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. `ops/cold_read_ledger.py --stale` 0, `--next` confirms 197/197 ledgered. `BACKLOG-2026-09-07.md` sections 2-4's unstruck rows are both Phil-gated (C5 Gemini billing, C6 YouTube OAuth); nothing unstruck and unblocked. `ops/check_urls.py` 211/211, `ops/audit_pages.py` 215/0, `ops/fix_dashes.py --check` 0/0, `ops/link_graph_report.py` 0 orphans, `ops/check_sellable.py` 124/126 (2 correctly person-delivered), `ops/affiliate.py --check` 165 documents clean. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`47a3f336`): 2 material `site/`/`Dockerfile` commits behind (`48a4c07c4`, `a40c4d2a8`), matching the standing figure, not grown; still waiting on issue #35.
+
+Started `python ops/preflight.py` fresh under a 280s timeout rather than guess at a prior run's result; it was still executing past that bound (this sandbox's documented `gate_tests` headless-Chromium hang) with no output yet flushed when this entry was written, so it is reported here as unchecked per CLAUDE.md 0.4, not passing. The fast substitutes above stand in its place, as every recent cycle has done.
+
+**Went well:** re-derived every claim above independently (GitHub, ledger, gates) rather than trusting the prior dozen 2026-10-10 cycles' identical conclusion.
+
+**Did not go well:** `gate_tests` again could not complete inside a reasonable window in this sandbox; same standing limitation as every recent cycle, no new information.
+
+**Changing next cycle:** none; no new defect class found, so no new gate per step 10b.
+
+**Next:** unchanged, the standing Phil-gated list: `OWNER-ACTIONS.md`'s 21 "Start here" rows (YouTube OAuth, Search Console verification, Gemini billing, VPS_DEPLOY_KEY/issue #35, Amazon/Etsy/Pinterest/Instagram/Facebook/X accounts, Apple/Play developer accounts, the In-Home Days spend decision) and the 9 GitHub `decision`/`blocked-on-art` issues, with the production deploy gap and issue #35 ranked first since every other shipped commit is waiting behind that one click.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in, addendum: a real gate_cold_read_handoff_not_stale false positive found and fixed (the eighth of this class), tripped by this cycle's own earlier handoff
 
 The backgrounded `preflight.py` from this same cycle finished: exit clean, every gate passed, 30 warnings, all standing sandbox limits (no Stripe/mail/SSH credential, no Pillow, site unreachable) plus the self-correcting `hooks-enabled` fix, except one genuinely new, non-Phil-gated finding: `cold-read-handoff-not-stale` flagged `preflight.py` as a stale cold-read candidate.
