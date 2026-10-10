@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (38th today, 30 minute triage, previous work confirmed finished independently, deploy gap unchanged at 3 commits, first-pass cold-read ledger exhausted, handed operator the second-pass lane)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read lane (first-pass ledger is 197/197 clean, 0 stale), because that is the only genuinely unblocked, non-Phil-gated lane left that has a track record of finding real defects.
+
+Previous work finished: confirmed independently, not cited. Reattached (shallow+detached, unshallowed, ff-only onto `3013f83b8`), tree clean. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`, 0 PRs. Deploy gap re-derived from `ops/deploy-verdict.json` (`e3d3bc8c77a83e38`) plus `git log <resolved-commit>..HEAD -- site/ Dockerfile`: still exactly 3 commits, unchanged since cycle 35. `cold_read_ledger.py --next`/`--stale`: 197/197 files ledgered, 0 stale, so the first-pass lane is exhausted; the second-pass re-read (2026-09-26 tier) recent cycles have been working is the live one. No workstream is both unblocked and startable (1-2 BLOCKED on Phil, 3 CLOSED, WIP 0/3).
+
+Went well: reverifying the deploy-gap figure from the verdict file directly instead of citing it, since it is the one number this file has gone stale on before.
+
+Not done this slot: no large work started, per this slot's own instruction.
+
+Pushed to main. Dashboard refresh only, no site/price/product content touched.
+
 ## PM check-in (37th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently, not cited. Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `git checkout -B main origin/main`, `merge --ff-only` landed clean on `298d8aa51`, tree clean, no collision. GitHub's 9 open issues read live via the API, not cited: unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Deploy gap re-derived from scratch with `git log -S` on `build-id.txt` and `git log a582ca349..HEAD -- site/ Dockerfile`: still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged since cycle 35. `STATUS.md` open claims: none. Workstreams: 1 and 2 still BLOCKED on Phil, 3 CLOSED 2026-10-03, WIP 0/3, so no workstream-sized item is both unblocked and startable. Fast gates run fresh myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `CHECKIN-LOG.md`'s last four hourly entries (08:50 through 11:55) each independently confirm no outcome metric moved despite 153-168 commits/24h.
