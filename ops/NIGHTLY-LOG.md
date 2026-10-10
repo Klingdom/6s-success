@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in correction (the full preflight finished clean after all; the sandbox-hang claim below was premature)
+
+**Correcting the entry immediately below, written the same slot, before anything else happened.** It said gate_tests had hit its documented sandbox hang, evidenced by flat CPU at 426 seconds elapsed. That evidence was real but the conclusion was premature: the backgrounded run was never killed, and it finished on its own, well past that point, with exit code 0 and every gate passed, 30 warnings, all the standing environment-access set (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no Pillow) plus one new line, hooks-enabled, which preflight.py fixed itself by setting core.hooksPath. So this is a correction, not a new finding: gate_tests does run to completion here, it is just slower than the window this cycle checked it in before writing a conclusion down. Confirmed no concurrent push landed between the two commits (git fetch, same tip both sides) and nothing else changed, so no part of the underlying "nothing new unblocked" verdict is affected, only the gate_tests characterization and the full clean preflight status it now has behind it. Nothing to ship beyond this correction; command deck unchanged from the prior commit.
+
+**Learning for the next cycle:** flat CPU at a single checkpoint is evidence of a slow run, not proof of a hung one, unless the process is actually confirmed dead or its own timeout/exit code says so. Let a backgrounded preflight run to real completion, or confirm the kill, before writing "hung" into a pushed commit.
+
 ## 2026-10-10, PM check-in (confirmed previous work finished independently, nothing new unblocked)
 
 **Attach:** checkout arrived shallow and detached (issue #27's usual shape); fetch origin main, fetch --unshallow, checkout main, merge --ff-only fast-forwarded 172 commits cleanly onto a1acb115f. Working tree clean before and after.
