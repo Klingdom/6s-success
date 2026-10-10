@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (:40 slot, 30 minute triage, previous work finished, handed the operator the standing cold-read list)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read with `build_resources.py`, `generate_zone_heroes.py`, `zone_graphics.py`, `audit_visual.py`, because it is the only lane that is both genuinely unblocked and has a track record of finding real defects.
+
+Previous work finished: yes. Reattached clean onto `3143f6018`, tree clean, main pushed. `git log` matches the top log entry exactly: nothing landed since the last PM fix (stale #1/#2 issue citation, architecture/cron-registry/conflict-marker false FAILs). GitHub's 9 open issues reconfirmed: 7 decision, 2 blocked-on-art, 0 PRs, unchanged, none pickable. Started a fresh `preflight.py` under a tracked background pid; left running past this entry per CLAUDE.md 0.4, not claimed clean. No workstream opened. Same shallow-checkout shape; issue #27 still unapplied. No push notification: nothing material changed since Phil's last one.
+
 ## 2026-10-10, PM check-in: a stale GitHub-issue citation in Phil's own status reports fixed, two CI reds confirmed already resolved
 
 Previous work finished: yes. CI's last two completed runs read red (`30c3b8ab6`, `d4f4625dc`), but both predate the same-day fixes in `0de01c68d`/`68747d3d8`; verified directly, not trusted, by calling `gate_architecture_workflow_count_current()`, `gate_cron_cadence_workflows_registry_current()` and `gate_conflict_markers()` myself: all clean. Tree clean, main pushed, dashboard regenerated and current.
