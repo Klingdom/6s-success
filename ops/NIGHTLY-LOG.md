@@ -2,21 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-10, scheduled operator cycle (second-pass cold read, 11 files, no defect found)
+## 2026-10-10, scheduled operator cycle (second-pass cold read, 11 files, plus a real gate_tests failure found and fixed)
 
-**Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 261 commits fast-forwarded. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`'s top section, and the last several `NIGHTLY-LOG.md` entries. Delegated a genuine second-pass cold read of the 11 longest-overdue ledger files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last checked 2026-09-30) to a subagent instructed to run every live check or test, not just read.
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); fetched, unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 261 commits fast-forwarded. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`'s arithmetic section, `GOALS.md`'s top section, and the last several `NIGHTLY-LOG.md` entries. Delegated a genuine second-pass cold read of the 11 longest-overdue ledger files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last checked 2026-09-30) to a subagent instructed to run every live check or test, not just read. Unlike every prior cycle today, let the full `preflight.py --fast` run to genuine completion in the background rather than leaving it open on `gate_tests`.
 
-**Verified, independently:** GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. Confirmed `deploy.yml` run 196's own Deploy step is still `skipped`: VPS_DEPLOY_KEY/issue #35 remains genuinely unset, not assumed. No mail credential. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), mobile `npm test` all 3 suites pass. CI green on main's latest commit (`checks.yml` run 2006). All 11 cold-read files' live checks/tests reran and passed; no regression against prior notes; one cosmetic-only observation (`wire_footer.py` has no real `--check` flag, unlike its siblings) noted, not fixed, since nothing depends on it having one.
+**The real find.** `gate_tests` FAILED, for real: `test_payment_links_nofollow.py` reported a followable payment link on a page that does not exist in the shipped site. Root cause: a concurrent `test_audit_catalog.py` run plants `site/_audit_catalog_fixture_<pid>.html` with a deliberately fake, non-nofollowed `buy.stripe.com` link to test `audit_catalog.py`; `gate_payment_links_nofollow()`'s own glob over `site/**/*.html` had no exclusion for that underscore-prefixed scratch convention, unlike sibling gates (`gate_no_stale_hardcoded_stripe_link`, `gate_no_stray_probe_files`) already hardened against the identical race, now its 6th documented occurrence. Fixed with the same one-line filter those siblings use; no real page anywhere in `site/` starts with an underscore. Added a regression case that plants the identical fixture and calls the real gate function, proved fail-then-pass by reverting the fix and confirming the new case fails, then restoring it. The second `gate_tests` failure (`test_deck_pages_interactive.py`'s pantry-deck.html probe) did not reproduce on an isolated re-run: a one-off headless-Chromium hiccup under sandbox resource contention, not a code defect.
 
-**Went well:** independent re-verification matched every standing claim; the delegated cold read ran real live checks against the repo, not just a read-through.
+**Verified, independently:** GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs. Confirmed `deploy.yml`'s own Deploy step is still `skipped`: VPS_DEPLOY_KEY/issue #35 remains genuinely unset, not assumed. No mail credential. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` clean, mobile `npm test` all 3 suites pass. All 11 cold-read files' live checks/tests reran and passed; no regression against prior notes; one cosmetic-only observation (`wire_footer.py` has no real `--check` flag, unlike its siblings) noted, not fixed, since nothing depends on it having one.
 
-**Did not go well:** `preflight.py --fast`'s `gate_tests` still hangs in this sandbox on headless Chromium, the same documented limit every cycle today has hit; left running in the background, not claimed finished.
+**Went well:** letting the full preflight run to completion instead of leaving it open on `gate_tests` like every prior cycle today, which is exactly what surfaced a real, live false positive nobody had seen yet.
 
-**Changing next cycle:** none new.
+**Did not go well:** `gate_tests` across 388 files is slow enough in this sandbox (30+ minutes) that every earlier cycle today reasonably gave up on it; this one only found the defect by accident, having started it early and moved on to other work while it ran.
+
+**Changing next cycle:** none beyond the gate fix itself, which closes this specific race for good.
 
 **Next:** same Phil-gated list, `VPS_DEPLOY_KEY`/issue #35 first. Continue the second-pass cold read into the next-oldest ledger tier (files dated 2026-10-01).
 
-Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+Pushed to main. `ops/preflight.py`, `ops/tests/test_payment_links_nofollow.py`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched. IndexNow not applicable.
+
+## 2026-10-10, PM check-in (30-minute triage): concrete second-pass cold-read handoff, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of the oldest-ledgered ops/*.py files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last verified 2026-09-30), because the first-pass ledger is genuinely exhausted (197/197, 0 stale) and re-reading the oldest-verified tier is the same method that found real defects on cycles twenty, twenty-two and others this log already records.
+
+Previous work finished: yes, independently re-verified. Reattached clean onto `7c81fb648` (shallow+detached, unshallowed, `fetch --unshallow` then `merge --ff-only`), tree clean, no collision, 261 commits fast-forwarded with zero conflicts.
+
+Verified myself rather than cited: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Re-read issue #40 (usage-limit stall): already correctly left open by a prior cycle pending Phil's own check of plan/usage settings, not mine to close. The last 5 GitHub Actions runs on `a88a3979a` (fulfil-orders, hourly-brief, bluesky-drafts, linkedin-drafts, social-drafts) all completed `success`. Cold-read ledger 197/197, 0 stale (`--stale` and `--next` both confirm first pass exhausted). Deploy verdict still reads `stale`, same standing gap, blocked on issue #35 (`VPS_DEPLOY_KEY`), Phil's own hand. Affiliate trigger still carried forward, unreadable from this sandbox (no SSH key), not re-measured as zero.
+
+Ran `preflight.py` fresh under a tracked background pid (690) rather than citing a prior claim. It passed every gate through `gate_image_coverage` cleanly, then reached `gate_tests`, the same documented slow headless-Chromium sandbox path this log has recorded on roughly 40 cycles today; left running past this entry's writing per CLAUDE.md 0.4, not claimed clean and not claimed failed.
+
+No workstream opened: nothing in the backlog is both unblocked and startable beyond the second-pass cold-read lane named above, which is itself low-ceremony verification work, not a new major workstream (WIP stays within the section 18 cap).
+
+Went well: finding a concrete, specific next step for the second-pass lane (the 11 oldest-dated ledger entries) instead of repeating a generic "nothing new unblocked" line.
+
+Did not go well: this is roughly the 40th-plus cycle today reaching a flat conclusion; the real constraint (arrivals, GOALS.md O1) remains untouched by anything either agent can do from this sandbox.
+
+No push notification: nothing about GitHub, the deploy gap, or the usage-limit issue has changed since the last one Phil received.
+
+Pushed to main. Command deck regenerated only. No price, product or site page touched; IndexNow not applicable.
 
 ## 2026-10-10, PM check-in
 
