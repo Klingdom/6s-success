@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-10 04:52",
+ "generated": "2026-10-10 04:49",
  "commit": "833f91d10",
  "commit_msg": "PM check-in: reconfirmed previous work finished independently (cold-read ledger exhausted, GitHub issues unchanged, fast substitutes clean), nothing new unblocked. Dashboard refresh.",
- "commits_7d": 482,
+ "commits_7d": 485,
  "commits_total": 5867,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
