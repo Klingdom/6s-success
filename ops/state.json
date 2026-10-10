@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-10 04:01",
+ "generated": "2026-10-10 03:49",
  "commit": "6d12414d8",
  "commit_msg": "Hourly check-in record",
  "commits_7d": 496,
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,

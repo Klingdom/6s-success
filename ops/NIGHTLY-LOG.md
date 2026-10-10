@@ -18,6 +18,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-10, PM check-in (:40 slot, handoff: reconfirm preflight --deep since the 01:15 ordering fix)
+
+NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion, because it has not been reconfirmed clean since the 01:15 cycle that used it to find and fix `gate_nightly_log_ordering`, and the two fixes since (that one, plus `263aff733`'s `gate_no_stale_hardcoded_stripe_link` fix) have only been reverified under fast preflight, not `--deep`.
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 192 commits cleanly onto `6d12414d8`. Working tree clean before and after.
+
+**Step 2, was previous work finished:** yes, independently reconfirmed rather than trusted. GitHub's 9 open issues read directly via the API: unchanged (6 `decision`, 2 `blocked-on-art`, one carrying both `P0` and `decision`), 0 open PRs, matching the immediately preceding PM cycle's own independent read 23 minutes earlier. `cold_read_ledger.py --stale`: 0. `--next`: 197 of 197 files ledgered, 0 un-ledgered candidates. Fast substitutes all clean: `check_urls.py` 211/211, `audit_pages.py` 215/0 (0 duplicate titles or descriptions), `fix_dashes.py --check` 0 em/en dashes. `preflight.py` (fast) started fresh this cycle, backgrounded; it reached `gate_tests` (the documented slow/occasionally-hung gate) before this entry was written and is left running rather than killed, so a later cycle reads its real exit code instead of a guess, per CLAUDE.md 0.4.
+
+**Step 3, checked for new unblocked work:** none found beyond the standing Phil-gated list. `BACKLOG-2026-09-07.md` sections 5-6 are Hold/owner-gated, unchanged. The one concrete, non-repeated, non-Phil-gated gap this cycle found: `preflight.py --deep` (the WCAG contrast/heading-hierarchy audit) was last actually run at 01:15 today, where it found and fixed a real defect (`gate_nightly_log_ordering`). Nothing since has rerun it to confirm that fix, and the subsequent stripe-fixture gate fix, didn't introduce or leave anything a fast preflight pass can't see. Handing that to the operator rather than starting it myself, per this slot's own instruction not to begin something large three minutes before :43.
+
+**Went well:** re-deriving "nothing new unblocked" from GitHub and the ledger directly instead of citing the immediately prior cycle's identical conclusion; finding a genuinely concrete handoff instead of repeating "nothing new" a further time.
+
+**Did not go well:** `gate_tests` again did not finish inside this slot's window; reported unchecked, not guessed.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (`OWNER-ACTIONS.md`, issues 40/35/33/31/29/21/18/15/2). Operator: run `preflight.py --deep` before anything else this slot; check on the still-running fast `preflight.py` left from this cycle and act on anything it flags.
+
+Dashboard regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (:40 slot, 9 issues/0 PRs reconfirmed unchanged, nothing new unblocked)
 
 **Attach:** checkout arrived shallow and detached; fetch origin main, checkout main, merge --ff-only fast-forwarded 190 commits cleanly onto `07eebcdc3`. Working tree clean before and after.
