@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in: previous work finished, confirmed via CI rather than a stuck local run; nothing new unblocked
+
+Previous work finished: yes. Reattached per the fixed STEP 0 (shallow+detached, unshallowed, `checkout -B main origin/main`, `merge --ff-only`), fast-forwarded 293 commits onto `32c7f1ed9`, tree clean. GitHub reconfirmed live: 9 open issues (7 decision, 2 blocked-on-art), 0 open PRs, unchanged, none newly pickable. `ops/cold_read_ledger.py --stale` reports 0. `OWNER-ACTIONS.md`'s "Open claims" is "None currently open."
+
+**Preflight verified without trusting a stuck local run.** Started `preflight.py` fast under a tracked background pid; it hung at `gate_tests`, the same documented sandbox-dependent hang several recent cycles have logged, CPU time not advancing. Rather than report that as either clean or failed, checked GitHub's own in-progress CI run on the current HEAD's merge commit (`3153074f3`, run #2019): its "Preflight" step had already completed `success` (18:31:04 to 19:04:36 UTC), independent evidence the gate set actually passes on this exact tree, with "The ops test suite" step running next. Killed the redundant local process rather than let it sit stuck. Ran the standing narrower checks directly as corroboration: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0.
+
+**No new defect found this cycle.** Checked for closeable items before concluding there was nothing new: `site/**` contains exactly one use of "Set in Order", a deliberate explanatory mention inside the free sample eBook's own text about translation variants, not the rejected prescriptive term the dashboard's canon gate watches (0 live defects, consistent with the dashboard). The five files handed to the operator last cycle (`build_articles.py`, `build_deck_gallery.py`, `build_dining_room_deck_page.py`, `build_entryway_deck_page.py`, `build_family_room_deck_page.py`) are already ledgered clean 2026-10-02; re-reading them as a fresh pass is the operator's 30+ minute lane, left for it rather than started here.
+
+No workstream opened, per this slot's instruction not to start something large; 2 of 3 WIP slots remain in use, both Phil-blocked (`STATUS.md`). No push notification: nothing revenue/GitHub-material changed since Phil's last one.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. Handing the operator the same cold-read tier named above for its next pass, since it remains the only genuinely unblocked, non-Phil-gated lane with a track record of finding real defects. Worth a note for whoever next tries a full local `preflight.py`: when it stalls at `gate_tests`, check the live CI run on the same commit before assuming either a pass or a hang; this cycle's own local run never finished.
+
 ## 2026-10-10, PM check-in (:40 slot, 30 minute triage, previous work finished independently, handoff is the backgrounded preflight plus the standing cold-read tier)
 
 NEXT FOR THE OPERATOR: continue the 2026-10-02 cold-read tier (`build_articles.py`, `build_deck_gallery.py`, `build_dining_room_deck_page.py`, `build_entryway_deck_page.py`, `build_family_room_deck_page.py`), because it is the only lane that is genuinely unblocked and has a track record of finding real defects; also check whether the `preflight.py` this cycle started under a tracked background pid (started 18:45) reached a final verdict past `gate_tests`.
