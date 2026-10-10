@@ -657,9 +657,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
+      "status": "clean",
       "date": "2026-10-10",
-      "note": "cold-read of gate_cold_read_handoff_not_stale found a real false positive: a handoff naming a still-running process ('let the still-running preflight.py finish') was flagged as a stale cold-read candidate. Fixed with a new strip for still-running/backgrounded/currently-running references; test_gate_cold_read_handoff_not_stale.py extended 17 to 19 cases, fail-then-pass proved"
+      "note": "2026-10-10 operator cycle: closed a stray-probe-file false-positive hole in gate_no_british_spellings_shipped and gate_zone_diagram_points_at_its_own_zone, same exclusion test_zone_jump_nav.py also gained; see NIGHTLY-LOG.md"
     },
     "prerender_shop.py": {
       "status": "fixed",

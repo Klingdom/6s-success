@@ -10513,6 +10513,12 @@ def gate_no_british_spellings_shipped() -> None:
     }
     hit = []
     for f in sorted(glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)):
+        if os.path.basename(f) == "_visual_probe.html":
+            # audit_visual.py's own scratch shell. Excluded by exact name,
+            # the same narrow rule ops/audit_pages.py's pages() uses, so a
+            # run whose window overlaps that tool's write/cleanup does not
+            # misreport its bare iframe shell as unsourced British prose.
+            continue
         rel = os.path.relpath(f, ROOT)
         if os.sep + "downloads" + os.sep in (os.sep + rel) and "Sample" in rel:
             continue
@@ -14269,7 +14275,13 @@ def gate_zone_diagram_points_at_its_own_zone() -> None:
     regression this exists to catch.
     """
     pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
-    pages = [p for p in pages if not p.endswith("index.html")]
+    # _visual_probe.html is audit_visual.py's own scratch shell, excluded by
+    # exact name for the same reason ops/audit_pages.py's pages() excludes
+    # it: a run whose window overlaps that tool's write/cleanup can catch it
+    # mid-existence and report its bare iframe shell as a zone page with no
+    # diagram, which it was never meant to carry.
+    pages = [p for p in pages if not p.endswith("index.html")
+             and os.path.basename(p) != "_visual_probe.html"]
     if not pages:
         return
     bad = []

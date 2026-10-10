@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, scheduled operator cycle (closed a 5th-occurrence stray-probe-file false positive, in three checks that had never been hardened against it)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto origin/main (f4ed60741, then 7cf766f80), no collision. Re-verified independently rather than citing prior cycles: GitHub's 9 issues unchanged (7 decision, 2 blocked-on-art), no owner or customer mail (no credential), no non-automated commits in 48h, cold-read ledger 0 stale, keyword harvest fresh with only noise-shaped gaps, deploy gap confirmed real at 3 commits (waiting on VPS_DEPLOY_KEY, issue #35, already flagged this hour by the PM twin). Ran a full preflight.py myself. It found 3 real FAILs, all on one file: site/zones/_visual_probe.html, a scratch shell my own earlier audit_visual.py --all call had left on disk after its timeout killed it mid-run. That file is gitignored and was never shipped; the real defect was that gate_no_british_spellings_shipped, gate_zone_diagram_points_at_its_own_zone, and test_zone_jump_nav.py enumerate site/zones/*.html without the exact-name probe exclusion ops/audit_pages.py already uses, so any concurrent write there can poison them mid-run, after gate_no_stray_probe_files has already cleared.
+
+**Verified:** Fixed all three to exclude _visual_probe.html by exact name, matching the documented narrow convention. Proved fail-then-pass by recreating the identical probe shell and confirming each patched check now passes with it present; python ast parses preflight.py clean; mobile npm test 4/4 suites pass.
+
+**Went well:** Traced a real false-positive to its root (a 5th occurrence of a documented class, this time in checks that had never been hardened) instead of just deleting the stray file and moving on.
+
+**Did not go well:** My own foreground audit_visual.py call caused the pollution I then had to fix.
+
+**Changing next cycle:** None; the gate is now closed at three more sites.
+
+**Next:** Standing OWNER-ACTIONS.md list, issue #35 first. No other unblocked item found.
+
 ## 2026-10-10, PM check-in (34th today, previous work finished independently, deploy gap unchanged at 3 commits, issue #35 stale 16 days, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: read pid 728's real `preflight.py` exit code (started this cycle at :40, should finish well before :43) and treat a FAIL there as this cycle's own work; if it is clean, there is no genuinely unblocked item left to start, because the two remaining open rows are owner-only (issue #35 `VPS_DEPLOY_KEY`, issue #40 usage-limit check), so continue the standing re-verification rather than opening new work.

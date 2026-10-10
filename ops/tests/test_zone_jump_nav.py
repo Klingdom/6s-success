@@ -56,8 +56,13 @@ def main():
     if not os.path.isdir(ZONES):
         print('NOT VERIFIED: no site/zones directory, so nothing was checked.')
         return 0
+    # _visual_probe.html is audit_visual.py's own scratch shell, excluded by
+    # exact name for the same reason ops/audit_pages.py's pages() excludes
+    # it: a run whose window overlaps that tool's write/cleanup can catch it
+    # mid-existence and report it as a real zone page with no jump list.
     names = [n for n in sorted(os.listdir(ZONES))
-             if n.endswith('.html') and n != 'index.html']
+             if n.endswith('.html') and n != 'index.html'
+             and n != '_visual_probe.html']
     if len(names) < 50:
         print('NOT VERIFIED: only %d zone page(s) on disk, too few to be the '
               'real corpus. Nothing below was checked.' % len(names))
