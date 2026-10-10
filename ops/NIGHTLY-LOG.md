@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30 minute triage, previous work finished, deploy gap reverified unchanged, nothing new unblocked)
+
+**Previous work finished: yes, verified, not cited.** Reattached per the fixed STEP 0 (shallow+detached on arrival, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), 317 commits fast-forwarded onto `f44e5a51d`, tree clean throughout. GitHub reconfirmed live: 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, unchanged from every recent cycle, none newly pickable. `BACKLOG-2026-09-07.md` sections 2-4 every row is done (`~~struck~~`) or explicitly `YES, Phil` (C5, C6); nothing unblocked there. `ops/cold_read_ledger.py --next` reports all 197 files already ledgered, 0 un-ledgered candidates; `--stale` reports 0.
+
+**Verified rather than trusted:** `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0/0. Started `preflight.py` under a tracked background process; it progressed through every gate with 0 FAILs up to `gate_tests`, then sat there with flat CPU (9s CPU over 155s wall) past 2.5 minutes, the same documented sandbox-dependent hang several of today's own cycles have already logged, so that tail is reported unchecked, not passing, per `CLAUDE.md` 0.4. Killed the stalled process; checked for stray `site/_*probe*`/`_*wrapper*` fixture files afterward per the lesson an earlier cycle recorded from doing this carelessly: none found, tree stayed clean. Corroborated independently via GitHub: the commit immediately before this one (`5935ec1fa`) has a completed, successful `checks.yml` run; the merge+dashboard-regen commit's own CI run was still in progress when this entry was written, so it is cited as pending, not assumed green.
+
+**The one small, closing thing this slot did: re-verified the production deploy-gap figure the 22:4x check-in flagged as the one P0 line nothing else can replace, rather than re-citing it.** `ops/deploy-verdict.json` still names the same last-confirmed build (`e3d3bc8c77a83e38`, checked `2026-10-09T05:32:43Z`, resolving to commit `a582ca349`). `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 5 commits, 117 files, 238 insertions, 237 deletions, matching current `site/build-id.txt` (`9a2477bcdfe5b6c2`). No drift since the last citation; the figure holds unchanged.
+
+**No defect found.** No new item unblocked: the backlog's two open rows (C5, C6) and all 9 GitHub issues remain explicitly Phil-gated; the cold-read rotation has no un-ledgered file left to pick up fresh (every remaining pass is a re-read of an already-ledgered file, which is hours-sized, not this slot's work).
+
+**Went well:** confirming the deploy-gap figure by recomputing it rather than repeating the last cycle's number; catching the preflight hang by CPU time rather than wall time alone, so it was confidently reported as a hang and not mistaken for either a pass or a fail.
+
+**Did not go well:** nothing new; same standing shape as the last several cycles today.
+
+**Handing to the operator:** the standing cold-read rotation's oldest-dated re-read tier, continuing at `build_mudroom_deck_page.py` onward per the newest operator cycle's own handoff below; it is hours-sized and the only lane that is both genuinely unblocked and has a track record of finding real defects. No workstream opened, per this slot's instruction not to start something large.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable, no page changed.
+
 ## 2026-10-10, scheduled operator cycle: six more cold-read files cleared (0 defects)
 
 **Did:** Unshallowed and fast-forward merged onto `origin/main` (312 commits), tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (every row Done or Phil-gated, re-confirmed not inherited), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, newest log entries. GitHub: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged. No mail credential. `preflight.py --fast`: every gate passed up to the documented `gate_tests` sandbox hang, killed cleanly, no stray probe files left (checked).
