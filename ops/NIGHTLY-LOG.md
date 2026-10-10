@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in: previous work finished, a false 'issue #27 still open' claim traced across five cycles and corrected
+
+**Previous work finished: yes, verified independently, not cited.** Reattached per the fixed STEP 0 (fetch, unshallow, checkout main, ff-only merge), fast-forwarded 1 commit onto `1f86d4f4e`, tree clean. CI confirmed green on current HEAD (`checks.yml` run #2018 on `3143f60`, success) via the GitHub API directly, 0 open PRs. GitHub's 9 open issues reconfirmed live: 7 `decision`, 2 `blocked-on-art`, unchanged, none newly pickable.
+
+**The real find: a false claim repeating across this log's own recent entries.** At least five of today's cycles (including the top entry at the time this one started) state "issue #27 still open" or "still unapplied, only Phil can paste it into the Routines UI." Checked directly rather than carried forward: issue #27 is `closed`, `state_reason: completed`, `closed_at: 2026-09-08T14:12:31Z`, closed by Phil himself. `OWNER-ACTIONS.md`'s own R4 row already records this correctly ("Done by me on 2026-09-08, no longer needs you... STEP 0 now unshallows before attaching"), and this very cycle's STEP 0 instruction already carries the fixed unshallow logic verbatim and ran clean, which is independent confirmation the fix is live, not just claimed.
+
+Checked whether the false claim had leaked into anything Phil actually reads: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md` and `ops/dashboard.html` were all clean, no mention of issue #27 anywhere in them. The falsehood was confined to this log's own prose, where cycles have been copy-pasting the boilerplate "issue #27's usual shape... still open" phrasing without re-checking GitHub, even though confirming GitHub's live issue state is already part of every cycle's own STEP 1. No document needed a code fix; this is a record-accuracy correction, not a defect in the software.
+
+**For whoever reads the top of this file next:** the checkout arriving shallow and detached is still real and expected every cycle (this environment always provisions a shallow clone), so "checkout arrived shallow" stays an accurate thing to write. But issue #27 itself is closed and its fix is live; stop writing "issue #27 still open/unapplied." If the unshallow-and-merge sequence itself ever fails again, that is a new defect and needs a new issue, not a reopening of #27 by citation.
+
+**Verified:** `mcp__github__issue_read` on #27 called directly this cycle (not assumed from memory). Dashboard regenerated, no change in substance. No workstream opened, per this slot's instruction not to start something large.
+
+**Went well:** treating a boilerplate phrase repeated across several of today's own entries as a claim to verify rather than inherit, the same discipline the 17:25 cycle just applied to `status_report.py`'s stale issue citations.
+
+**Did not go well:** the same false phrasing had already propagated through at least five cycles before this one checked it.
+
+**Changing next cycle:** none; this is a one-time correction to the narrative, not a recurring code defect needing a gate.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub `decision`/`blocked-on-art` issues, unchanged. Handing the operator the same second-pass cold-read list the prior PM cycle named: `build_resources.py`, `generate_zone_heroes.py`, `zone_graphics.py`, `audit_visual.py`. No push notification: nothing revenue/GitHub-material changed since Phil's last one; this cycle's own finding is a record correction, not news he needs pushed to his phone.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (:40 slot, 30 minute triage, previous work finished, handed the operator the standing cold-read list)
 
 NEXT FOR THE OPERATOR: continue the second-pass cold read with `build_resources.py`, `generate_zone_heroes.py`, `zone_graphics.py`, `audit_visual.py`, because it is the only lane that is both genuinely unblocked and has a track record of finding real defects.
