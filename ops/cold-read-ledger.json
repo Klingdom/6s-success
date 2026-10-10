@@ -63,8 +63,8 @@
     },
     "build_articles.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_avif.py": {
       "status": "clean",
@@ -108,8 +108,8 @@
     },
     "build_deck_gallery.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_deck_pdf.py": {
       "status": "clean",
@@ -118,13 +118,13 @@
     },
     "build_dining_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_entryway_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_epub.py": {
       "status": "clean",
@@ -133,8 +133,8 @@
     },
     "build_family_room_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-10",
+      "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_feed.py": {
       "status": "fixed",

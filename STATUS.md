@@ -56,7 +56,28 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Released 2026-10-09, scheduled operator cycle:
+**None currently open.** Released 2026-10-10, scheduled operator cycle:
+cold-read the next oldest-ledgered tier (`ops/build_articles.py`,
+`ops/build_deck_gallery.py`, `ops/build_dining_room_deck_page.py`,
+`ops/build_entryway_deck_page.py`, `ops/build_family_room_deck_page.py`),
+running each generator directly against the real committed corpus rather
+than only reading it; all five produced 0 diff against the committed
+site output, no defect found, all five re-ledgered clean with today's
+date. Full `preflight.py` run this cycle: every gate passed, 33 warnings,
+all standing sandbox limits (no Stripe credential, no network egress, no
+mail credential). GitHub reconfirmed live: 9 open issues (7 `decision`, 2
+`blocked-on-art`), 0 open PRs, unchanged from the prior several cycles.
+Nine process/gate-hardening commits landed since this file's own last
+edit with no business-state change in any of them (cron-registry gate
+promotion `68747d3d`, the owner-questions-email workflow fix `ba043e54`,
+four false-positive fixes in concurrent-session test fixtures `9b883cb2`/
+`68aa4482`/`30251cbf`/`263aff73`, a credential-gated secret-scan closed
+`245de894`, a cold-read-handoff false positive fixed `1d3722ff`, one
+cold-read cycle `a52e0d7b`); noted here so `gate_status_currency` does
+not read this file as having gone silently stale behind them. Dashboard
+regenerated. Full account in `ops/NIGHTLY-LOG.md` this date.
+
+Earlier, released 2026-10-09, scheduled operator cycle:
 re-verified `ops/dashboard.py`, the one stale cold-read-ledger entry
 `preflight.py` itself was flagging (ledgered clean 2026-10-03, touched
 2026-10-09 by three commits since). Read all three diffs (the zone-photo
