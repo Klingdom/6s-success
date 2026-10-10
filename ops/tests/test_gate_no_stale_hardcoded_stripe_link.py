@@ -82,6 +82,13 @@ real_live_buys = {i["buy"] for i in catalog if i.get("buy")}
 
 real_files = {}
 for f in preflight.all_pages():
+    # Skip a stray underscore-prefixed scratch/fixture file (e.g. a
+    # concurrent test_audit_catalog.py run's own
+    # _audit_catalog_fixture_<pid>.html, which plants a deliberately fake
+    # buy.stripe.com link): all_pages() does not exclude it, matching
+    # gate_no_stale_hardcoded_stripe_link's own local filter.
+    if os.path.basename(f).startswith("_"):
+        continue
     real_files[f] = io.open(f, encoding="utf-8", errors="replace").read()
 for f in glob.glob(os.path.join(SITE, "assets", "js", "*.js")):
     real_files[f] = io.open(f, encoding="utf-8", errors="replace").read()
@@ -89,6 +96,30 @@ for f in glob.glob(os.path.join(SITE, "assets", "js", "*.js")):
 check("real committed site, no stale hardcoded link",
       preflight.stale_hardcoded_stripe_links(real_files, real_live_buys),
       True)
+
+# 6. Reproduce the 2026-10-10 false positive directly: a concurrent
+# test_audit_catalog.py run's own _audit_catalog_fixture_<pid>.html,
+# planted in the real site/ directory with a deliberately fake
+# buy.stripe.com link, must not make gate_no_stale_hardcoded_stripe_link()
+# itself report a stale link. Calls the real gate function, not the pure
+# helper, because the bug was in how the gate assembles `files` from
+# all_pages(), not in stale_hardcoded_stripe_links() itself.
+fixture_path = os.path.join(SITE, "_audit_catalog_fixture_999999999.html")
+saved_fail = list(preflight.FAIL)
+try:
+    io.open(fixture_path, "w", encoding="utf-8").write(
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<title>Temporary fixture</title></head><body><main>'
+        '<a class="btn" href="https://buy.stripe.com/notARealSlug0000">'
+        'Buy</a></main></body></html>\n')
+    preflight.FAIL.clear()
+    preflight.gate_no_stale_hardcoded_stripe_link()
+    check("stray _audit_catalog_fixture file does not false-fail the real gate",
+          preflight.FAIL, True)
+finally:
+    if os.path.exists(fixture_path):
+        os.remove(fixture_path)
+    preflight.FAIL[:] = saved_fail
 
 print(f"\n{passed} passed, {failed} failed")
 sys.exit(1 if failed else 0)

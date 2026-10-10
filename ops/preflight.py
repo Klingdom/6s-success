@@ -1899,6 +1899,19 @@ def gate_no_stale_hardcoded_stripe_link() -> None:
     so a hardcoded link hiding in JavaScript (quest.js's own shape) is not
     invisible the way `gate_price_matches_its_own_link`'s HTML-anchor-only
     regex would leave it.
+
+    Found 2026-10-10: this gate needs the same local filter
+    `gate_roadmap_prices_current` already carries against a stray
+    site/**/_*.html scratch file, which `all_pages()` deliberately does not
+    exclude (see its own docstring). `test_audit_catalog.py`'s own
+    `_audit_catalog_fixture_<pid>.html` is planted directly in `site/` and
+    contains a deliberately fake buy.stripe.com link to test
+    `audit_catalog.py`; a run of that test overlapping this gate's own scan
+    (both inside one `preflight.py` process, or two concurrent sessions
+    sharing this sandbox) makes the fixture's planted fake link look like a
+    real stale production link. No real page anywhere in site/ starts with
+    an underscore (same check `gate_no_stray_probe_files` already makes), so
+    filtering the prefix here costs nothing real.
     """
     js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                  encoding="utf-8").read()
@@ -1909,6 +1922,8 @@ def gate_no_stale_hardcoded_stripe_link() -> None:
 
     files = {}
     for f in all_pages():
+        if os.path.basename(f).startswith("_"):
+            continue
         files[f] = io.open(f, encoding="utf-8", errors="replace").read()
     for f in glob.glob(os.path.join(SITE, "assets", "js", "*.js")):
         files[f] = io.open(f, encoding="utf-8", errors="replace").read()
