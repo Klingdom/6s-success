@@ -92,13 +92,16 @@ REPO = "klingdom/6s-success"
 # two-day gap). indexation-check.yml and keyword-demand.yml (cron lines
 # added 2026-10-02/2026-10-03) were missed here for a week, found
 # 2026-10-09 cold-reading this file against a fresh `grep -rl "cron:"
-# .github/workflows/*.yml` instead of trusting this list's own count. Add
-# a new one here the same day it gets a cron line, or this becomes exactly
-# the coverage gap it was written to close.
+# .github/workflows/*.yml` instead of trusting this list's own count.
+# owner-questions.yml (cron line added 2026-10-10) was caught the same day
+# by test_check_cron_cadence.py itself failing in a scheduled run, rather
+# than another cold-read finding it days later. Add a new one here the
+# same day it gets a cron line, or this becomes exactly the coverage gap
+# it was written to close.
 WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
              "roadmap-report.yml", "status-email.yml", "social-drafts.yml",
              "bluesky-drafts.yml", "indexation-check.yml",
-             "keyword-demand.yml"]
+             "keyword-demand.yml", "owner-questions.yml"]
 
 
 def gh_token() -> str | None:
