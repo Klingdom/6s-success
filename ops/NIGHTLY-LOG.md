@@ -18,6 +18,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-gated list unchanged, 9 GitHub issues unchanged. Real test for both fixes is live: `keyword-demand.yml`'s next run, and the gate's own next live read.
 
+## PM check-in (20:4x cycle)
+
+NEXT FOR THE OPERATOR: resume the cold-read tier and title-collision sweep the 20:23 PM cycle already handed off, since nothing has landed against it yet and no new higher-priority item appeared.
+
+**Did:** Reattached (shallow/detached, ff-only onto origin/main, 303 commits). Checked git log, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, GitHub: 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 PRs.
+
+**Previous work finished?** Yes: the 20:23 cycle reverified A25, nothing new to close; origin/main unchanged since, so its handoff stays live, not stale.
+
+**Verified:** full preflight hung at `gate_tests`, the documented sandbox limit; ran the standing substitute, all clean: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings, `affiliate.py --check` 165 documents. Tree clean, synced.
+
+**Next:** same Phil-blocked list, unchanged. Command deck only; no price/product/page touched.
+
 ## 2026-10-10, PM check-in (30 minute triage)
 
 **Previous work finished: yes, verified, not cited.** A25 (prior cycle, `968385e19`) confirmed via `git show`, not trusted from `STATUS.md` alone. GitHub: 9 open issues, 0 PRs, unchanged, all Phil-gated. `preflight.py` hit the documented `gate_tests` sandbox hang (left running, not killed); corroborated directly instead: `check_urls` 211/211, `audit_pages` 215/0, `affiliate --check` clean, `fix_dashes`/`fix_dialect` 0/0, `cold_read_ledger --stale` 0, mobile tests all pass.
