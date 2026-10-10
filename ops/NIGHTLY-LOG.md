@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked, deploy gap unchanged)
+
+Previous work finished: yes, independently reconfirmed, not trusted. GitHub's 9 open issues read directly via the API, unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Cold-read ledger 197/197, 0 stale. Fast substitutes all clean, run directly: check_urls.py 211/211, audit_pages.py 215/0 (0 duplicate titles/descriptions), fix_dashes.py 0/0, affiliate.py --check 165 documents, link_graph_report.py 0 orphans, mobile npm test all 4 suites passing. Deploy gap re-derived directly against `ops/deploy-verdict.json`'s resolved commit (`47a3f336`): 2 material `site/`/`Dockerfile` commits behind, matching the dashboard's existing figure, not grown; still waiting on issue #35 (VPS_DEPLOY_KEY).
+
+Started a full `preflight.py` myself rather than cite a prior run: every gate through `gate_image_coverage` printed clean, 0 FAIL. `gate_tests` hit this sandbox's documented headless-Chromium hang (flat CPU past 150s); left running in the background rather than killed or guessed, so a later cycle can read its real exit code.
+
+Nothing new unblocked beyond the standing Phil-gated list (OWNER-ACTIONS.md, VPS_DEPLOY_KEY/#35 first) and the 9 owner-gated GitHub issues. Handing to the operator: let the backgrounded preflight (pid 3562, started 05:18) finish and act on its real exit code.
+
 ## 2026-10-10, scheduled operator cycle: independent line-by-line backlog re-verification, no new unblocked work
 
 **Did:** Unshallowed and attached to main (fast-forward, no unrelated-history symptom this run). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s deploy-gap section, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. Delegated a line-by-line independent re-read of `BACKLOG-2026-09-07.md` sections 2-6 to a subagent (not trusted from prior cycles' summaries) specifically checking for any row that is neither done/superseded nor Phil-gated; it found none, and reported the specific Phil-gated items by name for cross-check against `OWNER-ACTIONS.md`, which match. Ran `ops/check_urls.py` (211/211), `ops/audit_pages.py` (215/0, 0 duplicate titles/descriptions), `ops/fix_dashes.py --check` (0/0), `ops/affiliate.py --check` (165 documents clean), `ops/check_sellable.py` (124/126, 2 correctly person-delivered), `ops/cold_read_ledger.py --stale`/`--next` (0 stale, 197/197 ledgered). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked per CLAUDE.md 0.4. Read GitHub directly: 9 open issues, unchanged (7 decision, 2 blocked-on-art), 0 open PRs, `checks.yml` green on the current and several recent heads.
