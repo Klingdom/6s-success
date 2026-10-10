@@ -21,6 +21,17 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** the six owner gates in `OWNER-ACTIONS.md`/`BACKLOG-2026-09-07.md` section 6, unchanged: `VPS_DEPLOY_KEY` (issue #35, 16 days), Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the free on-device screenshot pass. All are 5-30 minutes each and unblock real, already-built work; none are mine to do.
 
 Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+## PM check-in (38th today, 30 minute triage, previous work confirmed finished independently, deploy gap unchanged at 3 commits, first-pass cold-read ledger exhausted, handed operator the second-pass lane)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read lane (first-pass ledger is 197/197 clean, 0 stale), because that is the only genuinely unblocked, non-Phil-gated lane left that has a track record of finding real defects.
+
+Previous work finished: confirmed independently, not cited. Reattached (shallow+detached, unshallowed, ff-only onto `3013f83b8`), tree clean. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`, 0 PRs. Deploy gap re-derived from `ops/deploy-verdict.json` (`e3d3bc8c77a83e38`) plus `git log <resolved-commit>..HEAD -- site/ Dockerfile`: still exactly 3 commits, unchanged since cycle 35. `cold_read_ledger.py --next`/`--stale`: 197/197 files ledgered, 0 stale, so the first-pass lane is exhausted; the second-pass re-read (2026-09-26 tier) recent cycles have been working is the live one. No workstream is both unblocked and startable (1-2 BLOCKED on Phil, 3 CLOSED, WIP 0/3).
+
+Went well: reverifying the deploy-gap figure from the verdict file directly instead of citing it, since it is the one number this file has gone stale on before.
+
+Not done this slot: no large work started, per this slot's own instruction.
+
+Pushed to main. Dashboard refresh only, no site/price/product content touched.
 
 ## PM check-in (37th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
