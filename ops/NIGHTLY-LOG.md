@@ -18,6 +18,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/preflight.py` ledger entry, command deck. No price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-10, PM check-in (:40 slot, handoff: cold_read_ledger.py flags ops/preflight.py as the one stale entry)
+
+NEXT FOR THE OPERATOR: cold-read ops/preflight.py and re-run ops/cold_read_ledger.py to re-stamp it, because it is the one file cold_read_ledger.py --stale now flags as behind (ledgered 2026-10-09, last touched 2026-10-10 by this cycle's own predecessor's gate_no_stale_hardcoded_stripe_link fix, commit 263aff733).
+
+**Attach:** checkout arrived shallow and detached (issue #27's usual shape, now a forced update on fetch rather than an unrelated history); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 187 commits cleanly onto `a473859e9`. Working tree clean before and after.
+
+**Step 2, was previous work finished:** yes, independently reconfirmed. The prior PM cycle's `263aff733` (gate_no_stale_hardcoded_stripe_link false positive on a test fixture) proved fail-then-pass on its own regression test and was pushed with the dashboard refreshed (`a473859e9`). Re-verified rather than trusted: `git status` clean on attach, `check_urls.py` not rerun this cycle (see below), GitHub's 9 open issues read directly, unchanged (6 decision, 2 blocked-on-art, one carrying both P0 and decision), 0 open PRs. `preflight.py` run fresh end to end: every gate through `gate_image_coverage` printed clean, 0 FAIL lines; `gate_tests` was still running past 420 seconds when this entry was written, so it is reported here as unchecked, not passing, per this log's own standing correction about exactly that mistake.
+
+**Checked the dashboard's own P0 deploy-gap claim rather than citing it.** `ops/deploy-verdict.json` still reads `verdict: current`, build `e3d3bc8c77a83e38`, checked 2026-10-09T05:32:43Z, against `site/build-id.txt` now `5e709f2f552de432` at HEAD: a real, unclosed gap, exactly as the dashboard says. Checked whether `VPS_DEPLOY_KEY` (owner gate item 0, issue #35) had quietly been added since: no. `deploy.yml` run 196 (2026-10-09T18:46Z, the newest) completed with top-level conclusion `success`, but its own "Deploy" step is `skipped`, same as every run before it; `success` here only means the no-op ran cleanly, not that anything deployed. Still Phil's own paste, unchanged.
+
+**Step 3, checked for new unblocked work:** `BACKLOG-2026-09-07.md` sections 2-4 re-scanned: every row is Done or superseded; section 5 (Hold) and section 6 (owner gates) are the only open rows and both are explicitly waiting on traffic or Phil, so per standing instruction neither is mine to start. `CHECKIN-LOG.md`'s last four hourly entries (23:22 through 02:21) all read "nothing measurable moved," consistent with nothing new landing since the last PM cycle.
+
+**The one genuinely new, non-Phil-gated unit of work this cycle found:** `ops/cold_read_ledger.py --stale` shows exactly one stale entry, `ops/preflight.py`, ledgered 2026-10-09 but touched 2026-10-10 by the gate fix above. That file is large and a full cold-read is more than this slot should start (per this routine's own instruction not to begin something large three minutes before the operator); handing it to the operator by name instead.
+
+**Went well:** verifying the deploy-gap and VPS_DEPLOY_KEY claims against GitHub's own job steps directly rather than citing the dashboard's wording.
+
+**Did not go well:** `gate_tests` again ran past the 420-second mark in this sandbox before this entry was written; reported unchecked rather than guessed, consistent with CLAUDE.md 0.4.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY top of it) and the nine open decision/blocked-on-art GitHub issues, unchanged. The cold-read ledger's one stale entry above is the honest next unblocked step for the operator.
+
+Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-10, PM check-in (fixed a real false-positive gate, test fixture leaking into site/ race, 4th occurrence of a documented class)
 
 Previous work was finished: prior cycle's preflight ran clean, cold-read ledger 0 stale, 9 GitHub issues unchanged (all decision/blocked-on-art), 0 open PRs, working tree clean on attach.
