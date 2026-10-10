@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, same operator cycle, addendum: the earlier "unchecked" preflight run finished, two real drifts fixed
+
+**The full `preflight.py` run left running past the earlier entry in this cycle finished: 3 FAIL, 32 warn.** Checked each FAIL rather than trusting the summary line:
+
+- `architecture-workflow-count-current`: real and current. `ARCHITECTURE.md` still said "14 workflows" (last corrected 2026-10-03) and its own named list omitted `owner-questions.yml`, added this morning by Phil's own commit. **Fixed:** both count citations and the named list updated to 15, including `owner-questions.yml`; the one test whose fail-then-pass needle hardcoded "14 workflows exist" updated to the new number, reran 6/6.
+- `tests` (3 of 391 failed): `test_gate_architecture_workflow_count_current.py` was the same defect above, now 6/6. `test_check_cron_cadence.py` (10 of 11) was a sibling instance of the identical gap: `ops/check_cron_cadence.py`'s own `WORKFLOWS` registry, which this file's own code comment already names as a gap that recurred for `social-drafts.yml`, `indexation-check.yml` and `keyword-demand.yml` in turn, had the same blind spot for `owner-questions.yml`. **Fixed**, added to the registry, reran 11/11, then ran `check_cron_cadence.py` live to confirm it reports `owner-questions.yml` honestly as `[??] only 0 completed run(s), too few to measure` rather than guessing. `test_status_report_render_executed.py`'s `JSONDecodeError` did not reproduce on a clean rerun (3/3 pass); traced to timing, not code: this preflight run started at the top of this cycle, before this session's own merge-conflict resolution, and read `ops/state.json` while it briefly held real, literal `<<<<<<<` markers mid-merge, exactly the foreground-merge-races-background-preflight shape this log has diagnosed before.
+- `conflict-markers` (3 files): same timing cause as above, confirmed by calling `gate_conflict_markers()` directly against the current, already-merged, already-pushed tree: clean.
+
+**Verified after both fixes:** `gate_architecture_workflow_count_current()` and `gate_conflict_markers()` called directly, both clean. `fix_dashes.py --check` and `check_urls.py` clean. Dashboard regenerated again to cite the new commits.
+
+**Went well:** not discarding a background run's result just because it was slow and started before other work landed; both FAILs it caught were real.
+
+**Did not go well:** this is now the fourth or fifth time this exact registry (a hardcoded workflow list in a sibling tool) has drifted the same way the moment a new scheduled workflow ships; `check_cron_cadence.py`'s own comment already names three prior instances before this one.
+
+**Changing next cycle:** worth asking, next time a `.github/workflows/*.yml` file gains a `schedule:` block, whether `ARCHITECTURE.md` and `check_cron_cadence.py`'s `WORKFLOWS` list could both be derived from a `glob` over the directory instead of hand-maintained prose/list, which is what would close this recurring class for good rather than fixing its fourth instance by hand.
+
+**Next:** unchanged from the earlier entry this cycle; same Phil-gated list.
+
+Pushed to main. `ARCHITECTURE.md`, `ops/check_cron_cadence.py`, `ops/tests/test_gate_architecture_workflow_count_current.py`, command deck.
+
 ## 2026-10-10, scheduled operator cycle: ledger hygiene fix, six more second-pass cold-read files cleared, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout -B main origin/main`, `merge --ff-only` landed clean, 276 commits fast-forwarded onto `d4f4625dc`, tree clean. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` in full (every "Now" row done or Phil-gated, HOLD rows correctly waiting on traffic), `ROADMAP-2026-2029.md`'s referenced arithmetic via GOALS.md, `GOALS.md`, and the head (newest-first) of this file, not the physical end, the exact misreading a prior cycle's own note already warned about. GitHub's 9 open issues confirmed live: 7 `decision`, 2 `blocked-on-art`, 0 PRs, unchanged, all genuinely Phil-gated (re-read issue #40's usage-limit stall and #35's deploy-key decision in full rather than trusting the backlog's summary). `inbox_agent.py --apply`: no mail credential, reported unchecked.

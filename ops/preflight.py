@@ -19331,6 +19331,54 @@ def gate_architecture_workflow_count_current() -> None:
              "; ".join(bad))
 
 
+def gate_cron_cadence_workflows_registry_current() -> None:
+    """ops/check_cron_cadence.py's own `WORKFLOWS` list must name every real
+    `.github/workflows/*.yml` file that carries a `cron:` line.
+
+    This exact gap recurred four times (social-drafts.yml, then
+    indexation-check.yml and keyword-demand.yml together, then
+    owner-questions.yml, 2026-10-10), each caught days late because the one
+    check that already existed for it, `ops/tests/test_check_cron_cadence.py`,
+    lives inside `gate_tests`, the slow headless-Chromium battery this
+    sandbox has never once watched run to completion in the same cycle a new
+    workflow shipped. Lifted the identical logic here as its own fast,
+    standalone gate (the same promotion `gate_architecture_workflow_count_current`
+    got for the sibling ARCHITECTURE.md drift) so it runs, and can fail,
+    on every preflight pass regardless of whether `gate_tests` ever finishes.
+
+    Does not replace the test; that one also proves the parser's arithmetic.
+    This one only proves the registry has not drifted from the directory.
+    """
+    workflows_dir = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(workflows_dir):
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import check_cron_cadence as C                               # noqa: E402
+
+    real_scheduled = set()
+    for name in os.listdir(workflows_dir):
+        if not name.endswith((".yml", ".yaml")):
+            continue
+        text = io.open(os.path.join(workflows_dir, name),
+                       encoding="utf-8").read()
+        if "cron:" in text:
+            real_scheduled.add(name)
+
+    missing = real_scheduled - set(C.WORKFLOWS)
+    stale = set(C.WORKFLOWS) - real_scheduled
+    bad = []
+    if missing:
+        bad.append("missing real cron-scheduled file(s): %s" %
+                    ", ".join(sorted(missing)))
+    if stale:
+        bad.append("names file(s) that no longer carry a cron line or no "
+                    "longer exist: %s" % ", ".join(sorted(stale)))
+    if bad:
+        fail("cron-cadence-workflows-registry-current",
+             "ops/check_cron_cadence.py's WORKFLOWS list has drifted "
+             "from .github/workflows/: %s" % "; ".join(bad))
+
+
 def gate_visual_strategy_truncation_current() -> None:
     """PLAN-VISUAL-STRATEGY.md must not claim the video-truncation defect is
     live without also saying it was fixed, and the fix it names must still
@@ -28430,6 +28478,7 @@ def main() -> int:
     run_gate(gate_affiliate_report_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_architecture_workflow_count_current)
+    run_gate(gate_cron_cadence_workflows_registry_current)
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
