@@ -22,6 +22,24 @@ Started `preflight.py` fresh under a tracked background pid (8306); it progresse
 
 Pushed to main. Command deck regenerated only, no site content, price or product touched. No new page, IndexNow not applicable.
 
+## 2026-10-10, scheduled operator cycle (independent re-verification, confirmed deploy.yml's green runs are a no-op, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `git checkout -B main origin/main`, `merge --ff-only` landed clean on `9ac45db13`, no collision. Read `BACKLOG-2026-09-07.md` in full, `GOALS.md`, `CLAUDE.md`, `STATUS.md`'s open-claims section (none open), the tail of this log. GitHub's 9 open issues read live, not cited: unchanged, 7 `decision` and 2 `blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential. `b9_claims.py --status`: no undiagnosed rooms, nothing claimed.
+
+**Verified rather than inherited.** Re-derived the production deploy gap from scratch with `git log -S` on `build-id.txt` and `git log a582ca349..HEAD -- site/ Dockerfile`: still exactly 3 commits, unchanged, still waiting on issue #35 (`VPS_DEPLOY_KEY`, untouched since 2026-09-24, no comments). Rather than trust that citation alone, checked `deploy.yml`'s own recent runs on GitHub: several show `conclusion: success`, which could misread as production catching up. Read the workflow file: a missing secret makes the job print a notice and `exit 0`, so every one of those green runs is the documented no-op, not a real deploy; confirms the gap is real, not stale reporting. Issue #40 (usage-limit stall) is not currently reproducing: this cycle and the 36 before it today all ran. Fast gates run myself: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Started a full, untimed `preflight.py` in the background (the documented `gate_tests` headless-Chromium sandbox path does not finish inside a short foreground window); left running per CLAUDE.md 0.4.
+
+**The honest finding: none new.** Every row in `BACKLOG-2026-09-07.md` is done or Phil-gated; the two open decision issues (#35, #40) are the only unblocked-looking items and both are owner-only. No push notification sent this cycle: the stall was already flagged earlier today and nothing has changed since.
+
+**Went well:** checking `deploy.yml`'s own runs against its source instead of reading "success" at face value.
+
+**Did not go well:** same shallow-checkout shape recurred again; issue #27 still open.
+
+**Changing next cycle:** none found to change.
+
+**Next:** issue #35 (`VPS_DEPLOY_KEY`) first, then #40, both owner-only; `OWNER-ACTIONS.md` standing list otherwise unchanged.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this log entry. No site content, price or product touched. IndexNow not applicable.
+
 ## PM check-in (35th today, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
 
 Previous work finished: yes, reconfirmed independently, not cited. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`. Deploy gap re-derived from `a582ca349`: still exactly 3 commits (`48a4c07c4`, `a40c4d2a8`, `47a3f3368`), unchanged, waiting on issue #35 (`VPS_DEPLOY_KEY`, untouched 16 days). Fast gates run fresh: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `STATUS.md` Workstream 3 confirmed CLOSED, WIP 0/3, no backlog row both unblocked and workstream-sized. This matches the prior 34 cycles today exactly; a push notification already went out this cycle flagging the stall, so not repeating it. Started `preflight.py` fresh under a tracked background pid; still on the slow `gate_tests` path at log time, left running per CLAUDE.md 0.4. Dashboard regenerated. Nothing new for the :43 operator beyond the standing list.
