@@ -67,6 +67,19 @@ def ics(summary, description, start, minutes, organizer, attendee):
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+SENT_RECORD = os.path.join(ROOT, 'ops', 'last-owner-questions-sent.json')
+
+
+def _record_sent():
+    """Stamp when this email actually went out. See the call site for why."""
+    now = datetime.datetime.now(datetime.timezone.utc)
+    payload = {'sent_at': now.strftime('%Y-%m-%dT%H:%M:%SZ'),
+               'run': os.environ.get('GITHUB_RUN_ID', '')}
+    io.open(SENT_RECORD, 'w', encoding='utf-8', newline=chr(10)).write(
+        json.dumps(payload, indent=1) + chr(10))
+    print('recorded', os.path.relpath(SENT_RECORD, ROOT))
+
+
 def _last_confirmed_deploy_line():
     """One line about the last deploy anybody actually confirmed.
 
@@ -388,5 +401,22 @@ if __name__ == "__main__":
     if mode == "--send":
         if len(sys.argv) < 3:
             sys.exit("usage: python ops/send_questions.py --send ADDRESS")
-        print("sent", send(sys.argv[2], subject, text, None, None, None,
-                           [("6s-success-unblock.ics", invite, "text", "calendar")]))
+        result = send(sys.argv[2], subject, text, None, None, None,
+                      [("6s-success-unblock.ics", invite, "text", "calendar")])
+        print("sent", result)
+        # RECORD THE SEND, because nothing could tell a delivered email from
+        # an undelivered one.
+        #
+        # ops/last-brief-sent.json has done this for the hourly brief for
+        # weeks. This email had no equivalent, and it is the more important of
+        # the two: every lever on arrivals sits behind one of the items in it,
+        # and from 2026-10-04 to 2026-10-09 it was not sent at all while the
+        # hourly brief kept arriving, because that one is a GitHub workflow and
+        # this was only ever sent by whichever Routine happened to run
+        # (INCIDENT-002). Three gates checked what this email SAYS and none
+        # could see whether it ever left.
+        #
+        # Written only after send() returns, so a failed send leaves the last
+        # honest timestamp in place rather than claiming a delivery that did
+        # not happen.
+        _record_sent()

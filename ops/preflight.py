@@ -17906,6 +17906,80 @@ def keyword_demand_staleness_problem(payload, now) -> str:
     return ""
 
 
+def owner_questions_staleness_problem(payload, now, limit_days=10):
+    """Pure logic for gate_owner_questions_not_stale, testable without a clock.
+
+    payload is the parsed ops/last-owner-questions-sent.json or None.
+    Returns a problem string, or '' when the last send is recent enough.
+
+    10 days against a weekly schedule: one missed Monday is GitHub being
+    GitHub (ops/check_cron_cadence.py measures this repository's crons firing
+    at 5x their configured interval), two missed Mondays is a channel that has
+    stopped.
+    """
+    if not payload or not payload.get('sent_at'):
+        return ('ops/last-owner-questions-sent.json records no send, so '
+                'whether the owner has ever received the questions email is '
+                'UNKNOWN. It is the only channel to the nine open '
+                'decision/blocked-on-art issues.')
+    try:
+        when = dt.datetime.strptime(payload['sent_at'],
+                                    '%Y-%m-%dT%H:%M:%SZ')
+        when = when.replace(tzinfo=dt.timezone.utc)
+    except Exception:                                         # noqa: BLE001
+        return ('ops/last-owner-questions-sent.json has an unparseable '
+                'sent_at (%r), so the last send date is UNKNOWN.'
+                % (payload.get('sent_at'),))
+    days = (now - when).days
+    if days > limit_days:
+        return ('the owner questions email was last sent %d days ago (%s). '
+                'Every lever on arrivals sits behind an item in it and all '
+                'nine open issues are decision or blocked-on-art, so a silent '
+                'channel here stalls the whole business, which is exactly '
+                'what happened 2026-10-04 to 2026-10-09 (INCIDENT-002). '
+                'Check .github/workflows/owner-questions.yml ran.'
+                % (days, payload['sent_at']))
+    return ''
+
+
+def gate_owner_questions_not_stale() -> None:
+    """The owner must actually be receiving the one email that asks him to
+    unblock the business.
+
+    Found 2026-10-10: three gates check what ops/send_questions.py SAYS
+    (gate_send_questions_current, gate_send_questions_covers_top_owner_actions,
+    gate_no_frozen_deck_link) and nothing checked whether it is ever
+    delivered. Nothing in .github/workflows referenced the script at all: it
+    was sent by whichever scheduled Routine happened to run, which is the same
+    thing that went silently dark from 2026-10-04 to 2026-10-09 on
+    USAGE_LIMIT_REACHED. For those five days the hourly status email kept
+    arriving, because status-email.yml is a real workflow, and the email that
+    asks the owner to unblock the business did not, because it was not one.
+
+    Correct content, no delivery, and three gates looking at the wrong half.
+
+    A WARNING, not a failure: a missed email is not something a customer can
+    feel, and failing a build over it would block unrelated work. The point is
+    that the silence stops being invisible.
+
+    Proof this can fail: ops/tests/test_gate_owner_questions_not_stale.py
+    calls owner_questions_staleness_problem() with a send three weeks old, a
+    send yesterday, a malformed stamp and None, and asserts which of the four
+    produce a complaint.
+    """
+    path = os.path.join(ROOT, 'ops', 'last-owner-questions-sent.json')
+    payload = None
+    if os.path.exists(path):
+        try:
+            payload = json.loads(io.open(path, encoding='utf-8').read())
+        except Exception:                                     # noqa: BLE001
+            payload = None
+    problem = owner_questions_staleness_problem(
+        payload, dt.datetime.now(dt.timezone.utc))
+    if problem:
+        warn('owner-questions-not-stale', problem)
+
+
 def gate_keyword_demand_not_stale() -> None:
     """ops/keyword-demand.json, the only reading this business has of what
     people actually type before they decide organising is the answer
@@ -28335,6 +28409,7 @@ def main() -> int:
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_owner_questions_not_stale)
     run_gate(gate_indexation_check_not_stale)
     run_gate(gate_goals_keyword_cluster_citation_current)
     run_gate(gate_experiments_blocked_reason_current)

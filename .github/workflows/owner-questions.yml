@@ -1,0 +1,88 @@
+name: Owner questions email
+
+# THE CHANNEL THAT UNBLOCKS EVERYTHING ELSE, AND IT HAD NO WORKFLOW.
+#
+# ops/send_questions.py drafts and sends the "things only you can do" email:
+# the BLOCKING list, the open decisions, and a calendar invite. Every lever on
+# arrivals, which GOALS.md has named the constraint since 2026-09-02, sits
+# behind one of those items, and all nine open GitHub issues are labelled
+# decision or blocked-on-art.
+#
+# Until now nothing in .github/workflows referenced that script. It was sent by
+# whichever scheduled Routine happened to run, which is the same thing that
+# went silently dark from 2026-10-04 to 2026-10-09 on USAGE_LIMIT_REACHED
+# (INCIDENT-002, issue #40). For those five days the hourly status email kept
+# arriving, because status-email.yml is a real workflow, and the one email that
+# asks the owner to unblock the business did not, because it was not one.
+#
+# Three gates already guard what that email SAYS
+# (gate_send_questions_current, gate_send_questions_covers_top_owner_actions,
+# gate_no_frozen_deck_link) and nothing guarded whether it is ever delivered.
+# Correct content, no delivery. Those gates run in checks.yml on every push, so
+# anything this sends from main has already passed them; this workflow
+# deliberately does not re-run them, to keep the job short and the failure
+# modes few.
+#
+# Weekly, not daily. The list is decisions, not news: it changes when an item
+# is added or resolved, and a daily repeat of the same nine asks is how a
+# recipient learns to filter the sender.
+
+on:
+  schedule:
+    # 14:17 UTC Monday is 08:17 in Denver (MDT), so it lands at the start of a
+    # working week rather than into a weekend. Off the hour and off :00 for the
+    # reason every other schedule here is: GitHub deprioritises contended
+    # minutes. ops/check_cron_cadence.py measures what actually fires.
+    - cron: '17 14 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: owner-questions
+  cancel-in-progress: false
+
+jobs:
+  ask:
+    runs-on: ubuntu-latest
+    # A job with no timeout can hold its concurrency group for six hours, the
+    # same reason every other workflow here carries one.
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Preview it into the log
+        # So the run records what was sent, readable without a mailbox.
+        run: python ops/send_questions.py --preview
+
+      - name: Send it
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/send_questions.py --send "$OWNER_EMAIL"
+
+      - name: Record that it was sent
+        # send_questions.py writes ops/last-owner-questions-sent.json on a
+        # successful send. Committing it is what lets
+        # gate_owner_questions_not_stale tell a delivered email from an
+        # undelivered one; ops/last-brief-sent.json has worked this way for the
+        # hourly brief for weeks and nothing equivalent existed here.
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ops/last-owner-questions-sent.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record that the owner questions email was sent'
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
+
+      - name: Say what happened
+        if: always()
+        run: echo "Owner questions run finished at $(date -u +%H:%M) UTC."
