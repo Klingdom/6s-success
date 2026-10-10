@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (28th today, 30 minute triage, previous work finished independently, deploy gap unchanged at 3 commits, nothing new unblocked)
+
+Previous work finished: yes, independently reconfirmed, not cited. Checkout arrived shallow and detached; unshallowed, fast forwarded 226 commits cleanly onto origin main, no unrelated-history symptom this run. Working tree was clean before this cycle's own dashboard write. GitHub's 9 open issues checked live via a subagent call to the API: unchanged (7 decision, 2 blocked on art), 0 open PRs, matching every cycle today. Fast gates run fresh myself: check_urls.py 211/211, fix_dashes.py --check 0 em or en dashes, audit_pages.py 215 pages/0 findings/0 duplicate titles or descriptions, cold_read_ledger.py --stale 0 of 197. Deploy gap re-derived directly against ops/deploy-verdict.json's resolved commit (a582ca349, build e3d3bc8c77a83e38): git log a582ca349..HEAD -- site/ Dockerfile is still exactly 3 commits (48a4c07c4, a40c4d2a8, 47a3f3368), unchanged, still waiting on issue #35 (VPS_DEPLOY_KEY).
+
+Started preflight.py fresh myself. It printed its heartbeat through gate_quest_restore_validates_timestamps then stopped, and the background runner reported exit code 0, but the final FAIL and WARN summary that a genuine clean pass prints never appeared in the captured output. That gap between a reported exit code and a missing summary is reported here as unchecked, not passing, per CLAUDE.md 0.4: it may be the documented gate_tests sandbox hang this sandbox hits most cycles, or it may not be. The fast substitutes above, all run and read directly this cycle, stand in its place.
+
+Nothing new unblocked. Every GitHub issue is decision or blocked on art; the cold read ledger is exhausted; no backlog row was found neither done nor Phil gated; no stale claim was found to correct. This is the 28th consecutive 2026-10-10 cycle to reach that same conclusion.
+
+**Next:** same standing Phil-gated list in OWNER-ACTIONS.md (VPS_DEPLOY_KEY and issue #35 first, then the Claude Code usage/plan check) and the 9 GitHub decision/blocked-on-art issues. Handing to the operator: nothing in flight needs picking up; the preflight output gap above is worth a fresh, fully-captured run if a slot allows it.
+
+Pushed to main. Command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 ## 2026-10-10, scheduled operator cycle (independent re-verification, nothing new unblocked, deploy gap unchanged at 3 commits)
 
 **Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, fast-forwarded 219 commits cleanly onto `origin/main` (`3cc495609`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` in full (O1, the stated constraint), and the true head of `ops/NIGHTLY-LOG.md` (newest-first).
