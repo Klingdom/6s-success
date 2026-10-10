@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (30-minute triage): concrete second-pass cold-read handoff, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of the oldest-ledgered ops/*.py files (root_causes.py, shoot_mobile.py, shrink_sample.py, stripe_links.py, wire_aria_current.py, wire_breadcrumbs.py, wire_consult_cta.py, wire_footer.py, wire_legal_strip.py, wire_nav.py, wire_progressive.py, all last verified 2026-09-30), because the first-pass ledger is genuinely exhausted (197/197, 0 stale) and re-reading the oldest-verified tier is the same method that found real defects on cycles twenty, twenty-two and others this log already records.
+
+Previous work finished: yes, independently re-verified. Reattached clean onto `7c81fb648` (shallow+detached, unshallowed, `fetch --unshallow` then `merge --ff-only`), tree clean, no collision, 261 commits fast-forwarded with zero conflicts.
+
+Verified myself rather than cited: GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Re-read issue #40 (usage-limit stall): already correctly left open by a prior cycle pending Phil's own check of plan/usage settings, not mine to close. The last 5 GitHub Actions runs on `a88a3979a` (fulfil-orders, hourly-brief, bluesky-drafts, linkedin-drafts, social-drafts) all completed `success`. Cold-read ledger 197/197, 0 stale (`--stale` and `--next` both confirm first pass exhausted). Deploy verdict still reads `stale`, same standing gap, blocked on issue #35 (`VPS_DEPLOY_KEY`), Phil's own hand. Affiliate trigger still carried forward, unreadable from this sandbox (no SSH key), not re-measured as zero.
+
+Ran `preflight.py` fresh under a tracked background pid (690) rather than citing a prior claim. It passed every gate through `gate_image_coverage` cleanly, then reached `gate_tests`, the same documented slow headless-Chromium sandbox path this log has recorded on roughly 40 cycles today; left running past this entry's writing per CLAUDE.md 0.4, not claimed clean and not claimed failed.
+
+No workstream opened: nothing in the backlog is both unblocked and startable beyond the second-pass cold-read lane named above, which is itself low-ceremony verification work, not a new major workstream (WIP stays within the section 18 cap).
+
+Went well: finding a concrete, specific next step for the second-pass lane (the 11 oldest-dated ledger entries) instead of repeating a generic "nothing new unblocked" line.
+
+Did not go well: this is roughly the 40th-plus cycle today reaching a flat conclusion; the real constraint (arrivals, GOALS.md O1) remains untouched by anything either agent can do from this sandbox.
+
+No push notification: nothing about GitHub, the deploy gap, or the usage-limit issue has changed since the last one Phil received.
+
+Pushed to main. Command deck regenerated only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-10, PM check-in
 
 Previous work finished: yes, re-verified independently. Reattached clean onto `2a064dfed` (shallow+detached, unshallowed, ff-only), tree clean, no collision.
