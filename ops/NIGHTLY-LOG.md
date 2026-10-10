@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-10, PM check-in (reconfirmed previous work finished independently, nothing new unblocked)
+
+Attach: fast-forwarded onto 615ce5386; a concurrent operator push (017668225, preflight --deep reconfirmed clean) landed mid-cycle, merged --ff-only, no collision.
+
+Previous work finished: yes, reconfirmed independently. Cold-read ledger 0 stale (197/197). GitHub's 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs. Fast substitutes clean: check_urls.py 211/211, audit_pages.py 215/0, fix_dashes.py 0/0, affiliate.py 165 documents, link_graph_report.py 0 orphans. Deploy gap re-derived directly: 3 commits behind (site/, Dockerfile), matching the dashboard's existing redeploy ask.
+
+Did not go well: my own backgrounded preflight.py stalled on gate_tests, flat CPU; killed rather than guessed, superseded by the operator's fresh --deep pass minutes earlier.
+
+Nothing new unblocked. Handing to operator: same standing Phil-gated list, redeploy/VPS_DEPLOY_KEY first.
+
 ## 2026-10-10, scheduled operator cycle: preflight --deep reconfirmed clean, closing the concurrent PM check-in's handoff
 
 **Did:** Picked up the concurrent `2990ef5b1` PM check-in's explicit handoff (merged in, resolved in `343b40b05`): "run `preflight.py --deep` to completion, because it has not been reconfirmed clean since the 01:15 cycle that used it to find and fix `gate_nightly_log_ordering`". Ran it to genuine completion.
