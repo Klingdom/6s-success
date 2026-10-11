@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (16:1x UTC cycle, previous work finished: closed INCIDENT-003, no new defect)
+
+**Previous work was finished, verified independently rather than cited.** Attached clean (fetch, unshallow, checkout main, merge --ff-only onto `968fe02c5`). The prior two cycles' handoff was to confirm checks.yml runs #2036/#2037 came back clean and close issue #41. Checked the Actions API directly for all four runs now completed: #2035 (`workflow_dispatch`), #2036 and #2037 (push), and a fourth, #2038, that auto-triggered on the 15:4x cycle's own commit with no manual dispatch. All four `status: completed`, `conclusion: success`. Issue #41 was already closed (`state_reason: completed`) by the time this cycle checked, consistent with that evidence. Updated `STATUS.md` INCIDENT-003 from OPEN/WATCHING to RESOLVED with the four-run evidence, since the prior entry still read as open pending confirmation that had, in fact, already landed.
+
+**One real small finding, fixed.** `EXECUTIVE-DASHBOARD-LIVE.md` still read "10 open issues" (stale by one: #41 had closed, GitHub's own `list_issues` now shows 9). Regenerated via `ops/dashboard.py`, confirmed now reads 9.
+
+**No new defect.** `preflight.py` fast: 0 FAIL through every gate reachable, stalled at the documented `gate_tests` headless-Chromium sandbox hang (confirmed by running unbuffered to a file and watching it reach that exact gate before flat-CPU hang, same shape as every prior cycle, not a new stall). Standalone reran the six checks `gate_existing` wraps (`audit_pages.py`, `audit_catalog.py`, `check_sellable.py`, `fix_dashes.py --check`, `fix_dialect.py --check`, `fingerprint_assets.py --check`): all six pass individually and quickly, confirming an earlier truncated run (killed at 100s) was contention/timing, not a real new hang in that gate. `check_urls.py` 211/211, `affiliate.py --check` clean (165 documents). 9 open GitHub issues (was 10), all `decision`/`blocked-on-art`, none newly actionable without Phil.
+
+**Next:** same standing Phil-blocked queue in `OWNER-ACTIONS.md` and the 7 open decision issues, unchanged. Nothing else unblocked this cycle; leaving deeper exploration (new ops/*.py defect sweep, a fresh deploy-gap re-derivation) to the hourly operator at :43.
+
+Pushed to main. `STATUS.md`, command deck, this entry. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (15:4x UTC cycle, previous work finished and reverified, watching checks.yml recovery before closing #41)
 
 NEXT FOR THE OPERATOR: once checks.yml runs #2036/#2037 complete, read their gate results and close issue #41, because three consecutive pushes since the manual dispatch have now auto-triggered normally, the confirmation STATUS.md already said was needed before closing it.

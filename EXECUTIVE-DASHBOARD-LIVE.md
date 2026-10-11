@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-11 15:47 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-11 16:23 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,11 +26,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 10 (2 P0, 2 blocked on art, 7 need your call) |
-| Closed to date | 31 |
-| Commits (7 days) | 432 of 6089 total |
+| Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
+| Closed to date | 32 |
+| Commits (7 days) | 434 of 6091 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `d33d9fe48` STATUS.md: push trigger resumed on its own after manual disp |
+| Last commit | `968fe02c5` Hourly check-in record |
 
 ## Product readiness
 
@@ -74,7 +74,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | # | Title | Labels |
 |---|---|---|
-| 41 | checks.yml push trigger stopped firing for 3h09m / 24 commits; manual dispatch still works | bug |
 | 40 | Decide: Claude Code usage limit stalled the autonomous PM/operator routines for 5 days, silently | decision |
 | 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
 | 33 | Decide: reintroduce Momentum, and keep Upgrade/Tool cards deleted (DECK-GAME-DESIGN.md section 7, items 2-3) | decision |
