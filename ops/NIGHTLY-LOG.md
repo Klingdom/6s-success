@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (23:0x UTC, independent re-verification, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout -B main origin/main`, `git merge --ff-only origin/main`: clean fast-forward (461 commits), no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1, `CLAUDE.md`, and the real last entries of `ops/NIGHTLY-LOG.md` by grepping `^## 2026-10-11` rather than trusting file-tail order (this file is not strictly chronological after repeated merges).
+
+**Verified independently rather than inherited.** `preflight.py` run unbuffered to a 90s timeout: 0 FAIL printed through every gate reached, killed (exit 124) at the documented `gate_tests` headless-Chromium sandbox hang, same standing limit as every cycle today. Standing substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` clean on 165 documents, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded). `cold_read_ledger.py --stale` 0, `--next` 197/197 ledgered, 0 un-ledgered. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not assumed empty. Confirmed directly (not cited) that this sandbox holds no VPS SSH key (`~/.ssh` empty) and no egress to Stripe's API (proxy-blocked), so neither the live traffic figure nor a possible second sale could be checked from here. GitHub's 9 open issues read live via the API: identical set, labels and `updated_at` timestamps to the last-cited cycle (6 `decision`, 2 `blocked-on-art`, one carrying both), 0 open PRs, no new comment anywhere. All seven most recent workflow runs (LinkedIn drafts, Hourly brief, Bluesky drafts, Deliver paid orders, Social drafts, Roadmap report) completed `success`. Deploy gap re-derived from scratch rather than cited: `ops/deploy-verdict.json` unchanged (`e3d3bc8c77a83e38`, `2026-10-09T05:32:43Z`, resolving to commit `a582ca349`); `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching the last-cited figure exactly.
+
+**No new defect found, nothing newly unblocked.** Every `BACKLOG-2026-09-07.md` row is done or correctly Phil-gated; both discovery lanes (backlog, cold-read ledger) stay exhausted; no GitHub or mail event needs action. This is roughly the fiftieth-plus cycle today reaching this exact conclusion, independently re-derived rather than inherited each time.
+
+**Went well:** confirming directly that this sandbox has no VPS key and no Stripe egress, rather than citing an earlier cycle's claim of the same.
+
+**Did not go well:** nothing new to report; same standing state as every prior cycle today.
+
+**Changing next cycle:** none found to change. Worth naming for whoever reads this file next: the per-cycle discipline (independent re-verification, not citation) is sound, but dozens of cycles today spent a full pass reaching an identical, already-exhausted conclusion. Nothing in CLAUDE.md asks for less rigor; the honest fix, if one exists, is a cheaper way to confirm "nothing changed since the last cycle" before paying for a full re-verification, not skipping verification.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` ("Start here" items -1, 0, 1a, 1, 1d) and GitHub's 9 open issues, unchanged.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (22:4x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (GitHub's 9 open issues, OWNER-ACTIONS.md's Start here list), because both discovery lanes stay exhausted and nothing has changed since the 22:1x check-in three minutes ago.
@@ -11,6 +31,8 @@ Attached clean (fetch, unshallow, ff-only merge onto origin/main at 3cc26fbd4, 4
 Independently re-derived the deploy gap rather than trusting the dashboard's carried-forward line: `deploy-verdict.json` unchanged (`e3d3bc8c77a83e38`, checked `2026-10-09T05:32:43Z`, resolving to `a582ca349`); `git log a582ca349..HEAD -- site/ Dockerfile` reads the same 5 commits the 22:1x cycle found. No drift.
 
 No new defect found, nothing newly unblocked. This is a small 30-minute slot three minutes before the operator; did not start new work per the twin/operator split. Regenerated and shipped the dashboard only, as required every run. No code, price, product or page touched.
+
+## 2026-10-11, PM check-in (22:1x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
 PM check-in. Previous work was finished, checked rather than cited. Attached clean (ff-only onto a4963de39), tree clean throughout. `preflight.py` run unbuffered to a 100s timeout: 0 FAIL printed through every gate reached, killed (exit 124) at the documented `gate_tests` headless-Chromium sandbox hang, same standing limit as every cycle today. Substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0, `--next` 197 of 197 files ledgered (0 un-ledgered), `affiliate.py --check` clean on 165 documents, no mail credential (reported, not assumed empty). `BACKLOG-2026-09-07.md` sections 2-6 reread row by row: every row struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both still "YES, Phil" only. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
 
