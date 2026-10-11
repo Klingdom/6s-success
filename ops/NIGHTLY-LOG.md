@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, reverified independently with zero drift, nothing new unblocked)
 
-NEXT FOR THE OPERATOR: the zone re-render (gate_zone_videos_match_standard, still 15 of 114, unchanged), because it is the one genuinely unblocked, non-Phil item on the table and it is a multi-hour job that needs a cycle that can watch it through, not a 30-minute slot.
+NEXT FOR THE OPERATOR: the zone re-render (gate_zone_videos_match_standard, still 15 of 114 by caption comparison, unchanged), because it is the one genuinely unblocked, non-Phil item on the table. **Correction from a concurrent cycle found at this merge:** the rendered mp4s are gitignored and absent from this checkout, so the job is a from-scratch render for all 114, not a touch-up of 15; it is a bigger multi-hour job than prior cycles (including this one's own count) estimated, and needs a cycle that can watch it through, not a 30-minute slot.
 
 **Previous work finished: yes, reverified independently, not cited.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`e180883`), tree clean throughout, no stray processes or files at any point.
 
@@ -23,6 +23,22 @@ NEXT FOR THE OPERATOR: the zone re-render (gate_zone_videos_match_standard, stil
 **Changing next cycle:** none.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+## 2026-10-11, scheduled operator cycle: preflight re-verified clean to the sandbox hang, deploy gap re-derived with 0 drift, video re-render found to need a from-scratch job
+
+**Did:** Attached clean (shallow, detached checkout; fetch --unshallow, checkout -B main origin/main, merge --ff-only fast-forwarded 348 commits onto e18088364, tree clean throughout). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, the newest NIGHTLY-LOG.md entries, STATUS.md and OWNER-ACTIONS.md.
+
+**Verified rather than cited.** preflight.py run live, tracked by PID: 0 FAIL through every gate up to gate_tests, which hung on the documented sandbox pattern (test_audit_catalog.py child, flat CPU over wall time); killed cleanly, no stray probe files, tree stayed clean. Reported unchecked past that point, not passing. Ran check_urls.py (211/211), audit_pages.py (215/0), affiliate.py --check (165 documents clean), fix_dashes.py --check (0/0), fix_dialect.py --check (0/0) directly. Re-derived the deploy gap from scratch rather than citing it: build e3d3bc8c77a83e38 resolves to a582ca349 (confirmed by reading file content at that commit, not a string-search match); 5 commits since, 4 material, 1 pure build-id restamp (17b7c6655) confirmed by diffing only that commit. No drift against STATUS.md's existing BLOCKER-001. cold_read_ledger.py: 197/197 ledgered, 0 stale. GitHub: still 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none newly pickable; issue #40 reconfirmed already resolved, correctly left for Phil to close. No mail credential (inbox_agent.py --apply), reported unchecked, not empty.
+
+**Considered and declined: gate_zone_videos_match_standard's 15 stale videos.** Checked first rather than assumed: rendered mp4s are gitignored and absent from this checkout (only .srt captions are committed), so a render here would start from zero, not 15, a bigger unattended job than prior cycles estimated. Left for a session that can watch it through.
+
+**Went well:** resolving the deploy build id by reading file content at the candidate commit instead of trusting a string-search match.
+
+**Did not go well:** nothing new; same exhausted-or-Phil-gated shape as the day's prior cycles.
+
+**Changing next cycle:** none.
+
+**Next:** the 15-video re-render needs a session that can watch a from-scratch multi-hour render through; standing Phil-gated OWNER-ACTIONS.md list and the 9 GitHub issues unchanged.
 
 HANDOFF-FILES: none
 
