@@ -22,7 +22,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: none
 
-Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+**A second real defect found while merging, fixed the same slot.** `ops/tests/test_nightly_log.py`'s case 5 (self-check against a copy of the real file) hardcoded its injected entry's date as the literal `2026-10-10`, which was the newest date in the real file the day that test was written but is no longer true: this cycle's own entries push the real file's top to `2026-10-11`, so the test's older-dated injected entry made `gate_nightly_log_ordering()` correctly fail, confirmed as pre-existing on the operator's own commit (`0ec7421d9`) before this merge, not something this merge caused. Fixed by deriving the injected date as one day past the real file's own newest date instead of a literal, so the case stays valid regardless of which day it runs. `python ops/tests/test_nightly_log.py` 10/10 after; `check_urls.py` 211/211, `audit_pages.py` 215/0 reconfirmed clean.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/tests/test_nightly_log.py`, this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
 
 ## 2026-10-11, scheduled operator cycle: deploy-gap citation corrected, cold-read-handoff gate's 10x-patched parsing closed structurally
 
