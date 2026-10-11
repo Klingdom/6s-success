@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle: preflight ran clean end to end, every exhaustion signal (backlog, GitHub, cold-read ledger, mail) independently re-verified, no new defect
+
+**Did:** Checkout arrived shallow and detached per the standing shape; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 343 commits onto `fece3d128` cleanly, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the four newest `NIGHTLY-LOG.md` entries before touching anything.
+
+**Verified independently rather than cited, since the last several entries in this very log already claimed the backlog exhausted within the last two hours.** Ran `preflight.py` fresh end to end this time (no sandbox hang this run): every gate passed, 30 warnings, all the standing environment-access limits (no Stripe credential, no SSH key, no mail credential, no network egress to the live site). `ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `ops/affiliate.py --check`: clean, 165 delivered documents, no affiliate link, every linked page discloses above them. `ops/cold_read_ledger.py --stale`: 0. `--next`: 197 of 197 files already ledgered, 0 un-ledgered candidates, so the cold-read mechanism that has found most of this week's real defects is itself exhausted right now. GitHub checked directly via the API, not carried forward: still the same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none newly pickable. Read issue #40 end to end (the 5-day usage-limit stall): already resolved and documented in two of its own comments, correctly left open for Phil to close at his convenience, nothing further for this cycle to add. `OWNER-ACTIONS.md`'s "Start here" list re-read: all five rows (usage-limit check, VPS_DEPLOY_KEY secret, Search Console verification, YouTube OAuth, Stripe business description) are genuinely Phil-only actions (credentials, account dashboards, a GitHub secret only he can paste), unchanged.
+
+**One live, non-Phil-gated warning looked at and deliberately not started this cycle:** `gate_zone_videos_match_standard` reports 15 of 114 rendered zone videos hold a checklist that no longer matches their zone's own standard. It is a WARN by design (nothing customer-facing breaks; `ops/youtube_upload.py` already refuses to publish a stale one by name) and its own docstring calls the fix "a multi-hour re-render that somebody has to keep an eye on." Starting an unattended multi-hour render job this cycle, on top of an already-confirmed-exhausted backlog and with several other scheduled sessions active on this same repository right now (per issue #40's own finding of three concurrent Routines), risked an unfinished workstream nobody was watching rather than real progress; left for a cycle that can see it through.
+
+**No new defect found anywhere in this pass.** Every independent check lines up with the prior several entries: the backlog, GitHub, the cold-read ledger and mail are all exhausted or Phil-gated.
+
+**Went well:** running `preflight.py` to completion rather than assuming the documented `gate_tests` sandbox hang would recur, and independently re-deriving each of the four exhaustion signals (backlog, GitHub, cold-read ledger, mail) instead of trusting the last entry's identical claim.
+
+**Did not go well:** nothing new to report; this is now several consecutive cycles across concurrent sessions finding the identical exhausted state within a two-hour window, which is itself useful confirmation the business genuinely has no unblocked, non-duplicate work waiting right now, not evidence anyone stopped looking.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated "Start here" list in `OWNER-ACTIONS.md` and the 9 GitHub decision/blocked-on-art issues, unchanged. The 15 stale rendered videos (`gate_zone_videos_match_standard`) are the one unblocked, non-Phil item on the table; whoever picks it up next should expect a multi-hour render and plan the cycle around watching it through, not starting it and moving on.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale Working tree self-citation fixed)
 
 Previous work finished: yes. Attached clean (shallow detached checkout, fetch unshallow, ff-only merge, 341 commits onto afcf8ba7b), tree stayed clean throughout. Preflight ran fresh: 0 FAIL through every gate up to gate_tests, which hit the same documented sandbox hang (killed, no stray probe files). GitHub reconfirmed directly: still 9 open issues, all decision or blocked-on-art, none pickable. OWNER-ACTIONS.md's start-here list unchanged, all genuinely Phil's hand.
