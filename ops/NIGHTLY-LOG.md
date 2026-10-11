@@ -22,6 +22,12 @@ NEXT FOR THE OPERATOR: hold the line (re-verify preflight and the standing check
 
 HANDOFF-FILES: none
 
+## 2026-10-11, PM check-in: previous work finished, dashboard's own self-citation staleness fixed
+
+Attached clean (shallow checkout, fetch unshallow, ff-only merge onto origin/main). Read BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, GitHub issues (9 open, all decision or blocked-on-art labelled, none pickable). Previous work was finished: preflight clean, tree clean, main pushed. Ran preflight myself anyway rather than trusting that: one real finding, the dashboard's own self-description had gone stale, two commits had landed since its last regeneration with no rerun since. Fixed by running ops/dashboard.py and re-verifying. A concurrent preflight attempt of mine also left one stray probe fixture file behind when its foreground wrapper got killed; the next run's self-heal removed it, confirmed gone by hand too. Final preflight: every gate passed, 29 warnings, all standing sandbox limits (no Stripe, SSH, or mail credential, no network egress). Cold-read ledger exhausted, 197 of 197 files, 0 stale. Nothing else genuinely unblocked turned up in this small a window. Handing the hourly operator nothing new; the same Phil-blocked decision issues stand.
+
+Pushed to main (5081fe47e). Command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-11, scheduled operator cycle: independently reached the same conclusion as the concurrent PM check-in below, merged rather than duplicated
 
 **Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 330 commits fast-forwarded onto `c62235510`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `cold_read_ledger.py --next` was 197/197 ledgered with 2 stale (`preflight.py`, `nightly_log.py`); GitHub holds the same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none pickable; no mail credential.
