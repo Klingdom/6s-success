@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale Working tree self-citation fixed again, deploy gap re-derived with zero drift)
+
+**Previous work finished: yes, reverified independently.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 353 commits onto `origin/main` (`4412eacf4`) cleanly, tree clean throughout.
+
+**Verified rather than trusted.** Ran `preflight.py` live, unbuffered, tracked by PID: 0 FAIL printed through every gate up to and including `gate_image_coverage`. `gate_tests` hit the same documented sandbox hang (`test_audit_catalog.py` spawning `audit_catalog.py --include-fixtures`, parent CPU flat while the child churned at 99%, never finishing); killed the whole chain by PID, found and removed the two gitignored stray fixture artifacts it leaves under `site/` (`_audit_catalog_fixture.lockdir`, `_audit_catalog_fixture_1034.html`, both confirmed gitignored before deleting), tree confirmed clean again. Reported unchecked past `gate_tests`, not passing, per CLAUDE.md 0.4. `check_urls.py` 211/211, `affiliate.py --check` clean on 165 documents. `cold_read_ledger.py --stale`: 0.
+
+**Re-derived the production deploy gap from the live functions directly, not cited.** `resolve_verdict_commit('e3d3bc8c77a83e38')` resolves to `a582ca349`; `deploy_gap_material_commits` returns 5 commits. Read each with `git show --stat`: one (`17b7c665`) touches only the command deck and nightly log, a pure restamp; the other four are real (a zone-synonym misattribution fix, a stray duplicate sitemap entry, `canonical_links.py`'s fragment blind spot, a feed author/caption fix). 5 total, 4 material, exactly matching `STATUS.md`'s standing `BLOCKER-001` citation. No drift found.
+
+**GitHub reconfirmed directly via the API, not carried forward.** Same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none newly pickable. Issue #40 still open as expected (left for Phil to close at his convenience).
+
+**The one real, small thing this slot closed:** the regenerated command deck's own "Working tree" row read "uncommitted or unpushed work", a stale snapshot from whatever mid-cycle state it was last generated under, while the tree was actually clean and `main` fully pushed, confirmed first. Reran `ops/dashboard.py`; it now correctly reads "clean, in sync." This is the same self-citation drift fixed once before (this log, 2026-10-11, "dashboard's own stale Working tree self-citation fixed") and it has recurred, meaning the deck can read stale between the moment it is generated and the moment work finishes in the same cycle; not a new gate, since the deck is regenerated every cycle anyway and this is a one-cycle-window drift, not a persistent miss.
+
+**Next for the operator:** unchanged, the zone-video re-render (`gate_zone_videos_match_standard`) is the one genuinely unblocked, non-Phil item, and it is a from-scratch multi-hour render for all 114 (the mp4s are gitignored and absent from this checkout) that needs a session that can watch it through, not a 30-minute slot. Standing Phil-gated "Start here" list in `OWNER-ACTIONS.md` and the 9 GitHub issues, unchanged.
+
+**Went well:** re-deriving the deploy gap and reclassifying each commit from scratch rather than citing the prior figure, and it held with zero drift; killing the hung test chain by PID and confirming the stray fixtures it left were gitignored before deleting them.
+
+**Did not go well:** the dashboard's own Working tree self-citation drifted stale a second time; worth a future cycle checking whether `ops/ship.py` could regenerate the deck as its last step instead of a step mid-sequence, closing the window instead of just re-noticing it each time.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, reverified independently with zero drift, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: the zone re-render (gate_zone_videos_match_standard, still 15 of 114 by caption comparison, unchanged), because it is the one genuinely unblocked, non-Phil item on the table. **Correction from a concurrent cycle found at this merge:** the rendered mp4s are gitignored and absent from this checkout, so the job is a from-scratch render for all 114, not a touch-up of 15; it is a bigger multi-hour job than prior cycles (including this one's own count) estimated, and needs a cycle that can watch it through, not a 30-minute slot.
