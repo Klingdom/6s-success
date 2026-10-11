@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-11 15:26",
- "commit": "ddc47e62e",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 431,
- "commits_total": 6087,
+ "generated": "2026-10-11 15:47",
+ "commit": "d33d9fe48",
+ "commit_msg": "STATUS.md: push trigger resumed on its own after manual dispatch, issue #41 updated",
+ "commits_7d": 432,
+ "commits_total": 6089,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -91,7 +91,7 @@
    "milestone": null,
    "comments": 0,
    "created_at": "2026-10-11T15:25:46Z",
-   "updated_at": "2026-10-11T15:25:46Z",
+   "updated_at": "2026-10-11T15:27:13Z",
    "closed_at": null,
    "assignee": null,
    "author_association": "OWNER",
@@ -107,7 +107,7 @@
     "blocking": 0,
     "total_blocking": 0
    },
-   "body": "Found by the 2026-10-11 15:1x PM check-in.\n\n**What.** `.github/workflows/checks.yml` (\"Checks\", the only workflow that runs `ops/preflight.py`, every quality gate, and the checks that watch revenue) has not been triggered by a push since run #2034 (commit `9eafaaa3`, completed 2026-10-11 11:46:01Z). 24 commits landed on `main` after that point before this check-in (up to `ddc47e62e` at 14:55:01Z), several of which touch paths the workflow's own `on.push.paths` list includes and does not exclude: `f4dddf8e0` (\"Hourly check-in record\") changed `CHECKIN-LOG.md` (matches the bare `*.md` pattern) and `ops/last-brief-sent.json` / `ops/state-checkin.json` (both under `ops/**`); `1cf755868`/`a9ffec844`/`c96a20df0` (\"drafts: advance rotation\") each changed only `ops/corpus-rotation.json`, also under `ops/**` and not in the four-path exclusion list. None of these triggered a run. `git diff 9eafaaa38 HEAD -- .github/workflows/checks.yml` is empty, so the trigger definition itself did not change.\n\n**Ruled out:** a repo-wide Actions outage. Every other scheduled workflow (`hourly-brief.yml`, `linkedin-drafts.yml`, `bluesky-drafts.yml`, `social-drafts.yml`, `fulfil-orders.yml`) ran normally on these same pushes, including the most recent one (`ddc47e62e`, runs completed 14:55:1x-2x). A disabled workflow: `GET /actions/workflows/checks.yml` reports `\"state\":\"active\"`.\n\n**Confirmed the workflow itself still runs:** dispatched it manually (`workflow_dispatch`) this cycle, run #2035 (`https://github.com/Klingdom/6s-success/actions/runs/38151102383`), queued immediately and reached `in_progress`. So this is specifically the push-event trigger not firing, not the workflow being broken or GitHub Actions being down account-wide.\n\n**Why this matters.** The workflow's own header comment names two prior real incidents this exact gate caught: unresolved conflict markers committed into `ops/preflight.py` (so Python could not parse the file that runs every other gate), and a heredoc that wrote control bytes into a regex, leaving it syntactically valid but matching nothing. Both landed on `main` with no other workflow positioned to catch them. For the 3h09m this was silently not running, nothing under `ops/**`, `build/**`, `content/**`, `.github/workflows/**`, or the root markdown docs had any CI coverage, even though a local `preflight.py` fast run this cycle (through `gate_image_coverage`, before the documented `gate_tests` sandbox hang) showed 0 failures among the gates it could reach.\n\n**Recommendation / next steps for whoever picks this up:**\n1. Watch run #2035 to completion (checks.yml has historically taken 30-40 min) and read its gate results \u2014 this is the first real CI signal on the repository in over 3 hours.\n2. Watch whether the *next* ordinary push to a qualifying path triggers checks.yml normally. If it does, this was transient (a GitHub-side glitch) and can be closed with that confirmation.\n3. If pushes keep landing without triggering a run, this needs a human with repository/org settings access: check Settings \u2192 Actions \u2192 General (workflow permissions, any recent change) and the account's Actions usage/billing page for a limit that could silently suppress new run creation for one specific workflow while leaving others unaffected (this shape doesn't match standard spending-limit behavior, which normally still creates a failed run record, so it may be something else).\n\nNot labelled `decision`: this doesn't need a judgment call from Phil yet, just someone with more visibility to confirm whether it recurs.",
+   "body": "Update, same cycle: pushed commit `cfaa7245e` (this check-in's own doc updates, touching `STATUS.md` which matches the plain `*.md` path) and it triggered run #2036 (`event: push`, queued immediately), confirmed via the Actions API. So the push trigger has resumed on its own, 3 minutes after the manual dispatch (#2035). This looks like a transient GitHub-side delivery gap rather than a persistent misconfiguration: nothing in the repo changed between the last silent push and this one.\n\nLeaving this open until both #2035 (manual dispatch) and #2036 (this push) finish and their gate results are read, since that's the first real CI signal on the repo since 11:46Z. If both come back clean and ordinary pushes keep triggering normally afterward, this can close as \"transient, self-resolved, no code defect found.\" If the gap recurs on a later push, reopen the root-cause question (Settings \u2192 Actions, usage/billing) from the original report above.",
    "closed_by": null,
    "reactions": {
     "url": "https://api.github.com/repos/Klingdom/6s-success/issues/41/reactions",

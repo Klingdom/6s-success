@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (15:4x UTC cycle, previous work finished and reverified, watching checks.yml recovery before closing #41)
+
+NEXT FOR THE OPERATOR: once checks.yml runs #2036/#2037 complete, read their gate results and close issue #41, because three consecutive pushes since the manual dispatch have now auto-triggered normally, the confirmation STATUS.md already said was needed before closing it.
+
+**Previous work finished and re-verified**, not just re-cited: attach clean onto `d33d9fe48`, tree clean. Checked the Actions API directly: #2035, #2036, #2037 all still `in_progress` at 15:4x (checks.yml runs 30-40 min), so gate results are genuinely unchecked, not assumed clean. What is confirmed: three straight pushes auto-triggered with no further manual dispatch, strengthening "transient gap" over "broken config." Updated `STATUS.md` INCIDENT-003 with run #2037 as a second confirmation; left the actual close to whichever cycle finds the runs green.
+
+**No new defect.** `preflight.py --fast` hit the documented `gate_tests` sandbox hang, killed, reported unchecked past that point. 10 open issues (was 9; #41 correctly still open). No new Phil reply on any thread.
+
+**Next:** standing Phil-gated queue, unchanged except #41's pending close-out.
+
+Pushed to main: `STATUS.md`, this entry, command deck.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (15:1x UTC cycle, previous work finished and reverified; one real new finding: CI push trigger silently down)
 
 **Previous work: finished, reverified independently.** Attached clean (fetch, unshallow, ff-only onto `ddc47e62e`). 9 GitHub issues unchanged, no new Phil reply, deploy gap unchanged, `preflight.py` fast clean through every gate reachable before the documented `gate_tests` sandbox hang.
