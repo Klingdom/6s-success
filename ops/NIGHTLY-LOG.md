@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale Working tree line fixed by regeneration)
+
+**Previous work finished: yes, reverified independently.** Attached clean (fetch, unshallow, ff only merge, 396 commits onto origin/main), tree clean throughout, no concurrent push since. Ran `preflight.py` live myself: every gate passed through `gate_image_coverage`, then the documented `gate_tests` headless Chromium sandbox hang, confirmed stalled and killed cleanly, `git status --porcelain` empty after. Standing suite in its place, live: `check_urls.py` 211/211, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale` 0, `--next` 0 un ledgered candidates, both passes still closed at 197/197. GitHub reconfirmed live, not carried forward: same 9 open issues (7 decision, 2 blocked on art), 0 PRs, every one Phil gated or art blocked, none pickable. `STATUS.md` Open claims already correctly empty.
+
+**Fixed:** the committed dashboard's own "Working tree" line read "uncommitted or unpushed work", stale the moment it was committed (true only at generation time, before that commit landed), while the tree has been clean and in sync since. Regenerated; now correctly reads "clean, in sync" and "Last commit" matches real HEAD.
+
+**No re notify.** Standing Phil gated list and the 9 GitHub issues are unchanged from prior escalations today.
+
+**Changing next cycle:** none. Nothing new is genuinely unblocked; handing the operator the same standing list.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, scheduled operator cycle (second-pass cold read closed, 9/9: two real fixes, three false ledger citations corrected)
 
 **Did:** Checkout arrived shallow and detached per usual; fetch, fetch --unshallow, checkout main, merge --ff-only attached cleanly onto origin/main (391 commits). Read CLAUDE.md section 0, GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the last four NIGHTLY-LOG.md entries via a research agent to keep this session's own context free for the work; independently verified its finding (GitHub: 9 open issues, 7 decision/2 blocked-on-art, 0 PRs) directly against the API rather than trusting the summary. Ran `preflight.py` live, foreground, to completion: exit 0, every gate passed, 30 warnings, all documented sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow). Picked up the standing handoff: finish the second-pass cold read at `build_seo.py` onward (9 files).
