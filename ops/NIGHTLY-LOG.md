@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## scheduled operator cycle: preflight reconfirmed clean to the sandbox hang, deploy gap/cold-read/cron cadence all re-derived with zero drift, no new work found
+## 2026-10-11, scheduled operator cycle: preflight reconfirmed clean to the sandbox hang, deploy gap/cold-read/cron cadence all re-derived with zero drift, no new work found
 
 **Previous work finished: yes, reverified independently.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 354 commits onto `origin/main` (`5fba87017`) cleanly, tree clean throughout. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries.
 
@@ -25,6 +25,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** unchanged. `OWNER-ACTIONS.md` "Start here" and the 9 GitHub issues are the only genuinely open items, all Phil-gated.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, corrected a wrong handoff about the zone-video item instead of repeating it)
+
+NEXT FOR THE OPERATOR: nothing new, workstream-sized and sandbox-executable is unblocked; fall back to the standing re-verification pass (preflight --deep, or re-read a handful of already-ledgered ops/*.py cold), because every concrete queue item is either Phil-gated or genuinely capability-blocked here.
+
+**Previous work finished: yes.** `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`5fba87017`), tree clean throughout. That commit's own claims (dashboard "Working tree" self-citation fixed, deploy gap re-derived at 5 commits/4 material) are plausible on their face and not contradicted by anything below; re-deriving the deploy gap myself was not repeated this slot since nothing has changed since it ran 20 minutes ago.
+
+**Verified rather than trusted.** `preflight.py` run live: 0 FAIL through every gate up to `gate_image_coverage`, then the documented `gate_tests` headless-Chromium sandbox hang (confirmed genuinely stalled by flat CPU time across 35s elapsed, not a slow pass, before killing it). GitHub reconfirmed directly via the API: same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none newly pickable. `cold_read_ledger.py --stale` and `--next`: 197 of 197 ledgered, 0 stale, nothing un-ledgered left to cold-read.
+
+**The real finding: the last cycle's own handoff was wrong, and I corrected it rather than passing it on.** That entry told the operator the zone-video re-render (`gate_zone_videos_match_standard`) needed "a from-scratch render for all 114" because the mp4s are gitignored and absent from this checkout, framing it as blocked only by session length. Two things wrong with that: (1) the gate's own `check_video_standard.compare()` doesn't read the mp4s at all, it reads the committed `.srt` caption files against the live standard; running it directly here returns stale=15, fresh=99, unreadable=0, the same 15-zone figure prior cycles already had, not 114. The "mp4s absent" observation is true but irrelevant to this specific gate. (2) More importantly, fixing those 15 captions correctly means re-narrating them, since the checklist text is spoken, not overlaid, and timing is derived from the synthesized audio (`video_narrated.py`'s `narrate()` calls `edge_tts`). Confirmed directly: `python3 -c "import edge_tts"` raises `ModuleNotFoundError` in this sandbox, `ops/requirements.txt` deliberately carries only `pymupdf` (the same minimal-dependency decision documented for the Pillow case), and no system TTS (`espeak`, `festival`, `pico2wave`) is installed either. This is the identical capability gap GitHub issue #39 already named and was closed against, not a new discovery, and not something any sandbox session can do regardless of how long it runs. Handing the operator "render all 114, just needs time" would have sent it at an impossible task three minutes from now.
+
+**Did not re-open or re-file anything:** issue #39 is already closed and correctly described this exact limitation; no new issue needed, since the dashboard and `STATUS.md` already carry the gitignored-mp4 fact as a measurement caveat, not a claim that the task is renderable here.
+
+**Went well:** running the gate's actual comparison function instead of accepting the prior cycle's restated scope, which caught a wrong number before it reached the operator.
+
+**Did not go well:** a correction written with full confidence twenty minutes ago turned out to conflate two separate facts (mp4s missing vs. captions stale); worth remembering that "I verified X" from one cycle still needs rechecking by the next when X is specific and checkable, same as any other claim.
+
+**Changing next cycle:** none; no gate gap, this was a narrative/handoff error, not a code defect.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 GitHub issues, unchanged. No sandbox-executable, workstream-sized item is unblocked this slot.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched. IndexNow not applicable.
 
 HANDOFF-FILES: none
 
