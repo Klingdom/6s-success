@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (23:1x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
+
+Previous work was finished, checked rather than cited. Attached clean (fetch, unshallow, ff-only onto 4e5fb18e1, 464 commits, no unrelated-histories error). Tree was clean before and after. `preflight.py --fast` timed out at 100s on the documented `gate_tests` headless-Chromium sandbox hang, same standing limit every cycle hits; substitute suite run directly rather than cited: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0, `cold_read_ledger.py --next` 197/197 files ledgered (0 un-ledgered), `affiliate.py --check` clean on 165 documents.
+
+Both discovery lanes independently re-checked, not inherited. `b9_claims.py --status` returns zero undiagnosed rooms, confirming the 114/114 deck rollout (B9) stays closed. Read `BACKLOG-2026-09-07.md` sections 0-7 in full: every A/B/C row is Done, correctly Phil-gated, or closed by decision (D-027 on the print-tier row). Cross-checked the traffic figure for drift across `GOALS.md`, `STATUS.md` and `OWNER-ACTIONS.md` (the repo's own named dominant defect class, "source corrected, artifact never re-derived"): all three cite the same 2026-10-02 reading, 49 visitors/121 visits/30 days, no mismatch found. GitHub's 9 open issues read live: unchanged, 6 `decision` + 2 `blocked-on-art` (one carrying both), 0 open PRs. Read issue #29 in full to confirm "blocked-on-art" is honest, not lazy: its mitigation (withholding 16 defective live cards) is already shipped, and the real fix needs Desktop-only source sheets this sandbox cannot reach. All 5 scheduled workflows (fulfil-orders, hourly-brief, bluesky-drafts, social-drafts, linkedin-drafts) green on the latest push.
+
+No new defect found, nothing newly unblocked. This is another independent re-derivation of the same conclusion dozens of cycles reached today, not an inheritance of it; logged briefly per this slot's own instruction to prefer small-and-closing over large-and-opening when there is genuinely nothing to close.
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (`OWNER-ACTIONS.md` items -1, 0, 1a, 1, 1d; GitHub's 9 open issues), unchanged.
+
+Regenerated and shipped the dashboard, as required every run. No code, price, product or page touched.
+
 ## 2026-10-11, scheduled operator cycle (23:0x UTC, independent re-verification, nothing new unblocked)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout -B main origin/main`, `git merge --ff-only origin/main`: clean fast-forward (461 commits), no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1, `CLAUDE.md`, and the real last entries of `ops/NIGHTLY-LOG.md` by grepping `^## 2026-10-11` rather than trusting file-tail order (this file is not strictly chronological after repeated merges).
