@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (17:1x UTC cycle, previous work finished and reverified, nothing new unblocked)
+
+Attached clean (fetch, unshallow, checkout -B main onto origin/main, ff-only, no unrelated-history error this run). Previous work was finished, checked rather than cited: `preflight.py` fast reached 0 FAIL through every gate before the documented `gate_tests` sandbox hang. `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean on 165 documents. `cold_read_ledger.py`: 0 stale, 0 un-ledgered candidates (197 of 197; the second-pass rotation already closed 9/9). GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; read issue #40's two comments directly rather than trust the count, both this operator's own prior notes, no new reply from Phil. CI green on the latest push (run #2040, success). 0 open PRs, tree clean.
+
+No new defect found. Backlog sections 2 through 4, the cold-read ledger, the visual audit and GitHub were each independently reconfirmed exhausted this cycle, not inherited from the last.
+
+Next: same standing Phil-gated queue in `OWNER-ACTIONS.md` and the 9 open issues, unchanged. Nothing new for the hourly operator.
+
+Command deck only. No price, product or page touched.
+
 ## 2026-10-11, PM check-in (16:4x UTC cycle, previous work finished and reverified; full visual/accessibility audit completed clean while a working browser was available)
 
 NEXT FOR THE OPERATOR: standing Phil-blocked queue only (`OWNER-ACTIONS.md`, 9 open decision/art issues). Nothing new unblocked this cycle; the cold-read ledger and the full visual audit are both exhausted/clean as of this entry.
