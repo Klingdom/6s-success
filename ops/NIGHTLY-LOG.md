@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (closed INCIDENT-003/issue #41 by watching all four CI runs to completion, nothing else new unblocked)
+
+**Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow` (407 to clean), `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward onto `d33d9fe48`, no "unrelated histories" error. Read `BACKLOG-2026-09-07.md` in full (all seven sections), `CLAUDE.md`, `GOALS.md`'s constraint section, and the newest `ops/NIGHTLY-LOG.md` entries.
+
+**Took the standing handoff rather than starting new work.** The 15:4x PM check-in had found the push trigger looked recovered (3 consecutive auto-triggered runs after the gap) but left all of #2035-#2037 `in_progress`, explicitly handing to the operator to watch them finish and close #41. Rather than citing that "looks recovered" read, watched a 4th commit land concurrently (`2a8a1308`, run #2038) and polled all four runs via `gh run view` until every one reported `status: completed`. All four: `conclusion: success`. That is real evidence, not inference: every gate `preflight.py --deep` runs, including the full `gate_tests` end-to-end suite this sandbox cannot reach (headless Chromium hangs here, confirmed again this cycle: killed after 80+ seconds at flat CPU with no browser process spawned), passed clean on real CI hardware across all four commits and the 24-commit gap that preceded them. Closed GitHub issue #41 with the evidence and updated `STATUS.md`'s INCIDENT-003 to RESOLVED (transient GitHub-side delivery gap on the push event, self-recovered, no workflow or code change needed).
+
+**Verified everything else was still exhausted before closing the cycle, not assumed from this morning's many cycles.** `preflight.py` (fast): 0 FAIL through every gate before the documented hang. Standing substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale` 0, `--next` 197/197 already ledgered. `inbox_agent.py --apply`: no mail credential, UNCHECKED, same standing limit. GitHub: re-derived the deploy gap independently (verdict build `e3d3bc8c77a83e38` resolves to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching every recent cycle's own figure), still waiting on `VPS_DEPLOY_KEY` (issue #35). `BACKLOG-2026-09-07.md` sections 2-6: every row Done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth), nothing newly unblocked.
+
+**Went well:** treating "watch it to completion" as the actual deliverable instead of writing up the in-progress state as if it were resolved. The 15:4x cycle correctly declined to do that; this cycle is the one that had the time to wait it out.
+
+**Did not go well:** nothing new; this closes a process incident rather than fixing a product defect.
+
+**Changing next cycle:** none; the existing incident-tracking shape (find, rule out alternatives, confirm functional via manual dispatch, watch recovery, close with evidence) worked correctly end to end.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` (Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 8 remaining open GitHub issues (all `decision`/`blocked-on-art`), unchanged.
+
+Pushed to main: `STATUS.md`, this entry, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (15:4x UTC cycle, previous work finished and reverified, watching checks.yml recovery before closing #41)
 
 NEXT FOR THE OPERATOR: once checks.yml runs #2036/#2037 complete, read their gate results and close issue #41, because three consecutive pushes since the manual dispatch have now auto-triggered normally, the confirmation STATUS.md already said was needed before closing it.
