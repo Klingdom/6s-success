@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (15:1x UTC cycle, previous work finished and reverified; one real new finding: CI push trigger silently down)
+
+**Previous work: finished, reverified independently.** Attached clean (fetch, unshallow, ff-only onto `ddc47e62e`). 9 GitHub issues unchanged, no new Phil reply, deploy gap unchanged, `preflight.py` fast clean through every gate reachable before the documented `gate_tests` sandbox hang.
+
+**New finding, not a repeat of the deploy-gap story.** `checks.yml` (runs `preflight.py`, the only CI covering `ops/**`/`build/**`/`content/**`/root docs) has not been triggered by a push since run #2034 (11:46Z) through 24 qualifying commits, confirmed against its own path filter, while every sibling workflow fired normally on the same pushes and the workflow itself reports `active`, unchanged. Manually dispatched it (run #2035, in progress at handoff, `.../runs/38151102383`). Filed GitHub issue #41 and `STATUS.md` INCIDENT-003.
+
+**Handing to operator/twin:** watch run #2035's result and whether the next qualifying push retriggers `checks.yml` on its own.
+
+Pushed to main: `STATUS.md`, this entry, command deck.
+
 ## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy gap reconfirmed byte for byte against the prior cycle's own figure)
 
 **Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow` (407 to clean), `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward onto `a9ffec844` (414 commits), no "unrelated histories" error, no reset or force. Read `BACKLOG-2026-09-07.md` in full (all seven sections), `ROADMAP-2026-2029.md` section 1-2, `OWNER-ACTIONS.md`'s "Start here", `STATUS.md`'s Open claims section, and the four newest `ops/NIGHTLY-LOG.md` entries.

@@ -1079,6 +1079,15 @@ finding a way around the block.
 - **Cannot be fixed from here:** the usage limit is an account/plan-level setting outside this sandbox's visibility or control. Filed as **GitHub issue #40** (`decision`), with the evidence above and a recommendation to check the Claude Code usage/plan status, since three Routines firing every 30 to 60 minutes is real concurrent load.
 - **Mitigation:** none available; the next PM or operator cycle that runs should check `list_triggers` for `last_run.status == FAILED` as a matter of course, rather than relying on a cold commit-authorship read to notice a stall, which is how this one was found.
 
+## INCIDENT-003: checks.yml push trigger stopped firing for 3h09m / 24 commits, manual dispatch still works (OPEN, WATCHING)
+
+- **Severity:** P0 (process). `checks.yml` is the only workflow that runs `ops/preflight.py`, every quality gate, and the checks that watch revenue.
+- **Found:** 2026-10-11, PM check-in (15:1x slot). Last push-triggered run was #2034 (commit `9eafaaa3`, completed 11:46:01Z). 24 commits landed after that, several touching paths the workflow's own `on.push.paths` includes and does not exclude (`CHECKIN-LOG.md`, `ops/corpus-rotation.json`, `ops/last-brief-sent.json`, `ops/state-checkin.json`), none triggered a run. The workflow file itself is unchanged (`git diff 9eafaaa38 HEAD -- .github/workflows/checks.yml` empty) and the API reports it `"state":"active"`.
+- **Ruled out:** a repo-wide Actions outage or a disabled workflow. Every other scheduled workflow (`hourly-brief.yml`, `linkedin-drafts.yml`, `bluesky-drafts.yml`, `social-drafts.yml`, `fulfil-orders.yml`) ran normally on the same pushes, most recently on `ddc47e62e` at 14:55Z.
+- **Confirmed still functional:** manually dispatched via `workflow_dispatch`, run #2035 (`.../actions/runs/38151102383`), queued and reached `in_progress` immediately. So this is the push trigger specifically, not the workflow or Actions generally.
+- **Impact while open:** no CI coverage of `ops/**`, `build/**`, `content/**`, `.github/workflows/**` or root markdown for 3h09m+. `preflight.py` fast, run locally this cycle, showed 0 failures through every gate reachable before the documented `gate_tests` sandbox hang, so nothing is known to be broken; the gap is in verification, not a confirmed defect.
+- **Filed:** GitHub issue #41, not labelled `decision` (no judgment call yet, just needs someone to watch whether it recurs). Next step: watch run #2035 to completion and whether the next qualifying push triggers a run normally.
+
 Historical incidents belong in `INCIDENTS.md`.
 
 ---
