@@ -22,7 +22,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Files touched: `ops/cold-read-ledger.json` (4 entries added/updated), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (regenerated), `ops/NIGHTLY-LOG.md`. No price or product touched, no site page changed, no new page. IndexNow not applicable.
 
-HANDOFF-FILES: alphabetically after `build_workshop_deck_page.py` in the mixed-type remainder of the 2026-10-02 tier.
+HANDOFF-FILES: the deck-page generators in the 2026-10-02 tier are now all re-verified; move to the mixed-type remainder of that tier, starting at `bluesky_drafts.py` (next alphabetically: `build_seo.py`, `check_sellable.py`, `fix_dialect.py`, `image_local.py`, `import_room_diagrams.py`, `linkedin_drafts.py`, `product_links.py`, `quest.js`, `roadmap_report.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_fulfil.py`, `verify_deploy.py`, `video_zone.py`, `wire_zone_heroes.py`).
 
 ---
 
