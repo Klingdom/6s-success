@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy gap re-derived with a one-commit build-id-restamp discrepancy explained)
+
+**Did:** Checkout arrived shallow and detached as usual. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward (407 commits), no "unrelated histories" error, no reset or force. Read `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` in full (all seven sections, chunked), `STATUS.md`'s Open claims section, `OWNER-ACTIONS.md`'s header, `GOALS.md` sections 0-2, and the real newest-first head of `ops/NIGHTLY-LOG.md` (four entries).
+
+**Verified rather than cited.** Ran `python ops/preflight.py` live to completion: 0 FAIL through every gate up to and including `gate_image_coverage`, then `gate_tests` hung at flat CPU, the documented headless-Chromium sandbox limit, killed after 170s. Standing substitute suite run directly in its place: `check_urls.py` (211/211), `audit_pages.py` (215 pages, 0 findings), `fix_dashes.py --check` (0 em/0 en dashes), `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale`: 0. `--next`: 197/197 already ledgered, 0 un-ledgered candidates, both the first and second cold-read passes genuinely closed. GitHub checked live via the API: 9 open issues (7 `decision`, 2 `blocked-on-art`), identical set and labels to every recent cycle, 0 open PRs; read the comment threads on #40 and #15 directly rather than trusting "unchanged" from a prior entry, confirmed no new reply from Phil on either. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty. Tested egress directly: `curl` to `6s-success.com` returned a proxy-level 403/`CONNECT tunnel failed`, same standing no-reach limit every recent cycle reports. Checked all 14 most recent GitHub Actions workflow runs live: every one `completed`/`success`, no red CI anywhere. Re-derived the production deploy gap directly with `preflight.py`'s own `resolve_verdict_commit`/`deploy_gap_material_commits` rather than citing a prior figure: verdict build `e3d3bc8c77a83e38` (checked 2026-10-09T05:32:43Z) resolves to commit `a582ca349`; 5 commits since have touched `site/`/`Dockerfile`, one of which (`17b7c6655`) is a bare `build-id.txt` restamp with no real content change, so 4 commits carry genuine undeployed content (the master-bathroom-vanity zone synonym fix, a stray sitemap duplicate fix, the canonical-links fragment fix, and the second-pass cold-read feed/caption fix). Unchanged root cause: still waiting on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0).
+
+**No new defect found, nothing newly unblocked.** `BACKLOG-2026-09-07.md` sections 2-4: every row Done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth). Section 5 (Hold) and section 6 (owner gates) unchanged. `STATUS.md`'s Open claims section correctly reads "None currently open." `GOALS.md` is current, not stale (its own traffic/query rows carry 2026-10-09/10-10 re-measurements). Matches roughly the thirtieth identical conclusion today, independently reached rather than carried forward.
+
+**Went well:** independently re-deriving the deploy gap with the project's own function rather than citing the prior cycle's figure, which surfaced the one-commit discrepancy (a bare build-id restamp inflating a naive commit count) rather than reporting a number that looked different from yesterday's for no real reason.
+
+**Did not go well:** nothing new to report; this is another cycle reconfirming the same exhausted state across every reachable lane (backlog, cold-read ledger both passes, GitHub issues and their threads, CI, preflight, deploy gap, egress), which is itself the honest result today, not a gap in the checking.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` (Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (13:2x UTC cycle, previous work finished, independently reverified, nothing new unblocked)
 
 **Previous work finished: yes.** Attached via fetch/unshallow/ff-only onto `6ec7d11c4` (406 commits), no conflict. Tree clean, main already pushed.
