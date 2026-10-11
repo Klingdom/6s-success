@@ -29,7 +29,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Open issues | 9 (2 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 32 |
 | Commits (7 days) | 439 of 6096 total |
-| Working tree | clean, in sync |
+| Working tree | uncommitted or unpushed work |
 | Last commit | `92703017a` Merge remote-tracking branch 'origin/main' |
 
 ## Product readiness
