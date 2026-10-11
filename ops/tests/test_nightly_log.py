@@ -102,7 +102,7 @@ def main() -> int:
         path3 = _write(tmp3, HEADER + "\n" + EXISTING)
         old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
         sys.argv = ["nightly_log.py", "--title", "C: third call",
-                    "--body", "**Did:** c."]
+                    "--handoff", "none", "--body", "**Did:** c."]
         nightly_log.LOG_PATH = path3
         try:
             rc = nightly_log.main()
@@ -124,7 +124,8 @@ def main() -> int:
         path4 = _write(tmp4, HEADER + "\n" + EXISTING)
         before = io.open(path4, encoding="utf-8").read()
         old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
-        sys.argv = ["nightly_log.py", "--title", "D: crash", "--body", "**Did:** d."]
+        sys.argv = ["nightly_log.py", "--title", "D: crash",
+                    "--handoff", "none", "--body", "**Did:** d."]
         nightly_log.LOG_PATH = path4
         real_open = io.open
 
@@ -151,12 +152,69 @@ def main() -> int:
         if os.path.exists(path4 + ".tmp"):
             fails.append("a failed write left a .tmp file behind")
 
+    # 8. format_handoff() turns --handoff's raw value into the canonical
+    #    marker line cold_read_handoff_stale_files() parses: 'none' (any
+    #    case, blank) collapses to a bare 'none'; a comma-separated list
+    #    is wrapped in backticks even if the caller already supplied
+    #    some, and bare whitespace is trimmed.
+    cases = [
+        ("none", "HANDOFF-FILES: none"),
+        ("None", "HANDOFF-FILES: none"),
+        ("  ", "HANDOFF-FILES: none"),
+        ("ops/foo.py", "HANDOFF-FILES: `ops/foo.py`"),
+        ("ops/foo.py, ops/bar.py",
+         "HANDOFF-FILES: `ops/foo.py`, `ops/bar.py`"),
+        ("`ops/foo.py`, `ops/bar.py`",
+         "HANDOFF-FILES: `ops/foo.py`, `ops/bar.py`"),
+    ]
+    for raw, expected in cases:
+        got = nightly_log.format_handoff(raw)
+        if got != expected:
+            fails.append("format_handoff(%r) = %r, expected %r"
+                          % (raw, got, expected))
+
+    # 9. --handoff is required: main() must refuse (argparse exits
+    #    nonzero) rather than silently writing an entry with no handoff
+    #    state at all, the gap this flag exists to close.
+    with tempfile.TemporaryDirectory() as tmp5:
+        path5 = _write(tmp5, HEADER + "\n" + EXISTING)
+        old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
+        sys.argv = ["nightly_log.py", "--title", "E: missing handoff",
+                    "--body", "**Did:** e."]
+        nightly_log.LOG_PATH = path5
+        try:
+            try:
+                nightly_log.main()
+                fails.append("main() accepted a call with no --handoff")
+            except SystemExit:
+                pass
+        finally:
+            sys.argv, nightly_log.LOG_PATH = old_argv, old_log_path
+
+    # 10. A successful call's written entry carries the HANDOFF-FILES
+    #     line main() derives from --handoff, so a fresh preflight run
+    #     reading this file sees the same marker the gate expects.
+    with tempfile.TemporaryDirectory() as tmp6:
+        path6 = _write(tmp6, HEADER + "\n" + EXISTING)
+        old_argv, old_log_path = sys.argv, nightly_log.LOG_PATH
+        sys.argv = ["nightly_log.py", "--title", "F: real handoff",
+                    "--handoff", "ops/foo.py", "--body", "**Did:** f."]
+        nightly_log.LOG_PATH = path6
+        try:
+            nightly_log.main()
+        finally:
+            sys.argv, nightly_log.LOG_PATH = old_argv, old_log_path
+        final6 = io.open(path6, encoding="utf-8").read()
+        if "HANDOFF-FILES: `ops/foo.py`" not in final6:
+            fails.append("main()'s written entry is missing the derived "
+                          "HANDOFF-FILES line: %r" % (final6[:400],))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: ops/nightly_log.py, 7/7 checks pass")
+    print("OK: ops/nightly_log.py, 10/10 checks pass")
     return 0
 
 

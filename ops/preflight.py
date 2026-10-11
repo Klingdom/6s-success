@@ -17718,9 +17718,42 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
                r"([A-Za-z0-9_]+\.(?:py|js))`")
     blocks = [b for b in re.split(r"(?m)^(?=## )", log_text)
               if b.startswith("## ")][:max_entries]
+    handoff_marker_re = re.compile(r"(?m)^HANDOFF-FILES:\s*(.*)$")
     for block in blocks:
         names, seen = [], set()
         addresses_a_file = False
+        # Found live 2026-10-11, the tenth occurrence of this exact
+        # defect class (nine prior incremental patches since 2026-09-25,
+        # each fixing one more free-text phrasing the operating prompt
+        # never standardised): every fix above widens a regex against an
+        # open-ended set of ways a human can phrase a handoff in prose
+        # meant, by this log's own header, "to be read half awake". That
+        # is an unbounded surface; the tenth phrasing variant is exactly
+        # as likely as the first nine were. A canonical, machine-written
+        # marker line removes the surface instead of chasing it further:
+        # `ops/nightly_log.py --handoff` now requires every new entry to
+        # carry a `HANDOFF-FILES:` line (`none`, or a backtick-quoted
+        # list) that it writes itself, not a human. When a block carries
+        # that marker, it alone is authoritative for the block, the free-
+        # text heuristic below is skipped entirely, and no future prose
+        # variant can mislead this gate again. Older entries written
+        # before this convention existed have no marker line and keep
+        # using the free-text heuristic below, so history need not be
+        # rewritten; it ages out of the max_entries window on its own.
+        marker = handoff_marker_re.search(block)
+        if marker:
+            value = marker.group(1).strip()
+            if value and value.lower() != "none":
+                for name in re.findall(name_re, value):
+                    if name not in seen:
+                        seen.add(name)
+                        names.append(name)
+            stale = []
+            for name in names:
+                entry = ledger.get(name)
+                if entry and entry.get("status") in ("clean", "fixed"):
+                    stale.append(name)
+            return stale
         for m in re.finditer(
                 r"(?m)^(?:\*\*Next\b[^*\n]*\*\*|NEXT FOR[^:\n]*:|"
                 r"\*\*Handing to (?:the )?operator\b[^*\n]*\*\*|"

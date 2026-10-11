@@ -17,13 +17,24 @@ script removes the hand-edit step, so there is no "end of the file" to
 misread in the first place. Use it instead of editing the file directly.
 
 Usage:
-    python ops/nightly_log.py --title "2026-10-10, PM check-in (...)" --body-file /tmp/entry.md
-    python ops/nightly_log.py --title "..." --body "**Did:** ..."
-    echo "**Did:** ..." | python ops/nightly_log.py --title "..."
+    python ops/nightly_log.py --title "2026-10-10, PM check-in (...)" --handoff none --body-file /tmp/entry.md
+    python ops/nightly_log.py --title "..." --handoff "ops/foo.py,ops/bar.py" --body "**Did:** ..."
+    echo "**Did:** ..." | python ops/nightly_log.py --title "..." --handoff none
 
 --title is the heading text without the leading "## ". The body is
 written as-is below it, with one blank line in between and a trailing
 blank line before the next entry.
+
+--handoff is required: the cold-read candidate(s), if any, this entry is
+handing to the next cycle, comma-separated, or the literal "none". It is
+written as its own canonical "HANDOFF-FILES:" line, which
+cold_read_handoff_stale_files() in ops/preflight.py reads directly instead
+of guessing at free-text phrasing ("**Next:**", "Handing to the
+operator:", and the nine other variants that gate needed incremental
+patches for between 2026-09-25 and 2026-10-10, documented in its own
+docstring). Requiring this flag means every future entry states its
+handoff unambiguously because the generator demands it, not because a
+human remembered to phrase it in a way a regex could still recognise.
 """
 import argparse
 import io
@@ -63,10 +74,34 @@ def prepend_entry(path: str, title: str, body: str) -> str:
     return header + "\n\n" + entry + "\n" + rest
 
 
+def format_handoff(raw: str) -> str:
+    """Turn --handoff's raw value into the canonical 'HANDOFF-FILES:' line
+    cold_read_handoff_stale_files() in ops/preflight.py parses literally,
+    removing the free-text guessing that line's own docstring documents
+    ten separate incremental fixes for. 'none' (any case, or blank) means
+    no cold-read candidate is being handed off this entry. Otherwise each
+    comma-separated item is wrapped in backticks (stripping any the
+    caller already supplied), matching the naming convention this log's
+    own prose has always used.
+    """
+    raw = raw.strip()
+    if not raw or raw.lower() == "none":
+        return "HANDOFF-FILES: none"
+    items = [p.strip().strip("`") for p in raw.split(",")]
+    items = [p for p in items if p]
+    if not items:
+        return "HANDOFF-FILES: none"
+    return "HANDOFF-FILES: " + ", ".join("`%s`" % p for p in items)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--title", required=True,
                      help="Heading text, without the leading '## '.")
+    ap.add_argument("--handoff", required=True,
+                     help="Cold-read candidate(s) this entry hands off, "
+                          "comma-separated, or 'none'. Written as a "
+                          "canonical 'HANDOFF-FILES:' line.")
     ap.add_argument("--body", help="Entry body text.")
     ap.add_argument("--body-file",
                      help="Read the entry body from this file instead of "
@@ -81,6 +116,7 @@ def main() -> int:
     if not body.strip():
         print("Refusing to prepend an empty entry body.", file=sys.stderr)
         return 1
+    body = body.rstrip("\n") + "\n\n" + format_handoff(args.handoff) + "\n"
     new_text = prepend_entry(LOG_PATH, args.title, body)
     # Write-then-rename so a crash mid-write cannot truncate the real log.
     tmp_path = LOG_PATH + ".tmp"
