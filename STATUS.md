@@ -56,99 +56,17 @@ only moment it is cheap.
 
 ## Open claims
 
-**None currently open.** Updated 2026-10-10, scheduled operator cycle: with
-the backlog, cold-read ledger, GitHub issues and mail all confirmed
-exhausted, this cycle read `ops/keyword-demand.json`'s `gap` tier end to
-end and found a real, measured misattribution (`BACKLOG-2026-09-07.md`
-A25): all 5 "master bath(room) vanity/counter" queries scored against
-Guest Bathroom's own vanity-counter zone instead of Primary Bathroom's,
-because `ops/keyword_demand.py`'s tie-break favours the alphabetically
-earlier URL on a near-identical title match. Fixed with the established
-`zone-also-called` mechanism, one zone page edited, verified against the
-real scorer (gap tier 201 to 200) and the full standard suite, no price
-or product touched. Full account in `ops/NIGHTLY-LOG.md` this date.
-
-**Released 2026-10-10, scheduled operator cycle (earlier same day):**
-cold-read the next oldest-ledgered tier (`ops/build_articles.py`,
-`ops/build_deck_gallery.py`, `ops/build_dining_room_deck_page.py`,
-`ops/build_entryway_deck_page.py`, `ops/build_family_room_deck_page.py`),
-running each generator directly against the real committed corpus rather
-than only reading it; all five produced 0 diff against the committed
-site output, no defect found, all five re-ledgered clean with today's
-date. Full `preflight.py` run this cycle: every gate passed, 33 warnings,
-all standing sandbox limits (no Stripe credential, no network egress, no
-mail credential). GitHub reconfirmed live: 9 open issues (7 `decision`, 2
-`blocked-on-art`), 0 open PRs, unchanged from the prior several cycles.
-Nine process/gate-hardening commits landed since this file's own last
-edit with no business-state change in any of them (cron-registry gate
-promotion `68747d3d`, the owner-questions-email workflow fix `ba043e54`,
-four false-positive fixes in concurrent-session test fixtures `9b883cb2`/
-`68aa4482`/`30251cbf`/`263aff73`, a credential-gated secret-scan closed
-`245de894`, a cold-read-handoff false positive fixed `1d3722ff`, one
-cold-read cycle `a52e0d7b`); noted here so `gate_status_currency` does
-not read this file as having gone silently stale behind them. Dashboard
-regenerated. Full account in `ops/NIGHTLY-LOG.md` this date.
-
-Earlier, released 2026-10-09, scheduled operator cycle:
-re-verified `ops/dashboard.py`, the one stale cold-read-ledger entry
-`preflight.py` itself was flagging (ledgered clean 2026-10-03, touched
-2026-10-09 by three commits since). Read all three diffs (the zone-photo
-deploy note, the revenue cross-month carry fix, the customer-count carry
-fix) and ran the dashboard live: the redeploy note now correctly says zone
-photography already matches the deploy instead of repeating a finished
-claim, and the revenue/customer carry-forward correctly stays same-month
-(Oct 3 to Oct 9) rather than relabelling a stale figure. All 8
-dashboard/carry-forward test files pass. No defect found this pass; this
-was re-verification, not a fix. Re-ledgered with today's date
-(`ops/cold_read_ledger.py --add`); `--stale` now reports 0 and
-`gate_cold_read_ledger_entries_not_stale` is clean. Full account in
-`ops/NIGHTLY-LOG.md` this date.
-
-**Earlier, released 2026-10-09, scheduled operator cycle: the
-second-pass cold read of `hourly_brief.py` through `owner_inbox.py` (6 files)
-landed, two real defects found and fixed, delegated to a sub-agent and
-independently re-verified before fixing: `ops/media_capability.py`'s
-`PROVIDERS` still quoted Gemini's per-image cost as "0.03 to 0.06", the exact
-stale range `ops/generate_card_art.py`'s own 2026-09-04 fix (`cost: (0.045,
-0.101)`) already flags in its own comment as understating the top of the
-range by about 40%, never ported to this sibling file; and `ops/owner_inbox.py`'s
-`main()` returned `1 if (p or third) else 0`, which collapses "unchecked"
-(`None`, no mail credential) and "checked and clean" (`[]`) into the
-identical exit code 0, so a shell script branching on `$?` could not tell a
-never-opened mailbox from a verified-empty one, the exact "unchecked read as
-nothing to do" shape this file's own docstring already names as an eight-day
-incident, one layer up. Fixed: unchecked now returns 2, a real pending
-message on either side still wins and returns 1 first. `gate_owner_waiting`
-unaffected (calls the two functions directly, never `main()`'s return value).
-Both fail-then-pass proved; full account in `ops/NIGHTLY-LOG.md` this date.
-
-**Earlier, released 2026-10-09, scheduled operator cycle: the
-second-pass cold read of `checkin.py` through `hazard_icons.py` (7 files,
-2026-09-30 ledger tier) landed, two real defects found and fixed (see this
-date's `ops/NIGHTLY-LOG.md` entry): `ops/diagnosis.py`'s `IMPERATIVE_FIRST_WORD`
-set was still built from the Kitchen deck alone from before B9 authored 19
-more room decks, so a victory opening with a genuine imperative unique to
-another room ("Leave...", "Say...", "Read...", 105 more) silently passed as
-observable; and `ops/deploy_freshness.py`'s `DISCOVERY_PAGES` list did not
-cover `site/downloads/assets/book.css`, and the sibling coverage gate in
-`ops/preflight.py` (`gate_checker_scope`) could not have caught it either,
-since it resolved every asset reference at the wrong (SITE-root) path. Both
-fixed with fail-then-pass proof; full account in the nightly log.
-
-Earlier, released 2026-10-09, scheduled operator cycle: the
-`check_ledgerium.py` through `check_video_standard.py` claim landed clean,
-no defect in any of the 6 files, one real non-blocking finding (15 rendered
-zone videos drifted from the dialect fix, already correctly WARNed by
-`gate_zone_videos_match_standard`, publish already blocked by
-`youtube_upload.py`); full account in this date's `ops/NIGHTLY-LOG.md` entry.
-
-Earlier: pruned 2026-10-09, PM check-in (:40 slot), per this
-section's own rule ("if a line here is older than a day and its work is in
-main, remove it"): every entry below this line dated 2026-10-01 through
-2026-10-04, all confirmed landed on `main` (sort_scope rollout complete at
-114/114 per `content/manual/source/content.json`, A24 live, the indexation
-checker shipped and gated). Full account of each stays in `ops/NIGHTLY-LOG.md`
-and `STATUS-ARCHIVE.md`; nothing here was still actually open.
+**None currently open.** Pruned 2026-10-11, PM check-in (30 minute triage),
+per this section's own rule ("if a line here is older than a day and its
+work is in main, remove it"): every released-claim entry below this line
+was dated 2026-10-09 or 2026-10-10 (the A25 master-bath misattribution fix,
+the five-file and three separate six/seven-file cold-read tiers, the
+dashboard re-verification, the `check_ledgerium.py`-through-
+`check_video_standard.py` claim), all confirmed landed on `main` and
+reconfirmed with zero drift by a large majority of today's own PM and
+operator cycles (`preflight.py` clean to the documented `gate_tests`
+sandbox hang, 9 open GitHub issues unchanged, 0 PRs). Full account of each
+stays in `ops/NIGHTLY-LOG.md`; nothing here was still actually open.
 
 # 1. Status Metadata
 
