@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (independent re-verification across preflight, cold-read ledger, GitHub and network reach; checked the LinkedIn-drafts push-trigger logic fresh rather than trusting its run count; nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward onto `c4ab7db9c` (436 commits), no "unrelated histories" error. Read `BACKLOG-2026-09-07.md` in full (all seven sections), the tail of `BACKLOG-2026-H2.md`'s own carried-forward process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`'s metadata/claims sections, `OWNER-ACTIONS.md`, and the newest `ops/NIGHTLY-LOG.md` entries.
+
+**Verified independently rather than cited.** `preflight.py` (full, unbuffered, backgrounded): 0 FAIL through every gate reached, including all 20 room-deck-rendered gates, `gate_card_corpus`, `gate_image_coverage` and `gate_unique_names`, before stalling at the documented `gate_tests` headless-Chromium sandbox hang (confirmed by watching the process directly: still running, 0% progress, same shape every recent cycle reports, not a new stall). Standing substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0/0, `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale` 0, `--next` 0 un-ledgered candidates (197 of 197 already ledgered). Mobile `npm test`: all suites pass. `git status --porcelain` clean. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, UNCHECKED, same standing limit. Network egress tested directly: `6s-success.com` refused by the agent proxy with `connect_rejected` (403 on CONNECT), same standing sandbox limit, not assumed from a prior cycle's citation.
+
+**One angle checked fresh rather than assumed: whether `linkedin-drafts.yml` firing on nearly every push (visible in its own run history, 2627 runs total) is a cadence defect.** Read the workflow file directly rather than inferring from run count alone: the push trigger is a deliberate, already-reasoned fallback (2026-09-14/2026-09-30 fixes, documented in the file's own comments) that gates on the day's own rotation-advance commit ledger before sending anything, so a push before 14:19 UTC or after a real send today always stands down with `exit 0`. Not a new defect; confirmed correct by reading the actual gate logic, not the run count.
+
+**No new defect found, nothing newly unblocked.** `BACKLOG-2026-09-07.md` sections 2-5 (micro zones/web app, decks, images/video, hold): every row Done, Phil-gated (C5 Gemini billing, C6 YouTube OAuth), or correctly on Hold against the current ~49-visitor/30-day traffic baseline; none of the Hold thresholds have moved. `STATUS.md` section 0 (open claims): none open, matching this cycle's own findings.
+
+**Went well:** reading the LinkedIn-drafts push-trigger logic directly instead of treating a high run count as evidence of a bug on sight.
+
+**Did not go well:** nothing new; this is an honest repeat of the day's own dozens of prior cycles reaching the same conclusion, independently re-derived rather than inherited.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` (Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 open GitHub issues (`decision`/`blocked-on-art`), unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (17:1x UTC cycle, previous work finished and reverified, nothing new unblocked)
 
 Attached clean (fetch, unshallow, checkout -B main onto origin/main, ff-only, no unrelated-history error this run). Previous work was finished, checked rather than cited: `preflight.py` fast reached 0 FAIL through every gate before the documented `gate_tests` sandbox hang. `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean on 165 documents. `cold_read_ledger.py`: 0 stale, 0 un-ledgered candidates (197 of 197; the second-pass rotation already closed 9/9). GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; read issue #40's two comments directly rather than trust the count, both this operator's own prior notes, no new reply from Phil. CI green on the latest push (run #2040, success). 0 open PRs, tree clean.
