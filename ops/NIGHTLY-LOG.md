@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (12:2x UTC cycle, previous work finished, independently reverified, nothing new unblocked)
+
+**Previous work finished: yes, reverified independently, not carried forward.** Attached clean: fetch, fetch --unshallow, checkout main, merge --ff-only onto origin/main, 400 commits, no conflict, tree clean throughout. Read CLAUDE.md section 0, the last twelve commits, the real newest-first head of ops/NIGHTLY-LOG.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md (Traffic and Affiliate rows), and the 9 open GitHub issues live via the API.
+
+**Verified rather than cited.** Ran preflight.py live myself, output written straight to a file rather than through a piped tail (the lesson an earlier cycle today recorded): 0 FAIL through every gate up to and including gate_image_coverage, then gate_tests hung at flat CPU, confirmed and killed cleanly after 40s, git status --porcelain empty after. Standing substitute suite run directly: check_urls.py 211/211, audit_pages.py 0 findings, fix_dashes.py --check 0 em/0 en dashes, affiliate.py --check clean (165 documents). cold_read_ledger.py --stale: 0. --next: 197/197 already ledgered, 0 un-ledgered candidates. GitHub: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, identical set to the dashboard's own table; read the comment threads on #40 and #15 directly in case Phil had left a fresh decision nobody had acted on yet. Both threads' newest comments are this operator's own prior updates, not a new owner decision; nothing to act on there.
+
+**No new defect found, nothing newly unblocked.** Every lane (backlog, cold-read ledger, GitHub, preflight) independently reconfirmed exhausted, matching roughly twenty prior cycles today. EXECUTIVE-DASHBOARD-LIVE.md's Traffic and Affiliate rows are correctly labelled carried-forward-and-unmeasured (no VPS SSH key in this sandbox), not reported as a zero reading.
+
+**Went well:** checking the two decision issues' comment threads directly instead of assuming "still open" meant "nothing to read."
+
+**Did not go well:** nothing new to report; this is another cycle reconfirming the same exhausted state, which is itself the honest result today, not a gap in the checking.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated list in OWNER-ACTIONS.md (Claude Code usage check, VPS_DEPLOY_KEY, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 GitHub issues, unchanged. Leaving everything else to the hourly operator at :43; nothing here needs hours of work.
+
+Pushed to main. Command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json), this log entry. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, same conclusion as every other cycle today reached separately)
 
 **Did:** Checkout arrived shallow and detached as usual. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main` since local `main` was detached), `git merge --ff-only origin/main`: clean fast-forward, no "unrelated histories" error, no reset or force. Read `BACKLOG-2026-09-07.md` in full (all seven sections, chunked), `ROADMAP-2026-2029.md`'s arithmetic section, `CLAUDE.md` section 0, `STATUS.md`'s Open claims and Active Workstreams sections, `GOALS.md` sections 0-3, `OWNER-ACTIONS.md`'s Start-here table, and the real newest-first head of `ops/NIGHTLY-LOG.md`.
