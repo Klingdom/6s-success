@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle: preflight reconfirmed clean to the sandbox hang, deploy gap/cold-read/cron cadence all re-derived with zero drift, no new work found
+
+**Previous work finished: yes, reverified independently.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 354 commits onto `origin/main` (`5fba87017`) cleanly, tree clean throughout. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries.
+
+**Verified rather than trusted.** Ran `preflight.py` live, unbuffered, tracked by PID: 0 FAIL printed through every gate up to and including `gate_image_coverage`. `gate_tests` hit the same documented sandbox hang (`test_audit_catalog.py` spawning `audit_catalog.py --include-fixtures`, two child processes pegged at 99% CPU with no progress); confirmed genuinely stalled (repeated `ps` checks over several minutes showed no new output and no new test file starting) before killing the whole chain by PID. No stray fixture artifacts left this time (`git status --porcelain` clean). Reported unchecked past `gate_tests`, not passing, per `CLAUDE.md` 0.4. `affiliate.py --check` clean on 165 documents. `check_sellable.py`: 124 of 126 buyable products in Stripe with a delivery entry and a file on disk, the other 2 correctly person-delivered services. `check_cron_cadence.py`: 6 of 9 workflows `[ok]`, `hourly-brief.yml` and `social-drafts.yml`-class degradation already diagnosed and accepted (GitHub scheduler throttling, push-fallback covers it), `keyword-demand.yml`/`owner-questions.yml` correctly reporting "too few runs to measure" by design, not a new defect.
+
+**Re-derived the production deploy gap from the live functions directly, not cited.** `deploy-verdict.json`'s build `e3d3bc8c77a83e38` resolves to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` returns the same 5 commits (4 material: a zone-synonym misattribution fix, a stray duplicate sitemap entry, `canonical_links.py`'s fragment blind spot, a feed author/caption fix; 1 a pure restamp) the prior entry already recorded. No drift found, `STATUS.md`'s `BLOCKER-001` citation still accurate.
+
+**GitHub reconfirmed directly via the API, not carried forward.** Same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none newly pickable. Read issue #40 (the usage-limit stall) in full: already resolved operationally two days ago, left open only for Phil's own account-level check, nothing further to action.
+
+**All three fallback lanes independently reconfirmed exhausted, not taken on trust.** `BACKLOG-2026-09-07.md` sections 2 through 6: every row struck through (done), correctly HOLD (traffic too low for A/B tests, physical decks, Impact reapplication; the 12-zone-to-114 rollout already shipped "anyway, not on the stated gate" back on 2026-09-29, so that citation is settled, not stale), or Phil-gated (C5 Gemini billing, C6 publishing the remaining 102 videos). `ops/cold_read_ledger.py --stale`: 0. `ops/cold_read_ledger.py --next`: 197 of 197 files across `ops`, `site/assets/js`, `mobile/quest-app/lib` already ledgered, 0 un-ledgered candidates. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, correctly unchecked, not empty. No Stripe credential in this sandbox either, so the one thing that would matter most, whether a second sale has landed, stays unverifiable from here; `OWNER-ACTIONS.md`'s "Start here" list (Claude Code usage/plan check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube authorisation, the Stripe business description) is current and unchanged, and is the only place that gap can close.
+
+**No new defect, no new unblocked work, nothing to escalate.** This independently re-derives the same "genuinely exhausted" verdict a large majority of today's cycles have already reached; recorded plainly rather than invented busywork to avoid saying so, per `CLAUDE.md` 0.8 (finish more than you start) and 0.2 (do not report a problem twice that could have been fixed once, which cuts both ways: it also means not re-litigating a settled verdict into new "work").
+
+**Went well:** re-deriving the deploy gap, cold-read ledger and cron cadence from their own live outputs rather than citing the prior entry, and all three held with zero drift.
+
+**Did not go well:** nothing new found; this is the honest result, not a gap in the search.
+
+**Changing next cycle:** none. The standing gates (sandbox `gate_tests` hang, no Stripe/mail/VPS credential) are already documented and already have the correct fallback behaviour.
+
+**Next:** unchanged. `OWNER-ACTIONS.md` "Start here" and the 9 GitHub issues are the only genuinely open items, all Phil-gated.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale Working tree self-citation fixed again, deploy gap re-derived with zero drift)
 
 **Previous work finished: yes, reverified independently.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` fast-forwarded 353 commits onto `origin/main` (`4412eacf4`) cleanly, tree clean throughout.
