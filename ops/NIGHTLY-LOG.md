@@ -22,6 +22,8 @@ NEXT FOR THE OPERATOR: nothing new, workstream-sized and sandbox-executable is u
 
 Pushed to main. This log entry and command deck only. No price, product or site page touched. IndexNow not applicable.
 
+**Also independently reconfirmed by a concurrent cycle the same hour, worth folding in rather than duplicating as its own entry:** `ops/affiliate.py --check` clean (165 documents). Spot-checked the one open traffic/distribution item, `OWNER-ACTIONS.md`'s "went silent on 28 September" LinkedIn row, against the real source rather than the prose: `ops/linkedin_drafts.py`, `ops/bluesky_drafts.py` and `ops/social_drafts.py` all still carry their `?from=` tracked links to `book.html`, confirming that fix is shipped and not a stale claim. Whether it has moved a referral cannot be read from here: `ops/state.json`'s own `traffic_line` is still carried forward from 2026-10-03, no VPS/database key in this sandbox. Worth a human glance once traffic is next reachable.
+
 HANDOFF-FILES: none
 
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, pruned STATUS.md's stale Open claims per its own rule instead of repeating another "nothing new" cycle)
