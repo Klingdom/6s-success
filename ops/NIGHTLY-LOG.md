@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (19:1x UTC cycle, previous work finished and reverified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue in `OWNER-ACTIONS.md` and the 9 open GitHub issues; no change since the 18:5x check-in.
+
+Attached clean: fetch, unshallow (was shallow/detached), `checkout -B main origin/main`, ff-only onto `259f29f`, no unrelated-history error. Working tree clean before and after, nothing to push beyond this entry and the dashboard. Previous work was finished, checked rather than cited: `preflight.py` live to the documented `gate_tests` sandbox hang, 0 FAIL printed through every gate reached. Standing substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean on 165 documents. `cold_read_ledger.py --stale` 0, `--next` 0 un-ledgered (197/197). `BACKLOG-2026-09-07.md` sections 2-4 re-checked row by row: every A/B row struck through done, C5/C6 confirmed still "YES, Phil". `STATUS.md` Open claims: none. GitHub: 9 open issues, identical set/labels, all `decision`/`blocked-on-art`, 0 PRs. Re-verified the deploy gap directly rather than cite it: `ops/deploy-verdict.json` still last-confirmed-current at `e3d3bc8c77a83e38` (2026-10-09), `site/build-id.txt` has since moved to `9a2477bcdfe5b6c2`; same standing gap, issue #35.
+
+No new defect found. Dashboard regenerated and pushed. Nothing handed to the operator beyond the unchanged Phil-gated queue.
+
 ## 2026-10-11, scheduled operator cycle (independent re-verification, nothing new unblocked, dashboard regenerated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, fetched `origin main`, fast-forwarded cleanly onto `259f29f5f` (443 commits), no conflict, no reset needed. Read `BACKLOG-2026-09-07.md` sections 0-7 in full (every "Now" row A1-A26/B1-B9 is Done or struck through, the Hold list unchanged), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`'s current-state and open-claims sections (none open), and the last several `ops/NIGHTLY-LOG.md` entries.
