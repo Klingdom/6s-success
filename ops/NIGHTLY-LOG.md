@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, cold-read ledger's own 2 stale entries refreshed, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: there is no fresh unblocked lane to open; hold the line (re-verify preflight/standing checks, do not start a new workstream), because the backlog, the cold-read ledger and all 9 GitHub issues are exhaustively re-confirmed exhausted or Phil-gated this slot.
+
+**Previous work finished: yes.** Checkout arrived shallow and detached; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `c62235510` (330 commits), tree clean throughout. GitHub reconfirmed directly: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, unchanged; none newly pickable. `BACKLOG-2026-09-07.md` sections 2-4: every row is struck through (done) except C5/C6, both explicitly `YES, Phil`. `ops/cold_read_ledger.py --next`: 197/197 ledgered, 0 un-ledgered.
+
+**Verified rather than trusted.** `preflight.py` tracked by PID, unbuffered: every gate through `gate_image_coverage` printed 0 FAIL, then `gate_tests` sat with CPU flat (9s CPU over 64s+ wall across two checks), the same documented sandbox hang prior cycles have logged all day; killed cleanly, confirmed no stray probe files, tree stayed clean. Reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. Re-derived the deploy gap directly rather than citing it: `resolve_verdict_commit('e3d3bc8c77a83e38')` to `a582ca349`, `deploy_gap_material_commits()` returns 5, matching `git log a582ca349..HEAD -- site/ Dockerfile` (5 commits, 117 files) exactly, identical to the prior cycle's own figure. No drift.
+
+**The one small closing thing this slot did.** `ops/cold_read_ledger.py --stale` found 2 real stale entries: `nightly_log.py` and `preflight.py` were both ledgered `2026-10-10` but both were materially changed again on `2026-10-11` (the hardcoded-date fix, and the new `HANDOFF-FILES` marker system), so the ledger was citing a reviewed state that no longer matched the file. Re-read both cold, end to end, against today's own changes: `nightly_log.py`'s `format_handoff()`/`prepend_entry()` are sound, `test_nightly_log.py` 10/10; `preflight.py`'s new marker path in `cold_read_handoff_stale_files()` is authoritative when present and falls back correctly for markerless legacy entries, `test_gate_cold_read_handoff_not_stale.py` 26/26. No new defect found in either; re-ledgered both `fixed` at `2026-10-11`. `--stale` now reports 0.
+
+**Verified clean after:** `check_urls.py` 211/211, `audit_pages.py` 0 findings, `affiliate.py --check` clean (165 documents).
+
+**Went well:** catching the ledger's own staleness rather than citing its 2026-10-10 "clean" state uncritically.
+
+**Did not go well:** nothing new; same standing shape as every recent cycle. Issue #40 (the 5-day usage-limit stall, 2026-10-04 to 2026-10-09) stays open as a `decision` issue, already re-verified resolved (routines firing normally since), not yet closed by Phil.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, deploy gap reverified unchanged, nothing new unblocked)
 
 **Previous work finished: yes.** Checkout arrived shallow and detached (standard shape); `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 320 commits onto `921f13ee4` cleanly, tree clean throughout. GitHub reconfirmed directly: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, unchanged from the last several cycles; none newly pickable. Read #29 in full as the one issue whose title names a CLAUDE.md rule verbatim ("Straighten, never Set in Order"): already correctly mitigated (16 defective cards withheld from the live gallery) and genuinely blocked on Desktop-only art this sandbox cannot reach, not a live violation.
