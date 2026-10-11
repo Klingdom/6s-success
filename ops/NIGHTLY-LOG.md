@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy-gap resolver re-run and confirmed unchanged)
+
+**Did:** Checkout arrived shallow and detached as usual. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward (401 commits), no "unrelated histories" error, no reset or force. Read `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` in full (sections 0-7, chunked), `STATUS.md`'s Open claims/Current Objective sections, `OWNER-ACTIONS.md`'s header, and the real newest-first head of `ops/NIGHTLY-LOG.md`.
+
+**Verified rather than cited.** Ran `python ops/preflight.py` live, output written straight to a file: 0 FAIL through every gate up to and including `gate_image_coverage`, then `gate_tests` hung at flat CPU (the documented headless-Chromium sandbox limit), killed cleanly after 180s, `git status --porcelain` empty after. Standing substitute suite run directly: `check_urls.py` 211/211, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0 em/0 en dashes, `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale`: 0. `--next`: 197/197 already ledgered, 0 un-ledgered candidates. GitHub checked live via the API, not the dashboard's cache: 9 open issues (7 `decision`, 2 `blocked-on-art`), identical set and labels to prior cycles, 0 open PRs. Read the comment threads on #40 and #15 directly: both threads' newest comments are this operator's own prior updates, nothing new from Phil. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty. Re-derived the deploy gap directly rather than citing `STATUS.md`: ran `resolve_verdict_commit`/`deploy_gap_material_commits` from `preflight.py` against the live `ops/deploy-verdict.json` myself (not the shell one-liner's own first guess, which used a different, wrong resolution method before this check caught it); the real figure is unchanged from the 2026-10-10 entry, 5 commits/4 material, still waiting on `VPS_DEPLOY_KEY` (issue #35).
+
+**No new defect found, nothing newly unblocked.** Every lane (backlog, cold-read ledger, GitHub, preflight, deploy gap) independently reconfirmed exhausted or unchanged, matching the pattern of roughly twenty-plus prior cycles today and yesterday.
+
+**Went well:** catching my own first attempt at re-deriving the deploy gap, which used `git log -S` against `build-id.txt` directly and landed on a different (wrong) commit than the project's own `resolve_verdict_commit`; rerun with the real function before reporting a figure.
+
+**Did not go well:** nothing new to report; this is another cycle reconfirming the same exhausted state, which is itself the honest result today, not a gap in the checking.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (12:2x UTC cycle, previous work finished, independently reverified, nothing new unblocked)
 
 **Previous work finished: yes, reverified independently, not carried forward.** Attached clean: fetch, fetch --unshallow, checkout main, merge --ff-only onto origin/main, 400 commits, no conflict, tree clean throughout. Read CLAUDE.md section 0, the last twelve commits, the real newest-first head of ops/NIGHTLY-LOG.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md (Traffic and Affiliate rows), and the 9 open GitHub issues live via the API.
