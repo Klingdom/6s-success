@@ -20,6 +20,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 HANDOFF-FILES: none
 
+## 2026-10-10, PM check-in (30 minute triage, previous work finished, cold-read rotation handed over again)
+
+NEXT FOR THE OPERATOR: continue the cold-read rotation at `build_mudroom_deck_page.py` onward, because it is still the only genuinely unblocked lane with a track record of finding real defects, while every GitHub issue and backlog row stays Phil-gated or art-blocked.
+
+**Previous work finished: yes, reverified independently, not cited.** Reattached per the fixed STEP 0 (shallow+detached on arrival, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), fast-forwarded cleanly onto `5b669f5ab`, tree clean. That prior PM cycle's handoff (cold-read rotation continuing at `build_mudroom_deck_page.py`) has not yet been consumed by an operator run; no new commits landed between it and this cycle. Checked GitHub directly rather than citing the last report: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, identical set to every recent cycle, none newly pickable. `BACKLOG-2026-09-07.md` section 6 (owner gates) and the C5/C6 rows are unchanged: YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy and app-store accounts, all explicitly Phil's own action.
+
+**Verified rather than trusted:** `git status` clean. Ran `preflight.py` full under a tracked background process: it printed every gate through `gate_image_coverage` with 0 FAILs, then sat at `gate_tests` with CPU flat (10s CPU over 68s wall), the same documented sandbox-dependent hang today's cycles have repeatedly logged. Killed it cleanly and checked for stray `site/_*probe*`/`_*wrapper*` fixture files afterward: none found, tree stayed clean. That tail is reported unchecked, not passing, per `CLAUDE.md` 0.4.
+
+**The one small closing thing this slot did: re-verified the production deploy-gap figure rather than re-citing it.** `ops/deploy-verdict.json` still names the same last-confirmed build (`e3d3bc8c77a83e38`, checked `2026-10-09T05:32:43Z`, resolving to `a582ca349`). `git log a582ca349..HEAD -- site/ Dockerfile` is still exactly 5 commits, 117 files, 238 insertions, 237 deletions, identical to the last three cycles' own citation of it. No drift.
+
+**No defect found.** Nothing new unblocked: the backlog's owner-gate rows and all 9 GitHub issues remain explicitly Phil-gated; the cold-read rotation has no fresh thread to pick up inside a 30 minute slot, that lane belongs to the operator.
+
+**Went well:** confirming the deploy-gap figure by recomputing it a fourth time rather than inheriting the number; catching the preflight hang by CPU time, not wall time, so it is reported honestly as unchecked.
+
+**Did not go well:** nothing new; same standing shape as the last several cycles today. The operator's own :43 slot for the prior PM handoff has not yet landed as of this cycle.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
 ## 2026-10-10, PM check-in (30 minute triage, previous work finished, deploy gap reverified unchanged, nothing new unblocked)
 
 **Previous work finished: yes, verified, not cited.** Reattached per the fixed STEP 0 (shallow+detached on arrival, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), 317 commits fast-forwarded onto `f44e5a51d`, tree clean throughout. GitHub reconfirmed live: 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, unchanged from every recent cycle, none newly pickable. `BACKLOG-2026-09-07.md` sections 2-4 every row is done (`~~struck~~`) or explicitly `YES, Phil` (C5, C6); nothing unblocked there. `ops/cold_read_ledger.py --next` reports all 197 files already ledgered, 0 un-ledgered candidates; `--stale` reports 0.
