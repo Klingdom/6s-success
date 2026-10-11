@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle: preflight confirmed clean through gate_image_coverage, deploy gap and ledger staleness both re-derived with 0 drift, traffic_query.sh cold-read clean
+
+**Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 334 commits fast-forwarded onto `603c2f626`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries, `GOALS.md`, `STATUS.md` and `OWNER-ACTIONS.md`. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `ops/cold_read_ledger.py --next` is 197/197 ledgered with 0 stale; GitHub holds the same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, none pickable; `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply` reports no mail credential in this environment, same as every prior cycle.
+
+**Verified rather than trusted.** `preflight.py` run live, unbuffered, tracked by PID: every gate through `gate_image_coverage` printed with 0 FAIL, then `gate_tests` sat with CPU flat (9s CPU over 105s wall, no growth), the same documented sandbox hang every recent cycle has logged; killed cleanly, confirmed no stray probe files, tree stayed clean. Reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. Ran the standing suite directly: `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents clean. Re-derived the deploy gap from scratch with `resolve_verdict_commit`/`deploy_gap_material_commits` rather than citing it: build `e3d3bc8c77a83e38` resolves to `a582ca349`, 5 commits since, 4 material (one, `17b7c6655`, is a pure build-id restamp with no real `site/` content change) — matches `STATUS.md`'s own current `BLOCKER-001` citation exactly, no drift to fix.
+
+**Cold-read `ops/traffic_query.sh` end to end, the file behind the open "LinkedIn went silent on 28 September" question in `OWNER-ACTIONS.md`.** It is outside the ledger's scope (shell, not `ops/*.py`), so it never surfaces as a rotation candidate; read it anyway since it is the one file that will answer whether the `?from=li/bsky/fb/x` tracking fix (shipped 2026-10-02, after the LinkedIn/Bluesky/Facebook/X draft tools were found to emit no link at all) is working. Confirmed the query itself is correct: it extracts the channel from `url_query` with `substring(... from 'from=([a-z0-9_-]+)')`, excludes the reserved `/__` probe-path prefix the same way every sibling query in the file does, and groups by visitor/visit/pageview with first/last-seen dates, which is exactly what is needed to tell "stopped posting" apart from "posting, arriving as direct". No defect found. It cannot be run from this sandbox (`docker exec` against the VPS's Umami container needs a credential and host access this environment does not have), so whether the fix actually produced an attributable LinkedIn row stays genuinely unmeasured from here, not assumed clean.
+
+**No new defect found anywhere this cycle.** The backlog, the cold-read ledger, GitHub and mail are all exhaustively re-confirmed exhausted or Phil-gated, the same shape as the last several cycles.
+
+**Went well:** re-deriving the deploy gap and the cold-read-ledger staleness check from the real data instead of citing a prior cycle's figure, and both held with 0 drift; reading a file outside the ledger's own scope rather than treating "not in the ledger" as "already reviewed".
+
+**Did not go well:** nothing new; same standing shape as every recent cycle. The `?from=` LinkedIn-attribution question remains open and this sandbox still cannot close it.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (the LinkedIn referral silence since 28 September is the highest-value open question, and the first real signal on whether the `?from=` fix worked needs a session with VPS/Umami access, not this one) and the 9 GitHub decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, scheduled operator cycle: independently reached the same conclusion as the concurrent PM check-in below, merged rather than duplicated
 
 **Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 330 commits fast-forwarded onto `c62235510`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `cold_read_ledger.py --next` was 197/197 ledgered with 2 stale (`preflight.py`, `nightly_log.py`); GitHub holds the same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none pickable; no mail credential.
