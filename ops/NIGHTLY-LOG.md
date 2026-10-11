@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (second-pass cold read closed, 9/9: two real fixes, three false ledger citations corrected)
+
+**Did:** Checkout arrived shallow and detached per usual; fetch, fetch --unshallow, checkout main, merge --ff-only attached cleanly onto origin/main (391 commits). Read CLAUDE.md section 0, GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the last four NIGHTLY-LOG.md entries via a research agent to keep this session's own context free for the work; independently verified its finding (GitHub: 9 open issues, 7 decision/2 blocked-on-art, 0 PRs) directly against the API rather than trusting the summary. Ran `preflight.py` live, foreground, to completion: exit 0, every gate passed, 30 warnings, all documented sandbox limits (no Stripe/SSH/mail credential, no egress, no Pillow). Picked up the standing handoff: finish the second-pass cold read at `build_seo.py` onward (9 files).
+
+**The real work.** Delegated 6 of the 9 files to a background agent (constrained to read-only/test-only verification while preflight might still be running) and cold-read the other 3 myself: `build_seo.py`, `product_links.py`, `site/assets/js/quest.js`. All three shared one copy-pasted ledger note citing commits 8aa7a6589/11b32d124 as their verification basis, plus a row count (124) for affiliate-catalogue.csv. Checked directly rather than trusting the note (CLAUDE.md 5d): neither commit's diff touches build_seo.py; each of the other two files was touched by only one of the two cited commits, not both; the real row count is 123. Re-verified all three for real (live generator run against build_seo.py, zero diff against committed site; live `--status` run on product_links.py; 11 of quest.js's own test suites) and rewrote the three notes to cite only what was actually checked.
+
+**Two real defects found and fixed**, both by the background agent, both independently re-verified by me after: `split_deck_cards.py`'s `--check` preview counted every size as webp+jpg, but the apply loop only writes a JPEG fallback for md/sm and skips it for lg, so a run previewed more files than it would ever write; fixed to use the same per-face count the apply loop uses. `wire_zone_heroes.py`'s one remaining fallback path (a withdrawn hero approval reaching a live page outside Phil's own machine) pulled straight to a blank hole instead of trying `panel_figure()` first, the fix already applied to the other two pull paths on 2026-09-29. Latent, not live-wrong: 0 of 111 committed fallback entries currently carry a withdrawn verdict. New regression case in `test_wire_zone_heroes.py`, fail-then-pass proved.
+
+**A gate built, then reverted.** Tried to turn the false-citation finding into an automated preflight check (a function flagging any ledger note that cites a commit hash which never touched that file). Tested against the real ledger before wiring it in: it flagged `check_video_standard.py`'s note, which cites 8aa7a6589 legitimately, as the cause of a downstream video/caption mismatch, not as a false claim that the commit touched that file. A bare hash-presence check cannot tell "cited as evidence" apart from "cited as context," so it would cry wolf on correct prose. Reverted rather than ship it; CLAUDE.md's "a gate that cannot fail is theatre" has a mirror image, a gate that fires on legitimate text erodes trust the same way.
+
+**Verified:** `check_urls.py` 211/211, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), mobile `npm test` all suites pass. `cold_read_ledger.py --next`: 197/197 ledgered, both passes now closed. Pushed into a race with a concurrent session's own routine check-in commits (CHECKIN-LOG.md, dashboard, state files only, no file overlap with this cycle's fixes); merged cleanly, no conflict, reverified clean after.
+
+**Went well:** verifying a "clean" ledger verdict's own cited evidence rather than taking the note's word for it, the same discipline the ledger exists to enforce on everyone else; catching the new gate's false-positive before wiring it in rather than after.
+
+**Did not go well:** nothing new to report; the gate attempt cost time but caught its own flaw before shipping, which is the point of testing a gate before relying on it.
+
+**Changing next cycle:** none. The second-pass rotation is now closed at 9/9; the next cold-read work is a fresh scan for genuinely new candidates (none found this cycle: `--next` returns 0).
+
+**Next:** standing Phil-gated list unchanged (`OWNER-ACTIONS.md`'s "Start here": Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, Gemini billing, Stripe business description) and the same 9 GitHub issues (7 decision, 2 blocked-on-art).
+
+Pushed to main (two commits, merged). Files touched: `ops/split_deck_cards.py`, `ops/wire_zone_heroes.py`, `ops/tests/test_wire_zone_heroes.py`, `ops/cold-read-ledger.json`. No price or product touched, no site page changed, no new page. IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, handoff to the nine remaining second-pass cold-read files)
 
 NEXT FOR THE OPERATOR: continue the second-pass cold-read rotation at `build_seo.py` onward (`image_local.py`, `import_room_diagrams.py`, `product_links.py`, `quest.js`, `roadmap_report.py`, `split_deck_cards.py`, `video_zone.py`, `wire_zone_heroes.py`), because every other queue is reconfirmed exhausted this cycle and that rotation is the only lane still producing real finds.
