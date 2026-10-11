@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (second-pass cold read: four more generators cleared; found and resolved a self-inflicted concurrency hazard, not a product defect)
+
+**Did:** Checkout arrived shallow and detached per usual; fetch, fetch --unshallow, checkout main, merge --ff-only attached cleanly onto origin/main (378 commits fast-forwarded), tree clean throughout. Read CLAUDE.md section 0 in full, GOALS.md, OWNER-ACTIONS.md's "Start here" and "Open" sections, BACKLOG-2026-09-07.md sections 0-7, STATUS.md's open-claims header, and the newest NIGHTLY-LOG.md entries. GitHub reconfirmed live via the API: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged since 2026-10-09, none newly pickable; read issue #40 in full (the 5-day usage-limit stall from last week) and confirmed it is already resolved in practice (dozens of clean cycles since). `inbox_agent.py --apply`: no mail credential, as every recent cycle has found.
+
+**The real work.** Every standard queue was again exhausted (`cold_read_ledger.py --stale`: 0; `--next`: 0 un-ledgered candidates). Continued the standing second-pass cold-read rotation from the prior cycle's own named handoff: read four files in full, `build_primary_bedroom_deck_page.py`, `build_stair_landing_deck_page.py`, `build_standards_page.py`, `build_workshop_deck_page.py`. For each deck-page generator: regenerated and diffed against the committed site, checked the hardcoded whole-room action-card id/description assertion against the real built cards, and checked `hero_image_url()`'s first zone against disk and that zone page's own og:image. `build_standards_page.py` (a different shape, not a deck page) was verified against its own inline assertions (download exists, analytics wired, hero and FAQ text verbatim from content.json) plus a direct live cross-check of the PACK-HOUSE buy link and price against `data.js`.
+
+**A defect that was not one.** Mid-rotation, a diff appeared on `site/standards.html` and `site/workshop-deck.html` that looked serious: PWA/SKIP/PROGRESSIVE/main-landmark blocks stripped and stale fingerprint hashes. Before writing it up as a finding, checked the actual cause rather than the symptom (CLAUDE.md 5d): a `preflight.py` run I had started in the background was still writing to `site/**/*.html` while I ran the generators in the foreground, racing the same files. Killed the background process, reverted the two files, and reran each generator alone: both came back byte-identical to the committed site, and a direct `fingerprint_assets.py --check` confirmed 655 references current across 219 pages. Recorded the real lesson in the `build_workshop_deck_page.py` ledger note so whoever reads it next does not repeat the scare: never run `preflight.py` and a generator against the same tree at the same time.
+
+**Verified:** full `preflight.py` run to completion this time, foreground, nothing concurrent: exit code 0, every gate passed, 32 warnings, all previously diagnosed sandbox limits (no Stripe credential, no network reach, no mail credential, Pillow not installed, no SSH key). `check_urls.py` (211/211), `audit_pages.py` (0 duplicates), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), mobile `npm test` (all suites) all clean after. `ops/dashboard.py` regenerated (revenue still carried-forward $0, unmeasured this month, no credential to refresh it from here).
+
+**Went well:** catching the race before reporting it as a product defect, and writing the actual cause into the ledger rather than a vague "transient, reran clean."
+
+**Did not go well:** running a backgrounded `preflight.py` alongside foreground generator work in the first place; should have known better given this file's own prior entries about concurrent-session collisions (STATUS.md section 0).
+
+**Changing next cycle:** when `preflight.py` needs to run as part of verifying generator output, run it to completion first or last, never alongside the thing being verified.
+
+**Next:** continue the second-pass rotation past `build_workshop_deck_page.py`, alphabetically into the remaining mixed-type tier. Standing Phil-gated list unchanged: `OWNER-ACTIONS.md`'s "Start here" items (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy and app-store accounts) and the same 9 GitHub issues (7 decision, 2 blocked-on-art). No push notification sent: nothing revenue- or GitHub-material changed, and the standing blockers were already escalated in full by prior cycles.
+
+Pushed to main. Files touched: `ops/cold-read-ledger.json` (4 entries added/updated), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (regenerated), `ops/NIGHTLY-LOG.md`. No price or product touched, no site page changed, no new page. IndexNow not applicable.
+
+HANDOFF-FILES: alphabetically after `build_workshop_deck_page.py` in the mixed-type remainder of the 2026-10-02 tier.
+
+---
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, fixed a stale backlog figure instead of a nothing-new entry)
 
 **Previous work finished: yes.** Attached cleanly after the usual shallow/detached checkout (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main), tree clean throughout. Reread the operator's second-pass cold-read entry and the PM twin's :40 entry; both pushed and verified, not just committed. Reran preflight live myself rather than citing it: 0 FAIL through every gate to gate_image_coverage, then the same documented gate_tests sandbox hang, confirmed stalled (no stray processes after) and killed cleanly. Ran the standing suite in its place: check_urls.py 211/211, audit_pages.py 215 pages/0 findings, fix_dashes.py 0/0, affiliate.py clean (165 docs), link_graph_report.py 0 orphans, mobile npm test all suites pass. cold_read_ledger.py: 197/197, 0 stale, first pass complete, second pass already handed to the operator. GitHub reconfirmed via the API: same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, issue #40 unchanged since 2026-10-09.

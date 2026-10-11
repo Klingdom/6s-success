@@ -258,8 +258,8 @@
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-11",
+      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion (PRA-013/014/015, hazard walk / offload audit / last-thing-before-bed reset) checked against the real built cards (exact match); hero_image_url()'s first zone (Bed and Bedding Zone) checked against disk and that zone page's own og:image (exact match); numberOfPlayers maxValue=2 confirmed consistent with the deliberate private-room tier (Patio or Deck, Workshop also 2). No defect found."
     },
     "build_printpack.py": {
       "status": "clean",
@@ -308,8 +308,8 @@
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-11",
+      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion (SLA-007/008/009, flight safety walk / weekly rail-and-frame pass / three-night verdict sweep) checked against the real built cards (exact match); hero_image_url()'s first zone (Landing Surface or Console) checked against disk and that zone page's own og:image (exact match)."
     },
     "build_standards.py": {
       "status": "fixed",
@@ -318,8 +318,8 @@
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Read in full: live PACK-HOUSE price/link read, verbatim hero/FAQ assertions against content.json, missing-zone-link guard, full wiring chain all correct. No defect."
+      "date": "2026-10-11",
+      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); the generator's own inline assertions all passed (download exists, analytics wired, one paid path present, hero quotes 2 zones verbatim from content.json, all 5 FAQ answers verbatim from the page, room_list raises SystemExit on any missing zone-page link so no dead link could ship); live-read PACK-HOUSE buy link and price cross-checked directly against data.js (exact match, $19, current Stripe link). No defect found."
     },
     "build_thumbnails.py": {
       "status": "clean",
@@ -328,8 +328,8 @@
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
-      "date": "2026-10-02",
-      "note": "Cold-read 2026-10-02: verified via the two shared root-cause commits that touched it (8aa7a6589 British->American dialect fix, 11b32d124 its own follow-on generator-source fix). Both independently re-verified: fix_dialect.py --check clean, gate_no_british_spellings_shipped passes directly, content.json/products.json/zone_products.json/room-images.json parse as valid JSON, affiliate-catalogue.csv reads as 124 well-formed rows. No defect found."
+      "date": "2026-10-11",
+      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated in isolation (no concurrent process) and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion (WSA-013/014/015, hazard walk / stalled-projects audit / last-light-out reset) checked against the real built cards (exact match); hero_image_url()'s first zone (Main Workbench) checked against disk and that zone page's own og:image (exact match). Note for whoever reads this next: an EARLIER pass in this same cycle ran this generator concurrently with a background preflight.py process also touching site/**/*.html, and the race corrupted site/standards.html and site/workshop-deck.html (stripped PWA/SKIP/PROGRESSIVE/main blocks, stale fingerprints) with nothing to do with either generator's own logic; killing the background process and rerunning each generator alone reproduced a clean, byte-identical tree. Not a generator defect; a self-inflicted concurrency hazard, now avoided for the rest of this cycle."
     },
     "build_youtube_metadata.py": {
       "status": "fixed",
