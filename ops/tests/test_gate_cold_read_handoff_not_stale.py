@@ -426,6 +426,70 @@ def main() -> int:
                      "recognised, so an older block's stale name leaked "
                      "through: %r" % stale)
 
+    # 14. The canonical `HANDOFF-FILES:` marker (written by
+    #     `ops/nightly_log.py --handoff`, not hand-typed) is authoritative
+    #     for a block that carries it: it alone decides staleness, and
+    #     the free-text heuristic above is never consulted for that
+    #     block, no matter what other prose sits beside it. A marker
+    #     naming a ledgered file must still be caught (the gate can still
+    #     fail), proving this is not a blanket exemption.
+    log_marker_stale = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-10-11, cycle\n\n"
+        "**Did:** some work, described in free prose that never "
+        "mentions a single file by name.\n\n"
+        "HANDOFF-FILES: `build_feed.py`\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_marker_stale, LEDGER)
+    if stale != ["build_feed.py"]:
+        fails.append("a HANDOFF-FILES marker naming a ledgered file was "
+                     "not caught: got %r" % stale)
+
+    # 15. 'HANDOFF-FILES: none' must never flag, even if the surrounding
+    #     free prose in the same block happens to mention a ledgered
+    #     file's name for an unrelated reason (e.g. narrating what a
+    #     prior cycle did): the marker is authoritative, so that mention
+    #     is never even reached by the old heuristic.
+    log_marker_none = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-10-11, cycle\n\n"
+        "**Did:** re-verified `build_feed.py`, already ledgered clean, "
+        "as part of today's sweep. Nothing new to hand off.\n\n"
+        "HANDOFF-FILES: none\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_marker_none, LEDGER)
+    if stale:
+        fails.append("'HANDOFF-FILES: none' was wrongly flagged because "
+                     "of an unrelated mention in the same block: %r"
+                     % stale)
+
+    # 16. A marker naming a genuinely un-ledgered file must not flag.
+    log_marker_clean = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-10-11, cycle\n\n"
+        "**Did:** nothing new unblocked.\n\n"
+        "HANDOFF-FILES: `crawl_report.py`\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(log_marker_clean, LEDGER)
+    if stale:
+        fails.append("a HANDOFF-FILES marker naming an un-ledgered file "
+                     "was wrongly flagged: %r" % stale)
+
+    # 17. A block with no marker at all (a legacy entry, written before
+    #     this convention existed) must still fall back to the free-text
+    #     heuristic unchanged, so history already in the log needs no
+    #     rewrite and still gets checked until it ages out of the window.
+    log_no_marker_legacy = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## 2026-09-25, cycle\n\n"
+        "NEXT FOR THE OPERATOR: cold-read `build_feed.py`.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_no_marker_legacy, LEDGER)
+    if stale != ["build_feed.py"]:
+        fails.append("a legacy block with no HANDOFF-FILES marker lost "
+                     "its free-text fallback: got %r" % stale)
+
     # Deliberately no "check the real committed log" case here: the log
     # gains new entries constantly (many times a day, per its own
     # history), so whether a specific past entry's handoff still sits
@@ -441,7 +505,7 @@ def main() -> int:
         for f in fails:
             print("  -", f)
         return 1
-    print("OK  gate_cold_read_handoff_not_stale: 22/22 cases pass")
+    print("OK  gate_cold_read_handoff_not_stale: 26/26 cases pass")
     return 0
 
 
