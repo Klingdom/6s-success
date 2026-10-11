@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale working-tree line fixed by regeneration)
+
+NEXT FOR THE OPERATOR: continue the second-pass cold-read rotation at `build_primary_bedroom_deck_page.py`, `build_stair_landing_deck_page.py`, `build_workshop_deck_page.py` (oldest-ledgered 2026-10-02 tier, deck-page generators only, picking up exactly where the 07:5x cycle's own five-file pass left off), because the backlog (sections 2-6), the 9 GitHub issues and the first-pass cold-read ledger (197/197, 0 stale) are all confirmed exhausted or Phil-gated again this cycle, so the standing second-pass rotation is the only lane still producing real finds.
+
+**Previous work finished: yes.** Attached cleanly (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main, 378 commits fast-forwarded), tree clean throughout, main already in sync with origin before this cycle touched anything. Reread the last two same-day entries (the PM twin's stale-backlog-figure fix, the operator's five-file second-pass cold read); both pushed and verified, not just committed. Ran preflight live myself rather than citing it: 0 FAIL through every gate to and including `gate_image_coverage`, then the documented `gate_tests` sandbox hang (confirmed stalled at the same place every prior cycle today hit, no new regression, killed cleanly). GitHub reconfirmed live via the API: same 9 open issues (7 decision-labelled, 2 blocked-on-art), 0 PRs, issue #40 unchanged since 2026-10-09; none newly pickable, none ignored. `cold_read_ledger.py --next`: 197 of 197 ledgered, 0 un-ledgered candidates left; first pass is genuinely complete, not just unclaimed.
+
+**The one thing actually stale: the dashboard's own "Working tree" line said "uncommitted or unpushed work" while `git status` showed clean and in sync with origin.** The line was correct when the dashboard was generated (08:19, mid-merge from the twin's concurrent push) and simply never got a chance to re-run after that push landed, exactly the kind of stale-artifact-after-a-correct-source gap this repository's own log names repeatedly. Fixed by regenerating, not hand-editing: `ops/dashboard.py` now reads "clean, in sync" and the correct last commit (`3ce8319f1`) and 7-day commit count (411 of 6046). No other figure moved.
+
+**Decided not to start a new workstream.** Re-walked `BACKLOG-2026-09-07.md` sections 2 through 6 against this cycle's own fresh preflight and GitHub read rather than citing an earlier cycle's walk: every row is still done, HOLD, or Phil-gated, matching today's many identical findings. Did not touch anything Phil-gated (the dashboard's own "What needs you" list is unchanged: redeploy, VPS_DEPLOY_KEY, Search Console, Stripe description, the usage-limit decision).
+
+**Verified:** working tree clean before and after except the three dashboard files; `fix_dashes.py --check` clean on the new log text (0 em dashes, 0 en dashes); pushed via `ops/ship.py --no-deploy`.
+
+**Went well:** regenerating the dashboard rather than re-citing its 08:19 snapshot as still current, which is exactly the "unchecked is not passing" failure mode CLAUDE.md 0.4 names.
+
+**Did not go well:** nothing new to escalate; same standing Phil-gated list, revenue still $0, no fresher traffic reading possible from this sandbox.
+
+**Changing next cycle:** none.
+
+**Next:** handoff above. Standing Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub issues unchanged.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, fixed a stale backlog figure instead of a nothing-new entry)
 
 **Previous work finished: yes.** Attached cleanly after the usual shallow/detached checkout (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main), tree clean throughout. Reread the operator's second-pass cold-read entry and the PM twin's :40 entry; both pushed and verified, not just committed. Reran preflight live myself rather than citing it: 0 FAIL through every gate to gate_image_coverage, then the same documented gate_tests sandbox hang, confirmed stalled (no stray processes after) and killed cleanly. Ran the standing suite in its place: check_urls.py 211/211, audit_pages.py 215 pages/0 findings, fix_dashes.py 0/0, affiliate.py clean (165 docs), link_graph_report.py 0 orphans, mobile npm test all suites pass. cold_read_ledger.py: 197/197, 0 stale, first pass complete, second pass already handed to the operator. GitHub reconfirmed via the API: same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, issue #40 unchanged since 2026-10-09.
