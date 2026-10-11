@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (16:4x UTC cycle, previous work finished and reverified; started a full visual/accessibility audit while a working browser is available)
+
+NEXT FOR THE OPERATOR: check on or rerun `python ops/audit_visual.py --all` and fix anything it finds, because this container's headless Chromium is confirmed working this cycle (a single-page run completed clean in seconds), a capability many recent cycles have logged as sandbox-blocked, and a full end-to-end sweep has not completed recently while that capability was present.
+
+**Previous work was finished.** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `92703017a`, 428 commits caught up with no manual reset needed). `git log -12`, the newest `NIGHTLY-LOG.md` entries, `EXECUTIVE-DASHBOARD-LIVE.md` and `BACKLOG-2026-09-07.md` all agree: the prior two cycles independently closed INCIDENT-003/#41 (collided and merged correctly), and nothing since is unverified. `preflight.py` ran to its documented `gate_tests` hang with 0 FAIL on every gate reached; `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean on 165 documents, confirmed independently rather than cited. Working tree was clean, main already pushed. `ops/cold_read_ledger.py --stale` reports 0 stale; `--next` reports 0 un-ledgered candidates (197 of 197 ledgered). GitHub: still 9 open issues, all `decision`/`blocked-on-art`, unchanged; 0 PRs. Confirmed `ops/deploy.py --check` has no deploy key in this sandbox, so item 0 in `OWNER-ACTIONS.md` stays Phil-blocked as documented, not reattempted.
+
+**Checked one thing the dashboard's own "Card decks | 0/20 rooms" line could have been read as a defect, and it is not.** All 20 `site/*-deck.html` pages exist and are live; the dashboard's `deck_rooms` figure counts `*Deck` directories in a Desktop-only source path this sandbox never has (`decks_visible` correctly reports false here), a different and already-documented measurement, not the room deck pages. No fix needed.
+
+**Started, not finished: `ops/audit_visual.py --all` across all 219 pages**, since a quick single-page probe against `site/book.html` came back clean in well under a minute, confirming (unlike most recent cycles) that a real browser is reachable in this container right now. Running in background past this cycle's time budget; still mid-run at the time of writing, so this is reported as unchecked, not as a clean result (CLAUDE.md 0.4). Whoever picks this up next should read its actual output rather than assume it is still running or already clean.
+
+**Next:** same standing Phil-blocked queue in `OWNER-ACTIONS.md` and the 9 open decision/art issues, unchanged. The visual audit above is the one open thread.
+
+Pushed to main. Command deck only. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (16:1x UTC cycle, previous work finished: closed INCIDENT-003, collided with the operator closing the same incident)
 
 **Previous work was finished, verified independently rather than cited, and landed in parallel with the operator cycle below.** Attached clean (fetch, unshallow, checkout main, merge --ff-only onto `968fe02c5`). The prior two cycles' handoff was to confirm checks.yml runs #2036/#2037 came back clean and close issue #41. Checked the Actions API directly for all four runs now completed: #2035 (`workflow_dispatch`), #2036 and #2037 (push), and a fourth, #2038, that auto-triggered on the 15:4x cycle's own commit with no manual dispatch. All four `status: completed`, `conclusion: success`. Updated `STATUS.md` INCIDENT-003 to RESOLVED with the same four-run evidence, pushed, and hit a real push conflict: the scheduled operator cycle (next entry) had independently reached and pushed the identical conclusion moments earlier. Per `STATUS.md` section 0 and `CLAUDE.md` section 8 (do not collide), merged rather than forced, kept the operator's slightly fuller wording (it names that `gate_tests` e2e also passed on real CI hardware), and regenerated the command deck instead of hand-resolving its diff.
