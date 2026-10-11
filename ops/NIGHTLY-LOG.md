@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (22:1x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
+
+PM check-in. Previous work was finished, checked rather than cited. Attached clean (ff-only onto a4963de39), tree clean throughout. `preflight.py` run unbuffered to a 100s timeout: 0 FAIL printed through every gate reached, killed (exit 124) at the documented `gate_tests` headless-Chromium sandbox hang, same standing limit as every cycle today. Substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0, `--next` 197 of 197 files ledgered (0 un-ledgered), `affiliate.py --check` clean on 165 documents, no mail credential (reported, not assumed empty). `BACKLOG-2026-09-07.md` sections 2-6 reread row by row: every row struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both still "YES, Phil" only. GitHub's 9 open issues read live: unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+**One thing checked that no recent cycle had: the sibling Routines' own health**, the exact gap issue #40 names. `list_triggers` shows all three (this :10 PM, the :40 twin, the :43 operator) with `last_run.status` `SUCCEEDED` or `PENDING` (this session), none `FAILED`. No stall to report; issue #40 stays open as Phil's own call on whether to add the permanent check, since `update_trigger` still refuses a prompt edit on a routine this session did not create.
+
+Independently re-derived the deploy gap rather than trusting the dashboard's own carried-forward line: `deploy-verdict.json` unchanged (`e3d3bc8c77a83e38`, `2026-10-09T05:32:43Z`, resolving to `a582ca349`); `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching the dashboard's honest "gap is whatever changed since, not an unknown backlog" framing rather than a fabricated count.
+
+No new defect found, nothing newly unblocked. Regenerated and shipped the dashboard, as required every run. No code, price, product or page touched.
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (`OWNER-ACTIONS.md` items -1, 0, 1a, 1, 1d; GitHub's 9 open issues), because both discovery lanes stay exhausted and nothing has changed since the prior cycles today.
+
 ## 2026-10-11, scheduled operator cycle (21:5x UTC, full STEP 0-13 pass, independent re-verification, nothing new unblocked)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout -B main origin/main`, `git merge --ff-only origin/main`: clean fast-forward (457 commits), no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1 and the "Start here" owner-action list, `CLAUDE.md`, and the real last four `ops/NIGHTLY-LOG.md` entries by line number rather than file-tail order (this file is not strictly chronological after repeated merges; grepping `^## 2026-10-11` found the true latest entries near the top).
