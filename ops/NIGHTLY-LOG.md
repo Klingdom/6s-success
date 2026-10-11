@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, same cycle follow-up: full test sweep closed out, merged concurrent push, one real hardcoded-date bug found and fixed
+
+**Did:** Closed out the full `ops/tests/test_*.py` sweep the prior entry this same cycle left unchecked past `test_generator_ownership.py`. Two concurrent commits had landed on `origin/main` in the meantime (`abf317ccc`, `921f13ee4`); merged rather than force-pushed, resolving `ops/NIGHTLY-LOG.md` by hand (both entries kept, newest-first) and regenerating the three conflicted generated files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) with `ops/dashboard.py` rather than hand-merging them. Re-verified `deploy_gap_count_problem()` clean against the merged tree (still 5 commits, 4 material) and `gate_nightly_log_ordering()` clean.
+
+**The sweep's actual verdict, not left as "unchecked" longer than necessary:** re-ran `test_generator_ownership.py` alone with a 120s timeout: it genuinely hangs, zero output, confirming the documented `gate_tests` sandbox limitation directly rather than assuming the earlier kill was the cause; nothing in it touches anything this cycle changed. The sweep's one other flagged file, `ops/tests/test_nightly_log.py`, was a real, live, self-inflicted bug: its case 5 hardcoded a synthetic entry's date as `"2026-10-10"`, which was the real `NIGHTLY-LOG.md`'s own newest date the day that line was written, but this cycle's own entry above pushed the file's real newest date to `2026-10-11`, so the hardcoded string became a day older than the file's own top entry, exactly the shape `gate_nightly_log_ordering()` exists to catch, and it correctly fired. Fixed by deriving the test date from `datetime.date.today()` instead of a fixed string, so it cannot go stale again regardless of which day this runs.
+
+**Verified clean after:** `test_gate_cold_read_handoff_not_stale.py` (26/26), `test_nightly_log.py` (10/10), `test_gates.py`, `fix_dashes.py --check` (0/0).
+
+**Went well:** not leaving "unchecked" as the final word once it was checkable; catching that the hardcoded-date bug was a real, live failure rather than assuming a killed process's ambiguous "FAIL:" line was noise.
+
+**Did not go well:** the full `ops/tests/test_*.py` sweep still cannot run end-to-end in this sandbox because of the one documented hang; a session with a different environment is the only way to run it to completion.
+
+**Changing next cycle:** none new; the hardcoded-date class is now fixed at its one known instance.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, scheduled operator cycle: deploy-gap citation corrected, cold-read-handoff gate's 10x-patched parsing closed structurally
 
 **Did:** Attached clean (checkout arrived shallow and detached, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 318 commits fast-forwarded onto `5b669f5ab`, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest nightly-log entries, and a background agent's independent cross-check of the same material. Confirmed directly, not just cited: `BACKLOG-2026-09-07.md` sections 2-4 are every row done or explicitly `YES, Phil` (C5, C6); `ops/cold_read_ledger.py --next` reports 197/197 files ledgered, 0 un-ledgered; `--stale` reports 0; GitHub holds 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none pickable. Ran `preflight.py` to completion in the background (it finished this time, exit 0, 32 warnings, all previously diagnosed sandbox limits): two real, fixable findings inside those warnings, not sandbox noise.
