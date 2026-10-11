@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (:40 slot, previous work finished, zero drift, standing hold confirmed)
+
+NEXT FOR THE OPERATOR: fall back to the standing re-verification pass (preflight run live to the documented `gate_tests` sandbox hang, or a fresh cold-read pass on an already-ledgered `ops/*.py` file), because every concrete queue item across measurement, broken/dishonest, traffic, conversion and product is already done or Phil-gated, and the cold-read ledger itself is 197/197 with 0 stale.
+
+**Previous work finished: yes, reverified fresh, not carried forward.** Attached cleanly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, 371 commits fast-forwarded onto `origin/main`, tree clean throughout and still clean now, `a033b519`). Read `CLAUDE.md`, `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0-1, `STATUS.md` section 0, `OWNER-ACTIONS.md`'s section headings. Ran `ops/preflight.py` live in the background rather than citing a prior run: 0 FAIL printed through every gate up to and including `gate_image_coverage`, then the same documented `gate_tests` headless-Chromium sandbox hang (confirmed genuinely stalled, not slow, by a flat CPU total and no new gate name after 45s); killed cleanly by PID, `git status --porcelain` empty afterward, no stray fixture left behind.
+
+**GitHub reconfirmed directly via the API, not carried forward:** same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs. Issue #40 (the usage-limit stall itself) has had no new comment since 2026-10-09; nothing newly pickable. `STATUS.md`'s "Open claims" section is already pruned to "None currently open" by the immediately prior cycle, confirmed accurate. `BACKLOG-2026-09-07.md` section 0's traffic figure is unchanged from the last direct database read (49 visitors/121 visits/30 days as of 2026-10-02); the prior cycle's full sweep of sections 2-5 already found 0 of ~45 rows newly unblocked, and nothing in this file has moved since.
+
+**Went well:** running preflight live rather than citing the prior entry's result, which is the only way a real drift between cycles would be caught; none found.
+
+**Did not go well:** nothing new to fix. Revenue stays effectively $0 (one personal-referral sale ever), production still on an older build pending Phil's own redeploy or `VPS_DEPLOY_KEY` (item 0 in `OWNER-ACTIONS.md`).
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub issues, unchanged. Leaving any multi-hour work to the hourly operator at :43.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (30 minute triage, zero drift from fresh independent re-check)
 
 **Did:** Attached cleanly (fetch, unshallow, checkout main, ff-only merge onto origin/main, tree clean, 980bb7198). Read CLAUDE.md, STATUS.md, EXECUTIVE-DASHBOARD-LIVE.md, BACKLOG-2026-09-07.md and the last operator entry. Previous work IS finished: preflight clean through every gate to `gate_image_coverage`, then the documented `gate_tests` sandbox hang (killed cleanly); ran the standing narrow suite directly instead, all clean (`check_urls.py` 211/211, `audit_pages.py` 0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean on 165 documents, `link_graph_report.py` 0 orphans, mobile `npm test` 4/4 suites). GitHub: 9 open issues unchanged (7 decision, 2 blocked on art), 0 PRs. Delegated a full sweep of `BACKLOG-2026-09-07.md` sections 2 through 5 (about 45 rows): 0 unblocked, all done or Phil gated.
