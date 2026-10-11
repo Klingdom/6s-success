@@ -632,9 +632,9 @@
       "note": "Re-read in full per second-pass handoff. The 2026-09-25 refuse-to-write-on-dangling-link-or-dash fix still intact; KNOWN_AMBIGUOUS_DUPES handling and the unexplained-duplicate-title check both read correctly. test_merge_cardtext_refuses_on_defect.py passes (6/6 plus real committed batches). No new defect found."
     },
     "nightly_log.py": {
-      "status": "fixed",
-      "date": "2026-10-10",
-      "note": "Cold-read: implementation sound and tested (5/5), but main() wrote NIGHTLY-LOG.md directly in 'w' mode, truncating it before the write completed; a crash mid-write (disk full, kill) would have corrupted the one file this log calls the only reliable account of what has been tried. Fixed with write-to-temp-then-os.replace atomic rename. Added two tests (now 7/7): one exercising main() end to end, one simulating the write failure and proving the real file is left byte-identical. Proved the new test actually catches the regression by reverting the fix, watching it fail, then restoring it."
+      "status": "clean",
+      "date": "2026-10-11",
+      "note": "Cold-read 2026-10-11 scheduled operator cycle: reviewed format_handoff() and the new required --handoff argument added today. 10/10 test cases pass, no new defect found."
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
@@ -657,9 +657,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-10",
-      "note": "2026-10-10, scheduled operator cycle (second fix today): cold_read_handoff_stale_files()'s header match could not tolerate a parenthetical aside between 'operator' and the colon ('Handing to the operator (oversized for 30 minutes):'), so a real newest handoff fell through to an older, differently-worded rotation handoff and flagged it stale; also recognised 'standing N-file rotation cold-read tier from X' as a deliberate non-stale re-read. Gate now reads 0 stale on the real log (was 1). 3 new cases, ops/tests/test_gate_cold_read_handoff_not_stale.py, 22/22, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-11",
+      "note": "Cold-read 2026-10-11 scheduled operator cycle: reviewed cold_read_handoff_stale_files() end to end, the function touched today to add the HANDOFF-FILES marker convention (10th fix for this gate's free-text parsing). Logic matches its own docstring, 26/26 test cases pass, no new defect found."
     },
     "prerender_shop.py": {
       "status": "fixed",

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle: preflight re-verified clean through gate_image_coverage, two stale cold-read ledger entries cleared
+
+**Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 330 commits fast-forwarded onto `c62235510`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `cold_read_ledger.py --next` was 197/197 ledgered with 2 stale (`preflight.py`, `nightly_log.py`, both touched by earlier cycles today); GitHub holds the same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none pickable; no mail credential.
+
+**Verified:** `preflight.py` run fresh through `gate_image_coverage`, 0 FAIL printed, then hung at `gate_tests` with flat CPU, the same documented sandbox limit; killed, tree stayed clean. Reported unchecked past that point, not passing. Cold-read both stale ledger files: `cold_read_handoff_stale_files()` and `format_handoff()`, the two functions changed today, match their own docstrings; `test_nightly_log.py` 10/10, `test_gate_cold_read_handoff_not_stale.py` 26/26. Re-ledgered both clean; ledger now 0 stale. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0. Re-derived the deploy gap directly: build `e3d3bc8c77a83e38` resolves to `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still the same 5 commits `STATUS.md` already cites. No drift, no update needed.
+
+**Went well:** verifying the two stale ledger entries by reading the actual changed functions instead of trusting their own commit messages.
+
+**Did not go well:** nothing new; the backlog, GitHub, and cold-read queues are all exhausted or Phil-gated, same shape as recent cycles.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (LinkedIn referral silence since 28 Sept is the highest-value open question) and the 9 GitHub decision/blocked-on-art issues, unchanged.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, deploy gap reverified unchanged, nothing new unblocked)
 
 **Previous work finished: yes.** Checkout arrived shallow and detached (standard shape); `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 320 commits onto `921f13ee4` cleanly, tree clean throughout. GitHub reconfirmed directly: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, unchanged from the last several cycles; none newly pickable. Read #29 in full as the one issue whose title names a CLAUDE.md rule verbatim ("Straighten, never Set in Order"): already correctly mitigated (16 defective cards withheld from the live gallery) and genuinely blocked on Desktop-only art this sandbox cannot reach, not a live violation.
