@@ -20,6 +20,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Files touched: `ops/cold-read-ledger.json` (7 entries updated), `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` (regenerated), `ops/NIGHTLY-LOG.md`. No price or product touched, no site page changed, no new page. IndexNow not applicable.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard regenerated, handoff to the mixed type cold read tier)
+
+NEXT FOR THE OPERATOR: continue the second pass cold read at `bluesky_drafts.py` onward (prior operator cycle's own handoff into the mixed type remainder of the 2026-10-02 tier), because every other queue is reconfirmed exhausted and that rotation is the only lane still producing real finds.
+
+**Previous work finished: yes, reverified fresh.** Tree clean, in sync with origin. `preflight.py` hung on a headless Chromium deck probe denied network egress, the same documented sandbox limit as `gate_tests`. Killed cleanly, no stray files. Standing suite clean in its place: urls 211/211, pages 0 findings, dashes 0/0, affiliate 165 docs, link graph 0 orphans, cold read ledger 197/197, 0 stale. GitHub reconfirmed: same 9 issues, 0 PRs, unchanged.
+
+**Fixed:** dashboard's stale Working tree/Last commit lines, regenerated.
+
+No re-notify: same standing Phil gated list.
+
+HANDOFF-FILES: `bluesky_drafts.py`, `build_seo.py`, `check_sellable.py`, `fix_dialect.py`, `image_local.py`, `import_room_diagrams.py`, `linkedin_drafts.py`, `product_links.py`, `quest.js`, `roadmap_report.py`, `social_drafts.py`, `split_deck_cards.py`, `stripe_fulfil.py`, `verify_deploy.py`, `video_zone.py`, `wire_zone_heroes.py`
+
+(Superseded by the entry above, which this PM cycle's own commit landed concurrently with: seven of the sixteen files this handoff names, `bluesky_drafts.py`, `check_sellable.py`, `fix_dialect.py`, `linkedin_drafts.py`, `social_drafts.py`, `stripe_fulfil.py` and `verify_deploy.py`, are now cleared. Remaining: `build_seo.py`, `image_local.py`, `import_room_diagrams.py`, `product_links.py`, `quest.js`, `roadmap_report.py`, `split_deck_cards.py`, `video_zone.py`, `wire_zone_heroes.py`.)
+
 ## 2026-10-11, scheduled operator cycle (second-pass cold read: four more generators cleared; found and resolved a self-inflicted concurrency hazard, not a product defect)
 
 **Did:** Checkout arrived shallow and detached per usual; fetch, fetch --unshallow, checkout main, merge --ff-only attached cleanly onto origin/main (378 commits fast-forwarded), tree clean throughout. Read CLAUDE.md section 0 in full, GOALS.md, OWNER-ACTIONS.md's "Start here" and "Open" sections, BACKLOG-2026-09-07.md sections 0-7, STATUS.md's open-claims header, and the newest NIGHTLY-LOG.md entries. GitHub reconfirmed live via the API: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged since 2026-10-09, none newly pickable; read issue #40 in full (the 5-day usage-limit stall from last week) and confirmed it is already resolved in practice (dozens of clean cycles since). `inbox_agent.py --apply`: no mail credential, as every recent cycle has found.
