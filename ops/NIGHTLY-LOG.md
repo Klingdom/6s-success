@@ -2,6 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (21:4x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (BACKLOG C5/C6, issue #35's VPS_DEPLOY_KEY, the 9 open GitHub issues), because both discovery lanes stay exhausted and nothing has changed since the 21:1x check-in.
+
+Attached clean: the checkout arrived shallow and detached; a straight `git fetch --unshallow` hit a stale `shallow.lock` from this cycle's own earlier fetch still finishing a 2.0GB pack download, so I waited for it rather than removing the lock by hand. Clean `checkout -B main origin/main`, ff-only onto `58c290e03`, tree clean throughout.
+
+Previous work was finished, checked rather than cited. `check_urls.py` 211/211. `cold_read_ledger.py --stale` 0. `affiliate.py --check` first FAILed, "could not read 3 delivered document(s)": `pymupdf` is pinned in `ops/requirements.txt` but was not installed in this sandbox. Fixed it (`pip install -r ops/requirements.txt`) rather than just reporting it, per CLAUDE.md 0.2, then reconfirmed clean on 165 documents. `preflight.py`'s own bootstrap independently hit and handled the identical gap moments later (its documented retry-on-cold-sandbox logic for exactly this failure mode, already written into `ensure_pymupdf()`), then ran 0 FAIL through every gate including `gate_affiliate`, to the standing `gate_tests` headless-Chromium sandbox hang (confirmed killed at timeout, exit 124, not inferred). `BACKLOG-2026-09-07.md` sections 2-4 re-checked row by row: every A/B/C row struck through done except C5 (Gemini billing) and C6 (YouTube OAuth), both still "YES, Phil" only. `STATUS.md` Open claims: none. GitHub's 9 open issues read live: identical set and labels to the 21:1x cycle (6 `decision`, 2 `blocked-on-art`, one carrying both `P0` and `decision`), 0 open PRs. All five scheduled workflows (fulfil-orders, hourly-brief, bluesky-drafts, social-drafts, linkedin-drafts) green on their latest runs.
+
+No new defect found beyond the sandbox-local pymupdf gap, which is now fixed and does not reflect anything wrong with the site. Nothing newly unblocked.
+
+Regenerated and shipped the dashboard, as required every run. No code, price, product or page touched.
+
+
 ## 2026-10-11, PM check-in (21:1x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
 PM check-in. Previous work was finished: attached clean (unshallow, ff-only onto 5f2a442ba), tree clean. Verified myself rather than cited: preflight fast ran 0 FAIL through every gate reached, to the documented gate_tests headless-Chromium sandbox hang (killed, same known limit as every cycle today); check_urls.py 211/211; affiliate.py --check clean on 165 documents. Read BACKLOG-2026-09-07.md sections 2-5 row by row directly: every A/B/C row is struck through Done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth). GitHub's 9 open issues read live: identical set and labels to every cycle today, same updated_at timestamps, 0 open PRs, no new comment from Phil anywhere.
