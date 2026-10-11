@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, dashboard's own stale Working tree self-citation fixed)
+
+Previous work finished: yes. Attached clean (shallow detached checkout, fetch unshallow, ff-only merge, 341 commits onto afcf8ba7b), tree stayed clean throughout. Preflight ran fresh: 0 FAIL through every gate up to gate_tests, which hit the same documented sandbox hang (killed, no stray probe files). GitHub reconfirmed directly: still 9 open issues, all decision or blocked-on-art, none pickable. OWNER-ACTIONS.md's start-here list unchanged, all genuinely Phil's hand.
+
+Small closing thing this slot did: the regenerated command deck still read "uncommitted or unpushed work" in its own Working tree row, a snapshot from mid-cycle at its last generation, while the tree was actually clean and pushed. Reran ops/dashboard.py, now correctly reads "clean, in sync." Shipped via ops/ship.py.
+
+Handing the operator: nothing new, same standing cold-read-exhausted and Phil-gated shape.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, scheduled operator cycle: preflight confirmed clean through gate_image_coverage, deploy gap and ledger staleness both re-derived with 0 drift, traffic_query.sh cold-read clean
 
 **Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 334 commits fast-forwarded onto `603c2f626`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries, `GOALS.md`, `STATUS.md` and `OWNER-ACTIONS.md`. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `ops/cold_read_ledger.py --next` is 197/197 ledgered with 0 stale; GitHub holds the same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, none pickable; `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply` reports no mail credential in this environment, same as every prior cycle.
