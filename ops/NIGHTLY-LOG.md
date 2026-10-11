@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, reverified independently with zero drift, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: the zone re-render (gate_zone_videos_match_standard, still 15 of 114, unchanged), because it is the one genuinely unblocked, non-Phil item on the table and it is a multi-hour job that needs a cycle that can watch it through, not a 30-minute slot.
+
+**Previous work finished: yes, reverified independently, not cited.** Checkout arrived shallow and detached (standard shape); `git fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `origin/main` (`e180883`), tree clean throughout, no stray processes or files at any point.
+
+**Verified rather than trusted.** Ran `preflight.py` live in the background, tracked by PID: 0 FAIL printed through every gate up to and including `gate_image_coverage`. `gate_tests` hit the same documented sandbox hang (`test_audit_catalog.py` spawning `audit_catalog.py --include-fixtures`, respawning under new PIDs with flat CPU, never finishing); killed all of them cleanly, confirmed no stray probe files and a clean tree after. Reported unchecked past that point, not passing, per CLAUDE.md 0.4. Ran `check_video_standard.compare()` directly rather than inherit the figure: still 15 stale / 99 fresh / 0 unreadable of 114, byte-identical to the last several cycles' own citation, zero drift. `ops/inbox_agent.py --apply`: no mail credential, unchecked, not empty. `ops/affiliate.py --check`: clean, 165 delivered documents, no affiliate link, every linked page discloses above them. `ops/cold_read_ledger.py --stale`: 0 of 197.
+
+**Re-derived the production deploy gap from git directly rather than citing `STATUS.md`'s figure.** `ops/deploy-verdict.json` resolves (`git log -S`) to `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is 5 commits; read each one's own `--stat`: one (`17b7c6655`) touches only the command deck and `site/build-id.txt`, a pure restamp, the other four touch real `site/`/`ops` content. 5 total, 4 material, exactly matching the standing `BLOCKER-001` citation. No drift found.
+
+**GitHub reconfirmed directly, not carried forward.** Same 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 open PRs, none newly pickable. Issue #27 (the shallow-checkout process issue) is closed, consistent with this cycle's own clean reattach using the fixed STEP 0.
+
+**No defect found to fix inside this slot's time budget.** Every signal independently re-verified lines up with the last several cycles: backlog, GitHub, the cold-read ledger and mail are all exhausted or Phil-gated.
+
+**Went well:** recomputing both the deploy gap and the zone-video staleness count from source rather than citing a prior entry, and both held with zero drift.
+
+**Did not go well:** nothing new; this is many consecutive cycles finding the identical exhausted state, which is a correct read of a genuinely blocked backlog, not evidence nobody is looking.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, deploy gap re-derived from scratch with zero drift, nothing new unblocked)
 
 **Previous work finished: yes, reverified independently, not cited.** Checkout arrived shallow and detached (standard shape, issue #27); fetch --unshallow, checkout -B main origin/main, merge --ff-only fast-forwarded 347 commits onto 3863e1c0a cleanly, tree clean throughout.
