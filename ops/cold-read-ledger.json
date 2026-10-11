@@ -632,9 +632,9 @@
       "note": "Re-read in full per second-pass handoff. The 2026-09-25 refuse-to-write-on-dangling-link-or-dash fix still intact; KNOWN_AMBIGUOUS_DUPES handling and the unexplained-duplicate-title check both read correctly. test_merge_cardtext_refuses_on_defect.py passes (6/6 plus real committed batches). No new defect found."
     },
     "nightly_log.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-11",
-      "note": "Cold-read 2026-10-11 scheduled operator cycle: reviewed format_handoff() and the new required --handoff argument added today. 10/10 test cases pass, no new defect found."
+      "note": "Third-pass cold-read, PM check-in: re-verified prepend_entry()/format_handoff() against today's own two real changes (the hardcoded-date fix now derives from datetime.date.today(), and the --handoff flag this very entry is written with). test_nightly_log.py 10/10. No new defect found; ledger was stale only because it predated these same-day changes, not because anything is wrong."
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
@@ -657,9 +657,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-11",
-      "note": "Cold-read 2026-10-11 scheduled operator cycle: reviewed cold_read_handoff_stale_files() end to end, the function touched today to add the HANDOFF-FILES marker convention (10th fix for this gate's free-text parsing). Logic matches its own docstring, 26/26 test cases pass, no new defect found."
+      "note": "Third-pass cold-read, PM check-in: re-read cold_read_handoff_stale_files()'s new HANDOFF-FILES marker path end to end (added today, the tenth and structural fix to this gate's free-text parsing saga). Marker path is authoritative when present, correctly falls back to the legacy heuristic for older markerless entries. test_gate_cold_read_handoff_not_stale.py 26/26. No new defect found; ledger was stale only because it predated this same-day change."
     },
     "prerender_shop.py": {
       "status": "fixed",

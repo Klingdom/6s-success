@@ -2,19 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-11, scheduled operator cycle: preflight re-verified clean through gate_image_coverage, two stale cold-read ledger entries cleared
+## 2026-10-11, scheduled operator cycle: independently reached the same conclusion as the concurrent PM check-in below, merged rather than duplicated
 
-**Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 330 commits fast-forwarded onto `c62235510`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `cold_read_ledger.py --next` was 197/197 ledgered with 2 stale (`preflight.py`, `nightly_log.py`, both touched by earlier cycles today); GitHub holds the same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none pickable; no mail credential.
+**Did:** Attached clean (shallow, detached checkout; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`, 330 commits fast-forwarded onto `c62235510`, tree clean throughout). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the newest `NIGHTLY-LOG.md` entries. Confirmed directly, not cited: every row in backlog sections 2-4 is done or `YES, Phil` (C5, C6); `cold_read_ledger.py --next` was 197/197 ledgered with 2 stale (`preflight.py`, `nightly_log.py`); GitHub holds the same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, none pickable; no mail credential.
 
-**Verified:** `preflight.py` run fresh through `gate_image_coverage`, 0 FAIL printed, then hung at `gate_tests` with flat CPU, the same documented sandbox limit; killed, tree stayed clean. Reported unchecked past that point, not passing. Cold-read both stale ledger files: `cold_read_handoff_stale_files()` and `format_handoff()`, the two functions changed today, match their own docstrings; `test_nightly_log.py` 10/10, `test_gate_cold_read_handoff_not_stale.py` 26/26. Re-ledgered both clean; ledger now 0 stale. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0. Re-derived the deploy gap directly: build `e3d3bc8c77a83e38` resolves to `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still the same 5 commits `STATUS.md` already cites. No drift, no update needed.
+**Verified:** `preflight.py` run fresh through `gate_image_coverage`, 0 FAIL printed, then hung at `gate_tests` with flat CPU, the same documented sandbox limit; killed, tree stayed clean. Reported unchecked past that point, not passing. Cold-read both stale ledger files independently of the concurrent check-in below: `cold_read_handoff_stale_files()` and `format_handoff()`, the two functions changed earlier today, match their own docstrings; `test_nightly_log.py` 10/10, `test_gate_cold_read_handoff_not_stale.py` 26/26. Re-ledgered both clean. `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0. Re-derived the deploy gap directly: build `e3d3bc8c77a83e38` resolves to `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is still the same 5 commits `STATUS.md` already cites. No drift, no update needed.
 
-**Went well:** verifying the two stale ledger entries by reading the actual changed functions instead of trusting their own commit messages.
+**Collision found at push: a concurrent PM check-in session (entry immediately below) fixed the identical two stale ledger entries, seconds apart.** Same root cause, same fix, independently reached. Merged rather than force-pushed; kept both accounts since each found it independently, and both commits' re-ledgering of `nightly_log.py`/`preflight.py` as `clean`/`fixed` are functionally equivalent, so the merge carries the concurrent cycle's own ledger write through.
 
-**Did not go well:** nothing new; the backlog, GitHub, and cold-read queues are all exhausted or Phil-gated, same shape as recent cycles.
+**Went well:** verifying the two stale ledger entries by reading the actual changed functions instead of trusting their own commit messages; merging instead of overwriting a concurrent session's identical fix.
+
+**Did not go well:** nothing new; the backlog, GitHub, and cold-read queues are all exhausted or Phil-gated, same shape as recent cycles. Two sessions spent effort on the identical small fix at the same time, which is a coordination gap worth naming even though neither session did anything wrong.
 
 **Changing next cycle:** none.
 
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (LinkedIn referral silence since 28 Sept is the highest-value open question) and the 9 GitHub decision/blocked-on-art issues, unchanged.
+
+HANDOFF-FILES: none
+
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, cold-read ledger's own 2 stale entries refreshed, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: there is no fresh unblocked lane to open; hold the line (re-verify preflight/standing checks, do not start a new workstream), because the backlog, the cold-read ledger and all 9 GitHub issues are exhaustively re-confirmed exhausted or Phil-gated this slot.
+
+**Previous work finished: yes.** Checkout arrived shallow and detached; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded cleanly onto `c62235510` (330 commits), tree clean throughout. GitHub reconfirmed directly: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, unchanged; none newly pickable. `BACKLOG-2026-09-07.md` sections 2-4: every row is struck through (done) except C5/C6, both explicitly `YES, Phil`. `ops/cold_read_ledger.py --next`: 197/197 ledgered, 0 un-ledgered.
+
+**Verified rather than trusted.** `preflight.py` tracked by PID, unbuffered: every gate through `gate_image_coverage` printed 0 FAIL, then `gate_tests` sat with CPU flat (9s CPU over 64s+ wall across two checks), the same documented sandbox hang prior cycles have logged all day; killed cleanly, confirmed no stray probe files, tree stayed clean. Reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. Re-derived the deploy gap directly rather than citing it: `resolve_verdict_commit('e3d3bc8c77a83e38')` to `a582ca349`, `deploy_gap_material_commits()` returns 5, matching `git log a582ca349..HEAD -- site/ Dockerfile` (5 commits, 117 files) exactly, identical to the prior cycle's own figure. No drift.
+
+**The one small closing thing this slot did.** `ops/cold_read_ledger.py --stale` found 2 real stale entries: `nightly_log.py` and `preflight.py` were both ledgered `2026-10-10` but both were materially changed again on `2026-10-11` (the hardcoded-date fix, and the new `HANDOFF-FILES` marker system), so the ledger was citing a reviewed state that no longer matched the file. Re-read both cold, end to end, against today's own changes: `nightly_log.py`'s `format_handoff()`/`prepend_entry()` are sound, `test_nightly_log.py` 10/10; `preflight.py`'s new marker path in `cold_read_handoff_stale_files()` is authoritative when present and falls back correctly for markerless legacy entries, `test_gate_cold_read_handoff_not_stale.py` 26/26. No new defect found in either; re-ledgered both `fixed` at `2026-10-11`. `--stale` now reports 0.
+
+**Verified clean after:** `check_urls.py` 211/211, `audit_pages.py` 0 findings, `affiliate.py --check` clean (165 documents).
+
+**Went well:** catching the ledger's own staleness rather than citing its 2026-10-10 "clean" state uncritically.
+
+**Did not go well:** nothing new; same standing shape as every recent cycle. Issue #40 (the 5-day usage-limit stall, 2026-10-04 to 2026-10-09) stays open as a `decision` issue, already re-verified resolved (routines firing normally since), not yet closed by Phil.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
 
 HANDOFF-FILES: none
 
