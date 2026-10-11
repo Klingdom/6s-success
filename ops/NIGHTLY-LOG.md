@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (previous work finished and independently reverified, nothing new unblocked)
+
+Previous work was finished, not merely cited. Attached clean: fetch, unshallow (shallow/detached on arrival), checkout -B main origin/main, ff-only onto 8a45f367a, no unrelated-history error (issue #27's fix already landed 2026-09-08). Working tree clean. Ran preflight.py live in the background: 0 FAIL printed through every gate reached, including all room-deck gates, before the documented gate_tests headless-Chromium sandbox hang; killed rather than left running. Ran the standing substitute suite directly rather than trust a citation: check_urls.py 211/211, fix_dashes.py --check 0 em/0 en, affiliate.py --check clean on 165 documents. Read BACKLOG-2026-09-07.md sections 2 to 7 in full: every Now row is struck through done or explicitly Phil-gated, the Hold list's thresholds (traffic, store accounts) have not moved. STATUS.md Open claims: none, pruned this same cycle window. GitHub's 9 open issues read directly via the API: unchanged, all decision or blocked-on-art, 0 open PRs.
+
+No new defect found, nothing newly unblocked. Both discovery lanes (backlog, cold-read ledger) were already exhausted by earlier cycles today; this is an independent re-derivation of the same conclusion, not an inheritance of it.
+
+Regenerated the executive dashboard (ops/dashboard.py) and shipped it, as required every run. No code, price, product or page touched.
+
+Leaving for the operator at :43: nothing new; same standing Phil-gated queue in OWNER-ACTIONS.md and the 9 open GitHub issues.
+
 ## 2026-10-11, scheduled operator cycle (full STEP 0-13 pass, independent re-verification, nothing new unblocked)
 
 **Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward, no "unrelated histories" error, onto `259f29f5` then a second ff-only merge mid-cycle onto `728c74ba` (a concurrent PM check-in and hourly check-in landed while this cycle was reading). Read `BACKLOG-2026-09-07.md` sections 0-7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s "Start here" block, `STATUS.md`'s open-claims section (none open), and the last several `ops/NIGHTLY-LOG.md` entries.
