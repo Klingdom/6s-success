@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## scheduled operator cycle: preflight ran clean end to end, every exhaustion signal (backlog, GitHub, cold-read ledger, mail) independently re-verified, no new defect
+## 2026-10-11, scheduled operator cycle: preflight ran clean end to end, every exhaustion signal (backlog, GitHub, cold-read ledger, mail) independently re-verified, no new defect
 
 **Did:** Checkout arrived shallow and detached per the standing shape; `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 343 commits onto `fece3d128` cleanly, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the four newest `NIGHTLY-LOG.md` entries before touching anything.
 
@@ -21,6 +21,30 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** standing Phil-gated "Start here" list in `OWNER-ACTIONS.md` and the 9 GitHub decision/blocked-on-art issues, unchanged. The 15 stale rendered videos (`gate_zone_videos_match_standard`) are the one unblocked, non-Phil item on the table; whoever picks it up next should expect a multi-hour render and plan the cycle around watching it through, not starting it and moving on.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+HANDOFF-FILES: none
+
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, nothing new, cold-read one more low-mention ops file clean)
+
+NEXT FOR THE OPERATOR: cold-read indexation_check.py and bluesky_drafts.py for a hiding defect (4 and 10 NIGHTLY-LOG mentions, both low), because the backlog's own unblocked items are exhausted again and this method is what has found every real defect in the last several cycles when nothing else was open; bluesky_drafts.py is worth the look specifically because it is the sibling of the linkedin_drafts.py `?from=` attribution fix and nobody has reread it since that fix shipped.
+
+**Previous work finished: yes, verified independently, not cited.** Checkout arrived shallow and detached with local main sharing no ancestor with origin/main; `fetch --unshallow` then `checkout main && merge --ff-only` reattached clean onto `fece3d128`, tree clean throughout. GitHub reconfirmed directly: 9 open issues (2 P0, 2 blocked-on-art, 5 decision), 0 PRs, unchanged from the last several cycles, none newly pickable. `CHECKIN-LOG.md`'s last four hourly entries each report nothing measurable moved despite 146-155 commits in 24h, consistent with a genuinely exhausted backlog rather than a loop that stopped looking.
+
+**Ran preflight myself rather than trusting the last citation.** 0 FAIL through every gate up to `gate_tests`, which hit the documented sandbox hang (parent CPU flat at 9s across a 30s window while a spawned `audit_catalog.py --include-fixtures` child churned at 99% CPU and kept respawning under new PIDs without finishing); killed cleanly after confirming the hang, removed two gitignored stray fixture artifacts it left under `site/`, tree confirmed clean again. Reported unchecked past `gate_tests`, not passing, per CLAUDE.md 0.4.
+
+**Checked a subagent's claim before acting on it, and it was wrong.** A delegated backlog summary flagged the BACKLOG-2026-09-07.md C6 row ("Publish 102 videos, YES Phil, OAuth paste") as stale against EXECUTIVE-DASHBOARD-LIVE.md and OWNER-ACTIONS.md saying YouTube was "CLEARED 2026-09-26". Read both directly: that clearance was for the caption-desync hold on the publish pair, not the OAuth authorisation itself, which OWNER-ACTIONS.md's own item 1 still lists as open and Phil's. No drift; C6 is correct as written. No edit made.
+
+**Cold-read `ops/import_room_diagrams.py` in full (314 lines, 2 NIGHTLY-LOG mentions, the lowest tier).** Re-ran it fresh: 11 rooms produced, byte-identical set to the committed `ops/room-diagrams.json` (same 11 room names, same chapters). The "never shrink" and "empty manifest is a failure" guards are both real and already proven in the file's own history. Confirmed it is correctly surfaced in `preflight.py`'s `page-art` warning (a diagram is explicitly distinguished from a photograph, not conflated with "done"). No defect found.
+
+**Went well:** verifying the subagent's staleness claim against both source documents instead of acting on a plausible-sounding correction; killing the gate_tests hang cleanly and confirming no stray state was left behind rather than just moving on.
+
+**Did not go well:** same unrelated-history checkout shape (issue #27, still open); nothing new found to fix in this slot's budget.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in OWNER-ACTIONS.md (LinkedIn referral silence since 28 September, still unmeasurable from this sandbox) and the 9 GitHub decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck only. No price, product or site page touched. IndexNow not applicable, no page changed.
 
 HANDOFF-FILES: none
 
