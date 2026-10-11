@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (21:5x UTC, full STEP 0-13 pass, independent re-verification, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `git checkout -B main origin/main`, `git merge --ff-only origin/main`: clean fast-forward (457 commits), no "unrelated histories" error. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-1 and the "Start here" owner-action list, `CLAUDE.md`, and the real last four `ops/NIGHTLY-LOG.md` entries by line number rather than file-tail order (this file is not strictly chronological after repeated merges; grepping `^## 2026-10-11` found the true latest entries near the top).
+
+**Verified independently rather than inherited.** `preflight.py` run unbuffered in the background: 0 FAIL printed through every one of ~76 gates reached, killed at the documented `gate_tests` headless-Chromium sandbox hang after confirming the process was genuinely stalled there (not inferred). Standing substitute suite run directly: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` clean on 165 documents, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded). `cold_read_ledger.py --stale`: 0. `--next`: 197 of 197 files ledgered, 0 un-ledgered candidates, both discovery lanes genuinely exhausted. `PYTHONIOENCODING=utf-8 inbox_agent.py --apply`: no mail credential, UNCHECKED, same standing limit. GitHub's 9 open issues read directly via the API: unchanged (6 `decision`, 2 `blocked-on-art`, one carrying both `P0` and `decision`), 0 open PRs. `OWNER-ACTIONS.md`'s "Start here" list reread end to end: all four remaining items (-1 usage-limit check, 0 VPS_DEPLOY_KEY secret, 1a Search Console verification, 1 YouTube authorisation, 1d Stripe business description) are genuinely account-level actions no sandboxed credential can take.
+
+**No new defect found, nothing newly unblocked.** Every `BACKLOG-2026-09-07.md` row is done or correctly Phil-gated; this is another independent re-derivation of the same conclusion dozens of PM and operator cycles reached earlier today, not an inheritance of it.
+
+**Went well:** finding the real latest log entries by searching for today's date rather than trusting file-tail order, which pointed at stale 2026-09-04 entries from an earlier merge.
+
+**Did not go well:** nothing new to report; same standing state as every prior cycle today.
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` ("Start here" items -1, 0, 1a, 1, 1d) and GitHub's 9 open issues, unchanged.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (21:4x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (BACKLOG C5/C6, issue #35's VPS_DEPLOY_KEY, the 9 open GitHub issues), because both discovery lanes stay exhausted and nothing has changed since the 21:1x check-in.
@@ -13,7 +33,6 @@ Previous work was finished, checked rather than cited. `check_urls.py` 211/211. 
 No new defect found beyond the sandbox-local pymupdf gap, which is now fixed and does not reflect anything wrong with the site. Nothing newly unblocked.
 
 Regenerated and shipped the dashboard, as required every run. No code, price, product or page touched.
-
 
 ## 2026-10-11, PM check-in (21:1x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
