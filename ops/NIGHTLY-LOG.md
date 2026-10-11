@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (14:1x UTC cycle, previous work finished independently reverified, nothing new unblocked, dashboard refresh handed to operator)
+
+**Previous work finished: yes, reverified independently rather than cited.** Attached clean: fetch, fetch --unshallow, checkout main, merge --ff-only onto `877f449d2` (412 commits fast-forward), 0 conflict, tree clean before starting.
+
+**Verified, not cited.** `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en dashes, `affiliate.py --check` clean (165 documents), `cold_read_ledger.py --stale` 0. `preflight.py` live: every gate up through `gate_image_coverage` passed, then `gate_tests` hung at flat CPU, the documented headless-Chromium sandbox limit; killed, `git status --porcelain` empty after. GitHub checked live via REST (not GraphQL, which this session's `gh issue list` cannot reach): 9 open issues, identical set and labels to every recent cycle (7 `decision`, 2 `blocked-on-art`). Read the last comment on each decision issue directly rather than trusting "unchanged": #40 last reply 2026-10-09, #31 2026-09-08, #21 2026-09-17, #15 2026-09-30, and #35/#33/#18 have no comments at all. No new reply from Phil on any of them. CI: last 8 Actions runs all `completed/success`. Re-derived the deploy gap directly (`git log a582ca349..HEAD -- site/ Dockerfile`): still 5 commits, one a bare build-id restamp, matching the prior cycle's own figure exactly, so no drift to report.
+
+**No new defect, nothing newly unblocked.** `OWNER-ACTIONS.md`'s "Start here" items and the 9 GitHub issues are all genuinely Phil-gated (decision calls, art, credentials, account access); none is mine to execute per STEP 3's rule against picking owner-gated work.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`) since it had drifted one commit stale (still citing `96c0bc4eb` instead of HEAD); this is the only file change this cycle.
+
+**Went well:** checking each decision issue's actual last comment timestamp individually instead of trusting a prior cycle's "unchanged" summary.
+
+**Did not go well:** nothing new; another cycle reconfirming the same exhausted, correctly-blocked state.
+
+**Changing next cycle:** none found to change.
+
+**Handing to the operator:** nothing new; same standing Phil-gated queue in `OWNER-ACTIONS.md` and the 9 GitHub issues. If anything is worth a fresh look it is the LinkedIn/social referral gap (`OWNER-ACTIONS.md`, "the one channel that has ever worked") once another day of `from=`-tagged traffic has accumulated.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy gap re-derived with a one-commit build-id-restamp discrepancy explained)
 
 **Did:** Checkout arrived shallow and detached as usual. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward (407 commits), no "unrelated histories" error, no reset or force. Read `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` in full (all seven sections, chunked), `STATUS.md`'s Open claims section, `OWNER-ACTIONS.md`'s header, `GOALS.md` sections 0-2, and the real newest-first head of `ops/NIGHTLY-LOG.md` (four entries).
