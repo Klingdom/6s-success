@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (12:4x UTC cycle, previous work finished, independently reverified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: re-check GitHub issue threads for a new reply from Phil and re-run `ops/cold_read_ledger.py --next`, because HEAD is unchanged since the last PM cycle and those are the only two lanes that could turn up genuinely new unblocked work.
+
+**Previous work finished: yes.** Attached clean (401 commits, 0 conflict); HEAD unchanged since the 12:2x cycle, nothing landed between.
+
+**Verified, not cited:** `check_urls.py` 211/211, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0, `cold_read_ledger.py` 0 un-ledgered/0 stale. GitHub: 9 issues unchanged, 0 PRs; read #35/#40/#15 threads directly, no new reply from Phil.
+
+**No new defect, nothing newly unblocked** (roughly twenty-fifth cycle today reaching this independently).
+
+**Next:** standing Phil-gated queue (`OWNER-ACTIONS.md`) and the 9 issues, unchanged.
+
 ## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy-gap resolver re-run and confirmed unchanged)
 
 **Did:** Checkout arrived shallow and detached as usual. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward (401 commits), no "unrelated histories" error, no reset or force. Read `CLAUDE.md` section 0, `BACKLOG-2026-09-07.md` in full (sections 0-7, chunked), `STATUS.md`'s Open claims/Current Objective sections, `OWNER-ACTIONS.md`'s header, and the real newest-first head of `ops/NIGHTLY-LOG.md`.
