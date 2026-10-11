@@ -1,0 +1,15 @@
+{
+  "combined_hash": "db17909d26feb081cc3d718d14269107e5eaa7f61400594c533d24253e8cb72f",
+  "git_head": "ce307ef78c6967fe1f9289306fc73aecddf41ab9",
+  "note": "2026-10-11: preflight fast clean (every gate passed, 30 standing warnings); backlog fully re-read, every row Done/Phil-gated/closed-by-decision; GitHub 9 open issues read live (6 decision, 2 blocked-on-art, 0 PRs); cold_read_ledger 0 stale, 197/197 ledgered; this cycle shipped ops/cycle_signal.py",
+  "recorded_at": "2026-10-11T23:58:26Z",
+  "signals": {
+    "BACKLOG-2026-09-07.md": "ae6069ba554ff14a517bee1dde1d5849d443677252d63c616f7fa2fa28192005",
+    "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
+    "GOALS.md": "0ad80ec7c33c570f2f4833dff189607606a394c320c6ccc92146bfa84ef9cdd3",
+    "OWNER-ACTIONS.md": "da8577313ed5054032b9db0a46c6ea6303a880604bd92467bc5507401caa5bff",
+    "STATUS.md": "c54608fcd0c949c776d549955962c2e2cca76eb63b2a07f213776ee89a46078e",
+    "ops/cold-read-ledger.json": "2eb31918d355ded37bb59c5724737d0070d569a0b16d044a5dde43a5e4d5ff05",
+    "ops/deploy-verdict.json": "bd91f395845fb6a5b9df1b714e9cad47c1f7086bf745338e8c607a01bc5a916b"
+  }
+}

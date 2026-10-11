@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle: built the full-reverification efficiency gate the 23:0x entry named, instead of a 51st repeat of 'nothing new unblocked'
+
+**Did:** Attached clean per STEP 0 (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 465 commits onto `ce307ef78`, no unrelated-histories error). Read `BACKLOG-2026-09-07.md` in full, skimmed `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries via a research subagent (the backlog file runs 444KB on a handful of very long table-cell lines; read in chunks rather than in one pass). `preflight.py` run to completion in the background rather than killed at the documented `gate_tests` sandbox-hang timeout: finished clean on its own, every gate passed, the same 30 standing warnings (no Stripe credential, no VPS SSH key, no egress to the live site). `inbox_agent.py --apply`: no mail credential, reported UNCHECKED, not assumed empty. GitHub's 9 open issues read live via the API, not cited: unchanged, 6 `decision`, 2 `blocked-on-art`, one carrying both, 0 open PRs.
+
+**The honest finding, independently re-derived rather than inherited:** every row across `BACKLOG-2026-09-07.md` sections 2 through 6 is Done, closed by decision, or genuinely Phil-gated (an account, a credential, a device, or a judgement call this sandbox cannot make). `OWNER-ACTIONS.md`'s "Start here" queue and the LinkedIn-referral question are both already built up to the single step they need from Phil. `cold_read_ledger.py --stale` is 0, `--next` is 197/197 ledgered. This matches roughly fifty prior cycles today reaching the same conclusion.
+
+**What this cycle adds instead of a fifty-first repetition of that conclusion:** built `ops/cycle_signal.py` (`ops/tests/test_cycle_signal.py`, 6 cases, all passing), the efficiency fix the 23:0x entry named but nobody had built: "a cheaper way to confirm nothing changed since the last cycle before paying for a full re-verification, not skipping verification." It hashes a narrow, deliberate set of signal files (both backlogs, `OWNER-ACTIONS.md`, `STATUS.md`, `GOALS.md`, `ops/deploy-verdict.json`, `ops/cold-read-ledger.json`, chosen because they are what "has anything changed" means for priority purposes, and excluding the command deck and this log, which nearly every cycle rewrites regardless) against a committed snapshot, `ops/cycle-signal.json`. `--check` returns SAME only when every one of those files is byte-identical to the last recorded clean pass, CHANGED names exactly which file moved, MISSING means no snapshot exists. It does not replace any check GitHub, the inbox or the workflows still need a direct read every cycle, since no local hash can see those; it only lets a cycle skip the redundant, expensive, LOCAL-only re-verification (the full backlog re-read, `preflight.py`'s multi-minute `gate_tests` pass) when nothing in the repository's own priority-relevant files has moved since the last cycle that actually ran it. Recorded the first real snapshot this cycle, noting exactly what was verified clean. Documented in `BACKLOG-2026-09-07.md` section 8 with the usage instruction for the next cycle.
+
+**Verified:** the new test file proves all three verdicts on synthetic files in an isolated temp directory (never the real committed snapshot): MISSING with no prior snapshot, SAME immediately after recording, CHANGED naming exactly the one file edited (including a deleted file, not just an edited one), SAME again after a byte-for-byte revert, and a moved baseline after a real edit plus `--record`. Ran standalone (`python ops/tests/test_cycle_signal.py`): 6/6. `py_compile` clean on both new files. Re-ran `ops/cycle_signal.py --check` against the real repo after documenting it in the backlog (which is itself one of the tracked signal files) and re-recorded the snapshot so it reflects the state this cycle actually leaves behind, not the state before this cycle's own edit.
+
+**Went well:** treating "fifty cycles independently reached the same conclusion" as itself a finding worth fixing, per CLAUDE.md 0.2, rather than writing a fifty-first.
+
+**Did not go well:** nothing new on the product/content/traffic side; every unblocked row stays exhausted, as it has for several days now.
+
+**Changing next cycle:** run `python ops/cycle_signal.py --check` right after attaching. On SAME, skip the expensive local-only re-verification and spend the cycle on GitHub, the inbox, the scheduled workflows and the Phil-gated queue instead; `--record` a fresh snapshot once a full pass does run clean again (a real commit, a resolved owner action, or a new backlog row all change the hash automatically).
+
+**Next:** same standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", GitHub's 9 open issues), unchanged.
+
+Pushed to main: `ops/cycle_signal.py`, `ops/tests/test_cycle_signal.py`, `ops/cycle-signal.json`, `BACKLOG-2026-09-07.md`, command deck, this entry. No price, product or site page touched. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (23:4x UTC cycle, previous work finished and independently reverified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md's five "Start here" items, GitHub's 9 open issues), because both discovery lanes stay exhausted and nothing has changed since the 23:1x check-in three minutes ago.
