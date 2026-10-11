@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (independent full-repo pass, nothing new unblocked, deploy gap reconfirmed byte for byte against the prior cycle's own figure)
+
+**Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow` (407 to clean), `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward onto `a9ffec844` (414 commits), no "unrelated histories" error, no reset or force. Read `BACKLOG-2026-09-07.md` in full (all seven sections), `ROADMAP-2026-2029.md` section 1-2, `OWNER-ACTIONS.md`'s "Start here", `STATUS.md`'s Open claims section, and the four newest `ops/NIGHTLY-LOG.md` entries.
+
+**Verified, not cited.** `preflight.py` live: 0 FAIL through every gate up to and including `gate_image_coverage`, then `gate_tests` hung at flat CPU, the documented headless-Chromium sandbox limit, killed after confirming no progress. Standing substitute suite: `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en dashes, `affiliate.py --check` clean (165 documents), `cold_read_ledger.py --stale` 0, `--next` 197/197 already ledgered, 0 un-ledgered candidates. GitHub checked live: 9 open issues (7 `decision`, 2 `blocked-on-art`), identical set to every recent cycle, 0 open PRs. Read #40's full comment thread directly rather than trusting "unchanged": last comment is this operator's own 2026-10-09 follow-up; no reply from Phil. `inbox_agent.py --apply`: no mail credential, UNCHECKED, not empty, same standing limit. Re-derived the production deploy gap directly rather than citing a prior figure: verdict build `e3d3bc8c77a83e38` resolves (`git log -S`) to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching the prior cycle's own independently-derived figure exactly (one of the five, `17b7c6655`, is a bare PM-check-in note with no real `site/`/`Dockerfile` content change). Unchanged root cause: still waiting on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0).
+
+**No new defect, nothing newly unblocked.** `BACKLOG-2026-09-07.md` sections 2-4: every row Done or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth). Section 5 (Hold) and section 6 (owner gates) unchanged. `STATUS.md`'s Open claims section correctly reads "None currently open." `OWNER-ACTIONS.md`'s "Start here" unchanged (VPS_DEPLOY_KEY, Search Console, YouTube OAuth, Stripe business description, the Claude Code usage-limit check from issue #40). Matches the prior several dozen cycles' independently-reached conclusion.
+
+**Went well:** re-deriving the deploy gap and the ledger exhaustion independently rather than citing the prior cycle's numbers, and both landed on the identical figures, which is itself a cross-check that the state really is unchanged rather than two cycles both missing the same thing.
+
+**Did not go well:** nothing new; this is another cycle reconfirming an already-exhausted state across every reachable lane (backlog, cold-read ledger, GitHub issues and their threads, CI, preflight, deploy gap, inbox).
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` (Claude Code usage check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube OAuth, Gemini billing, Stripe business description) and the 9 GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (14:1x UTC cycle, previous work finished independently reverified, nothing new unblocked, dashboard refresh handed to operator)
 
 **Previous work finished: yes, reverified independently rather than cited.** Attached clean: fetch, fetch --unshallow, checkout main, merge --ff-only onto `877f449d2` (412 commits fast-forward), 0 conflict, tree clean before starting.
