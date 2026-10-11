@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (full STEP 0-13 pass, independent re-verification, nothing new unblocked)
+
+**Did:** Checkout arrived shallow and detached. `git fetch origin main`, `git fetch --unshallow`, `git checkout main` (fell back to `git checkout -B main origin/main`), `git merge --ff-only origin/main`: clean fast-forward, no "unrelated histories" error, onto `259f29f5` then a second ff-only merge mid-cycle onto `728c74ba` (a concurrent PM check-in and hourly check-in landed while this cycle was reading). Read `BACKLOG-2026-09-07.md` sections 0-7 in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s "Start here" block, `STATUS.md`'s open-claims section (none open), and the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Verified independently rather than inherited.** `preflight.py` run unbuffered in the background: 0 FAIL printed through every gate reached (including all 20 room-deck gates, `gate_unique_names`, `gate_image_coverage`), killed at the documented `gate_tests` headless-Chromium sandbox hang after confirming no FAIL appeared anywhere in its output. Standing substitute suite run directly: `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/0 en, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded). `cold_read_ledger.py --stale`: 0. `--next`: 197 of 197 files ledgered, 0 un-ledgered candidates. `PYTHONIOENCODING=utf-8 inbox_agent.py --apply`: no mail credential, UNCHECKED, same standing limit. GitHub's 9 open issues read directly via the API: unchanged (6 `decision`, 2 `blocked-on-art`, one carrying both), 0 open PRs; the day's six scheduled workflows (fulfil-orders, linkedin-drafts, hourly-brief, bluesky-drafts, social-drafts) all green on their latest runs. Deploy gap re-derived rather than cited: `ops/deploy-verdict.json` last-confirmed-current at build `e3d3bc8c77a83e38` (2026-10-09), resolved via `git log -S` to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` is 5 commits, same standing structural wait on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0), not a new finding.
+
+**No new defect found, nothing newly unblocked.** Every `BACKLOG-2026-09-07.md` "Now" row is Done or correctly Phil-gated; the cold-read lane is genuinely exhausted; no GitHub or mail event needs action. Did not fabricate a workstream against `CLAUDE.md` 0.2/18.
+
+**Went well:** re-deriving the deploy gap's exact commit count fresh from `git log -S` rather than citing a prior cycle's figure; confirming 0 FAIL directly from the live preflight output before killing the documented hang, rather than assuming it would have passed.
+
+**Did not go well:** nothing new to report; this is another cycle reaching the same conclusion as the many PM check-ins and operator cycles earlier today, independently re-derived rather than inherited. `STATUS.md`'s `BLOCKER-001` section is itself long stale (last touched 2026-09-25) and keeps accumulating narrated deploy-gap entries that nobody has pruned; not touched this cycle, since rewriting that history is not itself customer value and the live gap is already tracked tersely elsewhere (`OWNER-ACTIONS.md` item 0, issue #35, this entry).
+
+**Changing next cycle:** none found to change.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` ("Start here" items -1, 0, 1a, 1, 1d) and GitHub's 9 open issues. Highest-value unblocked item remains none; watch for the next real-network reading, GitHub event, or inbox message.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-11, PM check-in (19:4x UTC cycle, previous work finished and reverified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue in `OWNER-ACTIONS.md` and the 9 open GitHub issues, because both discovery lanes (backlog, cold-read ledger) are exhausted and no new GitHub, backlog or gate state has changed since the 19:1x check-in minutes earlier.
