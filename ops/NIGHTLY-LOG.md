@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, fixed a stale backlog figure instead of a nothing-new entry)
+
+**Previous work finished: yes.** Attached cleanly after the usual shallow/detached checkout (fetch, fetch --unshallow, checkout main, ff-only merge onto origin/main), tree clean throughout. Reread the operator's second-pass cold-read entry and the PM twin's :40 entry; both pushed and verified, not just committed. Reran preflight live myself rather than citing it: 0 FAIL through every gate to gate_image_coverage, then the same documented gate_tests sandbox hang, confirmed stalled (no stray processes after) and killed cleanly. Ran the standing suite in its place: check_urls.py 211/211, audit_pages.py 215 pages/0 findings, fix_dashes.py 0/0, affiliate.py clean (165 docs), link_graph_report.py 0 orphans, mobile npm test all suites pass. cold_read_ledger.py: 197/197, 0 stale, first pass complete, second pass already handed to the operator. GitHub reconfirmed via the API: same 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, issue #40 unchanged since 2026-10-09.
+
+**Did instead of a nothing-new entry:** BACKLOG-2026-09-07.md section 0, "the one number that decides the order," still carried the 2026-09-29 traffic reading (48/119/731) while GOALS.md and STATUS.md have carried the fresher 2026-10-02 reading (49/121/719, week 22/29/62 recorded, 13/20/32 ex-burst) for nine days. Not a new measurement: this sandbox holds no VPS key, so `ops/traffic_query.sh` cannot run here, and no later reading exists anywhere in the repo (checked by grep across every file that cites a 2026-10 date). Propagated the already-verified GOALS.md/STATUS.md figures into the backlog section so the three stay in step, with the same honest caveats (burst-exclusion, noise warning, no fresher read available) carried over rather than dropped.
+
+**Verified:** `fix_dashes.py --check` clean on the new text, `ops/dashboard.py` regenerated (revenue carry-forward unchanged, nothing else touched), working tree clean before and after, pushed via `ops/ship.py --no-deploy` and confirmed on origin/main (`ed4f328c9`).
+
+**Went well:** catching a real, if minor, cross-document drift rather than re-citing a clean preflight as the whole cycle.
+
+**Did not go well:** nothing new to escalate; same standing Phil-gated list, revenue still effectively $0, no fresher traffic reading possible from here.
+
+**Changing next cycle:** none.
+
+**Next:** leaving the cold-read second-pass rotation (build_primary_bedroom_deck_page.py onward) to the hourly operator as handed off. Standing Phil-gated list in `OWNER-ACTIONS.md` and the 9 GitHub issues unchanged.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, scheduled operator cycle (second-pass cold read: five more deck-page generators cleared, 0 defects)
 
 **Did:** Checkout arrived shallow and detached per usual; fetch, fetch --unshallow, checkout main, merge --ff-only attached cleanly onto origin/main (371 commits fast-forwarded), tree clean throughout. Read CLAUDE.md, GOALS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md, and the newest NIGHTLY-LOG.md entries. Ran preflight.py live: 0 FAIL through every gate to and including gate_image_coverage, then the documented gate_tests sandbox hang (confirmed stalled, not a new regression); ran the standing narrower suite in its place: check_urls.py 211/211, audit_pages.py 0 duplicates, affiliate.py --check clean (165 docs), fix_dashes.py --check 0/0, link_graph_report.py 0 orphans, mobile npm test all suites pass. inbox_agent.py --apply: no mail credential. GitHub reconfirmed live via the API: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged since 2026-10-09, none newly pickable. cold_read_ledger.py --stale/--next: 0 stale, 197/197 ledgered before this cycle's own additions. Read BACKLOG-2026-09-07.md sections 2 through 6 directly: every row done or Phil-gated, confirming the same conclusion several of today's cycles already reached independently.
