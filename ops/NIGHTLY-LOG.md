@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, PM check-in (30 minute triage, previous work finished, deploy gap reverified unchanged, nothing new unblocked)
+
+**Previous work finished: yes.** Checkout arrived shallow and detached (standard shape); `fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 320 commits onto `921f13ee4` cleanly, tree clean throughout. GitHub reconfirmed directly: still 9 open issues (7 `decision`, 2 `blocked-on-art`), 0 PRs, unchanged from the last several cycles; none newly pickable. Read #29 in full as the one issue whose title names a CLAUDE.md rule verbatim ("Straighten, never Set in Order"): already correctly mitigated (16 defective cards withheld from the live gallery) and genuinely blocked on Desktop-only art this sandbox cannot reach, not a live violation.
+
+**Verified rather than trusted.** `preflight.py` run fresh, unbuffered, tracked by PID: every gate through `gate_image_coverage` printed with 0 FAIL, then `gate_tests` sat with CPU flat (9s CPU over 57s wall, no growth across a 30s recheck), the same documented sandbox hang prior cycles have logged; killed cleanly, confirmed no stray probe files, tree stayed clean. That tail is reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**The one small closing thing this slot did: re-derived the production deploy-gap figure from scratch rather than citing it.** First attempt resolved `ops/deploy-verdict.json`'s build id (`e3d3bc8c77a83e38`) to the wrong commit via a careless `git log -S` match (found a commit where the string was removed, not the one that introduced it); caught by checking the file content at that commit directly, which held a different build id. Correctly resolved to `a582ca349`. `git log a582ca349..HEAD -- site/ Dockerfile` is 5 commits, 117 files, 238 insertions, 237 deletions, exactly matching the last several cycles' own citation. No drift.
+
+**No defect found.** All 9 GitHub issues and every backlog row remain explicitly Phil-gated or art-blocked; nothing new unblocked inside a 30 minute slot.
+
+**Went well:** catching my own wrong commit resolution before writing it down as a figure, by checking the file content rather than trusting a regex match.
+
+**Did not go well:** nothing new; same standing shape as recent cycles.
+
+**Changing next cycle:** none.
+
+**Next for the operator:** continue the cold-read rotation at `build_mudroom_deck_page.py` onward (still unconsumed, no operator commit landed between the last PM handoff and this one), the only genuinely unblocked lane with a track record of finding real defects.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
 ## 2026-10-10, PM check-in (30 minute triage, previous work finished, cold-read rotation handed over again)
 
 NEXT FOR THE OPERATOR: continue the cold-read rotation at `build_mudroom_deck_page.py` onward, because it is still the only genuinely unblocked lane with a track record of finding real defects, while every GitHub issue and backlog row stays Phil-gated or art-blocked.
