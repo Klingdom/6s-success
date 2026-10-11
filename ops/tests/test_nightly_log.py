@@ -8,10 +8,9 @@ missed by writing at the physical end of the file instead.
 
 Run:  python ops/tests/test_nightly_log.py
 """
-import datetime as dt
+import datetime
 import io
 import os
-import re
 import sys
 import tempfile
 
@@ -76,25 +75,23 @@ def main() -> int:
             pass
 
     # 5. Using the tool on a copy of the REAL committed file must satisfy
-    #    the real gate it exists to stop violating.
-    #
-    #    Found 2026-10-11: this case's injected title used to hardcode a
-    #    literal date ("2026-10-10"). That was the newest date in the real
-    #    file the day this test was written, but every later cycle moves
-    #    the real file's own top entry to a newer date, and a hardcoded
-    #    date that is no longer the newest makes gate_nightly_log_ordering()
-    #    correctly fail (the injected entry reads as an older entry placed
-    #    above newer ones). Derive a date strictly newer than anything
-    #    already in the real file instead, so this case stays valid no
-    #    matter which day it runs.
+    #    the real gate it exists to stop violating. The test entry's own
+    #    date must never be hardcoded to a fixed string: this exact case
+    #    failed for real on 2026-10-11 because a prior version hardcoded
+    #    "2026-10-10", which was the real file's own newest date the day
+    #    it was written but became a day OLDER than the real file's own
+    #    top entry the next time the log gained a dated entry, which
+    #    gate_nightly_log_ordering() correctly flags (a 2026-10-10 entry
+    #    sitting above a 2026-10-11 one is exactly the "moved on to an
+    #    older date, then came back" shape it exists to catch). Using the
+    #    real system date keeps this entry at or after the real file's
+    #    own newest date on every run, indefinitely, not just today.
     with tempfile.TemporaryDirectory() as tmp2:
         real_text = io.open(nightly_log.LOG_PATH, encoding="utf-8").read()
-        real_dates = re.findall(r"(?m)^## (\d{4}-\d{2}-\d{2})", real_text)
-        newest_real = max(dt.date.fromisoformat(d) for d in real_dates)
-        test_date = (newest_real + dt.timedelta(days=1)).isoformat()
         copy_path = _write(tmp2, real_text)
+        today = datetime.date.today().isoformat()
         result = nightly_log.prepend_entry(
-            copy_path, "%s, test entry (not a real cycle)" % test_date,
+            copy_path, "%s, test entry (not a real cycle)" % today,
             "**Did:** exercised the tool against a copy of the real file.")
         io.open(copy_path, "w", encoding="utf-8").write(result)
         ops_dir = os.path.join(tmp2, "ops")

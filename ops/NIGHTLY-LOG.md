@@ -24,7 +24,25 @@ HANDOFF-FILES: none
 
 **A second real defect found while merging, fixed the same slot.** `ops/tests/test_nightly_log.py`'s case 5 (self-check against a copy of the real file) hardcoded its injected entry's date as the literal `2026-10-10`, which was the newest date in the real file the day that test was written but is no longer true: this cycle's own entries push the real file's top to `2026-10-11`, so the test's older-dated injected entry made `gate_nightly_log_ordering()` correctly fail, confirmed as pre-existing on the operator's own commit (`0ec7421d9`) before this merge, not something this merge caused. Fixed by deriving the injected date as one day past the real file's own newest date instead of a literal, so the case stays valid regardless of which day it runs. `python ops/tests/test_nightly_log.py` 10/10 after; `check_urls.py` 211/211, `audit_pages.py` 215/0 reconfirmed clean.
 
-Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/tests/test_nightly_log.py`, this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+**Collision found at this merge: a concurrent session fixed the identical bug independently, seconds apart.** Its own fix (`4cb61b501`, entry below) uses `datetime.date.today()` instead of this cycle's "newest real date plus one day" approach; functionally equivalent and simpler, so kept theirs for `ops/tests/test_nightly_log.py` on merge rather than carrying two different fixes for one bug. This entry's own account of finding the defect stays, since it happened independently and the fix it describes was real at the time, even though the committed code now reflects the other session's version.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched. IndexNow not applicable, no page changed.
+
+## 2026-10-11, same cycle follow-up: full test sweep closed out, merged concurrent push, one real hardcoded-date bug found and fixed
+
+**Did:** Closed out the full `ops/tests/test_*.py` sweep the prior entry this same cycle left unchecked past `test_generator_ownership.py`. Two concurrent commits had landed on `origin/main` in the meantime (`abf317ccc`, `921f13ee4`); merged rather than force-pushed, resolving `ops/NIGHTLY-LOG.md` by hand (both entries kept, newest-first) and regenerating the three conflicted generated files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) with `ops/dashboard.py` rather than hand-merging them. Re-verified `deploy_gap_count_problem()` clean against the merged tree (still 5 commits, 4 material) and `gate_nightly_log_ordering()` clean.
+
+**The sweep's actual verdict, not left as "unchecked" longer than necessary:** re-ran `test_generator_ownership.py` alone with a 120s timeout: it genuinely hangs, zero output, confirming the documented `gate_tests` sandbox limitation directly rather than assuming the earlier kill was the cause; nothing in it touches anything this cycle changed. The sweep's one other flagged file, `ops/tests/test_nightly_log.py`, was a real, live, self-inflicted bug: its case 5 hardcoded a synthetic entry's date as `"2026-10-10"`, which was the real `NIGHTLY-LOG.md`'s own newest date the day that line was written, but this cycle's own entry above pushed the file's real newest date to `2026-10-11`, so the hardcoded string became a day older than the file's own top entry, exactly the shape `gate_nightly_log_ordering()` exists to catch, and it correctly fired. Fixed by deriving the test date from `datetime.date.today()` instead of a fixed string, so it cannot go stale again regardless of which day this runs.
+
+**Verified clean after:** `test_gate_cold_read_handoff_not_stale.py` (26/26), `test_nightly_log.py` (10/10), `test_gates.py`, `fix_dashes.py --check` (0/0).
+
+**Went well:** not leaving "unchecked" as the final word once it was checkable; catching that the hardcoded-date bug was a real, live failure rather than assuming a killed process's ambiguous "FAIL:" line was noise.
+
+**Did not go well:** the full `ops/tests/test_*.py` sweep still cannot run end-to-end in this sandbox because of the one documented hang; a session with a different environment is the only way to run it to completion.
+
+**Changing next cycle:** none new; the hardcoded-date class is now fixed at its one known instance.
+
+HANDOFF-FILES: none
 
 ## 2026-10-11, scheduled operator cycle: deploy-gap citation corrected, cold-read-handoff gate's 10x-patched parsing closed structurally
 
