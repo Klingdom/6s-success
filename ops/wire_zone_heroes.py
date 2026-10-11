@@ -683,10 +683,28 @@ def fallback_wire(apply_it: bool) -> int:
             # this same source-less path.
             s = io.open(page, encoding="utf-8").read()
             if 'id="zone-hero"' in s:
+                # A withdrawn hero gets the same typographic panel main()'s
+                # own PULLED sweep writes, not a bare hole. Found 2026-10-11,
+                # second-pass cold read: this was the one path left pulling
+                # straight to "" (FIG.sub("", s, ...)) after the 2026-09-29
+                # fix taught the OTHER two sweeps (main()'s own PULLED loop
+                # and this file's own panel-for-the-unapproved loop just
+                # below) to try panel_figure() first. This branch is also the
+                # ONLY way a withdrawn approval ever reaches a live page
+                # outside Phil's own machine, since main()'s have>0 sweep
+                # cannot run where build/heroes/zones/ is empty, which is
+                # every other environment. Latent today, not live-wrong: 0 of
+                # 111 committed fallback entries currently carry a withdrawn
+                # verdict, so nothing has shipped a hole yet, but the next
+                # approval withdrawn from this sandbox would have.
+                meta = _corpus_meta().get(fname)
+                panel = panel_figure(meta["room"], meta["zone"],
+                                     meta["done_looks_like"]) if meta else ""
                 if apply_it:
+                    body = (NL + panel + NL) if panel else ""
                     io.open(page, "w", encoding="utf-8",
-                            newline="").write(FIG.sub("", s, count=1))
-                pulled.append(fname)
+                            newline="").write(FIG.sub(body, s, count=1))
+                pulled.append(fname + (" (panel)" if panel else ""))
             continue
         s = io.open(page, encoding="utf-8").read()
         if 'id="zone-hero"' in s:

@@ -260,8 +260,20 @@ def main(apply_it: bool, deck: str = "entryway") -> int:
         return 1
 
     if not apply_it:
-        print(f"\n  would write {len(index) * 2 * len(SIZES) * 2} files "
-              f"({len(index)} cards x 2 faces x {len(SIZES)} sizes x webp+jpg)")
+        # Counted from the same rule the apply loop actually uses, not from a
+        # flat "sizes x webp+jpg" multiply. Found 2026-10-11, second-pass cold
+        # read: that flat formula (len(SIZES) * 2) assumed every size gets
+        # both formats, but the apply loop below only ever writes a JPEG
+        # fallback for "md" and "sm" and skips it for "lg" (see the comment
+        # by that save() call), so a 10-card run previewed "would write 120
+        # files" and only ever wrote 100. The exact bug its own neighbouring
+        # comment, two screens down, already paid for once for the post-apply
+        # count ("the formula said 1080 files ... only 900 were written");
+        # this preview line was the one place that fix never reached.
+        per_face = len(SIZES) + sum(1 for tag in SIZES if tag != "lg")
+        print(f"\n  would write {len(index) * 2 * per_face} files "
+              f"({len(index)} cards x 2 faces x {per_face} files per face: "
+              f"{len(SIZES)} webp + {per_face - len(SIZES)} jpg fallback)")
         print("  --check only, nothing written.")
         return 0
 

@@ -140,6 +140,42 @@ def main():
             fails.append("a page that never had a figure was changed by "
                           "a withdrawn verdict for its stem")
 
+        # Case 5: regression guard for the 2026-10-11 second-pass fix. A
+        # withdrawn verdict for a page that IS a real diagnosed zone (so
+        # panel_figure() has real content.json material to quote) must get
+        # the typographic panel, the same thing main()'s own PULLED sweep
+        # and this file's own unapproved-zone loop already give it, not a
+        # bare hole. Uses a real corpus filename rather than a fake one
+        # because _corpus_meta() reads the committed content.json; any made
+        # up filename would (correctly) have no meta and so prove nothing
+        # about this path.
+        real_fname = next(iter(W._corpus_meta()))
+        page4 = os.path.join(site, "zones", real_fname)
+        write(page4, PAGE_WITH_HERO)
+        fb = json.load(io.open(W.FALLBACK, encoding="utf-8"))
+        fb[real_fname] = {"stem": "real-zone-stem", "figure_html": FIGURE_HTML}
+        json.dump(fb, io.open(W.FALLBACK, "w", encoding="utf-8"))
+        verdicts = json.load(io.open(W.VERDICTS, encoding="utf-8"))
+        verdicts["real-zone-stem"] = {"verdict": "no", "sha": "x"}
+        json.dump(verdicts, io.open(W.VERDICTS, "w", encoding="utf-8"))
+        W.fallback_wire(True)
+        after4 = read(page4)
+        # Both the old wired figure and its panel replacement carry
+        # id="zone-hero" (panel_figure()'s own figure wrapper does, on
+        # purpose, so FIG can match either one later); what distinguishes
+        # "pulled to a hole" from "pulled to a panel" is whether the panel's
+        # own SVG markup and demo image are there, not the id.
+        if "demo-zone-lg.jpg" in after4:
+            fails.append("a withdrawn hero verdict for a real diagnosed "
+                          "zone left the old photographic figure on the page")
+        if 'class="bg"' not in after4 or "WHAT DONE LOOKS LIKE" not in after4:
+            fails.append("a withdrawn hero verdict for a real diagnosed "
+                          "zone left a bare hole instead of the "
+                          "typographic panel")
+        if "<p>Intro text.</p>" not in after4 or "<h2>Instructions</h2>" not in after4:
+            fails.append("adding the panel for a withdrawn real zone "
+                          "damaged surrounding page content")
+
     finally:
         W.SITE, W.HEROES = real_site, real_heroes
         W.FALLBACK, W.VERDICTS = real_fallback, real_verdicts
@@ -150,9 +186,11 @@ def main():
         for f in fails:
             print("  -", f)
         return 1
-    print("PASS: 4 case(s), a withdrawn verdict now pulls an already-wired "
+    print("PASS: 5 case(s), a withdrawn verdict now pulls an already-wired "
           "hero even with no source PNGs present, idempotent, approved "
-          "heroes and figure-less pages both left alone")
+          "heroes and figure-less pages both left alone, and a withdrawn "
+          "verdict for a real diagnosed zone gets the typographic panel "
+          "rather than a bare hole")
     return 0
 
 
