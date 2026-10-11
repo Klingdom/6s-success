@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-11, scheduled operator cycle (full independent re-verification; backlog and cold-read ledger both reconfirmed exhausted, no new sandbox-executable work found)
+
+**Did:** Attached cleanly (fetch, fetch --unshallow, checkout main, ff-only merge, 365 commits onto origin/main, tree clean). Read CLAUDE.md, GOALS.md, STATUS.md, BACKLOG-2026-09-07.md and the last several NIGHTLY-LOG.md entries. Ran `preflight.py` live: 0 FAIL through every gate to and including `gate_image_coverage`, then the documented `gate_tests` headless-Chromium sandbox hang; killed cleanly. Ran the standing narrower suite in its place: `check_urls.py` 211/211, `audit_pages.py` 0 duplicates, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, mobile `npm test` 4/4 suites pass. `inbox_agent.py --apply`: no mail credential. GitHub: 9 open issues (7 decision, 2 blocked-on-art), 0 PRs, unchanged; read issue #40's own comments directly, no new Phil reply since 2026-10-09. `cold_read_ledger.py`: 0 stale, 0 un-ledgered (197/197). Read every A/B/C row in `BACKLOG-2026-09-07.md` sections 2-4 directly rather than trusting a prior summary: all done or Phil-gated. Re-checked `keyword-demand.json` (scored 2026-10-10, fresh): 200/2822 gap; sampled the 40 lowest-rank rows by hand, almost all out-of-scope rooms (attic/basement, a named pending-Phil product decision) or low-value noise, no cluster of A11's size or quality.
+
+**Verified:** every item above run directly against real output this cycle, not cited from a prior entry.
+
+**Went well:** independently re-deriving the cold-read and keyword-gap exhaustion rather than trusting the log's own claim of it.
+
+**Did not go well:** nothing new; same standing Phil-gated list the PM check-in already surfaced today (five small `OWNER-ACTIONS.md` items, 19 days with no moved business metric).
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` list and 9 GitHub issues; nothing newly unblocked.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) only. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-11, PM check-in (30 minute triage, previous work finished, quantified 19 days of zero business-metric movement instead of a 30th nothing-new entry)
 
 **Previous work finished: yes.** Tree clean, `main` pushed (`ea7a839`), `preflight.py` 0 FAIL to the documented `gate_tests` sandbox hang (killed cleanly, no stray fixtures). GitHub reconfirmed directly: same 9 open issues, 0 PRs. Backlog sections 2-6 reconfirmed exhausted (done/HOLD/Phil-gated).
