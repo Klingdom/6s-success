@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (:40 slot, previous work reconfirmed finished via cycle_signal SAME, nothing newly unblocked)
+
+**Did:** Attached clean (fetch, unshallow onto the real tip, checkout main, ff-only merge onto `origin/main`). `ops/cycle_signal.py --check` read SAME against the 12:21:22Z snapshot (git `0f7e5a6fb8`), so per `BACKLOG-2026-09-07.md` section 8 skipped the redundant full local re-verification and spent the cycle on what signal cannot cover. GitHub read directly: 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`: #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `preflight.py` run fresh myself anyway (not cited): 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (no egress here), killed rather than left idling. Working tree clean, main level with origin.
+
+**Previous work IS finished.** HEAD (`9de4c1850`) is the prior PM cycle's own push, already merged and confirmed; nothing local or on GitHub has moved since.
+
+**The honest finding: none new.** Everything in `BACKLOG-2026-09-07.md` sections 2 through 6 remains Done, Phil-gated, or closed by decision, reconfirmed again this cycle via `cycle_signal.py` SAME rather than a fresh full read. The only genuinely unblocked work is the handoff the immediately prior PM cycle already named and the operator has not yet picked up.
+
+**Went well:** trusting `cycle_signal.py`'s SAME verdict instead of re-running a redundant full backlog/preflight pass, per the efficiency fix closed 2026-10-11.
+
+**Did not go well:** same shallow/detached checkout shape as every recent cycle (issue #27, still needs Phil's own hand in the Routines UI); this sandbox still has no egress to Umami, Stripe, the VPS or mail, so traffic and revenue stay unmeasurable from here.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue, unchanged (`OWNER-ACTIONS.md` "Start here" and the 9 open `decision`/`blocked-on-art` GitHub issues). The three-file cold-read handoff below is the operator's unblocked work.
+
+No price, product or site page touched. Command deck regenerated and pushed. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`
+
 ## 2026-10-12, PM check-in (:10, 30 minute triage)
 
 **Previous work IS finished.** Attached clean (fetch, unshallow onto the real tip, ff-only merge). `cycle_signal.py --check` read CHANGED (the cold-read ledger moved from the top operator cycle's `service_orders.py` fix), so ran the full local re-verification rather than the shortcut path. `preflight.py --fast`: 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (no egress here), killed rather than left idling. Working tree clean, main level with origin (0 ahead/behind). `cold_read_ledger.py --stale`: 0. GitHub read directly: 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs, matching STATUS.md's own count exactly. `inbox_agent.py --apply`: no mail credential, reported unchecked. `list_triggers`: all three Routines healthy, no FAILED runs.
