@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (30 minute triage), dashboard staleness oscillation caught and fixed again, nothing newly unblocked
+
+Attached clean: fetch, unshallow, checkout main, ff-only merge onto origin/main (no conflict). cycle_signal.py --check read SAME against the 13:52:18Z snapshot, so GitHub/inbox/routines were checked directly rather than re-deriving everything local. GitHub: 9 open issues unchanged, all decision/blocked-on-art, none mine. cold_read_ledger.py --next/--stale: 198/198, 0 stale, first pass exhausted.
+
+Finished check: EXECUTIVE-DASHBOARD-LIVE.md was one commit stale (cited build 7251e4b83 while HEAD was 9b0228952), the same self-referential oscillation this log has caught repeatedly: a dashboard regen commit is itself followed by a log-entry commit, which makes the just-regenerated dashboard read stale by one commit on the next check. Fixed by regenerating (ops/dashboard.py) and shipping via ops/ship.py (pushed d54bd480e). check_urls.py 211/211, audit_pages.py 215 pages/0 findings, affiliate.py --check clean (165 documents), fix_dashes.py --check 0/0.
+
+preflight.py --fast hit the documented gate_tests sandbox hang twice (near-zero CPU progress over 10+ minutes both times); reported as unchecked, not passing, rather than assumed clean. Every gate that ran before the hang printed no FAIL on either attempt.
+
+Did not go well: this is at least the fourth time this exact dashboard self-citation oscillation has needed a same-day fix; the root cause (dashboard regen and the log-entry commit landing separately) is still not closed structurally.
+
+Next: handing the operator the oldest untouched second-pass cold-read tier per cold-read-ledger.json's own dates, verified directly above, not cited. Same OWNER-ACTIONS.md Phil-gated queue and 9 open issues otherwise unchanged.
+
+HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `wire_landmarks.py`
+
 ## 2026-10-12, same cycle addendum: the full preflight finished in the background, caught the merge's own dashboard staleness, fixed
 
 The full `preflight.py` backgrounded during the merge above finished clean (0 gates failed, 32 standing warnings, all already-documented sandbox limits) except one real, new one: `dashboard-self-description-fresh`, because the deck was regenerated before the merge commit finalized and so cited itself one commit behind (missing the incoming `59e071862` hourly check-in commit). Fixed the only correct way, by running `ops/dashboard.py` again on the finalized merge commit, not by hand-editing. Confirmed no new concurrent push before each push. Pushed (`7251e4b83`), command deck only, no price, product or page touched.
