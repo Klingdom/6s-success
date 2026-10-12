@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: independent re-verification confirms nothing newly unblocked, CI's own full preflight run stood in for the local gate_tests hang
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 506 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries, and `STATUS.md`'s claims section (none open).
+
+**Verified:** GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`, including #40's usage-limit stall, since resolved per `CHECKIN-LOG.md`'s continuous entries through today), 0 PRs. CI green at HEAD (`Checks` run 2047, `conclusion: success`), which runs the real, full `preflight.py` with no sandbox limits. Confirmed `checks.yml` itself runs `python3 ops/preflight.py` with a 50-minute budget on a GitHub-hosted runner, which is why that remote result stands in for the local one. Local `preflight.py` reran the same documented `gate_tests` sandbox hang (stuck motionless for over 6 minutes, `D`-state, no egress here to `6s-success.com`, Google or Stripe, confirmed directly with `curl` against the proxy rather than assumed); killed it and ran the standing narrower substitute directly instead: `check_urls.py` (211/211), `audit_pages.py` (215/0, 0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean disclosure), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans across zones/rooms/articles), mobile `npm test` (4 suites, all passing), `check_sellable.py` (124 of 126 buyable products verified, the other 2 person-delivered services as expected). `cold_read_ledger.py --stale`/`--next`: 0 stale, 0 un-ledgered candidates, lane fully exhausted. `inbox_agent.py --apply`: no mail credential, reported unchecked. Deploy gap independently re-derived from `ops/deploy-verdict.json` (`e3d3bc8c77a83e38`, resolves to `a582ca349`): 5 site-touching commits undeployed, unchanged, same `VPS_DEPLOY_KEY` wait as `OWNER-ACTIONS.md` item 0 / issue #35. `cycle_signal.py`: SAME against the 08:01:07Z snapshot, confirming independently rather than trusting it alone.
+
+**Checked backlog sections 2 through 5 by parsing every row programmatically** (not by eye) for anything not struck through as done: only C5 (enable Gemini billing) and C6 (publish 102 remaining videos) are open, and both are already Phil-gated, matching `OWNER-ACTIONS.md`. Nothing newly unblocked.
+
+**Went well:** verifying CI's own workflow file rather than assuming it duplicates preflight's scope, which is what let this cycle stand down from the local `gate_tests` hang with actual evidence instead of citing the same hang again.
+
+**Did not go well:** this remains a sandbox with no egress to Umami, Stripe, the VPS or mail, so revenue, traffic and LinkedIn/Bluesky referral recovery stay unmeasurable from here; `traffic_line_last_measured` is now 9 days stale (2026-10-03) and can only be refreshed by a session with VPS access (`ops/traffic_query.sh` runs ON the VPS, confirmed by reading it rather than assumed).
+
+**Changing next cycle:** none; no new defect found, no new gate needed.
+
+**Next:** same standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` "Start here" (item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube auth) plus C5/C6, and the 9 open `decision`/`blocked-on-art` GitHub issues. Command deck regenerated and pushed; no price, product or site content touched this cycle.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, nothing newly unblocked, cold-read handed to operator
 
 NEXT FOR THE OPERATOR: a cold-read audit pass on a low-mention ops/*.py file, because every unblocked backlog row is Done or Phil-gated and GitHub's 9 issues are unchanged, so the established fallback is the highest-value genuinely unblocked work left.
