@@ -4,17 +4,17 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-12, scheduled operator cycle (independent full preflight run, clean; nothing new found)
 
-**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, ff-only merged onto origin/main (clean, caught up 543 commits). Read GOALS.md section 0, BACKLOG-2026-09-07.md in full, CLAUDE.md, the last several NIGHTLY-LOG.md entries (newest-first, at the top of the file, not the tail). `cycle_signal.py --check` read SAME against the 13:52:18Z snapshot.
+**Did:** Unshallowed, ff-only merged onto origin/main (caught up 543 commits). Read GOALS.md section 0, BACKLOG-2026-09-07.md, CLAUDE.md, the log's own head. `cycle_signal.py --check` read SAME.
 
-**Verified, not cited:** ran a fresh full `python ops/preflight.py` myself to completion rather than trust a prior cycle's claim (about 20 minutes, the full `ops/tests/` suite included). Every gate passed, 31 warnings, all already-documented sandbox limits (no Stripe/mail/SSH credential, no egress to the live site, Pillow absent) plus one real, already-fixed-by-a-concurrent-session item (`dashboard-self-description-fresh`, one commit ahead of its last regeneration). Checked GitHub directly: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle. Checked the deploy gap by reading the Actions job steps directly rather than trusting `deploy-verdict.json`'s timestamp: the latest `deploy.yml` run (2026-10-10T20:46Z, run #198) still shows its "Deploy" step as `skipped`, confirming `VPS_DEPLOY_KEY` genuinely has not been added yet, not merely stale. Verified the cold-read ledger's "198/198, 0 stale" claim by rerunning `cold_read_ledger.py --next` and `--stale` myself: 0 un-ledgered, 0 stale, both confirmed directly.
+**Verified, not cited:** ran a fresh full `preflight.py` myself (~20 min, full test suite). Every gate passed, 31 warnings, all already-documented sandbox limits plus one item a concurrent session had already fixed (dashboard staleness). GitHub direct: 9 issues unchanged, 0 PRs. `inbox_agent.py`: no mail credential. Checked the deploy gap by reading the Actions job steps directly: `deploy.yml` run #198's "Deploy" step is still `skipped`, confirming `VPS_DEPLOY_KEY` genuinely still missing, not just stale. Reran `cold_read_ledger.py --next`/`--stale` myself: 0 un-ledgered, 0 stale, confirmed directly rather than cited.
 
-**Went well:** verifying every carried-forward claim (cycle_signal, cold-read ledger, deploy gap) by rerunning the tool myself rather than citing a prior cycle's citation of it, per section 5d.
+**Went well:** rerunning every carried-forward claim myself instead of citing a prior cycle's citation of it.
 
-**Did not go well:** nothing new to report; the business stays at $19 lifetime revenue, fully gated on Phil's own pending actions (Search Console, VPS_DEPLOY_KEY, KDP, Etsy, Listmonk). A concurrent session's commits landed mid-cycle (dashboard regen, hourly check-in) and were merged cleanly with no collision.
+**Did not go well:** nothing new; still $19 lifetime revenue, fully gated on Phil's pending actions. A concurrent session's commits landed mid-cycle and merged clean.
 
-**Changing next cycle:** none; existing gates and signals (cycle_signal, cold-read ledger, deploy-verdict) all held up under independent re-verification.
+**Changing next cycle:** none.
 
-**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` ("Start here") and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. Nothing sandbox-executable remains unblocked this cycle.
+**Next:** same `OWNER-ACTIONS.md` Phil-gated queue and 9 open issues, unchanged. Nothing sandbox-executable left unblocked.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable.
 
