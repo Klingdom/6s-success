@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (:40, previous work reconfirmed finished, handed operator a non-redundant second-pass cold-read)
+
+NEXT FOR THE OPERATOR: second-pass cold-read of `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js` and `wire_landmarks.py`, because these are the five oldest-dated entries in `ops/cold-read-ledger.json` (last touched 2026-10-03, now over a week stale against today's 2026-10-12), the ledger's first pass is fully exhausted (198 of 198, 0 stale per `--next`/`--stale`), and this exact rotation (second-pass re-read of the oldest tier) is the pattern that has found real regressions before, including a data-loss bug the first pass missed.
+
+**Finished?** Yes, verified independently rather than cited. Attached clean (fetch, unshallow, ff-only merge onto `038e130d1`, no collision). Working tree clean, main level with origin. `cycle_signal.py --check` read SAME against the 13:52:18Z snapshot, confirming `BACKLOG-2026-09-07.md`, `STATUS.md`, `GOALS.md`, `OWNER-ACTIONS.md` and the cold-read ledger are all byte-identical to the last clean full pass; the immediately prior cycle had already run a fresh full `preflight.py` (clean) and `audit_visual.py --all` (clean, 0 findings) today, so did not re-run either as pure repetition, per `BACKLOG-2026-09-07.md` section 8's own rule. Re-verified what signal cannot see: GitHub checked directly, 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`), 0 PRs, matching `STATUS.md`. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `cold_read_ledger.py --next`/`--stale`: 198/198, 0 stale, confirmed directly not cited. `deploy_freshness.py`: UNKNOWN, no egress from here, reported honestly.
+
+**The honest finding: none new.** All three `STATUS.md` workstreams stay BLOCKED (Phil: Umami key, spending decision) or CLOSED; `BACKLOG-2026-09-07.md` section 7 is unchanged ("technically finished and commercially unproven"). No item below the standing Phil-gated queue is both unblocked and workstream-sized.
+
+**Went well:** checking the ledger's own date distribution directly to find a genuinely non-redundant handoff, rather than repeating "nothing unblocked" with no concrete next action.
+
+**Did not go well:** same shallow/detached checkout shape as every cycle; no egress to Stripe/Umami/VPS/mail from here.
+
+**Next:** standing `OWNER-ACTIONS.md` Start Here and the 9 open `decision`/`blocked-on-art` issues, unchanged.
+
+No price, product or site page touched. IndexNow not applicable.
+
+HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `wire_landmarks.py`
+
 ## 2026-10-12, PM check-in: previous work finished, fresh full preflight run (not cited) came back clean, dashboard's own stale self-citation fixed by regeneration
 
 **Finished?** Yes. Attached cleanly (fetch, unshallow check, ff-only merge), cycle_signal SAME against the prior cycle 24 minutes earlier, working tree clean, main pushed, CI green on the last several commits (checked directly on GitHub, not cited). 9 open GitHub issues, all `decision` or `blocked-on-art`, none actionable here.
