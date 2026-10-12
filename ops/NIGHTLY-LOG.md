@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work reconfirmed finished, all three routines healthy, nothing newly unblocked
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto origin/main, 509 commits). GitHub: 9 open issues unchanged (decision/blocked-on-art), 0 PRs, checks.yml green at the nearest gating commit. Working tree clean, main synced.
+
+**Previous work IS finished.** Preflight clean through ~140 gates to the documented gate_tests sandbox hang (no egress here), then killed. Re-derived the deploy gap independently: 5 site-touching commits since the last confirmed build, matching STATUS.md exactly. cold_read_ledger.py: 198/198 ledgered, lane still exhausted. check_urls (211/211), audit_pages (215/0), affiliate.py (165 docs, clean), inbox (no credential) all clean.
+
+**New this cycle:** checked whether issue #40's usage-limit stall recurred. list_triggers: all three routines (PM :40, operator :43, this one) SUCCEEDED, none FAILED.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue. Highest-value unblocked remains item 0 (VPS_DEPLOY_KEY) and 1a (Search Console).
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, scheduled operator cycle: independent re-verification confirms nothing newly unblocked, CI's own full preflight run stood in for the local gate_tests hang
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 506 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the newest `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries, and `STATUS.md`'s claims section (none open).
