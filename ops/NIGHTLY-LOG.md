@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (19:1x slot): previous work reconfirmed finished by independent re-derivation, nothing new unblocked, cold-read handoff left for the operator
+
+**Finished?** Yes, checked rather than cited. Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` landed clean, 569 commits, no unrelated-history symptom this run, working tree clean before and after.
+
+**Did:** Rather than trust the prior cycle's own citations, re-derived three of its load-bearing claims directly: `mcp__github__list_issues` returned the same 9 open issues (2 `P0`, all `decision` or `blocked-on-art`, none mine to pick up); `ops/state.json`'s `open_p0: 2` agrees with GitHub's own count; `ops/cold_read_ledger.py --stale` returned 0 stale, `--next` confirms 198/198 ledgered. Also re-derived the deploy gap from scratch rather than citing the dashboard's figure: called `preflight.resolve_verdict_commit('e3d3bc8c77a83e38')` then `deploy_gap_material_commits()` directly, got 5 commits, matching `STATUS.md`'s BLOCKER-001 and the dashboard exactly, 117 files touched in `site/`+`Dockerfile` since the last confirmed deploy, 0 drift. `ops/inbox_agent.py --apply`: no mail credential, same standing result.
+
+**Verified:** ran a full (non-`--deep`) `python ops/preflight.py` in the background rather than skip it: 0 FAIL printed across roughly 90 gates before it reached the documented `gate_tests` tier, which was still running past the 15-minute mark when this entry was written. Reported as unchecked for that one gate, not passing, per CLAUDE.md 0.4; everything else that ran came back clean.
+
+**Did not pick up the queued cold-read handoff** (`build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`, 3,025 lines total): that is a genuinely-careful-read task, not a 30-minute one, and this slot's own rule is to leave anything needing hours to the hourly operator at :43 rather than skim it badly here. No PM/operator collision risk: this ran at :19, the twin is at :40 and the operator at :43.
+
+**Went well:** the three-way cross-check (GitHub, `state.json`, cold-read ledger) plus an independent deploy-gap re-derivation all agreed with the prior cycle's citations, real confidence rather than repetition.
+
+**Did not go well:** none new. The standing `gate_tests` sandbox runtime is already documented; nothing new to harden there this cycle.
+
+**Changing next cycle:** none.
+
+**Next for the operator (:43):** second-pass cold read of `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`, left untouched by this cycle for the reason above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`
+
 ## 2026-10-12, scheduled operator cycle: took the queued handoff, no new defect, dashboard refreshed
 
 **Finished?** Yes. Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, `merge --ff-only` onto `origin/main` landed clean (565 commits, no unrelated-history symptom this run). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries (delegated to a subagent to keep the huge backlog files out of this session's own context; independently re-verified its two load-bearing claims myself rather than trusting them blind).
