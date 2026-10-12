@@ -822,9 +822,9 @@
       "note": "render()'s Entryway deck line hardcoded \"issues #1 and #2\" as why 18 cards are withheld. Issue #1 closed 2026-09-08 on the print PDF only, never the live gallery; issue #2 is a different, unrelated image set. The real open blocker for 16 of 18 (CANON_EXCLUDE) is issue #29; the other 2 (BRAND_EXCLUDE: EE-001, EP-005) have no open tracking issue, since #1 closed on PDF evidence while the live-gallery withholding (confirmed still active: both codes absent from site/assets/cards/entryway/index.json, 72 of 90 live) was never separately re-verified. Fixed the citation here and in status_pdf.py to name #29 and state the #1/live-gallery gap honestly. Verified by calling render() directly and reading the rendered lines."
     },
     "stripe_brand.py": {
-      "status": "clean",
-      "date": "2026-10-03",
-      "note": "Fresh second-pass cold-read. Reads the live Stripe account and reports business-identity gaps (url/name/support email/description/branding); cannot write (POST /v1/account refused on own account), only reports where to fix in the Dashboard. No defect found in the logic. No Stripe credential in this sandbox, so the live account state itself is UNCHECKED here, same standing limit every prior cycle reports."
+      "status": "fixed",
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold-read, 2026-10-12 scheduled operator: the module's own top-of-file docstring still said '--apply' is idempotent and uploads the icon, left over from before the account's live-write restriction was discovered and gated (gate_stripe_write_tools_guarded, 2026-09-xx). main()'s apply_it branch never calls upload() at all (POST /v1/account refused on this account), so a reader of the docstring alone would believe --apply performs an automatic Stripe upload when it only writes local PNGs for Phil to upload by hand via the Dashboard. The gate's own docstring and the runtime's printed gap message were already accurate; only the module docstring was stale. Corrected it to state the real behaviour and point at the gate's rationale. No code/logic change; test_stripe_brand.py (9/9) and py_compile both rerun clean."
     },
     "stripe_catalog.py": {
       "status": "fixed",

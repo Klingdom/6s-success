@@ -25,8 +25,15 @@ The mark is drawn here rather than shipped as a binary, so it cannot drift from
 the palette the site uses. Same arc gauge as the site header: the six-S ramp
 from chaos to calm, with the needle resting at the calm end.
 
-Idempotent. Uploads the icon only when the account has none, so running it twice
-does not fill the account's file list with copies.
+**--apply does not reach the Stripe API.** Checked directly, not assumed:
+POST /v1/account returns 403 on this account, so branding, name, URL and
+support email can only be set by hand in the Dashboard. --apply writes
+build/6s-icon.png and build/6s-logo.png for Phil to upload there; it does
+not call upload() (below), which POSTs a file to Stripe and exists only in
+case that restriction is ever lifted. preflight.py's own
+gate_stripe_write_tools_guarded documents this as a deliberate exemption
+rather than a missing live-write guard, and `--check` already prints the
+Dashboard path for each gap it finds, same as a plain --apply run.
 
 Run:  python ops/stripe_brand.py --check
       python ops/stripe_brand.py --apply
