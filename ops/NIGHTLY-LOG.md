@@ -2,6 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (01:4x UTC cycle)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md's
+"Start here" items -1/0/1a/1/1d, GitHub issues #40, #35, #33, #31, #29, #21,
+#18, #15, #2), because the cold-read ledger stays exhausted (198/198, 0
+stale) and no new signal has appeared since the 00:59:26Z full pass.
+
+Checkout arrived shallow and detached, local main sharing no common
+ancestor with origin/main (issue #27's usual shape); confirmed with
+merge-base and a clean tree before reattaching via checkout -B main
+origin/main onto 3f75bd2b4, then unshallowed. `cycle_signal.py --check`
+returned SAME against the 00:59:26Z snapshot, so skipped the redundant
+full local re-verification per that tool's own purpose, and checked what a
+hash cannot see instead: GitHub's 9 open issues read live and unchanged (7
+decision, 2 blocked-on-art, one carrying both), 0 open PRs, no new
+comments. Checks workflow on the current HEAD (5f18c3eb1) independently
+confirmed completed/success via the GitHub API, resolving the prior
+cycle's "still in_progress" note. `inbox_agent.py --apply`: no mail
+credential, reported UNCHECKED, not assumed empty. Ran the cheap
+substitute checks anyway: `fix_dashes.py --check` 0 em/0 en,
+`cold_read_ledger.py --stale` 0, `check_urls.py` 211/211 all clean. A
+`preflight.py` full run was started in the background to independently
+confirm the 00:59:26Z snapshot rather than just trust it; it hung at the
+documented `gate_tests` headless-Chromium sandbox limitation (CPU time
+flat for several minutes) with no permission in this environment to kill
+the stuck process, so that confirmation stays UNCHECKED past the hang
+point, not assumed clean past it, consistent with every prior cycle that
+has hit this same sandbox limit.
+
+No new defect found, nothing newly unblocked. Not starting anything large
+in this slot, three minutes before the operator.
+
+Regenerated and shipped the dashboard, as required every run. No code,
+price, product or page touched.
+
 ## 2026-10-12, PM check-in (01:0x UTC cycle)
 
 Previous work finished: `cycle_signal.py --check` returns SAME against the
