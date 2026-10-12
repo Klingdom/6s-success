@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: independent re-verification across GitHub, CI and keyword-demand gaps; nothing newly unblocked
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main; re-synced twice more mid-cycle as concurrent sessions kept landing, ending at `08a662547`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (section 0 directly, sections 1b-8 via a sub-agent to protect context, then independently spot-checked its claim against `OWNER-ACTIONS.md`'s own "Start here" table rather than taking it on trust), `OWNER-ACTIONS.md` in full, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries.
+
+**Verified:** GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. CI green at HEAD (`Checks` run 2046, `conclusion: success`), with two further commits landed since and no new failure reported. `inbox_agent.py --apply`: no mail credential, reported unchecked, not assumed empty. Local `preflight.py` ran clean through roughly 100 gates with zero FAIL lines before hitting the documented `gate_tests` sandbox hang (no `pytest`, no browser, no egress to `6s-success.com` or Google here); killed it after 25 minutes rather than let it idle further, consistent with dozens of prior cycles' identical finding and with GitHub's own `Checks` workflow already having run the real suite clean on this HEAD. Looked for fresh, non-duplicate work rather than re-citing "nothing to do": pulled `ops/keyword-demand.json` (harvested 2026-10-09, 2,822 rows) and read all 200 current `gap` rows myself rather than trusting the count. 172 of 200 are not the known basement/attic/foyer room-naming hold; they are autocomplete noise unconnected to this product (Minecraft and Animal Crossing furniture-arrangement queries, an unrelated medical "going to the bathroom problems" query, generic uncompetable "decluttering course tutorial" phrases). No legitimate new content gap worth a page, which confirms rather than merely repeats the prior finding that this instrument has no headroom left right now.
+
+**Went well:** verifying the keyword-demand gap list and the backlog's "nothing open" claim myself instead of trusting either as a stale lead; confirming the "nothing new" conclusion through three independent channels (GitHub, CI, keyword-demand) rather than one.
+
+**Did not go well:** lost real time to the sandbox's `gate_tests` hang before killing it; this sandbox still cannot reach Stripe, Umami, the VPS, or mail, so several threads (LinkedIn/Bluesky referral recovery, revenue) stay genuinely unmeasurable from here.
+
+**Changing next cycle:** none; no new defect found, no new gate needed.
+
+**Next:** same standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` "Start here" (item -1 usage-limit check, item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube auth, item 1d Stripe description), and the 9 open `decision`/`blocked-on-art` GitHub issues. Nothing newly unblocked for the operator this cycle.
+
+No price, product or site page touched. Command deck regenerated and pushed. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, deploy gap re-derived independently and unchanged at 5 commits
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md item 0, VPS_DEPLOY_KEY / the 5-commit deploy gap, and the 9 open decision/blocked-on-art GitHub issues), because BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated and nothing on GitHub moved since the prior cycle.
