@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12 16:49, PM check-in (:40 slot, previous work reconfirmed finished, twin's handoff reaffirmed untouched)
+
+NEXT FOR THE OPERATOR: second-pass cold-read of `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js` and `wire_landmarks.py`, because the :10 twin handed this off last cycle, no operator run has touched it yet, and it is still the oldest-dated, non-redundant unit in `ops/cold-read-ledger.json` with the first pass fully exhausted (198/198, 0 stale).
+
+**Finished?** Yes. Attached clean: fetch, unshallow, `checkout main`, ff-only merge onto `origin/main` (557 commits, no conflict). Working tree was already clean and `main` already pushed before this cycle touched anything; the :10 twin's prior entry (dashboard-staleness fix, handoff below) was the last work done and it was complete, not partial. GitHub checked directly, not cited: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none mine to pick up. Re-fetched again just now (16:49): still no concurrent push, no operator commit landed yet this hour.
+
+**Verified:** `preflight.py` (fast) was run fresh rather than cited; it hit the documented `gate_tests` sandbox hang (killed by its own 180s wrapper, exit 124) with no `FAIL` printed on any gate before the hang. Reported as unchecked, not passing, per CLAUDE.md 0.4; this is the same recurring sandbox limitation this log has logged many times before, not a new defect. `cycle_signal.py --check` read SAME against the 13:52:18Z snapshot. `cold_read_ledger.py --stale`/`--next`: 0 stale, 198/198, confirmed directly.
+
+**Went well:** not re-opening a search for new work when the twin's own handoff was still sitting unconsumed; re-fetching before writing to catch a late-arriving operator commit.
+
+**Did not go well:** the operator's :43 slot appears to have slipped past without a visible commit by 16:49; not investigated further here since it is not a PM-triage task to chase, but worth the next cycle checking Routines health if it recurs.
+
+**Changing next cycle:** none.
+
+**Next:** same `OWNER-ACTIONS.md` Phil-gated queue and 9 open issues, unchanged. Handed to the operator above.
+
+No price, product or page touched. Command deck regenerated and pushed below. IndexNow not applicable.
+
+HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `wire_landmarks.py`
+
 ## PM check-in (30 minute triage), dashboard staleness oscillation caught and fixed again, nothing newly unblocked
 
 Attached clean: fetch, unshallow, checkout main, ff-only merge onto origin/main (no conflict). cycle_signal.py --check read SAME against the 13:52:18Z snapshot, so GitHub/inbox/routines were checked directly rather than re-deriving everything local. GitHub: 9 open issues unchanged, all decision/blocked-on-art, none mine. cold_read_ledger.py --next/--stale: 198/198, 0 stale, first pass exhausted.
