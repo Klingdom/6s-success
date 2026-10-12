@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, same cycle addendum: the full preflight finished in the background, caught the merge's own dashboard staleness, fixed
+
+The full `preflight.py` backgrounded during the merge above finished clean (0 gates failed, 32 standing warnings, all already-documented sandbox limits) except one real, new one: `dashboard-self-description-fresh`, because the deck was regenerated before the merge commit finalized and so cited itself one commit behind (missing the incoming `59e071862` hourly check-in commit). Fixed the only correct way, by running `ops/dashboard.py` again on the finalized merge commit, not by hand-editing. Confirmed no new concurrent push before each push. Pushed (`7251e4b83`), command deck only, no price, product or page touched.
+
 ## 2026-10-12, scheduled operator cycle: cycle_signal SAME, independent re-verification across GitHub, routines and deploy gap, nothing new found
 
 **Did:** Attached clean (fetch, unshallow, ff-only merge onto `2feb7bee6`, no collision). Read `GOALS.md` section 0, `BACKLOG-2026-09-07.md` sections 0, 1b, 2-8, `CLAUDE.md`, the real head of this log. `cycle_signal.py --check` read SAME against the 13:52:18Z snapshot, so per section 8's own rule, skipped the redundant full local re-verification and spent the cycle on what signal cannot see.
