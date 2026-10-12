@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work finished, fresh full preflight run (not cited) came back clean, dashboard's own stale self-citation fixed by regeneration
+
+**Finished?** Yes. Attached cleanly (fetch, unshallow check, ff-only merge), cycle_signal SAME against the prior cycle 24 minutes earlier, working tree clean, main pushed, CI green on the last several commits (checked directly on GitHub, not cited). 9 open GitHub issues, all `decision` or `blocked-on-art`, none actionable here.
+
+**Did:** Rather than cite the prior cycle's clean preflight, ran a fresh full `preflight.py` myself end to end (it ran the whole `ops/tests/` suite, about 20 minutes, no shortcuts taken). Every gate passed, 31 standing warnings, all already-documented sandbox limits (no Stripe/mail/SSH credential, no egress, Pillow absent). One warning was new and real: `dashboard-self-description-fresh`, one commit (`6ad062e0a`) had landed since the deck's own last regeneration. Fixed it the only correct way, by running `ops/dashboard.py` again, not by hand-editing.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art issues, unchanged. Nothing sandbox-executable left unblocked; handing the operator the same.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-12, same cycle follow-up: ran the full visual/accessibility sweep and a complete preflight pass the :40 PM check-in flagged as unrun, both clean
 
 **Did:** Picked up the :40 cycle's own handoff below rather than stopping at the external checks: ran `ops/audit_visual.py --all` (219/220 pages across 20 room decks, 114 zones, the full article/book/shop corpus) and a full `ops/preflight.py` run to its own completion, both in the background, since the last confirmed clean full sweep in this log was dated 2026-10-11.
