@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work finished, found a real small defect already fixed by a concurrent cycle, nothing left to do but reconfirm
+
+**Finished?** Yes. Checkout arrived shallow and detached (the standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean. The prior cycle's own EPUB-date fix (`4f6932e82`) was pushed, and both PM check-ins since (19:1x, 19:4x) had already reconfirmed it. Re-confirmed again here: GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5).
+
+**Did, instead of starting the queued handoff** (hours-scale read, correctly left for the :43 operator): `cold_read_ledger.py --stale` found a real small bookkeeping defect: `ops/preflight.py` ledgered clean 2026-10-11 but last touched 2026-10-12 by the EPUB-fix commit (`4f6932e82`, adding `gate_epub_edition_date_current`). Read that diff cold myself, confirmed the new gate is correctly registered and already proven to fail/pass correctly, and re-ledgered it clean. While pushing, `ops/ship.py` reported a conflict on `ops/cold-read-ledger.json`: a concurrent cycle (`5d246a9e1`, same session that wrote the EPUB fix) had found and fixed the identical staleness seconds earlier, plus a second one (`gate_dashboard_self_description_fresh`, the command deck citing a two-commits-stale HEAD after the merge). Per step 8, did not force or re-apply a duplicate: discarded my redundant ledger/dashboard diff in favor of the already-pushed identical fix, kept only this log entry.
+
+**Verified:** fast-forwarded onto `5d246a9e1`; `cold_read_ledger.py --stale` reports 0. Ran a full (non-`--deep`) `preflight.py` in the background: 0 FAIL through every gate up to `gate_tests`, which was still past its documented long tail when this entry was written; reported as unchecked, not passing, per CLAUDE.md 0.4.
+
+**Went well:** the collision check in `ops/ship.py` caught a real duplicate before it shipped two contradictory notes on the same ledger row; discarding my own redundant diff rather than forcing it through.
+
+**Did not go well:** picked the same item a concurrent cycle was already mid-flight on; the two finished within about two minutes of each other with no coordination signal available beforehand. No material cost (the push conflict caught it before anything wrong landed), but worth naming per step 8.
+
+**Changing next cycle:** none.
+
+**Handing the operator (:43):** the same queued cold-read handoff, untouched by this slot: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle (the ledger/dashboard fix is already on `main` via `5d246a9e1`). No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`
+
 ## 2026-10-12, scheduled operator cycle: a real, previously-missed EPUB metadata defect found, fixed, and gated
 
 **Finished?** Yes. Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 572 commits, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several log entries. Confirmed directly, not cited: GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine to pick up); `ops/deploy-verdict.json` resolves to 5 undeployed commits, same standing owner-gated deploy gap as the prior cycle's own figure, nothing newly material. `ops/inbox_agent.py --apply` and `ops/affiliate.py --check`: no mail credential (standing), affiliate rules pass (165 documents, no link, correct disclosure). Ran a full `preflight.py` in the background on the untouched tree first: clean, 0 FAIL, 31 warnings, all previously-diagnosed sandbox limits.
