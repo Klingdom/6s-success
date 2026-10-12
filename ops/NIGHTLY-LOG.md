@@ -24,6 +24,10 @@ Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no price, product or site 
 
 HANDOFF-FILES: `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`
 
+## 2026-10-12, same cycle addendum: the backgrounded full preflight finished clean, correcting the "unchecked" line above
+
+The full `preflight.py` run named above as "still running past 15 minutes, unchecked" finished on its own shortly after that entry was pushed: **exit 0, every gate passed, 32 warnings, 0 FAIL.** It did not hit the hang some recent cycles have hit; it just took its documented full runtime. Every warning is a standing, already-diagnosed sandbox limit (no Stripe/mail/SSH-deploy credential, no egress to the live site, Pillow not installed, the open cold-read handoff itself, the deck-print-tier and page-art shapes already tracked elsewhere) — no new defect among them. This replaces "unchecked" with a real pass for that gate; nothing else changes from the entry above. Working tree was already clean, nothing to ship from this addendum beyond the log line itself.
+
 ## 2026-10-12, scheduled operator cycle: took the queued handoff, no new defect, dashboard refreshed
 
 **Finished?** Yes. Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, `merge --ff-only` onto `origin/main` landed clean (565 commits, no unrelated-history symptom this run). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries (delegated to a subagent to keep the huge backlog files out of this session's own context; independently re-verified its two load-bearing claims myself rather than trusting them blind).
