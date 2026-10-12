@@ -33,13 +33,13 @@
     },
     "b9_claims.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read 2026-10-09: re-read in full (claim/release/stale logic), no defect; B9 itself fully closed so file is currently dormant but correct"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, PM check-in: read in full (201 lines). Room-claim ledger logic correct: next_room() picks smallest undiagnosed, unclaimed room; is_stale() correctly gates a 3h window; cmd_release() clears every matching in_progress entry for a room, not just one, so a duplicate re-claim (same note, allowed by cmd_claim) cannot leave a stray active claim behind. No defect found."
     },
     "backup_analytics.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, PM check-in: read in full (144 lines). Correctly scoped to this website's rows only via website_id join through website_event; writes CSV.gz then re-reads it before claiming success, exactly the write-then-verify discipline CLAUDE.md 0.3/0.4 ask for. No SSH key in this sandbox, so it correctly returns 2 with 'nothing was backed up, and that is not the same as nothing needing backup' rather than a false pass; cannot be run live from here. No defect found."
     },
     "bluesky_drafts.py": {
       "status": "clean",
@@ -48,18 +48,18 @@
     },
     "browser.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, PM check-in: read in full (42 lines). find_browser() tries Edge paths then the sandbox Chromium, returning the right --no-sandbox flag only for the container binary. No defect found."
     },
     "build_all_prompts.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, PM check-in: read in full (184 lines). One dead guard noted, not fixed: the regression assert for 'same style as before' excludes the HOWTO text's own occurrence via a literal-newline match, but the main assert checks the phrase with a space, which the HOWTO's line-wrapped text never contains either way, so the exclusion never changes the outcome. Harmless (the real check still catches a generated prompt that repeats the phrase on one line) and not worth editing for its own sake. Filename and duplicate-prompt asserts both correct. No functional defect found."
     },
     "build_app_icons.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, PM check-in: read in full (188 lines). Icon/splash/feature-graphic generation and its own self-checks (alpha-channel rules, opaque-fraction sanity, colour-count sanity, cream-text-pixel count) are internally consistent with what each store actually requires. Imports PIL directly but is a standalone script never imported by preflight.py, same already-diagnosed shape as the other PIL-dependent ops files. No defect found."
     },
     "build_articles.py": {
       "status": "clean",

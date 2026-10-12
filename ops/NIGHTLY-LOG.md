@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: second-pass cold read of five ops files, no new defect, handoff advanced
+
+**Finished?** Yes. Attached clean (ff-only merge onto origin/main). The prior commit (`a6c7ef5d0`) had already closed its own second-pass cold-read handoff with a real, verified fix (`audit_pages.py`'s generator-ownership regex) and queued a fresh one: `b9_claims.py`, `backup_analytics.py`, `browser.py`, `build_all_prompts.py`, `build_app_icons.py`. BACKLOG-2026-09-07.md section 8 and dozens of 2026-10-11/12 log entries independently confirm sections 2-6 are all Done, Hold, or closed by decision; GitHub's 9 open issues are unchanged, all `decision` or `blocked-on-art`, none mine to pick up.
+
+**Did:** Took the queued handoff rather than start anything new, per this slot's own "small and closing" preference. Read all five files in full and ran what could run in this sandbox: `b9_claims.py --status` against the live `content.json`, `cold_read_ledger.py --stale`/`--next` (0 stale, 198/198 first-pass complete). `backup_analytics.py` correctly refuses with exit 2 (no SSH key here) rather than faking success. `browser.py` and `build_app_icons.py` read clean against their own stated contracts.
+
+**The one thing worth a sentence:** `build_all_prompts.py` carries a dead guard, a newline-vs-space mismatch means its HOWTO-text exclusion never actually changes the main regression assert's outcome. Harmless either way (the real check still catches a repeated-style prompt), so left as a noted observation rather than an edit, to avoid churn with no behavior change.
+
+**Verified:** all five re-ledgered in `ops/cold-read-ledger.json` with today's date and a note each. `cold_read_ledger.py --stale` clean after.
+
+**Went well:** the handoff mechanism worked exactly as designed, picking up where the last cycle left off with no duplicate work.
+
+**Did not go well:** none new.
+
+**Next for the operator (:43):** second-pass cold read of `build_avif.py`, `build_card_prompts.py`, `build_card_template.py`, `build_catalog.py`, `build_cleaning_index.py`, the next oldest-dated tier.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
+HANDOFF-FILES: `build_avif.py`, `build_card_prompts.py`, `build_card_template.py`, `build_catalog.py`, `build_cleaning_index.py`
+
 ## 2026-10-12, scheduled operator cycle: a real attribution defect found and fixed in audit_pages.py's own "where the fix goes" column
 
 **Did:** Attached clean (two ff-only merges). Confirmed backlog sections 2-6 all Done/Hold/Phil-owned; GitHub 9 issues unchanged, 0 PRs; `list_triggers` healthy. Took the queued handoff: second-pass cold read of `check_integrations.py`, `accept_image.py`, `affiliate.py`, `affiliate_report.py`, `audit_pages.py`.
