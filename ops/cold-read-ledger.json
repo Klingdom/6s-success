@@ -278,8 +278,8 @@
     },
     "build_quest.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_resources.py": {
       "status": "clean",
@@ -288,8 +288,8 @@
     },
     "build_sample_html.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_seo.py": {
       "status": "clean",
@@ -297,14 +297,14 @@
       "note": "Second-pass 2026-10-11: prior note wrongly cited commits 8aa7a6589/11b32d124 as having verified this file; neither commit's diff touches build_seo.py (checked via git show --stat), and the affiliate-catalogue.csv row count it cited (124) is also wrong, the file has 123 rows. Re-verified for real: read the full 1051-line source cold, confirmed consulting.html's stated prices (50/,200) match data.js's CN-VIRTUAL/CN-INHOME live entries exactly, ran the generator live against a clean tree (build_pages 0 changed, build_sitemap 211 URLs, build_robots written) and git status showed zero diff, confirming it is byte-identical to the committed site. No defect found."
     },
     "build_social_captions.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "second-pass cold read: --check count inflated by boards.json, masked exactly one missing zone caption; fixed"
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_social_pins.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
@@ -312,9 +312,9 @@
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion (SLA-007/008/009, flight safety walk / weekly rail-and-frame pass / three-night verdict sweep) checked against the real built cards (exact match); hero_image_url()'s first zone (Landing Surface or Console) checked against disk and that zone page's own og:image (exact match)."
     },
     "build_standards.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "dedupe cycle: removed a duplicated comment block above the sheet-count assert (identical 3-line comment pasted twice back to back); verified the generator's own self-checks still pass and build/6S-Standards-Pack.html stays byte-identical to site/downloads/6S-Standards-Pack.html. Also checked the per-room zs.index(z) numbering against actual content.json for duplicate zone dicts (0 found), so the fragile-but-currently-safe numbering is not a live defect. No gate change needed; this is cosmetic, not a found defect class."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
     "build_standards_page.py": {
       "status": "clean",

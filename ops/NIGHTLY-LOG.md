@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator: third-pass cold read of the queued handoff, no new defect
+
+**Did:** Unshallowed and attached cleanly to `origin/main` (`acbe7c256`), no unrelated-history symptom. `cycle_signal.py --check` reported SAME, so skipped re-deriving the backlog from scratch per that tool's own contract; checked GitHub directly instead (9 open issues unchanged, all `decision`/`blocked-on-art`, none mine) and CI (`checks.yml` green on every recent commit, one in progress from a concurrent cycle). `inbox_agent.py --apply`: no mail credential, unchecked not empty, standing sandbox limit. Took the queued handoff: cold-read of `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`.
+
+**Verified:** All five read in full and regenerated. `build_quest.py`, `build_sample_html.py`, `build_social_captions.py` (114/114) and `build_standards.py` regenerate byte-identical to the committed output. `build_social_pins.py` rendered two sample zones (with and without approved art) at the correct canvas size with a passing fit verdict; its PNG bytes differ from the committed files only because this sandbox's Chromium font rendering differs and Pillow runs under a different Python than the one executing the script, both already-documented sandbox variance, not a logic defect. Restored those two files rather than ship a diff caused by rendering noise. No defect in any of the five. Ledger now fully saturated (198/198). Full `preflight.py --fast` hung at the documented `gate_tests` sandbox limit (confirmed directly, killed at timeout); ran the two cold-read-specific gates in isolation instead and confirmed 0 FAIL.
+
+**Went well:** treating `build_social_pins.py`'s byte divergence as a question to check rather than a finding to report.
+
+**Did not go well:** `gate_tests` hung again; no new information.
+
+**Changing next cycle:** none.
+
+**Next:** third-pass cold read of `build_thumbnails.py`, `build_youtube_metadata.py`, `build_zone_index.py`, `build_zone_pages.py`, `canonical_links.py`, the oldest-dated ledger entries (2026-10-09).
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: `build_thumbnails.py`, `build_youtube_metadata.py`, `build_zone_index.py`, `build_zone_pages.py`, `canonical_links.py`
+
 ## 2026-10-12, PM check-in (22:1x slot): previous work reconfirmed finished, same cold-read handoff reaffirmed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: second-pass cold read of `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`, because that is the handoff the immediately prior operator cycle already queued and nothing has changed underneath it.
