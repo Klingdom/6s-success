@@ -112,9 +112,15 @@ STEMS = "|".join(m[:3] for m in MONTHS)
 # should refuse rather than mis-parse, per its own "ambiguous returns None"
 # rule below.
 DATE_PATTERNS = [
-    # 14 October at 2pm
-    r"(?<!\d)(\d{1,2})(?!\d)\s+(%s)[a-z]*\.?\s*(?:at\s*)?"
-    r"(?<!\d)(\d{1,2})(?!\d)(?::(\d{2}))?\s*(am|pm)?" % STEMS,
+    # 14 October at 2pm, 14th October at 2pm, the 14th of October at 2pm.
+    # The ordinal suffix and "of" are both optional so a day-first date is
+    # read exactly as leniently as the month-first pattern below, which
+    # already tolerates "Oct 14th" via its own trailing \w*. Found
+    # 2026-10-12, third-pass cold-read: "14th October at 2pm" returned None
+    # (no time read, no invite) while "October 14th at 2pm" parsed fine,
+    # the same date failing in one word order and not the other.
+    r"(?<!\d)(\d{1,2})(?!\d)(?:st|nd|rd|th)?,?\s+(?:of\s+)?(%s)[a-z]*\.?\s*"
+    r"(?:at\s*)?(?<!\d)(\d{1,2})(?!\d)(?::(\d{2}))?\s*(am|pm)?" % STEMS,
     # Oct 14 at 2pm
     r"(%s)[a-z]*\.?\s+(?<!\d)(\d{1,2})(?!\d)\w*,?\s*(?:at\s*)?"
     r"(?<!\d)(\d{1,2})(?!\d)(?::(\d{2}))?\s*(am|pm)?" % STEMS,

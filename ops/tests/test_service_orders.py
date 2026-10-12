@@ -215,6 +215,11 @@ def main() -> int:
         ("Oct. 14th, 2pm works", (10, 14, 14, 0)),
         ("Sept 5 at 9:30am please", (9, 5, 9, 30)),
         ("Oct 14 at 14:00", (10, 14, 14, 0)),
+        # Regression for a real bug found 2026-10-12, third-pass cold-read:
+        # a day-first date with an ordinal suffix returned None while the
+        # same date written month-first ("Oct. 14th" above) already parsed.
+        ("14th October at 2pm", (10, 14, 14, 0)),
+        ("the 14th of October at 2pm", (10, 14, 14, 0)),
     ]
     for text, (month, day, hour, minute) in cases:
         when = so.find_time(text)

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: third-pass cold-read picked up, a real booking-flow date-parsing bug found and fixed in service_orders.py
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main). `cycle_signal.py --check`: SAME against the 11:43:36Z snapshot, so skipped the full local re-verification per `BACKLOG-2026-09-07.md` section 8 and spent the cycle on what signal cannot cover. GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. `list_triggers`: all three Routines healthy, none `FAILED` (this session is the hourly operator's own run). `preflight.py --fast`: 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang. Cold-read ledger: 198/198, 0 stale, 0 un-ledgered candidates, fully exhausted both passes; picked up the most recent PM handoff's own unclaimed work instead, the third-pass adversarial re-read of eight named files.
+
+**The find.** Read `ops/service_orders.py` (forwards paid Virtual Home Consult/In-Home Reset Day/Corporate Lean 6S bookings to Phil with a calendar invite) end to end. `find_time()`'s two `DATE_PATTERNS` are not symmetric: the month-first branch already tolerates a trailing ordinal suffix via its own `\w*` ("Oct. 14th, 2pm" is in the existing test suite and passes), but the day-first branch requires whitespace immediately after the bare day number, so "14th October at 2pm" or "the 14th of October at 2pm" matched nothing and fell through to "no time could be read from the message, so no invite is attached." Same date, two word orders, one worked and one silently didn't, on the highest-value transactions this business has ($250/$1200/enquiry). Confirmed with a standalone regex test against both patterns before touching the file, not assumed from reading alone.
+
+**Fixed:** added an optional `(?:st|nd|rd|th)?,?` after the day-first branch's day capture and an optional `(?:of\s+)?` before the month, mirroring the leniency the month-first branch already had. Verified the existing year-guard regression tests (`"Oct 14, 2027 at 2pm"` etc., the reason this file's bare-digit captures are wrapped in `(?<!\d)...(?!\d)` at all) still correctly return None, and the ambiguous/relative-date cases still correctly return None. Added 2 new cases to `test_service_orders.py` ("14th October at 2pm", "the 14th of October at 2pm"); proved fail-then-pass directly (stashed the fix, watched both new cases fail with the exact right message, restored, reran clean). Full suite: 19 cases, PASS. Recorded in `ops/cold-read-ledger.json` as fixed, with the full account.
+
+**Verified:** `preflight.py --fast` clean (0 FAIL through every gate reached) before and after. No price, product or generated page touched; this is pure Python logic in a hand-maintained ops tool, not something any `ops/build_*.py` owns.
+
+**Went well:** picking up the exact unclaimed handoff from the most recent log entry instead of starting a fresh search; the asymmetry was confirmed with an isolated regex test before editing, not assumed from reading the code.
+
+**Did not go well:** this sandbox still cannot reach Stripe or the live inbox, so whether this bug has ever actually cost a real booking is unknown; `service_orders.py`'s own state file would show it if a real customer email matching this shape had come in and been silently dropped, but reading that requires a session with the IMAP/Stripe credentials this one does not have.
+
+**Changing next cycle:** none; a regression test now covers this shape and would fail the next time the pattern drifts.
+
+**Next:** same standing Phil-gated queue, unchanged (`OWNER-ACTIONS.md` "Start here", the 9 open `decision`/`blocked-on-art` GitHub issues). Remaining unpicked from the eight-file third-pass handoff: `crawl_report.py`, `experiments.py`, `indexnow.py`, `site/assets/js/measure.js` (not `mobile/quest-app/lib`, corrected here), `stripe_brand.py` (read this cycle, confirmed correct and already exempted by `gate_stripe_brand` for exactly the reason read here), `wire_landmarks.py` (read this cycle, no defect found), `check_integrations.py` (read this cycle, no defect found). Three files genuinely unread remain: `crawl_report.py`, `experiments.py`, `indexnow.py`.
+
+No price or product touched. `ops/service_orders.py`, `ops/tests/test_service_orders.py`, `ops/cold-read-ledger.json`, command deck. No new site page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (:10)
 
 PM check-in (:10): previous work was NOT finished at attach — the prior two pushes had red CI, and HEAD's own Checks run was still in_progress. Watched it through instead of assuming green: Preflight, the ops test suite and the copy-vs-catalogue check all passed on df12befe5 (37 min), confirming the indexation_check.py fix chain holds. Independently reran test_indexation_check.py, test_canonical_probe_urls.py, check_urls (211/211), audit_pages (215/0), affiliate --check, mobile npm test (all pass); local preflight clean through the known gate_tests hang. No mail credential. 9 open issues unchanged, all Phil-gated. Recorded a fresh cycle_signal snapshot. Handing the operator's own eight-file third-pass cold-read (crawl_report.py, experiments.py, indexnow.py, measure.js, service_orders.py, stripe_brand.py, wire_landmarks.py, check_integrations.py) back to :43, still unpicked.

@@ -763,8 +763,8 @@
     },
     "service_orders.py": {
       "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Residual crash bug from 2026-10-03's own fix: only IMAP4_SSL() was wrapped in try/except; login()/select()/search()/fetch() still sat in a bare try/finally with no except, so a bad password or a mid-session drop would still crash service_emails() and abort --send, aborting the forward of Virtual Home Consult / In-Home Reset Day / Corporate Lean 6S enquiries. Widened the try/except around the whole IMAP conversation so any failure returns None (unchecked). ops/tests/test_service_orders.py: new check_imap_mid_session_failure_does_not_crash, fail-then-pass proved by stashing the source fix (new test failed naming the crash), restoring (clean)."
+      "date": "2026-10-12",
+      "note": "third-pass cold-read, 2026-10-12: find_time() parsed a month-first ordinal date (Oct. 14th) but not the identical date day-first (14th October), so a customer naming a clear appointment in the more common day-first phrasing got no calendar invite and a 'no time could be read' forward instead. Fixed DATE_PATTERNS' day-first branch to accept an optional ordinal suffix and optional 'of', matching the leniency already given to the month-first branch. 2 new regression cases added to test_service_orders.py, fail-then-pass proved."
     },
     "ship.py": {
       "status": "clean",
