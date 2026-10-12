@@ -437,9 +437,9 @@
       "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, ran --stats, verified FREE_THROUGH_CHAPTER against the real shipped sample filename, no duplicate ids in corpus-rotation.json. No defect."
     },
     "crawl_report.py": {
-      "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Extended rather than merely read: it could say how many distinct paths crawlers fetched and never which of our own pages they had missed. sitemap_coverage() added; its first answer (210 of 211, naming the one page) corrected a hand-written grep pipeline that had said 211 of 211. ops/tests/test_crawl_sitemap_coverage.py, 5 checks, fail-then-pass proved. Finding recorded as LEARNINGS.md LRN-0036."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "cycle_signal.py": {
       "status": "clean",
@@ -473,8 +473,8 @@
     },
     "experiments.py": {
       "status": "clean",
-      "date": "2026-10-03",
-      "note": "Cold-read 2026-10-03, scheduled operator: Phil's own f5531bf58 added the /__ probe-path exclusion to umami_rows()/refuse_unsafe_sql() and all 7 pageview/people-counting queries. Verified by running test_umami_website_filter.py (13/13), including case_experiments_own_queries_satisfy_every_guard, which regex-scans every SQL literal in this file and runs it through the real refusal function, and case_the_repositorys_own_queries_would_pass, which scans every other ops/*.py for an unguarded website_event read. No defect found."
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "fill_front_matter.py": {
       "status": "fixed",
@@ -577,9 +577,9 @@
       "note": "Two real misclassification bugs fixed 2026-10-12 (classify() counted /zones/ and /articles/ hub pages as individual zone/article pages; _domain_urls() kept off-host URLs containing the domain as a substring, e.g. a Bing search-results URL). Both root-caused, fixed, 2 new regression tests added, re-verified independently by a PM cycle against the live ops/indexation.json (zone: 0, article: 1 is the real article not the hub page). Re-verified again 2026-10-12, scheduled operator, same day: that fix's own new literal path strings \"/zones/index.html\" and \"/articles/index.html\" tripped gate_no_redirecting_probe_urls/test_canonical_probe_urls.py, caught live on GitHub (Checks run 38234839106, FAIL), a static scan banning any ops/*.py source from spelling a URL production 301s with no exception for a comparison rather than a fetch (this file never actually requests that URL). Fixed by stripping a trailing /index.html before comparing instead of enumerating the banned literal; same classify() behavior proven by 12 direct cases plus both test files (test_canonical_probe_urls.py 7/7, test_indexation_check.py all pass), the global ops/*.py scan now clean (was 1 problem)."
     },
     "indexnow.py": {
-      "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Read for the IndexNow submission log's own shape, not line by line. Real defect found and fixed: content_hashes() hashed working-copy bytes, so CI (LF) and this workstation (core.autocrlf=true, CRLF) disagreed on every page and each alternation re-announced all 210 URLs. Measured first: 211 of 211 stored hashes matched a raw read, 1 matched an LF-normalised one. page_hash() now normalises, HASH_ALGO names the recipe, and --changed refuses to compare across recipes. ops/tests/test_indexnow_page_hash.py, 4 checks, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
       "status": "fixed",
@@ -622,9 +622,9 @@
       "note": "PM check-in cold read: re-read in full (146 lines). Credential loading correct (env wins over .env.secrets, never printed), owner() correctly refuses an address inside our own domain so a report cannot land back in support@ instead of the owner, connect() verifies TLS certs on both port 465 (implicit TLS) and STARTTLS paths. No defect found."
     },
     "measure.js": {
-      "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Fresh second-pass cold-read. page() classified by substring (indexOf), so /workshop-deck.html (contains 'shop') was mislabeled as the shop page in buy-click/outbound-click/quote-click/service-cta/free-download 'from' fields, folding that deck's clicks into the online store's own funnel numbers. Fixed to exact equality on /quest.html and /shop.html. New gate_measure_page_type_exact_match in preflight.py and probe H in test_measure_events.py, both fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "media_capability.py": {
       "status": "fixed",
@@ -937,9 +937,9 @@
       "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
     },
     "wire_landmarks.py": {
-      "status": "fixed",
-      "date": "2026-10-03",
-      "note": "Same finding as ops/preflight.py's 2026-10-03 entry: pages() globs site/**/*.html with no underscore-prefix skip, so ops/audit_catalog.py's transient _audit_catalog_fixture_<pid>.html failed --check as needing a skip link and main id. Fixed with the same local filter; test_wire_landmarks_check.py (4/4) and a live --check run (214 pages, clean) confirm."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "wire_legal_strip.py": {
       "status": "clean",
