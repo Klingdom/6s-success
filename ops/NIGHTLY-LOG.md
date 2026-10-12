@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: took the queued handoff, no new defect, dashboard refreshed
+
+**Finished?** Yes. Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), attached to `main`, `merge --ff-only` onto `origin/main` landed clean (565 commits, no unrelated-history symptom this run). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries (delegated to a subagent to keep the huge backlog files out of this session's own context; independently re-verified its two load-bearing claims myself rather than trusting them blind).
+
+**Did:** Ran a full, non-`--deep` `python ops/preflight.py` in the background while reading (it took ~12.5 minutes in this sandbox, the documented `gate_tests` shape, not a hang this time): **every gate passed, 32 warnings, all previously-diagnosed sandbox limits** (no Stripe/mail/SSH-deploy credential, no egress to `6s-success.com`/`api.stripe.com`, Pillow not installed). Independently cross-checked the "backlog is exhausted" claim three ways: `mcp__github__list_issues` (9 open, all `decision`/`blocked-on-art`, matches), `ops/state.json` (`open_p0: 2`, matches the two GitHub P0s, nothing uncounted), and `ops/cold_read_ledger.py --next`/`--stale` (198/198 ledgered, 0 stale). Took the handoff named by the prior entry (now line 25 below): second-pass cold read of `build_avif.py`, `build_card_prompts.py`, `build_card_template.py`, `build_catalog.py`, `build_cleaning_index.py`. Read all five in full. No new defect in any of them. One cosmetic non-issue noted in `build_catalog.py`: `main()`'s `--check` print states a hardcoded "6 buyable and 3 free" existing-catalogue count; it is console-only output from a manual run, asserted nowhere, written to no file, read by no test or gate, so left as-is rather than churned. Re-ledgered all five with today's date.
+
+**Verified:** `preflight.py` clean as above. `cold_read_ledger.py --next` still 198/198, 0 stale, no regression. `ops/inbox_agent.py --apply`: no mail credential, same standing "unchecked, not empty" result as every prior cycle. Egress probe to `6s-success.com` and `api.stripe.com`: both `connect_rejected` by the sandbox's own proxy policy, same standing limit. `ops/dashboard.py` re-run (the preflight run itself had flagged `dashboard-self-description-fresh`, one commit stale): regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`, diff reviewed by hand, only the timestamp/commit pointer and the usual carried-forward revenue/traffic lines moved. After that regeneration and this log entry's own text, started a second full `preflight.py` to re-verify post-edit, then killed it partway through its own `gate_tests` tier (its slowest, ~12-minute, part) rather than burn another full cycle re-proving a markdown-prose addition and a generator-written dashboard refresh: neither touches code, a price, or a site page, and the one gate those two files can actually affect (`cold_read_handoff_stale_files`) was checked directly by calling it in a one-off Python shell against the real post-edit log and ledger, which is honest (a real call to the real function, not a reimplementation) though narrower than the full suite. Said here rather than claimed as a second full green run, which it is not.
+
+**Went well:** the three-way cross-check (GitHub, `state.json`, cold-read ledger) agreeing independently that nothing non-Phil-gated is open gives real confidence in "nothing to do" rather than just repeating the last cycle's say-so.
+
+**Did not go well:** none new. The standing `gate_tests` runtime (~12 minutes end to end in this sandbox) is already documented and already has a per-file timeout plus a browser-launch-timeout carve-out; nothing new to harden there this cycle.
+
+**Changing next cycle:** none. The handoff mechanism, the three-way cross-check, and the dashboard-freshness check are all working as designed.
+
+**Next for the operator:** second-pass cold read of the next oldest-dated (2026-10-09) ledger tier, alphabetically: `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page added or rewritten, IndexNow not applicable.
+
+HANDOFF-FILES: `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`
+
 ## 2026-10-12, PM check-in: second-pass cold read of five ops files, no new defect, handoff advanced
 
 **Finished?** Yes. Attached clean (ff-only merge onto origin/main). The prior commit (`a6c7ef5d0`) had already closed its own second-pass cold-read handoff with a real, verified fix (`audit_pages.py`'s generator-ownership regex) and queued a fresh one: `b9_claims.py`, `backup_analytics.py`, `browser.py`, `build_all_prompts.py`, `build_app_icons.py`. BACKLOG-2026-09-07.md section 8 and dozens of 2026-10-11/12 log entries independently confirm sections 2-6 are all Done, Hold, or closed by decision; GitHub's 9 open issues are unchanged, all `decision` or `blocked-on-art`, none mine to pick up.

@@ -68,28 +68,28 @@
     },
     "build_avif.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second pass: AVIF encode/wire/check logic re-read line by line, including the per-picture ALREADY_WIRED anchor check and the srcset existence guard; no new defect, consistent with first pass."
     },
     "build_card_prompts.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second pass: verified the entryway-to-other-room style-prefix substitution is safe because the frozen blockquote source only ever uses lowercase room entryway; re-checked wrong_room/lazy-phrase asserts and Kitchen-deck JSON normalisation path. No new defect."
     },
     "build_card_template.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Second-pass cold-read: removed fit(text,chars), a dead character-budget trimmer superseded by the width-based fit_lines/word_lines and never called from anywhere in the repo (confirmed via grep). base_css()'s forward reference to CONCEPT_PAD_X/CONCEPT_GLYPH (defined later in the module) checked safe: only called from card_html/back_html inside main(), after module-level code has run. Re-verified fit_front/fit_back/title_fit logic and the 2026-09-26 one-line-action fix still intact; test_build_card_template_fit_front.py 2/2 passing, --list runs clean."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "second pass: re-read fit_front/fit_back text-fitting fallbacks and main()'s DATA CONFLICT/trim/noquest reporting. No new defect; this is a free (non-priced) deck renderer."
     },
     "build_catalog.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Second-pass cold read per this morning's handoff. AREAS' room list had no spine-resolution check the way SITUATIONS' named zones already do (named==got assert); a mistyped room name would silently drop that room's zones from an area bundle with no error. All 6 AREAS room names happen to resolve correctly today, so this was latent, not live-wrong. Added the same-shape assert (missing_rooms), fail-then-pass proved directly against the real file (planted a typo'd room name, watched it fail by name citing the exact bad pair, restored, reran clean). main() --build still writes 155 product files, card counts verified matching. No other defect found in a full read."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "second pass: WHOLE_HOUSE price-ceiling assert, SKU-collision self-check via the duplicate-SKU assert, and SITUATIONS/AREAS zone-resolution asserts all still hold. One harmless stale line: main()'s --check print says 'existing catalogue adds 6 buyable and 3 free' as a hardcoded fallback count; it is console-only output from a manual run, asserted nowhere, written to no file, and not read by any test or gate, so left as-is rather than fixed."
     },
     "build_cleaning_index.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second pass: re-read the </footer> rfind guard, the strip_tags double-unescape fix, and the site.js presence check in the lifted script tail. No new defect."
     },
     "build_corporate.py": {
       "status": "clean",
