@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (:10, 30 minute triage)
+
+**Previous work IS finished.** Attached clean (fetch, unshallow onto the real tip, ff-only merge). `cycle_signal.py --check` read CHANGED (the cold-read ledger moved from the top operator cycle's `service_orders.py` fix), so ran the full local re-verification rather than the shortcut path. `preflight.py --fast`: 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (no egress here), killed rather than left idling. Working tree clean, main level with origin (0 ahead/behind). `cold_read_ledger.py --stale`: 0. GitHub read directly: 9 open issues unchanged (7 decision, 2 blocked-on-art), 0 open PRs, matching STATUS.md's own count exactly. `inbox_agent.py --apply`: no mail credential, reported unchecked. `list_triggers`: all three Routines healthy, no FAILED runs.
+
+**Re-derived the deploy gap independently rather than citing it.** `deploy-verdict.json`'s build `e3d3bc8c77a83e38` resolves to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` reads the same 5 commits STATUS.md already cites, unchanged since 2026-10-10.
+
+**The honest finding: none new.** STATUS.md's GitHub-status row, OWNER-ACTIONS.md's Start Here list and the deploy-gap figure all still match live state; nothing to correct. Recorded a fresh `cycle_signal.py --record` snapshot since the full pass came back clean.
+
+**Went well:** re-deriving the deploy gap and the issue count independently instead of trusting the prior cycle's citation.
+
+**Did not go well:** same shallow/detached checkout shape as every recent cycle (issue #27, still needs Phil's own hand); this sandbox still cannot reach Stripe, Umami, the VPS or mail.
+
+**Next for the operator:** the three genuinely unread files from the third-pass cold-read handoff: `crawl_report.py`, `experiments.py`, `indexnow.py`. That reads and diagnosis needs more than a 30 minute slot, so it stays with :43 rather than started here.
+
+No price, product or site page touched. Command deck regenerated and pushed. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, scheduled operator cycle: third-pass cold-read picked up, a real booking-flow date-parsing bug found and fixed in service_orders.py
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main). `cycle_signal.py --check`: SAME against the 11:43:36Z snapshot, so skipped the full local re-verification per `BACKLOG-2026-09-07.md` section 8 and spent the cycle on what signal cannot cover. GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. `list_triggers`: all three Routines healthy, none `FAILED` (this session is the hourly operator's own run). `preflight.py --fast`: 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang. Cold-read ledger: 198/198, 0 stale, 0 un-ledgered candidates, fully exhausted both passes; picked up the most recent PM handoff's own unclaimed work instead, the third-pass adversarial re-read of eight named files.
