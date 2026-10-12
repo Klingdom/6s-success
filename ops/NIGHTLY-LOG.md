@@ -30,6 +30,30 @@ Pushed to main. `ops/build_image_prompts.py`, `ops/preflight.py` (new gate), `op
 
 HANDOFF-FILES: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`
 
+## 2026-10-12, PM check-in (:40 slot, running late to :43 because of a slow unshallow fetch): previous work reconfirmed finished, same cold-read handoff reaffirmed for the operator, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`, because that is the same oldest-unreverified ledger tier the prior PM check-in already handed over 20 minutes ago, still untouched, and nothing higher-ranked is genuinely unblocked.
+
+**Finished?** Yes. The checkout arrived shallow and detached (standing issue #27 shape); the unshallow fetch ran unusually slowly in the background (~4 minutes, `index-pack` on a large pack) but completed clean, `checkout main` then `merge --ff-only` onto `origin/main` landed with no conflict, working tree clean. HEAD (`ce281016c`) is this session's own prior PM check-in from the :20 slot, which already reconfirmed the EPUB-date fix and the ledger/dashboard staleness a concurrent cycle closed; nothing has pushed since, re-fetched just before writing this entry to confirm `origin/main` had not moved underneath this run.
+
+**Re-verified rather than cited:** `mcp__github__list_issues` returns the same 9 open issues (2 `P0`: #15 Listmonk decision, #2 card-art regeneration; the rest `decision` or `blocked-on-art`), matching every prior cycle today; none is mine to pick up per CLAUDE.md 0.5. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 20:20) unchanged: still YELLOW, still the one production-deploy constraint (repository at build `9a2477bcdfe5b6c2`, live confirmed at `e3d3bc8c77a83e38`), still owner-gated on the Hostinger redeploy button, not something this sandbox can execute. Skimmed `BACKLOG-2026-09-07.md` sections 2 to 5 (micro zones/web app, decks, images/video, held items): nothing flagged as newly unblocked since the 7 Sept reprioritisation: every live row there is either already shipped this week, waiting on 21-day read windows by design, or Phil-gated.
+
+**Ran a full (non-`--deep`) `preflight.py` in the background rather than skip it**: 0 FAIL through every gate up through the deck-render and image-coverage tiers; `gate_tests` was still running when this entry was written (its documented ~12-minute tail in this sandbox), reported as unchecked, not passing, per CLAUDE.md 0.4.
+
+**Did not start the queued handoff myself** (a genuinely-careful, hours-scale read of five generator files): this slot's own rule is to leave anything needing hours to the :43 operator rather than skim it badly in a 30-minute triage window, doubly so this cycle since the slow unshallow pushed the actual working time well past the usual budget.
+
+**Went well:** catching the slow background unshallow (`index-pack` still running under a stale lock) rather than fighting it or deleting `.git/shallow.lock`, which would have corrupted the fetch in progress.
+
+**Did not go well:** the unshallow fetch cost most of this slot's time budget, pushing this check-in to land at the operator's own :43 slot instead of ahead of it. `git fetch origin main` re-confirmed before writing that nothing collided in that window.
+
+**Changing next cycle:** none; the git-attach delay was this run's own network variance, not a defect in the attach procedure.
+
+**Handing the operator (:43):** the same queued cold-read handoff, still untouched: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`
+
 ## 2026-10-12, PM check-in: previous work finished, found a real small defect already fixed by a concurrent cycle, nothing left to do but reconfirm
 
 **Finished?** Yes. Checkout arrived shallow and detached (the standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean. The prior cycle's own EPUB-date fix (`4f6932e82`) was pushed, and both PM check-ins since (19:1x, 19:4x) had already reconfirmed it. Re-confirmed again here: GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5).
