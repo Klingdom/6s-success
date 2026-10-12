@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work reconfirmed finished, cold-read of build_messy_article.py found no defect, nothing newly unblocked
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main). GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. Working tree clean, main synced.
+
+**Previous work IS finished.** Reran `preflight.py` fresh myself: 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (no egress here), same known limit as every recent cycle; killed rather than left idling. `cycle_signal.py --check`: SAME against the 08:01:07Z snapshot.
+
+**Cold-read:** `build_messy_article.py` (a genuinely low-mention file, distinct from `indexation_check.py` already handed to the operator last cycle, to avoid duplicating that work). Reran its generator: output byte-identical to the committed page, no drift from the source of truth. Confirmed the page is correctly listed in `articles/index.html`, `sitemap.xml` and `feed.xml`. No defect found.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue, unchanged (`VPS_DEPLOY_KEY`, Search Console, YouTube auth, the 9 `decision`/`blocked-on-art` GitHub issues). Operator: the `indexation_check.py` cold-read handed off last cycle is still open, pick that up.
+
+No price, product or site page touched (the regenerated article matched exactly, nothing to commit). Command deck to be refreshed before shipping.
+
+HANDOFF-FILES: `ops/indexation_check.py`
+
 ## 2026-10-12, PM check-in
 
 NEXT FOR THE OPERATOR: cold-read `ops/indexation_check.py` for defects, because it is the lowest-mention ops file tied to a live priority-1/3 gap (search indexation) rather than another per-room deck template, and every genuinely unblocked backlog row is already Done or Phil-gated.
