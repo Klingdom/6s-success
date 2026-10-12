@@ -223,13 +223,13 @@
     },
     "build_microzone_coverage.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "build_mobile_corpus.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "build_mudroom_deck_page.py": {
       "status": "clean",
@@ -263,18 +263,18 @@
     },
     "build_printpack.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "build_product_schema.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "build_pwa.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "build_quest.py": {
       "status": "clean",

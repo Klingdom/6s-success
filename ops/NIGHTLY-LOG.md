@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: took the queued cold-read handoff, five files regenerate-and-diff clean, no new defect
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 585 commits, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2), `ROADMAP-2026-2029.md`'s ordering, `CLAUDE.md`, `OWNER-ACTIONS.md`'s "start here" items and the last four log entries before picking anything. GitHub's 9 open issues unchanged (2 `P0`: #15 Listmonk decision, #2 card-art regeneration; the rest `decision`/`blocked-on-art`), none mine per CLAUDE.md 0.5. `ops/inbox_agent.py --apply`: no mail credential (standing). `ops/affiliate.py --check`: clean, 165 documents.
+
+**Took the queued handoff**: second-pass cold read of `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`. All five read clean on a full logic pass, not only a skim: checked `build_microzone_coverage.py`'s per-field sub-item counting against the real shapes in `content.json` (passes/leave_behind/the_call are dicts, watch_for a list, `_base_sub`/`_sub` handle both correctly); checked `build_product_schema.py`'s image-URL rule against `site.js`'s own `imgSrc()` (identical "has a slash" branch, so no schema 404 risk); checked `build_pwa.py`'s service-worker fetch handler's cache-first branch against the real fingerprint-query convention (`?v=` catches CSS/JS, the extension regex catches images/fonts, nothing falls through unglued).
+
+**Regenerated and diffed every one of the five against its committed output, the same proof every prior cycle on this tier has used**: `build_microzone_coverage.py` against `STRATEGY-MICROZONES.md` (100.0%, 20 rooms complete, byte-identical), `build_mobile_corpus.py --check` (114 zones, 684 cards, matches), `build_printpack.py` against `build/6S-Whole-House-Print-Pack.html` (684 cards, byte-identical), `build_product_schema.py` against `site/shop.html`/`consulting.html` (131 products described, every price matches the catalogue, byte-identical), `build_pwa.py` against `site/sw.js`/`manifest.webmanifest` (byte-identical). All five are already on `ops/preflight.py`'s protection list (`GENERATOR_OWNERSHIP_CHAIN` for the first four, `gate_mobile_corpus_current` for the fifth), confirmed by reading that mapping directly rather than assuming it.
+
+**No defect found.** Ledger updated for all five (`ops/cold_read_ledger.py --add ... --status clean`, today's date). Next for the operator: the next oldest-dated tier, `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`.
+
+**Verified:** ran a full (non-`--deep`) `preflight.py` in the background while doing the above; it completed before this entry was written (not left unchecked): `EXIT:0`, every gate passed, 32 warnings, all the standing environment-access kind (no Stripe credential, no SSH key for analytics/deploy, no network reach to 6s-success.com, 2 tests that cannot execute here, several cron cadences GitHub throttles, the self-correcting `hooks-enabled` one) plus the expected `cold-read-handoff-not-stale` and `dashboard-self-description-fresh` warnings that this entry's own commit resolves. `ops/cycle_signal.py --check` correctly reported CHANGED (only `ops/cold-read-ledger.json`), so the real preflight ran rather than being skipped; `--record` taken immediately after on the clean result.
+
+**Went well:** the cold-read tier keeps paying for itself even on a clean pass, because the only way to know a generator's regenerate-and-diff gate is still doing its job is to actually run it, not read its docstring and trust the last note.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; the handoff mechanism, the gates and the signal tool all worked as designed.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable (no site page changed).
+
+HANDOFF-FILES: `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`
+
 ## 2026-10-12, PM check-in: previous work finished and verified, full re-verification run and signal re-recorded, nothing new unblocked
 
 **Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. HEAD (`5f6819e`) is the operator's own prior cycle: fixed and gated the two `build_image_prompts.py` defects (the falsy `--tier 0` filter and the stale British-spelling prompt files), then the command deck refresh after the merge. `ops/cycle_signal.py --check` reported CHANGED (`BACKLOG-2026-09-07.md` and `ops/cold-read-ledger.json`, both touched by that fix), so ran the real full re-verification rather than skip it, per that tool's own documented contract.
