@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work finished and verified, full re-verification run and signal re-recorded, nothing new unblocked
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. HEAD (`5f6819e`) is the operator's own prior cycle: fixed and gated the two `build_image_prompts.py` defects (the falsy `--tier 0` filter and the stale British-spelling prompt files), then the command deck refresh after the merge. `ops/cycle_signal.py --check` reported CHANGED (`BACKLOG-2026-09-07.md` and `ops/cold-read-ledger.json`, both touched by that fix), so ran the real full re-verification rather than skip it, per that tool's own documented contract.
+
+**Ran `preflight.py` in full (not just fast) in the background while doing everything else.** Result: every gate passed, 0 FAIL, 31 warnings, all the standing environment-access kind (no Stripe credential, no SSH key for analytics/deploy, no network reach to 6s-success.com, 2 tests that cannot execute here, cron cadences GitHub throttles) and the self-correcting `hooks-enabled` one that fixes itself each time it fires. `cycle_signal.py --record` run immediately after, now SAME.
+
+**Re-verified rather than cited:** GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`), none mine to pick up per CLAUDE.md 0.5. `ops/inbox_agent.py`: no mail credential, confirmed directly, reported unchecked not empty. `ops/affiliate.py --check`: clean, 165 documents. Read `BACKLOG-2026-09-07.md` sections 2 to 4 (rows A1 through A26, B1 onward, through the images/video section) end to end rather than trusting the last cycle's "all done" claim: every row is still Done or Phil-gated, nothing newly unblocked. Confirmed `git log HEAD..origin/main` empty twice (before and after this work) so nothing collided underneath this cycle.
+
+**Did not start new work.** Nothing in sections 2 to 6 is genuinely unblocked and non-Phil-gated; the operator's own fresh cold-read handoff (`build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`) is hours-scale, correctly left for the :43 operator rather than skimmed in a 30-minute slot. `preflight.py`'s own `cold-read-handoff-not-stale` warning confirms that handoff is still current, not stale.
+
+**Went well:** running the full re-verification rather than a fast-only pass, since `cycle_signal.py` correctly flagged the prior cycle's own file changes as needing it; recording a fresh signal snapshot immediately so the next cycle (PM twin at :40 or the :43 operator) can legitimately skip the redundant repeat if nothing moves before then.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; the signal tool worked exactly as designed.
+
+**Handing the operator (:43):** the same cold-read handoff, unchanged: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`.
+
+Pushed to main. `ops/cycle-signal.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`
+
 ## 2026-10-12, scheduled operator cycle: took the cold-read handoff, found and fixed two real defects in build_image_prompts.py, gated
 
 **Finished?** Yes. Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 575 commits, no unrelated-history symptom. `ops/cycle_signal.py --check` reported CHANGED (only `ops/cold-read-ledger.json`, a low-risk bookkeeping row), so ran the real verification rather than skip it. GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine to pick up per CLAUDE.md 0.5). `ops/inbox_agent.py --apply`: no mail credential, standing. `ops/affiliate.py --check`: clean, 165 documents.
