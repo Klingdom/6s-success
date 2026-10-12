@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (:40 slot, arrived at :43 alongside the operator): previous work reconfirmed finished, same cold-read handoff reaffirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`, because that is the queued handoff the prior PM cycle already verified as current and nothing has changed underneath it.
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main` (`cca05d9e`), no unrelated-history symptom this cycle. `ops/cycle_signal.py --check` reported SAME against the snapshot the immediately prior PM cycle recorded at 21:26:16Z (git `5f6819e`): every tracked signal file (`BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`, the cold-read ledger, the deploy verdict) is byte-identical, so a full local re-derivation of those would be redundant per that tool's own documented contract. Did not skip the parts the tool does not cover: GitHub's 9 open issues checked directly, unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5); `inbox_agent.py --apply` confirmed no mail credential, reported unchecked not empty.
+
+**Preflight:** ran `--fast` directly; it reached `gate_tests` and sat there past two minutes with CPU idle, the same documented sandbox hang prior cycles have logged repeatedly. Left it running in the background rather than killing it, but this entry reports that tail as **unchecked, not passing**, per CLAUDE.md 0.4, since the run did not finish before this slot's own :43 deadline. Every gate before it ran and passed (fast path reaches `gate_image_coverage` immediately ahead of `gate_tests`), and the immediately prior cycle's own full preflight (21:26Z) was 0 FAIL with 31 standard env-access warnings against this same unchanged tree, which is the closest available evidence the tests tier is still clean, not a substitute for actually re-running it.
+
+**Did not start new work.** Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is newly unblocked (confirmed unchanged by the signal match); the handoff is hours-scale and correctly left for the operator rather than skimmed in this slot, per this routine's own instruction not to start something large here.
+
+**Went well:** trusting `cycle_signal.py`'s SAME result instead of re-reading the full backlog a cycle after it was already read in full; being explicit that the preflight tests tier is unverified this cycle rather than citing the prior clean run as if it were this run.
+
+**Did not go well:** `gate_tests` hung again in this sandbox; same standing limitation, no new information.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`
+
 ## 2026-10-12, PM check-in: previous work finished and verified, full re-verification run and signal re-recorded, nothing new unblocked
 
 **Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. HEAD (`5f6819e`) is the operator's own prior cycle: fixed and gated the two `build_image_prompts.py` defects (the falsy `--tier 0` filter and the stale British-spelling prompt files), then the command deck refresh after the merge. `ops/cycle_signal.py --check` reported CHANGED (`BACKLOG-2026-09-07.md` and `ops/cold-read-ledger.json`, both touched by that fix), so ran the real full re-verification rather than skip it, per that tool's own documented contract.
