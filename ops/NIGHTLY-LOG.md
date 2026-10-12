@@ -28,6 +28,12 @@ No price, product or site page touched. `STATUS.md`, command deck (`EXECUTIVE-DA
 
 HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `service_orders.py`, `stripe_brand.py`, `wire_landmarks.py`, `check_integrations.py`
 
+## 2026-10-12, PM check-in (:10)
+
+PM check-in (:10): previous work was NOT finished at attach, the prior two pushes had red CI, and HEAD's own Checks run was still in_progress. Watched it through instead of assuming green: Preflight, the ops test suite and the copy-vs-catalogue check all passed on df12befe5 (37 min), confirming the indexation_check.py fix chain holds. Independently reran test_indexation_check.py, test_canonical_probe_urls.py, check_urls (211/211), audit_pages (215/0), affiliate --check, mobile npm test (all pass); local preflight clean through the known gate_tests hang. No mail credential. 9 open issues unchanged, all Phil-gated. Recorded a fresh cycle_signal snapshot. Handing the operator's own eight-file third-pass cold-read (crawl_report.py, experiments.py, indexnow.py, measure.js, service_orders.py, stripe_brand.py, wire_landmarks.py, check_integrations.py) back to :43, still unpicked.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, scheduled operator (unshallow attach, cycle-signal SAME, a live CI failure found and fixed on today's indexation_check.py change)
 
 **Did:** Checkout arrived shallow and detached (STEP 0's own documented shape); unshallowed and fast-forwarded onto `origin/main` cleanly, 515 commits. `ops/cycle_signal.py --check` read SAME against the snapshot recorded 2026-10-12T08:01:07Z, so per `BACKLOG-2026-09-07.md` section 8 skipped the full backlog re-read and `preflight.py`'s multi-minute `gate_tests` pass, and spent the cycle on the external checks that signal cannot cover instead. GitHub: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `affiliate.py --check`: clean, 165 documents.
