@@ -12,11 +12,41 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Changing next cycle:** none.
 
-**Next:** same standing Phil-gated queue, unchanged (`VPS_DEPLOY_KEY`, Search Console, YouTube auth, the 9 `decision`/`blocked-on-art` GitHub issues). Operator: the `indexation_check.py` cold-read handed off last cycle is still open, pick that up.
+**Note while resolving this cycle's merge conflict against the operator's own push:** the `indexation_check.py` cold-read handed off last cycle is done, not still open. The concurrent operator cycle picked it up and fixed two real misclassification bugs (zone/article index pages and off-domain URLs wrongly counted as confirmed-indexed); that entry follows this one below.
+
+**Next:** same standing Phil-gated queue, unchanged (`VPS_DEPLOY_KEY`, Search Console, YouTube auth, the 9 `decision`/`blocked-on-art` GitHub issues). Nothing newly unblocked for the next operator slot; pick a fresh low-mention cold-read target.
 
 No price, product or site page touched (the regenerated article matched exactly, nothing to commit). Command deck to be refreshed before shipping.
 
-HANDOFF-FILES: `ops/indexation_check.py`
+HANDOFF-FILES: none
+
+## 2026-10-12, scheduled operator cycle: fixed two real indexation_check.py misclassification bugs, PM handoff
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto origin/main, re-synced once more mid-cycle onto a concurrent PM check-in's push, 511 commits). That PM check-in's own handoff named the work: cold-read `ops/indexation_check.py`, the lowest-mention file tied to a live, unresolved priority question (GOALS.md O1: has any individual zone page ever been confirmed indexed).
+
+**Read the file end to end rather than trust its own docstring's "HOW IT REFUSES TO LIE" section, then checked its actual committed output against it.** Two real defects, both confirmed against the live `ops/indexation.json` on disk, not guessed:
+
+1. `classify()` matched `/zones/` and `/articles/` (the sitemap's own hub/listing pages for those sections) by the same substring rule as an individual zone or article page. The ledger's only "zone" entry, ever, was `https://6s-success.com/zones/` itself: the listing page, not a diagnostic zone page. `ops/INDEXATION.md` read "zone: 1" and named `/zones/` under "Zone pages confirmed indexed at least once", stating the exact opposite of the true, still-open answer this file exists to give. Same shape hit `/articles/`.
+
+2. `_domain_urls()` kept any URL containing our domain as a text substring anywhere, not just URLs actually hosted on it. `http://www.bing.com:80/search?q=site%3a6s-success.com`, Bing's own link to its own search-results page carrying our query string, was sitting in "confirmed" permanently, and being additive-only, would have stood as a future trusted canary: a later run could have "proven" it was not blocked by reproducing Bing's own search box link to itself.
+
+**Fixed both at the root.** `classify()` now special-cases the three index-page spellings per section before the substring check, returning "other" (the same bucket the home page's own listing role already gets). Added `_is_our_host()`, checking the actual parsed netloc against the domain (exact or subdomain), and both `_domain_urls()` regex passes now require it before keeping a candidate URL. Added 2 new test cases to `ops/tests/test_indexation_check.py` for each bug; proved both would have caught the regression by stashing the fix and re-running (AttributeError / real failure), then restored it. Re-ran the ledger's own `classify()` over every already-committed URL and dropped the one non-our-host entry; `ops/INDEXATION.md` now correctly reads "zone: 0" and states plainly, in the tool's own designed fallback language, that no individual zone page has ever been confirmed indexed, which is the true, still-open state of GOALS.md O1.
+
+**Verified:** `test_indexation_check.py` and `test_gate_indexation_check_not_stale.py` both pass (the staleness gate is untouched by this fix, confirmed by reading it, since it only checks `checked_at` age). `--dry-run` and `--status` both still behave correctly against the corrected classify(). `check_urls.py` (211/211), `audit_pages.py` (215/0), `fix_dashes.py --check` (0/0). Checked `ops/preflight.py` and `ops/dashboard.py` for any other reader of indexation.json's section counts that might assert a value my fix changes: only `gate_indexation_check_not_stale`, which checks staleness alone, not counts. `GOALS.md`'s own O1 narrative already said "no zone page appeared... suggestive and not evidence", so it was not citing the wrong figure and needed no correction.
+
+**Verified independently rather than inherited, same as every cycle today:** GitHub read directly (9 open issues unchanged, all decision/blocked-on-art, 0 PRs). Network egress re-tested with curl against Stripe, the live site and google.com: all three still rejected by the sandbox proxy (organization policy), consistent with every recent cycle.
+
+**Went well:** the PM check-in's handoff pointed at a real, fixable defect instead of another "nothing found" cycle; opening the actual committed ledger rather than stopping at reading the source caught the bug live rather than theoretically.
+
+**Did not go well:** this is a second confirmed instance of the "generator output was never re-derived from a fix" class BACKLOG-2026-09-07.md section 7 names as dominant, just upstream of it this time: the bug was in the generator itself, which then wrote a wrong artifact every run since this file was built 2026-10-03, unnoticed because nobody had opened the actual committed `.json`/`.md` against the sitemap until this cycle.
+
+**Changing next cycle:** none; the two new test cases are the gate, proven to fail on the regression and pass on the fix.
+
+**Next:** same standing Phil-gated queue, unchanged: OWNER-ACTIONS.md "Start here" (item 0 VPS_DEPLOY_KEY, item 1a/2 Search Console, item 1 YouTube auth), and the 9 open decision/blocked-on-art GitHub issues.
+
+No price or product touched. `ops/indexation_check.py`, `ops/tests/test_indexation_check.py`, `ops/indexation.json`, `ops/INDEXATION.md`, command deck. No new site page, IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 ## 2026-10-12, PM check-in
 

@@ -111,8 +111,22 @@ def classify(url: str) -> str:
     without any network, and it is also the one thing worth getting
     deliberately wrong-proof, since misclassifying a zone page as "other"
     would quietly hide the exact answer this file exists to give.
+
+    The opposite lie is just as real and was found live in ops/indexation.json
+    on 2026-10-12: `/zones/` and `/articles/` are themselves sitemap entries
+    (the hub/listing page for that section, not one of its content pages), so
+    a plain substring check classified the zones index page as a confirmed
+    INDIVIDUAL zone page, which is exactly the claim this file exists to
+    answer honestly. It was the only entry ever in the "zone" bucket; the
+    true answer (no individual zone page has ever been confirmed indexed)
+    read as "1" instead. A hub page is "other", same as the home page's own
+    listing role, never the section it lists.
     """
     path = urllib.parse.urlsplit(url).path
+    if path in ("/zones/", "/zones/index.html", "/zones"):
+        return "other"
+    if path in ("/articles/", "/articles/index.html", "/articles"):
+        return "other"
     if "/zones/" in path or path.startswith("/zones/"):
         return "zone"
     if "/rooms/" in path or path.startswith("/rooms/"):
@@ -132,12 +146,32 @@ def _fetch(url: str) -> tuple[int, str]:
         return resp.status, resp.read().decode("utf-8", "replace")
 
 
+def _is_our_host(url: str) -> bool:
+    """True only if url's actual host is our domain (or a subdomain of it).
+
+    Found live in ops/indexation.json on 2026-10-12:
+    http://www.bing.com:80/search?q=site%3a6s-success.com was sitting in the
+    "confirmed" ledger, permanently, because the domain name only ever
+    needed to appear SOMEWHERE in the url text to be accepted. Bing's own
+    canonical link to its own search-results page carries our query
+    (`site:6s-success.com`) in its query string, which is our domain as a
+    substring of a bing.com URL, not a URL on our domain. Worse than noise:
+    once merged it becomes a trusted canary, so a future run could "pass"
+    the anti-lie check by reproducing Bing's own search-box link to itself,
+    which has nothing to do with whether our pages are indexed.
+    """
+    host = urllib.parse.urlsplit(url).netloc.split(":")[0].lower()
+    return host == DOMAIN or host.endswith("." + DOMAIN)
+
+
 def _domain_urls(text: str) -> list[str]:
     """Every absolute http(s) URL on our own domain found anywhere in text,
     in first-seen order, deduplicated. Deliberately permissive about where
     it looks (HTML href, DuckDuckGo's uddg= redirect wrapper, RSS <link>)
     rather than tied to one engine's markup, since both engines' responses
-    get pushed through this same function.
+    get pushed through this same function. Every candidate is still checked
+    against _is_our_host() before being kept: finding the domain name as
+    text is only step one, the url's actual host is what decides.
     """
     out, seen = [], set()
     # Raw occurrences, including inside a DuckDuckGo redirect wrapper
@@ -146,12 +180,12 @@ def _domain_urls(text: str) -> list[str]:
         decoded = urllib.parse.unquote(m.group(0))
         if DOMAIN in decoded:
             url = decoded.split("&")[0]
-            if url not in seen:
+            if url not in seen and _is_our_host(url):
                 seen.add(url)
                 out.append(url)
     for m in re.finditer(r"https?://[^\s\"'<>]*" + re.escape(DOMAIN) + r"[^\s\"'<>]*", text):
         url = m.group(0).rstrip(").,;")
-        if url not in seen:
+        if url not in seen and _is_our_host(url):
             seen.add(url)
             out.append(url)
     return out
