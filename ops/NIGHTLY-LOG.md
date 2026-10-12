@@ -2,6 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (00:4x UTC cycle)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md's
+"Start here" items, GitHub's 9 open issues), because both discovery lanes
+stay exhausted and nothing has changed since the 00:1x check-in.
+
+Previous work reverified, this time stronger than a local citation: CI's own
+"Checks" run on the current head (c81c62876) ran its Preflight step to full
+completion (00:17-00:39) and passed, not just a local run hitting the
+documented gate_tests sandbox hang. `cycle_signal.py --check` still SAME.
+GitHub's 9 open issues read live, unchanged (6 decision, 2 blocked-on-art, 0
+PRs, no new comment); all scheduled workflows on the latest push green.
+`fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0,
+`check_urls.py` 211/211. `inbox_agent.py --apply`: no mail credential,
+UNCHECKED not assumed empty. No new defect, nothing newly unblocked. This is
+a 30-minute slot three minutes before the operator; not starting anything
+large.
+
+Regenerated and shipped the dashboard, as required every run. No code,
+price, product or page touched.
+
 ## 2026-10-12, PM check-in (00:1x UTC cycle)
 
 Previous work finished: `ops/cycle_signal.py --check` returns SAME against the
