@@ -2,6 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (01:4x UTC cycle), correction: the backgrounded preflight was not actually stuck
+
+The entry below reported the full `preflight.py` run as UNCHECKED past the
+`gate_tests` sandbox hang because it was still running, with no CPU
+movement, when this cycle shipped. It was not permanently stuck: it later
+completed on its own with exit code 0, every gate passed, 30 warning(s),
+the same standing set documented across dozens of prior cycles (no Stripe
+credential, no mail credential, no VPS SSH key, no egress to the live
+site), nothing new among them. This independently confirms the
+00:59:26Z snapshot `cycle_signal.py` was trusting, rather than leaving it
+as a citation that was never actually checked this cycle. No new defect
+found. Correcting the record now rather than letting a stale UNCHECKED
+note stand, per the rule that unchecked is not the same as failed and
+both deserve to be reported accurately.
+
 ## 2026-10-12, PM check-in (01:4x UTC cycle)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md's
