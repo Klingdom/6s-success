@@ -93,18 +93,18 @@
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: generator reads clean against its own asserts, no defect found"
     },
     "build_corporate_asset.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: no defect found; SCORE_ROWS_PER_SHEET name is reused as sheet-count, confusing but not a behavior bug"
     },
     "build_cover.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: no defect found"
     },
     "build_deck_gallery.py": {
       "status": "clean",
@@ -113,8 +113,8 @@
     },
     "build_deck_pdf.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: no defect found, duplex mirroring logic verified correct"
     },
     "build_dining_room_deck_page.py": {
       "status": "clean",
@@ -127,9 +127,9 @@
       "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_epub.py": {
-      "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "status": "fixed",
+      "date": "2026-10-12",
+      "note": "third-pass cold read, 2026-10-12 scheduled operator cycle: EDITION_DATE constant stuck at 2026-09-11 since introduction despite 6 real content commits through 2026-10-01 local / 2026-10-02 UTC (British spelling, book.css dedupe, chapter 44-49 room-mislabel fix); committed epub was byte-identical to a fresh regen (no build drift) but dc:modified understated the last real change by 3 weeks. Bumped to 2026-10-02 (the commit's own UTC date, not its -06:00 local date). Added gate_epub_edition_date_current to ops/preflight.py, proved it fails red against the original stale date and passes clean against the fix"
     },
     "build_family_room_deck_page.py": {
       "status": "clean",

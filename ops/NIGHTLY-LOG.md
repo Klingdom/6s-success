@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: a real, previously-missed EPUB metadata defect found, fixed, and gated
+
+**Finished?** Yes. Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 572 commits, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several log entries. Confirmed directly, not cited: GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine to pick up); `ops/deploy-verdict.json` resolves to 5 undeployed commits, same standing owner-gated deploy gap as the prior cycle's own figure, nothing newly material. `ops/inbox_agent.py --apply` and `ops/affiliate.py --check`: no mail credential (standing), affiliate rules pass (165 documents, no link, correct disclosure). Ran a full `preflight.py` in the background on the untouched tree first: clean, 0 FAIL, 31 warnings, all previously-diagnosed sandbox limits.
+
+**Took the queued handoff**: second-pass cold read of `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`. Four read clean. **The find, in `build_epub.py`:** `EDITION_DATE`, the hand-maintained constant for the EPUB's `dcterms:modified`, had been `"2026-09-11"` since it was introduced that day and never bumped, despite six real content commits landing in `content/book/` through 2026-10-01 (British-spelling fixes, a `book.css` dedupe, and the chapter 44-49 wrong-room mislabel fix). A fresh regenerate-and-diff of `build/6S-Success-Home-Edition.epub` against the committed file was byte-identical (no build drift; `gate_generator_ownership` already covers that), so the only defect was the date itself silently understating the book's own last real change by three weeks to any retailer reading it.
+
+**Fixed:** bumped to `2026-10-02`, not `2026-10-01`. The newest of those six commits is dated 2026-10-01 in the committer's own local Denver time (-06:00) but 2026-10-02T03:24:01Z in UTC, and the constant is written as an explicit Z-suffixed instant, so the UTC date is the correct one. Rebuilt; the only byte difference anywhere in the unzipped EPUB is the one `dcterms:modified` line.
+
+**Gated it**, per step 10b: new `gate_epub_edition_date_current` in `ops/preflight.py`, compares the constant against `content/book/`'s own latest commit by UTC calendar date (not mtime, not a bare epoch comparison, which a first draft of this gate got wrong against the exact local/UTC day-boundary case that caused the original bug). Proved it can fail: reverted the constant to the stale value by hand, confirmed the gate turns red, restored the fix, confirmed it goes clean again. Registered in `main()` next to its sibling `gate_cover_author_current`, same shape.
+
+**Verified:** both edited files parse clean (`ast.parse`). Ledger updated for all five handed-off files with today's date. `ops/dashboard.py` regenerated (revenue/traffic carried forward, nothing new to report there). Did not re-run the full, slow `gate_tests` tier a second time after this edit: the change is isolated to one non-site Python file plus the one generated artifact it protects, already verified directly against the real function and a real before/after rebuild, which is honest if narrower than a second full suite run.
+
+**Went well:** the handoff mechanism surfaced a real defect a prior second-pass read had marked clean, the exact "stale findings" risk CLAUDE.md 5d warns about, caught here by actually running the generator and diffing rather than re-reading the source and trusting the old ledger note. The gate's first draft (plain epoch comparison) would have been wrong in a way that happened to still fail today for the right reason but for a subtly incorrect one; caught before committing by checking the exact commit timestamp rather than assuming `git log --date=short`'s local-time display was the whole story.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; the handoff mechanism and the new gate are both working as designed.
+
+**Next for the operator:** second-pass cold read of the next oldest-dated tier: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`.
+
+Pushed to main. `ops/build_epub.py`, `ops/preflight.py` (new gate), `build/6S-Success-Home-Edition.epub`, `ops/cold-read-ledger.json`, command deck. No price or product touched, no site page added or rewritten. IndexNow not applicable (no site page changed).
+
+HANDOFF-FILES: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`
+
 ## 2026-10-12, PM check-in (19:1x slot): previous work reconfirmed finished by independent re-derivation, nothing new unblocked, cold-read handoff left for the operator
 
 **Finished?** Yes, checked rather than cited. Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` landed clean, 569 commits, no unrelated-history symptom this run, working tree clean before and after.

@@ -7121,6 +7121,62 @@ def gate_cover_author_current() -> None:
              f"the Liberation fallback fonts, not only on Phil's machine.")
 
 
+def gate_epub_edition_date_current() -> None:
+    """build_epub.py's EDITION_DATE must not predate content/book/'s own last
+    real commit, the same shape as gate_cover_author_current just above.
+
+    Found 2026-10-12: EDITION_DATE had been "2026-09-11" since the constant
+    was introduced that day, but six real content commits landed in
+    content/book/ between then and 2026-10-01 (British-spelling fixes, a
+    book.css dedupe, and the chapter 44-49 wrong-room mislabel fix) and
+    nobody bumped it for any of them. build/6S-Success-Home-Edition.epub was
+    already a byte-identical regenerate of the tree (gate_generator_ownership
+    already covers that drift), so the only defect was this hand-maintained
+    constant silently understating the book's own dc:modified to any
+    retailer that reads it. EDITION_DATE's own comment already explains why
+    it cannot be read from file mtimes instead (every checkout here stamps
+    every source file with the same checkout-time mtime), which is exactly
+    the fragility that makes a one-line hand-bump easy to forget and nothing
+    local able to catch, until now.
+
+    Compares the constant against content/book/'s latest commit, by UTC
+    CALENDAR DATE, not a bare epoch-seconds comparison and not a mtime.
+    `_last_commit_epoch` reads `git log`, unaffected by checkout stamping.
+    Comparing whole UTC dates rather than instants matters here: a commit
+    made 2026-10-01 evening in the committer's own Denver time (-06:00) is
+    already 2026-10-02 in UTC, the exact Denver/UTC day-boundary gap
+    `delivery-phase`'s own display-only note elsewhere in this file already
+    names. EDITION_DATE is deliberately a day of record, not a second-
+    granular watermark (it is written as `{EDITION_DATE}T00:00:00Z` in the
+    OPF), so this gate holds it to the same granularity: stale only when the
+    commit's UTC DATE is strictly later, never merely because midnight UTC
+    precedes a same-day afternoon commit.
+    """
+    epub_py = os.path.join(ROOT, "ops", "build_epub.py")
+    src = io.open(epub_py, encoding="utf-8").read()
+    m = re.search(r'^EDITION_DATE\s*=\s*"(\d{4}-\d{2}-\d{2})"', src, re.M)
+    if not m:
+        warn("epub-edition-date-current",
+             "could not find build_epub.py's EDITION_DATE constant, so it "
+             "could not be checked against content/book/'s own commit "
+             "history")
+        return
+    if not os.path.isdir(os.path.join(ROOT, "content", "book")):
+        return
+    latest = _last_commit_epoch("content/book")
+    if latest is None:
+        return
+    latest_date = dt.datetime.fromtimestamp(
+        latest, tz=dt.timezone.utc).strftime("%Y-%m-%d")
+    if latest_date > m.group(1):
+        fail("epub-edition-date-current",
+             f"build_epub.py's EDITION_DATE ({m.group(1)}) predates "
+             f"content/book/'s own last real commit ({latest_date} UTC); the "
+             f"shipped EPUB's dc:modified would understate its last actual "
+             f"content change. Bump EDITION_DATE by hand in the same commit "
+             f"as whatever changed, per that constant's own comment.")
+
+
 
 STORE_LISTING = os.path.join(ROOT, "mobile", "quest-app", "STORE-LISTING.md")
 APP_JSON = os.path.join(ROOT, "mobile", "quest-app", "app.json")
@@ -28611,6 +28667,7 @@ def main() -> int:
     run_gate(gate_video_zone_six_colours_current)
     run_gate(gate_done_items_single_source)
     run_gate(gate_cover_author_current)
+    run_gate(gate_epub_edition_date_current)
     run_gate(gate_icons_current)
     run_gate(gate_store_art)
     run_gate(gate_store_listing_lengths)

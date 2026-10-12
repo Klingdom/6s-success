@@ -70,7 +70,23 @@ LANG = "en"
 # That made dcterms:modified impossible to keep in sync with what git
 # actually has committed, and is why a freshly built EPUB never byte-matched
 # the one sitting in build/, even when no chapter had changed at all.
-EDITION_DATE = "2026-09-11"
+#
+# Found stale 2026-10-12: six real content commits landed between 2026-09-11
+# and 2026-10-01 (British-spelling fixes, a book.css dedupe, and the chapter
+# 44-49 wrong-room mislabel fix) and nobody bumped this constant for any of
+# them, so the shipped EPUB's own dc:modified understated its last real
+# change by three weeks. The committed build/6S-Success-Home-Edition.epub
+# was already a byte-identical regenerate of the current tree (no drift),
+# so the only defect was this date.
+#
+# Set to 2026-10-02, not 2026-10-01: the newest of those six commits
+# (bf7fae4ede, the chapter mislabel fix) is dated 2026-10-01 in the
+# committer's own local Denver time (-06:00) but 2026-10-02T03:24:01Z in
+# UTC, and this constant is written below as an explicit Z-suffixed UTC
+# instant. New gate_epub_edition_date_current (ops/preflight.py) compares
+# against git's UTC commit epoch, caught this same local/UTC day-boundary
+# gap immediately when this file first tried 2026-10-01.
+EDITION_DATE = "2026-10-02"
 
 # House style: no em dash (U+2014), no en dash (U+2013), anywhere in the output.
 FORBIDDEN_CHARS = {"—": "em dash", "–": "en dash"}
