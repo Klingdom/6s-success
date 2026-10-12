@@ -25,11 +25,38 @@ def main() -> int:
         "https://6s-success.com/zones/kitchen-the-cooking-zone": "zone",
         "https://6s-success.com/articles/why-is-my-house-always-messy": "article",
         "https://6s-success.com/about.html": "other",
+        # Found live in ops/indexation.json on 2026-10-12: the /zones/ and
+        # /articles/ hub pages are themselves sitemap entries, and a plain
+        # substring check classified each as a confirmed INDIVIDUAL page of
+        # that section, the one claim this file exists to get right.
+        "https://6s-success.com/zones/": "other",
+        "https://6s-success.com/zones": "other",
+        "https://6s-success.com/zones/index.html": "other",
+        "https://6s-success.com/articles/": "other",
+        "https://6s-success.com/articles/index.html": "other",
     }
     for url, want in cases.items():
         got = I.classify(url)
         if got != want:
             fails.append("classify(%r) = %r, want %r" % (url, got, want))
+
+    # 1b. _domain_urls must keep a url only when its actual HOST is our
+    # domain, not merely when our domain appears as text anywhere in it.
+    # Found live in ops/indexation.json on 2026-10-12: Bing's own link to its
+    # own search-results page, carrying our query string, was merged as a
+    # permanently "confirmed" URL and would have stood as a future canary.
+    bing_self_link = (
+        '<link>http://www.bing.com:80/search?q=site%3a6s-success.com</link>'
+        '<item><link>https://6s-success.com/about.html</link></item>'
+    )
+    foreign_redirect = (
+        '<a href="https://evil-tracker.example/go?dest=6s-success.com/x">x</a>'
+    )
+    got_urls = I._domain_urls(bing_self_link + foreign_redirect)
+    if any(not I._is_our_host(u) for u in got_urls):
+        fails.append("_domain_urls kept a url whose real host is not ours: %r" % got_urls)
+    if "https://6s-success.com/about.html" not in got_urls:
+        fails.append("_domain_urls dropped a genuine same-host url alongside the foreign ones")
 
     # 2. A clean run with a real canary present merges every URL, including
     #    one from an engine queried after another engine already grew the

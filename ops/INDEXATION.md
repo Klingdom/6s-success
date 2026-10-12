@@ -14,12 +14,11 @@ Last checked: 2026-10-07T17:25:01Z
 |---|---|
 | home | 1 |
 | room | 1 |
-| zone | 1 |
-| article | 2 |
-| other | 9 |
+| zone | 0 |
+| article | 1 |
+| other | 10 |
 
-**Zone pages confirmed indexed at least once:**
-- https://6s-success.com/zones/ (first seen 2026-10-07T17:25:01Z, duckduckgo)
+**No /zones/ page has ever been confirmed indexed by this ledger.** That is the open question GOALS.md O1 names: indexed-and-not-ranking (an intent/competition problem) versus not indexed at all (an authority problem), and they need opposite fixes. Still unresolved after 3 run(s).
 
 Last run detail:
 - bing_rss: ok, 11 URL(s)

@@ -37,7 +37,7 @@
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/articles/": {
-   "section": "article",
+   "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
    "last_seen": "2026-10-07T17:25:01Z",
    "first_engine": "duckduckgo",
@@ -78,13 +78,6 @@
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
-  "http://www.bing.com:80/search?q=site%3a6s-success.com": {
-   "section": "other",
-   "first_seen": "2026-10-04T07:54:06Z",
-   "last_seen": "2026-10-07T17:25:01Z",
-   "first_engine": "bing_rss",
-   "last_engine": "bing_rss"
-  },
   "https://6s-success.com/book.html": {
    "section": "other",
    "first_seen": "2026-10-07T17:25:01Z",
@@ -93,7 +86,7 @@
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/zones/": {
-   "section": "zone",
+   "section": "other",
    "first_seen": "2026-10-07T17:25:01Z",
    "last_seen": "2026-10-07T17:25:01Z",
    "first_engine": "duckduckgo",
