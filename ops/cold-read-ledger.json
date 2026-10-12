@@ -441,6 +441,11 @@
       "date": "2026-10-03",
       "note": "Extended rather than merely read: it could say how many distinct paths crawlers fetched and never which of our own pages they had missed. sitemap_coverage() added; its first answer (210 of 211, naming the one page) corrected a hand-written grep pipeline that had said 211 of 211. ops/tests/test_crawl_sitemap_coverage.py, 5 checks, fail-then-pass proved. Finding recorded as LEARNINGS.md LRN-0036."
     },
+    "cycle_signal.py": {
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Cold-read 2026-10-12, scheduled operator. Read in full (191 lines). Correctly scoped signal-file set (excludes NIGHTLY-LOG.md and dashboard outputs on purpose, documented in its own docstring, since those churn every cycle regardless of real change). MISSING-sentinel handling means a signal file missing at both snapshot time and check time compares equal rather than false-CHANGED. combined_hash is computed and stored but not used by --check (per-file comparison is used instead, which is strictly more informative); harmless, not a defect. No real defect found; covered by ops/tests/test_cycle_signal.py (6 cases)."
+    },
     "dashboard.py": {
       "status": "clean",
       "date": "2026-10-09",

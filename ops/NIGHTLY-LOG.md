@@ -23,6 +23,22 @@ large.
 Regenerated and shipped the dashboard, as required every run. No code,
 price, product or page touched.
 
+## Scheduled operator cycle: cold-read ledger fully exhausted, no new work unblocked
+
+**Did:** Unshallowed and fast-forwarded cleanly onto origin/main (470 commits). Ran `ops/cycle_signal.py --check`: SAME against the 00:15:47Z snapshot. Per that tool's own purpose, used the cycle on the external checks it cannot replace plus the one real local gap it surfaced: `ops/cold_read_ledger.py --next` named `ops/cycle_signal.py` itself (8 mentions) as the sole un-ledgered file across ops/site-js/mobile. Read it in full (191 lines); no defect, ledgered clean.
+
+**Verified:** `preflight.py` run twice (foreground and background), both 0 FAIL/0 WARN through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed there after confirming genuinely stalled, matching every recent cycle's own account. `check_urls.py` 211/211, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded), `b9_claims.py --status` 0 undiagnosed rooms. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; all scheduled workflows green on the latest pushes. No mail credential in this sandbox (unchecked, not assumed empty).
+
+**Went well:** The cold-read ledger is now fully exhausted for the first time since `cycle_signal.py` shipped: 198 of 198 files, 0 stale, 0 un-ledgered.
+
+**Did not go well:** Nothing new to build. Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Phil-gated, or closed by decision, the same conclusion dozens of cycles have independently reached since 2026-10-11.
+
+**Changing next cycle:** Nothing; the standing tooling already fits the problem.
+
+**Next:** The same standing Phil-gated queue: `OWNER-ACTIONS.md` items -1, 0, 1a, 1, 1d, and GitHub issues #40, #35, #33, #31, #29, #21, #18, #15, #2.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (00:1x UTC cycle)
 
 Previous work finished: `ops/cycle_signal.py --check` returns SAME against the
