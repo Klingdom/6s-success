@@ -694,7 +694,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps.
 
-Show it BEFORE any work, in the honest state described here: Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabelled key, and the loose batteries are not cooking tools and do not go back in.
+Show it BEFORE any work, in the honest state described here: Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -778,7 +778,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Cold storage that has to keep food safe and show you what you already own before you shop.
 
-Show it BEFORE any work, in the honest state described here: Work one shelf at a time so nothing sits out warming while you decide. Anything frozen past recognition and unlabelled goes, and every opened jar, sauce, and dressing gets judged against the date on its lid rather than by smell, because dressings and sauces go on smelling fine long after they should have gone.
+Show it BEFORE any work, in the honest state described here: Work one shelf at a time so nothing sits out warming while you decide. Anything frozen past recognition and unlabeled goes, and every opened jar, sauce, and dressing gets judged against the date on its lid rather than by smell, because dressings and sauces go on smelling fine long after they should have gone.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -1030,7 +1030,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Holds everything you need to start a bake without a trip to the shop first.
 
-Show it BEFORE any work, in the honest state described here: Test the leaveners rather than guessing: a spoon of baking powder into hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with the brick of hardened brown sugar and the cocoa that has turned grey.
+Show it BEFORE any work, in the honest state described here: Test the leaveners rather than guessing: a spoon of baking powder into hot water should fizz hard, and yeast in warm sugared water should foam. The dead ones go, along with the brick of hardened brown sugar and the cocoa that has turned gray.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -1997,7 +1997,7 @@ A photograph of this exact subject: Holds the powered tools, their packs, and th
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named garage--power-tool-and-battery-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.
+Show it AFTER, in exactly this finished state: One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labeled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2036,9 +2036,9 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.
+A photograph of this exact subject: Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labeled, and separate from everything the household touches.
 
-Show it BEFORE any work, in the honest state described here: Line every bottle up and read the label out loud. Oil in a weight your current engine does not take, coolant for the van you sold, and the half bottle whose label has soaked away into unreadable grey all come out of the row.
+Show it BEFORE any work, in the honest state described here: Line every bottle up and read the label out loud. Oil in a weight your current engine does not take, coolant for the van you sold, and the half bottle whose label has soaked away into unreadable gray all come out of the row.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -2077,11 +2077,11 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.
+A photograph of this exact subject: Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labeled, and separate from everything the household touches.
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named garage--automotive-care-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tyre gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.
+Show it AFTER, in exactly this finished state: Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tire gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2165,7 +2165,7 @@ A photograph of this exact subject: Holds the gear for the sports this household
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named garage--sports-and-recreation-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Bikes on wall hooks with bare floor beneath them, one labelled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.
+Show it AFTER, in exactly this finished state: Bikes on wall hooks with bare floor beneath them, one labeled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2249,7 +2249,7 @@ A photograph of this exact subject: Stores the yard tools and outdoor supplies s
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named garage--lawn-and-garden-tool-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labelled containers behind a latch above head height.
+Show it AFTER, in exactly this finished state: Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labeled containers behind a latch above head height.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2333,7 +2333,7 @@ A photograph of this exact subject: Holds the things you genuinely need once or 
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named garage--bulk-and-overhead-storage--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every overhead bin labelled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.
+Show it AFTER, in exactly this finished state: Every overhead bin labeled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 

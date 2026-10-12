@@ -183,14 +183,12 @@ def zone_prompts(room: dict, zone: dict, tier: int) -> list:
     return out
 
 
-def main() -> int:
-    want_tier = None
-    if "--tier" in sys.argv:
-        want_tier = int(sys.argv[sys.argv.index("--tier") + 1])
-
-    rooms = load()
+def all_items() -> list[dict]:
+    """Every tiered prompt, unfiltered. The one source both main() and
+    preflight.py's gate_image_prompts_tiers_current build from, so the two
+    can never describe different prompt sets."""
     items = []
-    for r in rooms:
+    for r in load():
         for z in r["zones"]:
             if (r["room"], z["zone"]) in TIER0:
                 tier = 0
@@ -199,55 +197,71 @@ def main() -> int:
             else:
                 tier = 2
             items.extend(zone_prompts(r, z, tier))
+    return items
 
-    if want_tier:
+
+def render_tier(tier: int, group: list[dict]) -> str:
+    head = (f"# Start here: {len(group)} images" if tier == 0
+            else f"# Image prompts, tier {tier}")
+    note = (f"**This is the whole first batch.** {len(group)} images, one "
+            "evening. Everything in tier 1 and tier 2 is a backlog to draw "
+            "from later, and only worth starting once these have shown "
+            "whether they change anything."
+            if tier == 0 else
+            "A backlog, not a to-do list. Take from it when a specific page "
+            "needs a specific picture.")
+    L = [head, "",
+         f"{len(group)} images. Style anchor {STYLE_VERSION}.", "",
+         note, "",
+         "## How to run these",
+         "",
+         "1. **One image per fresh chat.** Not a batch. A chat model drifts, "
+         "and by the tenth image in a session the outlines have thickened "
+         "and the palette has warmed. A fresh chat per image is the only "
+         "thing that reliably stops it.",
+         "2. Paste one prompt block, whole, including the style anchor. The "
+         "anchor is repeated in every prompt on purpose.",
+         "3. Save the result under the exact filename given. The filename is "
+         f"how it gets wired in; anything else will not be found.",
+         f"4. Drop the files into `{INTAKE}/` and tell Claude. The wiring is "
+         "automatic from there.",
+         "",
+         "**Before and after pairs must be generated back to back in the "
+         "same chat**, because the after prompt refers to the before image. "
+         "That is the one exception to the fresh-chat rule, and it exists "
+         "because a pair whose camera moved is worthless.",
+         "",
+         "---",
+         ""]
+    for i, item in enumerate(group, 1):
+        L += [f"## {i}. `{item['file']}`", "",
+              f"*{item['kind']}*", "", "```", item["prompt"], "```", "",
+              "---", ""]
+    return "\n".join(L)
+
+
+def by_tier(items: list[dict]) -> dict[int, list[dict]]:
+    out: dict[int, list[dict]] = {}
+    for i in items:
+        out.setdefault(i["tier"], []).append(i)
+    return out
+
+
+def main() -> int:
+    want_tier = None
+    if "--tier" in sys.argv:
+        want_tier = int(sys.argv[sys.argv.index("--tier") + 1])
+
+    items = all_items()
+    if want_tier is not None:
         items = [i for i in items if i["tier"] == want_tier]
 
     os.makedirs(OUT, exist_ok=True)
 
-    by_tier = {}
-    for i in items:
-        by_tier.setdefault(i["tier"], []).append(i)
-
-    for tier, group in sorted(by_tier.items()):
+    for tier, group in sorted(by_tier(items).items()):
         path = os.path.join(OUT, f"tier-{tier}-prompts.md")
-        head = (f"# Start here: {len(group)} images" if tier == 0
-                else f"# Image prompts, tier {tier}")
-        note = (f"**This is the whole first batch.** {len(group)} images, one "
-                "evening. Everything in tier 1 and tier 2 is a backlog to draw "
-                "from later, and only worth starting once these have shown "
-                "whether they change anything."
-                if tier == 0 else
-                "A backlog, not a to-do list. Take from it when a specific page "
-                "needs a specific picture.")
-        L = [head, "",
-             f"{len(group)} images. Style anchor {STYLE_VERSION}.", "",
-             note, "",
-             "## How to run these",
-             "",
-             "1. **One image per fresh chat.** Not a batch. A chat model drifts, "
-             "and by the tenth image in a session the outlines have thickened "
-             "and the palette has warmed. A fresh chat per image is the only "
-             "thing that reliably stops it.",
-             "2. Paste one prompt block, whole, including the style anchor. The "
-             "anchor is repeated in every prompt on purpose.",
-             "3. Save the result under the exact filename given. The filename is "
-             f"how it gets wired in; anything else will not be found.",
-             f"4. Drop the files into `{INTAKE}/` and tell Claude. The wiring is "
-             "automatic from there.",
-             "",
-             "**Before and after pairs must be generated back to back in the "
-             "same chat**, because the after prompt refers to the before image. "
-             "That is the one exception to the fresh-chat rule, and it exists "
-             "because a pair whose camera moved is worthless.",
-             "",
-             "---",
-             ""]
-        for i, item in enumerate(group, 1):
-            L += [f"## {i}. `{item['file']}`", "",
-                  f"*{item['kind']}*", "", "```", item["prompt"], "```", "",
-                  "---", ""]
-        io.open(path, "w", encoding="utf-8", newline="").write("\n".join(L))
+        io.open(path, "w", encoding="utf-8", newline="").write(
+            render_tier(tier, group))
         photos = sum(1 for x in group if x["kind"] == "photograph")
         print(f"  {os.path.relpath(path, ROOT)}")
         print(f"    {len(group)} prompts, {photos} photographs, "

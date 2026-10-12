@@ -1254,7 +1254,8 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_etsy_assets.py": ("gate_etsy_pdfs_current",),
     "build_icons.py": ("gate_icons_current",),
     "build_id.py": ("gate_build_id_current",),
-    "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
+    "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",
+                                "gate_image_prompts_tiers_current"),
     "build_kdp_cover.py": ("gate_kdp_cover_current",),
     "build_kitchen_deck.py": ("gate_kitchen_deck_current",),
     "build_entryway_deck.py": ("gate_entryway_deck_current",),
@@ -21504,6 +21505,72 @@ def gate_image_prompts_tier0_count_honest() -> None:
                      (doc, wm.group(1), real_count))
 
 
+def gate_image_prompts_tiers_current() -> None:
+    """The three committed tier prompt files must match a fresh regenerate.
+
+    Found 2026-10-12, cold-reading ops/build_image_prompts.py: content.json's
+    zone "purpose"/"passes"/"done_looks_like" text had been swept from
+    British to American spelling at some point (ops/fix_dialect.py's TARGETS
+    cover content.json directly), but content/images/prompts/tier-1-prompts.md
+    and tier-2-prompts.md, which copy that text verbatim into every prompt,
+    were never regenerated afterward. The committed files still read
+    "unlabelled", "grey", "tyre", "metre", "Jewellery" and seven more
+    "labelled" instances, all now "unlabeled"/"gray"/"tire"/"meter"/"Jewelry"/
+    "labeled" in content.json itself. gate_no_british_spellings_shipped does
+    not catch this: it deliberately scopes to site/**/*.html and ops/
+    cardtext/build_*.py, the things a visitor or Phil-the-card-author
+    actually reads, and these prompt files are neither (they are an internal
+    intake queue for image generation, never shipped). That left this file's
+    own class of defect, the one BACKLOG-2026-09-07.md section 7 names as the
+    dominant one here ("the source was corrected and the shipped artifact was
+    never re-derived from it"), with no gate at all. This is that gate,
+    mirroring gate_feed_current's regenerate-and-diff pattern. Separately,
+    the same cold read found main()'s `if want_tier:` treated `--tier 0` as
+    no filter at all (0 is falsy in Python), so the one invocation meant to
+    produce just the 6-image starter batch silently wrote all 228 images'
+    worth of prompts instead; fixed to `if want_tier is not None:`. That half
+    has no gate of its own, since it is a CLI-argument bug with no shipped
+    artifact to diff against; this gate's regenerate step would not have
+    caught it either, since the bug only fires when --tier is passed.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import build_image_prompts as bip
+        import importlib
+        importlib.reload(bip)
+    except Exception as e:                                       # noqa: BLE001
+        warn("image-prompts-tiers-current",
+             "could not import ops/build_image_prompts.py to check it "
+             "(%s). Unchecked, not passing." % e)
+        return
+    try:
+        groups = bip.by_tier(bip.all_items())
+    except Exception as e:                                       # noqa: BLE001
+        warn("image-prompts-tiers-current",
+             "could not regenerate the image prompt tiers to check them "
+             "(%s). Unchecked, not passing." % e)
+        return
+    mismatched = []
+    for tier, group in sorted(groups.items()):
+        path = os.path.join(ROOT, "content", "images", "prompts",
+                             "tier-%d-prompts.md" % tier)
+        want = bip.render_tier(tier, group)
+        try:
+            have = io.open(path, encoding="utf-8").read()
+        except OSError:
+            mismatched.append("%s (missing)" % os.path.relpath(path, ROOT))
+            continue
+        if want != have:
+            mismatched.append(os.path.relpath(path, ROOT))
+    if mismatched:
+        fail("image-prompts-tiers-current",
+             "%d tier prompt file(s) do not match a fresh run of "
+             "ops/build_image_prompts.py: %s. The source content has moved "
+             "(a dialect sweep, a content.json edit) and these were never "
+             "regenerated. Run python ops/build_image_prompts.py." %
+             (len(mismatched), mismatched))
+
+
 def gate_card_prompts_desktop_only() -> None:
     """The card-prompt writers must refuse when Phil's Desktop is unreachable.
 
@@ -28426,6 +28493,7 @@ def main() -> int:
     run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_experiment_owner_actions_surfaced)
     run_gate(gate_image_prompts_tier0_count_honest)
+    run_gate(gate_image_prompts_tiers_current)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_style_src_in_repo)
     run_gate(gate_cardtext_corpus_integrity)

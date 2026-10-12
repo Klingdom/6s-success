@@ -137,9 +137,9 @@
       "note": "Cold-read 2026-10-10, scheduled operator: read in full, ran the generator directly against the real committed corpus/content.json, confirmed 0 diff against the committed site output (git status clean after run). No defect found."
     },
     "build_feed.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "second-pass cold read: no feed-level atom:author, RFC 4287 violation; fixed"
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, scheduled operator. Regex-based field extraction (title/description/canonical/dates) matches the real article-page shape; --check reports 30 current entries. No defect found."
     },
     "build_garage_deck_page.py": {
       "status": "clean",
@@ -168,18 +168,18 @@
     },
     "build_icons.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, no defect"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, scheduled operator. Gauge-arc geometry (sweep direction, needle angle landing in the calm band, maskable safe zone) checked by hand against PIL's angle convention; PNG dimensions on disk match SIZES; manifest.webmanifest and index.html icon references match generated filenames exactly. No defect found. Cannot execute (Pillow not installed, standing sandbox limit)."
     },
     "build_id.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, scheduled operator. Hashes git's index (blob ids), not working-tree bytes, deliberately (CRLF/LF cross-platform history in its own docstring); --check reports current against the real tree. Gated by gate_build_id_current. No defect found."
     },
     "build_image_prompts.py": {
-      "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
+      "status": "fixed",
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, scheduled operator. Found two real defects. (1) main()'s 'if want_tier:' treated --tier 0 as no filter (0 is falsy in Python), so the one invocation meant to produce just the 6-image tier-0 starter batch silently wrote all 228 images' worth of prompts instead; fixed to 'if want_tier is not None:'. (2) The committed tier-1/tier-2-prompts.md files were stale against content.json's own American-spelling text (unlabelled/grey/tyre/metre/labelled etc., never regenerated after a dialect sweep), the exact source-corrected-artifact-never-rederived shape this repo's own backlog names as dominant, uncaught because gate_no_british_spellings_shipped deliberately excludes this non-shipped intake file. Regenerated both files from the fixed generator. Refactored main() to share render_tier()/all_items()/by_tier() with a new gate_image_prompts_tiers_current (preflight.py), which regenerates and diffs all three tier files on every run; fail-then-pass proved directly and in ops/tests/test_gate_image_prompts_tiers_current.py (5/5)."
     },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
@@ -198,8 +198,8 @@
     },
     "build_kitchen_deck_pdf.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, scheduled operator. --check reports current (sheet hash matches the live kitchen-deck.html print sheet); upstream build_kitchen_deck_page.py regenerates idempotently (no diff). MARKERS/page-count/content checks are sound. No defect found."
     },
     "build_laundry_room_deck_page.py": {
       "status": "clean",

@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: took the cold-read handoff, found and fixed two real defects in build_image_prompts.py, gated
+
+**Finished?** Yes. Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 575 commits, no unrelated-history symptom. `ops/cycle_signal.py --check` reported CHANGED (only `ops/cold-read-ledger.json`, a low-risk bookkeeping row), so ran the real verification rather than skip it. GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine to pick up per CLAUDE.md 0.5). `ops/inbox_agent.py --apply`: no mail credential, standing. `ops/affiliate.py --check`: clean, 165 documents.
+
+**Took the queued handoff**: second-pass cold read of `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`. Four read clean (feed regenerates current at 30 entries; icon arc geometry, PNG dimensions and manifest/HTML icon references all check out, cannot execute directly since Pillow is not installed here, standing sandbox limit; build-id hashes git's index deliberately rather than working-tree bytes and matches; kitchen deck PDF's sheet hash matches the live print sheet, and its upstream generator regenerates idempotently).
+
+**The find, in `build_image_prompts.py`, two defects:**
+
+1. `main()`'s `if want_tier:` treated `--tier 0` as no filter at all, because `0` is falsy in Python. The docstring and a long code comment frame tier 0 as "the only number that matters... the whole first batch", so this is exactly the invocation someone would run expecting just the 6-image starter batch; instead it silently wrote all three tier files, 228 prompts. Proved directly: before the fix, `--tier 0` wrote 3 files/228 prompts; after, it writes 1 file/6 prompts. Fixed to `if want_tier is not None:`.
+
+2. The committed `content/images/prompts/tier-1-prompts.md` and `tier-2-prompts.md` were stale against `content.json`'s own text, which had been swept from British to American spelling (`unlabelled`→`unlabeled`, `grey`→`gray`, `labelled`→`labeled`, `tyre`→`tire`, `metre`→`meter`, `Jewellery`→`Jewelry`) but never regenerated afterward. This is the exact "source corrected, shipped artifact never re-derived" shape `BACKLOG-2026-09-07.md` sections 7 and 8 name as the dominant defect class here. `gate_no_british_spellings_shipped` does not catch it: by design it scopes to `site/**/*.html` and `ops/cardtext/build_*.py`, the things a visitor or Phil-the-card-author actually reads, and these prompt files are an internal image-generation intake queue, never shipped. Regenerated both files from the fixed generator (spelling only; diffed the full change to confirm nothing else moved).
+
+**Fixed and gated:** refactored `build_image_prompts.py`'s `main()` to extract `all_items()`, `render_tier()` and `by_tier()`, so the generator has one source of truth instead of two (the old version duplicated the render logic inline in `main()`, which is what let a defect in it go uncompared against anything). New `gate_image_prompts_tiers_current` in `preflight.py`, mirroring `gate_feed_current`'s regenerate-and-diff pattern, calls those same shared functions and fails if any of the three committed tier files disagrees with a fresh run. Proved fail-then-pass directly (planted the old British spelling back into tier-1, watched the gate fail by name citing the right file, restored, reran clean) and in new `ops/tests/test_gate_image_prompts_tiers_current.py` (5/5 cases, including a missing-file case and a real-corpus-size sanity check). Registered in `main()` next to its sibling `gate_image_prompts_tier0_count_honest`; `GENERATOR_OWNERSHIP` mapping updated to list both gates for `build_image_prompts.py`.
+
+**Verified:** `ops/tests/test_gate_image_prompts_tiers_current.py` 5/5. Direct `--check`/equivalent runs of all five touched/reviewed generators clean (`build_feed.py`, `build_id.py`, `build_kitchen_deck_pdf.py`, plus the new gate itself). `ops/affiliate.py --check` clean. Ran a full `preflight.py --fast` in the background; it was still inside its documented multi-minute `gate_tests` tail when this entry was written, so that tier is reported as **unchecked, not passing**, per CLAUDE.md 0.4, even though every gate directly relevant to this change (the new gate, its sibling, `gate_no_british_spellings_shipped`) was individually exercised and came back clean. Cold-read ledger updated for all five handed-off files, `build_image_prompts.py` marked `fixed` with the full account.
+
+**Went well:** the second-pass cold-read handoff mechanism surfaced two real, previously-invisible defects in a file a first pass had marked clean; both were only visible by actually running the generator's two code paths (`--tier 0` and an unfiltered run) rather than reading the source and trusting the prior note.
+
+**Did not go well:** none new.
+
+**Changing next cycle:** none; the handoff mechanism and the new gate are both working as designed.
+
+**Next for the operator:** second-pass cold read of the next oldest-dated tier: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`.
+
+Pushed to main. `ops/build_image_prompts.py`, `ops/preflight.py` (new gate), `ops/tests/test_gate_image_prompts_tiers_current.py` (new), `content/images/prompts/tier-1-prompts.md`, `content/images/prompts/tier-2-prompts.md`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page added or changed. IndexNow not applicable (no site page changed; the regenerated files are an internal, unshipped image-generation intake queue).
+
+HANDOFF-FILES: `build_microzone_coverage.py`, `build_mobile_corpus.py`, `build_printpack.py`, `build_product_schema.py`, `build_pwa.py`
+
 ## 2026-10-12, PM check-in: previous work finished, found a real small defect already fixed by a concurrent cycle, nothing left to do but reconfirm
 
 **Finished?** Yes. Checkout arrived shallow and detached (the standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean. The prior cycle's own EPUB-date fix (`4f6932e82`) was pushed, and both PM check-ins since (19:1x, 19:4x) had already reconfirmed it. Re-confirmed again here: GitHub's 9 open issues unchanged (2 `P0`, rest `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5).

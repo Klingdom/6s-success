@@ -653,7 +653,7 @@ A photograph of this exact subject: Keep the television, sound and consoles work
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named living-room--media-center--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every cable labelled at both ends, running in one bundle to a single labelled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.
+Show it AFTER, in exactly this finished state: Every cable labeled at both ends, running in one bundle to a single labeled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -1493,7 +1493,7 @@ A photograph of this exact subject: The bed and the linens on it have one job, w
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named primary-bedroom--bed-and-bedding-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labelled flat bins, and you can walk from either side of the bed to the door without stepping over anything.
+Show it AFTER, in exactly this finished state: Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labeled flat bins, and you can walk from either side of the bed to the door without stepping over anything.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -1702,7 +1702,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: This is where your pockets land at the end of the day and where tomorrow's watch and rings wait for you.
 
-Show it BEFORE any work, in the honest state described here: Work through the pocket sediment: loose change into a jar that lives in another room, receipts binned or photographed, single earrings and snapped chains into one small bag you either take to a repair counter this month or let go. Jewellery you love but never put on moves to a box in the closet, not back onto this top.
+Show it BEFORE any work, in the honest state described here: Work through the pocket sediment: loose change into a jar that lives in another room, receipts binned or photographed, single earrings and snapped chains into one small bag you either take to a repair counter this month or let go. Jewelry you love but never put on moves to a box in the closet, not back onto this top.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -1870,7 +1870,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: The closet holds the clothes you actually wear this season, visible and reachable in one look.
 
-Show it BEFORE any work, in the honest state described here: Pull out anything you have not worn in a year, anything waiting on a repair you are never going to make, and every wire hanger and plastic sheath the dry cleaner sent home. Winter coats and heavy knits go into a labelled bin or the guest wardrobe so the rod carries only what this month asks for.
+Show it BEFORE any work, in the honest state described here: Pull out anything you have not worn in a year, anything waiting on a repair you are never going to make, and every wire hanger and plastic sheath the dry cleaner sent home. Winter coats and heavy knits go into a labeled bin or the guest wardrobe so the rod carries only what this month asks for.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -2249,7 +2249,7 @@ A photograph of this exact subject: Hanging space for someone else's clothes, pl
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named guest-bedroom--guest-closet--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labelled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.
+Show it AFTER, in exactly this finished state: At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labeled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2333,7 +2333,7 @@ A photograph of this exact subject: Where a guest lands the suitcase, charges a 
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named guest-bedroom--guest-welcome-and-work-surface--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labelled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.
+Show it AFTER, in exactly this finished state: A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labeled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2669,7 +2669,7 @@ A photograph of this exact subject: Holds the clothes that fit right now, at a h
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named kids-bedroom--clothing-closet--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labelled box on the top shelf.
+Show it AFTER, in exactly this finished state: Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labeled box on the top shelf.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -2792,7 +2792,7 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: The square metre by the bedroom door where tomorrow morning gets assembled the night before.
+A photograph of this exact subject: The square meter by the bedroom door where tomorrow morning gets assembled the night before.
 
 Show it BEFORE any work, in the honest state described here: Empty the backpack completely every Friday, turned upside down. Out comes the leftover lunch, the dead permission slip and the newsletter from three weeks ago. Sports kit goes into the wash basket, never back into the bag damp.
 
@@ -2833,7 +2833,7 @@ surface, showroom emptiness.
 *photograph*
 
 ```
-A photograph of this exact subject: The square metre by the bedroom door where tomorrow morning gets assembled the night before.
+A photograph of this exact subject: The square meter by the bedroom door where tomorrow morning gets assembled the night before.
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named kids-bedroom--school-and-activity-launch-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
@@ -4517,7 +4517,7 @@ A photograph of this exact subject: Keep the documents you are genuinely require
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named home-office--file-storage--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Hanging folders labelled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.
+Show it AFTER, in exactly this finished state: Hanging folders labeled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -4685,7 +4685,7 @@ A photograph of this exact subject: Turn paper into files and files into paper, 
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named home-office--printer-and-scanning-station--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.
+Show it AFTER, in exactly this finished state: Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labeled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -5441,7 +5441,7 @@ A photograph of this exact subject: Somewhere to sit while you deal with your fo
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named mudroom--bench-and-transition-surface--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labelled basket at the end holding only what is leaving tomorrow.
+Show it AFTER, in exactly this finished state: A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labeled basket at the end holding only what is leaving tomorrow.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -5693,7 +5693,7 @@ A photograph of this exact subject: Holds the small weather items the family gra
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named mudroom--seasonal-outdoor-gear--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labelled with the month you packed it, and up on the high shelf.
+Show it AFTER, in exactly this finished state: One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labeled with the month you packed it, and up on the high shelf.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -5777,7 +5777,7 @@ A photograph of this exact subject: The tools that keep the entry floor and the 
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named mudroom--cleaning-and-utility-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labelled bottle.
+Show it AFTER, in exactly this finished state: Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labeled bottle.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -6869,7 +6869,7 @@ A photograph of this exact subject: Get the cushions under a lid within a minute
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named patio-or-deck--outdoor-storage-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: The lid closes flat without anyone pressing down, cushions in one layer on top, two labelled totes beneath them, and the floor of the box visible the moment the cushions come out.
+Show it AFTER, in exactly this finished state: The lid closes flat without anyone pressing down, cushions in one layer on top, two labeled totes beneath them, and the floor of the box visible the moment the cushions come out.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
