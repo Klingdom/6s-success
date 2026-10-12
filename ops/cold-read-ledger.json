@@ -3,18 +3,18 @@
   "entries": {
     "accept_image.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: read in full (738 lines) and run directly, not just inspected. --self-test: 4/4 historical outcomes reproduced (EM-003's missing key correctly fails, the landing-zone and garage-tool-wall cases score correctly, the levitating-sink must_not_show hard-fail holds). --check: 89 card and 114 zone checklists all derive with 0 errors against the real corpus. No GEMINI_API_KEY or source images in this sandbox, so --all cannot run here; --one/--all both report BLOCKED plainly rather than guessing, confirmed by reading that branch. No defect found."
     },
     "affiliate.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (475 lines). host_disclosed() matching is case-sensitive-lowercase-only against site/privacy.html text, a latent gap if a host were ever named there with capital letters, but the live catalogue only uses target/homedepot (both lowercase-disclosed) and the function fails CLOSED (withholds) on any mismatch, so this cannot cause an undisclosed link to publish. No live defect; noted for whoever next adds a merchant."
     },
     "affiliate_report.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: no defect found"
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (331 lines). Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv directly and diffed against the committed versions: byte-identical, confirming the generator still matches its own shipped output. No defect found."
     },
     "audit_catalog.py": {
       "status": "clean",
@@ -23,8 +23,8 @@
     },
     "audit_pages.py": {
       "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Re-read in full per second-pass handoff (2026-09-27 tier). The hero-lazy position fix (img_spans over html.find) still intact; link resolution via check_urls.resolve(), the probe/fixture exclusion list, and the duplicate-title/description grouping all read correctly. Ran directly: 215 pages, 0 findings. No new defect found."
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: found and fixed a real attribution gap. GENERATED only matched a /rooms/ or /zones/ path, so all 28 top-level generator-owned pages (kitchen-deck.html and 23 deck siblings, corporate.html, how-to-clean-anything.html, both deck-gallery pages, kit.html, resources.html, standards.html, shop.html) printed 'hand written pages' as where a finding's fix goes, the exact misdirection step 5b warns against. New is_generated() reuses ops/preflight.py's own GENERATED_TOP_LEVEL_PAGES registry (kept exhaustive by gate_page_ownership_registry) instead of duplicating it. ops/tests/test_audit_pages_generated_top_level.py added, fail-then-pass proved directly (AttributeError against the pre-fix module, clean after). Currently 0 live findings on any of the 28, so no outcome was silently overwritten; the gap was in the guidance only."
     },
     "audit_visual.py": {
       "status": "clean",
@@ -373,8 +373,8 @@
     },
     "check_integrations.py": {
       "status": "clean",
-      "date": "2026-10-04",
-      "note": "Re-verified 2026-10-04 PM check-in after Phil's 2026-10-03 bdc3b16da fix (removed a live consent defect: /subscribe had been serving another business's pre-ticked mailing lists under our domain, and the check itself had been asserting that as healthy for weeks). Read the new logic: correctly distinguishes unreachable (None, UNKNOWN) from genuinely broken, detects the two foreign list names by exact text, treats 404 as the correct answer given the route was deliberately removed. Ran it live here: correctly reports UNKNOWN (sandbox has no egress to the site), not a false pass."
+      "date": "2026-10-12",
+      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (215 lines). Proxied-integration checks (Umami tracker, beacon-rejects-GET, no-foreign-consent-on-subscribe, website id match) all assert something only the real service could produce, not a bare status code, matching CLAUDE.md 0.3. Unreachable-site branch correctly reports UNKNOWN rather than a false pass. No defect found."
     },
     "check_ledgerium.py": {
       "status": "clean",

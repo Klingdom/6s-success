@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: a real attribution defect found and fixed in audit_pages.py's own "where the fix goes" column
+
+**Did:** Attached clean (two ff-only merges). Confirmed backlog sections 2-6 all Done/Hold/Phil-owned; GitHub 9 issues unchanged, 0 PRs; `list_triggers` healthy. Took the queued handoff: second-pass cold read of `check_integrations.py`, `accept_image.py`, `affiliate.py`, `affiliate_report.py`, `audit_pages.py`.
+
+**The find.** Read all five in full. Four clean (`accept_image.py --self-test` 4/4, `--check` 0 errors; `affiliate_report.py` regenerates byte-identical). `audit_pages.py`'s `GENERATED` regex matched only `/rooms/`/`/zones/`, so all 28 top-level generator-owned pages (deck pages, `shop.html`, `resources.html`, etc) printed "hand written pages" as where a finding's fix goes, exactly the misdirection step 5b warns against. 0 live findings on any of the 28 today, so nothing was overwritten yet; the gap was in the guidance.
+
+**Fixed:** new `is_generated()` reuses `ops/preflight.py`'s own `GENERATED_TOP_LEVEL_PAGES` registry (kept exhaustive by `gate_page_ownership_registry`) rather than a second list that could drift. New test fail-then-pass proved (stashed the fix, `AttributeError`, restored, clean).
+
+**Verified:** `audit_pages.py` clean (215 pages, 0 findings), both pre-existing tests pass, `check_urls.py` 211/211, `fix_dashes.py` 0/0. Full `preflight.py` hit the documented `gate_tests` sandbox hang twice; reported unchecked, not passing. All five re-ledgered with today's date.
+
+**Went well:** actually running `accept_image.py`'s own checks before writing its ledger note.
+
+**Did not go well:** none new; the standing deploy gap and Phil-gated queue are unchanged.
+
+**Next:** second-pass cold read of `b9_claims.py`, `backup_analytics.py`, `browser.py`, `build_all_prompts.py`, `build_app_icons.py`.
+
+No price or product touched. One generator fixed, one new test. IndexNow not applicable.
+
+HANDOFF-FILES: `b9_claims.py`, `backup_analytics.py`, `browser.py`, `build_all_prompts.py`, `build_app_icons.py`
+
 ## 2026-10-12, PM check-in (:40 slot, ran a few minutes late into the operator's own :43 window): previous work reconfirmed finished, same handoff reaffirmed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: second-pass cold-read of `check_integrations.py`, `accept_image.py`, `affiliate.py`, `affiliate_report.py` and `audit_pages.py`, because that is the handoff the immediately prior commit (`aa384ae31`) already queued, no cycle has consumed it yet, and it is still the oldest-dated tier in `ops/cold-read-ledger.json` with the first pass fully exhausted (198/198, 0 stale per `cold_read_ledger.py --stale`/`--next`, confirmed directly this cycle, not cited).

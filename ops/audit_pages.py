@@ -51,9 +51,35 @@ SITE = os.path.join(ROOT, "site")
 if os.path.dirname(os.path.abspath(__file__)) not in sys.path:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_urls import resolve as _resolve_url                # noqa: E402
+from preflight import GENERATED_TOP_LEVEL_PAGES                # noqa: E402
 
 # Pages built by ops/build_zone_pages.py. A finding here is a generator bug.
 GENERATED = re.compile(r"[\\/](rooms|zones)[\\/]")
+
+
+def is_generated(path: str) -> bool:
+    """True for any page a generator owns, not only the 114 room/zone pages.
+
+    Found 2026-10-12, second-pass cold read: the regex above only matched a
+    /rooms/ or /zones/ path segment, so every one of the 28 top-level
+    generated pages (kitchen-deck.html and its 23 siblings, corporate.html,
+    how-to-clean-anything.html, both deck-gallery pages, kit.html,
+    resources.html, standards.html, shop.html) read as "hand written" in
+    this file's own "where the fix goes" column. That is the exact
+    misdirection step 5b warns against: a reader following this table to
+    kitchen-deck.html would hand-edit a file ops/build_kitchen_deck_page.py
+    regenerates on every run. Currently no finding sits on any of the 28
+    (confirmed by running this file), so nothing has been silently
+    overwritten; the gap was in the guidance, not yet in an outcome.
+    GENERATED_TOP_LEVEL_PAGES is ops/preflight.py's own registry, kept
+    exhaustive and disjoint from HAND_MAINTAINED_PAGES by its
+    gate_page_ownership_registry, so it is reused rather than duplicated
+    here (the same cost tradeoff ops/affiliate.py's retailer_link()
+    docstring makes explicit elsewhere in this repository: importing the
+    one proven-exhaustive registry is cheaper than a second list that can
+    drift from it).
+    """
+    return bool(GENERATED.search(path)) or os.path.basename(path) in GENERATED_TOP_LEVEL_PAGES
 
 # The book sample is a 50 chapter export, not a page anybody authored. Holding
 # it to the same heading and title rules would drown every real finding.
@@ -298,7 +324,7 @@ def main(detail: str | None) -> int:
             per_page[rel] = f
         for name, _ in f:
             counts[name] += 1
-            if GENERATED.search(p):
+            if is_generated(p):
                 gen_counts[name] += 1
         m = re.search(r"<title>(.*?)</title>", html, re.S | re.I)
         if m:
@@ -328,7 +354,7 @@ def main(detail: str | None) -> int:
         print(f"  {'check':16} {'total':>6} {'generated':>10}   where the fix goes")
         for name, n in counts.most_common():
             g = gen_counts[name]
-            where = ("ops/build_zone_pages.py" if g == n else
+            where = ("a generator, see is_generated() above" if g == n else
                      "hand written pages" if g == 0 else
                      "both, generator first")
             print(f"  {name:16} {n:>6} {g:>10}   {where}")
