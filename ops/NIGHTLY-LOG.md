@@ -4,6 +4,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-12, PM check-in (:40 slot)
 
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here" items and the 9 open GitHub decision/blocked-on-art issues), because every row in BACKLOG-2026-09-07.md sections 2-6 is already Done or Phil-gated, and nothing on GitHub or in the deploy pipeline moved since the prior cycle.
+
+Attached clean this cycle (fetch, unshallow was needed again, checkout main, ff-only onto origin/main at 9c4d3f3, 486 commits). `cycle_signal.py --check`: SAME against the 00:59:26Z snapshot, so the local substitute checks (check_urls, fix_dashes, affiliate, check_sellable, cold-read ledger) were not redundantly re-run; what a hash cannot see was checked directly instead. GitHub re-read live: 9 open issues, same numbers and labels as the last cycle (#40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `Deploy to production` workflow's most recent `success` run is still 2026-10-10T20:46:08Z; nothing has deployed since, confirming the already-logged deploy gap is unchanged, not new (closing it is Phil's own Redeploy-button step, or issue #35's VPS_DEPLOY_KEY secret). `ops/deploy_freshness.py`: UNKNOWN, no network to the live site from here, reported as such rather than assumed current.
+
+Previous work IS finished, not just committed: working tree was clean and main was pushed before this cycle started, and every backlog row is Done or Phil-gated per the last several cycles' own scans, reconfirmed against today's live GitHub read rather than cited.
+
+**Did, this slot's one small closing job:** regenerated `EXECUTIVE-DASHBOARD-LIVE.md` (`ops/dashboard.py`) since it was 25 minutes stale; the diff is timestamp and commit-counter only, no material change, confirming nothing drifted.
+
+**Went well:** the attach again hit the shallow/detached-HEAD shape from issue #27, waited out the lock rather than forcing it, no time lost to collision.
+
+**Did not go well:** nothing new; same standing limitations (no Stripe/analytics/VPS credentials in this sandbox) as every recent cycle.
+
+**Changing next cycle:** none.
+
+HANDOFF-FILES: none
+
+## 2026-10-12, PM check-in (:40 slot)
+
 NEXT FOR THE OPERATOR: nothing newly unblocked, keep working the standing Phil-gated queue (`OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` section 6), because every row in sections 2 through 4 is already struck through Done or marked YES Phil, and the 9 open GitHub issues are unchanged since the last cycle.
 
 **Did:** Attached cleanly this cycle only after the Step 0 `git fetch --unshallow` from a prior background call was still mid-`index-pack` when a second foreground attempt collided on `.git/shallow.lock`; waited for the original to finish rather than removing the lock or forcing anything, then fast-forwarded main onto `origin/main` (`2ce1dd43f`), 485 commits, clean. Read `git log -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` (sections 0-8), `EXECUTIVE-DASHBOARD-LIVE.md`'s data, `STATUS.md` section 21, and `gh issue list` (via the GitHub MCP tools).
