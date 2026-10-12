@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-12, PM check-in: previous work reconfirmed finished, pymupdf-bootstrap preflight re-verified clean, nothing newly unblocked
+## 2026-10-12, PM check-in: previous work reconfirmed finished, nothing newly unblocked, cold-read handed to operator
+
+NEXT FOR THE OPERATOR: a cold-read audit pass on a low-mention ops/*.py file, because every unblocked backlog row is Done or Phil-gated and GitHub's 9 issues are unchanged, so the established fallback is the highest-value genuinely unblocked work left.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 506 commits). Read git log -12, both newest NIGHTLY-LOG entries, BACKLOG-2026-09-07.md sections 0-8 and OWNER-ACTIONS.md in full, EXECUTIVE-DASHBOARD-LIVE.md. GitHub read directly: 9 open issues unchanged (all decision/blocked-on-art), 0 open PRs.
+
+**Previous work IS finished.** Working tree clean, main pushed. Ran preflight myself (unbuffered, to a file so partial progress survives a timeout): 76 gates, zero FAIL lines, stopped at the documented gate_tests sandbox hang, same known limit as recent cycles. Backlog sections 2-5: every row is struck through Done or explicitly Phil-gated/HOLD; nothing newly unblocked. Re-derived the deploy gap independently rather than citing it: resolved `deploy-verdict.json`'s build (`e3d3bc8c`, commit `a582ca349`) and counted `git log a582ca349..HEAD -- site/ Dockerfile` myself: 5 commits, matching STATUS.md's own "5 commits undeployed, 4 material" row exactly, so that figure is current, not stale.
+
+Refreshed and pushed the command deck. Handing the operator the same standing queue: OWNER-ACTIONS.md items -1/0/1a/1/1d (all genuinely Phil-gated: usage-limit check, VPS_DEPLOY_KEY, Search Console, YouTube auth, Stripe description) and the 9 decision/blocked-on-art issues, plus the cold-read fallback above since nothing new unblocked.
+
+HANDOFF-FILES: none
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 504 commits). Read git log -12, NIGHTLY-LOG.md, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md. GitHub read directly, not cited: 9 open issues unchanged (all decision/blocked-on-art), 0 PRs. CI green on prior commit (run 2046); current HEAD's run was still in progress when read.
 
