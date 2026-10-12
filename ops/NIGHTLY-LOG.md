@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work finished, nothing new unblocked, fast preflight hit the known gate_tests hang
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); unshallowed, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no unrelated-history symptom. HEAD since the prior PM/operator cycle is only a bot commit (owner-questions-email timestamp), nothing of substance. `cycle_signal.py --check` reported SAME against the 21:57:39Z snapshot. The immediately prior cycle's own full preflight (completed moments before this check-in, HEAD then) was 0 FAIL/32 warnings; this cycle's own `preflight.py --fast` hit the documented `gate_tests` sandbox hang and was killed at 110s, so that tier is unchecked this run, not re-cited as passing. Working tree clean, main pushed. GitHub: 9 open issues unchanged, all decision/blocked-on-art, none mine (checked #40 specifically: already resolved and correctly left for Phil's own plan check, not stale). No mail credential. Affiliate clean, 165 documents.
+
+**Did not start new work.** Nothing in `BACKLOG-2026-09-07.md` is newly unblocked. The queued hours-scale cold-read handoff (`build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`) stays with the :43 operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only.
+
 ## 2026-10-12, scheduled operator cycle: took the queued cold-read handoff, five files regenerate-and-diff clean, no new defect
 
 **Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, 585 commits, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2), `ROADMAP-2026-2029.md`'s ordering, `CLAUDE.md`, `OWNER-ACTIONS.md`'s "start here" items and the last four log entries before picking anything. GitHub's 9 open issues unchanged (2 `P0`: #15 Listmonk decision, #2 card-art regeneration; the rest `decision`/`blocked-on-art`), none mine per CLAUDE.md 0.5. `ops/inbox_agent.py --apply`: no mail credential (standing). `ops/affiliate.py --check`: clean, 165 documents.
