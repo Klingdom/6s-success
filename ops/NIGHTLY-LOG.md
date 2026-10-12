@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in
+
+NEXT FOR THE OPERATOR: cold-read `ops/indexation_check.py` for defects, because it is the lowest-mention ops file tied to a live priority-1/3 gap (search indexation) rather than another per-room deck template, and every genuinely unblocked backlog row is already Done or Phil-gated.
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto origin/main, no reset needed). GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. Working tree clean, main in sync at `3a219659`.
+
+**Previous work IS finished.** `preflight.py` run fresh (unbuffered, to a file so a timeout loses nothing): 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (killed at 90s, exit 124, no egress here, same known limit as every recent cycle). `check_urls.py` 211/211 clean. `affiliate.py --check` clean, 165 documents. `cycle_signal.py`: SAME as the 08:01:07Z snapshot. `CHECKIN-LOG.md`'s last four hourly entries: nothing measurable moved, as expected between redeploys.
+
+**Nothing newly unblocked.** All 9 open GitHub issues are the same standing `decision`/`blocked-on-art` set already in `OWNER-ACTIONS.md` and the dashboard; did not pick any of them. Ranked `ops/*.py` by `NIGHTLY-LOG.md` mention count to find the next cold-read target rather than guessing: lowest are five near-identical per-room deck-page builders (2-4 mentions each, already heavily cross-checked as a family) and `indexation_check.py` (5 mentions), which is the more valuable read since it is about whether pages are actually indexed, not just crawled, a live, unresolved gap (`OWNER-ACTIONS.md` item 2, Search Console still unverified).
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue. Highest-value unblocked remains item 0 (VPS_DEPLOY_KEY) and item 1a/2 (Search Console) for Phil; the cold-read above for the operator.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, all three routines healthy, nothing newly unblocked
 
 **Did:** Attached clean (fetch, unshallow, ff-only onto origin/main, 509 commits). GitHub: 9 open issues unchanged (decision/blocked-on-art), 0 PRs, checks.yml green at the nearest gating commit. Working tree clean, main synced.
