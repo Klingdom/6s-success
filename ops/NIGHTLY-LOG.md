@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work reconfirmed finished independently, nothing newly unblocked
+
+**Did:** Checkout arrived shallow and detached; fetch, unshallow, checkout main, ff-only onto origin/main (497 commits), clean. Read git log -12, the newest two NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md in full, and GitHub directly rather than citing the deck.
+
+**Previous work IS finished, checked rather than assumed.** Working tree clean, main level with origin. `cycle_signal.py --check`: SAME against the 06:58:05Z snapshot. Re-verified independently: GitHub's 9 open issues read directly (all `decision`/`blocked-on-art`, unchanged, matching the dashboard), 0 open PRs, no mail credential (`inbox_agent.py --apply`, unchecked not assumed empty). STATUS.md's own "Open claims" section: none open, pruned 2026-10-11. `preflight.py --fast` run directly: every gate passed in sequence with no FAIL line through `gate_image_coverage`, then hit the documented `gate_tests` sandbox hang (confirmed stalled, not computing, by checking `ps`: two accidental duplicate copies I had started both sat at near-zero CPU; killed both rather than waiting further). This machine also has no `pytest` module, consistent with the same class of limitation, not a new one. Independently re-derived the deploy gap rather than citing the last cycle's count: resolved `deploy-verdict.json`'s confirmed build (`e3d3bc8c77a83e38`) to its real commit (`33254e88a`, found by walking one step past the naive `git log -S` hit, which lands on the commit that changed the file FROM this value, not the one that set it) and counted forward: `git log 33254e88a..HEAD -- site/ Dockerfile` reads 5 commits, matching the prior cycle's own count exactly, still the same standing gap (`OWNER-ACTIONS.md` item 0, issue #35), Phil-gated, no VPS deploy key in this sandbox.
+
+**Sampled BACKLOG-2026-09-07.md sections 1b through 6 for anything not already Done or Phil-gated:** every row read (A1 through A21, the owner-gates table, section 1b's basement/attic hold) is one or the other; 1b is a deliberate, reasoned HOLD (37 queries, 1.3% of measured demand, would require authoring two new rooms end to end), not an oversight. The GitHub Checks run for the previous cycle's own commit (`23c3c94e`, run 2046) was still `in_progress` at check time, consistent with this workflow's own recent duration (run 2045 took 39 minutes); not cited as green or red either way.
+
+**Went well:** re-deriving the deploy-gap commit independently instead of trusting the prior cycle's resolved hash, and it matched; caught and killed a self-inflicted duplicate background process before it could race itself writing the same log file.
+
+**Did not go well:** nothing new; same standing sandbox limits as every recent cycle (no Stripe/analytics/VPS/mail credential, no `pytest`, `gate_tests` hangs here).
+
+**Changing next cycle:** none; no new defect found.
+
+**Next:** same standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`, 5-commit deploy gap), the section 6 owner-gates table, and the 9 open `decision`/`blocked-on-art` GitHub issues. Confirm Checks run 2046 reached a conclusion. Nothing newly unblocked for the operator this cycle.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, scheduled operator cycle: cycle_signal SAME, environment-vs-defect check on a fresh sandbox, deploy gap re-verified at 5 commits
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 497 commits). `ops/cycle_signal.py --check` returned SAME against the 06:17:34Z snapshot. Rather than stop there, independently re-verified rather than cited: GitHub read directly (9 open issues, all `decision`/`blocked-on-art`, unchanged; 0 PRs), `inbox_agent.py --apply` (no mail credential, unchecked not assumed empty), `ops/cold_read_ledger.py --stale` (0 stale), and ran `test_gate_nightly_log_ordering.py`/`test_nightly_log.py` directly myself rather than trust the prior cycle's claim that the CI-red was already fixed (both pass clean on current HEAD). Checked the deploy gap against real evidence rather than citing a stale `deploy-verdict.json` (2026-10-09): `git log` from the last VPS-confirmed build to HEAD shows exactly 5 site-touching commits undeployed, the same standing gap OWNER-ACTIONS.md item 0 and issue #35 already describe; confirmed the 2026-10-10 "Deploy to production" run that shows `success` only succeeded at its no-op skip path (no `VPS_DEPLOY_KEY`), not at an actual deploy, by reading its job steps directly rather than trusting the green checkmark (CLAUDE.md 0.3/0.4).
