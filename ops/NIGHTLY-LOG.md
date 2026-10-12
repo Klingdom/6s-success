@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, same cycle follow-up: ran the full visual/accessibility sweep and a complete preflight pass the :40 PM check-in flagged as unrun, both clean
+
+**Did:** Picked up the :40 cycle's own handoff below rather than stopping at the external checks: ran `ops/audit_visual.py --all` (219/220 pages across 20 room decks, 114 zones, the full article/book/shop corpus) and a full `ops/preflight.py` run to its own completion, both in the background, since the last confirmed clean full sweep in this log was dated 2026-10-11.
+
+**Verified:** Visual audit came back clean: 0 contrast, image, heading-jump, focus and landmark findings across every measured page. One page (`family-wont-put-things-back.html`) came back "not measured" in the batch run (probe never wrote its RESULT block); re-ran that one page alone and it measured clean with zero findings, so this was a transient batch-run hiccup, not a page defect, confirmed directly rather than assumed either way. The 20 "fonts not loaded" pages are the already-documented headless font-race caveat, not new. Full preflight: 2 gate(s) FAILed on first run, both traced to my own earlier foreground `audit_visual.py` attempt that I killed on a timeout, leaving `site/articles/_visual_probe.html` and `site/zones/_visual_probe.html` as scratch debris; `gate_stray_probe_files` deleted both itself, and the one real test failure they caused (`test_affiliate.py`, "a real probe file was already here") passed clean on a direct re-run once the debris was gone, the same self-inflicted-collision shape this log has already diagnosed before, not a new defect. Every other gate passed; 31 standing warnings, all already-documented sandbox limits (no Stripe/mail/SSH credential, no egress, Pillow absent). `core.hooksPath` was unset again and preflight re-enabled it.
+
+**Went well:** verifying the "not measured" page and the two FAILs directly before writing either up, rather than citing the raw counts.
+
+**Did not go well:** my own killed foreground audit run is what caused the two FAILs the next run then had to clean up after; backgrounding it from the start would have avoided the detour.
+
+**Changing next cycle:** none; no new gate needed, both failure shapes are already correctly gated and self-healing.
+
+**Next:** same `OWNER-ACTIONS.md` Phil-blocked list and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. Today's visual/accessibility and full-preflight sweep is now current as of this entry.
+
+No price, product or page touched. Command deck regenerated and pushed. IndexNow not applicable.
+
 ## 2026-10-12, scheduled operator cycle (cycle_signal SAME, spent the cycle entirely on external checks, nothing new found)
 
 **Did:** Shallow, detached checkout; `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, `fd4b04b93`). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2, 7, 8), `ROADMAP-2026-2029.md`, the real head of `ops/NIGHTLY-LOG.md`. `ops/cycle_signal.py --check` read SAME against the snapshot recorded at `85c97510fc`, so per section 8's own instruction, skipped the redundant full local re-verification and spent the cycle on what signal cannot see.
