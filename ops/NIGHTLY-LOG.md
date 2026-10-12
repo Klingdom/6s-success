@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle (logging-location decision closed, deploy gap and cold-read ledger reconfirmed, nothing newly unblocked)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 481 commits), then merged two further concurrent PM pushes mid-cycle (ff-only again, no conflicts once a stashed dashboard regen was set aside and redone after). Read `GOALS.md` in full and `BACKLOG-2026-09-07.md` section by section (its own long table cells exceed a single read). `cycle_signal.py --check`: SAME against the 00:59:26Z snapshot. Ran `ops/preflight.py` directly: it reached `gate_tests` and then made zero CPU progress for over 15 minutes, the same documented headless-Chromium sandbox hang logged at 00:59, 01:52 and 02:19 today; killed it rather than let it run unbounded, and ran the five substitute checks directly instead of citing them: `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services by design), `cold_read_ledger.py --stale` 0 and `--next` shows 0 un-ledgered candidates (198 of 198 files ledgered, confirmed directly, not cited). GitHub: `list_issues` 9 open, unchanged, all `decision`/`blocked-on-art`; 0 PRs. Read issue #40's own thread directly: already correctly left open for Phil's own usage/plan check, nothing further to act on (both PM routines have since run and succeeded, confirming the stall has not recurred). Re-derived the deploy gap rather than citing it: `resolve_verdict_commit` + `deploy_gap_material_commits` against the current `ops/deploy-verdict.json` (`e3d3bc8c77a83e38`, 2026-10-09T05:32:43Z) returns the same 5 commits (4 material, 1 restamp) already recorded 2026-10-10, unchanged. `inbox_agent.py --apply`: no mail credential, UNCHECKED not assumed empty.
+
+**Resolved, this cycle, the logging-location question three consecutive PM check-ins (00:59, 01:52, 02:19/:40) flagged and deferred as needing a clear head rather than a rushed one.** The question was whether `ops/NIGHTLY-LOG.md` or `STATUS.md` is the real cycle log, after a five-week gap (2026-09-04 to 2026-10-12) where cycles narrated "PM check-in" corrections inline inside `STATUS.md` instead of appending here. Decision: `ops/NIGHTLY-LOG.md` is the per-cycle operational log (its own header says so, and `ops/nightly_log.py`, built 2026-10-09/10 specifically to stop hand-edits burying entries, already writes it correctly); `STATUS.md` stays the current-state snapshot with its own dated correction trail, a different and still-useful function, not a competing log. No backfill needed: the gap is a presentation question, not lost data, since every cycle's work from that period is still readable inside `STATUS.md`'s own corrections, and entries have been appending here correctly every cycle since 2026-10-09. Closing this out rather than re-flagging it a fourth time.
+
+**Verified, not assumed:** nothing in sections 2 to 6 of `BACKLOG-2026-09-07.md` is open and unblocked; every row is Done, Phil-gated (owner gates section 6, all account/billing actions), or closed by decision issue. No new workstream opened, consistent with the 3-workstream limit having nothing to spend on right now.
+
+**Went well:** the deploy-gap and cold-read-ledger re-derivations used the actual tooling (`deploy_gap_material_commits`, `cold_read_ledger.py`) rather than repeating a prior cycle's prose, so this entry adds confirmation rather than another unverified citation.
+
+**Did not go well:** `gate_tests` still cannot complete in this sandbox; same known limitation, not a new defect, no gate exists that could fix a resource ceiling rather than a code defect.
+
+**Changing next cycle:** none needed; today's logging-location fix should stop that item recurring.
+
+**Next:** standing Phil-gated queue unchanged (`OWNER-ACTIONS.md`, `BACKLOG-2026-09-07.md` section 6). Nothing newly unblocked for the next cycle to pick up.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (:40 slot)
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, because the backlog's own section 8 and this file's 02:19 entry already confirmed sections 2-6 are all Done, Phil-gated or closed by decision, and `cycle_signal.py --check` reads SAME against the 00:59:26Z snapshot with no files changed since.
