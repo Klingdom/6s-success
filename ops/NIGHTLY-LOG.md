@@ -2,6 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (00:1x UTC cycle)
+
+Previous work finished: `ops/cycle_signal.py --check` returns SAME against the
+snapshot the 0ca2ab4a3 cycle recorded 12 minutes earlier, meaning every signal
+file (both backlogs, OWNER-ACTIONS, STATUS, GOALS, deploy-verdict, cold-read
+ledger) is byte-identical since that last full pass. Per that tool's own
+purpose, skipped the redundant full local re-verification and checked only
+what a hash cannot see: GitHub's 9 open issues read live, unchanged (6
+decision, 2 blocked-on-art, 0 open PRs, no new comment); all 6 scheduled
+workflows on the latest push completed success; `inbox_agent.py --apply`
+reports no mail credential, UNCHECKED not assumed empty, same as every prior
+cycle. Ran the cheap substitute checks anyway: `fix_dashes.py --check` 0 em/0
+en, `cold_read_ledger.py --stale` 0. Working tree clean before and after.
+
+Issue #40 (usage-limit stall) re-checked: no FAILED run on either sibling
+Routine since 2026-10-09 03:2x, now 3 days of continuous operation; stays
+open per its own terms, correctly waiting on Phil to check usage/plan
+directly, nothing further actionable from this session.
+
+No new defect found, nothing newly unblocked. Backlog section 8 already
+closes this state as of 2026-10-11; this cycle is independent confirmation
+that it still holds, not a repeat of the full read. Handing the operator
+nothing new: same standing Phil-gated queue.
+
+Regenerated and shipped the dashboard, as required every run. No code, price,
+product or page touched.
+
 ## 2026-10-11, scheduled operator cycle: built the full-reverification efficiency gate the 23:0x entry named, instead of a 51st repeat of 'nothing new unblocked'
 
 **Did:** Attached clean per STEP 0 (fetch, unshallow, `checkout -B main origin/main`, `merge --ff-only` fast-forwarded 465 commits onto `ce307ef78`, no unrelated-histories error). Read `BACKLOG-2026-09-07.md` in full, skimmed `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries via a research subagent (the backlog file runs 444KB on a handful of very long table-cell lines; read in chunks rather than in one pass). `preflight.py` run to completion in the background rather than killed at the documented `gate_tests` sandbox-hang timeout: finished clean on its own, every gate passed, the same 30 standing warnings (no Stripe credential, no VPS SSH key, no egress to the live site). `inbox_agent.py --apply`: no mail credential, reported UNCHECKED, not assumed empty. GitHub's 9 open issues read live via the API, not cited: unchanged, 6 `decision`, 2 `blocked-on-art`, one carrying both, 0 open PRs.
