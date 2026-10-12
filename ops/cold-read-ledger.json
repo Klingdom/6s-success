@@ -663,8 +663,8 @@
     },
     "preflight.py": {
       "status": "fixed",
-      "date": "2026-10-11",
-      "note": "Third-pass cold-read, PM check-in: re-read cold_read_handoff_stale_files()'s new HANDOFF-FILES marker path end to end (added today, the tenth and structural fix to this gate's free-text parsing saga). Marker path is authoritative when present, correctly falls back to the legacy heuristic for older markerless entries. test_gate_cold_read_handoff_not_stale.py 26/26. No new defect found; ledger was stale only because it predated this same-day change."
+      "date": "2026-10-12",
+      "note": "2026-10-12 scheduled operator cycle: added gate_epub_edition_date_current (compares build_epub.py's EDITION_DATE against content/book/'s own last commit by UTC calendar date), registered in main() beside gate_cover_author_current. Proved it fails red against a stale date and passes clean against the fix"
     },
     "prerender_shop.py": {
       "status": "fixed",
