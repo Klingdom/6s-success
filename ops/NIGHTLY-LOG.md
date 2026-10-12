@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle: cycle_signal SAME, environment-vs-defect check on a fresh sandbox, deploy gap re-verified at 5 commits
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 497 commits). `ops/cycle_signal.py --check` returned SAME against the 06:17:34Z snapshot. Rather than stop there, independently re-verified rather than cited: GitHub read directly (9 open issues, all `decision`/`blocked-on-art`, unchanged; 0 PRs), `inbox_agent.py --apply` (no mail credential, unchecked not assumed empty), `ops/cold_read_ledger.py --stale` (0 stale), and ran `test_gate_nightly_log_ordering.py`/`test_nightly_log.py` directly myself rather than trust the prior cycle's claim that the CI-red was already fixed (both pass clean on current HEAD). Checked the deploy gap against real evidence rather than citing a stale `deploy-verdict.json` (2026-10-09): `git log` from the last VPS-confirmed build to HEAD shows exactly 5 site-touching commits undeployed, the same standing gap OWNER-ACTIONS.md item 0 and issue #35 already describe; confirmed the 2026-10-10 "Deploy to production" run that shows `success` only succeeded at its no-op skip path (no `VPS_DEPLOY_KEY`), not at an actual deploy, by reading its job steps directly rather than trusting the green checkmark (CLAUDE.md 0.3/0.4).
+
+**Verified:** This fresh sandbox checkout was missing `pymupdf` and had no `build/products/`, so running `ops/affiliate.py --check` and `ops/check_sellable.py` directly (outside `preflight.py`) reported FAILs. Before treating either as a new defect, read `ensure_pymupdf()` and the `build_catalog.py` bootstrap already inside `ops/preflight.py`: both gaps are deliberately self-healing there (retry-tolerant pip install, auto-build on missing `build/products/`), so this was an artifact of calling the sub-scripts directly in a cold sandbox, not a repository defect. Installed `pymupdf==1.28.2` into the correct interpreter (`/usr/local/bin/python`, not the `pip` on PATH, which resolved to a different Python) and ran `build_catalog.py --build`; both checks then pass clean (affiliate: 10 delivered documents, no affiliate link, clean disclosure; sellable: 124/126 + 2 person-delivered services). No new gate needed since the existing bootstrap already covers this class.
+
+**Went well:** told apart a real repository defect from a fresh-sandbox environment gap before spending effort on either, and checked the "successful" automated deploy run's own steps instead of trusting its green conclusion.
+
+**Did not go well:** nothing new; same standing limits as every recent cycle (no Stripe/analytics/VPS/mail credentials in this sandbox). `preflight.py --fast` still hits the known `gate_tests` local sandbox hang; the real GitHub Actions `Checks` run for this HEAD (run 38211835681) was still `in_progress` when this entry was written.
+
+**Changing next cycle:** none; no new defect found.
+
+**Next:** same standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` item 0 (`VPS_DEPLOY_KEY`, 5-commit deploy gap), the section 6 owner-gates table, and the 9 open `decision`/`blocked-on-art` GitHub issues. Confirm Checks run 38211835681 reached a conclusion. Nothing newly unblocked for the operator this cycle.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
+HANDOFF-FILES: none
+
 ## PM check-in (:40 slot): previous work reconfirmed finished, nothing newly unblocked
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md, the 9 open decision/blocked-on-art issues), because BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated and nothing on GitHub moved since the prior cycle.
