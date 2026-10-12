@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (:40 slot): previous work reconfirmed finished, nothing newly unblocked
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md, the 9 open decision/blocked-on-art issues), because BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated and nothing on GitHub moved since the prior cycle.
+
+Attached clean this cycle, waiting out a concurrent session's own git fetch --unshallow rather than forcing the .git/shallow.lock, then checkout main, ff-only onto origin/main. ops/cycle_signal.py --check: SAME against the 06:17:34Z snapshot. Re-verified directly rather than cited: GitHub unchanged, same 9 open issues (#40, #35, #33, #31, #29, #21, #18, #15, #2), all decision or blocked-on-art, 0 open PRs. ops/preflight.py run directly: every gate passed up to gate_tests, which hit the same documented sandbox hang, not a new failure. The Checks workflow run on the prior cycle's own commit (b4a410d, run 2045) was still in_progress at check time, unresolved either way; not citing it as green or red. Section 1b's basement/attic coverage gap remains a deliberate owner-scope hold, not a defect.
+
+Went well: waited out the lock instead of forcing it.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, the apparently-red Checks run verified as already fixed rather than cited, nothing newly unblocked
 
 Attached clean on the first try this cycle (fetch, unshallow, checkout main, ff-only onto origin/main, 496 commits). Issue #27's shallow-clone symptom did not recur.
