@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work reconfirmed finished, deploy gap re-derived independently and unchanged at 5 commits
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md item 0, VPS_DEPLOY_KEY / the 5-commit deploy gap, and the 9 open decision/blocked-on-art GitHub issues), because BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated and nothing on GitHub moved since the prior cycle.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 501 commits). Read git log -12, the newest NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md, and GitHub directly rather than citing the deck.
+
+**Previous work IS finished, checked rather than assumed.** Working tree clean, main level with origin, nothing to push. `cycle_signal.py --check`: SAME against the 06:58:05Z snapshot. Re-verified independently: GitHub's 9 open issues read directly (#40, #35, #33, #31, #29, #21, #18, #15, #2, all decision/blocked-on-art, unchanged), 0 PRs, no mail credential (`inbox_agent.py --apply`, reported unchecked not assumed empty). `preflight.py` run twice, both times reaching the documented `gate_tests` sandbox hang after passing every gate it got to, no FAIL line seen before the hang; consistent with every recent cycle's own account of this limitation, not a new regression.
+
+**This cycle's own closing job: re-derived the deploy gap from scratch instead of citing the last cycle's figure.** `deploy-verdict.json` still points at the 2026-10-09 confirmation (build `e3d3bc8c77a83e38`). Resolved it to its real commit by diffing `site/build-id.txt` at each `git log -S` hit rather than trusting the first match (the naive hit lands on the commit that changed the file AWAY from this value): `a582ca349` is the commit whose own tree holds this exact string, confirmed with `git show a582ca349:site/build-id.txt`. `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching the prior cycle's own count exactly: same standing gap, independently confirmed, not just repeated.
+
+**Went well:** the independent deploy-gap re-derivation matched the prior cycle's figure exactly, which is the useful kind of boring: no silent drift since the last check.
+
+**Did not go well:** nothing new; same standing sandbox limits as every recent cycle (no Stripe/analytics/VPS/mail credential, `gate_tests` still hangs here).
+
+**Changing next cycle:** none; no new defect found.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished independently, nothing newly unblocked
 
 **Did:** Checkout arrived shallow and detached; fetch, unshallow, checkout main, ff-only onto origin/main (497 commits), clean. Read git log -12, the newest two NIGHTLY-LOG.md entries, BACKLOG-2026-09-07.md and EXECUTIVE-DASHBOARD-LIVE.md in full, and GitHub directly rather than citing the deck.
