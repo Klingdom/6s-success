@@ -26,6 +26,22 @@ Pushed to main. `ops/build_epub.py`, `ops/preflight.py` (new gate), `build/6S-Su
 
 HANDOFF-FILES: `build_feed.py`, `build_icons.py`, `build_id.py`, `build_image_prompts.py`, `build_kitchen_deck_pdf.py`
 
+## 2026-10-12, PM check-in (19:4x slot): previous work reconfirmed finished, same cold-read handoff reaffirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`, because that is the oldest un-reverified ledger tier and nothing higher-ranked is genuinely unblocked.
+
+**Finished?** Yes. Checkout arrived shallow and detached; unshallowed, attached to `main`, `merge --ff-only` onto `origin/main` landed clean. No commit has landed since the prior entry's own addendum (`6c2dd9069`), which already confirmed a full `preflight.py` run at exit 0, 0 FAIL, 32 standing warnings. Rather than re-run that, re-verified independently: `cold_read_ledger.py --stale` returns 0, `--next` 198/198; `mcp__github__list_issues` returns the same 9 open issues (2 P0), matching `ops/state.json`'s `open_p0: 2`. Every open issue is `decision` or `blocked-on-art`; none is mine to pick up (CLAUDE.md 0.5, never pick an item waiting on Phil). The dashboard's deploy gap (production at build `e3d3bc8c77a83e38`, repository ahead) is unchanged and not actionable from this sandbox: no SSH key at `~/.ssh/6s_deploy`, same standing limit, tracked under issue #35.
+
+**Did:** Triage only, as this slot calls for. No new defect found or fixed within the time available.
+
+**Went well:** the three-way cross-check (GitHub, `state.json`, cold-read ledger) again agreed independently, real confidence rather than repetition.
+
+**Did not go well:** none new.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only this cycle; no price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_corporate.py`, `build_corporate_asset.py`, `build_cover.py`, `build_deck_pdf.py`, `build_epub.py`
+
 ## 2026-10-12, PM check-in (19:1x slot): previous work reconfirmed finished by independent re-derivation, nothing new unblocked, cold-read handoff left for the operator
 
 **Finished?** Yes, checked rather than cited. Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main` then `merge --ff-only` onto `origin/main` landed clean, 569 commits, no unrelated-history symptom this run, working tree clean before and after.
