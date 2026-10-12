@@ -24,9 +24,35 @@ No price or product touched. `ops/service_orders.py`, `ops/tests/test_service_or
 
 HANDOFF-FILES: none
 
+## 2026-10-12, PM check-in (10:4x, 30 minute triage)
+
+NEXT FOR THE OPERATOR: the third-pass adversarial re-read of the eight oldest-ledgered ops files (crawl_report.py, experiments.py, indexnow.py, measure.js, service_orders.py, stripe_brand.py, wire_landmarks.py, check_integrations.py), because that handoff from two PM cycles ago is still unactioned and is the only genuinely unblocked work left once backlog sections 2 through 6 and the 9 GitHub issues are confirmed unchanged.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main, 519 commits). `cycle_signal.py --check` read CHANGED (`ops/cold-read-ledger.json` differs from the recorded snapshot), so ran the full local re-verification rather than the shortcut path. Read `git log -12`, both newest `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0 and 6 through 8, `OWNER-ACTIONS.md`'s Start Here section. GitHub read directly: 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Verified the top-of-log operator cycle's own claim rather than trusting it.** That cycle said it fixed a live CI failure on `indexation_check.py` (commit `434f592c5`) but logged that it pushed without watching CI complete. Read GitHub Actions directly: the current HEAD's own merge commit (`df12befe5`, run 2050) completed `success`, confirming the fix actually landed clean, not just claimed.
+
+**Previous work IS finished.** `preflight.py` run fresh: 0 FAIL lines through every gate reached (through `gate_image_coverage`), stopped at the documented `gate_tests` sandbox hang (no egress here), killed rather than left idling. Substituted the standing narrower checks: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` clean (165 documents), `inbox_agent.py --apply` no mail credential, reported unchecked, not assumed empty. Deploy gap re-derived independently rather than cited: `deploy-verdict.json`'s build `e3d3bc8c77a83e38` resolves to commit `a582ca349`; `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching `STATUS.md`'s own "5 commits undeployed, 4 material" row exactly.
+
+**This cycle's closing job: a real stale `STATUS.md` defect found and fixed.** The "Repository hygiene" row's hand-written issue count ("8 open issues, 6 decision") had gone stale: issue #40 (the 2026-10-09 usage-limit stall, `decision`-labelled, already cited elsewhere in this same file and in `OWNER-ACTIONS.md` item -1) was never folded into this specific count. Corrected to 9 (7 `decision`, 2 `blocked-on-art`), confirmed live via the GitHub API this cycle, in the same citation style the row already uses. Command deck regenerated and pushed.
+
+**`cold_read_ledger.py --stale`:** 0. **`--next 15`:** 198 of 198 ledgered, lane exhausted (both first and second pass). The third-pass re-read of the eight oldest-dated entries (all 2026-10-03/04), handed off two PM cycles ago, is still unactioned: the intervening operator cycle worked a different, real, live CI-failure find instead, the correct call given it was actually broken, but the eight-file handoff itself has not moved since.
+
+**Went well:** verifying CI green at the actual merge HEAD rather than trusting the fixing commit's own account, which is what confirmed the top-of-log entry's fix really landed; finding the `STATUS.md` issue-count drift by diffing the live GitHub API against the hand-written row instead of trusting it.
+
+**Did not go well:** same shallow/detached checkout shape recurred again (issue #27, still needs Phil's own hand in the Routines UI); this sandbox still has no egress to Umami, Stripe, the VPS or mail, so traffic and revenue stay unmeasurable from here.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue, unchanged (`OWNER-ACTIONS.md` "Start here": item -1 usage-limit check, item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1d Stripe description) and the 9 open `decision`/`blocked-on-art` GitHub issues. The eight-file third-pass re-read above is the operator's unblocked work.
+
+No price, product or site page touched. `STATUS.md`, command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `service_orders.py`, `stripe_brand.py`, `wire_landmarks.py`, `check_integrations.py`
+
 ## 2026-10-12, PM check-in (:10)
 
-PM check-in (:10): previous work was NOT finished at attach — the prior two pushes had red CI, and HEAD's own Checks run was still in_progress. Watched it through instead of assuming green: Preflight, the ops test suite and the copy-vs-catalogue check all passed on df12befe5 (37 min), confirming the indexation_check.py fix chain holds. Independently reran test_indexation_check.py, test_canonical_probe_urls.py, check_urls (211/211), audit_pages (215/0), affiliate --check, mobile npm test (all pass); local preflight clean through the known gate_tests hang. No mail credential. 9 open issues unchanged, all Phil-gated. Recorded a fresh cycle_signal snapshot. Handing the operator's own eight-file third-pass cold-read (crawl_report.py, experiments.py, indexnow.py, measure.js, service_orders.py, stripe_brand.py, wire_landmarks.py, check_integrations.py) back to :43, still unpicked.
+PM check-in (:10): previous work was NOT finished at attach, the prior two pushes had red CI, and HEAD's own Checks run was still in_progress. Watched it through instead of assuming green: Preflight, the ops test suite and the copy-vs-catalogue check all passed on df12befe5 (37 min), confirming the indexation_check.py fix chain holds. Independently reran test_indexation_check.py, test_canonical_probe_urls.py, check_urls (211/211), audit_pages (215/0), affiliate --check, mobile npm test (all pass); local preflight clean through the known gate_tests hang. No mail credential. 9 open issues unchanged, all Phil-gated. Recorded a fresh cycle_signal snapshot. Handing the operator's own eight-file third-pass cold-read (crawl_report.py, experiments.py, indexnow.py, measure.js, service_orders.py, stripe_brand.py, wire_landmarks.py, check_integrations.py) back to :43, still unpicked.
 
 HANDOFF-FILES: none
 
