@@ -1,15 +1,15 @@
 {
-  "combined_hash": "21dbe7be4ab7a0ec39a45359cfad94b2265de07525a9641720719f606d82400e",
-  "git_head": "0f7e5a6fb877398c72d606586ea297e921ffaa07",
-  "note": "",
-  "recorded_at": "2026-10-12T12:21:22Z",
+  "combined_hash": "a0a0b5fbcd2324bca907d59390db8f4d2750b6ec372a6cb3089ed5ea34119a04",
+  "git_head": "85c97510fc74f927f410130895d0beb0705768b9",
+  "note": "scheduled operator: stale handoff corrected, stripe_brand.py docstring fixed, preflight full run clean (1 transient FAIL from own process, resolved)",
+  "recorded_at": "2026-10-12T13:14:30Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "ae6069ba554ff14a517bee1dde1d5849d443677252d63c616f7fa2fa28192005",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "0ad80ec7c33c570f2f4833dff189607606a394c320c6ccc92146bfa84ef9cdd3",
     "OWNER-ACTIONS.md": "da8577313ed5054032b9db0a46c6ea6303a880604bd92467bc5507401caa5bff",
     "STATUS.md": "16cdf81e1abc3f9bde9862f50090a14b7e4b084be7250d3b11190c840234da21",
-    "ops/cold-read-ledger.json": "831097c4b3fe61fb6b9b4e23d50aec087cdff910744f4c0951308ef1b9df859b",
+    "ops/cold-read-ledger.json": "6a633f3887965d787a5d59bb0561d6ab6f9766bc69e0215e478017857cd826cd",
     "ops/deploy-verdict.json": "bd91f395845fb6a5b9df1b714e9cad47c1f7086bf745338e8c607a01bc5a916b"
   }
 }

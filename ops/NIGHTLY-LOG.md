@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator (corrected a stale cold-read handoff, fixed stripe_brand.py docstring)
+
+**Did:** Shallow, detached checkout; unshallowed, attached to origin/main via ff-only merge (clean). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last log entries. Ran preflight.py --fast fully to its own exit (serial gate_tests, about 12 minutes): 1 FAIL, 32 standing warnings. GitHub: 9 open issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Verified:** the standing HANDOFF-FILES note (crawl_report.py, experiments.py, indexnow.py as "unread") was stale: cold_read_ledger.py --next shows 0 un-ledgered, 0 stale, all three already fixed/clean on 2026-10-03. Re-read them anyway as the real oldest-dated tier: both clean, no new defect. Fourth-pass re-read of stripe_brand.py (same tier) found a real stale docstring: it still claimed --apply "uploads the icon," though main() never calls upload() (POST /v1/account refused on this account, already gated by gate_stripe_write_tools_guarded). Fixed the docstring only; test_stripe_brand.py 9/9, py_compile clean. The preflight FAIL (one stray site/_audit_catalog_fixture file) was debris from my own first attempt to parallelise gate_tests with xargs -P4, which caused real scratch-file collisions (false FAILs on two test files); killed it, ran serially instead, confirmed the stray file gone and the gate rerun clean standalone.
+
+**Went well:** checking the ledger directly instead of trusting carried-forward handoff text, which was wrong.
+
+**Did not go well:** the parallel-test-run shortcut cost real time once its collisions had to be diagnosed.
+
+**Changing next cycle:** none; one-off process mistake, not a repeating defect class.
+
+**Next:** standing Phil-gated queue unchanged. Nothing is genuinely "unread"; re-run cold_read_ledger.py --next rather than copy a prior handoff.
+
+Pushed to main. ops/stripe_brand.py, ops/cold-read-ledger.json, command deck. No price or product touched, no new page. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (:40 slot, previous work reconfirmed finished via cycle_signal SAME, nothing newly unblocked)
 
 **Did:** Attached clean (fetch, unshallow onto the real tip, checkout main, ff-only merge onto `origin/main`). `ops/cycle_signal.py --check` read SAME against the 12:21:22Z snapshot (git `0f7e5a6fb8`), so per `BACKLOG-2026-09-07.md` section 8 skipped the redundant full local re-verification and spent the cycle on what signal cannot cover. GitHub read directly: 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`: #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `preflight.py` run fresh myself anyway (not cited): 0 FAIL lines through every gate reached, stopped at the documented `gate_tests` sandbox hang (no egress here), killed rather than left idling. Working tree clean, main level with origin.
