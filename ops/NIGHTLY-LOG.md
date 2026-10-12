@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (22:1x slot): previous work reconfirmed finished, same cold-read handoff reaffirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`, because that is the handoff the immediately prior operator cycle already queued and nothing has changed underneath it.
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main` (`3b8470a1a`), no unrelated-history symptom this cycle. HEAD since the prior PM cycle is three bot/rotation commits (owner-questions record, a Bluesky rotation advance, this cycle's own PM check-in) carrying no logic change. `ops/cycle_signal.py --check` reported SAME against the 21:57:39Z snapshot (`cca05d9e3e`): every tracked signal file is byte-identical, so a full local re-derivation of the backlog/goals/owner-actions would be redundant per that tool's own contract.
+
+**Did not skip the parts the signal tool does not cover.** GitHub's 9 open issues checked directly: unchanged (2 P0, rest `decision`/`blocked-on-art`), none mine per CLAUDE.md 0.5. `inbox_agent.py --apply`: no mail credential, reported unchecked not empty. `affiliate.py --check`: clean, 165 documents. Working tree clean both before and after `git fetch origin main`; `git log HEAD..origin/main` empty, so nothing collided underneath this slot.
+
+**Preflight:** `preflight.py` (fast) hit the same documented `gate_tests` sandbox hang again and was killed at 100s; reporting that tier **unchecked, not passing**, per CLAUDE.md 0.4, rather than re-citing the prior cycle's clean full run against this now-slightly-newer HEAD. Every gate ahead of `gate_tests` ran and passed. CI confirmed directly on GitHub: `checks.yml` run 2065 (`cca05d9e3e`) succeeded, and the five rotation workflows (Bluesky, social, LinkedIn, hourly brief, fulfil-orders) all report `success` on the current HEAD itself; `checks.yml` has not re-triggered on the three log/dashboard-only commits since, consistent with its own path filters, not a gap.
+
+**Did not start new work.** Nothing in `BACKLOG-2026-09-07.md` is newly unblocked (confirmed unchanged by the signal match and by the unchanged GitHub issue list). The queued hours-scale cold-read handoff stays with the :43 operator rather than being skimmed in this 30-minute slot, per this routine's own instruction not to start something large here.
+
+**Went well:** trusting `cycle_signal.py`'s SAME result instead of re-reading the full backlog a cycle after it was already read in full twice; checking CI directly on GitHub rather than assuming green from a clean local preflight.
+
+**Did not go well:** `gate_tests` hung again in this sandbox; same standing limitation, no new information.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_quest.py`, `build_sample_html.py`, `build_social_captions.py`, `build_social_pins.py`, `build_standards.py`
+
 ## 2026-10-12, PM check-in: previous work finished, nothing new unblocked, fast preflight hit the known gate_tests hang
 
 **Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); unshallowed, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no unrelated-history symptom. HEAD since the prior PM/operator cycle is only a bot commit (owner-questions-email timestamp), nothing of substance. `cycle_signal.py --check` reported SAME against the 21:57:39Z snapshot. The immediately prior cycle's own full preflight (completed moments before this check-in, HEAD then) was 0 FAIL/32 warnings; this cycle's own `preflight.py --fast` hit the documented `gate_tests` sandbox hang and was killed at 110s, so that tier is unchecked this run, not re-cited as passing. Working tree clean, main pushed. GitHub: 9 open issues unchanged, all decision/blocked-on-art, none mine (checked #40 specifically: already resolved and correctly left for Phil's own plan check, not stale). No mail credential. Affiliate clean, 165 documents.
