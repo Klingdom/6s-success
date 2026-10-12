@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator (unshallow attach, cycle-signal SAME, a live CI failure found and fixed on today's indexation_check.py change)
+
+**Did:** Checkout arrived shallow and detached (STEP 0's own documented shape); unshallowed and fast-forwarded onto `origin/main` cleanly, 515 commits. `ops/cycle_signal.py --check` read SAME against the snapshot recorded 2026-10-12T08:01:07Z, so per `BACKLOG-2026-09-07.md` section 8 skipped the full backlog re-read and `preflight.py`'s multi-minute `gate_tests` pass, and spent the cycle on the external checks that signal cannot cover instead. GitHub: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `affiliate.py --check`: clean, 165 documents.
+
+**The find, from the external check the backlog says still needs a direct look every cycle.** `ops/cold_read_ledger.py --stale` named one entry: `ops/indexation_check.py`, touched 2026-10-12 after its last ledger date, by a concurrent same-day PM cycle's own real fix (`207cca233`, two genuine classify()/`_domain_urls()` bugs). Reading GitHub Actions directly (not cited) rather than trusting the commit message: the "Checks" run against that exact commit (38234839106) FAILed preflight. Root cause: the fix's own new `classify()` branches added the literal strings `"/zones/index.html"` and `"/articles/index.html"`, which `check_no_redirecting_probe_urls()`/`test_canonical_probe_urls.py` correctly flagged, a static scan with no exception for a comparison rather than a fetch, banning any ops/ source that spells a URL production 301s (found 2026-09-29, this is the gate working exactly as designed on a brand-new instance of the same shape).
+
+**Fixed:** stripped a trailing `/index.html` from the path before comparing, instead of enumerating the banned literal; same behaviour, proven by 12 direct `classify()` cases (zones/articles hub in all three forms, a real zone/room/article/home URL each) plus both test files. `check_no_redirecting_probe_urls` run against the full `ops/*.py` tree: 0 problems (was 1). `test_canonical_probe_urls.py` 7/7, `test_indexation_check.py` all pass, `gate_indexation_check_not_stale` run directly: clean. `ops/indexation.json` still shows 0 "zone"-section confirmed entries and `INDEXATION.md` still states no individual zone page has ever been confirmed indexed, unaffected by this fix (it only touches how the literal is spelled, not the classification logic). `ops/cold-read-ledger.json` updated twice this cycle: once to record 207cca233's own fix as independently re-verified, then again once this cycle's own fix landed, so the ledger always cites the file's real current state rather than a mid-cycle one.
+
+**Went well:** the stale-ledger signal (`--stale`) found a real, already-live CI failure that the commit message's own confident "fixed, test-proven" language did not mention, exactly the step 5d discipline (verify a claim before acting on it) this repository keeps re-learning. The existing gate caught the regression correctly and immediately; no new gate was needed.
+
+**Did not go well:** the fixing cycle pushed straight to `main` without watching its own CI run complete, so a real preflight failure sat live on `main`'s Checks workflow for about 20 minutes before this cycle's own GitHub read found it.
+
+**Changing next cycle:** when a fix changes a file `check_no_redirecting_probe_urls` or any other static-scan gate inspects, grep the diff for the gate's own banned pattern before pushing, not after CI reports it.
+
+**Next:** standing Phil-gated queue unchanged (issues #40, #35, #33, #31, #29, #21, #18, #15, #2). Dashboard regenerated this cycle.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, cold-read of build_messy_article.py found no defect, nothing newly unblocked
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main). GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. Working tree clean, main synced.

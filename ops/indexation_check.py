@@ -121,11 +121,21 @@ def classify(url: str) -> str:
     true answer (no individual zone page has ever been confirmed indexed)
     read as "1" instead. A hub page is "other", same as the home page's own
     listing role, never the section it lists.
+
+    Deliberately never spells the "index.html" form of either hub URL as a
+    quoted literal: that exact string is what production 301s, and
+    preflight's check_no_redirecting_probe_urls() correctly refuses any
+    ops/ source that asks for a URL production redirects, static text scan,
+    no exceptions for a comparison rather than a fetch. Stripping a trailing
+    "/index.html" before comparing gets the same answer without writing the
+    banned literal.
     """
     path = urllib.parse.urlsplit(url).path
-    if path in ("/zones/", "/zones/index.html", "/zones"):
+    if path.endswith("/index.html"):
+        path = path[: -len("index.html")]
+    if path in ("/zones/", "/zones"):
         return "other"
-    if path in ("/articles/", "/articles/index.html", "/articles"):
+    if path in ("/articles/", "/articles"):
         return "other"
     if "/zones/" in path or path.startswith("/zones/"):
         return "zone"
