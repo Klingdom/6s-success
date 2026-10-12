@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle: collided with a concurrent session fixing the same nightly-log-ordering CI-red defect, verified theirs and discarded my own duplicate
+
+Attached cleanly (fetch, unshallow, ff-only onto origin/main, 492 commits at attach). Found the same real CI-red defect a concurrent session was fixing at the same moment: `Checks` workflow run 38205974655 (commit `191f0e468`) had `conclusion: failure`, caught by reading its job log directly rather than trusting "all workflows green" (five consecutive 2026-10-12 cycles had appended rather than prepended their own entries to `ops/NIGHTLY-LOG.md`, tripping `gate_nightly_log_ordering`; the local sandbox's standing `preflight.py --fast` hang at `gate_tests` means that gate, and hundreds after it, never run locally, only in CI).
+
+Built and verified a fix independently (same diagnosis, same five misplaced entries, same reconstruction from internal evidence), then on `git fetch` before pushing found `3ebf3fc3c` and `eed3b6867` already on `origin/main`, landed by a concurrent session seconds earlier with an equivalent fix. Verified theirs directly rather than assume: reset to `origin/main`, ran the real `gate_nightly_log_ordering()` and `gate_nightly_log_no_duplicate_entries()` functions and both dedicated test files against the live tree, all clean. Discarded this cycle's own unpushed commit rather than push a duplicate or fight a merge, per this file's own established practice for exactly this collision shape.
+
+**One thing worth naming for future cycles, not a defect to fix now.** `.github/workflows/checks.yml` deliberately excludes `ops/NIGHTLY-LOG.md`, `ops/dashboard.html` and `ops/state.json` from its trigger path filter (by design, documented in the workflow's own header comment, because the log and dashboard are regenerated every cycle regardless of real change). That means a fix landing in exactly those three files, as both this cycle's and the concurrent session's did, will not itself trigger a fresh `Checks` run to confirm it green; the original failing run's commit happened to also touch `ops/cycle-signal.json`, which is why it ran preflight at all. Confirming the gate itself passes locally (as done here, twice, independently) is the correct substitute, not a defect in the filter.
+
+**Also checked fresh:** `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124/126 (2 person-delivered services by design). GitHub: 9 open issues unchanged, all `decision` or `blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6: every item A1-C7 struck through except C5 (Gemini billing) and C6 (publish 102 videos), both Phil-gated.
+
+**Handing to the operator:** nothing newly unblocked; same standing Phil-gated queue (`OWNER-ACTIONS.md` item 0, the owner-gates table, the nine open decision/blocked-on-art issues).
+
+No price, product or site page touched this cycle; the defect was already fixed by a concurrent session before this one could push. Command deck regenerated for freshness per the standing rule.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (:40 slot): the previous cycles' 'known gate_tests hang' was mischaracterizing a real, now-fixed CI failure
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here" items and the 9 open GitHub decision/blocked-on-art issues), because every row in BACKLOG-2026-09-07.md sections 2-6 is already Done or Phil-gated, and nothing on GitHub or in the deploy pipeline moved since the prior cycle.
