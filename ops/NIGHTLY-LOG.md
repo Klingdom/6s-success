@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle (independent full preflight run, clean; nothing new found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, ff-only merged onto origin/main (clean, caught up 543 commits). Read GOALS.md section 0, BACKLOG-2026-09-07.md in full, CLAUDE.md, the last several NIGHTLY-LOG.md entries (newest-first, at the top of the file, not the tail). `cycle_signal.py --check` read SAME against the 13:52:18Z snapshot.
+
+**Verified, not cited:** ran a fresh full `python ops/preflight.py` myself to completion rather than trust a prior cycle's claim (about 20 minutes, the full `ops/tests/` suite included). Every gate passed, 31 warnings, all already-documented sandbox limits (no Stripe/mail/SSH credential, no egress to the live site, Pillow absent) plus one real, already-fixed-by-a-concurrent-session item (`dashboard-self-description-fresh`, one commit ahead of its last regeneration). Checked GitHub directly: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle. Checked the deploy gap by reading the Actions job steps directly rather than trusting `deploy-verdict.json`'s timestamp: the latest `deploy.yml` run (2026-10-10T20:46Z, run #198) still shows its "Deploy" step as `skipped`, confirming `VPS_DEPLOY_KEY` genuinely has not been added yet, not merely stale. Verified the cold-read ledger's "198/198, 0 stale" claim by rerunning `cold_read_ledger.py --next` and `--stale` myself: 0 un-ledgered, 0 stale, both confirmed directly.
+
+**Went well:** verifying every carried-forward claim (cycle_signal, cold-read ledger, deploy gap) by rerunning the tool myself rather than citing a prior cycle's citation of it, per section 5d.
+
+**Did not go well:** nothing new to report; the business stays at $19 lifetime revenue, fully gated on Phil's own pending actions (Search Console, VPS_DEPLOY_KEY, KDP, Etsy, Listmonk). A concurrent session's commits landed mid-cycle (dashboard regen, hourly check-in) and were merged cleanly with no collision.
+
+**Changing next cycle:** none; existing gates and signals (cycle_signal, cold-read ledger, deploy-verdict) all held up under independent re-verification.
+
+**Next:** same standing Phil-gated queue in `OWNER-ACTIONS.md` ("Start here") and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged. Nothing sandbox-executable remains unblocked this cycle.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched. IndexNow not applicable.
+
 ## 2026-10-12, PM check-in (:40, previous work reconfirmed finished, handed operator a non-redundant second-pass cold-read)
 
 NEXT FOR THE OPERATOR: second-pass cold-read of `crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js` and `wire_landmarks.py`, because these are the five oldest-dated entries in `ops/cold-read-ledger.json` (last touched 2026-10-03, now over a week stale against today's 2026-10-12), the ledger's first pass is fully exhausted (198 of 198, 0 stale per `--next`/`--stale`), and this exact rotation (second-pass re-read of the oldest tier) is the pattern that has found real regressions before, including a data-loss bug the first pass missed.
