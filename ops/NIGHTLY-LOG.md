@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in: previous work reconfirmed finished, the apparently-red Checks run verified as already fixed rather than cited, nothing newly unblocked
+
+Attached clean on the first try this cycle (fetch, unshallow, checkout main, ff-only onto origin/main, 496 commits). Issue #27's shallow-clone symptom did not recur.
+
+Previous work IS finished, not just committed. `cycle_signal.py --check` returned SAME against the 04:58:28Z snapshot. Re-verified rather than cited: GitHub re-read directly, same 9 open issues (all decision/blocked-on-art), 0 PRs; confirmed issue #27 itself has been closed since 2026-09-08, not still open as older log entries describe. Checks workflow run 2044 (commit 191f0e468) still shows conclusion failure, but this is the already-diagnosed nightly-log-ordering defect a concurrent session fixed minutes before this cycle attached; ran `test_gate_nightly_log_ordering.py` and `test_nightly_log.py` directly against current HEAD myself (not cited) and both pass clean, confirming the fix holds. No fresh Checks run exists for it only because checks.yml's path filter deliberately excludes NIGHTLY-LOG.md/dashboard.html/state.json, a known, documented design choice, not a gap. check_urls.py 211/211, fix_dashes.py --check 0/0, inbox_agent.py no mail credential (unchecked, not assumed empty). STATUS.md's claims ledger: none open.
+
+BACKLOG-2026-09-07.md sections 2-6: every row Done or Phil-gated, reconfirmed section 8's own closed efficiency-gap finding still holds. Nothing newly unblocked for this slot.
+
+Went well: treated the failing Checks run as a claim to verify rather than citing the top log entry's own account of it.
+
+Did not go well: nothing new.
+
+Changing next cycle: none.
+
+Handing to the operator: same standing Phil-gated queue (OWNER-ACTIONS.md, BACKLOG-2026-09-07.md section 6, the 9 open decision/blocked-on-art issues). Nothing large left for the :43 slot either; it should spend its hour the same way, verifying rather than re-deriving, unless something on GitHub or in cycle_signal has changed by then.
+
+No price, product or site page touched. Command deck regenerated and pushed.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle: collided with a concurrent session fixing the same nightly-log-ordering CI-red defect, verified theirs and discarded my own duplicate
 
 Attached cleanly (fetch, unshallow, ff-only onto origin/main, 492 commits at attach). Found the same real CI-red defect a concurrent session was fixing at the same moment: `Checks` workflow run 38205974655 (commit `191f0e468`) had `conclusion: failure`, caught by reading its job log directly rather than trusting "all workflows green" (five consecutive 2026-10-12 cycles had appended rather than prepended their own entries to `ops/NIGHTLY-LOG.md`, tripping `gate_nightly_log_ordering`; the local sandbox's standing `preflight.py --fast` hang at `gate_tests` means that gate, and hundreds after it, never run locally, only in CI).
