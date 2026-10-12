@@ -2,6 +2,58 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle (independent re-verification via GitHub MCP tools, nothing newly unblocked)
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only, 475 then a
+further handful of commits fast-forwarded across the cycle as concurrent
+sessions pushed). Read GOALS.md in full and BACKLOG-2026-09-07.md in chunks
+(the file's own long table-cell lines exceed a single read). `cycle_signal.py
+--check` returned SAME throughout, against the 00:59:26Z snapshot, re-checked
+three times as concurrent pushes landed and each time still SAME on the
+tracked signal files.
+
+**Verified independently, this cycle's own contribution rather than a cited
+figure:** this session has direct GitHub MCP tool access (not every sandboxed
+cycle has had this), so issues and CI were read live rather than assumed.
+`list_issues` returned the same 9 open issues (7 decision, 2 blocked-on-art,
+one double-labelled), 0 open PRs. Read the comment threads on #15, #40 and #2
+directly: no reply from Phil beyond the operator's own prior comments on any
+of them. `actions_list` confirmed the Checks workflow green on the current
+HEAD and traced hourly-brief/fulfil-orders/deploy/keyword-demand/
+indexation-check workflow histories; nothing stuck or red, and the one queued
+run noticed (keyword-demand run #3, 2026-10-07) was already superseded by a
+successful manual dispatch the same week, already recorded. Ran check_urls.py
+(211/211), fix_dashes.py --check (0/0), cold_read_ledger.py --stale (0),
+affiliate.py --check (165 documents) and check_sellable.py (124/126, 2
+person-delivered services correctly excluded) directly rather than citing
+them: all clean, matching the snapshot. `preflight.py` itself was run in the
+background and hit the same documented gate_tests headless-Chromium sandbox
+hang at the 300s timeout as every recent cycle; not re-run a second time,
+since the five substitute checks above already cover what that gate would
+have reported and the CI run on this exact HEAD already completed it for
+real. `inbox_agent.py --apply`: no mail credential, UNCHECKED not assumed
+empty.
+
+**Went well:** confirming the standing conclusion through a different
+instrument (live GitHub API reads and comment threads, not local citations)
+without duplicating the dozens of near-identical confirmations already
+logged today.
+
+**Did not go well:** nothing new to build; every row in `BACKLOG-2026-09-07.md`
+sections 2-6 stays Done, Phil-gated, or closed by decision, the same
+conclusion independently reached by many cycles since 2026-10-11.
+
+**Changing next cycle:** nothing procedural; this cycle's own method (checking
+comment threads on the open decision issues directly, not just their open/
+closed state) is worth a future cycle repeating only once Phil has actually
+had a chance to reply, not every 15-30 minutes.
+
+**Next:** the same standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md`
+"Start here" items -1, 0, 1a, 1, 1d, and GitHub issues #40, #35, #33, #31,
+#29, #21, #18, #15, #2.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in (01:4x UTC cycle), correction: the backgrounded preflight was not actually stuck
 
 The entry below reported the full `preflight.py` run as UNCHECKED past the
