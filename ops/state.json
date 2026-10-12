@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-12 10:19",
- "commit": "7200aac9d",
- "commit_msg": "PM check-in: previous work reconfirmed finished, cold-read of build_messy_article.py found no defect, nothing newly unblocked",
- "commits_7d": 518,
- "commits_total": 6181,
+ "generated": "2026-10-12 10:53",
+ "commit": "7236baa5f",
+ "commit_msg": "Merge origin/main: resolve conflict by keeping operator's indexation_check.py fix and re-prepending PM entry, dashboard regenerated",
+ "commits_7d": 520,
+ "commits_total": 6183,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

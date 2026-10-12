@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (10:4x, 30 minute triage)
+
+NEXT FOR THE OPERATOR: a third-pass adversarial re-read of the eight oldest-ledgered ops files (`crawl_report.py`, `experiments.py`, `indexnow.py`, `measure.js`, `service_orders.py`, `stripe_brand.py`, `wire_landmarks.py`, `check_integrations.py`, all last touched 2026-10-03/04), because the first- and second-pass cold-read ledger is now genuinely exhausted (198/198, 0 stale, 0 un-ledgered candidates) and these eight are the longest since a human or agent actually looked hard at them.
+
+**Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main; checkout arrived shallow and detached per the usual issue #27 shape, resolved the documented way, no reset needed). Read `git log -12`, both newest `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0, 1b and 2 (A1-A9, all done or superseded), `OWNER-ACTIONS.md`'s open section and `GOALS.md` section 4's decision rules. GitHub read directly: 9 open issues unchanged (7 `decision`, 2 `blocked-on-art`: #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs.
+
+**Previous work IS finished.** Working tree was clean, main already level with origin. Ran `preflight.py` fresh myself (unbuffered, to a file): 0 FAIL lines through 76 gates (every gate up to and including `gate_image_coverage`), then the documented `gate_tests` sandbox hang (no egress here); killed after about a minute rather than left idling, consistent with every recent cycle's own account of this limit. `cycle_signal.py --check`: SAME against the 08:01:07Z snapshot. No mail credential (`inbox_agent.py --apply`, reported unchecked). Re-derived the deploy gap independently rather than citing it: `deploy-verdict.json`'s build `e3d3bc8c77a83e38` resolves to commit `a582ca349` (confirmed via `git show`), `git log a582ca349..HEAD -- site/ Dockerfile` reads 5 commits, matching `STATUS.md` exactly. 0 open PRs confirmed live.
+
+**Verified the prior cycle's indexation fix for real rather than trusting its own account.** Read the committed `ops/indexation.json` directly: the `/articles/` hub page now classifies as `other` (not `article`), the one real `article` entry is `how-long-does-it-take-to-organise-a-room`, and `ops/INDEXATION.md` correctly reads `zone: 0`. The fix holds under direct inspection, not just under its own test suite.
+
+**This cycle's closing job: the cold-read ledger itself was stale and I fixed that rather than just noting it.** `ops/cold_read_ledger.py --stale` found exactly one entry out of step with git history: `ops/indexation_check.py`, ledgered clean on 2026-10-03 but actually rewritten 2026-10-12 (the real misclassification-bug fix two cycles back). Recorded it correctly with `ops/cold_read_ledger.py --add ... --status fixed --note "..."` so the ledger reflects what actually happened to the file, not a nine-day-old snapshot. Reran `--stale` (0) and `--next 15` (198/198 ledgered, 0 un-ledgered candidates): the full cold-read rotation, first pass and second pass both, is genuinely exhausted, not just unclaimed. That `indexation_check.py` sat "clean" in the ledger for nine days while carrying two real bugs is itself the evidence for this cycle's handoff: a `clean` verdict from a diff-only first pass does not mean the generator's logic was read adversarially, and the eight oldest-dated entries (2026-10-03/04, listed above) are the ones that have gone longest without that harder second look.
+
+**Went well:** catching and correcting the ledger's own staleness rather than only reporting it; verifying the indexation fix against the real committed JSON instead of citing the fixing cycle's own test results.
+
+**Did not go well:** same shallow/detached checkout shape as every recent cycle (issue #27, still needs Phil's own hand in the Routines UI); this sandbox still has no egress to Umami, Stripe, the VPS or mail, so revenue, traffic and the 9-day-stale `traffic_line_last_measured` stay unmeasurable from here.
+
+**Changing next cycle:** none; the gate and the ledger tool both did their job the moment they were actually run.
+
+**Next:** same standing Phil-gated queue, unchanged (`OWNER-ACTIONS.md` "Start here": item 0 `VPS_DEPLOY_KEY`, item 1a Search Console, item 1 YouTube auth, item 1d Stripe description) and the 9 open `decision`/`blocked-on-art` GitHub issues. The eight-file third-pass re-read above is the operator's unblocked work.
+
+No price, product or site page touched. `ops/cold-read-ledger.json`, command deck. IndexNow not applicable, no site page changed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-12, PM check-in: previous work reconfirmed finished, cold-read of build_messy_article.py found no defect, nothing newly unblocked
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only onto origin/main). GitHub read directly: 9 open issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. Working tree clean, main synced.

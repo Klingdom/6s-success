@@ -572,9 +572,9 @@
       "note": "Re-read in full per second-pass handoff. Found and fixed a real, live gap: delivery-problem and billing detection built low_t from the message BODY only, never the subject. A customer whose subject line carries the signal (Did not receive my download) and whose body is a terse please check on this had no matching words anywhere the classifier looked, and fell into the ordinary draft-for-human customer branch instead of flag-urgent, silently losing the urgency CLAUDE.md 0.2 exists to force. Reproduced directly before the fix (classify returned kind=customer), fixed by folding subject into low_t, reproduced as fixed after (kind=delivery-problem/billing). Two new cases added to ops/tests/test_inbox_agent.py (now 10), both fail-then-pass proved via git stash against the real module. No new preflight gate needed: gate_tests() already globs ops/tests/test_*.py."
     },
     "indexation_check.py": {
-      "status": "clean",
-      "date": "2026-10-03",
-      "note": "Scheduled operator cycle, 2026-10-03. Read the file end to end (434 lines): canary-vs-trusted-set fix is real and correctly fixed (trusted set computed once from pre-run ledger + SEED_CONFIRMED, never grown mid-run), classify()/domain-url extraction handle both DuckDuckGo's uddg= redirect wrapper and Bing RSS <link> elements correctly, --dry-run fixtures reproduce the documented 4-new-URL result, both ops/tests/test_indexation_check.py and ops/tests/test_gate_indexation_check_not_stale.py pass. One trivial dead-code nit (classify()'s redundant startswith check, already covered by the preceding 'in' test) not worth a commit on its own. No real defect found."
+      "status": "fixed",
+      "date": "2026-10-12",
+      "note": "Two real misclassification bugs fixed 2026-10-12 (classify() counted /zones/ and /articles/ hub pages as individual zone/article pages; _domain_urls() kept off-host URLs containing the domain as a substring, e.g. a Bing search-results URL). Both root-caused, fixed, 2 new regression tests added, re-verified independently by this PM cycle against the live ops/indexation.json (zone: 0, article: 1 is the real article not the hub page)."
     },
     "indexnow.py": {
       "status": "fixed",
