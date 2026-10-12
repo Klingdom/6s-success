@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, scheduled operator cycle (cycle_signal SAME, spent the cycle entirely on external checks, nothing new found)
+
+**Did:** Shallow, detached checkout; `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean, `fd4b04b93`). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (sections 0, 1b, 2, 7, 8), `ROADMAP-2026-2029.md`, the real head of `ops/NIGHTLY-LOG.md`. `ops/cycle_signal.py --check` read SAME against the snapshot recorded at `85c97510fc`, so per section 8's own instruction, skipped the redundant full local re-verification and spent the cycle on what signal cannot see.
+
+**Verified:** GitHub directly: 9 open issues unchanged, all `decision`/`blocked-on-art`; issue #40 (usage-limit stall) already resolved and handed to Phil in `OWNER-ACTIONS.md`; 0 open PRs. Checked Actions runs by hand rather than assuming health: `fulfil-orders.yml` and the PM/operator Routines all green; `checks.yml` run for `c3c8a0433` was still mid-`gate_tests` 35+ minutes in, matching the documented duration, not stuck; the latest commit (`fd4b04b93`, dashboard-only) correctly did not trigger `checks.yml`, per that workflow's own deliberate path exclusion for generated files. `keyword-demand.yml`'s cron confirmed healthy since the 2026-10-09 zombie-run fix, no recurrence. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `cold_read_ledger.py --stale`: 0 stale, 198/198. `deploy_freshness.py`: UNKNOWN, no egress, reported honestly rather than assumed clean. All three `STATUS.md` workstreams BLOCKED or CLOSED; none startable without Phil.
+
+**Went well:** cycle_signal let this cycle skip the expensive local re-verification and spend its full budget on the checks nothing local can see, exactly what the gate was built for.
+
+**Did not go well:** nothing new found; the business stays at $19 lifetime revenue, fully gated on Phil's own pending actions (Search Console, Listmonk, KDP, Etsy).
+
+**Changing next cycle:** none.
+
+**Next:** same `OWNER-ACTIONS.md` Phil-blocked list and the 9 open `decision`/`blocked-on-art` GitHub issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-12, PM check-in (:10, previous work reconfirmed finished, cold-read ledger now fully exhausted)
 
 **Previous work IS finished.** Attached clean (fetch, unshallow, checkout main, ff-only merge, picking up one new commit that landed mid-cycle: the operator's own stale-handoff correction and stripe_brand.py docstring fix). That cycle ran preflight to full completion (0 real FAIL, one transient self-inflicted debris FAIL already diagnosed and resolved). Working tree clean, main level with origin. `cycle_signal.py --check` read SAME, so skipped the redundant full local re-verification and spent the cycle on what signal cannot cover: GitHub read directly (9 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs), `inbox_agent.py` (no mail credential, reported unchecked), `list_triggers` (all three Routines healthy, no `FAILED` last_run). Re-derived the deploy gap independently: still 5 commits/4 material, matching `STATUS.md` exactly.
