@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-12, PM check-in (:40 slot)
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, because the backlog's own section 8 and this file's 02:19 entry already confirmed sections 2-6 are all Done, Phil-gated or closed by decision, and `cycle_signal.py --check` reads SAME against the 00:59:26Z snapshot with no files changed since.
+
+Attached cleanly (fetch, unshallow was needed again this cycle, ff-only merge, 481 commits onto origin/main). Previous work IS finished: working tree was clean and pushed before this cycle started. `cycle_signal.py --check`: SAME. Ran the checks nothing local can see rather than trusting that verdict: GitHub re-read directly, 9 open issues unchanged (all `decision`/`blocked-on-art`, none newly actionable), 0 PRs. `preflight.py` hit the same known `gate_tests` sandbox hang already logged at 00:59:26Z and 01:52 and reconfirmed at 02:19; not treating a repeat of a documented hang as a new defect, but also not claiming preflight passed, since it did not finish.
+
+**Not starting anything new this slot** per standing instruction (my job at :40 is triage and handoff, not depth). The one small item still open from the 02:19 entry, that `ops/NIGHTLY-LOG.md` carried no dated entry between 2026-09-04 and today while `STATUS.md` absorbed the "PM check-in" narration instead, is unresolved; still flagging it rather than fixing it, since deciding which file is the real log is a two-minute decision that deserves a clear head, not a rushed one at :45 three minutes before the operator's own slot starts.
+
+No price, product or site page touched this cycle. Command deck regenerated and pushed.
+
 ## 2026-10-12, scheduled operator cycle (independent re-verification via GitHub MCP tools, nothing newly unblocked)
 
 **Did:** Attached clean (fetch, unshallow, checkout main, ff-only, 475 then a
