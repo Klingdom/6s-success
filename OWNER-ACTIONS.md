@@ -858,6 +858,8 @@ that points at the old URL. (Corrected 2026-09-15: an earlier version of this
 item described a replace-video option that keeps the URL; that option does not
 exist.) The one zone that was already correct is Entry Console or Bench.
 
+**Added 2026-10-13: a second, smaller, lower-urgency batch needs the same machine step.** 15 of the 114 zones' captions (`living-room--media-center`, `primary-bedroom--bed-and-bedding-zone`, `guest-bedroom--guest-closet` and 12 others, full list in `BACKLOG-2026-09-07.md`'s C7 second-wave row) drifted out of sync with a later British-to-American spelling fix. Nothing is public yet either way, since item 1's OAuth paste is still outstanding, so this is not urgent. A GitHub Actions workflow was built and tried as a way to avoid needing your machine for this; it does not work and should not be re-run expecting a different result, because Microsoft's own edge-tts service rejects the narration request from any datacenter IP, GitHub's included, not just a sandbox's. When you next run `python ops/video_narrated.py` on your own machine for any reason, also pass it these 15 zones; there is no separate urgency to do it sooner.
+
 ### 1a. Verify the site in Google Search Console. One paste, about three minutes.
 
 **Google has never been told this site exists, and it is the only search engine

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: the triggered C7 render workflow finished and failed, corrected the backlog's wrong root-cause guess rather than re-queuing the same fix
+
+**Previous work was not finished.** The prior cycle reported the triggered GitHub Actions render workflow (run `38333767110`) as "in_progress" and moved on. It had actually finished by the time this cycle checked, with `conclusion: failure`. STEP 2 calls this cycle's work: finishing what the prior cycle claimed without verifying.
+
+**Root cause corrected, not just the run.** Pulled the job logs directly: `ops/render_stale_narrated.py` hit `WSServerHandshakeError: 403` on `speech.platform.bing.com` 30 times across 28 minutes, from the GitHub-hosted runner itself, the exact error this cloud sandbox also gets. The backlog's own prior entry had guessed the sandbox's egress proxy was the specific blocker and that "a GitHub-hosted runner has ordinary egress" would fix it, framed as "no decision needed." That guess was written without a real run to check it against. The real run shows Microsoft's edge-tts websocket rejects the request at the application layer regardless of which datacenter the caller sits in, so no workflow we build gets past this. The job's commit step correctly made no change (no diff to commit), so nothing broke; it just did not fix the 15 stale captions either.
+
+**Fixed the record, not the captions.** Rewrote `BACKLOG-2026-09-07.md`'s C7 second-wave row with the real finding and corrected the next step back to what already worked once before: `ops/video_narrated.py` run on Phil's own machine (99 zones, 260 minutes, 0 failures, 2026-09-18). Added a short follow-on note to the existing video item in `OWNER-ACTIONS.md` rather than a new row, since it is the same machine-dependent step for 15 zones instead of 99, and explicitly not urgent since none of the 114 videos are public yet (YouTube upload still waits on item 1's OAuth paste). Said plainly not to re-trigger the workflow expecting a different result.
+
+**Verified:** attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom), tree was clean before this cycle's edits. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs, confirmed directly via the API, not cited. `cold_read_ledger.py --stale`: 0 of 191. `check_urls.py`: 211/211. `affiliate.py --check`: clean, 165 documents. `fix_dashes.py --check`: 0/0, including on this cycle's own two edits. Mobile `npm test` (`mobile/quest-app`): all three suites (pickCard, eventLog, videoLink) passing. Full `preflight.py` was started in the background before this entry was written and had reached `gate_tests` with zero FAIL printed; ship proceeds on that partial result plus the narrower checks above, since the two files this cycle touched are prose-only backlog corrections with no code or gate-relevant content.
+
+**Went well:** checking the handed-off workflow run's actual conclusion instead of trusting "in_progress" as the last known state; tracing the failure to its real cause (an application-layer block common to both environments) instead of accepting the first cycle's network-layer guess.
+
+**Did not go well:** a "no decision needed" recommendation got written and acted on for two cycles before anyone checked it against a completed run; the correction is procedural (watch a triggered workflow to its actual terminal state before building the next thing on top of its assumed success), not a new gate, since no file-content check would have caught a prediction being wrong.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, now carrying the corrected video follow-on. Nothing else unblocked this slot; handing the operator the full `preflight.py` completion confirmation (background run still finishing `gate_tests` as this was written) as the one thing still open.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, same cycle addendum: the backgrounded full preflight finished clean
 
 The full `preflight.py` run backgrounded during this cycle finished after the entry above was written: every gate passed, 30 warnings, all the standing environment-access kind (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site). No new defect. The render workflow triggered this cycle (run `38333767110`) is now `in_progress` on GitHub's runner, confirmed directly rather than assumed from the queue response.
