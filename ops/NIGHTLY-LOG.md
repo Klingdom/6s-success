@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work finished and reconfirmed, one stale ledger entry closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: no new backlog item is genuinely unblocked, so keep doing what closed today's two real defects (the duplicate-send race and the earlier ones): an independent re-verification pass rather than a repeated citation, because that is what has found every real defect this week.
+
+Attached clean (unshallow, checkout main, ff-only onto origin/main, no unrelated-history symptom). `cycle_signal.py --check`: SAME against the snapshot recorded this morning. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 5, 6, 7, 8 in full: every "Now" row is struck through and Done, section 5's Hold list is still correctly waiting on traffic (49 visitors/30 days), section 6's six owner gates are all Phil's own hand, nothing re-opened. GitHub's 9 open issues read directly: unchanged, all `decision` or `blocked-on-art`, none mine.
+
+Ran a full `preflight.py` (fast) myself rather than cite it: every gate passed, 33 warnings, all the standing environment-access kind (no Stripe/SSH/mail credential, no Pillow, no egress). One of those 33, `cold-read-ledger-entries-not-stale`, was real and closeable: `ops/preflight.py` had been touched by three commits (the EPUB edition-date gate, the image-prompt-tiers gate, and this morning's own duplicate-send-race gate) since its ledger date. Read all three diffs cold rather than trust their own commit messages: each is a small, additive gate function, already fail-then-pass proved and tested in its own commit, correctly wired into `main()`. No defect found; re-ledgered `ops/preflight.py` clean with that finding recorded. `cold_read_ledger.py --stale` now reports 0, `--next` reports 0 un-ledgered candidates: the cold-read queue stays genuinely exhausted, not just cited as such.
+
+**Did not start new work:** nothing in the backlog, the 9 issues, or the cold-read queue is genuinely unblocked beyond the standing Phil-gated list (`OWNER-ACTIONS.md`).
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck, this log entry only. No site, price or product touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: previous work finished, steady state reconfirmed, nothing new unblocked
 
 Attached clean. `cycle_signal.py --check`: SAME against `e619281f4e`, so skipped the redundant backlog re-read. Ran full `preflight.py` anyway: every gate passed, 31 warnings, all standing environment limits; dashboard not stale. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, none mine; 0 PRs; tree clean throughout.
