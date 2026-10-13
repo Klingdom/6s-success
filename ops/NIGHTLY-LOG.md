@@ -54728,3 +54728,17 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
 
+
+## 2026-10-13, scheduled operator cycle: watched the C7 render workflow fail twice more, corrected its own stale claims after a concurrent cycle fixed the backlog
+
+**Did:** Built and pushed `.github/workflows/render-narrated-videos.yml` plus `ops/render_stale_narrated.py` and its test, then dispatched and watched both attempts to completion (run `38331924170`, attempts 1 and 2, different runner IPs). Both failed identically: `WSServerHandshakeError: 403` from `speech.platform.bing.com` on all 30 renders. A concurrent cycle independently triggered a third run (`38333767110`), reached the same conclusion first, and already corrected `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md`; reconciled rather than duplicated. Still stale: the workflow's own header comment and `ARCHITECTURE.md`'s description of it, both written before any run existed, both still claiming the same working shape as `keyword-demand.yml`. Rewrote both to state the verified result (an application-layer block, not the DNS-level proxy gap those two close).
+
+**Verified:** `gate_architecture_workflow_count_current` passes against the edit; `fix_dashes.py --check` clean; workflow YAML parses; full `preflight.py` to completion, every gate passed, 30 warnings, all previously diagnosed.
+
+**Went well:** reconciling with a concurrent fix instead of re-litigating it; still finding the one artifact (the workflow's own comment) nobody else had reason to check.
+
+**Did not go well:** mid-run log tailing gave a false "no failure yet" signal, since the script's stdout is fully buffered and prints nothing until exit; cost a wasted 45-minute wait.
+
+**Changing next cycle:** never infer a live run's health from an absent partial log; wait for the step to actually complete.
+
+**Next:** same standing Phil-gated queue; no code fix exists for the TTS block from any cloud runner.
