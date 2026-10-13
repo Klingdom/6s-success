@@ -2,6 +2,54 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: a full preflight run caught a real self-inflicted ordering defect in this file, fixed and reverified, nothing else newly unblocked
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-8, every row Done or Phil-gated), `CLAUDE.md`, the last four log entries, `OWNER-ACTIONS.md`'s open-item list. `ops/cycle_signal.py --check`: SAME against the 10:04:29Z snapshot, so the expensive full local re-verification was legitimately redundant on content grounds; ran it anyway per STEP 2's own instruction that preflight is the one mandatory gate. While it ran (`gate_tests`, 397 sequential test files, several minutes), checked everything cycle_signal does not cover directly: GitHub 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; `inbox_agent.py --apply` no mail credential; `affiliate.py --check` clean, 165 documents; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale`/`--next` 0 stale, 0 un-ledgered; mobile `npm test` all four suites pass. A concurrent PM check-in pushed mid-wait (`db14cc7ce`, the same "preflight could not finish inside its slot" conclusion); fast-forwarded it in rather than duplicating.
+
+**The real find, from letting preflight actually finish rather than citing a prior partial run.** `gate_nightly_log_ordering` FAILed: entry `db14cc7ce` and a second entry just before it (`7bbd5ce39`) had both been appended to the physical end of this file instead of prepended, landing them after the entire 2026-09-04 legacy section, 55,000+ lines from where a newest-first reader looks, the exact shape this gate's own docstring already documents from a 2026-09-05 occurrence. Root cause matches that docstring precisely: both PM check-ins had hit their own time budget mid-`preflight.py` and, reading "the last four entries" as the file's literal tail, appended there instead of the top. **Fixed:** moved both entries to the top of the file, in the correct newest-first order (`db14cc7ce`'s entry first, then `7bbd5ce39`'s, ahead of the existing top entry), verified byte-for-byte lossless by sorting the full file's lines before and after the move and diffing (0 differences: same multiset of lines, only reordered), header count unchanged (2686 before and after). No new gate needed: `gate_nightly_log_ordering` already exists, already caught this correctly the moment a full run reached it, and the only gap was that two PM-slot runs before this one had killed their own `preflight.py` early and never saw the FAIL. Re-ran the gate directly (`PASS`) and both test files that reference it (`test_gate_nightly_log_ordering.py` 5/5, `ops/tests/test_nightly_log.py` 10/10) after the fix.
+
+**Verified:** reran the full `preflight.py` a second time end to end in the background after the fix, specifically to confirm the ordering FAIL is gone rather than trust the direct function call alone.
+
+**Went well:** running preflight to genuine completion instead of the partial/killed runs two prior PM slots had settled for, which is exactly what surfaced a defect those two slots' own appends had caused.
+
+**Did not go well:** the same misreading of "last four entries" as "physical end of file" recurred (twice, back to back, both from the same cause as the 2026-09-05 occurrence this gate's docstring already names), even with the gate already existing; the gate caught it, nothing about writing new entries prevents a tired or time-boxed cycle from appending again.
+
+**Changing next cycle:** none to the gate itself. Worth restating for any cycle that is about to write a log entry under time pressure: prepend at the top of the file (after the three-line header), never append at the tail, and if in doubt, check with `grep -n "^## " ops/NIGHTLY-LOG.md | head -1` rather than `tail`.
+
+**Next:** standing Phil-gated queue unchanged (issues #40, #35, #33, #31, #21, #18, #15, #2, #29). No new non-Phil-gated work found; cold-read ledger and backlog both exhausted.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (reordered, no content added or removed), command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-13, PM check-in
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py` to actual completion in the background, because this cycle could not watch all 397 `ops/tests/test_*.py` files finish inside its own time budget and stopped the run rather than claim a result it did not see.
+
+**Checkout arrived shallow and detached, same as every recent cycle.** `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` all succeeded clean, fast forwarding 80 commits with no conflict.
+
+**Previous work was finished.** Tree was clean and main already matched origin on arrival; the last two log entries (`c7152fe74`, `7bbd5ce39`) both independently concluded nothing new unblocked, and this cycle's own re-verification agrees.
+
+**Did:** `python ops/preflight.py` (no arguments, the fast gate set) was started twice, once in the foreground (killed by its own tool timeout at 100s) and once in the background; after roughly 160 seconds of real runtime with its CPU time not advancing between two checks, I killed it rather than let it run past this slot's budget. This is very likely not a hang: `ops/tests/` now holds 397 `test_*.py` files, each launched as its own subprocess by `gate_tests`, and nothing here proves that is slower than usual versus genuinely stuck. Either way it is **unchecked, not passed**, so I am not repeating the prior cycle's "every gate passed" line without having seen it myself. Ran the standing narrower workaround instead, each to a clean result: `check_urls.py` (211/211 sitemap URLs resolve), `audit_pages.py` (215 pages, 0 findings, 0 duplicate titles or descriptions), `affiliate.py --check` (165 documents, rules pass), `mobile/quest-app` `npm test` (all four suites, pickCard/eventLog/videoLink/etc, pass). `cold_read_ledger.py --stale` and `--next`: 199 of 199 files ledgered, 0 stale, 0 un-ledgered candidates, the fallback lane is exhausted too. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Issue #40 (the usage-limit stall) re-read directly: correctly still open, waiting on Phil's own check of his plan/usage setting, not stale.
+
+**Did not do:** pick a new backlog item. `BACKLOG-2026-09-07.md` sections 2 to 4 (micro zones, decks, images/video) show every row done or explicitly Phil-gated, including `A27` closed this same day with no actionable gap found after a full 200-row sweep. `OWNER-ACTIONS.md`'s open item (the MCP server deploy decision) is Phil's call, not mine. With the narrower checks clean and the fallback content lane exhausted, starting something speculative at the :40 slot would have cost more than it was worth; the honest, highest-value thing this cycle could do was not claim a check it had not finished.
+
+**Went well:** not reporting the interrupted preflight run as a pass just because every narrower check was clean.
+
+**Did not go well:** again spent real time on the unrelated-history shallow checkout shape; still recurring every cycle, never itself fixed (issue #27).
+
+**Changing next cycle:** when `preflight.py` needs to run to a real completion and the PM's own slot is too short, background it explicitly and let the operator's longer slot read the result, rather than killing it partway and reporting unchecked.
+
+Pushed to main. This log entry only; no price, product or site page touched; no code changed. IndexNow not applicable.
+
+## 2026-10-13, PM check-in
+
+**Previous work was finished.** Tree clean and main already pushed on arrival; last 5 Actions runs all green; log entries matched their commits.
+
+**Did:** Full `preflight.py` (fast) to completion: every gate passed, 32 standing warnings, all previously-diagnosed (no Stripe/mail/SSH credential, site unreachable, Pillow missing). Cold-read ledger 199/199, 0 stale, 0 un-ledgered. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. Mobile `npm test` three suites pass. Re-derived the production deploy gap directly (`deploy_gap_material_commits`): 5 material commits behind the last confirmed build, matching the figure already on record; still gated on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0), no sandbox deploy key here. One real find: `gate_dashboard-self-description-fresh` warned the deck was one commit stale; regenerated and shipped.
+
+**Handing to operator:** nothing newly unblocked. Standing Phil-gated queue unchanged (issues #40, #35, #33, #31, #21, #18, #15, #2, #29).
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: independent full preflight to a clean completion exactly as the prior cycle handed off, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-6 all Done/Hold/Phil-gated, section 8 unchanged), `ROADMAP-2026-2029.md`'s theory and constraint, `CLAUDE.md`, the top entries of this log and `OWNER-ACTIONS.md`'s full open-item list. `ops/cycle_signal.py --check`: SAME against the snapshot recorded 2026-10-13T10:04:29Z, both before and after this cycle's own work, confirming the backlog and owner-gate files genuinely did not move underneath this run.
@@ -55177,33 +55225,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
-
-## 2026-10-13, PM check-in
-
-**Previous work was finished.** Tree clean and main already pushed on arrival; last 5 Actions runs all green; log entries matched their commits.
-
-**Did:** Full `preflight.py` (fast) to completion: every gate passed, 32 standing warnings, all previously-diagnosed (no Stripe/mail/SSH credential, site unreachable, Pillow missing). Cold-read ledger 199/199, 0 stale, 0 un-ledgered. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. Mobile `npm test` three suites pass. Re-derived the production deploy gap directly (`deploy_gap_material_commits`): 5 material commits behind the last confirmed build, matching the figure already on record; still gated on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0), no sandbox deploy key here. One real find: `gate_dashboard-self-description-fresh` warned the deck was one commit stale; regenerated and shipped.
-
-**Handing to operator:** nothing newly unblocked. Standing Phil-gated queue unchanged (issues #40, #35, #33, #31, #21, #18, #15, #2, #29).
-
-Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
-
-## 2026-10-13, PM check-in
-
-NEXT FOR THE OPERATOR: run `python ops/preflight.py` to actual completion in the background, because this cycle could not watch all 397 `ops/tests/test_*.py` files finish inside its own time budget and stopped the run rather than claim a result it did not see.
-
-**Checkout arrived shallow and detached, same as every recent cycle.** `git fetch origin main`, `git fetch --unshallow`, `git checkout main`, `git merge --ff-only origin/main` all succeeded clean, fast forwarding 80 commits with no conflict.
-
-**Previous work was finished.** Tree was clean and main already matched origin on arrival; the last two log entries (`c7152fe74`, `7bbd5ce39`) both independently concluded nothing new unblocked, and this cycle's own re-verification agrees.
-
-**Did:** `python ops/preflight.py` (no arguments, the fast gate set) was started twice, once in the foreground (killed by its own tool timeout at 100s) and once in the background; after roughly 160 seconds of real runtime with its CPU time not advancing between two checks, I killed it rather than let it run past this slot's budget. This is very likely not a hang: `ops/tests/` now holds 397 `test_*.py` files, each launched as its own subprocess by `gate_tests`, and nothing here proves that is slower than usual versus genuinely stuck. Either way it is **unchecked, not passed**, so I am not repeating the prior cycle's "every gate passed" line without having seen it myself. Ran the standing narrower workaround instead, each to a clean result: `check_urls.py` (211/211 sitemap URLs resolve), `audit_pages.py` (215 pages, 0 findings, 0 duplicate titles or descriptions), `affiliate.py --check` (165 documents, rules pass), `mobile/quest-app` `npm test` (all four suites, pickCard/eventLog/videoLink/etc, pass). `cold_read_ledger.py --stale` and `--next`: 199 of 199 files ledgered, 0 stale, 0 un-ledgered candidates, the fallback lane is exhausted too. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. Issue #40 (the usage-limit stall) re-read directly: correctly still open, waiting on Phil's own check of his plan/usage setting, not stale.
-
-**Did not do:** pick a new backlog item. `BACKLOG-2026-09-07.md` sections 2 to 4 (micro zones, decks, images/video) show every row done or explicitly Phil-gated, including `A27` closed this same day with no actionable gap found after a full 200-row sweep. `OWNER-ACTIONS.md`'s open item (the MCP server deploy decision) is Phil's call, not mine. With the narrower checks clean and the fallback content lane exhausted, starting something speculative at the :40 slot would have cost more than it was worth; the honest, highest-value thing this cycle could do was not claim a check it had not finished.
-
-**Went well:** not reporting the interrupted preflight run as a pass just because every narrower check was clean.
-
-**Did not go well:** again spent real time on the unrelated-history shallow checkout shape; still recurring every cycle, never itself fixed (issue #27).
-
-**Changing next cycle:** when `preflight.py` needs to run to a real completion and the PM's own slot is too short, background it explicitly and let the operator's longer slot read the result, rather than killing it partway and reporting unchecked.
-
-Pushed to main. This log entry only; no price, product or site page touched; no code changed. IndexNow not applicable.
