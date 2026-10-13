@@ -1,15 +1,15 @@
 {
-  "combined_hash": "9b16cb32b218877de237c2b17607ab5f06f993dfb11cc08c05f3838692e89744",
-  "git_head": "5f0f300ce89a34d322ab178f20c4f2be377a1654",
-  "note": "",
-  "recorded_at": "2026-10-13T09:12:31Z",
+  "combined_hash": "60dee9c673ef38c5340ddb2b0ec995c5fd8498b0b626004800f7f8c03d4476b8",
+  "git_head": "3b7feb5da36e03d5757c5ecbbc6bb18847d4bf45",
+  "note": "operator cycle 2026-10-13: full preflight clean (0 FAIL, 32 standing warnings), GitHub 9 issues/0 PRs unchanged, cold-read ledger 0 stale, nightly log entry added",
+  "recorded_at": "2026-10-13T10:04:29Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "367834e8dc2786b67115b4db029718079f90d6d357e4b1141c8f0edf93842a04",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "a5304b6b585e4c6145fd3b97d3846f6b3cae054107a127b7374effe68c73b79a",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
     "STATUS.md": "7eba798cad71b74e05fdb9bdb09e95e2ab31836db0e7a09b51822e736707fc67",
-    "ops/cold-read-ledger.json": "0de40c78cfd642d92803c64e8c759d1f077aa8ab0ba182e29627269cbef80fc3",
+    "ops/cold-read-ledger.json": "39d01df71aafd4e027ea9cf2c1d4c0950d0f6e93615b20f24600a536de350fad",
     "ops/deploy-verdict.json": "bd91f395845fb6a5b9df1b714e9cad47c1f7086bf745338e8c607a01bc5a916b"
   }
 }
