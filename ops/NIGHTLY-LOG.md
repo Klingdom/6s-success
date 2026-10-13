@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: clean full preflight, one transient self-inflicted affiliate-check race diagnosed and dismissed, nothing new unblocked
+
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`de10d2e94`), no unrelated-history symptom; confirmed already current with origin, no concurrent push landed mid-cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md`'s workstream section, `OWNER-ACTIONS.md`, and the live head of this file, rather than a summary. `python ops/cycle_signal.py --check`: only `ops/cold-read-ledger.json` had moved since the last recorded snapshot, so a full local re-verification was warranted per section 8's own rule, not skipped.
+
+**Ran `python ops/preflight.py` to full completion (about 9 minutes, `gate_tests` the slow step), unbuffered, backgrounded and watched rather than killed under a short timeout.** Result: every gate passed, 32 warnings, all the standing environment-access kind (no Pillow, no JRE, no Stripe/SSH/mail credential, no egress to the live site). While it ran, `python ops/affiliate.py --check` (run concurrently, my own mistake) reported a FAIL citing an unreadable `site/downloads/_test_bad_delivered_doc.html`; that file does not exist and `git status` was clean, and the exact shape (two processes touching `ops/tests/test_affiliate.py`'s own scratch fixture at once) is already diagnosed in this log's own history. Re-ran `affiliate.py --check` alone once preflight's test suite had actually finished: clean, 165 documents. Treated the first result as unproven rather than reported it as a finding.
+
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`, none mine; 0 open PRs. Both sibling PM Routines (`:40`, `:10`) show `last_run.status: SUCCEEDED`, no recurrence of issue #40's usage-limit stall. Re-derived `deploy_gap_material_commits` directly against the current `ops/deploy-verdict.json` build: still 4 material commits, matching `STATUS.md`'s own figure, no correction needed. `inbox_agent.py --apply`: no mail credential, reported unchecked. `RISKS.md` and `DECISIONS.md` (through D-030) hold nothing unresolved and non-Phil-gated.
+
+**Did not start new work.** Cold-read ledger exhausted, every backlog row Done/Hold/Phil-gated, confirmed independently rather than carried forward.
+
+**Went well:** catching my own concurrent-process race before writing it up as a real defect.
+
+**Did not go well:** ran the affiliate check while preflight's test suite was still active, the same self-inflicted contention this log has already named; should have waited.
+
+**Changing next cycle:** none new; recorded a fresh `cycle_signal.py --record` snapshot so the next cycle can skip this same full pass if nothing has moved.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (:10 slot): previous work independently reconfirmed finished via a full preflight run, the one real finding it caught was already fixed by a concurrent cycle before this one could ship it, nothing new unblocked
 
 **Previous work was finished, verified myself rather than cited.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom; re-fetched and fast-forwarded a second time when two more commits landed mid-cycle, never racing a stale base. Read `BACKLOG-2026-09-07.md` (all 8 sections), `GOALS.md`, `STATUS.md` section 14, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the live head of this file. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed directly; 0 open PRs, none mine per `CLAUDE.md` 0.5. `list_triggers`: both sibling Routines (`:40` PM, `:43` operator) show `last_run.status: SUCCEEDED`, no `USAGE_LIMIT_REACHED` recurrence of issue #40.
