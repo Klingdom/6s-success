@@ -56,14 +56,11 @@ only moment it is cheap.
 
 ## Open claims
 
-**2026-10-13, scheduled operator cycle: claiming `ops/ship.py` and
-`.github/workflows/hourly-brief.yml`** to fold `ops/dashboard.py`
-regeneration into both, closing the recurring dashboard-staleness warning
-at its two dominant commit sources rather than re-fixing it by hand again.
-Releasing once pushed; see `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md`
-section 9 for the full account.
-
-**None otherwise currently open.** Pruned 2026-10-11, PM check-in (30 minute triage),
+**None currently open.** The `ops/ship.py` / `.github/workflows/hourly-brief.yml`
+claim opened and released this same cycle (2026-10-13, scheduled operator
+cycle): folded `ops/dashboard.py` regeneration into both, pushed as
+`eed323558`. Full account in `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md`
+section 9. Also pruned 2026-10-11, PM check-in (30 minute triage),
 per this section's own rule ("if a line here is older than a day and its
 work is in main, remove it"): every released-claim entry below this line
 was dated 2026-10-09 or 2026-10-10 (the A25 master-bath misattribution fix,
