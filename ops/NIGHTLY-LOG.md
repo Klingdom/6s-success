@@ -2,6 +2,47 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in
+
+Checkout arrived shallow and detached (the usual shape); unshallowed and fast-forward
+merged onto origin/main cleanly, no reset needed. `ops/cycle_signal.py --check` read
+SAME against the 12:04 snapshot before I did any local re-verification, so per
+section 8's own rule I skipped the redundant full local pass and spent the slot on
+the external checks nothing local can see instead: GitHub (9 open issues, 0 PRs,
+all unchanged and Phil-gated: decision or blocked-on-art), mail (no credential,
+reported unchecked as always), and the scheduled workflows (all green on the latest
+pushes). Issue #40 (the usage-limit stall) is resolved per its own comments four
+days ago and routines have run continuously since; nothing new to add there.
+`STATUS.md` has no open claims, so nobody else should have been mid-flight on
+anything shared.
+
+**Previous work: finished.** Clean preflight, clean tree, main pushed, cycle_signal
+SAME, nothing contradicted by the external checks above.
+
+**Collided with a concurrent cycle, correctly, and stood down.** While I was
+mid-check, a concurrent cycle (operator-shaped) pushed two commits in this same
+window: a real nightly-log-ordering defect found and fixed by a full preflight run,
+then a fresh cycle_signal snapshot recorded after that clean pass. I had separately
+regenerated the dashboard locally (it was one commit stale when I started); by the
+time I went to ship, that regeneration was itself already superseded by the
+concurrent cycle's own fresher regeneration. Per section 8, stashed and dropped my
+local diff rather than force anything, re-fetched, fast-forwarded onto the
+concurrent cycle's two commits, and reran `cycle_signal.py --check`: SAME against
+the new 12:15:32Z snapshot too. Nothing of mine was lost; nothing of mine needed to
+ship, because the concurrent cycle's own push already did the one real thing this
+slot found (the ordering fix) and left the repository in a genuinely verified-clean
+state.
+
+**Nothing new unblocked.** All 9 open issues are the same standing
+decision/blocked-on-art set, all explicitly Phil's call (Stripe business identity,
+Listmonk instance, VPS deploy key, chapter 47 art style, deck art mismatch, Momentum
+card mechanic). No item in `BACKLOG-2026-09-07.md` sections 2 through 6 is both
+unblocked and unstarted; section 8 already says as much and nothing this cycle
+found changes that.
+
+**Handing to the operator:** nothing new. Standing Phil-gated queue in
+`OWNER-ACTIONS.md` and the same 9 GitHub issues, unchanged.
+
 ## 2026-10-13, scheduled operator cycle: a full preflight run caught a real self-inflicted ordering defect in this file, fixed and reverified, nothing else newly unblocked
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0-8, every row Done or Phil-gated), `CLAUDE.md`, the last four log entries, `OWNER-ACTIONS.md`'s open-item list. `ops/cycle_signal.py --check`: SAME against the 10:04:29Z snapshot, so the expensive full local re-verification was legitimately redundant on content grounds; ran it anyway per STEP 2's own instruction that preflight is the one mandatory gate. While it ran (`gate_tests`, 397 sequential test files, several minutes), checked everything cycle_signal does not cover directly: GitHub 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; `inbox_agent.py --apply` no mail credential; `affiliate.py --check` clean, 165 documents; `check_urls.py` 211/211; `audit_pages.py` 215/0; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale`/`--next` 0 stale, 0 un-ledgered; mobile `npm test` all four suites pass. A concurrent PM check-in pushed mid-wait (`db14cc7ce`, the same "preflight could not finish inside its slot" conclusion); fast-forwarded it in rather than duplicating.
