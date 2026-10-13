@@ -80,6 +80,98 @@ def _record_sent():
     print('recorded', os.path.relpath(SENT_RECORD, ROOT))
 
 
+ROADMAP = os.path.join(ROOT, 'ROADMAP-2026-2029.md')
+
+# Month names as ROADMAP-2026-2029.md's own gate table writes them. Parsed
+# rather than restated, so a date edited there reaches this email.
+_MONTHS = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+           'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12}
+
+
+def gate_due(when):
+    """The first day of the month a gate is due, or None if it names no date.
+
+    The table writes dates as '~Nov 2026', 'Aug 2027', 'Q1 2028' and, for G3,
+    'before any workplace content is written', which is a condition rather than
+    a date. A condition returns None and is reported without a countdown rather
+    than guessed at.
+    """
+    import re
+    s = (when or '').strip().lstrip('~').strip()
+    m = re.match(r'([A-Za-z]{3})[a-z]*\s+(\d{4})$', s)
+    if m and m.group(1).lower() in _MONTHS:
+        return datetime.date(int(m.group(2)), _MONTHS[m.group(1).lower()], 1)
+    m = re.match(r'Q([1-4])\s+(\d{4})$', s)
+    if m:
+        return datetime.date(int(m.group(2)), (int(m.group(1)) - 1) * 3 + 1, 1)
+    return None
+
+
+def roadmap_gates(text=None):
+    """The gate table from ROADMAP-2026-2029.md, as (id, evidence, when)."""
+    import re
+    if text is None:
+        try:
+            text = io.open(ROADMAP, encoding='utf-8').read()
+        except OSError:
+            return []
+    # The pipe is ESCAPED. The first version inserted it with chr(124), which
+    # is | and therefore ALTERNATION in a regex, not a literal character, so
+    # the pattern became a list of tiny alternatives and matched every byte of
+    # the file. Same mistake shape as building a group with chr(40): a
+    # metacharacter smuggled in as a literal (LEARNINGS.md LRN-0033).
+    rows = re.findall(r'^\|\s*\*\*(G\d)\*\*\s*\|(.*?)\|(.*?)\|',
+                      text, re.M)
+    return [(g, ev.strip(), when.strip()) for g, ev, when in rows]
+
+
+def gate_lines(today=None, horizon_days=120):
+    """The roadmap's own decision gates, with how long is left.
+
+    WHY THIS IS IN AN EMAIL
+    -----------------------
+    Found 2026-10-13 reading the roadmap against this email. G2 is due ~Nov
+    2026, about three weeks out, and it cannot resolve without one number from
+    the owner: OWNER-ACTIONS.md item 17.3 says in its own words that the budget
+    and stop date are 'the one piece that is a real financial commitment' and
+    that the gate 'is currently holding the whole services-first funnel reframe
+    open pending exactly this result'. That ask appeared nowhere in this email's
+    six BLOCKING items.
+
+    A gate is not like the other asks. The others wait; a gate EXPIRES. G5
+    depends on G1 and G2 having resolved, so a silently missed G2 does not just
+    delay a decision, it removes the roadmap's own ability to re-baseline the
+    target honestly.
+
+    Derived from the table, never restated: a date edited in the roadmap moves
+    this block. A gate whose 'by when' is a condition rather than a date (G3)
+    is listed without a countdown instead of being guessed at.
+    """
+    today = today or datetime.date.today()
+    gates = roadmap_gates()
+    if not gates:
+        return ['ROADMAP GATES',
+                '  ROADMAP-2026-2029.md could not be read, so the gate dates '
+                'are UNKNOWN here.', '']
+    out = ['ROADMAP GATES',
+           '  From ROADMAP-2026-2029.md. These expire; the asks above do not.']
+    for gid, evidence, when in gates:
+        due = gate_due(when)
+        if due is None:
+            out.append('  %s  %-14s %s' % (gid, '(no date)', evidence[:64]))
+            continue
+        days = (due - today).days
+        if days < 0:
+            flag = 'PAST DUE by %d days' % -days
+        elif days <= horizon_days:
+            flag = '%d days left' % days
+        else:
+            flag = 'due %s' % when
+        out.append('  %s  %-20s %s' % (gid, flag, evidence[:58]))
+    out.append('')
+    return out
+
+
 def _last_confirmed_deploy_line():
     """One line about the last deploy anybody actually confirmed.
 
@@ -115,6 +207,10 @@ BLOCKING = [
      "issue #40. It is first on this list because every other item below it "
      "depends on there being a session awake to act on your answer.",
      "2 minutes"),
+    ("Set a budget and a stop date for the local demand test",
+     "Two numbers, in writing: what you are willing to spend, and the date I stop. Everything else is already drafted (OWNER-ACTIONS.md item 17): the Google Business Profile claim, and the referral-partner outreach for senior move managers, agents and organisers at build/referral-partner-outreach.txt.",
+     "This is the only ask on this list with a clock on it. ROADMAP-2026-2029.md gate G2 is due ~Nov 2026 and resolves on whether a capped local demand test produces 3 or more paid non-referral bookings or 1 or fewer; 3 or more plans hired delivery for Q1 2027, 1 or fewer closes services pending new evidence. It cannot resolve at all without your number, and G5 depends on G1 and G2 having resolved, so a missed G2 does not just delay a decision, it removes this roadmap's own ability to re-baseline the $20,000 target honestly. The spend is a real financial commitment, which is why it is yours and not mine.",
+     "5 minutes, and whatever you decide to spend"),
     ("Add VPS_DEPLOY_KEY as a GitHub Actions secret",
      "Settings -> Secrets and variables -> Actions -> New repository secret, "
      "named exactly VPS_DEPLOY_KEY, pasting the contents of the "
@@ -328,6 +424,7 @@ def build():
         "",
     ]
     lines += site_status_lines()
+    lines += gate_lines()
     lines += [
         "BLOCKING. Nothing I do can move these.",
         "",

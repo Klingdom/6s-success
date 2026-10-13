@@ -18137,6 +18137,96 @@ def owner_questions_staleness_problem(payload, now, limit_days=10):
     return ''
 
 
+def expiring_gate_problem(gates, email_text, today, horizon_days=60):
+    """Pure logic for gate_roadmap_gate_in_owner_email, testable without files.
+
+    gates is a list of (id, evidence, when) as send_questions.roadmap_gates()
+    returns. email_text is the rendered owner email. Returns a problem string,
+    or '' when every gate closing inside the horizon is named in the email.
+    """
+    import sys as _sys
+    _sys.path.insert(0, os.path.join(ROOT, 'ops'))
+    import send_questions as _sq
+    missing = []
+    for gid, evidence, when in gates:
+        due = _sq.gate_due(when)
+        if due is None:
+            continue
+        days = (due - today).days
+        if days > horizon_days:
+            continue
+        if gid not in email_text:
+            missing.append((gid, when, days))
+    if not missing:
+        return ''
+    return ("%d roadmap decision gate(s) close within %d days and are not "
+            "named anywhere in the owner email: %s. A gate is not like the "
+            "other asks: the others wait, a gate EXPIRES, and G5 depends on "
+            "G1 and G2 having resolved. Add the ask to BLOCKING in "
+            "ops/send_questions.py, in OWNER-ACTIONS.md's own words."
+            % (len(missing), horizon_days,
+               ', '.join('%s (%s, %d days)' % m for m in missing)))
+
+
+def gate_roadmap_gate_in_owner_email() -> None:
+    """A roadmap gate about to close must be in the email that can resolve it.
+
+    Found 2026-10-13 by reading ROADMAP-2026-2029.md against the owner email
+    rather than either on its own. G2 was 19 days out. It resolves on a capped
+    local demand test, and OWNER-ACTIONS.md item 17.3 says in its own words
+    that the budget and stop date are 'the one piece that is a real financial
+    commitment' and that the gate 'is currently holding the whole
+    services-first funnel reframe open pending exactly this result'. That ask
+    appeared in none of the email's six BLOCKING items.
+
+    So the roadmap had a dated decision, the owner email had six undated asks,
+    and nothing compared the two. The gate would have passed its date in
+    silence, and G5 depends on G1 and G2 having resolved, so missing G2 does
+    not merely delay a choice: it removes this roadmap's own ability to
+    re-baseline the $20,000 target honestly.
+
+    Sixty days of horizon, because a financial decision needs more notice than
+    a five minute paste, and because that is long enough that one missed weekly
+    send cannot cause a gate to expire unmentioned.
+
+    A WARNING, not a failure: nothing a customer touches is wrong, and failing
+    a build would block unrelated work. The point is that an expiring gate
+    cannot be invisible.
+
+    Proof this can fail: ops/tests/test_gate_roadmap_gate_in_owner_email.py
+    calls expiring_gate_problem() with a gate 19 days out absent from the
+    email, present in it, 200 days out, and with a condition instead of a date.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, 'ops'))
+        import send_questions as sq
+        gates = sq.roadmap_gates()
+    except Exception as e:                                    # noqa: BLE001
+        warn('roadmap-gate-in-owner-email',
+             'could not read the roadmap or the owner email (%s), so whether an expiring gate is being surfaced is UNCHECKED.' % type(e).__name__)
+        return
+    if not gates:
+        warn('roadmap-gate-in-owner-email',
+             'no decision gates could be parsed out of ROADMAP-2026-2029.md, so this is UNCHECKED rather than clean.')
+        return
+    # THE RENDERED EMAIL, not the module source.
+    #
+    # The first version read ops/send_questions.py's own text, and that is a
+    # check that cannot fail: this file's own docstrings discuss G2 at length,
+    # so a gate looking for the string 'G2' in the source is satisfied by the
+    # comments explaining why G2 matters, whether or not the ask reaches the
+    # owner. Proved by planting the real pre-fix state (the ask deleted from
+    # BLOCKING and the gate block unwired) and watching this report clean.
+    #
+    # build() returns the text that is actually sent, which is the only thing
+    # the owner reads.
+    body = sq.build()
+    problem = expiring_gate_problem(gates, body,
+                                    dt.date.today())
+    if problem:
+        warn('roadmap-gate-in-owner-email', problem)
+
+
 def gate_owner_questions_not_stale() -> None:
     """The owner must actually be receiving the one email that asks him to
     unblock the business.
@@ -28721,6 +28811,7 @@ def main() -> int:
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_keyword_demand_not_stale)
     run_gate(gate_owner_questions_not_stale)
+    run_gate(gate_roadmap_gate_in_owner_email)
     run_gate(gate_indexation_check_not_stale)
     run_gate(gate_goals_keyword_cluster_citation_current)
     run_gate(gate_experiments_blocked_reason_current)
