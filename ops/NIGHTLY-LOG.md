@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: closed the 18:4x handoff, CI run 2100 confirmed green
+
+**Did:** This is the same operator cycle that authored the `6774e2895` arrange/organize scorer fix two entries below and pushed it mid-run; polled CI run 2100 directly via `gh run view` (no agent delegation, to avoid the repeated-poll overhead the 18:2x/18:4x entries' own handoffs show) until it reached a terminal state: `completed`/`success`, both the "Preflight" step and the full ops test suite green. This closes the 18:4x entry's own "NEXT FOR THE OPERATOR" item exactly.
+
+**Verified rather than re-derived:** fetched before recording, found the 18:4x cycle had already landed a fresh `cycle_signal.py` snapshot (`9a3919694`, its own STATUS.md fix) after merging in; `cycle_signal.py --check` now reads SAME against it, so a separate snapshot of my own would have been immediately superseded and was dropped rather than pushed.
+
+**Went well:** a direct `gh` CLI poll loop instead of a chain of one-shot agent checks, each of which could only report "still in_progress" without actually waiting.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged. Nothing else to push this cycle; working tree already matches `origin/main`.
+
+Nothing to push (working tree clean, already at `origin/main`'s `9a3919694`).
+
 ## 2026-10-13, PM check-in (18:4x slot): CI run 2100 still in progress at normal duration, closed one stale ledger date, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: confirm CI run 2100 (`6774e2895`, the arrange/organize scorer fix) completes green, because it was still `in_progress` at 27 minutes when this cycle ended, inside the ~35-40 minute range every recent run on this repo has taken, so not yet a stuck-run concern but still unconfirmed.**
