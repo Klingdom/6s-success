@@ -16,6 +16,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck and `ops/NIGHTLY-LOG.md` only. No site, price or product touched; IndexNow not applicable.
 
+## 2026-10-13, scheduled operator cycle: closed the status currency gate's own standing gap, ran the full preflight deep sweep the previous handoff named, no new defect found
+
+**Did:** Checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated history symptom. Read `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, the live head of this file, and `BACKLOG-2026-09-07.md` sections 0, 6, 7 and 8 (the long lines in that file exceed a single read, so sections were pulled with `sed` rather than skipped). `cycle_signal.py --check`: SAME against the snapshot the prior cycle recorded at `33d64c37b0`, so a full local re-verification was redundant on its own; ran one anyway as an independent check per standing practice rather than trust the citation. GitHub's 9 open issues read directly: unchanged, all `decision` or `blocked-on-art`, none mine; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked.
+
+**Ran `python ops/preflight.py` to full completion and it found a real FAIL.** `test_gate_goals_keyword_cluster_citation_current.py` failed because the weekly `keyword-demand.yml` harvest fired earlier in this same cycle chain (`98cfbffd4`, confirmed A27, no new gap) had moved the "small space" and "cheap/budget/DIY" cluster counts by one query each, leaving `GOALS.md`'s own citation of them stale. Per `CLAUDE.md` step 2, fixing it became this cycle's work. Re-derived both clusters directly from the real committed `ops/keyword-demand.json` (19 covered / 16 partial / 1 gap of 36, and 27 covered / 67 partial / 4 gap of 98) and had the fix ready to push when `git fetch` showed a concurrent PM check-in (`8ebb3264`) had already landed the identical fix with the identical numbers first. Discarded my own duplicate edit and fast forwarded onto theirs rather than carry two differently worded corrections for one drift, matching this file's own established practice for exactly this collision shape.
+
+**Took the standing handoff next: ran `python ops/preflight.py --deep` to full completion, the real headless browser visual and accessibility sweep (`gate_visual_audit`) that had not been cited in this file for several days.** Every gate passed, 34 warnings, all the standing environment access kind, 0 findings across all nine categories (contrast, image distortion, broken images, missing dimensions, missing alt text, heading level jumps, unlabelled inputs, missing focus styles, landmark and h1 problems) on the full site.
+
+**Found and closed a second, smaller gap while verifying: `gate_status_currency` warned that `STATUS.md` had gone 9 material commits without a mention, none of them individually worth their own entry (the harvest, the citation fix, routine dashboard regenerations).** Added one summary entry closing the gap, citing the real commit hashes so the gate's own mention check passes; re-ran the gate function directly rather than the full suite a second time to confirm: clean. A concurrent push landed mid fix (two PM check-ins, `81655da65` and `d92d38505`); fetched and fast forwarded before committing rather than race a stale base.
+
+**Verified:** `gate_status_currency` and `gate_goals_keyword_cluster_citation_current` both re-run directly against the final committed files: clean. `fix_dashes.py --check`: 0 em dashes, 0 en dashes, including this cycle's own edits. `ops/dashboard.py` regenerated; `cycle_signal.py --record` taken on the clean result. A third full `preflight.py` run (standard, not deep) on the post commit tree before push: every gate passed, 31 warnings, exit 0.
+
+**Went well:** discarding a duplicate fix rather than shipping a second, differently worded correction for the same drift; closing the status currency gate with a real summary rather than an empty placeholder entry.
+
+**Did not go well:** none this cycle; both gates that fired (`gate_goals_keyword_cluster_citation_current`, `gate_status_currency`) worked exactly as designed, so no new gate is needed.
+
+**Next:** same standing Phil gated queue (9 open issues, all `decision` or `blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged. Nothing genuinely unblocked surfaced this cycle beyond the two gaps closed above.
+
+Pushed to main (`f40e42444`). `STATUS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, same cycle addendum: CI confirmed green on the citation fix, survived a concurrent merge intact
 
 **Closing the loop this entry's own PM check-in left open.** The "Checks" CI run on the citation-fix commit (`8ebb326`) finished `success` (confirmed by polling GitHub directly, not inferred): `Checks`, `Hourly brief`, `Deliver paid orders`, both social-draft workflows and `LinkedIn drafts` all `success` on that `head_sha`. The run took about 38 minutes, in line with this workflow's other recent runs today (03:11-03:49, 03:43-04:20, 04:11-04:50), not a hang.
