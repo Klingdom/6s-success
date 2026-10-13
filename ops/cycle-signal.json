@@ -1,14 +1,14 @@
 {
-  "combined_hash": "599e62a6b328c4d624bd859012b0e90ba884542e0780d72d29f8407937f86f0f",
-  "git_head": "9a3919694e3c8fc6d134128c570dfb94fd3c953b",
-  "note": "preflight fast clean through the gate_tests sandbox hang (standing), fixed STATUS.md's stale production-knowledge citations (BLOCKER-001, Production Knowledge, Immediate Focus), verified against the real gate function before and after",
-  "recorded_at": "2026-10-13T18:57:38Z",
+  "combined_hash": "d0426836d64b9b4b1ac8d6bf379e65ae1c16b29b5324604014eee3292e1a6e57",
+  "git_head": "61f2852ea4c8175ab97266a2a3b5ae50759dc41e",
+  "note": "Full cycle: dashboard regeneration folded into ops/ship.py and hourly-brief.yml, closing recurring gate_dashboard_self_description_fresh WARN at its two dominant commit sources. CI confirmed green (run 38481829820, checks.yml, conclusion success) after a 23-minute Preflight pass in CI's own environment, not just this sandbox's gate_tests-hobbled local run.",
+  "recorded_at": "2026-10-13T23:43:41Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "294bdea3dfb493fc99d937266a657ab6b5d29db9bc07251d877b7c29cec9dace",
+    "BACKLOG-2026-09-07.md": "24a412492463f2cfc6538a2ef73ce9e4b7f0dcc3428e4f52aacf0ab4127001db",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "2054e8ddd8012568486586fef1f78f8619e9bb159a83e69db0a5c1b688722a0f",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
-    "STATUS.md": "af926ebc6442f60352349a9bc6bf0d4464cea0568b0abb77939dbe91ebb2e22e",
+    "STATUS.md": "83f6e42153a69a19dda9c096ccfc6d9038ad8438c6ebd62d1b284abbd769d59a",
     "ops/cold-read-ledger.json": "b4e40902019ffc60bed9362d8eb3b770c257650d9e57ce684ac85cb0d52abf5b",
     "ops/deploy-verdict.json": "fafa2583f2e0772e0d6e4ba262cd35c01997f0432a2d8c5a2d96d39476bab353"
   }
