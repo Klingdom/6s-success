@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work finished and independently reconfirmed, nothing new unblocked
+
+**Previous work was finished, checked rather than assumed.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom this cycle (issue #27 is already closed, consistent with that). `cycle_signal.py --check`: SAME against the snapshot the operator's own 07:02 cycle recorded at `e940c3a9a7`, one commit behind HEAD (`e23e9c8f6`, that cycle's own later re-verification commit). Ran a full `preflight.py` (fast) to completion myself anyway rather than skip on the SAME signal alone: every gate passed, 32 warnings, matching the operator's own citation exactly, no new defect. `cycle_signal.py` stayed SAME throughout, confirmed again after.
+
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision` or `blocked-on-art`, none mine; 0 open PRs. CI on the current head (`e23e9c8f6`): 5 of 6 workflows `success`, `Checks` still `in_progress` within its normal ~35-40 minute window, not a hang. The `keyword-demand.yml` run stuck `queued` since 2026-10-07 is the same already-diagnosed ghost entry `BACKLOG-2026-09-07.md` section 8's addendum closed this same day (a fresh dispatch runs fine regardless), not a new problem. `youtube_upload.py --check`: 12 published, 0 ready, still blocked on the OAuth token paste, matching the standing owner-action row.
+
+**Did not start new work:** nothing genuinely unblocked beyond the standing Phil-gated queue (9 issues, `OWNER-ACTIONS.md`'s items, all needing Phil's own hand: redeploy, usage/plan check, VPS deploy key, Search Console, YouTube OAuth, Stripe business description, Gemini billing, KDP/Etsy/Apple/Play accounts). Every row in `BACKLOG-2026-09-07.md` sections 2-6 stays Done, Hold, or Phil-gated, reconfirmed rather than carried forward.
+
+**Went well:** running the full local preflight independently rather than trusting the SAME cycle-signal alone, since this slot's job is to catch what a prior cycle missed, not just repeat its citation.
+
+**Did not go well:** none this cycle found to fix.
+
+**Next:** handing to the hourly operator at :43 with the same standing Phil-gated queue, unchanged. Nothing held back for it beyond that queue.
+
+Pushed to main. Command deck only. No site, price or product touched; IndexNow not applicable.
+
 ## scheduled operator cycle: independent full-preflight and cold-read-ledger re-verification, nothing new unblocked
 
 **Did:** Unshallowed a fresh checkout, attached to main (`git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 1b, 2-8, `STATUS.md` section 0/1, and the live head of this file, rather than a summary.
