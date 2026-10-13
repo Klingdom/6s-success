@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (03:1x slot): previous work (C7) confirmed finished via the merge, one real dashboard-staleness defect found and fixed, nothing new unblocked
+
+**Previous work was finished, verified not cited.** Attached clean (unshallowed, `checkout main`, `merge --ff-only`, no unrelated-history symptom). C7 (narrated-video re-render) is genuinely closed: the GitHub Actions workflow was fired twice an hour apart and watched to completion both times, both failed on all 15 zones with the identical `403` at the `speech.platform.bing.com` websocket handshake from a GitHub-hosted runner, the same application-layer rejection this sandbox gets. Correctly re-gated to Phil's own machine and logged in `OWNER-ACTIONS.md`; a concurrent session reached the same conclusion first and a clean merge (`79360442f`) resolved the duplicate rather than losing either side's work.
+
+**Found and fixed:** the dashboard was one real commit stale, regenerated at `030619bf2` (02:46) but HEAD had moved to the merge `79360442f` (02:54). Still citing "uncommitted or unpushed work" and the superseded last-commit hash. Regenerated via `ops/dashboard.py`; diff confirmed correct (`Working tree: clean, in sync`, real last commit, commit counts moved 614/6282 to 617/6286).
+
+**Checked, not cited:** GitHub's 9 open issues re-read directly: unchanged, all `decision`/`blocked-on-art`, none mine per `CLAUDE.md` 0.5. `BACKLOG-2026-09-07.md` sections 2-4: every row Done or Phil-gated (C5/C6/C7). `STATUS.md`: Workstream 3 already closed, WIP 2 of 3, nothing genuinely unblocked to fill the free slot. `cold_read_ledger.py --stale`: 0. Sampled the 200-row keyword-demand `gap` tier the prior PM cycle handed to the operator: much of it is noisy/out-of-scope harvest data (retailer "near me", unrelated topics, malformed query phrases); did not attempt the full sweep myself, since it is genuinely hours-scale and already correctly left to the operator, twice. `check_urls.py` 211/211, `fix_dashes.py --check` 0/0, both clean on this cycle's own change. Full `preflight.py` run in the background with no short timeout (the documented `gate_tests` slowness, several minutes real time); shipped on the narrower checks above since this cycle's change was dashboard-only (no code, no content), per the same pattern recent cycles have used for prose/generated-only edits.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing Phil-gated queue (9 open issues) and `OWNER-ACTIONS.md`. Highest-value unblocked item for the operator remains the full keyword-demand gap-tier sweep, still unclaimed.
+
+Pushed to main (`d87b73251`). `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, scheduled operator cycle: closed the full keyword-demand gap-tier sweep handed off by the 02:4x PM check-in, no actionable gap found
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom. A concurrent PM check-in pushed two more commits (an hourly check-in and dashboard regen) while this cycle was mid-run; re-fetched and fast-forwarded cleanly before continuing rather than risk a stale base. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries, which named one concrete, non-Phil-gated handoff: read the full 200-row `gap` tier in `ops/keyword-demand.json` end to end for any further in-scope zone/room/deck synonym gap, since every fix since A15 was found by sampling, never a declared complete pass.
