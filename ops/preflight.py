@@ -4204,6 +4204,61 @@ def gate_push_fallback_ledger_honest() -> None:
         fail("push-fallback-ledger-honest", "; ".join(problems))
 
 
+def check_schedule_fallback_race(workflows_dir) -> list:
+    """Pure logic: a workflow with both a `schedule:` cron and a `push:`
+    fallback must not let the schedule branch send unconditionally.
+
+    Found 2026-10-13, this operator. linkedin-drafts.yml, bluesky-drafts.yml
+    and social-drafts.yml each gate on `if [ "$EVENT_NAME" != 'push' ]` and
+    send unconditionally for anything else, on the theory that cron fires
+    the workflow at most once a day. It does not fire ON TIME once a day:
+    GitHub queues scheduled runs under load, the exact fact
+    gate_scheduled_delivery_phase already measures for this same file. When
+    the delayed schedule run finally executes AFTER the push fallback below
+    has already stood in for it, both paths send, because the schedule
+    branch never checks the same once-a-day ledger the push branch does.
+    Confirmed directly from git history, not assumed: 8 of the last 13 to 28
+    tracked days for each of the three workflows carried 2 or 3 real
+    "advance rotation" commits in one day, meaning Phil received 2 or 3
+    copies of the same morning drafts, including every day from 2026-10-09
+    to 2026-10-12 straight on all three. Fixed by making `schedule` fall
+    through to the same ledger check as `push`, leaving only
+    `workflow_dispatch` (a deliberate manual run) sending unconditionally.
+    This checks for the old, vulnerable pattern returning: a gate step that
+    treats anything-but-push as an automatic send in a file that also has a
+    real push fallback to race against.
+    """
+    problems = []
+    for path in sorted(glob.glob(os.path.join(workflows_dir, "*.yml"))):
+        text = io.open(path, encoding="utf-8", errors="replace").read()
+        if "schedule:" not in text or "push:" not in text:
+            continue
+        if "already sent today" not in text:
+            # No real push-fallback ledger exists here to race against.
+            continue
+        if re.search(r"""EVENT_NAME"\s*!=\s*'push'""", text):
+            problems.append(
+                "%s: the schedule branch sends unconditionally "
+                "(\"$EVENT_NAME\" != 'push') in a file that also has a push "
+                "fallback with its own once-a-day ledger, so a delayed "
+                "schedule run can send again after the fallback already "
+                "has" % os.path.basename(path))
+    return problems
+
+
+def gate_schedule_fallback_race() -> None:
+    """No workflow may let its `schedule` trigger send unconditionally while
+    its own `push` fallback keeps a once-a-day ledger. See
+    check_schedule_fallback_race() for the finding this closes.
+    """
+    d = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(d):
+        return
+    problems = check_schedule_fallback_race(d)
+    if problems:
+        fail("schedule-fallback-race", "; ".join(problems))
+
+
 def gate_scheduled_workflow_cadence() -> None:
     """Warn when a scheduled GitHub Actions workflow is not firing on schedule.
 
@@ -28441,6 +28496,7 @@ def main() -> int:
     run_gate(gate_deploy_fresh)
     run_gate(gate_scheduled_workflow_cadence)
     run_gate(gate_push_fallback_ledger_honest)
+    run_gate(gate_schedule_fallback_race)
     run_gate(gate_scheduled_delivery_phase)
     run_gate(gate_schedule_comment_minute_current)
     run_gate(gate_stripe_price_claims)

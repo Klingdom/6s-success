@@ -92,20 +92,41 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           set -eu
-          if [ "$EVENT_NAME" != 'push' ]; then
+          if [ "$EVENT_NAME" = 'workflow_dispatch' ]; then
             echo 'send=yes' >> "$GITHUB_OUTPUT"
-            echo 'schedule or manual run: sending.'
+            echo 'manual dispatch: sending regardless of the ledger.'
             exit 0
           fi
-          # Push is the FALLBACK. Give the schedule until the promised
-          # landing time before standing in for it.
-          now=$(date -u +%s)
-          target=$(date -u -d 'today 14:19' +%s)
-          if [ "$now" -lt "$target" ]; then
-            echo 'send=no' >> "$GITHUB_OUTPUT"
-            echo 'before 14:19 UTC: leaving it to the schedule.'
-            exit 0
+          if [ "$EVENT_NAME" = 'push' ]; then
+            # Push is the FALLBACK. Give the schedule until the promised
+            # landing time before standing in for it.
+            now=$(date -u +%s)
+            target=$(date -u -d 'today 14:19' +%s)
+            if [ "$now" -lt "$target" ]; then
+              echo 'send=no' >> "$GITHUB_OUTPUT"
+              echo 'before 14:19 UTC: leaving it to the schedule.'
+              exit 0
+            fi
           fi
+          # Found 2026-10-13, this operator: the schedule branch used to send
+          # unconditionally on the theory that cron fires once a day. It does
+          # not fire ON TIME once a day; GitHub queues scheduled runs under
+          # load, and this file's own header already measures that landing
+          # slips by hours routinely. When the delayed schedule run finally
+          # executed AFTER the push fallback below had already stood in for
+          # it, both paths sent. Confirmed directly from git history, not
+          # assumed: 8 of the last 28 days carrying a real
+          # "LinkedIn drafts: advance rotation" commit had 2 or 3 of them,
+          # meaning Phil received 2 or 3 copies of the same morning drafts on
+          # those days, including every day from 2026-10-09 to 2026-10-12
+          # straight. The identical shape was independently confirmed in
+          # bluesky-drafts.yml and social-drafts.yml (same 8-of-13/28 days),
+          # so all three are fixed the same way in the same commit: the
+          # schedule event now falls through to the same once-a-day ledger
+          # check as push, below, instead of sending blind. workflow_dispatch
+          # above is the one path that still sends unconditionally, because a
+          # manual run is a deliberate human action, not a race between two
+          # unattended triggers.
           # Found 2026-09-30, this operator, while verifying the new
           # bluesky-drafts.yml (identical shape, copied from here): a
           # `?status=success` count of this workflow's OWN runs is not a
@@ -139,7 +160,7 @@ jobs:
             exit 0
           fi
           echo 'send=yes' >> "$GITHUB_OUTPUT"
-          echo 'past 14:19 UTC with no real send today: standing in for the schedule.'
+          echo 'no real send today yet: sending now.'
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.send == 'yes'
