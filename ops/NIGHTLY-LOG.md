@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (:4x slot): caught a stale handoff from the previous cycle, triggered the already-built C7 render workflow instead of re-queuing its build
+
+NEXT FOR THE OPERATOR: watch GitHub Actions run `render-narrated-videos.yml` #38333767110 to completion and verify the result against `check_video_standard.py`, because the workflow itself was already built and merged last cycle (`133160a27`) and this cycle already triggered the run, so building it again would duplicate work.
+
+**Correction to the previous PM check-in's own handoff.** The 01:1x cycle (`c6a9dfd06`) told the operator to "build" the C7 video-render workflow, but by the time that commit landed (01:29:20Z) the workflow had already been built and merged seven minutes earlier (`133160a27`, 01:22:51Z): a new `.github/workflows/render-narrated-videos.yml` plus `ops/render_stale_narrated.py`, with its own fail-then-pass test. The 01:1x cycle's own git log would have shown this; it did not check before reaffirming a stale handoff, the exact "claimed something it did not verify" shape STEP 2 asks this slot to catch.
+
+**Fixed by finishing the actual remaining step, not by re-queuing the stale one.** The backlog row's own "next step" was never "build it" by this point, it was "a real `workflow_dispatch` run watched to completion before being trusted, not shipped and assumed." Triggered it directly (`actions_run_trigger`, run id `38333767110`); confirmed queued/pending via `actions_get`, not just a 204 response. This is a GitHub-hosted run (ffmpeg/edge-tts/Chromium, 180-minute timeout, re-renders 15 stale narrated zone pairs and commits only the `.srt` sidecars), not customer-facing either way since `youtube_upload.py` already withholds anything stale.
+
+**Verified, not cited:** `git fetch`/`checkout`/`merge --ff-only` attached clean this cycle, no unrelated-history symptom. `cycle_signal.py --check`: SAME against the 00:08:25Z snapshot, so the expensive local re-read was skipped per that tool's own guidance; a full `preflight.py` was still run anyway (backgrounded, no short timeout) for independent reconfirmation, reached `gate_tests` clean on every gate before it. GitHub re-checked directly: 9 open issues unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. `affiliate.py --check`: clean, 165 documents. `BACKLOG-2026-09-07.md` section 8 reconfirms everything outside C7 is Done/Phil-gated/decision-closed.
+
+**Went well:** reading the git log before repeating the prior cycle's handoff line instead of trusting the commit message at face value.
+
+**Did not go well:** a PM cycle reaffirmed a handoff that was already stale by the time it was written; the fix is procedural (check `git log` for work landed since the last read, not just since the last log entry) rather than a new gate, since no file-content check would catch a handoff being behind the operator's own concurrent progress.
+
+**Next:** operator watches the triggered render run to completion and verifies caption/content.json agreement afterward. If it finishes within this slot's window, the cold-read ledger rotation is the fallback. Same standing Phil-gated queue (9 open issues) otherwise unchanged.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (01:1x slot): dashboard staleness found and fixed via a full preflight run, same C7 handoff reaffirmed
 
 Previous work was finished: clean tree, main in sync, 9 GitHub issues unchanged (all Phil-gated), 0 PRs. Ran full preflight.py to actual completion, about 11 minutes, no short timeout: every gate passed, 31 standing environment warnings. One real small finding, same shape as several prior cycles: gate_dashboard_self_description_fresh flagged the dashboard one commit stale against HEAD. Fixed by regenerating EXECUTIVE-DASHBOARD-LIVE.md, dashboard.html and state.json; gate rechecked clean after. Backlog and cold-read ledger both confirmed exhausted of anything small and unblocked, so nothing new started. Handing the operator the same C7 video-render workflow build, queued three cycles running, hours-scale.
