@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work was finished, closed a real dashboard-staleness defect, nothing new unblocked
+
+Attached clean, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, the last two NIGHTLY-LOG.md entries, and GitHub directly: 9 open issues, 0 PRs, unchanged, all decision or blocked-on-art, none mine to act on. Ran preflight.py (fast) to a genuine completion in the background rather than trust a prior claim: every gate passed, 32 warnings, all standing environment limits, except one real finding, dashboard-self-description-fresh, flagging that two real commits had landed after the command deck's last regeneration. That is the previous work not actually finished, so finishing it was this cycle's work. Regenerated the command deck (ops/dashboard.py); the only diff was the three generated files. Shipped through ops/ship.py --no-deploy, which itself merged a concurrent hourly check-in push cleanly, no manual conflict resolution needed. CHECKIN-LOG.md's hourly bot is reporting "nothing measurable moved" for many consecutive hours; nothing in that signal is new or actionable beyond the standing Phil-gated queue.
+
+**Handing the operator:** same standing Phil-gated queue (9 issues, OWNER-ACTIONS.md items) and the production redeploy gap, unchanged.
+
+Pushed to main. Command deck and this log entry only. No site, price or product page touched; IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: independent full preflight to a genuine clean completion, one real gate found and closed, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` clean, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md` sections 1/21, `CLAUDE.md`, the top four `NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check`: SAME against the last clean snapshot (an ancestor of HEAD), so sections 2-6 of the backlog were already exhausted. `ops/cold_read_ledger.py --stale` found exactly one real gap: `ops/preflight.py` had been touched (three new gates, 2026-10-12/13) after its own ledger entry. Read that diff directly rather than trust the count: `gate_schedule_fallback_race`, `gate_image_prompts_tiers_current`, `gate_epub_edition_date_current`, all sound, evidence-backed, consistent with the file's own documented defect class. No new defect; recorded clean.
