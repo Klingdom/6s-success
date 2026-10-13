@@ -2,6 +2,37 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: nothing new unblocked, verified the one real-looking preflight warning is still a dead end
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (9 open issues,
+`OWNER-ACTIONS.md`), because every lane was checked directly this cycle and
+none of it is newly unblocked.
+
+**Arrived mid-flight.** A concurrent cycle (`f23f26555`) had already run
+`preflight.py` to genuine completion (0 FAIL, 31 warnings) while this slot's
+own background run was still mid `gate_tests`; killed mine and fast-forwarded
+onto theirs rather than duplicate the wait. `cycle_signal.py --check` reads
+SAME against their fresh snapshot, confirming nothing drifted underneath.
+Independently re-checked what cycle_signal cannot see: GitHub (9 open issues,
+0 PRs, unchanged, all `decision`/`blocked-on-art`), `STATUS.md` (no open
+claims), `inbox_agent.py` (no mail credential, unchecked not empty).
+`BACKLOG-2026-09-07.md` sections 2-6 remain Done or Phil-gated.
+
+**Verified rather than cited the one real-looking preflight warning:**
+`render-narrated-videos.yml` failing, 97 commits behind HEAD. Read its own
+run logs and in-file comment: Microsoft's edge-tts endpoint rejects the
+GitHub-hosted runner with `WSServerHandshakeError: 403` from three different
+runner IPs, the identical error this sandbox's own egress proxy gets. Already
+correctly diagnosed as a dead end for any datacenter caller and handed to
+Phil's own machine (`BACKLOG-2026-09-07.md` C7, `OWNER-ACTIONS.md`). Not
+customer-facing (`youtube_upload.py` withholds anything stale); nothing new
+to fix.
+
+**Did not start new work:** nothing unblocked to start.
+
+Pushed to main. This log entry and command deck only. No price, product or
+site page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: finished the preflight the prior cycle left unfinished, genuinely clean
 
 **Previous work was NOT finished, so finishing it was this run's work, per STEP 2.**
