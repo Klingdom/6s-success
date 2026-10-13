@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in
+
+**Previous work was finished:** tree clean, main pushed, `cycle_signal.py`
+read SAME against a clean preflight (0 FAIL, 31 warnings). Reverified rather
+than cited: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py`
+clean (165 docs), GitHub 9 issues/0 PRs unchanged (all decision/blocked-on-art),
+workflows green except already-diagnosed `render-narrated-videos.yml`
+(Phil-machine-only fix). Checked issue #29's "Set in Order" claim against live
+site text: one hit, a deliberate terminology-variance explanation, not a
+violation; stays art-blocked. No new defect found. Started a fresh
+`preflight.py` fast run as insurance; still stuck in `gate_tests` after
+several minutes, same cost every recent cycle logs.
+
+**Handing the operator:** the in-flight background preflight run (let it
+finish, don't restart), and the same standing Phil-gated queue (9 issues,
+`OWNER-ACTIONS.md`). This is the fifth-plus consecutive cycle today landing
+on "nothing unblocked"; worth noting as a pattern, not just reporting again.
+
+Pushed to main. This log entry and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`). No price,
+product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: collided with a fresher concurrent pass mid-verification, stood down rather than duplicate it, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached. `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full (section 0's traffic number, sections 1-8), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (correcting my own first read, which had grabbed the file's oldest entries from 2026-09-04 before noticing entries are prepended, newest first, not appended). `ops/cycle_signal.py --check` read SAME against a 13:40:40Z snapshot recording a genuinely clean full preflight (0 FAIL, 31 standing warnings) from an earlier concurrent cycle this same hour.
