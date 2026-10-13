@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (23:0x slot): previous work finished and independently verified against live CI, preflight --fast genuinely unchecked past gate_tests, no new unblocked work
+
+**Previous work finished, verified against production, not cited.** Attached clean: fetch, unshallow (arrived shallow and detached as described), `checkout main`, ff-only onto `origin/main` (HEAD `3c9fe4fc7`). `cycle_signal.py --check` read CHANGED (`BACKLOG-2026-09-07.md`, `STATUS.md`), both moved by this same day's own scheduled-operator cycle, so ran the full check rather than skipping to external-only per section 8's addendum.
+
+**The claim to verify: the prior operator cycle folded `ops/dashboard.py` regeneration into `ops/ship.py` and `.github/workflows/hourly-brief.yml`, and logged that the new step inside the workflow was "unverified until its first real run."** Checked GitHub Actions directly rather than trust it: run 1479 of `hourly-brief.yml` (triggered by push on `6c39bd357`, the commit that documented the fix) completed `success` at 23:07:30Z. The commit it produced (`3c9fe4fc7`, "Hourly check-in record") touched exactly the three files the new step should touch (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), and its diff shows the fix actually working with real credentials in that job's own environment: "Can the site take money?" moved from "unconfirmed" to "yes, confirmed live," because `STRIPE_SECRET_KEY` now reaches that step. The one open gap the prior cycle flagged is closed, by evidence, not by citation.
+
+**One apparent staleness checked and found benign, not re-fixed.** `EXECUTIVE-DASHBOARD-LIVE.md` cites "Last commit `6c39bd3`" while HEAD is `3c9fe4fc7`, one commit ahead. This is the unavoidable one-commit lag `gate_dashboard_self_description_fresh`'s own docstring already names as routine (a generator cannot cite the hash of the commit that will contain its own output) and deliberately WARNs rather than FAILs on. Regenerating again here would only recreate the identical one-commit gap on the next commit, forever; left alone, matching `BACKLOG-2026-09-07.md` section 9's own reasoning for why this stopped being hand-fixed every cycle.
+
+**GitHub and the Phil-gated queue, read directly, not cited:** 9 open issues, unchanged, all `decision` or `blocked-on-art`, none mine to act on. `OWNER-ACTIONS.md`'s "Start here" items (-1, 0, 1a, 1, 1d) read in full: all still genuinely need Phil's own hand (a usage-limit/plan check, a GitHub secret paste, a Search Console login, a YouTube authorisation, a Stripe description paste), nothing stale found in any of the five.
+
+**preflight --fast: genuinely unchecked past `gate_tests`, reported as such rather than as a clean pass.** Ran it myself, backgrounded. The 75 gates before `gate_tests` each printed their own start heartbeat with no gate crashing loudly; that is not the same as a confirmed pass, because `preflight.py` only prints its FAIL/WARN summary once every gate finishes, and nothing before that point can be read as "0 FAIL" without the summary itself. `gate_tests` was still actively spawning real subprocess retries of `ops/tests/test_audit_catalog.py` at the time (new child PIDs appearing, not one frozen PID), so this was not the fully-frozen headless-browser shape earlier cycles named, but it still did not finish inside the 600s background budget given to it and was stopped there. Per CLAUDE.md 0.4, this is reported as unchecked, not as passing.
+
+**No code change this cycle.** All work was read-only verification; nothing needed shipping beyond this log entry.
+
+**Went well:** verifying the prior cycle's "unverified until its first real run" claim against the actual GitHub Actions run and commit diff instead of carrying it forward unverified another cycle; recognising the one-commit dashboard lag as the already-accepted benign case instead of re-fixing something that was not broken.
+
+**Did not go well:** `preflight.py --fast` still cannot be run to a real completion in this sandbox inside a 30-minute PM slot; this is a standing sandbox limitation already named by many prior cycles, not a new defect, but it means this cycle cannot honestly claim a full clean preflight, only that nothing crashed loudly in the 75 gates observed before the timeout.
+
+**Changing next cycle:** none; no new defect found to gate.
+
+**Next:** same standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", 9 open decision/blocked-on-art issues), unchanged. Leaving the hours-sized full `preflight.py --deep` sweep, if one is due, to the hourly operator's own longer window rather than this 30-minute slot.
+
+Nothing to push beyond this entry (and whatever `ops/ship.py` regenerates as part of landing it). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, scheduled operator cycle: dashboard staleness fixed at its two commit sources instead of re-fixed by hand again
 
 **Did:** Attached clean: `git fetch origin main`, unshallowed (arrived shallow and detached as described), `checkout main`, ff-only onto `origin/main` (145 commits). Delegated the full read of both backlogs, the roadmap and the last four log entries to a subagent to keep this session's own context light; it reported every row in `BACKLOG-2026-09-07.md` sections 2 to 6 Done, Phil-gated, or closed, and named the one real recurring pattern: `gate_dashboard_self_description_fresh` getting re-fixed by hand in nearly every cycle that day. Read 9 open GitHub issues directly: unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, same standing gap. `affiliate.py --check`: clean, 165 documents.
