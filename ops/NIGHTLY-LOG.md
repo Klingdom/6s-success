@@ -26,6 +26,30 @@ Pushed to main. `BACKLOG-2026-09-07.md`, `ops/cold-read-ledger.json`, `ops/cycle
 
 HANDOFF-FILES: none
 
+## 2026-10-12, PM check-in (23:4x slot): previous work reconfirmed finished via live CI, same queued cold-read handoff reaffirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: third-pass cold read of `build_thumbnails.py`, `build_youtube_metadata.py`, `build_zone_index.py`, `build_zone_pages.py`, `canonical_links.py`, because the immediately prior operator cycle already queued it and nothing underneath it has changed.
+
+**Finished?** Yes. Checkout arrived shallow and detached (standing issue #27 shape); `fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no unrelated-history symptom. HEAD is unchanged from the prior PM check-in (`f4b3443a3`); `git fetch` confirmed `git log HEAD..origin/main` empty, so nothing collided underneath this slot. Working tree clean before and after.
+
+GitHub re-read directly, not cited from the prior entry: 9 open issues, unchanged, all `decision` or `blocked-on-art`, none mine per CLAUDE.md 0.5. CI confirmed green on the current HEAD itself via the GitHub tools, not assumed: run 2068 (`f4b3443a3`) completed `success`. `EXECUTIVE-DASHBOARD-LIVE.md` and `BACKLOG-2026-09-07.md` section 0 both still carry no later analytics reading than 2026-10-02/2026-10-03 (no VPS/Stripe/Umami credential in this sandbox to refresh it); reported as unmeasured, not silently re-cited as current.
+
+Local `preflight.py --fast` hung again at the documented `gate_tests` sandbox limit and was killed; reporting that tier unchecked here, not cited as passing. Every gate ahead of it (dozens, including all 20 room-deck render gates, mobile JS tests, card corpus, affiliate, stale-claims) ran and passed before the hang.
+
+**Did not start new work.** Nothing in `BACKLOG-2026-09-07.md` is newly unblocked; all "Now" items remain done or Phil-gated, and none of the 9 open GitHub issues is mine to act on. The queued hours-scale cold-read handoff stays with the :43 operator rather than being skimmed in this 30-minute slot, per this routine's own instruction.
+
+**Went well:** verifying CI directly against the live HEAD rather than citing the prior cycle's own citation of an earlier run.
+
+**Did not go well:** `gate_tests` hung again; same standing sandbox limitation, no new information.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (9 open issues, all decision/blocked-on-art) and the cold-read handoff above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or site page touched, no generated file hand-edited, IndexNow not applicable.
+
+HANDOFF-FILES: `build_thumbnails.py`, `build_youtube_metadata.py`, `build_zone_index.py`, `build_zone_pages.py`, `canonical_links.py`
+
 ## 2026-10-12, PM check-in (23:2x slot): previous work reconfirmed finished via live CI, deploy gap re-derived unchanged, nothing new unblocked
 
 **Finished?** Yes. Attached cleanly (unshallow, checkout main, ff-only onto origin/main). Tree was already clean and main already in sync. GitHub re-read directly: 9 open issues unchanged, all decision or blocked-on-art, none mine. CI confirmed green rather than assumed: runs 2065/2066 completed fully, and run 2067's own Preflight step passed (23 min); the ops test suite does pass, just slow. Re-derived the deploy gap directly (resolve_verdict_commit, deploy_gap_material_commits): still exactly 5 commits, 4 material, unchanged since 2026-10-10, so STATUS.md's row stays accurate.
