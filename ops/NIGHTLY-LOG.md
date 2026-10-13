@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: backlog and cold-read lane both still exhausted; one real unchecked-to-clean conversion
+
+**Did:** Checkout arrived shallow and detached; unshallowed and fast-forward merged onto `origin/main` cleanly, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 to 8, every row Done, Hold or Phil-gated), `CLAUDE.md`, the last four log entries, `STATUS.md` and `OWNER-ACTIONS.md`. Ran a full `ops/preflight.py`: every gate passed, 32 warnings, all previously-diagnosed sandbox/credential limits (no Stripe, SSH or mail credential here), a deliberate decision (D-027, deck-print-tier) or an already fully diagnosed Phil-machine blocker (`render-narrated-videos.yml`, documented in its own header as rejected by Microsoft's edge-tts endpoint from every datacenter IP tried). GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. `cold_read_ledger.py`: 0 stale, 0 un-ledgered. `keyword-demand.json` was already re-harvested earlier today (05:22:30Z) by a prior session; read its 199 gap rows directly rather than trusting a summary, and found nothing beyond autocomplete noise and the already-tracked, already-deferred attic/basement cluster (owner decision, D-023's sibling question). `inbox_agent.py --apply`: no mail credential, unchecked as always.
+
+**Verified:** `ops/requirements.txt` deliberately excludes Pillow (pinned to what CI's credentialed workflows actually need). Installed it locally only, reran `build_cover.py` and `build/listings/build_kdp_cover.py`, both byte-identical to the committed files: `kdp-cover-current` goes from "unchecked, Pillow missing" to genuinely confirmed clean this cycle. `indexation-check.yml` last succeeded 2026-10-07, inside its weekly cadence, not stale.
+
+**Went well:** turning one real unchecked warning into a verified pass without touching the pinned CI requirements file.
+
+**Did not go well:** nothing new to pick up; the ranked backlog and the cold-read lane are both exhausted again.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged (issues #2, #15, #18, #21, #29, #31, #33, #35, #40). Command deck regenerated and pushed (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no price, product or site page touched.
+
 ## 2026-10-13, PM check-in
 
 Checkout arrived shallow and detached (the usual shape); unshallowed and fast-forward
