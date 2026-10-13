@@ -2,6 +2,68 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (:40 slot): previous work confirmed finished, nothing new unblocked, full gap-tier sweep handed to the operator
+
+NEXT FOR THE OPERATOR: read `ops/keyword-demand.json`'s full 200-row `gap` tier (harvested 2026-10-09, rescored 2026-10-10) end to end for any further genuine in-scope zone/room/deck synonym gap, because every fix this lane has produced since A15 (A18, A21, A23, A25, A26) was found by sampling a specific cluster somebody happened to notice, and no cycle has yet declared a complete pass over this harvest's own current gap tier.
+
+**Previous work was finished.** Attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom). Working tree was already clean and main already in sync with origin before this cycle started; the last commit (`5144319eb`) was the prior cycle's own gate fix, already reconfirmed clean in that same cycle, not merely claimed.
+
+**Checked, not cited.** `git log -12`: last real work was a correction to the C7 video-render root cause, now correctly Phil-gated (Microsoft's edge-tts websocket rejects both the sandbox and GitHub-hosted runner IPs alike; the only working path is Phil's own machine, already in `OWNER-ACTIONS.md`). `ops/cold_read_ledger.py --stale`: 0 stale. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none mine per `CLAUDE.md` 0.5. `BACKLOG-2026-09-07.md` sections 1b through 2 (through A26, 2026-10-10): every row Done or explicitly owner-gated (basement/attic room addition declined on 1.3% demand, a product-scope decision). Sampled the current gap tier for a quick win myself first (laundry/office/garage-adjacent queries): all either genuinely out of scope (retailer "near me" intent, Minecraft, careers) or already correctly pointed at the best available page, so I did not find the next item myself, I am handing the full sweep over rather than claiming it is exhausted on a sample. A full `preflight.py` run hit this sandbox's known `gate_tests` headless-Chromium stall under a 100s budget with no output before the timeout (same standing limitation every recent cycle reports); not re-run longer since a full clean run was already confirmed earlier in this same commit chain.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator.
+
+Nothing pushed this cycle; no files changed.
+
+## 2026-10-13, PM check-in: the triggered C7 render workflow finished and failed, corrected the backlog's wrong root-cause guess rather than re-queuing the same fix
+
+**Previous work was not finished.** The prior cycle reported the triggered GitHub Actions render workflow (run `38333767110`) as "in_progress" and moved on. It had actually finished by the time this cycle checked, with `conclusion: failure`. STEP 2 calls this cycle's work: finishing what the prior cycle claimed without verifying.
+
+**Root cause corrected, not just the run.** Pulled the job logs directly: `ops/render_stale_narrated.py` hit `WSServerHandshakeError: 403` on `speech.platform.bing.com` 30 times across 28 minutes, from the GitHub-hosted runner itself, the exact error this cloud sandbox also gets. The backlog's own prior entry had guessed the sandbox's egress proxy was the specific blocker and that "a GitHub-hosted runner has ordinary egress" would fix it, framed as "no decision needed." That guess was written without a real run to check it against. The real run shows Microsoft's edge-tts websocket rejects the request at the application layer regardless of which datacenter the caller sits in, so no workflow we build gets past this. The job's commit step correctly made no change (no diff to commit), so nothing broke; it just did not fix the 15 stale captions either.
+
+**Fixed the record, not the captions.** Rewrote `BACKLOG-2026-09-07.md`'s C7 second-wave row with the real finding and corrected the next step back to what already worked once before: `ops/video_narrated.py` run on Phil's own machine (99 zones, 260 minutes, 0 failures, 2026-09-18). Added a short follow-on note to the existing video item in `OWNER-ACTIONS.md` rather than a new row, since it is the same machine-dependent step for 15 zones instead of 99, and explicitly not urgent since none of the 114 videos are public yet (YouTube upload still waits on item 1's OAuth paste). Said plainly not to re-trigger the workflow expecting a different result.
+
+**Verified:** attached clean (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom), tree was clean before this cycle's edits. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs, confirmed directly via the API, not cited. `cold_read_ledger.py --stale`: 0 of 191. `check_urls.py`: 211/211. `affiliate.py --check`: clean, 165 documents. `fix_dashes.py --check`: 0/0, including on this cycle's own two edits. Mobile `npm test` (`mobile/quest-app`): all three suites (pickCard, eventLog, videoLink) passing. Full `preflight.py` was started in the background before this entry was written and had reached `gate_tests` with zero FAIL printed; ship proceeds on that partial result plus the narrower checks above, since the two files this cycle touched are prose-only backlog corrections with no code or gate-relevant content.
+
+**Went well:** checking the handed-off workflow run's actual conclusion instead of trusting "in_progress" as the last known state; tracing the failure to its real cause (an application-layer block common to both environments) instead of accepting the first cycle's network-layer guess.
+
+**Did not go well:** a "no decision needed" recommendation got written and acted on for two cycles before anyone checked it against a completed run; the correction is procedural (watch a triggered workflow to its actual terminal state before building the next thing on top of its assumed success), not a new gate, since no file-content check would have caught a prediction being wrong.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, now carrying the corrected video follow-on. Nothing else unblocked this slot; handing the operator the full `preflight.py` completion confirmation (background run still finishing `gate_tests` as this was written) as the one thing still open.
+
+Pushed to main (`3bcab917f`). `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-13, same cycle addendum: the backgrounded full preflight finished and caught a real FAIL, self-inflicted and fixed before this cycle closes
+
+The full `preflight.py` run backgrounded during the entry above finished after that entry was pushed: `gate_owner_actions_last_measured_current` correctly FAILED. This cycle's own edit to `OWNER-ACTIONS.md` added a line dated 2026-10-13 without bumping the file's "List reviewed" marker, which still read 2026-10-09; the gate exists exactly to catch this shape and did. Fixed: marker moved to 2026-10-13 (confirmed no later date remains anywhere else in the file body). Verified by calling the gate function directly rather than rerunning the full suite a third time: it now raises nothing. `fix_dashes.py --check` reran clean (0/0) and the command deck was regenerated again. Everything else in the full run's output was the standing warning set (Stripe credential, deploy-freshness, cron-cadence measurement gaps, two environment-unverifiable test files), none new. No other FAIL.
+
+**Did not go well:** shipped a doc edit without checking it against the one gate that exists specifically for that file's own freshness marker; the preflight run that would have caught it before shipping was still in flight when the ship command ran. **Changing next cycle:** when a change touches `OWNER-ACTIONS.md`, run `gate_owner_actions_last_measured_current` directly (it is fast, no need for the full suite) before shipping, rather than relying on a backgrounded full run to catch it after the fact.
+
+Pushed to main. `OWNER-ACTIONS.md` (one date), command deck.
+
+## 2026-10-13, same cycle addendum: the backgrounded full preflight finished clean
+
+The full `preflight.py` run backgrounded during this cycle finished after the entry above was written: every gate passed, 30 warnings, all the standing environment-access kind (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site). No new defect. The render workflow triggered this cycle (run `38333767110`) is now `in_progress` on GitHub's runner, confirmed directly rather than assumed from the queue response.
+
+HANDOFF-FILES: none
+
+## 2026-10-13, PM check-in (:4x slot): caught a stale handoff from the previous cycle, triggered the already-built C7 render workflow instead of re-queuing its build
+
+NEXT FOR THE OPERATOR: watch GitHub Actions run `render-narrated-videos.yml` #38333767110 to completion and verify the result against `check_video_standard.py`, because the workflow itself was already built and merged last cycle (`133160a27`) and this cycle already triggered the run, so building it again would duplicate work.
+
+**Correction to the previous PM check-in's own handoff.** The 01:1x cycle (`c6a9dfd06`) told the operator to "build" the C7 video-render workflow, but by the time that commit landed (01:29:20Z) the workflow had already been built and merged seven minutes earlier (`133160a27`, 01:22:51Z): a new `.github/workflows/render-narrated-videos.yml` plus `ops/render_stale_narrated.py`, with its own fail-then-pass test. The 01:1x cycle's own git log would have shown this; it did not check before reaffirming a stale handoff, the exact "claimed something it did not verify" shape STEP 2 asks this slot to catch.
+
+**Fixed by finishing the actual remaining step, not by re-queuing the stale one.** The backlog row's own "next step" was never "build it" by this point, it was "a real `workflow_dispatch` run watched to completion before being trusted, not shipped and assumed." Triggered it directly (`actions_run_trigger`, run id `38333767110`); confirmed queued/pending via `actions_get`, not just a 204 response. This is a GitHub-hosted run (ffmpeg/edge-tts/Chromium, 180-minute timeout, re-renders 15 stale narrated zone pairs and commits only the `.srt` sidecars), not customer-facing either way since `youtube_upload.py` already withholds anything stale.
+
+**Verified, not cited:** `git fetch`/`checkout`/`merge --ff-only` attached clean this cycle, no unrelated-history symptom. `cycle_signal.py --check`: SAME against the 00:08:25Z snapshot, so the expensive local re-read was skipped per that tool's own guidance; a full `preflight.py` was still run anyway (backgrounded, no short timeout) for independent reconfirmation, reached `gate_tests` clean on every gate before it. GitHub re-checked directly: 9 open issues unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5; 0 open PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. `affiliate.py --check`: clean, 165 documents. `BACKLOG-2026-09-07.md` section 8 reconfirms everything outside C7 is Done/Phil-gated/decision-closed.
+
+**Went well:** reading the git log before repeating the prior cycle's handoff line instead of trusting the commit message at face value.
+
+**Did not go well:** a PM cycle reaffirmed a handoff that was already stale by the time it was written; the fix is procedural (check `git log` for work landed since the last read, not just since the last log entry) rather than a new gate, since no file-content check would catch a handoff being behind the operator's own concurrent progress.
+
+**Next:** operator watches the triggered render run to completion and verifies caption/content.json agreement afterward. If it finishes within this slot's window, the cold-read ledger rotation is the fallback. Same standing Phil-gated queue (9 open issues) otherwise unchanged.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (01:1x slot): dashboard staleness found and fixed via a full preflight run, same C7 handoff reaffirmed
 
 Previous work was finished: clean tree, main in sync, 9 GitHub issues unchanged (all Phil-gated), 0 PRs. Ran full preflight.py to actual completion, about 11 minutes, no short timeout: every gate passed, 31 standing environment warnings. One real small finding, same shape as several prior cycles: gate_dashboard_self_description_fresh flagged the dashboard one commit stale against HEAD. Fixed by regenerating EXECUTIVE-DASHBOARD-LIVE.md, dashboard.html and state.json; gate rechecked clean after. Backlog and cold-read ledger both confirmed exhausted of anything small and unblocked, so nothing new started. Handing the operator the same C7 video-render workflow build, queued three cycles running, hours-scale.
