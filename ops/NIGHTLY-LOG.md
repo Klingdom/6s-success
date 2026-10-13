@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, same cycle addendum: the backgrounded full preflight finished clean
+
+The full `preflight.py` run backgrounded during this cycle finished after the entry above was written: every gate passed, 30 warnings, all the standing environment-access kind (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site). No new defect. The render workflow triggered this cycle (run `38333767110`) is now `in_progress` on GitHub's runner, confirmed directly rather than assumed from the queue response.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (:4x slot): caught a stale handoff from the previous cycle, triggered the already-built C7 render workflow instead of re-queuing its build
 
 NEXT FOR THE OPERATOR: watch GitHub Actions run `render-narrated-videos.yml` #38333767110 to completion and verify the result against `check_video_standard.py`, because the workflow itself was already built and merged last cycle (`133160a27`) and this cycle already triggered the run, so building it again would duplicate work.
