@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: closed the guest-bathroom-towels handoff as a 71-query scorer bug, not a one-page content gap
+
+**Did:** Attached clean, unshallowed, fast-forwarded. Read GOALS.md, both backlogs (all Done/Phil-gated), OWNER-ACTIONS.md, recent log, GitHub (9 issues/0 PRs, unchanged). `cycle_signal.py` read CHANGED, then SAME once a concurrent 17:4x PM check-in landed with a fresh snapshot; merged it rather than re-running a redundant full local verification.
+
+**Took the 17:4x handoff: "arrange the towels" phrasing for the guest-bathroom-towels zone page, 0.75-coverage near-miss.** Verified first (CLAUDE.md 5d): the page already answers the query; only "arrange" (a synonym of "organize") was missing. `ops/keyword-demand.json` showed this was systemic, not one page: 71 queries contain "arrange", every one already matched to the correct page. A bespoke heading would have fixed one and left 70 wrong, and `zone-also-called.json`'s noun-phrase mechanism doesn't fit a verb, so built it that way would have been keyword-stuffing (CLAUDE.md 9).
+
+**Fixed the scorer instead.** Widened `ops/keyword_demand.py`'s `FORMAT_WORDS` to exclude the "arrange" family, same logic already applied to "organize" (a task verb, not a subject noun). Simulated against the live corpus before landing: all 71 queries keep the same best-matching page, only the score moves. New case 8b in `test_keyword_demand.py`, fail-then-pass proved. Rescored (`--rescore`, no network): gap 199 to 187, partial 1484 to 1455, covered 1136 to 1177; the handoff query is now `covered`.
+
+**Found and fixed the one GOALS.md citation this moved:** "small space" cluster, 19/16/1/36 to 19/17/0/36, edited in place; `cheap/budget/DIY` unaffected (confirmed zero overlap).
+
+**Verified:** `audit_pages.py` (215/0), `check_urls.py` (211/211), `affiliate.py --check`, `fix_dashes.py --check` (0/0), all 6 GOALS.md gates, `test_keyword_demand.py` (21/21). No site page touched.
+
+**Went well:** verifying the handoff before acting surfaced the real, larger defect.
+
+**Did not go well:** local `preflight.py` still can't finish here (killed at the documented `gate_tests` hang, 0 FAIL before it); leaned on `cycle_signal.py` SAME plus targeted checks instead.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged. Next Partial-tier near-miss is whatever now sits at rank 1 in the rescored `KEYWORD-DEMAND.md`.
+
+Pushed to main. `ops/keyword_demand.py`, its test, `ops/keyword-demand.json`/`KEYWORD-DEMAND.md`, `GOALS.md`, this log, command deck. No price/product/page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (17:4x slot): closed the handoff the prior PM entry left open, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: add "arrange the towels" style phrasing to the guest bathroom towels zone page (the fresh keyword-demand Partial tier's rank-1 near-miss, 0.75 coverage), because keyword-demand refreshed this morning and nothing else is genuinely unblocked.**

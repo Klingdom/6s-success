@@ -142,11 +142,11 @@
       "room": "",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "arranging furniture in a large family room",
@@ -160,8 +160,8 @@
       "room": "Family Room",
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
       "matched_on": "heading",
       "status": "partial"
@@ -13309,11 +13309,11 @@
       "room": "",
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a craft room",
@@ -13327,11 +13327,11 @@
       "room": "",
       "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
       "best_page_title": "How to organize the family room craft area",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a dining room",
@@ -13345,11 +13345,11 @@
       "room": "Dining Room",
       "best_page": "/dining-room-deck.html",
       "best_page_title": "The Dining Room Deck: 61 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/dining-room-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a family room",
@@ -13363,11 +13363,11 @@
       "room": "Family Room",
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/family-room-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a gallery wall",
@@ -13381,11 +13381,11 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a gallery wall reddit",
@@ -13399,8 +13399,8 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
       "status": "partial"
@@ -13417,11 +13417,11 @@
       "room": "",
       "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "best_page_title": "How to organize the garage garden tool storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a guest bedroom",
@@ -13435,11 +13435,11 @@
       "room": "Guest Bedroom",
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a hamper",
@@ -13454,10 +13454,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a home office",
@@ -13471,11 +13471,11 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/home-office-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a home office layout",
@@ -13489,8 +13489,8 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/home-office-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -13507,11 +13507,11 @@
       "room": "Home Office",
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.4,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/home-office-deck.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange a kids bedroom",
@@ -13525,11 +13525,11 @@
       "room": "Kids Bedroom",
       "best_page": "/kids-bedroom-deck.html",
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a laundry room",
@@ -13543,11 +13543,11 @@
       "room": "Laundry Room",
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/laundry-room-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a living room",
@@ -13563,11 +13563,11 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/living-room-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a living room that is long and narrow",
@@ -13581,8 +13581,8 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
       "matched_on": "heading",
       "status": "partial"
@@ -13599,8 +13599,8 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/living-room-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -13619,8 +13619,8 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/living-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
@@ -13637,8 +13637,8 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.4,
-      "heading_coverage": 0.6,
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
       "heading_page": "/living-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
@@ -13655,11 +13655,11 @@
       "room": "Nursery",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/nursery-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a small gallery wall",
@@ -13673,8 +13673,8 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -13691,11 +13691,11 @@
       "room": "Kids Bedroom",
       "best_page": "/kids-bedroom-deck.html",
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange a stairway gallery wall",
@@ -13709,8 +13709,8 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
       "status": "partial"
@@ -13727,11 +13727,11 @@
       "room": "Workshop",
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/workshop.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange bathroom counter",
@@ -13745,11 +13745,11 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange bed linens",
@@ -13763,11 +13763,11 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "best_page_title": "How to organize the guest bedroom bed and linens",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange bedding",
@@ -13781,11 +13781,11 @@
       "room": "",
       "best_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
       "best_page_title": "How to organize the primary bedroom bed and bedding",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange benches in classroom",
@@ -13817,11 +13817,11 @@
       "room": "",
       "best_page": "/book.html",
       "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/book.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange bookshelf",
@@ -13835,11 +13835,11 @@
       "room": "",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange bookshelf around enchanting table",
@@ -13853,11 +13853,11 @@
       "room": "",
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange bookshelf for enchanting table",
@@ -13871,8 +13871,8 @@
       "room": "",
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial"
@@ -13889,11 +13889,11 @@
       "room": "",
       "best_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
       "best_page_title": "How to organize the home office bookshelf",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange christmas crib",
@@ -13907,11 +13907,11 @@
       "room": "",
       "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
       "best_page_title": "How to organize the nursery crib",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange clothes on drying rack",
@@ -13925,8 +13925,8 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "best_page_title": "How to organize the laundry room drying rack",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/laundry-room-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -13943,11 +13943,11 @@
       "room": "",
       "best_page": "/zones/mudroom-the-family-hook-zone.html",
       "best_page_title": "How to organize the mudroom coat hooks",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/entryway-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange coat hooks on wall",
@@ -13961,11 +13961,11 @@
       "room": "",
       "best_page": "/zones/mudroom-the-family-hook-zone.html",
       "best_page_title": "How to organize the mudroom coat hooks",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/mudroom-the-family-hook-zone.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange craft room",
@@ -13979,11 +13979,11 @@
       "room": "",
       "best_page": "/zones/family-room-the-craft-and-activity-zone.html",
       "best_page_title": "How to organize the family room craft area",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange crib",
@@ -13997,11 +13997,11 @@
       "room": "",
       "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
       "best_page_title": "How to organize the nursery crib",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange crib set",
@@ -14015,11 +14015,11 @@
       "room": "",
       "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
       "best_page_title": "How to organize the nursery crib",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-crib-and-sleep-zone.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange deck furniture",
@@ -14033,11 +14033,11 @@
       "room": "",
       "best_page": "/deck-gallery-mudroom.html",
       "best_page_title": "Every card in the Mudroom deck",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/dining-room-deck.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange diaper caddy",
@@ -14051,11 +14051,11 @@
       "room": "",
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange dish rack",
@@ -14069,11 +14069,11 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "best_page_title": "How to organize the laundry room drying rack",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange dresser",
@@ -14087,11 +14087,11 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
       "best_page_title": "How to organize the guest bedroom dresser",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange dressers in bedroom",
@@ -14105,11 +14105,11 @@
       "room": "",
       "best_page": "/guest-bedroom-deck.html",
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange drying rack",
@@ -14123,11 +14123,11 @@
       "room": "",
       "best_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "best_page_title": "How to organize the laundry room drying rack",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/laundry-room-the-hanging-and-air-dry-zone.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange entryway table",
@@ -14141,11 +14141,11 @@
       "room": "Entryway",
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange frames for gallery wall",
@@ -14159,8 +14159,8 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
       "status": "partial"
@@ -14177,11 +14177,11 @@
       "room": "",
       "best_page": "/articles/what-is-6s.html",
       "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/everything-needs-an-assigned-home.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange hotel bed",
@@ -14195,11 +14195,11 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
       "best_page_title": "How to organize the guest bedroom bed and linens",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange kids bedroom furniture",
@@ -14213,8 +14213,8 @@
       "room": "Kids Bedroom",
       "best_page": "/kids-bedroom-deck.html",
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
       "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -14231,11 +14231,11 @@
       "room": "",
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange logs in solo stove",
@@ -14249,8 +14249,8 @@
       "room": "",
       "best_page": "/zones/kitchen-the-cooking-zone.html",
       "best_page_title": "How to organize the kitchen stove area",
-      "coverage": 0.25,
-      "heading_coverage": 0.25,
+      "coverage": 0.333,
+      "heading_coverage": 0.333,
       "heading_page": "/privacy.html",
       "matched_on": "title",
       "status": "gap"
@@ -14267,11 +14267,11 @@
       "room": "",
       "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange nightstand",
@@ -14285,11 +14285,11 @@
       "room": "",
       "best_page": "/zones/guest-bedroom-the-guest-nightstand.html",
       "best_page_title": "How to organize the guest bedroom nightstand",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange outdoor furniture",
@@ -14305,11 +14305,11 @@
       "room": "",
       "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange outdoor furniture animal crossing",
@@ -14323,11 +14323,11 @@
       "room": "",
       "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
       "best_page_title": "How to organize the mudroom seasonal outdoor gear",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/living-room-deck.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange outdoor furniture in small space",
@@ -14341,11 +14341,11 @@
       "room": "",
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
-      "coverage": 0.4,
-      "heading_coverage": 0.4,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange outdoor seating",
@@ -14360,11 +14360,11 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange pictures on the wall",
@@ -14378,11 +14378,11 @@
       "room": "",
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange plants in a garden",
@@ -14396,11 +14396,11 @@
       "room": "",
       "best_page": "/zones/garage-the-lawn-and-garden-tool-zone.html",
       "best_page_title": "How to organize the garage garden tool storage",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to arrange towels in guest bathroom",
@@ -14414,11 +14414,11 @@
       "room": "Guest Bathroom",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.75,
-      "heading_coverage": 0.75,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/guest-bathroom-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange towels on towel bar",
@@ -14432,8 +14432,8 @@
       "room": "",
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/guest-bathroom-deck.html",
       "matched_on": "heading",
       "status": "partial"
@@ -14468,11 +14468,11 @@
       "room": "",
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/mudroom-the-family-hook-zone.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to arrange wall photo frames",
@@ -14486,8 +14486,8 @@
       "room": "",
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/kids-bedroom-deck.html",
       "matched_on": "heading",
       "status": "partial"
@@ -14504,8 +14504,8 @@
       "room": "",
       "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
       "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
+      "coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "heading",
       "status": "partial"
@@ -18193,11 +18193,11 @@
       "room": "",
       "best_page": "/how-we-make-money.html",
       "best_page_title": "How we make money: what we sell, and what we do not earn on",
-      "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
       "heading_page": "/articles/family-wont-put-things-back.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "how to open a nursery",
@@ -36629,11 +36629,11 @@
       "room": "Living Room",
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/living-room-deck.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "living room decorating ideas",
@@ -42140,11 +42140,11 @@
       "room": "",
       "best_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
       "best_page_title": "How to organize the patio or deck outdoor seating",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "outdoor seating design ideas",
@@ -51573,5 +51573,7 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ]
+  ],
+  "scored_at": "2026-10-13T18:15:35Z",
+  "scored_against_commit": "a06e62fe2"
 }

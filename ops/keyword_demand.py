@@ -170,8 +170,22 @@ what when where which who why will with you your
 # Words that describe the format of a query rather than its subject. Left out
 # of coverage scoring because nearly every one of our titles carries one and
 # the score would flatter itself.
+#
+# "arrange" and its family joined 2026-10-13 for the opposite reason: not one
+# of our titles carries it, so there is no self-flattery risk, but it is the
+# same kind of word, a task verb rather than a subject noun. "how to arrange
+# towels in guest bathroom" and "how to organize the guest bathroom towels"
+# ask for the same thing about the same subject; scoring "arrange" as an
+# unmet content word was marking 71 real queries as less covered than they
+# are for a wording difference, not a subject difference. Checked against
+# the live corpus before landing: every one of those 71 queries keeps the
+# exact same best-matching page after this change, only the score moves, so
+# this corrects the word-choice penalty without changing which page wins.
 FORMAT_WORDS = frozenset(("organize", "organizing", "organization", "organiser",
-                          "organizer", "organizers", "organise", "organising"))
+                          "organizer", "organizers", "organise", "organising",
+                          "arrange", "arranging", "arranged", "arrangement",
+                          "arrangements", "rearrange", "rearranging",
+                          "rearranged"))
 
 
 def room_names():

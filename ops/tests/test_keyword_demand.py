@@ -104,6 +104,15 @@ def main():
     if kd.content_words("how to organize it"):
         fails.append("a query with no subject scored content words")
 
+    # 8b. "arrange" is the same kind of word as "organize", a task verb
+    #     rather than a subject noun, just one we do not say ourselves. It
+    #     must not count as an unmet content word either.
+    cw = kd.content_words("how to arrange towels in guest bathroom")
+    if "arrange" in cw:
+        fails.append("content_words scored arrange as a subject word: %r" % cw)
+    if cw != ["towels", "guest", "bathroom"]:
+        fails.append("content_words on the arrange query: %r" % cw)
+
     # 9. classify boundaries, including the float case that made 2 words of 3
     #    round to 1.0 in an earlier draft.
     for score, want in ((1.0, "covered"), (0.999, "covered"),

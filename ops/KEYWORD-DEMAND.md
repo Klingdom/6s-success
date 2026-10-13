@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-13T05:22:30Z from google, bing, 151 seeds, 302 attempts: 262 returned completions, 40 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** not recorded, so treat every status here as of unknown age against 218 page(s). Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-13T18:15:35Z against 218 page(s) at commit a06e62fe2. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2819. Checked against 218 published page titles: 1136 covered, 1484 partial, 199 gap.
+**Queries found:** 2819. Checked against 218 published page titles: 1177 covered, 1455 partial, 187 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 199, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 187, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -40,15 +40,13 @@ Showing the top 80 of 199, ordered by the best rank the phrase reached in any on
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
 | 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) |
-| 3 | how to arrange golu steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.25) |
+| 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
 | 3 | unfinished basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 4 | attic storage ideas for clothes | - | More storage will not fix a messy room (0.33) |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
 | 4 | foyer design ideas photos | - | The Entryway Deck: the printable PDF has moved (0.00) |
-| 4 | how to arrange hotel bed | - | How to organize the guest bedroom bed and linens (0.33) |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) |
@@ -80,8 +78,6 @@ Showing the top 80 of 199, ordered by the best rank the phrase reached in any on
 | 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) |
 | 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 7 | how to arrange christmas crib | - | How to organize the nursery crib (0.33) |
-| 7 | how to arrange plants in a garden | - | How to organize the garage garden tool storage (0.33) |
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) |
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 7 | organizing your bedroom tips for decluttering | - | Decluttering vs. organizing: what's actually different (0.33) |
@@ -101,14 +97,17 @@ Showing the top 80 of 199, ordered by the best rank the phrase reached in any on
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 8 | stove on floor plan | - | Venture plan (0.33) |
 | 9 | attic storage ideas australia | - | More storage will not fix a messy room (0.33) |
+| 9 | basement storage ideas pinterest | - | More storage will not fix a messy room (0.33) |
+| 9 | clothes sorter hamper near me target | - | How to organize the nursery baby clothes (0.20) |
+| 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) |
+| 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1484.
+Showing the top 60 of 1455.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
-| 1 | how to arrange towels in guest bathroom | How to organize the guest bathroom towels | 0.75 |
 | 3 | outdoor patio and deck design ideas | How to organize the patio or deck outdoor dining | 0.75 |
 | 4 | how to organize cleaning supplies without a closet | How to organize the hall closet cleaning supplies | 0.75 |
 | 4 | paint storage or painting storage | How to organize the workshop paint and chemical storage | 0.75 |
@@ -133,11 +132,6 @@ Showing the top 60 of 1484.
 | 1 | craft paint organizers and storage | How to organize the workshop paint and chemical storage | 0.67 |
 | 1 | drop zone design ideas | How to organize the entryway drop zone | 0.67 |
 | 1 | family room decorating ideas | The Family Room Deck: 69 cards, free to read | 0.67 |
-| 1 | how to arrange a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
-| 1 | how to arrange a kids bedroom | The Kids Bedroom Deck: 69 cards, free to read | 0.67 |
-| 1 | how to arrange coat hooks | How to organize the mudroom coat hooks | 0.67 |
-| 1 | how to arrange drying rack | How to organize the laundry room drying rack | 0.67 |
-| 1 | how to arrange outdoor seating | How to organize the patio or deck outdoor seating | 0.67 |
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
@@ -168,30 +162,36 @@ Showing the top 60 of 1484.
 | 2 | how to build an entertainment center | How to organize the family room entertainment center | 0.67 |
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to organize a dining room hutch | The Dining Room Deck: 61 cards, free to read | 0.67 |
+| 2 | how to organize a living room with toys | The Living Room Deck: 69 cards, free to read | 0.67 |
+| 2 | how to organize baking supplies in kitchen | How to organize the pantry baking supplies | 0.67 |
+| 2 | how to organize deep desk drawers | How to organize the home office desk drawers | 0.67 |
+| 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
+| 2 | how to organize sports stuff in garage | How to organize the garage sports gear storage | 0.67 |
+| 2 | how to organize tools on garage wall | How to organize the garage tool wall | 0.67 |
 
 ## By room
 
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
-| Dining Room | 38 | 0 | 22 | 16 |
-| Entryway | 50 | 2 | 25 | 23 |
-| Family Room | 29 | 1 | 21 | 7 |
+| Dining Room | 38 | 0 | 21 | 17 |
+| Entryway | 50 | 2 | 24 | 24 |
+| Family Room | 29 | 1 | 20 | 8 |
 | Garage | 80 | 2 | 36 | 42 |
-| Guest Bathroom | 22 | 2 | 16 | 4 |
-| Guest Bedroom | 24 | 0 | 14 | 10 |
+| Guest Bathroom | 22 | 2 | 15 | 5 |
+| Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 29 | 0 | 13 | 16 |
-| Home Office | 59 | 2 | 29 | 28 |
-| Kids Bedroom | 19 | 0 | 10 | 9 |
+| Home Office | 59 | 1 | 29 | 29 |
+| Kids Bedroom | 19 | 0 | 8 | 11 |
 | Kitchen | 96 | 2 | 48 | 46 |
-| Laundry Room | 72 | 0 | 21 | 51 |
-| Living Room | 91 | 2 | 60 | 29 |
+| Laundry Room | 72 | 0 | 20 | 52 |
+| Living Room | 91 | 2 | 58 | 31 |
 | Mudroom | 45 | 1 | 22 | 22 |
-| Nursery | 62 | 2 | 27 | 33 |
+| Nursery | 62 | 2 | 26 | 34 |
 | Pantry | 61 | 1 | 34 | 26 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
-| Workshop | 65 | 4 | 40 | 21 |
+| Workshop | 65 | 4 | 39 | 22 |
 
 1924 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 
