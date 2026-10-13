@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-13 13:52",
- "commit": "6c3cedb65",
- "commit_msg": "Merge remote-tracking branch 'origin/main'",
- "commits_7d": 711,
- "commits_total": 6381,
+ "generated": "2026-10-13 13:58",
+ "commit": "ff0c6d448",
+ "commit_msg": "PM check-in: nothing new unblocked, verified the one real-looking preflight warning (render-narrated-videos.yml) is still a correctly diagnosed dead end",
+ "commits_7d": 712,
+ "commits_total": 6382,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -12,7 +12,7 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,

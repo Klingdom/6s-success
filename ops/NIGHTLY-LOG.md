@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: collided with a fresher concurrent pass mid-verification, stood down rather than duplicate it, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached. `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom this cycle. Read `GOALS.md` and `BACKLOG-2026-09-07.md` in full (section 0's traffic number, sections 1-8), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (correcting my own first read, which had grabbed the file's oldest entries from 2026-09-04 before noticing entries are prepended, newest first, not appended). `ops/cycle_signal.py --check` read SAME against a 13:40:40Z snapshot recording a genuinely clean full preflight (0 FAIL, 31 standing warnings) from an earlier concurrent cycle this same hour.
+
+**Started a redundant full `preflight.py` run before the collision became visible.** With cycle_signal SAME, step 2's own instruction to run preflight regardless, and this session's own Chromium available (`ops/browser.py.find_browser()` returned a real `/opt/pw-browsers/chromium`, confirmed directly per LRN-0020 rather than citing a prior cycle's "sandbox hang"), I started a fresh fast preflight in the background anyway and it was genuinely progressing through `gate_tests` (not hung: watched it move from `test_audit_catalog.py` through `test_audit_visual_reduced_motion.py`, the latter launching a real headless Chromium process). Mid-run, `git fetch origin main` surfaced `ff0c6d448`, a concurrent cycle's own fresher push ("PM check-in: nothing new unblocked, verified the one real-looking preflight warning... is still a correctly diagnosed dead end"), itself built on another concurrent cycle's completed clean preflight at 13:40. Killed my own redundant run rather than let two full suites fight for the same CPU and reach an identical conclusion a few minutes apart; fast-forwarded onto `ff0c6d448` instead.
+
+**Every lane independently checked, not cited.** GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art` (confirmed via `list_issues`/`list_pull_requests` directly, not carried forward). `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `OWNER-ACTIONS.md`'s own header already says "List reviewed: 2026-10-13." `STATUS.md`'s open-claims section: none open. GitHub Actions: `bluesky-drafts`, `linkedin-drafts`, `social-drafts`, `hourly-brief`, `fulfil-orders` and `checks` all green on the latest pushes (confirmed via `list_workflow_runs`). `BACKLOG-2026-09-07.md` sections 2-6 stay Done/Hold/Phil-gated; section 7's own one-line summary (the dominant defect class is now source-corrected-but-never-re-derived artifacts, not a missing feature) is unchanged.
+
+**Did not start new work.** With the backlog, GitHub, the inbox, STATUS.md's claims and the scheduled workflows all independently exhausted or already Phil-gated, and the one standing local check (a full preflight completion) already covered minutes earlier by a concurrent cycle, starting something speculative would have cost more than it was worth. Recorded a fresh `cycle_signal.py --record` snapshot carrying this cycle's own verification so the next session can skip the identical redundant pass. Regenerated the command deck (`ops/dashboard.py`); diff is cosmetic (timestamp, commit count, working-tree state), no figure fabricated.
+
+**Went well:** catching the concurrent-work collision before finishing a wasted full test suite run, rather than after.
+
+**Did not go well:** misread the nightly log's own ordering on the first pass (grabbed entries from the physical tail, which are the oldest, instead of the top); caught by checking git blame/commit dates on the entries before acting on the wrong ones, no bad conclusion shipped from it. Lost real time to the unshallow fetch, the same recurring cost several PM check-ins have logged.
+
+**Changing next cycle:** none; `cycle_signal.py` and the collision-handling convention in `STATUS.md` section 0 already covered this correctly once applied.
+
+**Next:** standing Phil-gated queue unchanged (9 open GitHub issues, `OWNER-ACTIONS.md`'s numbered items, the production-deploy gap waiting on a `Redeploy` click/`VPS_DEPLOY_KEY`). Traffic reading is the figure most likely to be stale next; no sandbox in this lineage today held the VPS key to re-measure it.
+
+Pushed to main. This log entry and command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: nothing new unblocked, verified the one real-looking preflight warning is still a dead end
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (9 open issues,
