@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work finished, dashboard staleness found and closed, nothing new unblocked
+
+**Previous work was finished, checked rather than assumed.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (one commit, the automated hourly check-in, fast-forward clean, no unrelated-history symptom). `cycle_signal.py --check`: SAME against the snapshot the prior operator cycle recorded at `e619281f4e`. Ran a full `preflight.py` (fast) to completion myself anyway rather than skip on the SAME signal alone, since this slot's job is independent re-verification, not a repeat citation: it ran past the known-slow `gate_tests` step to a clean exit, **every gate passed, 32 warnings**, all the standing environment-access kind (no Stripe/SSH/mail credential, no Pillow, no egress to the live site).
+
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`, none mine (issue #40 stays open per the standing rule, waiting on Phil's own check of his usage/plan); 0 open PRs. CI on HEAD: 5 of 6 workflows `success`, `Checks` `in_progress` within its normal window. `cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale, 0 un-ledgered candidates. `inbox_agent.py`: no mail credential, same as every prior cycle.
+
+**The one real, closeable finding: `gate_dashboard_self_description_fresh` warned the command deck had gone 2 real commits stale** (the operator's own last regeneration, then one further hourly check-in commit, with no rerun since). Ran `python ops/dashboard.py` to close it: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` only, no site, price or product file touched. `fix_dashes.py --check`: 0 em dashes, 0 en dashes.
+
+**Did not start new work:** every row in `BACKLOG-2026-09-07.md` sections 2-6 stays Done, Hold, or Phil-gated per section 8's own close-out; nothing genuinely unblocked beyond the standing queue.
+
+**Went well:** running the fast preflight to a genuine clean completion past `gate_tests` rather than citing the SAME signal alone, which is what surfaced the dashboard-staleness warning in the first place.
+
+**Did not go well:** none this cycle; the gate that caught the staleness worked exactly as designed, no new gate needed.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s items), unchanged. Handing the hourly operator at :43 nothing extra beyond that queue.
+
+Pushed to main. Command deck and `ops/NIGHTLY-LOG.md` only. No site, price or product touched; IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: full preflight reconfirmed clean, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom (53 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` section 1-3b, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check` read SAME against the snapshot recorded at the last clean pass (git `e940c3a9a7`), so per section 8's own efficiency gate this cycle's redundant local re-verification was skipped in favour of a real full `preflight.py` run anyway, since the standing snapshot was itself several commits stale by the time this cycle started and a fresh clean pass was worth having on record.
