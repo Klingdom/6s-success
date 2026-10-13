@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, same cycle addendum: a concurrent PM twin's push collided on both the log and the command deck, merged rather than forced
+
+**The push above raced the :40 twin's own cycle** (its entry, "one unblocked item handed off", landed first at 08:05:17, mine at 08:30:21). `ops/ship.py`'s own conflict check correctly refused to push rather than overwrite: `['ops/NIGHTLY-LOG.md']` named as a real-source conflict, and the three command-deck files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) conflicted too since both cycles had regenerated them independently.
+
+**Resolved per standing practice, not by force.** `git merge origin/main`: `ops/NIGHTLY-LOG.md` hand-merged, keeping both entries in true chronological order (the twin's 08:05 entry below mine, since mine ran later), no content from either side dropped, conflict markers confirmed gone by grep afterward. The three generated command-deck files were not hand-resolved: took one side, then reran `python ops/dashboard.py` fresh against the merged tree, so the committed deck is the generator's own output, not a hand-spliced diff. `fix_dashes.py --check` clean (0/0) on the merged tree before committing.
+
+**Verified before pushing:** `git fetch` confirmed origin had not moved again underneath the merge; pushed clean (`84fe373f2`). The local fast `preflight.py --own` run on the merged tree got well past the known-slow `gate_tests` step (reaching `gate_scheduled_workflow_cadence`) before hitting this sandbox's own background time limit, so it is genuinely slow here, not hung, but it did not reach a final verdict and that is reported as unchecked, not as a pass. The earlier full `preflight.py` run this same cycle (on the pre-merge tree) had already completed clean (every gate passed, 32 warnings), and the diff since is confined to the hand-verified log prose and the generator's own regenerated output, so the residual risk is low; GitHub's own `Checks` run against this exact commit is the authoritative confirmation and was still queued behind an earlier run at the time this entry was written, left for the next cycle to confirm rather than held on.
+
+**Next:** confirm `Checks` comes back green on `84fe373f2` once its queue clears; otherwise same standing Phil-gated queue, unchanged.
+
+Pushed to main (merge commit `84fe373f2`). `ops/NIGHTLY-LOG.md` only this entry; the merge itself also carried the command deck.
+
 ## 2026-10-13, PM check-in: previous work finished, dashboard staleness found and closed, nothing new unblocked
 
 **Previous work was finished, checked rather than assumed.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (one commit, the automated hourly check-in, fast-forward clean, no unrelated-history symptom). `cycle_signal.py --check`: SAME against the snapshot the prior operator cycle recorded at `e619281f4e`. Ran a full `preflight.py` (fast) to completion myself anyway rather than skip on the SAME signal alone, since this slot's job is independent re-verification, not a repeat citation: it ran past the known-slow `gate_tests` step to a clean exit, **every gate passed, 32 warnings**, all the standing environment-access kind (no Stripe/SSH/mail credential, no Pillow, no egress to the live site).
