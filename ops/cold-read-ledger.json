@@ -763,8 +763,8 @@
     },
     "send_questions.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "Re-verified 2026-10-10 PM check-in: Phil's own commit (ba043e54a) added _record_sent()/SENT_RECORD and wired gate_owner_questions_not_stale. Workflow YAML parses, test_gate_owner_questions_not_stale.py 7/7, file parses clean. No defect."
+      "date": "2026-10-13",
+      "note": "Re-read in full after 2026-10-13's roadmap-gate addition (gate_lines, roadmap_gates, gate_due, expiring BLOCKING item 2). Checked the table-column regex against the real ROADMAP-2026-2029.md gate rows (condition/when/consequence order matches the code's unpacking), ran test_gate_roadmap_gate_in_owner_email.py directly (9/9 pass), and confirmed gate_roadmap_gate_in_owner_email is wired into preflight.py main() via run_gate(). No new defect found."
     },
     "service_orders.py": {
       "status": "fixed",

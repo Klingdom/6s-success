@@ -2,6 +2,68 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: the deploy gap genuinely closed today, and the command deck was still citing the old one
+
+**Did:** Checkout arrived shallow and detached, unshallowed and fast-forwarded
+cleanly onto `origin/main` (114 commits), no unrelated-history symptom. Read
+`GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 to 8, `OWNER-ACTIONS.md`'s
+header, the newest `ops/NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check`
+read CHANGED (`ops/deploy-verdict.json`), correctly, because Phil's own commit
+`f56cdd65a` (10:25 local) had updated it a few hours before this cycle started.
+
+**Verified rather than cited:** GitHub 9 open issues / 0 open PRs, unchanged,
+all `decision`/`blocked-on-art` (direct `list_issues`/`list_pull_requests`).
+`inbox_agent.py --apply`: no mail credential, unchecked not empty.
+`affiliate.py --check` clean (165 documents). `fix_dashes.py --check` clean
+(0/0). `cold_read_ledger.py --stale` named one file, `ops/send_questions.py`
+(ledgered 2026-10-10, touched 2026-10-13 by Phil's gate-email commit); read it
+in full, checked the new `roadmap_gates()` regex against the real
+`ROADMAP-2026-2029.md` table (condition/when/consequence columns line up with
+the code's unpacking), ran `test_gate_roadmap_gate_in_owner_email.py` directly
+(9/9), confirmed `gate_roadmap_gate_in_owner_email` is wired into
+`preflight.py`'s `main()` via `run_gate()`. No defect found; recorded clean.
+
+**Found and fixed: the committed command deck was citing a 4-day-old deploy
+gap that had already closed.** `deploy_gap_material_commits` (preflight's own
+logic), re-derived directly against the real `deploy-verdict.json`
+(`checked_at: 2026-10-13T16:17:01Z`, build `9a2477bcdfe5b6c2`, resolving to
+`17b7c6655`), returns an empty list: production matches `HEAD` exactly, right
+now. The committed `EXECUTIVE-DASHBOARD-LIVE.md` (generated 16:27) still
+opened with "PRODUCTION IS SERVING AN OLD BUILD," a stale `state.json`
+snapshot carried through a regeneration that ran before the deploy-verdict
+update had propagated. Re-ran `ops/dashboard.py`; the constraint paragraph
+correctly reverted to "Discovery, not what can be bought, is the constraint
+now." `STATUS.md`'s two deploy-gap rows (Public website, Production
+traceability) corrected the same way, in the file's own established
+"CLOSED, prior state kept" style, rather than deleted.
+
+**Preflight could not be finished locally.** It hit the same documented
+sandbox hang this gate has shown before (headless Chromium under
+`gate_tests`) and was killed by its own 600s timeout after `Preflight`'s own
+individual gates had all reported clean. CI's own run on Phil's commit
+(`checks.yml` #2097) ran the identical `Preflight` step to completion,
+green, in the normal ~21 minutes, confirming the hang is this sandbox's own
+limit and not a new regression; its `ops/tests` step was still in progress
+at the time of this entry, same cadence as every prior green run today.
+
+**Went well:** catching a dashboard that read correctly-formed but stale,
+rather than trusting its own freshly-printed generation timestamp.
+
+**Did not go well:** the usual gate_tests hang, same documented limit as
+every cycle today.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged (9 open issues, `OWNER-ACTIONS.md`
+item 0/`VPS_DEPLOY_KEY`, G2's budget-and-stop-date ask now also in the owner
+email). Nothing in sections 2 to 6 of either backlog is open and unblocked;
+independently re-confirmed this cycle, not carried forward.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`,
+and the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`,
+`ops/state.json`). No price, product or site page touched; not customer-facing,
+so IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (16:1x slot)
 
 **Previous work was finished.** Verified rather than cited: the immediately
