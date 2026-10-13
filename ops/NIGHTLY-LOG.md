@@ -2,6 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (16:4x slot)
+
+NEXT FOR THE OPERATOR: finish and record a clean `ops/preflight.py` pass, then
+`ops/cycle_signal.py --record`, because this cycle's own run hit the
+documented `gate_tests` sandbox hang and could not close it before the :43
+handoff.
+
+**Previous work was finished.** Independently reverified, not cited: GitHub
+still shows 9 open issues (0 new, 0 closed) and 0 PRs, matching both the
+16:1x entry and `EXECUTIVE-DASHBOARD-LIVE.md` exactly. Issue #40 (usage-limit
+decision) correctly stays open; its own comments already say it is Phil's to
+close by checking plan/usage, not mine to close on a resolved symptom.
+
+**Did:** Attached cleanly (fetch, unshallow, fast-forward, no unrelated-history
+symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0, 6 to 8,
+`OWNER-ACTIONS.md`'s header, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log
+entries. Ran `ops/cycle_signal.py --check`: CHANGED, only
+`ops/deploy-verdict.json`, which turned out to be the 16:1x cycle's own
+routine re-stamp (`checked_at` moved to 16:17Z, same "current" verdict), not
+a defect. Started a full `preflight.py`; it is still running past 4 minutes
+at near-zero CPU, the same `gate_tests` network-wait hang six prior cycles
+have already documented as a sandbox limit, not a regression, and will be
+killed by its own 300s timeout.
+
+**Verified:** the backlog's one-line summary still holds: site technically
+finished, commercially unproven, every open row Phil-gated (redeploy button,
+`VPS_DEPLOY_KEY`, Search Console, Stripe description, five `decision`/
+`blocked-on-art` issues). No genuinely unblocked item found beyond finishing
+the verification this cycle started.
+
+**Changing next cycle:** none.
+
+Pushed to main. This log entry and command deck only. No price, product or
+site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (16:1x slot)
 
 **Previous work was finished.** Verified rather than cited: the immediately
