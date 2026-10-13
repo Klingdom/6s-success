@@ -1,8 +1,8 @@
 {
   "combined_hash": "60dee9c673ef38c5340ddb2b0ec995c5fd8498b0b626004800f7f8c03d4476b8",
-  "git_head": "7209b4281477daa8ea1bbac167914545d6f8f659",
-  "note": "Hourly operator 2026-10-13 ~14:5x: regenerated against a concurrent 30-min cycle's fresher push (7209b4281), nothing new unblocked; same verification as this cycle's nightly-log entry (GitHub unchanged, fulfil-orders.yml live Stripe check 0 paid orders/14 days).",
-  "recorded_at": "2026-10-13T14:50:42Z",
+  "git_head": "305760fb8a830dd6146f30e0a3c524da540cd59e",
+  "note": "Scheduled operator 2026-10-13: finished the full preflight the prior cycle left backgrounded (0 FAIL, 31 standing warnings). GitHub 9 issues/0 PRs unchanged, fulfil-orders.yml live Stripe check 0 paid orders/14 days, cold-read ledger 199/199 fully ledgered, 0 unledgered. Nothing new unblocked.",
+  "recorded_at": "2026-10-13T16:03:18Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "367834e8dc2786b67115b4db029718079f90d6d357e4b1141c8f0edf93842a04",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",

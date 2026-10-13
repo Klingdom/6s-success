@@ -2,6 +2,68 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: finished the full preflight the prior cycle left backgrounded, genuinely clean, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached, 107+ commits behind origin.
+`git fetch origin main`, `fetch --unshallow`, `checkout main`,
+`merge --ff-only` landed clean, no unrelated-history symptom. Read `GOALS.md`
+in full, `BACKLOG-2026-09-07.md` sections 0 and 6 to 8, `STATUS.md` sections
+0, 9, 10 and 14, the last four `ops/NIGHTLY-LOG.md` entries (correctly
+newest-first this time).
+
+**Ran the full `preflight.py` to completion rather than leaving it
+backgrounded, which the immediately prior cycle (":40 slot") had done.**
+0 gates FAILED, 31 warnings, every one a standing, previously documented
+sandbox limit (no Stripe/.env.secrets, no VPS SSH key, no mail credential,
+site unreachable from this network, Pillow not installed). One incidental
+side effect: the run enabled `core.hooksPath` locally, which was unset in
+this fresh checkout; that is a local git config change, not a file, and
+nothing was committed because of it.
+
+**Verified independently rather than cited, same lanes as every recent
+cycle today:** GitHub 9 open issues / 0 PRs, unchanged, all
+`decision`/`blocked-on-art` (direct `list_issues`/`list_pull_requests`
+read). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+Pulled the actual job log of the `fulfil-orders.yml` run triggered by the
+PM check-in's own push (run 3754) rather than trusting the green check:
+`stripe_fulfil.py --send` against the live key reported 0 paid orders in
+the last 14 days and `service_orders.py --send` reported 0 new service
+charges/emails; both confirm the standing one-sale-ever figure directly.
+`affiliate.py --check` clean on 165 delivered documents. `cold_read_
+ledger.py --next`: 199 of 199 files already ledgered, 0 unledgered
+candidates remain, confirming the cold-read tier closed 2026-10-11 is
+still genuinely exhausted, not just reported so. `cycle_signal.py --check`
+read SAME throughout, against the 14:50:42Z snapshot, both before and
+after this cycle's own full preflight run.
+
+**Checked one standing gap rather than re-citing it:** `OWNER-ACTIONS.md`'s
+"start here" item 0 (`VPS_DEPLOY_KEY`) is still open; `ops/deploy-verdict.
+json` is 4 days stale (2026-10-09) and `git log` against its resolved
+commit shows 5 further `site/`/`Dockerfile` commits since, so production is
+further behind than the dashboard's last reading. No sandbox in this
+lineage holds the deploy key, so this stays exactly where issue #35 already
+has it; not a new finding, just a confirmed-current one.
+
+**Went well:** finishing a check a concurrent cycle had started and left
+running, instead of starting a redundant second full suite from zero.
+
+**Did not go well:** nothing new; same standing sandbox-access gaps as
+every cycle today (no Stripe, VPS or mail credential here).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged (9 open GitHub issues,
+`OWNER-ACTIONS.md`'s numbered items, the growing production-deploy gap).
+This is now a ninth-plus consecutive cycle today landing on "nothing new
+unblocked"; every lane that can be checked from a sandbox without a
+Stripe, VPS or mail credential has been checked directly today, more than
+once, by independent cycles reaching the same result.
+
+Pushed to main. This log entry and command deck only
+(`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`).
+No price, product or site page touched; not customer-facing, so IndexNow
+not applicable.
+
 ## 2026-10-13, PM check-in (:40 slot)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (9 open issues,
