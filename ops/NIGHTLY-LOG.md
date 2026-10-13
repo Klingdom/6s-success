@@ -18,6 +18,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck regenerated (counter drift only). No price, product or site page touched; not customer-facing, IndexNow not applicable.
 
+## 2026-10-13, scheduled operator cycle (19:0x slot)
+
+**Did:** Attached clean (unshallowed, 123 then further commits fast-forwarded onto `origin/main`, re-fetching twice more mid-cycle as concurrent PM check-ins pushed). Read `BACKLOG-2026-09-07.md` via a delegated subagent (section 1b through 8), `GOALS.md`, the last four `NIGHTLY-LOG.md` entries, `CLAUDE.md`. Confirmed independently: every backlog row is Done or Phil-gated, all 9 GitHub issues unchanged (decision/blocked-on-art), no mail credential, cold-read ledger 199/199 with 0 stale, CI green on every recent push. `preflight.py` ran clean through every fast gate (no FAIL, no new WARN) up to the documented `gate_tests` sandbox hang, killed there per standing practice; CI's own full suite stands in.
+
+**Verified:** Checked production honesty directly rather than trusting citations. `STATUS.md`'s "Production Status" and "Production traceability" rows had already been re-derived today (build `9a2477bcdfe5b6c2`, zero gap), but `BLOCKER-001`, the "Production Knowledge" paragraph and the "Immediate Focus" line, the three sibling sections `gate_status_deploy_verdict_current` watches, still cited the superseded 2026-10-09 build. Ran `status_deploy_verdict_problem()` directly: confirmed it fired, naming all three. Independently re-derived `deploy_gap_material_commits` myself (returns empty, matching the current verdict) before writing anything.
+
+**Went well:** verifying against the real gate function before and after the edit, not just eyeballing dates.
+
+**Did not go well:** nothing new; same recurring shape this gate already exists to catch.
+
+**Changing next cycle:** none; existing gate sufficient once fed a correct citation.
+
+**Next:** standing Phil-gated queue, unchanged.
+
+Pushed to main. `STATUS.md` (3 sibling sections corrected), command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: closed the 18:4x handoff, CI run 2100 confirmed green
 
 **Did:** This is the same operator cycle that authored the `6774e2895` arrange/organize scorer fix two entries below and pushed it mid-run; polled CI run 2100 directly via `gh run view` (no agent delegation, to avoid the repeated-poll overhead the 18:2x/18:4x entries' own handoffs show) until it reached a terminal state: `completed`/`success`, both the "Preflight" step and the full ops test suite green. This closes the 18:4x entry's own "NEXT FOR THE OPERATOR" item exactly.
@@ -55865,19 +55881,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
-
-## 2026-10-13, scheduled operator cycle (19:0x slot)
-
-**Did:** Attached clean (unshallowed, 123 then further commits fast-forwarded onto `origin/main`, re-fetching twice more mid-cycle as concurrent PM check-ins pushed). Read `BACKLOG-2026-09-07.md` via a delegated subagent (section 1b through 8), `GOALS.md`, the last four `NIGHTLY-LOG.md` entries, `CLAUDE.md`. Confirmed independently: every backlog row is Done or Phil-gated, all 9 GitHub issues unchanged (decision/blocked-on-art), no mail credential, cold-read ledger 199/199 with 0 stale, CI green on every recent push. `preflight.py` ran clean through every fast gate (no FAIL, no new WARN) up to the documented `gate_tests` sandbox hang, killed there per standing practice; CI's own full suite stands in.
-
-**Verified:** Checked production honesty directly rather than trusting citations. `STATUS.md`'s "Production Status" and "Production traceability" rows had already been re-derived today (build `9a2477bcdfe5b6c2`, zero gap), but `BLOCKER-001`, the "Production Knowledge" paragraph and the "Immediate Focus" line, the three sibling sections `gate_status_deploy_verdict_current` watches, still cited the superseded 2026-10-09 build. Ran `status_deploy_verdict_problem()` directly: confirmed it fired, naming all three. Independently re-derived `deploy_gap_material_commits` myself (returns empty, matching the current verdict) before writing anything.
-
-**Went well:** verifying against the real gate function before and after the edit, not just eyeballing dates.
-
-**Did not go well:** nothing new; same recurring shape this gate already exists to catch.
-
-**Changing next cycle:** none; existing gate sufficient once fed a correct citation.
-
-**Next:** standing Phil-gated queue, unchanged.
-
-Pushed to main. `STATUS.md` (3 sibling sections corrected), command deck regenerated. No price, product or site page touched; not customer-facing, IndexNow not applicable.
