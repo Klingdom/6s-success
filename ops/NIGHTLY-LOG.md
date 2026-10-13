@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle (19:4x slot): independently found the same CI-red ordering defect, converged with a concurrent cycle's own fix already on origin
+
+**Did:** Attached clean (unshallowed, 128 then more commits fast-forwarded onto `origin/main`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the last four log entries, `STATUS.md`, `CHECKIN-LOG.md`. Every backlog row again Done or Phil-gated; 9 GitHub issues unchanged, all decision/blocked-on-art, 0 PRs; no mail credential; no egress to the live site or Stripe. Local `preflight.py` clean through every fast gate to the documented `gate_tests` sandbox hang, killed there per standing practice.
+
+**Verified, rather than trusting the narrative:** checked GitHub Actions directly instead of citing an old run number. Found the real, unacknowledged CI run 2102 (`7e94f8116`) failure (`gate_nightly_log_ordering`, the 19:0x entry appended to the file's end instead of prepended), diagnosed and fixed it the same way this cycle independently did. A concurrent PM check-in (19:4x slot, `982fc2ff4`/`6d7469f17`) pushed the identical diagnosis and an equivalent fix first; fetched, confirmed `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries` both pass on their committed state, and reset onto it rather than push a duplicate, conflicting reorder. Both sessions reaching the same root cause independently is corroboration, not a defect.
+
+**Went well:** checking the actual GitHub Actions conclusion rather than a cited one; standing down on a redundant fix once a concurrent push already carried it, verified rather than assumed.
+
+**Did not go well:** two cycles (18:4x, 19:1x) had already cited CI as green without naming which run.
+
+**Changing next cycle:** when citing CI as green, name the run number and confirm it covers the current or a superseding commit.
+
+**Next:** standing Phil-gated queue (`OWNER-ACTIONS.md`), unchanged. Backlog genuinely exhausted of unblocked work again.
+
+Nothing of mine to push beyond this entry and the command deck; the real fix is already on `origin/main`. Not customer-facing, IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (19:4x slot): previous work was CI-red, fixed the nightly-log ordering defect that broke it
 
 **NEXT FOR THE OPERATOR:** standing Phil-gated queue (`OWNER-ACTIONS.md`, 9 open decision/blocked-on-art issues); backlog reconfirmed empty of unblocked work.
