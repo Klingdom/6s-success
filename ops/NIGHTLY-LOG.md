@@ -2,15 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-13, PM check-in (:10 slot): previous work (the operator's own cycle) independently reconfirmed finished, nothing new unblocked, keyword-demand harvest already in flight
+## 2026-10-13, PM check-in (:10 slot): previous work (the operator's own cycle) independently reconfirmed finished, nothing new unblocked, keyword-demand harvest and reconciliation landed concurrently below
 
 **Previous work was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`; a concurrent push from the hourly operator's own cycle landed mid-read (`97b289e81`, "Regenerate command deck and cycle-signal snapshot against the merge"), so the first local preflight run was killed before completion and a second run started against the fast-forwarded tree rather than trust a result taken against stale code. That second run completed in full: **every gate passed, 32 warnings**, all the standing environment kind (no Stripe/SSH/mail credential, Pillow absent, no egress to the live site). This independently reconfirms the operator's own clean run from minutes earlier rather than citing it.
 
-**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `cycle_signal.py --check`: SAME against the operator's own fresh snapshot, so backlog/`OWNER-ACTIONS.md`/`STATUS.md`/`GOALS.md` are unmoved since. `inbox_agent.py --apply`: no mail credential, unchecked. The keyword-demand harvest the prior PM cycle handed off is already running (`keyword-demand.yml` run #5, `workflow_dispatch`, triggered by the operator) and will land as its own commit; nothing further to do on it this cycle.
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `cycle_signal.py --check`: SAME against the operator's own fresh snapshot, so backlog/`OWNER-ACTIONS.md`/`STATUS.md`/`GOALS.md` are unmoved since. `inbox_agent.py --apply`: no mail credential, unchecked.
 
-**Did not start new work:** backlog exhausted, cold-read ledger exhausted, every open issue Phil-gated.
+**Did not start new work:** backlog exhausted, cold-read ledger exhausted, every open issue Phil-gated. At the time this entry was drafted, the keyword-demand harvest the prior PM cycle handed off was still in flight; by the time this merged, a concurrent cycle (entry directly below) had already fired it, reconciled a stuck GitHub run, and reconfirmed A27, so that line is corrected here rather than left to read as still pending.
 
-**Next:** same standing Phil-gated queue; next cycle re-scores the keyword-demand gap tiers once run #5 lands.
+**Next:** same standing Phil-gated queue, unchanged by the harvest below.
+
+## 2026-10-13, same cycle continued: fired the stale keyword-demand cron, found and dismissed a stuck GitHub run, fresh harvest confirms A27 rather than reopening it
+
+**Did:** Took the concurrent :40 PM check-in's own handoff (fire a fresh keyword-demand harvest, the last one 4 days old). Found `keyword-demand.yml`'s weekly scheduled run from 2026-10-07 stuck `queued` on GitHub for six days; attempted `cancel_workflow_run`, which 409'd with "Cannot cancel a workflow run that has not been queued yet", GitHub's own state contradicting its listing. Dispatched a fresh `workflow_dispatch` run anyway rather than wait on that: it went `in_progress` immediately, proving the stuck row held no real lock on the `keyword-demand` concurrency group, just a stale entry. Watched it to completion (about 8 minutes, matching the prior run's real duration), rather than inferring health from silence.
+
+**Verified, not assumed, once the harvest landed:** fast-forwarded onto the workflow's own commit (`33d64c37b`). Read the new file's own health fields directly: `checked_at` 2026-10-13T05:22:30Z, 151 seeds, 302 attempts, 0 failed, both canaries OK. Diffed the new gap-tier query set against the pre-harvest snapshot by query text, not by count (per `CLAUDE.md` 5c): 0 new gap queries, 1 (`hall cupboard design ideas`) left autocomplete entirely, the same benign churn shape `GOALS.md` already names three times, not a regression. The one previously-investigated room-mismatch (the Garage query scoring against a Primary Bedroom nightstand page) persists unchanged, exactly as A27 left it. `gate_keyword_demand_not_stale` and `gate_goals_keyword_cluster_citation_current` both checked clean directly. Recorded the reconciliation as an addendum to `BACKLOG-2026-09-07.md` row A27 rather than opening a new row, since nothing in it changed the closed finding.
+
+**Went well:** not treating the stuck GitHub run as a hard block, confirming by actually dispatching rather than guessing from the API's contradictory error; diffing by query rather than reporting the raw 199-vs-200 count as a finding.
+
+**Did not go well:** the stuck run itself is still sitting in GitHub's run list unresolved; no code fix exists for a platform-side stuck run, and cancelling it is not available from here.
+
+**Changing next cycle:** none; this is the measurement-tier item the ordering rule calls for when nothing else is unblocked, and it stays due roughly weekly.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md` (via the workflow), `BACKLOG-2026-09-07.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-13, scheduled operator cycle: clean full preflight, one transient self-inflicted affiliate-check race diagnosed and dismissed, nothing new unblocked
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`de10d2e94`), no unrelated-history symptom; confirmed already current with origin, no concurrent push landed mid-cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md`'s workstream section, `OWNER-ACTIONS.md`, and the live head of this file, rather than a summary. `python ops/cycle_signal.py --check`: only `ops/cold-read-ledger.json` had moved since the last recorded snapshot, so a full local re-verification was warranted per section 8's own rule, not skipped.
 
