@@ -208,16 +208,18 @@ true weeks ago and this section never said so, directly contradicting
 `RISKS.md`'s own tracking of the same two risks as CLOSED.** Payment exists
 (Stripe-hosted Payment Links, linked directly off product pages, e.g.
 `buy.stripe.com/...` on `book.html` and `consulting.html`; one real sale
-completed 2026-08-21, see `GOALS.md`) and CI exists (**15 workflows as of
-2026-10-10, corrected from 14: `owner-questions.yml` was added, the
-workflow that actually sends the owner-unblock email on a schedule
-(previously sent only by whichever Routine happened to run, the gap
-named in issue #40)**, under `.github/workflows/`: `bluesky-drafts.yml`,
+completed 2026-08-21, see `GOALS.md`) and CI exists (**16 workflows as of
+2026-10-13, corrected from 15: `render-narrated-videos.yml` was added,
+a manual (`workflow_dispatch`) runner that re-renders a narrated zone
+video's voice track and captions wherever `ops/check_video_standard.py`
+finds them stale against `content.json`, the same GitHub-hosted-runner
+shape `keyword-demand.yml` and `indexation-check.yml` already use because
+the cloud sandbox's egress proxy refuses the TTS host outright**, under `.github/workflows/`: `bluesky-drafts.yml`,
 `checks.yml`, `deploy.yml`, `fulfil-orders.yml`, `hourly-brief.yml`,
 `indexation-check.yml`, `keyword-demand.yml`, `linkedin-drafts.yml`,
 `mobile-checks.yml`, `owner-questions.yml`, `publish-image.yml`,
-`publish-mcp.yml`, `roadmap-report.yml`, `social-drafts.yml`,
-`status-email.yml`). Neither added a runtime: the
+`publish-mcp.yml`, `render-narrated-videos.yml`, `roadmap-report.yml`,
+`social-drafts.yml`, `status-email.yml`). Neither added a runtime: the
 payment mechanism is exactly the "hosted checkout" path section 13 always
 recommended, and CI runs against the static output; `deploy.yml` runs a
 credentialed SSH step only once `VPS_DEPLOY_KEY` is set as a GitHub secret
@@ -231,7 +233,7 @@ credentialed SSH step only once `VPS_DEPLOY_KEY` is set as a GitHub secret
 - ~~no analytics~~ **Self-hosted Umami analytics exists (`site/assets/js/measure.js` calls `window.umami.track()`), added after 2026-08-17. Still true as written: no third-party analytics, no advertising pixels, no session recording, no third-party trackers. `site/privacy.html` discloses this correctly ("self-hosted software running on our own server, not a third-party analytics service") and was not stale on this point. Verified 2026-09-11 by reading both files directly.**
 - no external network requests from any page, including fonts, which are self hosted
 - no CDN
-- ~~no CI, no `.github` directory, no workflows~~ **15 workflows exist, see above. They build and check the site; nothing in the served page path changed.**
+- ~~no CI, no `.github` directory, no workflows~~ **16 workflows exist, see above. They build and check the site; nothing in the served page path changed.**
 - no staging environment
 
 Several of these are deliberate and good. Several are `RISKS.md` entries. They are not the same list, and the difference matters:

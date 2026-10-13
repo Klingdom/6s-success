@@ -1,0 +1,77 @@
+name: Render stale narrated videos
+
+# ops/render_stale_narrated.py re-renders narrated zone videos whose captions
+# no longer match content.json's own standard (BACKLOG-2026-09-07.md's C7
+# "second wave": the 2026-10-02 British-to-American dialect fix landed after
+# the last full re-render, leaving 15 of 114 zones' captions reading
+# labelled/tyre against the page's own labeled/tire). Not customer-facing:
+# ops/youtube_upload.py already withholds anything check_video_standard.py
+# calls stale, so a late or skipped run here costs nothing a viewer can see.
+#
+# Needs real audio (edge-tts, reaching speech.platform.bing.com) and ffmpeg.
+# The cloud sandbox this repository is usually operated from refuses that
+# destination at the egress proxy (confirmed directly: a DNS-level connection
+# failure to that host specifically, not a generic timeout), the identical
+# shape keyword-demand.yml and indexation-check.yml already exist to close
+# for ops/keyword_demand.py and ops/indexation_check.py. A GitHub-hosted
+# runner has ordinary outbound internet.
+#
+# Manual only. check_video_standard.py's own gate already warns preflight.py
+# every time a video goes stale, and rendering is slow (narration, a
+# screenshot per beat, and an ffmpeg encode for each of two orientations per
+# zone), so this runs on request rather than on a schedule that would
+# re-render nothing most weeks and silently burn minutes checking.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: render-narrated-videos
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: write        # commits the regenerated .srt sidecars
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install edge-tts and a headless Chromium
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts==7.2.8 playwright==1.48.0
+          python -m playwright install --with-deps chromium
+          # ops/browser.py's find_browser() only looks at the fixed paths it
+          # knows (the cloud sandbox's own /opt/pw-browsers/chromium, plus two
+          # Windows Edge paths). A plain `playwright install` puts the binary
+          # in a versioned cache directory it never checks, so link the one
+          # it does into existence rather than teach it a third, runner-only
+          # path for a file that is not source.
+          CHROME_PATH=$(python -c "from playwright.sync_api import sync_playwright as s; p = s().start(); print(p.chromium.executable_path); p.stop()")
+          sudo mkdir -p /opt/pw-browsers
+          sudo ln -sf "$CHROME_PATH" /opt/pw-browsers/chromium
+
+      - name: Report what is stale before rendering
+        run: python ops/render_stale_narrated.py --check || true
+
+      - name: Re-render every stale zone, both orientations
+        run: python ops/render_stale_narrated.py
+
+      - name: Commit the regenerated captions
+        if: always()
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add build/video/zones-narrated/*.srt
+          git diff --cached --quiet || git commit -m 'Re-render narrated captions that had gone stale against content.json'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main
