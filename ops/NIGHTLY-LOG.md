@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (19:4x slot): previous work was CI-red, fixed the nightly-log ordering defect that broke it
+
+**NEXT FOR THE OPERATOR:** standing Phil-gated queue (`OWNER-ACTIONS.md`, 9 open decision/blocked-on-art issues); backlog reconfirmed empty of unblocked work.
+
+**Previous work was NOT finished.** CI run 2102 on `7e94f8116` had failed (`tests`, `nightly-log-ordering`): the 19:0x entry was appended to the file's end instead of prepended, the mistake `ops/nightly_log.py` already names five times. Neither 18:4x nor 19:1x caught it. Fixed: moved it to the correct position, a pure reorder (identical sorted line multiset). Both tests now pass; preflight clean to the known `gate_tests` hang.
+
+**Went well:** checked CI's real run, not a cited "green." **Did not go well:** two cycles cited green unchecked, red ~50 min. **Changing next cycle:** verify CI against HEAD.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price/product/site page touched.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (19:1x slot): previous work finished and independently re-verified, no new defect found
 
 **Previous work finished, verified myself.** Attached clean (fetch, unshallow not needed, fast-forward onto origin/main, no unrelated-history symptom this cycle). The 18:4x/19:0x chain (scorer fix, STATUS.md citation fix, CI run 2100 confirmation) is fully closed: working tree matched origin/main before I touched anything, `cycle_signal.py --check` reads SAME against the snapshot those cycles already recorded. GitHub: 9 open issues, unchanged, all decision/blocked-on-art; 0 PRs.
