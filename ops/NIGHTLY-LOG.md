@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (:10 slot)
+
+**Did:** Checkout arrived shallow and detached, 107 commits behind `origin/main`; fetched, unshallowed fully, then `git checkout main` plus `merge --ff-only` landed cleanly on the real tip (`8c1b5cfe7`), no reset needed. Read `BACKLOG-2026-09-07.md` section 0, `GOALS.md`'s main-goal section, `STATUS.md` sections 2 and 16, and `CHECKIN-LOG.md`'s newest entries. GitHub: 9 open issues, unchanged, all decision labelled or blocked on art, 0 PRs.
+
+**Previous work was genuinely finished.** `preflight.py` ran clean: 0 gates failed, 32 warnings, each one a previously documented sandbox limit (no Stripe, mail or SSH credential here, site unreachable from this network). Working tree was clean before I started. One real, small gap: the command deck still cited commit `8c1b5cfe7` as current while it had been generated slightly before that commit landed. Fixed by rerunning `ops/dashboard.py`.
+
+**Verified rather than cited:** `list_triggers` shows both PM Routines and the hourly operator with `last_run.status` SUCCEEDED, so issue #40's five day stall has not recurred since 2026-10-09.
+
+**Next:** nothing new unblocked; same standing Phil blocked list (#40, #35, #33, #31, #29, #21, #18, #15, #2). Leaving the operator at :43 the deck gallery and card art decisions (#29, #31, #2), which need hours of art work this slot does not have.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) plus this log entry. No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-13, hourly operator
 
 **Did:** Attached cleanly (fetch, unshallow check, ff-only merge; no unrelated-history symptom this cycle). Read `GOALS.md` in full and the structural sections of `BACKLOG-2026-09-07.md` (0, 7, 8). `cycle_signal.py --check` read SAME against a 14:46:50Z snapshot built on the 13:40:40Z clean full preflight (0 FAIL, 31 warnings); did not rerun the slow suite, since nothing gate-relevant had changed.
