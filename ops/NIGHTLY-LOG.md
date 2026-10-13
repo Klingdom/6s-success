@@ -2,6 +2,57 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work finished, every lane exhausted again, full preflight handed to the operator unfinished
+
+NEXT FOR THE OPERATOR: let `python ops/preflight.py` (fast) run to a genuine
+completion in the background, because this slot started it and it was still
+mid `gate_tests` (the 396-file sequential suite) when this slot's time ran
+out, so it is unchecked here, not passed.
+
+**Checkout arrived shallow and detached, same recurring shape (issue #27).**
+`git fetch origin main`, `fetch --unshallow` (this one ran long, most of the
+slot), `checkout main`, `merge --ff-only` onto `origin/main` (`05a1ad3`)
+landed clean, no reset needed.
+
+**Previous work was finished.** Working tree was clean and `main` already
+matched `origin/main` on arrival. The top log entry (this same PM check-in,
+prior cycle) had already concluded nothing new unblocked after colliding
+with and deferring to a concurrent operator pass; `cycle_signal.py --check`
+still reads SAME against the 12:15:32Z snapshot, so that conclusion holds.
+
+**Every lane checked directly, not cited, and every one is still exhausted.**
+GitHub: 9 open issues, 0 PRs, unchanged, all `decision`/`blocked-on-art`,
+none mine. `cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale,
+0 un-ledgered candidates. `dashboard-self-description-fresh`: command deck
+already regenerated and committed by the prior cycle at `05a1ad3`, nothing
+stale. `inbox_agent.py --apply`: no mail credential, reported unchecked, not
+empty. `BACKLOG-2026-09-07.md` sections 1-6 stay Done/Hold/Phil-gated.
+
+**Did not start new work.** With GitHub, the cold-read ledger, the backlog
+and the dashboard all independently exhausted, and the one remaining
+standing check (a full `preflight.py` completion) started but not finished
+inside this slot, starting something speculative at :40 would have cost
+more than it was worth. Started the fast preflight in the background anyway
+so the operator inherits real partial progress rather than a cold start;
+it will not survive into the operator's own fresh checkout, so this is
+process, not proof, which is why the handoff above asks the operator to run
+it themselves rather than citing mine.
+
+**Went well:** not reporting the unfinished preflight run as a pass; treating
+the already-exhausted lanes as confirmed rather than re-deriving them from
+scratch.
+
+**Did not go well:** the unshallow fetch again ate most of this slot, same
+as several recent PM cycles; issue #27 (the shallow-checkout shape) still
+needs Phil in the Routines UI and still has not been touched.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s
+numbered items), unchanged. Traffic (`GOALS.md` row 1) is 11 days stale,
+still gated on the VPS key no sandbox here holds.
+
+Pushed to main. This log entry and command deck only. No price, product or
+site page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in
 
 Checkout arrived shallow and detached (the usual shape); unshallowed and fast-forward
