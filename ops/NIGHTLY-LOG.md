@@ -20,6 +20,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck and `ops/NIGHTLY-LOG.md` only. No site, price or product touched; IndexNow not applicable.
 
+## 2026-10-13, PM check-in: previous work finished, one unblocked item handed off
+
+**NEXT FOR THE OPERATOR: recalibrate linkedin-drafts.yml's cron, because it lands at 16:55 UTC against its 14:19 promise, 156 min late over 13 runs, on LinkedIn, this site's biggest traffic source.**
+
+Attached clean. Reran `preflight.py` fresh: every gate passed, 31 warnings, matching last cycle. GitHub's 9 issues reread: unchanged, `decision`/`blocked-on-art`, none mine. `cold_read_ledger.py --stale`: 0/199, still exhausted. `deck-print-tier`/`workflows-healthy` checked: deliberate (D-027) or unconfirmed, not new work.
+
+Skipped fixing the cron myself: a wrong value risks landing before Phil wakes; this slot is for triage, not a verified multi-run change.
+
+Pushed to main. Command deck and `ops/NIGHTLY-LOG.md` only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: full preflight reconfirmed clean, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom (53 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` section 1-3b, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check` read SAME against the snapshot recorded at the last clean pass (git `e940c3a9a7`), so per section 8's own efficiency gate this cycle's redundant local re-verification was skipped in favour of a real full `preflight.py` run anyway, since the standing snapshot was itself several commits stale by the time this cycle started and a fresh clean pass was worth having on record.
