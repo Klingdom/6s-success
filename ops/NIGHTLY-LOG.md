@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: independent full preflight to a genuine clean completion, one real gate found and closed, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` clean, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md` sections 1/21, `CLAUDE.md`, the top four `NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check`: SAME against the last clean snapshot (an ancestor of HEAD), so sections 2-6 of the backlog were already exhausted. `ops/cold_read_ledger.py --stale` found exactly one real gap: `ops/preflight.py` had been touched (three new gates, 2026-10-12/13) after its own ledger entry. Read that diff directly rather than trust the count: `gate_schedule_fallback_race`, `gate_image_prompts_tiers_current`, `gate_epub_edition_date_current`, all sound, evidence-backed, consistent with the file's own documented defect class. No new defect; recorded clean.
+
+**Verified rather than assumed:** ran `preflight.py` (fast) to completion myself, in the background with enough time to clear the known-slow `gate_tests` step (396 sequential test files, ~12 minutes here) rather than citing a short timeout as a hang. Result: **every gate passed, 32 warnings**, all previously-diagnosed environment-access limits (no Stripe/SSH/mail credential, no Pillow, no egress to 6s-success.com, 2 test files that cannot exercise anything here). `git config core.hooksPath` was unset in this checkout; preflight enabled it locally (`.githooks`), a sandbox-local fix, not a tracked change. GitHub: 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`, none mine (issue #40 stays open, waiting on Phil's own usage/plan check); 0 open PRs; every recent `Checks` and distribution-workflow run `success`. `inbox_agent.py --apply`: no mail credential, reported as unchecked. Attempted a direct production fetch (`6s-success.com/build-id.txt`) to verify the deploy gap per CLAUDE.md 0.3: the egress proxy refused the host (403), so that stayed unchecked here too, consistent with every prior cloud-sandbox reading.
+
+**Did not start new work:** every row in `BACKLOG-2026-09-07.md` sections 2-6 stays Done, Hold, or Phil-gated; the standing Phil-gated queue (9 issues, `OWNER-ACTIONS.md`) is unchanged. The production deploy gap (repo at `9a2477bcdfe5b6c2`, last confirmed-live build `e3d3bc8c77a83e38` from 2026-10-09) is the same recurring, self-resolving pattern `OWNER-ACTIONS.md` item 0 already tracks; no deploy key exists in this sandbox.
+
+**Went well:** letting the full suite run to a genuine verdict in the background instead of re-asserting the documented `gate_tests` slowness as a hang; reading the one real cold-read gap's diff before trusting its own three-line docstring summary.
+
+**Did not go well:** none this cycle; no new defect found, which after ~60 prior cycles today on the same exhausted queue is itself the expected outcome, not evidence nothing was checked.
+
+**Changing next cycle:** none new. Same standing caution as recent entries: re-examine already-shipped tooling's own behaviour (git history, workflow run logs), not just whether its code still matches its gate, since that is the one shape that has produced a real defect this week (the duplicate-send race) against an exhausted backlog.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s items), unchanged.
+
+Pushed to main. Cold-read ledger, command deck, cycle-signal snapshot, and this log entry only. No site, price or product page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: previous work finished, steady state reconfirmed, nothing new unblocked
 
 Attached clean. `cycle_signal.py --check`: SAME against `e619281f4e`, so skipped the redundant backlog re-read. Ran full `preflight.py` anyway: every gate passed, 31 warnings, all standing environment limits; dashboard not stale. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, none mine; 0 PRs; tree clean throughout.
