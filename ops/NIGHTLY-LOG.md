@@ -2,13 +2,37 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-13, same session, same cycle, addendum: a full preflight run after merging onto the concurrent harvest found a real FAIL, the concurrent cycle's own "checked clean" claim below was stale, fixed
+## 2026-10-13, PM check-in (:40 slot, a live CI failure found and fixed: GOALS.md's own keyword-cluster citation had drifted behind the fresh harvest)
 
-**Found:** merging onto the concurrent cycle's push (entry directly below) required re-running preflight against the merged tree. That run FAILed: `test_gate_goals_keyword_cluster_citation_current.py`'s case 7 (the real committed files must warn nothing) found `GOALS.md` citing the "small space" and "cheap/budget/DIY" clusters at their pre-harvest counts (20/16/1/37, 28/65/4/97) against the fresh `ops/keyword-demand.json` the harvest below had just landed (19/16/1/36, 27/67/4/98). The entry directly below claims "`gate_goals_keyword_cluster_citation_current` ... checked clean directly"; that claim did not survive an independent re-run and was stale by the time it was written, the same "a claim that didn't survive its own cycle's later state change" shape this log has named repeatedly. Not a hostile correction: recorded plainly per `CLAUDE.md` 0.4/54.
+**NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion, because it has not been cited anywhere in today's log and the last full visual/accessibility sweep was several days ago, so it is a genuine, non-repeated, sandbox-executable check rather than another re-read of an already-ledgered file.**
 
-**Fixed:** updated the one bolded citation sentence the gate's regex actually matches (`GOALS.md`'s O1 section, the 2026-10-02 sentence, not the later "Re-derived" addenda which use unmatched phrasing) to the live numbers, cited against the real commit (`33d64c37b`, `checked_at` 2026-10-13T05:22:30Z) rather than typed from memory. Added a short, unquoted corrective note in the file's own established style rather than duplicating the bolded pattern a second time. `python ops/tests/test_gate_goals_keyword_cluster_citation_current.py`: 7/7, fail then pass proved directly. Full `preflight.py` re-run after the fix to confirm no other gate regressed.
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (33 commits, fast-forward clean, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the live head of this file, and `gh issue list` (9 open, unchanged, all `decision`/`blocked-on-art`). `git status` clean, main already up to date with origin.
 
-**Did not go well:** the FAIL would have been avoided entirely if the concurrent cycle's claim had been a fresh re-run rather than carried forward from before its own harvest landed. No new gate needed: the existing gate caught it correctly on the very next independent run, which is what it is for.
+**Step 2, checked whether previous work was actually finished rather than assumed.** `python ops/cycle_signal.py --check` reported SAME (every signal file byte-identical to the snapshot the prior cycle recorded after its own clean run), so a full local re-verification was correctly skippable per that tool's own rule; started a full `preflight.py` anyway as an independent check, found it genuinely redundant once `cycle_signal` confirmed nothing had moved, and killed it rather than burn nine more minutes on a result already covered.
+
+**The real finding: live CI, not this sandbox, had failed on the current HEAD.** Checked GitHub's own workflow runs directly rather than trusting the local picture: the "Checks" workflow on commit `98cfbffd4` (the prior cycle's own A27 reconciliation push) came back `failure`. `gate_tests` caught it: `test_gate_goals_keyword_cluster_citation_current.py`'s own case 7 failed because `GOALS.md`'s O1 section still cited the "small space"/"cheap/budget/DIY" cluster coverage from the 2026-10-09 reading (20/16/1/37 and 28/65/4/97), and the keyword-demand harvest two cycles ago moved both (to 19/16/1/36 and 27/67/4/98). The committed test checks the real files, not a synthetic fixture, so a citation left behind by a fresh harvest fails CI for real, not just a local warning. Per STEP 2's own instruction, finishing this became the cycle's actual work rather than starting something new.
+
+**Fixed:** updated `GOALS.md`'s O1 citation to the live numbers and appended a dated correction sentence in the file's own established style, same benign-autocomplete-churn shape as every prior correction to this sentence (one query left the "small space" cluster entirely; one previously-covered "cheap/budget/DIY" query dropped to partial and one new query entered as partial). Re-derived both clusters directly from the real committed `ops/keyword-demand.json` via `keyword_demand.cluster_counts()`, not retyped by hand.
+
+**Verified:** `python ops/tests/test_gate_goals_keyword_cluster_citation_current.py` now reports `OK: 7/7 cases` (was failing case 7 against the real committed files). `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes. Confirmed no other file carries the same live citation pattern (`grep` for the exact `"small space" is **N covered...` phrasing across `STATUS.md`/`BACKLOG-2026-09-07.md`: both only carry dated historical readings explicitly marked as not updated to match current counts, which the gate correctly does not check).
+
+**Went well:** catching this from GitHub's own run status instead of citing the prior cycle's "clean full preflight" claim, which was true locally at the time it was made and went stale the moment the next harvest landed; not wasting a redundant local preflight once `cycle_signal` confirmed nothing had moved.
+
+**Did not go well:** this is now the fourth time this exact sentence has drifted behind a keyword-demand harvest; the gate catches it every time but nothing stops the next harvest from doing it again, because the fix is necessarily manual (the sentence is prose, not generated). Worth a generator for this specific line if it recurs a fifth time.
+
+**Changing next cycle:** none beyond the standing note above.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged. Watching the pushed commit's own CI run to confirm green before closing this entry.
+
+Pushed to main. `GOALS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-13, same session as the :10 slot below, addendum: found and fixed the identical citation drift independently, then found the :40 twin had already pushed the same fix first, merged onto theirs rather than duplicate
+
+**Found independently, same defect as the entry above:** merging onto the concurrent harvest/reconciliation push (two entries below) and re-running preflight against the merged tree surfaced the same FAIL the :40 slot entry above describes: `test_gate_goals_keyword_cluster_citation_current.py`'s case 7, `GOALS.md` citing the pre-harvest counts against the fresh `ops/keyword-demand.json`. Fixed it locally the same way (same live numbers, same gate, 7/7 proved) before discovering, on fetch, that the :40 twin had already pushed an equivalent fix (`8ebb32641`) first. Took theirs rather than carry a second, differently-worded correction sentence into the same file: no defect survives either way, and two parallel prose corrections for one drift is worse than one.
+
+**Worth naming plainly per `CLAUDE.md` 0.4/54:** the "same cycle continued" entry two below claims `gate_goals_keyword_cluster_citation_current` "checked clean directly" after the harvest landed; that claim did not survive either independent re-run (this one or the :40 twin's), and was stale by the time it was written. Not a hostile correction, just the record.
 
 ## 2026-10-13, PM check-in (:10 slot): previous work (the operator's own cycle) independently reconfirmed finished, nothing new unblocked, keyword-demand harvest and reconciliation landed concurrently below
 
