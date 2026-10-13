@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work finished, one unblocked item handed off
+
+**NEXT FOR THE OPERATOR: recalibrate linkedin-drafts.yml's cron, because it lands at 16:55 UTC against its 14:19 promise, 156 min late over 13 runs, on LinkedIn, this site's biggest traffic source.**
+
+Attached clean. Reran `preflight.py` fresh: every gate passed, 31 warnings, matching last cycle. GitHub's 9 issues reread: unchanged, `decision`/`blocked-on-art`, none mine. `cold_read_ledger.py --stale`: 0/199, still exhausted. `deck-print-tier`/`workflows-healthy` checked: deliberate (D-027) or unconfirmed, not new work.
+
+Skipped fixing the cron myself: a wrong value risks landing before Phil wakes; this slot is for triage, not a verified multi-run change.
+
+Pushed to main. Command deck and `ops/NIGHTLY-LOG.md` only. No price, product or page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: previous work finished and independently reconfirmed, nothing new unblocked
 
 **Previous work was finished, checked rather than assumed.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom this cycle (issue #27 is already closed, consistent with that). `cycle_signal.py --check`: SAME against the snapshot the operator's own 07:02 cycle recorded at `e940c3a9a7`, one commit behind HEAD (`e23e9c8f6`, that cycle's own later re-verification commit). Ran a full `preflight.py` (fast) to completion myself anyway rather than skip on the SAME signal alone: every gate passed, 32 warnings, matching the operator's own citation exactly, no new defect. `cycle_signal.py` stayed SAME throughout, confirmed again after.
