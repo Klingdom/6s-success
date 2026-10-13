@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (21:1x slot): previous work finished and verified, one staleness fixed, no new unblocked work
+
+**Previous work finished.** Attached clean (unshallow, ff-only onto origin/main). `cycle_signal.py --check`: SAME against the 18:57:38Z snapshot, so skipped the redundant full re-verification per section 8's own addendum. `preflight.py --fast`: 0 FAIL, 0 WARN through every gate to the documented `gate_tests` sandbox hang, killed there per standing practice. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. All three scheduled Routines (this one, the :40 twin, the hourly operator) firing on schedule, last runs SUCCEEDED.
+
+**One real staleness found and fixed.** `EXECUTIVE-DASHBOARD-LIVE.md` still cited `1fce67c04` and falsely claimed "uncommitted or unpushed work" while HEAD was the later `6ef0c249f` merge and the tree was clean, same defect class the 20:4x cycle fixed two slots ago. Regenerated with `ops/dashboard.py` (generator-owned, not hand-edited); now reads `6ef0c249f`, "clean, in sync." Pushed (`20d34ceaa`).
+
+**Next:** standing Phil-gated queue unchanged (`OWNER-ACTIONS.md`, same 9 issues). Nothing hours-sized unblocked for the operator beyond that queue.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle (21:xx): cycle_signal confirmed SAME, external checks only, issue #40 reconfirmed resolved
 
 **Did:** Attached to main cleanly (unshallow then ff-only, no conflict this time: `git merge-base main origin/main` already equaled origin/main's tip once the fetch finished, so this was the ordinary unshallow case the operator prompt describes, not the unrelated-histories shape issue #27 usually hits). `python ops/cycle_signal.py --check` read SAME against the snapshot recorded 2026-10-13T18:57:38Z, so a full local re-verification would have been the same redundant cost section 8's addendum names; spent the cycle on the external checks that signal cannot cover instead. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, same standing gap. `list_triggers`: all three scheduled Routines (PM :40, PM :10, hourly operator) firing on schedule, `last_run.status` SUCCEEDED or in-flight PENDING, none FAILED, continuous Claude-authored commits every 10 to 30 minutes since 11:53 UTC today. Posted a status comment on issue #40 (the 2026-10-09 usage-limit stall) with this evidence: the stall has cleared, root cause (why) still unconfirmed, left open.
