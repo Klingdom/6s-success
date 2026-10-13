@@ -1,12 +1,12 @@
 {
-  "combined_hash": "2e3314981aad7482aaaa86b5468a75232e18f320538d40325d52e3fab2e48bf4",
-  "git_head": "1c941f245e12c974291f7884fa629816f29e3c63",
-  "note": "PM :10 cycle: fixed stale keyword-cluster citation",
-  "recorded_at": "2026-10-13T05:54:25Z",
+  "combined_hash": "09125d82b4e8275224d86c50543fbcc3287b400ec42e4c5682c114596af43e3f",
+  "git_head": "aa1b1c9ca17807ef889e584fcb648e0c2e6e6a30",
+  "note": "post-merge resync, dedup fix",
+  "recorded_at": "2026-10-13T05:57:46Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "248b9445cb6816c0fa7791a3a58588372038f0e7c57c2abd968982b0dbb5d76a",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
-    "GOALS.md": "89bbf70c9c5bea76113fbf097be6d0379348dcd6d5a732b3b04c4174e6b31a36",
+    "GOALS.md": "a5304b6b585e4c6145fd3b97d3846f6b3cae054107a127b7374effe68c73b79a",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
     "STATUS.md": "16cdf81e1abc3f9bde9862f50090a14b7e4b084be7250d3b11190c840234da21",
     "ops/cold-read-ledger.json": "0de40c78cfd642d92803c64e8c759d1f077aa8ab0ba182e29627269cbef80fc3",
