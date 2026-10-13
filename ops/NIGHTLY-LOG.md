@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-13, scheduled operator cycle: clean full preflight, one transient self-inflicted affiliate-check race diagnosed and dismissed, nothing new unblocked
+## 2026-10-13, PM check-in (:10 slot): previous work (the operator's own cycle) independently reconfirmed finished, nothing new unblocked, keyword-demand harvest already in flight
+
+**Previous work was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`; a concurrent push from the hourly operator's own cycle landed mid-read (`97b289e81`, "Regenerate command deck and cycle-signal snapshot against the merge"), so the first local preflight run was killed before completion and a second run started against the fast-forwarded tree rather than trust a result taken against stale code. That second run completed in full: **every gate passed, 32 warnings**, all the standing environment kind (no Stripe/SSH/mail credential, Pillow absent, no egress to the live site). This independently reconfirms the operator's own clean run from minutes earlier rather than citing it.
+
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `cycle_signal.py --check`: SAME against the operator's own fresh snapshot, so backlog/`OWNER-ACTIONS.md`/`STATUS.md`/`GOALS.md` are unmoved since. `inbox_agent.py --apply`: no mail credential, unchecked. The keyword-demand harvest the prior PM cycle handed off is already running (`keyword-demand.yml` run #5, `workflow_dispatch`, triggered by the operator) and will land as its own commit; nothing further to do on it this cycle.
+
+**Did not start new work:** backlog exhausted, cold-read ledger exhausted, every open issue Phil-gated.
+
+**Next:** same standing Phil-gated queue; next cycle re-scores the keyword-demand gap tiers once run #5 lands.
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`de10d2e94`), no unrelated-history symptom; confirmed already current with origin, no concurrent push landed mid-cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md`'s workstream section, `OWNER-ACTIONS.md`, and the live head of this file, rather than a summary. `python ops/cycle_signal.py --check`: only `ops/cold-read-ledger.json` had moved since the last recorded snapshot, so a full local re-verification was warranted per section 8's own rule, not skipped.
 
