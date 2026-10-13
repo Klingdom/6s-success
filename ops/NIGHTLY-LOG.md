@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: independently converged on the same C7 finding as a concurrent PM check-in, resolved the resulting merge conflict
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the tail of this file. Ran `python ops/preflight.py` to full completion (no short timeout; about 9 minutes): every gate passed, 31 warnings, all standing environment limitations. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `cycle_signal.py --check`: SAME. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check` and `check_urls.py`: clean. Mobile `npm test` (`mobile/quest-app`): all three suites passing.
+
+**Picked up C7 (the one fully-specified, non-Phil-gated item the backlog's own section 8 named) independently of any other session.** The `render-narrated-videos.yml` workflow (built last cycle) had two runs on record: one already completed (failure), one `in_progress`. Watched the in-progress run (`38333767110`) to its actual terminal state rather than trusting the queued status: it failed identically to the first, all 15 zones, every attempt, `WSServerHandshakeError: 403` on `speech.platform.bing.com`'s websocket handshake, from the GitHub-hosted runner itself. Wrote up the same correction the backlog's prior row needed (GitHub Actions is still a datacenter IP and gets the identical rejection as the cloud sandbox, just as a 403 instead of a DNS refusal; the only path that has ever worked is Phil's own machine) and pushed it.
+
+**Found on push: a concurrent PM check-in session had reached the identical conclusion minutes earlier and already landed a cleaner version of the same correction** (`3bcab917f`, plus its own `gate_owner_actions_last_measured_current` fix in `5144319eb`, the exact gate-staleness shape my own edit had also just tripped and fixed independently). Rather than force a duplicate, conflicting record of the same event, merged `origin/main` (a real 3-way merge, not a reset) and resolved the one real conflict in `BACKLOG-2026-09-07.md` by keeping their better-structured C7 row (correct table columns, exact attempt/time counts from their own log read) over my own appended third-wave paragraph; `OWNER-ACTIONS.md` auto-merged both edits textually, so removed my now-redundant paragraph and kept their shorter note under the existing video item. Re-ran `preflight.py` to full completion on the merged result before pushing: every gate passed, 32 warnings, no FAIL.
+
+**Verified:** full `preflight.py` twice (once before discovering the collision, once after resolving it), both clean. `git fetch` immediately before push showed nothing further landed. Pushed the merge commit; `git log` confirms a clean merge, no leftover conflict markers anywhere in the tree (checked by grep across the repository, not sampled).
+
+**Went well:** treating a concurrent session's already-landed fix as the authority to defer to rather than racing to publish a second, slightly different account of the same event; resolving by merge rather than a destructive reset.
+
+**Did not go well:** two sessions spent the same several minutes independently watching the same workflow run and writing up the same root cause; neither checked `git fetch` for in-flight concurrent work before starting the write-up. No new gate from this: it is a scheduling/coordination cost, not a content defect a file check could catch.
+
+**Changing next cycle:** before writing up a finding that will touch `BACKLOG-2026-09-07.md` or `OWNER-ACTIONS.md`, `git fetch origin main` once more immediately beforehand, specifically to catch a concurrent session that reached the same conclusion first.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and the full `ops/keyword-demand.json` gap-tier sweep the immediately prior PM check-in already queued; nothing else unblocked this cycle.
+
+Pushed to main (merge commit `79360442f`). `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (:40 slot): previous work confirmed finished, nothing new unblocked, full gap-tier sweep handed to the operator
 
 NEXT FOR THE OPERATOR: read `ops/keyword-demand.json`'s full 200-row `gap` tier (harvested 2026-10-09, rescored 2026-10-10) end to end for any further genuine in-scope zone/room/deck synonym gap, because every fix this lane has produced since A15 (A18, A21, A23, A25, A26) was found by sampling a specific cluster somebody happened to notice, and no cycle has yet declared a complete pass over this harvest's own current gap tier.
