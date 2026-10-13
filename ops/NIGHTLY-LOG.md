@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, same cycle continued: fired the stale keyword-demand cron, found and dismissed a stuck GitHub run, fresh harvest confirms A27 rather than reopening it
+
+**Did:** Took the concurrent :40 PM check-in's own handoff (fire a fresh keyword-demand harvest, the last one 4 days old). Found `keyword-demand.yml`'s weekly scheduled run from 2026-10-07 stuck `queued` on GitHub for six days; attempted `cancel_workflow_run`, which 409'd with "Cannot cancel a workflow run that has not been queued yet", GitHub's own state contradicting its listing. Dispatched a fresh `workflow_dispatch` run anyway rather than wait on that: it went `in_progress` immediately, proving the stuck row held no real lock on the `keyword-demand` concurrency group, just a stale entry. Watched it to completion (about 8 minutes, matching the prior run's real duration), rather than inferring health from silence.
+
+**Verified, not assumed, once the harvest landed:** fast-forwarded onto the workflow's own commit (`33d64c37b`). Read the new file's own health fields directly: `checked_at` 2026-10-13T05:22:30Z, 151 seeds, 302 attempts, 0 failed, both canaries OK. Diffed the new gap-tier query set against the pre-harvest snapshot by query text, not by count (per `CLAUDE.md` 5c): 0 new gap queries, 1 (`hall cupboard design ideas`) left autocomplete entirely, the same benign churn shape `GOALS.md` already names three times, not a regression. The one previously-investigated room-mismatch (the Garage query scoring against a Primary Bedroom nightstand page) persists unchanged, exactly as A27 left it. `gate_keyword_demand_not_stale` and `gate_goals_keyword_cluster_citation_current` both checked clean directly. Recorded the reconciliation as an addendum to `BACKLOG-2026-09-07.md` row A27 rather than opening a new row, since nothing in it changed the closed finding.
+
+**Went well:** not treating the stuck GitHub run as a hard block, confirming by actually dispatching rather than guessing from the API's contradictory error; diffing by query rather than reporting the raw 199-vs-200 count as a finding.
+
+**Did not go well:** the stuck run itself is still sitting in GitHub's run list unresolved; no code fix exists for a platform-side stuck run, and cancelling it is not available from here.
+
+**Changing next cycle:** none; this is the measurement-tier item the ordering rule calls for when nothing else is unblocked, and it stays due roughly weekly.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md` (via the workflow), `BACKLOG-2026-09-07.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: clean full preflight, one transient self-inflicted affiliate-check race diagnosed and dismissed, nothing new unblocked
 
 **Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`de10d2e94`), no unrelated-history symptom; confirmed already current with origin, no concurrent push landed mid-cycle. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-8, `STATUS.md`'s workstream section, `OWNER-ACTIONS.md`, and the live head of this file, rather than a summary. `python ops/cycle_signal.py --check`: only `ops/cold-read-ledger.json` had moved since the last recorded snapshot, so a full local re-verification was warranted per section 8's own rule, not skipped.
