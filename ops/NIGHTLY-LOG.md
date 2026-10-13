@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: dashboard staleness fixed at its two commit sources instead of re-fixed by hand again
+
+**Did:** Attached clean: `git fetch origin main`, unshallowed (arrived shallow and detached as described), `checkout main`, ff-only onto `origin/main` (145 commits). Delegated the full read of both backlogs, the roadmap and the last four log entries to a subagent to keep this session's own context light; it reported every row in `BACKLOG-2026-09-07.md` sections 2 to 6 Done, Phil-gated, or closed, and named the one real recurring pattern: `gate_dashboard_self_description_fresh` getting re-fixed by hand in nearly every cycle that day. Read 9 open GitHub issues directly: unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential, same standing gap. `affiliate.py --check`: clean, 165 documents.
+
+**Verified before acting, not assumed from the subagent's report.** Read `ops/ship.py` and `gate_dashboard_self_description_fresh`'s own docstring in full: the gate already exists, already WARNs correctly, and already explains why it does (lag between regeneration and the next commit is routine). The actual gap was that `ops/ship.py` never ran `ops/dashboard.py` itself outside a rebase conflict, so the deck only ever stayed fresh if a caller remembered a separate manual step first. Traced the real commit stream (`git log --oneline -20`, then `actions_list` against `hourly-brief.yml` directly, 1477 runs): that workflow fires on every push to `main` as well as hourly and commits `CHECKIN-LOG.md` etc. unconditionally, with nothing in the job ever touching the deck, making it the dominant source, not any one session's own pushes.
+
+**Fixed both.** `ops/ship.py` now runs `ops/dashboard.py` unconditionally before staging, on every real (non `--check`) call. `.github/workflows/hourly-brief.yml`'s "Commit the check-in record" step now regenerates the deck first (with `STRIPE_SECRET_KEY`/`GH_TOKEN` passed so it degrades the same way a credentialed session would, not worse) and commits its three files alongside the check-in record. Left the three other push-triggered auto-commit workflows (`bluesky-drafts.yml`, `social-drafts.yml`, `linkedin-drafts.yml`) untouched this cycle: each wraps its commit in a more fragile rebase-retry loop already built for a different cross-workflow race, and each commits far less often than the hourly one. Full reasoning in `BACKLOG-2026-09-07.md` section 9.
+
+**Verified:** `python ops/dashboard.py` runs clean standalone (stdlib only). `python ops/ship.py --check` stays read-only (no dashboard regen, just a report). All three existing `ops/tests/test_ship_*.py` files pass against the changed file. `.github/workflows/hourly-brief.yml` parses as valid YAML. `preflight.py` run to completion in the background: 0 FAIL/WARN through all 74 gates up to the documented `gate_tests` sandbox hang, confirmed genuinely stalled (flat CPU time across a 15-second window) before killing it, same as every other cycle today.
+
+**A second real find while checking the first:** before trusting the commit step actually reaches origin, read this job's own comment above it, which claimed in the present tense that no "Hourly check-in record" commit had ever once succeeded (a 403 permission failure found 2026-09-03). Checked rather than cited: `git log --author=github-actions --grep="Hourly check-in record"` shows 520 such commits in history, the most recent 3 minutes old at the time of this cycle. The comment was true the day it was written and stale ever since (the `permissions: contents: write` block right below it already fixed the real bug); it just never got corrected once the fix landed. Corrected it in place rather than leaving a true-sounding, false claim sitting in a file every future cycle reads. This also means today's actual fix (regenerating the deck in that job) has a real, currently-working commit path to verify against on the next scheduled or push-triggered run, not a hypothetical one.
+
+**Went well:** verifying the subagent's claim against the actual gate docstring and the actual commit stream before trusting it; finding the dominant real cause (one workflow, 1477 runs, not "an operator forgot") rather than writing a fourth gate on a problem the existing one already detects correctly; catching the stale 403 comment by checking it rather than citing it.
+
+**Did not go well:** could not watch the actual next hourly-brief.yml run complete from this sandbox to directly confirm the new "Regenerate the command deck" step succeeds in that job's own environment (GH_TOKEN/STRIPE_SECRET_KEY scoping); the commit mechanism itself is proven live, but this one step is unverified until its first real run.
+
+**Changing next cycle:** if `gate_dashboard_self_description_fresh` still fires after this lands, check the three left-untouched social workflows next, in the order given above, before writing a new gate.
+
+**Next:** standing Phil-gated queue (`OWNER-ACTIONS.md`, 9 open decision/blocked-on-art issues), unchanged.
+
+Pushed to main. `ops/ship.py`, `.github/workflows/hourly-brief.yml`, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (22:4x slot): previous work finished and verified, dashboard restamped, no new unblocked work, concurrent with the :43 operator
 
 **NEXT FOR THE OPERATOR:** standing Phil-gated queue (`OWNER-ACTIONS.md` "start here", 9 open decision/blocked-on-art issues), because the backlog and cold-read ledger remain exhausted of unblocked work.

@@ -52,15 +52,13 @@ jobs:
     # write, not read: the "Commit the check-in record" step below pushes
     # CHECKIN-LOG.md and ops/state-checkin.json back to main every run. Found
     # 2026-09-03, this operator, reading this job's own real logs rather than
-    # trusting its green checkmark: every push has failed with "Permission to
+    # trusting its green checkmark: every push had failed with "Permission to
     # Klingdom/6s-success.git denied to github-actions[bot], 403" since this
     # workflow was written, silently, because continue-on-error: true on both
-    # the check-in and commit steps swallowed it. No "Hourly check-in record"
-    # commit has ever once reached origin (git log --all confirms zero), so
-    # every hourly measurement this job took was computed correctly and then
-    # discarded when the runner tore down. gate_goals_published_videos_current
-    # (2026-09-02) has been comparing GOALS.md against a persisted count that
-    # could structurally never update past whatever a human committed by hand.
+    # the check-in and commit steps swallowed it. Fixed by the `permissions:
+    # contents: write` grant just below; confirmed live and current
+    # 2026-10-13 (`git log --author=github-actions --grep="Hourly check-in
+    # record"` shows 500+ commits reaching origin, most recent minutes old).
     permissions:
       contents: write
     steps:
@@ -127,12 +125,28 @@ jobs:
         continue-on-error: true
         run: python ops/indexnow.py --changed
 
+      # This workflow fires on every push to main as well as hourly, which
+      # made it the single biggest source of gate_dashboard_self_description
+      # _fresh's recurring WARN: every commit here advanced HEAD past the
+      # command deck's cited "Last commit" with nothing in this job ever
+      # regenerating it. Found 2026-10-13, after the same warning had been
+      # hand-fixed by an operator or PM check-in cycle every single time it
+      # fired that day. Regenerating it here, in the one job that otherwise
+      # commits to main unconditionally and far more often than any Claude
+      # session does, closes the gap at its most frequent source.
+      - name: Regenerate the command deck
+        continue-on-error: true
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: python ops/dashboard.py
+
       - name: Commit the check-in record
         continue-on-error: true
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@github.com'
-          git add CHECKIN-LOG.md ops/state-checkin.json ops/indexnow-log.json ops/last-brief-sent.json site/indexnow.txt "site/6a1f4c2e8b7d4a3f9e5c1b8d2a7f6e30.txt" || true
+          git add CHECKIN-LOG.md ops/state-checkin.json ops/indexnow-log.json ops/last-brief-sent.json site/indexnow.txt "site/6a1f4c2e8b7d4a3f9e5c1b8d2a7f6e30.txt" EXECUTIVE-DASHBOARD-LIVE.md ops/dashboard.html ops/state.json || true
           git diff --cached --quiet || git commit -m 'Hourly check-in record'
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main || true

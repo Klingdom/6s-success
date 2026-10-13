@@ -103,6 +103,20 @@ def main() -> int:
         msg = sys.argv[sys.argv.index("-m") + 1]
     check_only = "--check" in sys.argv
 
+    # Regenerate the command deck here, unconditionally, before anything is
+    # staged. STEP 11b in CLAUDE.md already says to run ops/dashboard.py on
+    # every cycle, but that was a step a caller had to remember to do before
+    # calling this file, and NIGHTLY-LOG.md shows the same staleness warning
+    # (gate_dashboard_self_description_fresh) getting re-fixed by hand cycle
+    # after cycle on 2026-10-13 alone. Folding the regeneration into the one
+    # path everything is told to ship through means a caller cannot forget
+    # it: calling this file is now sufficient on its own. --check stays
+    # read-only on purpose, since it only reports what would happen.
+    if not check_only:
+        subprocess.run([sys.executable, os.path.join(ROOT, "ops",
+                                                     "dashboard.py")],
+                       cwd=ROOT, capture_output=True, timeout=900)
+
     changes = dirty()
     if check_only:
         print("  uncommitted changes : %d" % len(changes))
