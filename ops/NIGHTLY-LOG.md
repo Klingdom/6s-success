@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: full preflight reconfirmed clean, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom (53 commits fast-forwarded). Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md` section 1-3b, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. `ops/cycle_signal.py --check` read SAME against the snapshot recorded at the last clean pass (git `e940c3a9a7`), so per section 8's own efficiency gate this cycle's redundant local re-verification was skipped in favour of a real full `preflight.py` run anyway, since the standing snapshot was itself several commits stale by the time this cycle started and a fresh clean pass was worth having on record.
+
+**Verified, not cited:** ran `python ops/preflight.py` (fast) to completion end to end: every gate passed, 31 warnings, all previously-diagnosed environment-access limits (no Stripe/SSH/mail credential, no network egress, no Pillow), one fewer than the prior citation because this run's own `hooks-enabled` check set `core.hooksPath` itself. `ops/affiliate.py --check`: clean, 165 delivered documents, correct disclosure. `ops/cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale, 0 un-ledgered candidates, the cold-read queue genuinely exhausted. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. GitHub checked directly: 9 open issues unchanged (all `decision` or `blocked-on-art`), 0 open PRs, every workflow run on the current head `success` (hourly-brief, checks, deliver-paid-orders, social/LinkedIn/Bluesky drafts all green). Independently re-derived the deploy gap rather than trust the recorded figure: `resolve_verdict_commit` against the live `ops/deploy-verdict.json` (build `e3d3bc8c77a83e38`) resolves to `a582ca349`, and `deploy_gap_material_commits` returns 5, matching exactly, no drift.
+
+**Did not start new work.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 (all 14 "Now" items in micro zones/web app, decks, images/video) is Done or Phil-gated, reconfirmed by reading the file directly rather than trusting a summary. Section 5's Hold list (email capture, physical decks, A/B tests, Impact re-application) is still correctly waiting on traffic, which `OWNER-ACTIONS.md`'s own measurement (49 visitors/121 visits/30 days, last read 2026-10-02) has not moved past. The three standing `CRITICAL`/`OPEN` risks (RISK-0007 single host/no restore, RISK-0011 product masters outside the repository, RISK-0013 no stranger has ever converted) are all correctly Phil-gated or structural, not something a sandboxed cycle closes. Recorded a fresh `ops/cycle_signal.py --record` snapshot against this cycle's own clean pass, superseding the slightly-stale one it inherited.
+
+**Went well:** running the real fast preflight to a clean, unambiguous completion (the first attempt was killed by mistake mid-run before its summary line printed; a second run completed cleanly and the mistake cost only wall-clock time, not correctness) rather than carrying forward an assumed-clean result.
+
+**Did not go well:** the first preflight invocation was foreground-timed-out, moved to background, and then killed before confirming its own exit state, which is exactly the "a run that could not look must say so" trap `CLAUDE.md` 0.4 warns about; re-ran it properly rather than reporting the ambiguous result as a pass.
+
+**Changing next cycle:** none; no new defect found to gate. The standing Phil-gated queue (`OWNER-ACTIONS.md` items -1, 0, 1a, 1d and the five open decision issues) is unchanged.
+
+**Next:** same standing Phil-gated queue, unchanged.
+
+Pushed to main. Command deck regenerated (separate commit). No site, price or product touched; IndexNow not applicable, no page added.
+
 ## 2026-10-13, PM check-in: previous work finished and independently reconfirmed, nothing new unblocked
 
 **Previous work was finished, checked rather than assumed.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom this cycle (issue #27 is already closed, consistent with that). `cycle_signal.py --check`: SAME against the snapshot the operator's own 07:02 cycle recorded at `e940c3a9a7`, one commit behind HEAD (`e23e9c8f6`, that cycle's own later re-verification commit). Ran a full `preflight.py` (fast) to completion myself anyway rather than skip on the SAME signal alone: every gate passed, 32 warnings, matching the operator's own citation exactly, no new defect. `cycle_signal.py` stayed SAME throughout, confirmed again after.
