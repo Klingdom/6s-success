@@ -1,8 +1,8 @@
 {
   "combined_hash": "60dee9c673ef38c5340ddb2b0ec995c5fd8498b0b626004800f7f8c03d4476b8",
-  "git_head": "3b7feb5da36e03d5757c5ecbbc6bb18847d4bf45",
-  "note": "operator cycle 2026-10-13: full preflight clean (0 FAIL, 32 standing warnings), GitHub 9 issues/0 PRs unchanged, cold-read ledger 0 stale, nightly log entry added",
-  "recorded_at": "2026-10-13T10:04:29Z",
+  "git_head": "ad72b5ff315548b09eb63d930952a93904b4102c",
+  "note": "operator cycle 2026-10-13: full preflight clean (0 FAIL, 31 standing warnings) after fixing a real nightly-log-ordering FAIL (two cycles' entries appended to the tail instead of prepended); GitHub 9 issues/0 PRs unchanged, cold-read ledger 0 stale, dashboard regenerated",
+  "recorded_at": "2026-10-13T12:15:32Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "367834e8dc2786b67115b4db029718079f90d6d357e4b1141c8f0edf93842a04",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
