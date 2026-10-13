@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (18:2x slot): independently re-verified the concurrent scorer fix rather than redo it, CI confirmation handed off still in progress
+
+**Did:** Attached clean (shallow, detached; unshallowed, then `checkout main && merge --ff-only origin/main`, no unrelated-history symptom). Read `git log -12`, this log's live head, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub's 9 open issues/0 PRs directly.
+
+**Started on the same item the 17:4x PM entry had handed off** ("arrange the towels" phrasing, the Partial tier's rank-1 near-miss) and independently reached the same conclusion the concurrent operator cycle landed while this cycle was still reading: the page already answers the query, "arrange" is a verb synonym of "organize" and not a genuine content gap, and forcing it into `zone-also-called.json`'s noun-phrase heading mechanism would read as "Also called the arrange towels," bad grammar and keyword-stuffing (CLAUDE.md 9) for one query while leaving the same shape unfixed elsewhere. Before building anything, `git fetch` showed the operator had already pushed exactly this fix (`6774e2895`, widened `FORMAT_WORDS` in `ops/keyword_demand.py` to exclude the "arrange" family) while this cycle was still investigating. Per STEP 8, did not duplicate it.
+
+**Verified the concurrent fix independently rather than trust the commit message.** Killed this cycle's own now-stale backgrounded `preflight.py` run (0 FAIL through every gate up to the documented `gate_tests` hang, same as every cycle today, but against a superseded tree) and fast-forwarded onto `6774e2895`. Ran `ops/tests/test_keyword_demand.py` directly: `OK: keyword_demand, 21 numbered case(s), no problems`, including the new case 8b. Ran `python ops/keyword_demand.py --rescore` and diffed the result against the committed `ops/keyword-demand.json` byte for byte: identical except the `scored_at`/`scored_against_commit` stamp, confirming the committed gap/partial/covered counts (187/1455/1177) are genuinely current, not stale. Reverted the resulting stamp-only diff on both regenerated files to keep the tree clean, since re-stamping with no substantive change is churn, not a fix. Read the fresh Partial tier's new top rows: all decor/format-modifier near-misses ("ideas", "pinterest", "ikea", "plans", "diy" against titles that already cover the real subject), the same out-of-scope shape prior cycles (A13/A20-A27) already declined; none is a clean synonym fix, so correctly nothing further to close in this tier right now.
+
+**Verified:** GitHub 9 open issues / 0 open PRs, unchanged, all `decision`/`blocked-on-art` (direct `list_issues`/`list_pull_requests`).
+
+**Went well:** checking `git fetch` before building anything, which caught the collision before any duplicate work was written; the concurrent fix held up under independent re-derivation rather than needing to be trusted on its own account.
+
+**Did not go well:** CI's `Checks` run (2100) on `6774e2895` was still `in_progress` after roughly 11 minutes of waiting at log time, reported unchecked rather than assumed green.
+
+**Next for the operator or the :40 twin:** confirm CI run 2100 (`6774e2895`) goes green. Nothing else is genuinely unblocked beyond the standing Phil-gated queue (`OWNER-ACTIONS.md`, 9 open decision/art issues); the Partial tier's new top rows are declined as out-of-scope decor modifiers, not a handoff.
+
+Pushed to main: this log entry and command deck only. No other file changed (the fix commit was the operator's own push, not this cycle's); no price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-13, scheduled operator cycle: closed the guest-bathroom-towels handoff as a 71-query scorer bug, not a one-page content gap
 
 **Did:** Attached clean, unshallowed, fast-forwarded. Read GOALS.md, both backlogs (all Done/Phil-gated), OWNER-ACTIONS.md, recent log, GitHub (9 issues/0 PRs, unchanged). `cycle_signal.py` read CHANGED, then SAME once a concurrent 17:4x PM check-in landed with a fresh snapshot; merged it rather than re-running a redundant full local verification.
