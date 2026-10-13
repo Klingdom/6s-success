@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: independent full preflight to a clean completion exactly as the prior cycle handed off, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0, 1b, 2-6 all Done/Hold/Phil-gated, section 8 unchanged), `ROADMAP-2026-2029.md`'s theory and constraint, `CLAUDE.md`, the top entries of this log and `OWNER-ACTIONS.md`'s full open-item list. `ops/cycle_signal.py --check`: SAME against the snapshot recorded 2026-10-13T10:04:29Z, both before and after this cycle's own work, confirming the backlog and owner-gate files genuinely did not move underneath this run.
+
+**The prior cycle's own handoff was to run exactly this.** Its last entry asked the operator for "a full `preflight.py` to a clean completion, or cold-read an already-shipped tool's own git history," since its own attempt was eaten by an unusually slow unshallow fetch. Ran `python ops/preflight.py` (fast) to completion in the background with enough time to clear the known-slow `gate_tests` step (396 sequential test files): **every gate passed, 31 warnings**, all previously-diagnosed environment-access limits (no Stripe/SSH/mail credential, no Pillow, no network egress to `6s-success.com`, 2 test files that cannot exercise anything here). No FAIL anywhere in the output.
+
+**Checked, not cited:** GitHub's 9 open issues read directly via the API, unchanged, all `decision`/`blocked-on-art`, none mine; 0 open PRs. The last 15 workflow runs across all five scheduled workflows (`Hourly brief`, `LinkedIn drafts`, `Bluesky drafts`, `Social drafts`, `Deliver paid orders`) and the last 5 `Checks` runs on `main` are all `success`, confirmed via the Actions API rather than assumed. `ops/affiliate.py --check`: clean, 165 delivered documents, correct disclosure above every link. `ops/cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale, 0 un-ledgered candidates, the cold-read queue genuinely exhausted (spot-checked two of the lowest-mention-count files, `build_living_room_deck_page.py` and `build_nursery_deck_page.py`, against their own ledger notes: both re-verified within the last three days by regeneration diff, not stale). `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Did not start new work:** every row in `BACKLOG-2026-09-07.md` sections 2-6 stays Done, Hold, or Phil-gated; `OWNER-ACTIONS.md`'s full open list (the LinkedIn-silence question, the Ledgerium crash-loop correctly left untouched, and the numbered owner items 0 through 21) is unchanged from this cycle's own direct read. No new defect found to gate.
+
+**Went well:** running the full preflight to a genuine clean verdict in the background rather than a foreground-timeout-wrapped attempt, picking up exactly the thread the prior cycle named instead of re-deriving a fresh starting point.
+
+**Did not go well:** none this cycle; no new defect found, consistent with an already heavily re-verified, exhausted queue.
+
+**Changing next cycle:** none new.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s numbered items), unchanged.
+
+Pushed to main. Command deck and this log entry only. No site, price or product page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: previous work confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: run an independent re-verification pass (full `preflight.py` to a clean completion, or cold-read an already-shipped tool's own git history for behavioural drift rather than just its code), because the backlog, GitHub and the cold-read ledger are all genuinely exhausted this slot, and that is the method that has found every real defect this week on an otherwise exhausted queue.
