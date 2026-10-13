@@ -323,8 +323,8 @@
     },
     "build_thumbnails.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Cold read, 2026-10-09 scheduled operator. Correctly implemented: --check counts PNGs against 114 (ran it: 114/114), MAX_BYTES guard checked against actual files (largest 46KB, far under 2MB), zone_slug() used from video_zone.py rather than a hand-copied slug (the single-source-of-truth bug class gate_video_slug_single_source exists to catch). Wired into preflight via gate_dashboard_thumbnails_live. No defect found."
+      "date": "2026-10-12",
+      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (165 lines). shot(), fit() and html_for() all logically sound; zone_slug() delegated to video_zone.py rather than hand-copied (the exact defect class this file's own comment documents being fixed for). --check confirms 114/114 thumbnails present. No render environment here to exercise the actual screenshot path, so that branch is read-verified, not executed; the --check branch (the one the pipeline actually calls) was run directly. No defect found."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -332,14 +332,14 @@
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated in isolation (no concurrent process) and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion (WSA-013/014/015, hazard walk / stalled-projects audit / last-light-out reset) checked against the real built cards (exact match); hero_image_url()'s first zone (Main Workbench) checked against disk and that zone page's own og:image (exact match). Note for whoever reads this next: an EARLIER pass in this same cycle ran this generator concurrently with a background preflight.py process also touching site/**/*.html, and the race corrupted site/standards.html and site/workshop-deck.html (stripped PWA/SKIP/PROGRESSIVE/main blocks, stale fingerprints) with nothing to do with either generator's own logic; killing the background process and rerunning each generator alone reproduced a clean, byte-identical tree. Not a generator defect; a self-inflicted concurrency hazard, now avoided for the rest of this cycle."
     },
     "build_youtube_metadata.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Second-pass read found the committed captions/video_vertical/video_wide fields pointed at build/video/zones/ and zones-16x9/, the stale silent portrait/wide pair; the real uploader (ops/youtube_upload.py) reads <slug>-16x9.mp4/.srt from zones-narrated. Factored the three fields into asset_paths(), fixed to point at zones-narrated, regenerated all 114 committed JSON files, and added gate_youtube_metadata_asset_paths_current (preflight.py), fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (241 lines). title_for()/description_for()/zone_page_slug() all delegate to build_zone_pages.py rather than reconstructing its slugging or naming, closing the exact three-ways-disagreeing-name defect this file's own comments document having fixed twice before. --check reports 115 JSON files (114 zone files + playlists.json), correctly counted by the --check branch's own .json glob, not a miscount. No defect found."
     },
     "build_zone_index.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Cold read, 2026-10-09 scheduled operator. Ran the full generator standalone (chains canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif, fingerprint_assets, same as the file's own comments describe): regenerated site/zones/index.html byte-identical, 0 pages rewritten beyond its own header, 0 drift anywhere else on the site, both internal asserts (links resolve, 114 zones) passed. The r['zones'].index(z) numbering (same pattern as build_standards.py) checked against content.json: no duplicate zone dicts, so not a live defect. No defect found."
+      "date": "2026-10-12",
+      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (459 lines). Regenerated site/zones/index.html directly and diffed against the committed file: byte-identical. The full downstream wiring chain it calls (canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif.wire, fingerprint_assets) left git status completely clean afterward, proving every one of those generators also still agrees with its own committed output. No defect found."
     },
     "build_zone_map_pack.py": {
       "status": "clean",
@@ -348,23 +348,23 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in :40, 2026-10-09: re-read the 2026-10-08 jump-list addition (Phil + Claude Opus, a582ca349) against the file. Own test (test_zone_jump_nav.py) reruns clean on all 114 pages; marker-replacement and the AssertionError guard against a surviving marker both read correctly. No defect found."
+      "date": "2026-10-12",
+      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read the price/SKU logic in full (short_answer, _room_pack, _zone_pack, _catalog, _og_image, _zone_thumb, offer) out of 4120 lines, the highest-risk sections (money and generated links). Regenerated the entire site and diffed: git status fully clean, zero drift across all 220 site pages. Cross-checked _room_pack/_zone_pack's SKU reconstruction directly against ops/build_catalog.py's own SKU-generation code (lines 265-297): byte-for-byte identical truncation and hashing, confirmed by reading both, not assumed. PACK_BUY/PACK_PRICE/CONSULT_PRICE all read live from data.js, no hardcoded price or link found anywhere in the file. No defect found."
     },
     "canonical_links.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Second-pass cold read found a real defect: LINK regex and the tally regex both required .html immediately before the closing quote, so a fragment-bearing link (CAPACITY_ARTICLE's zone-too-small-for-what-it-holds.html#honest-count, on all 114 zone pages) was invisible to both the rewrite pass and the N-.html tally, which silently reported 0 instead of 114. Fixed both regexes to capture and reattach an optional trailing fragment; ran the real rewrite (114 pages). ops/tests/test_canonical_links.py added, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (184 lines). Ran --check directly against the real committed site: 0 links to rewrite, 169 extensionless/49 .html canonicals, 3827 extensionless/0 .html internal links, confirming the rewrite this file exists to do is already fully applied and stable. No defect found."
     },
     "card_spec.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Cold read, 2026-10-09 scheduled operator. Ran the module directly (exit 0, self-asserts WCAG AA on band_bg() for all 10 FAMILY entries at import time). Confirmed the historic family_of()-falls-back-to-Room defect class (D found 2026-09-07, 65/72 Kitchen cards mislabeled) is now covered by preflight's gate_card_family_known, and all five chain-vocabulary keys (Zone, Friction, Root Cause, Action, Standard) are present in FAMILY. The __main__ diagnostic table prints raw-colour contrast (e.g. Friction 4.09:1), which looks under the 4.5 target but is expected and documented: real card rendering uses band_bg()'s adjusted colour, not the raw one, and that path's own assertion already passes. No defect found."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (257 lines). Ran directly: prints the full type scale and family contrast table, all values matching the floor/body-minimum rules in the module docstring. The module-load-time assert (every FAMILY band clears 4.5:1 after band_bg()) passed, confirming the WCAG fix described in band_bg()'s own comment is still true, not merely documented. No defect found."
     },
     "check_affiliate_trigger.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Cold read, 2026-10-09 scheduled operator. Ran it directly in this sandbox (no ssh key): correctly reports 'T2 NOT EVALUATED ... not a reading of zero' rather than a false 0/60. Reads retailer hosts live from product_links.MERCHANTS (no second hardcoded list to drift), excludes who=internal/automated per PLAN-AFFILIATE-MONETISATION.md's T2 wording, wired into preflight (gate reads check_affiliate_trigger directly). SQL host list is built from internal static config (product_links.py), not user input, so the string-formatted IN clause is not an injection surface. No defect found."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (156 lines). Ran directly: correctly reports T2 NOT EVALUATED (no ssh key here) rather than a false zero, matching the file's own stated contract that unreadable must never read as zero. retailer_hosts() reads live from product_links.MERCHANTS rather than a second hardcoded list, confirmed by reading that import. No defect found."
     },
     "check_cron_cadence.py": {
       "status": "clean",
@@ -378,18 +378,18 @@
     },
     "check_ledgerium.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Second-pass re-read in full, plus ledgerium_price_check.py it imports from. Design confirmed sound: single EXPECTED/WEBHOOK source, account-id check before falling back to VPS-shipout, never reports ok without a live credential. Ran live: no Stripe credential/no egress here, correctly UNCHECKED. Ran ops/tests/test_ledgerium_check.py (5/5 pass). Cross-checked the hardcoded VPS IP/ssh-key path against 6 other ops/*.py files and LEDGERIUM-BILLING.md: consistent, not stale. No defect."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (149 lines), the file CLAUDE.md section 36b names by name as the safety gate for a second business's billing. EXPECTED/WEBHOOK constants are imported from ledgerium_price_check.py rather than hand-copied, closing the exact drift class documented in its own comment. Ran directly: correctly reports Ledgerium billing NOT checked (no Stripe credential here) rather than a false pass. No defect found."
     },
     "check_live_links.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Read in full. Ran live: no Stripe credential here, correctly UNKNOWN rather than a false ok. Ran ops/tests/test_check_live_links.py (8/8 pass), including a live run of repo_links() against the real site/ tree. Pagination, PAGES sample (incl. consulting.html, data.js, quest.js, shop.js) and the SLUG regex all check out. No defect."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (294 lines). all_links() paginates correctly (starting_after on has_more, the exact bug the file's own comment says an earlier version had). Ran directly: correctly reports UNKNOWN, no Stripe credential, rather than a false OK. PAGES list includes consulting.html and all three JS catalogues (data.js, quest.js, shop.js), the exact blind spots the file's own history names as having caused silent misses before. No defect found."
     },
     "check_pack_pages.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Read in full. Installed pypdf+cffi (missing in this sandbox) to actually render: all 5 PRINTABLES print clean (Standards Pack 20/20 pages no orphans, Kitchen/Entryway decks, Micro Zone Map, scoring template all 0 blank pages). MARKER/blank-page logic correct. No defect."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (147 lines). Ran directly: correctly reports UNCHECKED for all five printables (pypdf not installed in this sandbox) rather than a false pass; every one of the five printables named individually rather than only the headline pack. No defect found."
     },
     "check_sellable.py": {
       "status": "clean",
@@ -398,28 +398,28 @@
     },
     "check_sitemap_current.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Read in full. Ran live: 211/211 pages match recorded content hash. Correctly imports build_seo rather than re-deriving hash logic. No defect."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (87 lines). Imports its content-hash logic from build_seo.py rather than reimplementing it, closing the exact two-definitions-can-drift shape documented in its own comment. Ran directly: 211/211 pages match their recorded hash. No defect found."
     },
     "check_urls.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Re-read in full per second-pass handoff. The 2026-08-30 error_page 403=404 remap is still correctly reflected in resolve()'s docstring and directory-403 naming; check_live()'s unreachable-vs-bad accounting still distinguishes nothing-measured from everything-resolved. Ran directly: 211/211 sitemap URLs resolve. No new defect found."
+      "status": "clean",
+      "date": "2026-10-13",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (static resolver section, 60+ lines). Ran directly: 211/211 sitemap URLs resolve against site/ using the same try_files logic as the real nginx config. No defect found."
     },
     "check_video_links.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Read in full. Ran live: 12 ids found, all UNCHECKED (egress to youtube.com blocked here), correctly not reported as alive. Ran ops/tests/test_check_video_links.py (8/8 pass). ID regex covers watch/youtu.be/embed/-nocookie/data-yt/quest-data.js video field. No defect."
+      "date": "2026-10-13",
+      "note": "Fifth-pass cold read, 2026-10-13 scheduled operator cycle: re-read in full (125 lines). Ran directly: correctly reports UNCHECKED (proxy returns 403 on the YouTube oembed host) rather than a false pass; the ID regex correctly covers all four ways a video is named (watch URL, youtu.be, nocookie embed, data-yt, and quest.js's bare video id field), confirmed by reading each source file's own linking pattern, not assumed. No defect found."
     },
     "check_video_standard.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Read in full, ran live against the real 114-zone corpus and ops/tests/test_check_video_standard.py (7/7 pass). The checker itself is correct and found a REAL, new regression (not a checker bug): 15 of 114 rendered videos (e.g. living-room--media-center, garage--automotive-care-zone) now mismatch their own zone standard because content.json's British-to-American dialect fix (8aa7a6589, 2026-10-02) landed after those videos were rendered (928e5aa5c, 2026-09-20) -- e.g. video captions still say labelled/tyre, standard now says labeled/tire. Confirmed via git log the drift is real, not a false positive. Already correctly surfaced: gate_zone_videos_match_standard WARNs (not fails) with the exact 15-zone list, matching the gate's own documented design (customer-facing publish path already blocked by youtube_upload.py, not preflight). No code defect in check_video_standard.py; flagging the 15-video re-render as a real backlog item for the operator."
+      "date": "2026-10-13",
+      "note": "Fifth-pass cold read, 2026-10-13 scheduled operator cycle: re-read in full (182 lines) and ran live. Confirms the same 15-of-114 stale finding this file's own 2026-10-09 ledger entry recorded (same zones, e.g. living-room--media-center, primary-bedroom--bed-and-bedding-zone, guest-bedroom--guest-closet): unchanged in 4 days, still correctly held back from publish by youtube_upload.py, not a live customer-facing defect. Went further than reading this cycle: traced the actual re-render path (video_narrated.py) to find out whether the 15 could be fixed now. Confirmed root cause: edge-tts (the TTS library video_narrated.py needs) was not installed in this sandbox at all (fixed, pip install succeeded) but the TTS host itself, speech.platform.bing.com, is not reachable through this sandbox's egress proxy (DNS failure, confirmed directly by attempting a real render of living-room--media-center, which failed identically after the library was present). This is the same class of gap keyword-demand.yml was built to close for ops/keyword_demand.py (sandbox proxy refuses the destination outright; a GitHub-hosted runner has ordinary egress). No code defect in check_video_standard.py; the 15-video re-render itself needs either a session with real unrestricted egress or a new workflow following keyword-demand.yml's pattern, recorded as a new, unblocked, non-owner-gated backlog item rather than re-flagged a sixth time with no new information."
     },
     "checkin.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, ran it live, every pure measure verified against ground truth (repo_product_count, commits_24h_count, media counts, verify_media_delivery parsing). No defect."
+      "date": "2026-10-12",
+      "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (422 lines), not executed (it appends a real row to CHECKIN-LOG.md and writes ops/state-checkin.json on every run, so a cold-read execution here would plant a synthetic hourly entry in a document meant to be a measured record; the hourly-brief workflow already exercises it for real on every push). carry_forward()/next_action() correctly distinguish None (could not measure) from 0 (confirmed empty) throughout, the same discipline CLAUDE.md 0.4 requires, and commits_24h_count() correctly unshallows before counting rather than silently undercounting at the shallow boundary. No defect found."
     },
     "cold_read_ledger.py": {
       "status": "clean",
