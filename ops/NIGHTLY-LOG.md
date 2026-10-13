@@ -16,6 +16,12 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main (`d87b73251`). `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; IndexNow not applicable.
 
+## 2026-10-13, same cycle addendum: the backgrounded full preflight finished clean
+
+The full `preflight.py` run backgrounded during the entry above finished after both this cycle's commits were already pushed: **every gate passed, 31 warnings**, all the standing environment-access kind (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site, cron-cadence and delivery-phase measurement gaps). No new defect; `workflows-healthy`'s `render-narrated-videos.yml` warning is the already-diagnosed and Phil-gated C7 failure, not a new one. This independently reconfirms the dashboard fix shipped was correct and nothing else needed attention this cycle.
+
+HANDOFF-FILES: none
+
 HANDOFF-FILES: none
 
 ## 2026-10-13, scheduled operator cycle: closed the full keyword-demand gap-tier sweep handed off by the 02:4x PM check-in, no actionable gap found
