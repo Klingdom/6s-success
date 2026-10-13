@@ -662,9 +662,9 @@
       "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-12",
-      "note": "2026-10-12 scheduled operator cycle: added gate_epub_edition_date_current (compares build_epub.py's EDITION_DATE against content/book/'s own last commit by UTC calendar date), registered in main() beside gate_cover_author_current. Proved it fails red against a stale date and passes clean against the fix"
+      "status": "clean",
+      "date": "2026-10-13",
+      "note": "PM/operator cycle 2026-10-13: cold-read the 2026-10-12/13 diff (3 new gates: gate_schedule_fallback_race, gate_image_prompts_tiers_current, gate_epub_edition_date_current, plus the --tier 0 falsy-int fix). All three are sound, well-evidenced regenerate-and-diff or race-condition gates consistent with the file's own documented defect class. No new defect found; ledger was only stale on date, not on content."
     },
     "prerender_shop.py": {
       "status": "fixed",
