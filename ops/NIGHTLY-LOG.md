@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (00:1x slot): previous work reconfirmed finished by a full preflight run to actual completion, one small dashboard-staleness warning found and fixed
+
+**Finished?** Yes, and verified rather than cited. Attached cleanly (unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom). Working tree was already clean and main already in sync with origin before this cycle started.
+
+**Ran the full `preflight.py` to actual completion twice** (the first background run was cut off by this session's own 700s background limit mid-way through, past `gate_tests`, with zero FAIL printed; the second, given a 20-minute budget, finished clean): **every gate passed, 30 warnings, all the standing environment-access kind** (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site, deploy freshness unmeasured). This independently reconfirms the prior scheduled-operator cycle's own claim that `gate_tests` is not actually hung in this sandbox, just slow (several minutes), and that a short external timeout was the thing failing, not the gate.
+
+**One real, small finding: `gate_dashboard_self_description_fresh` warned the dashboard was one commit stale**, citing `f15dbd104` while a real commit (`1e4a00778`, the full preflight/cold-read work) had landed after it with no regeneration since. Fixed by running `ops/dashboard.py` directly; `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` all rewritten against current HEAD.
+
+**Verified independently, not cited:** GitHub's 9 open issues re-read directly: unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5; 0 open PRs. CI confirmed green on the last real work commit (run 2068, `f4b3443a3`, success); run 2069 (the already-pushed merge commit `a0781696f`) was in progress, not mine to wait on. `cycle_signal.py --check`: SAME, every tracked signal file byte-identical to the last snapshot. `check_urls.py`: 211/211. `affiliate.py --check`: clean, 165 documents. Mobile Jest suite: all pass (pickCard, eventLog, videoLink). Re-derived the production deploy gap directly (`resolve_verdict_commit`, `deploy_gap_material_commits`): still exactly 5 commits, 4 material, unchanged since 2026-10-10, so `STATUS.md`'s `BLOCKER-001` row stays accurate, no correction needed. `inbox_agent.py --apply`: no mail credential, standing.
+
+**Did not start new work beyond the dashboard fix.** Nothing in `BACKLOG-2026-09-07.md` is newly unblocked; all open GitHub issues are Phil-gated. The queued hours-scale item (building and `workflow_dispatch`-verifying the GitHub Actions runner to re-render the 15 stale narrated-video captions, per the prior cycle's new C7 backlog row) is left for the :43 operator, not attempted in this 30-minute slot.
+
+**Went well:** giving `preflight.py` the time it actually needs instead of re-citing a short-timeout kill as "hung"; the longer run surfaced the one real (if small) dashboard-staleness warning a quick kill would have hidden.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the dashboard-freshness gate caught this correctly and existed for exactly this reason.
+
+**Next:** same standing Phil-gated queue (9 open issues, all decision/blocked-on-art) and `OWNER-ACTIONS.md`. Highest-value unblocked item for the operator remains the C7 video-re-render workflow build, hours-scale.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, scheduled operator cycle: full preflight run to actual completion (every gate passed), 15-file cold-read tier, root-caused the 15-stale-video gap to a specific blocked TTS host
 
 **Did:** Unshallowed and attached cleanly to `origin/main` (`1dfdb300f`), no unrelated-history symptom. `cycle_signal.py --check` reported CHANGED (`ops/cold-read-ledger.json` only, against a 22:46:36Z snapshot taken before this cycle started), so ran the real full local re-verification rather than skipping it. GitHub's 9 open issues checked directly: unchanged, all `decision`/`blocked-on-art`, none mine. CI confirmed green on the current head (run 2068, `f4b3443a3`, success). `inbox_agent.py --apply`: no mail credential, standing. `affiliate.py --check`: clean, 165 documents.
