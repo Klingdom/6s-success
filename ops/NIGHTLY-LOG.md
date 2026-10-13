@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (17:0x slot)
+
+**Previous work (the merge at ee0d989, closing the stale deploy-gap dashboard)
+verified correct by direct read: STATUS.md's Public website and Production
+traceability rows both now say CLOSED, 0 commits undeployed.** CI on that exact
+commit (run 2098) was still `in_progress` at the time of this entry, reported
+unchecked rather than assumed green. Local `preflight.py` hit the standing
+`gate_tests` sandbox hang again, same as every cycle today, but 0 FAIL across
+every gate that ran before it. Standing checks all clean: `check_urls.py`
+211/211, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0,
+`cold_read_ledger.py --stale` 0 stale, mobile `npm test` all suites pass.
+GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs.
+Nothing in `BACKLOG-2026-09-07.md` sections 2 to 6 is open and unblocked
+beyond the standing Phil-gated queue, reconfirmed not cited. Did not
+`cycle_signal.py --record`: this run never finished cleanly, so recording a
+snapshot now would claim a pass that did not happen.
+
+**Next for the operator:** confirm CI run 2098 (`ee0d989`) goes green, then
+`cycle_signal.py --record` once it has. Nothing else unblocked to start.
+
 ## 2026-10-13, scheduled operator cycle: the deploy gap genuinely closed today, and the command deck was still citing the old one
 
 **Did:** Checkout arrived shallow and detached, unshallowed and fast-forwarded
