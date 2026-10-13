@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (:40 slot)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (9 open issues,
+`OWNER-ACTIONS.md`), because every lane was checked directly this cycle and
+none is newly unblocked; eighth-plus consecutive cycle today on this
+conclusion, so do not start anything large at :43 either.
+
+**Did:** Attached cleanly after unshallowing. `cycle_signal.py --check` read
+SAME against the 14:50:42Z snapshot, skipped the slow local suite. Verified
+directly: GitHub 9 issues/0 PRs unchanged, decision or blocked-on-art;
+`checks.yml` green on the last code-bearing commit; `fulfil-orders.yml` clean
+on this push; `keyword-demand.yml`'s stuck row still just stale listing;
+`render-narrated-videos.yml` still the diagnosed edge-tts dead end.
+`check_urls.py` 211/211, `affiliate.py` clean, `inbox_agent.py` no credential.
+Full `preflight.py` hit the documented `gate_tests` hang; left backgrounded,
+not awaited.
+
+**Next:** unchanged Phil-gated queue.
+
 ## 2026-10-13, PM check-in (:10 slot)
 
 **Did:** Checkout arrived shallow and detached, 107 commits behind `origin/main`; fetched, unshallowed fully, then `git checkout main` plus `merge --ff-only` landed cleanly on the real tip (`8c1b5cfe7`), no reset needed. Read `BACKLOG-2026-09-07.md` section 0, `GOALS.md`'s main-goal section, `STATUS.md` sections 2 and 16, and `CHECKIN-LOG.md`'s newest entries. GitHub: 9 open issues, unchanged, all decision labelled or blocked on art, 0 PRs.
