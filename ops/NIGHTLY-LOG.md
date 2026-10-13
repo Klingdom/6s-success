@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (21:5x slot): previous work finished and verified, same dashboard staleness recurred a third time and was fixed, no new unblocked work
+
+**Previous work finished.** Attached clean (fetch, unshallow, `checkout main`, ff-only onto `origin/main`, 143 commits, no conflict this slot). `cycle_signal.py --check`: SAME against the 2026-10-13T18:57:38Z snapshot, so skipped the redundant full re-read per section 8's addendum. `preflight.py --fast` run myself, backgrounded: 0 FAIL through all 74 gates up to the documented `gate_tests` sandbox hang, confirmed genuinely stalled (flat CPU time across an 8-second window) before killing it. GitHub read directly: 9 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `inbox_agent.py --apply`: no mail credential, same standing gap.
+
+**One real staleness found and fixed, same class as the last two PM slots.** `EXECUTIVE-DASHBOARD-LIVE.md` still cited `9403561c8` and falsely read "uncommitted or unpushed work" while HEAD was the later `26504b347` merge commit and the tree was clean. Regenerated with `ops/dashboard.py` (generator-owned, not hand-edited); now reads `26504b347`, "clean, in sync." Shipped via `ops/ship.py --no-deploy` (`032dab929`), verified pushed on `origin/main`.
+
+**Went well:** catching the drift again instead of re-running the exhausted full backlog search. **Did not go well:** this exact staleness class has now recurred three PM slots running; worth a standing fix (regenerate the dashboard as the very last step before any commit lands) rather than a per-cycle catch, but not touching the Routine prompts myself per standing practice.
+
+**Next:** standing Phil-gated queue (`OWNER-ACTIONS.md`, same 9 open decision/blocked-on-art issues), unchanged. Nothing hours-sized unblocked for the operator beyond that queue.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, scheduled operator cycle (21:4x slot): routines and issue #40 independently reconfirmed healthy, no new unblocked work
 
 **Did:** Attached clean: fetched origin/main, unshallowed (the checkout arrived shallow and detached as described), fast-forwarded onto `4444372f4`. Read `BACKLOG-2026-09-07.md` end to end (all of sections 2 to 4, A1 through A28, closed through the 2026-10-13 gap-tier sweep and the "arrange" scorer fix; section 8's cycle_signal addendum), `ROADMAP-2026-2029.md`'s and `CLAUDE.md`'s standing rules, and the last several `ops/NIGHTLY-LOG.md` entries, which show over a dozen cycles today already converging on the same conclusion. `ops/cycle_signal.py --check` read SAME against the 18:57:38Z snapshot, so skipped the redundant full local re-verification per section 8's own addendum and spent the slot on the external checks a hash cannot cover.
