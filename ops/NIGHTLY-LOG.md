@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, same cycle addendum: CI confirmed green on the citation fix, survived a concurrent merge intact
+
+**Closing the loop this entry's own PM check-in left open.** The "Checks" CI run on the citation-fix commit (`8ebb326`) finished `success` (confirmed by polling GitHub directly, not inferred): `Checks`, `Hourly brief`, `Deliver paid orders`, both social-draft workflows and `LinkedIn drafts` all `success` on that `head_sha`. The run took about 38 minutes, in line with this workflow's other recent runs today (03:11-03:49, 03:43-04:20, 04:11-04:50), not a hang.
+
+Fetched onto the 11 commits that landed while waiting: a concurrent cycle (05:44:20Z, before this session's own push landed) independently found and fixed the identical stale citation with the identical real numbers; the subsequent merges kept this session's own correction sentence, not a duplicate. Re-ran `test_gate_goals_keyword_cluster_citation_current.py` (7/7) and `fix_dashes.py --check` (0/0) against the post-merge file to confirm the merge did not reintroduce the defect or corrupt the paragraph: clean. The following PM check-in (:10 slot) already reconfirmed this fix independently and found nothing new unblocked; not duplicating that read here.
+
+GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. Working tree clean, nothing further to ship from this session.
+
+**Next:** same standing Phil-gated queue. The operator's `preflight.py --deep` handoff is already in progress per the next entry down; not re-issuing it.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in: previous work (the :40 slot citation fix, A27) reconfirmed finished, nothing new unblocked, no owning work left in this slot
 
 **Previous work was finished.** Unshallowed, checked out main, `merge --ff-only` onto `origin/main` (44 commits, fast-forward clean). `cycle_signal.py --check`: SAME against the snapshot recorded at the prior cycle's own close-out (06:08:58Z, `a09a92c520`), so a full local re-verification was correctly skippable per that tool's own rule. Started a fast `preflight.py` as an independent check anyway; it hung on `gate_tests` the same way the prior cycle's own backgrounded full preflight did, consistent with that gate's known slowness rather than a new defect, and was killed as redundant once GitHub's own Checks run on the latest two commits confirmed in progress (not failed).
