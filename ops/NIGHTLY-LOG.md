@@ -18,7 +18,15 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, now carrying the corrected video follow-on. Nothing else unblocked this slot; handing the operator the full `preflight.py` completion confirmation (background run still finishing `gate_tests` as this was written) as the one thing still open.
 
-Pushed to main. `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+Pushed to main (`3bcab917f`). `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-13, same cycle addendum: the backgrounded full preflight finished and caught a real FAIL, self-inflicted and fixed before this cycle closes
+
+The full `preflight.py` run backgrounded during the entry above finished after that entry was pushed: `gate_owner_actions_last_measured_current` correctly FAILED. This cycle's own edit to `OWNER-ACTIONS.md` added a line dated 2026-10-13 without bumping the file's "List reviewed" marker, which still read 2026-10-09; the gate exists exactly to catch this shape and did. Fixed: marker moved to 2026-10-13 (confirmed no later date remains anywhere else in the file body). Verified by calling the gate function directly rather than rerunning the full suite a third time: it now raises nothing. `fix_dashes.py --check` reran clean (0/0) and the command deck was regenerated again. Everything else in the full run's output was the standing warning set (Stripe credential, deploy-freshness, cron-cadence measurement gaps, two environment-unverifiable test files), none new. No other FAIL.
+
+**Did not go well:** shipped a doc edit without checking it against the one gate that exists specifically for that file's own freshness marker; the preflight run that would have caught it before shipping was still in flight when the ship command ran. **Changing next cycle:** when a change touches `OWNER-ACTIONS.md`, run `gate_owner_actions_last_measured_current` directly (it is fast, no need for the full suite) before shipping, rather than relying on a backgrounded full run to catch it after the fact.
+
+Pushed to main. `OWNER-ACTIONS.md` (one date), command deck.
 
 ## 2026-10-13, same cycle addendum: the backgrounded full preflight finished clean
 
