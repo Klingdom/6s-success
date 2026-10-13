@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: previous work reconfirmed finished, a self-inflicted test race diagnosed rather than reported, nothing new unblocked
+
+**NEXT FOR THE OPERATOR: run `preflight.py` (fast) through to a genuinely clean, uncontended completion with enough background time to clear `gate_tests`, because this slot's own two attempts at that were each cut off by a 10-minute background limit before reaching a verdict, so a real confirmed-clean pass is still owed.**
+
+**Attached clean.** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom. Mid-cycle, a concurrent push from the `:40` twin landed (its own addendum documenting a merge collision with an earlier twin); fast-forwarded onto it rather than racing it.
+
+**Ran `preflight.py` (fast) myself rather than cite a concurrent cycle's claim, and it found a real-looking FAIL: `gate_tests` reported `test_affiliate.py: FileNotFoundError` on a `site/downloads/` path.** Traced before reporting it as a defect: that test deliberately exercises a scratch probe file (`_visual_probe.html`) that `audit_visual.py` writes and deletes under `site/downloads/` during its own run, and I had a second `preflight.py` running concurrently with the first at that moment (my own mistake, caught and killed once noticed, matching a pattern this log has documented before: two preflight processes racing the same scratch file). Reran `test_affiliate.py` standalone, uncontended: clean pass. This was self-inflicted contention, not a product defect, so it is recorded as diagnosed, not left as an open FAIL.
+
+**Did not get a second, fully clean full-preflight run to completion this slot.** Two further uncontended attempts both exceeded this environment's 10-minute background window while still inside the known-slow `gate_tests` step (396 test files, some Chrome-heavy, run sequentially) and were stopped before printing a verdict; per `CLAUDE.md` 0.4 that is reported as unchecked here, not folded into a claimed pass. The one run that did complete end-to-end this slot found exactly the one self-inflicted, now-explained FAIL above, and no other cycle today has reported a real `gate_tests` failure.
+
+**Resolved the twin's own open thread rather than leaving it.** Its prior addendum asked the next cycle to confirm GitHub's `Checks` workflow came back green on `84fe373f2`. Checked directly: `checks.yml` is deliberately filtered to exclude `ops/dashboard.html`, `ops/state.json` and `ops/NIGHTLY-LOG.md` (documented in the workflow file itself, 2026-09-13), and every commit since the last code-triggering one (`2f00646a5`, which `checks.yml` run 2084 already confirmed `success`) touched only those excluded, generated/log paths. There is no pending CI run to wait on; the thread is closed, not just re-stated.
+
+**Checked, not cited:** GitHub's 9 open issues read directly, unchanged, all `decision` or `blocked-on-art`, none mine. Working tree stayed clean throughout.
+
+**Did not start new work:** nothing genuinely unblocked beyond the standing Phil-gated queue (9 issues, `OWNER-ACTIONS.md`'s items).
+
+**Went well:** tracing the `gate_tests` FAIL to its actual cause instead of either reporting it blind or quietly assuming it away.
+
+**Did not go well:** running a second `preflight.py` myself while diagnosing the first, recreating the exact self-inflicted race this log has already named once before; killed it as soon as `ps` showed two at once, but the contended run had already finished and printed its FAIL by then.
+
+**Changing next cycle:** none new; the existing scratch-probe handling is correct for one preflight at a time, which is the actual rule being violated here, not a gate gap.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s items), unchanged. Operator: see the handoff line above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and command deck only. No site, price or product touched; IndexNow not applicable.
+
 ## 2026-10-13, same cycle addendum: a concurrent PM twin's push collided on both the log and the command deck, merged rather than forced
 
 **The push above raced the :40 twin's own cycle** (its entry, "one unblocked item handed off", landed first at 08:05:17, mine at 08:30:21). `ops/ship.py`'s own conflict check correctly refused to push rather than overwrite: `['ops/NIGHTLY-LOG.md']` named as a real-source conflict, and the three command-deck files (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) conflicted too since both cycles had regenerated them independently.
