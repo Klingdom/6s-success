@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle (21:xx): cycle_signal confirmed SAME, external checks only, issue #40 reconfirmed resolved
+
+**Did:** Attached to main cleanly (unshallow then ff-only, no conflict this time: `git merge-base main origin/main` already equaled origin/main's tip once the fetch finished, so this was the ordinary unshallow case the operator prompt describes, not the unrelated-histories shape issue #27 usually hits). `python ops/cycle_signal.py --check` read SAME against the snapshot recorded 2026-10-13T18:57:38Z, so a full local re-verification would have been the same redundant cost section 8's addendum names; spent the cycle on the external checks that signal cannot cover instead. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential, same standing gap. `list_triggers`: all three scheduled Routines (PM :40, PM :10, hourly operator) firing on schedule, `last_run.status` SUCCEEDED or in-flight PENDING, none FAILED, continuous Claude-authored commits every 10 to 30 minutes since 11:53 UTC today. Posted a status comment on issue #40 (the 2026-10-09 usage-limit stall) with this evidence: the stall has cleared, root cause (why) still unconfirmed, left open.
+
+**Verified:** `preflight.py --fast` backgrounded clean through every gate up to the documented `gate_tests` sandbox hang (0 FAIL in everything that ran); let it continue rather than foreground-timeout it, per this log's own 2026-10-10 precedent.
+
+**Went well:** cycle_signal avoided a redundant multi-minute re-verification and let this slot's time go to the two things only a live check can see (GitHub, triggers) instead.
+
+**Did not go well:** nothing new found; the standing Phil-gated queue (OWNER-ACTIONS.md "start here", items -1/0/1a/1/1d) is unchanged and this is now many consecutive cycles confirming the same thing.
+
+**Changing next cycle:** none; no new defect to gate.
+
+**Next:** same standing Phil-gated queue. Highest-value unblocked item remains none; everything genuinely actionable without Phil's hand is already shipped.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (20:1x slot): previous CI-red independently re-verified fixed, no new unblocked work
 
 **Previous work finished, independently re-verified.** Attached clean, fast-forward onto origin/main. CI run 2102's failure (gate_nightly_log_ordering) is genuinely closed: reran its two test files myself on current head, both pass, rather than trusting the fix commit's message. preflight.py clean through every fast gate (0 FAIL, 0 WARN) to the documented gate_tests sandbox hang, killed there per standing practice. cold_read_ledger: 199/199 ledgered, 0 unledgered, 0 stale. GitHub: 9 open issues, 0 PRs, unchanged, all decision or blocked-on-art, all Phil-gated.
