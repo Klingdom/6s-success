@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## scheduled operator cycle: independent full-preflight and cold-read-ledger re-verification, nothing new unblocked
+
+**Did:** Unshallowed a fresh checkout, attached to main (`git fetch --unshallow`, `checkout -B main origin/main`, `merge --ff-only`), no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 1b, 2-8, `STATUS.md` section 0/1, and the live head of this file, rather than a summary.
+
+**Ran `python ops/preflight.py` (fast) to full completion myself, independently, rather than cite a concurrent cycle's claim:** every gate passed, 32 warnings, all the standing environment-access kind (no Stripe/SSH/mail credential, no Pillow, no egress to the live site). `python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Checked, not cited:** GitHub's 9 open issues read directly via the API, unchanged, all `decision`/`blocked-on-art`, none mine; 0 open PRs. `ops/cold_read_ledger.py --stale` and `--next`: 199 of 199 files ledgered, 0 stale, 0 un-ledgered candidates, confirming the cold-read queue is genuinely exhausted rather than claimed so. `ops/cycle_signal.py --check`: SAME against the 06:43:40Z snapshot both before and after fast-forwarding onto two further concurrent pushes, so backlog/`OWNER-ACTIONS.md`/`STATUS.md`/`GOALS.md` are unmoved since. Independently re-derived the deploy gap rather than trust `STATUS.md`'s figure: `resolve_verdict_commit` against the live `ops/deploy-verdict.json` (build `e3d3bc8c77a83e38`, 2026-10-09) resolves to `a582ca349`, and `deploy_gap_material_commits` returns 5, matching the recorded figure exactly, no drift.
+
+**Did not start new work.** Every `BACKLOG-2026-09-07.md` row in sections 2-6 is Done, correctly Hold, or Phil-gated per section 8's own close-out, reconfirmed independently this cycle rather than carried forward; the cold-read ledger and GitHub are both genuinely exhausted; no mail credential to read. While this cycle's own full preflight run was in flight, two concurrent cycles landed and closed the only two open threads (status-currency, the deep visual/accessibility sweep) that would otherwise have been handed to it, confirmed by fast-forwarding onto both before writing this entry.
+
+**Went well:** running a full independent preflight and cold-read-ledger check rather than trusting the already-posted "nothing new" conclusion from concurrent cycles, and confirming it matched rather than assuming it would.
+
+**Did not go well:** none this cycle; no defect found to gate.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`'s "start here" four items: usage/plan check, `VPS_DEPLOY_KEY`, Search Console verification, YouTube authorisation, Stripe business description), unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site, price or product touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (:40 slot): previous work finished by the operator mid cycle, nothing new unblocked, no owning work left in this slot
 
 **NEXT FOR THE OPERATOR: continue the standing Phil gated queue (9 open issues, OWNER ACTIONS.md), because nothing is genuinely unblocked and your own 06:43 cycle already closed the two open gaps (status currency, deep preflight sweep) this slot would otherwise have handed you.**
