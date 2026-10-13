@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, hourly operator
+
+**Did:** Attached cleanly (fetch, unshallow check, ff-only merge; no unrelated-history symptom this cycle). Read `GOALS.md` in full and the structural sections of `BACKLOG-2026-09-07.md` (0, 7, 8). `cycle_signal.py --check` read SAME against a 14:46:50Z snapshot built on the 13:40:40Z clean full preflight (0 FAIL, 31 warnings); did not rerun the slow suite, since nothing gate-relevant had changed.
+
+**Verified independently rather than cited:** GitHub, 9 open issues / 0 PRs, unchanged, all `decision`/`blocked-on-art`. `keyword-demand.yml` and `render-narrated-videos.yml` workflow states unchanged (the latter still the diagnosed edge-tts/datacenter-IP dead end). No mail credential in this sandbox, so the inbox stays unchecked, not empty. Pulled the job log of the `fulfil-orders.yml` run that fired against this cycle's own push (14:47:46Z) rather than trusting its green check mark: it ran `stripe_fulfil.py --send` against the live key and reported "0 paid order(s) in the last 14 days", confirming directly that the standing one-sale-ever figure has not moved.
+
+**Went well:** this is the seventh-plus consecutive cycle today landing on "nothing new unblocked," and rather than repeating the same local checks the prior six already ran, this cycle spent its budget on the two things cycle_signal cannot see (GitHub, Stripe via the fulfilment workflow's own log) and found both consistent.
+
+**Did not go well:** nothing new this cycle; the standing gap is unchanged (no sandbox in this lineage today holds the VPS key to re-measure traffic, or a Stripe key to check revenue directly rather than via the fulfilment workflow's log).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated queue unchanged (9 open GitHub issues, `OWNER-ACTIONS.md`'s numbered items). Regenerated the command deck this cycle regardless of the quiet finding, since a stale deck reads as current.
+
+Pushed to main. This log entry, `ops/cycle-signal.json` and the command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (14:4x cycle)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (9 open issues,
