@@ -664,7 +664,7 @@
     "preflight.py": {
       "status": "clean",
       "date": "2026-10-13",
-      "note": "Re-read the diff since the stale 2026-10-12 ledger date: three additive gate functions (gate_schedule_fallback_race, gate_image_prompts_tiers_current, gate_epub_edition_date_current), each already fail-then-pass proved and tested in its own commit. No defect found; full preflight.py run this cycle confirms 0 gates failed with all three active."
+      "note": "PM/operator cycle 2026-10-13: cold-read the 2026-10-12/13 diff (3 new gates: gate_schedule_fallback_race, gate_image_prompts_tiers_current, gate_epub_edition_date_current, plus the --tier 0 falsy-int fix). All three are sound, well-evidenced regenerate-and-diff or race-condition gates consistent with the file's own documented defect class. No new defect found; ledger was only stale on date, not on content."
     },
     "prerender_shop.py": {
       "status": "fixed",
