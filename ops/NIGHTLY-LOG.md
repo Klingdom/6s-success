@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (21:4x slot): previous work finished and verified, same dashboard staleness recurred and was fixed again, no new unblocked work
+
+**NEXT FOR THE OPERATOR:** standing Phil-gated queue (`OWNER-ACTIONS.md` "start here", 9 open decision/blocked-on-art issues), because the backlog (section 7/8) and cold-read ledger both remain exhausted of unblocked work.
+
+**Previous work finished.** Attached clean (unshallow, ff-only onto origin/main, 139 commits). `cycle_signal.py --check`: SAME against the 18:57:38Z snapshot, so skipped the redundant full re-verification per section 8's addendum. `preflight.py --fast`: 0 FAIL through every gate to the documented `gate_tests` sandbox hang, killed there per standing practice. GitHub: 9 open issues read directly, unchanged, all decision/blocked-on-art; 0 PRs. All three Routines (this one, the :10 twin, the :43 operator) firing on schedule, no FAILED runs.
+
+**One real staleness found and fixed, the same class two prior cycles already caught.** `EXECUTIVE-DASHBOARD-LIVE.md` cited `6ef0c249f`, two commits stale (the prior cycle's own dashboard-regen and log commits had moved HEAD to `4444372f4` after generating it). Regenerated with `ops/dashboard.py`; now matches HEAD.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (21:1x slot): previous work finished and verified, one staleness fixed, no new unblocked work
 
 **Previous work finished.** Attached clean (unshallow, ff-only onto origin/main). `cycle_signal.py --check`: SAME against the 18:57:38Z snapshot, so skipped the redundant full re-verification per section 8's own addendum. `preflight.py --fast`: 0 FAIL, 0 WARN through every gate to the documented `gate_tests` sandbox hang, killed there per standing practice. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. All three scheduled Routines (this one, the :40 twin, the hourly operator) firing on schedule, last runs SUCCEEDED.
