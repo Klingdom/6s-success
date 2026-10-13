@@ -1,8 +1,8 @@
 {
   "combined_hash": "09125d82b4e8275224d86c50543fbcc3287b400ec42e4c5682c114596af43e3f",
-  "git_head": "aa1b1c9ca17807ef889e584fcb648e0c2e6e6a30",
-  "note": "post-merge resync, dedup fix",
-  "recorded_at": "2026-10-13T05:57:46Z",
+  "git_head": "a09a92c520cd36af5c1e462cec7f69eca381102a",
+  "note": "PM :10 cycle close-out",
+  "recorded_at": "2026-10-13T06:08:58Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "248b9445cb6816c0fa7791a3a58588372038f0e7c57c2abd968982b0dbb5d76a",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
