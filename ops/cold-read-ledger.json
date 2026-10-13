@@ -582,9 +582,9 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "keyword_demand.py": {
-      "status": "fixed",
-      "date": "2026-10-10",
-      "note": "2026-10-10, scheduled operator cycle: best_page()/best_by()'s alphabetical tie-break silently favoured any Guest-X page over its Primary-X sibling on a household-synonym query (master bedroom/bathroom). New household_room_signal()/room_of()/_tie_break() prefer the correctly-signalled room on a genuine tie; verified via --rescore (every such query moved off its Guest sibling, totals unchanged, real Guest queries unaffected). Case 17, ops/tests/test_keyword_demand.py, 20/20, fail-then-pass proved."
+      "status": "clean",
+      "date": "2026-10-13",
+      "note": "Re-ledgered after the 2026-10-13 FORMAT_WORDS widening (arrange excluded as an organize synonym, commit 6774e2895). Already independently verified twice same day: the authoring cycle simulated all 71 affected queries before landing, and the following PM check-in (18:2x) reran test_keyword_demand.py (21/21) and diffed a full --rescore against the committed keyword-demand.json byte for byte, confirming the 187/1455/1177 gap/partial/covered counts are current. This entry only updates the stale ledger date; no new read was needed beyond that double verification."
     },
     "launch_plan_pdf.py": {
       "status": "clean",

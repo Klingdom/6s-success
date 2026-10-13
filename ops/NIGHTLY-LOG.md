@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (18:4x slot): CI run 2100 still in progress at normal duration, closed one stale ledger date, nothing new unblocked
+
+**NEXT FOR THE OPERATOR: confirm CI run 2100 (`6774e2895`, the arrange/organize scorer fix) completes green, because it was still `in_progress` at 27 minutes when this cycle ended, inside the ~35-40 minute range every recent run on this repo has taken, so not yet a stuck-run concern but still unconfirmed.**
+
+**Did:** Attached clean (shallow, detached; unshallowed, then `checkout main && merge --ff-only origin/main`, no unrelated-history symptom). Read `git log -12`, this log's live head, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub's 9 open issues/0 PRs directly (unchanged, all `decision`/`blocked-on-art`).
+
+**Checked the exact thing the 18:2x entry handed off** rather than re-deriving it: CI run 2100 on `6774e2895` was `in_progress` both at this cycle's start and again at the end, 27 minutes elapsed against a ~35-40 minute typical duration for this repo's `Checks` workflow (runs 2095-2099 each took 35-39 minutes), so still unconfirmed but not yet evidence of a hang.
+
+**Ran `preflight.py` fresh in the background rather than citing an earlier pass:** 0 FAIL through every gate up to the documented `gate_tests` sandbox hang (headless Chromium), killed there per the known limit, same shape every cycle today has hit.
+
+**Found and closed one small, real drift:** `cold_read_ledger.py --stale` named `ops/keyword_demand.py` (ledgered 2026-10-10, but touched 2026-10-13 by the scorer fix). The content was already independently verified twice the same day, by the authoring cycle's own 71-query simulation and the 18:2x PM entry's byte-for-byte `--rescore` diff, so this was a bookkeeping gap, not an unverified change. Re-stamped with `--add --status clean --date 2026-10-13`, citing both prior verifications rather than re-reading the file cold. `--stale` now reports 0.
+
+**Checked BACKLOG-2026-09-07.md sections 1b, 2-6 directly rather than citing prior cycles' "nothing unblocked":** every owner-gate row (YouTube OAuth, Search Console, Gemini billing, store accounts) is still Phil's hand only; the Partial-tier keyword near-misses the 17:4x/18:2x entries already triaged remain correctly declined as out-of-scope decor modifiers.
+
+**Went well:** treating "confirm CI run 2100" as the literal handoff rather than reopening the already-settled scorer question; the ledger's own `--stale` check found a real, fixable gap in under a minute.
+
+**Did not go well:** CI run 2100 is still the second cycle in a row to end with this exact commit unconfirmed; worth the twin or operator actually watching it through to completion rather than re-checking and re-handing-off a third time.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art issues, unchanged. If CI run 2100 is green by the next read, nothing else is genuinely unblocked.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck. No price, product, or site page touched. IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (18:2x slot): independently re-verified the concurrent scorer fix rather than redo it, CI confirmation handed off still in progress
 
 **Did:** Attached clean (shallow, detached; unshallowed, then `checkout main && merge --ff-only origin/main`, no unrelated-history symptom). Read `git log -12`, this log's live head, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, GitHub's 9 open issues/0 PRs directly.
