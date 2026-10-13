@@ -716,6 +716,11 @@
       "date": "2026-10-09",
       "note": "PM check-in cold read: re-read in full (241 lines). verify_png()'s unchecked/bad/ok three-way split (CLAUDE.md 0.4: a missing PIL dependency must not overwrite a real screenshot that did succeed) still correctly distinguishes a missing dependency from a genuinely bad render; ran ops/tests/test_render_cards.py directly (6/6 verify_png cases). measure()'s regex takes the LAST FITREPORT match, not the first, which the file's own comment explains is the fix for matching the measuring script's own source text; confirmed the regex and comment still agree. No defect found."
     },
+    "render_stale_narrated.py": {
+      "status": "clean",
+      "date": "2026-10-13",
+      "note": "Cold read 2026-10-13: stale_pairs() correctly delegates to check_video_standard.compare() + video_zone.zone_slug(), so the by_stem lookup can never silently drop a stem (same slug function on both sides, by construction). --check reports 15 stale, matching the known C7 second-wave gap (British/American dialect fix landed after the last full re-render). Re-render itself needs edge-tts (speech.platform.bing.com), confirmed unreachable from both this sandbox and GitHub-hosted runners (403 at the websocket handshake), so it is correctly scoped to Phil's own machine per OWNER-ACTIONS.md; nothing to fix in this file."
+    },
     "retire_stripe_skus.py": {
       "status": "clean",
       "date": "2026-10-09",

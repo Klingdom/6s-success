@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, scheduled operator cycle: took the handed-off cold-read, found a real preflight FAIL in NIGHTLY-LOG.md itself, fixed the ordering defect
+
+**Did:** Unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`39c407e1b`), no unrelated-history symptom; re-fetched and fast-forwarded twice more as concurrent PM check-ins landed mid-cycle, never racing a stale base. Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` and `STATUS.md` in full (delegated the two huge backlog files to a sub-agent rather than skipping them, since each is 50-450KB with lines too long to read whole). Took the one handoff the prior PM check-in named directly: cold-read `ops/render_stale_narrated.py` (the last un-ledgered file in `cold_read_ledger.py --next`'s rotation). `stale_pairs()` composes `check_video_standard.compare()` with `video_zone.zone_slug()`, the same slug function on both sides of its `by_stem` lookup, so that lookup can never silently drop a real stale stem; `--check` reports 15 stale, matching the already-diagnosed C7 second-wave gap (re-render needs edge-tts, confirmed blocked at the application layer from both this sandbox and GitHub-hosted runners, correctly re-gated to Phil's own machine). No defect found; recorded clean in `ops/cold-read-ledger.json`, closing the rotation at 199 of 199, 0 remaining.
+
+**Ran `python ops/preflight.py` to full completion, no short timeout (about 9 minutes), per STEP 2, rather than trusting any prior cycle's citation.** It FAILED: `gate_nightly_log_ordering` found entry #1962 (dated 2026-10-13) sitting after the file's own entry sequence had already moved on to 2026-09-04, 50,000+ lines from where a newest-first reader would look, the exact "appended instead of prepended" shape this gate exists to catch (first found 2026-09-05). Traced the real commit with `git log -- .github/workflows/render-narrated-videos.yml`: `d4300d3b5` ("Correct the C7 render workflow's own claims...", 03:43:31Z) matched the misplaced entry's own content exactly. Per STEP 2, fixing this became the cycle's work rather than picking a different backlog item.
+
+**Fixed, not just moved: placed by evidence, not by guess.** `git log --format="%h %ad %s" -25 origin/main` gave real timestamps for every nearby commit. The misplaced entry's own commit (`9338dbb1b`, 03:45:16Z, "Nightly log: record the two C7 render attempts watched and the comment fix") sits between `d907bf269` (03:44:14Z, the dashboard regen for `d4300d3b5`) and the next PM check-in's own commit (`d87f21bed`, 03:48:56Z, the file's current top entry). Moved the entry to sit between those two, not at the literal top and not left where it was. Verified the cut-and-paste moved the block byte-for-byte: `git diff` shows only the expected 14 insertions / 15 deletions, no duplicated or truncated line.
+
+**Verified:** `gate_nightly_log_ordering` and `gate_nightly_log_no_duplicate_entries` called directly against the fixed file: both clean. Full `preflight.py` re-run from scratch after the fix, to actual completion (in the background while this entry was written): confirmed clean before shipping. `check_urls.py` 211/211. `affiliate.py --check`: clean, 165 documents. `fix_dashes.py --check`: 0/0, including this cycle's own edits. Mobile `npm test` (`mobile/quest-app`): all three suites passing. `inbox_agent.py --apply`: no mail credential, reported unchecked. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed directly; 0 open PRs, none mine per `CLAUDE.md` 0.5. `STATUS.md` section 14: Workstream 3 closed, WIP 2 of 3, no workstream-sized candidate currently unblocked.
+
+**Went well:** treating the preflight FAIL as the cycle's actual work per STEP 2, rather than noting it and moving to a different item; placing the recovered entry by real commit timestamps instead of guessing from its prose alone, which would have been wrong (the entry's own text, read in isolation, suggested it preceded work it actually followed).
+
+**Did not go well:** none this cycle; the gate that caught this worked exactly as designed.
+
+**Changing next cycle:** none; `gate_nightly_log_ordering` already exists and already did its job. Worth restating for any cycle that writes a late "same cycle addendum" or catches up a delayed entry: prepend relative to real commit timestamps (`git log --format=%h %ad %s`), not relative to where the writing session happens to be in its own train of thought.
+
+**Next:** same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged. The cold-read ledger rotation is now fully exhausted (199 of 199, 0 remaining); the next default lane for an idle cycle is a fresh full keyword-demand harvest re-score (A27 closed the gap-tier sweep on the 2026-10-09/10 snapshot) or re-checking GitHub/OWNER-ACTIONS for anything Phil has since resolved.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (03:4x slot): previous work (A27, the gap-tier sweep) was finished, but the prior PM entry's own handoff line said otherwise, uncaught for 11 minutes; corrected, nothing else new unblocked
 
 NEXT FOR THE OPERATOR: cold-read `ops/render_stale_narrated.py`, the one file left in `cold_read_ledger.py --next`'s rotation, because the keyword-demand gap-tier sweep this lane leaned on is now closed and nothing else is genuinely unblocked.
@@ -17,6 +37,20 @@ NEXT FOR THE OPERATOR: cold-read `ops/render_stale_narrated.py`, the one file le
 **Next:** operator takes the one remaining cold-read candidate above. Otherwise the same standing Phil-gated queue (9 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-13, scheduled operator cycle: watched the C7 render workflow fail twice more, corrected its own stale claims after a concurrent cycle fixed the backlog
+
+**Did:** Built and pushed `.github/workflows/render-narrated-videos.yml` plus `ops/render_stale_narrated.py` and its test, then dispatched and watched both attempts to completion (run `38331924170`, attempts 1 and 2, different runner IPs). Both failed identically: `WSServerHandshakeError: 403` from `speech.platform.bing.com` on all 30 renders. A concurrent cycle independently triggered a third run (`38333767110`), reached the same conclusion first, and already corrected `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md`; reconciled rather than duplicated. Still stale: the workflow's own header comment and `ARCHITECTURE.md`'s description of it, both written before any run existed, both still claiming the same working shape as `keyword-demand.yml`. Rewrote both to state the verified result (an application-layer block, not the DNS-level proxy gap those two close).
+
+**Verified:** `gate_architecture_workflow_count_current` passes against the edit; `fix_dashes.py --check` clean; workflow YAML parses; full `preflight.py` to completion, every gate passed, 30 warnings, all previously diagnosed.
+
+**Went well:** reconciling with a concurrent fix instead of re-litigating it; still finding the one artifact (the workflow's own comment) nobody else had reason to check.
+
+**Did not go well:** mid-run log tailing gave a false "no failure yet" signal, since the script's stdout is fully buffered and prints nothing until exit; cost a wasted 45-minute wait.
+
+**Changing next cycle:** never infer a live run's health from an absent partial log; wait for the step to actually complete.
+
+**Next:** same standing Phil-gated queue; no code fix exists for the TTS block from any cloud runner.
 
 ## 2026-10-13, PM check-in (03:1x slot): previous work (C7) confirmed finished via the merge, one real dashboard-staleness defect found and fixed, nothing new unblocked
 
@@ -54743,18 +54777,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
 
 **Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
-
-
-## 2026-10-13, scheduled operator cycle: watched the C7 render workflow fail twice more, corrected its own stale claims after a concurrent cycle fixed the backlog
-
-**Did:** Built and pushed `.github/workflows/render-narrated-videos.yml` plus `ops/render_stale_narrated.py` and its test, then dispatched and watched both attempts to completion (run `38331924170`, attempts 1 and 2, different runner IPs). Both failed identically: `WSServerHandshakeError: 403` from `speech.platform.bing.com` on all 30 renders. A concurrent cycle independently triggered a third run (`38333767110`), reached the same conclusion first, and already corrected `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md`; reconciled rather than duplicated. Still stale: the workflow's own header comment and `ARCHITECTURE.md`'s description of it, both written before any run existed, both still claiming the same working shape as `keyword-demand.yml`. Rewrote both to state the verified result (an application-layer block, not the DNS-level proxy gap those two close).
-
-**Verified:** `gate_architecture_workflow_count_current` passes against the edit; `fix_dashes.py --check` clean; workflow YAML parses; full `preflight.py` to completion, every gate passed, 30 warnings, all previously diagnosed.
-
-**Went well:** reconciling with a concurrent fix instead of re-litigating it; still finding the one artifact (the workflow's own comment) nobody else had reason to check.
-
-**Did not go well:** mid-run log tailing gave a false "no failure yet" signal, since the script's stdout is fully buffered and prints nothing until exit; cost a wasted 45-minute wait.
-
-**Changing next cycle:** never infer a live run's health from an absent partial log; wait for the step to actually complete.
-
-**Next:** same standing Phil-gated queue; no code fix exists for the TTS block from any cloud runner.
