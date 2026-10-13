@@ -2,6 +2,61 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in: finished the preflight the prior cycle left unfinished, genuinely clean
+
+**Previous work was NOT finished, so finishing it was this run's work, per STEP 2.**
+The prior PM cycle (this file's own previous entry) started a full `preflight.py`
+run in the background and ran out of slot time stuck in `gate_tests` (the 396-file
+sequential suite), so it handed off an unchecked run rather than a passed one.
+Checked `cycle_signal.py --check` first: still read SAME against the 12:15:32Z
+snapshot (the ordering-fix cycle's own clean full run), so the underlying claim had
+not drifted, but that prior cycle's own re-verification attempt was still genuinely
+unfinished, not just redundant. Ran `python ops/preflight.py` to completion myself
+this time, in the background so it did not eat the whole slot: **0 FAIL, 31 standing
+warnings**, the same warning count the last clean snapshot carried. Every warning is
+the familiar shape (no Stripe/SSH/mail credential, no Pillow, no live egress,
+`.env.secrets` not present) plus a few already-known product notes (deck print-tier
+waste, 15/114 zone videos behind a standard mismatch, one workflow red 93 commits
+behind HEAD with nothing re-triggering it). Preflight itself flipped
+`core.hooksPath` back on (it had gone unset in this checkout) and nothing else
+needed fixing.
+
+**Everything else checked independently, not cited:** GitHub 9 open issues / 0 PRs,
+unchanged, all `decision` or `blocked-on-art`, none newly mine. `cold_read_ledger.py
+--stale --next`: 0 stale. `affiliate.py --check`: clean, 165 documents. `inbox_agent.py
+--check`: no mail credential, reported unchecked, not empty, same as every prior
+cycle. `STATUS.md`: no open claims, nobody else mid-flight on shared state.
+`BACKLOG-2026-09-07.md` section 7/8 still say every row in sections 2-6 is Done,
+Phil-gated, or closed by decision as of 2026-10-11, and nothing here contradicted
+that.
+
+**Shipped twice.** First the dashboard regeneration alone (figures were one commit
+stale), then the cycle-signal snapshot plus this log entry together, since the
+dashboard's own "last commit" field necessarily lags itself by one commit the moment
+it is committed. Did not chase that loop further; it is the same self-reference the
+`dashboard-self-description-fresh` lane already accounts for.
+
+**Handing the operator:** nothing unfinished. The standing Phil-gated queue (9 open
+issues, `OWNER-ACTIONS.md`'s numbered items) is unchanged and nothing in it is the
+operator's to start. If the operator's own cycle_signal check reads SAME, a full
+local re-verification is redundant; the external checks (GitHub, mail, scheduled
+workflows) still need a direct look every cycle regardless.
+
+**Went well:** treating "the last cycle's redundant re-check didn't finish" as
+different from "the underlying work isn't done," and actually running the slow
+check to completion instead of re-citing the same unfinished state a third time.
+
+**Did not go well:** the checkout again arrived shallow and detached (issue #27's
+long-standing shape); `gate_tests` alone is still slow enough to blow a 30-minute
+slot on its own, which is the same cost every recent cycle has paid.
+
+**Next:** same standing Phil-gated queue, unchanged. Traffic and affiliate are still
+only readable from a session holding the VPS key, which this sandbox does not.
+
+Pushed to main (two commits). Command deck, `ops/state.json`,
+`ops/cycle-signal.json`, this log entry only. No price, product, or site page
+touched; IndexNow not applicable.
+
 ## 2026-10-13, PM check-in: previous work finished, every lane exhausted again, full preflight handed to the operator unfinished
 
 NEXT FOR THE OPERATOR: let `python ops/preflight.py` (fast) run to a genuine
