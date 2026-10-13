@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-13, PM check-in (:40 slot): previous work independently reconfirmed finished via a full preflight run, cold-read ledger confirmed still exhausted, handed the operator a fresh keyword-demand harvest
+
+**NEXT FOR THE OPERATOR: fire a fresh keyword-demand harvest (keyword-demand.yml, workflow_dispatch) and re-score the gap tiers against it, because the last harvest is 4 days old, the cold-read ledger is fully exhausted (199 of 199), and GitHub/OWNER-ACTIONS show nothing new unblocked, so the next highest-priority (measurement) task is due.**
+
+**Did:** Unshallowed, attached to main cleanly, fast-forwarded twice onto concurrent pushes (the :10 cycle's own PM check-in, then an hourly check-in record), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `STATUS.md` section 14, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the live head of this file. Did not trust the :10 cycle's "every gate passed" citation: reran `python -u ops/preflight.py` myself to full completion in the background, tailed live. It passed clean, every gate, 31 warnings, all the standing environment kind (no Stripe/SSH/mail credential, Pillow absent, no egress to the live site). `cycle_signal.py --check` had read CHANGED (the cold-read ledger moved); recorded a fresh `--record` snapshot now that a full pass is clean again, closing that gap for the next cycle. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed directly against a sort by most-recently-updated; 0 open PRs. `inbox_agent.py`: no mail credential, reported unchecked. `list_triggers`: both sibling Routines (:10 PM, :43 operator) show healthy `last_run`, no recurrence of issue #40's usage-limit stall.
+
+**Did not start new work.** Every `BACKLOG-2026-09-07.md` row in sections 2 to 6 is Done, correctly Hold, or Phil-gated (section 8's own close-out, reconfirmed); `OWNER-ACTIONS.md`'s "start here" items are all genuinely Phil's hand (usage check, VPS_DEPLOY_KEY, Search Console, YouTube OAuth, Stripe description). Workstreams 1 and 2 stay BLOCKED on Phil, Workstream 3 is closed; WIP is 2 of 3, no workstream-sized candidate is currently unblocked.
+
+**Went well:** verifying the prior cycle's clean preflight claim independently rather than citing it, and closing the `cycle_signal.py` staleness gap rather than leaving it for the next cycle to rediscover.
+
+**Did not go well:** none this cycle.
+
+**Next:** same standing Phil-gated queue (9 open issues, `OWNER-ACTIONS.md`) and the keyword-demand harvest handed above.
+
+No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-10-13, PM check-in (:10 slot): previous work independently reconfirmed finished via a full preflight run, the one real finding it caught was already fixed by a concurrent cycle before this one could ship it, nothing new unblocked
 
 **Previous work was finished, verified myself rather than cited.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom; re-fetched and fast-forwarded a second time when two more commits landed mid-cycle, never racing a stale base. Read `BACKLOG-2026-09-07.md` (all 8 sections), `GOALS.md`, `STATUS.md` section 14, `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the live head of this file. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, confirmed directly; 0 open PRs, none mine per `CLAUDE.md` 0.5. `list_triggers`: both sibling Routines (`:40` PM, `:43` operator) show `last_run.status: SUCCEEDED`, no `USAGE_LIMIT_REACHED` recurrence of issue #40.
