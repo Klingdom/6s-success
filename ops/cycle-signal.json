@@ -1,15 +1,15 @@
 {
-  "combined_hash": "60dee9c673ef38c5340ddb2b0ec995c5fd8498b0b626004800f7f8c03d4476b8",
-  "git_head": "305760fb8a830dd6146f30e0a3c524da540cd59e",
-  "note": "Scheduled operator 2026-10-13: finished the full preflight the prior cycle left backgrounded (0 FAIL, 31 standing warnings). GitHub 9 issues/0 PRs unchanged, fulfil-orders.yml live Stripe check 0 paid orders/14 days, cold-read ledger 199/199 fully ledgered, 0 unledgered. Nothing new unblocked.",
-  "recorded_at": "2026-10-13T16:03:18Z",
+  "combined_hash": "df2889712722afb11ed69a50efd4552403d195d32e7ef3c2cc66671a6b79cc55",
+  "git_head": "02bf6841c32b1f0f9c03a93d255869a9969b5c0c",
+  "note": "17:4x PM check-in: fast preflight clean through every gate up to the documented gate_tests sandbox hang (killed there, same standing limit), CI run 2098 (ee0d989) confirmed success independently (full test suite via checks.yml), cold_read_ledger 0 stale, GitHub 9 issues/0 PRs unchanged",
+  "recorded_at": "2026-10-13T17:49:44Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "367834e8dc2786b67115b4db029718079f90d6d357e4b1141c8f0edf93842a04",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "a5304b6b585e4c6145fd3b97d3846f6b3cae054107a127b7374effe68c73b79a",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
-    "STATUS.md": "7eba798cad71b74e05fdb9bdb09e95e2ab31836db0e7a09b51822e736707fc67",
-    "ops/cold-read-ledger.json": "39d01df71aafd4e027ea9cf2c1d4c0950d0f6e93615b20f24600a536de350fad",
-    "ops/deploy-verdict.json": "bd91f395845fb6a5b9df1b714e9cad47c1f7086bf745338e8c607a01bc5a916b"
+    "STATUS.md": "488be2e04983a58c8970e7cdf3e8f2101f90738b88267555e0ce559777f5db33",
+    "ops/cold-read-ledger.json": "ccd4f2276d07b82329b06048117996d224a6d960208846f40029009e1b6ac20f",
+    "ops/deploy-verdict.json": "fafa2583f2e0772e0d6e4ba262cd35c01997f0432a2d8c5a2d96d39476bab353"
   }
 }
