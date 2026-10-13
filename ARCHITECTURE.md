@@ -210,11 +210,17 @@ true weeks ago and this section never said so, directly contradicting
 `buy.stripe.com/...` on `book.html` and `consulting.html`; one real sale
 completed 2026-08-21, see `GOALS.md`) and CI exists (**16 workflows as of
 2026-10-13, corrected from 15: `render-narrated-videos.yml` was added,
-a manual (`workflow_dispatch`) runner that re-renders a narrated zone
+a manual (`workflow_dispatch`) runner meant to re-render a narrated zone
 video's voice track and captions wherever `ops/check_video_standard.py`
-finds them stale against `content.json`, the same GitHub-hosted-runner
-shape `keyword-demand.yml` and `indexation-check.yml` already use because
-the cloud sandbox's egress proxy refuses the TTS host outright**, under `.github/workflows/`: `bluesky-drafts.yml`,
+finds them stale against `content.json`. It does not currently work: three
+real runs the same day each failed with a 403 from Microsoft's own edge-tts
+endpoint, from three different runner IPs, the identical error the cloud
+sandbox's egress proxy also produces. That is an application-layer reject of
+datacenter callers, not the DNS-level proxy block `keyword-demand.yml` and
+`indexation-check.yml` exist to route around, so this workflow is not the
+same fix as those two despite being built on that assumption; see
+`BACKLOG-2026-09-07.md`'s C7 second-wave row and `OWNER-ACTIONS.md` for the
+real, machine-dependent next step**, under `.github/workflows/`: `bluesky-drafts.yml`,
 `checks.yml`, `deploy.yml`, `fulfil-orders.yml`, `hourly-brief.yml`,
 `indexation-check.yml`, `keyword-demand.yml`, `linkedin-drafts.yml`,
 `mobile-checks.yml`, `owner-questions.yml`, `publish-image.yml`,

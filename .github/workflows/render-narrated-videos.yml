@@ -10,11 +10,24 @@ name: Render stale narrated videos
 #
 # Needs real audio (edge-tts, reaching speech.platform.bing.com) and ffmpeg.
 # The cloud sandbox this repository is usually operated from refuses that
-# destination at the egress proxy (confirmed directly: a DNS-level connection
-# failure to that host specifically, not a generic timeout), the identical
-# shape keyword-demand.yml and indexation-check.yml already exist to close
-# for ops/keyword_demand.py and ops/indexation_check.py. A GitHub-hosted
-# runner has ordinary outbound internet.
+# destination at its own egress proxy (confirmed directly: a DNS-level
+# connection failure to that host specifically). This workflow was written on
+# the guess that a GitHub-hosted runner would clear that the same way
+# keyword-demand.yml and indexation-check.yml do for a different host. That
+# guess was wrong and has since been checked against three real runs, not
+# assumed: every one failed with `WSServerHandshakeError: 403` from
+# speech.platform.bing.com itself, the identical error the cloud sandbox gets,
+# across three different runner IPs. Microsoft's own edge-tts endpoint is
+# rejecting the request at the application layer regardless of which
+# datacenter the caller sits in, which a workflow cannot route around by
+# installing a different package or retrying. Do not re-trigger this expecting
+# a different result (BACKLOG-2026-09-07.md's C7 second-wave row and
+# OWNER-ACTIONS.md carry the current, correct next step: Phil's own machine,
+# which is not a datacenter IP and already rendered 99 zones this way with 0
+# failures on 2026-09-18). Left in place rather than deleted because it is
+# harmless to leave (the commit step only fires on a real diff) and would
+# start working again without any change here if Microsoft's policy changes
+# or this ever runs from a non-datacenter runner.
 #
 # Manual only. check_video_standard.py's own gate already warns preflight.py
 # every time a video goes stale, and rendering is slow (narration, a
