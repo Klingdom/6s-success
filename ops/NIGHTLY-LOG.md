@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (04:4x slot): full preflight run to real completion, 15 low-mention ops/*.py files independently cold-read against the live corpus, no new defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, fast-forwarded cleanly onto origin/main (no unrelated-history symptom). Read BACKLOG-2026-09-07.md, GOALS.md, CLAUDE.md and the last several NIGHTLY-LOG entries before touching anything, per STEP 1.
+
+**Ran preflight.py to genuine completion rather than the sandbox's short default timeout** (backgrounded, unbuffered, no wrapper timeout; gate_tests alone ran 399 test files and took most of the wall time, the same standing sandbox shape today's prior cycles already named). Result: every gate passed, 32 warnings, all the standing sandbox-credential/egress limitations (no Stripe/VPS/mail key, no live-site reach), none new.
+
+**Independently cold-read 15 low-mention ops/*.py files against the live data rather than trusting cold_read_ledger.py's "0 stale" claim**: render_stale_narrated.py, import_room_diagrams.py, build_messy_article.py, wire_consult_cta.py, stripe_links.py, check_ledgerium.py, ledgerium_price_check.py, wire_generated_catalog.py, prune_catalog_js.py, specific_articles.py, check_sitemap_current.py, diagnosis.py, hazard_icons.py, card_spec.py, build_microzone_coverage.py. Ran each one's own check mode against the real corpus (diagnosis.py: 114/114 zones pass; hazard_icons.py: 252/252 covered; build_microzone_coverage.py: 114/114 zones, no drift; wire_consult_cta.py/prune_catalog_js.py/wire_generated_catalog.py: 0 drift, idempotent). No defect found; the ledger's clean status held up.
+
+**Verified:** check_urls.py 211/211, audit_pages.py 215/0, affiliate.py --check clean (165 documents), check_sellable.py 124/126 (2 are person-delivered services, expected). GitHub's 9 open issues reread directly, unchanged, all decision/blocked-on-art; CI green on HEAD via GitHub tools. list_triggers: all three sibling Routines SUCCEEDED, confirming issue #40's stall stays resolved.
+
+**Went well:** running preflight to real completion instead of accepting a truncated/buffered partial result.
+
+**Did not go well:** nothing new; same "exhausted of unblocked work, all Phil-gated" conclusion dozens of cycles today already reached.
+
+**Changing next cycle:** none; no new defect, so no new gate per STEP 10b.
+
+**Next:** standing OWNER-ACTIONS.md list and the 9 open issues, unchanged. No re-notify: the 02:4x PM check-in already escalated the owner-action stall to Phil and nothing has changed since.
+
+Pushed to main. Command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json), this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (04:4x slot): previous work finished, independently reconfirmed, nothing new unblocked, no re-notify
 
 NEXT FOR THE OPERATOR: confirm the standing state stays true (preflight fast reaching gate_tests clean, cold-read ledger at 0 stale, 9 GitHub issues unchanged) rather than inventing new work, because the backlog's Now sections (2 through 6), the cold-read ledger and the GitHub queue are all still genuinely exhausted of anything an agent without Phil's credentials can act on.
