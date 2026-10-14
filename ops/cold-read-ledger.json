@@ -523,8 +523,8 @@
     },
     "hazard_icons.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): ran it live, 252 of 252 hazard entries covered, the module's own stale historical counts in its docstring are explicitly self-documented as stale-by-design. No defect."
+      "date": "2026-10-14",
+      "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: ran live (252 of 252 covered), verified CSS wiring into build_zone_pages.py and site.css matches byte for byte. No defect."
     },
     "hourly_brief.py": {
       "status": "clean",
@@ -618,8 +618,8 @@
     },
     "mailer.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in cold read: re-read in full (146 lines). Credential loading correct (env wins over .env.secrets, never printed), owner() correctly refuses an address inside our own domain so a report cannot land back in support@ instead of the owner, connect() verifies TLS certs on both port 465 (implicit TLS) and STARTTLS paths. No defect found."
+      "date": "2026-10-14",
+      "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full, checked callers (service_orders.py, send_questions.py, status_report.py, send_brief.py). No defect."
     },
     "measure.js": {
       "status": "clean",
@@ -647,9 +647,9 @@
       "note": "Second-pass cold-read: re-verified clean. Ran --apply's effect live via /usr/bin/python3 (this sandbox's default python3 lacks pypdf, a sandbox quirk, not a repo defect; pypdf is deliberately absent from ops/requirements.txt since this is a human/operator-run tool, never called by preflight.py or a workflow, unlike pymupdf which that file documents CI actually needs). --check confirms the sample PDF is already optimised: 0 PNGs remaining, correct chapters-1-to-30 title, 31.2 MB."
     },
     "owner_inbox.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09: main()'s exit code collapsed unchecked (None) and checked-clean ([]) into the same falsy 0 via 'p or third'. Gave unchecked its own exit code (2); gate_owner_waiting unaffected (calls the functions directly, never main())."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full, cross-checked gate_owner_waiting's wiring in preflight.py against the current should_report()/unread_needing_action() logic. No defect."
     },
     "photos.js": {
       "status": "clean",
@@ -898,8 +898,8 @@
     },
     "video_narrated.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Second-pass cold-read: re-verified clean. Cannot run live (ffmpeg/edge-tts video toolchain, Phil-machine-only manual batch, same class as render_all_zone_videos.py). Read closely for the two documented past defects (srt span computed once per beat, not recomputed from an already-advanced start; the ffmpeg concat demuxer's required repeat-the-last-file-with-no-duration line) and both are correctly in place. Retry/backoff loop in narrate() sleeps only on failure, not after a successful attempt, confirmed by tracing the break path."
+      "date": "2026-10-14",
+      "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full (srt_from timing, narrate() retry logic, deliver() paths). No defect; unrunnable in this sandbox (ffmpeg/edge-tts/Desktop), read only."
     },
     "video_srt.py": {
       "status": "clean",

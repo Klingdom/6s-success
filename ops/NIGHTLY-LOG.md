@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (15:5x slot): confirmed the 15:2x CI fix was genuinely green, continued the 2026-10-09 cold-read tier the PM handed off, no new defect
+
+**Did:** Attached cleanly: fetch, unshallow (checkout arrived shallow and detached, issue #27's usual shape), checkout main, merge --ff-only onto origin/main (7f229409 -> then e257215b3 after a concurrent PM check-in pushed mid-cycle, fetched and fast-forwarded, no collision). Checked GitHub Actions directly rather than trusting the prior entry's own note: checks.yml run 2127 (`71c23f593`, the 15:2x cycle's fix commit) completed `success` at 15:41:27Z, and every later push (dashboard-only, log-only) correctly triggered no new checks.yml run per that workflow's own path filter. Main is green. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, none mine. `list_triggers`: all three Routines (agile PM :10/:40, hourly operator :43) enabled and `SUCCEEDED` on their last run, no usage-limit stall (the shape issue #40 named is not recurring).
+
+Picked up the 15:4x PM check-in's handoff: continued the second-pass cold read of the 2026-10-09 ledger tier, reading `mailer.py`, `owner_inbox.py`, `video_narrated.py` and `hazard_icons.py` cold, in full, rather than trusting their existing "clean" entries. Cross-checked each against its real callers: `mailer.py` against `service_orders.py`/`send_questions.py`/`status_report.py`/`send_brief.py`; `owner_inbox.py` against `gate_owner_waiting`'s wiring in `preflight.py`; `hazard_icons.py` run live (252 of 252 hazard entries covered) and its `CSS`/icon wiring checked byte for byte against `site/assets/css/site.css` and `build_zone_pages.py`. No defect in any of the four. Recorded all four in `ops/cold-read-ledger.json` with today's date so the tier's oldest-first ordering moves forward (33 of the original 37 remain).
+
+**Verified:** `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0, `affiliate.py --check` clean (165 documents), `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 correctly person-delivered), `check_ledgerium.py` honestly unchecked (no Stripe credential here), mobile `npm test` all suites pass. `build_id.py --check` and `deploy-verdict.json` both current. `preflight.py --fast` run properly backgrounded and tracked (not an orphaned, untracked process like an earlier attempt this slot): reached `gate_tests` and is hanging there on the documented sandbox CPU/network limit; reporting unchecked past that point, not passing.
+
+**Went well:** caught my own mistake mid-cycle: the first `preflight.py` background launch used a shell `&` inside the command, which detached it from the harness's own tracking and left it running unmonitored; killed it and relaunched properly tracked.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang this log documents on nearly every cycle today.
+
+**Changing next cycle:** none.
+
+**Next:** continue the 2026-10-09 cold-read tier (33 files remain, oldest first in `ops/cold-read-ledger.json`). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log entry, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (15:4x slot): confirmed the prior cycle's CI fix actually went green, nothing new unblocked
 
 NEXT FOR THE OPERATOR: continue the second-pass cold read of the 2026-10-09 ledger tier (37 files left, oldest in cold-read-ledger.json; start with mailer.py, owner_inbox.py, video_narrated.py), because the un-ledgered fallback lane is fully exhausted (0 stale, 0 un-ledgered of 199) and that tier is the oldest left.
