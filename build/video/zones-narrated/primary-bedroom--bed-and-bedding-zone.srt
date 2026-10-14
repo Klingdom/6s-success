@@ -41,7 +41,7 @@ shelf
 9
 00:00:34,192 --> 00:00:38,468
 3 Under the bed holds either nothing or
-two labelled flat bins, and you can walk
+two labeled flat bins, and you can walk
 
 10
 00:00:38,468 --> 00:00:42,744
@@ -93,7 +93,7 @@ inside one of its own pillowcases so the
 20
 00:01:22,812 --> 00:01:27,192
 flat sheet and the fitted sheet stop
-travelling
+traveling
 
 21
 00:01:27,192 --> 00:01:32,064
@@ -103,7 +103,7 @@ inside one of its own pillowcases so the
 22
 00:01:32,064 --> 00:01:36,936
 flat sheet and the fitted sheet stop
-travelling separately, and keep this bed's
+traveling separately, and keep this bed's
 
 23
 00:01:36,936 --> 00:01:41,808

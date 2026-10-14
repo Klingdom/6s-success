@@ -25,7 +25,7 @@ What done looks like
 
 6
 00:00:23,669 --> 00:00:26,818
-1 Every overhead bin labelled in letters
+1 Every overhead bin labeled in letters
 you can read standing on the slab
 
 7

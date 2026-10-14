@@ -50,7 +50,7 @@ in
 
 11
 00:00:37,989 --> 00:00:41,568
-one labelled box on the top shelf
+one labeled box on the top shelf
 
 12
 00:00:41,568 --> 00:00:46,032
@@ -113,15 +113,13 @@ is capable of using this closet.
 
 25
 00:01:35,064 --> 00:01:40,968
-Straighten Then group by type and by
-colour inside each type, so getting
-dressed
+Straighten Then group by type and by color
+inside each type, so getting dressed
 
 26
 00:01:40,968 --> 00:01:45,312
-Straighten Then group by type and by
-colour inside each type, so getting
-dressed is
+Straighten Then group by type and by color
+inside each type, so getting dressed is
 
 27
 00:01:45,312 --> 00:01:49,656
@@ -140,7 +138,7 @@ vacuum it, and wipe the rod down where
 
 30
 00:01:59,244 --> 00:02:03,384
-hangers have left a grey line.
+hangers have left a gray line.
 
 31
 00:02:03,384 --> 00:02:07,032
@@ -199,12 +197,12 @@ them down onto themselves.
 42
 00:02:48,216 --> 00:02:53,736
 Standardize One hanger style throughout,
-and the next size box labelled
+and the next size box labeled
 
 43
 00:02:53,736 --> 00:02:57,780
 Standardize One hanger style throughout,
-and the next size box labelled in numbers
+and the next size box labeled in numbers
 
 44
 00:02:57,780 --> 00:03:01,824
@@ -328,8 +326,7 @@ saving.
 
 69
 00:04:41,803 --> 00:04:45,938
-One box per next size, sealed and
-labelled.
+One box per next size, sealed and labeled.
 
 70
 00:04:45,938 --> 00:04:50,074

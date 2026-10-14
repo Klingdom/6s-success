@@ -34,7 +34,7 @@ surface
 
 8
 00:00:27,924 --> 00:00:31,080
-3 One labelled basket at the end holding
+3 One labeled basket at the end holding
 only what is leaving tomorrow
 
 9
