@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (16:1x slot): previous work finished, preflight ran to genuine full completion for the first time in many cycles, no new defect
+
+Attached cleanly (fetch, unshallow, ff only onto origin/main). Read git log, NIGHTLY LOG, BACKLOG 2026 09 07, EXECUTIVE DASHBOARD LIVE, 9 open GitHub issues: all unchanged, none mine, all decision or blocked on art. Backlog sections 2 through 6 are Done, struck through, Phil gated, or Hold; no genuinely open unblocked item exists.
+
+Previous work confirmed finished. Ran preflight.py --fast to genuine completion for the first time in many cycles (636s, past gate_tests): every gate passed, 0 real FAIL, 29 standard sandbox warnings, confirming gate_tests is not a deterministic hang. Standing substitute suite clean too (urls, audit_pages, dashes, affiliate, sellable, link graph, mobile tests).
+
+Handing to operator: continue the 2026-10-09 cold read tier, 33 files remain, oldest first.
+
 ## 2026-10-14, scheduled operator cycle (15:5x slot): confirmed the 15:2x CI fix was genuinely green, continued the 2026-10-09 cold-read tier the PM handed off, no new defect
 
 **Did:** Attached cleanly: fetch, unshallow (checkout arrived shallow and detached, issue #27's usual shape), checkout main, merge --ff-only onto origin/main (7f229409 -> then e257215b3 after a concurrent PM check-in pushed mid-cycle, fetched and fast-forwarded, no collision). Checked GitHub Actions directly rather than trusting the prior entry's own note: checks.yml run 2127 (`71c23f593`, the 15:2x cycle's fix commit) completed `success` at 15:41:27Z, and every later push (dashboard-only, log-only) correctly triggered no new checks.yml run per that workflow's own path filter. Main is green. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, none mine. `list_triggers`: all three Routines (agile PM :10/:40, hourly operator :43) enabled and `SUCCEEDED` on their last run, no usage-limit stall (the shape issue #40 named is not recurring).
