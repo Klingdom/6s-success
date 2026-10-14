@@ -1,0 +1,16 @@
+# NOT DEPLOYED. Prepared 2026-10-14; see PHOTOS-API.md and OWNER-ACTIONS.md.
+# Bound to the Docker bridge only (172.17.0.1), never 0.0.0.0, so the only way
+# in is through the site's nginx. The volume holds customer photos: never prune it.
+services:
+  photos:
+    image: ghcr.io/klingdom/6s-photos:latest
+    container_name: 6s-photos
+    restart: unless-stopped
+    ports:
+      - "172.17.0.1:8975:8975"
+    env_file: /docker/6s-photos/.env     # ANTHROPIC_API_KEY=... (optional; without it analysis is method-only)
+    volumes:
+      - 6s-photos-data:/data
+    mem_limit: 256m
+volumes:
+  6s-photos-data:

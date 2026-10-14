@@ -1415,6 +1415,7 @@ Maintain a compact index as the file grows.
 | D-029 | S1-S4 (the structured `sustain_detail` schema) are dropped, not deferred; the prose Sustain pass already covers the content gap and no distribution exists to protect with a stricter gate | ACTIVE | Product |
 | D-030 | The two "dollar tree" keyword-gap queries stay uncovered; writing the brand name into page copy to chase them is declined | ACTIVE | Content |
 | D-031 | Basement and attic demand is answered as two method guides, not two new corpus rooms | ACTIVE | Content |
+| D-032 | Photos API built private-by-default and method-grounded; deploying it and choosing a vision provider are the owner's call | ACTIVE | Product |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact
@@ -2892,3 +2893,35 @@ search referrer within about 8 weeks.
 into quest starts or purchases, author basement and attic as real corpus
 rooms. If neither page has a single organic arrival by 2026-12-15, stop
 adding pages for adjacent spaces.
+
+## D-032 | 2026-10-14 | Photos API built private-by-default and method-grounded; deploying it and choosing a vision provider are the owner's call
+
+**Decision.** Phil asked for "a place that users or AI agents or smartphone
+apps can store before and after pictures" and "a mechanism to analyze images
+and comment on steps to take based on micro zone and item methodology." Built
+as `photos/` (see `PHOTOS-API.md`): capability-token sessions with no accounts,
+re-encoding that removes EXIF and GPS, immediate delete, 90-day purge, and an
+analysis whose output is filtered to the zone's own passes, surfaces, root
+causes and done-looks-like standard.
+
+**Why it stops short of production.** `AUTONOMY.md` puts file uploads and a
+new AI processing provider in YELLOW (Product, Security and QA review), and
+section 27 makes household photos private by default. D-028 already
+declined to put a new unauthenticated service on a VPS that also carries
+Ledgerium and Compassion Benchmark without the owner choosing to. And the
+vision provider needs an API key and a spend decision this repository cannot
+make. So the build stops where a single owner step turns it on.
+
+**Alternatives.** On-device only, photos kept in the browser (more private,
+but useless to agents and apps and impossible to analyze without sending the
+image somewhere anyway). Accounts with login (heavier, more data held, no
+customer yet to justify it). Letting the model write the instructions freely
+(rejected: it would contradict the published method and could give unsafe
+cleaning chemistry).
+
+**Measure.** Once live: sessions created, photos stored, analyses run,
+`dropped_as_outside_method` per analysis (a rising number means the prompt or
+the model is drifting), and quest progress from people who used it.
+
+**Revisit.** If the security review finds the capability model insufficient,
+or if anybody asks for photos to persist across devices, revisit accounts.

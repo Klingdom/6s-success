@@ -2006,3 +2006,33 @@ answers.
 `gate_mcp_corpus_current` together in one commit. Leaving a published image
 with no purpose is the state that produced the false claim above, and I would
 rather delete it than keep pretending. Recorded as `DECISIONS.md` D-028.
+
+### 22. Turn on the photos API, and choose whether it may look at photos. About five minutes.
+
+**Built 2026-10-14 on your request, tested, not deployed.** `photos/` stores
+private before/after photos per micro zone for the web app, a phone app or an
+AI agent, and comments on next steps in the zone's own method. Full contract
+in `PHOTOS-API.md`, reasoning in `DECISIONS.md` D-032. 24 end-to-end checks
+pass, including that GPS is stripped and that an invented root cause or step
+is thrown out.
+
+**Two decisions, both yours:**
+
+1. **Deploy it?** It adds one small container on the VPS, reachable only
+   through the site's nginx at `/api/photos/`, holding customer photos in its
+   own volume. Reply "deploy photos" and I build the image, start it with
+   `photos/docker-compose.photos.yml`, add `photos/nginx-location.conf` to the
+   site, and verify end to end. Without a vision key it still stores photos and
+   returns each zone's published steps, clearly marked "no image was analyzed".
+2. **Let it analyze images?** That needs a vision API key. The code is written
+   for Anthropic: create a key at console.anthropic.com, **set a monthly spend
+   limit there first** (each analysis is one image call; the service also caps
+   each session at 20 a day), and put it on the VPS as
+   `ANTHROPIC_API_KEY=...` in `/docker/6s-photos/.env`. Never paste it in chat
+   or commit it.
+
+**Said plainly:** the security and QA review behind this was done in the same
+session that built it, so it is a self-review, not the independent one
+`AUTONOMY.md` asks for on uploads. The first thing after "deploy" should be a
+separate `security-auditor` pass on `photos/` before the route is announced
+anywhere.

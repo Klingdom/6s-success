@@ -9,3 +9,7 @@
 # unpinned dependency there means any future release of it executes
 # beside those credentials without review. Raise this deliberately.
 pymupdf==1.28.2
+# Added 2026-10-14 for ops/tests/test_photos_service.py: the photos service
+# (photos/) re-encodes every upload with Pillow to strip EXIF and GPS, and the
+# test proves that on a real JPEG. Same pin as photos/Dockerfile.
+Pillow==11.3.0
