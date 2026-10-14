@@ -69,6 +69,7 @@ import subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LEDGER_PATH = os.path.join(ROOT, "ops", "cold-read-ledger.json")
 LOG_PATH = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+LOG_ARCHIVE_PATH = os.path.join(ROOT, "ops", "NIGHTLY-LOG-ARCHIVE.md")
 VALID_STATUSES = ("clean", "fixed")
 
 # Generated, not hand-authored: a "Do not edit, rebuild from X" data dump
@@ -223,15 +224,25 @@ def lane_path(base: str) -> str | None:
 def _mention_counts() -> dict:
     """Rough secondary signal only, kept from the method this file
     replaces: how many times each candidate basename appears anywhere in
-    ops/NIGHTLY-LOG.md. Never used to claim a file is clean, only to rank
-    otherwise-unledgered candidates.
+    ops/NIGHTLY-LOG.md or ops/NIGHTLY-LOG-ARCHIVE.md. Never used to claim a
+    file is clean, only to rank otherwise-unledgered candidates.
+
+    Reads both files, not just the live one, since ops/rotate_nightly_
+    log.py (2026-10-14) started moving old entries verbatim into the
+    archive: counting only the live file would silently undercount every
+    mention older than its retention window, the exact "source corrected,
+    downstream not updated" shape this repository keeps finding elsewhere.
     """
     counts = collections.defaultdict(int)
-    if not os.path.exists(LOG_PATH):
+    texts = []
+    for path in (LOG_PATH, LOG_ARCHIVE_PATH):
+        if os.path.exists(path):
+            texts.append(io.open(path, encoding="utf-8").read())
+    if not texts:
         return counts
-    text = io.open(LOG_PATH, encoding="utf-8").read()
+    combined = "\n".join(texts)
     for name in _all_candidate_files():
-        counts[name] = len(re.findall(re.escape(name), text))
+        counts[name] = len(re.findall(re.escape(name), combined))
     return counts
 
 

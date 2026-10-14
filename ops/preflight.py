@@ -20123,6 +20123,60 @@ def gate_goals_organic_search_row_current() -> None:
                           goals_visits, goals_visitors))
 
 
+def gate_nightly_log_not_oversized() -> None:
+    """ops/NIGHTLY-LOG.md must not be carrying more than a generous buffer
+    past ops/rotate_nightly_log.py's own retention window.
+
+    Found 2026-10-14: the live log had grown to 8.1MB / 57,105 lines /
+    2,795 entries, back to 2026-08-23, and nothing had ever rotated it,
+    because nothing before this checked whether it needed to. Four gates
+    in this file (this one's two neighbours below, gate_cold_read_handoff
+    _not_stale, and effectively STEP 1 of the operating prompt itself)
+    each read the whole file on every single preflight run to look at a
+    handful of recent entries, most of a day's several dozen runs paying
+    to parse a month of history nobody asked about. ops/rotate_nightly_
+    log.py now exists to fix that by moving old entries into
+    ops/NIGHTLY-LOG-ARCHIVE.md, verbatim, never deleting anything; this
+    gate is what stops the fix from being a one-time cleanup that quietly
+    regrows back to the same cost, the exact "source corrected, nothing
+    keeps it that way" shape BACKLOG-2026-09-07.md section 7 names as
+    this repository's dominant defect class.
+
+    A WARNING, not a FAIL: an oversized log wastes every later cycle's
+    time re-reading it, it does not ship anything broken to a customer.
+    The buffer (retention window plus 7 days) means this does not fire
+    the day after a rotation purely from entries drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_nightly_log_not_oversized.py
+    builds a synthetic log with an entry well past the buffered window
+    and asserts this gate warns, then confirms a log with nothing past
+    the window stays silent.
+    """
+    path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(path):
+        return
+    import rotate_nightly_log as rnl
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        header, entries = rnl.split_header_and_entries(
+            text, rnl.HEADER_FIRST_LINE, rnl.HEADER_THIRD_PREFIX)
+    except ValueError:
+        return
+    buffered_days = rnl.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    dates = rnl.effective_dates(entries)
+    overdue = sum(1 for d in dates if d is not None and d < cutoff)
+    if overdue:
+        warn("nightly-log-not-oversized",
+             "ops/NIGHTLY-LOG.md carries %d entries older than %s (the "
+             "%d-day retention window plus a 7-day buffer), %d bytes "
+             "total across %d entries. Run `python ops/rotate_nightly_"
+             "log.py --apply` to move them into ops/NIGHTLY-LOG-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rnl.DEFAULT_RETENTION_DAYS,
+                len(text.encode("utf-8")), len(entries)))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -28810,6 +28864,7 @@ def main() -> int:
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
+    run_gate(gate_nightly_log_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
     run_gate(gate_nav_current)
