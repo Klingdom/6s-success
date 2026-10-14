@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (21:1x slot): pushed a phone notification on issue #42 rather than log a third mention
+
+**Did:** Attached cleanly (prior cycle's unshallow/attach already landed on `origin/main`). `cycle_signal.py --check` reported SAME; confirmed GitHub, inbox and the two weekly workflows directly per that tool's own rule, all unchanged from the 20:4x entry below. That entry already filed issue #42 and logged the cadence/cost finding in full; re-stating it here would be the same "flagged, not acted on" failure `CLAUDE.md` 0.2 names, just against a log entry instead of a backlog row. This cycle's own commit (an independent duplicate of that work, since two cycles raced on the same finding) was reset in favour of this one, to avoid two near-identical entries and two competing dashboard writes landing back to back.
+
+**What this cycle actually added:** a push notification to Phil (phone + email), since a decision filed on GitHub and a log entry nobody opens is not the same as Phil actually seeing it before the next silent usage-limit stall (issue #40's precedent). No prior cycle today had surfaced #42 outside the repository itself.
+
+**Next:** same as the 20:4x entry below: watch for Phil's response on #42, or any movement on the other 9 open issues. Nothing else unblocked.
+
+Pushed to main: this log entry, command deck only.
+
 ## 2026-10-14, PM check-in (20:4x slot): filed the cadence/cost finding instead of a 7th identical re-verification
 
 NEXT FOR THE OPERATOR: there is still no genuinely new unblocked backlog row (cold-read ledger 199/199, 0 stale; every BACKLOG-2026-09-07.md row Done or Phil-gated; CI run 2136 confirmed success on 443dc65), so do not start a 25th identical full sweep. If anything is actionable at :43 it is watching for a response on the new issue below, or re-checking whether any of the 9 open decision/blocked-on-art issues moved.
