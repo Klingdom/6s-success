@@ -9495,6 +9495,25 @@ def gate_indexnow_current() -> None:
              f"{never[:3]}. Run python ops/indexnow.py --new")
 
 
+def dns_txt_records(domain: str):
+    """TXT records for `domain` via nslookup against a public resolver.
+
+    Returns a list of strings, or None when the lookup could not run at all
+    (no nslookup, no network). None must be reported as unchecked by callers.
+    """
+    import subprocess
+    try:
+        p = subprocess.run(["nslookup", "-type=TXT", domain, "8.8.8.8"],
+                           capture_output=True, text=True, timeout=15)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    out = (p.stdout or "") + (p.stderr or "")
+    recs = re.findall(r'"([^"]*)"', out)
+    if not recs and p.returncode != 0:
+        return None
+    return recs
+
+
 def gate_site_verification_declared() -> None:
     """The ownership-token file must exist and must be readable.
 
@@ -9519,9 +9538,28 @@ def gate_site_verification_declared() -> None:
              "verification tag is emitted and any pasted token is silently "
              "ignored.")
         return
+    dns_token = cfg.get("google_dns_txt")
+    if isinstance(dns_token, str) and dns_token.strip():
+        # Domain property (added 2026-10-14): proven by a DNS TXT record, not by
+        # any page. Look the record up rather than trusting the file; a lookup
+        # that cannot run is UNCHECKED, never "verified" and never "missing".
+        seen = dns_txt_records("6s-success.com")
+        if seen is None:
+            warn("site-verification",
+                 "Google Domain property recorded in ops/site-verification.json, "
+                 "but DNS could not be queried from here, so whether its TXT "
+                 "record is still live is UNCHECKED, not passing.")
+        elif not any(dns_token.strip() in r for r in seen):
+            warn("site-verification",
+                 "ops/site-verification.json records a Google Domain-property "
+                 "TXT token that is NOT present in 6s-success.com's DNS. If the "
+                 "record was removed at the registrar, Search Console will "
+                 "un-verify the property. Phil's registrar, not this repo.")
     filled = [k for k in ("google_meta", "google_html", "bing", "pinterest",
                           "yandex")
               if isinstance(cfg.get(k), str) and cfg[k].strip()]
+    if not filled and isinstance(dns_token, str) and dns_token.strip():
+        return
     if not filled:
         # Standing state, not a regression: this is Phil's gate, tracked in
         # OWNER-ACTIONS.md. Warn so it stays visible rather than forgotten.

@@ -28,6 +28,14 @@
     "site/ with the exact body Google expects. Either method alone is enough;",
     "filling both is harmless."
   ],
+  "google_dns_txt": "_Y_BbfXENuY7QhwUgsbLwGHutWqVlmJKV5yWJwp0Xrc",
+  "_google_dns_txt": [
+    "Google Search Console DOMAIN property, verified by Phil through a DNS TXT",
+    "record on 6s-success.com (confirmed live 2026-10-14 with nslookup against",
+    "8.8.8.8). Recorded here so the gate can check the record still exists. It",
+    "is NOT emitted into any page: a Domain property is proven by DNS, not HTML.",
+    "Removing the TXT record at the registrar un-verifies the property."
+  ],
   "bing": "",
   "_bing": [
     "Bing Webmaster Tools -> Add site -> HTML Meta Tag. Paste only the content",

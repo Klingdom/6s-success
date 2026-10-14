@@ -860,7 +860,11 @@ exist.) The one zone that was already correct is Entry Console or Bench.
 
 **Added 2026-10-13, resolved 2026-10-14: the second, smaller batch is done. No machine step needed here after all.** 15 of the 114 zones' captions had drifted out of sync with a British-to-American spelling fix. Two failed attempts to fix it via GitHub Actions had wrongly concluded Microsoft's edge-tts service was rejecting the narration request from any datacenter IP. The real root cause was narrower and fixable: `edge-tts` 7.2.8 was sending an old-format `Sec-MS-GEC` token that Microsoft's server now rejects (`rany2/edge-tts` issue #490), unrelated to which IP sent it. Pinning the workflow to `edge-tts==7.3.1` (commit `d5ecb0782`) fixed it: GitHub Actions run `38554935606` completed successfully and committed `7d84fb9a3`, re-rendering all 15 stale caption pairs. `python ops/check_video_standard.py` now reads 114 of 114 matching the standard, 0 stale. Nothing is public yet either way, since item 1's OAuth paste is still outstanding, so there was never any urgency; there is nothing left to do on this batch regardless of OAuth timing.
 
-### 1a. Verify the site in Google Search Console. One paste, about three minutes.
+### ~~1a. Verify the site in Google Search Console.~~ DONE BY PHIL, as a Domain property (DNS TXT). Recorded 2026-10-14.
+
+**Phil confirmed 2026-10-14 that the Domain property is set up, and it checks out:** `nslookup -type=TXT 6s-success.com 8.8.8.8` returns `google-site-verification=_Y_Bb...`. The token is now recorded in `ops/site-verification.json` (`google_dns_txt`) and `gate_site_verification_declared` looks the record up on every run instead of warning "verified to no search engine", which had been false for an unknown length of time. **Two small asks remain:** (1) confirm `sitemap.xml` is submitted under Sitemaps in that property; (2) send the Pages report (indexed vs not, with reasons, especially `/zones/`) and Performance (impressions, clicks, top queries). No operator here can read Search Console, so until those numbers arrive, `GOALS.md`'s indexed-or-not question stays unanswered. The meta-tag instructions below are kept for the record and are no longer needed.
+
+### (superseded) 1a. Verify the site in Google Search Console. One paste, about three minutes.
 
 **Google has never been told this site exists, and it is the only search engine
 that will not accept a sitemap without an account.** Measured 2026-09-03: of 52

@@ -1025,10 +1025,11 @@ if __name__ == "__main__":
     _named = [k for k in VERIFY_META if _v.get(k)]
     if vf:
         _named.append("google_html -> " + os.path.basename(vf))
+    if (_v.get("google_dns_txt") or "").strip():
+        _named.append("google Domain property (DNS TXT, nothing emitted)")
     print("verification  : %s" % (", ".join(_named) if _named
                                   else "NONE. The site claims ownership to no "
-                                       "platform, so Google Search Console has "
-                                       "no data. See OWNER-ACTIONS.md."))
+                                       "platform. See OWNER-ACTIONS.md."))
 
 # ------------------------------------------------------------------ DECLINED
 # Deliberately NOT emitted, because the visible pages do not support it:
