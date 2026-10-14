@@ -3439,6 +3439,58 @@ def gate_dashboard_traffic_carry_forward() -> None:
              f"on an unmeasured run; got {aff!r}")
 
 
+def gate_dashboard_all_time_carry_forward() -> None:
+    """The all-time revenue/sale count must survive an unmeasured run.
+
+    Same shape of bug as gate_dashboard_traffic_carry_forward just above,
+    found in a row that gate never touched. Found 2026-10-13, live: running
+    ops/dashboard.py in this sandbox (no STRIPE_SECRET_KEY) regressed a
+    committed "revenue_all_time": 19.0, "sales_all_time": 1 to null/null,
+    changing the printed summary from "$19 all time from 1 sale(s)" to "all
+    time not measured", the identical "a business looks deader than it is"
+    regression _stripe_all_time()'s own docstring says it exists to
+    prevent, just reopened one layer over in carry_forward_all_time()'s
+    predecessor, which did not exist until this cycle.
+
+    Proves the pure function itself, with synthetic inputs, the same
+    pattern the sibling carry-forward gates use for their own resolve
+    functions.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    out = dashboard.carry_forward_all_time(
+        {"revenue_all_time": None, "sales_all_time": None},
+        {"revenue_all_time": 19.0, "sales_all_time": 1,
+         "generated": "2026-10-13 23:31"})
+    if out.get("revenue_all_time") != 19.0 or out.get("sales_all_time") != 1:
+        fail("dashboard-all-time-carry-forward",
+             f"carry_forward_all_time() dropped a real all-time revenue "
+             f"reading on an unmeasured run instead of carrying it "
+             f"forward; got {out!r}")
+    # A real measurement this run must always win over anything carried.
+    fresh = dashboard.carry_forward_all_time(
+        {"revenue_all_time": 42.0, "sales_all_time": 2,
+         "generated": "2026-10-14 00:00"},
+        {"revenue_all_time": 19.0, "sales_all_time": 1})
+    if fresh.get("revenue_all_time_carried_from") is not None:
+        fail("dashboard-all-time-carry-forward",
+             f"carry_forward_all_time() let a measured run claim to be "
+             f"carried; got {fresh!r}")
+    # A second consecutive blind run must not find the first blind run's
+    # own bare None sitting there with nothing left to carry.
+    measured = dashboard.carry_forward_all_time(
+        {"revenue_all_time": 19.0, "sales_all_time": 1,
+         "generated": "2026-08-21 10:00"}, {})
+    blind1 = dashboard.carry_forward_all_time(
+        {"revenue_all_time": None, "sales_all_time": None}, measured)
+    blind2 = dashboard.carry_forward_all_time(
+        {"revenue_all_time": None, "sales_all_time": None}, blind1)
+    if blind2.get("revenue_all_time") != 19.0:
+        fail("dashboard-all-time-carry-forward",
+             f"carry_forward_all_time() did not survive a second "
+             f"consecutive blind run; got {blind2!r}")
+
+
 def gate_dashboard_revenue_month_not_cross_month() -> None:
     """A revenue figure measured in one calendar month must never be
     relabelled as a LATER month's "revenue this month".
@@ -28739,6 +28791,7 @@ def main() -> int:
     run_gate(gate_dashboard_deploy_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
+    run_gate(gate_dashboard_all_time_carry_forward)
     run_gate(gate_dashboard_revenue_month_not_cross_month)
     run_gate(gate_dashboard_customers_text_reflects_carry)
     run_gate(gate_dashboard_owner_actions_traffic_citation_current)

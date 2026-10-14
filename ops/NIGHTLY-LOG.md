@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle: a carry-forward gap found and fixed, all-time revenue regressing to "not measured" each credential-less run
+
+**Did:** Fast-forwarded onto origin/main (4 bookkeeping commits, backlogs untouched). Read both backlogs and OWNER-ACTIONS.md. preflight.py --fast twice, backgrounded: 0 FAIL before gate_tests' documented sandbox hang, confirmed stalled, not assumed. GitHub direct: 9 issues unchanged, decision/blocked-on-art, 0 PRs. No mail credential. check_urls.py, audit_pages.py, affiliate.py clean.
+
+**Found and fixed:** cold_read_ledger.py flagged ops/ship.py stale; re-read cold, no defect, now 0 stale. Verifying dashboard.py's output found a real gap: revenue_all_time/sales_all_time (the one $19 sale) had no carry-forward, unlike sibling fields already fixed for this shape. Every credential-less run regressed "$19 all time from 1 sale" to null, printing "all time not measured," the exact "business looks deader than it is" regression _stripe_all_time() exists to prevent, reopened one layer over. A prior cycle judged this fine since the text is honestly labelled, missing the fact itself was being lost.
+
+New carry_forward_all_time() in ops/dashboard.py: a credential-less run now prints the real figure and survives two blind runs; a fresh measurement still wins. New test_all_time_carry_forward.py (10/10) and gate_dashboard_all_time_carry_forward, fail-then-pass proved.
+
+**Went well:** cold-reading the dashboard output instead of trusting a prior cycle's conclusion.
+
+**Did not go well:** preflight.py --fast still cannot finish past gate_tests here, a standing limitation.
+
+**Changing next cycle:** none, the new gate catches recurrence.
+
+**Next:** standing Phil-gated queue, 9 decision/blocked-on-art issues. Genuinely new work this cycle, not an exhausted-backlog confirmation.
+
+Pushed to main: dashboard.py, preflight.py, new test, cold-read-ledger.json, deck. Not customer-facing.
+
+HANDOFF-FILES: none
+
 ## 2026-10-13, PM check-in (23:4x slot): previous work finished, dashboard fix confirmed by CI and cycle_signal, no new unblocked work
 
 **NEXT FOR THE OPERATOR:** standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", the 9 open decision/blocked-on-art issues), because the backlog (sections 2 to 6) and cold-read ledger remain exhausted of unblocked work.

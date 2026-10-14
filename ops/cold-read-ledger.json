@@ -773,8 +773,8 @@
     },
     "ship.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in cold read: re-read in full (214 lines). Every documented past incident in its own comments (untracked-only commit silently skipping staging, --help falling through to a live push, build_id stamped before staging, conflict markers surviving a bad rebase resolution) still has its fix in place. Ran ops/tests/test_ship_conflict_safety.py (3/3), test_ship_help_flag.py (2/2) and test_ship_new_file_committed.py (2/2) directly. No defect found."
+      "date": "2026-10-13",
+      "note": "Cold-read 2026-10-13 scheduled operator cycle: re-read after the 23:0x dashboard-regen fold-in (commit 132fe4359/eed323558). Traced the full stage->commit->rebase->push->verify->deploy path including the conflict-resolution branch (checkout origin's generated files, regenerate, re-add, diff-check before skip/continue, markered() defense-in-depth). No new defect found; all three ops/tests/test_ship_*.py files pass (conflict_safety 3/3, help_flag 2/2, new_file_committed 2/2)."
     },
     "shoot_mobile.py": {
       "status": "clean",

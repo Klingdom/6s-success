@@ -1960,7 +1960,59 @@ def carry_forward(now: dict, prev: dict) -> dict:
     return out
 
 
+def carry_forward_all_time(now: dict, prev: dict) -> dict:
+    """Keep the all-time revenue/sale count when this run could not measure it.
+
+    revenue_all_time and sales_all_time (_stripe_all_time() above) are
+    append-only historical facts, not a figure scoped to a window that
+    resets, so unlike revenue_month there is no month-boundary question
+    here: the last known figure is still true on every later run, at worst
+    understated by a sale nobody has read yet.
+
+    Found live 2026-10-13: _stripe_all_time() returns (None, None) on any
+    run without a Stripe credential, the common case in this sandbox, and
+    nothing carried that figure forward, so a committed "$19 all time from
+    1 sale" regressed to null/"all time not measured" on the very next
+    credential-less run (confirmed in a real `git diff` of ops/state.json
+    after running this generator with no STRIPE_SECRET_KEY set). That is
+    the identical "a business looks deader than it is" regression
+    _stripe_all_time()'s own docstring was written to prevent on this exact
+    figure, just reopened one layer over: carry_forward() above and
+    _carry_last_reading() elsewhere in this file already protect
+    revenue_month/paying_customers and traffic_line/affiliate_trigger from
+    this same shape of bug; revenue_all_time/sales_all_time had never been
+    taught it.
+    """
+    all_time = now.get("revenue_all_time")
+    if all_time is not None:
+        return {"revenue_all_time_last_measured": all_time,
+                "sales_all_time_last_measured": now.get("sales_all_time"),
+                "revenue_all_time_measured_at": now.get("generated", ""),
+                "revenue_all_time_carried_from": None}
+
+    last = prev.get("revenue_all_time_last_measured")
+    sales = prev.get("sales_all_time_last_measured")
+    when = prev.get("revenue_all_time_measured_at") or prev.get("generated")
+    if last is None:
+        # Bootstrap from a committed file written before this fix existed:
+        # such a file holds the real figure in the plain field itself, with
+        # no "_last_measured" sibling yet.
+        last = prev.get("revenue_all_time")
+        sales = prev.get("sales_all_time")
+        when = prev.get("generated")
+
+    if last is None:
+        return {"revenue_all_time_carried_from": None}
+
+    return {"revenue_all_time": last, "sales_all_time": sales,
+            "revenue_all_time_last_measured": last,
+            "sales_all_time_last_measured": sales,
+            "revenue_all_time_measured_at": when or "",
+            "revenue_all_time_carried_from": when or "an earlier run"}
+
+
 S.update(carry_forward(S, _prev))
+S.update(carry_forward_all_time(S, _prev))
 
 def _cat_gap() -> str:
     """How much of the shop is missing from production, if it can be measured.
