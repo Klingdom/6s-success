@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (01:4x slot): preflight.py --fast finally ran past the gate_tests sandbox hang to a genuine clean completion; every lane independently reconfirmed exhausted, nothing new found
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, no unrelated-history error). Read `BACKLOG-2026-09-07.md` in full (sections 0 to 9), `ROADMAP-2026-2029.md` section 1, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries. `cycle_signal.py --check`: CHANGED (`BACKLOG-2026-09-07.md`, `ops/cold-read-ledger.json`, from the all-time-revenue carry-forward fix two cycles ago), so did not skip the full pass.
+
+**Verified, not cited, in every lane this prompt's STEP 3 ordering covers.** GitHub read directly: 9 open issues, unchanged, all `decision`/`blocked-on-art` (read #40 and #15 in full to confirm neither has new owner input), 0 PRs. `list_triggers`: all three sibling Routines (`:40` PM, `:10` PM, `:43` operator, this session) show `SUCCEEDED`, no `FAILED` runs since the 2026-10-09 stall (issue #40 stays open, Phil's call). `cold_read_ledger.py --next`: 199 of 199 files ledgered, zero un-ledgered candidates left. `affiliate.py --check`: clean, 165 documents. `inbox_agent.py --apply`: no mail credential, reported unchecked. `check_urls.py` 211/211, `audit_pages.py` 215 pages/0 findings, `check_sellable.py` 124 of 126 buyable products confirmed in Stripe with delivery entries, mobile `npm test` all suites passing. `deploy_freshness.py`: site unreachable from here (standing sandbox limit), but no `site/**`/`Dockerfile` commits landed since the last recorded `deploy-verdict.json` (`checked_at` 2026-10-13T16:17:01Z), so no new deploy gap exists even though it cannot be read live.
+
+**The real finding this cycle: `preflight.py --fast` completed for the first time in several days instead of hanging at `gate_tests`.** Backgrounded with output redirected straight to a file (not piped through `tail`, the exact loss a 2026-10-14 earlier cycle named). It ran `test_audit_catalog.py` to completion (previously the hang point, flat CPU over a 110s window in multiple prior cycles) rather than stalling: this run showed it actively burning CPU (98 percent, not flat) and finishing within its own budget. All 399 test files ran, 397 verified, 2 honestly reported unverified (`test_build_cover.py`, `test_zone_hero_markup_keeps_avif.py`, both need Pillow this sandbox does not have). Result: every gate passed, 31 warnings, all standing (credential/network gaps, or already-tracked content gaps like the 15 stale zone videos and 19 of 20 decks off the 18-card print tier). Recorded a fresh `cycle_signal.py` snapshot now that a genuinely clean full pass backs it.
+
+**Went well:** letting the fast preflight run to its natural completion in the background instead of assuming the documented hang would recur; redirecting straight to a file this time rather than losing output to a killed `tail`.
+
+**Did not go well:** nothing new; the backlog, cold-read ledger, GitHub queue and inbox are all still genuinely exhausted of operator-actionable work, same conclusion as the last several cycles today.
+
+**Changing next cycle:** none; no new defect found to gate.
+
+**Next:** same standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here": usage-limit check, `VPS_DEPLOY_KEY` secret, Search Console verification, YouTube OAuth, Stripe business description; the 9 open decision/blocked-on-art issues).
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (01:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **Previous work finished.** The operator's `preflight.py --deep` completed per the earlier PM handoff, 0 FAIL except `gate_visual_audit`'s documented 900s budget limit. Reconfirmed rather than cited: `cold_read_ledger.py --stale`, 0 stale of 199 files; GitHub read directly, 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; `checks.yml` green on HEAD; `list_triggers`, all three sibling Routines healthy, no `FAILED` runs since the 2026-10-09 usage-limit stall (issue #40 stays open, Phil's call). Read `ops/checkin.py`'s own logic behind `CHECKIN-LOG.md`'s 30 straight "nothing measurable moved" entries: working as designed, not a defect, an honest read of real stagnation on published videos and live products. `STATUS.md` open claims: none. `OWNER-ACTIONS.md` "Start here": all five items genuinely need Phil's hand.

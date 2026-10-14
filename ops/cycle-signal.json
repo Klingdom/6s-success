@@ -1,15 +1,15 @@
 {
-  "combined_hash": "d0426836d64b9b4b1ac8d6bf379e65ae1c16b29b5324604014eee3292e1a6e57",
-  "git_head": "61f2852ea4c8175ab97266a2a3b5ae50759dc41e",
-  "note": "Full cycle: dashboard regeneration folded into ops/ship.py and hourly-brief.yml, closing recurring gate_dashboard_self_description_fresh WARN at its two dominant commit sources. CI confirmed green (run 38481829820, checks.yml, conclusion success) after a 23-minute Preflight pass in CI's own environment, not just this sandbox's gate_tests-hobbled local run.",
-  "recorded_at": "2026-10-13T23:43:41Z",
+  "combined_hash": "6abec70468a3692e9f8bbe8151e0f6bdeed02a813de6d837b8b189133b6be7c1",
+  "git_head": "e0957d7cebedec040089ad1439523afb096c3a4e",
+  "note": "Scheduled operator cycle 2026-10-14 (01:4x slot): backlog/cold-read ledger/GitHub/Routines all independently reconfirmed exhausted of unblocked work; preflight.py --fast ran to completion in this sandbox (past the usual gate_tests hang), 0 FAIL, 31 standing warnings, all credential/environment or already-tracked content gaps.",
+  "recorded_at": "2026-10-14T02:01:10Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "24a412492463f2cfc6538a2ef73ce9e4b7f0dcc3428e4f52aacf0ab4127001db",
+    "BACKLOG-2026-09-07.md": "609dd64b2d6f1f3dbaa858185a64e6d8f2d1a6b70b07fc345310b7ea6596be19",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "2054e8ddd8012568486586fef1f78f8619e9bb159a83e69db0a5c1b688722a0f",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
     "STATUS.md": "83f6e42153a69a19dda9c096ccfc6d9038ad8438c6ebd62d1b284abbd769d59a",
-    "ops/cold-read-ledger.json": "b4e40902019ffc60bed9362d8eb3b770c257650d9e57ce684ac85cb0d52abf5b",
+    "ops/cold-read-ledger.json": "e4d13d695774e588bb67546e998fa46e3c3e155cbc0cf5d280ef99c0f3d2bf07",
     "ops/deploy-verdict.json": "fafa2583f2e0772e0d6e4ba262cd35c01997f0432a2d8c5a2d96d39476bab353"
   }
 }
