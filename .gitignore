@@ -207,3 +207,7 @@ build/deck-skeletons/
 # grants upload and force-ssl scope on the channel until revoked.
 ops/youtube-client-secret.json
 ops/youtube-token.json
+
+# Clean-along videos (ops/video_cleanalong.py): rendered output and slide work dirs stay out of git, like every other render.
+build/video/_cleanalong/
+build/video/cleanalong/
