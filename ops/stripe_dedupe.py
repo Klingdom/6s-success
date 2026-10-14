@@ -50,6 +50,24 @@ def catalogue_prices() -> dict:
     return {i["sku"]: int(round((i.get("price") or 0) * 100)) for i in arr}
 
 
+def _refuse_if_ledgerium(objs) -> bool:
+    """True (and prints a refusal) if any object carries metadata.ledgerium_plan.
+
+    duplicates()/dedupe_links() already only ever see objects carrying
+    metadata.sku, which is why Ledgerium objects (metadata.ledgerium_plan,
+    no sku) have never reached here (CLAUDE.md 36b). But this file performs
+    exactly the kind of bulk archive/deactivate pass that rule says must
+    exclude Ledgerium explicitly, not rely on that filter alone holding
+    forever. Mirrors the same explicit check in retire_stripe_skus.py.
+    """
+    hit = [o for o in objs if (o.get("metadata") or {}).get("ledgerium_plan")]
+    if hit:
+        print("  REFUSING: %s carries metadata.ledgerium_plan. That is a "
+              "different business's billing (CLAUDE.md 36b)." % hit[0]["id"])
+        return True
+    return False
+
+
 def duplicates() -> dict:
     """SKUs with more than one ACTIVE product, as {sku: [products]}.
 
@@ -178,6 +196,9 @@ def dedupe_links(sc, apply_it: bool) -> int:
     if not dupes:
         return 0
 
+    if _refuse_if_ledgerium(L for ls in dupes.values() for L in ls):
+        return len(dupes)
+
     served, note = live_link_ids()
     if note:
         print("  REFUSING to touch links: %s. Which link the site serves is "
@@ -258,6 +279,9 @@ def main(apply_it: bool) -> int:
     dupes = {k: v for k, v in by.items() if len(v) > 1}
     print(f"  {sum(len(v) for v in by.values())} active products across "
           f"{len(by)} skus, {len(dupes)} duplicated")
+
+    if dupes and _refuse_if_ledgerium(p for prods in dupes.values() for p in prods):
+        return 1
 
     if not dupes:
         print("  no duplicate products")

@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (11:1x slot): fixed a Ledgerium safety gap in stripe_dedupe.py
+
+Previous work finished: reattached clean, 9 GitHub issues unchanged, backlog sections 2 through 6 Done or Phil-gated. preflight hit the known gate_tests sandbox hang, killed it, reported unchecked; every earlier gate passed.
+
+Continued the cold-read rotation, oldest 2026-10-09 tier. retire_stripe_skus.py: clean, already refuses on metadata.ledgerium_plan. stripe_dedupe.py: real gap, bulk archives or deactivates Stripe products and links without that same explicit refusal CLAUDE.md 36b requires. Added the guard, matching retire_stripe_skus.py. Verified with a mock Stripe client; existing tests still pass. No sibling file lacked it.
+
+Handing the operator: same OWNER-ACTIONS.md queue and 9 decision/blocked-on-art issues. No re-notify.
+
+Pushed to main. stripe_dedupe.py, cold-read-ledger.json, command deck. No price, product or page touched.
+
 ## 2026-10-14, PM check-in (10:4x slot): preflight hit the known gate_tests sandbox hang, everything else independently reconfirmed clean, nothing new unblocked
 
 NEXT FOR THE OPERATOR: second-pass cold read of the oldest 2026-10-09 ops/*.py tier not yet reread this week, because the first-pass rotation is 199 of 199 ledgered with 0 stale, backlog sections 2 through 6 are Done or explicitly Phil-gated, and all 9 open GitHub issues are decision/blocked-on-art.
