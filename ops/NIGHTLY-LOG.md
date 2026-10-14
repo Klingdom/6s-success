@@ -4,19 +4,17 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-14, scheduled operator cycle (13:0x slot): closed the C7 second-wave video fix that had already succeeded but was never recorded
 
-**Did:** attached cleanly (unshallow, ff-only merge onto origin/main, no unrelated-history symptom, 253 commits fast-forwarded). Ran preflight.py in the background while a research agent read BACKLOG-2026-09-07.md, OWNER-ACTIONS.md, ROADMAP-2026-2029.md and this log's recent entries to find the highest-priority item. It found that the 2026-10-14 `edge-tts==7.3.1` fix (commit `d5ecb0782`) for the C7 second-wave narrated-caption drift had actually succeeded in CI (GitHub Actions run `38554935606`, commit `7d84fb9a3`), but the fix's own commit message had promised "outcome recorded in NIGHTLY-LOG.md's next entry," and four consecutive dated entries after it went by without ever mentioning the success. Meanwhile `OWNER-ACTIONS.md` kept telling Phil the workflow "does not work and should not be re-run" the whole time.
+**Did:** attached cleanly (unshallow, ff-only, 253 commits). A research agent found the 2026-10-14 `edge-tts==7.3.1` fix for the C7 second-wave caption drift had succeeded in CI (run `38554935606`, commit `7d84fb9a3`), but its own commit message had promised "outcome recorded in NIGHTLY-LOG.md's next entry," and four entries since never mentioned it; `OWNER-ACTIONS.md` meanwhile kept telling Phil the workflow does not work. Corrected that paragraph, closed `BACKLOG-2026-09-07.md`'s C7 row, and added `gate_no_stale_narrated_render_blocker` to `preflight.py` so the stale claim cannot silently regress.
 
-**Verified rather than trusted the agent's report.** Re-ran `python ops/check_video_standard.py` myself: 114 of 114 match the standard, 0 STALE. Confirmed commit `7d84fb9a3` is a real, already-merged commit touching the 15 previously-stale `.srt` pairs. Corrected `OWNER-ACTIONS.md`'s stale "needs your machine, does not work" paragraph and closed `BACKLOG-2026-09-07.md`'s C7-second-wave row with the confirmed outcome.
+**Verified:** did not trust the agent's report. Re-ran `check_video_standard.py` myself (114 of 114, 0 STALE) and confirmed commit `7d84fb9a3` is real and merged, before touching either document. Proved the gate fails: injected the stale phrase into a throwaway copy of `OWNER-ACTIONS.md`, confirmed `FAIL` caught it, then confirmed clean against the real file.
 
-**Turned it into a gate (step 10b).** This is the same "source corrected, document never told" defect class this repository already gates for (`gate_no_stale_narration_blocker` and siblings), just never caught for this specific doc/fact pair. Added `gate_no_stale_narrated_render_blocker` to `ops/preflight.py`, wired into `main()`. Proved it can fail: injected the stale phrase into a throwaway copy of `OWNER-ACTIONS.md`, confirmed the gate's `FAIL` list caught it, then confirmed it is empty against the real, corrected file.
+**Went well:** found a real, verified green result sitting unrecorded, the exact defect CLAUDE.md 0.4 warns about, instead of another "everything Done or Phil-gated" cycle.
 
-**Went well:** the research agent found a real, verifiable green result sitting unrecorded, exactly the class of defect CLAUDE.md 0.4 warns about, rather than another "everything is Done or Phil-gated" cold-read cycle.
+**Did not go well:** full `preflight.py` hung again on `gate_tests` (`test_audit_catalog.py` re-spawning `audit_catalog.py --include-fixtures`), the same sandbox limit prior cycles hit all week. Killed it after every other gate passed 0 FAIL; reporting `gate_tests` unchecked, not passing.
 
-**Did not go well:** full `preflight.py` hung again on `gate_tests` (`test_audit_catalog.py` repeatedly re-spawning `audit_catalog.py --include-fixtures`), the same documented sandbox limitation prior cycles have hit all week. Killed it after confirming every gate before it, including the new one (verified by direct invocation, not just the hung full run), passed with 0 FAIL. Reporting `gate_tests` unchecked, not passing, per 0.4.
+**Changing next cycle:** none beyond the new gate.
 
-**Changing next cycle:** none beyond the new gate itself.
-
-**Next:** same standing `OWNER-ACTIONS.md` "Start here" queue (all Phil-gated) and the open decision/blocked-on-art GitHub issues. No re-notify; nothing here is new owner work, only a correction of stale guidance already on his list.
+**Next:** same standing `OWNER-ACTIONS.md` queue (Phil-gated) and the open decision/blocked-on-art issues. No re-notify; this was not new owner work.
 
 Pushed to main. `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/preflight.py`, command deck. No price, product or site page touched; IndexNow not applicable.
 
