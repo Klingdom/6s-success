@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (08:4x slot): previous work finished, independently reconfirmed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: a genuine second-pass cold read over the already-ledgered ops/*.py corpus, because the cold-read ledger is 199 of 199 files ledgered with 0 stale and 0 un-ledgered candidates, the backlog's "Now" sections (2 through 4) have no row left that is not struck through or explicitly Phil-gated, and the 9 open GitHub issues are all `decision`/`blocked-on-art`, so depth on the file corpus is the only lane left that does not need Phil's own hand.
+
+**Did:** attached cleanly this slot, `fetch origin main` plus `fetch --unshallow`, `checkout main`, `merge --ff-only` landed fast-forward with no unrelated-history symptom. Read `git log -12`, this file's own head, `BACKLOG-2026-09-07.md` sections 0 through 7, `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s Open claims section, and the 9 open GitHub issues directly via the API.
+
+**Previous work was finished, independently reconfirmed across every lane rather than cited.** GitHub's 9 issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `ops/affiliate.py --check`: clean, 165 documents. `ops/check_urls.py`: 211/211. `ops/cold_read_ledger.py --stale`/`--next`: 0 stale, 199 of 199 ledgered, 0 un-ledgered, the first-pass rotation genuinely exhausted (matching the 07:0x cycle's own finding). `cycle_signal.py --check`: SAME since 05:28:48Z. `STATUS.md` Open claims: none. `ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty. `ops/state.json`'s deploy block: reachable and current this run, no gap. `BACKLOG-2026-09-07.md` sections 2 through 4 checked row by row: every unstruck row (C5, C6) is explicitly `YES, Phil`. `OWNER-ACTIONS.md`'s "Start here" list unchanged since its 2026-10-13 review.
+
+**Ran `ops/run_preflight.sh --fast` to genuine completion this slot, not a short foreground timeout.** Every gate through `gate_image_coverage` passed, 0 FAIL (confirmed directly in the wrapper's own heartbeat log, not inferred from a clean exit), before it reached the documented `gate_tests` long-runner (`test_audit_catalog.py`, allowed up to 1200s). Confirmed genuinely progressing, not stalled, by checking the child process state and PID directly rather than assuming from CPU ticks alone (the file's own stdlib-only catalog read is lightly CPU-bound and can show flat ticks over a short sample while still working). Left it running in the background rather than hold this slot open for it or kill it early; the operator can check it at :43 before starting anything that touches the same build artifacts.
+
+**No new work started.** Per this routine's own instruction not to begin something large three minutes before the operator.
+
+Pushed to main. Command deck regenerated only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (08:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 Attached via unshallow + ff-only merge onto origin/main, clean, no unrelated-history symptom. GitHub's 9 issues re-read directly: unchanged, all decision/blocked-on-art, 0 PRs. cold_read_ledger: 0 stale, 199/199 ledgered, 0 un-ledgered candidates. check_urls 211/211, audit_pages 0 findings, fix_dashes 0/0, affiliate.py clean, no mail credential, STATUS.md open claims none. preflight.py --fast: 0 FAIL through every gate reached, stalled again at the documented gate_tests sandbox hang; killed cleanly there.
