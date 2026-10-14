@@ -11,7 +11,9 @@
   "https://6s-success.com/articles/family-wont-put-things-back",
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe",
+  "https://6s-success.com/articles/how-to-organize-a-basement",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer",
+  "https://6s-success.com/articles/how-to-organize-an-attic",
   "https://6s-success.com/articles/is-that-really-a-backup",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter",
   "https://6s-success.com/articles/sentimental-items-without-guilt",
@@ -214,13 +216,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-01T05:02:02Z",
-   "mode": "changed",
-   "offered": 2,
-   "accepted": 2,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-01T09:21:52Z",
    "mode": "changed",
@@ -632,6 +627,13 @@
    "mode": "changed",
    "offered": 3,
    "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-14T22:47:56Z",
+   "mode": "full",
+   "offered": 213,
+   "accepted": 213,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
