@@ -2,6 +2,42 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (20:0x slot): closed the one open item the 19:4x handoff left (CI run 2135), ran a full local preflight to real completion myself, nothing new to build
+
+**Did:** Fresh checkout, shallow and detached (issue #27's usual shape). Unshallowed, attached to main, ff-only onto origin/main (332 commits, no conflict). Read BACKLOG-2026-09-07.md in full (sections
+0-9: everything in 2-6 Done, Phil-gated, or closed by decision; section 8/9 record the cycle-signal and dashboard-staleness fixes), ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG.md
+entries. `python ops/cycle_signal.py --check` reported SAME against the 19:13:40Z snapshot before I touched anything, confirming a full local re-verification would be redundant on an unchanged input;
+spent the cycle on the external checks that signal cannot cover instead, per section 8's own reasoning.
+
+**Closed the one open item the 19:4x PM check-in left unconfirmed:** `checks.yml` run 2135 (`17d82ae27`, the 19:1x cycle's own fix/verification commit) had been `in_progress` past 30 minutes when that
+entry closed. Polled it directly via the GitHub API rather than assuming: `conclusion: "success"`. Also ran a full `python ops/preflight.py` myself to real completion (not backgrounded past
+`gate_tests` this time) rather than citing the 19:1x cycle's own run: every gate passed, 29 warnings, all the same standing sandbox-credential gaps already diagnosed (no Stripe/VPS/mail credential,
+site unreachable, Pillow missing, two tests that cannot exercise anything here). `ops/affiliate.py --check`: clean, 165 documents. GitHub re-checked directly: 9 open issues, unchanged, all
+`decision`/`blocked-on-art`; 0 open PRs. `ops/cold_read_ledger.py --stale`/`--next`: 199 of 199 files ledgered, 0 stale, independently re-confirming the tier is genuinely exhausted rather than carrying
+the claim forward. `keyword-demand.yml` and `indexation-check.yml` both fired successfully earlier today (14:39 and 15:04 UTC); their output was already sampled by the 19:1x cycle, no new gap survived
+that read. Recomputed the real production/repository deploy gap from `ops/deploy-verdict.json` directly rather than trusting OWNER-ACTIONS.md's own stale worked-example citations further up that
+file (several are dated correction-on-correction from three weeks ago): current verdict is build `9a2477bcdfe5b6c2`, resolves to commit `17b7c6655`, and `git log 17b7c6655..HEAD -- site/ Dockerfile`
+is empty, so production matches the repository exactly as far as the last confirmed check could tell; no owner action needed there right now. `inbox_agent.py --apply`: no mail credential, unchecked,
+not empty.
+
+**The honest finding: none.** Every row in BACKLOG-2026-09-07.md sections 2 through 6 is Done, Phil-gated, or Hold; the cold-read ledger is exhausted; the keyword-demand gap tier has already been
+sampled and nothing groundable survived; CI is green; GitHub is unchanged. `CHECKIN-LOG.md`'s own hourly entries have said "nothing measurable moved" for several hours running while commit volume
+(934 in 7 days per this cycle's own dashboard figure) keeps climbing, which is itself worth naming plainly rather than padding this entry with a 24th identical sweep: the system is currently
+re-verifying an unchanged state far more often than the state is changing. No defect found to gate, per STEP 10b's own rule against manufacturing one against a clean result.
+
+**Went well:** confirming CI's real verdict and running preflight to genuine completion myself rather than leaving both as "unconfirmed" for a third consecutive handoff.
+
+**Did not go well:** same shallow/detached checkout shape; issue #27's drafted fix still sits unapplied, only Phil can paste it into the Routines UI. Nothing new to build this cycle.
+
+**Changing next cycle:** none found to change. If `CHECKIN-LOG.md`'s "nothing measurable moved" streak keeps extending while commit volume keeps climbing, that gap (effort without outcome) is the next
+genuinely new angle to look at, not another backlog sweep.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY/#35, Search Console verification, Listmonk/#15, usage-plan check/#40, YouTube OAuth, Gemini billing, Amazon KDP/Etsy
+accounts, Apple/Play developer accounts) and the 9 open decision/blocked-on-art issues, unchanged. The next real unblocked work is whatever the weekly crons surface or whatever Phil answers next.
+
+Pushed to main. `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this log entry. No price, product or site page touched; not customer-facing, IndexNow not
+applicable.
+
 ## 2026-10-14, PM check-in (19:4x slot): previous work genuinely finished, confirmed independently, nothing new unblocked, handoff is to watch CI and the exhausted ledger
 
 NEXT FOR THE OPERATOR: confirm checks.yml run 2135 (17d82ae27) reaches a verdict, because it has been in_progress since 19:14, past the normal gate_tests window, and if it fails that is this cycle's actual work; if it is green, there is no new unblocked lane to open, since the cold-read ledger is exhausted (199 of 199 files, 0 stale, re-derived directly with --next) and every other backlog row still waits on Phil.
