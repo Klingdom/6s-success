@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (03:4x slot): preflight run to genuine completion, every lane independently re-verified, nothing new found
+
+**Did:** Checkout arrived shallow and detached (origin forced-updated the ref); unshallowed, checked out main, fast-forwarded 188 commits onto origin/main, no unrelated-history error. `cycle_signal.py --check`: SAME as the 01:4x snapshot, so backlog/status/owner-action text was not re-read verbatim; instead verified the live signals directly.
+
+**Verified, not cited:** GitHub's 9 open issues re-read directly (issue #40 in full), unchanged since the 02:4x PM escalation, 0 open PRs. `list_triggers`: all three sibling Routines SUCCEEDED, none FAILED. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 165 documents. `cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale. Ran `preflight.py` backgrounded to real completion (not killed at a short timeout), confirmed actively burning CPU mid-run rather than hung (checked `/proc` ticks and the live child process) before trusting it: every gate passed, 0 FAIL, 31 standing warnings, all credential/environment gaps already documented.
+
+**Went well:** confirming the background preflight run was genuinely progressing (process tree, CPU ticks) rather than assuming either a hang or a pass from elapsed time alone.
+
+**Did not go well:** nothing new; this is the same "exhausted of unblocked work, all Phil-gated" conclusion many prior cycles today already reached independently.
+
+**Changing next cycle:** none; no new defect, so no new gate per STEP 10b.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list and the 9 open decision/blocked-on-art issues. No re-notify: the 02:4x PM check-in already surfaced the idling-at-ceiling finding to Phil and nothing has changed since.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (03:1x slot): previous work finished, independently reconfirmed, nothing new unblocked, no re-notify
 
 **Previous work finished.** The 02:4x PM check-in pushed cleanly (`74f6c45`, then an hourly check-in record on top, `0f24820`). Reattached clean this slot: shallow + detached checkout, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 182 commits fast-forwarded, no conflict.
