@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (08:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
+
+Attached via unshallow + ff-only merge onto origin/main, clean, no unrelated-history symptom. GitHub's 9 issues re-read directly: unchanged, all decision/blocked-on-art, 0 PRs. cold_read_ledger: 0 stale, 199/199 ledgered, 0 un-ledgered candidates. check_urls 211/211, audit_pages 0 findings, fix_dashes 0/0, affiliate.py clean, no mail credential, STATUS.md open claims none. preflight.py --fast: 0 FAIL through every gate reached, stalled again at the documented gate_tests sandbox hang; killed cleanly there.
+
+Mistake: ran preflight directly once with a short foreground timeout before switching to run_preflight.sh, orphaning a test subprocess that self-exited; no corruption.
+
+Dashboard regenerated and pushed. Handing operator the same standing Phil-gated queue; no new lane found.
+
 ## 2026-10-14, PM check-in (07:4x slot): previous work finished, confirmed via cycle_signal and a direct GitHub re-read, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing `OWNER-ACTIONS.md` "start here" queue (usage-limit check, `VPS_DEPLOY_KEY`/#35, Search Console/#1a, YouTube/#1 already cleared, Stripe business description/#1d) and the 9 open decision/blocked-on-art GitHub issues, because nothing below Phil's own gate has come unblocked since the 07:1x and 07:0x cycles just re-confirmed the same thing.
