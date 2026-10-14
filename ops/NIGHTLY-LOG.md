@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (06:1x slot): previous work finished, independently reconfirmed, Routines health re-verified directly, nothing new unblocked
+
+**Did:** checkout arrived shallow and detached; unshallowed, checked out main, fast forwarded cleanly onto origin/main, 207 commits, no unrelated-history symptom this cycle. Read the last several `NIGHTLY-LOG.md` and `CHECKIN-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0 to 7 (status, decks, images/video, Hold), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s open-claims section, and the 9 open GitHub issues directly via the API.
+
+**Previous work was finished.** `ops/run_preflight.sh` (not a short foreground timeout, per the file's own warning I tripped once and corrected) ran to real completion: every gate passed, 31 warnings, all the same standing sandbox-credential and environment-access gaps (no Stripe or SSH deploy key here, no Pillow, no mail credential, site unreachable from this sandbox). `cycle_signal.py --check` read SAME against the snapshot from 48 minutes earlier; the two commits since then touched only log and dashboard state, confirming the signal honestly. Working tree clean, main in sync with origin, no concurrent collision. 9 GitHub issues unchanged, all `decision` or `blocked-on-art`. 0 open PRs. No mail credential, reported unchecked, not empty. `STATUS.md` shows no open claims.
+
+**Verified directly rather than citing a prior cycle's claim:** called `list_triggers` on all three scheduled Routines (PM :10, this one; PM :40; hourly operator :43). All three show `last_run.status: SUCCEEDED` (or `PENDING` for this own run), confirming issue #40's five day usage-limit stall has not recurred. Backlog sections 2 to 6 reconfirmed exhausted: every "Now" row is done or Phil-gated, the Hold section's remaining rows wait on traffic that has not changed, and section 6's owner gates are unchanged.
+
+**Did not go well:** an early `timeout 110 python ops/preflight.py` call killed the wrapper but left `test_audit_catalog.py`'s own subprocess alive and reparented to pid 1, exactly the orphaned-process-tree risk the file's docstring warns about. Caught by checking `/proc/<pid>` before touching the lock rather than assuming it was dead; let it finish, then ran the proper `ops/run_preflight.sh` wrapper, which attached cleanly.
+
+**Changing next cycle:** none; no new defect found.
+
+**Next:** same standing `OWNER-ACTIONS.md` list and the 9 open decision/blocked-on-art issues, unchanged. Nothing to hand the operator beyond the standing exhausted queue; no re-notify, nothing has changed since the last escalation.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (05:4x slot), addendum: the direct test run finished, 2 of 399 bad, both self-explained and reverified clean
 
 The standalone run below finished after this entry was first written: 399 of 399 files completed, 2 reported bad. `test_audit_catalog.py` TIMEOUT: an artifact of this run's own 120s per-file cap, not preflight's own 1200s allowance for exactly this file. `test_gates.py` FAIL on its "conflict-markers fires on the clean tree" case: this run's own `git merge origin/main` (a concurrent push had landed mid-cycle, 4-file conflict in the generated command deck and log) had left real, literal `<<<<<<<`/`=======`/`>>>>>>>` markers on disk at the exact moment that test happened to run, the same foreground-merge-races-background-test-run self-contamination this log has repeatedly diagnosed. Resolved the merge (kept both NIGHTLY-LOG entries in true order, regenerated the three generated deck files fresh with `ops/dashboard.py` rather than trusting either side), confirmed 0 stray markers with a direct grep, then reran `test_gates.py` standalone on the clean, already-pushed tree: passes clean, 0 FAIL. Neither finding is a product or code defect; no gate change needed. `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes after the merge.
