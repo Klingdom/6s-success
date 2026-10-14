@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (09:1x slot): full preflight run to real completion, cycle_signal reconciled, standing Phil-gated queue unchanged
+
+**Did:** attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main`, clean fast-forward, no unrelated-history symptom. `ops/cycle_signal.py --check` read CHANGED (`ops/cold-read-ledger.json` moved since the 05:28:48Z snapshot, from the 08:3x cycle's own two-file second-pass cold read), so a cheap SAME was not available this slot; ran the real thing instead of trusting the prior cycles' account of it. Read `git log -12`, this file's own head, `BACKLOG-2026-09-07.md` sections 2 through 9 and `OWNER-ACTIONS.md`'s "Start here," GitHub's 9 open issues directly via the API, and `EXECUTIVE-DASHBOARD-LIVE.md`.
+
+**Independently reconfirmed, not cited.** GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art` (#40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `OWNER-ACTIONS.md`'s "Start here" queue (usage-limit check, `VPS_DEPLOY_KEY`/#35, Search Console/#1a, YouTube/#1 already cleared, Stripe business description/#1d) unchanged since its own last review. `BACKLOG-2026-09-07.md` sections 2 to 6: every row Done or explicitly Phil-gated, matching section 7's own summary ("technically finished and commercially unproven") and sections 8-9's standing closure notes. No mail credential (`inbox_agent.py --apply`), reported unchecked, not empty.
+
+**Ran `ops/run_preflight.sh --fast` to genuine completion in the background, not a short foreground timeout.** Confirmed it was actually progressing rather than hung at each check: watched the child process under `gate_tests` change from `test_audit_catalog.py` to `test_cold_read_ledger_stale.py` to `test_gate_signup_form_withdrawal_protected.py` to `test_gate_zone_shine_step_capitalised.py` over several minutes, each a different file with live CPU, before it cleared `gate_tests` and ran the remaining ~150 fast gates to the end. Result: **every gate passed, 0 FAIL, 31 warnings**, all the standing sandbox-credential/environment kind (no Stripe/SSH/mail key, no Pillow, no live-site reach, workflow/cadence gaps already diagnosed in prior entries). `core.hooksPath` was unset again per clone; the gate re-enabled it. Recorded a fresh `ops/cycle_signal.py --record` snapshot now that the full pass is clean, reconciling the CHANGED verdict this cycle opened with.
+
+**No new work started.** Nothing genuinely unblocked beyond the standing Phil-gated queue; this matches the unbroken run of cycles today.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list and the 9 open decision/blocked-on-art issues, unchanged. No re-notify.
+
+Pushed to main. Command deck regenerated, `ops/cycle-signal.json` updated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (08:4x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: a genuine second-pass cold read over the already-ledgered ops/*.py corpus, because the cold-read ledger is 199 of 199 files ledgered with 0 stale and 0 un-ledgered candidates, the backlog's "Now" sections (2 through 4) have no row left that is not struck through or explicitly Phil-gated, and the 9 open GitHub issues are all `decision`/`blocked-on-art`, so depth on the file corpus is the only lane left that does not need Phil's own hand.
