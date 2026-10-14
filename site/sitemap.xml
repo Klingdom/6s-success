@@ -478,6 +478,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://6s-success.com/articles/how-to-organize-a-basement</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A basement is six small zones, not one room. Check for water, clear the utility zone first, get everything off the floor, then work one zone per session.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-junk-drawer</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -488,8 +498,18 @@
     </image:image>
   </url>
   <url>
+    <loc>https://6s-success.com/articles/how-to-organize-an-attic</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Many attic floors were built to hold a ceiling, not boxes. What an attic can safely hold, what heat ruins, and how to store light things in sealed, dated bins.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://6s-success.com/articles/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -509,7 +529,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/more-storage-wont-fix-clutter</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -529,7 +549,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/tidy-is-not-the-same-as-safe</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>

@@ -1414,6 +1414,7 @@ Maintain a compact index as the file grows.
 | D-028 | The MCP server has never run; corpus stays in sync and the image keeps building, but deploying and exposing it is the owner's call | ACTIVE | Infrastructure |
 | D-029 | S1-S4 (the structured `sustain_detail` schema) are dropped, not deferred; the prose Sustain pass already covers the content gap and no distribution exists to protect with a stricter gate | ACTIVE | Product |
 | D-030 | The two "dollar tree" keyword-gap queries stay uncovered; writing the brand name into page copy to chase them is declined | ACTIVE | Content |
+| D-031 | Basement and attic demand is answered as two method guides, not two new corpus rooms | ACTIVE | Content |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact
@@ -2844,3 +2845,50 @@ defect to fix on sight.
 of ~2,800 measured queries, or a product/partnership reason to reference the
 brand by name exists. Until then, a future cold read should treat these two
 rows as closed, not as an unscoped opportunity.
+
+## D-031 | 2026-10-14 | Basement and attic demand is answered as two method guides, not two new corpus rooms
+
+**Decision.** `BACKLOG-2026-09-07.md` 1b parked basement (21 queries, 0
+covered) and attic (16, 0 covered) as an owner decision, because adding a
+room to `content/manual/source/content.json` changes the product's own
+definition: zone pages, a deck, the book, the Manual and the app corpus.
+On 2026-10-14 Phil directed "improve and expand the site". That settles the
+question of whether to expand, but not the scope. The scope chosen was the
+cheap one 1b itself described: two hand-maintained articles,
+`/articles/how-to-organize-a-basement` and `/articles/how-to-organize-an-attic`,
+that apply the six-S method to each space's own zones and link into the
+existing laundry, workshop, family room, stair, backstock and garage
+overhead-storage zone pages that a basement or attic actually borrows.
+
+**Rationale.** 37 of about 2,800 measured queries do not justify two new
+rooms across six products. They do justify two genuinely useful pages,
+especially because both spaces carry safety content no page on the site
+covered: utility clearances, water checks and radon in the basement, and
+structural load, trusses, heat damage and ventilation in the attic. That is
+the Safety pass, which is this method's point of difference.
+
+**Evidence.** `ops/keyword-demand.json`, harvested 2026-10-13: every
+basement and attic row was `gap` or `partial`, none `covered`. Live
+analytics read 2026-10-14: 7 visitors in 7 days, 2 Google referrals in 30
+days, so this is a bet on discovery, not a response to existing traffic.
+
+**Honesty constraints applied.** Neither page claims the Print Pack covers
+a basement or attic; both say in so many words that it does not. No
+clearance or load figure is invented. The pages defer to the equipment
+label, the installer, or a structural professional, and cite the EPA only
+where its recommendation is real (indoor humidity below 60 percent, ideally
+30 to 50; test every home for radon).
+
+**Alternatives.** Two full corpus rooms (rejected on cost against 1.3% of
+demand). One combined "basement and attic" page (rejected: the two spaces
+fail for opposite reasons, water against heat and weight, and searchers ask
+about them separately).
+
+**Measure.** A re-harvest (weekly `keyword-demand.yml`) should move the 37
+rows off `gap`. The real test is any Umami pageview on either URL with a
+search referrer within about 8 weeks.
+
+**Revisit condition.** If either page draws organic arrivals that convert
+into quest starts or purchases, author basement and attic as real corpus
+rooms. If neither page has a single organic arrival by 2026-12-15, stop
+adding pages for adjacent spaces.
