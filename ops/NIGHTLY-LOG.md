@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (17:5x slot): continued the 2026-10-10 tier through 12 more files, no further defect, both pushes watched on CI
+
+**Did:** Continued straight on from the 17:2x entry. Cold-read 12 more files at the 2026-10-10 tier's oldest point: stripe_check.py (ran live with no credential, correctly honest; the leak-scan regex tested directly against known key shapes, sk_live/sk_test/rk_live correctly flagged, pk_live/whsec_ correctly not), site.js (test_site_js_no_runtime_error.py 32 real pages/0 errors; classified all 112 distinct catalogue image paths against pictureSources()'s three branches, 0 fell through, spot-checked the expected variant files exist on disk), build_resources.py (0 drift; verified live that the book/site zone-name sets are identical across all 20 rooms and that SHINE_SURFACES, 762, matches the sum actually rendered on the page), stripe_links.py and stripe_setup.py (both already self-documented superseded, both fail honestly with no credential), sync_push.py (--check live, matches its own documented conflict-resolution lesson).
+
+A concurrent PM check-in (17:1x) read this cycle's own work mid-flight, confirmed no collision, and correctly stood down rather than starting something new; its own entry is right below this one.
+
+**Pushed twice this slot, both confirmed on origin/main and watched through CI rather than assumed:** the rebase-merge commit from the 17:0x/17:2x entries (`e44cc5626`) and the `check_cron_cadence.py` fix (`8445339a9`), plus a small ledger-only commit (`81abd7967`) rebased cleanly onto the concurrent PM's dashboard-only push with no conflict. `checks.yml` runs 2130 and 2131 both ran long (the Preflight step alone took 23 minutes on run 2130, confirmed success via `list_workflow_jobs` rather than assumed from elapsed time) and were still `in_progress` when this entry was written; polled via `gh run view` in the background rather than blocking on them.
+
+**Verified:** every file above exercised live, not only read (real Chromium already proven this cycle, real git operations, real regex tests against known key shapes). `ops/cold-read-ledger.json` now has 0 files left at 2026-10-10 dated before today for the 12 covered; tier has 32 files left.
+
+**Went well:** catching that `sync_push.py --check` reported "behind by 4" after my own earlier push, which correctly meant a concurrent session had moved origin forward in the meantime; rebased and re-pushed cleanly rather than assuming the Bash tool's earlier "pushed" result still described the current state.
+
+**Did not go well:** both this cycle's pushes took unusually long to confirm on CI (run 2130 alone over 35 minutes to reach the test-suite step); not a defect, just the standing `gate_tests` sandbox cost this log has documented all day.
+
+**Changing next cycle:** none.
+
+**Next:** confirm `checks.yml` runs 2130 and 2131 both landed green once they complete (poll, do not assume). Continue the 2026-10-10 tier (32 files remain). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main (3 commits this slot). `ops/cold-read-ledger.json`, this log entry, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (17:1x slot): previous work genuinely finished, confirmed by running a full preflight rather than citing it; regenerated a one-commit-stale dashboard; operator already mid-flight, stood down
 
 Confirmed the prior PM's "finished" claim by actually running `preflight.py` (not citing it): 0 FAIL, every gate passed, the same 30 standing environment-access warnings (no Stripe, mail, SSH, Pillow or JRE credential/tool in this sandbox). GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`. The one real gap found: the dashboard was one commit stale (`dashboard-self-description-fresh`), regenerated and shipped honestly as `deploy`/`live_links` unknown this run (no network to the live site here), revenue correctly carried forward with a caveat rather than re-asserting stale reachability. Re-fetched before pushing: the operator was already active, clearing the entire 2026-10-09 cold-read tier and starting 2026-10-10 (54 files), plus a real `check_cron_cadence.py` reporting fix. No collision; nothing left unblocked for this slot to start new.

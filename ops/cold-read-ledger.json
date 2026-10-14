@@ -858,13 +858,13 @@
     },
     "stripe_links.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran ops/tests/test_stripe_links.py live (4/4 pass, live-account guard holds), confirmed superseded status against ops/stripe_catalog.py still accurate. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:5x slot: already correctly self-documented as superseded (ops/stripe_catalog.py owns the live consulting checkout now); ran --plan live, correctly fails honestly with no credential rather than crashing; STRIPE_ALLOW_LIVE guard confirmed present and matches the pattern every other Stripe-write tool in this repo carries. No defect found."
     },
     "stripe_setup.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:5x slot: already correctly self-documented as superseded; ran --plan live, correctly fails honestly with no credential. No defect found."
     },
     "sync_page_links.py": {
       "status": "clean",
@@ -873,8 +873,8 @@
     },
     "sync_push.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "Second-pass cold read: rebase-and-push loop traced for the generated-files-only-conflict case; staged-diff check after regenerate() correctly covers both all-generated-conflicted and mixed-conflict cases. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:5x slot: ran --check live against the real repo state, correctly reported 0 conflict markers and the real ahead/behind counts against origin/main (verified against a fresh git fetch); read the rebase-and-regenerate logic in full, matches the documented 2026-09-14 state-corruption lesson (resolve generated-file conflicts to origin's content before regenerating, never regenerate on top of literal conflict markers). No defect found."
     },
     "verify_deploy.py": {
       "status": "clean",
