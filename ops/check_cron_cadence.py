@@ -558,6 +558,21 @@ def main() -> int:
                   f"{r['effective_median_gap_min']} / worst "
                   f"{r['effective_worst_gap_min']} min over "
                   f"{r['effective_sample_size']} gaps")
+        if r.get("delivery_on_time"):
+            # The schedule-only numbers above are what the cron does, not what
+            # Phil waits for: this workflow throttles inside its own script
+            # (DELIVERY_RECORDS), so what it actually delivered is the number
+            # that matters, and it has to appear here, in the plain-text
+            # report, or the alarming schedule-only mean above is the only
+            # thing a human reader ever sees. Found 2026-09-30's own
+            # delivery_mean/delivery_max/delivery_n/delivery_on_time fields
+            # were computed and returned, including in --json, but never
+            # printed in the plain-text path this script's own docstring
+            # says a person reads.
+            print(f"        the cron is slow, but {r['delivery_record']} is "
+                  f"the real delivery record: {r['delivery_n']} delivery "
+                  f"gap(s), mean {r['delivery_mean']:.1f} / worst "
+                  f"{r['delivery_max']:.1f} min, genuinely on time")
     return 0
 
 

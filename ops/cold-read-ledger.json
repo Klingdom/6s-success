@@ -367,9 +367,9 @@
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (156 lines). Ran directly: correctly reports T2 NOT EVALUATED (no ssh key here) rather than a false zero, matching the file's own stated contract that unreadable must never read as zero. retailer_hosts() reads live from product_links.MERCHANTS rather than a second hardcoded list, confirmed by reading that import. No defect found."
     },
     "check_cron_cadence.py": {
-      "status": "clean",
-      "date": "2026-10-10",
-      "note": "Re-verified live rather than trust the --stale flag alone: ran directly, 7/10 workflows [ok], 3 [??] (too few completed runs to measure, the known owner-questions.yml/keyword-demand.yml/indexation-check.yml shape, not a defect). The gap --stale flagged was the prior same-day cycle's own fix (owner-questions.yml added to the WORKFLOWS registry, commit 0de01c68d) landing after the last ledger date; re-ledgered to the current commit, 0 stale."
+      "status": "fixed",
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:2x slot: ran live against the real GitHub Actions API (gh auth token available in this sandbox). Found a real defect: check_one() computes delivery_mean/delivery_max/delivery_n/delivery_on_time for a script-throttled workflow (hourly-brief.yml) and returns them in --json, but main()'s plain-text print loop, the path this file's own docstring says a person reads, had a print branch for the sibling cron_late_but_covered case but none for delivery_on_time, so the human-readable report showed '[ok] hourly-brief.yml: ... actual mean 341.4 min' (5.7x its configured interval) with zero explanation of why that is not DEGRADED. Fixed by adding the missing print branch, modeled on the existing cron_late_but_covered one. Added Case 12 to ops/tests/test_check_cron_cadence.py (synthetic result, no network) and proved fail-then-pass directly: 11/12 before the fix, 12/12 after. test_gate_cron_cadence_workflows_registry_current.py (4/4) and the WORKFLOWS registry (10/10 real cron-scheduled files, confirmed against a fresh grep) both still clean. No banned dashes, syntax verified."
     },
     "check_integrations.py": {
       "status": "clean",
@@ -728,8 +728,8 @@
     },
     "revenue_model.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold and ran directly. Grouping-by-price, mixed-month math and the CN-VIRTUAL/CN-INHOME/PACK-HOUSE lookups all checked against live data.js; output sane, no crash, no defect."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:2x slot: ran live, verified every arithmetic row by hand (grouping, hours, visitor ranges, mixed-month scenarios) against the real catalogue including PACK-HOUSE at $19, no defect found"
     },
     "review_deck_art.py": {
       "status": "clean",
@@ -753,8 +753,8 @@
     },
     "root_causes.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran module live (17 causes print, self-check passes), confirmed all 11 mapped article slugs exist on disk, and gate_cause_vocabulary in preflight.py runs clean against the live kitchen-deck.json. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:2x slot: ran self-check live (17 causes, 0 dupes, all six_s values valid), verified all 16 referenced article slugs resolve to real committed files, no defect found"
     },
     "send_brief.py": {
       "status": "clean",
@@ -918,23 +918,23 @@
     },
     "wire_aria_current.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live against the real site, every page marks its own nav position correctly. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran --check live, every page marks its nav position correctly, no defect found"
     },
     "wire_breadcrumbs.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live (0 would change, 29 already correct) and ops/tests/test_wire_breadcrumbs.py (6/6 pass). Confirmed again that --check never exits 1 on drift but preflight's gate_breadcrumbs_current reuses trail/block/MARKED directly rather than this script's exit code, so still not a gap. No new defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran --check live, 0 drift across 29 article pages, no defect found"
     },
     "wire_consult_cta.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (0 pages changed, already applied), verified the printed price matches CN-VIRTUAL's live price in data.js (250). No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran live, 0 pages changed, verified live that all 30 eligible articles (32 minus 2 deliberately-skipped B2B pieces) carry the CN-VIRTUAL/CN-INHOME button, no defect found"
     },
     "wire_footer.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (0 pages rewritten, every footer link resolves). Noted main() has no actual --check flag parsing, unlike its siblings, but it is idempotent and its own docstring never promises a dry-run mode, so running it is safe; not a functional defect. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran live, 0 pages changed, every footer link resolves, no defect found"
     },
     "wire_generated_catalog.py": {
       "status": "clean",
@@ -948,8 +948,8 @@
     },
     "wire_legal_strip.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran --check live, every legal strip matches the table. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran --check live, every legal strip matches the table, no defect found"
     },
     "wire_measure.py": {
       "status": "clean",
@@ -958,13 +958,13 @@
     },
     "wire_nav.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live against the real site plus ops/tests/test_wire_nav_preserves_aria_current.py (4/4 pass); confirmed the wire_aria_current.main() chain at the end still repairs the aria-current it strips, working tree stayed clean after. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran live; traced an apparent anomaly (reports 'rewritten on 5 pages' every run yet produces byte-identical files) to the documented 2026-09-25 fix: it strips aria-current then chains wire_aria_current.main() which restores it, net zero diff by design, confirmed via md5sum and direct string comparison. No defect found."
     },
     "wire_progressive.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: ran it live (214 pages marked, 5 skipped, site.css gate confirmed), working tree stayed clean after. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:1x slot: ran live, 214 pages wired idempotently, .js/.reveal CSS pairing confirmed live in site.css, no defect found"
     },
     "wire_pwa.py": {
       "status": "clean",

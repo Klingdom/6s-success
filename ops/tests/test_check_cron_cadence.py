@@ -182,7 +182,45 @@ def main() -> int:
         fails.append("WORKFLOWS is missing real cron-scheduled file(s): "
                      f"{sorted(missing)}")
 
-    total = 11
+    # Case 12: the plain-text report must say WHY a workflow with an alarming
+    # schedule-only gap is marked [ok] when its real delivery record is
+    # on time, not only set the field. Found 2026-10-14, cold-reading this
+    # file: check_one() already computed delivery_mean/delivery_max/
+    # delivery_n/delivery_on_time for hourly-brief.yml and returned them, in
+    # --json too, but main()'s print loop only ever explained the sibling
+    # cron_late_but_covered case; delivery_on_time had no print branch at
+    # all, so the plain-text report a person actually reads showed "[ok]
+    # hourly-brief.yml: configured 60 min, actual mean 341.4 min... " with no
+    # explanation of why 5.7x over its configured interval is not DEGRADED.
+    import contextlib
+    import io as _io
+
+    fake_result = {"workflows": [{
+        "workflow": "hourly-brief.yml", "verdict": "measured",
+        "configured_interval_min": 60.0, "sample_size": 49,
+        "mean_gap_min": 341.4, "median_gap_min": 348.6, "worst_gap_min": 626.0,
+        "degraded": False, "delivery_mean": 59.9, "delivery_max": 74.9,
+        "delivery_n": 39, "delivery_record": "ops/last-brief-sent.json",
+        "delivery_on_time": True,
+    }]}
+    real_check, C.check = C.check, (lambda: fake_result)
+    real_argv, sys.argv = sys.argv, ["check_cron_cadence.py"]
+    buf = _io.StringIO()
+    try:
+        with contextlib.redirect_stdout(buf):
+            C.main()
+    finally:
+        C.check = real_check
+        sys.argv = real_argv
+    out = buf.getvalue()
+    if "DEGRADED" in out:
+        fails.append(f"an on-time delivery must not print DEGRADED, got: {out!r}")
+    if "ops/last-brief-sent.json" not in out or "59.9" not in out:
+        fails.append(f"delivery_on_time must explain itself in the plain-text "
+                     f"report (the record path and the real delivery mean), "
+                     f"got: {out!r}")
+
+    total = 12
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

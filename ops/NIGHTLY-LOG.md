@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (17:2x slot): continued the 2026-10-10 tier, a real defect found in check_cron_cadence.py's human-readable report
+
+**Did:** Continued straight on from this same cycle's 17:0x entry (still waiting on `checks.yml` run 2130 to confirm the rebase-merge commit green; it stayed `in_progress` the whole time this slot ran, polled via `gh run view` rather than assumed). Cold-read the next few files at the new oldest point of the tier (2026-10-10, 54 files): wire_progressive.py, wire_breadcrumbs.py, wire_nav.py, wire_footer.py, wire_aria_current.py, wire_legal_strip.py, wire_consult_cta.py (all run live against the real site, 0 drift, every link resolves), revenue_model.py (every arithmetic row checked by hand against the live catalogue), root_causes.py (self-check live, all 16 article references resolve).
+
+**One real defect found and fixed, in check_cron_cadence.py.** `check_one()` computes `delivery_mean`/`delivery_max`/`delivery_n`/`delivery_on_time` for `hourly-brief.yml` (a workflow that throttles inside its own script, judged on `ops/last-brief-sent.json`'s real delivery record rather than its cron) and returns them, including in `--json`. But `main()`'s plain-text print loop, the path this file's own docstring says a person actually reads, had an explanation branch for the sibling `cron_late_but_covered` case and none at all for `delivery_on_time`. Live output showed `[ok] hourly-brief.yml: configured 60 min, actual mean 341.4 min ... over 49 gaps` with zero explanation of why 5.7x its configured interval is not DEGRADED, even though the far better number (39 real delivery gaps, mean 59.9 min, genuinely hourly) was sitting in the same dict the whole time. Fixed by adding the missing print branch. Added Case 12 to `ops/tests/test_check_cron_cadence.py` (a synthetic result dict, no network dependency) and proved fail-then-pass directly: reverted the fix, 11 of 12 cases passed with the new case failing by name; restored it, 12 of 12.
+
+**Verified:** `test_check_cron_cadence.py` 12/12, `test_gate_cron_cadence_workflows_registry_current.py` 4/4, the `WORKFLOWS` registry still names all 10 real cron-scheduled workflow files (confirmed with a fresh `grep -l "cron:" .github/workflows/*.yml`). `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). No gate in `ops/preflight.py` reads `main()`'s print output (they all call `check_cron_cadence.check()` directly), so this fix carries no gate risk.
+
+**Went well:** actually running the file against live GitHub Actions history (a `gh auth token` is available in this sandbox) rather than stopping at a static read, which is what surfaced the gap between what was computed and what was shown.
+
+**Did not go well:** nothing new this slot.
+
+**Changing next cycle:** none. This is a one-off missing print branch, not a repeating defect class.
+
+**Next:** continue the 2026-10-10 tier. Confirm `checks.yml` run 2130 (and the follow-up push this entry creates) landed green. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `ops/check_cron_cadence.py`, `ops/tests/test_check_cron_cadence.py`, `ops/cold-read-ledger.json`, this log entry, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (17:0x slot): finished the entire 2026-10-09 cold-read tier (33 files), one real docstring defect found and fixed
 
 **Did:** Attached cleanly: fetch, unshallow (checkout arrived shallow and detached, issue #27's usual shape), checkout main, merge --ff-only onto origin/main (e03fc271f). Read BACKLOG-2026-09-07.md sections 0 through 9, the last several ops/NIGHTLY-LOG.md entries and CLAUDE.md. Confirmed the 16:1x PM check-in's own read was current: sections 2 through 6 are Done, struck through, Phil-gated or Hold, no genuinely open unblocked item exists, and the handoff was to continue the 2026-10-09 cold-read tier (33 files, oldest first).
