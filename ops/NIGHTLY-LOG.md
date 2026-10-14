@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (08:3x slot): cycle_signal SAME confirmed, GitHub/inbox/deploy-gap independently re-derived, two-file second-pass cold read, no defect found
+
+**Did:** Checkout arrived shallow and detached; `fetch origin main` then `fetch --unshallow` to completion, `checkout main`, `merge --ff-only` onto `origin/main`, 223 commits fast-forwarded cleanly, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s tail, and the newest four `NIGHTLY-LOG.md` entries, per STEP 1.
+
+**Ran `ops/preflight.py` via the background wrapper first, then found the cheaper check and used it instead of waiting on the slow one.** Started `ops/run_preflight.sh` detached; while it ran, read `ops/cycle_signal.py --check`, which reported SAME against the 05:28:48Z snapshot (the signal files are byte-identical to that clean pass). Killed the backgrounded preflight cleanly (`pkill -TERM`, no orphaned subprocess, confirmed by `ps aux` showing nothing running after) rather than let it duplicate a full re-verification `cycle_signal` had already ruled redundant, matching this file's own section 8 precedent.
+
+**Independently re-derived, not cited, the parts `cycle_signal` cannot see.** GitHub's 9 open issues re-read directly via the API: unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, standing. Deploy gap re-derived directly (not read off `STATUS.md`'s prose): imported `resolve_verdict_commit`/`deploy_gap_material_commits` from `ops/preflight.py` (had to import from inside `ops/` and from `preflight`, not a nonexistent `ops.deploy_freshness`-as-package path, since neither of those is actually where the two functions live), resolved build `9a2477bcdfe5b6c2` to commit `17b7c665`, gap is `[]`: production matches HEAD exactly, zero commits, confirmed independently rather than trusted from the log.
+
+**Second-pass cold read, two files, lowest-date tier of the ledger (both last reread 2026-10-09).** `ops/inbox_agent.py` (330 lines): traced `classify()` through every branch (owner-first precedence, affiliate network/brand detection and verdict logic, bulk/automated-mail header detection, delivery-problem keyword match on subject+body, billing, default customer draft) against the regression comments already recorded in the file; all hold correctly against the current code, no new defect. `ops/deploy_freshness.py` (326 lines): traced `resolve_asset_ref()`/`DISCOVERY_PAGES` coverage, `canonical_path()`'s rooms/zones extensionless handling, and the live-vs-repo byte-size diagnostic's division guards (`rb` is truthy-gated before any `lb/rb` or `rb/lb` division, so neither branch can divide by zero); no new defect. Both re-recorded in `ops/cold-read-ledger.json` with today's date via `cold_read_ledger.py --add`.
+
+**Verified:** `ops/cold_read_ledger.py --stale` 0, `--next` confirms 199 of 199 ledgered, 0 un-ledgered (first-pass rotation still genuinely exhausted). `ops/dashboard.py` regenerated clean.
+
+**Went well:** checking `cycle_signal` before paying for the full preflight run, and killing the redundant background job cleanly rather than leaving it to finish and burn the rest of the slot.
+
+**Did not go well:** started the full `run_preflight.sh` before checking `cycle_signal`, the exact ordering mistake the 07:4x PM check-in logged a few hours earlier and flagged as "check `cycle_signal.py --check` ... before starting any local tool, not after." Repeated anyway; no new gate warranted per STEP 10b, since the existing `cycle_signal` tool is itself the fix and the mistake is a reading-order lapse, not a missing instrument.
+
+**Changing next cycle:** read `cycle_signal.py --check` immediately after attaching, before launching `run_preflight.sh`.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list (usage-limit check, `VPS_DEPLOY_KEY`/#35, Search Console/#1a, YouTube/#1, Stripe business description/#1d) and the 9 open decision/blocked-on-art GitHub issues, unchanged. No re-notify: nothing has changed since the standing escalation.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/cold-read-ledger.json` updated. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (08:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 Attached via unshallow + ff-only merge onto origin/main, clean, no unrelated-history symptom. GitHub's 9 issues re-read directly: unchanged, all decision/blocked-on-art, 0 PRs. cold_read_ledger: 0 stale, 199/199 ledgered, 0 un-ledgered candidates. check_urls 211/211, audit_pages 0 findings, fix_dashes 0/0, affiliate.py clean, no mail credential, STATUS.md open claims none. preflight.py --fast: 0 FAIL through every gate reached, stalled again at the documented gate_tests sandbox hang; killed cleanly there.

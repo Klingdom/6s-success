@@ -457,9 +457,9 @@
       "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, --check correctly reports no deploy key in this sandbox, classify_publish() tested directly with synthetic inputs, HOST IP consistent across 4 other files. No defect."
     },
     "deploy_freshness.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: DISCOVERY_PAGES' comment claimed these pages reference every fingerprinted asset the site ships; site/downloads/assets/book.css was the one that didn't, referenced only from the downloads/ sample page at a bare page-relative href that this file's own SITE-root join resolved to the wrong, nonexistent path. Added resolve_asset_ref() (resolves per the referencing page's own directory) and the one missing discovery page; fixed the identical bug in preflight.py's gate_checker_scope (shared resolver now, plus it scans downloads/ html, which all_pages() excludes for unrelated reasons). Fail-then-pass proved in both ops/tests/test_deploy_freshness.py (new cases) and ops/tests/test_gates.py (new checker-scope case)."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle: read in full (326 lines). resolve_asset_ref()/DISCOVERY_PAGES coverage, canonical_path()'s rooms/zones extensionless handling, and the live-vs-repo byte-size diagnostic's division guards (rb truthy-gated before any lb/rb or rb/lb division) all traced and correct. Cross-checked live by importing resolve_verdict_commit/deploy_gap_material_commits from preflight.py this same cycle: production (build 9a2477bcdfe5b6c2) resolves to commit 17b7c665 with a zero-commit material gap, matching ops/deploy-verdict.json and STATUS.md's own current citation. No new defect found."
     },
     "diagnosis.py": {
       "status": "fixed",
@@ -567,9 +567,9 @@
       "note": "Re-read in full + ran (non-apply) 2026-10-10: correctly reports all source files MISSING (Phil's Desktop master folder not reachable from this sandbox) and correctly refuses to shrink any room's manifest, hitting the issue #26 safety path (9 rooms kept at committed counts). No apply, nothing written except the ledger. No defect."
     },
     "inbox_agent.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Re-read in full per second-pass handoff. Found and fixed a real, live gap: delivery-problem and billing detection built low_t from the message BODY only, never the subject. A customer whose subject line carries the signal (Did not receive my download) and whose body is a terse please check on this had no matching words anywhere the classifier looked, and fell into the ordinary draft-for-human customer branch instead of flag-urgent, silently losing the urgency CLAUDE.md 0.2 exists to force. Reproduced directly before the fix (classify returned kind=customer), fixed by folding subject into low_t, reproduced as fixed after (kind=delivery-problem/billing). Two new cases added to ops/tests/test_inbox_agent.py (now 10), both fail-then-pass proved via git stash against the real module. No new preflight gate needed: gate_tests() already globs ops/tests/test_*.py."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle: read in full (330 lines). classify() logic traced through every branch (owner-first precedence, affiliate network/brand detection, bulk/automated-mail header check, delivery-problem keyword match, billing, default customer draft). No mail credential in this sandbox so --apply exits with the standard 'no mail credentials' message; the classify() function itself was traced by hand against the historical regression comments already in the file (owner-email substring match, affiliate-before-owner ordering, header-name-vs-value bulk-detection fix, subject-line delivery-problem fix) and all four hold correctly against the real current code. No new defect found."
     },
     "indexation_check.py": {
       "status": "fixed",
