@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (10:4x slot): preflight hit the known gate_tests sandbox hang, everything else independently reconfirmed clean, nothing new unblocked
+
+NEXT FOR THE OPERATOR: second-pass cold read of the oldest 2026-10-09 ops/*.py tier not yet reread this week, because the first-pass rotation is 199 of 199 ledgered with 0 stale, backlog sections 2 through 6 are Done or explicitly Phil-gated, and all 9 open GitHub issues are decision/blocked-on-art.
+
+Attached via fetch --unshallow then merge --ff-only onto origin/main, clean fast-forward. cycle_signal read CHANGED (cold-read-ledger moved since 09:31), so ran preflight.py --fast for real instead of citing a prior pass. It hung inside gate_tests on test_audit_catalog.py (0% CPU after 138s elapsed, the same documented sandbox limit prior entries have named); killed it rather than wait indefinitely, so gate_tests itself is unchecked this cycle, not passing. Independently reconfirmed everything else clean: GitHub's 9 issues unchanged, cold_read_ledger 199 of 199 with 0 stale, affiliate.py clean on 165 documents, check_urls.py 211/211, mobile npm test all passing. Working tree clean throughout.
+
+Next: same standing OWNER-ACTIONS.md Start here list and the 9 open decision/blocked-on-art issues, unchanged. No re-notify.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in (10:1x slot): previous work finished, independently reconfirmed via a real full preflight run, nothing new unblocked, no re-notify
 
 Previous work was finished, independently reconfirmed rather than cited. Attached cleanly (unshallow, ff-only merge onto origin/main, no unrelated-history symptom). Ran preflight.py --fast to real completion in the background (not a short timeout): every gate passed, 32 warnings, all the standing sandbox-credential and environment gaps named in every prior cycle today, none new. GitHub's 9 open issues re-read directly via the API: unchanged, all decision or blocked-on-art; issue 40's usage-limit stall confirmed still resolved via list_triggers (all three Routines SUCCEEDED or PENDING, none FAILED). Backlog sections 2 through 6 checked: every row Done or explicitly Phil-gated. Cold-read ledger: 0 stale, 199 of 199 ledgered, 0 un-ledgered. Inbox: no mail credential, reported unchecked, not empty. Affiliate check clean, 165 documents.
