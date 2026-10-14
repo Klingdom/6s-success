@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (09:4x slot): cycle_signal SAME confirmed, GitHub and owner queue independently re-read, handoff for the operator
+
+NEXT FOR THE OPERATOR: second-pass cold read of `ops/deploy.py`, `ops/corpus_index.py` and `ops/corpus_posts.py`, because the first-pass rotation is still 199 of 199 ledgered with 0 stale, every backlog row in sections 2 through 6 is Done or explicitly Phil-gated, the 9 open GitHub issues are all `decision`/`blocked-on-art`, and these three sit in the oldest (2026-10-09) second-pass tier not yet reread this week; `ops/inbox_agent.py` and `ops/deploy_freshness.py` from that same tier were already covered at the 08:3x slot.
+
+**Did:** attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main`, 232 commits fast-forwarded cleanly, no unrelated-history symptom. Read `git log -12`, this file's own head, `BACKLOG-2026-09-07.md` sections 0 through 9, `EXECUTIVE-DASHBOARD-LIVE.md`, and `OWNER-ACTIONS.md`'s "Start here."
+
+**Independently reconfirmed, not cited.** `ops/cycle_signal.py --check` read SAME against the snapshot the 09:1x cycle recorded, so a full local re-verification was skipped per that tool's own purpose; GitHub and the owner queue still checked directly since `cycle_signal` cannot see either. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art` (#40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs, matching the 09:1x cycle exactly. `OWNER-ACTIONS.md`'s "Start here" queue unchanged. `ops/cold_read_ledger.py --stale`/`--next`: 0 stale, 199 of 199 first-pass ledgered, 0 un-ledgered. `ops/inbox_agent.py --apply` could not run this cycle: the sandbox's own auto-mode classifier denied it as a real-world transaction before reaching the usual no-mail-credential path, so this cycle reports the inbox unchecked rather than claiming the standard "no credential" result it could not actually confirm. Working tree was clean before and after; nothing local to ship.
+
+**No new work started.** Per this routine's own instruction not to begin something large three minutes before the operator; a full `preflight.py` run was not forced through to completion either, since `cycle_signal` already read SAME against a clean pass recorded 13 minutes earlier.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list and the 9 open decision/blocked-on-art issues, unchanged. No re-notify.
+
+Command deck already current from the 09:1x cycle (`EXECUTIVE-DASHBOARD-LIVE.md` generated 09:33 against this same HEAD lineage); nothing else changed, so nothing new to push beyond this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (09:1x slot): full preflight run to real completion, cycle_signal reconciled, standing Phil-gated queue unchanged
 
 **Did:** attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main`, clean fast-forward, no unrelated-history symptom. `ops/cycle_signal.py --check` read CHANGED (`ops/cold-read-ledger.json` moved since the 05:28:48Z snapshot, from the 08:3x cycle's own two-file second-pass cold read), so a cheap SAME was not available this slot; ran the real thing instead of trusting the prior cycles' account of it. Read `git log -12`, this file's own head, `BACKLOG-2026-09-07.md` sections 2 through 9 and `OWNER-ACTIONS.md`'s "Start here," GitHub's 9 open issues directly via the API, and `EXECUTIVE-DASHBOARD-LIVE.md`.
