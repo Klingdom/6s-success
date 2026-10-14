@@ -1,15 +1,15 @@
 {
-  "combined_hash": "ca701ebb0355757dcdcd23d966c1bf7011c0d5ecfa45661d35531ddc7cc39f38",
-  "git_head": "0e0b56fbb83b7896206719155bff5b84b3e494c0",
+  "combined_hash": "71dd902e2929812da470e48f1959c8836fd9d79c2aa8c1dace2d4525afee3d29",
+  "git_head": "2d21b5ef45025c09cdc3d5bd97888aab0365327e",
   "note": "",
-  "recorded_at": "2026-10-14T09:31:28Z",
+  "recorded_at": "2026-10-14T11:55:26Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "609dd64b2d6f1f3dbaa858185a64e6d8f2d1a6b70b07fc345310b7ea6596be19",
+    "BACKLOG-2026-09-07.md": "a2cdfd57f20b7b6ea3f625160b7681015a52ee922fa8854a50ef47cc8db4c482",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "2054e8ddd8012568486586fef1f78f8619e9bb159a83e69db0a5c1b688722a0f",
     "OWNER-ACTIONS.md": "92d48c8b120e3dcaa1f1ba00a2fea3154c32ed306be9768d9407a62bac27f83b",
     "STATUS.md": "83f6e42153a69a19dda9c096ccfc6d9038ad8438c6ebd62d1b284abbd769d59a",
-    "ops/cold-read-ledger.json": "5e89a6b6a329068539ab2235a9feee0c19f42c9c30661af802bebaa4ec0b7f56",
+    "ops/cold-read-ledger.json": "f1b9879e77d9ac7d3e6a7d02e77c5046ad2aad25af56a9a894219f10fa258c49",
     "ops/deploy-verdict.json": "fafa2583f2e0772e0d6e4ba262cd35c01997f0432a2d8c5a2d96d39476bab353"
   }
 }

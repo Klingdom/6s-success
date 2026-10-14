@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (11:4x slot): extended the Ledgerium-guard check to the rest of the Stripe-touching files, no new gap found
+
+**Did:** unshallowed and attached onto `origin/main` cleanly (244 commits fast-forwarded, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` sections 0 through 9 and `OWNER-ACTIONS.md`'s "Start here," `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries. `ops/cycle_signal.py --check` read CHANGED (the backlog and cold-read ledger moved since the last snapshot), so ran a real `preflight.py --fast` in the background rather than citing a prior pass.
+
+**Verified:** `preflight.py` reached the documented `gate_tests` sandbox hang (0% CPU, no new output for 60s) after every other gate passed with 0 FAILs, the same shape every cycle today has hit; killed it and treated that one gate as unchecked, not passing. The previous cycle (11:1x) had just added a Ledgerium bulk-operation guard to `stripe_dedupe.py`; picked up the oldest (2026-10-09) cold-read tier and read the other Stripe-mutating files for the same gap rather than assuming they were already safe. `stripe_catalog.py` (702 lines): every mutation is scoped to a `metadata.sku` match or a `price_id` this run itself just created, no bulk archive-everything-unrecognised path exists, confirms CLAUDE.md 36b's claim directly rather than citing it. `stripe_invoice.py` (142 lines): single-customer invoice creation, nothing iterated or bulk-mutated, so the guard shape does not apply. `ledgerium_price_check.py` (115 lines): read-only (GET only), runs on the VPS against Ledgerium's own key, which this sandbox cannot reach. All three recorded clean in `ops/cold-read-ledger.json`. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`. No mail credential in this sandbox (`inbox_agent.py` confirmed). `affiliate.py --check`: 165 documents clean.
+
+**Went well:** followed up a real fix from the prior cycle instead of treating it as closed, and checked the claim in CLAUDE.md 36b against the code rather than trusting the prose. Also matched the 11:4x PM check-in's own independent handoff (concurrently reaching the same oldest-tier rotation) without duplicating its file picks: that check-in named `cold_read_ledger.py`, `diagnosis.py`, `eventLog.js` next; this cycle instead followed the Stripe/Ledgerium thread the 11:1x fix opened, a different slice of the same oldest tier.
+
+**Did not go well:** nothing new to report; no live defect found this cycle.
+
+**Changing next cycle:** none; no gate needed since nothing was fixed.
+
+**Next:** pick up the 11:4x PM check-in's own handoff below (`cold_read_ledger.py`, `diagnosis.py`, `eventLog.js`) plus the same standing `OWNER-ACTIONS.md` "Start here" queue (usage-limit check, `VPS_DEPLOY_KEY`, Search Console verification, Stripe business description) and the 9 open decision/blocked-on-art issues, unchanged. No re-notify.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (11:4x slot): previous work finished and verified, nothing new unblocked, handoff to operator
 
 NEXT FOR THE OPERATOR: second-pass cold read of cold_read_ledger.py, diagnosis.py and eventLog.js, because the oldest (2026-10-09) second-pass tier still has 47 of its 56 files unread this week while the files already reread this week (deploy.py, corpus_index.py, corpus_posts.py, inbox_agent.py, deploy_freshness.py, retire_stripe_skus.py, stripe_dedupe.py, dashboard.py, preflight.py) are clean or already fixed.

@@ -593,8 +593,8 @@
     },
     "ledgerium_price_check.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09: EXPECTED price IDs/amounts/webhook/events cross-checked against LEDGERIUM-BILLING.md, all match the current post-correction state; check_ledgerium.py imports these constants rather than duplicating. No defect."
+      "date": "2026-10-14",
+      "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle. Read in full (115 lines). Entirely read-only (GET requests only against prices/products/webhook_endpoints); runs on the VPS against Ledgerium's own key at /docker/ledgerium/.env, which this sandbox has no access to and cannot execute. No mutation path exists in this file at all, so no Ledgerium-safety gap is possible here. No defect found."
     },
     "link_graph_report.py": {
       "status": "clean",
@@ -832,9 +832,9 @@
       "note": "Fourth-pass cold-read, 2026-10-12 scheduled operator: the module's own top-of-file docstring still said '--apply' is idempotent and uploads the icon, left over from before the account's live-write restriction was discovered and gated (gate_stripe_write_tools_guarded, 2026-09-xx). main()'s apply_it branch never calls upload() at all (POST /v1/account refused on this account), so a reader of the docstring alone would believe --apply performs an automatic Stripe upload when it only writes local PNGs for Phil to upload by hand via the Dashboard. The gate's own docstring and the runtime's printed gap message were already accurate; only the module docstring was stale. Corrected it to state the real behaviour and point at the gate's rationale. No code/logic change; test_stripe_brand.py (9/9) and py_compile both rerun clean."
     },
     "stripe_catalog.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Re-read in full per second-pass handoff (oldest fixed-status files). The 2026-09-26 orphan-adoption fix (skip inactive orphans) is still intact; ensure_link()'s refuse-to-retire-while-served logic, sync_site_links()'s pagination and the price-immutability handling all read correctly. test_stripe_catalog_deliverable.py and test_stripe_catalog_orphan_link_active.py both pass. No new defect found."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle, following up the 11:1x cycle's Ledgerium guard fix to stripe_dedupe.py by checking the other Stripe-mutating files in the oldest cold-read tier for the same gap. Read in full (702 lines). find_by_sku() matches only on metadata.sku; ensure_product/ensure_price/ensure_link only create or deactivate objects it resolved via that same sku match or a price_id it itself just created; the orphan-adoption loop (line 511) only adopts a payment link that already sells the exact price_id this run created for its own SKU, which cannot collide with a Ledgerium object since Ledgerium bills through a separate Stripe account (CLAUDE.md 36b) and price IDs are not reused across accounts. sync_site_links() never mutates Stripe, only site data.js, keyed by sku already present in the site catalogue. No bulk archive-everything-not-recognised operation exists in this file. Confirms CLAUDE.md 36b's claim that the catalogue tooling is scoped to metadata.sku objects. No defect found."
     },
     "stripe_check.py": {
       "status": "fixed",
@@ -853,8 +853,8 @@
     },
     "stripe_invoice.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "PM check-in cold read: re-read in full (142 lines). Checked the hardcoded FOOTER refund terms against the live site/terms.html Consulting section word for word (full refund >7 days, half 2-7 days, no refund but one free reschedule inside 48 hours, full refund if we cancel, refund within 7 days if not useful): still in sync, no drift. STRIPE_ALLOW_LIVE guard, draft-by-default, and email-match-before-create logic all correct; ran ops/tests/test_stripe_invoice.py (4/4 cases) directly rather than trusting the file. No defect found."
+      "date": "2026-10-14",
+      "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle. Read in full (142 lines). Creates one customer/invoice/invoiceitem per --email argument for Corporate Lean 6S consulting; never lists or mutates existing products, prices or payment links in bulk, so the Ledgerium-guard shape added to stripe_dedupe.py does not apply here (nothing to exclude, since nothing is iterated). Live-key guard (STRIPE_ALLOW_LIVE) present and correctly checked before any write, including --draft. No defect found."
     },
     "stripe_links.py": {
       "status": "clean",
