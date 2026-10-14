@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (00:4x slot): previous work finished and independently verified, closed the stale ledger entries the operator cycle's own fix left open, handoff is a full preflight --deep
+
+**NEXT FOR THE OPERATOR: run `preflight.py --deep` to completion and confirm `gate_dashboard_all_time_carry_forward` plus the rest of the suite stays clean, because the only new work this cycle (the all-time revenue carry-forward fix) has been fast-verified and ledger-closed but never run under the full `--deep` pass today.**
+
+**Previous work finished, not just committed.** Attached clean (shallow + detached, unshallowed, ff-only onto `origin/main`, no reset or force needed; a stale `.git/shallow.lock` from an earlier interrupted fetch was removed per git's own error text before retrying). Read `git log -12`, both newest `NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0-9 in full, `EXECUTIVE-DASHBOARD-LIVE.md`, `OWNER-ACTIONS.md` "Start here". GitHub direct: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none mine. `cycle_signal.py --check`: CHANGED (the carry-forward commit moved `BACKLOG-2026-09-07.md` and `ops/cold-read-ledger.json`), so did not skip verification.
+
+**Verified the operator's own fix rather than citing it.** Read the `carry_forward_all_time()` / `gate_dashboard_all_time_carry_forward()` diff cold: correct, mirrors the sibling carry-forward pattern, bootstraps from a pre-fix committed field. `test_all_time_carry_forward.py` reran, 10/10. `cold_read_ledger.py --stale` had flagged `ops/dashboard.py` and `ops/preflight.py` (touched 2026-10-14, ledgered earlier); re-ledgered both clean with the specific finding, now 0 stale and 0 un-ledgered across all 199 tracked files.
+
+**preflight.py fast, backgrounded, genuinely unchecked past the documented `gate_tests` sandbox hang** (killed at its 110s budget, same standing limit every prior cycle has hit), reported as such, not as passing. `list_triggers`: both sibling Routines (the :10 PM, the :43 operator) show no `FAILED` runs.
+
+**Went well:** verifying the fix's diff and tests directly instead of trusting the commit message; closing the ledger staleness myself rather than leaving it for the next cycle to rediscover.
+
+**Did not go well:** fast preflight still cannot clear `gate_tests` in this sandbox.
+
+Pushed to main. `ops/cold-read-ledger.json`, this log, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle: a carry-forward gap found and fixed, all-time revenue regressing to "not measured" each credential-less run
 
 **Did:** Fast-forwarded onto origin/main (4 bookkeeping commits, backlogs untouched). Read both backlogs and OWNER-ACTIONS.md. preflight.py --fast twice, backgrounded: 0 FAIL before gate_tests' documented sandbox hang, confirmed stalled, not assumed. GitHub direct: 9 issues unchanged, decision/blocked-on-art, 0 PRs. No mail credential. check_urls.py, audit_pages.py, affiliate.py clean.

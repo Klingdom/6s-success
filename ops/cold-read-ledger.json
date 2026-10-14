@@ -448,8 +448,8 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "Re-verified after 3 commits since 2026-10-03 (0afce3776 zone_photo_deploy_note, 934510664 revenue cross-month carry, 03fd9536d customer-count carry). Read all three diffs, confirmed the fixes are correct: live dashboard run shows zone photography note now correctly says photos already match deploy; revenue carry-forward correctly stays same-month (Oct 3 to Oct 9, no cross-month relabel). All 7 dashboard/carry-forward test files run directly: test_carry_forward.py (18/18), test_traffic_carry_forward.py (14/14), test_dashboard_dead_links.py (5/5), test_dashboard_prev_state_fallback.py (3/3), test_gate_dashboard_covers_top_owner_actions.py, test_gate_dashboard_issue_payload.py (9/9), test_gate_dashboard_owner_actions_traffic_citation_current.py (8/8), test_gate_dashboard_self_description_fresh.py (9/9), all pass. No defect found this pass."
+      "date": "2026-10-14",
+      "note": "Cold-read carry_forward_all_time() diff (3e7d84b06): correct, mirrors sibling carry-forward pattern, bootstraps from pre-fix committed field. 10/10 test_all_time_carry_forward.py passes."
     },
     "deploy.py": {
       "status": "clean",
@@ -663,8 +663,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-13",
-      "note": "PM/operator cycle 2026-10-13: cold-read the 2026-10-12/13 diff (3 new gates: gate_schedule_fallback_race, gate_image_prompts_tiers_current, gate_epub_edition_date_current, plus the --tier 0 falsy-int fix). All three are sound, well-evidenced regenerate-and-diff or race-condition gates consistent with the file's own documented defect class. No new defect found; ledger was only stale on date, not on content."
+      "date": "2026-10-14",
+      "note": "Cold-read gate_dashboard_all_time_carry_forward() diff (3e7d84b06): three real scenarios covered (drop-prevention, fresh-wins, double-blind-survival), proven fail-then-pass per commit message."
     },
     "prerender_shop.py": {
       "status": "fixed",
