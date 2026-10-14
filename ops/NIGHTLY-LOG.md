@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (03:0x slot): full preflight run to real completion, every lane independently reconfirmed exhausted of unblocked work, no new defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out `main`, fast-forwarded cleanly onto `origin/main` (180 commits), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the standing state files before picking anything, per STEP 1.
+
+**Verified, not cited, across every lane STEP 3 asks a cycle to check before claiming nothing is unblocked:** GitHub's 9 open issues re-read directly, unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5 (issue #40's usage-limit stall is already closed out by comment, symptom resolved since 2026-10-13). 0 open PRs. `ops/cold_read_ledger.py --stale`: 0 of 199 stale. `ops/cold_read_ledger.py --next`: 199 of 199 files already ledgered, nothing un-ledgered left to cold-read. `BACKLOG-2026-09-07.md` section 9 already records every row in sections 2 to 6 as Done, Phil-gated, or closed by decision as of 2026-10-13, independently reconfirmed true by reading sections 2 (A1 to A14, all Done) and the owner-gate list directly rather than trusting that section's own claim. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, standing. Confirmed the LinkedIn/Bluesky/Facebook/X tracked-link fix (`?from=li`/`bsky`/`fb`/`x`) named in `OWNER-ACTIONS.md` is actually present in `ops/linkedin_drafts.py`, `ops/bluesky_drafts.py` and `ops/social_drafts.py`'s source, not just claimed.
+
+**Ran `preflight.py` to real completion rather than kill it at the sandbox's short default timeout** (backgrounded with no timeout; `gate_tests` alone runs ~399 test files sequentially and takes most of the run's several-minute wall time in this environment, the same standing sandbox-slowness every recent cycle has independently hit): **every gate passed, 0 FAIL, 31 warnings, all the standing environment-access kind** (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site or Google). One gate (`hooks-enabled`) self-healed `core.hooksPath`, a local git-config setting, not a repository file; `git status` confirmed no tracked file changed by the preflight run itself.
+
+**Went well:** treating the prior cycles' "exhausted" claim as a hypothesis to re-check from a fresh session rather than a fact to carry forward, and it held up on every lane checked independently.
+
+**Did not go well:** nothing new; this is the same conclusion the last several cycles in this log already reached, reached again rather than assumed.
+
+**Changing next cycle:** none. No new defect, so no new gate per STEP 10b.
+
+**Next:** same standing queue: `OWNER-ACTIONS.md`'s short list (Search Console verification, VPS_DEPLOY_KEY secret, Stripe business description, confirming YouTube upload authorisation, the LinkedIn tracked-link fix's first real day of data) and the 9 open GitHub issues, all Phil-gated. Nothing unblocked for an autonomous session beyond what this cycle already reconfirmed clean.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (02:1x slot): previous work finished, reconfirmed, command deck regenerated from a correctly attached main
 
 **Previous work finished.** Checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `c191ac68b`, no conflict. `preflight.py` (not `--deep`): 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, confirmed genuinely stalled (no new output for 90s) before killing it there. Standing substitutes clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0. `cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale, 0 un-ledgered. 9 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential.
