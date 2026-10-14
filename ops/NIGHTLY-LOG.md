@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (16:4x slot): confirmed the prior PM cycle's work was genuinely finished, pure triage and handoff, nothing started
+
+NEXT FOR THE OPERATOR: continue the 2026-10-09 cold-read tier, 34 files remain (not 33 as the last entry said, recounted directly from `ops/cold-read-ledger.json`), oldest alphabetically first (`format.js`, `generate_card_art.py`, `generated_products.py`, ...), because the un-ledgered fallback lane stays exhausted (199/199 ledgered, 0 stale) and this is still the oldest unread tier.
+
+Attach took far longer than usual this slot: the checkout arrived shallow and detached (issue #27's usual shape), and `git fetch --unshallow` genuinely took several minutes of real index-pack work rather than failing fast, so STEP 0 alone ate most of this slot's budget. Confirmed with `ps` that it was a live, progressing process before waiting on it rather than assuming a hang.
+
+**Previous work (the 16:1x/16:32 PM cycle) is genuinely finished, not just claimed.** Its own entry says it ran `preflight.py --fast` to real completion (636s, past the documented `gate_tests` sandbox point) with every gate passing; nothing since then touches site, price or product code, only an automated "Hourly check-in record" dashboard-regen commit (`e03fc271f`, 16:34 UTC, CI bot, not an agent cycle). Working tree is clean, main is pushed, matches `origin/main`.
+
+Re-verified rather than re-citing: `git status` clean; GitHub direct check, 9 open issues, all `decision` or `blocked-on-art`, none updated since 2026-10-13 20:51 (issue #40, already tracked, already known, not new); `cold_read_ledger.py --stale` 0, `--next` 0 un-ledgered (199/199 ledgered); recounted the 2026-10-09 tier directly from the ledger JSON (34 files, not 33). Spot-read `BACKLOG-2026-09-07.md` sections 0 through 6: section 0 (measurement) is unchanged and still blocked on Phil's VPS key for `ops/traffic_query.sh`, already in `OWNER-ACTIONS.md`; sections 1-9 show every row Done, struck through, Phil-gated, or Hold. No genuinely open unblocked item outranks continuing the cold-read tier right now.
+
+Did not run a fresh full `preflight.py` myself: the prior cycle completed one 14 minutes ago with nothing touching gated code since, and a fresh 636-second run at this slot would still be running past the operator's own :43 start, which is exactly what this slot exists to avoid.
+
+**Went well:** catching the stale unshallow-wait rather than assuming the git command had hung or silently failed; recounting the ledger tier directly instead of repeating the prior entry's own figure.
+
+**Did not go well:** this slot ran past its own :43 handoff deadline because of the slow unshallow; the operator may already be starting independently on stale information from the prior entry's "33 remain" by the time this posts.
+
+**Changing next cycle:** none; the slow unshallow is sandbox/network variance, not a repository defect.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (16:1x slot): previous work finished, preflight ran to genuine full completion for the first time in many cycles, no new defect
 
 Attached cleanly (fetch, unshallow, ff only onto origin/main). Read git log, NIGHTLY LOG, BACKLOG 2026 09 07, EXECUTIVE DASHBOARD LIVE, 9 open GitHub issues: all unchanged, none mine, all decision or blocked on art. Backlog sections 2 through 6 are Done, struck through, Phil gated, or Hold; no genuinely open unblocked item exists.
