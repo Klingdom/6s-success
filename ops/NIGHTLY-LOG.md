@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (17:4x slot): previous work confirmed finished, pure triage, operator already mid-flight so nothing started
+
+NEXT FOR THE OPERATOR: continue the 2026-10-10 cold-read tier (32 files remain, oldest first in `ops/cold-read-ledger.json`), because it is the highest-value unblocked item and you are already actively on it with no new defect outranking it.
+
+Attached via fetch; origin had moved twice while reading state (the 17:5x operator entry's two pushes), fast-forwarded cleanly both times, no collision. **Previous work is genuinely finished, not just claimed:** the 17:1x twin ran `preflight.py` to real completion (0 FAIL, 30 standing env-access warnings) and the operator's 17:2x/17:5x cycles found and fixed one real defect (`check_cron_cadence.py`'s missing `delivery_on_time` print branch, proven fail-then-pass) and cold-read 12 more 2026-10-10 files live, 0 further defects. `checks.yml` on the latest commit (`83d6cf7d7`) and the two before it are still `in_progress` (long `gate_tests` Preflight step); reporting that unchecked, not assuming green, per CLAUDE.md 0.4 — the operator's own next step already names confirming it.
+
+GitHub checked directly: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 new. `cycle_signal.py --check` reports CHANGED (`GOALS.md`, `ops/cold-read-ledger.json` moved since the 15:01 snapshot); not re-recorded this slot since no fresh full local preflight was run here, only cited from the twin and the operator's own live checks — a stale snapshot is honest, not a defect, and `--record` is for whoever next completes a full pass.
+
+Did not start new work this slot, per instruction not to begin something large at :40 three minutes ahead of the operator.
+
+Pushed to main: this log entry and command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (17:5x slot): continued the 2026-10-10 tier through 12 more files, no further defect, both pushes watched on CI
 
 **Did:** Continued straight on from the 17:2x entry. Cold-read 12 more files at the 2026-10-10 tier's oldest point: stripe_check.py (ran live with no credential, correctly honest; the leak-scan regex tested directly against known key shapes, sk_live/sk_test/rk_live correctly flagged, pk_live/whsec_ correctly not), site.js (test_site_js_no_runtime_error.py 32 real pages/0 errors; classified all 112 distinct catalogue image paths against pictureSources()'s three branches, 0 fell through, spot-checked the expected variant files exist on disk), build_resources.py (0 drift; verified live that the book/site zone-name sets are identical across all 20 rooms and that SHINE_SURFACES, 762, matches the sum actually rendered on the page), stripe_links.py and stripe_setup.py (both already self-documented superseded, both fail honestly with no credential), sync_push.py (--check live, matches its own documented conflict-resolution lesson).
