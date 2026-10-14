@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-13T05:22:30Z",
+  "checked_at": "2026-10-14T14:47:50Z",
   "sources": [
     "google",
     "bing"
@@ -2085,7 +2085,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 7,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -2313,24 +2313,6 @@
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "partial"
-    },
-    {
-      "query": "best way to organize bathroom counter",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 8,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
-      "matched_on": "heading",
-      "status": "covered"
     },
     {
       "query": "best way to organize bed linens",
@@ -3973,42 +3955,6 @@
       "coverage": 0.667,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
-    },
-    {
-      "query": "child bedroom organization ideas",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 13,
-      "seeds": [
-        "kids bedroom organization ideas"
-      ],
-      "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
-      "status": "covered"
-    },
-    {
-      "query": "childrens bedroom organization ideas",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 9,
-      "seeds": [
-        "kids bedroom organization ideas"
-      ],
-      "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -13392,7 +13338,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 8,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -13662,11 +13608,11 @@
       "status": "covered"
     },
     {
-      "query": "how to arrange a small gallery wall",
+      "query": "how to arrange a photo gallery wall",
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -13702,7 +13648,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 14,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -13738,7 +13684,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "how to organize vanity counter"
       ],
@@ -14152,7 +14098,43 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 15,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "title",
+      "status": "partial"
+    },
+    {
+      "query": "how to arrange gallery wall",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 1,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "best_page_title": "How to organize the stair landing gallery wall",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
+      "matched_on": "title",
+      "status": "covered"
+    },
+    {
+      "query": "how to arrange gallery wall art",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 3,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -14256,24 +14238,6 @@
       "status": "gap"
     },
     {
-      "query": "how to arrange my gallery wall",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 4,
-      "seeds": [
-        "how to organize gallery wall"
-      ],
-      "room": "",
-      "best_page": "/zones/stair-landing-the-wall-and-display-zone.html",
-      "best_page_title": "How to organize the stair landing gallery wall",
-      "coverage": 1.0,
-      "heading_coverage": 1.0,
-      "heading_page": "/zones/stair-landing-the-wall-and-display-zone.html",
-      "matched_on": "title",
-      "status": "covered"
-    },
-    {
       "query": "how to arrange nightstand",
       "sources": [
         "google"
@@ -14364,6 +14328,42 @@
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "title",
+      "status": "covered"
+    },
+    {
+      "query": "how to arrange photo wall",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 5,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/kids-bedroom-deck.html",
+      "matched_on": "heading",
+      "status": "covered"
+    },
+    {
+      "query": "how to arrange picture wall",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 6,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/primary-bedroom-deck.html",
+      "matched_on": "heading",
       "status": "covered"
     },
     {
@@ -14479,7 +14479,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 10,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -14497,7 +14497,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 11,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -15927,7 +15927,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 14,
       "seeds": [
         "how to declutter a dining room"
       ],
@@ -15937,6 +15937,24 @@
       "coverage": 0.75,
       "heading_coverage": 0.75,
       "heading_page": "/dining-room-deck.html",
+      "matched_on": "title",
+      "status": "partial"
+    },
+    {
+      "query": "how to declutter dining table",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to declutter a dining room"
+      ],
+      "room": "",
+      "best_page": "/zones/dining-room-the-dining-table.html",
+      "best_page_title": "How to organize the dining room dining table",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -16459,7 +16477,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "how to declutter a dining room"
       ],
@@ -16525,6 +16543,24 @@
       "heading_coverage": 0.75,
       "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "heading",
+      "status": "partial"
+    },
+    {
+      "query": "how to declutter your workshop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 6,
+      "seeds": [
+        "how to declutter a workshop"
+      ],
+      "room": "Workshop",
+      "best_page": "/rooms/workshop.html",
+      "best_page_title": "How to organize a workshop, zone by zone",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/workshop.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -18547,24 +18583,6 @@
       "status": "covered"
     },
     {
-      "query": "how to organise photo wall",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 2,
-      "seeds": [
-        "how to organize gallery wall"
-      ],
-      "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
-      "status": "covered"
-    },
-    {
       "query": "how to organise your linen cupboard",
       "sources": [
         "bing"
@@ -18753,7 +18771,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -19210,7 +19228,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 15,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -19392,24 +19410,6 @@
       "heading_page": "/articles/family-wont-put-things-back.html",
       "matched_on": "title",
       "status": "covered"
-    },
-    {
-      "query": "how to organize a family photo wall",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 12,
-      "seeds": [
-        "how to organize gallery wall"
-      ],
-      "room": "",
-      "best_page": "/articles/family-wont-put-things-back.html",
-      "best_page_title": "Why your family won't put things back where they belong",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
-      "matched_on": "heading",
-      "status": "partial"
     },
     {
       "query": "how to organize a family reunion",
@@ -19675,7 +19675,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 3,
       "seeds": [
         "how to organize a garage"
       ],
@@ -19903,7 +19903,7 @@
         "google",
         "bing"
       ],
-      "best_rank": 3,
+      "best_rank": 2,
       "seeds": [
         "how to organize a garage",
         "how to declutter a garage"
@@ -19922,7 +19922,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 13,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -20246,7 +20246,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 9,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -20933,7 +20933,6 @@
       "best_rank": 1,
       "seeds": [
         "how to organize a dining room",
-        "how to declutter a dining room",
         "how to organize a living room",
         "how to declutter a living room",
         "how to organize a family room",
@@ -21094,7 +21093,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 14,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -21305,7 +21304,8 @@
       ],
       "best_rank": 5,
       "seeds": [
-        "how to organize a pantry"
+        "how to organize a pantry",
+        "how to declutter a pantry"
       ],
       "room": "Pantry",
       "best_page": "/zones/pantry-the-dry-goods-shelves.html",
@@ -21432,7 +21432,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to declutter a pantry"
       ],
@@ -21461,24 +21461,6 @@
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/pantry-deck.html",
-      "matched_on": "title",
-      "status": "partial"
-    },
-    {
-      "query": "how to organize a pantry with deep shelves diy",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to declutter a pantry"
-      ],
-      "room": "Pantry",
-      "best_page": "/zones/pantry-the-dry-goods-shelves.html",
-      "best_page_title": "How to organize the pantry dry goods shelves",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
       "heading_page": "/pantry-deck.html",
       "matched_on": "title",
       "status": "partial"
@@ -21602,7 +21584,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to declutter a pantry"
       ],
@@ -21638,7 +21620,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 14,
+      "best_rank": 15,
       "seeds": [
         "how to declutter a pantry"
       ],
@@ -22246,7 +22228,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -22354,13 +22336,11 @@
     {
       "query": "how to organize a successful workshop",
       "sources": [
-        "bing",
-        "google"
+        "bing"
       ],
       "best_rank": 8,
       "seeds": [
-        "how to organize a workshop",
-        "how to declutter a workshop"
+        "how to organize a workshop"
       ],
       "room": "Workshop",
       "best_page": "/rooms/workshop.html",
@@ -22431,7 +22411,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -22612,7 +22592,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 10,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -22762,7 +22742,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 12,
       "seeds": [
         "how to declutter a workshop"
       ],
@@ -23641,7 +23621,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 14,
       "seeds": [
         "how to organize vanity counter"
       ],
@@ -23653,6 +23633,24 @@
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "covered"
+    },
+    {
+      "query": "how to organize bathroom sink countertop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/zones/primary-bathroom-the-under-sink-cabinet.html",
+      "best_page_title": "How to organize the primary bathroom under-sink cabinet",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
+      "status": "partial"
     },
     {
       "query": "how to organize bathroom step by step",
@@ -23712,11 +23710,29 @@
       "status": "covered"
     },
     {
-      "query": "how to organize bathroom vanity countertop",
+      "query": "how to organize bathroom vanity counter",
       "sources": [
         "google"
       ],
       "best_rank": 7,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "best_page_title": "How to organize the guest bathroom vanity counter",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
+      "status": "covered"
+    },
+    {
+      "query": "how to organize bathroom vanity countertop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 6,
       "seeds": [
         "how to organize vanity counter"
       ],
@@ -23728,24 +23744,6 @@
       "heading_page": "/articles/decluttering-vs-organizing.html",
       "matched_on": "title",
       "status": "partial"
-    },
-    {
-      "query": "how to organize bathroom vanity top",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "covered"
     },
     {
       "query": "how to organize beads",
@@ -25425,7 +25423,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 2,
+      "best_rank": 3,
       "seeds": [
         "how to organize closet"
       ],
@@ -25444,7 +25442,7 @@
         "google",
         "bing"
       ],
-      "best_rank": 7,
+      "best_rank": 8,
       "seeds": [
         "how to organize closet"
       ],
@@ -25624,7 +25622,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 2,
       "seeds": [
         "how to organize closet"
       ],
@@ -25643,7 +25641,7 @@
         "bing",
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 4,
       "seeds": [
         "how to organize a hall closet",
         "how to organize closet"
@@ -25734,7 +25732,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 7,
       "seeds": [
         "how to organize closet"
       ],
@@ -25752,7 +25750,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 1,
       "seeds": [
         "how to organize closet"
       ],
@@ -25770,7 +25768,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 5,
       "seeds": [
         "how to organize closet"
       ],
@@ -25788,7 +25786,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 5,
+      "best_rank": 6,
       "seeds": [
         "how to organize closet"
       ],
@@ -27500,24 +27498,6 @@
       "status": "partial"
     },
     {
-      "query": "how to organize kids bathroom counter",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 12,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "covered"
-    },
-    {
       "query": "how to organize kids book shelf",
       "sources": [
         "google"
@@ -28116,42 +28096,6 @@
       "status": "partial"
     },
     {
-      "query": "how to organize makeup on bathroom counter",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 15,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
-    },
-    {
-      "query": "how to organize master bathroom counter",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 13,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/primary-bathroom-the-vanity-counter.html",
-      "best_page_title": "How to organize the primary bathroom vanity counter",
-      "coverage": 0.667,
-      "heading_coverage": 1.0,
-      "heading_page": "/rooms/primary-bathroom.html",
-      "matched_on": "heading",
-      "status": "covered"
-    },
-    {
       "query": "how to organize meal train",
       "sources": [
         "bing"
@@ -28262,6 +28206,42 @@
       "heading_page": "/zones/pantry-the-baking-zone.html",
       "matched_on": "title",
       "status": "covered"
+    },
+    {
+      "query": "how to organize my bathroom counter",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 9,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "best_page_title": "How to organize the guest bathroom vanity counter",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
+      "status": "covered"
+    },
+    {
+      "query": "how to organize my bathroom countertop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/guest-bathroom-deck.html",
+      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/decluttering-vs-organizing.html",
+      "matched_on": "title",
+      "status": "partial"
     },
     {
       "query": "how to organize my craft supplies",
@@ -28879,29 +28859,11 @@
       "status": "gap"
     },
     {
-      "query": "how to organize photo frames on wall",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "how to organize gallery wall"
-      ],
-      "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
-      "status": "partial"
-    },
-    {
       "query": "how to organize photo wall",
       "sources": [
         "google"
       ],
-      "best_rank": 1,
+      "best_rank": 2,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -28955,7 +28917,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 9,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -28973,7 +28935,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 13,
       "seeds": [
         "how to organize gallery wall"
       ],
@@ -28985,6 +28947,24 @@
       "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "heading",
       "status": "partial"
+    },
+    {
+      "query": "how to organize picture wall",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 4,
+      "seeds": [
+        "how to organize gallery wall"
+      ],
+      "room": "",
+      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
+      "best_page_title": "How to organize the garage tool wall",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/primary-bedroom-deck.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize pictures on a wall",
@@ -29447,7 +29427,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 11,
       "seeds": [
         "how to organize vanity counter"
       ],
@@ -30598,24 +30578,6 @@
       "status": "covered"
     },
     {
-      "query": "how to organize vanity top",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 6,
-      "seeds": [
-        "how to organize vanity counter"
-      ],
-      "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
-      "best_page_title": "How to organize the guest bathroom vanity counter",
-      "coverage": 0.5,
-      "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "covered"
-    },
-    {
       "query": "how to organize walk in closet",
       "sources": [
         "bing"
@@ -30776,6 +30738,42 @@
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "covered"
+    },
+    {
+      "query": "how to organize your bathroom counter",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 10,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "best_page_title": "How to organize the guest bathroom vanity counter",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "title",
+      "status": "covered"
+    },
+    {
+      "query": "how to organize your bathroom countertop",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 12,
+      "seeds": [
+        "how to organize vanity counter"
+      ],
+      "room": "",
+      "best_page": "/guest-bathroom-deck.html",
+      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/decluttering-vs-organizing.html",
+      "matched_on": "title",
+      "status": "partial"
     },
     {
       "query": "how to organize your bedroom",
@@ -34194,6 +34192,24 @@
       "status": "covered"
     },
     {
+      "query": "kids bedroom decorating ideas pictures",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 13,
+      "seeds": [
+        "kids bedroom organization ideas"
+      ],
+      "room": "Kids Bedroom",
+      "best_page": "/kids-bedroom-deck.html",
+      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "partial"
+    },
+    {
       "query": "kids bedroom design ideas",
       "sources": [
         "google"
@@ -34252,7 +34268,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -34304,24 +34320,6 @@
       "status": "covered"
     },
     {
-      "query": "kids bedroom storage ideas for small rooms",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "kids bedroom organization ideas"
-      ],
-      "room": "Kids Bedroom",
-      "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
-      "best_page_title": "How to organize the kids bedroom toy storage",
-      "coverage": 0.6,
-      "heading_coverage": 0.8,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
-      "status": "partial"
-    },
-    {
       "query": "kids bedroom storage ideas for small spaces",
       "sources": [
         "google"
@@ -34340,11 +34338,29 @@
       "status": "covered"
     },
     {
+      "query": "kids bedroom storage ideas for small spaces diy",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
+      "seeds": [
+        "kids bedroom organization ideas"
+      ],
+      "room": "Kids Bedroom",
+      "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
+      "best_page_title": "How to organize the kids bedroom toy storage",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered"
+    },
+    {
       "query": "kids bedroom storage ideas ikea",
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -34416,7 +34432,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 12,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -34434,7 +34450,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "kids bedroom organization ideas"
       ],
@@ -34446,6 +34462,24 @@
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
       "matched_on": "heading",
       "status": "partial"
+    },
+    {
+      "query": "kids room storage ideas",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "kids bedroom organization ideas"
+      ],
+      "room": "",
+      "best_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page_title": "More storage will not fix a messy room",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "kids sports gear storage",
@@ -37443,7 +37477,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 13,
+      "best_rank": 12,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37479,7 +37513,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 12,
+      "best_rank": 11,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37497,7 +37531,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 15,
+      "best_rank": 13,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37507,24 +37541,6 @@
       "coverage": 0.2,
       "heading_coverage": 0.4,
       "heading_page": "/rooms/primary-bedroom.html",
-      "matched_on": "heading",
-      "status": "gap"
-    },
-    {
-      "query": "master bedroom design floor plan",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 14,
-      "seeds": [
-        "master bedroom organization"
-      ],
-      "room": "",
-      "best_page": "/primary-bedroom-deck.html",
-      "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.2,
-      "heading_coverage": 0.4,
-      "heading_page": "/primary-bedroom-deck.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -37551,7 +37567,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 10,
+      "best_rank": 9,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37569,7 +37585,25 @@
       "sources": [
         "google"
       ],
-      "best_rank": 11,
+      "best_rank": 10,
+      "seeds": [
+        "master bedroom organization"
+      ],
+      "room": "",
+      "best_page": "/primary-bedroom-deck.html",
+      "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial"
+    },
+    {
+      "query": "master bedroom design layout",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 14,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37587,7 +37621,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37619,29 +37653,11 @@
       "status": "partial"
     },
     {
-      "query": "master bedroom design simple",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 6,
-      "seeds": [
-        "master bedroom organization"
-      ],
-      "room": "",
-      "best_page": "/primary-bedroom-deck.html",
-      "best_page_title": "The Primary Bedroom Deck: 66 cards, free to read",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/primary-bedroom.html",
-      "matched_on": "heading",
-      "status": "partial"
-    },
-    {
       "query": "master bedroom design with wardrobe",
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "master bedroom organization"
       ],
@@ -37675,11 +37691,29 @@
       "status": "covered"
     },
     {
+      "query": "master bedroom storage",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 15,
+      "seeds": [
+        "master bedroom organization"
+      ],
+      "room": "",
+      "best_page": "/zones/kids-bedroom-the-toy-storage-zone.html",
+      "best_page_title": "How to organize the kids bedroom toy storage",
+      "coverage": 0.667,
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/primary-bedroom.html",
+      "matched_on": "title",
+      "status": "partial"
+    },
+    {
       "query": "master bedroom storage ideas",
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "master bedroom organization"
       ],
@@ -43512,25 +43546,7 @@
       "status": "covered"
     },
     {
-      "query": "plant nursery alexandria va",
-      "sources": [
-        "google"
-      ],
-      "best_rank": 4,
-      "seeds": [
-        "how to organize a nursery"
-      ],
-      "room": "Nursery",
-      "best_page": "/nursery-deck.html",
-      "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
-      "status": "partial"
-    },
-    {
-      "query": "plant nursery washington",
+      "query": "plant nursery san jose",
       "sources": [
         "google"
       ],
@@ -43541,8 +43557,26 @@
       "room": "Nursery",
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
+      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "matched_on": "heading",
+      "status": "partial"
+    },
+    {
+      "query": "plant nursery santa clara",
+      "sources": [
+        "google"
+      ],
+      "best_rank": 4,
+      "seeds": [
+        "how to organize a nursery"
+      ],
+      "room": "Nursery",
+      "best_page": "/nursery-deck.html",
+      "best_page_title": "The Nursery Deck: 66 cards, free to read",
+      "coverage": 0.25,
+      "heading_coverage": 0.5,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
       "status": "partial"
@@ -50066,7 +50100,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 4,
+      "best_rank": 3,
       "seeds": [
         "why is my pantry always messy"
       ],
@@ -50270,7 +50304,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 3,
+      "best_rank": 2,
       "seeds": [
         "why is my kitchen always messy",
         "why is my pantry always messy"
@@ -50692,8 +50726,7 @@
       ],
       "best_rank": 1,
       "seeds": [
-        "why is my kitchen always messy",
-        "why is my pantry always messy"
+        "why is my kitchen always messy"
       ],
       "room": "Kitchen",
       "best_page": "/kitchen-deck.html",
@@ -50853,7 +50886,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 6,
+      "best_rank": 5,
       "seeds": [
         "why is my pantry always messy"
       ],
@@ -50871,7 +50904,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 7,
+      "best_rank": 6,
       "seeds": [
         "why is my pantry always messy"
       ],
@@ -50889,7 +50922,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 9,
+      "best_rank": 8,
       "seeds": [
         "why is my pantry always messy"
       ],
@@ -50907,7 +50940,7 @@
       "sources": [
         "google"
       ],
-      "best_rank": 8,
+      "best_rank": 7,
       "seeds": [
         "why is my pantry always messy"
       ],
@@ -51573,7 +51606,5 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ],
-  "scored_at": "2026-10-13T18:15:35Z",
-  "scored_against_commit": "a06e62fe2"
+  ]
 }
