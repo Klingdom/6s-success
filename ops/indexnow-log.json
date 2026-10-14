@@ -215,13 +215,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-01T02:35:22Z",
-   "mode": "changed",
-   "offered": 11,
-   "accepted": 11,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-01T05:02:02Z",
    "mode": "changed",
    "offered": 2,
@@ -633,6 +626,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-14T21:18:18Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -664,11 +664,11 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "898e741454298399",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "ccfc3f3fdf95dfd0",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "c43cb583257d057b",
-  "https://6s-success.com/articles/": "d1cad843ee62eaf0",
+  "https://6s-success.com/articles/": "cc24cf48189753a3",
   "https://6s-success.com/articles/is-that-really-a-backup": "298b8757e6ca9fcb",
-  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "3cd6d83463293700",
+  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "f835605ce13816fa",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "d685e34375919c70",
-  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "c89d76455fe0df68",
+  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "287c91f96887d544",
   "https://6s-success.com/articles/what-is-6s": "c7413f65df56c5ff",
   "https://6s-success.com/articles/what-is-a-micro-zone": "1d8e9d9b8ffbec37",
   "https://6s-success.com/articles/where-to-start-decluttering": "9d22a51c30d30f90",

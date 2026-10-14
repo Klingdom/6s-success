@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-14 20:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-14 21:18 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 215 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 217 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -29,14 +29,14 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Open issues | 10 (2 P0, 2 blocked on art, 8 need your call) |
 | Closed to date | 32 |
 | Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
-| Working tree | clean, in sync |
-| Last commit | `e23284d` Command deck: refresh after rebase |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `2e2a26e` Basement and attic guides: breadcrumb link in the canonical  |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 219 pages, 0 dead links, 4/4 legal pages, 215 disconnected forms |
+| Website | 221 pages, 0 dead links, 4/4 legal pages, 217 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
