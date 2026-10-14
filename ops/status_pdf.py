@@ -25,7 +25,7 @@ from reportlab.platypus import (BaseDocTemplate, Frame, KeepTogether, PageTempla
                                 Paragraph, Spacer, Table, TableStyle)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from status_report import gather                       # noqa: E402
+from status_report import gather, commits_7d_text      # noqa: E402
 from mailer import send                                # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -169,7 +169,7 @@ def build(path=None):
         ["Paying customers", S["customers_text"]],
         ["Email list", str(S["email_list"])],
         ["Can take payment", "yes" if S["can_take_payment"] else "no"],
-        ["Commits, 7 days", str(d["commits_7d"])],
+        ["Commits, 7 days", commits_7d_text(d["commits_7d"])],
     ][1:], [2.1 * inch, 4.6 * inch], header=False))
 
     F.append(Paragraph("The one constraint", S_H2))

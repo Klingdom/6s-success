@@ -607,9 +607,7 @@ def main() -> int:
         if len(fixed) == len(missing):
             pages = [dict(fixed).get(p, p) for p in pages]
         else:
-            print("  these are not files this tool can open: %s"
-                  % [p for p, _c in
-                     [(m, None) for m in missing] if True])
+            print("  these are not files this tool can open: %s" % missing)
             print("  give a path under site/, or no argument at all to "
                   "measure every page.")
             return 1

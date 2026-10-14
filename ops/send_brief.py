@@ -52,6 +52,24 @@ def state():
     return s
 
 
+def commits_7d_text(commits_7d):
+    """Same wording as dashboard.py's own helper of this name, kept as a small
+    local copy rather than an import: importing ops/dashboard.py runs its
+    whole measurement pass as a side effect of module load (everything
+    outside its own `if __name__ == "__main__":` guard executes at import
+    time), which this preview/send path must not trigger.
+
+    commits_7d is None whenever dashboard.py could not unshallow the repo to
+    get a real count (CLAUDE.md 0.4: unknown is not zero). Before this fix,
+    f"{s['commits_7d']}" rendered Python's own None straight into the morning
+    brief as the bare word "None", in both the plain-text and HTML bodies,
+    the exact "unchecked read as a value" shape dashboard.py's own
+    commits_7d_text() exists to prevent in the deck itself.
+    """
+    return str(commits_7d) if commits_7d is not None \
+        else "unknown (shallow clone, could not verify)"
+
+
 def build(s):
     """Return (subject, text, html). Plain text is written first and on purpose:
     it is what a watch and a locked phone screen show."""
@@ -91,7 +109,7 @@ def build(s):
         f"  Book      {s['chapters']}/50 chapters, sellable: "
         f"{'yes' if s['book_sellable'] else 'no'}",
         f"  Zones     {s['rooms']} rooms, {s['zones']} micro zones",
-        f"  Commits   {s['commits_7d']} in seven days",
+        f"  Commits   {commits_7d_text(s['commits_7d'])} in seven days",
         "",
         f"Full deck: {DECK_URL}",
         f"Measured {s['generated']}. Every figure counted, none typed.",
@@ -110,7 +128,7 @@ def build(s):
             ("Email list", str(s["email_list"])),
             ("The site", money),
             ("Book sellable", "yes" if s["book_sellable"] else "no"),
-            ("Commits, 7 days", str(s["commits_7d"])),
+            ("Commits, 7 days", commits_7d_text(s["commits_7d"])),
         ])
     if s["issues_available"]:
         needs = "".join(

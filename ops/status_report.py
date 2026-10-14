@@ -388,6 +388,23 @@ def gather():
     return d
 
 
+def commits_7d_text(commits_7d):
+    """Same wording and reasoning as dashboard.py's own helper of this name.
+
+    Found 2026-10-14, scheduled operator cycle, reading this file cold:
+    commits_7d is None whenever dashboard.py could not unshallow the repo to
+    get a real count (CLAUDE.md 0.4, unknown is not zero). Both the plain
+    text report (`Commits in 7 days`) and the HTML table (`Commits, 7
+    days`) printed d['commits_7d'] straight into an f-string, so a shallow
+    run would have shipped the bare word "None" in the report Phil reads,
+    the identical shape ops/send_brief.py carried and was fixed for the
+    same cycle. Kept local rather than imported from dashboard.py, which
+    runs a full measurement pass as a side effect of being imported.
+    """
+    return str(commits_7d) if commits_7d is not None \
+        else "unknown (shallow clone, could not verify)"
+
+
 def recent_retros(log, n=3):
     """Return the n most recent NIGHTLY-LOG.md entries as retro dicts.
 
@@ -553,7 +570,7 @@ def render(d):
     A("-" * 66)
     A("WORK IN THE LAST CYCLE")
     A("-" * 66)
-    A(f"  Commits in 7 days       {d['commits_7d']}")
+    A(f"  Commits in 7 days       {commits_7d_text(d['commits_7d'])}")
     for line in d["recent"][:10]:
         h, _, msg = line.partition("|")
         A(f"      {h}  {msg[:64]}")
@@ -608,7 +625,7 @@ def render(d):
             ("Book", f"{c['chapters']} of 50 chapters, live, buyable"),
             ("Buyable today", f"{d['catalogue_buyable']} of {d['catalogue_total']} catalogue items"),
             ("Experiments run", f"{x['executed']} of {len(x['designed'])} designed"),
-            ("Commits, 7 days", str(d["commits_7d"])),
+            ("Commits, 7 days", commits_7d_text(d["commits_7d"])),
         ])
     html = (
         '<div style="margin:0;padding:22px;background:#F7F2E9">'

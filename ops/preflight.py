@@ -13011,6 +13011,98 @@ def gate_status_report_word_count_live() -> None:
              % "; ".join(bad))
 
 
+def gate_status_report_commits_unknown() -> None:
+    """The status report and the morning brief must never print Python's own
+    None where the 7-day commit count could not be measured.
+
+    Found 2026-10-14, scheduled operator cycle, cold-reading send_brief.py,
+    status_report.py and status_pdf.py: all three interpolated
+    state['commits_7d'] (or d['commits_7d']) straight into an f-string.
+    dashboard.py already sets that field to None, on purpose, whenever the
+    checkout was shallow and could not be unshallowed (CLAUDE.md 0.4,
+    unknown is not zero), and dashboard.py's own commits_7d_text() is the
+    only reason its OWN deck never shipped the bare word "None". These
+    three owner-facing reports had no equivalent, so a shallow run would
+    have shipped "Commits in 7 days       None" verbatim in the report and
+    the emailed brief Phil actually reads. Fixed by giving status_report.py
+    a commits_7d_text() of its own (send_brief.py already needed and got
+    one, independently, since it cannot import dashboard.py without running
+    its whole measurement pass as a side effect) and wiring both call sites
+    in each of the three files through it.
+
+    Proves render() end to end with a synthetic None, not just the helper
+    in isolation, so a future call site that bypasses commits_7d_text()
+    again is still caught.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+    import send_brief as sb
+
+    bad = []
+
+    base = {
+        "generated": "2026-01-01 00:00",
+        "state": {"overall": "YELLOW", "overall_why": "test",
+                  "revenue_text": "$0", "customers_text": "0",
+                  "email_list": 0, "needs_phil": 0,
+                  "constraint": "synthetic constraint for "
+                                 "gate_status_report_commits_unknown"},
+        "domain": {"status": 200, "title": "t", "parked": False,
+                   "a_record": "0.0.0.0", "nameservers": [], "mx_working": True},
+        "vps": {"ip": "0.0.0.0", "ports": {22: False, 80: True, 443: True,
+                3000: False, 8973: False}, "default_title": "t",
+                "as_domain_title": "t", "vhost_configured": True},
+        "image_public": True,
+        "experiments": {"designed": [], "executed": 0, "blocked_reason": "x"},
+        "content": {"chapters": 50, "words": None, "rooms": 20, "zones": 114,
+                   "manual_kb": 1, "epub_mb": 1, "sample_pdf_mb": 1,
+                   "site_pages": 190, "deck_rooms": 0, "video": "0/114",
+                   "social_units": 1},
+        "catalogue": {"Micro Zone Packs": 109}, "catalogue_total": 111,
+        "catalogue_buyable": 107, "catalogue_free": 3,
+        "catalogue_unready": [],
+        "catalogue_buyable_other": 105,
+        "decks": {"Entryway": 72}, "decks_withheld": {"Entryway": 18},
+        "issues": [], "issues_available": True,
+        "commits_7d": None, "recent": [], "retros": [],
+    }
+    _subj_none, text_none, html_none = sr.render(base)
+    if "None" in text_none or "None" in html_none:
+        bad.append("status_report.render() with commits_7d=None prints the "
+                   "literal word None")
+    if "unknown (shallow clone" not in text_none:
+        bad.append("status_report.render() with commits_7d=None does not "
+                   "explain the missing count")
+
+    with_count = dict(base, commits_7d=42)
+    _subj_num, text_num, _html_num = sr.render(with_count)
+    if "42" not in text_num:
+        bad.append("status_report.render() with commits_7d=42 does not "
+                   "print the real count")
+
+    brief_state = {
+        "overall": "YELLOW", "overall_why": "test",
+        "revenue_text": "$0", "customers_text": "0", "email_list": 0,
+        "can_take_payment": True, "constraint": "synthetic",
+        "issues_available": True, "needs_phil": 0, "issues": [],
+        "chapters": 50, "book_sellable": True, "rooms": 20, "zones": 114,
+        "commits_7d": None, "generated": "2026-01-01 00:00",
+    }
+    _subj, brief_text, brief_html = sb.build(dict(brief_state))
+    if "None" in brief_text or "None" in brief_html:
+        bad.append("send_brief.build() with commits_7d=None prints the "
+                   "literal word None")
+    if "unknown (shallow clone" not in brief_text:
+        bad.append("send_brief.build() with commits_7d=None does not "
+                   "explain the missing count")
+
+    if bad:
+        fail("status-report-commits-unknown",
+             "an unresolved shallow clone would render as the literal word "
+             "'None' in an owner-facing report rather than 'could not be "
+             "checked': %s" % "; ".join(bad))
+
+
 def gate_roadmap_report_issues_unknown() -> None:
     """The four-times-daily roadmap report must never report zero open
     GitHub issues just because gh could not be reached.
@@ -28864,6 +28956,7 @@ def main() -> int:
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_status_report_mail_unknown)
     run_gate(gate_status_report_word_count_live)
+    run_gate(gate_status_report_commits_unknown)
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_commits_unknown)
     run_gate(gate_roadmap_report_backlog_done)
