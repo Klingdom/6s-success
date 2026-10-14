@@ -5,10 +5,17 @@ Stop shipping the product catalogue to pages that never open it.
 THE WASTE
 ---------
 site/assets/js/data.js is 73 KB of catalogue and it was loaded by 179 pages.
-Six of them use it: the shop grid, the homepage featured block, the consulting
-grid, and a few that render a product card. The other 173 parse it and throw it
-away, which is 73 KB per pageview on the 114 zone pages, the 20 room pages and
-the 29 articles, the three page types organic traffic actually lands on.
+Five of them use it today: the shop grid, the homepage featured block,
+method.html's and book.html's own product cards, and contact.html's SKU
+lookup for a "which product" referral. consulting.html used to be a sixth
+(a runtime-rendered grid of three cards), but a 2026-09-04 redesign
+replaced that grid with plain written-out HTML for the same reason
+gate_shop_prerendered() exists on shop.html: a $1,200 purchase does not
+survive waiting on JavaScript for its price and buy button. It no longer
+references the catalogue at all, so it is correctly pruned now rather than
+kept. The other 174 parse data.js and throw it away, which is 73 KB per
+pageview on the 114 zone pages, the 20 room pages and the 29 articles, the
+three page types organic traffic actually lands on.
 
 It is not render blocking in the sense of blocking paint forever, but it is a
 request and a parse on every one of those pages for a variable nothing reads.

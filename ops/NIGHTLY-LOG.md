@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (17:0x slot): finished the entire 2026-10-09 cold-read tier (33 files), one real docstring defect found and fixed
+
+**Did:** Attached cleanly: fetch, unshallow (checkout arrived shallow and detached, issue #27's usual shape), checkout main, merge --ff-only onto origin/main (e03fc271f). Read BACKLOG-2026-09-07.md sections 0 through 9, the last several ops/NIGHTLY-LOG.md entries and CLAUDE.md. Confirmed the 16:1x PM check-in's own read was current: sections 2 through 6 are Done, struck through, Phil-gated or Hold, no genuinely open unblocked item exists, and the handoff was to continue the 2026-10-09 cold-read tier (33 files, oldest first).
+
+First caught my own mistake: launched preflight.py --fast backgrounded with a shell `&` inside the command, which detached it from the harness's own tracking exactly as the 15:5x cycle's own log entry warned against. Killed the orphan, relaunched properly tracked. **Ran preflight.py --fast to full, genuine completion this time: every one of 394 gates passed, 0 real FAIL, 29 standard sandbox warnings**, all previously diagnosed (no Stripe/mail/SSH credential, no PIL for the KDP cover check, etc).
+
+GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs, none mine. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
+
+**Cleared the entire 2026-10-09 cold-read tier, 33 files, read in full and cross-checked against real callers/output, not skimmed:** format.js, generate_card_art.py, generated_products.py, hourly_brief.py, image_style.py, importProgress.js, import_chapter_svgs.py, import_generated_art.py, launch_plan_pdf.py, link_graph_report.py, link_standards.py, linkedin_posts.py, media_capability.py, merge_cardtext.py, optimize_sample_pdf.py, photos.js, pickCard.js, prerender_shop.py, prune_catalog_js.py, reflow.py, refresh_hero_fallback.py, render_all_zone_videos.py, render_cards.py, review_heroes.py, room_image_variants.py, shop.js, social_pin_fit.js, video.py, videoLink.js, video_zone_photo.py, wire_measure.py, wire_pwa.py, wire_signup.py, zone_supplies.py. Every one was actually exercised where this sandbox allows it, not just read: ran prerender_shop.py's real headless-Chromium render (130 cards, byte-identical to the committed shop.html), wire_measure.py/wire_pwa.py/wire_signup.py all run live against the real site (0 diff, all paths resolve, wire_signup.py correctly refused to restore the withdrawn form on all 6 pages since issue #15 is still open), video.py's render()/verify() run end to end with the real ffmpeg in this sandbox, and a synthetic PIL harness (python3.13, since this sandbox's own python3 lacks PIL) exercised review_heroes.py's sha-invalidation and reason-preservation logic directly rather than trusting the read alone.
+
+**One real defect found and fixed:** `ops/prune_catalog_js.py`'s own module docstring still named `consulting.html` as one of six pages that load `data.js`. Checked live before touching anything: `consulting.html` was redesigned 2026-09-04 (its own in-page comment says so) to replace a runtime-rendered CATALOG grid with plain written-out HTML, the same reasoning `gate_shop_prerendered()` encodes for shop.html: a $1,200 purchase should not wait on JavaScript for its price and button. The page no longer references the catalogue at all (confirmed: no `<script src=".../data.js">` tag on it), so the live `--check` output (5 pages kept, 0 to prune) was already correct; only the prose describing it was stale. Fixed the docstring to name the real five (shop, index, method, book, contact) and explain why consulting.html dropped out. No functional change; `--check` output identical before and after, syntax verified, no banned dashes.
+
+**Verified:** `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `affiliate.py --check` all clean (ran earlier in the preflight pass above). Every file-specific check is recorded per-file in `ops/cold-read-ledger.json` with today's date and what was actually run, not just "read". The ledger's oldest tier is now 2026-10-10 (54 files).
+
+**Went well:** actually exercising code against live state (real Chromium, real ffmpeg, a synthetic PIL harness) rather than stopping at reading it, which is how the one real defect (a stale docstring, not a functional bug) was distinguished from the many files that were genuinely clean.
+
+**Did not go well:** repeated the exact `&`-backgrounding mistake a same-day earlier cycle had already logged and warned against, before catching it mid-cycle.
+
+**Changing next cycle:** none. The docstring fix was a one-off (a dependent page's redesign leaving a comment stale), not a repeating defect class, so no new gate is warranted; `gate_page_ownership_registry` and the other generator-chain gates already catch the functional version of this trap.
+
+**Next:** continue the cold-read tier at its new oldest point (2026-10-10, 54 files). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `ops/prune_catalog_js.py` (docstring only), `ops/cold-read-ledger.json`, this log entry, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (16:4x slot): confirmed the prior PM cycle's work was genuinely finished, pure triage and handoff, nothing started
 
 NEXT FOR THE OPERATOR: continue the 2026-10-09 cold-read tier, 34 files remain (not 33 as the last entry said, recounted directly from `ops/cold-read-ledger.json`), oldest alphabetically first (`format.js`, `generate_card_art.py`, `generated_products.py`, ...), because the un-ledgered fallback lane stays exhausted (199/199 ledgered, 0 stale) and this is still the oldest unread tier.
