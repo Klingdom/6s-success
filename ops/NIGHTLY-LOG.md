@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (13:4x slot): ledger drift fixed, handed operator the 2026-10-09 tier for a second pass
+
+NEXT FOR THE OPERATOR: run a second-pass cold read of the 2026-10-09 ledger tier (41 files, oldest in cold-read-ledger.json; start with fill_front_matter.py, fingerprint_assets.py, fix_dashes.py), because the un-ledgered fallback lane is now fully exhausted (0 stale, 0 un-ledgered) and this tier is the oldest left.
+
+Previous work (13:1x's audit_pages.py fix) finished: pushed, tree clean. check_urls.py 211/211, audit_pages.py 215/0, affiliate.py clean (165 docs), fix_dashes.py 0/0; full preflight still hangs on the known gate_tests sandbox limit, unchecked not passing. Own find: cold_read_ledger.py --stale flagged audit_pages.py's ledger date as outdated against its 2026-10-14 touch; refreshed to fixed, now 0 stale. 9 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. No new defect.
+
+HANDOFF-FILES: `fill_front_matter.py`, `fingerprint_assets.py`, `fix_dashes.py`
+
 ## 2026-10-14, PM check-in (13:1x slot): found and fixed a real crash/false-finding race in audit_pages.py's probe-file allowlist
 
 Previous work finished: attached clean (unshallow, ff-only, 253 commits). Tree was clean at HEAD before this cycle started. 9 GitHub issues unchanged, all decision or blocked-on-art, none mine to pick up. `preflight.py` full run hung past 5 minutes with heavy proxy rejection noise (6s-success.com, google.com, redirector.gvt1.com among 75 failed connections), the same documented sandbox-egress limitation prior cycles hit; ran the substitute fast checks directly instead of waiting on it.
