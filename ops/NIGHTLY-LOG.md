@@ -2,21 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-14, scheduled operator cycle (13:5x slot): independently reconfirmed the 13:1x fix, no new defect, everything else already Done or Phil-gated
+## 2026-10-14, scheduled operator cycle (13:5x slot): collided with the concurrent 13:4x PM check-in on the same ledger fix; independently added one thing it had not checked
 
-**Did:** attached cleanly (unshallow, ff-only, 263 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-9 and the last four NIGHTLY-LOG.md entries before picking anything, per step 1. Every row in backlog sections 2-4 is struck through or Phil-gated (C5, C6); GitHub's 9 open issues unchanged, all decision/blocked-on-art, none mine, including issue #40 (the usage-limit stall), already confirmed resolved and awaiting Phil's own close. No mail credential in this sandbox, `inbox_agent.py --apply` reported unchecked, not empty.
+**Collision, not a new finding.** Reached the same conclusion as the 13:4x PM check-in below within the same few minutes, from the same `cold_read_ledger.py --stale` flag on `audit_pages.py`: both sessions re-ran the file standalone (215 pages, 0 findings) and marked the ledger `fixed`. Per `STATUS.md` section 0, the first copy of that work is real and everything after it is waste; this entry exists only to record the one incremental thing checked that the 13:4x entry had not: whether `audit_pages.py`'s `PROBE_NAMES` allowlist (now three scratch shells) is actually exhaustive, rather than assuming three is final. Grepped every `ops/*.py` file that builds an underscore-prefixed filename against a `site/` path (8 candidates beyond the three already known: `audit_catalog.py`, `build_kit_page.py`, `build_manual_print.py`, `checkin.py`, `dashboard.py`, `experiments.py`, `video_zone.py`, `zone_supplies.py`) and traced each one. Only `video_zone.py`'s `shot()` writes a scratch `.html` beside a `.png`, and its target (`build/video/_frames`) is outside `site/`, so it cannot reach this glob. No fourth writer exists; folded into the same ledger entry rather than left as a second, duplicate note.
 
-**Verified rather than trusted the 13:1x entry's own claim.** Read the real, current `ops/audit_pages.py` in full (392 lines) cold, independent of that entry's diff. Checked whether its `PROBE_NAMES` allowlist (now three scratch shells) is actually exhaustive rather than assuming three is the final count: grepped every `ops/*.py` file that constructs an underscore-prefixed filename against a `site/` path (8 candidates beyond the three already known) and traced each one. Only `video_zone.py`'s `shot()` writes a scratch `.html` beside a `.png` it is about to screenshot, and its target directory (`FRAMES = build/video/_frames`) is outside `site/`, so it cannot reach `audit_pages.py`'s glob. No fourth writer exists. Recorded the fix as `clean` in `ops/cold-read-ledger.json` (it had gone stale the same day the fix landed, caught by `cold_read_ledger.py --stale`).
+**Also checked directly while merging, so this slot is not pure overhead:** `gate_goals_keyword_cluster_citation_current` invoked directly, passes, no drift since the 2026-10-13 harvest. Full `preflight.py` hung again on `gate_tests`, the same documented sandbox limit; 0 FAIL across the 74 gates reached before it, killed after ~6 minutes rather than waited out further.
 
-`check_urls.py` (211/211), `audit_pages.py` (215 pages, 0 findings), `affiliate.py --check` (165 documents) all run directly and clean. `cold_read_ledger.py --next` shows 0 un-ledgered candidates and 0 stale entries: the whole `ops/*.py` cold-read lane is current at this exact moment, for the first time this operator has seen it reported that way. `gate_goals_keyword_cluster_citation_current` invoked directly: passes, no drift since the 2026-10-13 harvest (`keyword-demand.json` checked_at unchanged at 2026-10-13T05:22:30Z, nothing has re-harvested since).
+**Changing next cycle: claim a room/file in `STATUS.md` section 0 before starting non-trivial cold-read work, not only before authoring a room page**, since this is the second time this exact cold-read lane has produced the identical finding twice in one afternoon. Picking up the 13:4x handoff now instead, same cycle, to turn this slot into net-new work rather than a second collision.
 
-**Did not go well:** full `preflight.py` hung again on `gate_tests`, the same documented sandbox limitation every cycle this week has hit; let it run almost 6 minutes with 0 FAIL across the 74 gates it reached before `gate_tests`, then killed it rather than wait further. Reporting `gate_tests` unchecked, not passing, per CLAUDE.md 0.4.
+Pushed to main (merged with the concurrent 13:4x commit). `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
 
-**Changing next cycle:** none.
+## 2026-10-14, PM check-in (13:4x slot): ledger drift fixed, handed operator the 2026-10-09 tier for a second pass
 
-**Next:** same standing `OWNER-ACTIONS.md` queue (Phil-gated) and the 9 open decision/blocked-on-art issues, unchanged. No new workstream opened.
+NEXT FOR THE OPERATOR: run a second-pass cold read of the 2026-10-09 ledger tier (41 files, oldest in cold-read-ledger.json; start with fill_front_matter.py, fingerprint_assets.py, fix_dashes.py), because the un-ledgered fallback lane is now fully exhausted (0 stale, 0 un-ledgered) and this tier is the oldest left.
 
-Pushed to main. `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched; IndexNow not applicable.
+Previous work (13:1x's audit_pages.py fix) finished: pushed, tree clean. check_urls.py 211/211, audit_pages.py 215/0, affiliate.py clean (165 docs), fix_dashes.py 0/0; full preflight still hangs on the known gate_tests sandbox limit, unchecked not passing. Own find: cold_read_ledger.py --stale flagged audit_pages.py's ledger date as outdated against its 2026-10-14 touch; refreshed to fixed, now 0 stale. 9 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. No new defect.
+
+HANDOFF-FILES: `fill_front_matter.py`, `fingerprint_assets.py`, `fix_dashes.py`
 
 ## 2026-10-14, PM check-in (13:1x slot): found and fixed a real crash/false-finding race in audit_pages.py's probe-file allowlist
 

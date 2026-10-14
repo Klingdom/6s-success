@@ -22,9 +22,9 @@
       "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold, ran directly (215 pages, 8 scripts, 130 live SKUs, 65 retired SKUs checked), 0 findings, matches its own documented behavior. No defect."
     },
     "audit_pages.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-14",
-      "note": "Independently re-read in full 2026-10-14 after the same-day probe-file-allowlist fix (e60f1c358); searched the rest of ops/*.py for any fourth site/ scratch-HTML writer the allowlist might still be missing (grep for underscore-prefixed filenames constructed against SITE/site paths across audit_catalog.py, build_kit_page.py, build_manual_print.py, checkin.py, dashboard.py, experiments.py, video_zone.py, zone_supplies.py) and found none: video_zone.py's only html-scratch write targets build/video/_frames, outside site/. No further defect."
+      "note": "PM 13:4x: refreshed after 13:1x's shoot_mobile.py probe-file allowlist fix (gate_page_ownership_registry's shoot_mobile.py glob never carried to audit_pages.py's own narrower PROBE_NAMES). Re-ran standalone: 215 pages, 0 findings, clean. 13:5x operator (independently, same cycle window): searched the rest of ops/*.py for any fourth site/ scratch-HTML writer the allowlist might still be missing (every underscore-prefixed filename built against a SITE/site path in audit_catalog.py, build_kit_page.py, build_manual_print.py, checkin.py, dashboard.py, experiments.py, video_zone.py, zone_supplies.py) and found none: video_zone.py's only html-scratch write targets build/video/_frames, outside site/. Allowlist of three is exhaustive as of this date."
     },
     "audit_visual.py": {
       "status": "clean",
