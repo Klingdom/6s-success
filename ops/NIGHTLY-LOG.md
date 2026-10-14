@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (06:4x slot): previous work finished, confirmed via cycle_signal rather than a redundant full re-run, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue (`OWNER-ACTIONS.md` "start here", the 9 open decision/blocked-on-art GitHub issues), because the backlog (`BACKLOG-2026-09-07.md` sections 2 to 7), the cold-read ledger and the GitHub queue are all still genuinely exhausted of anything an agent without Phil's credentials can act on.
+
+**Did:** checkout arrived shallow and detached (`git fetch` reported "forced update"); unshallowed, `git checkout main`, `merge --ff-only` onto `origin/main` landed clean (fast-forward, 35 files, no conflict). Read `git log -12`, this file's own head (not the tail; it is newest-first and the tail is 2026-09-04 history), `CHECKIN-LOG.md`'s tail, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 9 open GitHub issues directly via the API (unchanged: all `decision`/`blocked-on-art`, 0 open PRs).
+
+**Previous work was finished, confirmed the cheap way.** `ops/cycle_signal.py --check` read SAME against the snapshot the 06:1x PM check-in (this cycle's own twin) recorded 20 minutes earlier, after that cycle's own full `ops/run_preflight.sh` pass came back clean (31 warnings, all standing sandbox-access gaps) and confirmed `list_triggers` healthy on all three Routines. Rather than pay for a second full re-verification of files already confirmed byte-identical, corroborated directly instead: `ops/affiliate.py --check` clean on 165 documents; `git log 17b7c6655..HEAD -- site/ Dockerfile` empty, so the deploy gap is still genuinely zero (`ops/deploy-verdict.json` build `9a2477bcdfe5b6c2`, unchanged); `ops/cold_read_ledger.py --next` reports all 199 files ledgered, 0 un-ledgered, 0 stale, so even that fallback lane is exhausted right now. `ops/inbox_agent.py --apply` was blocked by this sandbox's own write-action classifier before it could report a credential state either way; recorded as unchecked, not as clean.
+
+**Did not go well, and repeated a mistake the twin had just made minutes earlier and logged:** ran `timeout 110 python ops/preflight.py` directly instead of `ops/run_preflight.sh`, exactly the shape that file's own docstring and the prior entry warn about. It orphaned a `test_audit_catalog.py` subprocess (reparented to pid 1); a second, fully redundant `python ops/preflight.py` background run was then started on top of it before `cycle_signal.py --check` was consulted, briefly running two preflight passes concurrently. Caught by checking `/proc` before assuming either was dead, killed the duplicate run and let both orphaned test subprocesses exit on their own (one had already exited by the time this was checked; the other, idle and sleeping, was left to close itself). No corruption resulted, but it cost several minutes this 30-minute slot could not spare and should have been avoided by reading this file's own head and running `cycle_signal.py --check` before touching `preflight.py` at all.
+
+**Changing next cycle:** read `ops/cycle_signal.py --check` immediately after attaching, before running any local verification tool directly, since this cycle had the SAME signal available from the start and spent several minutes re-deriving it the expensive way anyway.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (06:1x slot): previous work finished, independently reconfirmed, Routines health re-verified directly, nothing new unblocked
 
 **Did:** checkout arrived shallow and detached; unshallowed, checked out main, fast forwarded cleanly onto origin/main, 207 commits, no unrelated-history symptom this cycle. Read the last several `NIGHTLY-LOG.md` and `CHECKIN-LOG.md` entries, `BACKLOG-2026-09-07.md` sections 0 to 7 (status, decks, images/video, Hold), `EXECUTIVE-DASHBOARD-LIVE.md`, `STATUS.md`'s open-claims section, and the 9 open GitHub issues directly via the API.
