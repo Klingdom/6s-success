@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (19:2x slot): previous work genuinely finished, confirmed independently rather than cited, nothing new unblocked
+
+A concurrent operator cycle (19:1x) pushed twice while this slot read state: the "fresh checkout, full preflight re-verified clean" entry below and a dashboard-only hourly check-in on top. Started my own full `preflight.py` in the background before noticing the collision via a direct GitHub check of `checks.yml` run 2135, which named that exact commit; fetched, fast-forwarded cleanly (no reset needed), and killed my now-redundant run rather than let two full preflight passes burn the sandbox in parallel. **Previous work is genuinely finished, not just claimed:** re-verified independently rather than trusting the concurrent entry's own account. `python ops/cycle_signal.py --check` reports SAME, byte-identical to the snapshot that cycle recorded. `python ops/cold_read_ledger.py --stale` confirms 0 stale. `git status` clean, `main` level with `origin/main`. GitHub re-checked directly via the API: 9 open issues, unchanged, all `decision`/`blocked-on-art`, matching both the concurrent entry's count and the dashboard. `OWNER-ACTIONS.md` re-read: no new row, same standing Phil-gated list.
+
+`checks.yml` run 2135 (`17d82ae27`, the concurrent cycle's own fix/verification commit) was still `in_progress` past 20 minutes when checked, consistent with the documented `gate_tests` Preflight cost; reporting that unconfirmed, not assumed green, per CLAUDE.md 0.4.
+
+Did not start new work this slot. The concurrent cycle's own sweep (full preflight, cold-read ledger 199/199 with 0 stale, keyword-demand gap tier sampled directly) is thorough enough that re-running the same checks a second time inside the same hour would be wasted sandbox cost rather than genuine independent verification; the independent parts worth re-checking (cycle_signal, ledger staleness, GitHub, owner-actions) are what this entry actually re-ran.
+
+Pushed to main: this log entry and command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (19:1x slot): fresh checkout, full preflight re-verified clean, every lane independently reconfirmed exhausted, nothing new found
 
 **Corrects the 18:4x PM entry immediately below, same day:** that entry's handoff named "the 2026-10-11 cold-read tier (26 files)" as the next unblocked item, citing the ledger. Checked directly this cycle (`ops/cold_read_ledger.py --next` and `--stale`): 199 of 199 files already ledgered, 0 stale, across all four lanes. That tier was closed before the 18:4x entry was written; the handoff was reading a stale intermediate state, not the live ledger. No files remain to cold-read.
