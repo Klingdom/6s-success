@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (18:4x slot): previous work confirmed finished, pure triage, handoff to operator
+
+NEXT FOR THE OPERATOR: continue the 2026-10-11 cold-read tier (26 files, oldest first in `ops/cold-read-ledger.json`), because it is the only genuinely unblocked item left, measured directly from the ledger rather than cited from an older entry.
+
+Checkout arrived shallow and detached again, issue #27's usual shape; fetched, unshallowed for real this time (`git rev-parse --is-shallow-repository` now reads `false`), then fast-forwarded onto `origin/main` cleanly, no reset needed. **Previous work is genuinely finished, not just committed.** The 18:2x operator cycle (`ffcd3d0`) fixed a real `commits_7d` "None" leak in `send_brief.py`/`status_report.py`/`status_pdf.py`, added `gate_status_report_commits_unknown` fail-then-pass proved, and ran `preflight.py` to real completion itself before pushing (0 FAIL, 29 warnings). Working tree is clean, `main` is up to date with `origin/main`, nothing uncommitted. `python ops/cycle_signal.py --check` reports CHANGED (`GOALS.md`, `ops/cold-read-ledger.json`), expected churn from the live cold-read rotation, not a sign anything is actually stale; not re-recorded this slot since no fresh full local pass completed here either. Ran a full `preflight.py` myself anyway rather than only citing the twin's: 0 FAIL through every gate reached, up to and including the documented `gate_tests` sandbox hang, left running in the background past that point, unchecked rather than assumed clean (CLAUDE.md 0.4). GitHub checked directly: 9 open issues, unchanged, all `decision`/`blocked-on-art`, none newly unblocked, none yours to act on. `checks.yml` run 2134 on the latest code-bearing commit (`a65baa9`) has been `in_progress` for over 20 minutes, consistent with this run's own documented ~22-23 minute Preflight cost; reporting that unconfirmed, not assuming green.
+
+Did not start the cold-read tier myself this slot, per instruction not to begin something large three minutes ahead of the operator. `ops/cold-read-ledger.json` confirms the oldest unread cohort directly: 26 files dated 2026-10-11, the number the handoff above uses.
+
+Pushed to main: this log entry and command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (18:2x slot): cleared the entire 2026-10-10 cold-read tier (41 files), a real "None" leak found and fixed in two owner-facing reports plus a shared sibling, new gate added
 
 **Did:** Attached cleanly (fetch, unshallow, ff-only onto origin/main). Read BACKLOG-2026-09-07.md sections 0 through 9, ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG.md entries. Confirmed the backlog is exhausted (every row Done, struck through, Phil-gated or Hold) and the standing unblocked work is the cold-read tier. Ran `python ops/preflight.py` to genuine completion first: 0 FAIL, 30 standard sandbox warnings, all previously diagnosed. `inbox_agent.py --apply`: no mail credential, unchecked as always. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`.
