@@ -22,9 +22,9 @@
       "note": "second-pass cold read, 2026-10-10 PM check-in: re-read in full cold, ran directly (215 pages, 8 scripts, 130 live SKUs, 65 retired SKUs checked), 0 findings, matches its own documented behavior. No defect."
     },
     "audit_pages.py": {
-      "status": "fixed",
-      "date": "2026-10-12",
-      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: found and fixed a real attribution gap. GENERATED only matched a /rooms/ or /zones/ path, so all 28 top-level generator-owned pages (kitchen-deck.html and 23 deck siblings, corporate.html, how-to-clean-anything.html, both deck-gallery pages, kit.html, resources.html, standards.html, shop.html) printed 'hand written pages' as where a finding's fix goes, the exact misdirection step 5b warns against. New is_generated() reuses ops/preflight.py's own GENERATED_TOP_LEVEL_PAGES registry (kept exhaustive by gate_page_ownership_registry) instead of duplicating it. ops/tests/test_audit_pages_generated_top_level.py added, fail-then-pass proved directly (AttributeError against the pre-fix module, clean after). Currently 0 live findings on any of the 28, so no outcome was silently overwritten; the gap was in the guidance only."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "Independently re-read in full 2026-10-14 after the same-day probe-file-allowlist fix (e60f1c358); searched the rest of ops/*.py for any fourth site/ scratch-HTML writer the allowlist might still be missing (grep for underscore-prefixed filenames constructed against SITE/site paths across audit_catalog.py, build_kit_page.py, build_manual_print.py, checkin.py, dashboard.py, experiments.py, video_zone.py, zone_supplies.py) and found none: video_zone.py's only html-scratch write targets build/video/_frames, outside site/. No further defect."
     },
     "audit_visual.py": {
       "status": "clean",

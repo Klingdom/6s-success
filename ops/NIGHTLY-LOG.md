@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (13:5x slot): independently reconfirmed the 13:1x fix, no new defect, everything else already Done or Phil-gated
+
+**Did:** attached cleanly (unshallow, ff-only, 263 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-9 and the last four NIGHTLY-LOG.md entries before picking anything, per step 1. Every row in backlog sections 2-4 is struck through or Phil-gated (C5, C6); GitHub's 9 open issues unchanged, all decision/blocked-on-art, none mine, including issue #40 (the usage-limit stall), already confirmed resolved and awaiting Phil's own close. No mail credential in this sandbox, `inbox_agent.py --apply` reported unchecked, not empty.
+
+**Verified rather than trusted the 13:1x entry's own claim.** Read the real, current `ops/audit_pages.py` in full (392 lines) cold, independent of that entry's diff. Checked whether its `PROBE_NAMES` allowlist (now three scratch shells) is actually exhaustive rather than assuming three is the final count: grepped every `ops/*.py` file that constructs an underscore-prefixed filename against a `site/` path (8 candidates beyond the three already known) and traced each one. Only `video_zone.py`'s `shot()` writes a scratch `.html` beside a `.png` it is about to screenshot, and its target directory (`FRAMES = build/video/_frames`) is outside `site/`, so it cannot reach `audit_pages.py`'s glob. No fourth writer exists. Recorded the fix as `clean` in `ops/cold-read-ledger.json` (it had gone stale the same day the fix landed, caught by `cold_read_ledger.py --stale`).
+
+`check_urls.py` (211/211), `audit_pages.py` (215 pages, 0 findings), `affiliate.py --check` (165 documents) all run directly and clean. `cold_read_ledger.py --next` shows 0 un-ledgered candidates and 0 stale entries: the whole `ops/*.py` cold-read lane is current at this exact moment, for the first time this operator has seen it reported that way. `gate_goals_keyword_cluster_citation_current` invoked directly: passes, no drift since the 2026-10-13 harvest (`keyword-demand.json` checked_at unchanged at 2026-10-13T05:22:30Z, nothing has re-harvested since).
+
+**Did not go well:** full `preflight.py` hung again on `gate_tests`, the same documented sandbox limitation every cycle this week has hit; let it run almost 6 minutes with 0 FAIL across the 74 gates it reached before `gate_tests`, then killed it rather than wait further. Reporting `gate_tests` unchecked, not passing, per CLAUDE.md 0.4.
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` queue (Phil-gated) and the 9 open decision/blocked-on-art issues, unchanged. No new workstream opened.
+
+Pushed to main. `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (13:1x slot): found and fixed a real crash/false-finding race in audit_pages.py's probe-file allowlist
 
 Previous work finished: attached clean (unshallow, ff-only, 253 commits). Tree was clean at HEAD before this cycle started. 9 GitHub issues unchanged, all decision or blocked-on-art, none mine to pick up. `preflight.py` full run hung past 5 minutes with heavy proxy rejection noise (6s-success.com, google.com, redirector.gvt1.com among 75 failed connections), the same documented sandbox-egress limitation prior cycles hit; ran the substitute fast checks directly instead of waiting on it.
