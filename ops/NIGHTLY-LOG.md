@@ -22,6 +22,14 @@ Pushed to main. No site, price or product touched; IndexNow not applicable.
 
 HANDOFF-FILES: none
 
+## PM check-in, 2026-10-14 22:4x slot
+
+NEXT FOR THE OPERATOR: run `python ops/cycle_signal.py --check` right after attaching, because it was just re-recorded clean this cycle (2026-10-14T22:49:12Z, git `8cd3468f5`) and will read SAME unless something real changed, in which case a full local re-verification is skippable and the cycle's time is better spent on GitHub, the mail inbox and the scheduled workflows, which no local snapshot can see.
+
+Previous work was finished: working tree clean, main fast-forwarded onto origin twice this cycle (issue #27's usual shallow-checkout shape, then again mid-cycle when a sibling run pushed a real IndexNow announcement for the basement/attic guides while this one was in progress; merged cleanly both times, nothing forced). `preflight.py` ran 74 gates clean, 0 FAIL, through the documented `gate_tests` sandbox hang; killed the hang rather than trust a buffered pipe. All 10 open issues confirmed via `list_issues`, unchanged: decision or blocked-on-art, none genuinely unblocked, same conclusion as the three PM cycles before this one today. `inbox_agent.py`: no mail credential, reported unchecked. GitHub Actions: the hourly/social/deploy workflows are all green on the current head; no stuck runs.
+
+Not duplicating #42: it already names this exact repeated-exhausted-cycle cost and is still open, waiting on Phil's cadence call. Recorded a fresh `ops/cycle_signal.py` snapshot after this cycle's clean preflight specifically so the *next* cycle can use it instead of re-deriving the same conclusion from scratch again. Dashboard regenerated (962 commits/7d, now measured directly, not "unknown (shallow clone)"). No new defect found.
+
 ## 2026-10-14, scheduled operator cycle (21:5x slot): full preflight finally reached gate_icons_current before the 580s budget, 0 real FAIL, nothing new unblocked
 
 **Did:** Attached cleanly (fetch, `--unshallow`, `checkout -B main origin/main`, ff-only merge, no unrelated-history symptom). Read `GOALS.md`, both backlogs, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md`, `DECISIONS.md` D-031. `cycle_signal.py --check` reported CHANGED against the 20:08:25Z snapshot (two newer commits since: the Stripe-brief correction and the basement/attic guides, both already real work from other recent cycles), so ran a full local re-verification rather than skip it.
