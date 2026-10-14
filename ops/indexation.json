@@ -1,52 +1,52 @@
 {
- "checked_at": "2026-10-07T17:25:01Z",
+ "checked_at": "2026-10-14T15:04:51Z",
  "confirmed": {
   "https://6s-success.com/": {
    "section": "home",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/contact.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/about.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/method.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/consulting.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/articles/": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
   "https://6s-success.com/resources.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
@@ -60,9 +60,9 @@
   "https://6s-success.com/shop.html": {
    "section": "other",
    "first_seen": "2026-10-03T20:20:28Z",
-   "last_seen": "2026-10-03T20:20:28Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
-   "last_engine": "duckduckgo"
+   "last_engine": "bing_rss"
   },
   "https://6s-success.com/rooms/home-office": {
    "section": "room",
@@ -81,7 +81,7 @@
   "https://6s-success.com/book.html": {
    "section": "other",
    "first_seen": "2026-10-07T17:25:01Z",
-   "last_seen": "2026-10-07T17:25:01Z",
+   "last_seen": "2026-10-14T15:04:51Z",
    "first_engine": "duckduckgo",
    "last_engine": "bing_rss"
   },
@@ -90,6 +90,20 @@
    "first_seen": "2026-10-07T17:25:01Z",
    "last_seen": "2026-10-07T17:25:01Z",
    "first_engine": "duckduckgo",
+   "last_engine": "bing_rss"
+  },
+  "https://6s-success.com/deck.html": {
+   "section": "other",
+   "first_seen": "2026-10-14T15:04:51Z",
+   "last_seen": "2026-10-14T15:04:51Z",
+   "first_engine": "duckduckgo",
+   "last_engine": "bing_rss"
+  },
+  "http://www.bing.com:80/search?q=site%3a6s-success.com": {
+   "section": "other",
+   "first_seen": "2026-10-14T15:04:51Z",
+   "last_seen": "2026-10-14T15:04:51Z",
+   "first_engine": "bing_rss",
    "last_engine": "bing_rss"
   }
  },
@@ -126,6 +140,21 @@
   },
   {
    "checked_at": "2026-10-07T17:25:01Z",
+   "engines": {
+    "duckduckgo": {
+     "status": "ok",
+     "url_count": 10,
+     "voided": false
+    },
+    "bing_rss": {
+     "status": "ok",
+     "url_count": 11,
+     "voided": false
+    }
+   }
+  },
+  {
+   "checked_at": "2026-10-14T15:04:51Z",
    "engines": {
     "duckduckgo": {
      "status": "ok",
