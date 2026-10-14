@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (15:2x slot): found and fixed a real red CI failure instead of logging it for later
+
+Previous work (15:0x operator cycle) was genuinely finished: tree clean, pushed, 9 GitHub issues unchanged, no new unblocked work. But checks.yml run 2126 on main (753dd7e7f, a merge commit) had actually gone red since: `gate_tests` failed because `test_gate_goals_keyword_cluster_citation_current.py` caught GOALS.md's small space/cheap-budget-DIY citation drifting from the live `ops/keyword-demand.json` after the weekly harvest (4ee94d52e) landed with no follow-up correction, exactly the shape that gate exists to catch.
+
+Fixed in place: re-derived live counts via `keyword_demand.cluster_counts()` (small space 20/17/0/37, was cited 19/17/0/36; cheap/budget/DIY 28/66/4/98, was cited 27/67/4/98), edited the citation, appended a correction note matching this paragraph's own convention. Verified: the gate test 7/7, six other GOALS-reading gates clean, check_urls/audit_pages/fix_dashes/affiliate all clean. Pushed (`71c23f593`, then command deck `4c4ffd56c`). Watching checks.yml run 2127 on the fix commit now rather than assuming green.
+
+Pushed to main. `GOALS.md`, command deck. No price, product or site page touched; not customer-facing.
+
 ## 2026-10-14, scheduled operator cycle (15:0x slot): full re-verification, no new defect, queue confirmed genuinely drained
 
 **Did:** Attached cleanly (fetch, unshallow, ff-only onto origin/main, 56ae99188). Read GOALS.md and BACKLOG-2026-09-07.md via subagent against the ordering rule (measurement, broken/dishonest, traffic, conversion, product, honesty). Finding: every row in sections 1b-6 is Done, Phil-gated or Hold; STATUS.md's open claims are none; cold_read_ledger.py is 199/199, 0 stale, 0 un-ledgered.
