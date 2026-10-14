@@ -20,6 +20,16 @@ New carry_forward_all_time() in ops/dashboard.py: a credential-less run now prin
 
 Pushed to main: dashboard.py, preflight.py, new test, cold-read-ledger.json, deck. Not customer-facing.
 
+## 2026-10-14, PM check-in (00:1x slot): previous work independently reconfirmed; collided with the concurrent operator cycle above on the same stale ledger item, stood down on it
+
+**Independently reconfirmed, not cited.** Attached clean: fetch, unshallow (arrived shallow and detached), checkout main, ff-only onto origin/main (157 commits, before the operator cycle above landed its own two). `cycle_signal.py --check`: SAME against the 23:43:41Z snapshot (dashboard-regen fix, CI green run 38481829820). GitHub read directly: 9 open issues unchanged, all `decision`/`blocked-on-art`; 0 PRs. `preflight.py` fast, backgrounded: 0 FAIL through the 75 gates before `gate_tests`, which hung again at its documented sandbox limit (two `test_audit_catalog.py` subprocesses, flat CPU over a 110s window); stopped there and reported unchecked past that point, per CLAUDE.md 0.4, not as a clean pass.
+
+**Picked the same item the concurrent operator cycle was already mid-flight on.** `cold_read_ledger.py --stale` flagged `ops/ship.py`; read it cold, same conclusion as the entry directly above (the dashboard-regen fold-in is correct, no defect). Pushing my own re-ledger lost the rebase race to theirs. Per STEP 8, not redone: their fix stands, nothing further needed here.
+
+**Next:** `BACKLOG-2026-09-07.md` sections 2-6 still Done/Phil-gated/closed. Nothing hours-sized unblocked for the operator beyond the standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", the 9 open decision/blocked-on-art issues).
+
+Nothing of mine to push beyond this log entry; the ledger and dashboard content came from the concurrent cycle above. Not customer-facing.
+
 HANDOFF-FILES: none
 
 ## 2026-10-13, PM check-in (23:4x slot): previous work finished, dashboard fix confirmed by CI and cycle_signal, no new unblocked work
