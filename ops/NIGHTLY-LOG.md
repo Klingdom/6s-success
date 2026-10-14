@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (same cycle, addendum): picked up the PM's handoff, ran the full visual and mobile audits standalone instead of inside preflight's own time budget, both clean
+
+**Did:** The concurrent PM check-in directly below handed off `python ops/audit_visual.py --all`, standalone and backgrounded, because `gate_visual_audit` keeps getting squeezed out of `preflight.py --deep`'s own time budget before its 900s subprocess call finishes. Ran it exactly that way, output redirected straight to a file. It finished in this sandbox: 219 pages measured, 0 across every category (contrast, distorted images, broken images, missing width/height, missing alt text, heading level jumps, unlabelled inputs, missing focus styles, landmark/h1 problems). One honest caveat, not new (4 prior log mentions): 20 deck pages' web font had not finished loading at measurement time, so their text-size/target-height numbers are against a fallback face, not what a visitor sees; does not affect any of the 0 counts above.
+
+**Then ran the sibling mobile pass the same way** (`audit_visual.py --all --mobile`), the one `gate_mobile_touch_targets` covers and which only ever runs deep for the identical budget reason: same 219 pages, same clean 0s, plus its own three categories: 0 targets under 44px, 0 targets under 24px and crowded, 0 pages scrolling sideways.
+
+**Checked the third deep-only gate too, for completeness:** `gate_standards_pack_paginates` needs `pypdf`, which is not installed here (not in `ops/requirements.txt`, so this is the gate correctly reporting UNCHECKED on a real environment gap, not a new finding). `ops/check_pack_pages.py` confirmed the same for itself on all five printable packs.
+
+**Net effect:** the three gates that are deep-only specifically because `preflight.py --deep` cannot reliably finish them in one background window all got checked directly this cycle, two clean, one correctly UNCHECKED. This is the actual fix for the PM's named problem (the gates are real and already correct; the issue was never getting a long enough uninterrupted window to let them run), not a new gate.
+
+**Went well:** running the slow browser-driven checks standalone, outside preflight's own serial budget, exactly as handed off.
+
+**Did not go well:** nothing found; worth remembering this pattern (run the one slow gate standalone first, let `--fast` cover everything else) for any future cycle that inherits the same squeeze.
+
+**Changing next cycle:** none; no new defect, no new gate needed.
+
+Pushed to main: this log entry. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (01:4x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: start `python ops/audit_visual.py --all` directly in the background at the very beginning of the cycle (not through preflight's own serial gate), because every recent attempt to finish `gate_visual_audit` inside `preflight.py --deep` has been squeezed by the run's own time budget before that gate's 900s subprocess call completes, leaving the one check for sitewide WCAG contrast and heading structure genuinely unchecked, not passing, for several cycles running.**
