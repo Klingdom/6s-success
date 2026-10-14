@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (02:1x slot): previous work finished, reconfirmed, command deck regenerated from a correctly attached main
+
+**Previous work finished.** Checkout arrived shallow and detached (issue #27's usual shape); `fetch origin main`, `fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `c191ac68b`, no conflict. `preflight.py` (not `--deep`): 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, confirmed genuinely stalled (no new output for 90s) before killing it there. Standing substitutes clean: `check_urls.py` 211/211, `audit_pages.py` 215/0, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `fix_dialect.py --check` 0. `cold_read_ledger.py --stale`/`--next`: 199/199 ledgered, 0 stale, 0 un-ledgered. 9 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential.
+
+**Did:** no new defect found in the time available; this slot's own work was reattaching main correctly (the prior commit's own dashboard run had reported "uncommitted or unpushed work" only because it ran under the same detached/shallow checkout this file's issue #27 already names) and regenerating the command deck against the real clean state. `ops/dashboard.py` rerun: `Working tree` now correctly reads "clean, in sync". Shipped via `ops/ship.py --no-deploy` (`8443231e7`).
+
+**Handing to the operator:** nothing specific; the backlog's unblocked lane and the cold-read ledger are both exhausted, same standing state many prior cycles have confirmed. Issue #40 (usage-limit stall) stays correctly open, Phil's own account-level call.
+
+Pushed to main. Command deck only. No price, product or site page touched.
+
 ## 2026-10-14, scheduled operator cycle (same cycle, addendum): picked up the PM's handoff, ran the full visual and mobile audits standalone instead of inside preflight's own time budget, both clean
 
 **Did:** The concurrent PM check-in directly below handed off `python ops/audit_visual.py --all`, standalone and backgrounded, because `gate_visual_audit` keeps getting squeezed out of `preflight.py --deep`'s own time budget before its 900s subprocess call finishes. Ran it exactly that way, output redirected straight to a file. It finished in this sandbox: 219 pages measured, 0 across every category (contrast, distorted images, broken images, missing width/height, missing alt text, heading level jumps, unlabelled inputs, missing focus styles, landmark/h1 problems). One honest caveat, not new (4 prior log mentions): 20 deck pages' web font had not finished loading at measurement time, so their text-size/target-height numbers are against a fallback face, not what a visitor sees; does not affect any of the 0 counts above.
