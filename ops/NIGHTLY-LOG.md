@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (18:2x slot): all four of this cycle's pushes confirmed green on CI, closing out the 17:0x-17:5x run
+
+**Did:** Followed up on the one open item the 17:5x entry and the two concurrent PM twins both correctly reported as unconfirmed rather than assumed: `checks.yml` runs 2130 (`e44cc5626`), 2131 (`8445339a9`), 2132 (`81abd7967`) and 2133 (`83d6cf7d7`, the final commit of this run), polled directly via `gh run view` rather than inferred from elapsed time. All four completed `success`. Each run's Preflight step alone took 22 to 23 minutes in CI (the same `gate_tests` cost this log has documented all day), which is why confirmation took this long, not a real problem with any of the four commits.
+
+No new work started this slot, per the same reasoning the concurrent PM twins gave: closing out an already-reported-unconfirmed state is the thing to do, not a reason to open a new workstream, and the cold-read tier (38 files remain at 2026-10-10, recounted fresh from the ledger) is already being worked by the active operator/PM rotation.
+
+**Verified:** `git log --oneline HEAD..origin/main` showed only dashboard/check-in churn from concurrent sessions since this run's last push, no collision; fast-forwarded cleanly.
+
+**Went well:** reporting the four runs as unconfirmed rather than assumed-green across several intervening turns, exactly per `CLAUDE.md` 0.4, and having two independent concurrent PM check-ins arrive at the same "unconfirmed, not green" read before this entry finally closed it.
+
+**Did not go well:** pushing four commits in fairly quick succession this run meant four separate `checks.yml` runs ran substantially in parallel, each paying the full ~45-60 minute Preflight-plus-test-suite cost independently rather than one commit absorbing all the changes. Worth batching related fixes into fewer pushes when CI is already this slow, though nothing here was wrong, just slower to confirm than necessary.
+
+**Changing next cycle:** when making several related but independent fixes in one sitting, prefer fewer, larger pushes over many small ones while `checks.yml` runs this long, to avoid stacking concurrent CI runs that each pay the full cost alone.
+
+**Next:** continue the 2026-10-10 cold-read tier (38 files, oldest first), already underway in the active rotation. Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main: this log entry and command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (18:1x slot): previous work confirmed finished, pure triage, operator already mid-flight so nothing started
 
 NEXT FOR THE OPERATOR: continue the 2026-10-10 cold-read tier, 38 files remain (recounted directly from `ops/cold-read-ledger.json` by date, not cited), oldest first; still the highest-value unblocked item.
