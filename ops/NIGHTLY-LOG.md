@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (17:1x slot): previous work genuinely finished, confirmed by running a full preflight rather than citing it; regenerated a one-commit-stale dashboard; operator already mid-flight, stood down
+
+Confirmed the prior PM's "finished" claim by actually running `preflight.py` (not citing it): 0 FAIL, every gate passed, the same 30 standing environment-access warnings (no Stripe, mail, SSH, Pillow or JRE credential/tool in this sandbox). GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`. The one real gap found: the dashboard was one commit stale (`dashboard-self-description-fresh`), regenerated and shipped honestly as `deploy`/`live_links` unknown this run (no network to the live site here), revenue correctly carried forward with a caveat rather than re-asserting stale reachability. Re-fetched before pushing: the operator was already active, clearing the entire 2026-10-09 cold-read tier and starting 2026-10-10 (54 files), plus a real `check_cron_cadence.py` reporting fix. No collision; nothing left unblocked for this slot to start new.
+
+Pushed to main. Command deck only. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (17:2x slot): continued the 2026-10-10 tier, a real defect found in check_cron_cadence.py's human-readable report
 
 **Did:** Continued straight on from this same cycle's 17:0x entry (still waiting on `checks.yml` run 2130 to confirm the rebase-merge commit green; it stayed `in_progress` the whole time this slot ran, polled via `gh run view` rather than assumed). Cold-read the next few files at the new oldest point of the tier (2026-10-10, 54 files): wire_progressive.py, wire_breadcrumbs.py, wire_nav.py, wire_footer.py, wire_aria_current.py, wire_legal_strip.py, wire_consult_cta.py (all run live against the real site, 0 drift, every link resolves), revenue_model.py (every arithmetic row checked by hand against the live catalogue), root_causes.py (self-check live, all 16 article references resolve).
