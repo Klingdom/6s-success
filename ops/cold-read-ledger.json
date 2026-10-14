@@ -283,8 +283,8 @@
     },
     "build_resources.py": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "Third-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full (359 lines). Verified live/data.js reads, zone-name-map-based href construction matches build_zone_pages.py's own fp/url derivation exactly (rs=slug(room), display() via NAME_MAP, same slug() fn), chapter map and zone_products.json key format both correct. Ran for real: regenerated resources.html byte-identical to committed (0 diff), full chained wiring (canonical_links, wire_landmarks, etc, fingerprint_assets) ran clean. No defect found."
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:4x slot: ran live, 0 diff (idempotent, md5 unchanged before/after). Verified both claims the file's own comments make: the book/site zone-name sets are identical across all 20 rooms (checked programmatically, 0 mismatches) and SHINE_SURFACES (762, counted from content.json) matches the sum of per-room counts actually rendered in the live resources.html (762). No defect found."
     },
     "build_sample_html.py": {
       "status": "clean",
@@ -793,8 +793,8 @@
     },
     "site.js": {
       "status": "clean",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 scheduled operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:3x slot: test_site_js_no_runtime_error.py passes (32 real pages, 0 JS errors, nav toggle and reveal visibility both verified live); classified all 112 distinct catalogue image paths against pictureSources()'s three branches, all 112 matched (99 zone, 12 page, 1 cards, 0 fell through to null), spot-checked that the expected -420/-840 and -sm/-lg variant files actually exist on disk for samples of each branch. No defect found."
     },
     "social_drafts.py": {
       "status": "clean",
@@ -837,9 +837,9 @@
       "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle, following up the 11:1x cycle's Ledgerium guard fix to stripe_dedupe.py by checking the other Stripe-mutating files in the oldest cold-read tier for the same gap. Read in full (702 lines). find_by_sku() matches only on metadata.sku; ensure_product/ensure_price/ensure_link only create or deactivate objects it resolved via that same sku match or a price_id it itself just created; the orphan-adoption loop (line 511) only adopts a payment link that already sells the exact price_id this run created for its own SKU, which cannot collide with a Ledgerium object since Ledgerium bills through a separate Stripe account (CLAUDE.md 36b) and price IDs are not reused across accounts. sync_site_links() never mutates Stripe, only site data.js, keyed by sku already present in the site catalogue. No bulk archive-everything-not-recognised operation exists in this file. Confirms CLAUDE.md 36b's claim that the catalogue tooling is scoped to metadata.sku objects. No defect found."
     },
     "stripe_check.py": {
-      "status": "fixed",
-      "date": "2026-10-10",
-      "note": "second-pass cold read, 2026-10-10 PM cycle: found and fixed a real defect, leak_scan() for a published Stripe secret/restricted key only ran after confirming a local STRIPE_SECRET_KEY was present, so it never executed in any sandboxed cycle (none ever hold that credential); reordered to run unconditionally, and the same check is now also a credential-free preflight gate (gate_no_live_secret_key_in_site)"
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "cold-read 2026-10-14 17:3x slot: ran live (no credential in this sandbox, correctly reports empty/no-key and exits 1 without crashing); leak-scan regex tested directly against known key shapes (sk_live/sk_test/rk_live correctly flagged, pk_live/whsec_ correctly NOT flagged, matching the file's stated scope of card-charging secrets only); leak scan itself passes against the real site/ tree (0 matches). No defect found."
     },
     "stripe_dedupe.py": {
       "status": "fixed",
