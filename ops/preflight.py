@@ -18979,6 +18979,49 @@ def gate_no_stale_narration_blocker() -> None:
              "zones rendered). Read the real state, not a stale table.")
 
 
+def gate_no_stale_narrated_render_blocker() -> None:
+    """OWNER-ACTIONS.md must not claim the C7 second-wave narrated-caption
+    re-render is blocked, needs Phil's own machine, or "does not work and
+    should not be re-run" once it has actually succeeded in CI.
+
+    Found 2026-10-14, this operator, reading a background research agent's
+    report rather than trusting it: the 2026-10-14 fix (edge-tts pinned to
+    7.3.1, the real root cause being an outdated Sec-MS-GEC token format,
+    not a datacenter-IP block) triggered GitHub Actions run 38554935606,
+    which completed with conclusion success and produced commit 7d84fb9a3,
+    re-rendering all 15 previously-stale caption pairs. Independently
+    reverified here: `python ops/check_video_standard.py` reads 114 of 114
+    match the standard, 0 STALE. The fix's own commit message promised the
+    outcome would be "recorded in ops/NIGHTLY-LOG.md's next entry," but
+    four consecutive dated entries after it went by without ever mentioning
+    the success, and OWNER-ACTIONS.md kept telling Phil this "does not work
+    and should not be re-run" the whole time: a green result sitting
+    unrecorded under CLAUDE.md 0.4, and false guidance to the owner under
+    0.2. The exact "source corrected, document never told" shape this
+    repository's history names as its dominant defect class, same narrow,
+    reusable-if-wrong posture as gate_no_stale_narration_blocker and its
+    siblings.
+
+    This gate does not try to prove the whole OWNER-ACTIONS.md file
+    current; it only checks this one already-fixed fact cannot regress
+    back into reading as a live block again without new evidence.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    claims_blocked = bool(re.search(
+        r"does not work and should not be re-run", text, re.IGNORECASE))
+    if claims_blocked:
+        fail("no-stale-narrated-render-blocker",
+             "OWNER-ACTIONS.md claims the C7 second-wave narrated-caption "
+             "render workflow does not work and should not be re-run, but "
+             "it succeeded 2026-10-14 (GitHub Actions run 38554935606, "
+             "commit 7d84fb9a3): ops/check_video_standard.py reads 114 of "
+             "114 match the standard, 0 STALE. Read the real state, not a "
+             "stale blocker claim.")
+
+
 def gate_no_stale_card_deck_decision() -> None:
     """BACKLOG-2026-H2.md must not still present the card-deck sales
     decision (issue #20, row 5.1) as open and waiting on Phil once
@@ -28876,6 +28919,7 @@ def main() -> int:
     run_gate(gate_signup_form_withdrawal_protected)
     run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_no_stale_narration_blocker)
+    run_gate(gate_no_stale_narrated_render_blocker)
     run_gate(gate_no_stale_card_deck_decision)
     run_gate(gate_no_stale_affiliate_apply_instruction)
     run_gate(gate_no_stale_stripe_website_blocker)

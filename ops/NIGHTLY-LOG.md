@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (13:0x slot): closed the C7 second-wave video fix that had already succeeded but was never recorded
+
+**Did:** attached cleanly (unshallow, ff-only merge onto origin/main, no unrelated-history symptom, 253 commits fast-forwarded). Ran preflight.py in the background while a research agent read BACKLOG-2026-09-07.md, OWNER-ACTIONS.md, ROADMAP-2026-2029.md and this log's recent entries to find the highest-priority item. It found that the 2026-10-14 `edge-tts==7.3.1` fix (commit `d5ecb0782`) for the C7 second-wave narrated-caption drift had actually succeeded in CI (GitHub Actions run `38554935606`, commit `7d84fb9a3`), but the fix's own commit message had promised "outcome recorded in NIGHTLY-LOG.md's next entry," and four consecutive dated entries after it went by without ever mentioning the success. Meanwhile `OWNER-ACTIONS.md` kept telling Phil the workflow "does not work and should not be re-run" the whole time.
+
+**Verified rather than trusted the agent's report.** Re-ran `python ops/check_video_standard.py` myself: 114 of 114 match the standard, 0 STALE. Confirmed commit `7d84fb9a3` is a real, already-merged commit touching the 15 previously-stale `.srt` pairs. Corrected `OWNER-ACTIONS.md`'s stale "needs your machine, does not work" paragraph and closed `BACKLOG-2026-09-07.md`'s C7-second-wave row with the confirmed outcome.
+
+**Turned it into a gate (step 10b).** This is the same "source corrected, document never told" defect class this repository already gates for (`gate_no_stale_narration_blocker` and siblings), just never caught for this specific doc/fact pair. Added `gate_no_stale_narrated_render_blocker` to `ops/preflight.py`, wired into `main()`. Proved it can fail: injected the stale phrase into a throwaway copy of `OWNER-ACTIONS.md`, confirmed the gate's `FAIL` list caught it, then confirmed it is empty against the real, corrected file.
+
+**Went well:** the research agent found a real, verifiable green result sitting unrecorded, exactly the class of defect CLAUDE.md 0.4 warns about, rather than another "everything is Done or Phil-gated" cold-read cycle.
+
+**Did not go well:** full `preflight.py` hung again on `gate_tests` (`test_audit_catalog.py` repeatedly re-spawning `audit_catalog.py --include-fixtures`), the same documented sandbox limitation prior cycles have hit all week. Killed it after confirming every gate before it, including the new one (verified by direct invocation, not just the hung full run), passed with 0 FAIL. Reporting `gate_tests` unchecked, not passing, per 0.4.
+
+**Changing next cycle:** none beyond the new gate itself.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" queue (all Phil-gated) and the open decision/blocked-on-art GitHub issues. No re-notify; nothing here is new owner work, only a correction of stale guidance already on his list.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `ops/preflight.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (12:1x slot): previous work verified finished, picked up the 11:4x handoff, no new defect
 
 Previous work finished: attached clean (no unrelated-history symptom, 251 commits fast-forwarded). Working tree clean, main pushed. `preflight.py` ran to completion in the background: every gate through `gate_image_coverage` passed with 0 FAIL, then hit the same documented `gate_tests` sandbox hang this week's cycles have all independently hit; killed it and reported that one gate unchecked, not passing, per `CLAUDE.md` 0.4. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `list_triggers`: all three 6S Success Routines (`:40`, `:10`, `:43`) enabled and `SUCCEEDED` on their last run, so issue #40's usage-limit stall stays resolved. `deploy-verdict.json` current as of 2026-10-13, 0 undeployed `site/**` commits since.
