@@ -86,7 +86,7 @@ def is_generated(path: str) -> bool:
 SKIP = ("downloads/",)
 
 
-PROBE_NAMES = ("_visual_probe.html",)
+PROBE_NAMES = ("_visual_probe.html", "_shoot_wrapper.html")
 PROBE_PREFIXES = ("_audit_catalog_fixture",)
 
 
@@ -96,7 +96,7 @@ def _is_probe(path: str) -> bool:
 
 
 def pages() -> list[str]:
-    """Every real page. Excludes two other tools' own scratch shells, on
+    """Every real page. Excludes three other tools' own scratch shells, on
     purpose, by exact name or prefix, not by a broader "starts with
     underscore" rule:
 
@@ -107,14 +107,25 @@ def pages() -> list[str]:
     site/_audit_catalog_fixture_<pid>.html the same way (a bare shell with a
     title but no viewport, description, canonical, heading or analytics tag),
     proved live: caught by hand mid-run, in this same working tree, while a
-    concurrent preflight pass had that test in flight. A run whose window
-    overlaps either write can catch the shell mid-existence and report it as
-    a real page missing every one of those things, a finding that vanishes
-    on the very next run once the writer's own cleanup runs: no site content
-    was ever actually wrong. This is the self-contradicting shape a same-day
-    cycle logged and flagged for root-cause (one preflight run failed the
-    "pages" gate with real, non-duplicate findings; every immediate rerun on
-    the identical tree was clean).
+    concurrent preflight pass had that test in flight. shoot_mobile.py writes
+    site/<dir>/_shoot_wrapper.html beside the page it is screenshotting, the
+    same bare <iframe>-shell shape as audit_visual.py's own probe, removed
+    only after the screenshot subprocess returns. Found 2026-10-14: this
+    file's own list of two had never been told about that third shell, so a
+    concurrent or killed shoot_mobile.py run left one of these on disk and
+    this module either reported it as a real page missing a title, lang,
+    viewport and canonical, or crashed outright with FileNotFoundError when
+    the writer's cleanup removed it between the glob and the read, exactly
+    the race gate_page_ownership_registry's own docstring had already named
+    for a different glob in ops/preflight.py without this file's glob ever
+    being updated to match. A run whose window overlaps any of the three
+    writes can catch the shell mid-existence and report it as a real page
+    missing every one of those things, a finding that vanishes on the very
+    next run once the writer's own cleanup runs: no site content was ever
+    actually wrong. This is the self-contradicting shape a same-day cycle
+    logged and flagged for root-cause (one preflight run failed the "pages"
+    gate with real, non-duplicate findings; every immediate rerun on the
+    identical tree was clean).
 
     Deliberately narrower than "any leading underscore": several
     ops/tests/*.py files plant their own underscore-prefixed fixture (see

@@ -1,4 +1,4 @@
-"""Prove ops/audit_pages.py's pages() ignores two other tools' own scratch
+"""Prove ops/audit_pages.py's pages() ignores three other tools' own scratch
 shells, and nothing else that happens to start with an underscore.
 
 audit_visual.py writes site/<dir>/_visual_probe.html beside the page it is
@@ -7,9 +7,13 @@ by design) and removes it when done. test_audit_catalog.py writes
 site/_audit_catalog_fixture_<pid>.html the same way (a title but no
 viewport, description, canonical, heading or analytics tag), proved live
 while writing this fix: caught by hand mid-run, in the real working tree,
-while a concurrent preflight pass had that test in flight. A run whose
-window overlaps either write can catch the shell mid-existence and report
-it as a real page missing every one of those things, a finding that
+while a concurrent preflight pass had that test in flight. shoot_mobile.py
+writes site/<dir>/_shoot_wrapper.html beside the page it screenshots, the
+same bare shell shape as _visual_probe.html, added 2026-10-14 after it
+crashed a direct `python ops/audit_pages.py` run with FileNotFoundError when
+a concurrent shoot_mobile.py's own cleanup removed it mid-read. A run whose
+window overlaps any of these writes can catch the shell mid-existence and
+report it as a real page missing every one of those things, a finding that
 self-resolves the moment the writer's own cleanup runs. This is the exact,
 self-contradicting shape a same-day cycle logged and flagged for root-cause:
 one preflight run failed the "pages" gate with real, non-duplicate
@@ -21,8 +25,8 @@ leading underscore": test_audit_links.py plants its own underscore-prefixed
 _audit_link_fixture.html specifically so this module can be proven to scan
 and flag it, a fixture the first, broader version of this fix silently made
 invisible, breaking that test's own reason to exist. This file proves all
-three: both scratch shells are excluded, and an underscore-prefixed fixture
-shaped like a real page is not.
+four: all three scratch shells are excluded, and an underscore-prefixed
+fixture shaped like a real page is not.
 """
 import io
 import os
@@ -102,6 +106,19 @@ def main() -> int:
                        "the test fixture no longer proves what a real one "
                        "would trigger if pages() ever regresses")
 
+    # shoot_mobile.py's own scratch shell, same bare shape as the visual
+    # probe above, same exact-name exclusion.
+    with Planted("zones/_shoot_wrapper.html", PROBE_SHELL) as f:
+        if f.path in A.pages():
+            bad.append("pages() included a stray _shoot_wrapper.html, the "
+                       "exact file shoot_mobile.py writes and removes mid-run")
+
+        findings = A.check(f.path, PROBE_SHELL)
+        if not findings:
+            bad.append("check() on the bare shoot-wrapper shell found "
+                       "nothing; the test fixture no longer proves what a "
+                       "real one would trigger if pages() ever regresses")
+
     # A different underscore-prefixed name, page-shaped: must stay included.
     # This is what test_audit_links.py's own _audit_link_fixture.html relies
     # on; excluding every underscore name (the first version of this fix)
@@ -123,7 +140,7 @@ def main() -> int:
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  pages() excludes only the two known scratch shells, "
+        print("  ok  pages() excludes only the three known scratch shells, "
               "and still scans every other underscore-prefixed fixture and "
               "every real page")
     return 1 if bad else 0

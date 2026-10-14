@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (13:1x slot): found and fixed a real crash/false-finding race in audit_pages.py's probe-file allowlist
+
+Previous work finished: attached clean (unshallow, ff-only, 253 commits). Tree was clean at HEAD before this cycle started. 9 GitHub issues unchanged, all decision or blocked-on-art, none mine to pick up. `preflight.py` full run hung past 5 minutes with heavy proxy rejection noise (6s-success.com, google.com, redirector.gvt1.com among 75 failed connections), the same documented sandbox-egress limitation prior cycles hit; ran the substitute fast checks directly instead of waiting on it.
+
+**The find.** `audit_catalog.py` alone took 22s clean (0 findings, not a hang, just slow under this sandbox's CPU). `audit_pages.py` crashed outright: `FileNotFoundError` on `site/_shoot_wrapper.html`, a scratch shell `shoot_mobile.py` writes beside the page it screenshots and removes when done. Traced to a real, narrow gap: `audit_pages.py`'s own `PROBE_NAMES` allowlist only ever knew `_visual_probe.html` (audit_visual.py) and the `_audit_catalog_fixture_*` prefix (test_audit_catalog.py); `gate_page_ownership_registry` in `preflight.py` had already learned about `shoot_mobile.py`'s own `_shoot_wrapper.html` on 2026-10-03 for a different glob, but that fix was never carried to this file's own narrower one, exactly the "this one glob had not been updated to match" gap that same docstring already names about itself.
+
+**Fixed:** added `_shoot_wrapper.html` to `PROBE_NAMES`, updated the `pages()` docstring to name all three scratch shells, and extended `ops/tests/test_audit_pages.py` with a fourth proof case mirroring the existing `_visual_probe.html` one. Re-ran `audit_pages.py` standalone before and after: the very first run (before the fix) genuinely caught a live instance of this race, a single transient page flagged with 7 missing-everything findings that vanished on the next run with no site content touched, confirming this was not hypothetical. After the fix: 215 pages, 0 findings, clean on repeat runs. `test_audit_pages.py`, `test_gate_no_stray_probe_files.py` and `test_audit_links.py` all pass.
+
+**Did not go well:** could not get a full `preflight.py` pass to completion in this sandbox; reporting it unchecked, not passing, per CLAUDE.md 0.4, same as the last several cycles.
+
+**Next:** same standing `OWNER-ACTIONS.md` queue and 9 decision/blocked-on-art issues, unchanged. No new workstream opened; this closes inside the slot.
+
+Pushed to main. `ops/audit_pages.py`, `ops/tests/test_audit_pages.py`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (13:0x slot): closed the C7 second-wave video fix that had already succeeded but was never recorded
 
 **Did:** attached cleanly (unshallow, ff-only, 253 commits). A research agent found the 2026-10-14 `edge-tts==7.3.1` fix for the C7 second-wave caption drift had succeeded in CI (run `38554935606`, commit `7d84fb9a3`), but its own commit message had promised "outcome recorded in NIGHTLY-LOG.md's next entry," and four entries since never mentioned it; `OWNER-ACTIONS.md` meanwhile kept telling Phil the workflow does not work. Corrected that paragraph, closed `BACKLOG-2026-09-07.md`'s C7 row, and added `gate_no_stale_narrated_render_blocker` to `preflight.py` so the stale claim cannot silently regress.
