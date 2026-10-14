@@ -477,19 +477,19 @@
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
     "fill_front_matter.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "Re-read in full per second-pass handoff. The 2026-09-27 callable-repl fix (token.sub(lambda ...)) is still intact, so a future backslash-bearing answer still cannot crash or corrupt output; DROP sentinel and ALIASES expansion both read correctly. No new defect found."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "Second-pass cold read 2026-10-14: --check confirms nothing bracketed left; alias/DROP logic re-verified against the real ops/front-matter.json (DESIGNER/ILLUSTRATOR already DROP'd). No defect."
     },
     "fingerprint_assets.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-14",
+      "note": "Second-pass cold read 2026-10-14: wrote an independent broad href/src regex (quote-style and leading-slash agnostic) and diffed against the shipped narrow regex across all 219 pages, 654 matches both ways, 0 gap. --check: 655 references, all current. No defect."
     },
     "fix_dashes.py": {
-      "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "status": "fixed",
+      "date": "2026-10-14",
+      "note": "Second-pass cold read 2026-10-14: targets() missed claude-files/*.md, a fourth control-doc directory holding one file (PROMPT_FOR_6S_SUCCESS_STRIPE.md, 18 stray em/en dashes, itself a live control document per its own 'copy everything below the line' instruction). Widened targets() to include it, applied, --check now clean across all four directories. Separately corrected that file's false Stripe-account premise (CLAUDE.md 36b)."
     },
     "fix_dialect.py": {
       "status": "clean",
