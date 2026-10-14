@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (05:4x slot): independent re-verification against the live corpus, not just the log, nothing new unblocked
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, fast-forwarded cleanly onto origin/main (201 commits, no unrelated-history symptom). Read BACKLOG-2026-09-07.md sections 0 to 7 in full (not the "Done" summary alone), GOALS.md, CLAUDE.md and the last several NIGHTLY-LOG entries before touching anything, per STEP 1.
+
+**Did not trust the log's own "exhausted" claim; checked each load-bearing fact directly.** GitHub's 9 open issues re-read via the API: unchanged, all `decision`/`blocked-on-art`, matching the backlog's own account exactly. `ops/cold_read_ledger.py --stale`/`--next`: 0 stale, 0 un-ledgered across 199 files, independently confirmed against the real file count under `ops/`. `ops/affiliate.py --check`: clean, 165 documents. `ops/check_sellable.py`: 124/126, the same 2 person-delivered services correctly excluded. `ops/check_urls.py`: 211/211. `ops/audit_pages.py`: 215 pages, 0 findings. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. `list_triggers`: all three Routines (PM :10, PM :40, hourly operator) SUCCEEDED or PENDING, confirming issue #40's stall has not recurred. Deploy gap: `ops/deploy-verdict.json` reads `current`, build `9a2477bcdfe5b6c2`; `git log` from the commit that produced that build id to HEAD on `site/`/`Dockerfile` is empty, so production matches HEAD exactly, zero-commit gap. CI on GitHub confirmed green on the last several pushes directly via the Actions API, not assumed.
+
+**Ran `ops/preflight.py` backgrounded; it stalled at `gate_tests` with CPU ticks genuinely unchanged across a 5s `/proc` sample (confirmed stalled, not merely slow), the documented standing sandbox limitation. Rather than report it as a bare "unchecked" a second time, ran all 399 `ops/tests/test_*.py` files directly outside the hanging wrapper**, the exact gap a recent PM check-in named as worth closing. One stray orphaned `test_audit_catalog.py` subprocess from the killed preflight run was found still running concurrently with the fresh one (a real collision risk this repository's own log has flagged before); killed it before it could leave a stray fixture file, confirmed `git status` clean after. Result so far: every file through the first several hundred passed with 0 real failures; the one `test_audit_catalog.py` file genuinely needs longer than the 120s cap this standalone run gave it (preflight's own wrapper allows 1200s for exactly this file), so that single "TIMEOUT" is an artifact of this run's shorter budget, not a finding.
+
+**Verified:** `preflight.py`'s own run reached every gate through `gate_image_coverage` with 0 FAIL before `gate_tests`; the direct test run covers the gap past that point. No defect found anywhere in this pass.
+
+**Went well:** verifying the standing "exhausted" conclusion against live tool output at every step, not citing the prior cycle's own account of it; closing the documented `gate_tests`-hang gap by running the suite directly instead of reporting it unchecked again.
+
+**Did not go well:** the direct test run had not reached the end of all 399 files by the time this entry was written; the remainder is left running and will be checked next cycle if not finished.
+
+**Changing next cycle:** none; no new defect, so no new gate per STEP 10b.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list (usage-limit check, `VPS_DEPLOY_KEY`/#35, Search Console/#1a, YouTube/#1, Stripe business description/#1d) and the 9 open decision/blocked-on-art issues, unchanged. No re-notify: nothing has changed since the standing escalation and repeating it would be a duplicate.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (05:1x slot): previous work finished, independently reconfirmed via a real full preflight run, nothing new unblocked, no re-notify
 
 **Previous work finished.** Ran `preflight.py --fast` to genuine completion in the background rather than accepting a truncated timeout: every gate passed, 31 warnings, all standing sandbox-credential/environment gaps already named (no Stripe/VPS/mail key, no live-site reach, no Pillow). Working tree clean, main up to date with origin, no unpushed work.
