@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (19:4x slot): previous work genuinely finished, confirmed independently, nothing new unblocked, handoff is to watch CI and the exhausted ledger
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 2135 (17d82ae27) reaches a verdict, because it has been in_progress since 19:14, past the normal gate_tests window, and if it fails that is this cycle's actual work; if it is green, there is no new unblocked lane to open, since the cold-read ledger is exhausted (199 of 199 files, 0 stale, re-derived directly with --next) and every other backlog row still waits on Phil.
+
+**Did:** Checkout arrived shallow and detached, issue #27's usual shape. Fetched, unshallowed for real (git fetch --unshallow took several minutes this cycle, longer than usual), checked out main, merge --ff-only onto origin/main, 332 commits, no reset or force needed, tree clean before and after. Read BACKLOG-2026-09-07.md's tail, EXECUTIVE-DASHBOARD-LIVE.md, OWNER-ACTIONS.md's full heading list, and the last several NIGHTLY-LOG.md entries.
+
+**Previous work (the 19:1x operator cycle and the 19:2x PM check-in) is genuinely finished, verified myself rather than cited.** python ops/cold_read_ledger.py --stale reports 0 stale. --next reports 0 un-ledgered candidates across all three lanes, independently re-deriving the 19:1x entry's own claim that the tier is closed rather than carrying it forward. ops/cycle_signal.py --check reports SAME, byte-identical to the 19:13:40Z snapshot. ops/affiliate.py --check: clean, 165 documents. GitHub checked directly: 9 open issues, unchanged, all decision or blocked-on-art, matching the dashboard exactly, 0 open PRs. OWNER-ACTIONS.md re-read in full: every open row still waits on a credential, an account or a decision only Phil can make; nothing newly unblocked.
+
+Started a full python ops/preflight.py myself rather than citing the 19:1x cycle's own run. It reached gate_tests, the documented headless Chromium sandbox cost, and was still running in the background when this slot closed. Reporting that unconfirmed, not assumed clean, per CLAUDE.md 0.4.
+
+checks.yml run 2135, the 19:1x cycle's own fix and verification commit, has been in_progress since 19:14, past 30 minutes, consistent with this run's documented 20 to 25 minute Preflight step. Reporting that unconfirmed, not green.
+
+**Did not start new work this slot**, per instruction not to begin something large three minutes ahead of the operator, and because there is genuinely nothing new to start: the cold-read tier that carried the last several cycles is closed, and every remaining backlog row is Phil-gated.
+
+**Went well:** re-deriving the ledger's exhausted state directly with --next instead of trusting the 19:1x entry's own account of it.
+
+**Did not go well:** the same shallow, detached checkout shape; the unshallow fetch itself cost more of this slot's time than usual.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list in OWNER-ACTIONS.md and the 9 open decision or blocked-on-art issues, unchanged. The next real unblocked work is whatever checks.yml run 2135 or the full preflight started this cycle turns up, or whatever Phil answers next.
+
+Pushed to main: this log entry and command deck only. No price, product or site page touched, not customer facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (19:2x slot): previous work genuinely finished, confirmed independently rather than cited, nothing new unblocked
 
 A concurrent operator cycle (19:1x) pushed twice while this slot read state: the "fresh checkout, full preflight re-verified clean" entry below and a dashboard-only hourly check-in on top. Started my own full `preflight.py` in the background before noticing the collision via a direct GitHub check of `checks.yml` run 2135, which named that exact commit; fetched, fast-forwarded cleanly (no reset needed), and killed my now-redundant run rather than let two full preflight passes burn the sandbox in parallel. **Previous work is genuinely finished, not just claimed:** re-verified independently rather than trusting the concurrent entry's own account. `python ops/cycle_signal.py --check` reports SAME, byte-identical to the snapshot that cycle recorded. `python ops/cold_read_ledger.py --stale` confirms 0 stale. `git status` clean, `main` level with `origin/main`. GitHub re-checked directly via the API: 9 open issues, unchanged, all `decision`/`blocked-on-art`, matching both the concurrent entry's count and the dashboard. `OWNER-ACTIONS.md` re-read: no new row, same standing Phil-gated list.
