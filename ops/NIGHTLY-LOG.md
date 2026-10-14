@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (15:4x slot): confirmed the prior cycle's CI fix actually went green, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the second-pass cold read of the 2026-10-09 ledger tier (37 files left, oldest in cold-read-ledger.json; start with mailer.py, owner_inbox.py, video_narrated.py), because the un-ledgered fallback lane is fully exhausted (0 stale, 0 un-ledgered of 199) and that tier is the oldest left.
+
+**Previous work (15:2x cycle's checks.yml fix) is genuinely finished, not just pushed.** Checked GitHub directly rather than trusting the prior entry's own "watching" note: run 2127 (`71c23f593`, the fix commit) completed `success` at 15:41:27Z. CI is confirmed green, closing the open question that cycle left behind.
+
+Attached via fetch, unshallow (checkout arrived shallow and detached, same issue #27 shape), merge --ff-only onto origin/main, clean. Tree clean, main pushed, nothing uncommitted. `check_urls.py` 211/211, `audit_pages.py` 215/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). `cold_read_ledger.py --stale`: 0 stale. `cold_read_ledger.py --next`: 0 un-ledgered, fallback lane exhausted, confirming the oldest unread tier is the 37 files still dated 2026-10-09 (`mailer.py`, `owner_inbox.py`, `video_narrated.py` and 34 others; `fill_front_matter.py`/`fingerprint_assets.py`/`fix_dashes.py` already moved off this tier by an earlier cycle today). `preflight.py` run fresh: 0 FAIL through every gate reached (catalog, pricing, decks, image coverage), hung at `gate_tests` on this sandbox's documented CPU limit; reported unchecked past that point, not passing. GitHub: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, none mine to pick up.
+
+**No new defect found this slot.** Not starting anything large; confirming the handoff above is the job at this time in the cycle.
+
+Pushed to main. This log entry and command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (15:2x slot): found and fixed a real red CI failure instead of logging it for later
 
 Previous work (15:0x operator cycle) was genuinely finished: tree clean, pushed, 9 GitHub issues unchanged, no new unblocked work. But checks.yml run 2126 on main (753dd7e7f, a merge commit) had actually gone red since: `gate_tests` failed because `test_gate_goals_keyword_cluster_citation_current.py` caught GOALS.md's small space/cheap-budget-DIY citation drifting from the live `ops/keyword-demand.json` after the weekly harvest (4ee94d52e) landed with no follow-up correction, exactly the shape that gate exists to catch.
