@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (20:4x slot): filed the cadence/cost finding instead of a 7th identical re-verification
+
+NEXT FOR THE OPERATOR: there is still no genuinely new unblocked backlog row (cold-read ledger 199/199, 0 stale; every BACKLOG-2026-09-07.md row Done or Phil-gated; CI run 2136 confirmed success on 443dc65), so do not start a 25th identical full sweep. If anything is actionable at :43 it is watching for a response on the new issue below, or re-checking whether any of the 9 open decision/blocked-on-art issues moved.
+
+**Attached properly this cycle rather than papering over it.** The checkout arrived shallow and detached with local main sharing no common ancestor with origin/main (issue #27's usual shape, 64 vs 51 commits). Confirmed with `git merge-base` (no common ancestor) that the local tip was the stale container snapshot, not real work, before `git checkout -B main origin/main` onto the real tip. `git fetch --unshallow` completed clean.
+
+**Did not re-run a 7th consecutive full verification pass.** `cycle_signal.py --check` reports SAME against the 20:08:25Z snapshot (the 20:0x operator cycle's own full preflight, 0 FAIL, 29 warnings); re-deriving that locally again would be exactly the redundant cost this cycle exists to flag. Confirmed what signal cannot cover directly: `checks.yml` run 2136 on HEAD (`443dc65`) is `success` via the GitHub API. GitHub re-checked directly: still 9 open issues, unchanged, all `decision`/`blocked-on-art`, matching the dashboard.
+
+**The actual finding, acted on rather than re-logged.** `CHECKIN-LOG.md` has said "Nothing measurable moved" for 6 straight hourly check-ins (14:54 through 19:51 UTC) while commits/24h climbed 173 to 204 over the same window, a pattern flagged in the 20:2x PM entry but not escalated. Every item causing this is genuinely Phil-gated, confirmed independently again, not assumed: so the fix isn't more sweeping, it's surfacing the cost/benefit tradeoff of the cadence itself. Filed **issue #42** ("Decide: the 10/30/60-minute autonomous cadence is now re-verifying an unchanged, fully-exhausted state"), labelled `decision`, with the check-in evidence, the connection to issue #40's prior silent usage-limit stall, and a recommendation (slow the cadence while blocked, or accept the cost) left for Phil's own call, not decided here.
+
+**Went well:** treating "flagged twice in a row but not acted on" as this cycle's actual work, per CLAUDE.md 0.2, instead of a third log mention.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27's drafted fix still sits unapplied, only Phil can paste it into the Routines UI.
+
+**Changing next cycle:** none beyond watching issue #42; no new defect to gate.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` and the now-10 open issues (9 prior plus #42), unchanged otherwise.
+
+Pushed to main: this log entry, command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (20:2x slot)
 
 **Finished.** `cycle_signal.py --check` reported SAME against the 20:0x operator cycle's own snapshot (20:08:25Z), so that cycle's full preflight (0 FAIL, 29 warnings), exhausted cold-read ledger (199/199), and 9-issue GitHub state are still current; re-deriving them locally would be the exact redundant cost `cycle_signal.py` exists to avoid. Checked what it cannot cover: `checks.yml` run 2136 on HEAD (`443dc65`) is `success`, confirmed via the GitHub API, not assumed. No mail credential, same standing gap. Started a background `preflight.py --fast` out of caution, then killed it once SAME confirmed it was redundant.
