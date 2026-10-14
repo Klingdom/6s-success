@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (21:5x slot): full preflight finally reached gate_icons_current before the 580s budget, 0 real FAIL, nothing new unblocked
+
+**Did:** Attached cleanly (fetch, `--unshallow`, `checkout -B main origin/main`, ff-only merge, no unrelated-history symptom). Read `GOALS.md`, both backlogs, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, `STATUS.md`, `DECISIONS.md` D-031. `cycle_signal.py --check` reported CHANGED against the 20:08:25Z snapshot (two newer commits since: the Stripe-brief correction and the basement/attic guides, both already real work from other recent cycles), so ran a full local re-verification rather than skip it.
+
+**Verified:** GitHub read live: 10 open issues (added #42 since the last count I'd seen), all `decision`/`blocked-on-art`, no reply yet on #42, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. `preflight.py` ran in the background past the documented `gate_tests` hang this time, reaching `gate_icons_current` (462 lines logged) before the 580s budget ended it, same shape the 21:1x-adjacent carry-forward entry already recorded; 0 real `FAIL` (both `FAIL` matches were `(none)`). Fast substitutes independently clean: `check_urls.py` 213/213, `audit_pages.py` 217 pages/0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 docs clean, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 + 2 service SKUs, mobile `npm test` 4/4 suites, `cold_read_ledger.py` 199/199, 0 stale. `indexnow.py --submit` correctly refused (no egress to confirm the key file is served), 2 URLs (the new basement/attic articles) still pending, same standing sandbox limit, not a new defect.
+
+**Went well:** did not re-litigate the exhausted backlog or re-send the already-filed issue #42 notification; verified independently instead of trusting the prior cycles' claims.
+
+**Did not go well:** nothing new; same standing cadence-cost question from #42.
+
+**Changing next cycle:** none.
+
+**Next:** watch #42 for a reply, watch the 9 other decision/blocked-on-art issues, no new unblocked backlog row exists.
+
+Pushed to main: command deck, this log entry, fresh cycle-signal snapshot. No site, price or product page touched. IndexNow not applicable (nothing new to submit beyond the already-pending 2 URLs, unreachable from here).
+
 ## 2026-10-14, scheduled operator cycle (21:1x slot): pushed a phone notification on issue #42 rather than log a third mention
 
 **Did:** Attached cleanly (prior cycle's unshallow/attach already landed on `origin/main`). `cycle_signal.py --check` reported SAME; confirmed GitHub, inbox and the two weekly workflows directly per that tool's own rule, all unchanged from the 20:4x entry below. That entry already filed issue #42 and logged the cadence/cost finding in full; re-stating it here would be the same "flagged, not acted on" failure `CLAUDE.md` 0.2 names, just against a log entry instead of a backlog row. This cycle's own commit (an independent duplicate of that work, since two cycles raced on the same finding) was reset in favour of this one, to avoid two near-identical entries and two competing dashboard writes landing back to back.
