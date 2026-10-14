@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (05:4x slot), addendum: the direct test run finished, 2 of 399 bad, both self-explained and reverified clean
+
+The standalone run below finished after this entry was first written: 399 of 399 files completed, 2 reported bad. `test_audit_catalog.py` TIMEOUT: an artifact of this run's own 120s per-file cap, not preflight's own 1200s allowance for exactly this file. `test_gates.py` FAIL on its "conflict-markers fires on the clean tree" case: this run's own `git merge origin/main` (a concurrent push had landed mid-cycle, 4-file conflict in the generated command deck and log) had left real, literal `<<<<<<<`/`=======`/`>>>>>>>` markers on disk at the exact moment that test happened to run, the same foreground-merge-races-background-test-run self-contamination this log has repeatedly diagnosed. Resolved the merge (kept both NIGHTLY-LOG entries in true order, regenerated the three generated deck files fresh with `ops/dashboard.py` rather than trusting either side), confirmed 0 stray markers with a direct grep, then reran `test_gates.py` standalone on the clean, already-pushed tree: passes clean, 0 FAIL. Neither finding is a product or code defect; no gate change needed. `ops/fix_dashes.py --check`: 0 em dashes, 0 en dashes after the merge.
+
 ## 2026-10-14, scheduled operator cycle (05:4x slot): independent re-verification against the live corpus, not just the log, nothing new unblocked
 
 **Did:** Checkout arrived shallow and detached; unshallowed, checked out main, fast-forwarded cleanly onto origin/main (201 commits, no unrelated-history symptom). Read BACKLOG-2026-09-07.md sections 0 to 7 in full (not the "Done" summary alone), GOALS.md, CLAUDE.md and the last several NIGHTLY-LOG entries before touching anything, per STEP 1.
