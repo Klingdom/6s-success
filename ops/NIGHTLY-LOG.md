@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, scheduled operator cycle (09:5x slot): second-pass cold read of the three files the 09:4x PM check-in handed off, all reconfirmed clean
+
+**Did:** attached via `fetch --unshallow` then `merge --ff-only` onto `origin/main` (232 commits, clean fast-forward, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` sections 0 through 9, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries. `ops/cycle_signal.py --check` read SAME against the 09:31:28Z snapshot, so skipped the redundant full local re-verification per that tool's own purpose. GitHub re-checked directly: 9 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior cycle.
+
+**Picked up the 09:4x PM check-in's own handoff** (second-pass cold read of `ops/deploy.py`, `ops/corpus_index.py`, `ops/corpus_posts.py`, the oldest 2026-10-09 second-pass tier not yet reread this week) rather than starting a new lane, since every backlog row in sections 2-6 is Done or Phil-gated and the first-pass rotation is 199 of 199 ledgered with 0 stale.
+
+**Verified rather than just read.** `ops/deploy.py` (482 lines): `classify_publish()`'s four-outcome branching, the verdict-marker write path, and `compose_drift()`'s comment-stripping diff all still match their own docstrings; no logic change since the 2026-10-09 clean entry. `ops/corpus_index.py`: ran it live (not just inspected) — 2745 files across 56 chapters (50 real ch01-ch50 plus 6 non-chapter folders/files falling through `chapter_of()`'s regex fallback, cosmetic only, used only for the printed chapter count). Sampled the 1195 "other" (unclassified, non-postable) files by filename pattern rather than trusting the count (`CLAUDE.md` 5c): all are production scaffolding (manuscript text, SEO title options, editorial review, b-roll notes, publishing calendar), correctly excluded from postable. `ops/corpus_posts.py`: ran `--stats` against the live corpus and rotation file, 4968 usable posts across 13 kinds, no exception, no duplicate ids; cross-checked against `corpus_index.py`'s 4939-unit estimate, the small gap expected since `units_in()` is a documented approximation and `clean()` filters some candidates. No defect found in any of the three. Recorded all three in `ops/cold-read-ledger.json` with today's date, closing the gap between their 2026-10-09 clean entries and this week.
+
+**Went well:** the handoff named exactly which files and why; no time spent re-deriving the "what's next" question a dozen earlier cycles today already answered.
+
+**Did not go well:** nothing new to report; this is the expected shape of a mature backlog (`BACKLOG-2026-09-07.md` section 7's "technically finished and commercially unproven").
+
+**Changing next cycle:** none.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list and the 9 open decision/blocked-on-art issues, unchanged. No re-notify.
+
+Pushed to main. Command deck regenerated. `ops/preflight.py --fast` was started in the background and reached the documented `gate_tests` sandbox hang; the committed change here is data-only (`ops/cold-read-ledger.json`, validated by loading it and by `cold_read_ledger.py --stale` reporting 0), so it was not held on that known hang. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, PM check-in (09:4x slot): cycle_signal SAME confirmed, GitHub and owner queue independently re-read, handoff for the operator
 
 NEXT FOR THE OPERATOR: second-pass cold read of `ops/deploy.py`, `ops/corpus_index.py` and `ops/corpus_posts.py`, because the first-pass rotation is still 199 of 199 ledgered with 0 stale, every backlog row in sections 2 through 6 is Done or explicitly Phil-gated, the 9 open GitHub issues are all `decision`/`blocked-on-art`, and these three sit in the oldest (2026-10-09) second-pass tier not yet reread this week; `ops/inbox_agent.py` and `ops/deploy_freshness.py` from that same tier were already covered at the 08:3x slot.

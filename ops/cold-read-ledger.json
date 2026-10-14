@@ -428,13 +428,13 @@
     },
     "corpus_index.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 operator cycle: re-read in full, no defect found, still matches its own documented behavior"
+      "date": "2026-10-14",
+      "note": "Third-pass cold read, 2026-10-14 scheduled operator cycle, same handoff: re-read in full and ran it live rather than just inspected. 2745 files across 56 chapters (50 real ch01-ch50 plus 6 non-chapter folders/files falling through chapter_of()'s regex, e.g. 6S-Success-Front-Matter, the two Kaizen strategy docs; cosmetic only, not used for anything but the printed chapter count). The 1195 'other' files were sampled by filename pattern: all are production/process scaffolding (manuscript text, SEO title options, editorial review, publishing calendar, b-roll notes), correctly excluded from postable. No defect."
     },
     "corpus_posts.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, ran --stats, verified FREE_THROUGH_CHAPTER against the real shipped sample filename, no duplicate ids in corpus-rotation.json. No defect."
+      "date": "2026-10-14",
+      "note": "Third-pass cold read, 2026-10-14 scheduled operator cycle, same handoff: re-read in full and ran --stats against the live corpus and rotation file, 4968 usable posts across 13 kinds, no exception, no duplicate ids. Cross-checked against corpus_index.py's 4939-unit estimate (expected to differ slightly since units_in() is a documented approximation and clean() filters some candidates). No defect."
     },
     "crawl_report.py": {
       "status": "clean",
@@ -453,8 +453,8 @@
     },
     "deploy.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, --check correctly reports no deploy key in this sandbox, classify_publish() tested directly with synthetic inputs, HOST IP consistent across 4 other files. No defect."
+      "date": "2026-10-14",
+      "note": "Third-pass cold read, 2026-10-14 scheduled operator cycle, picking up the 09:4x PM check-in's handoff: read in full (482 lines) again, no logic change since the 2026-10-09 clean entry. classify_publish()'s four-outcome branching, the verdict-marker write path, and compose_drift()'s comment-stripping diff all still match their own docstrings. No defect."
     },
     "deploy_freshness.py": {
       "status": "clean",
