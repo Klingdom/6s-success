@@ -16,6 +16,26 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or site page touched.
 
+## 2026-10-14, scheduled operator cycle (03:0x slot): full preflight run to real completion, every lane independently reconfirmed exhausted of unblocked work, no new defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out `main`, fast-forwarded cleanly onto `origin/main` (180 commits), no unrelated-history symptom. Read `BACKLOG-2026-09-07.md`, `GOALS.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the standing state files before picking anything, per STEP 1.
+
+**Verified, not cited, across every lane STEP 3 asks a cycle to check before claiming nothing is unblocked:** GitHub's 9 open issues re-read directly, unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5 (issue #40's usage-limit stall is already closed out by comment, symptom resolved since 2026-10-13). 0 open PRs. `ops/cold_read_ledger.py --stale`: 0 of 199 stale. `ops/cold_read_ledger.py --next`: 199 of 199 files already ledgered, nothing un-ledgered left to cold-read. `BACKLOG-2026-09-07.md` section 9 already records every row in sections 2 to 6 as Done, Phil-gated, or closed by decision as of 2026-10-13, independently reconfirmed true by reading sections 2 (A1 to A14, all Done) and the owner-gate list directly rather than trusting that section's own claim. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, standing. Confirmed the LinkedIn/Bluesky/Facebook/X tracked-link fix (`?from=li`/`bsky`/`fb`/`x`) named in `OWNER-ACTIONS.md` is actually present in `ops/linkedin_drafts.py`, `ops/bluesky_drafts.py` and `ops/social_drafts.py`'s source, not just claimed.
+
+**Ran `preflight.py` to real completion rather than kill it at the sandbox's short default timeout** (backgrounded with no timeout; `gate_tests` alone runs ~399 test files sequentially and takes most of the run's several-minute wall time in this environment, the same standing sandbox-slowness every recent cycle has independently hit): **every gate passed, 0 FAIL, 31 warnings, all the standing environment-access kind** (no Stripe/SSH/mail credential, Pillow not installed, no egress to the live site or Google). One gate (`hooks-enabled`) self-healed `core.hooksPath`, a local git-config setting, not a repository file; `git status` confirmed no tracked file changed by the preflight run itself.
+
+**Went well:** treating the prior cycles' "exhausted" claim as a hypothesis to re-check from a fresh session rather than a fact to carry forward, and it held up on every lane checked independently.
+
+**Did not go well:** nothing new; this is the same conclusion the last several cycles in this log already reached, reached again rather than assumed.
+
+**Changing next cycle:** none. No new defect, so no new gate per STEP 10b.
+
+**Next:** same standing queue: `OWNER-ACTIONS.md`'s short list (Search Console verification, VPS_DEPLOY_KEY secret, Stripe business description, confirming YouTube upload authorisation, the LinkedIn tracked-link fix's first real day of data) and the 9 open GitHub issues, all Phil-gated. Nothing unblocked for an autonomous session beyond what this cycle already reconfirmed clean.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+## 2026-10-14, PM check-in (02:4x slot): previous work finished, confirmed by re-checking GitHub and the backlog directly rather than citing the last hour's own cycles; escalated the stall to Phil instead of starting new work
+
 **NEXT FOR THE OPERATOR: there is no new unblocked item. Spend the :43 slot the way the last several cycles already have, confirming the standing state stays true (preflight fast past the known `gate_tests` hang, cold-read ledger, 9 GitHub issues) rather than inventing work, because the backlog's "Now" sections (2 through 6) are genuinely exhausted: done, superseded, or waiting on one of the five owner actions below.**
 
 **Previous work finished.** Checkout arrived shallow and detached (issue #27's usual shape); `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `b689e0cbf`, no conflict, 180 commits fast-forwarded. `preflight.py --fast` hit the same documented `gate_tests` headless-Chromium sandbox hang several cycles this same hour already diagnosed (confirmed again directly: flat on `gate_tests`, no new gate failures before it); not re-run to completion a second time in this slot, since three sibling cycles in the last two hours (`00:1x` through `02:1x`) already did, clean. Re-read `BACKLOG-2026-09-07.md` sections 0 and 2 through 7 directly rather than trusting those citations: every "Now" row is struck through done, or `C5`/`C6` ("Enable Gemini billing", "Publish the 102 remaining videos"), both explicitly marked waiting on Phil. Section 5 (Hold) is correctly all still waiting on traffic. Pulled all 9 open GitHub issues directly: unchanged from every cycle today, all `decision` or `blocked-on-art`, 0 open PRs, 0 new comments since the last PM check-in.
