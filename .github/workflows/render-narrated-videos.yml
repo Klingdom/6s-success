@@ -11,23 +11,23 @@ name: Render stale narrated videos
 # Needs real audio (edge-tts, reaching speech.platform.bing.com) and ffmpeg.
 # The cloud sandbox this repository is usually operated from refuses that
 # destination at its own egress proxy (confirmed directly: a DNS-level
-# connection failure to that host specifically). This workflow was written on
-# the guess that a GitHub-hosted runner would clear that the same way
-# keyword-demand.yml and indexation-check.yml do for a different host. That
-# guess was wrong and has since been checked against three real runs, not
-# assumed: every one failed with `WSServerHandshakeError: 403` from
-# speech.platform.bing.com itself, the identical error the cloud sandbox gets,
-# across three different runner IPs. Microsoft's own edge-tts endpoint is
-# rejecting the request at the application layer regardless of which
-# datacenter the caller sits in, which a workflow cannot route around by
-# installing a different package or retrying. Do not re-trigger this expecting
-# a different result (BACKLOG-2026-09-07.md's C7 second-wave row and
-# OWNER-ACTIONS.md carry the current, correct next step: Phil's own machine,
-# which is not a datacenter IP and already rendered 99 zones this way with 0
-# failures on 2026-09-18). Left in place rather than deleted because it is
-# harmless to leave (the commit step only fires on a real diff) and would
-# start working again without any change here if Microsoft's policy changes
-# or this ever runs from a non-datacenter runner.
+# connection failure to that host specifically), which is why this runs on a
+# GitHub-hosted runner instead, the same pattern keyword-demand.yml and
+# indexation-check.yml use for a different host.
+#
+# Corrected 2026-10-14, this operator: the three prior failures here
+# (WSServerHandshakeError: 403 from speech.platform.bing.com, across three
+# different runner IPs) were wrongly diagnosed as an application-layer block
+# on datacenter IPs with no workflow-side fix. That was never the cause.
+# edge-tts/edge-tts#490 (closed 2026-10-13, the same day the second failing
+# attempt here ran) root-caused it: Microsoft Edge 155 moved to a v2
+# `Sec-MS-GEC` token format, and edge-tts 7.2.8, the version pinned below at
+# the time, still sent the old v1 token, which the server now rejects with
+# exactly this 403. The maintainer confirmed "resolved as of edge-tts 7.3.0".
+# Pinned to 7.3.1 (latest at the time of this fix) below. If this fails again
+# with the same 403 on a current edge-tts version, the IP-block theory would
+# then be worth re-examining; it was never confirmed, only assumed, the first
+# three times.
 #
 # Manual only. check_video_standard.py's own gate already warns preflight.py
 # every time a video goes stale, and rendering is slow (narration, a
@@ -61,7 +61,7 @@ jobs:
       - name: Install edge-tts and a headless Chromium
         run: |
           python -m pip install --upgrade pip
-          python -m pip install edge-tts==7.2.8 playwright==1.48.0
+          python -m pip install edge-tts==7.3.1 playwright==1.48.0
           python -m playwright install --with-deps chromium
           # ops/browser.py's find_browser() only looks at the fixed paths it
           # knows (the cloud sandbox's own /opt/pw-browsers/chromium, plus two
