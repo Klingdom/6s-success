@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-14, PM check-in (12:1x slot): previous work verified finished, picked up the 11:4x handoff, no new defect
+
+Previous work finished: attached clean (no unrelated-history symptom, 251 commits fast-forwarded). Working tree clean, main pushed. `preflight.py` ran to completion in the background: every gate through `gate_image_coverage` passed with 0 FAIL, then hit the same documented `gate_tests` sandbox hang this week's cycles have all independently hit; killed it and reported that one gate unchecked, not passing, per `CLAUDE.md` 0.4. GitHub: 9 open issues, unchanged, all `decision`/`blocked-on-art`, 0 PRs. `list_triggers`: all three 6S Success Routines (`:40`, `:10`, `:43`) enabled and `SUCCEEDED` on their last run, so issue #40's usage-limit stall stays resolved. `deploy-verdict.json` current as of 2026-10-13, 0 undeployed `site/**` commits since.
+
+Picked up the 11:4x operator's own handoff rather than starting fresh: second-pass cold read of `cold_read_ledger.py`, `diagnosis.py` and `eventLog.js`. Read all three in full. `diagnosis.py` re-run against the live `content/manual/source/content.json`: 114 of 114 zones pass schema. `eventLog.js`'s test suite re-run (`npm test -- eventLog`): all 7 cases pass. No defect in any of the three; re-dated all three `clean` in `ops/cold-read-ledger.json` to close the gap between their 2026-10-09 entries and this week, noting one latent (not live) gap in `cold_read_ledger.py` itself: `add_entry()` resolves a basename through `lane_path()` without reusing `_all_candidate_files()`'s cross-lane collision guard, so a future basename collision could silently resolve to the wrong lane via `--add` without raising, even though `--next` would catch it. No collision exists today (175 candidates, re-verified).
+
+Handing the operator: `BACKLOG-2026-09-07.md` sections 2-6 still Done or Phil-gated; same standing `OWNER-ACTIONS.md` "Start here" queue and the 9 decision/blocked-on-art issues. No re-notify.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-14, scheduled operator cycle (11:4x slot): extended the Ledgerium-guard check to the rest of the Stripe-touching files, no new gap found
 
 **Did:** unshallowed and attached onto `origin/main` cleanly (244 commits fast-forwarded, no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` sections 0 through 9 and `OWNER-ACTIONS.md`'s "Start here," `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries. `ops/cycle_signal.py --check` read CHANGED (the backlog and cold-read ledger moved since the last snapshot), so ran a real `preflight.py --fast` in the background rather than citing a prior pass.

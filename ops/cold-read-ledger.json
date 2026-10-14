@@ -423,8 +423,8 @@
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle (delegated): read in full, independently recomputed the 196-candidate set and the 0-stale verdict, both match exactly. No defect."
+      "date": "2026-10-14",
+      "note": "second-pass cold read, 2026-10-14 PM check-in: re-read in full. lane_path() does its own existence/pattern check rather than reusing _all_candidate_files()'s collision guard, so add_entry() could in theory silently resolve to the wrong lane on a cross-lane basename collision without raising (only --next would catch it); no such collision exists today (175 candidates, 0 collisions, re-verified), so this is a latent gap, not a live defect. stale_entries(), is_cleared(), next_candidates() all re-traced against the live ledger and git history, all correct."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -462,14 +462,14 @@
       "note": "Second-pass cold read, 2026-10-14 scheduled operator cycle: read in full (326 lines). resolve_asset_ref()/DISCOVERY_PAGES coverage, canonical_path()'s rooms/zones extensionless handling, and the live-vs-repo byte-size diagnostic's division guards (rb truthy-gated before any lb/rb or rb/lb division) all traced and correct. Cross-checked live by importing resolve_verdict_commit/deploy_gap_material_commits from preflight.py this same cycle: production (build 9a2477bcdfe5b6c2) resolves to commit 17b7c665 with a zero-commit material gap, matching ops/deploy-verdict.json and STATUS.md's own current citation. No new defect found."
     },
     "diagnosis.py": {
-      "status": "fixed",
-      "date": "2026-10-09",
-      "note": "second-pass cold read, 2026-10-09 scheduled operator cycle: IMPERATIVE_FIRST_WORD was still built from Kitchen alone (the only deck when this file was written); B9 has since authored 19 more room decks and the set was never re-derived. leave/say/read (and 105 other genuine imperative openers across all 20 decks) silently passed as observable victories. Rebuilt the set from all 20 decks' real ACTION CARD steps, hand-filtered to exclude declarative/noun-fragment openers and the one genuinely ambiguous word (dry) that is a state adjective in the one place it matters (the Dry basin... example this file's own docstring protects). Verified against all 289 real victory_conditions across all 20 decks plus all 114 live first_15.victory fields: zero newly rejected. New cases 10-11 in ops/tests/test_diagnosis_schema.py, fail-then-pass proved against the reverted set."
+      "status": "clean",
+      "date": "2026-10-14",
+      "note": "second-pass cold read, 2026-10-14 PM check-in: re-read in full, re-ran against the live content/manual/source/content.json (114 of 114 zones carry diagnosis, schema passes). The 2026-10-09 IMPERATIVE_FIRST_WORD rebuild (all 20 decks) still holds; no new deck or victory text has landed since to drift the set again."
     },
     "eventLog.js": {
       "status": "clean",
-      "date": "2026-10-09",
-      "note": "second-pass cold read 2026-10-09: re-read in full, no defect found"
+      "date": "2026-10-14",
+      "note": "second-pass cold read, 2026-10-14 PM check-in: re-read in full, re-ran its test suite (npm test -- eventLog), all 7 cases pass. No defect."
     },
     "experiments.py": {
       "status": "clean",
