@@ -2,6 +2,34 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 19:5x slot
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` clean (536 commits, no reset/force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `cycle_signal.py --check`: SAME against the 15:51 snapshot, so full re-derivation was skipped and the cycle spent on external checks.
+
+**Verified:** `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicates, `affiliate.py --check` 165 docs, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale`/`--next` 204/204, 0 un-ledgered. `preflight.py` backgrounded past 15 min, 0 FAIL before hanging at the documented `gate_tests` sandbox limit; killed, unchecked for that gate only, not passing. `inbox_agent.py`: no mail credential. Fresh egress to the live site and google.com: both refused by the proxy, no-egress confirmed still true. GitHub: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs; #42/#40 still no new Phil comment. 16 Actions runs all green, including a concurrent 19:4x check-in merged in clean mid-cycle. Owner gate 4 (Amazon KDP/Etsy) reconfirmed fully prepped, waiting only on Phil's account creation.
+
+**Went well:** letting preflight run to its real timeout instead of assuming the hang, and checking egress fresh instead of citing the standing note.
+
+**Did not go well:** same documented `gate_tests` and no-egress sandbox limitations; nothing new beyond what #42 already names.
+
+**Changing next cycle:** none. No new defect, no new gate. No push notification: same finding already on #42.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
+## 2026-10-15, PM check-in (19:4x)
+
+NEXT FOR THE OPERATOR: no new unblocked lane exists; re-verify this exhaustion holds and ship an honest dashboard regen, because GitHub (9 open issues, all `decision`/`blocked-on-art`), the cold-read ledger (204/204, 0 stale, 0 un-ledgered), and every `BACKLOG-2026-09-07.md` Now row are all independently reconfirmed exhausted this cycle too.
+
+Attached clean after a genuine unshallow (the stale shallow boundary made local main look diverged from `origin/main`; the real history fast-forwarded cleanly once fetched in full, no reset needed). `preflight.py --fast` ran every gate with 0 FAIL, then hung at the documented `gate_tests` sandbox headless-Chromium limit, killed at 140s, the same wall every recent cycle reports. Checked rather than assumed: #42's and #40's only comments are prior Claude sessions posting through Phil's own GitHub login, not a real decision from him; `CHECKIN-LOG.md` shows 8 straight hourly "nothing measurable moved" entries since #42 was filed 23 hours ago. Pushed Phil a notification about this instead of writing it into a ninth log entry he may not read.
+
+**Did not go well:** nothing new; same sandbox limit, same unanswered decisions.
+
+**Found and fixed by the following 19:5x cycle:** this entry had been appended to the physical end of the file (12,752 lines down) instead of prepended here; moved verbatim, content unchanged, per `gate_nightly_log_ordering`.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
 ## PM check-in, 2026-10-15 19:2x slot
 
 NEXT FOR THE OPERATOR: nothing new, same exhausted and Phil-gated state the 19:1x cycle just reconfirmed.
@@ -12732,14 +12760,4 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck.
 **Next for the operator:** continue the 2026-09-25-dated second-pass cold-read tier, 19 files remain (generate_card_art.py, generate_card_heroes.py, generate_zone_heroes.py, import_room_images.py, merge_cardtext.py, optimize_sample_pdf.py, reflow.py, render_all_narrated.py, review_deck_art.py, review_heroes.py, send_brief.py, service_orders.py, status_pdf.py, stripe_check.py, sync_page_links.py, verify_media_delivery.py, video_narrated.py, video_srt.py, zone_graphics.py). Same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cold-read-ledger.json`, command deck. No price, product or site page touched; IndexNow not applicable.
-
-## 2026-10-15, PM check-in (19:4x)
-
-NEXT FOR THE OPERATOR: no new unblocked lane exists; re-verify this exhaustion holds and ship an honest dashboard regen, because GitHub (9 open issues, all `decision`/`blocked-on-art`), the cold-read ledger (204/204, 0 stale, 0 un-ledgered), and every `BACKLOG-2026-09-07.md` Now row are all independently reconfirmed exhausted this cycle too.
-
-Attached clean after a genuine unshallow (the stale shallow boundary made local main look diverged from `origin/main`; the real history fast-forwarded cleanly once fetched in full, no reset needed). `preflight.py --fast` ran every gate with 0 FAIL, then hung at the documented `gate_tests` sandbox headless-Chromium limit, killed at 140s, the same wall every recent cycle reports. Checked rather than assumed: #42's and #40's only comments are prior Claude sessions posting through Phil's own GitHub login, not a real decision from him; `CHECKIN-LOG.md` shows 8 straight hourly "nothing measurable moved" entries since #42 was filed 23 hours ago. Pushed Phil a notification about this instead of writing it into a ninth log entry he may not read.
-
-**Did not go well:** nothing new; same sandbox limit, same unanswered decisions.
-
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
 
