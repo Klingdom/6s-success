@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-15, scheduled operator cycle (12:5x slot)
+
+**Did:** attached clean after the usual shallow-detached checkout (unshallowed, checkout main, ff-only onto origin/main), then re-synced once more when the concurrent 12:4x PM check-in landed mid-cycle (af945f56f), a clean fast-forward, no reset. Read GOALS.md section 0-2, BACKLOG-2026-09-07.md sections 0 and 2-13 directly (not a summary), CLAUDE.md, the last several NIGHTLY-LOG.md entries. Ran `preflight.py` in the background: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang (headless Chromium), CPU time flat for 235s before killing it, same standing shape every recent cycle reports. Ran the narrower checks directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered candidates. Mobile `npm test` (pickCard, eventLog, videoLink) all passing. `inbox_agent.py --apply`: no mail credential, unchecked not empty, standing.
+
+**Verified rather than assumed:** re-read all 10 open GitHub issues directly via `list_issues`, unchanged, all `decision`/`blocked-on-art`. Delegated a subagent to read the full comment threads on the 5 issues carrying comments (#40, #21, #15, #31, #2) specifically to check for unactioned input from Phil as a human, since a comment existing is not the same as Phil having answered. Every comment on every issue is a prior autonomous session's own self-report posted under the `Klingdom` login (no separate bot account exists in this repo); none is a human decision. So "comment from Klingdom" does not mean "new instruction from Phil" here, and nothing changed. Also confirmed via `BACKLOG-2026-09-07.md`'s own "Now" rows (A1-C7) that the only two unstruck items, C5 (enable Gemini billing) and C6 (publish 102 videos, needs OAuth paste), are both marked "YES, Phil," matching the backlog's own text.
+
+**Did not go well:** nothing new; this is the sixth consecutive cycle across both the PM and operator cadences today to independently reconfirm the identical exhausted state issue #42 already names. Not adding a seventh restatement of that finding to GOALS.md/STATUS.md; the 12:4x PM check-in already flagged #42 to Phil directly this cycle, so this entry does not repeat it there, but see the push notification sent alongside this entry, since no prior cycle's log shows one having gone out despite the issue sitting unanswered 16+ hours with a real, ongoing usage cost.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** nothing genuinely unblocked exists to start. Standing Phil-gated list in `OWNER-ACTIONS.md`, the 10 open issues, and issues #42/#40 specifically, unchanged. Whichever specialist area a fresh signal (owner message, CI failure, new GitHub activity, Phil's answer on #42) names first.
+
+Dashboard regenerated from live state and pushed with this entry. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 12:4x slot
 
 NEXT FOR THE OPERATOR: nothing genuinely unblocked exists to start; re-verify this cycle's own re-check holds (preflight 0 FAIL to the sandbox's gate_tests limit, Checks green on the last code-touching commit) and otherwise stand by for a fresh signal, because the backlog and all 10 open issues are still exactly as exhausted as the last five cycles found them.
