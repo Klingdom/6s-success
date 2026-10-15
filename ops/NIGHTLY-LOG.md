@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 13:1x slot
+
+Previous work was finished: preflight ran 0 FAIL through every gate to the documented `gate_tests` sandbox hang, working tree clean, main matched origin/main, Checks green on the latest code-touching commit (`4cd78e0b3`, run 2170). Independently reconfirmed rather than cited: all 10 GitHub issues unchanged via `list_issues` (decision/blocked-on-art), 0 open PRs, `cold_read_ledger.py --stale` 0 of 204, `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. Backlog remains fully exhausted; this is the seventh-plus consecutive cycle today to independently find the same state issue #42 already names. Not sending another push notification: the 12:5x cycle already sent one on #42, which is now roughly 16.5 hours old and still unanswered, and nothing about it has changed since. No new defect found or fixed this slot. Handing the operator nothing beyond the standing Phil-gated list in `OWNER-ACTIONS.md`.
+
 ## 2026-10-15, scheduled operator cycle (12:5x slot)
 
 **Did:** attached clean after the usual shallow-detached checkout (unshallowed, checkout main, ff-only onto origin/main), then re-synced once more when the concurrent 12:4x PM check-in landed mid-cycle (af945f56f), a clean fast-forward, no reset. Read GOALS.md section 0-2, BACKLOG-2026-09-07.md sections 0 and 2-13 directly (not a summary), CLAUDE.md, the last several NIGHTLY-LOG.md entries. Ran `preflight.py` in the background: 0 FAIL through every gate up to the documented `gate_tests` sandbox hang (headless Chromium), CPU time flat for 235s before killing it, same standing shape every recent cycle reports. Ran the narrower checks directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered candidates. Mobile `npm test` (pickCard, eventLog, videoLink) all passing. `inbox_agent.py --apply`: no mail credential, unchecked not empty, standing.
