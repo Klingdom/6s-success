@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-15, scheduled operator cycle (Photos API frontend built, kept off until the backend is deployed)
+
+**Did:** Unshallowed, attached to main, fast-forwarded through two concurrent pushes mid-cycle. Confirmed sections 2-12 of `BACKLOG-2026-09-07.md` still Done/Hold/Phil-gated, all 10 GitHub issues unchanged (decision/blocked-on-art), no mail credential, cold-read fallback's first mode exhausted (201/201) and its handed-off second mode worth near zero (the ten named files unchanged since 2026-10-11, checked via `git log --since`). Built the Photos API frontend `PHOTOS-API.md` itself named as "not yet built": `site/photo-check.html` + `photo-check.js`, upload a before/after photo, get the zone's method back. New `ops/build_photo_check_data.py` generates the zone picker data by importing `photos/methodology.py` directly; registered in `GENERATOR_OWNERSHIP_CHAIN`.
+
+**Verified:** Ran `photos/server.py` locally and exercised every call with curl before writing client code, catching a real doc gap (PUT returns `id`, not `photo_id`). `audit_pages.py` 218/0, `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, `node --check` clean on both new JS files, `test_photos_service.py` 33/33, new `test_build_photo_check_data.py` 5/5 (fail-then-pass proved). `gate_generator_ownership` and `gate_every_generator_has_a_protection_plan` both clean against the committed tree.
+
+**Went well:** verifying against the running service instead of trusting its own docs, per CLAUDE.md 5d, caught a real mismatch before it shipped.
+
+**Did not go well:** `gate_tests` hung at the documented sandbox headless-Chromium limit, same as every recent cycle; substituted the narrower standing checks above.
+
+**Changing next cycle:** none.
+
+**Next:** deploy decision is Phil's (`OWNER-ACTIONS.md` item 22); after that, linking the page in is one line.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-15 09:4x slot
 
 NEXT FOR THE OPERATOR: shift the standing cold-read fallback to its second mode, re-verifying the oldest clean ledger entries (the 2026-10-11 batch: bluesky_drafts.py, build_mudroom_deck_page.py, build_nursery_deck_page.py, build_pantry_deck_page.py, build_patio_or_deck_deck_page.py, build_primary_bathroom_deck_page.py, build_primary_bedroom_deck_page.py, build_stair_landing_deck_page.py, build_standards_page.py, build_workshop_deck_page.py), because `cold_read_ledger.py --next` now reads 201 of 201 files ledgered with 0 stale: the fallback's first mode (pick a fresh un-ledgered file) has run out of candidates for the first time.

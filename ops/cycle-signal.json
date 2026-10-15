@@ -1,13 +1,13 @@
 {
-  "combined_hash": "966a7a816beddca75bb7a49a950db1d062aebe9e61341282863b0c490e6fb346",
-  "git_head": "644356df2c79839ab2732a97e1ead5eedf21ac62",
-  "note": "Added BACKLOG section 11 documenting the cycle_signal.py self-defeating-signal fix; preflight/urls/dashes/nightly-log-gates/cycle_signal-test all re-verified clean this cycle",
-  "recorded_at": "2026-10-15T07:59:01Z",
+  "combined_hash": "f88046ab162af76f0f87001d94e7b6cfc61afe613d7b269c8bcb75eb28f532cf",
+  "git_head": "f51eab183a1906a0f994fdf9959f47d1ef32f95b",
+  "note": "",
+  "recorded_at": "2026-10-15T10:14:18Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "de65e85b1ddf3b9854e90da855e3957b7cb1f7f0173ad104b803dd279087ad42",
+    "BACKLOG-2026-09-07.md": "0fdf52ca1920eeb2cf7b3abe4da7fab997f2f3e31076bfaec12cdb6d4584d138",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
-    "OWNER-ACTIONS.md": "f81f1b871e18f882043311597228611b84489c0f2a38c43a9695c3b9ce9fdb71",
+    "OWNER-ACTIONS.md": "5b87f42696e1de09e9c0c686f015db2212cacb8786371422104a239f0252ca78",
     "STATUS.md": "2332889c83d9932a22de82626fed695e510b3ed0c37ed39cd8dcb1f8448d01d6",
     "ops/deploy-verdict.json": "9b302a3b7cb6b6dcf25a68a6f93fdcd88167a0c59407774f96017281720fc7d4"
   }
