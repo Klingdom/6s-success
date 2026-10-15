@@ -12505,3 +12505,19 @@ NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health,
 Previous work (13:1x PM cycle) was finished: clean attach after an unshallow, tree clean, main fast-forwarded onto origin. preflight.py ran every gate clean, 0 FAIL, through the documented gate_tests sandbox hang (killed per standing pattern). All 10 open issues reconfirmed via list_issues, unchanged; checked #40 and #42 directly for new comments from Phil, none since 2026-10-13. 0 open PRs. cold_read_ledger.py --stale and --next both confirm full exhaustion. inbox_agent.py: no mail credential, unchecked not empty. Last 7 CI workflow runs on main all green. No new defect found.
 
 Dashboard regenerated (commits7d 1086, revenue $19 all-time carried forward, Stripe unreachable this run) and shipping with this entry. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
+
+## 2026-10-15, scheduled operator cycle (re-verification: backlog exhaustion and GitHub state confirmed independently, no new unblocked work found)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (489 commits, no reset or force), tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 7-13, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md`/PM check-in entries. Ran `ops/cycle_signal.py --check`: SAME against the 10:14 snapshot, so skipped the redundant local re-derivation it exists to avoid and checked GitHub, the inbox and the scheduled workflows directly instead, per that tool's own documented purpose.
+
+**Verified:** `list_issues` read directly, not cited: 10 open, unchanged (8 `decision`, 2 `blocked-on-art`), none Phil-unblocked. Last 10 Actions runs on `main` all `success`. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, not empty. Ran `preflight.py` live rather than trust the signal alone: every gate before `gate_tests` passed, 0 FAIL, then hit the documented sandbox hang there; killed per the standing pattern. Dashboard regenerated (commits7d 1086, revenue carried forward: $0 this month, $19 all-time from 1 sale; Stripe/site reachability correctly reported unknown this run rather than carried forward as current, since this instance could not reach either).
+
+**Went well:** trusting `cycle_signal.py`'s SAME verdict saved a full re-read of two large backlog files while still independently re-checking the things no local file can see (GitHub, inbox, CI).
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names and already escalated.
+
+**Changing next cycle:** nothing; no new defect class surfaced to gate.
+
+**Next:** same standing Phil-gated list in `OWNER-ACTIONS.md` (Amazon KDP account, Etsy shop, 7 affiliate programme confirmations, all prepped and ready) and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
