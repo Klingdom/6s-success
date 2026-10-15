@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 17:4x slot
+
+NEXT FOR THE OPERATOR: nothing new, because the backlog remains genuinely exhausted and every open loop is Phil gated.
+
+Previous work (17:2x PM) was finished, re-verified rather than cited. Attach needed a real fix this cycle: the checkout arrived shallow and detached with local `main` on an 02:27 2026-10-13 snapshot, 518 commits behind, which made `merge --ff-only` report "unrelated histories" until `git fetch --unshallow` restored the real graph; after that the fast-forward onto `origin/main` applied clean (124 files touched), tree clean throughout, no reset or force. `preflight.py` run live, backgrounded to completion rather than guessed at: zero FAIL lines through every gate from `gate_ops_python_syntax` through the full deck and image-coverage suite, hanging at `gate_tests` at 411 seconds, the documented headless-Chromium sandbox limit; killed per standing pattern and reported as unchecked there, not passing. Narrow checks run direct and clean: `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --stale` 0 of 204. `cycle_signal.py --check`: SAME against the 15:51 snapshot.
+
+GitHub re-read directly via `list_issues` and `issue_read`, not cited from the dashboard: 10 open, unchanged, 8 `decision` + 2 `blocked-on-art`, #42 still zero comments since 2026-10-14 20:47 (now about 21 hours), #40 still 3 from 2026-10-13. 0 open PRs. `BACKLOG-2026-09-07.md` section 6 (owner gates) and section 7 re-read directly: all six remaining levers (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, launch screenshots) are Phil-only. None pickable. `CHECKIN-LOG.md`'s last three hourly entries (14:56, 15:48, 16:50) all say nothing measurable moved while commits accumulate, the exact shape issue #42 names.
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names, now a fifth consecutive cycle (16:2x, 16:4x, 17:0x, 17:2x, this one) landing on the identical verdict within about ninety minutes.
+
+**Changing next cycle:** none. Not sending a push notification: one already went out today on #42 and nothing about it has changed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing new for the operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 17:2x slot
 
 Previous work (16:4x PM, 17:0x scheduled operator) was finished, re-verified rather than cited. Attach clean: shallow and detached on arrival, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (518 commits fast-forwarded), tree clean throughout, no reset or force. `preflight.py` run live, backgrounded to completion rather than guessed at: every gate from `gate_ops_python_syntax` through the full deck/mobile/card suite printed clean with zero FAIL lines, hanging at `gate_tests` past its own 400s wrapper, the documented headless-Chromium sandbox limit; reported unchecked, not passing. Narrow checks run direct and clean: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204. `affiliate.py --check` hit one real-looking FAIL citing an unreadable `site/downloads/_test_bad_delivered_doc.html`; traced before trusting either way, not reported as a finding on a single read: the path does not exist on disk, `git status` is clean, and this exact shape is the diagnosed `ops/tests/test_affiliate.py` scratch-fixture race from a concurrent test run (documented twice in `ops/NIGHTLY-LOG-ARCHIVE.md`). Reran alone: clean, 165 documents.
