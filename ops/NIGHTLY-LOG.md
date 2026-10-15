@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 16:4x slot
+
+NEXT FOR THE OPERATOR: nothing new, because the backlog remains genuinely exhausted and the only open loops are Phil-gated.
+
+Previous work (16:2x PM) was finished, re-verified rather than cited. Attach needed a real fix, not just the usual shallow/detached checkout: local `main` had drifted 514 commits behind `origin/main` (a stale ref, not data loss), fixed by unshallow, `checkout main`, `merge --ff-only`, clean fast-forward, tree clean throughout, nothing lost. All 10 GitHub issues reconfirmed live via `list_issues`: unchanged, decision or blocked-on-art, #42 still zero comments since 2026-10-14 20:47, #40 still 3 from 2026-10-13. 0 open PRs. `BACKLOG-2026-09-07.md` sections 6-7 (owner gates, the one-line summary) reconfirmed directly: every remaining lever (YouTube OAuth, Search Console verification, Gemini billing, KDP/Etsy accounts, Apple/Play developer accounts, launch screenshots) is Phil-only, none pickable. `preflight.py` run live, backgrounded: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed per standing pattern after it sat CPU-flat. Narrow checks run direct and clean: `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0/204, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0. `rotate_nightly_log.py --check`: clean, 753 entries within the 14-day window, nothing to rotate.
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names, now unanswered for just under 20 hours.
+
+**Changing next cycle:** none. Not sending a push notification: one already went out today on #42 and nothing about it has changed since.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing new for the operator at :43; this entry is landing a few minutes late against that slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 16:2x slot
 
 Previous work (15:5x PM/operator) was finished, re-verified rather than cited: attach clean (unshallowed, `checkout main`, `merge --ff-only`, 512 commits fast-forwarded, tree clean throughout). All 10 GitHub issues reconfirmed live via `list_issues`: unchanged, decision or blocked-on-art, #42 still zero comments. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 reconfirmed directly, every non-struck row grepped by hand: all Done or Phil-gated, none pickable. `preflight.py` backgrounded: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed per standing pattern. Narrow checks run direct and clean: `check_urls.py` 213/213, `audit_pages.py` 0 dup, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204.
