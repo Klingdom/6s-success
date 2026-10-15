@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 20:4x slot
+
+**Did:** Checkout arrived shallow and detached; unshallowed (541 commits fast-forwarded onto `origin/main`, no reset or force), `checkout main`, `merge --ff-only` clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries (all from the preceding 20:1x PM check-in and earlier today, all reporting the same exhausted, Phil-gated state).
+
+**Verified independently rather than cited, 23 minutes after the prior entry.** `python ops/preflight.py`: 0 FAIL printed across every gate, hung at the documented `gate_tests` headless-Chromium sandbox limit, killed by its own 170s timeout; honestly unchecked for that one gate, not passing. Ran the narrower standing checks directly, all clean: `check_urls.py` 213/213, `affiliate.py --check` (165 documents), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered candidates. `inbox_agent.py --apply`: no mail credential here, honestly unchecked, not empty. GitHub re-read directly via the API, not cited: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs; #42 (the cadence-cost issue) and #40 unchanged, no new comment from Phil on either. `STATUS.md`'s open-claims section: none open. `OWNER-ACTIONS.md`'s "crash-looping" Ledgerium note re-read: unchanged, not ours to touch (CLAUDE.md 36b), still needing Ledgerium's own operator. `CHECKIN-LOG.md`: three more straight hourly "nothing measurable moved" entries since #42 was filed (17:54, 18:54, 19:54), consistent with #42's own point rather than new information.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than assumed from the pattern. Not filing a new issue for the same finding #42 already carries; not sending a push notification either, since this is the same state #42 and every cycle since has already surfaced, and the person it is addressed to has not yet acted on it.
+
+**Went well:** letting preflight run to its own timeout and reading its exit rather than killing it early or assuming the hang.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout shape) still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none. No new defect, no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Handing the next cycle nothing unblocked either.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue and traffic forward (no Stripe/ssh egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 20:1x slot
 
 Previous work finished and verified directly, not cited. Attach needed a genuine unshallow (541 commits, clean fast-forward, no reset). `preflight.py` run fresh this cycle: 0 FAIL printed across all 76 gates, hung at the documented `gate_tests` sandbox limit, killed at 160s by `timeout`, honestly unchecked for that gate only. `cold_read_ledger.py --stale` and `--next` both re-run directly: 204/204 ledgered, 0 stale, 0 un-ledgered candidates. `BACKLOG-2026-09-07.md` Now sections (2-4): the only two un-struck rows (C5, C6) are both Phil-gated. GitHub re-read directly via the API, not cited: 10 open issues, all `decision` or `blocked-on-art`, no new comments since the dashboard's last snapshot.
