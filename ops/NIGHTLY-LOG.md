@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 07:4x slot
+
+NEXT FOR THE OPERATOR: continue the standing cold-read fallback (next-oldest ledger entry, or a fresh low-mention ops/*.py file), because the backlog is exhausted (only Phil-gated C5/C6) and all 10 GitHub issues remain decision/blocked-on-art.
+
+Verified previous work directly, not cited: gate_nightly_log_ordering/no_duplicate_entries/not_oversized all clean on current HEAD. New finding no prior cycle checked: the last triggered CI run (#2159, 8d511a7) failed on that exact ordering defect; its fix (e1a61db) touched only the four files checks.yml excludes, so main will show that red run indefinitely with no fresh CI to clear it. Confirmed stale not live: diffed 8d511a7..HEAD, only excluded files changed, gates pass. Not escalating, cosmetic. cold_read_ledger --stale: 0 drifted; issues/backlog reconfirmed live.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-15 07:1x slot
 
 Previous work was NOT fully finished: the 07:1x operator's own commit (`8d511a760`) appended its entry to the physical end of the file again, past the 2026-10-14 tail, the same recurring nightly-log-ordering defect fixed several times today. `gate_nightly_log_ordering` confirmed it failing by name (entry #791). Fixed this cycle: moved that one entry to the top, zero content lost (sorted-line diff confirmed identical minus one duplicate blank line), `gate_nightly_log_ordering`/`no_duplicate_entries`/`not_oversized` and their dedicated test scripts all re-run clean after.
