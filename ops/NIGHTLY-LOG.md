@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 07:1x slot
+
+Previous work was NOT fully finished: the 07:1x operator's own commit (`8d511a760`) appended its entry to the physical end of the file again, past the 2026-10-14 tail, the same recurring nightly-log-ordering defect fixed several times today. `gate_nightly_log_ordering` confirmed it failing by name (entry #791). Fixed this cycle: moved that one entry to the top, zero content lost (sorted-line diff confirmed identical minus one duplicate blank line), `gate_nightly_log_ordering`/`no_duplicate_entries`/`not_oversized` and their dedicated test scripts all re-run clean after.
+
+Backlog and all 10 GitHub issues reconfirmed via `list_issues`, unchanged, decision or blocked-on-art, none Phil-unblocked. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` clean. Did not repeat a full `preflight.py --fast` (already run clean this cycle by the operator, at this same HEAD content). Handing the operator: nothing new beyond the standing Phil-gated list; keep using `ops/nightly_log.py` to prepend, never hand-append.
+
+HANDOFF-FILES: none
+
+## 2026-10-15, scheduled operator cycle
+
+**Did.** Unshallowed and attached to main cleanly (no "unrelated histories" symptom). Confirmed BACKLOG-2026-09-07.md still fully exhausted (every row Done/Hold/Phil-gated) and `cycle_signal.py --check` read SAME. Read all 10 open GitHub issues directly: the 9 known decision/blocked-on-art rows unchanged, plus new #42 (cadence vs. exhausted backlog), already correctly filed as a decision, not actioned. Ran the standing cold-read fallback: re-verified the two oldest-dated clean ledger entries in full, `ops/check_sellable.py` and `ops/import_room_diagrams.py`, recorded via `ops/cold_read_ledger.py --add`. Ran `inbox_agent.py --apply` (no mail credential here). Ran full `preflight.py --fast` and `dashboard.py`.
+
+**Verified.** `check_sellable.py` live: 124 of 126 buyable products confirmed in Stripe with a delivery entry and file on disk, 2 correctly excluded as person-delivered services, 0 FAIL. `import_room_diagrams.py` run without `--apply`: 11 rooms matched the committed `ops/room-diagrams.json` exactly, no drift. Full `preflight.py --fast` reached completion this cycle (roughly 20+ minutes, almost all inside `gate_tests`): every gate passed, 27 warnings, all previously-diagnosed sandbox/credential limits (no Stripe, mail, DNS or VPS SSH access here). No FAIL anywhere in the log, confirmed by grep, not by trusting the summary line alone.
+
+**Went well.** The prior cycle's STEP 0 fix held; unshallow and attach worked first try.
+
+**Did not go well.** Nearly reported preflight as finished early: backgrounding it with a trailing `&` plus `run_in_background: true` double-backgrounded the process, so the tool reported exit 0 almost instantly while the real run kept going. Caught by checking the PID was still alive before trusting the report.
+
+**Changing next cycle.** Never combine a trailing `&` with `run_in_background: true`; use one or the other.
+
+**Next.** No backlog row or GitHub issue is Phil-unblocked. Continue the standing cold-read fallback each cycle until a decision clears or new demand evidence appears.
+
 ## PM check-in, 2026-10-15 06:4x slot
 
 NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health, because the backlog is exhausted and none of the 10 open issues are genuinely unblocked.
@@ -13589,18 +13611,3 @@ Previous work was finished: attached clean, main fast-forwarded onto origin afte
 Found and fixed a real gated defect, not just re-confirmed a clean one: status_deploy_verdict_problem fired directly against STATUS.md and the live ops/deploy-verdict.json (Phil's own redeploy at 22:41:08Z, build c36cb2794e581473, commit 086f6ba42) because BLOCKER-001, the Production Knowledge paragraph and the Immediate Focus line all still cited the 2026-10-13 confirmation. Re-derived and corrected all three; also checked past this cycle's own newest commit (the clean-along video-format work, b4669487d, touches neither site/ nor Dockerfile), so the zero deploy gap holds at real current HEAD, not just at the verdict's own commit. Gate function re-run clean against the edited file.
 
 Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Issues #42 and #40 unchanged, not repeated. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
-
-
-## 2026-10-15, scheduled operator cycle
-
-**Did.** Unshallowed and attached to main cleanly (no "unrelated histories" symptom). Confirmed BACKLOG-2026-09-07.md still fully exhausted (every row Done/Hold/Phil-gated) and `cycle_signal.py --check` read SAME. Read all 10 open GitHub issues directly: the 9 known decision/blocked-on-art rows unchanged, plus new #42 (cadence vs. exhausted backlog), already correctly filed as a decision, not actioned. Ran the standing cold-read fallback: re-verified the two oldest-dated clean ledger entries in full, `ops/check_sellable.py` and `ops/import_room_diagrams.py`, recorded via `ops/cold_read_ledger.py --add`. Ran `inbox_agent.py --apply` (no mail credential here). Ran full `preflight.py --fast` and `dashboard.py`.
-
-**Verified.** `check_sellable.py` live: 124 of 126 buyable products confirmed in Stripe with a delivery entry and file on disk, 2 correctly excluded as person-delivered services, 0 FAIL. `import_room_diagrams.py` run without `--apply`: 11 rooms matched the committed `ops/room-diagrams.json` exactly, no drift. Full `preflight.py --fast` reached completion this cycle (roughly 20+ minutes, almost all inside `gate_tests`): every gate passed, 27 warnings, all previously-diagnosed sandbox/credential limits (no Stripe, mail, DNS or VPS SSH access here). No FAIL anywhere in the log, confirmed by grep, not by trusting the summary line alone.
-
-**Went well.** The prior cycle's STEP 0 fix held; unshallow and attach worked first try.
-
-**Did not go well.** Nearly reported preflight as finished early: backgrounding it with a trailing `&` plus `run_in_background: true` double-backgrounded the process, so the tool reported exit 0 almost instantly while the real run kept going. Caught by checking the PID was still alive before trusting the report.
-
-**Changing next cycle.** Never combine a trailing `&` with `run_in_background: true`; use one or the other.
-
-**Next.** No backlog row or GitHub issue is Phil-unblocked. Continue the standing cold-read fallback each cycle until a decision clears or new demand evidence appears.
