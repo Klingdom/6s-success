@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 18:5x slot
+
+NEXT FOR THE OPERATOR: nothing new, because the backlog remains genuinely exhausted and every open loop is Phil-gated.
+
+Previous work (18:1x PM) re-verified directly, not cited. Attach needed `git fetch --unshallow` (shallow/detached, unrelated-histories refusal first); ff-only clean after. `preflight.py`: 0 FAIL through every gate, hung at `gate_tests`'s documented sandbox limit. `check_urls.py` 213/213, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py` `--stale`/`--next` both 204/204, 0 un-ledgered. `BACKLOG-2026-09-07.md` Now rows: all done except C5/C6, owner-gated. 10 GitHub issues unchanged (8 decision + 2 blocked-on-art); #42/#40 re-read, zero new Phil comments. Deploy gap re-measured: 4 commits, same standing item 0 (`VPS_DEPLOY_KEY`, issue #35).
+
+**Did not go well:** nothing new, same shape #42 names.
+
+**Changing next cycle:** none. No push notification: nothing new beyond #42.
+
+**Next:** standing Phil-gated list unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 18:1x slot
 
 NEXT FOR THE OPERATOR: nothing new; same exhausted, Phil-gated state as the last several cycles.
