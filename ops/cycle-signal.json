@@ -1,15 +1,14 @@
 {
-  "combined_hash": "3d01d97445d38e8d0126760103746cfb504b0fc3ae2d77aa50d4c547aa85d600",
-  "git_head": "2b058086999d1d12e34620552be197dbca597533",
-  "note": "PM 04:3x: recorded snapshot reflecting the 04:1x cycle's own clean full preflight plus this cycle's direct re-checks (nightly-log-ordering gate/test, check_urls, fix_dashes, audit_pages, cold-read-ledger, owner-actions marker), all clean",
-  "recorded_at": "2026-10-15T04:15:30Z",
+  "combined_hash": "1c0180ed2ab4efa702f89be59091b87e51e70bf3d31968723731630392b4d0f6",
+  "git_head": "1a8916e3510e05d86286b68c2d5bacea42b1976a",
+  "note": "Fixed self-defeating signal set (removed ops/cold-read-ledger.json, which the standing fallback itself touches); backlog/GitHub/preflight reconfirmed exhausted this cycle, inbox checked (no mail creds here)",
+  "recorded_at": "2026-10-15T07:54:23Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "d37ab66954326f4e2b76834c290faecaf8cae71da2b2fb3c8b664329ab93e3a7",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
     "OWNER-ACTIONS.md": "f81f1b871e18f882043311597228611b84489c0f2a38c43a9695c3b9ce9fdb71",
     "STATUS.md": "2332889c83d9932a22de82626fed695e510b3ed0c37ed39cd8dcb1f8448d01d6",
-    "ops/cold-read-ledger.json": "d72e8b419e5b85fffdee24b009e40a30a8900d2ad2e3f57ecc20620d6e6db64e",
     "ops/deploy-verdict.json": "9b302a3b7cb6b6dcf25a68a6f93fdcd88167a0c59407774f96017281720fc7d4"
   }
 }

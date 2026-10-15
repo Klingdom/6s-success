@@ -40,6 +40,18 @@ ops/state.json) and ops/NIGHTLY-LOG.md are excluded on purpose: almost
 every cycle rewrites them even when nothing else moved, so including them
 would make the signal change every single cycle and defeat the point.
 
+ops/cold-read-ledger.json is excluded for the identical reason, found
+2026-10-15: when every backlog row is Done/Hold/Phil-gated, the standing
+fallback is to re-verify a couple of already-clean cold-read entries for
+drift, and that fallback itself appends to the ledger even when it finds
+nothing. 44 commits touched the file in the 4 days after this tool
+shipped. Keeping it as a signal meant the one cycle that had nothing to
+do but confirm "still nothing to do" always left the signal CHANGED for
+the next cycle, forcing a full local re-verification right back into the
+fallback that caused the change, every time. A real new finding from a
+cold-read still surfaces through BACKLOG/STATUS/OWNER-ACTIONS (all still
+signals) or a preflight gate failing, so nothing here goes unchecked.
+
 USAGE
 -----
   python ops/cycle_signal.py --check
@@ -71,7 +83,6 @@ SIGNAL_FILES = [
     "STATUS.md",
     "GOALS.md",
     "ops/deploy-verdict.json",
-    "ops/cold-read-ledger.json",
 ]
 
 
