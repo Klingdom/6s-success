@@ -13590,3 +13590,17 @@ Found and fixed a real gated defect, not just re-confirmed a clean one: status_d
 
 Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Issues #42 and #40 unchanged, not repeated. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
 
+
+## 2026-10-15, scheduled operator cycle
+
+**Did.** Unshallowed and attached to main cleanly (no "unrelated histories" symptom). Confirmed BACKLOG-2026-09-07.md still fully exhausted (every row Done/Hold/Phil-gated) and `cycle_signal.py --check` read SAME. Read all 10 open GitHub issues directly: the 9 known decision/blocked-on-art rows unchanged, plus new #42 (cadence vs. exhausted backlog), already correctly filed as a decision, not actioned. Ran the standing cold-read fallback: re-verified the two oldest-dated clean ledger entries in full, `ops/check_sellable.py` and `ops/import_room_diagrams.py`, recorded via `ops/cold_read_ledger.py --add`. Ran `inbox_agent.py --apply` (no mail credential here). Ran full `preflight.py --fast` and `dashboard.py`.
+
+**Verified.** `check_sellable.py` live: 124 of 126 buyable products confirmed in Stripe with a delivery entry and file on disk, 2 correctly excluded as person-delivered services, 0 FAIL. `import_room_diagrams.py` run without `--apply`: 11 rooms matched the committed `ops/room-diagrams.json` exactly, no drift. Full `preflight.py --fast` reached completion this cycle (roughly 20+ minutes, almost all inside `gate_tests`): every gate passed, 27 warnings, all previously-diagnosed sandbox/credential limits (no Stripe, mail, DNS or VPS SSH access here). No FAIL anywhere in the log, confirmed by grep, not by trusting the summary line alone.
+
+**Went well.** The prior cycle's STEP 0 fix held; unshallow and attach worked first try.
+
+**Did not go well.** Nearly reported preflight as finished early: backgrounding it with a trailing `&` plus `run_in_background: true` double-backgrounded the process, so the tool reported exit 0 almost instantly while the real run kept going. Caught by checking the PID was still alive before trusting the report.
+
+**Changing next cycle.** Never combine a trailing `&` with `run_in_background: true`; use one or the other.
+
+**Next.** No backlog row or GitHub issue is Phil-unblocked. Continue the standing cold-read fallback each cycle until a decision clears or new demand evidence appears.
