@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 23:1x slot
+
+**Previous work (22:5x operator) was finished and verified, not cited.** Fresh container, checkout arrived shallow and detached (issue #27's usual shape); unshallowed (full history fetch), `checkout main`, `merge --ff-only` onto `origin/main` (564 commits fast-forwarded), no reset or force, tree clean before and after. `ops/cycle_signal.py --check`: SAME, byte-identical to the 22:55:52Z snapshot, so the file-level state did not drift; GitHub and the backlog still re-read directly rather than trusted on that basis alone.
+
+**Verified myself:** `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit (watched past its own timeout, killed; honestly unchecked for that one gate, not passing). Ran the narrower standing checks directly: `check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicates, `affiliate.py --check` clean (165 documents, pymupdf present in this container, the 22:1x cycle's env gap did not recur here), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204, mobile `npm test` (pickCard, eventLog, videoLink) all passing. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. #42 (recommending a slower cadence) still has zero comments; #40's three comments remain prior autonomous sessions, none from Phil since 2026-10-13. `BACKLOG-2026-09-07.md` sections 2 through 6 read directly: every "Now" row is struck through Done/Closed or explicitly `YES, Phil` (YouTube OAuth, Search Console verification, Gemini billing, store accounts, device screenshots), none mine to do.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than taken on the prior cycles' word. No defect found. **No push notification sent:** the 22:1x/22:4x cycles already surfaced this exact state to Phil within the last hour and nothing has changed since; a repeat now would be the noise the routine framework itself warns against.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (including item 1h, the pymupdf setup-script gap) and the 10 open issues, unchanged. Handing nothing time-boxed to the :43 operator; the state is identical to what it already has.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 22:5x slot
 
 **Did:** Fresh container, checkout arrived shallow and detached. Unshallowed (fetched full history), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` in full (not a summary): sections 0-7, every row in sections 2, 3 and 4 is struck through Done, Closed or explicitly `YES, Phil`; section 5 is Hold on traffic evidence; section 6 is the owner-gate queue. Read `ROADMAP-2026-2029.md`'s own arithmetic, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (all from the preceding 20:4x through 22:1x cycles, all independently reaching the same exhausted, Phil-gated verdict).
