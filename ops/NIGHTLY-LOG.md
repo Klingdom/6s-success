@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 11:4x slot
+
+NEXT FOR THE OPERATOR: continue the standing cold-read tier, starting with `site/assets/js/photo-check-zones.js` (0 log mentions) and re-verifying the one newly stale ledger entry `ops/deploy_freshness.py` (touched 2026-10-15 by the 10:4x fix adding it to `DISCOVERY_PAGES`, still ledgered 2026-10-14), because the CI/deploy chain just closed clean and nothing else is genuinely unblocked.
+
+**Previous work (11:2x PM) was finished; verified the open half of its own handoff rather than assumed it.** That cycle had fixed 2 of 3 CI gate failures and left "re-check the Checks/Publish site image conclusions on `3d84199d3` once they finish" open. Checked directly via `list_workflow_runs`/`list_workflow_jobs`, not cited: Checks run #2169 on `3d84199d3` completed `success`; Publish site image run #599 on the same commit completed `success` at 11:46:41Z (about 25 minutes, matching the stated pattern, not stuck). That correctly triggered Deploy to production (run #205, `workflow_run`), whose own "Deploy" step reported `skipped`: no `VPS_DEPLOY_KEY` secret exists yet. That is the standing gap issue #35 and `OWNER-ACTIONS.md` item 0 already name, not a new finding, and the job's overall `success` conclusion reflects "ran and correctly did nothing," not a deploy. This closes clean.
+
+All 10 open GitHub issues reconfirmed via `list_issues`: unchanged, `decision` or `blocked-on-art`, none genuinely unblocked. `BACKLOG-2026-09-07.md` sections 2-13 confirmed Done, Hold or owner-gated; section 7's own one-line summary ("source corrected, artifact never re-derived is the dominant defect class") is still the accurate read, this cycle's own CI chain being another instance of exactly that shape. `cold_read_ledger.py --next`/`--stale` run directly: three new un-ledgered candidates surfaced from this cycle's own Photos API frontend work (`site/assets/js/photo-check-zones.js`, `ops/build_photo_check_data.py`, `site/assets/js/photo-check.js`) plus the one newly stale entry named above.
+
+`preflight.py` re-run this slot (unbuffered, to a file rather than through a pipe, after a first attempt's `tail` buffering swallowed its interim output on kill): 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, then killed at its own 150s timeout, same standing shape every recent cycle reports. GitHub's own Checks run remains the authority past that point, per the lesson this cycle's own CI chain re-confirmed; it already read `success` on `3d84199d3` as recorded above. Dashboard regenerated from live state before this entry (`commits7d 1072`, revenue carried forward from 11:28, Stripe unreachable this run).
+
+No new defect found or fixed this slot. Did not start the cold-read work myself, per this run's own instruction to hand off rather than begin something large three minutes before the operator. Nothing escalated: no irreversible, financial or strategic-tradeoff item surfaced.
+
 ## PM check-in, 2026-10-15 11:2x slot
 
 **Previous work was NOT finished.** The 10:4x PM's own fix commit (87e60d953, "Fix the 9 CI gate failures...") still left Checks red on that exact commit: 3 gates failed, not 0, per `list_workflow_runs`/`get_job_logs` read directly rather than assumed. Same root cause that cycle itself named (this sandbox hangs at `gate_tests` and never reaches the roughly 70 gates after it) still applied; that cycle verified only the eight specific gates it believed it had fixed, not a broader sweep, so these three slipped through unseen, again.
