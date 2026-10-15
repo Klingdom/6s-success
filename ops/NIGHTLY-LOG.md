@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 19:2x slot
+
+NEXT FOR THE OPERATOR: nothing new, same exhausted and Phil-gated state the 19:1x cycle just reconfirmed.
+
+Previous work (19:1x scheduled operator) was finished, re-verified directly rather than cited. Attach needed `git fetch --unshallow` (shallow/detached), then `checkout main` and `merge --ff-only` clean, no reset. `preflight.py` backgrounded to its own 150s timeout: 0 FAIL lines, hung again at the documented `gate_tests` sandbox limit (the 19:1x cycle got lucky and ran it to completion once; this cycle's hang is the normal shape, not a regression). Narrow checks run direct and clean: `check_urls.py` 213/213, `affiliate.py --check` 165 docs clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py` `--stale`/`--next` both 204/204, 0 un-ledgered. Mobile `npm test`: all suites passing. GitHub re-read directly: 10 open issues unchanged (8 decision + 2 blocked-on-art), 0 open PRs, #42 still zero comments, #40 unchanged since 2026-10-13. A concurrent push (the 19:1x operator's own commit) landed mid-check; merged clean via fast-forward, no collision.
+
+**Did:** regenerated the dashboard per step 6 even though nothing moved. This run has no Stripe/ssh credential, so `dashboard.py`'s own carry-forward logic correctly marked revenue and "can the site take money" as unconfirmed-this-run rather than repeating the 19:1x cycle's stale-true reading; recorded honestly, not silently kept green.
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names.
+
+**Changing next cycle:** none. No push notification: nothing new beyond #42.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Leaving the cold-read tier alone for the operator at :43 since it is genuinely exhausted (0 un-ledgered), not because it is hours-sized.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 19:1x slot
 
 **Did.** Checkout arrived shallow and detached; `git fetch --unshallow` restored the real graph, `checkout main`, `merge --ff-only` onto `origin/main` applied clean, no unrelated-history refusal, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and the recent Closed sections (8-13), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, delegated to a subagent to keep the dense paragraph-length lines out of this session's own context.
