@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 17:4x slot
+
+**Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history refusal. Read `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. `preflight.py` backgrounded, confirmed stuck at the documented `gate_tests` headless-Chromium sandbox limit, killed; ran the narrow checks direct instead.
+
+**Verified, not cited.** `cycle_signal.py --check`: SAME. `check_urls.py` 213/213, `audit_pages.py` 218/0, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204, `--next` confirms all 204 files ledgered, 0 un-ledgered candidates left anywhere. Mobile `npm test` (4 suites) passing. `check_sellable.py` 124/126, the other 2 person-delivered services, as expected. `deploy.py --check`: no deploy key, standing gap. `list_issues`: 10 open, unchanged, 8 `decision` + 2 `blocked-on-art`, #42 (the cadence question) still open with no new activity; 0 PRs. `list_triggers`: all three PM/operator routines last ran SUCCEEDED, no `USAGE_LIMIT_REACHED` currently. `inbox_agent.py --apply`: no mail credential, honestly unchecked. This sandbox's own egress refused `6s-success.com` outright (curl `connect_rejected`), unlike the 17:2x cycle's reachable reading; `dashboard.py` recorded that honestly (carried-forward/unknown, not stale-green).
+
+**Went well:** letting `dashboard.py`'s own carry-forward logic handle this cycle's narrower egress instead of treating a null as a zero or keeping a stale true.
+
+**Did not go well:** same exhausted, Phil-gated backlog shape as every recent cycle.
+
+**Changing next cycle:** none. No push notification: nothing changed since today's earlier one on #42.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 17:2x slot
 
 Previous work (16:4x PM, 17:0x scheduled operator) was finished, re-verified rather than cited. Attach clean: shallow and detached on arrival, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (518 commits fast-forwarded), tree clean throughout, no reset or force. `preflight.py` run live, backgrounded to completion rather than guessed at: every gate from `gate_ops_python_syntax` through the full deck/mobile/card suite printed clean with zero FAIL lines, hanging at `gate_tests` past its own 400s wrapper, the documented headless-Chromium sandbox limit; reported unchecked, not passing. Narrow checks run direct and clean: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204. `affiliate.py --check` hit one real-looking FAIL citing an unreadable `site/downloads/_test_bad_delivered_doc.html`; traced before trusting either way, not reported as a finding on a single read: the path does not exist on disk, `git status` is clean, and this exact shape is the diagnosed `ops/tests/test_affiliate.py` scratch-fixture race from a concurrent test run (documented twice in `ops/NIGHTLY-LOG-ARCHIVE.md`). Reran alone: clean, 165 documents.
