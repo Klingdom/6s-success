@@ -896,6 +896,11 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:0x slot: 8/8 own tests pass, matches the live 12-of-114 published video count exactly, no defect found"
     },
+    "video_cleanalong.py": {
+      "status": "fixed",
+      "date": "2026-10-15",
+      "note": "Found and fixed a real import-order hazard: video_cleanalong.py forced YouTube wide mode (1920x1080) on the shared video_zone module by appending --wide to sys.argv before importing it, relying on video_zone reading sys.argv only once, at its own import time. Proved directly: importing video_zone narrow first, then video_cleanalong, left vz.WIDE False and W,H at 1080x1920 despite --wide being in sys.argv, because the already-cached module never re-read it. gate_tests runs every test_*.py as its own subprocess (confirmed in preflight.py's gate_tests, _run_bounded per file), so this specific ordering never manifests there today; the real risk is a future batch script importing video_zone and video_cleanalong together in one process, which does not exist yet (grepped, nothing imports video_cleanalong). Fixed by setting vz.WIDE/vz.W/vz.H directly on the imported module instead of mutating sys.argv, which works regardless of import order and leaves sys.argv untouched for every other module in the process. Fail-then-pass proved directly against both mechanisms in the adversarial order."
+    },
     "video_narrated.py": {
       "status": "clean",
       "date": "2026-10-14",

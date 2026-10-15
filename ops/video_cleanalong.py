@@ -51,11 +51,24 @@ import re
 import subprocess
 import sys
 
-if "--wide" not in sys.argv:
-    sys.argv.append("--wide")      # YouTube 16:9; video_zone reads this at import
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 import video_zone as vz            # noqa: E402
+
+# This cut is always YouTube 16:9, never the vertical default. video_zone
+# decides WIDE/W/H from "--wide" in sys.argv, but only once, at its own
+# import time; appending to sys.argv here used to rely on this module
+# importing video_zone before anything else does, in whatever process runs
+# it. In a shared process (pytest collects every ops/tests/*.py into one
+# interpreter) an earlier narrow import of video_zone caches WIDE=False
+# first, so appending "--wide" afterward does nothing, and vz.page()/
+# vz.shot() silently render portrait frames into a video this module then
+# stretches to 1920x1080. Proved directly: importing video_zone narrow,
+# then video_cleanalong, left WIDE False. Setting the module's own
+# attributes here works regardless of who imported video_zone first, and
+# leaves sys.argv untouched for every other module in the same process.
+vz.WIDE = True
+vz.W, vz.H = 1920, 1080
 
 OUT = os.path.join(ROOT, "build", "video", "cleanalong")
 WORK = os.path.join(ROOT, "build", "video", "_cleanalong")

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-15, scheduled operator cycle (video_cleanalong.py's import-order hazard found and fixed)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto origin/main (which kept moving under the hourly-brief/PM-check-in cadence; re-fetched and fast-forwarded twice more during the cycle). Reconfirmed independently rather than cited: all 10 GitHub issues unchanged (decision/blocked-on-art), 0 open PRs, `ops/cycle_signal.py --check` SAME, `cold_read_ledger.py --stale` 0, production `deploy-verdict.json` current (build `c36cb2794e581473` matches `site/build-id.txt`, 0 `site/**`/Dockerfile commits since its `checked_at`), `inbox_agent.py --apply` ran clean (no mail credential in this sandbox, expected). Chased the one red "Checks" run visible in GitHub Actions (runs #2159-2161, `gate_nightly_log_ordering`) to its job log rather than trusting the 08:4x PM check-in's own claim: confirmed those three ran against pre-fix commits and the real fix (`fae87a97b`) was already in flight: genuinely stale, not newly red, matching the claim.
+
+Found and fixed a real defect instead of re-deriving "nothing to do" again: cold-read of `ops/video_cleanalong.py` (new 2026-10-14, 0 log mentions, the oldest un-ledgered candidate `cold_read_ledger.py --next` names). It forced YouTube wide mode on the shared `video_zone` module by appending `--wide` to `sys.argv` before importing it, relying on `video_zone` reading `sys.argv` only once, at its own import time. Proved directly in a throwaway process: importing `video_zone` narrow first, then `video_cleanalong`, left `vz.WIDE` False and `W,H` at 1080x1920 despite `--wide` sitting in `sys.argv`, because the already-cached module never re-read it; `vz.page()`/`vz.shot()` would then silently render portrait frames that the final `ffmpeg scale=1920:1080` stretches into a distorted 16:9 upload, with no error anywhere. `gate_tests` runs every `test_*.py` as its own subprocess (confirmed in `preflight.py`'s own `gate_tests`, one `_run_bounded` call per file), so this ordering never manifests there today, and nothing yet imports `video_cleanalong` from another module (grepped), so there is no live exploit path, only a latent one for whatever batch script combines it with `video_zone` next.
+
+**Verified:** fixed by setting `vz.WIDE`/`vz.W`/`vz.H` directly on the imported module instead of mutating `sys.argv`, which works regardless of import order and leaves `sys.argv` untouched for every other module in the process. Fail-then-pass proved directly against both mechanisms in the adversarial order (old: WIDE stays False; new: WIDE forced True, argv unchanged). `ops/tests/test_video_cleanalong.py` extended with the two checks that prove it (6 to 8), re-run clean standalone. `python -c "import ast; ast.parse(...)"` clean on both touched files. Ledgered as fixed in `ops/cold-read-ledger.json` with the full account. Full `preflight.py` re-run after the edit; see this entry's own HANDOFF-FILES line and the commit this lands in for its verdict.
+
+**Went well:** the standing cold-read fallback found a genuine, previously-unflagged, demonstrated defect in a brand-new file on the very first candidate, the same shape as the last two cycles' own finds (`rotate_nightly_log.py`, `cycle_signal.py`).
+
+**Did not go well:** no new backlog item or GitHub issue was available to work; every row in BACKLOG-2026-09-07.md sections 2-11 stays Done/Hold/Phil-gated, confirmed again rather than assumed.
+
+**Changing next cycle:** none; the standing fallback is working as designed.
+
+**Next:** the other un-ledgered candidate `ops/rotate_nightly_log.py` (5 mentions), then the standing Phil-gated list in OWNER-ACTIONS.md and the 10 open decision/blocked-on-art GitHub issues.
+
+HANDOFF-FILES: `ops/rotate_nightly_log.py`
+
 ## PM check-in, 2026-10-15 08:4x slot
 
 NEXT FOR THE OPERATOR: continue the standing cold-read fallback (next-oldest ledger entry, or a fresh low-mention ops/*.py file), because the backlog is exhausted and all 10 GitHub issues remain decision or blocked-on-art.
