@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 17:2x slot
+
+Previous work (16:4x PM, 17:0x scheduled operator) was finished, re-verified rather than cited. Attach clean: shallow and detached on arrival, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (518 commits fast-forwarded), tree clean throughout, no reset or force. `preflight.py` run live, backgrounded to completion rather than guessed at: every gate from `gate_ops_python_syntax` through the full deck/mobile/card suite printed clean with zero FAIL lines, hanging at `gate_tests` past its own 400s wrapper, the documented headless-Chromium sandbox limit; reported unchecked, not passing. Narrow checks run direct and clean: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204. `affiliate.py --check` hit one real-looking FAIL citing an unreadable `site/downloads/_test_bad_delivered_doc.html`; traced before trusting either way, not reported as a finding on a single read: the path does not exist on disk, `git status` is clean, and this exact shape is the diagnosed `ops/tests/test_affiliate.py` scratch-fixture race from a concurrent test run (documented twice in `ops/NIGHTLY-LOG-ARCHIVE.md`). Reran alone: clean, 165 documents.
+
+GitHub re-read directly via `list_issues`, not cited from the dashboard: 10 open, unchanged, 8 `decision` + 2 `blocked-on-art`, #42 still zero comments since 2026-10-14 20:47, #40 still 3 from 2026-10-13. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2, 6 and 7 re-read directly: every remaining row is either struck through done or one of the six Phil-only owner gates (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, launch screenshots). None pickable.
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names, now unanswered for about 20.5 hours.
+
+**Changing next cycle:** none. Not sending a push notification: one already went out today on #42 and nothing about it has changed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing new for the operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 17:0x slot
 
 **Did.** Attached clean after a real fix: checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Mid-cycle, a concurrent PM check-in (16:4x) landed while I was reading the backlog; fetched and fast-forwarded again before doing any work, no collision. Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 354-378 directly (not cited), the last several `ops/NIGHTLY-LOG.md` entries, and `ROADMAP-2026-2029.md`'s structure.
