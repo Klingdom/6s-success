@@ -2,6 +2,40 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 05:4x slot
+
+NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health only, because the backlog remains exhausted (all 10 open issues decision or blocked-on-art, none Phil-unblocked, 0 open PRs, re-confirmed fresh via list_issues/list_pull_requests this cycle, not cited from the log) and issue #42's cadence-cost question is still unanswered.
+
+Previous work was NOT fully finished: cycle_signal.py --check read SAME, but that signal only tracks BACKLOG/GOALS/OWNER-ACTIONS/STATUS/cold-read-ledger/deploy-verdict, never ops/NIGHTLY-LOG.md itself, so it could not have caught this. Running gate_nightly_log_ordering directly (not cited, actually run) found the exact recurring defect its own docstring describes: two genuinely-newest 2026-10-15 entries (an unlabeled scheduled-operator-cycle entry and the 05:2x PM slot) had been appended at the literal end of the file, after the entire 2026-10-14-and-older body, 13,000+ lines from where a newest-first reader looks. Fixed: moved both to the top, ahead of the existing 04:4x entry, zero net lines added or removed, pure reorder, then added back one blank line my first pass dropped at the new entry boundary. Re-ran gate_nightly_log_ordering, gate_nightly_log_no_duplicate_entries and gate_nightly_log_not_oversized directly against the edited file: all clean. Ran the four dedicated test scripts as scripts (test_gate_nightly_log_ordering.py, test_rotate_nightly_log.py, test_gate_nightly_log_not_oversized.py, test_nightly_log.py, test_gate_nightly_log_no_duplicate_entries.py), not via pytest (pytest was on a mismatched Python 3.13 pip against a 3.11 interpreter in this sandbox, a local tooling gap, fixed with python3 -m pip install pytest so the direct check could be proven, not assumed): all 5 pass clean.
+
+Root cause, worth naming so it stops recurring: ops/nightly_log.py already exists and prepends correctly by construction (used for this very entry), but recent cycles have been hand-appending prose instead of calling it. Not a gate fix, a practice fix; naming it rather than re-discovering it next time this exact defect resurfaces.
+
+Did not re-verify the full backlog/GitHub picture from scratch beyond what is cheap to re-check live (GitHub issues and PRs, fresh this cycle): no new signal anywhere, so a full repeat of the file-by-file backlog read prior cycles already did many times today would be the same low-value re-verification issue #42 names. Not re-notifying Phil on #42: nothing changed since the last notification, and CLAUDE.md's own guidance is to escalate once, not repeat an unread alert.
+
+Dashboard will be regenerated and this will ship with ops/ship.py. No price or product touched, no site page changed; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## PM check-in, 2026-10-15 05:2x slot
+
+Previous work was finished: cycle_signal.py --check returned SAME against the 04:15:30Z clean snapshot; working tree clean, main fast-forwarded onto origin after an unshallow (same recurring shallow-checkout shape). Ran a full preflight.py anyway rather than rely solely on the signal: 0 FAIL across every gate reached, then the documented gate_tests sandbox hang, killed per the standing pattern. All 10 open issues reconfirmed via list_issues, unchanged, decision or blocked-on-art, none genuinely unblocked; 0 open PRs; last 5 workflow runs on main all green. inbox_agent.py --apply: no mail credential, standing. Read BACKLOG-2026-09-07.md sections 2 through 7 in full: every row Done, Hold, or owner-gated. No new defect found; this is the same exhausted-backlog state issue #42 already names. Dashboard regenerated (commits7d 1025 of 6709) and pushed. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
+
+## 2026-10-15, scheduled operator cycle
+
+**Did:** Reattached per Step 0 (fetch, unshallow, checkout main, ff-only merge; checkout arrived shallow and detached again, same recurring shape). Read GOALS.md, BACKLOG-2026-09-07.md sections 6 through 8, and the last several NIGHTLY-LOG.md entries. Ran ops/cycle_signal.py --check first, per section 8's own designed shortcut.
+
+**Verified:** cycle_signal returned SAME against the 04:15:30Z snapshot, so skipped the redundant full local re-verification and spent the slot on what signal cannot cover. GitHub's 10 open issues (42, 40, 35, 33, 31, 29, 21, 18, 15, 2) unchanged via list_issues, all decision or blocked-on-art, none Phil-unblocked. 0 open PRs. All 7 scheduled workflows on the latest push (866d886) completed successfully. inbox_agent.py --apply: no mail credential, standing. Ran resolve_verdict_commit and deploy_gap_material_commits directly against the live ops/deploy-verdict.json: 0 material commits since the verdict's own commit, and status_deploy_verdict_problem / deploy_gap_count_problem both return clean against the real STATUS.md text, so no drift there either.
+
+**Went well:** the cycle_signal shortcut did its job, letting this cycle avoid repeating a full preflight pass that has already run clean multiple times today against unchanged input.
+
+**Did not go well:** nothing new found; this is the same exhausted-backlog state issue #42 already names, re-confirmed rather than discovered.
+
+**Changing next cycle:** none; no new defect class.
+
+**Next:** every unblocked row is Done. Only the 10 open decision/blocked-on-art issues remain, each needing Phil's call, including #42 itself (the cadence question this cycle is an instance of).
+
+Dashboard regenerated (commits7d 1017 of 6701, now readable after unshallowing; Stripe/traffic unreachable this run, honestly marked unconfirmed rather than carried as confirmed). Pushed. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 04:4x slot
 
 NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health only, because the backlog is exhausted and all 10 open issues remain decision or blocked-on-art, none Phil-unblocked.
@@ -13518,22 +13552,3 @@ Found and fixed a real gated defect, not just re-confirmed a clean one: status_d
 
 Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Issues #42 and #40 unchanged, not repeated. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
 
-## 2026-10-15, scheduled operator cycle
-
-**Did:** Reattached per Step 0 (fetch, unshallow, checkout main, ff-only merge; checkout arrived shallow and detached again, same recurring shape). Read GOALS.md, BACKLOG-2026-09-07.md sections 6 through 8, and the last several NIGHTLY-LOG.md entries. Ran ops/cycle_signal.py --check first, per section 8's own designed shortcut.
-
-**Verified:** cycle_signal returned SAME against the 04:15:30Z snapshot, so skipped the redundant full local re-verification and spent the slot on what signal cannot cover. GitHub's 10 open issues (42, 40, 35, 33, 31, 29, 21, 18, 15, 2) unchanged via list_issues, all decision or blocked-on-art, none Phil-unblocked. 0 open PRs. All 7 scheduled workflows on the latest push (866d886) completed successfully. inbox_agent.py --apply: no mail credential, standing. Ran resolve_verdict_commit and deploy_gap_material_commits directly against the live ops/deploy-verdict.json: 0 material commits since the verdict's own commit, and status_deploy_verdict_problem / deploy_gap_count_problem both return clean against the real STATUS.md text, so no drift there either.
-
-**Went well:** the cycle_signal shortcut did its job, letting this cycle avoid repeating a full preflight pass that has already run clean multiple times today against unchanged input.
-
-**Did not go well:** nothing new found; this is the same exhausted-backlog state issue #42 already names, re-confirmed rather than discovered.
-
-**Changing next cycle:** none; no new defect class.
-
-**Next:** every unblocked row is Done. Only the 10 open decision/blocked-on-art issues remain, each needing Phil's call, including #42 itself (the cadence question this cycle is an instance of).
-
-Dashboard regenerated (commits7d 1017 of 6701, now readable after unshallowing; Stripe/traffic unreachable this run, honestly marked unconfirmed rather than carried as confirmed). Pushed. No price or product touched, no site page changed; IndexNow not applicable.
-
-## PM check-in, 2026-10-15 05:2x slot
-
-Previous work was finished: cycle_signal.py --check returned SAME against the 04:15:30Z clean snapshot; working tree clean, main fast-forwarded onto origin after an unshallow (same recurring shallow-checkout shape). Ran a full preflight.py anyway rather than rely solely on the signal: 0 FAIL across every gate reached, then the documented gate_tests sandbox hang, killed per the standing pattern. All 10 open issues reconfirmed via list_issues, unchanged, decision or blocked-on-art, none genuinely unblocked; 0 open PRs; last 5 workflow runs on main all green. inbox_agent.py --apply: no mail credential, standing. Read BACKLOG-2026-09-07.md sections 2 through 7 in full: every row Done, Hold, or owner-gated. No new defect found; this is the same exhausted-backlog state issue #42 already names. Dashboard regenerated (commits7d 1025 of 6709) and pushed. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
