@@ -99,11 +99,18 @@ all fixed the same day:
    hit stays hit.
 
 Two findings from the same pass were left as a documented risk rather than
-code changes, because neither has a frontend yet to be exploitable through:
-model output fields (`summary`, item/step text) are length-clipped but not
-HTML-sanitised, so whoever builds the `quest.html` photo page **must** render
-them as text, never `innerHTML`; and `nginx-location.conf`'s `access_log off`
-only covers the inner hop, so Nginx Proxy Manager's own access log (not yet
+code changes, because neither had a frontend yet to be exploitable through.
+One is now closed, not just documented: model output fields (`summary`,
+item/step text) are length-clipped but not HTML-sanitised, and
+`site/photo-check.html` + `site/assets/js/photo-check.js`, built 2026-10-15,
+is the first code that renders them. Re-verified directly this cycle against
+the committed file, not assumed from the build commit's own claim: every
+model-controlled field in `photo-check.js` renders through `textContent`
+(12 call sites), and the file's one `innerHTML` assignment only clears a
+container (`container.innerHTML = ""`) before those `textContent` calls run,
+never assigns untrusted data to it. The second finding is still open and is
+unrelated to the frontend: `nginx-location.conf`'s `access_log off` only
+covers the inner hop, so Nginx Proxy Manager's own access log (not yet
 created) may still record paths carrying session ids.
 
 Every fix above is proved fail-then-pass directly in

@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 10:1x slot
+
+Previous work was finished: the operator's Photos API frontend cycle shipped and verified (local curl exercise, 33/33 and 5/5 tests, gates clean to the documented gate_tests sandbox hang). Independently reconfirmed, not cited: 10 GitHub issues unchanged (decision/blocked-on-art), 0 open PRs, cold-read ledger 0 stale, deploy-verdict current, 0 FAIL through every preflight gate to gate_tests on current HEAD. Found PHOTOS-API.md's security review stale: it still read as if the innerHTML/textContent risk were undeferrable for lack of a frontend, though one now exists. Verified directly (12 textContent sites, one innerHTML use only clears a container) and fixed the doc to record that finding closed. Handing the operator: the unchanged cold-read fallback second mode and the standing Phil-gated list.
+
+HANDOFF-FILES: none
+
 ## 2026-10-15, scheduled operator cycle (Photos API frontend built, kept off until the backend is deployed)
 
 **Did:** Unshallowed, attached to main, fast-forwarded through two concurrent pushes mid-cycle. Confirmed sections 2-12 of `BACKLOG-2026-09-07.md` still Done/Hold/Phil-gated, all 10 GitHub issues unchanged (decision/blocked-on-art), no mail credential, cold-read fallback's first mode exhausted (201/201) and its handed-off second mode worth near zero (the ten named files unchanged since 2026-10-11, checked via `git log --since`). Built the Photos API frontend `PHOTOS-API.md` itself named as "not yet built": `site/photo-check.html` + `photo-check.js`, upload a before/after photo, get the zone's method back. New `ops/build_photo_check_data.py` generates the zone picker data by importing `photos/methodology.py` directly; registered in `GENERATOR_OWNERSHIP_CHAIN`.
