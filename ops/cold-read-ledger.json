@@ -22,9 +22,9 @@
       "note": "Read in full (371 lines) and run directly against the real catalogue: 215 pages and 8 scripts checked against 130 live SKUs and 65 retired SKUs, 0 findings, all four checks (retired-sold, price-drift, dead-buy-link, shop-prerender) report PASS. No defect found."
     },
     "audit_pages.py": {
-      "status": "fixed",
-      "date": "2026-10-14",
-      "note": "PM 13:4x: refreshed after 13:1x's shoot_mobile.py probe-file allowlist fix (gate_page_ownership_registry's shoot_mobile.py glob never carried to audit_pages.py's own narrower PROBE_NAMES). Re-ran standalone: 215 pages, 0 findings, clean. 13:5x operator (independently, same cycle window): searched the rest of ops/*.py for any fourth site/ scratch-HTML writer the allowlist might still be missing (every underscore-prefixed filename built against a SITE/site path in audit_catalog.py, build_kit_page.py, build_manual_print.py, checkin.py, dashboard.py, experiments.py, video_zone.py, zone_supplies.py) and found none: video_zone.py's only html-scratch write targets build/video/_frames, outside site/. Allowlist of three is exhaustive as of this date."
+      "status": "clean",
+      "date": "2026-10-15",
+      "note": "Scheduled operator cycle cold read: re-read in full (416 lines) end to end, independent of the 2026-10-14 pass that last touched this file (the probe-allowlist widening in c5717c324/e60f1c358). Checked whether the images check (line ~268) silently skips root-relative img src=\"/...\" paths from the img-missing check: it does (only non-http/data/absolute paths are resolved against disk), a real gap in the check's coverage, but verified directly against the live site (grep + a standalone scan of every <img> tag across all non-probe, non-downloads pages) that zero images on the site currently use a root-relative src, so no live defect exists behind the gap today. gate_page_ownership_registry (preflight.py) confirms GENERATED_TOP_LEVEL_PAGES/HAND_MAINTAINED_PAGES stay exhaustive and disjoint against the real site/ tree, which is_generated() here depends on. No new defect found; the root-relative-src gap is recorded here rather than fixed, since CLAUDE.md's own guidance is not to add validation for a scenario that cannot currently happen, and fixing it would need a planted fixture this cycle has no spare budget for."
     },
     "audit_visual.py": {
       "status": "clean",
@@ -663,8 +663,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Cold-read gate_dashboard_all_time_carry_forward() diff (3e7d84b06): three real scenarios covered (drop-prevention, fresh-wins, double-blind-survival), proven fail-then-pass per commit message."
+      "date": "2026-10-15",
+      "note": "Scheduled operator cycle: ops/preflight.py is 29,216 lines, too large to re-read whole in one cycle, so this pass targeted the only change since the 2026-10-14 ledgering (c5717c324, widening status_deploy_verdict_problem() to also check the Public website / Production traceability table rows). Re-read that function end to end and confirmed its regexes (the BLOCKER-001, Production Knowledge, Immediate Focus and the two new table-row patterns) correctly bound to the real STATUS.md structure: each table row is a single long line followed immediately by a line starting with the next row's leading pipe, so the non-greedy \"up to the next \\n|\" lookahead terminates correctly rather than running past the table (verified directly against STATUS.md lines 390-394 and 480-484, both cases). Ran ops/tests/test_gate_status_deploy_verdict_current.py directly: 11/11 pass. Full preflight.py run this same cycle (every gate before gate_tests clean, 0 FAIL, 28 warnings all standing/sandbox-only) also exercises this gate against the real file with no failure. No new defect found in the changed code; the rest of the file is unread this cycle and should not be treated as cleared beyond what prior ledger entries for its other gates already cover."
     },
     "prerender_shop.py": {
       "status": "clean",
