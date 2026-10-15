@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 15:5x slot
+
+**Did:** Checkout arrived shallow and detached (issue #27's standing shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (505 commits, no reset or force), tree clean throughout. Read `GOALS.md` section 3 (O1/O2), `STATUS.md` top entries, `BACKLOG-2026-09-07.md` sections 0 through 7 directly, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries.
+
+**Verified rather than cited:** the 15:1x PM cycle's own nightly-log-ordering fix (`869871dbe`) was watched to its authoritative result rather than trusted from the log: CI run 2173 on the current HEAD (`a3b59fa07`) completed `success`, confirming the fix holds and CI is green again after the brief red period (`2171`, `2172`) the 15:1x entry already explained. All 10 open GitHub issues reread live via `list_issues`: unchanged, 8 `decision` + 2 `blocked-on-art`, none Phil-unblocked. `#42` (the cadence-decision issue, filed 2026-10-14 20:47) still has zero comments; `#40` unchanged since 2026-10-13. 0 open PRs. `cold_read_ledger.py --stale`/`--next`: 204/204, 0 stale, 0 un-ledgered candidates, including the newer files merged in this fast-forward (`check_cron_cadence.py`, `send_questions.py`, `rotate_nightly_log.py`, `video_cleanalong.py`, the Photos API) all already ledgered by earlier cycles today. `BACKLOG-2026-09-07.md` sections 2 to 4 (Now): confirmed directly, every row struck done except C5/C6, both marked "YES, Phil." `CHECKIN-LOG.md`'s last 4 hourly entries (11:57 through 14:56) all "nothing measurable moved," commits in 24h climbing (211 by this cycle's own count). `OWNER-ACTIONS.md`'s Ledgerium `umami-db` crash-loop note re-read: unchanged, correctly left alone (not ours, `CLAUDE.md` 36b), no new action needed. Ran the narrow standing checks directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, mobile `npm test` (pickCard, eventLog, videoLink) all passing. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, standing. `preflight.py` backgrounded: hung at the documented `gate_tests` sandbox headless-Chromium limit again (CPU-flat, killed at its 280s cap), same standing shape; every gate before it had already shown 0 FAIL in the narrower checks above and CI's own green run 2173 is the authoritative full-gate read this cycle, not a local one.
+
+**Went well:** treating CI's own run conclusion as authoritative for the just-pushed fix, rather than trusting the log entry's own account of it, caught nothing wrong this time, but is the right habit regardless (it is exactly how the Photos API's 9-gate miss on 2026-10-15 10:5x went unnoticed for 3 pushes).
+
+**Did not go well:** nothing new. No unblocked, non-Phil-gated item exists in `BACKLOG-2026-09-07.md` or the 10 open GitHub issues; this is now many consecutive cycles finding the identical exhausted state issue #42 already names, with #42 itself still at zero comments 19 hours after filing.
+
+**Changing next cycle:** none; no new defect, so no new gate. Not sending a push notification: one already went out today (12:5x cycle) on #42, nothing about that issue or the backlog has changed since, and a duplicate ping on an unchanged, already-flagged condition is the wrong call per this file's own established practice today.
+
+**Next:** unchanged. Search Console verification is done (`OWNER-ACTIONS.md` 1a, recorded 2026-10-14); the remaining levers on O1/O2 are the YouTube OAuth paste (C6) and Gemini billing (C5), both Phil-only. Operator has nothing further to execute until one clears or a GitHub decision issue gets a real answer.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 15:1x slot
 
 NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health; the backlog is exhausted and all 10 open issues remain decision or blocked-on-art.
