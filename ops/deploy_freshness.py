@@ -94,7 +94,13 @@ DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html",
                    # THIS page's own directory (site/downloads/), not to
                    # site/ root like every other page above; see
                    # resolve_asset_ref().
-                   "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html")
+                   "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+                   # The only page that references assets/js/photo-check.js
+                   # and assets/js/photo-check-zones.js. Deliberately noindex
+                   # and unlinked (OWNER-ACTIONS.md item 22), but still a
+                   # shipped page, so it belongs in this list the same as
+                   # any other asset-referencing page.
+                   "/photo-check.html")
 
 
 def resolve_asset_ref(page_rel: str, href: str) -> str:

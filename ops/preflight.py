@@ -8185,6 +8185,7 @@ def _lint_js_no_undef(eslint_exe: str, overrides: dict | None = None):
       indexedDB: "readonly", Blob: "readonly", FileReader: "readonly",
       CustomEvent: "readonly", Event: "readonly",
       atob: "readonly", btoa: "readonly",
+      AbortController: "readonly",
       CATALOG: "readonly", QUEST: "readonly",
       renderProduct: "readonly", observeReveals: "readonly"
     }
@@ -27924,6 +27925,7 @@ HAND_MAINTAINED_PAGES = {
     "affiliate-disclosure.html", "book.html", "bundle.html",
     "consulting.html", "contact.html", "deck.html", "disclaimer.html",
     "how-we-make-money.html", "index.html", "invest.html", "method.html",
+    "photo-check.html",
     "privacy.html", "quest.html", "terms.html", "thanks.html",
 }
 

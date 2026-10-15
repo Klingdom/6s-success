@@ -2,6 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 10:4x slot
+
+NEXT FOR THE OPERATOR: resume the standing cold-read tier and re-check CI on this push, because the real blocker this cycle found is now fixed and nothing else is unblocked.
+
+**Previous work was NOT finished, despite three straight cycles claiming otherwise.** The 10:1x PM's "0 FAIL through every preflight gate to gate_tests" was true but incomplete: this sandbox hangs AT gate_tests and never reaches the roughly 70 gates ordered after it, so none of those gates have been checked locally by any cycle since the Photos API frontend (f51eab183) shipped. GitHub's own "Checks" CI run (which does not hang) had been failing on three consecutive pushes (f51eab183, 9afa46a9, 65eb9740f), unnoticed and unfixed, and "Deploy to production" had been skipping as a direct result. Checked directly via `list_workflow_runs`/`get_job_logs`, not assumed. Nine real gate failures, all in code the Photos API cycle touched or should have registered:
+
+- `no-dangling-js-references`: `photo-check.js` line 281 referenced `app`, a variable scoped to a different function; `#pc-app` was never actually unhidden, so the feature was broken even when the API answers healthy. Fixed: use `$("pc-app")` directly. `AbortController` (a real, defensively-guarded browser global) was missing from the lint config's globals list; added it.
+- `nav-toggle-wired` / `footer-consistent` / `legal-strip-current`: `photo-check.html` shipped with no `site.js` include (dead hamburger button) and a footer that predated the current nav/legal-strip wiring. Fixed the include; ran `wire_footer.py` and `wire_legal_strip.py` rather than hand-editing, since those own the canonical footer.
+- `page-ownership-registry`: added `photo-check.html` to `HAND_MAINTAINED_PAGES`.
+- `checker-scope`: added `/photo-check.html` to `deploy_freshness.py`'s `DISCOVERY_PAGES` so production comparison actually covers its two JS assets.
+- `roadmap-prices-current` / `build-id`: `ROADMAP-2026-2029.md`'s page count (217) and `build-id.txt` had drifted behind the new page; corrected and regenerated.
+- `tests`: the three test files CI named now pass (`test_gate_footer_consistent_missing_fails.py` 7/7, `test_gate_nav_toggle_wired.py` 6/6, `test_gate_no_dangling_js_references.py` clean).
+
+Verified directly, not inferred: ran all eight affected gate functions in-process against the fixed tree, zero FAIL; `check_urls.py` 213/213; `audit_pages.py` 218 pages, 0 duplicates; `affiliate.py --check` clean. Could not run the full `ops/tests` suite or reach gate_tests itself here, same standing sandbox limit; CI will be the real verdict on this push.
+
+**Learning worth keeping:** nobody in this sandbox has ever had visibility past gate_tests, so any gate ordered after it is effectively CI-only, and CI's own conclusion was not being read. Worth a future cycle checking the latest push's Checks run conclusion directly rather than trusting a local "0 FAIL to gate_tests" as full health. Not filing a GitHub issue for this: it is a process habit, not a decision, and plain enough to just do next time.
+
+Pushed to main. `ROADMAP-2026-2029.md`, `ops/deploy_freshness.py`, `ops/preflight.py`, `site/photo-check.js`, `site/photo-check.html`, `site/build-id.txt`, command deck. No price touched; IndexNow not applicable (photo-check.html is deliberately noindex).
+
 ## PM check-in, 2026-10-15 10:1x slot
 
 Previous work was finished: the operator's Photos API frontend cycle shipped and verified (local curl exercise, 33/33 and 5/5 tests, gates clean to the documented gate_tests sandbox hang). Independently reconfirmed, not cited: 10 GitHub issues unchanged (decision/blocked-on-art), 0 open PRs, cold-read ledger 0 stale, deploy-verdict current, 0 FAIL through every preflight gate to gate_tests on current HEAD. Found PHOTOS-API.md's security review stale: it still read as if the innerHTML/textContent risk were undeferrable for lack of a frontend, though one now exists. Verified directly (12 textContent sites, one innerHTML use only clears a container) and fixed the doc to record that finding closed. Handing the operator: the unchanged cold-read fallback second mode and the standing Phil-gated list.

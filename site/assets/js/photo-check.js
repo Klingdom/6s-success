@@ -278,7 +278,7 @@
     });
     $("pc-clear").addEventListener("click", handleClear);
 
-    app.hidden = false;
+    $("pc-app").hidden = false;
     track("photo-check-started");
   }
 
