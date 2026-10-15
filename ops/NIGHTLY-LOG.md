@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 04:0x slot
+
+Previous work was finished, in the end, but two concurrent cycles chased the same loose end independently before it closed. This cycle found gate_owner_actions_last_measured_current failing on a full preflight run (the Photos API review's item 22 edit had not bumped the "List reviewed" marker); by the time it fetched to push, the 03:0x cycle's own addendum had already fixed the identical drift upstream, so the redundant local commit was dropped with git rebase --skip rather than pushed as a duplicate. Shortly after, the 03:4x operator cycle pushed a second, unrelated fix (gate_nightly_log_ordering's date-second heading blind spot, plus reordering five misplaced entries to the top), which conflicted with this cycle's own NIGHTLY-LOG append; resolved by fast-forwarding onto that fix rather than re-fighting a file both cycles were correctly trying to keep in order.
+
+Verified on the settled tree: a full preflight.py run passed every gate, 27 warnings, all standing sandbox-credential gaps. Backlog and all 10 GitHub issues confirmed unchanged via list_issues (decision or blocked-on-art, none Phil-unblocked), 0 new comments on issue #42. Dashboard regenerated. Nothing new to hand the operator beyond the standing Phil-gated list; the lesson worth keeping is that two autonomous cycles converging on the same stale marker is itself a sign the backlog has nothing else to offer them right now.
+
 ## PM check-in, 2026-10-15 03:4x slot
 
 NEXT FOR THE OPERATOR: stand down from new work and keep watching GitHub and CI, because the backlog is exhausted, all 10 open issues are decision or blocked-on-art (none Phil-unblocked), and this cycle's own close already fixed the one real defect found.
