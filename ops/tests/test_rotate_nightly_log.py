@@ -6,9 +6,11 @@ side or the other, never both, never neither, and never split apart.
 
 Run:  python ops/tests/test_rotate_nightly_log.py
 """
+import contextlib
 import datetime
 import io
 import os
+import re
 import sys
 import tempfile
 
@@ -156,7 +158,9 @@ def main() -> int:
         rnl.LOG_PATH, rnl.ARCHIVE_PATH = log_path, archive_path
         try:
             sys.argv = ["rotate_nightly_log.py", "--check", "--days", "20"]
-            rc_check = rnl.main()
+            check_out = io.StringIO()
+            with contextlib.redirect_stdout(check_out):
+                rc_check = rnl.main()
             if rc_check != 1:
                 fails.append("--check did not report exit 1 when rotation "
                               "was due (got %r)" % (rc_check,))
@@ -164,6 +168,34 @@ def main() -> int:
                 fails.append("--check modified the live log file")
             if os.path.exists(archive_path):
                 fails.append("--check created an archive file")
+
+            # The DUE message's byte count must describe the entries that
+            # would actually move (old_e alone here), not the whole live
+            # log's own size: a prior version reported n_bytes (the full
+            # file) under a label implying it was the archived chunk's
+            # size, which on the real file read "82 of 813 entries
+            # (2302955 bytes)" where 2302955 was the entire file, not the
+            # 82 entries.
+            m = re.search(r"\((\d+) bytes\)", check_out.getvalue())
+            if not m:
+                fails.append("--check DUE message had no byte count to check: %r"
+                              % (check_out.getvalue(),))
+            else:
+                reported_bytes = int(m.group(1))
+                whole_file_bytes = len(log_text.encode("utf-8"))
+                actual_removed_bytes = whole_file_bytes - len(
+                    rnl.plan_rotation(log_text, today - datetime.timedelta(days=20))[0]
+                    .encode("utf-8"))
+                if reported_bytes != actual_removed_bytes:
+                    fails.append(
+                        "--check DUE byte count should be the archived "
+                        "entries' own size (%d), got %d"
+                        % (actual_removed_bytes, reported_bytes))
+                if reported_bytes == whole_file_bytes:
+                    fails.append(
+                        "--check DUE byte count regressed to reporting the "
+                        "whole live log's size (%d) instead of the smaller "
+                        "archived chunk" % (whole_file_bytes,))
 
             sys.argv = ["rotate_nightly_log.py", "--apply", "--days", "20"]
             rc_apply = rnl.main()

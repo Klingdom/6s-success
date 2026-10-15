@@ -208,10 +208,11 @@ def main() -> int:
 
     if args.check:
         if archived:
+            _, new_n_bytes = count_stats(new_log_text)
             print("DUE: %d of %d entries (%d bytes) are older than %s "
                   "(retention %d days) and would move to %s on --apply."
-                  % (len(archived), n_entries, n_bytes, cutoff.isoformat(),
-                     args.days, ARCHIVE_PATH))
+                  % (len(archived), n_entries, n_bytes - new_n_bytes,
+                     cutoff.isoformat(), args.days, ARCHIVE_PATH))
             return 1
         print("CLEAN: all %d entries (%d bytes) are within the %d-day "
               "retention window (cutoff %s). Nothing to rotate."
