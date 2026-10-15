@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 06:4x slot
+
+NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health, because the backlog is exhausted and none of the 10 open issues are genuinely unblocked.
+
+Previous work was finished: attached detached and shallow again (standing Step 0 shape), fetched, unshallowed, fast-forwarded 437 commits cleanly onto origin/main, working tree clean and already pushed. Confirmed directly rather than trusted: all 10 open issues unchanged via list_issues (decision or blocked-on-art, same set as the last several cycles today), the last 5 completed CI runs on main all green, and ops/deploy-verdict.json still matches current HEAD with zero site/Dockerfile commits landed since the 22:41:08Z check, so BLOCKER-001 needs no correction. preflight.py --fast ran unbuffered in the background: 0 FAIL through every gate up to gate_tests, then hit the documented sandbox hang there (stuck headless-Chromium subprocess); killed cleanly, confirmed no orphaned process remained.
+
+The new photos/ service merged since the last PM slot (PHOTOS-API.md, 26 end-to-end tests) is not new work: it is already OWNER-ACTIONS.md item 22, built and tested locally, not deployed, correctly Phil-gated. BACKLOG-2026-09-07.md sections 2-4 remain Done or Hold. Issues #42 and #40 unchanged, not repeated.
+
+Dashboard regenerated (commits7d 1035, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
+
+HANDOFF-FILES: none
+
 ## 2026-10-15, scheduled operator cycle
 
 **Did:** Reattached per Step 0 (unshallow, checkout main, ff-only merge; arrived shallow again, same recurring shape). Read GOALS.md and the NIGHTLY-LOG tail. Re-verified the standing "all 10 issues blocked" claim rather than trusting it.
