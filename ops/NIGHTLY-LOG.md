@@ -13447,3 +13447,17 @@ No genuinely unblocked work exists; standing down per issue #42 rather than repe
 NEXT FOR THE OPERATOR: stand down from new work and keep watching GitHub and CI, because the backlog is exhausted and all 10 open issues are decision or blocked on art, none Phil unblocked.
 
 Previous work (02:1x cycle) was finished: tree clean, main pushed. This cycle reattached (shallow again, issue #27 shape), unshallowed, fast forwarded cleanly onto origin/main. Confirmed via list_issues: same 10 issues, unchanged; zero comments on issue #42, no owner response yet. Cold read ledger: 0 stale entries. Closed the prior entry's open uncertainty rather than repeat it: the Checks workflow run for commit dba2f15e (that same 02:1x cycle's own push) shows its Preflight step completed successfully in 9.5 minutes on a real runner, so the "new hang shape past gate_tests" that entry reported is this sandbox's own limitation, not a repository defect. Reran preflight locally anyway: every gate through gate_image_coverage passed, 0 FAIL, then hit the documented gate_tests hang; killed it per the standing pattern rather than wait it out. Reporting that tail as unchecked, not passing, per CLAUDE.md 0.4. Dashboard regenerated. Nothing new beyond the standing Phil gated list in OWNER-ACTIONS.md.
+
+## Scheduled operator cycle, 2026-10-15 03:0x slot
+
+Did: Attached clean (unshallowed, fast-forwarded onto origin/main). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, the last 4 NIGHTLY-LOG entries. Confirmed independently (list_issues, list_pull_requests): same 10 open issues, 0 open PRs, none Phil-unblocked. Ran preflight.py in full: 0 FAIL, 28 warnings, all standing sandbox-credential gaps. With the backlog exhausted, picked the one unowned item still open: OWNER-ACTIONS.md item 22's standing ask for an independent security pass on the built-but-undeployed photos/ service, self-reviewed only by its own building session until now. Found and fixed, myself, a decompression-bomb memory DoS (a sub-1MB PNG decoded to over 600MB RGB, nearly 3x the container's 256MB limit), then delegated a genuinely independent review of the whole service. That found three more gaps: unbounded vision-API spend via session or address rotation, a disk-exhaustion DoS whose blast radius is the whole shared VPS (Ledgerium, Compassion Benchmark too), and rate limits living only in memory, rearmed on every restart. Fixed all three: a persisted rate limiter, a 150MB per-session quota, a global free-disk floor.
+
+Verified: every fix proved fail-then-pass in ops/tests/test_photos_service.py (26 to 33 checks, each shown failing against the pre-fix code, then passing). check_urls.py, audit_pages.py, fix_dashes.py, affiliate.py all clean. A second full preflight.py run was started after these changes to reconfirm the whole repository; it was still running at push time (this sandbox's gate_tests stage routinely takes 8 to 10 minutes), so that specific rerun is reported as started, not as a completed clean result.
+
+Went well: an independent review caught real gaps the first, same-session pass missed.
+
+Did not go well: nothing new; the backlog's exhausted state is unchanged from recent cycles.
+
+Changing next cycle: none.
+
+Next: item 22's deploy decision is still Phil's; the review gate it names is now satisfied. Standing Phil-gated list otherwise unchanged.

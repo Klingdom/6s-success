@@ -24,16 +24,32 @@ import os
 import re
 import secrets
 import shutil
+import threading
 import time
+import warnings
 
 from PIL import Image, ImageOps
 
+# Our own MAX_PIXELS check below runs first and raises before Pillow's internal
+# decompression-bomb check would even warn; suppress the now-redundant warning
+# rather than let a container log fill up with it on every oversized attempt.
+warnings.filterwarnings("ignore", category=Image.DecompressionBombWarning)
+
 MAX_BYTES = 12 * 1024 * 1024
 MAX_SIDE = 2048
+MAX_PIXELS = 25_000_000   # checked before decode; see reencode()'s own comment
 RETENTION_DAYS = int(os.environ.get("PHOTOS_RETENTION_DAYS", "90"))
 MAX_PHOTOS_PER_SESSION = 200
+MAX_SESSION_BYTES = 150 * 1024 * 1024   # well above one household's real use, well below the unbounded worst case
+MIN_FREE_BYTES = 1 * 1024 * 1024 * 1024  # refuse new uploads once the shared disk has less than this free
 KINDS = ("before", "after", "progress")
 _ID = re.compile(r"^[A-Za-z0-9_-]{16,64}$")
+
+# ThreadingHTTPServer hands every request its own thread with no cap, so
+# MAX_PIXELS alone still lets enough concurrent uploads add up past the
+# container's 256 MB limit. This bounds how many decodes can run at once,
+# independent of how many requests arrive at once.
+_decode_slots = threading.Semaphore(2)
 
 
 class StoreError(Exception):
@@ -51,6 +67,41 @@ class Store:
     def __init__(self, root):
         self.root = os.path.abspath(root)
         os.makedirs(self.root, exist_ok=True)
+        self._rate_lock = threading.Lock()
+        self._rate_path = os.path.join(self.root, "rate.json")
+        self._rate = self._load_rate()
+
+    # rate limiting ------------------------------------------------------
+    # In-process-only counters silently rearm on every restart (a deploy, a
+    # crash, an OOM kill), which is routine on this host, not rare, so the
+    # limits below would protect nothing for the first hour after most
+    # restarts. Persisting them costs one small JSON file and a lock.
+    def _load_rate(self):
+        try:
+            return json.load(io.open(self._rate_path, encoding="utf-8"))
+        except (OSError, ValueError):
+            return {}
+
+    def _save_rate(self):
+        tmp = self._rate_path + ".tmp"
+        io.open(tmp, "w", encoding="utf-8").write(json.dumps(self._rate))
+        os.replace(tmp, self._rate_path)
+
+    def allow(self, bucket, key, limit, window_seconds):
+        """True, and records one hit, if `key` has had fewer than `limit`
+        hits in `bucket` over the last `window_seconds`. `bucket` keeps
+        independent counters (e.g. "sessions" vs "analyze_ip") in one file."""
+        now = time.time()
+        with self._rate_lock:
+            b = self._rate.setdefault(bucket, {})
+            hits = [t for t in b.get(key, []) if now - t < window_seconds]
+            if len(hits) >= limit:
+                b[key] = hits
+                return False
+            hits.append(now)
+            b[key] = hits
+            self._save_rate()
+            return True
 
     # sessions ---------------------------------------------------------
     def _dir(self, sid):
@@ -108,10 +159,17 @@ class Store:
             raise StoreError(400, "empty body; send the image bytes")
         if len(data) > MAX_BYTES:
             raise StoreError(413, "image larger than %d MB" % (MAX_BYTES // 1048576))
+        free = shutil.disk_usage(self.root).free
+        if free < MIN_FREE_BYTES:
+            raise StoreError(503, "storage temporarily full; try again later")
         d, meta = self.open(sid, token)
         if len(meta["photos"]) >= MAX_PHOTOS_PER_SESSION:
             raise StoreError(409, "session photo limit reached")
-        jpeg, w, h = reencode(data)
+        used = sum(p.get("bytes", 0) for p in meta["photos"].values())
+        if used + len(data) > MAX_SESSION_BYTES:
+            raise StoreError(409, "session storage limit reached")
+        with _decode_slots:
+            jpeg, w, h = reencode(data)
         pid = secrets.token_urlsafe(12)
         io.open(os.path.join(d, pid + ".jpg"), "wb").write(jpeg)
         meta["photos"][pid] = {"id": pid, "zone": zone, "kind": kind,
@@ -167,9 +225,26 @@ class Store:
 
 
 def reencode(data):
-    """Decode, orient, downscale, and write a fresh JPEG with no metadata."""
+    """Decode, orient, downscale, and write a fresh JPEG with no metadata.
+
+    The size check below runs BEFORE `.load()`, on purpose. `Image.open()`
+    only reads the header, so checking `im.size` there is nearly free; a
+    compressed image well under MAX_BYTES can still unpack to an enormous
+    pixel buffer (a few hundred KB of flat-colour PNG decodes to hundreds of
+    MB of RGB), and this container has a 256 MB limit. Pillow's own
+    decompression-bomb guard only raises past roughly 2x its default
+    threshold (about 179 megapixels) and merely warns below that, which is
+    already enough to exceed this container's memory on its own, so MAX_
+    PIXELS is a separate, tighter bound, not a duplicate of Pillow's.
+    """
     try:
         im = Image.open(io.BytesIO(data))
+        w, h = im.size
+    except Exception:                                     # noqa: BLE001
+        raise StoreError(415, "not a readable image (JPEG, PNG, WebP or HEIC converted to JPEG)")
+    if w * h > MAX_PIXELS:
+        raise StoreError(413, "image dimensions too large (%dx%d)" % (w, h))
+    try:
         im.load()
     except Exception:                                     # noqa: BLE001
         raise StoreError(415, "not a readable image (JPEG, PNG, WebP or HEIC converted to JPEG)")

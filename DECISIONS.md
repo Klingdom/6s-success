@@ -2925,3 +2925,25 @@ the model is drifting), and quest progress from people who used it.
 
 **Revisit.** If the security review finds the capability model insufficient,
 or if anybody asks for photos to persist across devices, revisit accounts.
+
+**Updated 2026-10-15: the independent security review happened, and the
+capability model itself held up.** A different session (not the one that
+built this) read every file in `photos/` adversarially. Session/token auth,
+path handling, and the vision call were all confirmed sound (constant-time
+compare, 144/256-bit capability entropy, pid resolved only through a
+server-held dict so no path string from a request ever reaches the
+filesystem unchecked, SSRF not applicable since the vision endpoint is a
+hardcoded constant). Four real gaps were found and fixed the same day, none
+in the capability model itself: a decompression-bomb memory DoS (found by
+the building session's own first pass, fixed before the independent review
+started), an unbounded vision-API spend path via session/address rotation,
+a disk-exhaustion DoS whose blast radius was the whole shared VPS
+(Ledgerium and Compassion Benchmark included, D-028), and rate limits that
+lived only in process memory and silently rearmed on every restart. All
+four fixed, proved fail-then-pass, detailed in `PHOTOS-API.md`. Two items
+were left as documented risk rather than code (model-output text must be
+rendered, never `innerHTML`, once a frontend exists; NPM's own access log
+may still record session ids in paths). Net effect: the YELLOW gate
+`AUTONOMY.md` sets for this kind of change has now been through independent
+review once, which is what "Deploy it?" in `OWNER-ACTIONS.md` item 22 was
+waiting on; the decision to actually deploy is still the owner's.

@@ -26,8 +26,6 @@ import json
 import os
 import re
 import sys
-import threading
-import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -38,22 +36,13 @@ from store import KINDS, MAX_BYTES, Store, StoreError     # noqa: E402
 
 ANALYSES_PER_DAY = int(os.environ.get("PHOTOS_ANALYSES_PER_DAY", "20"))
 SESSIONS_PER_IP_HOUR = int(os.environ.get("PHOTOS_SESSIONS_PER_IP_HOUR", "10"))
+# ANALYSES_PER_DAY bounds one session; it does nothing against an attacker who
+# just opens more sessions (10/hour/IP, or more IPs). Each /analyze call is a
+# paid vision-provider request, so two more ceilings bound the actual spend:
+# one per address, one across every address, independent of session or IP.
+ANALYSES_PER_IP_HOUR = int(os.environ.get("PHOTOS_ANALYSES_PER_IP_HOUR", "20"))
+ANALYSES_GLOBAL_PER_HOUR = int(os.environ.get("PHOTOS_ANALYSES_GLOBAL_PER_HOUR", "100"))
 ALLOW_ORIGIN = os.environ.get("PHOTOS_ALLOW_ORIGIN", "https://6s-success.com")
-
-_rate = {}
-_rate_lock = threading.Lock()
-
-
-def _allow_session(ip):
-    now = time.time()
-    with _rate_lock:
-        hits = [t for t in _rate.get(ip, []) if now - t < 3600]
-        if len(hits) >= SESSIONS_PER_IP_HOUR:
-            _rate[ip] = hits
-            return False
-        hits.append(now)
-        _rate[ip] = hits
-        return True
 
 
 def openapi():
@@ -173,7 +162,7 @@ class Handler(BaseHTTPRequestHandler):
             m = M.method(p[1])
             return self._send(200, m) if m else self._err(404, "unknown zone")
         if method == "POST" and p == ["sessions"]:
-            if not _allow_session(self._ip()):
+            if not S.allow("sessions", self._ip(), SESSIONS_PER_IP_HOUR, 3600):
                 return self._err(429, "too many sessions from this address; try later")
             sid, tok = S.create_session()
             return self._send(201, {"session_id": sid, "token": tok,
@@ -207,6 +196,13 @@ class Handler(BaseHTTPRequestHandler):
                     return self._err(400, "body must be JSON")
                 if S.analyses_today(sid, tok) >= ANALYSES_PER_DAY:
                     return self._err(429, "daily analysis limit reached for this session")
+                # Per-session-per-day alone does nothing against an attacker who
+                # just opens more sessions; these two bound actual vision-API
+                # spend regardless of how many sessions or addresses are used.
+                if not S.allow("analyze_ip", self._ip(), ANALYSES_PER_IP_HOUR, 3600):
+                    return self._err(429, "too many analyses from this address; try later")
+                if not S.allow("analyze_global", "*", ANALYSES_GLOBAL_PER_HOUR, 3600):
+                    return self._err(503, "vision analysis temporarily unavailable; try later")
                 img, meta = S.photo_bytes(sid, tok, str(req.get("photo_id", "")))
                 images, mode = [img], ("after" if meta["kind"] == "after" else "before")
                 if req.get("compare_to"):

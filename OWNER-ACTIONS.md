@@ -2009,12 +2009,26 @@ rather delete it than keep pretending. Recorded as `DECISIONS.md` D-028.
 
 ### 22. Turn on the photos API, and choose whether it may look at photos. About five minutes.
 
-**Built 2026-10-14 on your request, tested, not deployed.** `photos/` stores
-private before/after photos per micro zone for the web app, a phone app or an
-AI agent, and comments on next steps in the zone's own method. Full contract
-in `PHOTOS-API.md`, reasoning in `DECISIONS.md` D-032. 24 end-to-end checks
+**Built 2026-10-14 on your request; independently security-reviewed and
+hardened 2026-10-15; still not deployed.** `photos/` stores private
+before/after photos per micro zone for the web app, a phone app or an AI
+agent, and comments on next steps in the zone's own method. Full contract in
+`PHOTOS-API.md`, reasoning in `DECISIONS.md` D-032. 33 end-to-end checks
 pass, including that GPS is stripped and that an invented root cause or step
 is thrown out.
+
+**The independent review this item itself asked for has now happened**, by a
+session that did not build the original code: a decompression-bomb memory DoS
+(fixed same day by a first session), then a financial-DoS gap (unlimited
+vision-API spend via session/address rotation), a disk-exhaustion DoS that
+would also have taken down Ledgerium and Compassion Benchmark on the same
+VPS, and rate limits that silently reset on every restart. All four are
+fixed and proved fail-then-pass; full account in `PHOTOS-API.md`'s own
+"Found and fixed" section. Two remaining items are documented risks, not
+code fixes, because neither has a frontend yet to exploit: model output must
+be rendered as text (never `innerHTML`) by whoever builds the `quest.html`
+photo page, and Nginx Proxy Manager's own access log may still record paths
+carrying session ids once it exists.
 
 **Two decisions, both yours:**
 
@@ -2031,8 +2045,11 @@ is thrown out.
    `ANTHROPIC_API_KEY=...` in `/docker/6s-photos/.env`. Never paste it in chat
    or commit it.
 
-**Said plainly:** the security and QA review behind this was done in the same
-session that built it, so it is a self-review, not the independent one
-`AUTONOMY.md` asks for on uploads. The first thing after "deploy" should be a
-separate `security-auditor` pass on `photos/` before the route is announced
-anywhere.
+**Said plainly:** the QA review behind the original build was done in the
+same session that built it, which was a self-review. The independent
+`security-auditor` pass `AUTONOMY.md` asks for on uploads has since happened
+(2026-10-15, a session uninvolved in the build) and is reflected above; it
+found and closed four real gaps. That review was adversarial code-reading
+against the two patches applied the same day, not a live penetration test
+against a deployed instance, so the usual post-deploy diligence (watch logs
+and spend for the first real days of traffic) still applies once you deploy.
