@@ -13339,3 +13339,19 @@ Previous work was finished: attached clean, main fast-forwarded onto origin afte
 Found and fixed a real gated defect, not just re-confirmed a clean one: status_deploy_verdict_problem fired directly against STATUS.md and the live ops/deploy-verdict.json (Phil's own redeploy at 22:41:08Z, build c36cb2794e581473, commit 086f6ba42) because BLOCKER-001, the Production Knowledge paragraph and the Immediate Focus line all still cited the 2026-10-13 confirmation. Re-derived and corrected all three; also checked past this cycle's own newest commit (the clean-along video-format work, b4669487d, touches neither site/ nor Dockerfile), so the zero deploy gap holds at real current HEAD, not just at the verdict's own commit. Gate function re-run clean against the edited file.
 
 Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Issues #42 and #40 unchanged, not repeated. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
+
+## 2026-10-15, scheduled operator cycle (full `preflight.py` completed end to end, no `gate_tests` sandbox hang)
+
+**Did:** Attached clean (shallow checkout, `fetch --unshallow`, `checkout -B main origin/main`, 378 commits fast-forwarded). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, today's log entries. Ran `ops/preflight.py` in the background: it reached `gate_tests` and progressed through real test files one at a time (confirmed via `ps`, not assumed) instead of stalling, finishing clean ~11 minutes later. Every gate passed, 32 warnings, all standing sandbox-credential gaps (Stripe, SSH, mail, DNS, Pillow) except three fixable ones, fixed: `status-deploy-verdict-current` (STATUS.md's three build-id citations one confirmation stale), `dashboard-self-description-fresh` (one commit stale), `cold-read-ledger-entries-not-stale` (`ops/build_seo.py` touched since last ledgered by `6fb72f2cf`; read the diff, confirmed only an informational summary line added, no emitted-page change, re-ledgered clean).
+
+**Verified:** 10 open GitHub issues, all `decision`/`blocked-on-art`, unchanged. Last 30 completed workflow runs: 0 non-success. `inbox_agent.py --apply`: no mail credential, standing. `check_urls.py` 213/213, `audit_pages.py` 0 duplicates across 213 pages, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean.
+
+**Went well:** `gate_tests` completed instead of hanging, the first time this log has recorded that.
+
+**Did not go well:** before pushing, `git fetch` showed a concurrent PM check-in had fixed the identical `status-deploy-verdict-current` warning, same build, minutes ahead of me. Discarded my duplicate edit and stale dashboard files, kept the unique cold-read-ledger fix, fast-forwarded clean.
+
+**Changing next cycle:** with this many concurrent sessions active today, re-fetch immediately before push, not only at attach.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`; issues #42 and #40 unchanged, not repeated.
+
+Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
