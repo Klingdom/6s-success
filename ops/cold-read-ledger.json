@@ -393,8 +393,8 @@
     },
     "check_sellable.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; ran live (non-deep): 0 FAIL, 124 of 126 buyable products in Stripe with a delivery entry and file on disk, 2 correctly excluded as person-delivered services (CN-INHOME, CN-VIRTUAL). dropped-reason grouping (the 2026-10-02 second-pass fix) confirmed still correct: 35 excluded, broken down 29 retired / 6 already-free. No defect."
+      "date": "2026-10-15",
+      "note": "Re-verified 2026-10-15, scheduled operator cycle, as the standing oldest-entry drift check (BACKLOG-2026-09-07.md and GitHub #42 both confirm every backlog row and issue is Done/Hold/Phil-gated, cycle_signal.py --check reads SAME): read the full 210 lines again rather than trusting the 2026-10-11 date. No code change since (git log on the file shows its last commit still 2026-10-02, 044863b9). Ran it live: 126 listed/priced, 126 in SELLABLE, 125 in DELIVERY, 124 of 126 buyable products confirmed in Stripe with a delivery entry and a file on disk, the other 2 correctly excluded as person-delivered services (CN-INHOME, CN-VIRTUAL). 0 FAIL, no drift between the three lists it protects."
     },
     "check_sitemap_current.py": {
       "status": "clean",
@@ -558,8 +558,8 @@
     },
     "import_room_diagrams.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "Second-pass cold read 2026-10-11, scheduled operator cycle: git log --since=2026-10-02 shows zero commits to this file. Re-read in full: the never-shrink guard against committed ops/room-diagrams.json, the empty-manifest refusal, zone_map_figure()'s text-based (not positional) figure identification, problems()'s room/zone-count/photograph/self-containment checks, and tighten()'s dead-band closer all still read correctly. Ran --check live: 11 rooms still produce a usable drawing, 0 skipped, matching the committed ops/room-diagrams.json byte for byte (git diff after a dry run showed nothing, since --check writes nothing). No defect found."
+      "date": "2026-10-15",
+      "note": "Re-verified 2026-10-15, scheduled operator cycle, standing oldest-entry drift check (second oldest-dated entry this cycle alongside check_sellable.py, since BACKLOG-2026-09-07.md, GitHub issue #42 and cycle_signal.py --check all independently confirm nothing else is unblocked). Read the full 314 lines again. No code change since last commit (a610b824, 2026-10-01). Ran it live without --apply: 11 rooms produce a usable zone-map drawing (Garage, Guest Bathroom, Hall Closet, Home Office, Laundry Room, Mudroom, Nursery, Patio or Deck, Primary Bathroom, Stair Landing, Workshop), 9 correctly skipped as already photographed. Diffed against the committed ops/room-diagrams.json directly: identical 11 room keys, no drift, no REFUSING TO WRITE / lost-room / empty-manifest condition triggered."
     },
     "import_room_images.py": {
       "status": "clean",
