@@ -25,7 +25,11 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
-**List reviewed:** 2026-10-14, PM check-in: this list was behind a resolved item (the caption batch below, resolved 2026-10-14) and the marker had not moved with it, which is exactly what tripped `gate_owner_actions_last_measured_current` and failed CI (`checks.yml` runs 2120 to 2122) on every push since. A separate marker from "Last measured" above
+**List reviewed:** 2026-10-15, scheduled operator cycle: item 22 was updated the
+same day with the independent security review's outcome, and this marker had
+not moved with it; caught directly by `gate_owner_actions_last_measured_current`
+on this cycle's own local preflight rerun before it could reach CI. A separate
+marker from "Last measured" above
 (issue #38, 2026-10-02): that header is the exact sentence the dashboard
 parses for the real traffic-measurement date, and bumping it to mark this
 list as reviewed was quietly telling the dashboard a fresh database read
