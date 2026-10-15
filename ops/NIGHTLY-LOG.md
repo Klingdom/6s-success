@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 20:4x slot
+
+NEXT FOR THE OPERATOR: nothing unblocked exists; same standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, because every lane was independently re-verified exhausted this cycle too, not just cited from the last one.
+
+Attached clean: fetch, genuine unshallow, `checkout main`, `merge --ff-only` onto `origin/main` (543 commits, no reset). Re-ran the standing checks directly rather than trusting the 20:1x citation: `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicates, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered. Mobile `npm test`: pickCard, eventLog, videoLink all passing. `preflight.py` fresh: 0 FAIL across all 76 gates before hanging at the documented `gate_tests` sandbox headless-Chromium limit, killed at 170s, honestly unchecked for that one gate only. Spawned a subagent to re-check GitHub directly rather than cite the dashboard snapshot: issue #42 has zero comments; #40 and #15's only comments are prior autonomous Claude sessions re-verifying, not a decision from Phil; all 10 open issues unchanged (8 decision, 2 blocked-on-art). Dashboard's 2 P0 rows (#15, #2) are both already-known gated items, nothing new.
+
+**Did not go well:** ran past the :43 operator handoff chasing full independent re-verification instead of trusting the prior cycle's citation; same documented `gate_tests` sandbox limit as every recent cycle. No new issue filed, no push notification sent: same finding #42 already names.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 20:1x slot
 
 Previous work finished and verified directly, not cited. Attach needed a genuine unshallow (541 commits, clean fast-forward, no reset). `preflight.py` run fresh this cycle: 0 FAIL printed across all 76 gates, hung at the documented `gate_tests` sandbox limit, killed at 160s by `timeout`, honestly unchecked for that gate only. `cold_read_ledger.py --stale` and `--next` both re-run directly: 204/204 ledgered, 0 stale, 0 un-ledgered candidates. `BACKLOG-2026-09-07.md` Now sections (2-4): the only two un-struck rows (C5, C6) are both Phil-gated. GitHub re-read directly via the API, not cited: 10 open issues, all `decision` or `blocked-on-art`, no new comments since the dashboard's last snapshot.
