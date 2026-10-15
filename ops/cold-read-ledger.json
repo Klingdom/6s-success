@@ -443,8 +443,8 @@
     },
     "cycle_signal.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Cold-read 2026-10-12, scheduled operator. Read in full (191 lines). Correctly scoped signal-file set (excludes NIGHTLY-LOG.md and dashboard outputs on purpose, documented in its own docstring, since those churn every cycle regardless of real change). MISSING-sentinel handling means a signal file missing at both snapshot time and check time compares equal rather than false-CHANGED. combined_hash is computed and stored but not used by --check (per-file comparison is used instead, which is strictly more informative); harmless, not a defect. No real defect found; covered by ops/tests/test_cycle_signal.py (6 cases)."
+      "date": "2026-10-15",
+      "note": "Re-verified 08:4x PM check-in: SIGNAL_FILES correctly excludes ops/NIGHTLY-LOG.md and ops/cold-read-ledger.json per docstring; compute_signals/combined_hash/check/record all read correctly; matches the 2026-10-15 fix already landed. No regression."
     },
     "dashboard.py": {
       "status": "clean",

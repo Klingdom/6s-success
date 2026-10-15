@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 08:4x slot
+
+NEXT FOR THE OPERATOR: continue the standing cold-read fallback (next-oldest ledger entry, or a fresh low-mention ops/*.py file), because the backlog is exhausted and all 10 GitHub issues remain decision or blocked-on-art.
+
+Previous work was finished. Attached cleanly to main (ceb82bd). Verified directly, not cited: gate_nightly_log_ordering and nightly_log.py's own tests both re-run clean (7/7, 10/10) against the real committed file, confirming the 08:3x fix holds. The three red Checks runs since (#2159-2161) are stale, not new: each ran against pre-fix content, and the fix commit touched only files checks.yml excludes by design, same shape the 07:4x cycle already found; not re-escalating. Closed cold_read_ledger's one stale entry, ops/cycle_signal.py: re-read it, confirmed SIGNAL_FILES still matches its own docstring, no regression, re-ledgered clean. preflight.py --fast ran 0 FAIL through every gate up to the documented gate_tests sandbox hang; killed cleanly, no orphan process. All 10 issues reconfirmed via list_issues, unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-15 08:3x slot
 
 Previous work was NOT fully finished: `preflight.py` found a real FAIL, `gate_nightly_log_ordering` (entry #794), because the 08:1x cycle appended its entry to the physical end of `ops/NIGHTLY-LOG.md` instead of prepending it, the same recurring class fixed before. Finishing that was this cycle's work.
