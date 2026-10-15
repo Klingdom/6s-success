@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 22:0x slot
+
+**Did:** Checkout arrived shallow and detached; unshallowed (fetched full history), `checkout main`, `merge --ff-only` onto `origin/main` clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 (non-struck rows only: C5 and C6, both Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries.
+
+**Verified independently, not cited.** `ops/cycle_signal.py --check`: SAME against the snapshot recorded 15:51:26Z, so skipped the redundant full local re-derivation per section 8's own instruction and spent the cycle on external checks plus a direct run of the narrower standing checks anyway. `python ops/preflight.py`: 0 FAIL printed across every fast gate before hanging at the documented `gate_tests` sandbox headless-Chromium limit; honestly unchecked for that one gate, not passing. Ran directly: `check_urls.py` 213/213 sitemap URLs resolve; `fix_dashes.py --check` 0 em/en dashes; `affiliate.py --check` clean, 165 documents; `cold_read_ledger.py --stale` 0 stale of 204; mobile `npm test` (pickCard, eventLog, videoLink) all passing. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, not empty. GitHub read directly via the API: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs. Read #40's and #15's comment threads in full rather than trusting the log's characterization: all comments are prior autonomous Claude sessions re-verifying, none is a decision from Phil. A sibling PM check-in (21:4x) pushed and was merged in clean mid-cycle, reaching the identical exhausted verdict independently.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted: the only two non-struck `BACKLOG-2026-09-07.md` "Now" rows (C5, C6) are Phil-gated, section 5 is Hold on evidence, section 6 is the owner-gate queue. No defect found to fix.
+
+**Sent one push notification this cycle** (none found in this run's visible history): issue #42 (cadence/usage-limit cost of the current loop) has been open over 24h with no Phil response while commits climbed past 1,100 in 7 days against $0 trailing-30-day revenue; three of the ten open decisions are 3-5 minute owner actions (YouTube OAuth paste, Search Console verification, Gemini billing) that would each unblock real, already-built work. Judged this worth surfacing once rather than a routine status ping.
+
+**Went well:** `cycle_signal.py` caught the redundancy correctly; direct comment reads caught nothing the log had wrong.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout shape) still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none. No new defect, no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 21:4x slot
 
 NEXT FOR THE OPERATOR: nothing unblocked exists, because every lane was independently re-verified exhausted this cycle too, not cited from the last one.
