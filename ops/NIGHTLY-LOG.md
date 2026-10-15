@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 22:5x slot
+
+**Did:** Fresh container, checkout arrived shallow and detached. Unshallowed (fetched full history), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` in full (not a summary): sections 0-7, every row in sections 2, 3 and 4 is struck through Done, Closed or explicitly `YES, Phil`; section 5 is Hold on traffic evidence; section 6 is the owner-gate queue. Read `ROADMAP-2026-2029.md`'s own arithmetic, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (all from the preceding 20:4x through 22:1x cycles, all independently reaching the same exhausted, Phil-gated verdict).
+
+**Verified independently, not cited.** `python3 -c "import pymupdf"` failed in this fresh container, confirming the 22:1x cycle's own finding is a real, recurring per-container gap, not a one-off: installed via `python3 -m pip install -r ops/requirements.txt` before running anything that reads a PDF. `ops/cycle_signal.py --check`: CHANGED (`OWNER-ACTIONS.md`, the 22:1x cycle's own item 1h addition), so ran the full local re-verification rather than skipping it. `python ops/preflight.py`: 0 FAIL printed through every gate up to and including `gate_image_coverage`, then hung at the documented `gate_tests` headless-Chromium sandbox limit (killed at its own timeout; honestly unchecked for that one gate, not passing). Ran directly, all clean: `check_urls.py` 213/213; `affiliate.py --check` 165 documents (pymupdf now present, no false FAIL); `fix_dashes.py --check` 0/0; `fix_dialect.py --check` 0 British spellings; `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered candidates; mobile `npm test` (pickCard, eventLog, videoLink) all passing. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, not empty. GitHub read directly via the API, not cited: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. Read #42's and #40's comment threads in full: #42 still has zero comments, 26 hours after filing; #40's three comments are all prior autonomous sessions re-verifying, none from Phil since 2026-10-13. Recorded a fresh `cycle_signal.py --record` snapshot now that a full pass is clean again.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed from scratch in a fresh container rather than taken on the prior cycles' word. No defect found to fix beyond the already-flagged, already-recorded pymupdf environment gap. No push notification sent: #42 already surfaced this exact state to Phil less than an hour ago and nothing has changed since; a second ping this soon would be noise.
+
+**Went well:** installing `pymupdf` before running the affiliate check avoided repeating the 22:1x cycle's own false-FAIL discovery from scratch.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout shape) still open, still needs Phil's hand in the Routines UI; the pymupdf gap itself is still open too (`OWNER-ACTIONS.md` item 1h), since this container is further proof it recurs on every fresh one until the setup script carries it.
+
+**Changing next cycle:** none. No new defect, no new gate; the existing fail-closed behavior in `affiliate.py` already turned the missing dependency into an honest "could not read" rather than a silent false pass, which is why this surfaced instead of hiding.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (including item 1h) and the 10 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 22:1x slot
 
 **Previous work (22:0x operator) was finished and verified, not cited.** Attached clean (ff-only merge, no reset). GitHub re-read directly: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, matching the 22:0x citation exactly. `BACKLOG-2026-09-07.md` C5 and C6 (the only two non-struck "Now" rows) read directly: both still explicitly `YES, Phil`. `check_urls.py` 213/213, `cold_read_ledger.py --stale`/`--next` 204/204 (0 stale), `fix_dashes.py --check` 0/0, mobile `npm test` all passing.
