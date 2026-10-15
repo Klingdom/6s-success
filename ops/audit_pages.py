@@ -87,7 +87,11 @@ SKIP = ("downloads/",)
 
 
 PROBE_NAMES = ("_visual_probe.html", "_shoot_wrapper.html")
-PROBE_PREFIXES = ("_audit_catalog_fixture",)
+PROBE_PREFIXES = (
+    "_audit_catalog_fixture",
+    "_site_js_wrapper_", "_site_js_probe_",
+    "_thanks_wrapper_", "_thanks_probe_",
+)
 
 
 def _is_probe(path: str) -> bool:
@@ -139,6 +143,26 @@ def pages() -> list[str]:
     own PAGE constant), so they were never at risk of tripping this check
     the way a bare probe shell is; nothing else needs naming here unless a
     future fixture is shaped the same way.
+
+    Found 2026-10-15, scheduled operator cycle: a plain `python
+    ops/audit_pages.py` run, launched while a concurrent `preflight.py`'s
+    `gate_tests` had `test_site_js_no_runtime_error.py` mid-flight, reported
+    7 findings (missing lang/viewport/title/description/canonical/h1/
+    analytics, one each) and a duplicate-title and duplicate-description
+    pair, on a tree that was, and stayed, actually clean: the very next
+    rerun, seconds later, came back 0 findings, 0 duplicates. Root cause was
+    this exact already-documented race, just two more sibling prefixes this
+    list had never been told about. `_site_js_wrapper_N.html` is the same
+    bare `<iframe>`-shell shape as `_visual_probe.html` (no title, lang,
+    viewport, canonical, description, heading or analytics tag), which is
+    what tripped the seven single-count findings. `_site_js_probe_N.html` is
+    a full copy of the real page it probes, injected hook aside, sitting
+    beside it with the identical title and description, which is what
+    tripped the duplicate-title/duplicate-description pair against the real
+    page it was copied from. `test_thanks_sku_branching.py` writes the same
+    pair under a `_thanks_wrapper_`/`_thanks_probe_` prefix for the same
+    reason, not yet observed tripping this file but excluded now rather than
+    waited for.
     """
     out = []
     for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):

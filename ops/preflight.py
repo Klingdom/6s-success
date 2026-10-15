@@ -17504,10 +17504,11 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     session with real production access writes the moment it confirms a
     build live.
 
-    Checks all THREE STATUS.md sections that independently cite a "last
+    Checks the STATUS.md sections that independently cite a "last
     confirmed current" build id: BLOCKER-001 (section 17), the "Production
     Knowledge" paragraph under "Current Overall Assessment" (section 30),
-    and the "Immediate Focus" line near the end of that same section.
+    the "Immediate Focus" line near the end of that same section, and the
+    "Public website" / "Production traceability" table rows in section 1.
     Widened 2026-09-24, PM check-in: found the first two had drifted four
     days apart (BLOCKER-001 correctly cited the 2026-09-23 confirmation;
     "Production Knowledge" still cited 2026-09-18/09-20 builds), and this
@@ -17516,9 +17517,19 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     scheduled operator: "Immediate Focus" cited a build one confirmation
     behind "Production Knowledge" in the very same review, the gate having
     just been taught to check that section and never widened past it.
-    Same "source corrected, sibling section never told" shape this gate
-    already exists to catch, just with the sibling being a third section of
-    the same file rather than a second one or another file.
+    Widened a third time 2026-10-15: the 00:1x PM check-in found the "Public
+    website" and "Production traceability" table rows in section 1 a full
+    confirmation behind BLOCKER-001 and Production Knowledge, which had
+    already been fixed two cycles earlier by a different PM check-in and a
+    concurrent operator cycle; those two rows are the very rows that name
+    BLOCKER-001 as their own "Full account" and this gate still did not
+    check them. Same "source corrected, sibling section never told" shape
+    this gate exists to catch, recurring for a fourth named section rather
+    than being closed generically; a blanket scan for any 16-hex-char build
+    id token was rejected because each section's own "Prior state, kept
+    because the shape recurs" history intentionally still names dozens of
+    superseded build ids, which a blanket scan cannot tell from a live
+    citation.
 
     Returns a problem string naming every stale section found; '' if there
     is nothing to check or every citation is current.
@@ -17532,6 +17543,10 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
             r"\*\*Production Knowledge.*?(?=\n\*\*|\Z)",
         "Immediate Focus":
             r"\*\*Immediate Focus:\*\*.*?(?=\n\*\*|\Z)",
+        "Public website (status table row)":
+            r"\|\s*Public website\s*\|.*?(?=\n\|)",
+        "Production traceability (status table row)":
+            r"\|\s*Production traceability\s*\|.*?(?=\n\|)",
     }
     stale = []
     for label, pattern in sections.items():

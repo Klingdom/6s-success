@@ -1,4 +1,4 @@
-"""Prove ops/audit_pages.py's pages() ignores three other tools' own scratch
+"""Prove ops/audit_pages.py's pages() ignores other tools' own scratch
 shells, and nothing else that happens to start with an underscore.
 
 audit_visual.py writes site/<dir>/_visual_probe.html beside the page it is
@@ -20,13 +20,27 @@ one preflight run failed the "pages" gate with real, non-duplicate
 findings, and every immediate rerun on the identical, unchanged tree came
 back clean.
 
+Widened 2026-10-15, scheduled operator cycle: a plain `python
+ops/audit_pages.py` run, launched while a concurrent preflight's gate_tests
+had test_site_js_no_runtime_error.py mid-flight, caught that test's own
+_site_js_wrapper_N.html (same bare shell shape as _visual_probe.html) as
+7 single-field findings, and its _site_js_probe_N.html (a full copy of the
+real page it probes) as a false duplicate-title/duplicate-description pair
+against that real page. The very next rerun, seconds later on the identical
+tree, came back clean: no site content was ever actually wrong, same self-
+contradicting shape the three prefixes above already exist to catch, just
+two more siblings this list had not been told about.
+test_thanks_sku_branching.py writes the identical pair under
+_thanks_wrapper_/_thanks_probe_, not yet observed tripping this file but
+added for the same reason rather than waited for.
+
 The fix is deliberately narrow, by exact filename or prefix, not "any
 leading underscore": test_audit_links.py plants its own underscore-prefixed
 _audit_link_fixture.html specifically so this module can be proven to scan
 and flag it, a fixture the first, broader version of this fix silently made
-invisible, breaking that test's own reason to exist. This file proves all
-four: all three scratch shells are excluded, and an underscore-prefixed
-fixture shaped like a real page is not.
+invisible, breaking that test's own reason to exist. This file proves every
+known scratch shell is excluded, a duplicate-triggering full-page copy is
+excluded, and an underscore-prefixed fixture shaped like a real page is not.
 """
 import io
 import os
@@ -119,6 +133,44 @@ def main() -> int:
                        "nothing; the test fixture no longer proves what a "
                        "real one would trigger if pages() ever regresses")
 
+    # test_site_js_no_runtime_error.py's own scratch shell: excluded by
+    # prefix, numeric suffix and all.
+    with Planted("_site_js_wrapper_7.html", PROBE_SHELL) as f:
+        if f.path in A.pages():
+            bad.append("pages() included a stray _site_js_wrapper_N.html, "
+                       "the exact file test_site_js_no_runtime_error.py "
+                       "writes and removes mid-run")
+
+        findings = A.check(f.path, PROBE_SHELL)
+        if not findings:
+            bad.append("check() on the bare site-js-wrapper shell found "
+                       "nothing; the test fixture no longer proves what a "
+                       "real one would trigger if pages() ever regresses")
+
+    # test_thanks_sku_branching.py's own scratch shell: same shape, same fix.
+    with Planted("_thanks_wrapper_3.html", PROBE_SHELL) as f:
+        if f.path in A.pages():
+            bad.append("pages() included a stray _thanks_wrapper_N.html, "
+                       "the exact file test_thanks_sku_branching.py writes "
+                       "and removes mid-run")
+
+        findings = A.check(f.path, PROBE_SHELL)
+        if not findings:
+            bad.append("check() on the bare thanks-wrapper shell found "
+                       "nothing; the test fixture no longer proves what a "
+                       "real one would trigger if pages() ever regresses")
+
+    # The companion *_probe_N.html files are full copies of a real page
+    # (injected hook aside), excluded by the same prefixes so they cannot
+    # cause a false duplicate-title/duplicate-description match against the
+    # real page they were copied from.
+    for name in ("_site_js_probe_7.html", "_thanks_probe_3.html"):
+        with Planted(name, REAL_SHAPED_FIXTURE) as f:
+            if f.path in A.pages():
+                bad.append("pages() included a stray %s, which would read "
+                           "as a real page and could duplicate-match "
+                           "whatever page it was copied from" % name)
+
     # A different underscore-prefixed name, page-shaped: must stay included.
     # This is what test_audit_links.py's own _audit_link_fixture.html relies
     # on; excluding every underscore name (the first version of this fix)
@@ -140,8 +192,8 @@ def main() -> int:
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  pages() excludes only the three known scratch shells, "
-              "and still scans every other underscore-prefixed fixture and "
+        print("  ok  pages() excludes only the known scratch shells, and "
+              "still scans every other underscore-prefixed fixture and "
               "every real page")
     return 1 if bad else 0
 

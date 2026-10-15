@@ -25,6 +25,13 @@ against the real 6f5176355eb29401), the gate having just been taught to
 check "Production Knowledge" and never widened past it. Same shape, one
 section further out.
 
+Widened a third time 2026-10-15, PM check-in: found the "Public website"
+and "Production traceability" table rows in STATUS.md section 1 a full
+confirmation behind BLOCKER-001 and Production Knowledge, which two
+earlier cycles that same day had already fixed. These two rows are the
+ones that cite BLOCKER-001 as their own "Full account" and the gate still
+never checked them. Same shape, a fourth and fifth section further out.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -140,12 +147,69 @@ def main() -> int:
         fails.append("all three sections current, but still flagged: %r"
                      % problem)
 
+    # 9. The real defect shape found 2026-10-15: every prose section is
+    #    current, but the "Public website" status-table row independently
+    #    cites a stale build_id. Must fire, and must name only that row.
+    table_stale = (
+        all_current +
+        "\n| Area | Status | Evidence / Notes |\n"
+        "|---|---|---|\n"
+        "| Public website | LIVE, build `2222222222222222` | some notes |\n"
+        "| Application/API | N/A BY DESIGN | static site |\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(table_stale, verdict)
+    if not problem:
+        fails.append("Public website row stale while prose sections are "
+                     "current: expected a problem, got none")
+    elif "Public website" not in problem or "BLOCKER-001" in problem \
+            or "Production Knowledge" in problem \
+            or "Immediate Focus" in problem:
+        fails.append("problem string did not correctly name only the "
+                     "stale 'Public website' row: %r" % problem)
+
+    # 10. Same shape, for the "Production traceability" row: must fire, and
+    #     must name only that row.
+    traceability_stale = (
+        all_current +
+        "\n| Area | Status | Notes |\n"
+        "|---|---|---|\n"
+        "| CI health | GREEN | fine |\n"
+        "| Production traceability | Tracked, build "
+        "`3333333333333333` | some notes |\n"
+        "| Repository hygiene | fine | fine |\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(
+        traceability_stale, verdict)
+    if not problem:
+        fails.append("Production traceability row stale while prose "
+                     "sections are current: expected a problem, got none")
+    elif "Production traceability" not in problem \
+            or "BLOCKER-001" in problem \
+            or "Production Knowledge" in problem \
+            or "Immediate Focus" in problem:
+        fails.append("problem string did not correctly name only the "
+                     "stale 'Production traceability' row: %r" % problem)
+
+    # 11. Both table rows current: must not fire.
+    both_rows_current = traceability_stale.replace(
+        "3333333333333333", verdict["build_id"]).replace(
+        "2222222222222222", verdict["build_id"])
+    both_rows_current += (
+        "\n| Public website | LIVE, build `" + verdict["build_id"] +
+        "` | some notes |\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(
+        both_rows_current, verdict)
+    if problem:
+        fails.append("both table rows current, but still flagged: %r"
+                     % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 8 checks")
+    print("PASS: 11 checks")
     return 0
 
 

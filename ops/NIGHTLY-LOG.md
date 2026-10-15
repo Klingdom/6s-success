@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-15, scheduled operator cycle (two gates widened for the same "sibling never told" shape, found by hand not by a checker)
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries, and delegated a subagent to independently re-confirm the backlog read. Confirmed live rather than trusted: epics 1 through 5 exhausted (every "Now" row Done or Phil-gated), 10 open GitHub issues unchanged (`decision`/`blocked-on-art`), `cycle_signal.py --check` CHANGED against the 2026-10-14T23:06:53Z snapshot (`OWNER-ACTIONS.md`, `STATUS.md`, `ops/cold-read-ledger.json`), calling for the full local re-verification issue #42's own backlog section 8 names.
+
+Ran `python ops/preflight.py` end to end: first pass found a real FAIL, `gate_nightly_log_ordering` (entry #607 appended to the file's legacy tail instead of prepended to the top). Fixed it directly, but lost the race twice over: a concurrent PM check-in (`85e1f86ee`) fixed the identical ordering defect by the identical method first, then another (`baaab54f9`) independently re-ran the full preflight re-verification this cycle also owed. Fetched before each push, discarded both now-duplicate edits, fast-forwarded clean each time, kept the two unique fixes below rather than resubmit anything already landed.
+
+**Fixed, both real and both verified:** (1) `status_deploy_verdict_problem()` in `ops/preflight.py` only checked three named STATUS.md sections (BLOCKER-001, Production Knowledge, Immediate Focus) for a stale build-id citation; the 00:1x PM check-in had just found a fourth and fifth sibling, the "Public website" and "Production traceability" table rows, stale a full confirmation behind. Widened the gate to check both rows too (regex anchored on the table row, not the whole file, to avoid flagging the dozens of intentionally-kept historical build ids each row's own "Prior state" text still names). Proved it can fail: broke the real STATUS.md's Public website row in a throwaway copy, watched the gate fire, confirmed it clears once fixed. Added 3 new cases to `test_gate_status_deploy_verdict_current.py` (11/11 pass). (2) `ops/audit_pages.py`'s probe-shell exclusion list was missing two prefixes (`_site_js_wrapper_`/`_site_js_probe_` from `test_site_js_no_runtime_error.py`, plus `_thanks_wrapper_`/`_thanks_probe_` from `test_thanks_sku_branching.py` added preemptively, same shape): caught live when a plain `audit_pages.py` run, overlapping a concurrent `preflight.py`'s `gate_tests`, reported 7 phantom single-field findings and a false duplicate-title/duplicate-description pair, which vanished on the very next, unchanged rerun. Added the four prefixes; reran `test_audit_pages.py`, confirmed it fails red on the old code (via `git stash`) and passes green on the fix.
+
+**Verified:** full `preflight.py` reran clean after both fixes (own run and the concurrent `baaab54f9` run both independently confirm 0 FAIL). 10 GitHub issues unchanged. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `inbox_agent.py --apply` no mail credential (standing).
+
+**Went well:** both fixes are the same "source corrected, sibling never told" shape this repository keeps finding, caught by actually reading the file and reproducing the race rather than trusting a summary.
+
+**Did not go well:** lost two push races in one cycle (the ordering fix, then the preflight re-verification itself) to concurrent sessions working the identical next step off the same handoff note. No cost beyond discarded duplicate edits, but confirms concurrency is heavy enough right now that re-fetching immediately before every push, not only at attach, is no longer optional.
+
+**Changing next cycle:** none new; the re-fetch-before-push habit already named twice today still holds, more urgently than before.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`; issues #42 and #40 unchanged, not repeated. `cycle_signal.py --record` run this cycle now that the full re-verification is independently confirmed clean twice over.
+
+Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 01:1x slot
 
 Previous work was NOT finished: the 00:4x PM check-in fixed a real `gate_nightly_log_ordering` FAIL but handed off "re-run preflight end to end and confirm 0 FAIL" to whoever came next, and nobody had. That re-run was this cycle's work. Attached clean (unshallowed, fast-forwarded onto `origin/main`), tree clean. All 10 open GitHub issues confirmed via `list_issues`, unchanged: decision or blocked-on-art, none Phil-unblocked. Last 5 workflow runs on the latest commits all green.
