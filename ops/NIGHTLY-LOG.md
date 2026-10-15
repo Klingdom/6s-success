@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 23:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list, because every lane that is not a `decision` issue or `blocked-on-art` is genuinely done, closed or struck through, and nothing changed in the 23 minutes since the 23:1x cycle said the same thing.
+
+**Previous work (23:1x PM) was finished and verified, not cited.** Attached clean: fetched `origin main`, unshallowed, `checkout main`, `merge --ff-only` (564 commits fast-forwarded, no reset or force), tree clean before and after; the only commit since 23:1x is the dumb hourly bot's dashboard/state regen (`0e3f2b82d`), not a real change.
+
+**Reran the standing checks myself rather than trusting the last cycle's word.** `preflight.py --fast`: 0 FAIL printed through every gate, hung again at the documented `gate_tests` headless-Chromium sandbox limit (killed at 90s, honestly unchecked for that one gate, not passing). Ran directly: `check_urls.py` 213/213; `affiliate.py --check` clean (165 delivered documents, pymupdf present in this container); `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered candidates (the tier is now fully closed, not just "16 remain" as an older entry in this file still shows further down); `fix_dashes.py --check` 0 em/en dashes; mobile `npm test` (pickCard, eventLog, videoLink) all passing. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, newest issue update is #42 at 2026-10-14T20:47Z, still zero comments, over 24 hours after filing. `OWNER-ACTIONS.md` item 1h (pymupdf setup-script gap) already recorded correctly; no repo-level setup script exists to fix it myself, it is a cloud-environment setting only Phil can edit.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted; the only open items are `decision`-labelled (Phil's call) or `blocked-on-art`. Did not re-notify Phil: #42 already told him this exact state is recurring, and this cycle adds no new fact.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout) still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 23:1x slot
 
 **Previous work (22:5x operator) was finished and verified, not cited.** Fresh container, checkout arrived shallow and detached (issue #27's usual shape); unshallowed (full history fetch), `checkout main`, `merge --ff-only` onto `origin/main` (564 commits fast-forwarded), no reset or force, tree clean before and after. `ops/cycle_signal.py --check`: SAME, byte-identical to the 22:55:52Z snapshot, so the file-level state did not drift; GitHub and the backlog still re-read directly rather than trusted on that basis alone.
