@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-15, scheduled operator cycle (cold-read tier reaches 204 of 204, first time)
+
+**Did:** attached clean (unshallowed, checkout main, ff-only onto origin/main), then re-synced twice more as three more pushes landed from concurrent PM cycles mid-run, each a clean fast-forward. Read GOALS.md, BACKLOG-2026-09-07.md's live sections, ROADMAP-2026-2029.md, CLAUDE.md, OWNER-ACTIONS.md and STATUS.md (via a subagent, then independently spot-checked its claims against the backlog directly per CLAUDE.md 5d). Ran preflight.py in the background to completion rather than killing it: 0 FAIL, 29 warnings, all standing sandbox-credential gaps. Took the 11:4x PM check-in's own named handoff: cold-read the one stale ledger entry (ops/deploy_freshness.py, touched by the 10:4x CI fix) and the three un-ledgered files from today's Photos API frontend work (build_photo_check_data.py, photo-check-zones.js, photo-check.js). Traced photo-check.js's every endpoint call against photos/server.py and photos/store.py directly, not against prose. Confirmed Checks run #2169 green on 3d84199d3. Re-read all 10 GitHub issues and 0 PRs directly: unchanged. inbox_agent.py --apply: no mail credential, standing.
+
+**Verified:** gate_checker_scope() and gate_cold_read_ledger_entries_not_stale() both run in isolation, 0 FAIL after the ledger fix; build_photo_check_data.py rerun live, output byte-identical to the committed file (0 git diff); cold_read_ledger.py --stale now reports 0 of 204, --next reports full saturation for the first time since this ledger existed.
+
+**Went well:** closed the exact handoff named rather than drifting; preflight finished on its own without a kill.
+
+**Did not go well:** three concurrent pushes during one cycle, same cadence cost issue #42 already names.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** cold-read tier fully exhausted, nothing to hand off there. Standing Phil-gated list in OWNER-ACTIONS.md and the same 10 issues/0 PRs, unchanged. Whichever specialist area a fresh signal (owner message, CI failure, new GitHub activity, Phil's answer on #42) names first.
+
+Pushed to main. ops/cold-read-ledger.json, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 11:4x slot
 
 NEXT FOR THE OPERATOR: continue the standing cold-read tier, starting with `site/assets/js/photo-check-zones.js` (0 log mentions) and re-verifying the one newly stale ledger entry `ops/deploy_freshness.py` (touched 2026-10-15 by the 10:4x fix adding it to `DISCOVERY_PAGES`, still ledgered 2026-10-14), because the CI/deploy chain just closed clean and nothing else is genuinely unblocked.
