@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 08:3x slot
+
+Previous work was NOT fully finished: `preflight.py` found a real FAIL, `gate_nightly_log_ordering` (entry #794), because the 08:1x cycle appended its entry to the physical end of `ops/NIGHTLY-LOG.md` instead of prepending it, the same recurring class fixed before. Finishing that was this cycle's work.
+
+Fixed: moved the misplaced entry to the top, content preserved (sorted-line diff identical, order only). Fail-then-pass proved directly: broken file fails citing entry #794, fixed file passes. The four nightly-log test files all re-run clean. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` clean. All 10 GitHub issues reconfirmed unchanged: decision or blocked-on-art, none Phil-unblocked.
+
+Handing the operator: nothing new beyond the standing Phil-gated list. Keep using `ops/nightly_log.py` to prepend, never hand-append.
+
+HANDOFF-FILES: none
+
+## 2026-10-15, scheduled operator cycle (cycle_signal.py's own signal set was self-defeating; fixed)
+
+**Did:** Attached to main (unshallowed a shallow checkout, fast-forwarded clean). A recon pass independently reconfirmed BACKLOG-2026-09-07.md fully exhausted (Done/Hold/Phil-gated) and all 10 GitHub issues unchanged (decision/blocked-on-art; #42 is itself Phil's own cadence-tradeoff decision, correctly left undecided, not mine to pick). Ran `inbox_agent.py --apply` (no mail credential in this sandbox). Ran `preflight.py`: ~75 gates clean, hit the documented `gate_tests` sandbox hang. Found and fixed a real defect instead of re-deriving "nothing to do" an eleventh time: `ops/cycle_signal.py`'s `SIGNAL_FILES` included `ops/cold-read-ledger.json`, but the standing fallback (re-verify a couple of clean cold-read entries when nothing else is unblocked) appends to that ledger even when it finds no defect, so the fallback invalidated the "nothing changed" signal every time it ran, forcing the next cycle straight back into a full local re-verification and the same fallback. 44 commits touched the ledger in the 4 days since the tool shipped.
+
+**Verified:** fail-then-pass proved directly on a synthetic repro (old signal set: CHANGED after a no-op ledger append; new set: SAME). Existing `ops/tests/test_cycle_signal.py` (its own isolated synthetic files, unaffected by the real `SIGNAL_FILES` edit) still passes 6/6. Recorded a fresh real snapshot; `--check` now reads SAME against the live repo.
+
+**Went well:** caught a genuine recurring-waste bug (matching issue #42's own complaint) by reading the mechanism itself rather than trusting the backlog's "exhausted" label a tenth time.
+
+**Did not go well:** `preflight.py` still cannot finish past `gate_tests` in this sandbox; no gate exists for that and none is proposed, same standing limitation every recent cycle reports.
+
+**Changing next cycle:** watch whether cycle_signal CHANGED verdicts now correspond only to real backlog/status/ownership moves, not cold-read bookkeeping.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open decision/blocked-on-art GitHub issues, unchanged.
+
 ## PM check-in, 2026-10-15 07:4x slot
 
 NEXT FOR THE OPERATOR: continue the standing cold-read fallback (next-oldest ledger entry, or a fresh low-mention ops/*.py file), because the backlog is exhausted (only Phil-gated C5/C6) and all 10 GitHub issues remain decision/blocked-on-art.
@@ -13619,17 +13643,3 @@ Previous work was finished: attached clean, main fast-forwarded onto origin afte
 Found and fixed a real gated defect, not just re-confirmed a clean one: status_deploy_verdict_problem fired directly against STATUS.md and the live ops/deploy-verdict.json (Phil's own redeploy at 22:41:08Z, build c36cb2794e581473, commit 086f6ba42) because BLOCKER-001, the Production Knowledge paragraph and the Immediate Focus line all still cited the 2026-10-13 confirmation. Re-derived and corrected all three; also checked past this cycle's own newest commit (the clean-along video-format work, b4669487d, touches neither site/ nor Dockerfile), so the zero deploy gap holds at real current HEAD, not just at the verdict's own commit. Gate function re-run clean against the edited file.
 
 Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachable this run) and shipping with this entry. Issues #42 and #40 unchanged, not repeated. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
-
-## 2026-10-15, scheduled operator cycle (cycle_signal.py's own signal set was self-defeating; fixed)
-
-**Did:** Attached to main (unshallowed a shallow checkout, fast-forwarded clean). A recon pass independently reconfirmed BACKLOG-2026-09-07.md fully exhausted (Done/Hold/Phil-gated) and all 10 GitHub issues unchanged (decision/blocked-on-art; #42 is itself Phil's own cadence-tradeoff decision, correctly left undecided, not mine to pick). Ran `inbox_agent.py --apply` (no mail credential in this sandbox). Ran `preflight.py`: ~75 gates clean, hit the documented `gate_tests` sandbox hang. Found and fixed a real defect instead of re-deriving "nothing to do" an eleventh time: `ops/cycle_signal.py`'s `SIGNAL_FILES` included `ops/cold-read-ledger.json`, but the standing fallback (re-verify a couple of clean cold-read entries when nothing else is unblocked) appends to that ledger even when it finds no defect, so the fallback invalidated the "nothing changed" signal every time it ran, forcing the next cycle straight back into a full local re-verification and the same fallback. 44 commits touched the ledger in the 4 days since the tool shipped.
-
-**Verified:** fail-then-pass proved directly on a synthetic repro (old signal set: CHANGED after a no-op ledger append; new set: SAME). Existing `ops/tests/test_cycle_signal.py` (its own isolated synthetic files, unaffected by the real `SIGNAL_FILES` edit) still passes 6/6. Recorded a fresh real snapshot; `--check` now reads SAME against the live repo.
-
-**Went well:** caught a genuine recurring-waste bug (matching issue #42's own complaint) by reading the mechanism itself rather than trusting the backlog's "exhausted" label a tenth time.
-
-**Did not go well:** `preflight.py` still cannot finish past `gate_tests` in this sandbox; no gate exists for that and none is proposed, same standing limitation every recent cycle reports.
-
-**Changing next cycle:** watch whether cycle_signal CHANGED verdicts now correspond only to real backlog/status/ownership moves, not cold-read bookkeeping.
-
-**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open decision/blocked-on-art GitHub issues, unchanged.
