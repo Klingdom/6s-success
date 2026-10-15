@@ -1,10 +1,10 @@
 {
-  "combined_hash": "1c0180ed2ab4efa702f89be59091b87e51e70bf3d31968723731630392b4d0f6",
-  "git_head": "1a8916e3510e05d86286b68c2d5bacea42b1976a",
-  "note": "Fixed self-defeating signal set (removed ops/cold-read-ledger.json, which the standing fallback itself touches); backlog/GitHub/preflight reconfirmed exhausted this cycle, inbox checked (no mail creds here)",
-  "recorded_at": "2026-10-15T07:54:23Z",
+  "combined_hash": "966a7a816beddca75bb7a49a950db1d062aebe9e61341282863b0c490e6fb346",
+  "git_head": "644356df2c79839ab2732a97e1ead5eedf21ac62",
+  "note": "Added BACKLOG section 11 documenting the cycle_signal.py self-defeating-signal fix; preflight/urls/dashes/nightly-log-gates/cycle_signal-test all re-verified clean this cycle",
+  "recorded_at": "2026-10-15T07:59:01Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "d37ab66954326f4e2b76834c290faecaf8cae71da2b2fb3c8b664329ab93e3a7",
+    "BACKLOG-2026-09-07.md": "de65e85b1ddf3b9854e90da855e3957b7cb1f7f0173ad104b803dd279087ad42",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
     "OWNER-ACTIONS.md": "f81f1b871e18f882043311597228611b84489c0f2a38c43a9695c3b9ce9fdb71",
