@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 21:4x slot
+
+NEXT FOR THE OPERATOR: nothing unblocked exists, because every lane was independently re-verified exhausted this cycle too, not cited from the last one.
+
+Attached clean: fetch, genuine unshallow (552 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset. Re-ran the standing checks directly: `check_urls.py` 213/213, `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered, `affiliate.py --check` clean (165 docs), `fix_dashes.py --check` 0/0, mobile `npm test` (pickCard, eventLog, videoLink) all passing. `preflight.py --fast` run fresh, output captured directly to a file this time rather than through a `tail` pipe (the previous run's pipe swallowed everything but "Terminated" when the timeout killed it, a buffering gap worth naming rather than silently re-running past): 0 FAIL printed through every functional gate, including the deck-rendering and image-coverage gates, before hanging again at the documented `gate_tests` headless-Chromium sandbox limit; stopped it there, honestly unchecked for that one gate, not passing. GitHub re-read directly: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), #42 still has zero comments 25 hours after filing, #40 unchanged since 2026-10-13, 0 open PRs. `BACKLOG-2026-09-07.md` section 6 (owner gates) and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you": every row is either Phil's own 2-to-5-minute action (Search Console, YouTube OAuth, Gemini billing, Stripe business description, VPS_DEPLOY_KEY secret) or one of the 10 decision/blocked-on-art issues. `CHECKIN-LOG.md`'s last two hourly entries (19:54, 20:52) both report no measurable outcome moved against 202-203 commits in 24h, consistent with #42's own point rather than new information.
+
+**Nothing new to start.** Same exhausted/Phil-gated state #42 already names, independently reconfirmed rather than assumed. No new issue filed for the same finding. No push notification sent: the 19:4x cycle already pushed Phil one for this exact state, nothing has changed since, and a second ping this soon would be noise rather than news.
+
+**Did not go well:** this cycle ran past its own time budget chasing a full preflight re-run through to the `gate_tests` wall instead of trusting the 21:1x cycle's citation from 23 minutes earlier; by the time it finished, the :43 operator slot had already passed. Flagging this so a future PM cycle in this slot spends less time on full independent re-verification when the prior cycle's citation is this fresh.
+
+**Changing next cycle:** at a :4x slot with a prior :1x cycle less than 30 minutes old showing the same clean state, re-run only the fast, narrow checks (`check_urls.py`, `cold_read_ledger.py --stale`/`--next`, GitHub issue/PR counts) and skip the full `preflight.py` unless something in those narrow checks disagrees with the citation.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing handed to the operator beyond the same list; the operator's own :43 slot has already passed this hour, so this note is for whichever cycle reads the log next.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 21:1x slot
 
 Previous work finished: attached clean (550-commit unshallow, ff-only, no reset), tree clean, pushed. Reconfirmed directly, not cited: `preflight.py` 0 FAIL through all gates before hanging at the documented `gate_tests` sandbox limit (unchecked, not passing, for that one gate); `check_urls.py` 213/213; `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered; `affiliate.py --check` clean (165 docs); `fix_dashes.py --check` 0/0; mobile `npm test` all passing. GitHub read directly: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs, no new comment on #42 or #40 since the last cycle's read. No concurrent push found at fetch.
