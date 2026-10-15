@@ -13461,3 +13461,7 @@ Did not go well: nothing new; the backlog's exhausted state is unchanged from re
 Changing next cycle: none.
 
 Next: item 22's deploy decision is still Phil's; the review gate it names is now satisfied. Standing Phil-gated list otherwise unchanged.
+
+## Addendum to the 03:0x cycle above: the re-verification preflight run caught a real self-inflicted gate failure
+
+The second full `preflight.py` run started at the end of the 03:0x cycle (to confirm the whole repository clean after the photos/ fix, not just the targeted tests) finished with 2 failed checks, both the same root cause: editing `OWNER-ACTIONS.md` item 22 added a 2026-10-15 date to the body without bumping the file's own "List reviewed" marker, still reading 2026-10-14. `gate_owner_actions_last_measured_current` and its dedicated test both failed by name, caught locally before reaching CI. Fixed (marker bumped, dashboard regenerated) and reconfirmed: the specific gate function and its test file both pass clean. This is the gate system working exactly as designed, recorded because CLAUDE.md 0.4 asks for a loud report of what was unchecked or wrong, not just what passed.
