@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 18:1x slot
+
+NEXT FOR THE OPERATOR: nothing new; same exhausted, Phil-gated state as the last several cycles.
+
+Previous work (17:4x PM and operator) was finished, verified myself rather than cited. Attach needed a real fix: checkout arrived shallow and detached, 526 commits behind; `git fetch --unshallow` restored the real graph, then `checkout main` and `merge --ff-only` onto `origin/main` applied clean (124 files, no unrelated-history refusal after unshallowing, no reset or force). `cycle_signal.py --check`: SAME against the 15:51 snapshot, both before and after this cycle's dashboard regen. `preflight.py` backgrounded to its own 150s timeout: zero FAIL lines through every gate, hanging at the documented `gate_tests` headless-Chromium sandbox limit (exit 124), same shape every recent cycle reports. Narrow checks run direct and clean: `check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicate titles or descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 of 204, `--next` reconfirms 0 un-ledgered candidates anywhere. Mobile `npm test`: all 4 suites (importProgress, pickCard, eventLog, videoLink) passing.
+
+GitHub re-read directly, not cited: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. Checked #42 and #40 specifically since they are the cadence/stall meta-issues: #42 still has zero comments since filing; #40's last comment (2026-10-13) is a prior cycle's own status check, nothing from Phil on either. `CHECKIN-LOG.md`'s last four hourly entries (14:56 through 17:54) all report nothing measurable moved, the exact shape #42 names. No item was pickable: every open issue is Phil's own call or art-blocked, and the cold-read lane is genuinely exhausted, not just unread this cycle.
+
+**Did not go well:** nothing new; same documented `gate_tests` sandbox limit and same exhausted-backlog shape issue #42 already names, now several consecutive cycles landing on the identical verdict.
+
+**Changing next cycle:** none. No push notification: this is the same finding already surfaced on #42, not new information.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 17:4x slot
 
 **Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history refusal. Read `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. `preflight.py` backgrounded, confirmed stuck at the documented `gate_tests` headless-Chromium sandbox limit, killed; ran the narrow checks direct instead.
