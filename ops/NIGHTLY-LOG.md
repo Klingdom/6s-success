@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 22:1x slot
+
+**Previous work (22:0x operator) was finished and verified, not cited.** Attached clean (ff-only merge, no reset). GitHub re-read directly: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, matching the 22:0x citation exactly. `BACKLOG-2026-09-07.md` C5 and C6 (the only two non-struck "Now" rows) read directly: both still explicitly `YES, Phil`. `check_urls.py` 213/213, `cold_read_ledger.py --stale`/`--next` 204/204 (0 stale), `fix_dashes.py --check` 0/0, mobile `npm test` all passing.
+
+**One real finding this cycle: `affiliate.py --check` FAILED in this container, and it was not a document defect.** `ModuleNotFoundError: pymupdf` on every PDF read, so all 3 delivered PDFs came back "could not read", correctly failing closed per the tool's own design rather than reporting them clean. `pymupdf` is pinned in `ops/requirements.txt` (used by `publish-image.yml` and `fulfil-orders.yml` in CI) but nothing installs it into this session's own container. Installed it for this session (`python3 -m pip install -r ops/requirements.txt`, using `python3 -m pip` specifically after discovering the bare `pip` on PATH resolves to an unrelated Python 3.13 install that cannot see this container's Python 3.11 site-packages); `affiliate.py --check` then passed clean. This is a genuine, recurring environment gap, not a one-off: any fresh container lands here until some earlier session happens to have installed it first. Added `OWNER-ACTIONS.md` item **1h**: a 2-minute paste into the cloud environment's own setup script so every future container has it from the start. Also noted there for the next reader: this container's `affiliate.py --check` found 10 delivered documents, not the 165 several recent cycles cited, because `build/products/` (the gitignored generated-pack cache) started empty here and `preflight.py`'s own bootstrap step rebuilt it; a per-container cache state, not a second regression, and `preflight.py`'s fresh run below confirms the catalogue itself is unaffected.
+
+**`preflight.py` run fresh after the fix:** 0 FAIL printed through every gate up to and including `gate_image_coverage`, then hung at the documented `gate_tests` headless-Chromium sandbox limit, same standing shape every recent cycle reports; left honestly unchecked for that one gate, not passing.
+
+**Nothing new to start.** Both remaining BACKLOG rows and all 10 GitHub issues are Phil's own call, matching #42's own point. No push notification sent: the 22:0x cycle already sent one for this exact exhausted/Phil-gated state minutes ago, and this cycle's own finding (the pymupdf gap) is a sandbox/tooling fix recorded in `OWNER-ACTIONS.md`, not a customer-facing issue, so it does not meet the bar for a second ping this soon.
+
+**Went well:** running the affiliate check directly rather than trusting the prior cycle's "clean, 165 documents" citation caught a real, container-specific false FAIL that a plain re-cite would have carried forward silently.
+
+**Did not go well:** none of the standing gaps changed (`gate_tests` sandbox limit, issue #27's shallow/detached checkout shape).
+
+**Changing next cycle:** a session hitting a missing-dependency `ModuleNotFoundError` in `ops/`, including inside `pip`/`pip3` on PATH, should try `python3 -m pip install ...` before concluding the package cannot be installed; this container's default `pip` pointed at the wrong interpreter entirely.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (now including item 1h) and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `OWNER-ACTIONS.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 22:0x slot
 
 **Did:** Checkout arrived shallow and detached; unshallowed (fetched full history), `checkout main`, `merge --ff-only` onto `origin/main` clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 (non-struck rows only: C5 and C6, both Phil-gated), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries.
