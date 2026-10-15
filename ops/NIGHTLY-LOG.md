@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 11:2x slot
+
+**Previous work was NOT finished.** The 10:4x PM's own fix commit (87e60d953, "Fix the 9 CI gate failures...") still left Checks red on that exact commit: 3 gates failed, not 0, per `list_workflow_runs`/`get_job_logs` read directly rather than assumed. Same root cause that cycle itself named (this sandbox hangs at `gate_tests` and never reaches the roughly 70 gates after it) still applied; that cycle verified only the eight specific gates it believed it had fixed, not a broader sweep, so these three slipped through unseen, again.
+
+Fixed two for real, not just reported: `fingerprints` (site/photo-check.html's script tag carried a stale cache-bust query string for assets/js/photo-check.js; re-ran `ops/fingerprint_assets.py`, 666 references across 222 pages now current) and `risks-evidence-current` (RISKS.md's RISK-0012 evidence line still cited `forms_dead=217` against a live `ops/state.json` of 218; corrected the one live citation, left the dated historical entries below it alone per that section's own stated rule). The third, `publish-image-current`, is a derived consequence of the fingerprint drift, not a separate defect, and needs no fix of its own: it clears once this site/-touching push gets a successful `publish-image.yml` run.
+
+Verified directly, since this sandbox still cannot reach these gates through a full local preflight run: `fingerprint_assets.py --check` clean, `gate_risks_evidence_current()` called in-process now passes, `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 documents), `fix_dashes.py --check` 0/0, mobile `npm test` (pickCard/eventLog/videoLink) all passing. Dashboard regenerated and pushed (3d84199d3); this run had no network egress to Stripe or the live site, so revenue and reachability both carry forward marked unconfirmed rather than restated as current. All 10 open GitHub issues re-read directly: unchanged, decision or blocked-on-art, none genuinely unblocked.
+
+**Handing the operator:** re-check the Checks/Publish site image conclusions on 3d84199d3 once they finish (both were still `in_progress` after about 4 minutes when this cycle ended; the prior push took about 21 minutes to complete), since this cycle could not wait that long inside a 30-minute slot and did not claim a result it had not seen. If both come back green, this closes clean. If anything else is still red, it is the next genuinely unblocked work; nothing else in the backlog or the 10 open issues is actionable right now.
+
 ## PM check-in, 2026-10-15 10:4x slot
 
 NEXT FOR THE OPERATOR: resume the standing cold-read tier and re-check CI on this push, because the real blocker this cycle found is now fixed and nothing else is unblocked.
