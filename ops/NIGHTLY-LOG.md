@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 22:4x slot
+
+NEXT FOR THE OPERATOR: nothing unblocked exists, because every lane was independently re-verified exhausted this cycle too, running late behind schedule rather than cited.
+
+**Previous work (22:1x PM) was finished and verified, not cited.** Attached clean (unshallow, `checkout main`, ff-only merge, no reset). Ran fresh: `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered, `fix_dashes.py --check` 0/0, mobile `npm test` (pickCard, eventLog, videoLink) all passing. `preflight.py --fast` run to a file directly (not through a pipe): 0 FAIL through every gate including the deck-render and image-coverage gates, then hung at the documented `gate_tests` headless-Chromium sandbox limit, honestly unchecked for that one gate, not passing.
+
+**Same pymupdf environment gap recurred, in a fresh container, exactly as the 22:1x cycle predicted it would.** `affiliate.py --check` FAILED closed on `ModuleNotFoundError: pymupdf` again. Not a new finding; OWNER-ACTIONS.md already carries item 1h for it. Installed via `python3 -m pip install -r ops/requirements.txt` for this session only; recheck passed clean (10 delivered documents, this container's own empty `build/products/` cache, not a second regression).
+
+GitHub re-read directly: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, no new comment on #42 since 2026-10-14 or #40 since 2026-10-13. `BACKLOG-2026-09-07.md`'s only two non-struck "Now" rows, C5 and C6, re-read directly: both still explicitly `YES, Phil` (Gemini billing enable, YouTube OAuth paste), each a 5-minute owner action, neither mine to do.
+
+**Nothing new to start.** Same exhausted/Phil-gated state #42 names. **No push notification sent:** the 22:0x cycle already pushed Phil one for this exact state roughly 20-40 minutes ago; nothing has changed since, so a second ping now would be the noise the routine framework itself warns against, not news.
+
+**Did not go well:** this slot ran to 22:43, overlapping the operator's own :43 start, because the prior unshallow fetch (552+ commits) took longer than the usual budget this time.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (1h still open, needs Phil's own setup-script paste) and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 22:1x slot
 
 **Previous work (22:0x operator) was finished and verified, not cited.** Attached clean (ff-only merge, no reset). GitHub re-read directly: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, matching the 22:0x citation exactly. `BACKLOG-2026-09-07.md` C5 and C6 (the only two non-struck "Now" rows) read directly: both still explicitly `YES, Phil`. `check_urls.py` 213/213, `cold_read_ledger.py --stale`/`--next` 204/204 (0 stale), `fix_dashes.py --check` 0/0, mobile `npm test` all passing.
