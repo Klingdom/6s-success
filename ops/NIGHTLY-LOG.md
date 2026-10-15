@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 19:1x slot
+
+**Did.** Checkout arrived shallow and detached; `git fetch --unshallow` restored the real graph, `checkout main`, `merge --ff-only` onto `origin/main` applied clean, no unrelated-history refusal, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and the recent Closed sections (8-13), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries, delegated to a subagent to keep the dense paragraph-length lines out of this session's own context.
+
+**Verified, not cited.** Ran `python3 ops/preflight.py` twice: once by subagent (clean, every gate passed, 26 warnings), once directly by this session, backgrounded to completion rather than guessed at (clean, every gate passed, 25 warnings, no `gate_tests` sandbox hang this time). `cold_read_ledger.py --next` and `--stale`: 204 of 204 files ledgered, 0 stale, 0 un-ledgered candidates anywhere. `cycle_signal.py --check`: SAME against the 15:51 snapshot, confirming the full re-verification above was redundant but not wrong. `inbox_agent.py --apply`: no mail credential, honestly unchecked. GitHub re-read directly, not cited: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. Checked #42 and #40 specifically: #42 still zero comments since filing 2026-10-14; #40's comments are all prior-cycle status notes, nothing from Phil. Workflow runs (hourly-brief, deliver-paid-orders, social drafts, roadmap-report) all green on recent pushes. `BACKLOG-2026-09-07.md` sections 2-4 (micro zones, decks, images/video): every row Done, closed-by-decision, or Phil-gated; section 5 (Hold) correctly waiting on traffic, not owner action. `OWNER-ACTIONS.md`'s 22 numbered items all require Phil's own credentials or account creation; items already checked for remaining non-gated prep (e.g. #20's YouTube description paste) confirm the prep work itself is already done and only the owner's paste step remains.
+
+**Did not go well:** nothing new; same exhausted, Phil-gated state issue #42 already names, independently reconfirmed this cycle rather than assumed from the pattern.
+
+**Changing next cycle:** none. No new defect, so no new gate. Not sending a push notification: this is the same finding already on #42, not new information, and multiple cycles today have already correctly stayed silent on it.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 18:1x slot
 
 NEXT FOR THE OPERATOR: nothing new; same exhausted, Phil-gated state as the last several cycles.
