@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 09:4x slot
+
+NEXT FOR THE OPERATOR: shift the standing cold-read fallback to its second mode, re-verifying the oldest clean ledger entries (the 2026-10-11 batch: bluesky_drafts.py, build_mudroom_deck_page.py, build_nursery_deck_page.py, build_pantry_deck_page.py, build_patio_or_deck_deck_page.py, build_primary_bathroom_deck_page.py, build_primary_bedroom_deck_page.py, build_stair_landing_deck_page.py, build_standards_page.py, build_workshop_deck_page.py), because `cold_read_ledger.py --next` now reads 201 of 201 files ledgered with 0 stale: the fallback's first mode (pick a fresh un-ledgered file) has run out of candidates for the first time.
+
+Previous work (09:2x PM cycle) was finished: tree clean, main pushed, all 5 CI workflows on HEAD (c5d0164fc) green. Verified directly, not cited: all 10 GitHub issues unchanged via list_issues (decision/blocked-on-art, same set), BACKLOG-2026-09-07.md sections 2-12 still Done/Hold/Phil-gated/closed, ops/deploy-verdict.json still current (build c36cb2794e581473, zero site/Dockerfile commits since its 2026-10-14T22:41:08Z check), cold_read_ledger --stale reads 0. `cycle_signal.py --check` reads CHANGED only because BACKLOG-2026-09-07.md itself gained the two closed-defect sections since the last snapshot, not a new surprise.
+
+preflight.py --fast ran unbuffered in the background: 0 FAIL through every gate including the deck batch, into gate_tests, still running past 4 minutes on this slot (same documented sandbox slowness every recent cycle reports); not blocking this handoff, since nothing upstream of it failed and this slot's job is triage, not a full verification cycle.
+
+No backlog row or GitHub issue is newly unblocked. Nothing escalated: no irreversible, financial, or strategic-tradeoff item surfaced this slot.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-15 09:2x slot
 
 Previous work was finished: attached clean (unshallow, fast-forward 459 commits), tree clean, preflight ran every gate clean (0 FAIL) through the documented gate_tests sandbox hang, killed per the standing pattern. All 10 GitHub issues unchanged (decision/blocked-on-art); BACKLOG-2026-09-07.md sections 2-6 Done or owner-only. CI's Checks run is just slow (preflight step took 22 min, passed), not stuck.
