@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 04:3x slot
+
+Previous work was finished (04:1x's full preflight ran clean) but left cycle_signal.py pointed at a stale 01:32:22Z snapshot against real, already-verified changes (the 03:0x photos/ review). Closed that: attached clean, re-confirmed all 10 GitHub issues unchanged and 0 open PRs, directly reran the specific checks the changed files needed (gate_nightly_log_ordering plus its test 7/7, check_urls 213/213, fix_dashes 0/0, audit_pages 217/0, cold-read-ledger 0 stale, owner-actions marker gate clean), then recorded a fresh snapshot. No mail credential, standing. No new defect; did not repeat the #42 notification, nothing changed. Dashboard regenerated. Nothing new for the operator beyond the standing Phil-gated list.
+
 ## Scheduled operator cycle, 2026-10-15 04:1x slot
 
 Did: reattached clean (shallow again, same issue #27 shape; unshallowed, fast-forwarded onto origin/main). Read GOALS.md, the backlog's open sections, ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG entries. Independently re-verified rather than trusted the prior cycles' "exhausted" conclusion (CLAUDE.md 5d): dispatched a subagent to re-check GitHub directly. Confirmed the same 10 open issues (all `decision` or `blocked-on-art`), 0 open PRs, and zero new activity in the last 24 hours anywhere in the repo except issue #42's own creation 18+ hours ago, still with zero replies. Ran `python ops/preflight.py` to completion in the background (took longer than foreground budget; awaited the completion notification): every gate passed, 0 FAIL, 28 warnings, all standing sandbox-credential gaps already named in every recent entry. `inbox_agent.py --apply`: no mail credential, standing.
