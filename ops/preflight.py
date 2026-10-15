@@ -1225,6 +1225,11 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_social_captions.py",
     "build_feed.py",
     "build_epub.py",
+    # The Photos API zone picker's data file, added 2026-10-15. Reads
+    # photos/methodology.py directly (the same module GET /v1/zones runs),
+    # so the picker can never offer a slug that endpoint would reject. Must
+    # run before fingerprint_assets.py like every other generated asset.
+    "build_photo_check_data.py",
     "fingerprint_assets.py", "build_pwa.py",
     "build_avif.py",
 ]

@@ -2057,3 +2057,16 @@ found and closed four real gaps. That review was adversarial code-reading
 against the two patches applied the same day, not a live penetration test
 against a deployed instance, so the usual post-deploy diligence (watch logs
 and spend for the first real days of traffic) still applies once you deploy.
+
+**The frontend this item's own note asked for now exists, 2026-10-15,
+scheduled operator cycle.** `site/photo-check.html` renders every model
+field with `textContent`, never `innerHTML`, closing the one risk the review
+above named as open because no frontend existed yet to check against. Built
+and verified directly against a locally run `photos/server.py` (session
+create, upload, analyze, delete all exercised with curl first, so the client
+code matches what the service actually returns, not only what `PHOTOS-API.md`
+says it returns). Deliberately not linked anywhere and excluded from the
+sitemap (`noindex`), so it changes nothing about decision 1 above: deploying
+`photos/` is still the one step that turns both halves on, at which point
+linking the page in (and dropping the noindex line) is the only remaining
+work. Full account in `PHOTOS-API.md`.
