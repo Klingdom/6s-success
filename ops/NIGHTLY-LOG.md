@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 01:1x slot
+
+Previous work was NOT finished: the 00:4x PM check-in fixed a real `gate_nightly_log_ordering` FAIL but handed off "re-run preflight end to end and confirm 0 FAIL" to whoever came next, and nobody had. That re-run was this cycle's work. Attached clean (unshallowed, fast-forwarded onto `origin/main`), tree clean. All 10 open GitHub issues confirmed via `list_issues`, unchanged: decision or blocked-on-art, none Phil-unblocked. Last 5 workflow runs on the latest commits all green.
+
+Ran a full `python ops/preflight.py` to real completion rather than background-and-kill it early. It hit a real snag along the way, caused by me: an earlier `timeout 110` kill of a prior attempt had only stopped the wrapping process, not the `test_audit_catalog.py` grandchild it had spawned, which kept running and legitimately held the test's lockdir. This cycle's own `gate_tests` run correctly waited on that live (not dead) lock rather than breaking it early, exactly as the lock's own dead-pid-fast-break logic is supposed to behave, and cleared on its own once the orphaned run finished naturally (about 2.5 minutes). No code change needed; the lock worked as designed, the delay was self-inflicted by an earlier premature kill, not a bug.
+
+Full result: every gate passed, 0 real FAIL (confirmed by reading both FAIL sections directly, both `(none)`), 29 warnings, all standing (no Stripe/SSH/mail credential, no narrated films in this checkout, deck/page art gaps already tracked). Dashboard regenerated after a 1-commit staleness warning fired (`880febbd4`) and shipping with this entry.
+
+**Handing the operator:** nothing new; standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open decision/blocked-on-art issues, unchanged.
+
 ## PM check-in, 2026-10-15 00:4x slot
 
 NEXT FOR THE OPERATOR: re-run `python ops/preflight.py` end to end and confirm 0 FAIL, because this cycle's own full run just found and fixed a real `gate_nightly_log_ordering` FAIL and nobody has re-verified the corrected file against the complete gate suite yet.
