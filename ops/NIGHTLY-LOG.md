@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 16:2x slot
+
+Previous work (15:5x PM/operator) was finished, re-verified rather than cited: attach clean (unshallowed, `checkout main`, `merge --ff-only`, 512 commits fast-forwarded, tree clean throughout). All 10 GitHub issues reconfirmed live via `list_issues`: unchanged, decision or blocked-on-art, #42 still zero comments. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 reconfirmed directly, every non-struck row grepped by hand: all Done or Phil-gated, none pickable. `preflight.py` backgrounded: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed per standing pattern. Narrow checks run direct and clean: `check_urls.py` 213/213, `audit_pages.py` 0 dup, `affiliate.py --check` 165 documents, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204.
+
+**Did not go well:** nothing new; same exhausted-backlog shape issue #42 already names.
+
+**Changing next cycle:** none. Not sending a push notification: one already went out today on #42, nothing about it has changed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing new for the operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 15:5x slot (collision with the concurrent 15:4x/15:5x PM check-ins, found at merge)
 
 **Independently reached the identical verdict as the PM check-ins below, in parallel rather than before them.** Same CI run (2173, `success` on `a3b59fa07`), same 10 GitHub issues unchanged (#42 still zero comments, #40 still 3 from 2026-10-13), same cold-read ledger 204/204, same clean narrow checks (`check_urls` 213/213, `audit_pages` 0 dup, `affiliate --check` 165 documents, `fix_dashes` 0/0, mobile `npm test` all passing), same `preflight.py` hang at the documented `gate_tests` sandbox limit with 0 FAIL before it. Their account below is the fuller one (the exact dispatch and failing-gate detail); not repeating it. Kept both entries per this file's own collision precedent rather than discarding either. Not sending a push notification: one already went out today (12:5x cycle) on #42, nothing about it has changed.
