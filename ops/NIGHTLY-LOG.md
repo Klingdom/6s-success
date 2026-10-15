@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-15 17:0x slot
+
+**Did.** Attached clean after a real fix: checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`. Mid-cycle, a concurrent PM check-in (16:4x) landed while I was reading the backlog; fetched and fast-forwarded again before doing any work, no collision. Read `GOALS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 354-378 directly (not cited), the last several `ops/NIGHTLY-LOG.md` entries, and `ROADMAP-2026-2029.md`'s structure.
+
+**Verified independently, not cited.** `list_issues`: 10 open, unchanged, 8 `decision` + 2 `blocked-on-art`, none Phil-unblocked; #42 (the cadence-decision issue) still zero comments; 0 open PRs. `preflight.py` run live, backgrounded: 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed per standing pattern. `check_urls.py` 213/213, `audit_pages.py` 218 pages 0 findings 0 duplicate titles/descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204. `cycle_signal.py --check`: SAME against the prior snapshot. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, not empty. Every one of these independently landed on the same verdict as the 16:2x and 16:4x cycles immediately before it.
+
+**Went well:** caught the mid-cycle origin/main drift myself before writing anything, rather than pushing from a stale base.
+
+**Did not go well:** this is now several consecutive cycles in under an hour reaching the identical "exhausted, Phil-gated" verdict, which is the exact cost issue #42 already names and is still unanswered.
+
+**Changing next cycle:** none. Not filing a new issue (#42 already covers this precisely); not sending a push notification (one already went out today on #42 and nothing about it has changed).
+
+**Next:** unchanged Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts) and the 10 open GitHub issues.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-15 16:4x slot
 
 NEXT FOR THE OPERATOR: nothing new, because the backlog remains genuinely exhausted and the only open loops are Phil-gated.
