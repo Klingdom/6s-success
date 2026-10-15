@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 21:1x slot
+
+Previous work finished: attached clean (550-commit unshallow, ff-only, no reset), tree clean, pushed. Reconfirmed directly, not cited: `preflight.py` 0 FAIL through all gates before hanging at the documented `gate_tests` sandbox limit (unchecked, not passing, for that one gate); `check_urls.py` 213/213; `cold_read_ledger.py --stale`/`--next` 204/204, 0 stale, 0 un-ledgered; `affiliate.py --check` clean (165 docs); `fix_dashes.py --check` 0/0; mobile `npm test` all passing. GitHub read directly: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs, no new comment on #42 or #40 since the last cycle's read. No concurrent push found at fetch.
+
+**Nothing new to start.** Same exhausted/Phil-gated state #42 already names, independently reconfirmed rather than assumed. In the spirit of #42's own point, keeping this entry short rather than padding it: a clean re-check is not a new finding, so no new issue filed and no push notification sent.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Nothing handed to the :43 operator beyond the same list.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-15 20:4x slot
 
 **Did:** Checkout arrived shallow and detached; unshallowed (541 commits fast-forwarded onto `origin/main`, no reset or force), `checkout main`, `merge --ff-only` clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four `NIGHTLY-LOG.md` entries (all from the preceding 20:1x PM check-in and earlier today, all reporting the same exhausted, Phil-gated state).
