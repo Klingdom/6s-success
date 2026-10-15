@@ -20265,12 +20265,24 @@ def gate_nightly_log_ordering() -> None:
     move on to an older date" isolates the one real, current-cycle
     defect (an entry landing after the day has already ended in the
     file) and leaves the legacy chronological section untouched.
+
+    Found 2026-10-15, five live 2026-10-15 entries ("Scheduled operator
+    cycle, 2026-10-15 02:0x slot" through the unheaded "Addendum to the
+    03:0x cycle above"): the regex only matched a heading where the
+    date came immediately after "## " (the "## 2026-10-15, ..." shape).
+    These entries instead read "## PM check-in, 2026-10-15 ... slot" or
+    "## Scheduled operator cycle, 2026-10-15 ... slot", date second not
+    first, so they never entered raw_dates at all and the gate stayed
+    silently green while five of the newest entries sat appended past
+    the legacy 2026-09-30 tail, 13,000+ lines from where "read the last
+    entries" looks. Widened to find the date anywhere in the heading
+    line, not only right after "## ".
     """
     path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
     if not os.path.exists(path):
         return
     text = io.open(path, encoding="utf-8").read()
-    raw_dates = re.findall(r"(?m)^## (\d{4}-\d{2}-\d{2})", text)
+    raw_dates = re.findall(r"(?m)^## .*?(\d{4}-\d{2}-\d{2})", text)
     if len(raw_dates) < 2:
         return
     dates = []

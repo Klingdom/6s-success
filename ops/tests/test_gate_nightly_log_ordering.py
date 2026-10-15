@@ -30,6 +30,13 @@ NEWEST_B = "## 2026-09-29, PM check-in (30-minute triage)\n\n**Did:** confirmed 
 OLDER_A = "## 2026-09-04, cycle (seventh today)\n\n**Did:** older work.\n\nPushed to main.\n"
 OLDER_B = "## 2026-09-04, cycle (sixth today)\n\n**Did:** older work.\n\nPushed to main.\n"
 
+# Date second, not first in the heading, the real 2026-10-15 shape
+# ("## PM check-in, DATE ... slot" / "## Scheduled operator cycle, DATE
+# ... slot") that the date-must-come-right-after-"## " regex missed
+# entirely, leaving the gate silently green while five such entries sat
+# appended past the legacy tail.
+NEWEST_DATE_SECOND = "## PM check-in, 2026-09-29 02:4x slot\n\n**Did:** confirmed nothing new.\n\nPushed to main.\n"
+
 
 def _run(entries):
     tmp = tempfile.mkdtemp()
@@ -82,12 +89,25 @@ def main() -> int:
         fails.append("the real committed ops/NIGHTLY-LOG.md failed: %r"
                      % (preflight.FAIL,))
 
+    # 6. Found 2026-10-15: a misplaced entry whose heading puts the date
+    #    second, not first, must still be caught.
+    r = _run([NEWEST_A, OLDER_A, OLDER_B, NEWEST_DATE_SECOND])
+    if not r or "appended" not in r[0][1]:
+        fails.append("misplaced date-second heading not caught by name: %r"
+                      % (r,))
+
+    # 7. A correctly placed date-second heading, nothing misplaced: clean.
+    r = _run([NEWEST_DATE_SECOND, NEWEST_A, OLDER_A, OLDER_B])
+    if r:
+        fails.append("correct date-second ordering wrongly flagged: %r"
+                      % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_nightly_log_ordering, 5/5 checks pass")
+    print("OK: gate_nightly_log_ordering, 7/7 checks pass")
     return 0
 
 
