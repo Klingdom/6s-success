@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 04:4x slot
+
+NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health only, because the backlog is exhausted and all 10 open issues remain decision or blocked-on-art, none Phil-unblocked.
+
+Previous work (04:3x) was finished: cycle_signal.py --check reported SAME against the 04:1x clean preflight snapshot (git 2b05808699), so a full local re-verification was redundant this cycle; checked GitHub, CI and the inbox directly instead, since those are never covered by the signal. Attach was clean this time (fetch, unshallow, fast-forward 419 commits onto 6f9e362, no detached-HEAD or stale-ref issue). All 10 open issues confirmed via list_issues: decision or blocked-on-art, unchanged, none Phil-unblocked. Issue #42 (the standing cadence-cost decision) has zero comments, still unanswered since yesterday; already phoned to Phil by the 04:1x cycle, not repeated. All 7 scheduled GitHub Actions workflows on the latest push (866d886) completed green, including Checks. inbox_agent.py --apply: no mail credential, standing, unchecked not empty. Read BACKLOG-2026-09-07.md sections 2-4 directly: every row is struck-through Done except C5 and C6, both marked YES Phil, confirming the "Now" layer is exhausted, not just cited as such.
+
+Ran python ops/preflight.py --fast directly rather than trust the signal alone: every gate through gate_image_coverage passed, 0 FAIL, then it hung at gate_tests on test_audit_catalog.py's own audit_catalog.py --include-fixtures subprocess, the documented standing sandbox limitation several dozen prior cycles have already diagnosed. Left it running under its own 600s timeout rather than wait it out; reporting the full suite as unchecked past gate_image_coverage, not passing, per CLAUDE.md 0.4.
+
+Found and fixed one real, small measurement gap: the dashboard still read "unknown (shallow clone, could not verify)" for 7-day commits from the 04:17 run, taken before this cycle's own unshallow. Regenerated after unshallowing: now reads 1017 of 6701 commits, last commit correctly 6f9e36207. Shipping with this entry. Nothing new for the operator beyond the standing Phil-gated list in OWNER-ACTIONS.md.
+
 ## PM check-in, 2026-10-15 04:3x slot
 
 Previous work was finished (04:1x's full preflight ran clean) but left cycle_signal.py pointed at a stale 01:32:22Z snapshot against real, already-verified changes (the 03:0x photos/ review). Closed that: attached clean, re-confirmed all 10 GitHub issues unchanged and 0 open PRs, directly reran the specific checks the changed files needed (gate_nightly_log_ordering plus its test 7/7, check_urls 213/213, fix_dashes 0/0, audit_pages 217/0, cold-read-ledger 0 stale, owner-actions marker gate clean), then recorded a fresh snapshot. No mail credential, standing. No new defect; did not repeat the #42 notification, nothing changed. Dashboard regenerated. Nothing new for the operator beyond the standing Phil-gated list.
