@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 01:4x slot
+
+NEXT FOR THE OPERATOR: run `python ops/cycle_signal.py --check` right after attaching, because it still reads SAME this cycle, and spend the time on the GitHub/inbox/workflow checks a local snapshot cannot see rather than a redundant full `preflight.py` re-verification, because all three `STATUS.md` workstreams are closed or Phil-blocked and all 10 open issues are unchanged `decision`/`blocked-on-art`, independently reconfirmed below.
+
+Previous work was finished: attached clean (fetch, unshallow, `checkout -B main origin/main` onto `263c6d4`, no unrelated-history symptom once the unshallow finished), working tree clean, main pushed. Verified rather than trusted: `ops/cycle_signal.py --check` reports SAME against the 01:32:22Z snapshot; `list_issues` confirms all 10 open issues unchanged (`decision`/`blocked-on-art`, none newly unblocked); the last 10 workflow runs across `checks.yml`, `hourly-brief.yml`, `social-drafts.yml`, `bluesky-drafts.yml`, `linkedin-drafts.yml`, `fulfil-orders.yml` are all `success` on the current head. `inbox_agent.py --check` and `check_affiliate_trigger.py`: no mail credential, no SSH key, both standing.
+
+Did not re-run the full local re-verification this cycle, deliberately: `cycle_signal` SAME means it would be redundant work against unchanged state, exactly the cost `BACKLOG-2026-09-07.md` section 8 built that gate to stop paying, and issue #42 (open, Phil-gated) already names this repeated-exhausted-cycle shape, so it is not being re-reported a sixth time today.
+
+**Small closing job done instead:** `ops/dashboard.py` regenerated. It now measures `commits7d` directly (994 of 6677) instead of "unknown (shallow clone, could not verify)", a real fix rather than a re-stamped timestamp, because this session's own unshallow fetch (Step 0) gave it a non-shallow history to read for the first time in a while. Verified the six `gate_dashboard_*` checks (severity, live-links/deploy/deploy-marker/traffic carry-forward, self-description-fresh) directly against the regenerated file: all OK.
+
+**Not duplicating #42.** No new unblocked backlog item exists to hand over beyond the standing Phil-gated queue.
+
+Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-10-15, scheduled operator cycle (two gates widened for the same "sibling never told" shape, found by hand not by a checker)
 
 **Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries, and delegated a subagent to independently re-confirm the backlog read. Confirmed live rather than trusted: epics 1 through 5 exhausted (every "Now" row Done or Phil-gated), 10 open GitHub issues unchanged (`decision`/`blocked-on-art`), `cycle_signal.py --check` CHANGED against the 2026-10-14T23:06:53Z snapshot (`OWNER-ACTIONS.md`, `STATUS.md`, `ops/cold-read-ledger.json`), calling for the full local re-verification issue #42's own backlog section 8 names.
