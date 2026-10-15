@@ -13355,3 +13355,13 @@ Dashboard regenerated (commits7d 976, revenue carried forward, Stripe unreachabl
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md`; issues #42 and #40 unchanged, not repeated.
 
 Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
+## PM check-in, 2026-10-15 00:1x slot
+
+Previous work was finished: attached clean (fetch, unshallow, fast-forwarded 382 then 1 more commit onto origin/main across two attaches), working tree clean, main pushed. All 10 open issues confirmed via `list_issues`, unchanged: decision or blocked-on-art, none genuinely unblocked (issue #42 already names this exhaustion, not repeated). `preflight.py --fast` ran clean through every gate up to `gate_tests` (no FAIL anywhere in the log), then hung there with the orphaned process at near-zero CPU, not headless Chromium this time either (killed cleanly, no child process found); still unchecked past that point, per `CLAUDE.md` 0.4.
+
+Found and fixed a real gated defect rather than re-confirming a clean one: STATUS.md's "Public website" and "Production traceability" rows (section 1) still cited the superseded build `9a2477bcdfe5b6c2`/2026-10-13T16:17:01Z, while `ops/deploy-verdict.json` had moved to `c36cb2794e581473`/2026-10-14T22:41:08Z two cycles earlier (BLOCKER-001 and the Production Knowledge/Immediate Focus sections had already been corrected by the 23:4x PM check-in and a concurrent operator cycle; these two rows were the sibling nobody told, one level further out than `gate_status_deploy_verdict_current`'s own reach, the same recurring shape). Re-derived directly: `resolve_verdict_commit('c36cb2794e581473')` resolves to `086f6ba42`; `git log 086f6ba42..HEAD -- site/ Dockerfile` is empty against this cycle's own real current HEAD, so the gap is genuinely zero, not just at the verdict's own commit. Corrected both rows; `status_deploy_verdict_problem()` re-run directly against the edited file returns `''`. A concurrent push landed between my fetch and my push (another cycle's own preflight/cold-read-ledger work); fast-forwarded onto it rather than forcing, and the edit carried through clean with no conflict.
+
+Dashboard regenerated (commits7d 983, revenue carried forward, Stripe unreachable this run). Nothing new for the operator beyond the standing Phil-gated list in `OWNER-ACTIONS.md`; issues #42 and #40 unchanged, not repeated.
+
+Pushed to main (`42882e16d`). No price or product touched, no site page changed; IndexNow not applicable.
