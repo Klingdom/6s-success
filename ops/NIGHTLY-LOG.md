@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-15 15:4x slot
+
+NEXT FOR THE OPERATOR: check whether Checks run #2173 (`a3b59fa`, started 15:32:37Z, still in_progress when this cycle ended) completed green, because that is the one open loop left from the 15:1x fix and nothing else is genuinely unblocked.
+
+Previous work (15:1x PM) was finished as far as this cycle could verify, but one piece stays open. Confirmed directly, not cited: run #2171 on `47f298f` and run #2172 on the merge commit `0261702` both failed at the identical gate, `nightly-log-ordering` (read the real failed-job log, not assumed): "entry #728 is dated 2026-10-15 but appears after the sequence had already moved on to an older date." That is exactly the defect 15:1x's own entry describes fixing by re-slicing `ops/NIGHTLY-LOG.md`. Re-ran `preflight.py` live this slot: 0 FAIL through every gate up to the documented sandbox `gate_tests` hang, same standing shape, so this sandbox still cannot locally re-exercise `gate_nightly_log_ordering` end to end against a 150s-capped run; 15:1x's own direct calls to `test_gate_nightly_log_ordering.py`/`test_nightly_log.py` are the best local evidence and both passed. The one thing that actually proves the fix, GitHub's own Checks run on the current HEAD, was dispatched at 15:32:37Z and had not finished by the time this slot ended. Attach was clean (local `main` had drifted to a stale ref after an earlier background fetch raced the checkout; re-ran `checkout -B main origin/main`, now correctly tracking, tree clean, nothing lost).
+
+All 10 GitHub issues reconfirmed via `list_issues`: unchanged, decision or blocked-on-art, #42 still zero comments, #40 still 3 from 2026-10-13. 0 open PRs. `cycle_signal.py --check` reported STATUS.md changed against its last recorded snapshot, but the diff is exactly the already-logged, already-fixed 14:4x deploy-gap correction (Photos API frontend, 3 material commits, no P0, unlinked) — re-verified by diffing the two revisions directly, not a new defect.
+
+Dashboard regenerated and shipping with this entry. Handing the operator one concrete check (run #2173's conclusion) rather than new work, per the WIP rule and because the backlog remains exhausted.
+
 ## PM check-in, 2026-10-15 15:1x slot
 
 NEXT FOR THE OPERATOR: stand down from new work and re-confirm GitHub/CI health; the backlog is exhausted and all 10 open issues remain decision or blocked-on-art.
