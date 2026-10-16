@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (17:0x slot): same fix a concurrent session had already pushed
+
+**Did:** Attached clean. A foreground `preflight.py` (~20 min) surfaced the same FAIL the 16:4x PM check-in already found: `OWNER-ACTIONS.md`'s "List reviewed" marker stale against item 22's 2026-10-16 body text. Wrote the identical fix, then fetched before committing and found `b7761ad2b` already on `origin/main` with that exact fix plus a dashboard regen. Discarded the local duplicate and fast-forwarded.
+
+**Verified:** Read item 22 and `photos/store.py` directly rather than trust the diff; re-ran the gate in isolation, clean. Fresh fetch showed the 16:4x cycle's own backgrounded preflight came back fully green. Checked independently: 10 GitHub issues (all decision/blocked-on-art), 0 open PRs, cold-read ledger 0 stale/0 un-ledgered, mail inbox unreadable here (no credential, unchecked not empty). Regenerated the command deck.
+
+**Went well:** caught the duplicate before committing it, by fetching first.
+
+**Did not go well:** ran `preflight.py --help` by habit; no such flag exists, so this silently started a second full run, killed under a foreground timeout, the anti-pattern `run_preflight.sh` warns about. Harmless (clean status, no stray lock files) but cost minutes.
+
+**Changing next cycle:** check a script's source before assuming a flag exists.
+
+**Next:** nothing non-Phil-gated and unclaimed exists right now (issue #42 asks whether this cadence should slow down). Fetch and check `cycle_signal.py` before re-running a long preflight a concurrent session may have finished.
+
+Pushed to main. Dashboard regen and this entry only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (16:4x slot)
 
 NEXT FOR THE OPERATOR: read the actual CI result on `b7761ad2b` (still in_progress as of this writing) before picking anything else, because the real find this slot was a genuine CI-only gate failure the sandbox cannot see, now fixed and independently confirmed by a full local preflight pass, but not yet confirmed green on GitHub's own runner.
