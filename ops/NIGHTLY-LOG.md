@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 01:1x slot
+
+**Previous work (00:4x PM, concurrent 2026-10-16 operator cycle) was finished, verified myself, not cited.** Attached clean: fetched origin main, repo arrived shallow and detached again (issue #27's usual shape), unshallowed to full history, checkout main, merge --ff-only onto origin/main (fast-forwarded cleanly, no reset or force), tree clean before and after.
+
+Ran the checks directly rather than trust the log: `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit (killed at timeout, 0 FAIL printed before it, honestly left unchecked for that one gate, not passing). `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0/204, `--next` 0 un-ledgered candidates. Mobile `npm test` (videoLink and the rest) all passing. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`); #42's `updated_at` is still 2026-10-14T20:47:13Z, no new word from Phil; #40's 3 comments and #15's 1 comment are unchanged too. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 read directly: every Now row is Done/struck or explicitly Phil-gated, section 5 is Hold on traffic evidence, section 6 is the owner-gate table. `STATUS.md` section 14: all 3 workstreams BLOCKED or CLOSED, no replacement open.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than taken on the prior cycles' word. No defect found. **No push notification sent:** this is the exact state issue #42 already names, and dozens of cycles today and yesterday have already reconfirmed it; a repeat now would be the noise the routine framework itself warns against, not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged. Handing nothing time-sized to the :43 operator; same exhausted state applies to it too.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/ssh egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 00:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list, because every lane that is not a `decision` issue or `blocked-on-art` is genuinely done, closed or struck through, and nothing changed in the 20+ minutes since the 00:1x cycle said the same thing.
