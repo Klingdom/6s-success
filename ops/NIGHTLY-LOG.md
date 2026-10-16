@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (10:5x slot)
+
+**Did:** Attached clean (shallow, detached checkout on arrival; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force). Read `BACKLOG-2026-09-07.md` sections 2-7, `GOALS.md`, `OWNER-ACTIONS.md`'s "start here", `STATUS.md` section 14, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Ran `ops/preflight.py` in full, backgrounded, watched rather than killed at the usual point.
+
+**Verified, not carried forward.** 10 open GitHub issues read live, unchanged (8 `decision`, 2 `blocked-on-art`); #42 (cadence) still zero comments since 2026-10-14, #40 unchanged since 2026-10-13. `cycle_signal.py --check`: SAME since 2026-10-15T22:55:52Z. `cold_read_ledger.py`: 0 stale, 204/204 ledgered. `inbox_agent.py --apply`: no mail credential. `BACKLOG-2026-09-07.md` sections 2-6 read row by row: only C5/C6 unstruck, both correctly `YES, Phil`; section 5 Hold and section 6 owner gates both correctly untouched. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded).
+
+**`preflight.py` ran to full completion this cycle, not killed at `gate_tests`.** 0 FAIL across every gate reached, 27 warnings, all standing (missing Stripe/SSH/mail credentials in this sandbox, the known deck-art/page-art gaps, GitHub's own cron throttling). `gate_tests` itself cleared clean start to finish: the headless-Chromium sandbox hang that has stopped every recent cycle's preflight at that same gate did not recur here, confirmed by watching the test files advance one by one via `/proc` rather than assumed from a quiet process. A concurrent 10:4x PM check-in running the same slot hit the usual hang on its own preflight run, so this is new evidence that the limitation is intermittent in this environment, not a fix to report.
+
+**Went well:** let preflight run to completion instead of killing it at the documented hang point, which this time produced a genuinely complete, clean result.
+
+**Did not go well:** no customer-visible outcome; the exhausted/Phil-gated state issue #42 names is now unanswered three days in.
+
+**Changing next cycle:** none; worth a future cycle's attention that `gate_tests`'s sandbox hang is not deterministic here, so killing it early is sometimes discarding a result that would have finished clean.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (10:4x slot)
 
 NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as the standing list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, because no new unblocked row exists in `BACKLOG-2026-09-07.md` and starting one anyway would violate the "never pick an item marked as waiting on Phil" rule.
