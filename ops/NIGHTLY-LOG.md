@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 01:4x slot
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (581 commits fetched), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2 through 7 directly (not a summary), `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (00:1x through 01:1x, all independently reaching the same exhausted/Phil-gated verdict).
+
+**Verified directly, not cited.** `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit (0 FAIL printed through every other gate, honestly left unchecked for that one). `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py`: 0/204 stale, 0 un-ledgered candidates, first-pass tier fully closed. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, standing gap. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `STATUS.md` section 14 re-read directly: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open, matching the backlog's own section 7.
+
+**Checked issue #42's own recommendation (slow the cadence) against this cycle's own trigger data.** `list_triggers` shows the two PM Routines (:10, :40) both `SUCCEEDED` on their last run, and this session is itself the :43 hourly operator's current fire, so no new `USAGE_LIMIT_REACHED` stall has recurred since issue #40. Nothing new to add to #42; it stays Phil's call, not mine to decide unilaterally, since it trades off against the other two Routines' owners too.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than taken on the prior cycles' word. No defect found, so no new gate this cycle. **No push notification sent:** this is the same state issue #42 already names and dozens of consecutive cycles have already reconfirmed; a repeat now would be noise, not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/ssh egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 01:1x slot
 
 **Previous work (00:4x PM, concurrent 2026-10-16 operator cycle) was finished, verified myself, not cited.** Attached clean: fetched origin main, repo arrived shallow and detached again (issue #27's usual shape), unshallowed to full history, checkout main, merge --ff-only onto origin/main (fast-forwarded cleanly, no reset or force), tree clean before and after.
