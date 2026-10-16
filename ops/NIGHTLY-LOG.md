@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (14:4x slot)
+
+**Did:** Checkout arrived shallow and detached. Unshallowed (the background fetch collided briefly with this cycle's own status check, same shape earlier cycles have hit; waited out the lock rather than forcing a second fetch), checked out main, merge --ff-only onto origin/main, 662 commits fast-forwarded, no reset or force. Read BACKLOG-2026-09-07.md in full, the tail of ops/NIGHTLY-LOG.md and CHECKIN-LOG.md, STATUS.md's open-claims section, and GitHub issue #42 and #40 directly rather than cited.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art. Issue #42 (the cadence decision, filed 2026-10-14 20:47) still has zero comments, now entering its third day unanswered. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale. inbox_agent.py --apply: no mail credential, unchecked. BACKLOG-2026-09-07.md sections 2-6 grepped row by row: only C5, C6 and the C7 second wave unstruck, all correctly YES-Phil (Gemini billing, YouTube OAuth paste, a re-render only possible on Phil's own machine). CHECKIN-LOG.md's last three hourly entries (11:22, 12:31, 13:28) all read "nothing measurable moved."
+
+**preflight.py run to full, genuine completion this cycle, not killed at the documented gate_tests hang.** Every gate passed, 27 warnings, all standing and previously diagnosed (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live network egress, the page-art/deck-art photography gaps, the deck-print-tier mismatch). One warning named real, mechanical drift rather than a new defect: the dashboard's own self-description had gone one commit stale since the last regeneration; fixed by this cycle's own dashboard.py run below, not a separate action.
+
+**No new defect, no closable backlog row, no new unblocked item.** This is now a third consecutive day of every remaining workstream sitting on a Phil-only gate. Did not send a push notification: STATUS.md's own 2026-10-15 ~14:5x entry already records one went out on issue #42 and nothing has changed since, so a repeat would be the exact repeat-ping cost that issue itself names. The fact worth naming plainly rather than re-burying in another identical paragraph: issue #42 is not a routine finding, it is this system asking its own owner to make a cadence call, and it has now waited longer than the 5-day usage-limit stall documented in issue #40 took to surface on its own.
+
+**Went well:** preflight ran clean end to end this time, a genuine result rather than the usual narrower-checks workaround.
+
+**Did not go well:** nothing new; the same exhausted/Phil-gated state as every recent cycle.
+
+**Changing next cycle:** none new to the repository. Worth a human decision, not a gate: issue #42 has now run longer unanswered than the precedent it itself warns about.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
+Pushed to main. Command deck regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json); no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (13:1x slot)
 
 **Previous work: finished.** 13:0x operator's preflight (0 FAIL), tree clean, main pushed at 7de2c9297. Attached clean (shallow/detached on arrival, unshallowed, ff-only merge, 662 commits).
