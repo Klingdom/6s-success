@@ -12481,3 +12481,7 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product
 **Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-16 (09:1x slot)
+
+Previous work: finished, clean push, tree clean on attach (fresh shallow checkout, fully unshallowed, 635 commits fast-forwarded, no force). Reconfirmed exhausted/Phil-gated state directly: 10 open issues unchanged, all decision/blocked-on-art, no new Phil comment; cycle_signal SAME since 2026-10-15T22:55:52Z; cold-read ledger 0 stale; CHECKIN-LOG.md has read "nothing measurable moved" for 6+ straight hourly entries. One real finding, not a repository defect: `ops/affiliate.py --check` first FAILed in this fresh container because pymupdf, pinned in `ops/requirements.txt`, was never installed here; installed it, reran, 165 documents clean. preflight 0 FAIL/ERROR through `gate_image_coverage`, hung at `gate_tests`, the documented sandbox limitation. Did not re-notify Phil: nothing changed since this morning's push notification on issue #42. Next: whichever backlog row or issue Phil clears first; nothing new for the hourly operator.
