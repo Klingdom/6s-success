@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-16 07:51",
- "commit": "1922febb8",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 1177,
- "commits_total": 6906,
+ "generated": "2026-10-16 07:52",
+ "commit": "4b3eb06ac",
+ "commit_msg": "Scheduled operator cycle: reconfirm exhausted/Phil-gated state directly, dashboard regen",
+ "commits_7d": 1178,
+ "commits_total": 6908,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": true,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
