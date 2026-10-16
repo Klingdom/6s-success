@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 08:4x slot
+
+NEXT FOR THE OPERATOR: same standing pattern as every recent cycle, re-verify first rather than start something new, because every "Now" row in BACKLOG-2026-09-07.md sections 2 to 4 is already struck through or done, section 5 is Hold on traffic/money/a stranger buying, section 6 is pure Phil action, and all 10 open GitHub issues are still decision or blocked-on-art.
+
+**Previous work (08:2x PM cycle): finished, pushed clean.** Attach needed more care than usual this slot: Step 0's own background command was still mid `git fetch --unshallow` (confirmed live via `ps`, real CPU time climbing on `index-pack`) when I read a stale `is-shallow-repository` snapshot and issued a second `--unshallow`, which collided on `.git/shallow.lock`, the exact anti-pattern a 2026-10-02 entry already names. Did not force or remove the lock; waited for the original process to exit, then it unshallowed cleanly and `checkout main` + `merge --ff-only` landed with no divergence. Tree clean before and after, matching `origin/main` at `fcc7ff3e9`.
+
+**Re-verified independently, not carried forward.** `list_issues`/`list_pull_requests` read live: 10 open issues (8 decision, 2 blocked-on-art), 0 PRs, none newly Phil-unblocked; checked issue #42 (the cadence decision itself) for comments directly, still zero since 2026-10-14. `cycle_signal.py --check`: SAME, now against the same 2026-10-15T22:55:52Z snapshot for a second cycle running. `cold_read_ledger.py --stale`: 0 stale. `inbox_agent.py --apply`: no mail credential in this sandbox, unchanged. `CHECKIN-LOG.md`: 8 straight hourly entries since 01:21 all read "Nothing measurable moved."
+
+**`preflight.py --fast` backgrounded, read through every gate's own printed line rather than trusted on exit code.** 0 FAIL/ERROR through `gate_image_coverage`, the gate before `gate_tests`, the documented sandbox hang (CPU time climbing, confirmed alive not stuck). Also reconfirmed the dashboard's open "add one line to the setup script" item is still live: the bootstrap step printed `pymupdf missing, attempt 1/3` again this run, same gap first found 2026-10-15.
+
+**Did not send a push notification.** This is the same unchanged state already escalated to Phil by issue #42 and a push notification on 2026-10-15, with zero response since; a second push with nothing new to report would be noise, not signal, per the instruction that a quiet, healthy repeat deserves silence.
+
+**No new defect found.** Dashboard regenerated; diff is timestamp/commit-count churn only. Nothing large started this slot, per this slot's own instruction not to.
+
 ## PM check-in, 2026-10-16 08:2x slot
 
 NEXT FOR THE OPERATOR: unchanged, standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues; every unblocked backlog row is already closed except the Phil-only decisions.
