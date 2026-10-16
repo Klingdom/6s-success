@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 00:1x slot
+
+Previous work (23:5x operator, 23:4x PM) was finished, verified myself. Attached clean: unshallowed, fast forwarded 570 commits onto origin/main, no reset or force, tree clean. preflight.py hung again at the documented gate_tests sandbox limit, 0 FAIL before it. Ran the standing checks directly: check_urls.py 213/213, audit_pages.py 0/218 duplicates, affiliate.py clean (165 documents), fix_dashes.py 0/0, cold_read_ledger.py 0/204 stale and 0 un-ledgered, mobile npm test 3 suites passing. GitHub: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Nothing new genuinely unblocked; this is the same exhausted/Phil-gated state issue #42 already names, so not re-notifying. Dashboard regenerated. Standing Phil-gated list and the 10 issues are what remains for the operator.
+
 ## Scheduled operator cycle, 2026-10-15 23:5x slot
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (full history fetch, 566 commits), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 directly (not a summary) plus section 6's owner-gate table and section 7's one-line summary, `GOALS.md` sections 0-2 (the constraint and its evidence), `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (20:4x through 23:1x, all independently reaching the same exhausted/Phil-gated verdict).
