@@ -92,6 +92,20 @@ finding is informational (pre-deploy, zero live impact) and already fully
 recorded here and in PHOTOS-API.md/OWNER-ACTIONS.md for whenever he reads
 item 22.
 
+## PM check-in, 2026-10-16 (15:4x slot)
+
+**NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, because no row in BACKLOG-2026-09-07.md sections 1b-6 is unstruck and unblocked (only C5/C6/C7-second-wave remain, all correctly YES-Phil) and none of the 10 open GitHub issues or 0 open PRs changed since the last cycle.**
+
+**Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (fae8b5e27, the 15:1x cycle's own hourly check-in); unshallowed, checked out main, merge --ff-only onto origin/main, tree clean, nothing to fast-forward.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art, 0 open PRs; #42 (cadence) still zero comments, now past 43 hours. BACKLOG-2026-09-07.md sections 1b through 6 read directly: 1b's items are either resolved or revisit-dated to 2026-12-15; sections 2-6 scanned row by row, only C5/C6/C7-second-wave unstruck, all correctly YES-Phil (Gemini billing, YouTube OAuth paste, a re-render only possible on Phil's own machine). cycle_signal --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger --stale: 0, 0 stale. inbox_agent --apply: no mail credential, unchecked not empty.
+
+**preflight.py hung at gate_tests again** (confirmed via flat /proc CPU ticks, 1390/270 unchanged across repeated samples); killed clean, one orphaned test_audit_catalog.py child found reparented and killed too. Narrower checks all clean in its place: audit_pages 0 duplicate descriptions, fix_dashes 0 em/en dashes, affiliate 165 documents, check_sellable 124/126 (2 person-delivered services excluded), check_urls 213/213.
+
+**No new defect, no closable row.** Dashboard not yet regenerated this slot (next). Not re-notifying Phil: unchanged since the standing #42 notification, same call every recent cycle has made.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first. Leaving nothing new for the hourly operator at :43 beyond holding state.
+
 ## PM check-in, 2026-10-16 (15:1x slot)
 
 **Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (c251b2a1c, committed 15:03:33Z, 10 minutes before this slot); unshallowed, checked out main, merge --ff-only onto origin/main, local branch itself was 678 commits stale but the detached checkout was already current.
