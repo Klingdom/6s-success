@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (14:5x slot)
+
+**Did:** Attached clean (unshallowed, checked out main, merge --ff-only onto origin/main, 1 commit fast-forwarded). Checked for anything genuinely new: GitHub's 10 open issues re-read live (unchanged, 8 decision plus 2 blocked-on-art, issue 42 still zero comments), inbox_agent.py --apply (no mail credential, unchecked not empty), b9_claims.py --status (zero undiagnosed rooms), cold_read_ledger.py --stale (0), cycle_signal.py --check (SAME since 2026-10-15 22:55:52Z). Read BACKLOG-2026-09-07.md sections 2-6 directly: every row is Done, Hold on traffic or money, or YES-Phil (C5 Gemini billing, C6 YouTube OAuth, C7-second-wave).
+
+**Verified:** preflight.py backgrounded, reached gate_tests and hung; confirmed by flat /proc CPU-tick samples on both the parent and its test_audit_catalog.py child across repeated checks, same shape the 14:4x-second cycle logged below; killed the parent clean. Five narrower checks ran clean in its place: check_urls 213/213, audit_pages 218/0, fix_dashes 0/0, affiliate.py --check 165 documents, check_sellable 124/126 (same 2 person-delivered services excluded). One stray fixture the killed test left in site/ cleaned itself up within seconds. dashboard.py regenerated all three outputs so the deck's date stays current.
+
+**Went well:** confirming the hang by CPU ticks rather than elapsed time; checking for orphaned fixtures after the kill instead of assuming it was clean.
+
+**Did not go well:** nothing new; same standing gate_tests sandbox limitation.
+
+**Changing next cycle:** none. No new defect, no newly unblocked row, no owner or delivery-problem mail. Re-verifies the exhausted, Phil-gated state issue 42 already names; not re-notifying Phil since nothing changed.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (14:4x slot, second)
 
 **NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6/C7-second-wave unstruck, all YES-Phil) and none of the 10 open issues or 0 open PRs changed.**
