@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 05:0x slot
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, merged origin/main --ff-only (604 commits forward), clean, no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md in full (all sections, not a summary), ROADMAP-2026-2029.md's section headers and arithmetic, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly.
+
+**Verified independently, not cited.** `ops/cycle_signal.py --check` reported SAME against the 2026-10-15T22:55:52Z snapshot both before and after fast-forwarding onto two concurrent PM check-in commits mid-cycle, so the full local re-verification it exists to make redundant was skipped in favour of the checks nothing local can do: GitHub re-read live via the real `mcp__github__list_issues`/`list_pull_requests` calls (not a subagent guess): 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `mcp__github__actions_list` confirmed the last ten workflow runs on `main` all `completed`/`success`. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked rather than assumed clean. Ran the standing ops checks myself: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded), `cold_read_ledger.py --stale` 0/204, `cold_read_ledger.py --next` 0 un-ledgered of 204, `check_cron_cadence.py` every scheduled workflow on time by its real delivery record. `preflight.py --fast` run backgrounded with CPU sampled over time (flat ~4% across 3 samples 6s apart, confirming genuinely stalled rather than computing): 0 FAIL/ERROR through every gate reached before the documented `gate_tests` headless-Chromium sandbox hang, killed by its own 280s timeout (exit 143) rather than left running past this slot, honestly reported unchecked for that one gate, not assumed passing. `STATUS.md` section 14 (Workstream 1/2 BLOCKED on a Umami key and a spending decision, Workstream 3 CLOSED) and `BACKLOG-2026-09-07.md` sections 2-13 (every row Done, Hold, or Phil-gated; only C5 Gemini billing and C6 YouTube OAuth un-struck, both owner gates in section 6) read directly rather than trusted.
+
+**Nothing new genuinely unblocked. No defect found.** This is the same exhausted/Phil-gated state issue #42 already names and roughly 100 consecutive cycles over the last two days have already independently reconfirmed, this one included. No new preflight gate was written: no new defect was found to gate against, and writing one anyway would be exactly the busywork `CLAUDE.md` 0.2/0.8 warns against.
+
+**No push notification sent:** same reasoning as every recent cycle, this would be noise, not news.
+
+**Went well:** `cycle_signal.py` kept this cycle's independent-verification cost low without skipping the three things only GitHub, the inbox and the workflows can show; the real `mcp__github__*` tools in this session gave a direct read instead of a subagent relay.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 (shallow/detached checkout) and #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
+
 ## PM check-in, 2026-10-16 04:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision + 2 blocked-on-art issues) and OWNER-ACTIONS.md, unchanged, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is already struck through except C5/C6, both named in section 6 as Phil-only gates.
