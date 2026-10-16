@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 07:1x slot
+
+**Previous work (06:4x PM/operator): finished and pushed clean.** Attach needed a real unshallow (621 commits behind), checkout main, ff-only merge onto origin/main, no reset or force. Tree clean before and after, main at `ead15a017` matching origin, re-fetched after preflight to rule out a concurrent push before writing this entry: still matching.
+
+**Re-verified independently, not cited.** GitHub re-read live via the real API: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Read issue #42's comments directly: still zero since filed 2026-10-14. Read issue #40's comments directly: nothing since Phil's own 2026-10-13 status check. `cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `cold_read_ledger.py --stale` 0/204, `--next` 0 un-ledgered. `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED, Workstream 3 CLOSED, no replacement opened. `CHECKIN-LOG.md` tail: 7 straight hourly entries (01:21 through 06:24) report nothing measurable moved.
+
+**`preflight.py --fast` run backgrounded, not trusted on process exit alone.** 0 FAIL/ERROR through every gate reached before `gate_tests`. Sampled `/proc/<pid>/stat` utime/stime three times, roughly 9 to 13s apart: identical across all three at `gate_tests`, confirming the documented headless-Chromium sandbox hang, not computation. Killed cleanly, single process, no orphan left running; reported unchecked for that one gate, not assumed passing.
+
+**No defect found, nothing new unblocked.** Same exhausted/Phil-gated state the last several dozen cycles have independently reconfirmed: every open item is `decision` or `blocked-on-art`, and every unblocked backlog row is already closed.
+
+**Next:** same standing list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43.
+
 ## PM check-in, 2026-10-16 06:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked backlog row is already closed except the Phil-only decisions.
