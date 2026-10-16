@@ -433,8 +433,8 @@
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "second-pass cold read, 2026-10-14 PM check-in: re-read in full. lane_path() does its own existence/pattern check rather than reusing _all_candidate_files()'s collision guard, so add_entry() could in theory silently resolve to the wrong lane on a cross-lane basename collision without raising (only --next would catch it); no such collision exists today (175 candidates, 0 collisions, re-verified), so this is a latent gap, not a live defect. stale_entries(), is_cleared(), next_candidates() all re-traced against the live ledger and git history, all correct."
+      "date": "2026-10-16",
+      "note": "re-read in full after 2026-10-16's own photos/*.py lane addition (its own last-touch date), the exact self-referential case stale_entries() exists to catch. _all_candidate_files() re-run directly: 208 candidates across all 5 lanes, 0 basename collisions (no SystemExit), confirming the lane_path() latent collision-guard gap the 2026-10-14 note already named stays latent, not live. stale_entries()/is_cleared()/next_candidates()/lane_path() all re-traced against the live ledger and git history, all correct; --stale itself correctly flagged this file's own entry before this re-read, proving the mechanism works on itself."
     },
     "corpus_index.py": {
       "status": "clean",

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (16:2x slot)
+
+**Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (a91c2a6f1, the 16:0x operator cycle's own merge); unshallowed, checked out main, merge --ff-only onto origin/main, nothing to fast-forward, tree clean.
+
+**Found and closed a small genuine gap rather than repeat another identical reconfirmation.** `cold_read_ledger.py --stale` reported its own file as stale: the 16:0x cycle had just added the `photos/*.py` lane to `ops/cold_read_ledger.py`, which is itself a lane-5 candidate, so its 2026-10-14 ledger entry no longer covered the code that exists today, exactly the self-referential case `stale_entries()` exists to catch. Re-read the file in full, re-ran `_all_candidate_files()` directly (208 candidates across all 5 lanes, 0 basename collisions, confirming the `lane_path()` latent collision-guard gap the 2026-10-14 note already named stays latent, not live), re-traced `stale_entries()`/`is_cleared()`/`next_candidates()`/`lane_path()` against the live ledger and git history: all correct. Re-ledgered with today's date; `--stale` now reports 0.
+
+**`cycle_signal.py --check` read CHANGED** (BACKLOG-2026-09-07.md and OWNER-ACTIONS.md both moved in the 16:0x cycle's own commit, as expected), so ran the full local re-verification rather than skip it: `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 person-delivered services excluded), `link_graph_report.py` 0 orphans, `rotate_nightly_log.py --check` CLEAN (767 entries, within window), `b9_claims.py --status` 0 undiagnosed rooms, `inbox_agent.py --apply` no mail credential (unchecked, not empty). 10 GitHub issues read live, unchanged (8 decision, 2 blocked-on-art; #42 still 0 comments, now past 44 hours), 0 open PRs. `BACKLOG-2026-09-07.md` sections 1b-6 read directly: only C5/C6/C7-second-wave unstruck, all correctly YES-Phil.
+
+**`preflight.py` backgrounded via `run_preflight.sh`; every gate through `gate_image_coverage` passed, 0 FAIL.** Confirmed the `gate_tests` hang by CPU-tick sampling this time rather than assuming it (4 samples, ~80s, parent and `test_audit_catalog.py` both flat at 0%); killed clean, fixture and lockdir both confirmed gone after, no orphan. Recorded as unchecked, not passing, per CLAUDE.md 0.4. Ran the one test the day's own ledger edit touches directly instead: `test_cold_read_ledger_stale.py` 7/7.
+
+**Recorded a fresh `cycle_signal` snapshot** now that the full local re-verification came back clean; `--check` confirms SAME. Dashboard regenerated.
+
+**No new defect beyond the ledger self-reference, no closable BACKLOG row.** Not re-notifying Phil: issue #42 already names the repeated-state cost and nothing here changes its answer.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first. Leaving nothing new for the hourly operator at :43 beyond holding state; the standing `gate_tests` sandbox limitation is unchanged and needs no further action from it.
+
 ## Scheduled operator cycle, 2026-10-16 (16:0x slot): photos/*.py had no cold-read lane, and the one read found a real lost-upload race, fixed
 
 **Did:** Unshallowed, checked out main, merge --ff-only onto origin/main (3

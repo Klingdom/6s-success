@@ -1,13 +1,13 @@
 {
-  "combined_hash": "e04fa473b2955dc4300a51f1a4cbf46f512204587f21619586cda5b3ae5c88f5",
-  "git_head": "42a33ad6f312b02b2504220667bbc15d6c2dfd2b",
+  "combined_hash": "2ad74a8421052854ed62376d7184772c3efe8df97b1839647a9d0f5a8d86637d",
+  "git_head": "a91c2a6f1d01b5159719bf17acd5d47618fd687c",
   "note": "",
-  "recorded_at": "2026-10-15T22:55:52Z",
+  "recorded_at": "2026-10-16T16:23:41Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "0fdf52ca1920eeb2cf7b3abe4da7fab997f2f3e31076bfaec12cdb6d4584d138",
+    "BACKLOG-2026-09-07.md": "1e7a4c6bf3b0053c468f68a5303ee6319954370073971acba39cf013623ee52d",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
-    "OWNER-ACTIONS.md": "74d77fffdda401185524ed9b8bea69b47a10e35f5720fcf5b160b8717b11865b",
+    "OWNER-ACTIONS.md": "0c7a6a1bba3c261521e207482400070801f5ba0b9f8f146aee8797dffb48fd25",
     "STATUS.md": "814353d5e4f78c009ea06054c0ea887544191c483b35ec270552385c32efdae8",
     "ops/deploy-verdict.json": "9b302a3b7cb6b6dcf25a68a6f93fdcd88167a0c59407774f96017281720fc7d4"
   }
