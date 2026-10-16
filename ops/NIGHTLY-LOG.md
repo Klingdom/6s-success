@@ -2,23 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-10-16 (20:4x slot): independently reconfirmed, nothing new, no re-notify
+## PM check-in, 2026-10-16 (20:4x slot)
 
-**Did:** Attach arrived shallow and detached, 717 commits behind (a file mid-flight during the fetch forced an update); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 1b through 7 directly rather than citing a summary: every "Now" row (A1-A6, B1-B9, C1-C7) is either struck through done or explicitly owner-gated (C5 Gemini billing, C6 OAuth paste); section 5 is a deliberate Hold; section 7's own one-line summary (site technically finished, commercially unproven) still holds.
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
 
-**Verified independently, not cited from the 20:1x entry immediately before this one, even though HEAD had not moved since it ran:** `ops/cold_read_ledger.py --stale` 0; `ops/cycle_signal.py --check` SAME against the 17:02:36Z snapshot; `ops/b9_claims.py --status` 0 undiagnosed rooms; `list_issues` live, 10 open, unchanged, all `decision`/`blocked-on-art`, #42 now exactly 48h with 0 comments, #40 now past 71h; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential, same standing gap. Did not re-run the full `preflight.py` (10+ minutes of `gate_tests`): the tree is byte-identical to the commit the prior cycle already verified clean against, and re-running an unchanged tree would only burn the slot without a chance of a different answer, the same call that slot's own entry made.
+**Previous work: finished.** Attach needed a real unshallow (fresh checkout arrived shallow and detached, 717 commits behind); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force, 0 conflicts.
 
-**No new defect, no closable backlog row, nothing unblocked to start.** Not re-notifying Phil on #42/#40: the standing notification already went out earlier today and neither issue has a new comment since.
+**Independent checks, not cited:** diffed `97bbb751d..HEAD`, confirmed only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/NIGHTLY-LOG.md`, `ops/dashboard.html`, `ops/state.json` changed, no code touch, so started a fresh full preflight, then stopped it once the diff proved redundant. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale`: 0. `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 now past 48h unanswered, #40 past 71h. `list_pull_requests`: 0 open. CI confirmed green directly on the last code commit (`a90d209d`, success 17:03-17:15Z). `ops/last-brief-sent.json`: 19:30:52Z, 73 minutes old, nothing changed since, not re-sending.
 
-**Went well:** treating the previous cycle's clean result as reusable evidence only after confirming HEAD had not moved, rather than either blindly trusting it or wastefully re-deriving it.
-
-**Did not go well:** nothing new this slot; the exhausted state is now self-reinforcing across cycles with no mechanism to stop the hourly operator from reaching the same conclusion at the same cost until a human decides #42 or #40.
-
-**Changing next cycle:** none; the standing fix (decide #42/#40) is Phil's, already recorded.
+**No new defect, no closable row, nothing unblocked.** Not notifying Phil again on #42/#40: silence is correct when nothing changed.
 
 **Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
 
-Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+Pushed to main. Log and dashboard regen only; no price, product or page touched.
+
+## Scheduled operator cycle, 2026-10-16 (20:4x slot, second): independently reconfirmed the same exhausted state, folded into the concurrent PM check-in above rather than restated
+
+**Did:** Attach arrived shallow and detached, 717 commits behind; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean. Read `BACKLOG-2026-09-07.md` sections 1b through 7 directly: every "Now" row (A1-A6, B1-B9, C1-C7) is struck through done or explicitly owner-gated (C5 Gemini billing, C6 OAuth paste); section 5 is a deliberate Hold.
+
+**Verified independently before writing anything:** `cold_read_ledger.py --stale` 0; `cycle_signal.py --check` SAME against the 17:02:36Z snapshot; `b9_claims.py --status` 0 undiagnosed rooms; `list_issues` live, 10 open, unchanged; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential. Did not re-run the full `preflight.py`: tree byte-identical to the already-verified commit. On push, found a concurrent PM check-in (`06b9ac54b`) had landed the identical conclusion moments earlier; merged rather than force-pushed over it, folding this entry in below it instead of duplicating the same finding as its own top-level entry.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Not re-notifying Phil on #42/#40.
+
+**Changing next cycle:** two independent sessions reaching the same exhausted-state conclusion within minutes of each other is expected at this cadence until #42 is decided; not a new defect to gate.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
+Pushed to main (merge commit). Log and dashboard regen only; no price, product or page touched.
 
 ## PM check-in, 2026-10-16 (20:1x slot)
 
