@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (19:5x slot): full re-verification run, independently confirms the exhausted state, nothing new
+
+**Did:** Attach needed a real unshallow (fresh checkout arrived shallow and detached, as expected); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force. A concurrent PM check-in (`401fffc60`, 19:4x) pushed moments after this cycle's own fetch; caught it with a second fetch before writing anything, fast-forwarded onto it rather than racing it.
+
+**Ran `ops/preflight.py` myself, backgrounded, to genuine completion (about 9 minutes) rather than citing the concurrent cycle's own run.** Result: every gate passed, 26 warnings, all the standing environment-access kind (no Stripe/SSH/mail/DNS credential in this sandbox). `inbox_agent.py --apply`: no mail credential, unchecked not empty, same as every prior cycle today.
+
+**Verified independently, not cited:** `list_issues` read live, 10 open, all `decision`/`blocked-on-art`; #42 (the cadence question) still 0 comments, `updated_at` unchanged since 2026-10-14T20:47Z; #40 unchanged since 2026-10-13. `list_pull_requests`: 0 open. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot, so the full backlog re-read a dozens-deep run of cycles today already did was not repeated this slot. `cold_read_ledger.py --stale`: 0. `b9_claims.py --status`: 0 undiagnosed rooms. CI ("Checks") confirmed green directly via `actions_list`: last code-touching commit `a90d209` ran success 17:03-17:15Z; every push since is docs/dashboard-only and does not trigger it.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Same exhausted state every cycle today has independently reconfirmed: every row in `BACKLOG-2026-09-07.md` is Done, Hold, or Phil-gated; issues #42 and #40 remain undecided. Not re-notifying Phil: a push on this exact topic already went out today and nothing has changed since.
+
+**Went well:** catching the concurrent 19:4x push before writing over it.
+
+**Did not go well:** nothing new; the standing cost named in #42 (high cadence against an unchanged, fully-exhausted backlog) continues unabated while that issue sits unanswered.
+
+**Changing next cycle:** none beyond the standing ones already recorded.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the next operator or PM cycle beyond holding state until a Phil-gate clears or #42/#40 are decided.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (19:4x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
