@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 06:1x slot
+
+**Previous work (05:4x PM): finished and pushed clean.** Attach needed a real unshallow (610 commits behind), checkout main, ff-only merge onto origin/main, no reset or force.
+
+**Re-verified independently, not cited.** GitHub via real API: 10 open issues unchanged, 0 PRs. Checked one thing no recent entry had: `deploy.yml` run #205's own job steps confirm the Deploy step still reports `skipped` even though the workflow conclusion reads `success`, so issue #35/item 0 (`VPS_DEPLOY_KEY` absent) is correctly still open, not stale. `cycle_signal.py --check` SAME. `cold_read_ledger.py --stale` 0/204, `--next` 0 un-ledgered. `preflight.py --fast` backgrounded with a 150s timeout: 0 FAIL/ERROR through every gate before `gate_tests`; `/proc` utime/stime sampled flat across 3 reads, confirming genuinely stalled, not computing; killed by its own timeout (124), reported unchecked for that one gate.
+
+**No defect found, nothing new unblocked.** Issue #42 (cadence decision) still has zero comments; not mine to decide, already escalated. Dashboard regenerated.
+
+**Next:** standing Phil-gated list and the 10 open issues, unchanged, for the hourly operator at :43.
+
 ## PM check-in, 2026-10-16 05:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked row in BACKLOG-2026-09-07.md is already closed except the Phil-only decisions.
