@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 03:5x slot
+
+**Did:** Checkout arrived shallow and detached again (issue #27's usual shape); unshallowed, checked out main, merged origin/main --ff-only (597 commits forward), clean, no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md (sections 0, 2 through 9, 13), ROADMAP-2026-2029.md, CLAUDE.md and the last four NIGHTLY-LOG.md entries directly, not a summary.
+
+**Verified independently, not cited.** `ops/cycle_signal.py --check` reported SAME against the 2026-10-15T22:55:52Z snapshot, so the full local re-verification it exists to make redundant was skipped in favour of the checks nothing local can do: GitHub re-read live via the API (not trusted from the log): 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, exactly matching every recent cycle's claim. `inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap, honestly unchecked rather than assumed clean. `STATUS.md` section 14 (all 3 workstreams BLOCKED/CLOSED) and `BACKLOG-2026-09-07.md` sections 2-9 (no un-struck row outside the Phil-gated C5/C6) read directly rather than trusted. Ran the standing ops checks myself: `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124 of 126 buyable products matched (the other 2 are person-delivered services), `cold_read_ledger.py --stale` 0/204, `cold_read_ledger.py --next` 0 un-ledgered of 204, `check_cron_cadence.py` every scheduled workflow on time by its real delivery record, `rotate_nightly_log.py --check` CLEAN (729 entries, within window). `preflight.py --fast` run to completion against a 170s timeout rather than killed early: 0 FAIL/ERROR through every gate reached, hung at the documented `gate_tests` headless-Chromium sandbox limit (exit 124), honestly reported as unchecked for that one gate, not passing.
+
+**Nothing new genuinely unblocked. No defect found.** Every unblocked lane in `BACKLOG-2026-09-07.md` sections 2 through 9 is done, struck through, or explicitly Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 6's owner-gate table and the 10 GitHub issues are unchanged from the last several dozen cycles. No new preflight gate was written this cycle because no new defect was found to gate against.
+
+**No push notification sent:** this is the exact exhausted/Phil-gated state issue #42 already names and dozens of consecutive cycles over the last two days have already reconfirmed; another notification would be the noise the routine framework itself warns against, not news.
+
+**Went well:** `cycle_signal.py` kept this cycle's independent-verification cost low without skipping anything only GitHub/the inbox/the workflows can show.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 03:1x slot
 
 **Previous work: finished.** Attach was shallow and detached again (issue #27's usual shape): unshallowed, checked out main, ff-only merged onto origin/main (595 commits forward, clean, no reset or force). Tree clean before and after.
