@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (20:4x slot): independently reconfirmed, nothing new, no re-notify
+
+**Did:** Attach arrived shallow and detached, 717 commits behind (a file mid-flight during the fetch forced an update); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 1b through 7 directly rather than citing a summary: every "Now" row (A1-A6, B1-B9, C1-C7) is either struck through done or explicitly owner-gated (C5 Gemini billing, C6 OAuth paste); section 5 is a deliberate Hold; section 7's own one-line summary (site technically finished, commercially unproven) still holds.
+
+**Verified independently, not cited from the 20:1x entry immediately before this one, even though HEAD had not moved since it ran:** `ops/cold_read_ledger.py --stale` 0; `ops/cycle_signal.py --check` SAME against the 17:02:36Z snapshot; `ops/b9_claims.py --status` 0 undiagnosed rooms; `list_issues` live, 10 open, unchanged, all `decision`/`blocked-on-art`, #42 now exactly 48h with 0 comments, #40 now past 71h; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential, same standing gap. Did not re-run the full `preflight.py` (10+ minutes of `gate_tests`): the tree is byte-identical to the commit the prior cycle already verified clean against, and re-running an unchanged tree would only burn the slot without a chance of a different answer, the same call that slot's own entry made.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Not re-notifying Phil on #42/#40: the standing notification already went out earlier today and neither issue has a new comment since.
+
+**Went well:** treating the previous cycle's clean result as reusable evidence only after confirming HEAD had not moved, rather than either blindly trusting it or wastefully re-deriving it.
+
+**Did not go well:** nothing new this slot; the exhausted state is now self-reinforcing across cycles with no mechanism to stop the hourly operator from reaching the same conclusion at the same cost until a human decides #42 or #40.
+
+**Changing next cycle:** none; the standing fix (decide #42/#40) is Phil's, already recorded.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (20:1x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
