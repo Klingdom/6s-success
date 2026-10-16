@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (13:4x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 and the C7 second wave unstruck, all correctly YES-Phil) and none of the 10 open issues changed.
+
+**Previous work (13:1x PM, then two hourly cycles): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival), checkout main, merge --ff-only onto origin/main, no reset or force. Tree clean before and after at 76facfa25.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live via list_issues ordered by updated_at: unchanged, 8 decision + 2 blocked-on-art; #42 (cadence) still zero comments, now 2 days old. 0 open PRs. BACKLOG-2026-09-07.md grepped directly for C5/C6/C7: only those three unstruck, all correctly YES-Phil (Gemini billing, YouTube OAuth, re-narrate on Phil's own machine). cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale.
+
+**preflight.py run fresh, not trusted on the last cycle's say-so.** 0 FAIL/ERROR through gate_image_coverage. Hung at gate_tests: confirmed genuinely stuck via three /proc CPU-tick samples ~10s apart on the parent (flat at 1016/105 throughout) and its child (barely moving, 5/3 to 7/4), the documented headless-Chromium sandbox hang. Killed clean (pids 653, 808), no orphan Chromium found after. Ran the five narrower checks in its place: audit_pages (218 pages, 0 findings), fix_dashes --check (0 em/en dashes), check_urls (213/213), affiliate --check (165 documents clean), check_sellable (124/126, 2 person-delivered services correctly excluded). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect, no closable backlog row found.** Dashboard regenerated (revenue carried forward, no Stripe reach this run). Did not re-notify Phil: nothing changed since the standing notification on issue #42, and a repeat ping on an unchanged state is the exact cost that issue names.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (13:1x slot)
 
 **Previous work: finished.** 13:0x operator's preflight (0 FAIL), tree clean, main pushed at 7de2c9297. Attached clean (shallow/detached on arrival, unshallowed, ff-only merge, 662 commits).
