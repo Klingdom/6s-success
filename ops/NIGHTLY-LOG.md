@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (13:1x slot)
+
+**Previous work: finished.** 13:0x operator's preflight (0 FAIL), tree clean, main pushed at 7de2c9297. Attached clean (shallow/detached on arrival, unshallowed, ff-only merge, 662 commits).
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art, 0 open PRs, matching the standing list exactly. BACKLOG-2026-09-07.md C5/C6/C7-second-wave: still correctly YES-Phil, nothing newly unblocked. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale, 204/204 ledgered.
+
+**preflight.py run fresh, not trusted on the last cycle's say-so.** 0 FAIL through gate_image_coverage. Hung at gate_tests: confirmed genuinely stuck via two flat /proc CPU-tick samples 8s apart (1385/326 both times), the documented headless-Chromium sandbox hang. Killed clean (pid 438), no orphan Chromium. Ran the five narrower checks in its place: audit_pages (0 dup titles/descriptions), fix_dashes --check (0 em/en dashes), check_urls (213/213), affiliate --check (165 documents clean), check_sellable (124/126, 2 person-delivered services correctly excluded). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect, no closable backlog row found.** Dashboard regenerated (revenue carried forward, no Stripe reach this run). Did not re-notify Phil: nothing changed since the standing notification on issue #42.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first. Leaving nothing new for the hourly operator at :43 beyond the same standing state.
+
 ## Scheduled operator cycle, 2026-10-16 (13:0x slot)
 
 **Did:** Fresh checkout, unshallowed and attached to main cleanly (shallow, detached on arrival; fetch --unshallow, checkout main, merge --ff-only onto origin/main, 658 commits fast-forwarded, no reset or force). Independently re-derived the exhausted state rather than trusting a subagent's report of it: grepped BACKLOG-2026-09-07.md sections 2-4 directly (only C5/C6 unstruck, both YES-Phil), read all 10 open GitHub issues live (8 decision + 2 blocked-on-art, #42's cadence decision still zero comments), ran ops/cold_read_ledger.py --next and --stale (204 of 204 files ledgered, 0 stale), tried curling the live domain directly (CONNECT tunnel 403, confirming no egress from this sandbox, same as prior cycles). Ran ops/inbox_agent.py --apply (no mail credentials here, unchecked). Ran ops/preflight.py backgrounded rather than under a foreground timeout.
