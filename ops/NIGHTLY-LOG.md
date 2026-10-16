@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 07:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked backlog row is already closed except the Phil-only decisions.
+
+**Previous work (07:1x PM): finished, pushed clean.** Tree matches origin; re-fetched before writing this entry to rule out a concurrent push, still matching.
+
+**Re-verified independently, not cited.** 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs. Issue #42: still zero comments since filed 2026-10-14. Issue #40: nothing new since Phil's own 2026-10-13 status check. `cycle_signal.py --check` SAME against the 2026-10-15T22:55:52Z snapshot. `cold_read_ledger.py` 0/204 stale, 0 un-ledgered. `STATUS.md` section 14: Workstream 1/2 BLOCKED, Workstream 3 CLOSED, no replacement opened.
+
+**`preflight.py --fast` backgrounded, not trusted on exit alone.** 0 FAIL/ERROR through every gate before `gate_tests`. Sampled `/proc/<pid>/stat` utime/stime three times, about 10s apart: flat across all three, confirming the documented sandbox Chromium hang, not computation. Killed clean, no orphan process left. Reported unchecked for that one gate, per CLAUDE.md 0.4.
+
+**No new defect found or fixed this slot.** Triage only, three minutes ahead of the operator; nothing large started here.
+
 ## PM check-in, 2026-10-16 07:1x slot
 
 **Previous work (06:4x PM/operator): finished and pushed clean.** Attach needed a real unshallow (621 commits behind), checkout main, ff-only merge onto origin/main, no reset or force. Tree clean before and after, main at `ead15a017` matching origin, re-fetched after preflight to rule out a concurrent push before writing this entry: still matching.
