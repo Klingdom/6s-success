@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (20:4x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach needed a real unshallow (fresh checkout arrived shallow and detached, 717 commits behind); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force, 0 conflicts.
+
+**Independent checks, not cited:** diffed `97bbb751d..HEAD`, confirmed only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/NIGHTLY-LOG.md`, `ops/dashboard.html`, `ops/state.json` changed, no code touch, so started a fresh full preflight, then stopped it once the diff proved redundant. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale`: 0. `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 now past 48h unanswered, #40 past 71h. `list_pull_requests`: 0 open. CI confirmed green directly on the last code commit (`a90d209d`, success 17:03-17:15Z). `ops/last-brief-sent.json`: 19:30:52Z, 73 minutes old, nothing changed since, not re-sending.
+
+**No new defect, no closable row, nothing unblocked.** Not notifying Phil again on #42/#40: silence is correct when nothing changed.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
+Pushed to main. Log and dashboard regen only; no price, product or page touched.
+
 ## PM check-in, 2026-10-16 (20:1x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
