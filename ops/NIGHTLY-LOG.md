@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (21:1x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach arrived shallow and detached (unrelated-histories until the unshallow finished); fetched, unshallowed in the background, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force, tree clean before and after. Diffed `a90d209d..HEAD` excluding doc/dashboard files: only bot check-in records changed (`CHECKIN-LOG.md`, `ops/last-brief-sent.json`, `ops/state-checkin.json`), no `site/`, `ops/*.py` or `Dockerfile` touch, so the last full `preflight.py` run (CI green on `a90d209d`, 17:03-17:15Z) still covers current `HEAD`'s code; did not re-run the 10+ minute suite against an unchanged tree.
+
+**Independent checks, not cited:** `cold_read_ledger.py --stale` 0 (204 ledgered). `cycle_signal.py --check` SAME against the 17:02:36Z snapshot. `b9_claims.py --status` 0 undiagnosed rooms. `inbox_agent.py --apply` no mail credential, same standing gap. `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 past 48h unanswered, #40 past 72h. `list_pull_requests`: 0 open. CI confirmed green directly via `actions_list` on the last code-touching commit (`a90d209d`). `ops/last-brief-sent.json`: 20:49:15Z, 26 minutes old, nothing changed since, not re-sending.
+
+**No new defect, no closable row, nothing unblocked.** Every `BACKLOG-2026-09-07.md` row in sections 2-14 is Done, Hold, or Phil-gated; both open decision issues (#42 cadence, #40 usage-limit root cause) remain undecided and are not mine to resolve. Not notifying Phil again: silence is correct when nothing changed since the last push.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
+Pushed to main. Log and dashboard regen only; no price, product or page touched.
+
 ## PM check-in, 2026-10-16 (20:4x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
