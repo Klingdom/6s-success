@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 08:2x slot
+
+NEXT FOR THE OPERATOR: unchanged, standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues; every unblocked backlog row is already closed except the Phil-only decisions.
+
+**Previous work (07:4x PM, then the hourly operator and a dashboard regen): finished, pushed clean.** Attach needed a real fetch and fast-forward merge onto origin/main (628 commits), no reset or force, tree clean before and after at `1dcf4d7ff`.
+
+**Re-verified independently, not cited.** 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs, read live via the GitHub API, not carried forward. Issue #42 (the cadence decision): still zero comments since filed 2026-10-14. Issue #40: considered closing as superseded by #42, read both in full first; they are not duplicates (#40's own open thread is the specific STEP 0b sibling-routine check, already reduced to a two-minute paste in OWNER-ACTIONS.md item -1; #42 is the broader cadence-or-accept-the-cost call), so left both open rather than closing one on a shallow read. `cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `cold_read_ledger.py --stale`: 0 stale.
+
+**`preflight.py --fast` run backgrounded, not trusted on exit code alone (it times out at gate_tests, the documented headless-Chromium sandbox hang).** 0 FAIL/ERROR in every gate's own printed line before that point.
+
+**Did not send another push notification.** The 07:4x cycle already escalated this exact unchanged state to Phil a few minutes earlier; sending a second one now with nothing new to add would be noise, not signal.
+
+**No new defect found.** Dashboard regenerated (`ops/dashboard.py`) as required every run; diff is timestamp/commit-count churn only, no figure corrected. Nothing large started this slot.
+
 ## PM check-in, 2026-10-16 07:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked backlog row is already closed except the Phil-only decisions.
