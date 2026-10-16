@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (15:1x slot)
+
+**Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (c251b2a1c, committed 15:03:33Z, 10 minutes before this slot); unshallowed, checked out main, merge --ff-only onto origin/main, local branch itself was 678 commits stale but the detached checkout was already current.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art, 0 open PRs; #42 (cadence) still zero comments, now past 42 hours. BACKLOG-2026-09-07.md sections 2-6 scanned row by row: every A/B/C item is struck-through Done or YES-Phil, nothing newly unblocked. cycle_signal: SAME since 2026-10-15T22:55:52Z. cold_read_ledger --stale: 0, 204/204 ledgered. b9_claims --status: 0 undiagnosed rooms. inbox_agent --apply: no mail credential, unchecked not empty.
+
+**preflight.py hung at gate_tests again** (confirmed via flat /proc CPU ticks, 979/130 unchanged across the sample); killed clean, no orphan audit_catalog.py left running (checked and killed one that reparented to init). Narrower checks all clean: check_urls 213/213, audit_pages 218/0, fix_dashes 0/0, affiliate 165 documents, check_sellable 124/126 (2 person-delivered services excluded), link_graph 0 orphans.
+
+**No new defect, no closable row.** Dashboard regenerated. Not re-notifying Phil: unchanged since the standing #42 notification, same call every recent cycle has made.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first. Leaving nothing new for the hourly operator at :43.
+
 ## Scheduled operator cycle, 2026-10-16 (14:5x slot)
 
 **Did:** Attached clean (unshallowed, checked out main, merge --ff-only onto origin/main, 1 commit fast-forwarded). Checked for anything genuinely new: GitHub's 10 open issues re-read live (unchanged, 8 decision plus 2 blocked-on-art, issue 42 still zero comments), inbox_agent.py --apply (no mail credential, unchecked not empty), b9_claims.py --status (zero undiagnosed rooms), cold_read_ledger.py --stale (0), cycle_signal.py --check (SAME since 2026-10-15 22:55:52Z). Read BACKLOG-2026-09-07.md sections 2-6 directly: every row is Done, Hold on traffic or money, or YES-Phil (C5 Gemini billing, C6 YouTube OAuth, C7-second-wave).
