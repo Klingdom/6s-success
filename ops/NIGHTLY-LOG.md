@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (16:4x slot)
+
+NEXT FOR THE OPERATOR: hold state and watch CI on this push, because the real find this slot was a genuine CI-only gate failure the sandbox cannot see, now fixed; confirm it goes green before picking anything else.
+
+**Previous work: finished, pushed clean.** Attach was already current (unshallow had to run first; 687 commits, all from this account's own prior cycles, fast-forwarded with no reset or force). Working tree clean before starting.
+
+**Did not just re-run the same reconfirmation a dozen-plus cycles have already logged.** Instead checked the thing those cycles structurally cannot: CI itself, via `actions_list`/`get_job_logs`, rather than trusting another local preflight rerun. Found the "Checks" workflow had gone red on the last two pushes to main (`a91c2a6f1`, `1df89dc20`), both from this account. Root cause, read from the actual CI log: `gate_owner_actions_last_measured_current` FAIL, `OWNER-ACTIONS.md`'s "List reviewed" marker still said 2026-10-15 while item 22's own body text (the lost-upload-race fix) carries 2026-10-16. **Why two straight cycles missed a real FAIL:** every sandbox preflight run this project does gets killed at the `gate_tests` hang before it ever reaches this gate, so a local "0 FAIL through gate_image_coverage" result and an actually-red CI run are not the same claim, and the last several entries in this file reported the former as if it covered the latter.
+
+**Fixed at the source, not re-gated.** Bumped the marker to 2026-10-16 with an honest note of why it moved and what caught it. `python ops/tests/test_gate_owner_actions_last_measured_current.py`: 8/8. The real gate function run directly against the committed file: 0 FAIL. Confirmed the bump does not touch `dashboard._owner_actions_traffic_citation()` (still reads `2026-10-02, 49, 121` from the separate "Last measured" paragraph, by design since the 2026-10-02 split).
+
+**`cycle_signal.py --check` read CHANGED** (this edit touched `OWNER-ACTIONS.md`), so ran the full local re-verification rather than skip it: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 person-delivered services excluded), `rotate_nightly_log.py --check` CLEAN (768 entries, within window), `b9_claims.py --status` 0 undiagnosed rooms. 10 GitHub issues read live, unchanged (8 decision, 2 blocked-on-art; #42 still 0 comments). `preflight.py` backgrounded via `run_preflight.sh`; past the 16:43 operator boundary before it reached the `gate_tests` hang, so its full result is genuinely unchecked this entry, not assumed clean, per CLAUDE.md 0.4 (the specific gate this cycle fixed was verified directly instead, both the unit test and the real function against the real file).
+
+**Dashboard regenerated** after the fix. Not recording a fresh `cycle_signal` snapshot yet, since the backgrounded preflight has not finished; a later cycle should `--record` once it confirms clean.
+
+**Went well:** checking CI directly instead of trusting a thirteenth identical local "exhausted" read.
+
+**Changing next cycle:** when this file or a prior cycle's commit message cites "0 FAIL" from a local preflight run, read it as "0 FAIL through gate_tests," not "0 FAIL," until `gate_tests` itself stops hanging in this sandbox; the two are not the same claim, and that gap is exactly how a real CI-only FAIL went unnoticed for two cycles.
+
+**Next:** operator at :43 (already late this slot) should confirm the next CI run on this push is green, then fall back to whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first; nothing else is genuinely unblocked. Issue #42 (cadence) unchanged, not re-notifying.
+
 ## PM check-in, 2026-10-16 (16:2x slot)
 
 **Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (a91c2a6f1, the 16:0x operator cycle's own merge); unshallowed, checked out main, merge --ff-only onto origin/main, nothing to fast-forward, tree clean.
