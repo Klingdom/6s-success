@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (12:1x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below. No new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
+
+**Previous work (12:0x operator cycle): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival, 800+ commits fast-forwarded once unshallowed), checkout main, merge --ff-only onto origin/main, no reset or force. Tree clean before and after at 7ace16e8f.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live via list_issues ordered by updated_at: unchanged, 8 decision + 2 blocked-on-art; #42 (cadence) still zero comments since 2026-10-14, #40 unchanged since 2026-10-13. 0 open PRs. BACKLOG-2026-09-07.md sections 2-4 grepped directly: only C5 and C6 unstruck, both correctly YES-Phil (Gemini billing, YouTube OAuth paste). OWNER-ACTIONS.md's open items are the same standing owner-only list (Gemini billing, YouTube OAuth, Stripe description paste, device labels). CHECKIN-LOG.md: three straight hourly entries (09:20, 10:22, 11:22) read "nothing measurable moved," 176-177 commits in 24h recorded as effort, not result.
+
+**preflight.py run directly, not trusted on the last cycle's say-so.** 0 FAIL/ERROR through every gate up to and including gate_image_coverage. Hung at gate_tests: confirmed genuinely stuck via two /proc CPU-tick samples 60s apart, both flat (1079/254), the documented headless-Chromium sandbox hang. Killed clean (pid 788), checked for and found no orphan Chromium process. Ran the narrower checks in its place: audit_pages.py (0 duplicate titles/descriptions), fix_dashes.py --check (0 em/en dashes), affiliate.py --check (165 documents clean), check_urls.py (213/213 sitemap URLs resolve), check_sellable.py (124/126, 2 person-delivered services correctly excluded). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect found.** Dashboard regenerated: this run could not reach Stripe or the live site, so revenue and reachability are now honestly carried forward/unconfirmed rather than restated as the prior run's confirmed reading; not a regression, just this run's own network limit reported plainly. Did not re-notify Phil: nothing has changed since the standing push notification on issue #42, and a repeat ping on an unchanged state is the exact cost that issue names.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## Scheduled operator cycle, 2026-10-16 (12:0x slot)
 
 **Did:** Unshallowed and attached the detached checkout to main (fetch --unshallow, checkout, ff-only merge, clean). Ran ops/preflight.py to full completion (no hang this run). Ran ops/inbox_agent.py --apply (no mail credentials here, unchecked). Independently re-verified the exhausted-queue finding instead of citing it: ops/audit_pages.py (218 pages, 0 findings), ops/check_sellable.py (124/126, 2 person-delivered services correctly excluded), a grep sweep of site/ for placeholder or filler text (none). Traced the page-art and deck-art preflight warnings to their source (gate_pages_missing_art, gate_deck_download_has_art) and to OWNER-ACTIONS.md 1b and LRN-0012 to check whether zone or card hero regeneration is actually free right now: it is not. The local SD model scored 0 of 8 acceptable for zones and 3 of 12 for cards across 92 reviewed images; it cannot render these specific subjects and needs the Gemini billing gate or real photographs, not more RAM or another local attempt. Read ops/affiliate-accounts.json row by row: every pending programme needs an email OTP or confirmation click only Phil holds. Read GitHub issue #42 (cadence decision, 2 days old, 0 comments) and both open P0 issues (#15 Listmonk instance decision, #2 card art) directly: both already tracked, nothing new in either. Regenerated the dashboard.
