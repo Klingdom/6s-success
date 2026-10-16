@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 01:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list, because every lane that is not a `decision` issue or `blocked-on-art` is genuinely done, closed or struck through, and nothing changed in the half hour since the 01:1x cycle said the same thing.
+
+Previous work (01:1x PM) finished, re-verified myself, not cited. Fetched and ff-only merged onto origin/main, clean. `preflight.py --fast` 0 FAIL through every gate up to the documented `gate_tests` sandbox hang (killed at timeout, honestly unchecked for that one gate). `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/204. `BACKLOG-2026-09-07.md` sections 2-7 read directly: no un-struck row outside C5/C6 (both Phil-gated). `STATUS.md` section 14: all 3 workstreams BLOCKED/CLOSED. GitHub re-read live: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), #42's `updated_at` still 2026-10-14, 0 open PRs.
+
+Nothing new to start. No defect found. No push notification: same state issue #42 already names, dozens of cycles have reconfirmed; another would be noise.
+
+Pushed to main. Dashboard regenerated, carrying revenue/traffic forward honestly (no Stripe/ssh egress here). No price, product or page touched.
+
 ## PM check-in, 2026-10-16 01:1x slot
 
 **Previous work (00:4x PM, concurrent 2026-10-16 operator cycle) was finished, verified myself, not cited.** Attached clean: fetched origin main, repo arrived shallow and detached again (issue #27's usual shape), unshallowed to full history, checkout main, merge --ff-only onto origin/main (fast-forwarded cleanly, no reset or force), tree clean before and after.
