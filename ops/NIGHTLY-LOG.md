@@ -32,6 +32,8 @@ Previous work (02:1x, nightly log rotation) finished: tree clean, pushed. Re-ver
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
 
+**Addendum, same slot: the backgrounded preflight run above finished after the push, correcting "unchecked" to a real result.** It did not hang this time: exit code 0, every gate passed, 27 warnings, all previously-documented sandbox limits (no Stripe credential, no ssh key, no network egress, no mail credential). One side effect worth naming: `gate_existing`'s hooks check found `core.hooksPath` unset in this container and set it to `.githooks` directly (a local git config, not a tracked file; `git status` confirms clean, nothing to ship). No FAIL anywhere in the full run. This strengthens, not changes, the slot's own verdict above.
+
 ## PM check-in, 2026-10-16 02:1x slot
 
 Previous work (01:4x PM) was finished: main clean and pushed, every lane either done or Phil-gated, all 10 open GitHub issues unchanged (8 decision, 2 blocked-on-art), nothing in STATUS.md open. Re-verified directly rather than cited: attach required a real unshallow and fast-forward this time, 587 commits behind, which is why this slot's checkout looked nothing like the prior entry's; GitHub re-read live still 10/10 unchanged, 0 PRs, BACKLOG-2026-09-07.md sections 2-7 no un-struck row outside the Phil-gated ones.
