@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (~21:5x slot)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, fast-forwarded cleanly onto `origin/main` (no reset or force). Read `BACKLOG-2026-09-07.md` sections 1b-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Ran `ops/cycle_signal.py --check` twice (before and after a concurrent fast-forward): SAME both times against the 17:02 snapshot, so skipped re-running the 10+ minute local `preflight.py` suite against an unchanged tree, per that tool's own purpose (NIGHTLY-LOG 2026-10-11 23:0x). Independently re-ran the parts that stay mandatory regardless of the signal: `ops/inbox_agent.py --apply` (no mail credential, unchecked, same as every prior cycle), `list_issues` (10 open, unchanged, all `decision`/`blocked-on-art`), `list_pull_requests` (0 open), and spot-checked the latest run of every scheduled workflow that touches revenue or distribution (`fulfil-orders.yml`, `deploy.yml`, `linkedin-drafts.yml`, `bluesky-drafts.yml`, `social-drafts.yml`, `render-narrated-videos.yml`, `mobile-checks.yml`, `indexation-check.yml`, `checks.yml`) directly against the GitHub Actions API rather than trusting a prior cycle's claim: all green on their last completed run, no new failure.
+
+**Verified:** Issue #42 (cadence burning usage against an exhausted backlog) still has zero comments, now about 51 hours old; issue #40 has only prior Claude-cycle status updates, none from Phil. A push notification on this exact topic already went out earlier today (2026-10-16) and nothing has changed since that would justify a second one, so none sent this cycle, matching the 21:4x and earlier entries' own reasoning. Did not re-litigate any of the 10 open `decision`/`blocked-on-art` issues without new evidence (CLAUDE.md section 21).
+
+**Went well:** `cycle_signal.py` did exactly what it was built for, twice in one cycle, including across a concurrent session's fast-forward mid-run.
+
+**Did not go well:** Nothing new; this cycle is itself another instance of the pattern issue #42 names (a scheduled pass with no unblocked work to do). Several concurrent sessions are visibly running the identical check this same hour (git log shows near-duplicate PM check-ins every 10-20 minutes); that duplication is the cost issue #42 is asking Phil to weigh in on, not a new finding.
+
+**Changing next cycle:** None. The honest fix (cadence) is Phil's decision, not mine to make unilaterally; the honest mitigation (`cycle_signal.py`) already exists and was used.
+
+**Next:** Work the next unblocked, non-Phil-gated row in `BACKLOG-2026-09-07.md` the moment one exists, or act the moment Phil comments on #42, #40, or any of the other 8 decision/art issues. Until then, hold.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (21:4x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
