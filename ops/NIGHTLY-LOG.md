@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (19:4x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach was already unshallowed and clean from the prior cycle; `checkout main`, `merge --ff-only` onto `origin/main` landed with 0 commits to fast forward, tree clean before and after. The 19:1x PM cycle's own full `preflight.py` run (0 FAIL, 26 warnings) stands: only a bot "Hourly check-in record" commit (`d68f092`, dashboard/state files only) landed since, no `site/`, `ops/*.py` or `Dockerfile` change, so re-running the 12 minute suite this slot would re-verify an unchanged tree. CI confirmed green on the last code-touching commit directly via `actions_list`, not cited.
+
+**Independent checks run this slot rather than trusted from the log:** `cycle_signal.py --check` SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale` 0 of all lanes. `list_issues` read live: 10 open, unchanged, all `decision`/`blocked-on-art`, none newly Phil-unblocked. Issue #42 (cadence decision) still unanswered since 2026-10-14T20:47Z, now past 47 hours; issue #40 (usage-limit root cause) still unanswered since 2026-10-13T20:51Z, now past 70 hours. Checked `ops/last-brief-sent.json` directly rather than trusting the prior entry's claim: a push notification on this exact topic went out at 19:30:52Z, 14 minutes before this cycle started; nothing has changed since, so none sent this cycle either.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Every row in `BACKLOG-2026-09-07.md` is Done, Hold, or Phil-gated. Not starting anything large this slot per this cadence's own instruction to triage rather than build.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the hourly operator beyond holding state until a Phil-gate clears or #42/#40 are decided.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (19:1x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
