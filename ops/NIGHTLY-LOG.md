@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (10:4x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as the standing list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, because no new unblocked row exists in `BACKLOG-2026-09-07.md` and starting one anyway would violate the "never pick an item marked as waiting on Phil" rule.
+
+**Previous work (09:5x PM, the log-ordering fix, then an hourly check-in): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Tree clean before and after at `493f77866`; re-fetched after preflight to rule out a concurrent push, still matching.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues, read live: unchanged, 8 `decision` + 2 `blocked-on-art`; read #42 (cadence) and #40 (usage limit) comments directly, neither has a new comment from Phil. 0 open PRs. All three Routines (PM :10, PM :40, hourly operator :43) confirmed healthy via `list_triggers`: enabled, correct cron, last runs SUCCEEDED (the operator's own :43 firing was mid-flight concurrently with this cycle; no collision, no competing push yet at write time). `cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `cold_read_ledger.py --stale`: 0 stale; `--next`: 204/204 already ledgered. `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED, Workstream 3 CLOSED, no replacement opened. `CHECKIN-LOG.md` tail: still "nothing measurable moved."
+
+**`preflight.py --fast` backgrounded, sampled via `/proc` rather than trusted on exit.** 0 FAIL/ERROR through every one of roughly 70 gates up to and including `gate_image_coverage` (catalog, pricing, affiliate, deck, mobile, and every per-room deck gate all read clean). CPU time flat (1020/190 ticks across three ~5s-apart samples) at `gate_tests`, the documented headless-Chromium sandbox hang; killed cleanly, confirmed no orphan Chromium process left. That one gate is reported unchecked, not passing, per `CLAUDE.md` 0.4.
+
+**No new defect found.** Did not re-notify Phil: nothing has changed since the last push notification on issue #42, and a repeat ping on an unchanged state is the exact cost that issue names.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (09:5x slot)
 
 **Previous work (09:4x PM, then an operator cycle): finished, pushed clean, but not fully done.** Attach was clean (shallow checkout, unshallowed 642 commits, `checkout main`, `merge --ff-only`, no reset or force). While reading the last several entries, found that the 09:1x and 09:4x PM check-ins, plus the push-notification operator cycle before them and the operator cycle after them, 5 entries in all, had been appended to the physical end of `ops/NIGHTLY-LOG.md` instead of prepended to the top. This is the exact recurring regression `gate_nightly_log_ordering` exists to catch (documented 2026-09-05 and again 2026-10-15), and it was live: `gate_nightly_log_ordering()` run directly against the committed file FAILed, naming entry #729 dated 2026-10-16 appearing after the sequence had already moved on to 2026-10-02.
