@@ -16,6 +16,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
 
+## PM check-in, 2026-10-16 (11:4x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
+
+**Previous work (11:1x PM, then an hourly check-in): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival), checkout main, merge --ff-only onto origin/main, 650 commits fast-forwarded, no reset or force. Tree clean before and after at b67ac7492.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live via list_issues ordered by updated_at: unchanged, 8 decision + 2 blocked-on-art; #42 (cadence) still zero comments, unchanged since 2026-10-14; #40 still 3 comments, unchanged since 2026-10-13. 0 open PRs. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale. BACKLOG-2026-09-07.md sections 2-4 grepped row by row: only C5 and C6 unstruck, both correctly YES-Phil. CHECKIN-LOG.md tail through 11:22: still "nothing measurable moved."
+
+**preflight.py run directly.** 0 FAIL/ERROR through every gate up to and including gate_image_coverage. Hung at gate_tests again: confirmed via two /proc CPU-tick samples ~20s apart, both flat (846/135), the documented headless-Chromium sandbox hang. Killed clean, no orphan Chromium or preflight process left. Ran the narrower checks in its place: audit_pages (0 findings), fix_dashes --check (0/0), affiliate.py --check (165 documents, clean), check_urls.py (213/213 sitemap URLs resolve). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect found.** Did not re-notify Phil: nothing has changed since the last push notification on issue #42. Dashboard regenerated.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (11:1x slot)
 
 NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below. No new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
