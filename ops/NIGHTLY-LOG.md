@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 06:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked backlog row is already closed except the Phil-only decisions.
+
+**Previous work (06:2x operator): finished, pushed clean.** Real unshallow, ff-only merge, no reset or force, tree clean before and after.
+
+**Re-verified, not cited:** `cycle_signal.py` SAME since 2026-10-15T22:55:52Z. GitHub live: 10 issues unchanged, 0 PRs. `cold_read_ledger.py --next`: 0 un-ledgered. `STATUS.md` workstreams 1/2 BLOCKED, 3 CLOSED. Dashboard and today's 06:24 owner brief already list #42/#40 under "What needs you"; no push sent, not news. `preflight.py --fast` backgrounded, 0 FAIL/ERROR through every gate before `gate_tests`'s documented sandbox hang, killed clean rather than left running; unchecked for that gate.
+
+**No defect found, nothing new unblocked.**
+
+**Next:** same standing list, for the hourly operator at :43.
+
 ## Scheduled operator cycle, 2026-10-16 06:2x slot
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (610 commits), checked out main, ff-only merged onto origin/main twice more as concurrent PM check-ins landed mid-cycle, clean, no reset or force. Read GOALS.md context, BACKLOG-2026-09-07.md in full (all sections), ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 14, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries directly.
