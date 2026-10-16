@@ -2,7 +2,7 @@
 
 **Owner:** software-engineer (build), security-auditor (release gate), product-manager (the analysis contract).
 **Status, 2026-10-15:** backend built and tested locally; **not deployed.** Frontend built, tested against the local backend, deliberately not linked. Turning both on is one step: `OWNER-ACTIONS.md` item 22.
-**Code:** `photos/` (service), `ops/tests/test_photos_service.py` (33 end-to-end checks over real HTTP); `site/photo-check.html` + `site/assets/js/photo-check.js` (frontend); `ops/build_photo_check_data.py` + `ops/tests/test_build_photo_check_data.py` (zone picker data).
+**Code:** `photos/` (service), `ops/tests/test_photos_service.py` (37 end-to-end checks over real HTTP); `site/photo-check.html` + `site/assets/js/photo-check.js` (frontend); `ops/build_photo_check_data.py` + `ops/tests/test_build_photo_check_data.py` (zone picker data).
 
 ## What it is for
 
@@ -118,7 +118,37 @@ Every fix above is proved fail-then-pass directly in
 against the pre-fix code first and confirmed to fail the way the finding
 describes, then confirmed to pass after.
 
-## The frontend, built 2026-10-15, not yet linked
+## Found and fixed, 2026-10-16: a lost-upload race, not covered by the lanes above because `photos/` has no cold-read lane yet
+
+Not found by either security pass above; both reviewed the code adversarially
+for attacker-triggered gaps, and this is a correctness defect under ordinary,
+honest use. `photos/*.py` is also outside every lane `ops/cold_read_ledger.py`
+sweeps (`ops/*.py`, `ops/*.js`, `site/assets/js/*.js`,
+`mobile/quest-app/lib/*.js`), so nothing had read these four files end to end
+since the security passes. Read directly this cycle after the standing
+backlog and cold-read queues both came back fully exhausted.
+
+`Store.add_photo`/`delete_photo`/`save_analysis` each did read-modify-write
+on one session's `meta.json` with no lock. `ThreadingHTTPServer` gives every
+request its own thread, so two overlapping requests on the same session (a
+before and an after photo uploaded back to back is the ordinary case, not an
+edge case) can both read the file before either writes it back; the second
+write then silently replaces the first writer's new entry. The `.jpg` itself
+still lands on disk, orphaned and unreferenced, while the caller who
+uploaded it was already sent `201`. Proved directly against the pre-fix
+code with a forced, deterministic interleave (not hoping two real threads
+collide by timing luck): both uploads returned `201`; only one id appeared
+in the session's photo list afterward.
+
+**Fixed.** One re-entrant lock per session (`Store._lock_for`, created only
+once a session directory is confirmed to exist, so a flood of guessed or
+invalid session ids cannot grow the lock table) now wraps every read through
+write for that session end to end, replacing the old pattern where `open()`
+did its own separate read-write cycle before the caller's own mutate-and-
+write ran unguarded. Re-proved fail-then-pass in
+`ops/tests/test_photos_service.py` (now 37/37): the new cases force a second
+request to actually block mid-`open()` while the first still holds the lock
+(not merely "happened to pass"), then confirm both uploads are kept.
 
 `site/photo-check.html` + `site/assets/js/photo-check.js` take a before/after
 photo and render the answer, calling the contract above exactly (verified

@@ -70,6 +70,27 @@ class Store:
         self._rate_lock = threading.Lock()
         self._rate_path = os.path.join(self.root, "rate.json")
         self._rate = self._load_rate()
+        self._session_locks = {}
+        self._session_locks_guard = threading.Lock()
+
+    # ThreadingHTTPServer gives every request its own thread, so two uploads
+    # to the SAME session (e.g. a before and an after photo sent back to
+    # back) can interleave: both read meta.json before either writes it
+    # back, so the second write silently overwrites the first's new photo
+    # entry. The .jpg file itself still lands on disk, but it is never
+    # referenced in meta.json again, so it is both invisible (no listing)
+    # and unrecoverable (no delete), while the caller who uploaded it was
+    # already told 201. One re-entrant lock per session serialises every
+    # read-modify-write against that session's own meta.json; RLock because
+    # add_photo/delete_photo/save_analysis call open() themselves while
+    # already holding it.
+    def _lock_for(self, sid):
+        with self._session_locks_guard:
+            lk = self._session_locks.get(sid)
+            if lk is None:
+                lk = threading.RLock()
+                self._session_locks[sid] = lk
+            return lk
 
     # rate limiting ------------------------------------------------------
     # In-process-only counters silently rearm on every restart (a deploy, a
@@ -135,21 +156,34 @@ class Store:
         io.open(tmp, "w", encoding="utf-8").write(json.dumps(meta))
         os.replace(tmp, self._meta_path(d))
 
+    def _authorize(self, d, token):
+        """Read meta.json and check the token. No write; call only while
+        holding this session's lock, so the caller's own eventual write
+        (touched, or a real mutation) sees a meta that cannot go stale
+        before it lands."""
+        meta = self._read(d)
+        if not token or not hmac.compare_digest(meta["token_sha256"], _h(token)):
+            raise StoreError(404, "not found")
+        return meta
+
     def open(self, sid, token):
         """Authorise. Same 404 for unknown session and wrong token."""
         d = self._dir(sid)
         if not os.path.isdir(d):
             raise StoreError(404, "not found")
-        meta = self._read(d)
-        if not token or not hmac.compare_digest(meta["token_sha256"], _h(token)):
-            raise StoreError(404, "not found")
-        meta["touched"] = time.time()
-        self._write(d, meta)
-        return d, meta
+        with self._lock_for(sid):
+            meta = self._authorize(d, token)
+            meta["touched"] = time.time()
+            self._write(d, meta)
+            return d, meta
 
     def delete_session(self, sid, token):
-        d, _ = self.open(sid, token)
-        shutil.rmtree(d)
+        d = self._dir(sid)
+        if not os.path.isdir(d):
+            raise StoreError(404, "not found")
+        with self._lock_for(sid):
+            self._authorize(d, token)
+            shutil.rmtree(d)
 
     # photos -----------------------------------------------------------
     def add_photo(self, sid, token, data, zone, kind, note=""):
@@ -162,21 +196,26 @@ class Store:
         free = shutil.disk_usage(self.root).free
         if free < MIN_FREE_BYTES:
             raise StoreError(503, "storage temporarily full; try again later")
-        d, meta = self.open(sid, token)
-        if len(meta["photos"]) >= MAX_PHOTOS_PER_SESSION:
-            raise StoreError(409, "session photo limit reached")
-        used = sum(p.get("bytes", 0) for p in meta["photos"].values())
-        if used + len(data) > MAX_SESSION_BYTES:
-            raise StoreError(409, "session storage limit reached")
-        with _decode_slots:
-            jpeg, w, h = reencode(data)
-        pid = secrets.token_urlsafe(12)
-        io.open(os.path.join(d, pid + ".jpg"), "wb").write(jpeg)
-        meta["photos"][pid] = {"id": pid, "zone": zone, "kind": kind,
-                               "note": (note or "")[:500], "width": w, "height": h,
-                               "bytes": len(jpeg), "created": time.time()}
-        self._write(d, meta)
-        return meta["photos"][pid]
+        d = self._dir(sid)
+        if not os.path.isdir(d):
+            raise StoreError(404, "not found")
+        with self._lock_for(sid):
+            meta = self._authorize(d, token)
+            if len(meta["photos"]) >= MAX_PHOTOS_PER_SESSION:
+                raise StoreError(409, "session photo limit reached")
+            used = sum(p.get("bytes", 0) for p in meta["photos"].values())
+            if used + len(data) > MAX_SESSION_BYTES:
+                raise StoreError(409, "session storage limit reached")
+            with _decode_slots:
+                jpeg, w, h = reencode(data)
+            pid = secrets.token_urlsafe(12)
+            io.open(os.path.join(d, pid + ".jpg"), "wb").write(jpeg)
+            meta["touched"] = time.time()
+            meta["photos"][pid] = {"id": pid, "zone": zone, "kind": kind,
+                                   "note": (note or "")[:500], "width": w, "height": h,
+                                   "bytes": len(jpeg), "created": time.time()}
+            self._write(d, meta)
+            return meta["photos"][pid]
 
     def list_photos(self, sid, token):
         _, meta = self.open(sid, token)
@@ -189,20 +228,30 @@ class Store:
         return io.open(os.path.join(d, pid + ".jpg"), "rb").read(), meta["photos"][pid]
 
     def delete_photo(self, sid, token, pid):
-        d, meta = self.open(sid, token)
-        if pid not in meta["photos"]:
+        d = self._dir(sid)
+        if not os.path.isdir(d):
             raise StoreError(404, "not found")
-        os.remove(os.path.join(d, pid + ".jpg"))
-        del meta["photos"][pid]
-        self._write(d, meta)
+        with self._lock_for(sid):
+            meta = self._authorize(d, token)
+            if pid not in meta["photos"]:
+                raise StoreError(404, "not found")
+            os.remove(os.path.join(d, pid + ".jpg"))
+            del meta["photos"][pid]
+            meta["touched"] = time.time()
+            self._write(d, meta)
 
     def save_analysis(self, sid, token, result):
-        d, meta = self.open(sid, token)
-        aid = secrets.token_urlsafe(9)
-        result = dict(result, id=aid, created=time.time())
-        meta["analyses"][aid] = result
-        self._write(d, meta)
-        return result
+        d = self._dir(sid)
+        if not os.path.isdir(d):
+            raise StoreError(404, "not found")
+        with self._lock_for(sid):
+            meta = self._authorize(d, token)
+            aid = secrets.token_urlsafe(9)
+            result = dict(result, id=aid, created=time.time())
+            meta["analyses"][aid] = result
+            meta["touched"] = time.time()
+            self._write(d, meta)
+            return result
 
     def analyses_today(self, sid, token):
         _, meta = self.open(sid, token)

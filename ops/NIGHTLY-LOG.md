@@ -2,6 +2,96 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (16:0x slot): photos/*.py had no cold-read lane, and the one read found a real lost-upload race, fixed
+
+**Did:** Unshallowed, checked out main, merge --ff-only onto origin/main (3
+commits fast-forwarded, no reset or force). Read BACKLOG-2026-09-07.md in
+full, ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG.md
+entries.
+
+**Re-verified independently before deciding there was nothing left to
+pick.** 10 GitHub issues read live, unchanged (8 decision, 2
+blocked-on-art), 0 open PRs, issue #42 (cadence) still open with 0
+comments. BACKLOG-2026-09-07.md sections 2 through 13 all Done, Hold or
+Phil-gated. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z.
+cold_read_ledger.py --stale: 0, 204 of 204 ledgered. inbox_agent.py
+--apply: no mail credential. preflight.py backgrounded, confirmed hung at
+gate_tests again via /proc sampling (same standing sandbox limitation
+every cycle today already logged); killed clean. Narrower checks all ran
+clean in its place: check_urls 213/213, audit_pages clean, fix_dashes
+0/0, affiliate.py --check 165 documents, check_sellable 124/126 (2
+person-delivered services excluded), link_graph_report.py 0 orphans,
+b9_claims.py --status 0 undiagnosed rooms.
+
+**Roughly a dozen cycles already reached this exact "nothing new" verdict
+today** (git log and this file's own head show PM check-ins and operator
+cycles at 11:4x through 15:1x all independently confirming the same
+exhausted state). Running a thirteenth identical reconfirmation would have
+added nothing issue #42 does not already say, so instead went looking for
+ground nothing had swept: `ops/cold_read_ledger.py`'s lanes only ever
+covered `ops/*.py`, `ops/*.js`, `site/assets/js/*.js` and
+`mobile/quest-app/lib/*.js`. `photos/*.py` (4 files, built 2026-10-14/15,
+twice independently security-reviewed per PHOTOS-API.md) had never been
+read by this mechanism, and a security review hunts for attacker-triggered
+gaps, not an ordinary-use correctness bug.
+
+**Found a real defect reading `photos/store.py` directly.**
+`add_photo`/`delete_photo`/`save_analysis` did read-modify-write on one
+session's `meta.json` with no lock. `ThreadingHTTPServer` gives every
+request its own thread, so two overlapping requests on the same session (a
+before and an after photo sent back to back is the ordinary case) could
+both read the file before either wrote it back; the second write silently
+erased the first writer's new photo entry. The `.jpg` itself still lands on
+disk, orphaned, while the caller who uploaded it was already sent `201`.
+Proved directly against the pre-fix code with a forced, deterministic
+interleave rather than timing luck: both uploads returned `201`, only one
+id survived in the listing afterward.
+
+**Fixed.** One re-entrant lock per session (`Store._lock_for`, created only
+once a session directory is confirmed to exist, so a flood of guessed or
+invalid session ids cannot grow the lock table unboundedly) and a new
+`_authorize()` helper (read + token check, no write) let `open()`,
+`add_photo`, `delete_photo`, `save_analysis` and `delete_session` each run
+their full read-through-write as one locked critical section. Re-proved
+fail-then-pass in `ops/tests/test_photos_service.py` (33 to 37 checks): the
+new cases force a second request to actually block mid-`open()` while the
+first still holds the lock, then confirm both uploads survive.
+
+**Turned the lesson into a gate, not just a fix.** Added `photos/*.py` as a
+fifth lane in `ops/cold_read_ledger.py` and ledgered all four files
+(`store.py` fixed, the other three clean), so this is a one-time gap, not a
+recurring one. `PHOTOS-API.md` and `OWNER-ACTIONS.md` item 22 updated to
+the new 37-check count; `BACKLOG-2026-09-07.md` section 14 records the full
+account.
+
+**Verified after:** `test_photos_service.py` 37/37, `test_build_photo_
+check_data.py` 5/5, `test_cold_read_ledger_stale.py` 7/7, `test_gate_cold_
+read_handoff_not_stale.py` 26/26, `check_urls.py` 213/213, `audit_pages.py`
+clean, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents,
+`link_graph_report.py` 0 orphans. No price, product or shipped page
+touched; `photos/` is still undeployed (Phil's own call,
+`OWNER-ACTIONS.md` item 22), so this fix reaches zero live customers today
+and closes the gap before his deploy decision could expose it. IndexNow
+not applicable.
+
+**Went well:** not repeating a thirteenth identical full reconfirmation;
+checking the cold-read ledger's own lane list against what the repository
+actually contains rather than trusting "N of N ledgered" at face value.
+
+**Did not go well:** nothing this cycle; the defect found was pre-existing
+and pre-deploy, with zero live impact.
+
+**Changing next cycle:** none for the operating loop; the new lane closes
+this specific gap. Worth a standing habit, not a rule: when a directory is
+added to the repository, check whether it needs to join an existing sweep
+lane rather than assuming existing lanes already cover it.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears
+first. Not re-notifying Phil beyond the existing #42 notification: this
+finding is informational (pre-deploy, zero live impact) and already fully
+recorded here and in PHOTOS-API.md/OWNER-ACTIONS.md for whenever he reads
+item 22.
+
 ## PM check-in, 2026-10-16 (15:1x slot)
 
 **Previous work: finished, pushed clean.** Arrived shallow/detached at an already-current HEAD (c251b2a1c, committed 15:03:33Z, 10 minutes before this slot); unshallowed, checked out main, merge --ff-only onto origin/main, local branch itself was 678 commits stale but the detached checkout was already current.

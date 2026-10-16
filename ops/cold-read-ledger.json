@@ -16,6 +16,11 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (331 lines). Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv directly and diffed against the committed versions: byte-identical, confirming the generator still matches its own shipped output. No defect found."
     },
+    "analyze.py": {
+      "status": "clean",
+      "date": "2026-10-16",
+      "note": "First cold read of this file, same cycle the photos/ lane was added. Checked the grounding contract directly against root_causes.py and methodology.py: ground() only keeps a friction's cause if it is a real key in M.CAUSES, only keeps a step if its pass is one of the six real PASSES, only attaches a surface's method text if the model's surface_id matches a real id methodology.method() produced for that zone, and after_check is only populated in after/compare mode. Every field is length-clipped via _clip(). method_only()'s zero-key path (no vision provider configured) returns image_analyzed False and never fabricates a look. MODEL defaults to claude-sonnet-4-5, overridable via PHOTOS_MODEL; noted but not changed, since it is already configurable at deploy time (unlike the hardcoded, already-flagged claude-sonnet-4-6 in content/app-mvp/source/build_pwa.py, which is pre-production exploratory content, not live product) and this sandbox has no way to verify a model id against the live API. No defect found."
+    },
     "audit_catalog.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -641,6 +646,11 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 16:1x-17:0x slot, scheduled operator cycle: read in full, cross-checked against real callers/output, no defect found"
     },
+    "methodology.py": {
+      "status": "clean",
+      "date": "2026-10-16",
+      "note": "First cold read of this file, same cycle the photos/ lane was added. _load() builds the zone-slug map the same way the rest of the site does (room/zone slugified and joined), reading directly from content/manual/source/content.json and ops/zone-name-map.json rather than re-deriving either; method() returns None for an unknown slug (checked by server.py and analyze.py both) and only emits a surface id for a surface that has both a surface and a method string. No defect found."
+    },
     "nightly_log.py": {
       "status": "fixed",
       "date": "2026-10-11",
@@ -786,6 +796,11 @@
       "date": "2026-10-13",
       "note": "Re-read in full after 2026-10-13's roadmap-gate addition (gate_lines, roadmap_gates, gate_due, expiring BLOCKING item 2). Checked the table-column regex against the real ROADMAP-2026-2029.md gate rows (condition/when/consequence order matches the code's unpacking), ran test_gate_roadmap_gate_in_owner_email.py directly (9/9 pass), and confirmed gate_roadmap_gate_in_owner_email is wired into preflight.py main() via run_gate(). No new defect found."
     },
+    "server.py": {
+      "status": "clean",
+      "date": "2026-10-16",
+      "note": "First cold read of this file, same cycle the photos/ lane was added. Traced every route in _dispatch against store.py and analyze.py directly: auth happens before a large body is read (S.open before self._body(MAX_BYTES) on the PUT route), zone is validated against methodology.method() before storage is touched, pid/sid lookups all go through dict membership (meta['photos']) or the _ID regex before any filesystem join, so an attacker-supplied pid or sid cannot reach a path outside the session directory. _ip() correctly reads the second-to-last X-Forwarded-For entry for the documented two-proxy chain. CORS sends a fixed Access-Control-Allow-Origin rather than reflecting the request Origin, consistent with bearer-token auth (no cookies, so no credentialed-CORS risk). No defect found in this file itself; the real defect this cycle found was in store.py (see its own ledger entry), reachable through this file's add_photo call but not caused by anything here."
+    },
     "service_orders.py": {
       "status": "fixed",
       "date": "2026-10-12",
@@ -845,6 +860,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "Read in full and run with --preview against live GitHub/VPS/domain state. FOUND AND FIXED THE SAME DEFECT as send_brief.py, in two call sites (the plain-text 'Commits in 7 days' line and the HTML table row): confirmed live, this exact run's own state.json carried commits_7d=None and the report printed 'Commits in 7 days       None' before the fix. Added a module-level commits_7d_text(), used by both sites and by status_pdf.py. Re-ran after the fix: 'unknown (shallow clone, could not verify)' now renders correctly."
+    },
+    "store.py": {
+      "status": "fixed",
+      "date": "2026-10-16",
+      "note": "First cold read of this file; this lane (photos/*.py) did not exist until this cycle added it. Found and fixed a real lost-update race: add_photo/delete_photo/save_analysis each did read-modify-write on one session's meta.json with no lock, so two overlapping requests on the same session (a before and an after uploaded back to back) could both read before either wrote, and the second write silently erased the first writer's new photo entry while the caller was told 201. Proved directly against the pre-fix code with a forced, deterministic interleave: both uploads returned 201, only one id survived in the listing. Fixed with one re-entrant lock per session (Store._lock_for), created only once a session directory is confirmed to exist so a flood of guessed/invalid session ids cannot grow the lock table unboundedly; open()/add_photo/delete_photo/save_analysis/delete_session now each run their full read-through-write as one locked critical section via a new _authorize() helper that reads and checks the token without writing. Re-proved fail-then-pass in ops/tests/test_photos_service.py (33 to 37 checks), with the new cases forcing a second request to actually block mid-open() while the first still holds the lock, not merely happening to pass."
     },
     "stripe_brand.py": {
       "status": "fixed",

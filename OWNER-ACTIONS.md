@@ -2018,9 +2018,10 @@ rather delete it than keep pretending. Recorded as `DECISIONS.md` D-028.
 hardened 2026-10-15; still not deployed.** `photos/` stores private
 before/after photos per micro zone for the web app, a phone app or an AI
 agent, and comments on next steps in the zone's own method. Full contract in
-`PHOTOS-API.md`, reasoning in `DECISIONS.md` D-032. 33 end-to-end checks
-pass, including that GPS is stripped and that an invented root cause or step
-is thrown out.
+`PHOTOS-API.md`, reasoning in `DECISIONS.md` D-032. 37 end-to-end checks
+pass, including that GPS is stripped, that an invented root cause or step
+is thrown out, and (fixed 2026-10-16) that two overlapping uploads to the
+same session cannot silently lose one of them.
 
 **The independent review this item itself asked for has now happened**, by a
 session that did not build the original code: a decompression-bomb memory DoS

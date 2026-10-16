@@ -5,13 +5,14 @@ lane has actually read and cleared or fixed, so the next cycle does not
 have to reconstruct that from a 40,000+ line, ever-growing
 ops/NIGHTLY-LOG.md by eye.
 
-Covers four lanes: ops/*.py (164 files, closed 2026-09-27), ops/*.js
+Covers five lanes: ops/*.py (164 files, closed 2026-09-27), ops/*.js
 (1 file, added 2026-09-27 after the three-lane version above sat at
 "174 of 174" without ever covering the one hand-authored .js file
-living in the ops/ directory itself), and the hand-written
+living in the ops/ directory itself), the hand-written
 site/assets/js/*.js (7 files) and mobile/quest-app/lib/*.js (5 files,
 excluding *.test.js: a test is read together with the module it tests,
-not ledgered separately). Extended to the JS lanes 2026-09-27:
+not ledgered separately), and photos/*.py (4 files, added 2026-10-16).
+Extended to the JS lanes 2026-09-27:
 the log had been ranking them by raw mention count in prose ("already
 exhausted this month by multiple cycles"), the exact proxy this file's
 own history (below) shows failing at least three times for ops/*.py
@@ -20,6 +21,17 @@ shown the same failure for the JS lanes, but the failure mode is the
 proxy itself, not something specific to Python files, and a cheap
 extension of an already-proven fix is worth more than waiting for the
 JS lanes to repeat the mistake first.
+
+The photos/ lane was missing entirely until 2026-10-16, found only once
+every other lane and the backlog had both come back fully exhausted and
+a cycle went looking for genuinely unswept ground rather than stopping.
+photos/*.py had been read twice before, by two independent adversarial
+security passes (PHOTOS-API.md's "Found and fixed" section), but neither
+is this lane: both hunted for attacker-triggered gaps, and the defect
+this lane's own first read found, a lost-upload race under ordinary
+concurrent use with no attacker involved, is exactly the class of
+correctness bug a security review is not shaped to catch and a cold
+read is.
 
 WHY THIS EXISTS
 ---------------
@@ -100,6 +112,7 @@ LANES = (
     ("ops", "*.js"),
     ("site/assets/js", "*.js"),
     ("mobile/quest-app/lib", "*.js"),
+    ("photos", "*.py"),
 )
 
 

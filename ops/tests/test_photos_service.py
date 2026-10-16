@@ -147,6 +147,54 @@ st, _ = req("PUT", "/sessions/%s/photos?zone=%s&kind=before" % (sid3, ZONE), src
 check("session-storage-quota-refused", st == 409)
 ST.MAX_SESSION_BYTES = old_quota
 
+# Two uploads to the SAME session, overlapping (a before and an after sent
+# back to back is the realistic case), must both survive. ThreadingHTTPServer
+# gives every request its own thread; without a per-session lock around the
+# meta.json read-modify-write, the second writer's snapshot does not include
+# the first writer's new photo, so its write silently erases it: the .jpg
+# file still lands on disk, orphaned, while the caller who uploaded it was
+# already told 201. Forced deterministically (not hoping two real threads
+# collide by luck) by delaying Store._authorize so the second request is
+# guaranteed to be mid-open() while the first still holds the lock.
+st, s4 = req("POST", "/sessions"); sid4, tok4 = s4["session_id"], s4["token"]
+_orig_authorize = ST.Store._authorize
+_first_in = threading.Event()
+_let_first_finish = threading.Event()
+_second_tried_before_first_finished = threading.Event()
+
+
+def _delayed_authorize(self, d, token):
+    meta = _orig_authorize(self, d, token)
+    if not _first_in.is_set():
+        _first_in.set()
+        _let_first_finish.wait(2)
+    else:
+        _second_tried_before_first_finished.set()
+    return meta
+
+
+ST.Store._authorize = _delayed_authorize
+race_results = {}
+
+
+def _race_upload(key, zone):
+    st, body = req("PUT", "/sessions/%s/photos?zone=%s&kind=before" % (sid4, zone), src, tok4, "image/jpeg")
+    race_results[key] = (st, body)
+
+
+tA = threading.Thread(target=_race_upload, args=("A", ZONE))
+tA.start()
+check("race-first-request-entered", _first_in.wait(2))
+tB = threading.Thread(target=_race_upload, args=("B", OTHER))
+tB.start()
+check("race-second-request-blocked-not-racing", not _second_tried_before_first_finished.wait(0.2))
+_let_first_finish.set()
+tA.join(2); tB.join(2)
+ST.Store._authorize = _orig_authorize
+check("race-both-uploads-returned-201", race_results["A"][0] == 201 and race_results["B"][0] == 201)
+st, listed = req("GET", "/sessions/%s/photos" % sid4, token=tok4)
+check("race-no-photo-lost-to-lock-contention", len(listed["photos"]) == 2)
+
 # A restart must not silently rearm every limiter: a fresh Store pointed at
 # the same data directory should still see hits recorded before "restart".
 store_a = ST.Store(tmp)
