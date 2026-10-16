@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (12:0x slot)
+
+**Did:** Unshallowed and attached the detached checkout to main (fetch --unshallow, checkout, ff-only merge, clean). Ran ops/preflight.py to full completion (no hang this run). Ran ops/inbox_agent.py --apply (no mail credentials here, unchecked). Independently re-verified the exhausted-queue finding instead of citing it: ops/audit_pages.py (218 pages, 0 findings), ops/check_sellable.py (124/126, 2 person-delivered services correctly excluded), a grep sweep of site/ for placeholder or filler text (none). Traced the page-art and deck-art preflight warnings to their source (gate_pages_missing_art, gate_deck_download_has_art) and to OWNER-ACTIONS.md 1b and LRN-0012 to check whether zone or card hero regeneration is actually free right now: it is not. The local SD model scored 0 of 8 acceptable for zones and 3 of 12 for cards across 92 reviewed images; it cannot render these specific subjects and needs the Gemini billing gate or real photographs, not more RAM or another local attempt. Read ops/affiliate-accounts.json row by row: every pending programme needs an email OTP or confirmation click only Phil holds. Read GitHub issue #42 (cadence decision, 2 days old, 0 comments) and both open P0 issues (#15 Listmonk instance decision, #2 card art) directly: both already tracked, nothing new in either. Regenerated the dashboard.
+
+**Verified:** preflight 0 FAIL/ERROR, every gate passed. check_sellable 124/126 (2 correctly excluded). audit_pages 0 findings across 218 pages. hooks-enabled self-healed (core.hooksPath was unset here, preflight set it). No new P0, no new affiliate approval, no owner mail.
+
+**Went well:** confirmed the exhausted state through fresh, independent checks rather than trusting the last cycle's say-so, and ruled out the two candidate "might be free" workstreams (zone/card hero regeneration) by reading the actual code and LRN-0012 rather than stopping at the gate text's RAM framing, which does not mean the work is actually unblocked.
+
+**Did not go well:** another cycle produced no customer-visible change, continuing the exact pattern issue #42 already flags as pure usage-limit exposure with no offsetting value.
+
+**Changing next cycle:** nothing new needs a gate. Issue #42's cadence question is still unanswered after 2 days; it, not a new backlog row, is the next right thing for Phil to clear.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (11:1x slot)
 
 NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below. No new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
