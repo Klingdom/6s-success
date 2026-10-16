@@ -2,7 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-10-16 (19:0x slot): full preflight run to real completion, independently re-verified every lane, nothing new
+## PM check-in, 2026-10-16 (19:1x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach needed a real unshallow this slot (shallow checkout, `merge --ff-only` first refused on unrelated histories until `git fetch --unshallow` completed; no reset or force). Working tree clean, main matches `origin/main`, no concurrent push landed while this cycle ran.
+
+**Ran the full `preflight.py` myself to genuine completion** (about 12 minutes, backgrounded): every gate passed, 26 warnings, 0 FAIL, same standing environment-access gaps (no Stripe/SSH/mail/DNS credential). CI ("Checks") confirmed green on the last code-touching commit (`a90d209`) directly, not cited. `cycle_signal.py --check` SAME. `cold_read_ledger.py --stale` 0. `b9_claims.py --status` 0 undiagnosed. 10 GitHub issues read live, unchanged, all decision/blocked-on-art; #42 still 0 comments, now past 46 hours. 0 open PRs. No mail credential, unchecked not empty.
+
+**No new defect, nothing to start.** Not re-notifying Phil; a push already went out today on this exact topic and nothing has changed.
+
+Pushed to main. Dashboard regen and this entry only.
+
 
 **Did:** Attach needed care: Step 0's own unshallow was still running in the background (confirmed via `ps`, real CPU climbing on `index-pack`) when a premature second `git fetch --unshallow` was issued and collided on `.git/shallow.lock`, the exact anti-pattern this log already names. Did not force or remove the lock; waited for the original process to exit, then `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force.
 
