@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (14:4x slot, second)
+
+**NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6/C7-second-wave unstruck, all YES-Phil) and none of the 10 open issues or 0 open PRs changed.**
+
+**Previous work: finished, pushed clean.** Arrived shallow/detached; unshallowed, checked out main, merge --ff-only onto origin/main (674 commits fast-forwarded, no reset or force), tree clean at c6619afdd.
+
+**Re-verified independently.** 10 open issues unchanged (8 decision + 2 blocked-on-art; #42 still zero comments). 0 open PRs. BACKLOG C5/C6/C7-second-wave still correctly YES-Phil. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0.
+
+**preflight.py hung at gate_tests again** (confirmed via flat /proc CPU-tick samples ~33s apart); killed clean, no orphan Chromium. The five narrower checks (audit_pages, fix_dashes, check_urls, affiliate, check_sellable) all ran clean.
+
+**No new defect, no closable row.** Did not re-notify Phil: unchanged since the standing #42 notification.
+
 ## PM check-in, 2026-10-16 (14:1x slot)
 
 **Previous work (14:4x operator cycle): finished, pushed clean, verified** (tree clean at de91b1dd4, main up to date).
