@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## PM check-in, 2026-10-16 (16:4x slot)
 
-NEXT FOR THE OPERATOR: hold state and watch CI on this push, because the real find this slot was a genuine CI-only gate failure the sandbox cannot see, now fixed; confirm it goes green before picking anything else.
+NEXT FOR THE OPERATOR: read the actual CI result on `b7761ad2b` (still in_progress as of this writing) before picking anything else, because the real find this slot was a genuine CI-only gate failure the sandbox cannot see, now fixed and independently confirmed by a full local preflight pass, but not yet confirmed green on GitHub's own runner.
 
 **Previous work: finished, pushed clean.** Attach was already current (unshallow had to run first; 687 commits, all from this account's own prior cycles, fast-forwarded with no reset or force). Working tree clean before starting.
 
@@ -14,13 +14,15 @@ NEXT FOR THE OPERATOR: hold state and watch CI on this push, because the real fi
 
 **`cycle_signal.py --check` read CHANGED** (this edit touched `OWNER-ACTIONS.md`), so ran the full local re-verification rather than skip it: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 person-delivered services excluded), `rotate_nightly_log.py --check` CLEAN (768 entries, within window), `b9_claims.py --status` 0 undiagnosed rooms. 10 GitHub issues read live, unchanged (8 decision, 2 blocked-on-art; #42 still 0 comments). `preflight.py` backgrounded via `run_preflight.sh`; past the 16:43 operator boundary before it reached the `gate_tests` hang, so its full result is genuinely unchecked this entry, not assumed clean, per CLAUDE.md 0.4 (the specific gate this cycle fixed was verified directly instead, both the unit test and the real function against the real file).
 
-**Dashboard regenerated** after the fix. Not recording a fresh `cycle_signal` snapshot yet, since the backgrounded preflight has not finished; a later cycle should `--record` once it confirms clean.
+**Dashboard regenerated** after the fix, and pushed (`b7761ad2b`).
 
-**Went well:** checking CI directly instead of trusting a thirteenth identical local "exhausted" read.
+**Addendum, same slot: the backgrounded preflight finished after the push, and it did not hang this time.** Unlike the standing pattern, `gate_tests` ran to completion rather than stalling on `test_audit_catalog.py`: full result is **every gate passed, 27 warnings**, all the standing environment-access kind (no Stripe/SSH/mail/DNS credential, Pillow absent), confirming the fix across the real gate suite rather than only the isolated unit test. One routine warning appeared, `dashboard-self-description-fresh` (one commit stale against `b7761ad2b`, the commit that regenerated it); not re-chased, per the established learning in this file that this is the unavoidable one-commit lag the gate's own docstring names as routine. Fast-forwarded cleanly onto a concurrent `Hourly check-in record` push (`1b6b6bbb7`, dashboard-only diff, no conflict). Recorded a fresh `cycle_signal` snapshot now that the full local and full preflight re-verification are both genuinely clean, not assumed.
+
+**Went well:** checking CI directly instead of trusting a thirteenth identical local "exhausted" read; not chasing the routine one-commit dashboard lag a second time this slot.
 
 **Changing next cycle:** when this file or a prior cycle's commit message cites "0 FAIL" from a local preflight run, read it as "0 FAIL through gate_tests," not "0 FAIL," until `gate_tests` itself stops hanging in this sandbox; the two are not the same claim, and that gap is exactly how a real CI-only FAIL went unnoticed for two cycles.
 
-**Next:** operator at :43 (already late this slot) should confirm the next CI run on this push is green, then fall back to whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first; nothing else is genuinely unblocked. Issue #42 (cadence) unchanged, not re-notifying.
+**Next:** the CI "Checks" run on `b7761ad2b` was still `in_progress` as this entry was written (checked directly, not assumed); the fix is independently confirmed by a full clean local preflight, but that is not the same claim as a green CI run. Operator should read the actual run result, not infer it, then fall back to whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first; nothing else is genuinely unblocked. Issue #42 (cadence) unchanged, not re-notifying.
 
 ## PM check-in, 2026-10-16 (16:2x slot)
 
