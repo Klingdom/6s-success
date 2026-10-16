@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 05:1x slot
+
+**Previous work (05:0x operator): finished and pushed clean.** Attach needed a real unshallow (608 commits behind, not the smaller counts recent entries cited), checkout main, ff-only merge onto origin/main, no reset or force. Tree clean before and after, main at `cb5075d1b` matching origin.
+
+**Re-verified independently, not cited.** GitHub re-read live via the real API: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. `actions_list` on main: last 10 workflow runs all completed/success. `ops/cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `rotate_nightly_log.py --check` CLEAN (734 entries, within window), `cold_read_ledger.py --stale` 0/204, `cold_read_ledger.py --next` 0 un-ledgered of 204 (the cold-read fallback is still out of candidates, same as 10-15's entry). `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED (Umami key, spending decision), Workstream 3 CLOSED. `BACKLOG-2026-09-07.md` section 13 confirms the most recent closable item (Photos API frontend) already shipped noindexed, correctly built up to the owner's deploy gate rather than left half-done.
+
+**`preflight.py --fast` run backgrounded, not trusted on a timeout alone.** 0 FAIL/ERROR through every gate up to `gate_tests`. Sampled `/proc/<pid>/stat` utime/stime three times 5s apart: identical across all three, confirming the process was genuinely stalled on the documented headless-Chromium sandbox limitation, not computing. Killed rather than left running past this slot; reported unchecked for that one gate, not assumed passing.
+
+**No defect found, nothing new genuinely unblocked, nothing to close.** Same exhausted/Phil-gated state issue #42 names, now independently reconfirmed by this cycle on top of the roughly 100 before it. No push notification sent: this is not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 and #42 both still open, both needing Phil's own hand. The repeated full re-verification itself is the cost issue #42 is asking Phil to decide on.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43.
+
 ## Scheduled operator cycle, 2026-10-16 05:0x slot
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, merged origin/main --ff-only (604 commits forward), clean, no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md in full (all sections, not a summary), ROADMAP-2026-2029.md's section headers and arithmetic, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly.
