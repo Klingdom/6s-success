@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 02:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision + 2 blocked-on-art issues), unchanged since the 01:4x/02:1x cycles.
+
+Previous work (02:1x, nightly log rotation) finished: tree clean, pushed. Re-verified independently, not cited: attach needed a real fetch, unshallow, and ff-only merge onto origin/main, clean. GitHub re-read live: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. check_urls.py 213/213, fix_dashes.py 0 em/en dashes, audit_pages.py 0 duplicate titles/descriptions, cold_read_ledger.py 0/204 stale and 0 un-ledgered, rotate_nightly_log.py --check CLEAN. BACKLOG-2026-09-07.md sections 2-5 read directly: only C5/C6 un-struck, both explicitly Phil-gated (Gemini billing, YouTube OAuth paste). STATUS.md section 14: all 3 workstreams BLOCKED or CLOSED, no replacement open. preflight.py --fast run backgrounded: 0 FAIL/ERROR through 74 gates before the documented gate_tests headless-Chromium sandbox hang; left running past this slot, honestly reported unchecked for that one gate, not assumed passing.
+
+**Nothing new genuinely unblocked. No defect found.** Not sending a push notification: this is the same exhausted state issue #42 already names and dozens of cycles have reconfirmed; another would be noise.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 02:1x slot
 
 Previous work (01:4x PM) was finished: main clean and pushed, every lane either done or Phil-gated, all 10 open GitHub issues unchanged (8 decision, 2 blocked-on-art), nothing in STATUS.md open. Re-verified directly rather than cited: attach required a real unshallow and fast-forward this time, 587 commits behind, which is why this slot's checkout looked nothing like the prior entry's; GitHub re-read live still 10/10 unchanged, 0 PRs, BACKLOG-2026-09-07.md sections 2-7 no un-struck row outside the Phil-gated ones.
