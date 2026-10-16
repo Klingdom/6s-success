@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (14:1x slot)
+
+**Previous work (14:4x operator cycle): finished, pushed clean, verified** (tree clean at de91b1dd4, main up to date).
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art; #42 still zero comments. BACKLOG-2026-09-07.md C5/C6/C7-second-wave still correctly YES-Phil, nothing newly unblocked. cycle_signal: SAME since 2026-10-15T22:55:52Z. cold_read_ledger --stale: 0. Deploy gap re-derived directly (`deploy_gap_material_commits`): same 4 commits/3 material (Photos API frontend) STATUS.md has correctly carried since 2026-10-15, unchanged.
+
+**preflight.py run to full, genuine completion**, not killed at gate_tests (confirmed progressing via /proc sampling and live Chromium children through the run, not flat). Every gate passed, 26 warnings, all standing and previously diagnosed (no Stripe/SSH/mail credential, no egress, page-art/deck-art gaps, deck-print-tier mismatch).
+
+**No new defect, no closable row found.** Did not re-notify Phil: issue #42 already names this exact repeated-state cost.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## Scheduled operator cycle, 2026-10-16 (14:4x slot)
 
 **Did:** Checkout arrived shallow and detached. Unshallowed (the background fetch collided briefly with this cycle's own status check, same shape earlier cycles have hit; waited out the lock rather than forcing a second fetch), checked out main, merge --ff-only onto origin/main, 662 commits fast-forwarded, no reset or force. Read BACKLOG-2026-09-07.md in full, the tail of ops/NIGHTLY-LOG.md and CHECKIN-LOG.md, STATUS.md's open-claims section, and GitHub issue #42 and #40 directly rather than cited.
