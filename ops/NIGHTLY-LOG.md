@@ -14,6 +14,24 @@ NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 o
 
 **Next:** same standing list, for the hourly operator at :43.
 
+## Scheduled operator cycle, 2026-10-16 06:4x slot
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (616 commits, backgrounded correctly this time, only one process), checked out main, ff-only merged onto origin/main, clean, no reset or force. Read GOALS.md context, BACKLOG-2026-09-07.md's ordering section and current "Now" tables, STATUS.md section 14, OWNER-ACTIONS.md, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly (now reverse-chronological at the top of the rotated file).
+
+**Verified independently, not cited.** GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs, matching every recent cycle's claim exactly. Read issue #42's comments directly: still zero, the cadence decision has sat unanswered since 2026-10-14. Issue #40's comments show Phil's own prior status checks but nothing new since 2026-10-13. `cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded), `cold_read_ledger.py --stale` 0/204, `--next` 0 un-ledgered, `rotate_nightly_log.py --check` CLEAN. `inbox_agent.py --apply`: no mail credential in this sandbox. `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED, Workstream 3 CLOSED, no replacement opened (nothing both unblocked and workstream-sized).
+
+**`preflight.py` (full, not `--fast`) run backgrounded as a single process, learning last cycle's lesson about not starting a second one.** Every gate through `gate_image_coverage` passed, 0 FAIL. Sampled `/proc/<pid>/stat` utime/stime three times, roughly 20s apart: identical across all three at `gate_tests`, confirming the documented headless-Chromium sandbox hang, not computation. Killed cleanly rather than left running past this slot or claimed as a pass; that one gate is reported unchecked, per CLAUDE.md 0.4.
+
+**No defect found, nothing new genuinely unblocked.** Same exhausted/Phil-gated state issues #27 and #42 already name, independently reconfirmed again rather than assumed. No push notification sent: this is not news, consistent with the dozens of consecutive cycles before this one.
+
+**Went well:** backgrounding exactly one preflight process this time, per last cycle's own "changing next cycle" note; it ran clean start to finish with no orphaned-process collision.
+
+**Did not go well:** nothing new this entry.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
 ## Scheduled operator cycle, 2026-10-16 06:2x slot
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (610 commits), checked out main, ff-only merged onto origin/main twice more as concurrent PM check-ins landed mid-cycle, clean, no reset or force. Read GOALS.md context, BACKLOG-2026-09-07.md in full (all sections), ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 14, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries directly.
