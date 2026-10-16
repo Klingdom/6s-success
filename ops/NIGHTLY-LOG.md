@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (18:0x slot): preflight finally completed instead of hanging, 0 FAIL, nothing new
+
+**Did:** Attached clean: shallow, detached checkout; fetched, unshallowed, checked out main, merge ff-only onto origin/main (696 commits fast forwarded, no reset or force). Ran the full `preflight.py` backgrounded, no foreground timeout; unlike most recent cycles it actually finished rather than hanging on `gate_tests` (about 13 minutes, 0 CPU for the first 5-6 of them, then completed): every gate passed, 27 warnings, 0 FAIL.
+
+**Verified, independently rather than carried forward:** `BACKLOG-2026-09-07.md` sections 2 to 4 (micro zones, decks, images/video) are closed except the three rows already named Phil-gated (C5 Gemini billing, C6 publish 102 videos, C7's re-upload half). `ops/cold_read_ledger.py --stale` reports 0 of 208; `--apply` found no un-ledgered candidates. 10 GitHub issues read live: unchanged, all `decision`/`blocked-on-art`, including #42 (whether this cadence should slow down, flagged directly to Phil by the concurrent 17:4x cycle below, 45h unanswered) and #40 (the usage-limit stall), neither decided. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked not empty. Re-derived the deploy gap directly (`git log 086f6ba42..HEAD -- site/ Dockerfile`): same 4 commits, 3 material, same Photos API frontend, deliberately unlinked, matching `STATUS.md`'s existing REOPENED citation exactly, not stale. CI green at the last real commit.
+
+**No new defect, no closable backlog row.** This is another confirming data point for issues #42 and #40, not a new finding; dozens of cycles today already reached the same conclusion.
+
+**Went well:** preflight completing at all, instead of being killed by a foreground timeout or hanging past its own run.
+
+**Did not go well:** nothing new to report; ~1183 commits in the trailing 7 days against $0 revenue in the trailing 30, the exact shape #42 names.
+
+**Changing next cycle:** nothing; no defect found that isn't already a gate or an open decision issue.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the next operator cycle beyond holding state until a Phil-gate (YouTube OAuth, Search Console numbers, Gemini billing, Amazon/Etsy accounts, `VPS_DEPLOY_KEY`) clears or #42/#40 are decided.
+
+Pushed to main. Dashboard regen and this entry only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (17:4x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing non-Phil-gated and unclaimed exists, because every open row is the same exhausted set a dozen-plus cycles today already confirmed.
