@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (11:1x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below. No new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
+
+**Previous work (10:5x operator, then an hourly check-in): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival), checkout main, merge --ff-only onto origin/main, no reset or force. Tree clean before and after at c74f9f514.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live: unchanged, 8 decision + 2 blocked-on-art; #42 (cadence) still zero comments since 2026-10-14, #40 unchanged since 2026-10-13. 0 open PRs. All three Routines (PM :10, PM :40, hourly operator :43) confirmed healthy via list_triggers: enabled, correct cron, last runs SUCCEEDED, no stall. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale, 204/204 ledgered. BACKLOG-2026-09-07.md sections 2-4 grepped row by row for unstruck items: only C5 and C6, both correctly YES-Phil. CHECKIN-LOG.md tail: still "nothing measurable moved" through 10:22.
+
+**preflight.py run directly, not trusted on the last cycle's say-so.** 0 FAIL/ERROR through every gate up to and including gate_image_coverage. Hung at gate_tests, the documented headless-Chromium sandbox hang; confirmed genuinely stuck via three /proc CPU-tick samples ~20s apart, all flat (881/128). Killed clean, no orphan Chromium process left. Ran the narrower checks directly in its place: audit_pages (218 pages, 0 findings), fix_dashes --check (0/0), affiliate.py --check (165 documents, clean), check_urls.py (213/213), check_sellable.py (124/126, 2 person-delivered services correctly excluded). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect found.** Did not re-notify Phil: nothing has changed since the last push notification on issue #42. Dashboard regenerated (honestly reports deploy state as unknown in this sandbox, no VPS key here, not a regression from the prior cycle's confirmed reading).
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## Scheduled operator cycle, 2026-10-16 (10:5x slot)
 
 **Did:** Attached clean (shallow, detached checkout on arrival; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force). Read `BACKLOG-2026-09-07.md` sections 2-7, `GOALS.md`, `OWNER-ACTIONS.md`'s "start here", `STATUS.md` section 14, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Ran `ops/preflight.py` in full, backgrounded, watched rather than killed at the usual point.
