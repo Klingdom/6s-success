@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (19:0x slot): full preflight run to real completion, independently re-verified every lane, nothing new
+
+**Did:** Attach needed care: Step 0's own unshallow was still running in the background (confirmed via `ps`, real CPU climbing on `index-pack`) when a premature second `git fetch --unshallow` was issued and collided on `.git/shallow.lock`, the exact anti-pattern this log already names. Did not force or remove the lock; waited for the original process to exit, then `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force.
+
+**Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG.md entries** before picking anything, per STEP 1.
+
+**Verified independently rather than cited, every check run directly:** `list_issues` read live, 10 open, all `decision`/`blocked-on-art`, none newly Phil-unblocked; issue #42's own comment thread read directly, still 0 comments, now past 48 hours; issue #40's three comments read directly, all self-authored, root cause (usage-limit stall) still unconfirmed by Phil. `list_pull_requests`: 0 open. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale`: 0. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked not empty. Deploy gap re-derived from `ops/deploy-verdict.json` (`c36cb2794e581473`, resolves to `65eb9740f`): `git log 65eb9740f..HEAD -- site/ Dockerfile` reads 2 commits (the Photos API frontend's own CI-gate fix pair), same standing `VPS_DEPLOY_KEY` gap as issue #35, no new defect in them.
+
+**Ran the full `preflight.py` myself, backgrounded, to genuine completion rather than trusting the last cited run.** It reached `gate_tests` and, unlike the usual flat-CPU hang, its child process (`audit_catalog.py --include-fixtures`) was actively burning CPU (98-99 percent) rather than stalled; waited it out rather than killing it. Result: **every gate passed, 27 warnings**, all the standing environment-access kind (no Stripe/SSH/mail/DNS credential in this sandbox, Pillow absent). Also ran `check_urls.py` (213/213), `audit_pages.py` (0 duplicate titles/descriptions), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, 2 person-delivered services excluded), `rotate_nightly_log.py --check` (CLEAN, 774 entries, within window), `b9_claims.py --status` (0 undiagnosed rooms) directly, all clean, before the full preflight result was in hand.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** This independently reconfirms, rather than merely repeats, the exhausted state roughly two dozen cycles today already reached: every row in `BACKLOG-2026-09-07.md` is Done, Hold, or Phil-gated; both standing issues (#42 cadence, #40 usage-limit root cause) remain undecided by Phil. A push notification on this exact topic already went out earlier today (2026-10-16); nothing has changed since that would justify a second one, so none sent this cycle.
+
+**Went well:** waiting out the colliding `shallow.lock` instead of forcing past it; actually waiting for the backgrounded preflight to finish (about 13 minutes) instead of citing a killed or partial run as evidence.
+
+**Did not go well:** issuing the premature second unshallow fetch at all, the same shape a 2026-10-02 entry already names as a lesson; a stale `is-shallow-repository` read mid-fetch should not trigger a second fetch.
+
+**Changing next cycle:** none beyond the standing one already recorded (wait for Step 0's own background command before re-checking shallow state).
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the next operator or PM cycle beyond holding state until a Phil-gate (YouTube OAuth, Search Console numbers, Gemini billing, Amazon/Etsy/Apple/Play accounts, `VPS_DEPLOY_KEY`) clears or #42/#40 are decided.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (18:1x slot)
 
 **Previous work: finished, pushed clean.** Attached clean (unshallowed, checked out main, ff-only onto origin/main, 0 conflicts). Ran full `preflight.py` to completion myself this slot rather than trusting the prior cycle's own run: every gate passed, 27 warnings, 0 FAIL, same standing environment-access limits (no Stripe/mail/VPS credential, no DNS/site reach). Confirmed CI green by diff, not citation: zero `site/`, `Dockerfile` or `ops/*.py` changes between `a90d209` (last confirmed-green commit) and HEAD.
