@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 06:2x slot
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (610 commits), checked out main, ff-only merged onto origin/main twice more as concurrent PM check-ins landed mid-cycle, clean, no reset or force. Read GOALS.md context, BACKLOG-2026-09-07.md in full (all sections), ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 14, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries directly.
+
+**A real self-inflicted defect, found and corrected before it could mislead anyone.** An earlier `&`-backgrounded preflight attempt this cycle left an orphaned process running; starting a second, properly-tracked run alongside it caused two concurrent `audit_catalog.py`/`audit_visual.py` subprocesses to race on the same scratch paths, and killing the orphan mid-test left a stray `site/_audit_catalog_fixture_1081.html` behind. The next preflight run correctly caught this as a real `FAIL` (`stray-probe-files`) and self-healed by deleting it. Rather than report that FAIL as a product defect, re-ran `ops/preflight.py --fast` twice more cleanly, single-process: both reported 0 FAIL, every gate passed, 25 warnings (all the standing sandbox-credential ones). The lesson is about this cycle's own process hygiene, not the repository, so no new gate was written; `gate_stray_probe_files` already existed and worked exactly as designed.
+
+**Verified independently.** GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `rotate_nightly_log.py --check` CLEAN, `cold_read_ledger.py --stale` 0/204, `--next` 0 un-ledgered, `cycle_signal.py --check` SAME. `inbox_agent.py --apply`: no mail credential in this sandbox. All 3 `STATUS.md` workstreams BLOCKED/CLOSED. No Stripe/Gemini/VPS credential in this sandbox (standing).
+
+**Nothing new genuinely unblocked.** Same exhausted/Phil-gated state issues #27 and #42 already name, reconfirmed independently rather than cited, including against two concurrent cycles' own pushes mid-session.
+
+**Went well:** the clean preflight re-run distinguished a real gate (working correctly) from this cycle's own process collision before either got written down as a repository defect.
+
+**Did not go well:** running a duplicate preflight process in the first place; cost about 8 minutes re-verifying what a single careful run would have shown directly.
+
+**Changing next cycle:** background exactly one preflight run at a time; never start a second while an earlier `&`-backgrounded one might still be alive.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
 ## PM check-in, 2026-10-16 06:1x slot
 
 **Previous work (05:4x PM): finished and pushed clean.** Attach needed a real unshallow (610 commits behind), checkout main, ff-only merge onto origin/main, no reset or force.
