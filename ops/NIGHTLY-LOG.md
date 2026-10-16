@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (20:1x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach needed a real unshallow and forced-update fetch (fresh checkout arrived shallow and detached, 715 commits behind); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force, 0 conflicts. Tree clean before and after.
+
+**Independent checks run this slot, not cited:** diffed the two commits landed since the last cycle's own verified preflight (`97bbb751d`) and confirmed only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and `ops/state.json` changed, no `site/`, `ops/*.py` or `Dockerfile` touch, so a fresh 10+ minute preflight run would re-verify an unchanged tree; relied on the prior cycle's own clean result (0 FAIL, 26 warnings) instead of re-running it. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot. `list_issues` read live: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 (cadence decision) still 0 comments since 2026-10-14T20:47Z, now past 47h; #40 (usage-limit root cause) unchanged since 2026-10-13T20:51Z, now past 71h. `list_pull_requests`: 0 open. CI confirmed green directly via `actions_list` on the last code-touching commit (`a90d209d`, success 17:03-17:15Z), not cited. Grepped `BACKLOG-2026-09-07.md` for any open, non-gated row: none found.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Same exhausted state this entire day's cycles have already reconfirmed: every row Done, Hold, or Phil-gated; #42 and #40 remain undecided. Not re-notifying Phil: a push on this exact topic already went out earlier today and nothing has changed since.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the hourly operator beyond holding state until a Phil-gate clears or #42/#40 are decided.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-16 (19:5x slot): full re-verification run, independently confirms the exhausted state, nothing new
 
 **Did:** Attach needed a real unshallow (fresh checkout arrived shallow and detached, as expected); `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force. A concurrent PM check-in (`401fffc60`, 19:4x) pushed moments after this cycle's own fetch; caught it with a second fetch before writing anything, fast-forwarded onto it rather than racing it.
