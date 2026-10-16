@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (21:4x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
+
+**Previous work: finished.** Attach arrived shallow and detached again; unshallowed for real this time (full `index-pack`, not instant), `checkout main`, `merge --ff-only` onto `origin/main` landed clean, no reset or force, tree clean before and after.
+
+**Independent checks, not cited:** diffed `a90d209d..HEAD`, confirmed only two more bot `Hourly check-in record` commits landed (dashboard/state regen only, no `site/`, `ops/*.py` or `Dockerfile` touch), so the last full `preflight.py` run (CI green on `a90d209d`, 17:03-17:15Z) still covers current `HEAD`'s code; did not re-run the 10+ minute suite against an unchanged tree. `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`. Read #40's and #42's comment threads directly rather than trusting the count: all three comments on #40 are prior Claude cycles' own status updates, none from Phil; #42 still has zero comments, now past 49h. `list_pull_requests`: 0 open. Grepped `BACKLOG-2026-09-07.md` for any open, non-gated row: none found.
+
+**No new defect, no closable row, nothing unblocked.** Not notifying Phil again on #42/#40: both are already fully argued in their own issue bodies, nothing has changed since either was filed, and silence is correct when nothing changed.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first.
+
+Pushed to main. Log and dashboard regen only; no price, product or page touched.
+
 ## PM check-in, 2026-10-16 (21:1x slot)
 
 NEXT FOR THE OPERATOR: hold state, nothing unblocked, same exhausted set every cycle today has already confirmed.
