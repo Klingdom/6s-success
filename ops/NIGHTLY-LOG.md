@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 04:1x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision + 2 blocked-on-art issues) and OWNER-ACTIONS.md, unchanged, because every unblocked row in BACKLOG-2026-09-07.md sections 2-9 is already struck through except C5/C6, both named in section 6 as Phil-only gates.
+
+**Previous work (03:5x operator): finished and pushed clean**, main at `d98321c`, tree clean before and after. Attach needed a real unshallow (597 commits behind per the last log entry), checkout main, ff-only merge onto origin/main, no reset or force.
+
+**Re-verified independently, not cited.** GitHub re-read live via the API: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs, exactly matching every recent cycle's claim. `ops/cycle_signal.py --check` reported SAME against the 2026-10-15T22:55:52Z snapshot. `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/204. `BACKLOG-2026-09-07.md` sections 2-6 read directly: no un-struck row outside C5 (Gemini billing) and C6 (YouTube OAuth), both Phil-only. `STATUS.md` section 14: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open. `preflight.py --fast` run backgrounded: 0 FAIL/ERROR through every gate up to the documented `gate_tests` headless-Chromium sandbox hang; killed there rather than left running past this slot, honestly reported unchecked for that one gate, not assumed passing.
+
+**No defect found, nothing new genuinely unblocked.** No push notification sent: this is the exact state issue #42 already names and dozens of consecutive cycles have already reconfirmed; another would be the noise the routine framework itself warns against, not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 and #42 both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-16 03:5x slot
 
 **Did:** Checkout arrived shallow and detached again (issue #27's usual shape); unshallowed, checked out main, merged origin/main --ff-only (597 commits forward), clean, no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md (sections 0, 2 through 9, 13), ROADMAP-2026-2029.md, CLAUDE.md and the last four NIGHTLY-LOG.md entries directly, not a summary.
