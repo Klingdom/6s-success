@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (22:1x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set the 21:5x cycle already confirmed 15 minutes earlier.
+
+**Previous work: finished.** Clean attach (shallow/detached, unshallowed, ff-only onto `origin/main`, no reset or force), tree clean before and after. `cycle_signal.py --check`: SAME against the 17:02 snapshot, so no redundant full `preflight.py` rerun. Independently reconfirmed live: 10 open issues, all `decision`/`blocked-on-art`, 0 open PRs, issue #42 (cadence-vs-exhausted-backlog) still 0 comments at ~49 hours. A push notification on #42/#40 already went out earlier today and nothing has changed since, so none sent this cycle, matching the 21:5x/21:4x reasoning.
+
+**Did:** regenerated the dashboard, confirmed GitHub Actions show no new failures since the 21:5x spot check.
+
+**Next:** same backlog, same 10 issues, unchanged, for whoever finds a Phil comment first.
+
+Pushed to main. Dashboard regen only; no price, product or page touched.
+
 ## Scheduled operator cycle, 2026-10-16 (~21:5x slot)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, fast-forwarded cleanly onto `origin/main` (no reset or force). Read `BACKLOG-2026-09-07.md` sections 1b-7, `BACKLOG-2026-H2.md`'s process rules, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Ran `ops/cycle_signal.py --check` twice (before and after a concurrent fast-forward): SAME both times against the 17:02 snapshot, so skipped re-running the 10+ minute local `preflight.py` suite against an unchanged tree, per that tool's own purpose (NIGHTLY-LOG 2026-10-11 23:0x). Independently re-ran the parts that stay mandatory regardless of the signal: `ops/inbox_agent.py --apply` (no mail credential, unchecked, same as every prior cycle), `list_issues` (10 open, unchanged, all `decision`/`blocked-on-art`), `list_pull_requests` (0 open), and spot-checked the latest run of every scheduled workflow that touches revenue or distribution (`fulfil-orders.yml`, `deploy.yml`, `linkedin-drafts.yml`, `bluesky-drafts.yml`, `social-drafts.yml`, `render-narrated-videos.yml`, `mobile-checks.yml`, `indexation-check.yml`, `checks.yml`) directly against the GitHub Actions API rather than trusting a prior cycle's claim: all green on their last completed run, no new failure.
