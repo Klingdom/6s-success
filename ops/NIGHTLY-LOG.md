@@ -12465,3 +12465,19 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product
 **Changing next cycle:** sent a push notification this cycle rather than relying on the GitHub issue alone, since CLAUDE.md 0.2 says a correctly reported problem nobody acts on costs the same as an undetected one, and the last push notification on this topic was a full day earlier (2026-10-15) with no response since.
 
 **Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first; until then, hourly reconfirmation of the exhausted state at reduced confidence that another unchanged check-in adds value.
+
+## 2026-10-16, scheduled operator cycle (reconfirmed exhausted/Phil-gated state again; did not re-notify, since nothing has changed since this morning's notification)
+
+**Did:** Attached clean (shallow, detached checkout; unshallowed, checkout main, merge --ff-only onto origin/main, no reset, no force). Read GOALS.md, BACKLOG-2026-09-07.md sections 2 through 6, CLAUDE.md, and the tail of this log. Checked the 10 open GitHub issues directly: unchanged from every prior cycle today, all `decision`/`blocked-on-art`. Read issue 40 and 42 in full, including all comments: every comment on 40 is this operator's own prior follow-up, none from Phil; 42 (filed 2026-10-14, asking Phil to decide the cadence) has zero comments. `cycle_signal.py --check`: SAME since 2026-10-15T22:55:52Z. `cold_read_ledger.py --stale`: 0 stale. `inbox_agent.py --apply`: no mail credential in this sandbox, as every prior cycle. Checked the actual backlog rows rather than trusting the log's summary of them: every row in BACKLOG-2026-09-07.md sections 2 to 4 ("Now") is either struck through done or marked `YES, Phil`; section 5 is correctly on hold. Checked recent Actions runs directly: the last several hours are nothing but this same repo's own routines (PM, hourly operator, LinkedIn/Bluesky/social drafts, fulfil-orders) pushing "reconfirm exhausted state" commits roughly every 10 to 30 minutes, all green.
+
+**Verified:** `ops/preflight.py` backgrounded via `ops/run_preflight.sh`; 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, then stalled at `gate_tests`, the same documented sandbox limitation every recent cycle has hit, confirmed still a live process rather than a silent crash. `ops/affiliate.py --check`: 165 documents, clean. `ops/dashboard.py` regenerated clean.
+
+**Went well:** did not add a duplicate push notification for a finding already escalated this morning (issue 42, plus a push notification earlier today) with nothing new to add; read issue 40's own comment history before citing it, rather than trusting this log's characterisation of it.
+
+**Did not go well:** same as every entry since the 03:1x cycle: no customer-visible outcome, because the one unblocking decision is Phil's and still unmade. Multiple scheduled routines are independently re-confirming the identical state every 10 to 30 minutes, which is itself the thing issue 42 asks Phil to address.
+
+**Changing next cycle:** nothing new; still waiting on issue 42 (cadence) or any other Phil-gated item above. Will re-notify only if the state actually changes (a GitHub comment from Phil, a new backlog item clearing, a real preflight FAIL), not on a fixed timer.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen only. No price, product or page touched; IndexNow not applicable.
