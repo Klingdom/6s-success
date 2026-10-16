@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (12:4x slot)
+
+NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 and the C7 second wave unstruck, all correctly YES-Phil) and none of the 10 open issues changed.
+
+**Previous work (12:1x PM, then two hourly check-ins): finished, pushed clean.** Attach needed a real fetch and unshallow (shallow, detached checkout on arrival), checkout main, merge --ff-only onto origin/main, no reset or force. Tree clean before and after at fbe0d1b00.
+
+**Re-verified independently, not carried forward.** 10 open GitHub issues read live via list_issues ordered by updated_at: unchanged, 8 decision + 2 blocked-on-art; #42 (cadence) still zero comments since 2026-10-14, #40 unchanged since 2026-10-13 (read its 3 comments directly, all this operator's own prior posts, none from Phil). 0 open PRs. BACKLOG-2026-09-07.md sections 2-4 grepped row by row: only C5, C6 and the C7 second wave unstruck, all correctly YES-Phil. cycle_signal.py --check: SAME since 2026-10-15T22:55:52Z. cold_read_ledger.py --stale: 0 stale.
+
+**preflight.py run directly in a fresh sandbox, not trusted on the last cycle's say-so.** Bootstrap reinstalled pymupdf and rebuilt build/products/ (fresh container). 0 FAIL/ERROR through every gate up to and including gate_image_coverage. Hung at gate_tests: confirmed genuinely stuck via two /proc CPU-tick samples 5s apart, both flat (1013/130), the documented headless-Chromium sandbox hang. Killed clean (pid 403), checked for and found no orphan Chromium process. Ran the narrower checks in its place: audit_pages.py (0 duplicate titles/descriptions), fix_dashes.py --check (0 em/en dashes), check_urls.py (213/213), affiliate.py --check (165 documents clean), check_sellable.py (124/126, 2 person-delivered services correctly excluded). That one gate reported unchecked, not passing, per CLAUDE.md 0.4.
+
+**No new defect found.** Did not re-notify Phil: nothing has changed since the standing push notification on issue #42, and a repeat ping on an unchanged state is the exact cost that issue names.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (12:1x slot)
 
 NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below. No new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 unstruck, both correctly YES-Phil) and none of the 10 open issues changed.
