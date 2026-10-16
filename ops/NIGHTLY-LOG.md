@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (23:5x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has independently confirmed.
+
+**Did:** Checkout arrived shallow and detached (732 commits behind); unshallowed for real (a background `git fetch --unshallow` that outran its own foreground timeout, waited for it to finish rather than forcing past it), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full (sections 0 through 14, every row Done/Hold/Phil-gated), delegated a digest of the sections already summarised by today's earlier cycles to a fork rather than re-reading them cold.
+
+**Verified independently, not cited:** `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`; read #42's and #40's own comment threads directly rather than trusting a count (#42 still 0 comments, now past 3 days; #40's 3 comments are prior Claude-cycle status updates, none from Phil). `list_pull_requests`: 0 open. `ops/cold_read_ledger.py --stale` and `--next`: 208 of 208 files ledgered, 0 stale, 0 un-ledgered candidates, re-run fresh rather than trusted from the log. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap. `ops/traffic_query.sh`: no Docker socket in this sandbox either, confirming (again) no VPS reach to re-measure traffic or the affiliate T2 trigger. `ops/state.json`'s `affiliate_trigger` unchanged (1 of 60 in the last measured window). Ran a full `python ops/preflight.py` (not backgrounded-and-checked-first); it reached `gate_tests` with 0 FAIL on every gate before it, then stalled at flat CPU (14s of CPU time across 279s wall clock), the documented headless-Chromium sandbox limit, killed rather than guessed at.
+
+**Did not go well:** ran that full `preflight.py` before checking `ops/cycle_signal.py --check`, which reports `SAME` against the 17:02:36Z snapshot (tree unchanged, that snapshot's own full local and backgrounded runs both already clean). The run was redundant, not wrong, but cost several minutes this cycle did not need to spend; should have run the signal check first, the way several of today's earlier cycles already did.
+
+**No new defect, no closable row, nothing unblocked.** Not sending a push notification: issue #42 (cadence vs. exhausted backlog) and #40 (usage-limit stall) are both already fully argued and already notified earlier today; nothing has changed since that would justify a second ping, and a notification nobody needs is worse than none.
+
+**Changing next cycle:** check `ops/cycle_signal.py --check` before running a full local `preflight.py`, not after.
+
+**Next:** work the next unblocked, non-Phil-gated row in `BACKLOG-2026-09-07.md` the moment one exists, or act the moment Phil comments on #42, #40, or any of the other 8 decision/blocked-on-art issues. Until then, hold.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 (23:1x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has confirmed.
