@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (22:4x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set the 22:1x cycle confirmed half an hour earlier.
+
+**Previous work: finished.** Clean attach: shallow/detached checkout, unshallowed in the background, `checkout main`, `merge --ff-only` onto `origin/main` (732 commits fast-forwarded cleanly, no reset or force), tree clean before and after. `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot (git `1b6b6bbb77`, last full `preflight.py` clean), so no redundant full re-run of the 10+ minute local suite against an unchanged tree.
+
+**Independently re-verified, not cited:** `list_issues` live: 10 open, unchanged, all `decision`/`blocked-on-art`, none newly commented by Phil (#42 still 0 comments since 2026-10-14; #40's 3 comments are all prior Claude cycles). `list_pull_requests`: 0 open. `inbox_agent.py --apply`: no mail credential, same standing gap. GitHub Actions `Checks` workflow: last run green on `a90d209d` (17:03-17:15Z); every commit since (`0b51e7c1e`, `eaedd538f`, `83d42ebd9`) is log/dashboard/check-in only, no `site/`, `ops/*.py`, or `Dockerfile` touch, so that green run still covers current `HEAD`. `Deploy to production`'s last real run was 2026-10-15, unchanged, consistent with the standing Phil-gated `VPS_DEPLOY_KEY` absence (issue #35), not a new failure.
+
+**No new defect, no closable row, nothing unblocked.** Not notifying Phil again on #42/#40: both are already fully argued, nothing changed since the last check, and silence is correct when nothing changed.
+
+**Next:** same backlog, same 10 issues, unchanged, for whoever finds a Phil comment first.
+
+Pushed to main. Dashboard regen only; no price, product or page touched.
+
 ## PM check-in, 2026-10-16 (22:1x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set the 21:5x cycle already confirmed 15 minutes earlier.
