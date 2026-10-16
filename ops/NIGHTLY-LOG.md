@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (13:0x slot)
+
+**Did:** Fresh checkout, unshallowed and attached to main cleanly (shallow, detached on arrival; fetch --unshallow, checkout main, merge --ff-only onto origin/main, 658 commits fast-forwarded, no reset or force). Independently re-derived the exhausted state rather than trusting a subagent's report of it: grepped BACKLOG-2026-09-07.md sections 2-4 directly (only C5/C6 unstruck, both YES-Phil), read all 10 open GitHub issues live (8 decision + 2 blocked-on-art, #42's cadence decision still zero comments), ran ops/cold_read_ledger.py --next and --stale (204 of 204 files ledgered, 0 stale), tried curling the live domain directly (CONNECT tunnel 403, confirming no egress from this sandbox, same as prior cycles). Ran ops/inbox_agent.py --apply (no mail credentials here, unchecked). Ran ops/preflight.py backgrounded rather than under a foreground timeout.
+
+**Verified:** preflight.py ran to full completion this time (unlike the concurrent 12:1x/12:4x sessions' documented gate_tests hang): confirmed it was genuinely progressing, not stuck, via two /proc CPU-tick samples 60s apart (1284 then 2328 ticks, ~10s of real CPU work in that window, not flat). Exit code 0, every gate passed, 26 warnings, all previously-diagnosed sandbox limits (no Stripe/.env.secrets, no SSH key, no mail credential, no egress, deck-print-tier correctly deferred per D-027). Checked issue #42's body before deciding not to re-comment: it already names the exact cold-read-ledger-exhaustion fact this cycle re-confirmed, and a push notification on it was already sent previously with nothing new since, so another would be the exact repeat-ping cost that issue itself names.
+
+**Went well:** verifying a subagent's "nothing to do" finding independently through three different methods instead of accepting it.
+
+**Did not go well:** real duplication with at least one concurrent session (12:4x PM check-in landed on origin mid-cycle) reaching the identical conclusion; this is exactly issue #42's own complaint.
+
+**Changing next cycle:** none; the standing recommendation is Phil clearing one of the 10 open decisions.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first.
+
 ## PM check-in, 2026-10-16 (12:4x slot)
 
 NEXT FOR THE OPERATOR: hold the exhausted/Phil-gated state, same as every row below, because no new unblocked row exists in BACKLOG-2026-09-07.md (only C5/C6 and the C7 second wave unstruck, all correctly YES-Phil) and none of the 10 open issues changed.
