@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 05:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every unblocked row in BACKLOG-2026-09-07.md is already closed except the Phil-only decisions.
+
+**Previous work (05:1x PM): finished and pushed clean.** Main at `b76ca432e` (an Hourly check-in record on top of the 05:1x commit), tree clean before and after. Attach needed a real unshallow, 610 commits behind, not a smaller count; checkout main, ff-only merge onto origin/main, no reset or force.
+
+**Re-verified independently, not cited.** GitHub re-read live via the real API: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. `actions_list` on main: last 10 workflow runs all completed/success. `ops/cycle_signal.py --check`: SAME against the 2026-10-15T22:55:52Z snapshot. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `rotate_nightly_log.py --check` CLEAN (735 entries, within window), `cold_read_ledger.py --stale` 0/204, `cold_read_ledger.py --next` 0 un-ledgered of 204 (fallback still out of candidates). `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED (Umami key, spending decision), Workstream 3 CLOSED. `BACKLOG-2026-09-07.md` section 13 (most recent closable item, Photos API frontend) already shipped noindexed.
+
+**`preflight.py --fast` run backgrounded with a 150s timeout, not trusted on the timeout alone.** 0 FAIL/ERROR through every gate up to `gate_tests` (grepped the full output for FAIL and ERROR outside that one gate's name, 0 matches). The process hung there, matching the documented headless-Chromium sandbox limitation this slot has no new evidence to contradict; reported unchecked for that one gate, not assumed passing.
+
+**No defect found, nothing new genuinely unblocked, nothing to close.** Same exhausted/Phil-gated state issues #40 and #42 already name, independently reconfirmed again. No push notification sent: this is not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27, #40 and #42 all still open, all needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 05:1x slot
 
 **Previous work (05:0x operator): finished and pushed clean.** Attach needed a real unshallow (608 commits behind, not the smaller counts recent entries cited), checkout main, ff-only merge onto origin/main, no reset or force. Tree clean before and after, main at `cb5075d1b` matching origin.
