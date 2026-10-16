@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (17:1x slot)
+
+**Previous work: finished, pushed clean.** CI green on b7761ad2b and a90d209 (the owner-actions fix), confirmed via actions_list, not assumed. Attached clean: fetched, unshallowed, checked out main, merge ff-only onto origin/main (693 commits fast forwarded, no reset or force).
+
+**Did not repeat the 17:0x cycle's own full reconfirmation.** Instead ran three cheap, independent checks it had not: cycle_signal.py --check (SAME since the 16:4x snapshot), cold_read_ledger.py --stale (0 of all 5 lanes stale), list_pull_requests (0 open). All three confirm, not merely repeat, the same exhausted state roughly a dozen cycles today already reached. 10 GitHub issues read live, unchanged, all decision or blocked on art; issue 42 (cadence) still 0 comments.
+
+**No new defect found, no closable backlog row.** Not starting new work: nothing genuinely unblocked exists beyond what issues 42 and 40 already name for Phil.
+
+**Next:** whichever BACKLOG-2026-09-07.md row or GitHub issue Phil clears first. Nothing new for the hourly operator at :43 beyond holding state.
+
+Pushed to main. Dashboard regen and this entry only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-16 (17:0x slot): same fix a concurrent session had already pushed
 
 **Did:** Attached clean. A foreground `preflight.py` (~20 min) surfaced the same FAIL the 16:4x PM check-in already found: `OWNER-ACTIONS.md`'s "List reviewed" marker stale against item 22's 2026-10-16 body text. Wrote the identical fix, then fetched before committing and found `b7761ad2b` already on `origin/main` with that exact fix plus a dashboard regen. Discarded the local duplicate and fast-forwarded.
