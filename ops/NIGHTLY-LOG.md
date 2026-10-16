@@ -2,7 +2,21 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-10-16 (independent re-verification, state unchanged)
+## PM check-in, 2026-10-16 00:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list, because every lane that is not a `decision` issue or `blocked-on-art` is genuinely done, closed or struck through, and nothing changed in the 20+ minutes since the 00:1x cycle said the same thing.
+
+**Previous work (00:1x PM, 23:5x operator) was finished, verified myself, not cited.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (full history), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit (watched to its own timeout, killed; 0 FAIL printed before it, honestly unchecked for that one gate, not passing). Ran the narrower standing checks directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered candidates (double-checked the three newest merged files, `video_cleanalong.py`/`build_photo_check_data.py`/`rotate_nightly_log.py`, by basename; all three already ledgered 2026-10-15). GitHub re-read directly via the API, not trusted from the log: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs; #42's comment count and `updated_at` (2026-10-14T20:47:13Z) unchanged, no new word from Phil. `STATUS.md` section 14: all three workstreams confirmed CLOSED or BLOCKED on Phil (Umami key, a spending decision), no replacement workstream open, matching the file's own text.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than taken on the prior cycle's word. No defect found. **No push notification sent:** this is the same state issue #42 already named and many consecutive cycles have since reconfirmed; another one now would be the noise the routine framework itself warns against, not news.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) still open.
+
+**Changing next cycle:** none.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/ssh egress here). No price, product or page touched; IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-16 (independent re-verification, state unchanged, concurrent with the 00:4x PM check-in above)
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (572 commits fetched), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `GOALS.md` sections 0-4, `BACKLOG-2026-09-07.md` sections 0, 6, 7 and the owner-gate table, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (00:1x PM through 23:4x PM, all independently reaching the same exhausted/Phil-gated verdict).
 
