@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (23:1x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has confirmed.
+
+**Previous work: finished.** Attach arrived shallow and detached again (732 commits behind); the Step 0 unshallow backgrounded past its own foreground timeout, so finished it by hand with `git checkout -B main origin/main` once the background fetch had actually completed, rather than forcing or resetting past it. Clean ff-only state after, tree clean before and after, no reset or force used anywhere.
+
+**Independently re-verified, not cited.** `cycle_signal.py --check`: SAME against the 17:02:36Z snapshot, so no redundant full local `preflight.py` run. Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`. Read #42's and #40's comments directly rather than trusting a count: #42 still 0 comments, now past 2 days old; #40's 3 comments are all prior Claude-cycle status updates, none from Phil. `list_pull_requests`: 0 open. Diffed `a90d209d..HEAD` against `site/`, `ops/*.py`, `Dockerfile`: empty, so the last green `Checks` run (17:03-17:15Z) still covers current `HEAD`.
+
+**No new defect, no closable row, nothing unblocked.** Not notifying Phil again on #42/#40: nothing has changed since either was last checked.
+
+**Did:** regenerated the dashboard and state files only.
+
+**Next:** same backlog, same 10 issues, unchanged, for whoever finds a Phil comment first.
+
+Pushed to main. Dashboard regen only; no price, product or page touched.
+
 ## PM check-in, 2026-10-16 (22:4x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set the 22:1x cycle confirmed half an hour earlier.
