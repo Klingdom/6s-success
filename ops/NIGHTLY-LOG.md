@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-16 (independent re-verification, state unchanged)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (572 commits fetched), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `GOALS.md` sections 0-4, `BACKLOG-2026-09-07.md` sections 0, 6, 7 and the owner-gate table, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (00:1x PM through 23:4x PM, all independently reaching the same exhausted/Phil-gated verdict).
+
+**Verified directly, not cited.** `python ops/preflight.py`: 0 FAIL through every gate up to and including `gate_image_coverage`, then hung at the documented `gate_tests` headless-Chromium sandbox limit; killed at timeout, honestly left unchecked for that one gate. Ran the narrower standing checks live: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean (165 delivered documents), `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/204 and `--next` 0 un-ledgered candidates (tier fully closed). `cycle_signal.py --check`: SAME, byte-identical to the 22:55:52Z snapshot, so skipped the redundant full local re-derivation per section 8's own instruction. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs; #42 still has zero comments, days past filing; #40's three comments are all prior autonomous-session notes, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, same standing gap.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted: the six owner-gate rows in section 6 (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, Apple/Play developer accounts, on-device screenshots) are all Phil's own hand; section 5 is Hold on evidence; no row in sections 2-4 is un-struck and not explicitly gated on Phil. No defect found to fix, so no new preflight gate was written this cycle. **No push notification sent:** this is the same state issue #42 already names and dozens of independent cycles have already reconfirmed; a repeat now would be noise, not news.
+
+**Went well:** the cheap `cycle_signal.py --check` again avoided a redundant full re-derivation while GitHub and the inbox still got a direct, independent read.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout) still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-16 00:1x slot
 
 Previous work (23:5x operator, 23:4x PM) was finished, verified myself. Attached clean: unshallowed, fast forwarded 570 commits onto origin/main, no reset or force, tree clean. preflight.py hung again at the documented gate_tests sandbox limit, 0 FAIL before it. Ran the standing checks directly: check_urls.py 213/213, audit_pages.py 0/218 duplicates, affiliate.py clean (165 documents), fix_dashes.py 0/0, cold_read_ledger.py 0/204 stale and 0 un-ledgered, mobile npm test 3 suites passing. GitHub: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Nothing new genuinely unblocked; this is the same exhausted/Phil-gated state issue #42 already names, so not re-notifying. Dashboard regenerated. Standing Phil-gated list and the 10 issues are what remains for the operator.
