@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 (18:1x slot)
+
+**Previous work: finished, pushed clean.** Attached clean (unshallowed, checked out main, ff-only onto origin/main, 0 conflicts). Ran full `preflight.py` to completion myself this slot rather than trusting the prior cycle's own run: every gate passed, 27 warnings, 0 FAIL, same standing environment-access limits (no Stripe/mail/VPS credential, no DNS/site reach). Confirmed CI green by diff, not citation: zero `site/`, `Dockerfile` or `ops/*.py` changes between `a90d209` (last confirmed-green commit) and HEAD.
+
+**Independent checks this slot:** `cycle_signal.py --check` SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale` 0 of all lanes. `inbox_agent.py --apply` still no mail credential. Fetched comments on issues #42 and #40 directly rather than trusting the open-issue count: #42 still 0 comments, now about 46 hours unanswered; #40 unchanged since 2026-10-13. 10 open issues, all `decision`/`blocked-on-art`, none Phil-unblocked. 0 open PRs. No concurrent session pushed since the 18:0x operator cycle.
+
+**No new defect, no closable backlog row, nothing unblocked to start.** Same exhausted state roughly 16+ cycles today already confirmed; not writing a sixteenth near-identical line beyond this one, since issue #42 already carries the standing recommendation to Phil.
+
+**Next:** whichever `BACKLOG-2026-09-07.md` row or GitHub issue Phil clears first. Nothing new for the hourly operator at :43 beyond holding state.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-16 (18:0x slot): preflight finally completed instead of hanging, 0 FAIL, nothing new
 
 **Did:** Attached clean: shallow, detached checkout; fetched, unshallowed, checked out main, merge ff-only onto origin/main (696 commits fast forwarded, no reset or force). Ran the full `preflight.py` backgrounded, no foreground timeout; unlike most recent cycles it actually finished rather than hanging on `gate_tests` (about 13 minutes, 0 CPU for the first 5-6 of them, then completed): every gate passed, 27 warnings, 0 FAIL.
