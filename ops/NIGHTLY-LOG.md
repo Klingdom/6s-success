@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-16 03:1x slot
+
+**Previous work: finished.** Attach was shallow and detached again (issue #27's usual shape): unshallowed, checked out main, ff-only merged onto origin/main (595 commits forward, clean, no reset or force). Tree clean before and after.
+
+Independently re-verified rather than cited. GitHub re-read live via the API (a subagent call, not trusted from the log): 10 open issues, exactly 8 `decision` + 2 `blocked-on-art`, 0 open PRs, matching the prior cycle's claim exactly. `BACKLOG-2026-09-07.md` sections 2-4 read directly: every row struck through except C5 (Gemini billing) and C6 (YouTube OAuth), both named in section 6 as owner gates, neither pickable. `STATUS.md` section 14: Workstream 1 and 2 BLOCKED, Workstream 3 CLOSED, no replacement open. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0/204, `rotate_nightly_log.py --check` CLEAN (728 entries, within window). `preflight.py --fast` backgrounded: 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang; left running past this slot, honestly reported unchecked for that one gate, not assumed passing.
+
+**Nothing new genuinely unblocked. No defect found.** `CHECKIN-LOG.md`'s last two entries (01:21, 02:21) both already say nothing measurable moved despite ~190 commits/24h, which is this same exhausted state as seen from a different file, not a new finding. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), carrying revenue/traffic forward honestly (no Stripe/ssh egress here). No price, product or page touched; IndexNow not applicable.
+
+**No push notification sent:** this is the exact state issue #42 already names and dozens of consecutive cycles have already reconfirmed; another would be the noise the routine framework itself warns against, not news.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only.
+
 ## Scheduled operator cycle, 2026-10-16 02:5x slot
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, checked out main, merged origin/main --ff-only, clean, no reset or force. Read GOALS.md, BACKLOG-2026-09-07.md (sections 0, 1b, 2 through 7), ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly, not a summary.
