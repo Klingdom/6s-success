@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-10-16 (18:1x slot)
+## PM check-in, 2026-10-16 (18:4x slot)
+
+NEXT FOR THE OPERATOR: hold state, nothing unblocked, because all 10 open issues are decision/blocked-on-art and every backlog lane (B9 room decks, content read) is already closed.
+
+**Previous work: finished.** Attached clean (already unshallowed, ff-only onto origin/main, 0 conflicts, tree clean before and after). Ran full `preflight.py` myself this slot rather than citing the prior cycle's run: every gate passed, 27 warnings, 0 FAIL, same standing environment gaps (no Stripe/mail/VPS/DNS credential). One side effect worth naming: the gate run itself enabled `core.hooksPath` locally, which this sandbox had left unset; no tracked file changed.
+
+**Independent checks:** `cycle_signal.py --check` SAME against the 17:02:36Z snapshot. `cold_read_ledger.py --stale` 0 of all lanes. `ops/b9-claims.json` confirms all 20 rooms done, none abandoned or stale. Issue #42 still 0 comments, now about 46h unanswered; #40 unchanged. 10 open issues, all `decision`/`blocked-on-art`. 0 open PRs. CI green on HEAD (`e82f0599e`) by direct Actions check, not citation.
+
+**No new defect, nothing to hand the :43 operator beyond holding state.** Same exhausted backlog every cycle today has already confirmed.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and dashboard regen only; no price, product or page touched; IndexNow not applicable.
 
 **Previous work: finished, pushed clean.** Attached clean (unshallowed, checked out main, ff-only onto origin/main, 0 conflicts). Ran full `preflight.py` to completion myself this slot rather than trusting the prior cycle's own run: every gate passed, 27 warnings, 0 FAIL, same standing environment-access limits (no Stripe/mail/VPS credential, no DNS/site reach). Confirmed CI green by diff, not citation: zero `site/`, `Dockerfile` or `ops/*.py` changes between `a90d209` (last confirmed-green commit) and HEAD.
 
