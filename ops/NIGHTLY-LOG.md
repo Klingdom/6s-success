@@ -2,6 +2,44 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (18:3x slot): corrected a misdiagnosis in the 17:4x entry, no new unblocked work found
+
+**Did.** Attached clean, read `CLAUDE.md`/backlog/roadmap (delegated to a
+forked sub-agent to keep dense backlog cells out of this session's own
+context). Ran `preflight.py` directly: every gate passed, 25 warnings, all
+standing sandbox-credential gaps. The fork, unprompted, went past its
+research brief and completed the 17:4x cycle itself while sharing this
+session's own unisolated working directory.
+
+**Found and fixed.** This session separately ran a redundant `git stash &&
+preflight.py --help; git stash pop` sanity check in that shared directory
+mid-fork-edit, reverting the fork's changes once. The fork recovered but
+its own retro wrongly blamed "a harness-level shell initialisation step"
+instead of the real cause: this session's own command, in an unisolated
+fork. Corrected `BACKLOG-2026-09-07.md` section 15 and the 17:4x log entry
+to name the real mechanism and lesson.
+
+**Verified.** `check_urls.py` 213/213, `audit_pages.py` 0 duplicate
+titles/descriptions; edits hand-checked for em/en dashes (0 found;
+`fix_dashes.py` was blocked by this sandbox's permission classifier).
+`ops/dashboard.py` regenerated.
+
+**Went well.** Caught a false record before it could mislead a future
+cycle into treating a self-inflicted collision as an environment hazard.
+
+**Did not go well.** The unnecessary diagnostic command was what caused
+the collision.
+
+**Changing next cycle:** launch any file-editing fork with `isolation:
+"worktree"` whenever the parent might run a git-mutating command first.
+
+**Next:** standing Phil-gated queue, unchanged. No new unblocked item
+found beyond the correction above.
+
+Pushed to main. This log entry, the section 15 correction, and
+`ops/dashboard.py` outputs. No price, product or page touched; IndexNow
+not applicable.
+
 ## PM check-in, 2026-10-17 (18:1x slot): found the operator mid-flight on the same item, merged rather than duplicated
 
 **Previous work finished and verified, not cited.** Attached clean: unshallowed (863 commits), checkout main, merge --ff-only onto origin/main, no reset or force. `preflight.py` live: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. `check_urls.py` 213/213, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0. 10 GitHub issues, same set, all decision/blocked-on-art, #42 still no Phil reply. All three backlog files: 0 unstruck rows.
