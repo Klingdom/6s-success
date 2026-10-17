@@ -121,10 +121,20 @@
       "date": "2026-10-12",
       "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: no defect found, duplex mirroring logic verified correct"
     },
+    "build_dining_room_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_dining_room_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Read in full (413 lines) and run directly: regenerates byte-identical, its own hardcoded whole-room-card-id assertion passes, 0 drift. Confirmed it correctly imports shared rendering helpers from build_kitchen_deck_page.py rather than forking logic."
+    },
+    "build_entryway_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_entryway_deck_page.py": {
       "status": "clean",
@@ -136,6 +146,11 @@
       "date": "2026-10-12",
       "note": "third-pass cold read, 2026-10-12 scheduled operator cycle: EDITION_DATE constant stuck at 2026-09-11 since introduction despite 6 real content commits through 2026-10-01 local / 2026-10-02 UTC (British spelling, book.css dedupe, chapter 44-49 room-mislabel fix); committed epub was byte-identical to a fresh regen (no build drift) but dc:modified understated the last real change by 3 weeks. Bumped to 2026-10-02 (the commit's own UTC date, not its -06:00 local date). Added gate_epub_edition_date_current to ops/preflight.py, proved it fails red against the original stale date and passes clean against the fix"
     },
+    "build_family_room_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_family_room_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -146,25 +161,50 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, scheduled operator. Regex-based field extraction (title/description/canonical/dates) matches the real article-page shape; --check reports 30 current entries. No defect found."
     },
+    "build_garage_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_garage_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Run directly in the deck-page-builder batch: regenerates byte-identical, 0 drift."
+    },
+    "build_guest_bathroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_guest_bathroom_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Run directly in the deck-page-builder batch: regenerates byte-identical, 0 drift."
     },
+    "build_guest_bedroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_guest_bedroom_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Run directly in the deck-page-builder batch: regenerates byte-identical, 0 drift."
     },
+    "build_hall_closet_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_hall_closet_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Run directly in the deck-page-builder batch: regenerates byte-identical, 0 drift."
+    },
+    "build_home_office_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_home_office_deck_page.py": {
       "status": "clean",
@@ -186,6 +226,11 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, scheduled operator. Found two real defects. (1) main()'s 'if want_tier:' treated --tier 0 as no filter (0 is falsy in Python), so the one invocation meant to produce just the 6-image tier-0 starter batch silently wrote all 228 images' worth of prompts instead; fixed to 'if want_tier is not None:'. (2) The committed tier-1/tier-2-prompts.md files were stale against content.json's own American-spelling text (unlabelled/grey/tyre/metre/labelled etc., never regenerated after a dialect sweep), the exact source-corrected-artifact-never-rederived shape this repo's own backlog names as dominant, uncaught because gate_no_british_spellings_shipped deliberately excludes this non-shipped intake file. Regenerated both files from the fixed generator. Refactored main() to share render_tier()/all_items()/by_tier() with a new gate_image_prompts_tiers_current (preflight.py), which regenerates and diffs all three tier files on every run; fail-then-pass proved directly and in ops/tests/test_gate_image_prompts_tiers_current.py (5/5)."
     },
+    "build_kids_bedroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -195,6 +240,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "Read in full (360 lines) and run directly: regenerates byte-identical including the full wiring chain, disclosure-ordering and Sort-before-Straighten assertions pass. First run (piped through `head -30`) looked like it had stripped the PWA block and mis-marked aria-current on a nav link; traced to this operator's own shell `| head` SIGPIPE-killing the subprocess mid-chain (pipestatus confirmed exit 1), not a real defect. Re-ran without truncation: clean, 0 drift."
+    },
+    "build_kitchen_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Ran all 20 build_*_deck.py generators live: all pass extensive internal asserts (related-field cross-refs, orphan/untreated root causes, per-zone friction/action counts, art subject never requests lettering, safety coverage) and produce output byte-identical to committed ops/cardtext/*.json (0 drift). Checked for duplicate card IDs across all 20 room decks: ROOT CAUSE CARD ids ARE deliberately shared across rooms (ops/root_causes.py, 'the shared vocabulary' per derive_room_deck.py), not a bug. Found a real, latent gap in the sibling page builders (ops/build_*_deck_page.py, a different lane): each has the identical unguarded 'assert whole_ids == [...] inside the generator' risk gate_kitchen_deck_page_counts_current (2026-09-18) fixed for Kitchen alone. Generalised: new gate_room_deck_pages_counts_current covers the other 19 rooms, proved fail-then-pass."
     },
     "build_kitchen_deck_page.py": {
       "status": "clean",
@@ -206,10 +256,20 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, scheduled operator. --check reports current (sheet hash matches the live kitchen-deck.html print sheet); upstream build_kitchen_deck_page.py regenerates idempotently (no diff). MARKERS/page-count/content checks are sound. No defect found."
     },
+    "build_laundry_room_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_laundry_room_deck_page.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Run directly in the deck-page-builder batch: regenerates byte-identical, 0 drift."
+    },
+    "build_living_room_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
@@ -236,20 +296,40 @@
       "date": "2026-10-12",
       "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
+    "build_mudroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_mudroom_deck_page.py": {
       "status": "clean",
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
+    },
+    "build_nursery_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_nursery_deck_page.py": {
       "status": "clean",
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
     },
+    "build_pantry_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_pantry_deck_page.py": {
       "status": "clean",
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
+    },
+    "build_patio_or_deck_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_patio_or_deck_deck_page.py": {
       "status": "clean",
@@ -261,10 +341,20 @@
       "date": "2026-10-15",
       "note": "First cold read, un-ledgered new file from today's Photos API frontend work. Read all 62 lines end to end. Imports photos/methodology.py directly for zone_slugs()/ZONES rather than re-deriving the slug rule, so the picker can never offer a slug GET /v1/zones would reject. Ran live: wrote 114 zones, git status clean after (output matches committed file exactly, no drift). Checked methodology.py's _load() for slug-collision risk (two room+zone pairs producing the same slug): none found in the live corpus at 114 rows. No defect."
     },
+    "build_primary_bathroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_primary_bathroom_deck_page.py": {
       "status": "clean",
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
+    },
+    "build_primary_bedroom_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
@@ -316,6 +406,11 @@
       "date": "2026-10-12",
       "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
     },
+    "build_stair_landing_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+    },
     "build_stair_landing_deck_page.py": {
       "status": "clean",
       "date": "2026-10-11",
@@ -335,6 +430,11 @@
       "status": "clean",
       "date": "2026-10-12",
       "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (165 lines). shot(), fit() and html_for() all logically sound; zone_slug() delegated to video_zone.py rather than hand-copied (the exact defect class this file's own comment documents being fixed for). --check confirms 114/114 thumbnails present. No render environment here to exercise the actual screenshot path, so that branch is read-verified, not executed; the --check branch (the one the pipeline actually calls) was run directly. No defect found."
+    },
+    "build_workshop_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -470,6 +570,11 @@
       "status": "clean",
       "date": "2026-10-15",
       "note": "Re-verified after staleness flag (touched 2026-10-15 by 10:4x fix adding /photo-check.html to DISCOVERY_PAGES). Read the diff and the surrounding 332-line file end to end. resolve_asset_ref() correctly resolves photo-check.html's root-relative assets/js/ hrefs since it sits in site/ root, same as every other DISCOVERY_PAGES entry except the downloads/ sample. Ran gate_checker_scope() in isolation: 0 FAIL, 0 WARN. Ran the script live: correctly reports UNKNOWN (not fresh) when production is unreachable from this sandbox, matching its own stated philosophy. No defect."
+    },
+    "derive_room_deck.py": {
+      "status": "clean",
+      "date": "2026-10-17",
+      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
     },
     "diagnosis.py": {
       "status": "clean",

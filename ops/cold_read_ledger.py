@@ -5,14 +5,18 @@ lane has actually read and cleared or fixed, so the next cycle does not
 have to reconstruct that from a 40,000+ line, ever-growing
 ops/NIGHTLY-LOG.md by eye.
 
-Covers five lanes: ops/*.py (164 files, closed 2026-09-27), ops/*.js
+Covers six lanes: ops/*.py (164 files, closed 2026-09-27), ops/*.js
 (1 file, added 2026-09-27 after the three-lane version above sat at
 "174 of 174" without ever covering the one hand-authored .js file
 living in the ops/ directory itself), the hand-written
 site/assets/js/*.js (7 files) and mobile/quest-app/lib/*.js (5 files,
 excluding *.test.js: a test is read together with the module it tests,
-not ledgered separately), and photos/*.py (4 files, added 2026-10-16).
-Extended to the JS lanes 2026-09-27:
+not ledgered separately), photos/*.py (4 files, added 2026-10-16), and
+ops/cardtext/*.py (21 files, added 2026-10-17: a non-recursive "ops/*.py"
+glob cannot see its own subdirectory, so these 20 room-deck generators
+and derive_room_deck.py had never been a ledger candidate at all, the
+same blind spot the photos/ lane closed a day earlier for a different
+subdirectory). Extended to the JS lanes 2026-09-27:
 the log had been ranking them by raw mention count in prose ("already
 exhausted this month by multiple cycles"), the exact proxy this file's
 own history (below) shows failing at least three times for ops/*.py
@@ -113,6 +117,7 @@ LANES = (
     ("site/assets/js", "*.js"),
     ("mobile/quest-app/lib", "*.js"),
     ("photos", "*.py"),
+    ("ops/cardtext", "*.py"),
 )
 
 

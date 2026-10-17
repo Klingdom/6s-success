@@ -2,6 +2,67 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (17:4x slot, full STEP 0-13 pass)
+
+**Did.** Attached clean: unshallowed, checked out main, fast-forward merged
+296 commits onto `origin/main`, no reset or force. Backlog, roadmap, last
+four log entries, CLAUDE.md all read fresh rather than trusted from a prior
+cycle's summary. All 10 GitHub issues unchanged (decision/blocked-on-art),
+no mail credential, `cold_read_ledger.py --stale` read 0/208: the standing
+exhausted state held, and the PM twin had already escalated it directly to
+Phil three minutes before this cycle started (`OWNER-ACTIONS.md` item 23),
+so logging the same state again would have been this run's only output.
+Instead swept for unswept ground the same way the 2026-10-16 cycle found
+the `photos/` lane gap: `ops/cardtext/*.py` (21 files, the 20 room-deck
+generators plus `derive_room_deck.py`) had never been a cold-read
+candidate under any lane, a non-recursive `ops/*.py` glob blind spot.
+
+**Found and fixed.** Full account in `BACKLOG-2026-09-07.md` section 15.
+Read and ran all 21 generators (0 drift, internal asserts pass). The real
+gap was one level up: all 19 non-Kitchen room-deck page builders carry the
+identical unguarded `assert whole_ids == [...]` risk
+`gate_kitchen_deck_page_counts_current` (2026-09-18) fixed for Kitchen
+alone, never generalised when the other 19 shipped. New
+`gate_room_deck_pages_counts_current` in `ops/preflight.py` closes it for
+all 19, proved fail-then-pass with a forced simulation and a new 7-case
+test. Ledgered all 21 cardtext files; widened `cold_read_ledger.py` to a
+sixth lane.
+
+**Verified.** New gate and test both pass on real committed files;
+`gate_kitchen_deck_page_counts_current`, `gate_every_generator_has_a_protection_plan`,
+`cold_read_ledger.py --stale`, `check_urls.py` (213/213), `audit_pages.py`
+(218/0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165
+documents) all re-run live and clean.
+
+**Went well.** Found a real, generalisable gap rather than re-confirming
+the exhausted state a further time; proved the fix could fail before
+trusting it could pass.
+
+**Did not go well.** A near-miss: a background `preflight.py` run started
+to verify this cycle's own edits coincided with a harness-level shell
+initialisation step (`ps aux` caught it live: `git stash && python
+ops/preflight.py --help; git stash pop`, not this operator's command and
+not triggered by anything in `ops/`) that reverted every edited tracked
+file to HEAD mid-cycle. A new untracked test file survived, since `git
+checkout --` cannot touch a file git does not track, which is how the loss
+was first noticed. Redid the lost edits from this session's own history
+and committed immediately rather than running a further long-lived command
+first. This closes a latent gap, not a live defect: all 19 pages were
+already correct today, so no live customer impact either way.
+
+**Changing next cycle:** commit promptly after a hand edit to a tracked
+file here, before running a second Bash command, rather than leaving
+uncommitted edits sitting in the tree across multiple tool calls. The
+standing Phil-gated queue is otherwise unchanged;
+`OWNER-ACTIONS.md` item 23's cadence-cost decision is still his call.
+
+**Next:** standing Phil-gated queue (`OWNER-ACTIONS.md` items 0 and 23; the
+10 open issues). No new unblocked item exists beyond this cycle's own fix.
+
+Pushed to main. `ops/dashboard.py` outputs, this log entry, and
+`BACKLOG-2026-09-07.md` section 15. No price, product or shipped page
+touched; IndexNow not applicable (no site page changed).
+
 ## PM check-in, 2026-10-17 (17:1x slot): notified Phil directly instead of logging the exhausted state a two-hundred-and-umpteenth time
 
 **Previous work finished and verified, not cited.** Attached clean: unshallowed, checked out main, fast-forward merged onto `origin/main`, no reset or force, tree already clean. Independently reran rather than trusted: `preflight.py` live, 0 FAIL/ERROR across every gate before the documented `gate_tests` sandbox hang (killed at 100s, same standing limitation). Narrower suite directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md`: 0 unstruck rows, grepped directly. 10 open GitHub issues via the MCP tool, same set as every recent cycle, all `decision`/`blocked-on-art`; issue #42 still carries only its own 2026-10-17 01:51 UTC comment, now nearly 16 hours with no Phil reply.

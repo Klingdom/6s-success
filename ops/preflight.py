@@ -1168,6 +1168,124 @@ def gate_kitchen_deck_page_counts_current() -> None:
         fail("kitchen-deck-page-counts", "; ".join(problems))
 
 
+# Captured 2026-10-17 directly from each room's own committed deck JSON
+# (ops/cardtext/<slug>-deck.json), at the moment this gate was written, when
+# every one of these lists was independently confirmed correct. Each build_*
+# _deck_page.py's own `assert whole_ids == [...]` guards the identical fact,
+# but only inside the generator: if a future content.json edit ever changes
+# a room's zoneless action-card set, that internal assert fires, the
+# generator crashes, and site/<room>-deck.html is simply never rewritten,
+# left byte-identical to HEAD. gate_generator_ownership only diffs a
+# generator's fresh output against the committed file, so an unchanged file
+# reads as a clean, undirtied tree, not a caught regression (the exact gap
+# gate_kitchen_deck_page_counts_current closed for Kitchen alone,
+# 2026-09-18, never generalised when the other 19 room decks shipped
+# afterward on the same template). This re-derives from the committed JSON
+# independently of whether the generator can even run.
+ROOM_DECK_WHOLE_IDS = {
+    "Dining Room": ["DRA-011", "DRA-012", "DRA-013"],
+    "Entryway": ["EYA-011", "EYA-012", "EYA-013"],
+    "Family Room": ["FRA-013", "FRA-014", "FRA-015"],
+    "Garage": ["GAA-015", "GAA-016", "GAA-017"],
+    "Guest Bathroom": ["GHA-011", "GHA-012", "GHA-013"],
+    "Guest Bedroom": ["GBA-011", "GBA-012", "GBA-013"],
+    "Hall Closet": ["HCA-011", "HCA-012", "HCA-013"],
+    "Home Office": ["HOA-013", "HOA-014", "HOA-015"],
+    "Kids Bedroom": ["KBA-013", "KBA-014", "KBA-015"],
+    "Laundry Room": ["LRA-013", "LRA-014", "LRA-015"],
+    "Living Room": ["LVA-013", "LVA-014", "LVA-015"],
+    "Mudroom": ["MDA-013", "MDA-014", "MDA-015"],
+    "Nursery": ["NUA-013", "NUA-014", "NUA-015"],
+    "Pantry": ["PNA-011", "PNA-012", "PNA-013"],
+    "Patio or Deck": ["PDA-013", "PDA-014", "PDA-015"],
+    "Primary Bathroom": ["PBA-015", "PBA-016", "PBA-017"],
+    "Primary Bedroom": ["PRA-013", "PRA-014", "PRA-015"],
+    "Stair Landing": ["SLA-007", "SLA-008", "SLA-009"],
+    "Workshop": ["WSA-013", "WSA-014", "WSA-015"],
+}
+
+
+def check_room_deck_page_counts(room: str, cards: list, page: str) -> list:
+    """Pure logic for gate_room_deck_pages_counts_current, testable without
+    real files. Same shape as check_kitchen_deck_page_counts, generalised to
+    the other 19 room decks, whose page copy uses a different template
+    (`"The Manual's real seven Garage zones"` rather than Kitchen's leading
+    `"Seven kitchen zones"`, and two rooms, Hall Closet and Pantry, say
+    "not one shelf's job" rather than "not one zone's job", a deliberate
+    wording choice for a room organised around shelves rather than zones).
+    The count-word check is written to tolerate that wording difference
+    rather than hardcode "zone" into every room's phrase.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    n_total = len(cards)
+    if ("%d cards" % n_total) not in page:
+        problems.append("page never says '%d cards' anywhere (the real "
+                         "total, from the room's own deck JSON)" % n_total)
+
+    n_zones = len({c["zone"] for c in cards if c["type"] == "ZONE CARD"})
+    zone_word = _KDECK_WORDS.get(n_zones, str(n_zones)).lower()
+    zphrase = "The Manual's real %s %s zones" % (zone_word, room)
+    if zphrase not in page:
+        problems.append("page does not say %r (the real zone count)"
+                         % zphrase)
+
+    n_causes = len([c for c in cards if c["type"] == "ROOT CAUSE CARD"])
+    cause_word = _KDECK_WORDS.get(n_causes, str(n_causes)).lower()
+    if ("points at one of these %s," % cause_word) not in page:
+        problems.append("root-causes section does not say 'one of these "
+                         "%s,' (the real root-cause count)" % cause_word)
+
+    whole_ids = sorted(c["id"] for c in cards
+                        if c["type"] == "ACTION CARD" and not c.get("zone"))
+    n_whole = len(whole_ids)
+    whole_word = _KDECK_WORDS.get(n_whole, str(n_whole)).capitalize()
+    if ("%s cards that are not one" % whole_word) not in page:
+        problems.append("whole-room section does not say '%s cards' "
+                         "(the real count of zoneless action cards)"
+                         % whole_word)
+
+    expected = ROOM_DECK_WHOLE_IDS.get(room)
+    if expected is None:
+        problems.append("no recorded expected whole_ids for %r; add an "
+                         "entry to ROOM_DECK_WHOLE_IDS" % room)
+    elif whole_ids != expected:
+        problems.append(
+            "the zoneless action-card set changed to %s (was %s); the "
+            "hand-written sentence naming them in build_%s_deck_page.py "
+            "no longer describes the real cards and must be rewritten by "
+            "hand, and ROOM_DECK_WHOLE_IDS here must be updated to match"
+            % (whole_ids, expected, room.lower().replace(" ", "_").replace(
+                "-", "_")))
+    return problems
+
+
+def gate_room_deck_pages_counts_current() -> None:
+    """Generalises gate_kitchen_deck_page_counts_current to the other 19
+    room decks (every room in ROOM_DECK_WHOLE_IDS). See
+    check_room_deck_page_counts's docstring for what this checks and why
+    it exists independently of gate_generator_ownership.
+    """
+    missing = []
+    for room in ROOM_DECK_WHOLE_IDS:
+        slug = room.lower().replace(" ", "-")
+        deck_path = os.path.join(ROOT, "ops", "cardtext", "%s-deck.json" % slug)
+        page_path = os.path.join(SITE, "%s-deck.html" % slug)
+        if not (os.path.exists(deck_path) and os.path.exists(page_path)):
+            missing.append(room)
+            continue
+        cards = json.load(io.open(deck_path, encoding="utf-8"))["cards"]
+        page = io.open(page_path, encoding="utf-8", errors="replace").read()
+        problems = check_room_deck_page_counts(room, cards, page)
+        if problems:
+            fail("room-deck-page-counts:%s" % slug, "; ".join(problems))
+    if missing:
+        warn("room-deck-page-counts",
+             "could not check %d room(s), deck JSON or page missing: %s"
+             % (len(missing), missing))
+
+
 GENERATOR_OWNERSHIP_CHAIN = [
     "build_zone_pages.py", "build_resources.py",
     "wire_generated_catalog.py", "build_product_schema.py",
@@ -29109,6 +29227,7 @@ def main() -> int:
     run_gate(gate_kit_page_zone_counts_current)
     run_gate(gate_articles_room_zone_counts_current)
     run_gate(gate_kitchen_deck_page_counts_current)
+    run_gate(gate_room_deck_pages_counts_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_goals_revenue_current)
     run_gate(gate_goals_revenue_window_current)
