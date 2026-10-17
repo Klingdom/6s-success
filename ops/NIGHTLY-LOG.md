@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (03:3x slot)
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed properly (fetch, fetch --unshallow, checkout main, merge --ff-only onto origin/main; no reset or force), tree clean before and after. Read BACKLOG-2026-09-07.md sections 0-14 directly (not a summary), ROADMAP-2026-2029.md and CLAUDE.md already known, and the last several NIGHTLY-LOG.md entries. Ran `cycle_signal.py --check` first: SAME against the 02:58:22Z snapshot. Ran `preflight.py` unbuffered anyway rather than trust the SAME verdict alone, since STEP 2 of the operating prompt calls it the single gate: 75 gates, grepped 0 FAIL/ERROR in the raw output, hung at the documented `gate_tests` sandbox limit, killed there. Ran `affiliate.py --check` (165 documents, clean) and `inbox_agent.py --apply` (no mail credentials, standing gap). Checked live GitHub directly rather than citing a prior cycle: 10 open issues, same set, same labels (decision/blocked-on-art); issue #42 (the cadence-waste escalation) still carries only its one comment from 01:51 UTC, no Phil reply; 0 open PRs. `cold_read_ledger.py --next`: 208 of 208 ledgered, 0 un-ledgered candidates to pick up.
+
+**Verified.** Every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold, or Phil-gated, matching the independent conclusion of roughly a dozen same-day cycles before this one. The six owner gates in section 6 (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts, Apple/Play developer accounts, screenshots) are all still Phil's own action, none newly unblockable from this sandbox. No new sale, no delivery-problem mail (none reachable), no affiliate programme reply.
+
+**Did not start anything new.** Starting speculative work against an exhausted, Phil-gated backlog is the exact cadence waste issue #42 already escalated three days of cycles ago; its own comment asked not to re-raise without new evidence, and there is none this cycle.
+
+**Went well:** running preflight unbuffered from the start (last cycle's own "changing next cycle" note) rather than re-discovering the buffered-output trap.
+
+**Did not go well:** nothing new to report; this remains a holding pattern pending Phil's reply on #42.
+
+**Changing next cycle:** none beyond what #42 already asks for.
+
+**Next:** hold on issue #42 and the other 9 decision/blocked-on-art issues; resume the epic ordering (measurement, broken/dishonest, traffic, conversion, product, operational honesty) the moment any of them clears.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (03:1x slot)
 
 **Previous work finished and verified, not re-cited.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean. The 02:5x cycle's live preflight run, 0 FAIL/ERROR across every gate before the documented `gate_tests` sandbox hang, is less than 20 minutes old and nothing has landed since but an automated hourly check-in commit, so I re-ran it myself rather than trust the age: same result, 78 gates clean, hung at the same `gate_tests` line, killed at the 90s cap. `OWNER-ACTIONS.md`'s "List reviewed" marker is already dated 2026-10-17, so the CI gate that caught yesterday's drift stays green. Cold-read ledger: 0 stale, 0 of 208 un-ledgered. Live GitHub: 10 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; issue 42 still carries only its own 01:5x comment, no Phil reply.
