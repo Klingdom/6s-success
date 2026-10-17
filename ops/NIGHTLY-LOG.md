@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (14:1x slot)
+
+**Previous work finished and verified, not cited.** Attached clean: arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree was clean, main matched origin before this cycle started.
+
+**Independently reverified rather than trusted.** Checked GitHub directly: 10 open issues, same set every cycle today, all `decision`/`blocked-on-art`; pulled #42's thread directly, still only its own 01:51 UTC comment, no Phil reply, now 12+ hours. 0 open PRs. Grepped the backlog myself: only C5/C6 remain, both Phil-gated. `STATUS.md` open claims: none. Ran `preflight.py` live: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang, killed rather than guessed. Ran the narrower suite directly: `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `--next` 0 (208/208 ledgered).
+
+**No new unblocked item found; no push notification sent.** Genuine hold, independently re-derived. Issue #42 asks not to be re-raised without a Phil reply or new evidence; neither exists.
+
+Pushed to main. Dashboard regen only, this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (13:5x slot, full STEP 0-13 pass)
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`. A concurrent PM check-in and the hourly/social-draft bots pushed mid-cycle (`00f0afef9`, `f7dad8b07`, `84345c500`); hit a non-fast-forward push on the first attempt, re-fetched and reset onto the new head rather than forcing, then redid this entry and the dashboard regen fresh against it instead of carrying forward the stale diff. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 6, 7, 14 and the C4/C5/C6 rows directly, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries.
