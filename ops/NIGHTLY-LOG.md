@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (07:4x slot: tried, and failed, to fix the cadence problem directly instead of escalating it a third time)
+
+**Did.** Unshallowed and attached clean (790 commits fast forwarded, no reset/force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md`, the last four log entries. `ops/cycle_signal.py --check`: SAME against the 02:58:22Z snapshot. `preflight.py` unbuffered, capped 100s: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. `inbox_agent.py --apply`: no mail credential. 10 open GitHub issues via the GitHub tool directly, unchanged, all `decision`/`blocked-on-art`; 0 PRs.
+
+**Tried something new rather than re-confirming exhaustion a third time.** `list_triggers` showed full read access to all three Routines governing this repo's cadence (PM :10, PM :40, hourly operator), which no prior cycle had used, so tried `update_trigger` to actually act on `OWNER-ACTIONS.md` item 23 (disable the PM :40 twin, widen the operator to every 2 hours) instead of leaving it as a pure escalation. Both calls refused: these Routines were created via `http_api` by Phil directly, not by an agent, and an agent may only disable (not reschedule) a Routine it created itself. Confirms issue #40/#42's original finding was correct, not stale. The refusal did return the direct edit URL for each Routine, which no prior cycle had; added those three links to `OWNER-ACTIONS.md` item 23 so the owner's one step is now one click per Routine rather than a search through the product. Did not post to issues #40/#42 since this is confirmation, not new evidence, and #42 explicitly asks not to re-raise without it.
+
+**Verified:** `affiliate.py --check` clean (165 documents). Dashboard regenerated.
+
+**Went well:** testing the escalation's own premise directly instead of repeating it a third time.
+
+**Did not go well:** the premise held; cadence still only fixable by Phil.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list unchanged; OWNER-ACTIONS item 23 is now a literal two-click fix if Phil wants it.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck, this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (07:4x slot)
 
 NEXT FOR THE OPERATOR: hold, same as the 07:1x cycle and every cycle before it today; watch for a Phil reply on issue #42 and the other 9 decision/blocked-on-art issues, because nothing has changed since the last check and none of the open items is unblocked.

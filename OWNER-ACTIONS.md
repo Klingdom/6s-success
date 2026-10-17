@@ -2116,3 +2116,23 @@ cross-check).
    the other way this loop ends.
 
 Nothing else here is blocked on this; it is pure cost reduction.
+
+**Addendum, 2026-10-17, scheduled operator cycle: confirmed again, directly,
+with the exact refusal text, and the direct edit links so option 1 really is
+one click each.** Re-tried `update_trigger` on both the PM :40 twin
+(disable) and the hourly operator (widen to every 2 hours) now that
+`list_triggers`/`get_trigger` show full detail for all three, which looked
+like it might mean write access too. It does not: both calls refused with
+"this routine was created via http_api, not by an agent. Agents can only
+update routines they created... A routine's own session may still disable
+itself (enabled=false only)." That last clause is real but not useful here:
+it would let this session turn the hourly operator off entirely, not slow
+it, which is more than option 1 asks for, so it was not used. The refusal
+also returned the direct edit page for each Routine, which no prior cycle
+had:
+- PM :10: `https://claude.ai/code/routines/trig_01KYMpAJo7UHBMtUYmqXj25L`
+- PM :40: `https://claude.ai/code/routines/trig_01JCURkStiuxTMyZDNbVGumL`
+- Hourly operator :43: `https://claude.ai/code/routines/trig_011oe2y7KR3AiPxUTd6b9P6c`
+
+Option 1 is now genuinely two clicks on two pages, not a search through the
+product to find where Routines live.
