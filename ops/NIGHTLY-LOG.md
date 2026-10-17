@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (04:1x slot)
+
+NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 03:4x check-in, so there is nothing new to hand off.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; unshallowed, checked out main, fast forwarded onto origin/main, clean, no reset or force. The 03:4x PM check-in and the 03:3x operator cycle after it are both pushed, tree clean, main matched origin.
+
+**Independently re-verified rather than trusted.** `cycle_signal.py --check` reports SAME against the 02:58:22Z snapshot; diffing the two commits by hand confirms the only changes since are log and dashboard regen, nothing code or content touched. `preflight.py` run unbuffered with a 60 second cap found 0 FAIL or ERROR before the documented gate_tests sandbox hang. `cold_read_ledger.py` reports 0 stale, 0 of 208 un-ledgered. `BACKLOG-2026-09-07.md` sections 2 through 6 have no unchecked, unstruck row left. Live GitHub: 10 open issues, unchanged, all decision or blocked on art; issue #42 still carries only its own escalation comment, no Phil reply. 0 open pull requests.
+
+**Not starting anything new.** Every row is Done, Hold, or Phil gated, same exhausted state the last several cycles independently confirmed and issue #42 already escalated. Re raising an unchanged state again is exactly the cadence waste that issue asks not to repeat.
+
+Pushed to main. Log entry and command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (03:4x slot)
 
 NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42, because the backlog remains fully exhausted and re-raising an unchanged state again is exactly the cadence waste that issue already describes.
