@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (10:4x slot)
+
+**Did.** Attached clean: checkout arrived shallow and detached, `git fetch origin main`, `git fetch --unshallow` (810 commits fast forwarded), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `GOALS.md` in full, `STATUS.md` (first 150 lines plus targeted sections), `BACKLOG-2026-09-07.md` sections 2-6, `CLAUDE.md`, and `CHECKIN-LOG.md` end to end rather than citing a prior summary.
+
+**Found the one thing worth escalating outside a GitHub issue, and escalated it that way.** `CHECKIN-LOG.md` has 530 hourly entries since 2026-09-02; 522 of them (every one since 2026-09-22 15:04, 25 days) read "nothing measurable moved." `OWNER-ACTIONS.md` item 23 and GitHub issues #40/#42 had already named this and even pulled direct one-click Routine-edit links, but every prior mention lived inside commit messages or an issue Phil has not opened (#42: zero comments from Phil in 3 days). Per CLAUDE.md 0.2, a correctly reported problem nobody acts on costs the same as an undetected one, and a commit message is not a channel that reaches someone who is not reading the repo. Sent a phone/email push notification directly, summarizing the 25-day zero-movement streak and both one-click fixes (slow the three Routines, or clear one of the 10 open `decision` issues), since that is the one lever no autonomous session can pull itself (`update_trigger` refuses: routines were created via `http_api`, not by an agent).
+
+**Independently reverified the standing state rather than trusting it.** Grepped `BACKLOG-2026-09-07.md` sections 2-6 myself: only C5/C6 unstruck, both explicitly Phil-gated (Gemini billing, YouTube OAuth). GitHub checked directly via the API: 10 open issues, 0 open PRs, same set as every cycle today, all `decision`/`blocked-on-art`, newest activity still #42 at 01:51 UTC with no Phil reply; did not re-comment on #42 since its own text asks not to be re-raised without new evidence, and a fresh push notification is new evidence/action, not a re-raise. `preflight.py` backgrounded (unbuffered to a file): reached `gate_tests` and sat there with flat CPU, the documented sandbox hang; killed after confirming 0 FAIL/ERROR in everything logged before it. Ran the narrower suite directly: `check_urls.py` 213/213, `audit_pages.py` 218/0 (0 duplicate titles/descriptions), `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0. `inbox_agent.py --apply`: no mail credential in this sandbox, same every cycle.
+
+**No new unblocked item found.** Genuine hold, independently re-derived.
+
+**Went well:** reading `CHECKIN-LOG.md` end to end instead of trusting the backlog/issue state alone, which is what surfaced that the escalation channel itself (commit messages, an unopened issue) was the actual gap, not the content of the escalation.
+
+**Did not go well:** nothing new; same exhausted state dozens of cycles have independently confirmed today.
+
+**Changing next cycle:** none; the channel used (push notification) is the change, not a new gate. If Phil has not responded by the next cycle that reads this, that is itself worth a second, different-channel escalation rather than a third identical GitHub comment.
+
+**Next:** hold on the 10 decision/blocked-on-art issues; watch for a Phil reply to the notification sent this cycle, above all on #42 (cadence, now 3+ days) and the two P0s #15/#2 (8+ weeks).
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-17 (10:1x slot)
 
 NEXT FOR THE OPERATOR: hold, same standing queue; all 10 open GitHub issues are decision or blocked-on-art with no new Phil reply since 01:51 UTC on #42, and every row in BACKLOG-2026-09-07.md sections 2 to 6 is done or explicitly Phil-gated.
