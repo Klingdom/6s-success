@@ -1,13 +1,13 @@
 {
-  "combined_hash": "7cb3e84faa846a9c96d6e0b5f3cba2ff566d8068cbc77aa4d6c9a919aacd83d9",
-  "git_head": "b279e34cd0a663b6ec77e56f2968f6603fdd0856",
-  "note": "preflight 74/74 gates clean (stalled at documented gate_tests sandbox hang), affiliate 165 docs clean, inbox unreachable (no mail creds), cold-read ledger 0 stale/0 un-ledgered, 0 open PRs, 10 open issues unchanged, no production egress",
-  "recorded_at": "2026-10-17T02:58:22Z",
+  "combined_hash": "fe8c448817c031fcb37211d1a77716c4f2248bf96e8712990aefdd8ff28e8af9",
+  "git_head": "012eb137b407ca7a78353737c9750517d70194de",
+  "note": "PM 10:4x: full re-verification this cycle (preflight direct-gate checks, backlog grep, GitHub API, deploy-gap gates); OWNER-ACTIONS.md diff since 02:58 is 3309553c7, the already-explained 07:4x item-23 link additions",
+  "recorded_at": "2026-10-17T10:47:38Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "1e7a4c6bf3b0053c468f68a5303ee6319954370073971acba39cf013623ee52d",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
-    "OWNER-ACTIONS.md": "5ebcb03680009708b613c5836ce98337e73f296686fdacf1e1ab766fe1ae6e6e",
+    "OWNER-ACTIONS.md": "3a2045dccf862916b8469c4154a5384c0ae9935fffab07e5b8e2b633c3c67179",
     "STATUS.md": "814353d5e4f78c009ea06054c0ea887544191c483b35ec270552385c32efdae8",
     "ops/deploy-verdict.json": "9b302a3b7cb6b6dcf25a68a6f93fdcd88167a0c59407774f96017281720fc7d4"
   }
