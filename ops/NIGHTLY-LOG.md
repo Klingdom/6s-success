@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (00:4x slot)
+
+**Did:** Checkout arrived shallow and detached; unshallowed for real (waited for the backgrounded fetch rather than issuing a second one), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. `ops/cycle_signal.py --check` read SAME against the 17:02:36Z snapshot before anything else, so skipped a redundant full local `preflight.py`.
+
+**Independently re-verified, not cited:** read `GOALS.md` and `BACKLOG-2026-09-07.md` sections 0-14 directly (every row Done, Hold, or Phil-gated). Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`; read every comment thread directly rather than trusting a count, and confirmed every comment on every issue, including the ones that look like Phil replying, is authored under his GitHub login but is autonomous-session output (three carry the literal Claude Code footer, the rest use the same self-referential "this operator cycle" phrasing) - no open issue has a human decision recorded since the last read. `list_pull_requests`: 0 open. Last 10 Actions runs across hourly-brief, social-drafts, Bluesky, LinkedIn and fulfil-orders: all `completed`/`success`. `ops/cold_read_ledger.py --stale`/`--next`: 208 of 208 ledgered, 0 stale, 0 un-ledgered candidates. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap. Tried a direct `curl` to the live site to verify production rather than only the repository (CLAUDE.md 0.3): this sandbox's egress proxy refuses `6s-success.com` outright, so that check stays genuinely unchecked, not assumed clean.
+
+**Ran `preflight.py` the correct way, backgrounded.** Zero FAIL or ERROR on every gate up through `gate_image_coverage`, then it stalled at `gate_tests`, the documented headless-Chromium sandbox limit; killed after confirming flat CPU rather than left to time out blind. Consistent with `cycle_signal.py`'s SAME verdict and the last clean full/backgrounded run recorded in that snapshot.
+
+**No new defect, no closable row, nothing unblocked.** Checked `OWNER-ACTIONS.md` cold in case something newer than the last several cycles' reads had landed there; everything in it is dated late September/early October and already resolved or superseded by `GOALS.md`'s own corrections. Not sending a push notification: nothing changed since the last one on #42/#40, and a notification nobody needs is worse than none.
+
+**Went well:** the attach completed cleanly first try; `cycle_signal.py` again saved a redundant 10+ minute local suite.
+
+**Did not go well:** nothing new to report; this cycle is itself another instance of the pattern issue #42 names.
+
+**Changing next cycle:** none beyond what #42 already asks Phil to decide.
+
+**Next:** work the next unblocked, non-Phil-gated row in `BACKLOG-2026-09-07.md` the moment one exists, or act the moment Phil comments on #42, #40, or any of the other 8 decision/blocked-on-art issues. Until then, hold.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (00:1x slot)
 
 **Previous work: finished.** Attach clean (unshallowed already, fast-forwarded onto `origin/main`, tree clean before and after). `cycle_signal.py --check` reads SAME against the 17:02:36Z snapshot, so skipped a redundant full local `preflight.py`. Independently re-verified rather than cited: live `list_issues` reads 10 open, unchanged, all `decision`/`blocked-on-art`, comment counts matching the 23:4x cycle's own read exactly (#42: 0, #40: 3, #21: 2, #31: 1, #15: 1, #2: 7, rest 0), none from Phil since. `list_pull_requests`: 0 open. `actions_list`: last 10 runs on current head (hourly-brief, social-drafts x3, fulfil-orders) all `completed`/`success`, nothing failing. Confirmed the standing pymupdf-missing-on-fresh-container gap (`OWNER-ACTIONS.md` item 1h) is still real by trying `import fitz` directly in this container: still fails. That item needs the environment's own Edit-settings menu, which this sandbox cannot reach; not something a repo edit fixes.
