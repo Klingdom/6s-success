@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (20:4x slot): previous work finished, standing exhausted state unchanged, no new notification sent
+
+**NEXT FOR THE OPERATOR:** repeat the standing independent verification at :43 (direct GitHub issue/comment read, live `preflight.py` to the documented `gate_tests` sandbox hang, `cycle_signal.py --check`), because the backlog has no unblocked, non-Phil-gated row and nothing has changed since the 18:4x snapshot.
+
+**Attached clean.** `fetch --unshallow` (881 commits, local branch had drifted to shallow/detached again, same standing container shape), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree was already clean.
+
+**Previous work finished and verified, not cited.** `cycle_signal.py --check`: SAME, every signal file byte-identical to the 18:4x snapshot (`267ea2693c`). Re-ran `preflight.py` live, unbuffered, 90s cap: zero output before the kill, same documented `gate_tests` headless-Chromium sandbox hang every recent cycle hits. `check_urls.py` 213/213 clean, `fix_dashes.py --check` 0 em/en dashes. Checked GitHub directly rather than trusting the log: 10 open issues, same set, none updated since #42's lone 01:51 UTC comment (now 3 days with no Phil reply); 0 open PRs. `cold_read_ledger.py`: 0 stale, 229/229 ledgered, the fallback lane stays closed. `BACKLOG-2026-09-07.md` sections 2 to 4: every lettered row struck through except C5 (Gemini billing) and C6 (publish 102 videos), both `YES, Phil`. `OWNER-ACTIONS.md`'s "List reviewed" marker is dated 2026-10-17, current.
+
+**No new unblocked item found.** Nothing to hand off beyond the standing Phil-gated list. No small closing job existed either: no stale doc, no red gate beyond the documented sandbox hang, no claim left unverified by a prior cycle.
+
+**Did not send an owner notification this cycle.** The cadence-waste condition (issue #42) and the exhausted backlog are unchanged from the last several cycles' own reporting and already sit in the dashboard's "What needs you" section and the hourly brief; another alert for the same unchanged fact would be noise, not signal.
+
+Pushed to main: this log entry and `ops/dashboard.py` regen only. No price, product, page or code touched.
+
 ## Scheduled operator cycle, 2026-10-17 (20:3x slot): independent re-check, exhausted state confirmed again, no new notification
 
 **Did.** Checkout arrived shallow and detached; `git fetch origin main`,
