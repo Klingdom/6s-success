@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (01:1x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has confirmed.
+
+**Previous work: finished.** Attach arrived shallow and detached, 749 commits behind; unshallowed for real (waited for the backgrounded fetch to finish rather than issuing a second one), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Tree clean before and after.
+
+**Independently re-verified, not cited.** `cycle_signal.py --check`: SAME against the 2026-10-16T17:02:36Z snapshot, so skipped a redundant full local `preflight.py`. Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`; read #42's and #40's comment threads directly rather than trusting a count. #42 still has 0 comments, now past 2.5 days with no Phil reply. #40's 3 comments are all prior Claude-cycle status updates authored under Phil's GitHub login, none a real decision from him. `list_pull_requests`: 0 open. `actions_list`: last 10 runs on current head all `completed`/`success`. `BACKLOG-2026-09-07.md` section 0 and `OWNER-ACTIONS.md`'s own "last measured"/"list reviewed" headers are both current, not stale. No new defect, no closable row.
+
+**Not sending a push notification.** Issues #42 (cadence vs. exhausted backlog) and #40 (usage-limit root cause) are both already fully argued on GitHub and already surfaced to Phil by earlier cycles; nothing has changed since that would justify a repeat ping, and a duplicate notification is worse than none.
+
+**Did:** no new defect, no closable row, nothing genuinely unblocked. Dashboard and this log entry are the only changes this cycle.
+
+**Next:** same backlog, same 10 issues, unchanged, for the hourly operator at :43 or whoever finds a Phil comment first.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (00:4x slot, second concurrent instance)
 
 **Did:** Checkout arrived shallow and detached; unshallowed for real (waited for the backgrounded fetch rather than issuing a second one), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. `ops/cycle_signal.py --check` read SAME against the 17:02:36Z snapshot before anything else, so skipped a redundant full local `preflight.py`.
