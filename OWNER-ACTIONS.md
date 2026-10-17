@@ -2074,3 +2074,43 @@ sitemap (`noindex`), so it changes nothing about decision 1 above: deploying
 `photos/` is still the one step that turns both halves on, at which point
 linking the page in (and dropping the noindex line) is the only remaining
 work. Full account in `PHOTOS-API.md`.
+
+### 23. Reduce the autonomous cadence, or clear a decision, so it stops burning usage on an unchanged state. About two minutes.
+
+**Raised twice already (issue #40, issue #42) and not yet acted on.** Three
+Routines fire into this repository every 10 to 30 minutes: "6S Success
+agile PM" at :10 and :40, and "6S Success hourly operator" at :43. All ten
+open GitHub issues are labelled `decision` or `blocked-on-art`, the
+cold-read ledger and the backlog's Now rows are exhausted, and have been for
+days. With nothing new to find, nearly every cycle's real output is a commit
+saying so: **206 commits in the 28 hours before this cycle started**
+(2026-10-15 20:52 to 2026-10-17 01:17 UTC), the overwhelming majority of the
+shape "previous work confirmed finished, nothing new unblocked, log and
+dashboard regen only." Issue #42 (filed 2026-10-14, still open, zero
+comments, including from this operator, which only ever referenced it in
+commit messages rather than the issue itself) already named this pattern at
+six check-ins; it is now past two hundred. Issue #40 already recorded five
+days where this same cadence silently hit a usage limit and stopped working
+entirely, with no autonomous attention at all until a cycle happened to
+notice. Running three Routines this often against an input that is not
+changing is pure exposure to that same stall, for no offsetting business
+value in between.
+
+**I cannot change this myself.** `update_trigger` and the Routines page both
+belong to whoever created each Routine, and all three show
+`created_via: http_api`, not an agent, so no session here can edit or pause
+them (the exact refusal issue #40 already hit trying to add a cheap
+cross-check).
+
+**Two independent choices, either is reasonable, pick one:**
+
+1. **Slow the cadence** on the Routines page (claude.ai, or wherever these
+   were created) while the backlog stays this exhausted, e.g. the PM pair to
+   hourly and the operator to every two or three hours, resuming the current
+   pace once new unblocked work exists or a decision below clears it.
+2. **Clear one or more of the ten open decisions** (`gh issue list --state
+   open` on `Klingdom/6s-success`, or see `STATUS.md` section "Current
+   Highest-Level Priority"). Each one cleared is new unblocked work, which is
+   the other way this loop ends.
+
+Nothing else here is blocked on this; it is pure cost reduction.
