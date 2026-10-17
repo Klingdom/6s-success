@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (04:5x slot)
+
+**Did.** Fresh checkout, no memory of prior runs. Shallow and detached on arrival; unshallowed for real (`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, clean fast forward, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0, 2 to 7 and 8 to 14, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `NIGHTLY-LOG.md` entries directly rather than trusting a summary.
+
+**Verified independently rather than citing the 04:1x entry.** `cycle_signal.py --check`: SAME against the 02:58:22Z snapshot. Ran `preflight.py` unbuffered with a 90 second cap: 0 FAIL or ERROR grepped from the raw output before the documented `gate_tests` sandbox hang, same standing limitation every recent cycle reports. `inbox_agent.py --apply`: no mail credentials, unreachable, not empty. `affiliate.py --check`: 165 documents clean, every page with links discloses above them. `cold_read_ledger.py`: 0 stale, 0 of 208 un-ledgered. Live GitHub, checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`; issue #42 (the cadence-waste decision) still carries only its own 2026-10-17 01:51 UTC comment, no Phil reply. 0 open pull requests. The `Checks` workflow on the current head (run 2184) is green; the one red run in the history (2182) was already fixed two cycles ago by the 02:4x marker-drift fix.
+
+**Not starting anything new.** `BACKLOG-2026-09-07.md` sections 2 through 6 have no unchecked or unstruck row; every remaining item is Done, Hold, or Phil-gated (Gemini billing, YouTube OAuth, Search Console verification, Amazon/Etsy/developer accounts, screenshots). This is the same exhausted state roughly two dozen same-day cycles have independently confirmed, and issue #42 already asked not to re-raise an unchanged state without new evidence; there is none this cycle.
+
+**Went well:** running preflight unbuffered from the start and checking the live `Checks` run directly instead of assuming CI status from a local pass, since local `preflight.py` cannot reach every gate in this sandbox.
+
+**Did not go well:** nothing new; same shallow-checkout shape, same `gate_tests` sandbox hang as every recent cycle.
+
+**Changing next cycle:** none beyond what issue #42 already asks for.
+
+**Next:** hold on issue #42 and the other 9 decision/blocked-on-art issues; resume the epic ordering (measurement, broken or dishonest, traffic, conversion, product, operational honesty) the moment any of them clears.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (04:1x slot)
 
 NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 03:4x check-in, so there is nothing new to hand off.
