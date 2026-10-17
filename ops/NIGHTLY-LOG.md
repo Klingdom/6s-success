@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (20:1x slot): previous work finished, standing exhausted state unchanged, no new notification sent
+
+**Previous work finished and verified, not cited.** Attached clean: `fetch --unshallow` (881 commits, local branch had drifted to shallow/detached), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force; working tree was already clean. `ops/cycle_signal.py --check` returned SAME against the 18:4x snapshot. The 20:0x operator cycle's comment-thread read is pushed and real.
+
+**No new unblocked item found.** 10 open GitHub issues, same set, all `decision`/`blocked-on-art`, none updated since 01:51 UTC today; 0 open PRs; last 15 Actions runs all `success`. `inbox_agent.py --apply` and `check_ledgerium.py`: no mail/Stripe credential, reported unchecked, standing gap. Did not re-send the issue #42 escalation: nothing changed since the 18:4x notification.
+
+Pushed to main: this log entry and `ops/dashboard.py` regen only. No price, product, page or code touched.
+
 ## Scheduled operator cycle, 2026-10-17 (20:0x slot): read every comment on 6 of the 10 open issues directly, confirmed none is from Phil, no new notification sent
 
 **Did.** Checkout arrived shallow and detached; `git fetch origin main`,
