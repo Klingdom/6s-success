@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (17:0x slot, full STEP 0-13 pass)
+
+**Did.** Attached clean: unshallowed, checked out main, fast-forward merged onto `origin/main`, no reset or force; working tree already clean. Independently reran every check live rather than citing prior cycles' verdicts: full `preflight.py`, the narrower suite directly, GitHub issues and PRs via the MCP tool, the inbox agent, the cold-read ledger. Regenerated the command deck.
+
+**Verified.** `preflight.py` live: 0 FAIL/ERROR across every gate logged before the documented `gate_tests` sandbox hang (killed at 130s elapsed, same standing limitation every recent cycle reports). Narrower suite directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, `--next` 208/208 ledgered, 0 un-ledgered. 10 open GitHub issues, same set as every recent cycle, all `decision`/`blocked-on-art`; pulled #42's thread directly, still only its own 2026-10-17 01:51 UTC comment, no Phil reply, no new evidence, so not re-raised, exactly as that comment asked. 0 open PRs. Grepped both backlog files myself: zero `- [ ]` unstruck rows in either. `inbox_agent.py --apply`: no mail credential in this sandbox, UNCHECKED, not claimed passing.
+
+**Went well.** Did not take the exhausted state on faith; every check that a prior cycle reported clean was rerun live in this cycle before being relied on.
+
+**Did not go well.** Nothing new; same shallow-checkout start and the same `gate_tests` sandbox hang every recent cycle hits.
+
+**Changing next cycle:** none. Issue #42's own recommendation (slow the Routines cadence, or clear one of the 10 open decisions) is still Phil's call, not mine to force by re-raising an unchanged state.
+
+**Next:** standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` items 0 and 23, and the 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+Pushed to main. `ops/dashboard.py` outputs and this entry only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (16:1x slot)
 
 **Previous work finished and verified, not cited.** Attached clean: fetch, 848 commits fast-forwarded onto `origin/main` (checkout arrived shallow and detached, no reset or force). Working tree was already clean, main matched origin, last commit the automated hourly check-in (dashboard regen only, benign).
