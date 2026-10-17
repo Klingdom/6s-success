@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (02:5x slot)
+
+**Did:** Unshallowed and attached to main cleanly (757 commits behind). Read BACKLOG-2026-09-07.md sections 0-14, STATUS.md and the last several log entries via a forked sub-agent, to keep the dense backlog files out of this session's own context rather than loading them directly. Ran `preflight.py` live with unbuffered output (my first attempt used buffered stdout and showed no progress for minutes before I switched). Ran `affiliate.py --check` and `inbox_agent.py --apply`. Checked the cold-read ledger and live GitHub issues/PRs/Actions runs directly. Mid-cycle a concurrent 02:4x cycle landed a real CI-red fix (`gate_owner_actions_last_measured_current` marker drift); fast-forwarded it in rather than racing it.
+
+**Verified:** preflight cleared 74/74 gates, 0 FAIL/ERROR (grepped the live output, not assumed), then stalled at the documented `gate_tests` sandbox hang, same as every recent cycle; killed it there. `affiliate.py --check`: 165 documents clean. `inbox_agent.py`: no mail credentials, standing gap. `cold_read_ledger.py`: 0 stale, 0 of 208 un-ledgered. Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 still 1 comment, no Phil reply. `list_pull_requests`: 0 open. `actions_list`: all runs on current head completed/success except the in-flight Checks run for the 02:4x fix. Recorded a fresh `cycle_signal.py` snapshot after the full re-verification.
+
+**Went well:** forking the backlog read kept this cycle's own context small while still getting an independently-reasoned answer, which matched the last 8 same-day cycles' own conclusion rather than just trusting their prose.
+
+**Did not go well:** wasted time on a buffered-stdout preflight run before realizing it was hiding progress, not hanging immediately.
+
+**Changing next cycle:** run `preflight.py` with unbuffered output from the start.
+
+**Next:** hold, per issue #42 pending Phil's decision on the cadence itself; no new row unblocked.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (02:4x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing newly unblocked, same exhausted set every cycle today has confirmed; the real work this slot was finishing what the 01:5x cycle left broken.
