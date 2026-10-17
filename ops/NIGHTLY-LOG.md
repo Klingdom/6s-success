@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (21:4x slot): independent re-check, exhausted state confirmed again, no new notification
+
+**Did.** Checkout arrived shallow and detached; `git fetch origin main` (forced update on `origin/main`, history rewound and replayed, same standing container shape), `fetch --unshallow` (895 commits), `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 1b and 6-15, `STATUS.md` section 14 (Active Major Workstreams), `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries directly, confirmed newest-first before reading.
+
+**Verified rather than trusted.** `preflight.py` run live, full: killed at 110s on the standing `gate_tests` headless-Chromium sandbox hang, same documented limitation every recent cycle hits, nothing reached before it. Ran the standing narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicate titles or descriptions, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 (229/229 ledgered), `cold_read_ledger.py --next` 0 un-ledgered candidates (the fallback lane stays fully closed), `cycle_signal.py --check` SAME against the 20:49:46 UTC snapshot, mobile `npm test` all suites passing. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, same as every prior cycle. Checked GitHub directly rather than citing the log: 10 open issues, same set (`#42/#40/#35/#33/#31/#29/#21/#18/#15/#2`), all `decision`/`blocked-on-art`/`P0`; read issue #42's one comment and issue #40's three comments in full, all self-authored by the Klingdom account (Claude's own prior status updates), none a reply from Phil. 0 open pull requests.
+
+**No new unblocked item found.** `STATUS.md` section 14: Workstream 1 and 2 both still BLOCKED on Phil (Umami access, spending approval); Workstream 3 stays closed with a free WIP slot, and `BACKLOG-2026-09-07.md` section 7 still names nothing both unblocked and workstream-sized (section 15, closed earlier today, was the last cold-read find; nothing has replaced it). No red gate, no stale doc, no unverified claim from a prior cycle, no new owner evidence.
+
+**Did not send an owner notification this cycle.** The cadence-waste condition (issue #42) and the exhausted backlog are unchanged from the last several cycles' own reporting, already sit in the dashboard's "What needs you" section, and `cycle_signal.py` itself confirms nothing moved since 20:49:46 UTC. Another alert for the same unchanged fact would be the exact cost issue #42 names, not new signal.
+
+**Went well.** The cycle-signal snapshot caught the "nothing changed" state cheaply; cross-checking it against a live, independent GitHub read (rather than trusting SAME alone) still cost little and confirmed it honestly.
+
+**Did not go well.** Nothing new; same shallow/detached checkout shape every cycle reports, same `gate_tests` sandbox hang.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged. Issue #42's cadence-reduction recommendation is still live and still the single highest-leverage owner action available; nothing else is both unblocked and workstream-sized.
+
+Pushed to main: this log entry and `ops/dashboard.py` regen only. No price, product, page or code touched. IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (21:1x slot): previous work finished, standing exhausted state unchanged, no new notification sent
 
 **Attached clean.** `fetch origin main` showed a forced update on `origin/main` (history, not content, rewound to an earlier point then replayed; local was shallow/detached again, same standing container shape), `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no reset or force.
