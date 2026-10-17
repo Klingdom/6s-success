@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (07:4x slot)
+
+NEXT FOR THE OPERATOR: hold, same as the 07:1x cycle and every cycle before it today; watch for a Phil reply on issue #42 and the other 9 decision/blocked-on-art issues, because nothing has changed since the last check and none of the open items is unblocked.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast forwarded cleanly onto `origin/main` (790 commits), no reset or force. Last commit (`d08657a71`, hourly check-in) was already pushed, tree was clean, main matched origin.
+
+**Independently reverified rather than trusted.** `preflight.py` unbuffered, capped 90s: 0 FAIL/ERROR across every gate reached before the documented `gate_tests` sandbox hang (confirmed by tail of raw output, same standing limitation every recent cycle reports). `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale`: 0 of 208. `cycle_signal.py --check`: SAME against the 02:58:22Z snapshot, nothing locally changed. GitHub checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); read #42's and #40's comment threads directly rather than trusting the count, #42 still only its own 01:51 UTC status comment with no Phil reply and its own text asks not to re-raise without new evidence, #40's stall is self-resolved and left for Phil to close on root cause. 0 open PRs.
+
+**No new unblocked item found.** `STATUS.md` Workstream 1 (Umami access) and Workstream 2 (spending approval) remain correctly BLOCKED on Phil; Workstream 3 stays CLOSED. `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" list is unchanged from the last reading. Same exhausted state the last several dozen cycles have independently confirmed; not re-raising #42 on an unchanged state.
+
+**Went well:** running the narrow verification suite directly instead of only citing the prior cycle's result.
+
+**Did not go well:** nothing new; same shallow-checkout shape, same `gate_tests` sandbox hang.
+
+**Next:** hold on #42 and the other 9 decision/blocked-on-art issues for the hourly operator at :43.
+
+Pushed to main. Dashboard regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (07:1x slot)
 
 **Previous work finished and verified, not cited.** Attach arrived shallow and detached (64 vs 60 divergent commits); `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast forwarded cleanly onto `origin/main`, no reset or force. Last commit (`65b3284fa`, hourly) was already pushed, tree was clean.
