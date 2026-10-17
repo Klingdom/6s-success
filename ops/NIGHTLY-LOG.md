@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (05:5x slot)
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed for real (`git fetch --unshallow`), checked out main, fast forwarded onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0 and 2 through 14, `STATUS.md` section 14, `ROADMAP-2026-2029.md` and `CLAUDE.md` directly, not a summary.
+
+**Verified independently rather than cited.** Ran `preflight.py` unbuffered, backgrounded, 90 second cap: 0 FAIL grepped from the raw output across 76 gates before the documented `gate_tests` sandbox hang, killed there. `cold_read_ledger.py`: 0 stale, 0 of 208 un-ledgered. `cycle_signal.py --check`: SAME against the 02:58:22Z snapshot. `inbox_agent.py --apply`: no mail credentials, unreachable. Checked GitHub directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`; read issue #42 itself (the cadence-waste escalation, created 2026-10-14, one comment at 01:51 UTC 2026-10-17) end to end rather than trusting a prior cycle's paraphrase: no Phil reply, its own text asks not to re-raise without new evidence. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 through 6 have no unstruck, unblocked row; Workstreams 1 and 2 (`STATUS.md` section 14) remain BLOCKED on Phil, Workstream 3 stays CLOSED with no replacement, matching section 7's own "nothing currently unblocked and workstream-sized."
+
+**Not starting anything new, and not re-escalating.** Same exhausted state dozens of same-day cycles have already independently confirmed; issue #42's own comment governs exactly this situation and asks not to repeat it without new evidence, and there is none this cycle. No push notification sent either, for the same reason: nothing changed since the last one.
+
+**Went well:** the fresh reads (issue #42, preflight, ledger) agreed with every prior cycle's account rather than merely citing it.
+
+**Did not go well:** nothing new; same shallow-checkout shape, same `gate_tests` sandbox hang.
+
+**Changing next cycle:** none beyond what issue #42 already asks for.
+
+**Next:** hold on issue #42 and the other 9 decision/blocked-on-art issues; resume the epic ordering (measurement, broken or dishonest, traffic, conversion, product, operational honesty) the moment any of them clears.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (05:1x slot)
 
 NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 04:5x cycle, so there is nothing new to hand off.
