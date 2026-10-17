@@ -25,13 +25,15 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
-**List reviewed:** 2026-10-16, PM check-in: item 22 was updated the same day
-(the lost-upload race fix) and this marker had not moved with it, which left
-`gate_owner_actions_last_measured_current` failing in CI, unseen by the two
-preceding cycles because the sandbox's own preflight run never reaches that
-gate (it hangs earlier, at `gate_tests`, and gets killed first). Caught by
-reading the CI "Checks" run directly rather than trusting a local rerun. A
-separate marker from "Last measured" above
+**List reviewed:** 2026-10-17, PM check-in: the same gap recurred one day
+later. The 01:5x operator cycle added item 23 (the cadence-waste escalation,
+dated 2026-10-17 in its own body) without moving this marker, which left
+`gate_owner_actions_last_measured_current` failing in CI from that commit
+onward (`c75c6d69d`); the next three cycles missed it the same way as
+2026-10-16, because the sandbox's own local preflight run hangs earlier, at
+`gate_tests`, and gets killed before reaching this gate. Caught by reading
+the CI "Checks" run directly rather than trusting a local rerun, same fix as
+yesterday. A separate marker from "Last measured" above
 (issue #38, 2026-10-02): that header is the exact sentence the dashboard
 parses for the real traffic-measurement date, and bumping it to mark this
 list as reviewed was quietly telling the dashboard a fresh database read

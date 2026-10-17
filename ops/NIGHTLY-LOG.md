@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (02:4x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing newly unblocked, same exhausted set every cycle today has confirmed; the real work this slot was finishing what the 01:5x cycle left broken.
+
+**Previous work was NOT actually finished.** Attach was clean (unshallowed, `checkout main`, `merge --ff-only`, no reset or force, tree clean). But the live GitHub "Checks" run on `c75c6d69d` (01:5x, the cadence-waste escalation) is red, and stayed red through the 02:1x PM cycle and five bot-workflow pushes after it, because none of them checked the real CI run: `gate_owner_actions_last_measured_current` failed, `OWNER-ACTIONS.md`'s "List reviewed" marker still said 2026-10-16 while item 23 (added that same commit) carries 2026-10-17 in its own body. This is the identical gap, one day later, that a 2026-10-16 PM cycle already found and fixed the same way (reading the CI Checks run directly, since local `preflight.py` hangs earlier at `gate_tests` and never reaches this gate in this sandbox).
+
+**Fixed.** Updated the "List reviewed" marker to 2026-10-17 with a note naming the cause. Verified three ways: (1) re-derived the gate's own regex check by hand against the real file, header now equals the newest body date; (2) ran `ops/tests/test_gate_owner_actions_last_measured_current.py` directly (no pytest in this sandbox, ran as a script), 8/8; (3) `fix_dashes.py --check` and `check_urls.py` (213/213) both clean on the edited file. `git status` showed only `OWNER-ACTIONS.md` touched.
+
+**Verified the rest, not just this fix.** Live `list_issues`: still 10 open, unchanged, all `decision`/`blocked-on-art`; #42 has the one comment from last cycle, no Phil reply. `list_pull_requests`: 0 open. `cold_read_ledger.py --stale`/`--next`: 0/208 un-ledgered. `cycle_signal.py --check` read CHANGED only for the already-known `OWNER-ACTIONS.md` edit.
+
+**Not sending a push notification.** The cadence-waste escalation already went out; this cycle's finding is a CI fix, not new information Phil needs to act on.
+
+**Went well:** checking the live Checks run instead of trusting a local preflight pass, the exact gap the 2026-10-16 instance of this same bug named as the lesson.
+
+**Did not go well:** this is a recurring failure mode (marker drift when an item is added without the same edit bumping the header); worth a gate note or a reminder in the escalation/item-adding path rather than relying on the next cycle to catch it by reading CI.
+
+**Next:** hourly operator at :43, same hold; watch for a Phil comment on #42 or any of the other 9 decision/blocked-on-art issues.
+
+Pushed to main. `OWNER-ACTIONS.md`, this log entry, command deck regen. No price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (02:1x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has confirmed.
