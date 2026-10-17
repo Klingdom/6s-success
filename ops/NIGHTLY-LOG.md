@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (22:4x slot): previous work finished, exhausted state independently reconfirmed, no new notification sent
+
+NEXT FOR THE OPERATOR: hold on the standing Phil-gated queue, because nothing newly unblocked exists and nothing material has landed since the 22:1x cycle's own check.
+
+**Attached clean.** Checkout arrived shallow and detached; `fetch origin main`, `fetch --unshallow` (large pack, ran a few minutes), `checkout main`, `merge --ff-only` fast-forwarded 904 commits onto `origin/main` cleanly, no reset or force. Working tree clean before and after.
+
+**Previous work finished and verified, not cited.** `preflight.py --fast` run live twice (one hit the tool timeout, one ran to completion of its own accord): every gate through `gate_image_coverage` logged with no FAIL/ERROR, killed at the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation every recent cycle reports; reporting this as unchecked rather than passing. `cold_read_ledger.py --stale`: 0. `BACKLOG-2026-09-07.md`: 0 unchecked `- [ ]` rows, grepped directly. GitHub via the MCP tool directly: 10 open issues, same set as every cycle today, all `decision`/`blocked-on-art`/`P0`; #42 still carries only its own 2026-10-17 01:51 UTC comment, no Phil reply, now past 20 hours.
+
+**Checked for anything material since the 22:1x deploy-gap re-derivation.** `git log` from that cycle's verdict commit to HEAD, excluding log/dashboard/state files: only hourly check-ins, social-rotation bot commits, and the already-closed Kitchen-deck-gate generalisation (`225fd6014`, backlog section 15). Nothing touching `site/`, `content/`, `mcp/` or pricing. Deploy gap unchanged.
+
+**No new unblocked item found.** Independently re-derived the same verdict the last several cycles reached, rather than trusting their summaries. Issue #42 itself asks not to be re-raised without a Phil reply or new evidence; neither exists, so no owner notification sent this cycle either.
+
+Pushed to main. Dashboard regen and this log entry only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (22:1x slot): previous work finished, standing exhausted state unchanged, deploy gap re-verified not grown, no new notification sent
 
 **Attached clean.** `fetch origin main` showed a forced update (history rewound then replayed, same standing shallow/detached container shape), `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no reset or force.
