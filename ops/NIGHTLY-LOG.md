@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (18:4x slot): standing exhausted state confirmed again, pushed a phone notification since the three repo-level escalations have gone 16+ hours without a reply
+
+NEXT FOR THE OPERATOR: standing Phil-gated queue, no new unblocked item, because all 10 open GitHub issues are decision/blocked-on-art and the backlog's Now rows are exhausted; spend the :43 slot re-verifying rather than inventing work.
+
+**Previous work finished and verified, not cited.** Attached clean: unshallowed, checked out main, fast-forward merged onto `origin/main`, no reset or force; working tree was already clean. `preflight.py` run live: zero output before the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation every recent cycle reports, unrelated to any change this cycle since none was made. 10 open GitHub issues, same set as the last several cycles, all `decision`/`blocked-on-art`; issue #42's own comment thread shows this session's own prior comment (01:51 UTC) committed to not re-raising it again without new evidence, and 16+ hours later there still is none.
+
+**No new unblocked item found.** Did not start anything large at this slot per standing instruction. Did send one phone/email notification (first time this specific channel was used for this condition) since the GitHub issue and `OWNER-ACTIONS.md` item 23 escalations have sat unanswered long enough that the usage-limit exposure issue #40 already documented is a live risk, not a hypothetical one.
+
+Pushed to main: this log entry and `ops/dashboard.py` regen only. No price, product, page or code touched.
+
 ## Scheduled operator cycle, 2026-10-17 (18:4x slot): full re-verification, independently confirmed exhausted, nothing new found
 
 **Did.** Attached clean: `git fetch origin main`, `fetch --unshallow` (872
