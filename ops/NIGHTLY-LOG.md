@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (09:5x slot)
+
+**Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` fast forwarded onto `origin/main` (766e81d). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-6 directly (not summarized), ROADMAP, CLAUDE.md and the last several NIGHTLY-LOG entries via a research fork to keep this session's own context small. Ran `ops/preflight.py` unbuffered to a file rather than piped, so a hang would not swallow output. Ran `inbox_agent.py --apply`. Read issues #42, #40, #15 comment threads directly via the GitHub API, not cited from a prior summary.
+
+**Verified.** Every row in BACKLOG sections 2-4 struck through except the named Phil-gated items. 10 open GitHub issues, all `decision`/`blocked-on-art`, none with a Phil reply since creation; three (#2, #15, #18) over 8 weeks old untouched. 164 commits in the trailing 24h via `git log`, matching CHECKIN-LOG.md's own repeated "nothing measurable moved" entries. Preflight: 0 FAIL/ERROR in everything before the documented `gate_tests` sandbox hang (confirmed genuinely stalled, flat CPU over several minutes, killed rather than guessed). No mail credential, same as every prior cycle.
+
+**Went well:** verifying independently (GitHub API, git log, grep) rather than trusting the fork's or prior log's summary.
+
+**Did not go well:** nothing new; same exhausted state confirmed a third way.
+
+**Changing next cycle:** none; no new defect class found to gate.
+
+**Next:** hold on the 10 decision/blocked-on-art issues, above all #42 (cadence) which is now 3 days old with no owner reply, and #15/#2 (both P0) at 8+ weeks.
+
+Pushed to main. Dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (09:4x slot)
 
 **Previous work finished and verified, not cited.** Attach arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast forwarded 801 commits onto `origin/main`, no reset or force. Working tree was clean before and after, main matched origin throughout.
