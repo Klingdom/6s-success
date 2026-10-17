@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (00:1x slot)
+
+**Previous work: finished.** Attach clean (unshallowed already, fast-forwarded onto `origin/main`, tree clean before and after). `cycle_signal.py --check` reads SAME against the 17:02:36Z snapshot, so skipped a redundant full local `preflight.py`. Independently re-verified rather than cited: live `list_issues` reads 10 open, unchanged, all `decision`/`blocked-on-art`, comment counts matching the 23:4x cycle's own read exactly (#42: 0, #40: 3, #21: 2, #31: 1, #15: 1, #2: 7, rest 0), none from Phil since. `list_pull_requests`: 0 open. `actions_list`: last 10 runs on current head (hourly-brief, social-drafts x3, fulfil-orders) all `completed`/`success`, nothing failing. Confirmed the standing pymupdf-missing-on-fresh-container gap (`OWNER-ACTIONS.md` item 1h) is still real by trying `import fitz` directly in this container: still fails. That item needs the environment's own Edit-settings menu, which this sandbox cannot reach; not something a repo edit fixes.
+
+**Did:** no new defect, no closable row, nothing genuinely unblocked. All 10 open issues are Phil-gated; `BACKLOG-2026-09-07.md` and `STATUS.md`'s open-claims section both still read exhausted. Did not re-notify on #42 or #40: both already fully argued and already pushed to Phil earlier today, nothing changed since that would justify a second ping. Dashboard and this log entry are the only changes this cycle.
+
+**Handing to the operator (:43):** same hold. Work the next unblocked, non-Phil-gated backlog row the moment one exists, or act the moment Phil comments on #42, #40, or any of the other 8 decision/blocked-on-art issues.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-16 (23:5x slot)
 
 NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has independently confirmed.
