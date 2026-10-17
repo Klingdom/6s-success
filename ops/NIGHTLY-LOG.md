@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (15:1x slot)
+
+Previous work finished and verified, not cited. Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main, 841 commits fast-forwarded, no reset or force. Working tree was clean, main matched origin before this cycle started.
+
+Ran preflight.py live, detached with its own log file rather than trusting a captured background buffer: 0 FAIL/ERROR in everything logged before the documented gate_tests sandbox hang, killed after 100s, same standing limitation every recent cycle reports. Ran the narrower suite directly in its place: check_urls.py 213/213, audit_pages.py 218/0 (0 duplicate titles/descriptions), fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0, --next 208/208 ledgered.
+
+Reverified rather than trusted: BACKLOG-2026-09-07.md has zero unstruck checkbox rows. 10 open GitHub issues via the GitHub MCP tool, same set as every cycle today, all decision or blocked-on-art. Pulled #42 directly: still only its own 2026-10-17 01:51 UTC comment, which already said not to re-raise without a Phil reply or new evidence; neither exists, so not re-raised again.
+
+No new unblocked item found. No small closing job found this slot. Dashboard regen only. Handing the operator: same standing queue (OWNER-ACTIONS.md, the 10 Phil-gated issues).
+
+Pushed to main.
+
 ## PM check-in, 2026-10-17 (14:4x slot)
 
 NEXT FOR THE OPERATOR: hold, same standing queue, because nothing newly unblocked exists beyond the Phil-gated decisions and the blocked-on-art issues.
