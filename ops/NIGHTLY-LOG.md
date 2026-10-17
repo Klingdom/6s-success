@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (09:0x slot)
+
+**Did:** Checkout arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast forwarded 796 commits onto `origin/main`, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7 in full (not cited), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries.
+
+**Verified independently rather than trusted.** Grepped every item row in backlog sections 2 to 4 for a missing strikethrough: only C5 and C6 are unstruck, and reading both rows directly confirms each is explicitly Phil-gated (Gemini billing, YouTube OAuth). Section 5 (hold) and 1b (basement/attic) are correctly held or resolved. `preflight.py` unbuffered, capped 100s: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang, which `Checks` run 2185 on GitHub Actions (real environment) passed the same hour, so this is a sandbox limitation, not an unverified gate. `affiliate.py --check`: 165 documents clean. `cold_read_ledger.py --stale`: 0 of the ledger. `cycle_signal.py --check`: only `OWNER-ACTIONS.md` differs from the 02:58 snapshot, matching this morning's own tracked edit. GitHub checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`; read #42's and #15's comment threads directly, no Phil reply on either since 2026-10-17 01:51 and 2026-09-30 respectively, and #42's own text asks not to be re-raised without new evidence, so did not comment. 0 open PRs. Last 20 Actions runs (LinkedIn/Bluesky/Facebook-X drafts, fulfil-orders, hourly-brief, Checks, roadmap-report) all `success`. `inbox_agent.py --apply`: no mail credential in this sandbox, same every cycle.
+
+**No new unblocked item found.** This is a genuine hold, independently re-derived rather than copied from the log.
+
+**Went well:** verified the backlog claim by grepping and reading rows myself instead of citing the prior cycle's count.
+
+**Did not go well:** nothing new; same exhausted state.
+
+**Changing next cycle:** none.
+
+**Next:** hold on issues #42, #40, #15 and the other 7 decision/blocked-on-art issues; watch for a Phil reply.
+
+Pushed to main. Dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (08:1x slot)
 
 Previous work finished and verified directly, not cited: attach clean (unshallowed, fast forward onto origin/main, no reset or force), working tree clean, main at `aa5cf04ec`. Live GitHub read: all 10 open issues unchanged (`decision`/`blocked-on-art`), no Phil reply on #40 or #42 since 01:51 UTC; #42 itself asks not to be re-raised without new evidence, so did not comment there. `preflight.py` unbuffered, 100s cap: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. Cold-read ledger: 0 stale. Grepped `BACKLOG-2026-09-07.md` sections for any unstruck row not already Phil-gated or blocked-on-art: none found, matching every cycle today.
