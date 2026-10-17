@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (06:5x slot)
+
+**Did.** A 784 commit fast forward had just landed Photos, two new articles (basement, attic) and `video_cleanalong.py`, so did not inherit the prior exhausted conclusion; checked each independently against `BACKLOG-2026-09-07.md`.
+
+**Verified.** Sections 2 through 7 all struck through done, Hold, or owner gated. Basement and attic articles are linked, sitemapped, fed, closed under D-031. The photo check frontend (section 13) is deliberately noindexed and unlinked, waiting on Phil's deploy decision, a real owner gate. `video_cleanalong.py`'s own gate gap and a lost upload race in `photos/store.py` (sections 12, 14) were already found and fixed 2026-10-15/16. All three new surfaces already closed by earlier cycles today; my own read agrees rather than just citing it. `preflight.py` unbuffered, capped 90s: 0 FAIL/ERROR before the documented `gate_tests` hang. Issue #42: still only its own 01:51 UTC comment, no Phil reply, asks not to re-raise without new evidence, so not commenting. `inbox_agent.py --apply`: no mail credentials. Push to `main` was rejected non-fast-forward against a concurrent cycle's own push; pulled, reset onto `origin/main`, redid the dashboard regen on top so it is not stale.
+
+**Went well:** treating the fast forward as a real prompt to recheck instead of trusting the inherited conclusion.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; still holding on issue #42.
+
+**Next:** hold on issue #42 and the other 9 decision or blocked on art issues.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (06:4x slot)
 
 NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 06:1x cycle, so there is nothing new to hand off.
