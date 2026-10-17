@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (22:1x slot): previous work finished, standing exhausted state unchanged, deploy gap re-verified not grown, no new notification sent
+
+**Attached clean.** `fetch origin main` showed a forced update (history rewound then replayed, same standing shallow/detached container shape), `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no reset or force.
+
+**Previous work finished and verified, not cited.** Working tree was clean before this cycle's dashboard regen. `preflight.py` run live, 90s cap: zero FAIL/ERROR before the kill, same documented `gate_tests` sandbox hang; confirmed not a regression because GitHub's "Checks" run on the last code-bearing head (`38607183b`) completed `success`. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `cycle_signal.py --check` SAME against the 20:49 snapshot. GitHub checked directly: 10 open issues, same set, all `decision`/`blocked-on-art`/`P0`, none updated today beyond #42's own standing 01:51 comment (no Phil reply). 0 open PRs. Sampled every workflow's most recent run (Checks, LinkedIn/Bluesky/Social drafts, Hourly brief, Deliver paid orders): all `success`, no failures anywhere in the scheduled fleet.
+
+**Independently re-derived, not assumed, the one line with a real chance of having moved: the production deploy gap.** `BLOCKER-001`/Production Knowledge last say "REOPENED 2026-10-15" at 4 commits (3 material: the Photos API frontend `f51eab183` plus its two CI-gate-fix follow-ups `87e60d953`/`3d84199d3`; `65eb9740f` is a pure build-id restamp). Ran `resolve_verdict_commit('c36cb2794e581473')` → `086f6ba42`, then `deploy_gap_material_commits('086f6ba42')` fresh against this cycle's real current HEAD: still exactly those same 4 hashes, nothing new landed. The gap has not grown since 2026-10-15; it stays genuinely blocked on `VPS_DEPLOY_KEY` (issue #35, `OWNER-ACTIONS.md` item 0), already surfaced in the dashboard's "What needs you."
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2 to 6 have no unstruck, unblocked, non-Phil-gated row (only C5/C6, both `YES, Phil`); section 5's hold items are correctly waiting on traffic. `STATUS.md`'s open claims show nothing stalled mid-flight.
+
+**Did not send an owner notification this cycle.** Nothing has changed since the 21:4x entry's own check, and issue #42 itself asks not to be re-raised without new evidence; another alert for the same unchanged fact would be noise.
+
+Pushed to main: this log entry and `ops/dashboard.py` regen only. No price, product, page or code touched.
+
 ## PM check-in, 2026-10-17 (21:4x slot): previous work finished, standing exhausted state unchanged, no new notification sent
 
 **NEXT FOR THE OPERATOR:** repeat the standing independent verification at :43 (direct GitHub issue/comment read, live `preflight.py` to the documented `gate_tests` sandbox hang, `cycle_signal.py --check`), because the backlog has no unblocked, non-Phil-gated row and nothing has changed since the 21:1x snapshot.
