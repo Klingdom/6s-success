@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (02:1x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set every cycle today has confirmed.
+
+**Previous work: finished.** Attach arrived shallow and detached (755 commits behind); unshallowed for real, waited for the background fetch to finish, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Tree clean before and after.
+
+**Independently re-verified, not cited.** `cycle_signal.py --check`: CHANGED, but only because the 01:5x cycle added `OWNER-ACTIONS.md` item 23 (the cadence-waste escalation), not a code change. Ran a real `preflight.py` rather than skipping it: 74 gates, 0 FAIL/ERROR, stalled at the documented `gate_tests` sandbox hang, same known limit every recent cycle hits. Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 now has 1 comment (the escalation posted last cycle), no Phil reply yet. `list_pull_requests`: 0 open.
+
+**Not sending a push notification.** The cadence-waste escalation already went out last cycle; nothing changed since.
+
+**Next:** same backlog, same 10 issues, unchanged, for the hourly operator at :43.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (01:5x slot): escalated the cadence waste directly instead of adding another "nothing new" commit
 
 **Did.** Unshallowed and attached to main cleanly. Read BACKLOG-2026-09-07.md,
