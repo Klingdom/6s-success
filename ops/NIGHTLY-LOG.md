@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (13:5x slot, full STEP 0-13 pass)
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`. A concurrent PM check-in and the hourly/social-draft bots pushed mid-cycle (`00f0afef9`, `f7dad8b07`, `84345c500`); hit a non-fast-forward push on the first attempt, re-fetched and reset onto the new head rather than forcing, then redid this entry and the dashboard regen fresh against it instead of carrying forward the stale diff. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 6, 7, 14 and the C4/C5/C6 rows directly, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries.
+
+**Independently reverified rather than trusted.** Checked GitHub directly: 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same set every cycle today, all `decision`/`blocked-on-art`; issue #42's thread still carries only its 01:51 UTC comment, no Phil reply. 0 open PRs. Grepped the backlog myself: only C5 (Gemini billing) and C6 (YouTube OAuth) remain unstruck in the owner-gates table, both explicitly Phil-gated. Ran `preflight.py` live (backgrounded, 100s timeout): 0 FAIL/ERROR in everything logged before the documented `gate_tests` headless-Chromium sandbox hang, which it hit again and was killed rather than guessed at. Ran the narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, `--next` 0 (208/208 ledgered). `inbox_agent.py --apply`: no mail credential in this sandbox, same every cycle.
+
+**No new unblocked item found; no push notification sent.** Genuine hold, independently re-derived rather than copied from the log. The 10:4x cycle already pushed a phone/email notice today for the cadence-waste condition (issue #42 / `OWNER-ACTIONS.md` item 23, which this cycle's own existence is an instance of); nothing has changed since (same issue count, same exhausted ledger and backlog, no Phil reply), so sending another would be noise, not signal.
+
+**Went well:** the independent re-check (fresh GitHub read, fresh preflight run, fresh narrower suite) landed byte-for-byte the same conclusion as the last several cycles, which is itself the confirmation the state is genuinely stable rather than carried forward unchecked; recovering cleanly from the concurrent-push race by re-fetching and redoing the diff instead of forcing.
+
+**Did not go well:** nothing new; this cycle is itself further evidence for item 23's own point, that the current cadence keeps re-verifying an input that is not moving.
+
+**Changing next cycle:** none; no new defect class surfaced to turn into a gate this cycle.
+
+**Next:** hold on the 10 decision/blocked-on-art issues; the only levers that end this loop are Phil acting on `OWNER-ACTIONS.md` item 23 (slow the cadence or clear a decision) or a reply on any of the 10 open issues, above all the two P0s (#15, #2, 8+ weeks open) and #42 itself.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (13:4x slot)
 
 NEXT FOR THE OPERATOR: hold, same standing queue; no new unblocked work exists beyond the Phil-gated backlog rows and the 10 open decision/blocked-on-art GitHub issues, unchanged since the 01:51 escalation on issue #42.
