@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (12:4x slot, full STEP 0-13 pass)
+
+**Did.** Fresh checkout, no memory of prior runs. Attached per STEP 0: arrived shallow and detached, `git fetch origin main`, `git fetch --unshallow` (822 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `GOALS.md`'s header via the backlog's own section 0, `BACKLOG-2026-09-07.md` sections 0-14, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. A concurrent PM check-in (12:4x) pushed mid-cycle; re-fetched and fast-forwarded onto it before continuing rather than working from a stale base.
+
+**Independently reverified rather than trusted.** Grepped `BACKLOG-2026-09-07.md` sections 2-6 myself for unstruck rows: only C5 (Gemini billing) and C6 (YouTube OAuth) remain, both explicitly Phil-gated, matching every cycle today. `STATUS.md`'s open-claims section: none open. Checked GitHub directly via the API, not cited: 10 open issues, 0 open PRs, same set as every cycle today, all `decision`/`blocked-on-art`; pulled issue #42's own comment thread directly and confirmed its only comment is still the 01:51 UTC status update with no Phil reply, and its own text asks not to be re-raised without one or genuinely new evidence. Neither exists this cycle (same issue count, same backlog, same silence), so this entry does not repeat the 10:4x push notification.
+
+**Ran preflight live, not cited.** `python ops/preflight.py`, unbuffered to a file, reached the documented `gate_tests` sandbox hang (confirmed genuinely flat, not progressing: CPU time unchanged across two checks 15s apart, killed rather than guessed) with 0 FAIL/ERROR in everything logged before it. Ran the narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 218/0 (0 duplicate titles/descriptions), `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, `--next` 0 (208/208 ledgered). `inbox_agent.py --apply`: no mail credential in this sandbox, same every cycle, a tracked limitation.
+
+**No new unblocked item found; no push notification sent.** Genuine hold, independently re-derived rather than copied from the log. No price, product or deploy-affecting change this cycle, so STEP 7 (Stripe catalog) and STEP 9 (push/IndexNow) do not apply beyond the standing dashboard regen.
+
+**Went well:** confirming the `gate_tests` hang was genuinely flat (not merely slow) before killing it, and re-syncing onto the concurrent PM check-in's push instead of racing it.
+
+**Did not go well:** nothing new; same exhausted state dozens of cycles have independently confirmed today.
+
+**Changing next cycle:** none; no new defect class surfaced to turn into a gate this cycle.
+
+**Next:** hold on the 10 decision/blocked-on-art issues; watch for a Phil reply, above all #42 (cadence, now past 3 days) and the two P0s #15/#2 (8+ weeks). `OWNER-ACTIONS.md` item 23's two one-click cadence/decision options remain the only lever that ends this loop.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (12:4x slot)
 
 NEXT FOR THE OPERATOR: hold, same standing queue; no new unblocked work exists beyond the Phil-gated C5/C6 backlog rows and the 10 open decision/blocked-on-art GitHub issues, unchanged since the 01:51 escalation on issue #42.
