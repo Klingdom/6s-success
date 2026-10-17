@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (16:1x slot)
+
+**Previous work finished and verified, not cited.** Attached clean: fetch, 848 commits fast-forwarded onto `origin/main` (checkout arrived shallow and detached, no reset or force). Working tree was already clean, main matched origin, last commit the automated hourly check-in (dashboard regen only, benign).
+
+**Independently reran the checks rather than trusting yesterday's clean verdicts.** `preflight.py` live: 0 FAIL/ERROR across every gate before the documented `gate_tests` sandbox hang (killed after ~60s). Narrower suite directly: `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `--next` 208/208 ledgered, 0 un-ledgered. Mobile `npm test`, all suites passing, no failure lines. 10 GitHub issues open via the GitHub MCP tool, same set as the last many cycles, all `decision`/`blocked-on-art`; issue #42 (the cadence-exhaustion decision itself) still carries no Phil reply, so not re-raised. `STATUS.md` section 14: all three workstreams closed or Phil/credential-gated, no open claims. `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md` both have zero unstruck rows.
+
+**No new unblocked item found.** Dashboard regen only.
+
+**Not notifying Phil:** nothing changed since the state issue #42 already raised; that issue says not to re-raise without new evidence or a reply, and there is neither.
+
+**Handing the operator:** nothing new; standing Phil-gated queue unchanged (`OWNER-ACTIONS.md` item 0, issues #42/#40/#15/#35/#2/#33/#21/#31/#29/#18).
+
+Pushed to main. Command deck only, this entry. No price, product or page touched.
+
 ## PM check-in, 2026-10-17 (15:4x slot)
 
 **Did.** Attached clean: arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 843 commits fast-forwarded, no reset or force. Working tree was already clean, main matched origin before this cycle started. Ran `preflight.py` live rather than trusting a captured buffer; 0 FAIL/ERROR across every gate logged before the documented `gate_tests` headless-Chromium sandbox hang (killed at 150s, same standing limitation). Ran the narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans across zones/rooms/articles. `cold_read_ledger.py --stale` 0, `--next` 208/208 ledgered, 0 un-ledgered candidates left in any lane (ops, site/assets/js, mobile/quest-app/lib, photos).
