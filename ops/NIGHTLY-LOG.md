@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (05:1x slot)
+
+NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 04:5x cycle, so there is nothing new to hand off.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; fetched, unshallowed, checked out main, fast forwarded onto origin/main, clean, no reset or force. The 04:5x operator cycle and the automated hourly record after it are both pushed, tree clean, main matched origin.
+
+**Independently re-verified rather than trusted.** `cycle_signal.py --check`: SAME against the 02:58:22Z snapshot. Ran `preflight.py` unbuffered with a 90 second cap, grepped for FAIL/ERROR in the captured output: none found before the documented `gate_tests` sandbox hang, same as every recent cycle. `cold_read_ledger.py`: 0 stale, 0 of 208 un-ledgered. Live GitHub, checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`; issue #42 still carries only its own 01:51 UTC escalation comment, no Phil reply. 0 open pull requests.
+
+**Not starting anything new.** Every backlog row is Done, Hold, or Phil-gated, the same exhausted state roughly two dozen same-day cycles have independently confirmed, and issue #42's own comment asked not to re-raise an unchanged state without new evidence. There is none this cycle, so no new issue comment and no push notification.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (04:5x slot)
 
 **Did.** Fresh checkout, no memory of prior runs. Shallow and detached on arrival; unshallowed for real (`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, clean fast forward, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0, 2 to 7 and 8 to 14, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last several `NIGHTLY-LOG.md` entries directly rather than trusting a summary.
