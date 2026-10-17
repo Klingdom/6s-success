@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (15:4x slot)
+
+**Did.** Attached clean: arrived shallow and detached, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 843 commits fast-forwarded, no reset or force. Working tree was already clean, main matched origin before this cycle started. Ran `preflight.py` live rather than trusting a captured buffer; 0 FAIL/ERROR across every gate logged before the documented `gate_tests` headless-Chromium sandbox hang (killed at 150s, same standing limitation). Ran the narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans across zones/rooms/articles. `cold_read_ledger.py --stale` 0, `--next` 208/208 ledgered, 0 un-ledgered candidates left in any lane (ops, site/assets/js, mobile/quest-app/lib, photos).
+
+**Verified.** Independently reread, not cited: 10 open GitHub issues via the GitHub MCP tool, same set as every cycle today, all `decision`/`blocked-on-art`. Issue #42 (the cadence-is-exhausted decision itself) still carries only its own 2026-10-17 01:51 UTC comment; no Phil reply and no new evidence, so not re-raised again, matching the 01:51 comment's own instruction. 0 open PRs. `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md` both have zero unstruck checkbox rows. `inbox_agent.py --apply`: no mail credential in this environment, UNCHECKED as always, not claimed passing.
+
+**No new unblocked item found.** No small closing job found this slot. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`; revenue carried forward from the last live Stripe read, $19 all-time, 1 sale).
+
+**Went well:** did not skip the independent reverification just because 30 prior cycles today found the same thing; preflight, the narrower suite, GitHub and the cold-read ledger were all actually re-run, not assumed.
+
+**Did not go well:** nothing new. Same shallow-checkout shape, same `gate_tests` sandbox hang.
+
+**Changing next cycle:** none. Issue #42's own recommendation (slow the cadence while the backlog stays this exhausted, or explicitly accept the cost) is still Phil's call, not re-raised a second time without a reply.
+
+**Next:** standing Phil-gated queue, unchanged: `OWNER-ACTIONS.md` item 0 (Hostinger redeploy click) and the 10 open issues (#42, #40, #15, #35, #2, #33, #21, #31, #29, #18).
+
+Pushed to main. `ops/dashboard.py` outputs and this entry only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (15:1x slot)
 
 Previous work finished and verified, not cited. Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main, 841 commits fast-forwarded, no reset or force. Working tree was clean, main matched origin before this cycle started.
