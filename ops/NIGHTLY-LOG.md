@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (15:4x slot)
+
+NEXT FOR THE OPERATOR: hold, same standing queue, because nothing newly unblocked exists beyond the Phil-gated decisions and the blocked-on-art issues.
+
+Previous work finished and verified, not cited. Attached clean: git fetch, unshallow, checkout main, merge --ff-only onto origin/main, no reset or force. Working tree was clean, main matched origin before this cycle started.
+
+Reverified rather than trusted: BACKLOG-2026-09-07.md has zero unstruck checkbox rows. 10 open GitHub issues via the GitHub MCP tool, same set as every cycle today (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision or blocked-on-art. Pulled #42 directly: updated_at is still its own 2026-10-17 01:51 UTC comment, which already said not to re-raise without a Phil reply or new evidence; neither exists, so not re-raised again. 0 open PRs.
+
+Ran preflight.py live with a 100s timeout: 0 FAIL/ERROR in everything logged before the documented gate_tests sandbox hang, killed rather than guessed. Ran the narrower suite directly in its place: check_urls.py 213/213, audit_pages.py 0 duplicate titles/descriptions, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0.
+
+No new unblocked item found. No small closing job found this slot. No push notification sent, since nothing has changed since the last escalation. Dashboard regen only.
+
+Pushed to main.
+
 ## PM check-in, 2026-10-17 (15:1x slot)
 
 Previous work finished and verified, not cited. Attached clean: fetch, unshallow, checkout main, merge --ff-only onto origin/main, 841 commits fast-forwarded, no reset or force. Working tree was clean, main matched origin before this cycle started.
