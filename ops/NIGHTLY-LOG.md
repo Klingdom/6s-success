@@ -2,6 +2,68 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (22:4x slot): independent re-check, exhausted state confirmed again, no new notification
+
+**Did.** Checkout arrived shallow and detached; `git fetch origin main`,
+`fetch --unshallow` (904 commits), `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force. Read `GOALS.md` (O1 remains the
+constraint), `BACKLOG-2026-09-07.md` sections 0 through 7 in full (not a
+summary), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several
+`NIGHTLY-LOG.md` entries directly.
+
+**Verified rather than trusted.** `cycle_signal.py --check` returned SAME
+against the 20:49 UTC snapshot. Re-ran the narrower suite directly anyway:
+`check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicate
+titles/descriptions, `fix_dashes.py --check` 0 em/en dashes,
+`cold_read_ledger.py --stale` 0, `affiliate.py --check` 165 documents
+clean. `preflight.py` run live, unbuffered, 90s cap: 76 gates reached, 0
+FAIL/ERROR, hung at the same documented `gate_tests` headless-Chromium
+sandbox line every recent cycle reports; confirmed sandbox-only by the
+unbuffered run actually showing gate-by-gate progress through every room
+deck gate, the card corpus, image coverage and mobile gates before the
+hang, not just a bare timeout. `inbox_agent.py --apply`: no mail
+credential, unchecked, same as every prior cycle. Checked GitHub directly,
+not cited: 10 open issues, same set as every recent cycle
+(#42/#40/#35/#33/#31/#29/#21/#18/#15/#2), all `decision`/`blocked-on-art`/`P0`;
+issue #42 (the cadence-exhaustion decision) still carries only its own
+2026-10-17 01:51 UTC comment, no Phil reply. 0 open pull requests. Sampled
+recent workflow runs across Hourly brief, Deliver paid orders, LinkedIn,
+Bluesky and Social drafts: all `success`.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 1b
+through 6 have no unstruck, unblocked, non-Phil-gated row: section 1b's
+basement/attic gap is explicitly recorded as not worth two rooms of
+authoring at 7-14 arrivals/week; sections 2-4 are struck through except
+C5/C6, both `YES, Phil`; section 5 is correctly waiting on traffic;
+section 6 lists six owner gates (YouTube OAuth, Search Console
+verification, Gemini billing, Amazon KDP/Etsy, Apple/Play developer
+accounts, screenshots), every one an account-creation or money action
+reserved to Phil. `STATUS.md`'s open claims are empty, nothing stalled
+mid-flight.
+
+**Did not send an owner notification this cycle.** Nothing has changed
+since the 22:1x entry's own check, and issue #42 itself asks not to be
+re-raised without new evidence; another alert for the same unchanged fact
+would be noise.
+
+**Went well:** running `preflight.py` unbuffered this time instead of
+piped through `tail`, which showed real gate-by-gate progress (76 gates,
+0 FAIL) rather than a swallowed buffer that silently loses output when the
+process is killed at the timeout, a gap worth carrying into future cycles.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox hang
+and missing mail/Stripe credentials as every recent cycle.
+
+**Changing next cycle:** none beyond what `OWNER-ACTIONS.md` item 23
+already proposes (slow the PM/operator cadence, or clear one of the ten
+open decisions). The standing queue is Phil's to move.
+
+**Next:** same standing Phil-gated queue (10 open decision/blocked-on-art
+issues, `OWNER-ACTIONS.md`'s cadence-slowdown proposal).
+
+Pushed to main: this log entry and command deck regen only. No price,
+product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (22:1x slot): previous work finished, standing exhausted state unchanged, deploy gap re-verified not grown, no new notification sent
 
 **Attached clean.** `fetch origin main` showed a forced update (history rewound then replayed, same standing shallow/detached container shape), `fetch --unshallow`, `checkout main`, `merge --ff-only`, fast-forwarded cleanly, no reset or force.
