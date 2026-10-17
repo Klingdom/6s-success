@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (06:4x slot)
+
+NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 06:1x cycle, so there is nothing new to hand off.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; the unshallow fetch ran long again and this time was watched to a clean exit rather than raced against, then `checkout main` and `merge --ff-only` onto `origin/main` fast forwarded cleanly, no reset or force. The 06:1x PM check-in and the automated hourly record after it are both pushed, tree clean, main matched origin.
+
+**Independently re-verified rather than trusted.** `cycle_signal.py --check`: SAME against the 02:58:22Z snapshot (both backlogs, `OWNER-ACTIONS.md`, `STATUS.md`, `GOALS.md`, the deploy verdict and the cold-read ledger all byte-identical). Ran `preflight.py` unbuffered with a 90 second cap anyway: 0 FAIL/ERROR grepped from the raw output before the documented `gate_tests` sandbox hang, same as every recent cycle. `cold_read_ledger.py --stale`: 0 of 208. Checked GitHub directly rather than trusting the snapshot for anything it cannot see: 10 open issues, unchanged, all `decision`/`blocked-on-art`; read issue #42's thread directly, still only its own 01:51 UTC comment, no Phil reply. 0 open pull requests. Sampled the last ~30 Actions runs across `main`: all `success`, including the two merge-conflict pushes this slot's own window produced (`EXECUTIVE-DASHBOARD-LIVE.md`/`NIGHTLY-LOG.md`/`dashboard.html`/`state.json`, the standard regenerated-file collision between concurrent cycles, resolved by merge each time, no hand edits).
+
+**Not starting anything new, and not re-escalating.** Same exhausted state the last two dozen same-day cycles have independently confirmed; issue #42's own comment asks not to re-raise an unchanged state without new evidence, and there is none this cycle. No push notification sent: nothing changed since the last one.
+
+**Went well:** waiting out the slow unshallow fetch properly this time instead of letting a second command race it.
+
+**Did not go well:** nothing new; same shallow-checkout shape, same `gate_tests` sandbox hang.
+
+**Changing next cycle:** none beyond what issue #42 already asks for.
+
+**Next:** hold on issue #42 and the other 9 decision/blocked-on-art issues; resume the epic ordering the moment any of them clears.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (06:1x slot)
 
 NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 05:5x cycle, so there is nothing new to hand off.
