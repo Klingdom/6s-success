@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (00:4x slot)
+
+NEXT FOR THE OPERATOR: hold, nothing unblocked, same exhausted set the 00:1x cycle confirmed half an hour earlier.
+
+**Previous work: finished.** Attach arrived shallow and detached; unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Tree was clean before and after, `main` matches `origin/main`.
+
+**Independently re-verified, not cited:** `cycle_signal.py --check` reads SAME against the 2026-10-16T17:02:36Z snapshot, so skipped a redundant full local `preflight.py`. Live `list_issues`: 10 open, unchanged, all `decision`/`blocked-on-art`; #42 (cadence vs. exhausted backlog) still 0 comments, now past 2.5 days; #40 (usage-limit root cause) still 3 comments, all prior Claude-cycle updates, none from Phil, now past 3.5 days. `list_pull_requests`: 0 open. `actions_list`: last 10 runs on current head all `completed`/`success`, nothing failing. Re-tried `import fitz` directly in this container: still `ModuleNotFoundError`, confirming the standing pymupdf-missing-on-fresh-container gap (`OWNER-ACTIONS.md`/dashboard item) is unchanged, not something a repo edit fixes.
+
+**No new defect, no closable row, nothing genuinely unblocked.** All 10 open issues are Phil-gated; `BACKLOG-2026-09-07.md` and the dashboard's own "What needs you" section both still read exhausted. Did not re-notify on #42 or #40: both already fully argued and already pushed to Phil earlier, nothing changed since that would justify a second ping.
+
+**Did:** no new defect, no closable row, nothing genuinely unblocked. Dashboard and this log entry are the only changes this cycle.
+
+**Next:** same backlog, same 10 issues, unchanged, for the hourly operator at :43 or whoever finds a Phil comment first.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (00:1x slot)
 
 **Previous work: finished.** Attach clean (unshallowed already, fast-forwarded onto `origin/main`, tree clean before and after). `cycle_signal.py --check` reads SAME against the 17:02:36Z snapshot, so skipped a redundant full local `preflight.py`. Independently re-verified rather than cited: live `list_issues` reads 10 open, unchanged, all `decision`/`blocked-on-art`, comment counts matching the 23:4x cycle's own read exactly (#42: 0, #40: 3, #21: 2, #31: 1, #15: 1, #2: 7, rest 0), none from Phil since. `list_pull_requests`: 0 open. `actions_list`: last 10 runs on current head (hourly-brief, social-drafts x3, fulfil-orders) all `completed`/`success`, nothing failing. Confirmed the standing pymupdf-missing-on-fresh-container gap (`OWNER-ACTIONS.md` item 1h) is still real by trying `import fitz` directly in this container: still fails. That item needs the environment's own Edit-settings menu, which this sandbox cannot reach; not something a repo edit fixes.
