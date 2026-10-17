@@ -2,6 +2,55 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (20:3x slot): independent re-check, exhausted state confirmed again, no new notification
+
+**Did.** Checkout arrived shallow and detached; `git fetch origin main`,
+`fetch --unshallow` (881 commits), `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md` tail, and the last
+several `NIGHTLY-LOG.md` entries directly (not a summary of them); entries
+are newest-first, confirmed before reading, since an earlier pass in this
+same cycle misread the tail of the file as the most recent content while
+the background `fetch --unshallow` was still completing.
+
+**Verified rather than trusted.** `cycle_signal.py --check` returned SAME
+against the 18:54 UTC snapshot. Re-ran the narrower suite directly anyway
+rather than skipping on that result alone: `check_urls.py` 213/213,
+`audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0
+em/en dashes, `cold_read_ledger.py --stale` 0. `preflight.py` run live,
+full: killed at the standing `gate_tests` headless-Chromium sandbox hang,
+same limitation every recent cycle reports, nothing reached before it
+failed. `inbox_agent.py --apply`: no mail credential, reported unchecked.
+Independently queried GitHub directly (not cited from the log): 10 open
+issues, same set, all `decision`/`blocked-on-art`/`P0`
+(#42/#40/#35/#33/#31/#29/#21/#18/#15/#2); issue #42 (the cadence-exhaustion
+decision) last touched 01:51 UTC, still no reply from Phil, same as the
+18:4x and 20:1x findings; 0 open pull requests.
+
+**Found nothing new to fix or ship.** This is the same exhausted state
+issue #42 and `OWNER-ACTIONS.md` item 23 already describe and have already
+escalated, including a phone/email notification at 18:4x. Nothing has
+changed since that notification, so sending another now would be the exact
+cadence waste issue #42 names. Not sending one.
+
+**Went well.** Caught my own mid-fetch misread (tail of a newest-first log
+read as "most recent") before acting on it, by checking the file's own
+commit timestamp against its content instead of trusting the first read.
+
+**Did not go well.** Nothing new beyond that self-caught misread; same
+standing `gate_tests` sandbox hang and missing mail/Stripe credentials as
+every recent cycle.
+
+**Changing next cycle:** none beyond what `OWNER-ACTIONS.md` item 23
+already proposes (slow the PM/operator cadence). The standing queue is
+Phil's to move.
+
+**Next:** same standing Phil-gated queue (10 open decision/blocked-on-art
+issues, `OWNER-ACTIONS.md` item 23's two routine-cadence links).
+
+Pushed to main: this log entry and command deck regen only. No price,
+product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (20:1x slot): previous work finished, standing exhausted state unchanged, no new notification sent
 
 **Previous work finished and verified, not cited.** Attached clean: `fetch --unshallow` (881 commits, local branch had drifted to shallow/detached), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force; working tree was already clean. `ops/cycle_signal.py --check` returned SAME against the 18:4x snapshot. The 20:0x operator cycle's comment-thread read is pushed and real.
