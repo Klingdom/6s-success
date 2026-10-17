@@ -533,8 +533,8 @@
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-10-16",
-      "note": "re-read in full after 2026-10-16's own photos/*.py lane addition (its own last-touch date), the exact self-referential case stale_entries() exists to catch. _all_candidate_files() re-run directly: 208 candidates across all 5 lanes, 0 basename collisions (no SystemExit), confirming the lane_path() latent collision-guard gap the 2026-10-14 note already named stays latent, not live. stale_entries()/is_cleared()/next_candidates()/lane_path() all re-traced against the live ledger and git history, all correct; --stale itself correctly flagged this file's own entry before this re-read, proving the mechanism works on itself."
+      "date": "2026-10-17",
+      "note": "Re-read/modified this cycle: added a sixth lane (ops/cardtext, *.py), checked for a basename collision against the other five lanes first (none), docstring updated. Full account in BACKLOG-2026-09-07.md section 15. No other part of this file touched this cycle."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -793,8 +793,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-15",
-      "note": "Scheduled operator cycle: ops/preflight.py is 29,216 lines, too large to re-read whole in one cycle, so this pass targeted the only change since the 2026-10-14 ledgering (c5717c324, widening status_deploy_verdict_problem() to also check the Public website / Production traceability table rows). Re-read that function end to end and confirmed its regexes (the BLOCKER-001, Production Knowledge, Immediate Focus and the two new table-row patterns) correctly bound to the real STATUS.md structure: each table row is a single long line followed immediately by a line starting with the next row's leading pipe, so the non-greedy \"up to the next \\n|\" lookahead terminates correctly rather than running past the table (verified directly against STATUS.md lines 390-394 and 480-484, both cases). Ran ops/tests/test_gate_status_deploy_verdict_current.py directly: 11/11 pass. Full preflight.py run this same cycle (every gate before gate_tests clean, 0 FAIL, 28 warnings all standing/sandbox-only) also exercises this gate against the real file with no failure. No new defect found in the changed code; the rest of the file is unread this cycle and should not be treated as cleared beyond what prior ledger entries for its other gates already cover."
+      "date": "2026-10-17",
+      "note": "Re-read/modified this cycle: added ROOM_DECK_WHOLE_IDS, check_room_deck_page_counts() and gate_room_deck_pages_counts_current(), generalising gate_kitchen_deck_page_counts_current to the other 19 room decks (full account in BACKLOG-2026-09-07.md section 15 and ops/NIGHTLY-LOG.md 2026-10-17). Proved fail-then-pass directly and in ops/tests/test_gate_room_deck_page_counts.py (7/7). No other part of this file touched or newly read this cycle."
     },
     "prerender_shop.py": {
       "status": "clean",
