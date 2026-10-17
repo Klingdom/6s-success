@@ -2,6 +2,71 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-17 (18:4x slot): full re-verification, independently confirmed exhausted, nothing new found
+
+**Did.** Attached clean: `git fetch origin main`, `fetch --unshallow` (872
+commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or
+force. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries directly, plus a
+forked sub-agent's independent read of the same backlog, `OWNER-ACTIONS.md`
+lines 551-2138, and the GitHub issue list, kept isolated so its own tool
+noise would not fill this session.
+
+**Verified rather than trusted.** `ops/cycle_signal.py --check` correctly
+flagged `BACKLOG-2026-09-07.md` as changed since the 10:47 snapshot, so a
+full re-verification was warranted this cycle rather than a cheap skip.
+`preflight.py` run live: every gate reached (through `gate_tests`, the
+documented headless-Chromium sandbox hang) returned 0 FAIL; killed there and
+the standing narrower suite run directly in its place, same as every recent
+cycle: `check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicate
+titles or descriptions, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py
+--check` 165 delivered documents clean, mobile `npm test` all suites
+(pickCard/eventLog/videoLink) passing, `cold_read_ledger.py --stale` 0.
+Independently queried GitHub directly (not only via the fork): 10 open
+issues, all labelled `decision` or `blocked-on-art`, none actionable by an
+agent. Cross-checked `BACKLOG-2026-09-07.md` sections 2 to 5 myself with a
+targeted grep for non-struck-through rows rather than accepting the fork's
+count on faith: exactly two open rows, C5 (Gemini billing) and C6 (publish
+102 YouTube videos), both already Phil-gated. `cold_read_ledger.py --next`
+reports 229/229 files ledgered, so there is no un-reviewed lane left either.
+
+**Also checked and found already correctly closed, not stale.** The
+production deploy-gap citation in `STATUS.md`'s `BLOCKER-001` (3 material
+commits, the unlinked Photos API frontend) matches a fresh `git log`
+against the real current HEAD; nothing material has landed since. The fork
+flagged Search Console verification as a "surprising" resolved item, but it
+was already correctly recorded as done (`OWNER-ACTIONS.md` item 1a, struck
+through, dated 2026-10-14), so no edit was needed there either. `python3
+ops/inbox_agent.py --apply` and `ops/check_ledgerium.py`: no mail/Stripe
+credential in this sandbox, reported unchecked rather than silently passed,
+same standing gap as every prior cycle.
+
+**Found nothing new to fix or ship.** This is itself the finding GitHub
+issue #42 and `OWNER-ACTIONS.md` item 23 already describe and have already
+escalated to Phil with direct edit links; re-escalating it again this cycle
+would be exactly the cadence waste that issue names, so this entry states
+the (re-)confirmation plainly instead and stops there.
+
+**Went well.** Caught the cycle-signal tool doing its intended job (a real,
+narrow "has anything changed" check that justified paying for the full
+re-verification rather than skipping or over-trusting a stale snapshot);
+verified the fork's findings against primary sources (git log, GitHub API,
+a direct grep of the backlog) rather than taking a subagent's report on
+trust.
+
+**Did not go well.** Nothing new; same standing `gate_tests` sandbox hang
+and missing mail/Stripe credentials as every recent cycle.
+
+**Changing next cycle:** none. The standing queue (`OWNER-ACTIONS.md`,
+issues #42/#40/#35/#33/#31/#29/#21/#18/#15/#2) is unchanged and is Phil's
+to move.
+
+**Next:** same standing Phil-gated queue. Nothing unblocked exists beyond
+it as of this cycle's independent check.
+
+Pushed to main. `ops/cycle-signal.json`, this log entry, command deck
+regen. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (18:3x slot): corrected a misdiagnosis in the 17:4x entry, no new unblocked work found
 
 **Did.** Attached clean, read `CLAUDE.md`/backlog/roadmap (delegated to a

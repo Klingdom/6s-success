@@ -1,10 +1,10 @@
 {
-  "combined_hash": "fe8c448817c031fcb37211d1a77716c4f2248bf96e8712990aefdd8ff28e8af9",
-  "git_head": "012eb137b407ca7a78353737c9750517d70194de",
-  "note": "PM 10:4x: full re-verification this cycle (preflight direct-gate checks, backlog grep, GitHub API, deploy-gap gates); OWNER-ACTIONS.md diff since 02:58 is 3309553c7, the already-explained 07:4x item-23 link additions",
-  "recorded_at": "2026-10-17T10:47:38Z",
+  "combined_hash": "51bdd261fe2d0e995fa410403f843ea92df7ced82db06816d8778037cb97105d",
+  "git_head": "267ea2693c4b054201e041776c59efab74d04fc6",
+  "note": "Scheduled operator cycle 2026-10-17 18:4x: unshallowed/attached clean, read CLAUDE.md/backlog/roadmap/last-4-log-entries, preflight.py live to gate_tests (0 FAIL reached), check_urls 213/213, audit_pages 218/0 dup, fix_dashes 0/0, affiliate.py --check 165 docs clean, mobile npm test all suites pass, cold_read_ledger --stale 0, 10 GitHub issues unchanged (all decision/blocked-on-art), BACKLOG-2026-09-07.md sections 2-5 independently re-confirmed 0 unstruck non-Phil-gated rows (only C5 Gemini billing, C6 YouTube OAuth, both Phil-gated). No mail/Stripe credential in this sandbox (standing, unchecked). No new unblocked work found.",
+  "recorded_at": "2026-10-17T18:54:32Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "1e7a4c6bf3b0053c468f68a5303ee6319954370073971acba39cf013623ee52d",
+    "BACKLOG-2026-09-07.md": "a442b8fcd1fa34b7d2a2567d09cb5d08630a7fa8915d4f53c1f750f3200c6e62",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
     "OWNER-ACTIONS.md": "3a2045dccf862916b8469c4154a5384c0ae9935fffab07e5b8e2b633c3c67179",
