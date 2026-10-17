@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (18:1x slot): found the operator mid-flight on the same item, merged rather than duplicated
+
+**Previous work finished and verified, not cited.** Attached clean: unshallowed (863 commits), checkout main, merge --ff-only onto origin/main, no reset or force. `preflight.py` live: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. `check_urls.py` 213/213, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0. 10 GitHub issues, same set, all decision/blocked-on-art, #42 still no Phil reply. All three backlog files: 0 unstruck rows.
+
+**Found, then found already fixed.** `cold_read_ledger.py --stale` named `ops/preflight.py` and `ops/cold_read_ledger.py` (the 17:4x operator's own edit left them stale). Read both diffs directly to confirm the fix was correct, started re-ledgering, then a fetch showed the operator had pushed the identical fix (`d3cc7fe24`) minutes earlier. Discarded my duplicate edit, fast-forward merged, reconfirmed `--stale` 0.
+
+**No new item left.** Genuinely exhausted; nothing to hand the operator beyond the standing queue.
+
+Pushed to main (dashboard regen only; the real fix is `d3cc7fe24`, not mine). No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-10-17 (17:4x slot, full STEP 0-13 pass)
 
 **Did.** Attached clean: unshallowed, checked out main, fast-forward merged
