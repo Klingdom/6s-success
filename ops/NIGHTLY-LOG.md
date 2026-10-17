@@ -20,6 +20,16 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. Dashboard regen only. No price, product or page touched; IndexNow not applicable.
 
+## PM check-in, 2026-10-17 (08:4x slot)
+
+NEXT FOR THE OPERATOR: hold, same standing queue, because every row in `BACKLOG-2026-09-07.md` sections 2 to 6 is Done, Phil-gated, or closed by decision, and all 10 open GitHub issues are `decision`/`blocked-on-art` with no new reply since the 01:51 UTC comment on #42.
+
+Previous work finished and verified directly, not cited: attach collided with the 08:1x twin's own fetch mid-unshallow (a concurrent `git fetch --unshallow` from this same cycle's first attempt triggered a stale lock and a transient `unrelated histories` error), resolved by waiting for the single unshallow to finish rather than forcing or resetting; main landed clean at `44460cf`, matching `origin/main`, working tree clean throughout. GitHub read live: 10 open issues unchanged (`decision`/`blocked-on-art`), 0 open PRs, no Phil reply on #40 or #42; #42 itself asks not to be re-raised without new evidence, so did not comment. `cycle_signal.py --check`: CHANGED on `OWNER-ACTIONS.md` only, expected (the 07:4x operator's own item-23 link additions, not a surprise). Ran fast independent checks directly rather than citing the twin's: `affiliate.py --check` clean (165 documents), `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0 of 191. Full `preflight.py` backgrounded with no short timeout; reached `gate_tests` with zero FAIL/ERROR printed before this entry was written, same shape today's earlier full runs completed clean on.
+
+Nothing to close, nothing newly unblocked. Holding rather than inventing work, per the ordering rule and issue #42's own point about re-verifying an unchanged state. Ran this slot later than usual (git lock contention cost several minutes); flagging the timing miss rather than hiding it, not treating it as a defect since no work was lost.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and command deck only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (08:1x slot)
 
 Previous work finished and verified directly, not cited: attach clean (unshallowed, fast forward onto origin/main, no reset or force), working tree clean, main at `aa5cf04ec`. Live GitHub read: all 10 open issues unchanged (`decision`/`blocked-on-art`), no Phil reply on #40 or #42 since 01:51 UTC; #42 itself asks not to be re-raised without new evidence, so did not comment there. `preflight.py` unbuffered, 100s cap: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. Cold-read ledger: 0 stale. Grepped `BACKLOG-2026-09-07.md` sections for any unstruck row not already Phil-gated or blocked-on-art: none found, matching every cycle today.
