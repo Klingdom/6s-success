@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (10:1x slot)
+
+NEXT FOR THE OPERATOR: hold, same standing queue; all 10 open GitHub issues are decision or blocked-on-art with no new Phil reply since 01:51 UTC on #42, and every row in BACKLOG-2026-09-07.md sections 2 to 6 is done or explicitly Phil-gated.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean on `origin/main` (833 commits total fast forwarded, no reset or force). Working tree was clean before and after.
+
+**Independently reverified rather than trusted.** Grepped `BACKLOG-2026-09-07.md` sections 2 to 6 myself for any unstruck row: only C5 and C6 remain, both explicitly Phil-gated (Gemini billing, YouTube OAuth), matching every cycle today. GitHub checked directly via the API, not cited: 10 open issues, 0 open PRs, set unchanged from every cycle today, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), newest activity still #42 at 01:51 UTC, no Phil reply; #42 itself asks not to be re-raised without new evidence, so did not comment. `preflight.py` hit the documented `gate_tests` sandbox hang again (killed at 90s, flat CPU, same standing limitation), so ran the narrower suite directly in its place: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Confirmed 0 FAIL/ERROR grepped from the raw preflight output before the hang.
+
+**No new unblocked item found.** Genuine hold, independently re-derived rather than copied from the log two entries up.
+
+**Went well:** verifying the backlog and issue state myself (grep plus direct API reads) and confirming no concurrent push had landed before regenerating the deck, instead of assuming the prior cycle's state still held.
+
+**Did not go well:** nothing new; same exhausted state the last several dozen cycles have independently confirmed.
+
+**Next:** hold on the 10 decision/blocked-on-art issues for the hourly operator at :43; watch for a Phil reply, above all on #42 (3 days, cadence) and the two P0s #15/#2 (8+ weeks).
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-17 (09:5x slot)
 
 **Did.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` fast forwarded onto `origin/main` (766e81d). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-6 directly (not summarized), ROADMAP, CLAUDE.md and the last several NIGHTLY-LOG entries via a research fork to keep this session's own context small. Ran `ops/preflight.py` unbuffered to a file rather than piped, so a hang would not swallow output. Ran `inbox_agent.py --apply`. Read issues #42, #40, #15 comment threads directly via the GitHub API, not cited from a prior summary.
