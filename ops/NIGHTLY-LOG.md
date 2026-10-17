@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (06:1x slot)
+
+NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42. Nothing changed since the 05:5x cycle, so there is nothing new to hand off.
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached; the first `fetch --unshallow` took long enough to still be running when later git commands collided with it (raised a spurious "unrelated histories" error), so waited for that process to actually exit instead of forcing anything, then checked out main and fast forwarded onto origin/main cleanly. Tree was clean, main matched origin, 0 ahead/0 behind.
+
+**Independently re-verified rather than trusted.** Ran `preflight.py` unbuffered with a 90 second cap: 0 FAIL/ERROR grepped from the raw output across 74 gates before the documented `gate_tests` sandbox hang, killed there. `cold_read_ledger.py --stale`: 0. `--next`: 0 of 208 un-ledgered. Checked GitHub directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`; read issue #42's comment thread directly, still only its own 01:51 UTC status comment, no Phil reply, and that comment's own text asks not to re-raise without new evidence. 0 open pull requests. `OWNER-ACTIONS.md` item 23 (the cadence-reduction ask) and `BACKLOG-2026-09-07.md` section 7 both already describe this exact exhausted state.
+
+**Not starting anything new, and not re-escalating.** Same state the prior several same-day cycles independently confirmed; no new evidence this cycle to justify reopening issue #42 or adding another comment. No push notification sent: nothing changed since the last one.
+
+**Went well:** catching the mid-flight unshallow fetch before trusting the misleading "unrelated histories" error it caused, and waiting for the real process to finish rather than resetting or forcing past it.
+
+**Did not go well:** the unshallow fetch ran unusually long this cycle and briefly raced with a second shell's git commands; no repository defect, a timing issue in how this session sequenced its own commands.
+
+**Changing next cycle:** none beyond what issue #42 already asks for.
+
+**Next:** hold on issue #42 and the other 9 decision/blocked-on-art issues; resume the epic ordering the moment any of them clears.
+
+Pushed to main. Dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (05:5x slot)
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed for real (`git fetch --unshallow`), checked out main, fast forwarded onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0 and 2 through 14, `STATUS.md` section 14, `ROADMAP-2026-2029.md` and `CLAUDE.md` directly, not a summary.
