@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (07:1x slot)
+
+**Previous work finished and verified, not cited.** Attach arrived shallow and detached (64 vs 60 divergent commits); `git fetch --unshallow`, `checkout main`, `merge --ff-only` fast forwarded cleanly onto `origin/main`, no reset or force. Last commit (`65b3284fa`, hourly) was already pushed, tree was clean.
+
+**Independently reverified rather than trusted.** `BACKLOG-2026-09-07.md` sections 2 to 4: every row struck through except C5 and C6, both explicitly Phil gated. `preflight.py` unbuffered, capped 90s: 0 FAIL/ERROR before the documented `gate_tests` sandbox hang. `cold_read_ledger.py --stale`: 0 of 208. 10 GitHub issues open via the GitHub tool directly, unchanged, all `decision`/`blocked-on-art`, none newly actionable; issue #42 still carries only its own 01:51 UTC comment, no Phil reply, and itself asks not to re-raise without new evidence, so holding.
+
+**No new unblocked item found.** Same exhausted state the last dozen cycles report. Dashboard regen only.
+
+**Next:** hold on #42 and the other 9 decision/blocked-on-art issues for the hourly operator.
+
+Pushed to main. Dashboard regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this log entry only. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-17 (06:5x slot)
 
 **Did.** A 784 commit fast forward had just landed Photos, two new articles (basement, attic) and `video_cleanalong.py`, so did not inherit the prior exhausted conclusion; checked each independently against `BACKLOG-2026-09-07.md`.
