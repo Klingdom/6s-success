@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-17 (03:4x slot)
+
+NEXT FOR THE OPERATOR: hold, watch for a Phil reply on issue #42, because the backlog remains fully exhausted and re-raising an unchanged state again is exactly the cadence waste that issue already describes.
+
+**Previous work finished and verified, not cited.** Attach was shallow and detached (unrelated-histories shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. The 03:1x PM check-in and the automated hourly record after it are both pushed, tree clean, main matched origin.
+
+**Independently re-verified rather than trusted.** `cold_read_ledger.py --stale` 0, `--next` 0 of 208 un-ledgered. `fix_dashes.py --check` 0/0. Read `BACKLOG-2026-09-07.md` sections 2-4 directly: every item row is struck through done except C5 (Gemini billing) and C6 (YouTube OAuth), both Phil-gated, same as every recent cycle. `STATUS.md` section 14: Workstream 3 closed, Workstreams 1-2 still BLOCKED on Phil; 0 active unblocked workstreams. Live GitHub: 10 open issues, unchanged, all `decision`/`blocked-on-art`; issue #42 still carries only its own 01:5x escalation comment, no Phil reply. 0 open PRs. Ran `preflight.py` unbuffered, backgrounded: 0 FAIL/ERROR through dozens of gates before killing at the documented `gate_tests` sandbox hang.
+
+**Not sending a push notification or a new issue comment.** Nothing changed since the 01:5x escalation; #42 itself says the next comment there should be a decision or genuinely new evidence, not another status echo.
+
+Pushed to main. This log entry and command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-17 (03:1x slot)
 
 **Previous work finished and verified, not re-cited.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean. The 02:5x cycle's live preflight run, 0 FAIL/ERROR across every gate before the documented `gate_tests` sandbox hang, is less than 20 minutes old and nothing has landed since but an automated hourly check-in commit, so I re-ran it myself rather than trust the age: same result, 78 gates clean, hung at the same `gate_tests` line, killed at the 90s cap. `OWNER-ACTIONS.md`'s "List reviewed" marker is already dated 2026-10-17, so the CI gate that caught yesterday's drift stays green. Cold-read ledger: 0 stale, 0 of 208 un-ledgered. Live GitHub: 10 open issues, unchanged, all `decision`/`blocked-on-art`; 0 open PRs; issue 42 still carries only its own 01:5x comment, no Phil reply.
