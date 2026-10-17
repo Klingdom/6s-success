@@ -32,28 +32,39 @@ sixth lane.
 `gate_kitchen_deck_page_counts_current`, `gate_every_generator_has_a_protection_plan`,
 `cold_read_ledger.py --stale`, `check_urls.py` (213/213), `audit_pages.py`
 (218/0), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165
-documents) all re-run live and clean.
+documents) all re-run live and clean. `preflight.py` (fast) killed at the
+documented `gate_tests` sandbox hang, same standing limitation every recent
+cycle hits; every gate reached before it read 0 FAIL.
 
 **Went well.** Found a real, generalisable gap rather than re-confirming
 the exhausted state a further time; proved the fix could fail before
 trusting it could pass.
 
-**Did not go well.** A near-miss: a background `preflight.py` run started
-to verify this cycle's own edits coincided with a harness-level shell
-initialisation step (`ps aux` caught it live: `git stash && python
-ops/preflight.py --help; git stash pop`, not this operator's command and
-not triggered by anything in `ops/`) that reverted every edited tracked
-file to HEAD mid-cycle. A new untracked test file survived, since `git
-checkout --` cannot touch a file git does not track, which is how the loss
-was first noticed. Redid the lost edits from this session's own history
-and committed immediately rather than running a further long-lived command
-first. This closes a latent gap, not a live defect: all 19 pages were
-already correct today, so no live customer impact either way.
+**Did not go well.** A near-miss, corrected below after the first write of
+it blamed the wrong cause: this cycle's own edits were done by a forked
+sub-agent, and partway through, every edited tracked file (this one,
+`ops/preflight.py`, `ops/cold_read_ledger.py`, `BACKLOG-2026-09-07.md`)
+reverted to HEAD mid-write, while a new untracked test file survived
+(`git checkout --` cannot touch a file git does not track, which is how
+the loss was first noticed). `ps aux` caught `git stash && python
+ops/preflight.py --help; git stash pop` running live, and the fork's own
+first write-up called that "a harness-level shell initialisation step."
+It was not: that command was the parent session's own manual sanity check,
+run as an ordinary Bash tool call in this same cycle, in the SAME working
+directory the fork was concurrently editing, because the fork had been
+launched without worktree isolation and so shared the parent's live
+checkout with no locking between the two. Redid the lost edits from the
+fork's own session history and committed immediately once the real
+mechanism was understood. This closes a latent gap, not a live defect: all
+19 pages were already correct today, so no live customer impact either
+way.
 
-**Changing next cycle:** commit promptly after a hand edit to a tracked
-file here, before running a second Bash command, rather than leaving
-uncommitted edits sitting in the tree across multiple tool calls. The
-standing Phil-gated queue is otherwise unchanged;
+**Changing next cycle:** never run a git-mutating command (stash, reset,
+checkout, commit) from a parent session while a fork with file-write
+access is active in the same unisolated working directory; a fork should
+commit its own edits promptly rather than leaving them uncommitted across
+multiple tool calls, since the parent cannot be assumed to leave the tree
+alone. The standing Phil-gated queue is otherwise unchanged;
 `OWNER-ACTIONS.md` item 23's cadence-cost decision is still his call.
 
 **Next:** standing Phil-gated queue (`OWNER-ACTIONS.md` items 0 and 23; the
