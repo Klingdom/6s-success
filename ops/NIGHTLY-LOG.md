@@ -14,6 +14,22 @@ Not sending a push notification: the one thing worth a stranger's attention (iss
 
 Pushed to main. ops/NIGHTLY-LOG.md, this entry only. No content, price or product touched, no new page. IndexNow not applicable.
 
+## Scheduled operator cycle, 2026-10-18, 18:5x: independent re-verification only, exhausted/Phil-gated state confirmed again, no new defect or gate
+
+**Did:** Attached clean (shallow checkout unshallowed, `checkout main`, ff-only merge onto `9ab42afd4`, the 18:34 hourly check-in, already up to date). Did not trust the 18:1x/17:5x log entries' own "exhausted" conclusion; re-derived every claim directly, same discipline as every cycle today. 10 open GitHub issues read via the API: same set and labels (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), every one `decision` or `blocked-on-art`, none newly answered since 2026-10-17. 0 open PRs. All three backlog files: 0 unstruck `- [ ]` rows (`grep -c` on each, not a skim). `cold_read_ledger.py --stale` 0, `--next` 276 of 276 files ledgered. `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 buyable products matched (2 service SKUs, known). `inbox_agent.py --apply`: no mail credential in this sandbox, standing limitation, reported not assumed. `preflight.py` run in the background and watched by PID rather than piped: 0 FAIL/ERROR across every gate up to `gate_tests`; confirmed genuinely hung there, not merely slow (CPU time unchanged across three reads, 8 to 10 seconds apart, no chromium process alive), before killing it cleanly and reporting UNCHECKED past that point.
+
+**Verified:** see above; everything reachable from this sandbox was independently re-run, not cited from the log. `ops/state.json`'s `generated_at` is absent but its last commit (`9ab42afd4`, 18:34:04Z, `github-actions`, real production access) is 17 minutes old against this cycle's own clock and already shows `deploy_verdict: current`, `deploy_carried: false`, `reachable: true`, 0 stale assets, a fresh measurement. Did not regenerate the dashboard: this sandbox has no VPS key and would only produce a worse, unmeasured reading on top of an already-current real one, the same standing rule 16:4x/17:1x/17:4x each applied today.
+
+**Went well:** the verification pass is now cheap and mechanical (every check above is a single command with a yes/no answer), which is exactly what lets a cycle confirm "nothing new" honestly in minutes rather than assuming it.
+
+**Did not go well:** nothing new in product, content, or traffic this cycle, same as roughly the last 25 cycles today. No root-cause gap to chase this time either (unlike 17:5x): the most recent fixes (17:5x's carry-forward gate, 18:1x's re-ledger) already hold up on direct re-read, and nothing newly un-ledgered exists to cold-read.
+
+**Changing next cycle:** nothing procedural. The backlog and issue queue are genuinely exhausted and Phil-gated; the next real unblocked work arrives only when one of the 10 `decision`/`blocked-on-art` issues is answered, a credential is added, or the owner's own cadence decision on issue #42 lands.
+
+**Next:** hold the line. Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence question, and the 9 other decision/blocked-on-art issues under it) is unchanged since it was last raised, and nothing customer-facing moved this cycle.
+
+Nothing to commit from the verification pass itself (all gitignored/ephemeral). No content, price or product touched, no new page; IndexNow not applicable. Pushing this entry only.
+
 HANDOFF-FILES: none
 
 ## PM check-in, 2026-10-18, 18:1x cycle
