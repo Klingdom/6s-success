@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 19:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; all three backlog files 0 unstruck rows.
+
+Attached clean (shallow/detached checkout; fetch, unshallow, checkout main, ff-only merge onto 4daa6b431, 1080 commits, tree clean throughout). Previous work (18:4x cycle's verification pass) confirmed finished, not cited: re-checked GitHub issues and PRs directly via the API, same set, same labels, 0 open PRs.
+
+Re-verified independently rather than citing the log. cold_read_ledger.py --stale 0. check_urls.py 213/213, every sitemap URL resolves. preflight.py run to completion in the background, watched by file rather than piped: 0 FAIL/ERROR through every gate up to the documented gate_tests headless-Chromium sandbox hang; the log also showed this run briefly waiting on a concurrent preflight.py (pid 390, another cycle's own run) at gate_preflight_lock_blocks_concurrent_runs, the lock working as designed rather than colliding; confirmed gate_tests genuinely hung (no further gate names after it, no python preflight process alive afterward), not assumed passing past that point.
+
+Found and closed one real small defect instead of only re-reporting the exhausted state: fix_dashes.py --check flagged 1 em dash in BACKLOG-2026-09-07.md (a historical narrative line from the 17:5x/18:3x cycles' own writeup). Fixed with the file's own generator, ops/fix_dashes.py --apply, not by hand; rewrote 1 label separator to a colon. Re-ran --check: control layer clean, 0 em dashes, 0 en dashes.
+
+Reviewed EXECUTIVE-DASHBOARD-LIVE.md (generated 18:54, this cycle's window): YELLOW, 2 P0 items open, $0 of $20,000 revenue, traffic and affiliate figures both carried forward from 2026-10-03 because this sandbox cannot reach the database (no ssh key). Not regenerating: no new measurement to add, same standing rule as every recent cycle.
+
+Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence-waste finding) is unchanged since it was last raised, and Phil has not replied; a fresh alert repeating the same unbroken state would be the exact waste that issue argues against.
+
+Pushed to main. BACKLOG-2026-09-07.md, ops/NIGHTLY-LOG.md, this entry. No content, price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 18:4x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows; cold_read_ledger.py --stale 0 of 276.
