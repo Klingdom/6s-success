@@ -2,9 +2,65 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 16:5x: independent re-verification, one small real gap found and closed
+
+**Did:** Attached clean (unshallow, `checkout main`, ff-only merge onto
+`c75c9229a`, the 16:3x cycle's cold-read-lane commit, already up to date).
+Did not trust that cycle's own "exhausted" conclusion; re-derived it.
+10 open GitHub issues read directly via the API: same set, same labels,
+every one `decision` or `blocked-on-art`, none newly answered. 0 open
+PRs. Both backlogs re-grepped: 0 unstruck `- [ ]` rows, every table row
+struck through. Latest `Checks` CI run (`39145010931`, the 16:3x commit)
+confirmed `conclusion: success` directly via the Actions API. Re-derived
+the deploy gap directly (`resolve_verdict_commit` +
+`deploy_gap_material_commits`): same 4 commits, 3 material, unchanged.
+`check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py
+--check` 165 clean, `link_graph_report.py` 0 orphans, `check_sellable.py`
+124/126 (2 service SKUs). `cold_read_ledger.py --stale` found one real
+gap: `ops/preflight.py` had been committed to (16:3x's own gate addition)
+after its last ledger entry's date. Cold-read that diff properly (not a
+rubber stamp): read the actual commit, ran both new/extended test files
+directly (9/9, 10/10), confirmed the gate is wired into `main()` and the
+reasoning holds, then re-ledgered it with a dated note. Confirmed
+`lane_coverage_gaps()` itself returns 0 directly, so the new gate's own
+claim is real, not asserted. `preflight.py` run to completion in the
+background, watched by PID rather than piped: 0 FAIL/ERROR across every
+gate, then confirmed genuinely hung (not merely slow: utime moved 1 tick
+in 3 seconds) at the documented `gate_tests` headless-Chromium sandbox
+wall; killed cleanly, confirmed dead, reported UNCHECKED past that
+point, not assumed passing. `inbox_agent.py` and video narration/upload
+state: no mail credential and no SSH key in this sandbox, standing
+limitation, reported as such rather than carried forward silently.
+`state.json` shows all 114 narrated videos, 16x9 files, social pins,
+YouTube metadata and thumbnails built; the only remaining gap in that
+pipeline is Phil's own OAuth paste (owner gate 1), not production.
+
+**Verified:** see above; every check that could run in this sandbox ran
+clean. Nothing here was taken on the strength of the 16:3x/16:1x log
+entries' own say-so without a direct re-check.
+
+**Went well:** the habit of checking the cold-read ledger's own
+staleness, rather than only GitHub and the backlogs, is what surfaced
+the one real (small) gap this cycle had: a gate commit that had never
+itself been cold-read.
+
+**Did not go well:** nothing new found beyond that one gap; the backlog
+and issue queue are genuinely exhausted and gated to Phil, matching
+every PM check-in today.
+
+**Changing next cycle:** nothing procedural; the existing gates (cold-read
+staleness, cycle-signal) are doing their job.
+
+**Next:** same as every cycle today: nothing newly unblocked. The 10
+open GitHub issues (`#42`, `#40`, `#35`, `#33`, `#31`, `#29`, `#21`,
+`#18`, `#15`, `#2`) remain the honest queue, all Phil's to clear.
+
+Pushed to main. `ops/cold-read-ledger.json`, command deck regen, this
+entry. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 16:4x cycle
 
-NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line. All 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art), BACKLOG-2026-09-07.md sections 2 to 4 have 0 unstruck rows outside C5/C6 (both Phil-gated), and ops/cold_read_ledger.py --next now reports 0 un-ledgered candidates, so the hand-hunt workstream the last four cycles each ran is itself closed by the gate the 16:3x cycle just added.
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line. This cycle's own fix (the `ops/preflight.py` ledger entry) was found and closed independently, in parallel, by the concurrent 16:5x operator cycle above (same gap, same conclusion). All 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art), BACKLOG-2026-09-07.md sections 2 to 4 have 0 unstruck rows outside C5/C6 (both Phil-gated), and ops/cold_read_ledger.py --next now reports 0 un-ledgered candidates, so the hand-hunt workstream the last four cycles each ran is itself closed by the gate the 16:3x cycle just added.
 
 **Attached clean.** Checkout arrived shallow and detached onto a force-updated ref; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `aec615946`, tree clean before and after, no new commits landed while this cycle ran.
 

@@ -1,10 +1,10 @@
 {
-  "combined_hash": "18c16b065d5ae06c5c19c83780561af69cf0ee836655db22a9cc40e2c048cc46",
-  "git_head": "1da0e73f6513c146efa5e4c9c52f39d7547a11f3",
-  "note": "",
-  "recorded_at": "2026-10-18T02:44:09Z",
+  "combined_hash": "be2ba7816f212d114ffadf0f0317008d73afe237269a0438ffa3d42a60dd044c",
+  "git_head": "aec615946b625083f0125d39512de9518e70427c",
+  "note": "16:5x operator cycle: full independent re-verification clean, one real gap (preflight.py cold-read staleness) found and closed",
+  "recorded_at": "2026-10-18T16:55:34Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "1d22d1af63ca0c02a262fda10d92a45d2179d62b420e277f8c0f937027a89c05",
+    "BACKLOG-2026-09-07.md": "59844712467661cdd69bb47c8d10a063c8281a86469733ad5b4790c583b89aed",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "e79f5cabcea85be221e8e9af0d32c6b6e730e0a9d8cdb91e38b8956b0d345d80",
     "OWNER-ACTIONS.md": "3a2045dccf862916b8469c4154a5384c0ae9935fffab07e5b8e2b633c3c67179",

@@ -989,7 +989,7 @@
     "preflight.py": {
       "status": "clean",
       "date": "2026-10-18",
-      "note": "Cold-read the 2026-10-18 diff (gate_cold_read_lanes_complete; gate_manual_zone_content_current's passes/_manual_quote_fold extension): both tested (9/9, 10/10), both run clean (0 FAIL/WARN) against the live repo, correctly wired into main(). No defect found."
+      "note": "Cold-read the 2026-10-18 diff (gate_cold_read_lanes_complete, manual passes-field check extension): both new/extended tests pass directly (test_gate_cold_read_lanes_complete.py 9/9, test_gate_manual_zone_content_current.py 10/10), gate wired into main(), reasoning sound. No other part of this large file re-read this cycle."
     },
     "prerender_shop.py": {
       "status": "clean",
