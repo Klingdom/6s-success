@@ -81,6 +81,7 @@ import datetime as dt
 import signal
 import subprocess
 import sys
+import time
 import traceback
 
 import browser as B
@@ -92,6 +93,104 @@ SITE = os.path.join(ROOT, "site")
 PY = sys.executable
 
 FAIL, WARN = [], []
+
+PREFLIGHT_RUN_LOCK = "/tmp/.preflight_py_running.lock"
+PREFLIGHT_RUN_LOCK_STALE_AFTER = 1200
+
+
+def _run_lock_pid_alive(pid: int) -> bool:
+    if pid is None or pid <= 0:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return True
+    return True
+
+
+def _run_lock_holder_pid(path: str):
+    try:
+        with open(os.path.join(path, "pid")) as fh:
+            return int(fh.read().strip())
+    except (OSError, ValueError):
+        return None
+
+
+def acquire_preflight_lock(path: str = PREFLIGHT_RUN_LOCK, timeout: int = 1800,
+                            own_pid: int | None = None) -> bool:
+    """Block until no other live preflight.py holds `path`, then take it.
+
+    ops/tests/test_audit_catalog.py already proved this exact shape (break a
+    dead holder's lock immediately, fall back to a stale-mtime timeout only
+    when the holder's pid cannot be read) for its own narrower fixture lock.
+    Until 2026-10-18 nothing gave the WHOLE process the same protection:
+    ops/run_preflight.sh's own /tmp/.run_preflight_state convention only
+    catches a second call made THROUGH THE WRAPPER. A raw `python
+    ops/preflight.py` walks straight past it and runs a second, fully
+    concurrent copy against the same working tree and the same
+    site/_audit_catalog_fixture.lockdir, racing both to a corrupted or
+    truncated result instead of a clean FAIL. Observed live twice on
+    2026-10-18: once from an autonomous research subagent that inherited
+    full tool access and ran preflight.py directly, bypassing the wrapper
+    (LRN-0041), and again this same date when a second subagent did the
+    same thing while this session's own wrapper-launched run was still
+    alive, which is what this lock is written to close.
+
+    Pure enough to unit test: given a lock directory and a pid-aliveness
+    probe, it either takes the lock immediately (no holder, or the
+    holder's pid is provably dead) or blocks and retries until the holder
+    is gone or `timeout` elapses.
+    """
+    own_pid = own_pid if own_pid is not None else os.getpid()
+    start = time.time()
+    first = True
+    while True:
+        try:
+            os.mkdir(path)
+            try:
+                with open(os.path.join(path, "pid"), "w") as fh:
+                    fh.write(str(own_pid))
+            except OSError:
+                pass
+            return True
+        except FileExistsError:
+            holder = _run_lock_holder_pid(path)
+            stale = False
+            if holder is not None and holder != own_pid \
+                    and not _run_lock_pid_alive(holder):
+                stale = True
+            else:
+                try:
+                    stale = time.time() - os.path.getmtime(path) \
+                        > PREFLIGHT_RUN_LOCK_STALE_AFTER
+                except OSError:
+                    stale = False
+            if stale:
+                try:
+                    shutil.rmtree(path, ignore_errors=True)
+                    continue
+                except OSError:
+                    pass
+            if time.time() - start > timeout:
+                raise RuntimeError(
+                    f"another preflight.py (pid {holder}) has held {path} "
+                    f"for over {timeout}s; not waiting any longer")
+            if first:
+                print(f"  ...waiting on a concurrent preflight.py "
+                      f"(pid {holder}) to finish", file=sys.stderr, flush=True)
+                first = False
+            time.sleep(2)
+
+
+def release_preflight_lock(path: str = PREFLIGHT_RUN_LOCK) -> None:
+    try:
+        shutil.rmtree(path, ignore_errors=True)
+    except OSError:
+        pass
 
 
 def fail(gate: str, msg: str) -> None:
@@ -3403,6 +3502,62 @@ def gate_dashboard_deploy_carry_forward() -> None:
              f"recorded only in the nested 'deploy' dict by a sibling session "
              f"running an older dashboard.py, and fell back to this run's own "
              f"unmeasured 0/0 instead. Got {sibling!r}")
+
+
+def gate_preflight_lock_blocks_concurrent_runs() -> None:
+    """acquire_preflight_lock() must break a dead holder fast and block a live one.
+
+    Proves both halves of the exact bug this lock exists to prevent
+    (LRN-0041, and a second, independent occurrence of the same collision
+    the same date): a dead holder's lock must not survive even one
+    unnecessary wait cycle, and a genuinely live holder must not be walked
+    past the way the missing lock let a raw `python ops/preflight.py`
+    walk straight past run_preflight.sh's own, narrower
+    /tmp/.run_preflight_state convention.
+    """
+    path = "/tmp/.preflight_lock_gate_check_%d" % os.getpid()
+    shutil.rmtree(path, ignore_errors=True)
+
+    # Half 1: a dead holder's lock breaks immediately, not after the full
+    # stale-mtime timeout.
+    p = subprocess.Popen([PY, "-c", "pass"])
+    p.wait()
+    dead_pid = p.pid
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(dead_pid))
+    start = time.time()
+    try:
+        # own_pid=0: a sentinel no real OS pid can ever equal, so it can
+        # never coincidentally collide with dead_pid (a freshly spawned
+        # subprocess's pid is often sequentially close to our own and did
+        # collide with a naive "os.getpid() + 1" fake identity the first
+        # time this gate was run, masking the dead-pid fast path entirely
+        # and proving this comment's point rather than the gate's).
+        ok = acquire_preflight_lock(path, timeout=5, own_pid=0)
+        elapsed = time.time() - start
+        if not ok or elapsed > 2:
+            fail("preflight-lock-blocks-concurrent-runs",
+                 f"a dead holder's lock was not broken immediately "
+                 f"(ok={ok}, elapsed={elapsed:.1f}s)")
+    finally:
+        release_preflight_lock(path)
+
+    # Half 2: a genuinely live holder (this very process) is NOT walked
+    # past; acquire_preflight_lock must block and time out, not succeed.
+    shutil.rmtree(path, ignore_errors=True)
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(os.getpid()))
+    try:
+        acquire_preflight_lock(path, timeout=1, own_pid=0)
+        fail("preflight-lock-blocks-concurrent-runs",
+             "acquire_preflight_lock() returned instead of waiting out a "
+             "genuinely live holder")
+    except RuntimeError:
+        pass
+    finally:
+        release_preflight_lock(path)
 
 
 def gate_dashboard_deploy_reachable_carry_forward() -> None:
@@ -29105,6 +29260,7 @@ def main() -> int:
     # on a symptom of this cause instead of the cause itself.
     run_gate(gate_no_stray_probe_files)
     run_gate(gate_no_tracked_gitignored_dirs)
+    run_gate(gate_preflight_lock_blocks_concurrent_runs)
 
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
@@ -29522,4 +29678,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    acquire_preflight_lock()
+    try:
+        raise SystemExit(main())
+    finally:
+        release_preflight_lock()
