@@ -703,8 +703,8 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Cold-read carry_forward_all_time() diff (3e7d84b06): correct, mirrors sibling carry-forward pattern, bootstraps from pre-fix committed field. 10/10 test_all_time_carry_forward.py passes."
+      "date": "2026-10-18",
+      "note": "Re-verified 17:5x cycle: added resolve_deploy_reachable(), carries the previous real deploy['reachable'] forward exactly when the verdict itself is carried, mirroring resolve_deploy_verdict(). Proved fail-then-pass against a stub reproducing the pre-fix behaviour, then verified end to end against the real ops/state.json. All existing carry-forward tests still pass (18/18, 10/10, 14/14, 3/3). No other logic changed."
     },
     "deploy.py": {
       "status": "clean",
