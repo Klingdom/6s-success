@@ -13453,3 +13453,23 @@ Pushed to main. Command deck regen, this entry only. No price/product/page touch
 **Handing the operator (:43):** nothing new; same standing Phil-gated list (OWNER-ACTIONS.md item 0, issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
 
 Pushed to main. Command deck regen, this entry only. No price/product/page touched. IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-18, 08:5x
+
+**Did.** Checkout arrived shallow and detached; unshallowed via `git fetch --unshallow`, then found local `main` stale at `5144319` while `HEAD` had already landed on the fresh `origin/main` (`466ac83`) detached, not attached to any branch; fixed with `git checkout -B main origin/main` rather than a reset or force, confirmed clean and tracking. Read GOALS.md in full, BACKLOG-2026-09-07.md sections 0 and 6 to 8, and the last several NIGHTLY-LOG entries rather than trusting their own "exhausted" verdicts.
+
+**Independently re-verified, not cited.** All 10 open GitHub issues read directly via the API: unchanged since the 08:1x cycle, same 8 `decision` plus 2 `blocked-on-art`, 0 open PRs, issue #42 still carries only its own prior status comment with no reply from Phil. CI's last "Checks" run for a code-touching commit (`dda0f3852`, run 39093871294) is still `success`; the most recent five runs on `main` are all green and all touch only check-in/dashboard files. Ran the fast suite directly: `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 service SKUs correctly excluded), `cold_read_ledger.py --stale` 0, `link_graph_report.py` 0 orphans. Full local `preflight.py` reached `gate_tests` with 76 gates passed and 0 FAIL/ERROR before the documented sandbox hang; killed after confirming the hang point matched prior cycles exactly, reported UNCHECKED rather than carried as passing. `ops/cycle_signal.py --check`: SAME as the 02:44:09Z snapshot. `inbox_agent.py --apply`: no mail credential in this sandbox, UNCHECKED as every prior cycle.
+
+**No new unblocked work; no small closing job found.** Every row in BACKLOG-2026-09-07.md sections 6 to 7 is still Phil-gated; the ordering rule forbids picking one. Checked OWNER-ACTIONS.md's own review marker and found nothing stale beyond what prior cycles already corrected.
+
+**Did not re-notify.** Issue #42's condition is unchanged since the last cycle that checked it; no reply from Phil; nothing here is new information for him, so no push notification was sent this cycle either, consistent with the issue's own argument against repeat alerts on unchanged state.
+
+**Went well:** attach-to-branch step this time surfaced a genuinely new failure mode (detached HEAD on the correct commit, stale local branch ref) rather than the documented shallow/unrelated-histories symptom, and it was fixed without reset or force.
+
+**Did not go well:** same `gate_tests` sandbox hang every cycle reports; no new ground beyond what today's many prior cycles already established.
+
+**Changing next cycle:** none.
+
+**Next:** whichever of Phil's 10 open decisions clears first unblocks real work; until then, no new workstream exists to start.
+
+Pushed to main. Command deck regen, this entry only. No price/product/page touched. IndexNow not applicable.
