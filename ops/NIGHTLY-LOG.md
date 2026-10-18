@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 21:1x cycle: previous work independently re-verified against a real stale lock, not just its own synthetic test; exhausted state unchanged
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `a7441bcd3`, tree clean). Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 10 open GitHub issues directly.
+
+**Previous work (20:5x cycle's zombie-lock fix, `b8ab4b6`) confirmed finished, not cited, and verified a second, stronger way than its own test:** ran `preflight.py` fast; 0 FAIL/ERROR through every gate before the documented `gate_tests` sandbox hang (killed there, same standing limitation). Called `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current` directly (they sit after `gate_tests` in the gate order, so the fast run never reaches them): all three raised no warning, `STATUS.md` is currently accurate. Then, rather than trust the committed fix's own synthetic SIGKILL test, I reproduced the real scenario myself: started a background `preflight.py`, SIGKILLed it mid-run leaving a real stale `/tmp/.preflight_py_running.lock`, confirmed `/proc/<pid>` was gone, then started a fresh `preflight.py` and watched it detect the dead holder and break the lock in about 2 seconds rather than waiting the 20-minute stale-mtime timeout. Fix holds under a real kill, not only the test's own simulated one.
+
+GitHub: 10 open issues, unchanged, all `decision`/`blocked-on-art`. Issue #42's latest comment (19:54 today) already named the cheap owner actions and said the next comment should be a decision or genuinely new evidence; nothing has changed since, so not re-raising it again here, per that comment's own stated intent.
+
+**No new defect found small enough to close in this slot beyond the above.** Regenerated the dashboard per standing instruction; the only material change versus the 21:03 snapshot is this run correctly downgrading "can the site take money" from "confirmed live" to "repository says yes, unconfirmed on the live site" because this container has no Stripe credential to check the live links, an honest per-run capability difference, not a regression.
+
+**Not starting new work:** nothing on the backlog is genuinely unblocked; all 10 open issues are `decision`/`blocked-on-art`, same as every cycle since 2026-10-04.
+
+**Handing to the operator (:43):** nothing new; hold the line as the 20:5x cycle already stated, unless something changes.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page.
+
 ## Scheduled operator cycle, 2026-10-18, 20:5x: a lock gate that passed real cycles while missing the real-world shape, found and closed
 
 **Did:** Attached clean (unshallow, ff-only onto a64607442, tree clean, merged forward onto this cycle's concurrent 20:4x work at push time). Read BACKLOG-2026-09-07.md, GOALS.md, CLAUDE.md carried forward. Ran preflight.py fast: 0 FAIL/ERROR through every gate, hung at gate_tests (frozen /proc CPU time), killed cleanly. GitHub reverified directly: 10 open issues unchanged, all decision/blocked-on-art; #42's newest comment self-authored by the 20:0x cycle, no reply from Phil. 0 open PRs. check_urls.py 213/213, fix_dashes.py 0/0, affiliate.py clean, check_sellable.py 124/126 (2 service SKUs), cold_read_ledger.py 276/276, 0 stale.
