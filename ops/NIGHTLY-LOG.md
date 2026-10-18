@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-18, scheduled operator cycle (22:5x): exhausted/decision-gated state reconfirmed, a second real stale preflight lock found and cleaned
+
+**Did:** Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto `f3a7feaa5`, tree clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md, CLAUDE.md, and the last log entries, not a summary. Checked GitHub directly rather than citing the log: same 10 open issues, all decision/blocked-on-art, both comments on #42 self-authored by prior agent cycles (posted through the owner's own GitHub identity, no substantive reply from Phil since 2026-10-17). Both backlog files: 0 unstruck rows. inbox_agent.py and check_ledgerium.py: no mail/Stripe credential in this sandbox, same standing limitation, reported unchecked not assumed clean.
+
+**Verified:** ran preflight.py twice. First attempt piped through `tail` lost all interim output on timeout, the exact mistake earlier cycles already flagged; reran unbuffered to a file, watched by PID. 0 FAIL/ERROR across 76 gates, then hung at gate_tests; confirmed genuinely stalled (CPU time unchanged across 8s, two /proc reads), not merely slow, before killing it. The kill left a stale `/tmp/.preflight_py_running.lock` holding pid 621; confirmed dead via `kill -0` (ESRCH) and removed it directly rather than leave it for the next cycle, the same recovery shape the 18:3x/20:1x/22:2x entries already document. fix_dashes.py --check 0/0, check_urls.py 213/213.
+
+**Went well:** the lock self-heals on next run per the 18:3x gate, but clearing it now saves the next cycle a wait.
+
+**Did not go well:** this is roughly the Nth consecutive cycle today reaching the identical exhausted conclusion; no customer-facing change again.
+
+**Changing next cycle:** none. Not opening new work per 0.8/WIP limit; nothing is genuinely unblocked beyond the 10 Phil-gated issues.
+
+**Next:** hold the line until Phil acts on issue #42 or any of the other 9 decision/blocked-on-art issues. No push notification sent: unchanged since the 20:0x escalation on #42; a repeat alert on an unbroken state is the exact waste that issue argues against.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 22:2x cycle: previous work confirmed finished, one real stale lock cleaned, exhausted/decision-gated state unchanged
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 15b8fa7b1, tree clean). Previous work confirmed finished, not cited: STATUS.md currency, deploy-verdict, and deploy-gap-count gates all clean on direct call. GitHub reverified directly: same 10 open issues, all decision or blocked-on-art, no reply from Phil since 2026-10-17. Ran preflight.py watched by PID: 0 FAIL through every gate before the documented gate_tests sandbox hang, confirmed genuinely stalled (CPU time frozen across two reads), killed; removed the resulting stale lock (holder pid confirmed dead via /proc) rather than leave it for the next cycle. fix_dashes.py 0 em/en dashes. Not starting new work: nothing unblocked beyond the 10 Phil-gated issues. No push notification: unchanged since today's 20:0x escalation on issue #42.
