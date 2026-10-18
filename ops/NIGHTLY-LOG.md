@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 19:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; BACKLOG-2026-09-07.md 0 unstruck rows.
+
+Attached clean (shallow/detached checkout; fetch, unshallow, checkout main, ff-only merge onto 181083ee0, 1082 commits, tree clean throughout; reconfirmed with a second fetch after verification, no concurrent push landed while this cycle worked). Previous work (19:1x cycle's em-dash fix) confirmed finished, not cited: fix_dashes.py --check independently returns 0 em dashes, 0 en dashes.
+
+Re-verified every channel directly rather than citing the log. GitHub issues and PRs read via the API fresh: same 10, same labels, 0 open PRs. BACKLOG-2026-09-07.md: 0 unstruck rows. cold_read_ledger.py --stale 0. check_urls.py 213/213. link_graph_report.py 0 orphans. affiliate.py --check 165 documents clean. check_sellable.py 124/126 (2 service SKUs, known). preflight.py run to completion, unbuffered, watched by PID rather than piped (today's own 18:5x/19:1x lesson applied): 0 FAIL/ERROR through every gate up to the documented gate_tests headless-Chromium sandbox hang; confirmed genuinely hung (CPU time frozen at 00:00:07 across 16s of elapsed wall time, three /proc reads), killed cleanly, reported unchecked past that point, not assumed passing.
+
+No new defect found small enough to close in this slot; every re-check above matches the state every recent cycle today has independently reconfirmed. Not regenerating EXECUTIVE-DASHBOARD-LIVE.md: no new measurement to add (this sandbox has no VPS key or Stripe reach), same standing rule as every recent cycle.
+
+Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence-waste finding, now 4 days open with no reply) is unchanged since it was last raised, and a fresh alert repeating the same unbroken state would be the exact waste that issue argues against.
+
+Pushed to main. ops/NIGHTLY-LOG.md, this entry only. No content, price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 19:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; all three backlog files 0 unstruck rows.
