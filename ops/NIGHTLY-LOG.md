@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 15:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
+
+**Attached clean.** Checkout arrived shallow and detached onto a force-updated ref; fetched, unshallowed, `checkout main`, ff-only merge onto `1883df4af` (already up to date, no new commits), tree clean before and after.
+
+**Previous work (14:4x operator cycle's dispatched Checks run) confirmed finished, not cited.** That cycle left one open thread: workflow_dispatch run id `39137800923` was still `in_progress` when it logged off. Fetched it directly via the Actions API: `status: completed`, `conclusion: success`, finished 15:06:04Z. The stale 09:55Z CI red is now actually closed, not just locally believed fixed.
+
+**Re-verified rather than cited.** 10 open GitHub issues read directly via the API: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels, 0 open PRs. Both backlogs re-grepped: 0 unstruck rows. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126 (2 service SKUs, known), `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. Re-derived the deploy gap directly (`deploy_gap_material_commits(resolve_verdict_commit('c36cb2794e581473'))`): same 4 commits, 3 material, matching `STATUS.md`'s standing citation, not stale. Full `preflight.py` run backgrounded, watched by PID (not piped through `timeout | tail`, which swallows output on this box): 0 FAIL/ERROR across every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed cleanly by PID, confirmed dead, reported UNCHECKED past that point, not assumed passing.
+
+No new unblocked work found this slot: the exhausted, fully Phil-gated state holds. Regenerated the dashboard: YELLOW, revenue $0 of $20,000 (carried forward), deploy/asset verdicts came back `reachable: false` this run (no SSH key in this sandbox), reported honestly rather than carried forward as a false positive. Not re-raising issue #42; nothing here is new information for Phil beyond the CI confirmation above, which is this entry's own point.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 14:4x: found and closed a stale CI red the dashboard-style checks do not surface
 
 Did: Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 1883df4af, tree clean). Independently re-verified the standing exhausted state rather than citing it: 10 open GitHub issues read directly via the API, same set and labels as every cycle today, issue #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows (grepped directly). check_urls.py 213/213, check_sellable.py 124/126 (2 service SKUs), affiliate.py --check 165 documents clean, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. inbox_agent.py and check_ledgerium.py both UNCHECKED, no mail or Stripe credential in this sandbox, standing limitation. Re-derived the deploy gap directly: same 4 commits, 3 material, matching the standing citation.
