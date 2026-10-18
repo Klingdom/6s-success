@@ -24,6 +24,17 @@ local sandbox hangs. Full `preflight.py` was left running in the background
 rather than killed, so a real local result (not a guess) lands if anything
 changes before it is reaped.
 
+**Addendum, same cycle: the backgrounded run finished on its own and the
+forecast held.** `preflight.py` completed past the `gate_tests` tail on its
+own (no kill needed): every gate passed, 0 FAIL, 27 warnings, all of them
+the same standing sandbox-access gaps already known (no Stripe/SSH/mail
+credential, site unreachable, films/captions not present here). One,
+`hooks-enabled`, found `core.hooksPath` unset in this container and set it
+to `.githooks` itself, a local sandbox git-config fix with nothing to
+commit. This confirms, rather than merely assumes, that the CI green read
+above was the right call; no correction needed, unlike the prior cycle's
+own self-correction two entries below.
+
 **Confirmed the exhausted state independently, specifically checking for
 the one thing that would end it.** Read issues #42 and #40 directly via the
 GitHub API, not just their counts: #42 (cadence-waste decision) is
