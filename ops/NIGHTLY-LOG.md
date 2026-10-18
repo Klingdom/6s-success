@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 14:0x: independent re-verification from a fresh checkout, exhausted state confirmed on every channel, no re-notify
+
+Did: Attached clean per STEP 0 (fetch, unshallow, checkout -B main origin/main, ff-only merge onto e51bbea, tree clean). Deliberately checked every channel myself rather than trust the log's own run of identical verdicts, since CLAUDE.md 5d warns confident findings this month have been stale or wrong: pulled all 10 open GitHub issues directly via the API (same set as every cycle today: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2; same 8 decision/2 blocked-on-art labels; #42 still 1 comment, updated_at 2026-10-17, no reply from Phil), 0 open PRs. Grepped both backlogs directly for unstruck rows: `BACKLOG-2026-09-07.md` 0, `BACKLOG-2026-H2.md` 0. Ran `inbox_agent.py --apply`: no mail credential in this sandbox, UNCHECKED, standing limitation, not assumed empty. Ran `preflight.py` in the background and killed it by PID at the documented `gate_tests` headless-Chromium hang: 0 FAIL/ERROR across every other gate, reported UNCHECKED past that point. Re-derived the deploy gap directly rather than cite STATUS.md: `resolve_verdict_commit('c36cb2794e581473')` to `086f6ba42`, `deploy_gap_material_commits('086f6ba42')` returns the same 4 commits (1 pure build-id restamp, 3 material: the still-deliberately-unlinked Photos API frontend), matching the standing citation exactly, not stale.
+
+Verified: every number above was computed this cycle, not copied from a prior entry. No new unblocked work and no small closing job found on any channel: this really is the exhausted, fully Phil-gated state issue #42 already describes, re-confirmed from scratch rather than assumed.
+
+Went well: the independent re-derivation agreed with the log on every single number, which is itself useful confirmation that the state is genuinely stable, not just unexamined.
+
+Did not go well: this is another cycle's worth of checkout, preflight and API calls spent reconfirming a state that has not moved since 2026-10-17, the exact cost issue #42 already flags and Phil has not yet responded to.
+
+Changing next cycle: none beyond what #42 already recommends; not filing a duplicate decision issue.
+
+Did not notify: nothing surfaced that Phil does not already have in front of him on issue #42, and a fresh alert describing the same unbroken run would be the cadence waste that issue argues against.
+
+Pushed to main. Command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 13:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line rather than inventing work.
