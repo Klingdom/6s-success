@@ -16,7 +16,19 @@ ops/cardtext/*.py (21 files, added 2026-10-17: a non-recursive "ops/*.py"
 glob cannot see its own subdirectory, so these 20 room-deck generators
 and derive_room_deck.py had never been a ledger candidate at all, the
 same blind spot the photos/ lane closed a day earlier for a different
-subdirectory). Extended to the JS lanes 2026-09-27:
+subdirectory), and build/listings/*.py (9 files, added 2026-10-18: the
+commerce-channel build/check/verify scripts behind the Amazon KDP and
+Etsy listings, found genuinely un-ledgered the same way photos/ and
+ops/cardtext were, by listing every *.py/*.js file outside the known
+lanes rather than trusting "229 of 229" to mean every file. Read and ran
+all 9: check_etsy.py, check_kdp.py, verify_epub.py and
+verify_zone_claims.py all PASS with zero FAIL against the real committed
+files; build_kdp_cover.py and build_etsy_assets.py both regenerate their
+committed outputs byte-identical in content (build_etsy_assets.py's PDFs
+differ by a Chromium-embedded timestamp and, for one listing, by
+non-deterministic font/image re-encoding bytes with identical text and
+page/card counts; the regenerated files were not committed, since
+re-rendering is not a fix). No defect found). Extended to the JS lanes 2026-09-27:
 the log had been ranking them by raw mention count in prose ("already
 exhausted this month by multiple cycles"), the exact proxy this file's
 own history (below) shows failing at least three times for ops/*.py
@@ -118,6 +130,7 @@ LANES = (
     ("mobile/quest-app/lib", "*.js"),
     ("photos", "*.py"),
     ("ops/cardtext", "*.py"),
+    ("build/listings", "*.py"),
 )
 
 

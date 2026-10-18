@@ -2,6 +2,90 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18: closed a real cold-read ledger gap in the Amazon/Etsy commerce scripts, and fixed a stale roadmap date preflight's own gate caught
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached
+clean: `git fetch origin main`, `git fetch --unshallow` (927 commits),
+`checkout main`, `merge --ff-only` onto `origin/main`, no reset or force.
+Read `BACKLOG-2026-09-07.md` (all 15 sections, via a fork to manage the
+file's size), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several
+`ops/NIGHTLY-LOG.md` entries directly.
+
+**Confirmed the standing exhausted state rather than trusting it.**
+`cold_read_ledger.py --stale` 0, `--next` 0 of 229 un-ledgered. GitHub via
+the MCP tool: the same 10 open issues as every recent cycle
+(#42/#40/#35/#33/#31/#29/#21/#18/#15/#2), all `decision`/`blocked-on-art`/
+`P0`; issue #42 (the cadence-waste decision) still carries only its one
+2026-10-17T01:51:19Z status comment, no reply from Phil since.
+`BACKLOG-2026-09-07.md` sections 2-6 again all Done or Phil-gated.
+
+**Found real, unledgered work instead of re-logging the exhausted state.**
+Listed every `*.py`/`*.js` file in the repository outside the ledger's six
+known lanes and found `build/listings/*.py` (9 files), the Amazon KDP and
+Etsy listing build/check/verify scripts, had never been a candidate under
+any lane, the same non-recursive-glob blind spot the `photos/` and
+`ops/cardtext` lanes closed the two days before. This directory is
+commerce-critical, not peripheral: it is the channel work `ROADMAP-2026-2029.md`
+names as the actual route to a second sale. Read and ran all 9 end to end,
+not sampled: `check_etsy.py`, `check_kdp.py`, `verify_epub.py` and
+`verify_zone_claims.py` all PASS, 0 FAIL, against the real committed
+listing package; `verify_zone_claims.py`'s zone counts were also hand
+cross-checked against `MARKETPLACE-LISTINGS.md`'s own copy (13 for L4, 16
+for L5) and matched. `build_kdp_cover.py` and `build_etsy_assets.py`, run
+against the real current sources, regenerated their committed outputs with
+identical text/page/card counts; the only byte differences (a render
+timestamp, non-deterministic PDF font/image encoding on one file) were
+confirmed as re-render noise by diffing page text directly, not committed.
+Added `("build/listings", "*.py")` as a seventh ledger lane (checked for a
+basename collision against the other six first: none), documented why,
+and recorded all 9 files clean with specific evidence. `BACKLOG-2026-09-07.md`
+section 16 carries the full account.
+
+**A second, independent finding from preflight's own output.** Ran
+`python ops/preflight.py` in full (backgrounded past its 180s foreground
+norm rather than killed at `gate_tests`, per the 00:4x addendum two
+entries back; finished on its own in about 9.5 minutes, every gate
+passed, 27 warnings). One warning was real and fixable, not a standing
+sandbox-access gap: `roadmap-site-age-current` flagged that
+`ROADMAP-2026-2029.md`'s Horizon 1 sentence was still dated 2026-09-12 (23
+days), 36 days stale against today. Re-derived the real figure (59 days
+as of 2026-10-18 against the 2026-08-20 first analytics day) and corrected
+the sentence; re-ran the gate's own pure-logic function directly to
+confirm 0 fails/0 warns after the fix, not just trusted the edit.
+
+**Verified rather than cited, end to end.** `ops/tests/test_cold_read_ledger_stale.py`
+7/7, `ops/tests/test_gate_cold_read_handoff_not_stale.py` 26/26,
+`check_urls.py` 213/213, `audit_pages.py` 218 pages/0 duplicates,
+`fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean,
+`cold_read_ledger.py --stale` 0 of 238. Mobile `npm test`: all suites
+passing. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no
+mail credential, unchecked, standing.
+
+**Went well:** treating "229 of 229 ledgered" as a claim about the ledger's
+own lane list, not about every file in the repository, which is exactly
+the gap that found something real two cycles in a row now (`photos/`,
+`ops/cardtext`, now `build/listings`); and letting the real `preflight.py`
+run finish in the background instead of trusting a 180s-killed partial
+run, which is what surfaced the roadmap date.
+
+**Did not go well:** nothing new; the standing sandbox-access warnings
+(no Stripe/SSH/mail credential, site unreachable) are unchanged and
+already understood.
+
+**Changing next cycle:** none; the next operator should repeat the same
+"list every file outside the known lanes" check once `build/listings` is
+also exhausted, since it has twice now found what raw mention-count
+ranking missed.
+
+**Next:** issues #42 and #40 (cadence waste, usage-limit stall) still
+await Phil; nothing else is unblocked. A push notification was sent this
+cycle, the first time this specific escalation path has had a
+phone-reaching channel rather than only a GitHub comment, since the
+GitHub comment alone has not drawn a reply in over a day.
+
+Pushed to main. No price or product touched; no new page, IndexNow not
+applicable.
+
 ## PM check-in, 2026-10-18 (01:1x slot): previous work finished and verified, same exhausted state independently reconfirmed, no duplicate notification
 
 Attached clean: checkout arrived shallow and detached, `git fetch origin

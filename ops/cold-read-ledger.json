@@ -16,6 +16,16 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (331 lines). Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv directly and diffed against the committed versions: byte-identical, confirming the generator still matches its own shipped output. No defect found."
     },
+    "amazon_nodes.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Reads Amazon's real bestseller browse nav for category research; egress-gated here (no network), but read end to end, no generated artifact to drift."
+    },
+    "amazon_suggest.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Pulls Amazon's autocomplete API for keyword research; explicitly documents it is not volume data. Egress-gated here, read end to end."
+    },
     "analyze.py": {
       "status": "clean",
       "date": "2026-10-16",
@@ -146,6 +156,11 @@
       "date": "2026-10-12",
       "note": "third-pass cold read, 2026-10-12 scheduled operator cycle: EDITION_DATE constant stuck at 2026-09-11 since introduction despite 6 real content commits through 2026-10-01 local / 2026-10-02 UTC (British spelling, book.css dedupe, chapter 44-49 room-mislabel fix); committed epub was byte-identical to a fresh regen (no build drift) but dc:modified understated the last real change by 3 weeks. Bumped to 2026-10-02 (the commit's own UTC date, not its -06:00 local date). Added gate_epub_edition_date_current to ops/preflight.py, proved it fails red against the original stale date and passes clean against the fix"
     },
+    "build_etsy_assets.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran end to end (regenerates sources, renders 3 listings' PDFs + instructions via headless Chromium, audits page/card counts): all PASS, 0 FAIL. Regenerated PDFs matched the committed files in text/page/card count exactly; byte differences were a Chromium-embedded render timestamp and, for one file, non-deterministic font/image re-encoding, not content drift. Regenerated files were not committed."
+    },
     "build_family_room_deck.py": {
       "status": "clean",
       "date": "2026-10-17",
@@ -225,6 +240,11 @@
       "status": "fixed",
       "date": "2026-10-12",
       "note": "Second-pass cold read, scheduled operator. Found two real defects. (1) main()'s 'if want_tier:' treated --tier 0 as no filter (0 is falsy in Python), so the one invocation meant to produce just the 6-image tier-0 starter batch silently wrote all 228 images' worth of prompts instead; fixed to 'if want_tier is not None:'. (2) The committed tier-1/tier-2-prompts.md files were stale against content.json's own American-spelling text (unlabelled/grey/tyre/metre/labelled etc., never regenerated after a dialect sweep), the exact source-corrected-artifact-never-rederived shape this repo's own backlog names as dominant, uncaught because gate_no_british_spellings_shipped deliberately excludes this non-shipped intake file. Regenerated both files from the fixed generator. Refactored main() to share render_tier()/all_items()/by_tier() with a new gate_image_prompts_tiers_current (preflight.py), which regenerates and diffs all three tier files on every run; fail-then-pass proved directly and in ops/tests/test_gate_image_prompts_tiers_current.py (5/5)."
+    },
+    "build_kdp_cover.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran: regenerated build/listings/kdp/cover-kdp.jpg from the current build/cover.png; output byte-identical to the committed file, confirming no drift."
     },
     "build_kids_bedroom_deck.py": {
       "status": "clean",
@@ -481,10 +501,20 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:2x slot: ran live against the real GitHub Actions API (gh auth token available in this sandbox). Found a real defect: check_one() computes delivery_mean/delivery_max/delivery_n/delivery_on_time for a script-throttled workflow (hourly-brief.yml) and returns them in --json, but main()'s plain-text print loop, the path this file's own docstring says a person reads, had a print branch for the sibling cron_late_but_covered case but none for delivery_on_time, so the human-readable report showed '[ok] hourly-brief.yml: ... actual mean 341.4 min' (5.7x its configured interval) with zero explanation of why that is not DEGRADED. Fixed by adding the missing print branch, modeled on the existing cron_late_but_covered one. Added Case 12 to ops/tests/test_check_cron_cadence.py (synthetic result, no network) and proved fail-then-pass directly: 11/12 before the fix, 12/12 after. test_gate_cron_cadence_workflows_registry_current.py (4/4) and the WORKFLOWS registry (10/10 real cron-scheduled files, confirmed against a fresh grep) both still clean. No banned dashes, syntax verified."
     },
+    "check_etsy.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran: PASS, 0 FAIL, 3 listings, no free-duplicate SKU, economics tables current, all files/page/card counts verified against the real PDFs."
+    },
     "check_integrations.py": {
       "status": "clean",
       "date": "2026-10-12",
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (215 lines). Proxied-integration checks (Umami tracker, beacon-rejects-GET, no-foreign-consent-on-subscribe, website id match) all assert something only the real service could produce, not a bare status code, matching CLAUDE.md 0.3. Unreachable-site branch correctly reports UNKNOWN rather than a false pass. No defect found."
+    },
+    "check_kdp.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran: PASS, 0 FAIL. Description, keywords, categories, price band, cover geometry and EPUB metadata all verified against the real committed files."
     },
     "check_ledgerium.py": {
       "status": "clean",
@@ -580,6 +610,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "second-pass cold read, 2026-10-14 PM check-in: re-read in full, re-ran against the live content/manual/source/content.json (114 of 114 zones carry diagnosis, schema passes). The 2026-10-09 IMPERATIVE_FIRST_WORD rebuild (all 20 decks) still holds; no new deck or victory text has landed since to drift the set again."
+    },
+    "etsy_economics.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "LISTINGS/DIRECT_PRICE tables confirmed current against etsy-listings.json and the live site catalogue by check_etsy.py's own stale_economics_entries(), which ran clean. Takes real fee rates as required args rather than guessing Etsy's unfetchable fee schedule."
     },
     "eventLog.js": {
       "status": "clean",
@@ -1026,10 +1061,20 @@
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; cannot be exercised live from this sandbox (no egress to 6s-success.com). PAGES/CRITICAL_PAGES logic checked (CRITICAL_PAGES subset of PAGES, confirmed). The contact-page truthfulness check (looks for literal \"mail pipe is not connected\" in the served page) was cross-checked against the real committed site/contact.html: the exact phrase is still present verbatim at line 195, so the check's assumption about the live page has not drifted. No defect found in the code; live exercise remains blocked on network reach, as every prior cycle has found."
     },
+    "verify_epub.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran against build/6S-Success-Home-Edition.epub: PASS, 0 FAIL. Container, manifest/spine, hrefs, nav/NCX and embedded cover all verified structurally sound."
+    },
     "verify_media_delivery.py": {
       "status": "clean",
       "date": "2026-10-14",
       "note": "Read in full (143 lines). No Desktop/6s-success-videos folder in this sandbox (correctly exits 2, not a false 'gap'). Exercised scan()'s pure detect/fix/recheck logic directly against a synthetic temp directory (fresh file, copy via --fix, confirmed clean on recheck): all three paths work correctly."
+    },
+    "verify_zone_claims.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Ran: zone counts and names for L1/L4/L5 cross-checked by hand against MARKETPLACE-LISTINGS.md's own copy (13 zones/4 rooms for L4, 16 zones/4 rooms for L5); all match."
     },
     "video.py": {
       "status": "clean",
