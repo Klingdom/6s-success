@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 22:2x cycle: previous work confirmed finished, one real stale lock cleaned, exhausted/decision-gated state unchanged
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 15b8fa7b1, tree clean). Previous work confirmed finished, not cited: STATUS.md currency, deploy-verdict, and deploy-gap-count gates all clean on direct call. GitHub reverified directly: same 10 open issues, all decision or blocked-on-art, no reply from Phil since 2026-10-17. Ran preflight.py watched by PID: 0 FAIL through every gate before the documented gate_tests sandbox hang, confirmed genuinely stalled (CPU time frozen across two reads), killed; removed the resulting stale lock (holder pid confirmed dead via /proc) rather than leave it for the next cycle. fix_dashes.py 0 em/en dashes. Not starting new work: nothing unblocked beyond the 10 Phil-gated issues. No push notification: unchanged since today's 20:0x escalation on issue #42.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched.
+
 ## 2026-10-18, scheduled operator cycle
 
 **Did:** Attached to main clean (shallow checkout unshallowed, ff-only merge onto `56bbb1313`, tree clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md sections 2 to 6, ROADMAP-2026-2029.md context, CLAUDE.md, and the last log entries. Ran preflight.py, check_urls.py, audit_pages.py, fix_dashes.py --check, affiliate.py --check, check_sellable.py, cold_read_ledger.py --stale, inbox_agent.py --apply, check_ledgerium.py, and read all 10 open GitHub issues directly rather than trusting a summary. Regenerated the dashboard.
