@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 11:5x
+
+Did: Unshallowed and attached to main cleanly, no issue. Read BACKLOG-2026-09-07.md section 0, ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG.md entries (confirmed newest-first from the header, read from the head rather than the tail). Independently re-verified the standing exhausted state rather than trusting the log's own run of identical verdicts today: pulled all 10 open GitHub issues directly via the API (same set, same 8 decision plus 2 blocked-on-art labels, no reply from Phil on any since the dates already logged), read list_triggers directly and confirmed the three Routines genuinely fire every 30/30/60 minutes as issues 40 and 42 describe. That cadence was Phil's own explicit instruction from 2026-09-10, not an autonomous setting, so reducing it myself would override a human decision rather than fix a defect; left it alone, consistent with every prior cycle's correct judgment not to re-litigate a settled decision without new evidence.
+
+Verified: check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0, check_sellable.py 124/126 (2 service SKUs correctly excluded), link_graph_report.py 0 orphans, inbox_agent.py --apply (no mail credential, UNCHECKED as every prior cycle). affiliate.py --check FAILed once mid-run citing an unreadable site/downloads/_test_bad_delivered_doc.html; traced before reporting either way rather than taken on one read (CLAUDE.md 5d): the path does not exist on disk, git status was clean, and it matched the documented ops/tests/test_affiliate.py scratch-fixture race from this cycle's own concurrently-running preflight.py (same shape recorded three times already in NIGHTLY-LOG-ARCHIVE.md). Reran alone once preflight's test stage had started: clean, 165 documents. Full preflight.py reached gate_tests with 0 FAIL/ERROR on every other gate; this time killed the process by PID directly rather than through a pipe, to avoid orphaning a subprocess holding a fixture lock the way an earlier cycle's timeout-and-tail did.
+
+Went well: catching the affiliate.py transient before writing it up as a finding, and killing preflight cleanly this time.
+
+Did not go well: nothing new; this is one more commit against the exact cadence cost issue #42 already named.
+
+Changing next cycle: none found beyond what #42 already recommends.
+
+Next: whichever of Phil's 10 open decisions clears first unblocks new work; until then there is no unblocked, non-Phil-gated item to start.
+
+Pushed to main. Command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-18, 11:1x: fixed a real nightly-log-ordering CI-red defect, found by running preflight to completion instead of stopping at the documented gate_tests hang
 
 Did: Attached to main cleanly. Ran `preflight.py` to full completion rather than stopping at the documented `gate_tests` hang. It found 2 real FAILs, `nightly-log-ordering`: cycles roughly 04:5x-10:1x had appended entries to the end instead of prepending, leaving two today-dated blocks. Merged all 31 today-dated entries by their own time slot into one contiguous newest-first block; verified as a pure reorder (same 725 entries, bytes, per-entry content). A concurrent 10:4x push reproduced the same defect mid-fix; merged origin/main, prepending only their genuinely new entry rather than restoring the duplicate.
