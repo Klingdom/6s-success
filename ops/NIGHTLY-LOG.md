@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-18, scheduled operator cycle
+
+**Did:** Attached to main clean (shallow checkout unshallowed, ff-only merge onto `56bbb1313`, tree clean). Read GOALS.md, STATUS.md, BACKLOG-2026-09-07.md sections 2 to 6, ROADMAP-2026-2029.md context, CLAUDE.md, and the last log entries. Ran preflight.py, check_urls.py, audit_pages.py, fix_dashes.py --check, affiliate.py --check, check_sellable.py, cold_read_ledger.py --stale, inbox_agent.py --apply, check_ledgerium.py, and read all 10 open GitHub issues directly rather than trusting a summary. Regenerated the dashboard.
+
+**Verified:** preflight ran 77 gates with 0 FAIL before the documented gate_tests headless Chromium sandbox hang (killed there after 4 minutes, reported unchecked past that point, not assumed passing). check_urls.py 213/213 sitemap URLs resolve. audit_pages.py 218 pages, 0 findings, 0 duplicate titles or descriptions. fix_dashes.py --check 0 em or en dashes. affiliate.py --check clean across 165 delivered documents. check_sellable.py: 124 of 126 buyable products in Stripe with a delivery entry and a file on disk, the other 2 are person-delivered services. cold_read_ledger.py --stale: 0 of the ledger is stale. Every row in BACKLOG-2026-09-07.md sections 2 to 4 is done, superseded, or explicitly marked for Phil. All 10 open GitHub issues are labelled decision or blocked-on-art, unchanged since the last cycle's read. All 15 of the last 15 GitHub Actions runs succeeded. Explicitly unchecked, not assumed clean: inbox_agent.py (no mail credential in this environment), check_ledgerium.py (no Stripe credential in this environment), and live Stripe link health (same reason).
+
+**Went well:** every independent check this cycle agrees with the system's own standing conclusion (issues #40 and #42): the backlog is genuinely exhausted of unblocked work, not just reported as such.
+
+**Did not go well:** nothing new found. This is itself the finding issue #42 already filed: a cycle against an unchanged, fully Phil-gated state produces a log entry and a commit but no customer-visible change.
+
+**Changing next cycle:** none. Declined to open a new major workstream per CLAUDE.md section 0.8 and the WIP limit, since doing so here would be inventing work rather than finding it.
+
+**Next:** the highest-leverage action available is still the one this operator cannot take itself: Phil clearing any of the 10 open decision or blocked-on-art issues, or acting on OWNER-ACTIONS.md item 23 (slow the PM/operator cadence while the backlog stays this exhausted). Either ends the loop issue #42 describes, from a different direction.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched.
+
 ## PM check-in, 2026-10-18, 21:1x cycle: previous work independently re-verified against a real stale lock, not just its own synthetic test; exhausted state unchanged
 
 **Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `a7441bcd3`, tree clean). Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 10 open GitHub issues directly.
