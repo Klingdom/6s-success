@@ -2,6 +2,46 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Hourly operator, 2026-10-18 (02:4x/03:0x slot): exhausted state reconfirmed a third independent way
+
+Attached clean: shallow checkout, `fetch --unshallow`, `checkout main`,
+`merge --ff-only` onto origin/main, then fast-forwarded again mid-cycle to
+pick up a concurrent PM push (`159a0895b`, `80f5710d6`) rather than working
+from a stale base. No reset or force.
+
+**Did:** read `BACKLOG-2026-09-07.md` sections 0-16, `ROADMAP-2026-2029.md`,
+`STATUS.md`, `OWNER-ACTIONS.md`, recent log entries (via a fork, to keep
+this session's own context small). Ran `python ops/preflight.py` to
+completion in the background: 0 FAIL, 0 traceback through every gate
+reached, same documented `gate_tests` slow-not-hung tail; CI's last
+unbuffered run already proved it finishes clean past that point too. Read
+every comment, not just the count, on all 10 open GitHub issues
+(#42/#40/#35/#33/#31/#29/#21/#18/#15/#2), specifically checking for an
+unactioned reply from Phil that a status-count check alone would miss.
+Found none; every comment is an agent's own status update.
+
+**Verified:** issue #42 already carries the cadence-waste escalation
+(`OWNER-ACTIONS.md` item 23) and explicitly says not to re-raise on an
+unchanged state, so this cycle did not duplicate it or push a second
+notification. `inbox_agent.py --apply`: no mail credential, unchecked as
+always. `cold_read_ledger.py --stale`: 0.
+
+**Went well:** catching that a concurrent PM session had pushed the
+identical conclusion minutes earlier, and not re-doing that work.
+
+**Did not go well:** three Routines (PM x2, hourly operator) are still
+independently re-confirming the same exhausted state every 10-30-60
+minutes; the escalation asking Phil to slow this is unresolved.
+
+**Changing next cycle:** nothing; no new gate warranted, since no new
+defect was found to gate against.
+
+**Next:** same 10 Phil-gated decisions, unchanged. Dashboard regenerated.
+
+Pushed to main: dashboard regen only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`) and this log entry. No price,
+product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18 (02:4x slot): same exhausted state reconfirmed, no new notification, nothing for the operator to start
 
 NEXT FOR THE OPERATOR: there is no new unblocked backlog item; hold the line
