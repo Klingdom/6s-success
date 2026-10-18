@@ -18386,6 +18386,53 @@ def gate_cold_read_ledger_entries_not_stale() -> None:
              % (len(stale), "y" if len(stale) == 1 else "ies", detail))
 
 
+def gate_cold_read_lanes_complete() -> None:
+    """Every hand-authored *.py/*.js file this repository actually tracks
+    must live in a directory ops/cold_read_ledger.py's LANES already
+    covers, or in its small, named NON_LANE_GENERATED exclusion list.
+
+    Found live 2026-10-18: a plain `git ls-files '*.py' '*.js'` turned up
+    40 files (.githooks/, mcp/, mobile/quest-app/ and its assets/, and
+    five content/*/source directories behind the app spec, the print
+    manual and the three video-package pipelines) that LANES had never
+    once covered, discovered the same way photos/ (2026-10-16),
+    ops/cardtext/ (2026-10-17) and build/listings/ (2026-10-18, the very
+    same day) were each discovered before: a cycle choosing to list every
+    candidate file by hand and compare it against the lane list, rather
+    than anything automatic noticing. That is three consecutive instances
+    of the identical defect class with no gate behind it, which is
+    exactly the condition the operating prompt's STEP 10b says to stop
+    patching and gate instead. This gate is that gate: it re-runs the
+    same sweep itself, every cycle, so a fifth undiscovered directory
+    cannot sit unread for weeks the way these did.
+
+    A WARNING, matching its two sibling cold-read gates just above: a
+    lane gap means some file's correctness has never been cold-read,
+    which wastes a future cycle's time once found; it is not, by itself,
+    a defect already live for a customer.
+
+    Proof this can fail: ops/tests/test_gate_cold_read_lanes_complete.py
+    calls cold_read_ledger.lane_coverage_gaps() directly with a synthetic
+    file list naming a path in no real lane and asserts it is returned,
+    then confirms the same list with that path removed (or moved into a
+    real lane, or into NON_LANE_GENERATED) returns empty.
+    """
+    import cold_read_ledger as crl
+    tracked = crl.git_tracked_py_js()
+    if not tracked:
+        return
+    gaps = crl.lane_coverage_gaps(tracked)
+    if gaps:
+        warn("cold-read-lanes-complete",
+             "%d hand-authored *.py/*.js file(s) outside every "
+             "ops/cold_read_ledger.py LANES entry and every known-"
+             "generated exclusion: %s. Add a LANES entry (or, if "
+             "generated, a GENERATED_JS/NON_LANE_GENERATED exclusion), "
+             "then cold-read and `--add` each real file so this lane "
+             "cannot silently miss a directory again."
+             % (len(gaps), ", ".join(gaps)))
+
+
 KEYWORD_DEMAND_STALE_DAYS = 10
 
 
@@ -26105,6 +26152,24 @@ def gate_manual_print_fonts_current() -> None:
              % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
 
 
+MANUAL_S_ORDER = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
+MANUAL_S_NAME = {"sort": "Sort", "straighten": "Straighten", "shine": "Shine",
+                  "safety": "Safety", "standardize": "Standardize", "sustain": "Sustain"}
+
+
+def _manual_quote_fold(s: str) -> str:
+    """Strip every quote-mark variant (straight and curly) before comparing
+    Manual prose against content.json. content/manual/source/build.py's own
+    normalize_canon() wraps four frozen canon lines in curly quotes when it
+    renders passes/the_call text, so a byte-exact comparison would report a
+    canon quotation as a mismatch on quote style alone, not content. Found
+    2026-10-18 proving the passes check below: the_call text at
+    kids-bedroom--school-and-activity-launch-zone was a false positive for
+    exactly this reason before this fold was added.
+    """
+    return re.sub(r"[\"'‘’“”]", "", s)
+
+
 def gate_manual_zone_content_current() -> None:
     """The Manual's own zone text must not silently drift from content.json.
 
@@ -26122,14 +26187,37 @@ def gate_manual_zone_content_current() -> None:
     notice, because no existing gate compares the Manual's own prose
     against the corpus it claims to summarise.
 
-    Checks the two fields LRN-0019 traced this defect through, `purpose`
-    and `done_looks_like`, on all 114 zones: each content.json zone's
-    room+zone slug (the same room--zone id ops/build_zone_pages.py already
-    derives) is matched against the Manual's own `<article class="zone"
-    id="...">` block, and the visible zpurpose / "Done looks like" text
-    must match exactly, tags stripped. A missing article, or a text
-    mismatch, fails by name. content/manual/micro-zone-manual-publishable.html
-    and content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html are not
+    Checks `purpose`, `done_looks_like`, and (added 2026-10-18) all six
+    `passes` entries, on all 114 zones: each content.json zone's room+zone
+    slug (the same room--zone id ops/build_zone_pages.py already derives)
+    is matched against the Manual's own `<article class="zone" id="...">`
+    block, and the visible text must match exactly (quote-mark style
+    folded out; see _manual_quote_fold), tags stripped. A missing article,
+    or a text mismatch, fails by name.
+
+    The `passes` check exists because the original two-field version of
+    this gate had exactly LRN-0019's own blind spot, just for a different
+    field: commit ff9a5d0cc (2026-09-07) rewrote every zone's Sustain pass
+    in content.json, and nothing ever re-derived the Manual's own Sustain
+    text from it. Found cold-reading content/manual/source/build.py for
+    the first time, 2026-10-18 (that file's "regenerate and diff" turned
+    up 114 of 114 zones differing, all but a handful only in the print
+    stylesheet build_manual_print.py injects on top): 114 zones had a
+    stale Sustain pass, 13 had a stale Standardize, 6 a stale Safety (one
+    of them missing an entire paragraph of real gas-safety instructions
+    content.json carried and the shipped Manual did not), and 1 a stale
+    Shine, for every day between 2026-09-07 and this fix. Hand-corrected
+    to match content.json the same day and `python
+    ops/build_manual_print.py` re-run so the publishable and print copies
+    carry the fix too; full account in ops/NIGHTLY-LOG.md 2026-10-18.
+    `the_call`, `watch_for` and `leave_behind` were checked by hand the
+    same cycle and found already current (0 real mismatches once the
+    quote-fold above removes the one canon-quotation false positive), so
+    they are not added here; `shine_detail` likewise, apart from one
+    stray British spelling fixed by hand alongside the passes fix.
+
+    content/manual/micro-zone-manual-publishable.html and
+    content/manual/print/6S-Micro-Zone-Manual-PRINT-7x10.html are not
     checked separately: ops/build_manual_print.py's own main() writes all
     three from one in-memory `doc` read from the v3.html file, and
     gate_manual_print_fonts_current already proves that copy is current, so
@@ -26138,6 +26226,11 @@ def gate_manual_zone_content_current() -> None:
     This is a content-drift gate, not a regeneration gate: nothing in ops/
     can fix a mismatch automatically, because nothing derives this HTML from
     content.json. The fix is the same hand-edit LRN-0019's own fix was.
+
+    Proof this can fail: ops/tests/test_gate_manual_zone_content_current.py
+    builds a synthetic corpus and Manual HTML with a planted passes
+    mismatch and asserts it is caught, then confirms a matching pair (and
+    a canon-quoted one) passes clean.
     """
     src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
     manual_path = os.path.join(
@@ -26150,14 +26243,21 @@ def gate_manual_zone_content_current() -> None:
     for r in d["rooms"]:
         for z in r["zones"]:
             zid = "%s--%s" % (_slugish(r["room"]), _slugish(z["zone"]))
-            corpus[zid] = {
+            entry = {
                 "purpose": (z.get("purpose") or "").strip(),
                 "done_looks_like": (z.get("done_looks_like") or "").strip(),
             }
+            passes = z.get("passes") or {}
+            for k in MANUAL_S_ORDER:
+                entry["passes." + k] = (passes.get(k) or "").strip()
+            corpus[zid] = entry
 
     html = io.open(manual_path, encoding="utf-8").read()
     tag_re = re.compile(r"<[^>]+>")
     article_re = re.compile(r'<article class="zone" id="([^"]+)">(.*?)</article>', re.S)
+    passes_li_re = re.compile(
+        r'<li><span class="s" style="background:[^"]*">([^<]+)</span>(.*?)</li>', re.S)
+    name_to_key = {v: k for k, v in MANUAL_S_NAME.items()}
     found = {}
     for m in article_re.finditer(html):
         zid, body = m.group(1), m.group(2)
@@ -26165,10 +26265,17 @@ def gate_manual_zone_content_current() -> None:
         dm = re.search(
             r'<div class="done"><div class="lbl">Done looks like</div><p>(.*?)</p></div>',
             body, re.S)
-        found[zid] = {
+        entry = {
             "purpose": tag_re.sub("", pm.group(1)).strip() if pm else None,
             "done_looks_like": tag_re.sub("", dm.group(1)).strip() if dm else None,
         }
+        passes_block = re.search(r'<ul class="passes">(.*?)</ul>', body, re.S)
+        if passes_block:
+            for name, text in passes_li_re.findall(passes_block.group(1)):
+                k = name_to_key.get(name)
+                if k:
+                    entry["passes." + k] = tag_re.sub("", text).strip()
+        found[zid] = entry
 
     missing = sorted(zid for zid in corpus if zid not in found)
     if missing:
@@ -26180,11 +26287,13 @@ def gate_manual_zone_content_current() -> None:
              "room--zone slug convention." % (len(missing), missing[:5]))
         return
 
+    fields = ["purpose", "done_looks_like"] + ["passes." + k for k in MANUAL_S_ORDER]
     mismatches = []
     for zid, want in corpus.items():
         have = found.get(zid) or {}
-        for field in ("purpose", "done_looks_like"):
-            if want[field] and have.get(field) is not None and want[field] != have[field]:
+        for field in fields:
+            w, h = want.get(field), have.get(field)
+            if w and h is not None and _manual_quote_fold(w) != _manual_quote_fold(h):
                 mismatches.append("%s.%s" % (zid, field))
 
     if mismatches:
@@ -29244,6 +29353,7 @@ def main() -> int:
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
+    run_gate(gate_cold_read_lanes_complete)
     run_gate(gate_keyword_demand_not_stale)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)

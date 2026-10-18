@@ -1,18 +1,30 @@
 #!/usr/bin/env python3
 """
 Prove ops/preflight.py's gate_manual_zone_content_current() catches the
-Micro Zone Manual's own zone text (purpose, done_looks_like) drifting from
-content/manual/source/content.json.
+Micro Zone Manual's own zone text (purpose, done_looks_like, and the six
+`passes` entries) drifting from content/manual/source/content.json.
 
 Real shape: LEARNINGS.md LRN-0019 (2026-09-26). A typo in content.json's
 Kitchen Cooking Zone `purpose` field reached 21 generated artifacts once
 their generators reran, but content/manual/6S Home Micro Zone SOP Field
 Manual v3.html is hand-authored HTML that nothing in ops/ re-derives from
 content.json, so a future corpus correction can silently fail to reach it.
-No gate existed to catch that until this one. This test never touches the
-real, large content.json or the real Manual file: a small fixture pair
-stands in for the real shape (one room, one zone, one matching or
-mismatching <article>).
+No gate existed to catch that for `purpose`/`done_looks_like` until the
+first version of this gate, 2026-09-26.
+
+The `passes` check added here, 2026-10-18, exists because the two-field
+gate had the identical blind spot for a different field: commit ff9a5d0cc
+(2026-09-07) rewrote every zone's Sustain pass in content.json, and the
+Manual's own Sustain text was never re-derived from it. Found cold-reading
+content/manual/source/build.py for the first time, by regenerating and
+diffing against the committed Manual: 114 of 114 zones had a stale
+Sustain, 13 a stale Standardize, 6 a stale Safety (one missing an entire
+paragraph of real gas-safety instructions), 1 a stale Shine. Hand-fixed
+the same cycle; this test proves the gate that now watches it.
+
+This test never touches the real, large content.json or the real Manual
+file: a small fixture pair stands in for the real shape (one room, one
+zone, one matching or mismatching <article>).
 
 Run:  python ops/tests/test_gate_manual_zone_content_current.py
 """
@@ -33,8 +45,21 @@ MANUAL_REL = os.path.join(
 PURPOSE = "The spot where pockets empty on the way in and refill on the way out."
 DONE = "One tray holding keys and sunglasses, bare surface on both sides of the tray."
 
+S_ORDER = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
+S_NAME = {"sort": "Sort", "straighten": "Straighten", "shine": "Shine",
+          "safety": "Safety", "standardize": "Standardize", "sustain": "Sustain"}
 
-def _content_json():
+DEFAULT_PASSES = {
+    "sort": "Empty the tray and the paper stack onto the floor.",
+    "straighten": "Put the tray where your hand actually opens on the way in.",
+    "shine": "Lift the tray out and wipe under it, then wipe the tray itself.",
+    "safety": "The charging cable and the umbrella drip line must not share a spot.",
+    "standardize": "Photograph the cleared tray with the folder standing beside it.",
+    "sustain": "When you sit down after dinner, the folder comes with you.",
+}
+
+
+def _content_json(passes=None):
     return {
         "rooms": [{
             "room": "Entryway",
@@ -42,15 +67,23 @@ def _content_json():
                 "zone": "Landing Zone",
                 "purpose": PURPOSE,
                 "done_looks_like": DONE,
+                "passes": passes if passes is not None else dict(DEFAULT_PASSES),
             }],
         }],
     }
 
 
+def _passes_block(passes):
+    return "".join(
+        '<li><span class="s" style="background:#000">%s</span>%s</li>'
+        % (S_NAME[k], passes[k]) for k in S_ORDER if passes.get(k))
+
+
 def _manual_html(purpose=PURPOSE, done=DONE, zone_id="entryway--landing-zone",
-                  include_article=True):
+                  include_article=True, passes=None):
     if not include_article:
         return "<html><body>no zones here</body></html>\n"
+    passes = passes if passes is not None else dict(DEFAULT_PASSES)
     return (
         '<html><body>\n'
         '<article class="zone" id="%s">\n'
@@ -58,8 +91,9 @@ def _manual_html(purpose=PURPOSE, done=DONE, zone_id="entryway--landing-zone",
         '<p class="zpurpose">%s</p>\n'
         '<div class="done"><div class="lbl">Done looks like</div>'
         '<p>%s</p></div>\n'
+        '<ul class="passes">%s</ul>\n'
         '</article>\n'
-        '</body></html>\n' % (zone_id, purpose, done)
+        '</body></html>\n' % (zone_id, purpose, done, _passes_block(passes))
     )
 
 
@@ -92,7 +126,8 @@ def main() -> int:
     tmp_base = tempfile.mkdtemp()
     fails = []
     try:
-        # 1. The real, current shape: purpose and done_looks_like both match.
+        # 1. The real, current shape: purpose, done_looks_like and all six
+        #    passes match.
         tmp = _fixture(tmp_base, "clean")
         r, w = _run_gate(tmp)
         if r or w:
@@ -152,6 +187,50 @@ def main() -> int:
         if r or w:
             fails.append("a blank content.json field was wrongly compared "
                          "as a mismatch: FAIL=%r WARN=%r" % (r, w))
+
+        # 8. The real 2026-10-18 shape: content.json's Sustain pass was
+        #    rewritten and the Manual's own Sustain text was never updated.
+        stale_passes = dict(DEFAULT_PASSES)
+        stale_passes["sustain"] = "Rides to the sofa with you after dinner."
+        tmp = _fixture(tmp_base, "sustain-drift",
+                       content=_content_json(passes=stale_passes))
+        r, w = _run_gate(tmp)
+        if not r or "entryway--landing-zone.passes.sustain" not in r[0][1]:
+            fails.append("a real passes.sustain mismatch was not caught by "
+                         "name: %r" % (r,))
+
+        # 9. A mismatch in a DIFFERENT pass (Safety) is caught by its own
+        #    name, not confused with Sustain's.
+        stale_safety = dict(DEFAULT_PASSES)
+        stale_safety["safety"] = "Know where the gas shutoff valve is."
+        tmp = _fixture(tmp_base, "safety-drift",
+                       content=_content_json(passes=stale_safety))
+        r, w = _run_gate(tmp)
+        if not r or "entryway--landing-zone.passes.safety" not in r[0][1]:
+            fails.append("a real passes.safety mismatch was not caught by "
+                         "name: %r" % (r,))
+
+        # 10. A canon-line quotation, rendered with curly quotes by
+        #     content/manual/source/build.py's normalize_canon(), must not
+        #     be a false positive: the gate folds quote-mark style out
+        #     before comparing (_manual_quote_fold).
+        canon_passes = dict(DEFAULT_PASSES)
+        canon_passes["safety"] = (
+            "Remember the rule from the book. An audit checks the home, "
+            "not the household.")
+        canon_manual_passes = dict(DEFAULT_PASSES)
+        canon_manual_passes["safety"] = (
+            "Remember the rule from the book. “An audit checks the home, "
+            "not the household.”")
+        tmp = _fixture(
+            tmp_base, "canon-quote",
+            content=_content_json(passes=canon_passes),
+            manual=_manual_html(passes=canon_manual_passes))
+        r, w = _run_gate(tmp)
+        if r or w:
+            fails.append("a canon-quoted passes field was wrongly flagged "
+                         "a mismatch on quote style alone: FAIL=%r WARN=%r"
+                         % (r, w))
     finally:
         shutil.rmtree(tmp_base, ignore_errors=True)
 
@@ -160,7 +239,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_manual_zone_content_current, 7/7 checks pass")
+    print("OK: gate_manual_zone_content_current, 10/10 checks pass")
     return 0
 
 

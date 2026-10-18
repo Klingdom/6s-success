@@ -42,7 +42,14 @@ runs = re.findall(r"(?:Sort|Straighten|Shine|Safety|Standardize|Sustain)"
 bad_runs = []
 for r in runs:
     seq = re.findall(r"Sort|Straighten|Shine|Safety|Standardize|Sustain", r)
-    if len(seq) >= 5 and seq[:6] != S[:len(seq)]:
+    # The capturing regex above requires at least 4 S-terms (1 + {3,} more);
+    # this threshold had drifted to 5, so any exactly-4-term run (e.g. "Straighten,
+    # Sort, Shine, Safety") skipped the order check entirely. Found 2026-10-18
+    # cold-reading this file for the first time: no live 4-term run currently
+    # exists in the manual (confirmed against the committed HTML), so nothing
+    # shipped was wrong, but the gate had a real blind spot the regex's own
+    # minimum did not.
+    if len(seq) >= 4 and seq[:6] != S[:len(seq)]:
         bad_runs.append(r.strip())
 gate(not bad_runs, "Safety is the 4th S in every list", "bad: %s" % bad_runs[:3])
 gate("Safety" in text, "Safety present")

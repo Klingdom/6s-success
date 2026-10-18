@@ -1,6 +1,11 @@
 {
   "_comment": "Structured record of ops/*.py files a cold-read cycle has actually read and either cleared or fixed. Not a full backfill: only entries a cycle has explicitly written here are authoritative. A file's absence means unknown, not unread and not clean; keep using ops/cold_read_ledger.py --next (or the old log-mention grep) for anything not listed. Written by ops/cold_read_ledger.py --add; do not hand-edit the ordering, it is sorted on write.",
   "entries": {
+    "App.js": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "The React Native Home Quest app's entire core loop. Read in full: pickCard selection, zoneProgress/zonesHeld derivations, markDone/skip/importBackup flows, the finished/idle/empty screen branches, and the WCAG-contrast BADGE_TEXT_COLOUR table (already verified by gate_mobile_badge_contrast) are all correct against their own extensive inline documentation of past fixes. No defect found."
+    },
     "accept_image.py": {
       "status": "clean",
       "date": "2026-10-12",
@@ -16,6 +21,11 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (331 lines). Regenerated AFFILIATE_COMPLIANCE_MATRIX.md, AFFILIATE_INPUT_EXCEPTIONS.md and affiliate-link-input-needed.csv directly and diffed against the committed versions: byte-identical, confirming the generator still matches its own shipped output. No defect found."
     },
+    "ai-proxy-example.js": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Minimal example Express proxy holding the Anthropic API key so the app-mvp prototype never ships it client-side. Explicitly documented as 'a starting example, not production' with its own list of missing hardening (metering, abuse protection, zero-retention config); CORS wildcard and unbounded request size are already named there, not hidden gaps. No defect beyond what it already discloses."
+    },
     "amazon_nodes.py": {
       "status": "clean",
       "date": "2026-10-18",
@@ -30,6 +40,16 @@
       "status": "clean",
       "date": "2026-10-16",
       "note": "First cold read of this file, same cycle the photos/ lane was added. Checked the grounding contract directly against root_causes.py and methodology.py: ground() only keeps a friction's cause if it is a real key in M.CAUSES, only keeps a step if its pass is one of the six real PASSES, only attaches a surface's method text if the model's surface_id matches a real id methodology.method() produced for that zone, and after_check is only populated in after/compare mode. Every field is length-clipped via _clip(). method_only()'s zero-key path (no vision provider configured) returns image_analyzed False and never fabricates a look. MODEL defaults to claude-sonnet-4-5, overridable via PHOTOS_MODEL; noted but not changed, since it is already configurable at deploy time (unlike the hardcoded, already-flagged claude-sonnet-4-6 in content/app-mvp/source/build_pwa.py, which is pre-production exploratory content, not live product) and this sandbox has no way to verify a model id against the live API. No defect found."
+    },
+    "append_mvp.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "append_part4.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "audit_catalog.py": {
       "status": "clean",
@@ -51,6 +71,11 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, PM check-in: read in full (201 lines). Room-claim ledger logic correct: next_room() picks smallest undiagnosed, unclaimed room; is_stale() correctly gates a 3h window; cmd_release() clears every matching in_progress entry for a room, not just one, so a duplicate re-claim (same note, allowed by cmd_claim) cannot leave a stray active claim behind. No defect found."
     },
+    "babel.config.js": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Trivial, standard babel-preset-expo config. No defect possible."
+    },
     "backup_analytics.py": {
       "status": "clean",
       "date": "2026-10-12",
@@ -66,6 +91,11 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, PM check-in: read in full (42 lines). find_browser() tries Edge paths then the sandbox Chromium, returning the right --no-sandbox flag only for the container binary. No defect found."
     },
+    "build.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Regenerated its output from the real content/manual/source/content.json (patched the dead SCRATCH/OUT paths to a scratch file) and diffed against the committed Manual. The template-assembly logic itself (S_ORDER, esc(), zone_card(), room_section()) is correct; the large diff this surfaced was content.json's own prose having drifted from the committed Manual since 2026-09-07, a content-sync defect fixed this cycle via content/manual/source/validate.py and gate_manual_zone_content_current (see ops/NIGHTLY-LOG.md 2026-10-18), not a bug in this generator. This file is historical/superseded as the Manual's maintenance model: LRN-0019 and gate_manual_zone_content_current's own docstring establish the Manual as hand-maintained HTML with content.json drift caught by a comparison gate, not re-derived by rerunning this script."
+    },
     "build_all_prompts.py": {
       "status": "clean",
       "date": "2026-10-12",
@@ -75,6 +105,11 @@
       "status": "clean",
       "date": "2026-10-12",
       "note": "Second-pass cold read, PM check-in: read in full (188 lines). Icon/splash/feature-graphic generation and its own self-checks (alpha-channel rules, opaque-fraction sanity, colour-count sanity, cream-text-pixel count) are internally consistent with what each store actually requires. Imports PIL directly but is a standalone script never imported by preflight.py, same already-diagnosed shape as the other PIL-dependent ops files. No defect found."
+    },
+    "build_appendices.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "File's own first line says SUPERSEDED: 'The appendix builder now lives in ops/build_manual_print.py... Kept for reference only.' Confirmed ops/build_manual_print.py is the live generator (already ledgered). One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "build_articles.py": {
       "status": "clean",
@@ -336,6 +371,11 @@
       "date": "2026-10-11",
       "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); hardcoded whole-room action-card id/description assertion checked against the real built cards (exact match); hero_image_url()'s first zone checked against disk and that zone page's own og:image (exact match). No defect found."
     },
+    "build_overview.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. The one literal em-dash in the file is a search needle in its own self-check print statement (doc.count('—')), never written into the generated output."
+    },
     "build_pantry_deck.py": {
       "status": "clean",
       "date": "2026-10-17",
@@ -360,6 +400,16 @@
       "status": "clean",
       "date": "2026-10-15",
       "note": "First cold read, un-ledgered new file from today's Photos API frontend work. Read all 62 lines end to end. Imports photos/methodology.py directly for zone_slugs()/ZONES rather than re-deriving the slug rule, so the picker can never offer a slug GET /v1/zones would reject. Ran live: wrote 114 zones, git status clean after (output matches committed file exactly, no drift). Checked methodology.py's _load() for slug-collision risk (two room+zone pairs producing the same slug): none found in the live corpus at 114 rows. No defect."
+    },
+    "build_pilot.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "build_pkg.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "build_primary_bathroom_deck.py": {
       "status": "clean",
@@ -391,10 +441,10 @@
       "date": "2026-10-12",
       "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
-    "build_pwa.py": {
+    "build_pwa2.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
+      "date": "2026-10-18",
+      "note": "Verified live: this is the ACTUAL current generator of the committed content/app-mvp/app/sw.js (confirmed byte-identical by regenerating its SW string and diffing against the committed file). build_pwa.py (the sibling v0.1 generator) is superseded by this one. Otherwise desktop-path-only (OUTDIR is Phil's Desktop), so the HTML/manifest output cannot be re-diffed here, only the sw.js string. No defect found."
     },
     "build_quest.py": {
       "status": "clean",
@@ -405,6 +455,16 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:4x slot: ran live, 0 diff (idempotent, md5 unchanged before/after). Verified both claims the file's own comments make: the book/site zone-name sets are identical across all 20 rooms (checked programmatically, 0 mismatches) and SHINE_SURFACES (762, counted from content.json) matches the sum of per-room counts actually rendered in the live resources.html (762). No defect found."
+    },
+    "build_review_report.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "build_roadmap.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. One literal em-dash is a search needle in its own self-check print, not written into output."
     },
     "build_sample_html.py": {
       "status": "clean",
@@ -425,6 +485,11 @@
       "status": "clean",
       "date": "2026-10-12",
       "note": "second-pass cold read, 2026-10-12 scheduled operator: regenerate-and-diff clean (build_social_pins.py checked for correct fit/dims rather than byte-identity, since its Chromium screenshot output is sandbox-font-rendering dependent), no defect"
+    },
+    "build_spec.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "build_stair_landing_deck.py": {
       "status": "clean",
@@ -450,6 +515,11 @@
       "status": "clean",
       "date": "2026-10-12",
       "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (165 lines). shot(), fit() and html_for() all logically sound; zone_slug() delegated to video_zone.py rather than hand-copied (the exact defect class this file's own comment documents being fixed for). --check confirms 114/114 thumbnails present. No render environment here to exercise the actual screenshot path, so that branch is read-verified, not executed; the --check branch (the one the pipeline actually calls) was run directly. No defect found."
+    },
+    "build_video.py": {
+      "status": "fixed",
+      "date": "2026-10-18",
+      "note": "Same off-by-one found and fixed in content/manual/source/validate.py's sibling check lives in content/video/source/validate_video.py, not this file. This file (the assembler) itself: read in full, no defect. SCRATCH here resolves in-repo (video.json sits beside it) but still joins paths with a literal backslash, so it only actually runs on Windows; consistent with every other script in this content/ tree and not treated as a bug."
     },
     "build_workshop_deck.py": {
       "status": "clean",
@@ -495,6 +565,11 @@
       "status": "clean",
       "date": "2026-10-12",
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (156 lines). Ran directly: correctly reports T2 NOT EVALUATED (no ssh key here) rather than a false zero, matching the file's own stated contract that unreadable must never read as zero. retailer_hosts() reads live from product_links.MERCHANTS rather than a second hardcoded list, confirmed by reading that import. No defect found."
+    },
+    "check_control_bytes.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Pre-commit control-byte scanner. Read in full: BAD byte set, extension filter, and the heredoc-backslash failure mode it exists to catch are all correct. No defect."
     },
     "check_cron_cadence.py": {
       "status": "fixed",
@@ -561,10 +636,50 @@
       "date": "2026-10-12",
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (422 lines), not executed (it appends a real row to CHECKIN-LOG.md and writes ops/state-checkin.json on every run, so a cold-read execution here would plant a synthetic hourly entry in a document meant to be a measured record; the hourly-brief workflow already exercises it for real on every push). carry_forward()/next_action() correctly distinguish None (could not measure) from 0 (confirmed empty) throughout, the same discipline CLAUDE.md 0.4 requires, and commits_24h_count() correctly unshallows before counting rather than silently undercounting at the shallow boundary. No defect found."
     },
+    "clean_spec.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
     "cold_read_ledger.py": {
       "status": "clean",
       "date": "2026-10-18",
       "note": "Edited this cycle to add the build/listings lane (7th lane); re-ledgered with today's date after the edit so the stale check doesn't flag the tool against its own change."
+    },
+    "collect.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. Its Jaccard-similarity room-identification heuristic and 'last result wins' assembly already independently verified correct, downstream: the content.json it produced passes every one of validate.py's Gate 3 completeness checks (114/114 zones, all required fields) today."
+    },
+    "collect_pilot.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "collect_pkg.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "collect_reviews.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "collect_spec.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "collect_video.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
+    "content/app-mvp/source/build_pwa.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Superseded v0.1 generator (cache name '6smz-v0-1', no cache-cleanup in its activate handler). build_pwa2.py (v0.2) is the live one, verified byte-identical to the committed content/app-mvp/app/sw.js; this file's own divergent output is expected, historical, and nothing currently treats it as current. One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "corpus_index.py": {
       "status": "clean",
@@ -626,6 +741,21 @@
       "date": "2026-10-12",
       "note": "Second-pass cold read, 2026-10-12 operator cycle: re-read in full end to end (not just cited), independently of the two prior cycles that read these same files and reported no defect without re-ledgering, which is what let the nightly-log handoff keep naming them as if nobody had looked (caught by preflight.py's own gate_cold_read_handoff_not_stale). wire_landmarks.py and indexnow.py also re-verified live via --check (214 pages current; 211 sitemap URLs, 0 never submitted). No new defect found in any of the five; each still matches its own extensively documented history."
     },
+    "expo-plugin.js": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Expo config plugin for an on-device Apple Foundation Models module, explicitly marked DIRECTIONAL ('verify @expo/config-plugins helpers against your Expo SDK') in its own header. parseFloat-based iOS version comparison has a theoretical two-digit-minor collision edge case (e.g. '15.10' vs '15.1') but is fine for the one real deployment-target comparison it does. No actionable defect."
+    },
+    "extract.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. One-time extraction from the v2 HTML manual; its brace/bracket-depth parser does not special-case JS comments or template literals, a latent fragility, but the source file no longer exists anywhere reachable and nothing re-runs this script."
+    },
+    "extract_products.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
+    },
     "fill_front_matter.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -670,6 +800,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 16:1x-17:0x slot, scheduled operator cycle: read in full, cross-checked against real callers/output, no defect found"
+    },
+    "grab_lits.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off scratch extractor for a dead Desktop .jsx path; its bracket-depth parser doesn't handle template literals/comments and would crash on a None grab() result, but it is a throwaway tool Phil ran once by hand and watched the output, not a maintained pipeline step."
     },
     "hazard_icons.py": {
       "status": "clean",
@@ -771,6 +906,11 @@
       "date": "2026-10-14",
       "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full, checked callers (service_orders.py, send_questions.py, status_report.py, send_brief.py). No defect."
     },
+    "mcp/server.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "The deployed 6S Success MCP server (has its own mcp/Dockerfile). Read in full: SIX order is Sort/Straighten/Shine/Safety/Standardize/Sustain, matching D-014 (Safety the 4th S). _link()'s room-slug anchors verified directly against the real site/resources.html: all 20 room slugs (_slug() output) match a real id= anchor there, so every tool response's attribution link actually resolves rather than being assumed. Read-only, no auth needed as documented (serves only already-public corpus data). No defect found."
+    },
     "measure.js": {
       "status": "clean",
       "date": "2026-10-12",
@@ -786,6 +926,11 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 16:1x-17:0x slot, scheduled operator cycle: read in full, cross-checked against real callers/output, no defect found"
     },
+    "merge_shine.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-time merge of refine-stage shine_detail into a Desktop-path content.json copy from a dead workflow journal. Its Jaccard room-identification heuristic already independently verified correct, downstream: validate.py's Gate 3b (every zone has a complete shine_detail block) passes 114/114 today."
+    },
     "methodology.py": {
       "status": "clean",
       "date": "2026-10-16",
@@ -796,6 +941,11 @@
       "date": "2026-10-11",
       "note": "Third-pass cold-read, PM check-in: re-verified prepend_entry()/format_handoff() against today's own two real changes (the hardcoded-date fix now derives from datetime.date.today(), and the --handoff flag this very entry is written with). test_nightly_log.py 10/10. No new defect found; ledger was stale only because it predated these same-day changes, not because anything is wrong."
     },
+    "ops/build_pwa.py": {
+      "status": "clean",
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
+    },
     "optimize_sample_pdf.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -805,6 +955,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "third-pass cold read, 2026-10-14 scheduled operator cycle: re-read in full, cross-checked gate_owner_waiting's wiring in preflight.py against the current should_report()/unread_needing_action() logic. No defect."
+    },
+    "pdf_text.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. Raw PDF stream/text-object extractor; reads a dead Desktop PDF path."
     },
     "photo-check-zones.js": {
       "status": "clean",
@@ -820,6 +975,11 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, cross-checked IndexedDB API surface against quest.js's real call sites (objectUrl/supported/pair/put/del all match), privacy design (no network, EXIF stripped) matches CLAUDE.md 47, no defect found"
+    },
+    "photos/server.py": {
+      "status": "clean",
+      "date": "2026-10-16",
+      "note": "First cold read of this file, same cycle the photos/ lane was added. Traced every route in _dispatch against store.py and analyze.py directly: auth happens before a large body is read (S.open before self._body(MAX_BYTES) on the PUT route), zone is validated against methodology.method() before storage is touched, pid/sid lookups all go through dict membership (meta['photos']) or the _ID regex before any filesystem join, so an attacker-supplied pid or sid cannot reach a path outside the session directory. _ip() correctly reads the second-to-last X-Forwarded-For entry for the documented two-proxy chain. CORS sends a fixed Access-Control-Allow-Origin rather than reflecting the request Origin, consistent with bearer-token auth (no cookies, so no credentialed-CORS risk). No defect found in this file itself; the real defect this cycle found was in store.py (see its own ledger entry), reachable through this file's add_photo call but not caused by anything here."
     },
     "pickCard.js": {
       "status": "clean",
@@ -936,11 +1096,6 @@
       "date": "2026-10-13",
       "note": "Re-read in full after 2026-10-13's roadmap-gate addition (gate_lines, roadmap_gates, gate_due, expiring BLOCKING item 2). Checked the table-column regex against the real ROADMAP-2026-2029.md gate rows (condition/when/consequence order matches the code's unpacking), ran test_gate_roadmap_gate_in_owner_email.py directly (9/9 pass), and confirmed gate_roadmap_gate_in_owner_email is wired into preflight.py main() via run_gate(). No new defect found."
     },
-    "server.py": {
-      "status": "clean",
-      "date": "2026-10-16",
-      "note": "First cold read of this file, same cycle the photos/ lane was added. Traced every route in _dispatch against store.py and analyze.py directly: auth happens before a large body is read (S.open before self._body(MAX_BYTES) on the PUT route), zone is validated against methodology.method() before storage is touched, pid/sid lookups all go through dict membership (meta['photos']) or the _ID regex before any filesystem join, so an attacker-supplied pid or sid cannot reach a path outside the session directory. _ip() correctly reads the second-to-last X-Forwarded-For entry for the documented two-proxy chain. CORS sends a fixed Access-Control-Allow-Origin rather than reflecting the request Origin, consistent with bearer-token auth (no cookies, so no credentialed-CORS risk). No defect found in this file itself; the real defect this cycle found was in store.py (see its own ledger entry), reachable through this file's add_photo call but not caused by anything here."
-    },
     "service_orders.py": {
       "status": "fixed",
       "date": "2026-10-12",
@@ -1046,6 +1201,11 @@
       "date": "2026-10-14",
       "note": "Read in full (181 lines); same superseded status and same guard as stripe_links.py. --plan correctly refuses with the same no-credential message."
     },
+    "sw.js": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Hand-authored service worker for the app-mvp PWA prototype (distinct from the live site's GENERATED site/sw.js). Read in full: cache-first for the precached app shell, network-first-with-cache-fallback otherwise, falls back to index.html offline. Verified byte-identical to what content/app-mvp/source/build_pwa2.py currently generates (the v0.2 generator; build_pwa.py is the superseded v0.1). No defect found."
+    },
     "sync_page_links.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -1055,6 +1215,36 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "Read in full (169 lines); the rebase/regenerate/push safety logic (never picking a side on a real conflict, always regenerating dashboard outputs, verifying the push against the remote rather than trusting its exit code) reads correct. Ran only --check (read-only: reported 0 conflict markers, 0 ahead, 5 behind); did not exercise the real rebase-and-push path, since invoking it for real against a live, concurrently-active repository is exactly the kind of action this operator should not take speculatively mid-cold-read."
+    },
+    "tracker.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. Same literal-backslash Windows-only path join as build_video.py in the same directory; not treated as a bug for the same reason."
+    },
+    "validate.py": {
+      "status": "fixed",
+      "date": "2026-10-18",
+      "note": "Found and fixed a real off-by-one in Gate 2's six-S order check: the ordering check on a regex-matched run only applied when len(seq)>=5, but the capturing regex's own minimum is 4 S-terms, so an exactly-4-term out-of-order run (e.g. 'Straighten, Sort, Shine, Safety') would skip the order check entirely. Confirmed via a synthetic fail-then-pass test against this exact file, and confirmed no such 4-term run currently exists in the live Manual (so this was a gate gap, not a shipped defect, until the passes-text fix below). Also used this cycle, run for real against the real committed Manual, to discover (via content/manual/source/build.py's regenerate-and-diff) that content.json's passes text had drifted from the Manual across all 114 zones (Sustain) plus 4 Standardize and 2 Safety/Shine real cases; fixed by hand and now covered by the extended gate_manual_zone_content_current in ops/preflight.py. Full account in ops/NIGHTLY-LOG.md 2026-10-18."
+    },
+    "validate_pilot.py": {
+      "status": "clean",
+      "date": "2026-10-18",
+      "note": "Validator for the Entryway pilot shooting scripts. Uses a direct seq[:6]==S check against one specific 'opener' text block rather than the regex-run-based pattern its three sibling validators share, so it does not have their off-by-one (see validate_video.py/validate_pkg.py/validate_spec.py). DOC is a dead Desktop path; cannot execute, read for logic only."
+    },
+    "validate_pkg.py": {
+      "status": "fixed",
+      "date": "2026-10-18",
+      "note": "Same off-by-one as content/manual/source/validate.py's Gate 2, independently found: the ordering check on a regex-matched S-name run only applied when len(seq)>=5, but the regex's own minimum is 4, so an exactly-4-term out-of-order run (e.g. 'safety, sort, shine, straighten') would never have been caught. Fixed to len(seq)>=4, matching the already-established fix for the identical bug in ops/build_manual_print.py (2026-09-21) and in content/manual/source/validate.py (this cycle). DOC is a dead Desktop path so this could not be re-run against real output; the fix is a verified-correct port of the same change, confirmed by py_compile."
+    },
+    "validate_spec.py": {
+      "status": "fixed",
+      "date": "2026-10-18",
+      "note": "Same off-by-one as content/manual/source/validate.py's Gate 2 and content/video/media-package-entryway/source/validate_pkg.py, independently found and fixed the same way (len(seq)>=5 -> >=4). DOC is a dead Desktop path so this could not be re-run against real output; fix verified by py_compile."
+    },
+    "validate_video.py": {
+      "status": "fixed",
+      "date": "2026-10-18",
+      "note": "Same off-by-one as content/manual/source/validate.py's Gate 2, independently found and fixed the same way (len(seq)>=5 -> >=4). DOC is a dead Desktop path so this could not be re-run against real output; fix verified by py_compile."
     },
     "verify_deploy.py": {
       "status": "clean",

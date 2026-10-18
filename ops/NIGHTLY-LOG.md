@@ -2,6 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 16:3x: a fourth cold-read lane gap, finally gated, and a real stale product found underneath it
+
+**Did:** Attached clean. Every GitHub issue and backlog row was again
+owner-gated or done, so per standing practice went looking for the gap
+the last three cycles each found by hand: a `*.py`/`*.js` file outside
+every `cold_read_ledger.py` lane. Found 39 across 13 directories
+(`.githooks`, `mcp`, `mobile/quest-app`, five `content/*/source` trees).
+Added them as lanes, fixed a real basename collision the ledger's
+bare-key design had never hit before (`mcp/server.py` vs
+`photos/server.py`), and wrote `gate_cold_read_lanes_complete` so this
+class of gap cannot recur a fifth time unnoticed. Cold-read all 39.
+Most were frozen Desktop-only generators with no live defect possible.
+One was not: `content/manual/source/validate.py` had the same off-by-one
+already fixed once in `ops/build_manual_print.py` (2026-09-21), copy-pasted
+into three more sibling validators; fixed all four. Regenerating the
+Manual from `content.json` and diffing against the committed file then
+surfaced the real finding: the paid Micro Zone Manual's Sustain pass text
+has been stale across all 114 zones since 2026-09-07, plus smaller drift
+in 6 more zones, one missing a paragraph of real gas-safety instructions.
+Hand-corrected all 120 fields, regenerated the publishable/print copies,
+and extended `gate_manual_zone_content_current` to watch all six passes.
+
+**Verified:** validate.py ALL GATES PASSED; dialect/dash/control-byte
+checks clean; 4 new/extended test files, all fail-then-pass proven; full
+preflight 0 FAIL through the sandbox's `gate_tests` hang.
+
+**Went well:** the gate-first habit (checking lane completeness rather
+than trusting "238 of 238") is what surfaced a real customer-facing
+defect nothing else was watching.
+
+**Did not go well:** that defect existed for five weeks before anything
+looked.
+
+**Changing next cycle:** nothing; the new gate covers this class now.
+
+**Next:** item 16 backlog's exhausted state holds; no new unblocked work.
+
 ## PM check-in, 2026-10-18, 16:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.

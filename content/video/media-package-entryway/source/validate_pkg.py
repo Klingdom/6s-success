@@ -77,7 +77,11 @@ runs = re.findall(r"(?:sort|straighten|shine|safety|standardize|sustain)"
 bad = []
 for r in runs:
     seq = re.findall(r"sort|straighten|shine|safety|standardize|sustain", r)
-    if len(seq) >= 5 and seq[:4] != ["sort","straighten","shine","safety"]:
+    # The capturing regex above requires at least 4 S-terms (1 + {3,} more);
+    # this threshold had drifted to 5, the same off-by-one found and fixed
+    # 2026-10-18 in content/manual/source/validate.py's identical check, so
+    # any exactly-4-term run skipped the order check entirely.
+    if len(seq) >= 4 and seq[:4] != ["sort","straighten","shine","safety"]:
         bad.append(r)
 gate(not bad, "Safety 4th where six S's listed", "bad: %s" % bad[:2])
 BANNED = ["workcell","throughput","production capacity","fire lane","ergonomic","lean practice",
