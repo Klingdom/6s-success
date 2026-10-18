@@ -86,6 +86,29 @@ GitHub comment alone has not drawn a reply in over a day.
 Pushed to main. No price or product touched; no new page, IndexNow not
 applicable.
 
+## PM check-in, 2026-10-18 (01:4x slot): same exhausted state reconfirmed; left full preflight running rather than re-asserting hang-vs-slow
+
+NEXT FOR THE OPERATOR: check pid 718's `preflight.py` exit code before the
+next cycle re-litigates `gate_tests`, because the last two cycles disagreed
+(one called it a genuine hang, the addendum called it just slow) and this
+run is still going rather than killed at timeout.
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force, working tree clean, no new commits since
+01:24. Verified directly rather than cited: `check_urls.py` 213/213,
+`fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0,
+`grep -c "^- \[ \]" BACKLOG-2026-09-07.md` 0, `cycle_signal.py --check`
+SAME. 10 GitHub issues unchanged; #42 (the cadence-waste decision) still
+unanswered since 2026-10-17T01:51:19Z, now about 24 hours; no duplicate
+notification, nothing new to report. No new unblocked work found. Left
+`ops/preflight.py` running in the background (started this cycle, pid 718)
+instead of killing it at the usual foreground timeout, to settle the
+standing hang-vs-slow question with one real result instead of another
+guess.
+
+Pushed to main: this log entry, command deck regen. No price, product,
+page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-18 (01:1x slot): previous work finished and verified, same exhausted state independently reconfirmed, no duplicate notification
 
 Attached clean: checkout arrived shallow and detached, `git fetch origin
