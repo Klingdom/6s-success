@@ -109,6 +109,21 @@ def _run_lock_pid_alive(pid: int) -> bool:
         return True
     except OSError:
         return True
+    # The pid exists, but SIGKILLing a hung gate_tests run (the routine way
+    # every autonomous cycle ends a preflight.py that is actually stuck,
+    # not merely slow) leaves it a zombie until its parent reaps it, and a
+    # zombie still answers os.kill(pid, 0) as if it were live. Left
+    # uncorrected this held the next run's lock for PREFLIGHT_RUN_LOCK_STALE_AFTER
+    # instead of breaking immediately, which is exactly what happened the
+    # first two times a cycle SIGKILLed a hung run today.
+    try:
+        with open(f"/proc/{pid}/stat") as fh:
+            stat_line = fh.read()
+        state = stat_line[stat_line.rfind(")") + 2:].split()[0]
+        if state == "Z":
+            return False
+    except (OSError, IndexError):
+        pass
     return True
 
 
@@ -3558,6 +3573,37 @@ def gate_preflight_lock_blocks_concurrent_runs() -> None:
         pass
     finally:
         release_preflight_lock(path)
+
+    # Half 3: a holder SIGKILLed and left unreaped (a zombie) must break
+    # just as fast as a cleanly-dead one, not stall for
+    # PREFLIGHT_RUN_LOCK_STALE_AFTER. This is the normal way an autonomous
+    # cycle ends a preflight.py genuinely stuck at gate_tests: SIGKILL, no
+    # waitpid. os.kill(pid, 0) succeeds against a zombie exactly as it does
+    # against a live process, so _run_lock_pid_alive must look past that to
+    # /proc/<pid>/stat's own state letter. Found live 2026-10-18: the first
+    # occurrence was patched by hand (lock removed manually, not re-derived
+    # from this check, because this check did not yet cover it); the second
+    # occurrence, minutes later, is what wrote this gate.
+    shutil.rmtree(path, ignore_errors=True)
+    zp = subprocess.Popen([PY, "-c", "import time; time.sleep(30)"])
+    os.kill(zp.pid, signal.SIGKILL)
+    time.sleep(0.3)  # give the kernel a moment to transition it to Z
+    zombie_pid = zp.pid
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(zombie_pid))
+    start = time.time()
+    try:
+        ok = acquire_preflight_lock(path, timeout=5, own_pid=0)
+        elapsed = time.time() - start
+        if not ok or elapsed > 2:
+            fail("preflight-lock-blocks-concurrent-runs",
+                 f"a SIGKILLed-but-unreaped (zombie) holder's lock was not "
+                 f"broken immediately (ok={ok}, elapsed={elapsed:.1f}s); "
+                 f"_run_lock_pid_alive() is treating a zombie as live")
+    finally:
+        release_preflight_lock(path)
+        zp.wait()
 
 
 def gate_dashboard_deploy_reachable_carry_forward() -> None:

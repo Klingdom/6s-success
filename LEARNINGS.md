@@ -344,6 +344,7 @@ Maintain:
 | LRN-0039 | Three gates checked what the owner's email said and none checked that it was sent | PROCESS / RELIABILITY | SUPPORTED | HIGH |
 | LRN-0040 | "No browser in this sandbox" is a per-container fact, not a standing one, and it was being treated as the latter | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0041 | Two of my own `preflight.py` processes running at once produced one real-looking FAIL with no real defect behind it | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0042 | The lock that fixed LRN-0041 could not tell a zombie (SIGKILLed, unreaped) holder from a live one, so the routine way every cycle ends a hung preflight run held the next cycle's lock for up to 20 minutes | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1735,7 +1736,53 @@ how it was launched. `gate_preflight_lock_blocks_concurrent_runs` proves it
 fail-then-pass, and it was also smoke-tested as two real, separate OS
 processes. Structural fix landed; see `ops/NIGHTLY-LOG.md` this date.
 
-#### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
+#### LRN-0042: The lock that fixed LRN-0041 had its own blind spot, a SIGKILLed holder that is never reaped
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced the real condition twice, in a live cycle and then in a controlled test)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-18
+
+**Observation.** Every autonomous cycle ends a hung `preflight.py` the same
+way: it waits at `gate_tests` (the documented headless-Chromium sandbox
+limitation), confirms via `/proc` that CPU time is frozen, and SIGKILLs it.
+SIGKILL does not run the process's `finally` block, so `release_preflight_lock()`
+never fires, and the killed process stays in the process table as a zombie
+until its parent reaps it. `_run_lock_pid_alive()`, added to fix LRN-0041,
+decides liveness with `os.kill(pid, 0)`, which succeeds against a zombie
+exactly as it does against a genuinely running process. The next cycle's
+`acquire_preflight_lock()` therefore read the holder as "live" and fell
+through to the 30-minute stale-mtime timeout instead of breaking immediately.
+This happened twice on 2026-10-18: once handled by hand (the holding cycle
+simply deleted the lock directory, which worked but re-derived nothing and
+left the next cycle to hit the same wall), and a second time minutes later
+in this cycle, which is what wrote the fix instead of deleting the lock
+again.
+
+**Why the existing rule did not prevent it.** `gate_preflight_lock_blocks_concurrent_runs`
+already proved a dead holder's lock breaks immediately, but its fixture
+used `subprocess.Popen(...); p.wait()` to make the holder dead, and
+`wait()` reaps the child, so the test pid was never in the zombie state a
+real SIGKILL-without-reap produces. The gate was proving the easy half of
+the bug and calling it proof of the whole thing, the "a gate that cannot
+fail is theatre" trap from `CLAUDE.md` STEP 10b, just one layer deeper than
+usual: this gate could fail, just not on the one input that actually
+occurs in production use.
+
+**Fix.** `_run_lock_pid_alive()` now checks `/proc/<pid>/stat`'s own state
+letter after `os.kill(pid, 0)` succeeds, and treats state `Z` as dead.
+`gate_preflight_lock_blocks_concurrent_runs` gained a third case that
+SIGKILLs a real subprocess without waiting on it, confirming it is a zombie
+by elapsed behavior, and proves the lock breaks within 2 seconds rather
+than stalling. Confirmed fail-then-pass by hand: reverting the `/proc`
+check made this exact gate raise `RuntimeError` on a 5-second timeout;
+restoring it made the same gate pass in under 3 milliseconds.
+
+**Next action.** None further: the fix is structural and the gate now
+exercises the exact shape every real cycle produces. Standing habit for
+whoever reads a "waited on the lock" line in a future log entry: check
+whether the holder was a zombie before assuming the stale-mtime path is
+the only way locks clear.
 
 **Status:** SUPPORTED
 **Confidence:** HIGH (14 pages closed, three defects caught by three different checks)

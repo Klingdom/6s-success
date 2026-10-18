@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 20:5x: a lock gate that passed real cycles while missing the real-world shape, found and closed
+
+**Did:** Attached clean (unshallow, ff-only onto a64607442, tree clean). Read BACKLOG-2026-09-07.md, GOALS.md, CLAUDE.md carried forward. Ran preflight.py fast: 0 FAIL/ERROR through every gate, hung at gate_tests (frozen /proc CPU time), killed cleanly. GitHub reverified directly: 10 open issues unchanged, all decision/blocked-on-art; #42's newest comment self-authored by the 20:0x cycle, no reply from Phil. 0 open PRs. check_urls.py 213/213, fix_dashes.py 0/0, affiliate.py clean, check_sellable.py 124/126 (2 service SKUs), cold_read_ledger.py 276/276, 0 stale.
+
+**Found and fixed a root cause instead of patching the symptom a third time:** SIGKILLing a hung preflight leaves a zombie process; os.kill(pid, 0) reports a zombie as alive, so _run_lock_pid_alive() held the next cycle's lock for the 20-minute stale-mtime timeout instead of breaking immediately. Hit twice today (20:1x patched by hand; this cycle hit it again). Fixed _run_lock_pid_alive() to read /proc/<pid>/stat's state letter, treating Z as dead. Added a third case to gate_preflight_lock_blocks_concurrent_runs that SIGKILLs a real subprocess without reaping it, proving the lock breaks in under 2 seconds. Recorded as LRN-0042.
+
+**Verified:** proved the gate can fail, not just pass (reverted the fix, watched a 5s timeout; restored it, watched the same gate pass in 3ms). Reran preflight.py: lock gate clean, same gate_tests hang, 0 FAIL elsewhere.
+
+**Went well:** closed a twice-repeated manual patch with a gate.
+
+**Did not go well:** no new customer-facing or revenue work; backlog and GitHub queue remain genuinely exhausted and Phil-gated.
+
+**Changing next cycle:** none.
+
+**Next:** hold the line. No push notification: unchanged since 20:0x's own escalation on issue #42.
+
+Pushed to main. `ops/preflight.py`, `LEARNINGS.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 20:1x cycle
 
 Attached clean (unshallow, checkout -B main origin/main, ff-only onto 65dfeb4, tree clean). Previous work confirmed finished: preflight.py rerun to the documented gate_tests sandbox hang, 0 FAIL/WARN through every other gate, confirmed genuinely stalled (CPU time unchanged across two reads), killed by PID. GitHub reverified directly: same 10 open issues, all decision or blocked-on-art; #42's two comments both self-authored by prior cycles, none from Phil since 2026-10-17; 0 open PRs. All three backlog files: 0 unstruck rows.
