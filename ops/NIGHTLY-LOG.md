@@ -2,6 +2,61 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18 (01:1x slot): previous work finished and verified, same exhausted state independently reconfirmed, no duplicate notification
+
+Attached clean: checkout arrived shallow and detached, `git fetch origin
+main`, `git fetch --unshallow` (918+ commits), `checkout main`, `merge
+--ff-only` onto `origin/main`, no reset or force. Working tree clean, `main`
+matched `origin/main` before and after.
+
+**Previous work finished and verified, not cited.** The 00:4x PM/operator
+cycles and the addendum correcting the `gate_tests`-hang assumption
+(`92aff9b37`, `39cdba69d`, `890849ae7`, `bffceeee5`) are all pushed.
+Independently re-ran the narrower suite rather than trusting those entries'
+own numbers: `check_urls.py` 213/213, `audit_pages.py` 218 pages/0
+duplicate titles or descriptions, `fix_dashes.py --check` 0/0,
+`affiliate.py --check` 165 documents clean, `link_graph_report.py` 0
+orphans/0 thin/0 dead ends, `cold_read_ledger.py --stale` 0 of 229,
+`grep -c "^- \[ \]" BACKLOG-2026-09-07.md` 0, mobile `npm test` all suites
+passing. Recomputed the deploy gap directly (`preflight.py`'s own
+`resolve_verdict_commit`/`deploy_gap_material_commits` against this cycle's
+real current HEAD, not cited) rather than trusting `STATUS.md`'s 2026-10-15
+figure: still 4 commits (3 material, 1 build-id restamp), unchanged since
+that entry, so the standing REOPENED note is still accurate and still
+correctly not a P0 (`site/photo-check.html` remains unlinked from anything
+live, confirmed again by grep).
+
+**One thing not confirmed clean this cycle, said plainly rather than folded
+into a clean report.** The full `preflight.py` run was backgrounded per the
+00:4x addendum's new practice (left running, not killed); it sat at
+`gate_tests` with CPU time flat at 0:09 for more than five minutes, the same
+symptom every pre-addendum entry called a hang, not the "just slow" shape
+the addendum described from leaving it running once. Left running past this
+slot rather than killed; whoever reads this next should check whether it
+ever finished before re-running it, and should not treat the addendum's one
+clean finish as settling the question.
+
+**GitHub checked directly, not assumed.** 10 open issues via the MCP tool,
+same set as every recent cycle (#42/#40/#35/#33/#31/#29/#21/#18/#15/#2), all
+`decision`/`blocked-on-art`/`P0`. Issue #42, the cadence-waste decision this
+very check-in instance illustrates, still carries no reply from Phil since
+its 2026-10-17T01:51:19Z status comment, now about 23 hours. 0 open PRs.
+The real CI gate (`Checks` workflow, not the social/brief bots) last ran
+against `dcf4bd1b` at 22:51 UTC on 2026-10-17 and passed; later pushes have
+only touched command-deck/log files that workflow's own path filter skips,
+which is the expected shape, not a gap.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6
+remain fully done or Phil-gated, same as every recent cycle.
+
+**Handing the operator:** nothing new and nothing time-sensitive; same
+standing Phil-gated queue. No notification sent this cycle: nothing has
+changed since the standing report on #42/#40, and a duplicate would cost
+attention for no new information.
+
+Pushed to main. Command deck and this log entry only. No price, product,
+page or code touched; IndexNow not applicable.
+
 ## Addendum to the 00:4x cycle below: the "standing `gate_tests` hang" is not a hang, it is slow
 
 The same cycle's full `preflight.py` was backgrounded after missing its 180s
