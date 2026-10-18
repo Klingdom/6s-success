@@ -703,8 +703,8 @@
     },
     "dashboard.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Cold-read carry_forward_all_time() diff (3e7d84b06): correct, mirrors sibling carry-forward pattern, bootstraps from pre-fix committed field. 10/10 test_all_time_carry_forward.py passes."
+      "date": "2026-10-18",
+      "note": "2026-10-18 PM 18:1x cold-read: resolve_deploy_reachable() correctly mirrors resolve_deploy_verdict()'s carry-forward, verified against the 17:5x nightly-log account and the new gate_dashboard_deploy_reachable_carry_forward test. Holds up."
     },
     "deploy.py": {
       "status": "clean",

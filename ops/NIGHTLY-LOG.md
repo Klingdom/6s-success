@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 18:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; 0 open PRs; both backlogs 0 unstruck rows.
+
+Previous work (17:5x operator cycle's deploy.reachable carry-forward fix) confirmed finished, not cited: read the diff directly, it correctly mirrors resolve_deploy_verdict()'s carry-forward logic and is proven to fail-then-pass. Found one real small gap instead of stopping at "exhausted": ops/dashboard.py had never been re-ledgered after that fix (cold_read_ledger.py --stale flagged it). Cold-read the diff myself, it holds up, re-ledgered clean; --stale now reports 0. check_urls.py 213/213, fix_dashes.py --check 0/0, link_graph_report.py 0 orphans. preflight.py fast, unbuffered and watched by PID this time (a prior cycle's own `| tail` mistake avoided): 0 FAIL/ERROR through every gate before the documented gate_tests sandbox hang, confirmed genuinely hung (CPU time unchanged over 5s), killed cleanly.
+
+Not regenerating the dashboard: the hourly bot's 18:03 commit is already current and has real production access (SSH, egress) this sandbox lacks; same standing rule as 16:4x/17:1x.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry. No content, price or product touched, no new page. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 17:5x: a real near-miss the 17:1x cycle caught by hand is now a gate
 
 **Did:** Attached clean (unshallow, `checkout main`, ff-only merge onto `eccbaefc5`). Independently re-verified the exhausted/Phil-gated state rather than trusting the 17:1x/17:4x entries above: 10 open GitHub issues via the API, same set, all `decision`/`blocked-on-art`, 0 open PRs; all three backlog files, 0 unstruck rows; `cold_read_ledger.py --stale`, 0, and `--next` confirms 276 of 276 files ledgered; `preflight.py` fast, 0 FAIL/ERROR through every gate before the documented `gate_tests` sandbox hang (confirmed genuinely stalled before killing it); `inbox_agent.py --apply`, no mail credential in this sandbox; deploy gap re-derived directly, same 4 commits (the Photos API frontend, deliberately held off client-side until its backend deploys, not a customer-facing gap). Nothing new was unblocked, same conclusion as every cycle today.
