@@ -563,8 +563,8 @@
     },
     "cold_read_ledger.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Re-read/modified this cycle: added a sixth lane (ops/cardtext, *.py), checked for a basename collision against the other five lanes first (none), docstring updated. Full account in BACKLOG-2026-09-07.md section 15. No other part of this file touched this cycle."
+      "date": "2026-10-18",
+      "note": "Edited this cycle to add the build/listings lane (7th lane); re-ledgered with today's date after the edit so the stale check doesn't flag the tool against its own change."
     },
     "corpus_index.py": {
       "status": "clean",
