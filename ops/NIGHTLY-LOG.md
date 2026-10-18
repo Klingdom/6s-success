@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 20:1x cycle
+
+Attached clean (unshallow, checkout -B main origin/main, ff-only onto 65dfeb4, tree clean). Previous work confirmed finished: preflight.py rerun to the documented gate_tests sandbox hang, 0 FAIL/WARN through every other gate, confirmed genuinely stalled (CPU time unchanged across two reads), killed by PID. GitHub reverified directly: same 10 open issues, all decision or blocked-on-art; #42's two comments both self-authored by prior cycles, none from Phil since 2026-10-17; 0 open PRs. All three backlog files: 0 unstruck rows.
+
+Found and closed a real small gap instead of only re-reporting: the killed preflight run left /tmp/.preflight_py_running.lock behind (SIGKILL skips its finally), which would have blocked the next cycle's run for up to 20 minutes before timing out stale; removed it directly, confirmed gone.
+
+Not regenerating the dashboard: github-actions regenerated it 20 minutes ago with real access, fresher than this sandbox could produce. Not sending a push notification: unchanged since the 20:0x cycle's own escalation.
+
+Handing to the operator: hold the line, same as every cycle today.
+
 ## Scheduled operator cycle, 2026-10-18, 20:0x: exhausted state reconfirmed independently, one owner notification sent instead of a 27th silent reconfirmation
 
 **Did:** Attached clean (shallow checkout unshallowed, checkout main, ff-only merge onto 181083ee0, 1082 commits, tree clean throughout). Read BACKLOG-2026-09-07.md sections 0, 1b, 2 through 7, ROADMAP context, and the last four NIGHTLY-LOG entries before touching anything, not a summary of them. Ran preflight.py in the background, watched by PID: 76 gates clean, 0 FAIL/ERROR, confirmed genuinely hung at gate_tests by comparing /proc CPU time across two reads 8s apart (unchanged), killed cleanly. Ran inbox_agent.py --apply (no mail credential, standing limitation), affiliate.py --check (165 documents clean), check_urls.py (213/213), fix_dashes.py --check (0/0), link_graph_report.py (0 orphans), check_sellable.py (124/126, 2 known service SKUs), cold_read_ledger.py --stale and --next (0 stale, 276/276 ledgered, 0 new candidates).
