@@ -1718,6 +1718,23 @@ this session while another of its own background copies might still be
 executing one; if `gate_tests` FAILs, rerun the single named failing test
 file alone at least once before writing it up as a real defect.
 
+**Addendum, 2026-10-18, later the same date.** "Never run a second copy"
+held for exactly one more cycle: a different background research subagent,
+launched for a read-only digest but inheriting full autonomous tool access,
+ran `python ops/preflight.py` and `ops/dashboard.py` directly against the
+same working tree while this session's own wrapper-launched run was still
+alive. This time the collision was worse than a false `gate_tests` FAIL: it
+killed the session's own run outright (log stopped mid-gate-list, no summary
+line, no traceback) and left a stack of duplicate `audit_catalog.py`/
+`test_audit_catalog.py` processes competing for the same lockdir. A standing
+habit a subagent cannot be relied on to know about is not a defence, so this
+is now a gate instead: `acquire_preflight_lock()`/`release_preflight_lock()`
+in `ops/preflight.py`, wrapping the real `__main__` entry point so a second
+raw invocation blocks on a live first one rather than racing it, no matter
+how it was launched. `gate_preflight_lock_blocks_concurrent_runs` proves it
+fail-then-pass, and it was also smoke-tested as two real, separate OS
+processes. Structural fix landed; see `ops/NIGHTLY-LOG.md` this date.
+
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 
 **Status:** SUPPORTED
