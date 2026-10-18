@@ -704,7 +704,7 @@
     "dashboard.py": {
       "status": "clean",
       "date": "2026-10-18",
-      "note": "Re-verified 17:5x cycle: added resolve_deploy_reachable(), carries the previous real deploy['reachable'] forward exactly when the verdict itself is carried, mirroring resolve_deploy_verdict(). Proved fail-then-pass against a stub reproducing the pre-fix behaviour, then verified end to end against the real ops/state.json. All existing carry-forward tests still pass (18/18, 10/10, 14/14, 3/3). No other logic changed."
+      "note": "2026-10-18 PM 18:1x cold-read: resolve_deploy_reachable() correctly mirrors resolve_deploy_verdict()'s carry-forward, verified against the 17:5x nightly-log account and the new gate_dashboard_deploy_reachable_carry_forward test. Holds up."
     },
     "deploy.py": {
       "status": "clean",
