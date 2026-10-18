@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 00:4x cycle below: the "standing `gate_tests` hang" is not a hang, it is slow
+
+The same cycle's full `preflight.py` was backgrounded after missing its 180s
+foreground timeout, the usual pattern every recent entry calls a hang and
+falls back from. Left running rather than killed this time: it finished on
+its own, well past 180s, with **exit code 0, every gate passed, 27 warnings**,
+all of them the same standing sandbox-access gaps (no Stripe/SSH/mail
+credential, site unreachable) already named in every recent entry, nothing
+new. So the full gate run is not hanging indefinitely, it is slower than the
+foreground timeout this repository's own routines use; backgrounding it and
+waiting, rather than killing it and substituting the narrower checks, gets
+the real authoritative result instead of a partial stand-in. Worth the next
+cycle trying the same (background it, do not kill it) before repeating the
+"documented hang" line as settled fact. No code or content changed; this is
+a correction to a standing assumption, not a new defect.
+
 ## Scheduled operator cycle, 2026-10-18 (00:4x slot): independently reconfirmed the exhausted state through fresh checks, not citation; no duplicate notification
 
 **Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached
