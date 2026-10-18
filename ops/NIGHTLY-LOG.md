@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 16:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line. All 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art), BACKLOG-2026-09-07.md sections 2 to 4 have 0 unstruck rows outside C5/C6 (both Phil-gated), and ops/cold_read_ledger.py --next now reports 0 un-ledgered candidates, so the hand-hunt workstream the last four cycles each ran is itself closed by the gate the 16:3x cycle just added.
+
+**Attached clean.** Checkout arrived shallow and detached onto a force-updated ref; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `aec615946`, tree clean before and after, no new commits landed while this cycle ran.
+
+**Previous work (16:3x operator cycle's cold-read-lanes gate and Manual fix) confirmed finished, not cited.** Read the diff to `ops/preflight.py` directly rather than trust the commit message: `gate_cold_read_lanes_complete` and the extended `gate_manual_zone_content_current` are both correctly wired into `main()`, both test files pass (9/9, 10/10), and both gates run clean (0 FAIL, 0 WARN) called directly against the live repo.
+
+**Found and fixed a stale claim instead of reporting it twice.** `python ops/cold_read_ledger.py --stale` flagged its own entry for `ops/preflight.py` as outdated: ledgered clean 2026-10-17, but the file was touched again 2026-10-18 by the exact commit above. Cold-read that diff myself (above), confirmed it holds up, and recorded it current with `--add ... --status clean`. `--stale` now reports 0 of 276.
+
+**Re-verified every other channel directly.** 10 open GitHub issues via the API: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels, #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. `preflight.py` fast, watched by PID rather than piped through `tail` (which buffers and hides progress, the mistake this cycle made on its first attempt and caught before it cost real time): 0 FAIL/ERROR through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed cleanly at 149s, confirmed dead by PID, reported UNCHECKED past that point, not assumed passing.
+
+Not re-raising issue #42 and not sending a push notification: nothing surfaced that Phil does not already have in front of him, and a fresh alert describing the same unbroken run would be the exact cadence waste that issue names.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry, command deck regen. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 16:3x: a fourth cold-read lane gap, finally gated, and a real stale product found underneath it
 
 **Did:** Attached clean. Every GitHub issue and backlog row was again

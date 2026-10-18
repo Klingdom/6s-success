@@ -988,8 +988,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Re-read/modified this cycle: added ROOM_DECK_WHOLE_IDS, check_room_deck_page_counts() and gate_room_deck_pages_counts_current(), generalising gate_kitchen_deck_page_counts_current to the other 19 room decks (full account in BACKLOG-2026-09-07.md section 15 and ops/NIGHTLY-LOG.md 2026-10-17). Proved fail-then-pass directly and in ops/tests/test_gate_room_deck_page_counts.py (7/7). No other part of this file touched or newly read this cycle."
+      "date": "2026-10-18",
+      "note": "Cold-read the 2026-10-18 diff (gate_cold_read_lanes_complete; gate_manual_zone_content_current's passes/_manual_quote_fold extension): both tested (9/9, 10/10), both run clean (0 FAIL/WARN) against the live repo, correctly wired into main(). No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
