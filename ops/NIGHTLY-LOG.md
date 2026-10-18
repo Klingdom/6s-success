@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 20:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; issue #42 has 2 comments, both self-authored by prior cycles, none from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows.
+
+Attached clean (shallow/detached checkout; fetch, unshallow, checkout main, ff-only merge onto 65dfeb44f, tree clean throughout). Previous work (20:1x cycle's lock-cleanup, plus the hourly check-in after it) confirmed finished, not cited: re-checked GitHub issues and PRs directly via the API, same set, same labels, 0 open PRs; no open claims in STATUS.md; no concurrent work in flight.
+
+Ran preflight.py fast to completion this time, watched by PID rather than piped: no gate_tests hang, every gate passed, 27 warnings, all standing sandbox-access limitations (no SSH key, no Stripe credential, no mail credential, analytics unreachable) or already-tracked content gaps (deck-print-tier, page-art, deck-art, all named in open issues or the backlog). check_sellable.py's first run FAILed on build/products/ missing entirely; traced rather than taken on one read, confirmed it is a gitignored, generator-owned directory simply absent from this fresh checkout, not a product regression (preflight's own bootstrap step rebuilds it before running its gates).
+
+Found and closed a real gap instead of only re-reporting the exhausted state: gate_status_currency warned that STATUS.md had not mentioned 9 material commits since its own last edit (the preflight concurrent-lock gate, the dashboard deploy.reachable carry-forward gate, a re-ledger, and four new test files), the same shape this gate exists to catch, same as the 2026-10-13 06:3x cycle closed once before. All 9 are already detailed in this log's own 17:5x through 18:3x entries; appended a short summary and pointer to STATUS.md's Last Updated chain rather than duplicating them, same append-don't-rewrite convention as every prior entry. fix_dashes.py --check reconfirmed clean after.
+
+Not starting anything larger myself: every unblocked, non-Phil-gated item is already closed; the backlog is genuinely exhausted and Phil-gated. Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence concern) is unchanged since the 20:0x cycle's own escalation a few minutes ago; a second alert minutes later would be the exact waste that issue argues against.
+
+Pushed to main. STATUS.md, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 20:1x cycle
 
 Attached clean (unshallow, checkout -B main origin/main, ff-only onto 65dfeb4, tree clean). Previous work confirmed finished: preflight.py rerun to the documented gate_tests sandbox hang, 0 FAIL/WARN through every other gate, confirmed genuinely stalled (CPU time unchanged across two reads), killed by PID. GitHub reverified directly: same 10 open issues, all decision or blocked-on-art; #42's two comments both self-authored by prior cycles, none from Phil since 2026-10-17; 0 open PRs. All three backlog files: 0 unstruck rows.
