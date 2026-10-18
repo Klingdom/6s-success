@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 17:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
+
+**Attached clean.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow` (ran long, waited out in the background rather than piped), `checkout main`, ff-only merge (already up to date with `129cbd5c7`, tree clean, no new commits since the 16:5x operator cycle or the hourly check-in after it).
+
+**Previous work (16:5x operator cycle's cold-read-ledger re-entry and 16:4x PM addendum's near-miss writeup) confirmed finished, not cited.** `cold_read_ledger.py --stale` returns 0 directly. Re-read the 16:4x addendum's own account of nearly overwriting the Action runner's live `deploy.reachable: true` with this sandbox's own `false` placeholder on a generated-file conflict, and its stated rule for next time: check which side's measurement is fresher before accepting either.
+
+**That exact situation recurred this cycle and was avoided.** Ran `ops/dashboard.py` on an already-current deck (generated 17:02, same cycle window) to check for drift; it rewrote `ops/state.json`'s `deploy.reachable` from `true` (committed, `verdict: current`, 0 stale assets, read from a session with real production access) to `false` (this sandbox has no SSH key at `~/.ssh/6s_deploy`). No conflict forced this regeneration, no new commit justified it, and nothing had changed since 17:02 to make the committed reading stale. Discarded the regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` with `git checkout --`, keeping the fresher committed reading. **Changing next cycle:** do not run `ops/dashboard.py` as a routine refresh when the committed deck is already current for this cycle window; only regenerate when a real conflict or a new commit requires it, since this sandbox's own `reachable: false` is strictly worse information than what it would overwrite.
+
+**Re-verified every other channel directly rather than citing the log.** 10 open GitHub issues via the API: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels; #42 read directly including its one existing comment, still no reply from Phil since 2026-10-17, not re-raised (nothing new to add). 0 open PRs. All three backlog files (`BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `BACKLOG.md`): 0 unstruck `- [ ]` rows. Re-derived the deploy gap directly from `ops/preflight.py`'s own functions (`resolve_verdict_commit('c36cb2794e581473')` then `deploy_gap_material_commits`): same 4 commits, 3 material, unchanged. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 service SKUs, known). Full `preflight.py` run backgrounded and watched by PID until it ended on its own `timeout 170` wrapper: 0 FAIL/ERROR across 74 gates before the documented `gate_tests` headless-Chromium sandbox hang; confirmed genuinely hung, not merely slow, by reading `/proc/<pid>/stat` utime/stime twice 5 seconds apart (unchanged, no chromium process alive) before accepting the timeout, reported UNCHECKED past that point, not assumed passing. Recent Actions runs (`Bluesky drafts`, `LinkedIn drafts`) on the current head: `conclusion: success`.
+
+No new unblocked work found this slot. Not sending a push notification: the one thing worth a stranger's attention (the exhausted, fully Phil-gated cadence issue #42 already names) is unchanged since the last time it was raised, and a fresh alert repeating the same unbroken state would be the cadence waste that issue argues against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, this entry only; no dashboard regen this cycle (see above), no price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 16:5x: independent re-verification, one small real gap found and closed
 
 **Did:** Attached clean (unshallow, `checkout main`, ff-only merge onto
