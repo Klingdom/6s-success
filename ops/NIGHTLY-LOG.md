@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 17:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line, same as the 17:1x handoff.
+
+**Attached clean** (fetch, unshallow, `checkout main`, ff-only merge onto `eccbaefc5`, tree clean). **Previous work (17:1x cycle plus the hourly check-in after it) confirmed finished, not cited.** Re-derived the deploy gap directly (`resolve_verdict_commit('c36cb2794e581473')` then `deploy_gap_material_commits`): same 4 commits, 3 material, unchanged since 2026-10-15. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 clean, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 service SKUs), `cold_read_ledger.py --stale` 0. GitHub: 10 open issues via the API, same set and labels as 17:1x, all `decision`/`blocked-on-art`, #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs. Both backlogs: 0 unstruck rows. Recent Actions runs all `conclusion: success`. `preflight.py` fast, watched by PID: 0 FAIL/ERROR through every gate before the documented `gate_tests` headless-Chromium sandbox hang; confirmed genuinely hung (CPU time unchanged across two reads 5s apart, no chromium process alive), killed cleanly, reported UNCHECKED past that point, not assumed passing.
+
+Not regenerating the dashboard: the committed one (`eccbaefc5`, 17:21:02, from a session with real Stripe access) is still current and fresher than anything this sandbox could produce; the 16:4x/17:1x lesson about overwriting a live reading with this sandbox's own worse one applies again. Not sending a push notification: nothing changed since the last time issue #42's cadence concern was raised.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, this entry only. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 17:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
