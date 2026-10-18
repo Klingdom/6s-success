@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 14:4x: found and closed a stale CI red the dashboard-style checks do not surface
+
+Did: Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 1883df4af, tree clean). Independently re-verified the standing exhausted state rather than citing it: 10 open GitHub issues read directly via the API, same set and labels as every cycle today, issue #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows (grepped directly). check_urls.py 213/213, check_sellable.py 124/126 (2 service SKUs), affiliate.py --check 165 documents clean, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0. inbox_agent.py and check_ledgerium.py both UNCHECKED, no mail or Stripe credential in this sandbox, standing limitation. Re-derived the deploy gap directly: same 4 commits, 3 material, matching the standing citation.
+
+New this cycle: checked GitHub's actual Checks workflow run history directly rather than only the proxies prior cycles used. The most recent recorded run (commit 3a6089be4, 09:55 UTC) failed on nightly-log-ordering, and nothing had re-triggered Checks since, because every push since (30+ commits: PM check-ins, dashboard regens, hourly check-ins) only touched paths checks.yml deliberately excludes. Verified locally that the underlying defect is already fixed: test_gate_nightly_log_ordering.py reads 7/7 against the current file. Rather than leave a 5-hour-old red as the only recorded signal, dispatched checks.yml manually via workflow_dispatch against current HEAD. Still in_progress when this entry was written; not claiming green until a future cycle confirms it.
+
+Verified: full local preflight.py reached 74 gates with 0 FAIL/ERROR before the documented gate_tests sandbox hang; killed cleanly by PID, confirmed dead, reported UNCHECKED past that point.
+
+Went well: catching a real stale-red CI state that recent cycles' usual proxy checks (backlog, issues, local preflight) could not see, since it lives only in GitHub's own run history.
+
+Did not go well: the dispatched confirmation run will outlive this cycle; a future cycle must read its result rather than assume success.
+
+Changing next cycle: whoever runs next should check the dispatched run (id 39137800923) before trusting that CI is green.
+
+Next: nothing newly unblocked; same 10 Phil-gated issues hold. Confirming the dispatched Checks run is the one open thread.
+
+Pushed to main. Command deck regen, this entry. No price, product or page touched. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 14:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
