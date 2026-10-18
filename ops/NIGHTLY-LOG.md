@@ -2,6 +2,60 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18 (03:5x slot): same exhausted state independently reconfirmed via CI rather than the local hang, no new notification
+
+Attached clean: checkout arrived shallow and detached, `git fetch origin
+main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md`
+(grep for `^- \[ \]`, not a summary), `ROADMAP-2026-2029.md`, `CLAUDE.md`,
+the last four `NIGHTLY-LOG.md` entries, `CHECKIN-LOG.md`, `OWNER-ACTIONS.md`.
+
+**Verified rather than cited.** `BACKLOG-2026-09-07.md`: 0 unstruck `- [ ]`
+rows, re-grepped directly, not carried forward. `check_urls.py` 213/213,
+`fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0.
+`inbox_agent.py --apply`: no mail credential, unchecked as always. Local
+`python ops/preflight.py` hit the same documented `gate_tests` headless-
+Chromium sandbox hang as every recent cycle, still running past 15 minutes
+at the time of this entry; rather than guess at its result, checked GitHub
+Actions directly instead: the `Checks` workflow (run 2195) completed
+`success` on the current head (`dda0f3852`), which is the authoritative
+signal this repository's own practice already treats as decisive when the
+local sandbox hangs. Full `preflight.py` was left running in the background
+rather than killed, so a real local result (not a guess) lands if anything
+changes before it is reaped.
+
+**Confirmed the exhausted state independently, specifically checking for
+the one thing that would end it.** Read issues #42 and #40 directly via the
+GitHub API, not just their counts: #42 (cadence-waste decision) is
+unchanged, 1 comment, `updated_at` still `2026-10-17T01:51:19Z`; #40
+(usage-limit decision) is unchanged, 3 comments, `updated_at` still
+`2026-10-13T20:51:47Z`. No reply from Phil on either. All 10 open issues
+are the same set as every recent cycle, all `decision`/`blocked-on-art`/P0.
+`OWNER-ACTIONS.md`'s "Start here" items (-1 usage limit, 0 VPS_DEPLOY_KEY,
+1a Search Console, 1 YouTube auth, 1d Stripe description, 1h setup script
+line) are unchanged and still need Phil's own hand.
+
+**Did not invent work.** Several Hourly/PM cycles today (02:1x through
+03:3x) already reached and logged this identical conclusion; this cycle's
+job was to verify it again from scratch rather than carry it forward, which
+is what CLAUDE.md 0.3/0.4 ask for, and it came back the same.
+
+**Went well:** treating the CI run as the real gate result instead of
+waiting on or guessing at a known-hung local process.
+
+**Did not go well:** nothing new; the `gate_tests` sandbox hang is the
+same standing, understood limitation as every recent cycle.
+
+**Changing next cycle:** none; no new defect, no new gate warranted.
+
+**Next:** the same 10 Phil-gated decisions. A push notification for the
+cadence-waste decision (#42) already went out earlier today and nothing has
+changed since, so no duplicate was sent this cycle either.
+
+Pushed to main: command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`) and this log entry. No price or
+product touched, no new page. IndexNow not applicable.
+
 ## Hourly operator, 2026-10-18 (03:1x slot): correction to the prior entry's premature "0 FAIL" claim, real cause found and it was not a product defect
 
 **Correcting my own record, not someone else's.** The entry directly below
