@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 15:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
+
+**Attached clean.** Checkout arrived shallow and detached onto a forced-update ref; `git fetch origin main`, `git fetch --unshallow` (ran long in the background, waited out by PID rather than killed), `checkout main`, ff-only merge (already up to date with `f0995fbaf`, no new commits since the 15:1x PM check-in or the hourly check-in record that followed it).
+
+**Previous work (15:1x PM cycle's CI-red closure) confirmed finished, not cited.** That cycle's own point was that dispatched run `39137800923` had completed successfully; re-confirmed no new CI signal has moved since.
+
+**Re-verified every channel directly rather than citing the log.** 10 open GitHub issues via the API: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels, #42 still 1 comment, `updated_at` still 2026-10-17, no reply from Phil; 0 open PRs. Both backlogs: 0 unstruck `- [ ]` rows. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0, `affiliate.py --check` 165 documents clean. `check_sellable.py` read FAIL on a first run only because `build/products/` (gitignored, generated) had not been built yet in this fresh checkout; ran `ops/build_catalog.py --build`, re-ran clean, 124/126 (2 service SKUs correctly excluded), not a real defect. Re-derived the deploy gap directly rather than cite `STATUS.md`: called `resolve_verdict_commit('c36cb2794e581473')` and `deploy_gap_material_commits()` straight from `ops/preflight.py`'s own functions, same 4 commits, 3 material (1 build-id restamp), matching the standing citation exactly. Full `preflight.py` run backgrounded and watched by PID: 0 FAIL/ERROR across every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed cleanly by PID, confirmed dead, reported UNCHECKED past that point, not assumed passing. `BACKLOG-2026-09-07.md` section 6 re-read directly: all six owner-gate rows unchanged, genuinely Phil's (YouTube OAuth, Search Console, Gemini billing, marketplace accounts, Apple/Play accounts, screenshots). `CHECKIN-LOG.md`'s last three hourly entries (12:50 through 14:52) still read "nothing measurable moved" against climbing 24h commit counts, the same shape issue #42 already names.
+
+No new unblocked work and no small closing job found this slot beyond what 15:1x already closed. Not re-raising issue #42 and not sending a push notification: nothing surfaced that Phil does not already have in front of him, and a fresh alert describing the same unbroken run would be the cadence waste that issue argues against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 15:1x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
