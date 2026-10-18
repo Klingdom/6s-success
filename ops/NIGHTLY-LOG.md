@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-18, scheduled operator cycle (23:5x): exhausted/decision-gated state reconfirmed again, a third stale-lock cleanup, no new push notification
+
+**Did:** Checkout arrived shallow and detached. Fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `f6ee6d791` (1114 commits), tree clean throughout. Read GOALS.md, BACKLOG-2026-09-07.md (sections 0 through 7, all of 2 through 4 struck Done or Phil-gated), BACKLOG-2026-H2.md's ordering note, ROADMAP-2026-2029.md, CLAUDE.md, and the real head of this log, not a summary.
+
+**Verified rather than inherited.** Pulled the 10 open GitHub issues directly via the API: same 10 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, 0 open PRs. Read issue #42's own two comments in full: both self-authored by prior agent cycles, last activity 2026-10-18 19:54Z, nothing from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. `cold_read_ledger.py --stale`: 0 stale.
+
+**Ran preflight fast to genuine completion, not a glance.** 75 gates checked, 0 FAIL/ERROR, then the documented `gate_tests` headless-Chromium sandbox hang. Confirmed genuinely stalled rather than assumed: polled the process's CPU time twice 60 seconds apart (0:10 both times against growing wall-clock elapsed), flat, before killing it. The kill left `/tmp/.preflight_py_running.lock` holding a dead pid (420, confirmed via `kill -0` returning ESRCH); removed it directly, the same third-occurrence recovery shape the 18:3x/20:1x/22:2x/22:5x entries already document.
+
+**One real, live FAIL caught and correctly not acted on.** `ops/affiliate.py --check` reported "could not read 1 delivered document(s)... failing closed" against `site/downloads/_test_bad_delivered_doc.html`, a file that did not exist on disk either before or immediately after. This is the exact transient collision `ops/tests/test_affiliate.py`'s own docstring documents: the backgrounded preflight run's own test suite was writing and clearing that marker mid-flight while this cycle's separate `affiliate.py --check` call read the directory between write and cleanup. Re-ran immediately: clean, 165 delivered documents, no affiliate link, matching the already-proven fail-closed-is-safe design rather than a real defect.
+
+`check_urls.py` 213/213, `fix_dashes.py --check` 0/0. Regenerated the command deck: YELLOW, revenue $0 of $20,000 (carried forward, Stripe unreachable from this sandbox this month), $19 all-time from 1 sale, 2 P0, 8 need-you, 1261 seven-day commits.
+
+**Went well:** catching the affiliate-check FAIL and tracing it to the documented transient cause before writing it up as a new defect, rather than either hiding it or filing a false alarm.
+
+**Did not go well:** nothing new; this is the Nth consecutive cycle reaching the identical exhausted conclusion today, exactly the condition issue #42 already named.
+
+**Changing next cycle:** none. Not opening new work per 0.8/WIP limit; nothing is genuinely unblocked beyond the 10 Phil-gated issues and the two Phil-gated backlog rows (C5, C6).
+
+**Next:** hold the line until Phil acts on issue #42 or clears one of the other 9 decision/blocked-on-art issues. No push notification sent: the one thing worth a stranger's attention (issue #42's cadence-waste finding) is unchanged since the prior cycle's comment; a repeat alert on an unbroken state is the exact waste that issue argues against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18, 23:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line. Same standing list as every cycle today: all 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) unchanged, all decision/blocked-on-art, 0 open PRs; BACKLOG-2026-09-07.md's only remaining unstruck rows (C5, C6) are explicitly Phil-gated (Gemini billing, YouTube OAuth paste).
