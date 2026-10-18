@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18, 11:1x: fixed a real nightly-log-ordering CI-red defect, found by running preflight to completion instead of stopping at the documented gate_tests hang
+
+Did: Attached to main cleanly. Ran `preflight.py` to full completion rather than stopping at the documented `gate_tests` hang. It found 2 real FAILs, `nightly-log-ordering`: cycles roughly 04:5x-10:1x had appended entries to the end instead of prepending, leaving two today-dated blocks. Merged all 31 today-dated entries by their own time slot into one contiguous newest-first block; verified as a pure reorder (same 725 entries, bytes, per-entry content). A concurrent 10:4x push reproduced the same defect mid-fix; merged origin/main, prepending only their genuinely new entry rather than restoring the duplicate.
+
+Verified: Full preflight re-run end to end: every gate passed, 0 FAIL, 26 warnings, all the standing environment-access kind (no Stripe key, no VPS SSH key, site unreachable from here). `test_gate_nightly_log_ordering.py` 7/7, `test_nightly_log.py` 10/10. 10 GitHub issues unchanged, 0 PRs, cold-read ledger 238/238.
+
+Went well: completing the full preflight run surfaced a real, live, two-cycle defect that every recent partial run had missed entirely.
+
+Did not go well: my own `timeout 110 ... | tail` orphaned a test subprocess holding a fixture lock, stalling a later run ~10 minutes before I understood it.
+
+Changing next cycle: bound a full preflight run by backgrounding and polling, never `timeout | tail`, so a kill targets the right process tree.
+
+Next: whichever of Phil's 10 open decisions clears first unblocks new work; running preflight to completion rather than stopping at the hang is worth repeating.
+
+Pushed to main. Command deck regen, this entry. No price/product/page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 10:4x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked, because all 10 open GitHub issues are unchanged since every cycle since 06:1x and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line rather than inventing work.
