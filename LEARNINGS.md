@@ -343,6 +343,7 @@ Maintain:
 | LRN-0038 | A page our domain serves is our page, whoever renders it, and a checker can assert a defect is present and call it green | TRUST / PRIVACY | SUPPORTED | HIGH |
 | LRN-0039 | Three gates checked what the owner's email said and none checked that it was sent | PROCESS / RELIABILITY | SUPPORTED | HIGH |
 | LRN-0040 | "No browser in this sandbox" is a per-container fact, not a standing one, and it was being treated as the latter | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0041 | Two of my own `preflight.py` processes running at once produced one real-looking FAIL with no real defect behind it | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1664,6 +1665,58 @@ Worth a standing habit instead: before citing a prior cycle's "no browser" or
 "gate_tests hangs" finding, call `ops/browser.py`'s `find_browser()` directly
 first, the same discipline CLAUDE.md 0.3 already asks for toward production
 state.
+
+#### LRN-0041: Two of my own `preflight.py` processes running at once produced one real-looking FAIL with no real defect behind it
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced the overlap, then disproved the defect by direct measurement)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-18
+
+**Observation.** This cycle launched a background fork that itself ran a full
+`python ops/preflight.py`, then, separately, launched its own full
+`python ops/preflight.py` while the fork's run was still alive (confirmed by
+file-mtime overlap: the fork's log was still being written at 03:00:24 while
+this session's own run spanned 02:56 to 03:05). The second run reported
+`gate_tests` FAIL: `test_audit_catalog.py: a wrong price next to 'Guest
+Vanity Counter Pack' was not reported against its own SKU`. Checked before
+believing it: the real catalogue has both `Vanity Counter Pack` and `Guest
+Vanity Counter Pack` correctly priced at $4 each (`audit_catalog.load_catalog()`
+read directly); the test file's own comments document this exact collision-
+test shape failing twice before, on 2026-09-05 and 2026-09-08, specifically
+under two concurrent copies of itself; three standalone reruns of
+`test_audit_catalog.py` passed clean; and a third, deliberately solo
+`preflight.py` run (no other copy alive) passed every gate with 0 FAIL. No
+orphaned fixture or stale lockdir was left in `site/` afterward.
+
+**Why the existing rule did not prevent it.** `ops/tests/test_audit_catalog.py`
+already defends against exactly this (a per-pid fixture name since
+2026-09-05, a shared `LOCK` serializing `run()` since 2026-09-08), and that
+defence mostly worked: the live catalogue was never actually at risk, and no
+file was left behind. It is not airtight against a parent process that gets
+killed or abandoned mid write-run-cleanup (this session's own background
+fork's preflight run never reached a FAIL or a clean finish; it simply stopped
+being written to), which is a narrower window than the two failure modes
+already fixed. Reproducing that precise kill-timing on purpose, to prove a
+fix, would need deliberately orchestrating a mid-write kill, which this cycle
+did not attempt.
+
+**Implication.** The actual mistake was mine, not the repository's: running a
+second full `preflight.py` while a background agent's own copy might still be
+alive is the exact concurrent-instance scenario this test's own comments
+already name as the known cause of a false FAIL. A real FAIL from `gate_tests`
+deserves the same treatment CI-babysitting rules already give a red PR check:
+rule out "not really this one" (rerun alone) before treating it as the run's
+work, rather than either blindly trusting the FAIL or blindly waving it away.
+
+**Next action.** None structural this cycle: the lock/per-pid defences are
+real and mostly sufficient, and a speculative change to lock timing without
+being able to reproduce the narrower kill-mid-write window would risk a gate
+that cannot be proven to fail, which `CLAUDE.md` STEP 10b already warns
+against. Standing habit instead: never run a second full `preflight.py` in
+this session while another of its own background copies might still be
+executing one; if `gate_tests` FAILs, rerun the single named failing test
+file alone at least once before writing it up as a real defect.
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 

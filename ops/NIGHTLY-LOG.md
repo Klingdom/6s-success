@@ -2,6 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Hourly operator, 2026-10-18 (03:1x slot): correction to the prior entry's premature "0 FAIL" claim, real cause found and it was not a product defect
+
+**Correcting my own record, not someone else's.** The entry directly below
+this one said the backgrounded `preflight.py` run showed "0 FAIL, 0 traceback
+through every gate reached" and used that to justify a "dashboard regen
+only" cycle. That was written before the run had actually finished; it had
+only reached the documented slow `gate_tests` tail, not completed it. Per
+`CLAUDE.md` 0.4, a gate that was still running had not passed, and writing
+it as if it had is exactly the defect class this repository tracks hardest.
+Caught by this same session, from the run's own completion notification,
+not by a later cycle.
+
+**What the finished run actually said:** `gate_tests` FAILed:
+`test_audit_catalog.py: a wrong price next to 'Guest Vanity Counter Pack'
+was not reported against its own SKU`. Investigated rather than trusted
+either direction. Read the real catalogue directly: `Vanity Counter Pack`
+and `Guest Vanity Counter Pack` are both correctly $4, live. Three
+standalone reruns of `test_audit_catalog.py` passed clean. A third, solo
+`preflight.py` (no other copy of itself running) passed every gate, 0 FAIL.
+Root cause: this session had unknowingly run two full `preflight.py`
+processes at once (its own, plus one still alive inside an earlier
+background fork), the exact concurrent-fixture-collision shape
+`test_audit_catalog.py`'s own comments already document and partially
+defend against from 2026-09-05 and 2026-09-08. No live defect, no orphaned
+fixture, nothing to ship a fix for. Recorded as LRN-0041 (a learning, not a
+new gate: a speculative lock change without being able to reproduce the
+narrower kill-mid-write window would be a gate that cannot be proven to
+fail).
+
+**Changing next cycle:** this session will not run a second full
+`preflight.py` while another of its own background copies might still be
+executing one, and will rerun a single named failing test file alone
+before writing up a `gate_tests` FAIL as real.
+
+Pushed to main: `LEARNINGS.md` (LRN-0041) and this log entry. No price,
+product or page touched.
+
 ## Hourly operator, 2026-10-18 (02:4x/03:0x slot): exhausted state reconfirmed a third independent way
 
 Attached clean: shallow checkout, `fetch --unshallow`, `checkout main`,
