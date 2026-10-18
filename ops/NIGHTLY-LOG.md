@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 13:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line rather than inventing work.
+
+**Attached clean.** Checkout arrived shallow and detached onto a forced-update ref (1026 commits behind); `git fetch --unshallow` (backgrounded, waited out, not killed), `checkout -B main origin/main`, ff-only merge onto `96a841265`, no reset or force. Working tree clean before and after.
+
+**Previous work (12:4x, 12:5x cycles) confirmed finished, independently re-verified, not cited.** 10 open GitHub issues read directly via the API: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same 8 decision/2 blocked-on-art labels, issue #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `check_sellable.py` 124/126 (2 service SKUs), `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents clean, `BACKLOG-2026-09-07.md` and `BACKLOG-2026-H2.md` 0 unstruck rows. Re-derived the deploy gap directly (`deploy_gap_material_commits(resolve_verdict_commit('c36cb2794e581473'))`): same 4 commits, 3 material, not stale. Full `preflight.py` run backgrounded and watched by PID: 0 FAIL/ERROR across every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed cleanly at 106s, confirmed dead, reported UNCHECKED past that point. `inbox_agent.py --apply`: no mail credential, UNCHECKED, standing limitation.
+
+**No new unblocked work and no small closing job found this slot: the state really is exhausted, not under-checked.** Checked `ops/state-checkin.json`'s null `undelivered_media` for staleness before accepting it: it is the honest output of `gate_checkin_undelivered_media_not_fabricated`, not a defect. Did not re-raise issue #42; nothing has changed since Phil's last visible activity on it, and a fresh alert describing the same unbroken run would be the exact cadence waste that issue names.
+
+Pushed to main. Command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 12:5x
 
 Attached clean: fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `a68fac42f`, tree clean before and after. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (0 unstruck `- [ ]` rows, re-grepped directly), `BACKLOG-2026-H2.md` (same, 0), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries (the 12:1x PM check-in and the 11:5x, 11:4x cycles it followed).
