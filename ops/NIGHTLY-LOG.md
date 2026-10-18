@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 16:1x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
+
+**Attached clean.** Checkout arrived shallow and detached onto a force-updated ref; `git fetch origin main`, `git fetch --unshallow` (ran long, waited out by PID), `checkout main`, ff-only merge onto `d904bc69e` (already up to date with the 15:4x PM cycle plus two hourly check-ins, tree clean).
+
+**Previous work (15:4x cycle's re-verification) confirmed finished, not cited.** Re-derived the deploy gap directly with `resolve_verdict_commit('c36cb2794e581473')` and `deploy_gap_material_commits()`: same 4 commits, 3 material, unchanged since 2026-10-14, matching that cycle's own figure exactly.
+
+**Re-verified every channel directly.** 10 open GitHub issues via the API: same set, same labels, issue #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs. Both backlogs: 0 unstruck rows. Latest `Checks` CI run (dispatched, `39137800923`) still green, no red since. `preflight.py` fast: 0 FAIL/ERROR through every gate before `gate_tests`; this run it stalled inside `test_audit_catalog.py` (0% CPU across repeated checks, not merely slow), killed cleanly by PID, confirmed dead, reported UNCHECKED past that point, not assumed passing. Same standing sandbox limitation as every recent cycle, just a different test this time.
+
+No new unblocked work found this slot. Not re-raising issue #42; nothing here is new information for Phil.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen, this entry only. No price, product or page touched. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-18, 15:4x cycle
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; all 10 open GitHub issues are unchanged and every one is explicitly Phil-gated (decision or blocked-on-art); hold the line.
