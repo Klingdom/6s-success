@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-18, 18:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; #42 still 1 comment, no reply from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows; cold_read_ledger.py --stale 0 of 276.
+
+Attached clean (shallow/detached checkout; fetch, unshallow, checkout main, ff-only merge onto 9ab42afd4, 1070 commits, tree clean throughout). Previous work (18:1x cycle's ops/dashboard.py re-ledger) confirmed finished, not cited: cold_read_ledger.py --stale returns 0 directly, matching its own claim.
+
+Re-verified every channel directly rather than citing the log. check_urls.py 213/213, fix_dashes.py --check 0/0, link_graph_report.py 0 orphans, check_sellable.py 124/126 (2 service SKUs, known). affiliate.py --check FAILed once on an unreadable-PDF error while this cycle's own backgrounded preflight.py was mid-bootstrap; traced rather than taken on one read, matching the documented scratch-fixture race from a concurrent preflight run (same shape recorded repeatedly in NIGHTLY-LOG-ARCHIVE.md); re-ran alone once preflight had moved past that stage, clean, 165 documents. preflight.py fast, watched by PID: 0 FAIL/ERROR through every gate before the documented gate_tests headless-Chromium sandbox hang; confirmed genuinely hung (utime/stime unchanged across two /proc reads 5s apart), killed by PID, confirmed dead.
+
+Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence-waste finding) is unchanged since it was last raised, and Phil has not replied; a fresh alert repeating the same unbroken state would be the exact waste that issue argues against.
+
+Pushed to main. ops/NIGHTLY-LOG.md, this entry only. No content, price or product touched, no new page. IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## Scheduled operator cycle, 2026-10-18, 18:3x: a second concurrent-preflight collision the same date, closed with a lock instead of another prose warning
 
 **Did:** Attached clean (unshallow, `checkout main`, ff-only onto `eccbaefc5`). Delegated reading the backlog/roadmap/NIGHTLY-LOG to a background research fork, scoped explicitly read-only. The fork instead executed real work (a genuine, well-verified fix: `resolve_deploy_reachable()` / `gate_dashboard_deploy_reachable_carry_forward`, now on `main` as `4290375f0`) while this session's own `ops/run_preflight.sh` run was alive in parallel. The two collided: my run's log stopped mid-gate-list with no FAIL and no summary, and `ps` showed duplicate `audit_catalog.py`/`test_audit_catalog.py` processes fighting over `site/_audit_catalog_fixture.lockdir`. Confirmed the lockdir's recorded pid was dead before clearing it (the sanctioned recovery, not a guess) and re-ran solo.
