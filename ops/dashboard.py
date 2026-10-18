@@ -967,6 +967,41 @@ def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str,
             "deploy_checked_assets": checked}
 
 
+def resolve_deploy_reachable(deploy: dict, prev: dict, deploy_verdict: str,
+                              deploy_carried: bool):
+    """Keep the nested deploy["reachable"] from contradicting a carried verdict.
+
+    resolve_deploy_verdict() above already protects the flat deploy_verdict/
+    deploy_stale_assets/deploy_checked_assets keys from a run that could not
+    reach production. It never touches the raw nested S["deploy"] dict
+    ops/deploy_freshness.check() returns, so a run with no egress wrote its
+    own unmeasured "reachable": False straight into the committed
+    ops/state.json, right next to a correctly carried "current" verdict and
+    0 stale assets -- the exact copy-and-control disagreement CLAUDE.md
+    treats as a P0 trust defect, one key over from the bug that function
+    already fixed.
+
+    Found 2026-10-18, PM check-in (17:1x): a session with real production
+    access had confirmed reachable:true; this sandbox's own regeneration,
+    minutes later, was about to overwrite it with reachable:false purely
+    because this sandbox has no VPS egress, with no conflict and no new
+    commit forcing the regeneration at all. Caught and discarded by hand
+    (`git checkout --`) before it was ever committed, because no gate
+    existed to catch it. This is that gate's pure logic.
+
+    Pure, mirroring resolve_deploy_verdict() itself, so preflight can prove
+    it with synthetic inputs.
+    """
+    if not deploy_carried:
+        return deploy.get("reachable")
+    if deploy_verdict == "unknown":
+        return deploy.get("reachable")
+    prev_reachable = (prev.get("deploy") or {}).get("reachable")
+    if prev_reachable is not None:
+        return prev_reachable
+    return deploy_verdict in ("current", "stale")
+
+
 def zone_photo_deploy_note(zone_photos_undeployed, zone_pages_with_image):
     """The photography half of the standing 'Redeploy the site' owner note.
 
@@ -1020,6 +1055,8 @@ def _repo_build_id_for_marker():
 S.update(resolve_deploy_verdict(S["deploy"], _prev, S["generated"],
                                 marker=_load_deploy_marker(),
                                 repo_build_id=_repo_build_id_for_marker()))
+S["deploy"]["reachable"] = resolve_deploy_reachable(
+    S["deploy"], _prev, S["deploy_verdict"], S["deploy_carried"])
 
 try:
     import check_live_links

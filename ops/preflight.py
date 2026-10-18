@@ -3405,6 +3405,66 @@ def gate_dashboard_deploy_carry_forward() -> None:
              f"unmeasured 0/0 instead. Got {sibling!r}")
 
 
+def gate_dashboard_deploy_reachable_carry_forward() -> None:
+    """A carried-forward deploy verdict must carry 'reachable' with it too.
+
+    One more layer under gate_dashboard_deploy_carry_forward just above,
+    same shape of bug, one key over: that gate protects deploy_stale_assets/
+    deploy_checked_assets from a run that could not measure production.
+    Until 2026-10-18 nothing protected the nested deploy["reachable"] flag
+    dashboard.py writes straight from ops/deploy_freshness.check()'s own
+    unmeasured False, instead of from whatever production was last
+    confirmed to be. A PM check-in that day caught the live overwrite by
+    hand, before committing it, because this gate did not yet exist; this
+    is that gate.
+
+    Proves the pure function with synthetic inputs, the same pattern
+    gate_dashboard_deploy_carry_forward uses for resolve_deploy_verdict.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    # This run could not reach production (reachable False, verdict carried
+    # forward as "current" from a prior real measurement): must keep "true".
+    carried = dashboard.resolve_deploy_reachable(
+        {"reachable": False, "verdict": "unknown"},
+        {"deploy": {"reachable": True, "verdict": "current"}},
+        "current", True)
+    if carried is not True:
+        fail("dashboard-deploy-reachable-carry-forward",
+             f"resolve_deploy_reachable() let an unmeasured run's own "
+             f"reachable:false override a carried 'current' verdict's real "
+             f"reachable:true; got {carried!r}")
+    # A carried "stale" verdict still means production WAS reached when last
+    # measured; reachable must stay true, not flip false just because this
+    # run itself could not look.
+    carried_stale = dashboard.resolve_deploy_reachable(
+        {"reachable": False, "verdict": "unknown"},
+        {"deploy": {"reachable": True, "verdict": "stale"}},
+        "stale", True)
+    if carried_stale is not True:
+        fail("dashboard-deploy-reachable-carry-forward",
+             f"resolve_deploy_reachable() dropped reachable:true under a "
+             f"carried 'stale' verdict; got {carried_stale!r}")
+    # A real measurement this run must always win, reachable included.
+    fresh = dashboard.resolve_deploy_reachable(
+        {"reachable": False, "verdict": "current"},
+        {"deploy": {"reachable": True, "verdict": "current"}},
+        "current", False)
+    if fresh is not False:
+        fail("dashboard-deploy-reachable-carry-forward",
+             f"resolve_deploy_reachable() let a stale carried reachable "
+             f"override this run's own fresh measurement; got {fresh!r}")
+    # Nothing to carry at all (no prior verdict, no marker): must stay
+    # honestly unmeasured, not invent a guessed True.
+    nothing = dashboard.resolve_deploy_reachable(
+        {"reachable": False, "verdict": "unknown"}, {}, "unknown", False)
+    if nothing is not False:
+        fail("dashboard-deploy-reachable-carry-forward",
+             f"resolve_deploy_reachable() must not invent a reachable value "
+             f"when nothing, carried or fresh, actually measured one; got "
+             f"{nothing!r}")
+
+
 def gate_dashboard_deploy_marker_carry_forward() -> None:
     """A confirmed-live deploy marker must reach the dashboard when prev cannot.
 
@@ -29278,6 +29338,7 @@ def main() -> int:
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_link_retirement_refusal_surfaced)
     run_gate(gate_dashboard_deploy_carry_forward)
+    run_gate(gate_dashboard_deploy_reachable_carry_forward)
     run_gate(gate_dashboard_deploy_marker_carry_forward)
     run_gate(gate_dashboard_traffic_carry_forward)
     run_gate(gate_dashboard_all_time_carry_forward)
