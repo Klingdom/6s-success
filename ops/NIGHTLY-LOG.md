@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## Scheduled operator cycle, 2026-10-18, 20:5x: a lock gate that passed real cycles while missing the real-world shape, found and closed
 
-**Did:** Attached clean (unshallow, ff-only onto a64607442, tree clean). Read BACKLOG-2026-09-07.md, GOALS.md, CLAUDE.md carried forward. Ran preflight.py fast: 0 FAIL/ERROR through every gate, hung at gate_tests (frozen /proc CPU time), killed cleanly. GitHub reverified directly: 10 open issues unchanged, all decision/blocked-on-art; #42's newest comment self-authored by the 20:0x cycle, no reply from Phil. 0 open PRs. check_urls.py 213/213, fix_dashes.py 0/0, affiliate.py clean, check_sellable.py 124/126 (2 service SKUs), cold_read_ledger.py 276/276, 0 stale.
+**Did:** Attached clean (unshallow, ff-only onto a64607442, tree clean, merged forward onto this cycle's concurrent 20:4x work at push time). Read BACKLOG-2026-09-07.md, GOALS.md, CLAUDE.md carried forward. Ran preflight.py fast: 0 FAIL/ERROR through every gate, hung at gate_tests (frozen /proc CPU time), killed cleanly. GitHub reverified directly: 10 open issues unchanged, all decision/blocked-on-art; #42's newest comment self-authored by the 20:0x cycle, no reply from Phil. 0 open PRs. check_urls.py 213/213, fix_dashes.py 0/0, affiliate.py clean, check_sellable.py 124/126 (2 service SKUs), cold_read_ledger.py 276/276, 0 stale.
 
 **Found and fixed a root cause instead of patching the symptom a third time:** SIGKILLing a hung preflight leaves a zombie process; os.kill(pid, 0) reports a zombie as alive, so _run_lock_pid_alive() held the next cycle's lock for the 20-minute stale-mtime timeout instead of breaking immediately. Hit twice today (20:1x patched by hand; this cycle hit it again). Fixed _run_lock_pid_alive() to read /proc/<pid>/stat's state letter, treating Z as dead. Added a third case to gate_preflight_lock_blocks_concurrent_runs that SIGKILLs a real subprocess without reaping it, proving the lock breaks in under 2 seconds. Recorded as LRN-0042.
 
@@ -19,6 +19,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** hold the line. No push notification: unchanged since 20:0x's own escalation on issue #42.
 
 Pushed to main. `ops/preflight.py`, `LEARNINGS.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+## PM check-in, 2026-10-18, 20:4x cycle
+
+NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line, same as every cycle today. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are unchanged, every one decision/blocked-on-art; issue #42 has 2 comments, both self-authored by prior cycles, none from Phil since 2026-10-17; 0 open PRs; both backlogs 0 unstruck rows.
+
+Attached clean (shallow/detached checkout; fetch, unshallow, checkout main, ff-only merge onto 65dfeb44f, tree clean throughout). Previous work (20:1x cycle's lock-cleanup, plus the hourly check-in after it) confirmed finished, not cited: re-checked GitHub issues and PRs directly via the API, same set, same labels, 0 open PRs; no open claims in STATUS.md; no concurrent work in flight.
+
+Ran preflight.py fast to completion this time, watched by PID rather than piped: no gate_tests hang, every gate passed, 27 warnings, all standing sandbox-access limitations (no SSH key, no Stripe credential, no mail credential, analytics unreachable) or already-tracked content gaps (deck-print-tier, page-art, deck-art, all named in open issues or the backlog). check_sellable.py's first run FAILed on build/products/ missing entirely; traced rather than taken on one read, confirmed it is a gitignored, generator-owned directory simply absent from this fresh checkout, not a product regression (preflight's own bootstrap step rebuilds it before running its gates).
+
+Found and closed a real gap instead of only re-reporting the exhausted state: gate_status_currency warned that STATUS.md had not mentioned 9 material commits since its own last edit (the preflight concurrent-lock gate, the dashboard deploy.reachable carry-forward gate, a re-ledger, and four new test files), the same shape this gate exists to catch, same as the 2026-10-13 06:3x cycle closed once before. All 9 are already detailed in this log's own 17:5x through 18:3x entries; appended a short summary and pointer to STATUS.md's Last Updated chain rather than duplicating them, same append-don't-rewrite convention as every prior entry. fix_dashes.py --check reconfirmed clean after.
+
+Not starting anything larger myself: every unblocked, non-Phil-gated item is already closed; the backlog is genuinely exhausted and Phil-gated. Not sending a push notification: the one thing worth a stranger's attention (issue #42's cadence concern) is unchanged since the 20:0x cycle's own escalation a few minutes ago; a second alert minutes later would be the exact waste that issue argues against.
+
+Pushed to main. STATUS.md, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
 
 ## PM check-in, 2026-10-18, 20:1x cycle
 
