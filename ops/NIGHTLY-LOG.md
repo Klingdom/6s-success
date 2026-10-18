@@ -2,6 +2,50 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-18 (00:4x slot): independently reconfirmed the exhausted state through fresh checks, not citation; no duplicate notification
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached
+clean: `git fetch origin main`, `git fetch --unshallow`, `checkout main`,
+`merge --ff-only` onto `origin/main` (918 then 2 more commits fast-forwarded
+across the cycle from concurrent PM/hourly pushes, no reset or force). Read
+`GOALS.md`, `STATUS.md` (top and open-claims sections), `ops/NIGHTLY-LOG.md`
+(last several entries), `CHECKIN-LOG.md` tail, `CLAUDE.md`.
+
+**Verified rather than cited.** Ran the checks directly instead of trusting
+the last cycle's own numbers: `check_urls.py` 213/213, `fix_dashes.py --check`
+0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale`
+0 and `--next` 0 un-ledgered of 229, `grep -c "^- \[ \]" BACKLOG-2026-09-07.md`
+0 (no unchecked item in the queue, checked by a method no recent entry had
+used). GitHub via the MCP tool directly: 10 open issues, same set as every
+cycle today, all `decision`/`blocked-on-art`/P0, no comment from Phil on #42
+or #40 since the last cycle read them. 15 most recent Actions runs: all
+`success`. `inbox_agent.py --apply`: no mail credential, unchecked, standing.
+No stray probe file on disk.
+
+**One transient finding, chased and closed.** A first `audit_pages.py` run
+reported one duplicate title/description pair on the Home Office deck page;
+immediate reruns (3x) and a direct grep found only one file with that title.
+Matches the exact already-documented stray-probe race in that script's own
+`pages()` docstring; no reproducible defect, nothing fixed, nothing new to
+gate.
+
+**Went well:** verifying the "no unblocked item" claim with a different
+method (grep) than prior cycles' own prose summaries, rather than repeating
+their citation.
+
+**Did not go well:** full `preflight.py` hit the documented `gate_tests`
+sandbox hang again; narrower checks run directly in its place, the standing
+workaround.
+
+**Changing next cycle:** none.
+
+**Next:** issues #42 and #40 (cadence, usage-limit stall) still await Phil;
+nothing else is unblocked.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`), this log entry. No price or product
+touched, no new page. IndexNow not applicable.
+
 ## PM check-in, 2026-10-18 (00:4x slot): same exhausted state, byte-identical to the 22:50 snapshot, no duplicate notification
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line rather than inventing work, because all 10 open GitHub issues are `decision`/`blocked-on-art`/`P0`-gated and `cycle_signal.py --check` confirms every signal file is byte-identical to the 2026-10-17T22:50:40Z snapshot.
