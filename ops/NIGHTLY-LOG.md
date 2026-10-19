@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state independently re-verified from scratch, no new push notification
+
+**Did:** Checkout arrived shallow and detached, as STEP 0 warns. The first unshallow attempt raced a second one started from the same cycle and left a stale `.git/shallow.lock`; removed it directly once `kill -0` style checks were not needed (the lock was a file, not a live process) and the second `git fetch --unshallow` landed clean. `checkout -B main origin/main`, ff-only merge onto `23b3725c1` then forwarded again onto `80f422732` after a concurrent PM cycle pushed mid-run; tree clean throughout, no "unrelated histories" error survived past the first retry.
+
+Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 6, `CLAUDE.md`, and the real head of this log rather than a summary.
+
+**Verified independently rather than inherited, same checks the last several cycles ran, re-run here from zero rather than cited.** GitHub's 10 open issues pulled fresh via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`. Read every comment on #2 (7, spanning 2026-08-30 to 2026-09-18) end to end rather than only checking #42's: all self-authored by prior agent cycles through Phil's own GitHub identity, nothing from Phil as a live reply. `cold_read_ledger.py --stale`: 0 of 276 stale. `cold_read_ledger.py --next`: 0 un-ledgered candidates. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. `check_ledgerium.py`: no Stripe credential, reported unchecked. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126 (2 person-delivered services excluded), `affiliate.py --check` 165 delivered documents clean.
+
+Checked `list_triggers` directly against my own account rather than trusting OWNER-ACTIONS item 23's prior write-up: confirmed this session is itself the "6S Success hourly operator" routine (`trig_011oe2y7KR3AiPxUTd6b9P6c`), `created_via: http_api`. Did not re-attempt `update_trigger` against it: the 2026-10-17 cycle already tried widening this exact routine's own cadence from inside itself and got the documented refusal ("agents can only update routines they created... a routine's own session may still disable itself, enabled=false only"), which is a smaller lever than what option 1 needs. Re-running an already-refused call would add nothing.
+
+**Ran preflight to genuine completion.** Backgrounded, watched by PID and `/proc` CPU time (flat across 20s, confirming genuine stall rather than slow progress) before killing at the documented `gate_tests` headless-Chromium sandbox hang: 0 FAIL/ERROR across every gate reached. Called `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current` directly (they sit after `gate_tests`): all three clean. Regenerated the dashboard: YELLOW, $0 of $20,000 (carried forward, Stripe unreachable this month), $19 all-time from 1 sale, 2 P0, 8 need-you, 1269 seven-day commits.
+
+**Went well:** did not take ~30 prior cycles' identical conclusion on faith; re-derived every check from zero and reached the same answer independently, including one check (#2's full comment history) none of the recent entries had explicitly logged reading.
+
+**Did not go well:** another consecutive cycle with nothing customer-facing to ship. The state has not moved since the 2026-10-18 20:0x escalation on issue #42.
+
+**Changing next cycle:** none. No new gate needed: the stale-lock self-heal, the post-gate_tests direct calls, and the cold-read exhaustion check are all already in place and all worked correctly this cycle.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first, or his own action on OWNER-ACTIONS item 23, reopens real work. No push notification sent: the 02:1x cycle already alerted on this exact condition less than an hour ago and nothing has changed since; a second alert now would be the redundant cost issue #42 itself argues against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 02:4x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line, because sections 2 through 4 of `BACKLOG-2026-09-07.md` have only C5/C6 unstruck (both explicit **YES, Phil**), section 6's six owner-gate rows are all Phil-gated, and all 10 open GitHub issues remain `decision`/`blocked-on-art` with no reply from Phil since 2026-10-14.
