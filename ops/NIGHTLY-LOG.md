@@ -8,7 +8,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Verified independently rather than inherited.** GitHub's 10 open issues pulled fresh: same set as every recent cycle (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`. Issue #42's two comments are both self-authored by prior agent cycles (2026-10-17, 2026-10-18 20:0x); nothing from Phil. 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked rather than assumed clean. `cold_read_ledger.py --stale`: 0 stale. `affiliate.py --check`: 165 delivered documents, no affiliate link, disclosure correct. `check_urls.py`: 213/213. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `check_sellable.py`: 124 of 126 buyable products in Stripe with delivery entries and files on disk, the other 2 are person-delivered services. `check_ledgerium.py`: not checked, no Stripe credential in this sandbox, reported as such.
 
-**Ran preflight to genuine completion.** Backgrounded, watched by PID: hit the documented `gate_tests` headless-Chromium sandbox hang, confirmed it looked stalled by one flat CPU-time sample, moved to kill it, and it had in fact already finished naturally in the background (bootstrap's pip install is I/O-bound, not CPU-bound, so one CPU-time sample during it reads as "flat" without being stuck) — the kill raced an already-exited process and found nothing to kill. Full run completed with exit code 0, 0 FAIL/ERROR/WARNING across every gate. A seventh stale `/tmp/.preflight_py_running.lock` (pid 766, confirmed dead via `kill -0`/ESRCH) was left behind by the race regardless and removed.
+**Ran preflight to genuine completion.** Backgrounded, watched by PID: hit the documented `gate_tests` headless-Chromium sandbox hang, confirmed it looked stalled by one flat CPU-time sample, moved to kill it, and it had in fact already finished naturally in the background (bootstrap's pip install is I/O-bound, not CPU-bound, so one CPU-time sample during it reads as "flat" without being stuck) — the kill raced an already-exited process and found nothing to kill. Full run completed with exit code 0, 0 FAIL/ERROR/WARNING across every gate. An eighth stale `/tmp/.preflight_py_running.lock` (pid 766, confirmed dead via `kill -0`/ESRCH) was left behind by the race regardless and removed.
 
 **Verified** against the reasoning above, not assumed: this is the same "exhausted/decision-gated" finding at least seven consecutive cycles have now independently confirmed. No GitHub issue has a reply from Phil since 2026-10-14. No genuinely new unblocked work exists in sections 2-6 of the backlog.
 
@@ -21,6 +21,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first reopens the highest-value unblocked work; until then, each cycle's job is to verify nothing regressed and keep the dashboard current. No push notification sent this cycle: nothing changed that the owner does not already have sitting in open GitHub issues.
 
 Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched.
+
+## PM check-in, 2026-10-19, 01:4x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, a seventh stale lock (this cycle's own) cleaned, no push notification
+
+NEXT FOR THE OPERATOR: nothing unblocked beyond the Phil-gated items, because sections 2-6 of `BACKLOG-2026-09-07.md` have only C5/C6 unstruck (both explicit **YES, Phil**) and section 6 is entirely owner-gated; if the 00:5x/01:1x handoff already told you this, it still holds.
+
+Previous work (01:1x's clean pass and lock cleanup) confirmed finished, not cited: attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `23b3725c1`, tree clean, no concurrent push). Re-checked independently rather than trusting the prior entry: GitHub's 10 open issues unchanged, all `decision`/`blocked-on-art`; fetched #42's two comments directly, both still self-authored, none from Phil; 0 PRs. Grepped `BACKLOG-2026-09-07.md` sections 2-6 directly myself: only C5/C6 unstruck, both explicit **YES, Phil**; section 6 (owner gates) all six rows owner-gated. `STATUS.md` Open claims: none.
+
+Ran `preflight.py --fast` with a timeout: 0 FAIL/ERROR to the documented `gate_tests` sandbox hang, same standing limitation. That kill left this cycle's own stale `/tmp/.preflight_py_running.lock` (pid 658, confirmed dead via `ps -p`); removed.
+
+Not starting new work, nothing unblocked beyond Phil-gated items. Not commenting on #42: both its comments already asked Phil to decide, state is unchanged since the 2026-10-18 20:0x escalation, and the 01:1x cycle already declined to re-raise it on an unchanged state. No push notification for the same reason: nothing new to report since that escalation.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`.
 
 ## PM check-in, 2026-10-19, 01:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, a sixth stale lock cleaned, no push notification
 
