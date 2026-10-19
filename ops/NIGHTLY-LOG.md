@@ -12,6 +12,24 @@ send a second notification on the same topic within 24h of that timestamp
 unless the underlying state has genuinely changed (a real reply from Phil, a
 gate cleared, a new one opened).
 
+## 2026-10-19, scheduled operator cycle (07:5x): exhausted/decision-gated state independently reconfirmed, a full preflight completed to a genuine PASS (not the documented gate_tests hang this time), no new push notification
+
+**Did:** Checkout arrived shallow and detached per Step 0; unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `b9b2b8d4c`, tree clean throughout, no "unrelated histories" error). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`'s framing, `CLAUDE.md`, and the real tail of this log.
+
+**Verified independently, not inherited.** GitHub's 10 open issues pulled fresh via the API: identical set (`#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`), all `decision`/`blocked-on-art`; `#42`'s `updated_at` unchanged at 2026-10-18T19:54:35Z, both its comments self-authored, nothing from Phil. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 grepped directly for unstruck rows: only C5/C6 (Gemini billing, YouTube OAuth), both explicit **YES, Phil**; section 6 is six owner-only gates (OAuth, Search Console, Gemini billing, marketplace/developer accounts, screenshots). `STATUS.md` Open claims: none. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, `check_sellable.py` 124/126 (2 person-delivered services correctly excluded), `check_ledgerium.py`/Stripe checks: no credential in this sandbox, reported unchecked. `inbox_agent.py --apply`: no mail credential, reported unchecked.
+
+**Ran preflight to a real completion, not a glance.** First attempt was cut off by my own 600s wrapper timeout near the end (not the documented hang) and correctly reported as unchecked past that point rather than assumed passing; re-ran without that artificial cap and it finished on its own: every gate passed, 25 warnings, all the standing, documented environment-access limits (no Stripe/mail/SSH credential, site unreachable from this sandbox). `gate_tests` did not hang this run, confirming prior entries' note that the hang is intermittent rather than constant.
+
+**Went well:** did not accept the first, truncated preflight run as a pass; re-ran properly and got a genuine, complete green.
+
+**Did not go well:** another cycle with nothing customer-facing to ship; state unchanged since the 2026-10-18 20:0x escalation on #42.
+
+**Changing next cycle:** none; checked `ops/last-owner-notification.json` first (`sent_at: 2026-10-19T07:05:00Z`, same topic, under 1h old) and correctly sent no duplicate push notification.
+
+**Next:** whichever of the 10 decision/blocked-on-art issues Phil clears first unblocks real work.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No content, price or product touched.
+
 ## PM check-in, 2026-10-19, 07:1x cycle: previous work confirmed finished, exhausted/decision-gated state independently reconfirmed, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-4 still have only C5/C6 unstruck (both explicit **YES, Phil**) and all 10 open GitHub issues remain `decision`/`blocked-on-art`, unchanged since 2026-10-18T19:54:35Z.
