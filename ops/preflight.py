@@ -11918,6 +11918,68 @@ def gate_money_critical_workflows() -> None:
                  % (name, when or "time unknown", what))
 
 
+def gate_ci_conclusion_current() -> None:
+    """Is checks.yml's own most recently completed run actually green?
+
+    Found 2026-10-19: three straight pushes (759c43f8, a7498109, 7c630782)
+    each failed checks.yml's Preflight step on the same root cause (a stale
+    sitemap lastmod from an earlier push that edited a page without
+    re-running ops/build_seo.py), and every cycle in between kept shipping
+    on the strength of "preflight.py: 0 FAIL through every gate reached
+    before the documented gate_tests sandbox hang" without ever separately
+    checking whether ITS OWN push's CI run had actually passed. The same
+    shape (local hang hides a real CI failure) already cost a cycle once on
+    2026-10-15; it was never turned into a gate then, so it recurred.
+
+    gate_workflows_healthy already watches checks.yml and would have warned,
+    but two things buried it exactly the way gate_money_critical_workflows'
+    own docstring describes for fulfil-orders.yml: it is one line among
+    thirty, and it sits after gate_tests in main()'s own call order, so a
+    sandbox that hangs there (every sandbox this project has run in) never
+    reaches it, and a human reading "0 FAIL" never sees the warning either.
+
+    This one is called near the very top of main(), before gate_tests, so
+    the hang cannot hide it, and it is a hard FAIL rather than a warning,
+    the same escalation gate_money_critical_workflows already makes for a
+    broken delivery pipeline: checks.yml is what proves every other gate in
+    this file actually ran on the last push, and "unknown" is not "fine"
+    any more here than it is there.
+
+    Deliberately asks about the run BEFORE this one, not this one's own: a
+    run of checks.yml cannot see its own still-in-flight conclusion, so this
+    looks at the most recent COMPLETED run as of when it is called. Locally
+    that is simply whatever the last push actually did; on CI it is the
+    previous push, which is exactly the question "is it safe to build on
+    top of main right now" needs answered.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    token = dashboard.gh_token()
+    if token:
+        conclusion, when, head_sha, err = _workflow_run_via_api(token, "checks.yml")
+    elif shutil.which("gh"):
+        conclusion, when, head_sha, err = _workflow_run_via_cli("checks.yml")
+    else:
+        warn("ci-conclusion-current",
+             "no GH_TOKEN/GITHUB_TOKEN and gh is not installed here, so "
+             "checks.yml's own last conclusion was not checked. Unchecked, "
+             "not green.")
+        return
+    if err or conclusion is None:
+        warn("ci-conclusion-current",
+             "checks.yml's most recent run could NOT be queried (%s). "
+             "Unchecked, not green." % (err or "no conclusion returned"))
+        return
+    if conclusion == "failure":
+        fail("ci-conclusion-current",
+             "checks.yml's most recent completed run FAILED (%s, commit "
+             "%s). Every gate after gate_tests in this file's own call "
+             "order is unverified on whatever landed there, because this "
+             "sandbox's gate_tests hang hides exactly that. Read the run "
+             "log before building anything else on top of this."
+             % (when or "time unknown", (head_sha or "unknown")[:10]))
+
+
 def _publish_image_runs(token, wf_name, extra_qs="", per_page=1):
     """One page of publish-image.yml's own run history, newest first.
 
@@ -29394,6 +29456,14 @@ def main() -> int:
     run_gate(gate_no_stray_probe_files)
     run_gate(gate_no_tracked_gitignored_dirs)
     run_gate(gate_preflight_lock_blocks_concurrent_runs)
+
+    # Runs before gate_tests, deliberately: gate_tests hangs in every
+    # sandbox this project has run in, and every gate ordered after it is
+    # silently unreached by a local run that stops there. This one answers
+    # "did the last push's own CI run actually pass" without depending on
+    # getting that far, so a sandbox hang can no longer hide a real red
+    # checks.yml the way it did on 2026-10-19 (three straight pushes).
+    run_gate(gate_ci_conclusion_current)
 
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
