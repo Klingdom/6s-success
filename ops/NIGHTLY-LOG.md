@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (fresh session, exhausted/decision-gated state independently reconfirmed rather than cited, no new push notification)
+
+**Did:** Attached per STEP 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `e2abfc8a8`, tree clean). Read `GOALS.md` in full (O1, the constraint, is still arrivals: 49 visitors/30d, flat to falling), `BACKLOG-2026-09-07.md` section headers (2-6 all Closed/Done), `OWNER-ACTIONS.md`'s start-here list and items 14/15 (Amazon KDP, Etsy), `CLAUDE.md`, and the real head of `ops/NIGHTLY-LOG.md`. This is a fresh session with no memory of today's prior cycles, so rather than cite their "nothing unblocked" conclusion, checked every lane independently: GitHub's 10 open issues pulled fresh, identical set/labels to every cycle today, #42 still no reply from Phil since 2026-10-18T19:54:35Z. `cold_read_ledger.py --stale` 0/276, `--next` 0 un-ledgered candidates, genuinely exhausted not just unstale. `preflight.py` run to completion: 0 FAIL/WARN through every gate reached, killed by `timeout 180` at the documented `gate_tests` sandbox hang (exit 124, confirmed by reading the background task's own captured exit code rather than assumed from "the process is gone"). Called `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_ci_conclusion_current`, `gate_owner_actions_last_measured_current`, `gate_keyword_demand_rescored_current`/`_not_stale`, `gate_cold_read_handoff_not_stale` directly: all clean. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` 0/0. Re-ran `build/listings/check_kdp.py` and `check_etsy.py` (OWNER-ACTIONS items 14/15, the Amazon/Etsy distribution lever this session's own brief names): both pass with zero failures, still fully prepared up to Phil's account-creation step, nothing left to build on our side. `ops/last-owner-notification.json`: sent 07:05Z, ~14h45m old, under 24h and no state change, correctly sent no duplicate.
+
+**Verified:** every check above was called directly against live state, not read from a prior cycle's log entry.
+
+**Went well:** a fresh session with no priors still reached the identical conclusion through its own independent checks, which is some evidence the conclusion is real rather than an artifact of one session's accumulated assumptions.
+
+**Did not go well:** `gate_tests` still cannot finish locally; same standing sandbox limitation every cycle this month reports, unfixed from this side.
+
+**Changing next cycle:** none; no new defect found, so no new gate to write.
+
+**Next:** nothing newly unblocked. The only live backlog rows are Phil-gated (C5 Gemini billing, C6 YouTube OAuth, OWNER-ACTIONS items 0/1a/14/15 and the rest of "start here"); the 10 GitHub issues are the decision queue. Watch for Phil's reply on #42 or any owner gate clearing.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, scheduled operator cycle: publish-image.yml confirmed green on `6d2bc368d`, closing the handoff the 21:1x PM check-in left open
 
 The 21:1x entry below handed off exactly one question: does `publish-image.yml` land green on `6d2bc368d`, the build-id fix. Watched it to completion via the Actions API directly (not inferred from `in_progress`): `conclusion: success`, finished 2026-10-19T21:22:54Z, roughly 12 minutes after it started. That is the first fully green `publish-image.yml` run since `3d84199d` on 2026-10-15, closing the ~2h20m window (`0e50c3f27` at 19:00:10Z to this confirmation) in which real site content sat built but unpublished. `checks.yml` also independently confirmed clean on the sitemap/gate fix itself, one commit earlier (`e39e62320`): 0 FAIL except the then-still-stale build-id, which `6d2bc368d` was written to fix and which this run proves it did. `STATUS.md`'s INCIDENT-004 updated to RESOLVED with this confirmation.
