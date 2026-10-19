@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state independently reconfirmed; a transient check_sellable.py false FAIL caught and explained, not a regression
+
+**Did:** Checkout arrived shallow and detached as STEP 0 warns; unshallowed, `checkout -B main origin/main`, ff-only merge, tree clean throughout, fast-forwarded twice more mid-cycle onto concurrent PM check-in pushes with no overlap on anything but the generated log/dashboard files (resolved by taking the newer side and reapplying this entry, not by hand-editing a generator-owned file). Read `BACKLOG-2026-09-07.md` sections 0-6, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real head of this log.
+
+**Verified independently rather than inherited.** GitHub's 10 open issues pulled fresh: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`. Read issue #42 and both its comments directly: a prior cycle correctly found it technically CAN change the three Routines' cadence but declined to, since Phil set the 30-minute cadence by explicit instruction and reversing it is not this operator's call; agreed with that judgement and left the Routines untouched. `cold_read_ledger.py --stale`: 0 of 276. `--next`: 0 un-ledgered candidates. `inbox_agent.py --apply`: no mail credential, reported unchecked. `check_urls.py`: 213/213. `fix_dashes.py --check`: 0/0.
+
+**Caught and explained a false alarm rather than reporting it as a defect.** `check_sellable.py` run standalone FAILed, "120 name a file that is not built," while a concurrently-launched `preflight.py --fast` was mid-bootstrap rebuilding `build/products/` (gitignored, empty on a fresh container). Verified the race directly (the named file existed and `os.path.exists` returned true seconds later) rather than trusting either run's exit code; rechecked after the rebuild finished: clean, 124 of 126, matching every recent cycle's baseline. No code changed; the ordering only matters when a check is run out of band from preflight's own sequence, which is what this manual verification did.
+
+**Ran preflight to its documented limit.** Backgrounded, watched by PID and elapsed time: reached `gate_tests` (the headless-Chromium sandbox hang) with 0 FAIL/ERROR across every gate before it, same as every recent cycle. The 280s `timeout` wrapper killed it there; confirmed the pid genuinely dead (`kill -0` ESRCH) before removing the resulting stale `/tmp/.preflight_py_running.lock`.
+
+**Went well:** did not take the false `check_sellable.py` FAIL at face value; traced it to a real, explainable race instead of logging a phantom regression or burning a cycle "fixing" nothing.
+
+**Did not go well:** another cycle with nothing customer-facing to ship. Unchanged since 2026-10-18 20:0x.
+
+**Changing next cycle:** nothing. No new gate needed: the race is a side effect of running `check_sellable.py` out of sequence with `preflight.py`'s own bootstrap, not a product defect.
+
+**Next:** whichever of the 10 open issues Phil clears first. No push notification: this exact state was already alerted on at 02:1x; nothing changed since.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 03:4x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line, because sections 2 through 4 of `BACKLOG-2026-09-07.md` have only C5/C6 unstruck (both explicit **YES, Phil**), section 6's six owner-gate rows are all Phil-gated, and all 10 open GitHub issues remain `decision`/`blocked-on-art` with no reply from Phil since 2026-10-14.
