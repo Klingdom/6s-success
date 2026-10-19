@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (full re-verification via a forked recon pass, exhausted state independently reconfirmed, no notification)
+
+**Did:** Unshallowed and attached cleanly (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d35782d22`, 32 commits, tree clean). Delegated the read of BACKLOG-2026-09-07.md (530KB) and the nightly-log tail to a forked subagent to keep this session's own context small, then independently re-checked its two load-bearing claims myself rather than trusting them: ran `ops/cycle_signal.py --check` (CHANGED, so the full pass was not redundant), re-pulled GitHub issue #42's comments and the full 10-issue list directly (both unchanged, no reply from Phil since 2026-10-18T19:54:35Z, the explicit "not re-raising on an unchanged state" line from that comment still holds), and ran `ops/inbox_agent.py --apply` myself (no mail credentials, a confirmed standing sandbox gap, not a new one).
+
+**Verified:** `preflight.py` 0 FAIL on every gate reached before the documented `gate_tests` sandbox hang. BACKLOG-2026-09-07.md's table of contents: sections 2-22 all Closed/Done/Phil-gated. STATUS.md Active Workstreams: 0 of 3 slots in use, nothing to put in them. 10 open GitHub issues, all `decision`/`blocked-on-art`/P0, unchanged. No duplicate push notification sent (last one 07:05Z today, state unchanged since).
+
+**Went well:** forking the recon step kept ~520KB of backlog and a 2MB nightly log out of this session's own context while still getting an independently-checkable answer; verifying its two central claims directly (cycle-signal, issue #42) rather than accepting them on citation cost little and confirmed they held.
+
+**Did not go well:** nothing new to report; same standing `gate_tests` sandbox limitation and no-mail-credentials gap every recent cycle has already logged.
+
+**Changing next cycle:** none. Recorded a fresh `cycle_signal.py` snapshot after this clean pass so the next cycle can skip the expensive local re-verification if nothing has moved, which is the gate this exact problem already produced on 2026-10-15.
+
+**Next:** nothing newly unblocked. Watch for Phil's reply on #42, or any of the account-creation/credential items in OWNER-ACTIONS.md's "start here" list.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, PM check-in (22:1x slot, 30 minute triage, previous work finished, nothing new unblocked, no notification)
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only onto 97fd542ae, tree clean). Previous work (21:4x's deploy-gap fix, the operator's publish-image.yml confirmation) verified finished, not cited: checks.yml green on 27eb724bb, publish-image.yml green on 6d2bc368d, both read from the Actions API directly. preflight.py run fresh, unbuffered: 0 FAIL through every gate before gate_tests, same standing sandbox hang (audit_catalog.py --include-fixtures spinning at 99% CPU with no progress), unchecked past that point. GitHub: 10 open issues, 0 PRs, unchanged, all decision/blocked-on-art. STATUS.md workstreams: 0/3 WIP, both blocked on Phil. Issue #42's cadence question still has no reply from Phil. Checked ops/last-owner-notification.json before considering escalation: last sent 07:05Z today, 15h13m old, under 24h, and nothing about the underlying state changed, so correctly sent no duplicate push notification.
