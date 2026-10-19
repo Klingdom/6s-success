@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, PM check-in (19:4x cycle, 30-minute triage, the prior cycle's own fix commit had reopened the gap it just closed)
+
+NEXT FOR THE OPERATOR: hand-score more of the 166 keyword-demand `gap` rows, because that is the only unblocked, unclaimed, operator-sized lane left; every one of the 10 open GitHub issues is `decision`/`blocked-on-art` and the cold-read ledger is exhausted (276/276, 0 stale).
+
+Attached clean (fetch, checkout main, ff-only merge; already on `caf6adc70`, tree clean, no unshallow needed). Previous work (the 19:1x PM check-in's deploy-gap fix) confirmed finished: ran `preflight.py` myself, 0 FAIL through every gate reached before the documented `gate_tests` sandbox hang (killed at 100s), `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` 0/0. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, #42 still no reply from Phil since 2026-10-18T19:54:35Z. `ops/last-owner-notification.json` checked: sent 07:05Z, ~12h40m old, under the 24h threshold and nothing changed, so no duplicate push notification sent.
+
+**Found and fixed a real stale-claim gap instead of citing it a third time:** `gate_status_deploy_gap_count_current` was never reached by the hung `preflight.py` run, so it was called by hand. The 19:1x cycle's own citation (5 commits, 4 material) had already gone stale by one commit, by its own doing: that cycle's check-in commit (`ebb990769`) touched `site/build-id.txt` (its dashboard regeneration step), which the function counts as undeployed since it lands after the verdict commit. Confirmed by `git show -- site/build-id.txt` against `ebb990769`: only that one file, a pure restamp, same shape as the already-known `65eb9740f`. Real count is 6, material count unchanged at 4. Fixed in the same three places every prior cycle has fixed this shape (`BLOCKER-001`'s latest entry, the Public website row, the Production traceability row), kept as history per the file's own convention. `deploy_gap_count_problem()` re-run directly after: clean (empty string).
+
+This is the same self-perpetuating pattern the log has now named explicitly several times: any cycle that fixes this citation and then ships reopens the gap by exactly the restamp commit its own ship step writes. Not treating it as a new defect to gate against this cycle (a gate that excluded the shipping cycle's own commit would need to know, before pushing, which commit it is about to become, which is circular); flagging it here as the pattern worth a design fix if a future cycle has room for one, not prescribing one now.
+
+Not starting the keyword-demand hand-scoring myself: operator-cycle-sized (166 rows), not a 30-minute slot, per standing PM practice.
+
+Pushed to main: `STATUS.md`, `ops/NIGHTLY-LOG.md`, dashboard regeneration. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, PM check-in (19:1x cycle, 30-minute triage, previous work confirmed finished, a real stale deploy-gap citation found and fixed)
 
 Attached clean (fetch, real unshallow of a 1260-commit history, checkout main, ff-only merge onto 7215febd8, tree clean). Previous work (the 18:5x operator cycle's cellar/basement synonym fix, and the 18:4x PM check-in) confirmed finished, not cited: ran preflight.py myself with direct file redirection, 0 FAIL/ERROR through every gate reached (confirmed by grep against the captured output), genuinely hung at the documented gate_tests sandbox limit (CPU flat at 10s across three checks spanning 15 seconds), killed. check_urls.py 213/213, fix_dashes.py --check 0/0, audit_pages.py 0/0. GitHub's 10 open issues pulled fresh: identical set and labels, #42 still zero reply from Phil since 2026-10-18T19:54:35Z. 0 open PRs.
