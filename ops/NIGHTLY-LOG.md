@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (11:0x): exhausted/decision-gated state independently reconfirmed, a hang-vs-slow ambiguity from a prior entry settled with hard evidence, no gate change, no new push notification
+
+**Did:** Checkout arrived shallow and detached per Step 0; `fetch origin main`, `fetch --unshallow`, `checkout main`, ff-only merge onto `1f2bc01df` (1196 commits), tree clean throughout, no "unrelated histories" error. Read `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real top of `ops/NIGHTLY-LOG.md` (this file sorts newest-first; the physical tail is a stale 2026-10-04 remnant from before the ordering gate existed).
+
+**Verified independently, not inherited.** Pulled all 10 open GitHub issues fresh via the API: identical set (`#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`), same labels, `#42`'s two comments both self-authored, `updated_at` unchanged at 2026-10-18T19:54:35Z, zero reply from Phil. 0 open PRs. Grepped `BACKLOG-2026-09-07.md` sections 2-6 directly: only C5 (Gemini billing) and C6 (YouTube OAuth) remain unstruck, both explicit **YES, Phil**. `ops/cycle_signal.py --check`: SAME against the 08:09:17Z snapshot. `check_urls.py` 213/213. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 of 276. `affiliate.py --check` 165 documents clean. `check_sellable.py` 124/126 (2 person-delivered services correctly excluded). `inbox_agent.py --check`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**A real ambiguity from the 07:5x entry, settled rather than repeated.** That entry suggested the `gate_tests` "hang" other cycles report might sometimes just be an impatient external wrapper killing a slow-but-working browser test. Ran `preflight.py` twice to test this directly. First run: killed after 390s wall-clock on elapsed time alone, same as most prior cycles (not rigorous). Second run: sampled `/proc/<pid>/stat` CPU jiffies every 8s instead of trusting wall time. Jiffies climbed normally through every gate up to `gate_tests` (182 to 1144 in 48s), then sat at exactly 1144 for 10 straight samples, 80s with zero CPU consumed, log's last line frozen on `...gate_tests` throughout. That is a real stall, not a slow render: a working process keeps burning CPU or at minimum keeps advancing its own log line. Both runs' lock directories self-released correctly once their holder pid was confirmed dead (`acquire_preflight_lock`'s 2026-10-18 dead-pid check), verified directly with a throwaway simulated-dead-pid lock before trusting it on the real one: 0.0s to reacquire. No new gate needed; the self-heal already works as designed, so cycles manually `rm -rf`-ing the lock after killing their own hung run (seen in several entries today) are doing redundant work, not working around a defect. 0 FAIL/ERROR through every one of the 81 gates reached before the stall, both runs.
+
+**Went well:** Did not take the first kill's elapsed-time judgment at face value a second time; got actual CPU-activity evidence before writing a conclusion into this log that future cycles would otherwise cite as settled.
+
+**Did not go well:** Two preflight attempts, both still unable to get past `gate_tests` in this sandbox; the browser-dependent test files inside it remain genuinely unrunnable here, a standing, already-documented environment limit, not a new finding.
+
+**Changing next cycle:** Nothing. Checked `ops/last-owner-notification.json` first: `sent_at` 2026-10-19T07:05:00Z, same topic, under 4h old, nothing about the underlying state has changed (no reply from Phil, no gate cleared, no new issue). Correctly sent no duplicate push notification.
+
+**Next:** Whichever of the 10 decision/blocked-on-art issues Phil clears first unblocks the next cycle's real work; cheapest first per `#42`: Search Console verification (3 min, non-backfillable), YouTube OAuth paste (5 min), Gemini billing (5 min).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (regenerated). No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 10:4x cycle: previous work confirmed finished, exhausted/decision-gated state independently reconfirmed a third time this hour, no new push notification
 
 NEXT FOR THE OPERATOR: hold the exhausted/decision-gated state, because every non-Phil-gated item in `BACKLOG-2026-09-07.md` is already struck through and the only two live rows (C5 Gemini billing, C6 YouTube OAuth) are both explicitly `**YES, Phil**`, so there is nothing genuinely unblocked to start.
