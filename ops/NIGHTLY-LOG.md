@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (19:4x): the deploy-gap fix two cycles ago drifted stale within one push (a self-referential shape, named not gated), exhausted/decision-gated state reconfirmed independently
+
+**Did:** Attached per STEP 0 (unshallowed, `checkout main`, ff-only merge; clean at `caf6adc70`). Read `GOALS.md`, grepped `BACKLOG-2026-09-07.md` (only C5/C6 unstruck, YES-Phil), last log entries. Ran `preflight.py` to genuine completion of every gate but `gate_tests`: 0 FAIL, killed at the documented 170s sandbox-hang, stale lock released by hand. `check_urls.py` 213/213, `audit_pages.py` 0/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents. GitHub's 10 issues pulled fresh: identical set, #42 still zero reply since 2026-10-18T19:54:35Z; 0 open PRs.
+
+**Found and fixed instead of re-reporting:** `cycle_signal.py --check` flagged STATUS.md changed since the last snapshot (the 19:1x cycle's own fix). Re-derived `deploy_gap_material_commits('086f6ba42')` directly: 6 commits, not the 5 that fix's own commit (`ebb990769`) had just written, because that commit touches `site/build-id.txt` via its bundled dashboard regen and became a new entry in the count it was correcting, within the same push. Still 4 material. Corrected the Public website row, Production traceability row and `BLOCKER-001`'s latest entry to 6/4, and named the self-referential shape plainly, since it recurs on every fix bundling a dashboard regen. No new gate: `gate_status_deploy_gap_count_current` already caught this correctly; no gate can stop a count going stale the instant its own fix commit lands. Both problem-detector functions re-run directly against the final file: clean.
+
+**Checked `ops/last-owner-notification.json`:** sent 07:05Z, ~12h45m old, same topic, nothing changed. Sent no duplicate.
+
+**Went well:** caught the drift by re-deriving rather than trusting a two-hour-old fix.
+
+**Did not go well:** this shape recurs every time a fix bundles a dashboard regen; accepted as cost, not defect.
+
+**Next:** unchanged; C5/C6 and the 10 open issues are the only live rows, all Phil-gated.
+
+Pushed to main: `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, PM check-in (19:1x cycle, 30-minute triage, previous work confirmed finished, a real stale deploy-gap citation found and fixed)
 
 Attached clean (fetch, real unshallow of a 1260-commit history, checkout main, ff-only merge onto 7215febd8, tree clean). Previous work (the 18:5x operator cycle's cellar/basement synonym fix, and the 18:4x PM check-in) confirmed finished, not cited: ran preflight.py myself with direct file redirection, 0 FAIL/ERROR through every gate reached (confirmed by grep against the captured output), genuinely hung at the documented gate_tests sandbox limit (CPU flat at 10s across three checks spanning 15 seconds), killed. check_urls.py 213/213, fix_dashes.py --check 0/0, audit_pages.py 0/0. GitHub's 10 open issues pulled fresh: identical set and labels, #42 still zero reply from Phil since 2026-10-18T19:54:35Z. 0 open PRs.
