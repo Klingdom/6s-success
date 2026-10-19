@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (16:5x, full STEP 0-13 pass, exhausted/decision-gated state reconfirmed through three independent paths in one cycle rather than one, no new push notification)
+
+**Did:** Attached per STEP 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `c319fd0b4`, tree clean). Read `GOALS.md` section 0 and the O1-O6 objectives, grepped `BACKLOG-2026-09-07.md`, read the standing `CHECKIN-LOG.md`/`NIGHTLY-LOG.md` tail (15+ straight hours of "nothing measurable moved" today). Ran three independent checks rather than trusting the log's own claim: (1) `preflight.py` myself with output redirected to a file instead of piped through `tail` (the prior background run buffered silently for 7+ minutes with the `tail`-pipe pattern and had to be killed and rerun), 0 FAIL/WARN/ERROR through every gate reached, genuinely hung at the documented `gate_tests` sandbox issue, killed at 110s, unchecked past that point, not assumed passing; (2) pulled all 10 open GitHub issues fresh via the API myself (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, #42 still zero reply since 2026-10-18T19:54:35Z (~21h); (3) a forked subagent independently re-read `BACKLOG-2026-09-07.md` in full, spot-checked `BACKLOG-2026-H2.md`'s unstruck rows, re-read `OWNER-ACTIONS.md`'s full item list, and confirmed C5/C6 are the only live backlog rows (both explicit YES-Phil) and every one of the 23 owner-action items and 10 GitHub issues is already built up to its gate with nothing further buildable from here. Ran the narrow non-network checks directly: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicate titles/descriptions. Confirmed directly (not assumed) that this sandbox cannot reach `6s-success.com` (`connect_rejected` from the egress proxy), the same standing limitation prior cycles documented.
+
+**Verified:** checked `ops/last-owner-notification.json` before concluding anything about escalation: last sent 2026-10-19T07:05:00Z on the identical topic (issue #42), now ~9h45m old, under the 24h bar, and nothing about the underlying state changed (same 10 issues, same silence). Correctly sent no duplicate push notification.
+
+**Went well:** running three independent verification paths in parallel (own preflight, own GitHub read, a fork's full backlog/owner-actions re-read) in a single cycle instead of three separate cycles each re-deriving the same fact, which is the exact redundancy issue #42 is about.
+
+**Did not go well:** the backgrounded `preflight.py 2>&1 | tail -150` pattern buffers all output until the pipe closes, so a hung `gate_tests` run shows nothing at all rather than partial progress; had to kill and rerun with direct file redirection to get a readable partial result.
+
+**Changing next cycle:** prefer `python ops/preflight.py > file.txt 2>&1 &` over piping through `tail` when backgrounding it, since `tail` buffers full output and hides partial progress on a hang.
+
+**Next:** unchanged. Whichever of C5, C6, or the 10 open decision/blocked-on-art issues Phil clears first reopens the highest-value unblocked work.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, PM check-in (16:1x, previous work finished, cycle_signal SAME, no new push notification)
 
 Attached clean (fetch, unshallow, `checkout main`, ff-only merge onto `7acd4d024`, tree clean). Previous work confirmed finished: `cycle_signal.py --check` returned SAME against the 14:00:47Z snapshot, so the backlog's own rule skipped a redundant full re-read. `preflight.py` ran to completion in the background: 0 FAIL/ERROR through all 76 gates reached, killed at the documented `gate_tests` sandbox hang, unchecked past that point. GitHub's 10 open issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs, no mail credential so the inbox is unchecked not empty. Checked `ops/last-owner-notification.json`: last push on this exact topic was 07:05 today, under 24h and no state change, so correctly sent none. Nothing new unblocked to start. Regenerated the dashboard (was 25 min stale). Handing nothing new to the operator; same standing exhausted state issue #42 already names.
