@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, PM check-in (12:1x cycle, 30-minute triage, previous work confirmed finished, dashboard's shallow-clone commit gap closed)
+
+NEXT FOR THE OPERATOR: nothing new to pick up; all 10 open issues remain decision/blocked-on-art, and C5/C6 are the only live backlog rows, both explicitly Phil-gated.
+
+Attached clean (fetch, unshallow for real this cycle rather than inherited, checkout -B main origin/main, ff-only merge onto `6df3cf0fe`, tree clean). Previous work confirmed finished, independently: `BACKLOG-2026-09-07.md` sections 2-6 grepped directly, only C5/C6 unstruck; all 10 GitHub issues pulled fresh via the API, unchanged set and labels, #42 still zero reply from Phil; 0 open PRs; `preflight.py` run fresh myself, 0 FAIL/ERROR through every gate reached, stalled at the documented `gate_tests` sandbox hang, same standing limitation; lock self-released, no manual `rm` needed.
+
+Found and closed one real gap instead of citing it: the dashboard's "Commits (7 days)" line had read "unknown (shallow clone, could not verify)" since 11:55, even though this run's own unshallow made it measurable. Regenerated with `ops/dashboard.py`; now reads 1295 of 7489 total.
+
+Checked `ops/last-owner-notification.json`: `sent_at` 07:05Z, same topic, nothing about the underlying state changed; no duplicate push notification sent.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
 ## 2026-10-19, PM check-in (11:4x cycle, 30-minute triage, previous work confirmed finished a further time, no new push notification)
 
 NEXT FOR THE OPERATOR: nothing new to pick up, because every unblocked item is already done and the only ten open items left are Phil-gated (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2); the 11:5x operator cycle that landed while this check-in was running already reconfirmed that directly, so there is no fresh work to hand off this slot.
