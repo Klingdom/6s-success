@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, PM check-in (12:4x cycle, 30-minute triage, previous work confirmed finished, two sandbox-unreachable gates checked by hand, exhausted/decision-gated state reconfirmed, no new push notification)
+
+NEXT FOR THE OPERATOR: nothing new to pick up, because every unblocked item is already done and the 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are all decision/blocked-on-art, unchanged since the 12:1x cycle; `BACKLOG-2026-09-07.md` sections 2-6 still only have C5/C6 unstruck, both explicit Phil-gated.
+
+Attached clean (fetch, unshallow for real, `checkout -B main origin/main`, ff-only merge onto `bb0cfe869`, tree clean). Previous work confirmed finished, independently: 10 GitHub issues pulled fresh via the API, unchanged set and labels; 0 open PRs. `preflight.py` run fresh myself (first attempt killed on a stale lock left by this same run's own prior kill, pid gone, self-healed on the retry as the standing note says): 0 FAIL/ERROR through every gate reached, stalled at the documented `gate_tests` sandbox hang.
+
+**Checked two gates by hand that this sandbox's own `preflight.py` can never reach, since both sit after `gate_tests` in run order:** `gate_status_deploy_verdict_current`/`gate_status_deploy_gap_count_current` (re-derived `deploy_gap_material_commits('086f6ba42')` directly against real current HEAD: still 4 commits, 3 material, the Photos API frontend and its two follow-ups, unchanged since the 2026-10-15 14:4x REOPENED entry because nothing has touched `site/` or `Dockerfile` since; `STATUS.md`'s BLOCKER-001, Public website and Production traceability rows all still accurate) and `gate_owner_actions_last_measured_current` (ran its own regex logic directly: header "List reviewed: 2026-10-17" matches the newest body date, not stale). Neither needed a correction; reported as checked, not assumed passing because the gate never ran.
+
+Checked `ops/last-owner-notification.json`: `sent_at` 07:05Z, same topic, under 6h old, nothing about the underlying state changed; no duplicate push notification sent.
+
+Not starting any new workstream: nothing is genuinely unblocked, and the ordering rule forbids picking an item marked as waiting on Phil.
+
+Pushed to main: this entry.
+
 ## 2026-10-19, PM check-in (12:1x cycle, 30-minute triage, previous work confirmed finished, dashboard's shallow-clone commit gap closed)
 
 NEXT FOR THE OPERATOR: nothing new to pick up; all 10 open issues remain decision/blocked-on-art, and C5/C6 are the only live backlog rows, both explicitly Phil-gated.
