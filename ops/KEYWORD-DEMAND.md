@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-14T14:47:50Z from google, bing, 151 seeds, 302 attempts: 262 returned completions, 40 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-19T18:07:36Z against 221 page(s) at commit c95de8903. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-19T18:58:28Z against 221 page(s) at commit ecf442464. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2821. Checked against 221 published page titles: 1198 covered, 1456 partial, 167 gap.
+**Queries found:** 2821. Checked against 221 published page titles: 1199 covered, 1456 partial, 166 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 167, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 166, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|

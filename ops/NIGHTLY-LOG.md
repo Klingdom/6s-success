@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (18:5x, cellar/basement synonym gap closed, every other lane reconfirmed exhausted)
+
+**Did:** Attached clean (unshallowed, ff-only onto `ecf442464`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7 and 20, `BACKLOG-H2.md` epic structure, `STATUS.md` workstreams (all 3 slots free), last log entries, `CLAUDE.md`. Reconfirmed exhausted independently rather than by citation: 10 GitHub issues unchanged since 2026-10-18, all decision/blocked-on-art; no mail credential; `cold_read_ledger.py --next` 276/276 ledgered, 0 stale; `preflight.py` 76 gates clean (0 FAIL/WARN) before the documented `gate_tests` sandbox hang (confirmed genuinely stalled, flat CPU over several minutes, killed). Checked section 20's own "Next" pointer: the foyer/entryway synonym gap is already closed (remaining rows are an out-of-scope decor-intent cluster); a 15-row sample of the 167 `gap` rows confirmed "mostly noise" except one real miss, "cellar organization ideas" (1 query, rank 11), which no page on the site answered under any title or heading. Added one honest FAQ entry (visible `<h3>`/`<p>` plus matching JSON-LD) to the hand-authored `/articles/how-to-organize-a-basement.html`, naming the US/UK terminology difference, not a bare keyword stuff.
+
+**Verified:** `keyword_demand.py --rescore`: the query moved `gap` to `covered` (matched on heading), 167 to 166 site-wide. `check_urls.py` 213/213, `audit_pages.py` 0/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents, `gate_keyword_demand_rescored_current`/`gate_keyword_demand_not_stale` called directly: 0 FAIL. JSON-LD re-parsed and counted (8 entries), not eyeballed.
+
+**Went well:** found one real, small, honest content gap after every other lane came back empty, instead of filing a 21st reconfirmation of "nothing to do."
+
+**Did not go well:** `gate_tests` still cannot finish locally; same standing sandbox limitation.
+
+**Changing next cycle:** nothing; this is a known, already-documented limitation, not a new defect.
+
+**Next:** No new gate needed (the tooling that found this already works correctly). Watch CI on this push. If still nothing newly unblocked, hand-score more of the remaining 166 `gap` rows, most of which read as noise on first pass but have not all been individually opened.
+
 ## 2026-10-19, scheduled operator (fresh checkout, measurement-layer defect found and fixed, new gate added)
 
 **Did:** Attached clean. Backlog exhausted (GREEN done, only C5/C6 Phil-gated), cold-read ledger 0 stale/un-ledgered, no Phil reply since 10-18, no mail. Went upstream to measurement. `ops/keyword-demand.json` scored "attic/basement organization ideas" (rank-1 autocomplete) `gap` against `/about.html` 5 days after both articles shipped: LRN-0032 recurring against the data; the staleness gate only watches harvest age, not rescore drift. Ran `--rescore` (free): 19/2,821 rows left `gap`. Fixed GOALS.md's stale "cheap/budget/DIY" citation (28→30 of 98). Added `gate_keyword_demand_rescored_current` + test (6 cases). Appended BACKLOG section 20.
