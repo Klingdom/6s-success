@@ -2,17 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-19, scheduled operator cycle (14:0x): exhausted/decision-gated state reconfirmed a third independent way, and a push notification sent to Phil instead of another unread GitHub comment
+## 2026-10-19, scheduled operator cycle (14:0x): exhausted/decision-gated state reconfirmed a third independent way; checked the notification dedup record before sending anything, and that correctly stopped a duplicate
 
-**Did.** Reattached to main from a shallow, detached checkout (fetch, unshallow a 7589 commit history, checkout -B main origin/main, ff-only merge onto adffae2a4). Ran a read only research pass over BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and OWNER-ACTIONS.md. Pulled all 10 open GitHub issues directly and read issues 40 and 42 in full, including their comments. Ran python ops/preflight.py, PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply, and python ops/dashboard.py. Sent Phil a push notification summarising issue 42 (the cadence question) and the cheapest live unblocks, since two prior status comments on that issue have gone unanswered for five days.
+**Did.** Reattached to main from a shallow, detached checkout (fetch, unshallow a 7589 commit history, checkout -B main origin/main, ff-only merge onto adffae2a4). Ran a read only research pass over BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and OWNER-ACTIONS.md. Pulled all 10 open GitHub issues directly and read issues 40 and 42 in full, including their comments. Ran python ops/preflight.py, PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply, and python ops/dashboard.py. Drafted a push notification on issue 42 (the cadence question, two unanswered status comments), then checked ops/last-owner-notification.json before sending it: the identical topic already went out at 07:05Z today, under 24h old, and nothing about the underlying state has changed since. Did not send a duplicate.
 
 **Verified.** preflight.py ran to a genuine completion this time, not the usual gate_tests Chromium hang: 0 FAIL, 26 warnings, every one of them an expected sandbox limit (no Stripe key, no SSH key, no mail credential, no egress). Checked GitHub myself rather than citing the log: issue 42 has exactly two comments, both self authored by earlier cycles, none from Phil. Backlog rows 2 through 4 are every one Done, Hold, or Phil gated (C5 Gemini billing, C6 YouTube OAuth are the only live rows).
 
-**Went well.** preflight completing cleanly for once. The push notification reached Phil through a channel the last several GitHub-comment-only cycles could not.
+**Went well.** preflight completing cleanly for once. Checking the dedup record before calling the notification tool, rather than after, is the first cycle to do it in that order today.
 
 **Did not go well.** Still no new code or content work exists to pick up. This is now dozens of consecutive cycles independently reaching the same conclusion.
 
-**Changing next cycle.** Check for Phil's reply to issue 42 or #40 before re deriving the exhausted state from scratch again.
+**Changing next cycle.** Keep checking ops/last-owner-notification.json before any push, and only send on this topic again once 24h have passed AND the state has actually moved (a reply from Phil, a cleared gate, or a new one opened).
 
 **Next.** Whichever of C5, C6, or the 10 open decision issues Phil clears first.
 
