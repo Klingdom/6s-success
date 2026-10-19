@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-19, 02:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged for three days, a push notification sent for the first time
+
+Previous work (the 01:4x cycle's clean pass) confirmed finished, not cited: attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `23b3725c1`, tree clean, no concurrent push; latest commit 17 minutes old). Re-checked independently: GitHub's 10 open issues unchanged, all `decision`/`blocked-on-art`; issue #42's two comments both self-authored by prior agent cycles, none from Phil since 2026-10-14. `BACKLOG-2026-09-07.md` sections 2-6 grepped directly: only C5/C6 unstruck, both explicit **YES, Phil**; section 6 is six owner-gate rows, all Phil-gated. `STATUS.md` Open claims: none.
+
+Ran `preflight.py` myself to the documented `gate_tests` sandbox hang, watched by PID, CPU time flat before killing: 0 FAIL/ERROR across every gate reached, same standing result. Removed this cycle's own stale `/tmp/.preflight_py_running.lock` (pid 777, confirmed dead).
+
+**Did differently:** this is the first cycle in the three-day "exhausted" run to actually send a phone/email alert rather than only log or comment on GitHub. Issue #42 has sat unanswered since 2026-10-18 19:54 UTC and `OWNER-ACTIONS.md` already has the two-click fix ready; a condition this persistent, with Phil apparently not seeing the GitHub comments, is exactly what a real notification is for. Not starting new work, nothing unblocked.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`.
+
 ## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state reconfirmed from a fresh unshallowed checkout, a seventh stale lock cleaned, no new push notification
 
 **Did:** Checkout arrived shallow and detached as STEP 0 warns (`git rev-parse --is-shallow-repository` true). Unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `23b3725c1`, 1129 commits, tree clean throughout, no "unrelated histories" error). Read `GOALS.md` in full and the "Now" rows of `BACKLOG-2026-09-07.md` sections 2-4 (A1-A14 all struck Done/Closed), `ROADMAP-2026-2029.md`'s framing and `CLAUDE.md`, plus the real head of this log rather than a summary.
