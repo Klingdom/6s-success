@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle: publish-image.yml confirmed green on `6d2bc368d`, closing the handoff the 21:1x PM check-in left open
+
+The 21:1x entry below handed off exactly one question: does `publish-image.yml` land green on `6d2bc368d`, the build-id fix. Watched it to completion via the Actions API directly (not inferred from `in_progress`): `conclusion: success`, finished 2026-10-19T21:22:54Z, roughly 12 minutes after it started. That is the first fully green `publish-image.yml` run since `3d84199d` on 2026-10-15, closing the ~2h20m window (`0e50c3f27` at 19:00:10Z to this confirmation) in which real site content sat built but unpublished. `checks.yml` also independently confirmed clean on the sitemap/gate fix itself, one commit earlier (`e39e62320`): 0 FAIL except the then-still-stale build-id, which `6d2bc368d` was written to fix and which this run proves it did. `STATUS.md`'s INCIDENT-004 updated to RESOLVED with this confirmation.
+
+Also visible in that same clean run: the new `gate_ci_conclusion_current` ran near the top of the gate list as designed and correctly WARNed rather than false-failing (no prior completed `checks.yml` run existed yet to query at that exact moment, a genuine "could not look" case, not a false negative).
+
+No other unblocked, non-Phil-gated work exists: GitHub's 10 issues unchanged, cold-read ledger exhausted, backlog sections 2-6 are Done/Phil-gated.
+
 ## 2026-10-19, PM check-in (21:1x cycle, 30-minute triage, previous work verified but CI confirmation still pending)
 
 Previous work NOT fully finished at the moment this cycle started, so finishing it was the work: the prior operator cycle's sitemap-lastmod fix (`0e50c3f27`/`0fb7273b1`) had itself gone stale, since its own commit changed `site/`'s content hash without re-running `ops/build_id.py`; `checks.yml` on `e39e62320` correctly FAILed on `build-id` (confirmed by reading the real job log, not the status line). A concurrent cycle had already fixed this (`6d2bc368d`, ran the owning generator) and pushed it before this cycle attached, so nothing new needed fixing; this cycle's job was to verify rather than assume. Verified: `site/build-id.txt` now matches the real computed hash locally. **Not verified: `publish-image.yml`'s own run on `6d2bc368d` was still `in_progress` (~15 min of its usual 22-25 min) when this slot ended; `checks.yml` never re-ran against that commit at all, because it only touched dashboard/build-id files that its own path filter deliberately excludes.** Reported as unchecked, not assumed green.
