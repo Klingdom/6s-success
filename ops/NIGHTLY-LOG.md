@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-19, 04:4x cycle: previous work confirmed finished, a 24-cycle-stale cycle_signal snapshot gap closed instead of re-cited
+
+NEXT FOR THE OPERATOR: hold the line. BACKLOG-2026-09-07.md sections 2-6 are Done/Hold/Phil-gated (only C5/C6 unstruck, both YES Phil); all 10 open GitHub issues remain decision/blocked-on-art, #42 unchanged since 2026-10-18T19:54:35Z.
+
+Previous work confirmed finished, not cited: preflight --fast 0 FAIL through gate_tests (genuine stall confirmed via flat CPU ticks, stale lock pid 770 cleaned); the four post-gate_tests gates called directly, clean. check_urls 213/213, fix_dashes 0/0, check_sellable 124/126. Deploy gap (2 material commits, Photos API CI fixes, VPS_DEPLOY_KEY-gated, issue #35) unchanged, already logged.
+
+Fixed instead of re-citing: cycle_signal's snapshot sat stale since 2026-10-18T16:55:34Z across 24+ cycles despite clean passes, forcing a hand-diff every time. Recorded fresh; --check now SAME.
+
+No push notification: unchanged since 02:1x's alert.
+
+Pushed to main.
+
 ## PM check-in, 2026-10-19, 04:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, no push notification
 
 Attached clean (unshallowed, ff-only merge onto 8b4a6d56e, tree clean, no concurrent push). Previous work confirmed finished, not cited: 10 open GitHub issues re-pulled fresh, unchanged, all decision/blocked-on-art; #42's comments both self-authored, none from Phil since 2026-10-14. preflight.py --fast: 0 FAIL before the documented gate_tests sandbox hang, confirmed genuinely stalled (flat CPU), killed by its own timeout; cleaned the stale lock. cold_read_ledger: 276/276 ledgered, 0 stale, 0 new candidates. check_urls.py 213/213, fix_dashes.py 0/0, check_sellable.py 124/126. cycle_signal flagged BACKLOG/STATUS changed against an old snapshot; diffed via git log, both already-logged fixes from later cycles, nothing new unblocked.
