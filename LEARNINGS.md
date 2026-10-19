@@ -1784,6 +1784,8 @@ whoever reads a "waited on the lock" line in a future log entry: check
 whether the holder was a zombie before assuming the stale-mtime path is
 the only way locks clear.
 
+#### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
+
 **Status:** SUPPORTED
 **Confidence:** HIGH (14 pages closed, three defects caught by three different checks)
 **Domain:** MEDIA / BUILD
