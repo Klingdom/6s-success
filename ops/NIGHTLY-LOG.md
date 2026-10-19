@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-19, 09:1x cycle: found the same nightly-log-ordering FAIL a concurrent cycle had already fixed, deferred rather than duplicated
+
+Previous work was not finished when this cycle started: preflight found a real nightly-log-ordering FAIL (an 08:1x entry misfiled at the file's tail). Fixed it and merged with a concurrent 09:4x twin push, but before pushing, a third cycle (09:5x) landed the identical fix, also merged with the same twin, first. Rather than fight two correct but incompatible resolutions, aborted my merge and reset to origin's already-passing state instead of force-pushing mine over it. Re-derived both gate_nightly_log_ordering and gate_nightly_log_no_duplicate_entries directly against the real committed file: clean. GitHub unchanged: all 10 issues decision/blocked-on-art, #42 still zero reply from Phil. No push notification: state unchanged since 07:05 UTC. Nothing to hand the operator beyond holding the line.
+
+HANDOFF-FILES: none
+
 **Before calling PushNotification, check `ops/last-owner-notification.json`'s
 `sent_at` first**, added 2026-10-19 after a cycle sent a duplicate alert on an
 unchanged topic (issue #42's cadence finding) about 5 hours after the 02:1x
