@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (13:0x): exhausted/decision-gated state reconfirmed an eighth time, preflight genuinely ran clean to gate_tests, no new push notification
+
+**Did:** Attached clean from a genuinely shallow, detached checkout (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `bb0cfe869`, tree clean). Read `GOALS.md`, grepped `BACKLOG-2026-09-07.md` sections 2-6 directly for un-struck rows, and read the last log entries plus `CHECKIN-LOG.md`'s tail. Pulled all 10 open GitHub issues fresh via the API (not cited from memory): unchanged set and labels, all `decision`/`blocked-on-art`, none with a new comment from Phil since the last cycle checked. Ran `ops/inbox_agent.py --apply`: no mail credentials in this sandbox, reported as unchecked, not empty. Ran `ops/cold_read_ledger.py --next`: 276 of 276 files ledgered, 0 un-ledgered candidates, 0 stale. Ran `ops/affiliate.py --check`: clean, 165 delivered documents, disclosure present wherever a link is.
+
+**Verified:** Ran `python ops/preflight.py` myself in the foreground this cycle rather than trusting a prior claim. It progressed through every gate (python syntax, catalogue, sellable, dash, fingerprint, affiliate, all 20 room-deck renders, image coverage, etc.) with 0 FAIL and 0 ERROR, confirmed by grepping its own output rather than assuming, then stalled at `gate_tests` for over 3m45s with CPU-idle behaviour matching the documented headless-Chromium sandbox hang every recent cycle reports. Killed it cleanly after confirming no FAIL preceded the hang, and released its own run-lock directory by hand (`/tmp/.preflight_py_running.lock`) so the next cycle does not inherit a stale one. Traced the lock's own `gate_preflight_lock_blocks_concurrent_runs` self-test while preflight was running, suspecting a re-entrant deadlock given the "Nth stale lock cleaned" pattern in recent entries; read the gate's code closely and it is correct (its own test paths use a PID-0 sentinel and a per-pid scratch directory, not the real `PREFLIGHT_RUN_LOCK`), so the repeated "stale lock" entries are a different, unrelated cause (most likely a SIGKILLed prior run's lock surviving past its holder) and not a defect in this gate. Not worth a new gate this cycle since no reproducible bug was actually found, only a theory that didn't hold up.
+
+**Went well:** running preflight to the real hang point myself, instead of citing a prior cycle's claim, caught a lock directory that would otherwise have sat for up to 1200s before self-clearing for whichever cycle ran next.
+
+**Did not go well:** no new unblocked backlog row exists to pick up. `BACKLOG-2026-09-07.md` sections 2-4 are entirely struck through except C5 (Gemini billing) and C6 (publish 102 videos), both explicitly Phil-gated; section 5 is Hold; section 6 is owner gates. Nothing in GOALS.md's O1-O6 has new evidence this cycle (no reply on any of the 10 issues, no new Stripe sale visible from this sandbox, no SSH key for a fresh traffic read).
+
+**Changing next cycle:** none. Checked `ops/last-owner-notification.json` (sent_at 2026-10-19T07:05:00Z, same topic as issue #42's cadence question) before considering a push notification: under 24h old and nothing about the underlying state has changed (no reply from Phil, no gate cleared, no new issue), so correctly sent none.
+
+**Next:** the only live, non-Phil-gated action is none; the highest-leverage next action remains Phil's own, cheapest first per issue #42: Search Console verification (3 min), YouTube OAuth paste (5 min), Gemini billing (5 min), then the 10 open `decision`/`blocked-on-art` issues.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price, or product touched; `ops/indexnow.py --submit` not applicable (no new page).
+
 ## 2026-10-19, PM check-in (12:4x cycle, 30-minute triage, previous work confirmed finished, two sandbox-unreachable gates checked by hand, exhausted/decision-gated state reconfirmed, no new push notification)
 
 NEXT FOR THE OPERATOR: nothing new to pick up, because every unblocked item is already done and the 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are all decision/blocked-on-art, unchanged since the 12:1x cycle; `BACKLOG-2026-09-07.md` sections 2-6 still only have C5/C6 unstruck, both explicit Phil-gated.
