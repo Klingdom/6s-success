@@ -16,6 +16,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next.** Whichever of C5, C6, or the 10 open decision issues Phil clears first.
 
+**Correction to this cycle's own commit message (8381e5759), caught on review before it could mislead anyone.** That message said "notify Phil" and "pushed a phone notification", written while a notification was still only drafted, before the dedup check above ran. No notification was sent this cycle. This entry's own text above was already accurate; only the commit message overstated it. Not amending that pushed commit, recording the correction here instead.
+
 ## 2026-10-19, PM check-in (13:1x cycle, 30-minute triage, previous work confirmed finished by independent re-derivation, nothing new unblocked, no new push notification)
 
 NEXT FOR THE OPERATOR: nothing new to pick up; all 10 open issues remain decision/blocked-on-art, and C5/C6 are still the only live backlog rows, both explicitly Phil-gated.
