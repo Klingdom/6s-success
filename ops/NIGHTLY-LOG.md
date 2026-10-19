@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle: a genuinely complete local preflight.py run for once, nothing newly unblocked
+
+**Did:** Unshallowed and attached clean, fast-forwarding twice as two concurrent sessions pushed mid-cycle (onto `89705c3f1`, then `a7b45ec1f`). Re-verified independently rather than citing: all 10 GitHub issues pulled fresh, identical set, all decision/blocked-on-art, #42's own comments unchanged since 2026-10-18T19:54:35Z, no reply from Phil. `BACKLOG-2026-09-07.md` grepped directly: only C5/C6 unstruck, both explicit YES-Phil. `cold_read_ledger.py --stale` 0, `--next` 0 new candidates. `cycle_signal.py --check` SAME. `inbox_agent.py --apply`: no mail credential, unchecked. Ran `python ops/preflight.py --fast` to a genuine finish this time, past the point most recent local runs get killed at `gate_tests`'s outer timeout: it is not a hang, just a slow sequential 250+-file test pass. 0 FAIL, 27 warnings, every one a previously diagnosed sandbox limit (no Stripe/SSH/mail credential, no egress to the live site or Google). It also flipped `core.hooksPath` on locally (unset before), a git-config fix with no tracked-file diff.
+
+**Verified:** `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), CI "Checks" green on the latest pushed commit.
+
+**Went well:** a complete, untruncated local preflight pass for once, rather than another early kill.
+
+**Did not go well:** still nothing customer-facing shipped; no row on either backlog is genuinely unblocked beyond the Phil-gated items already on GitHub.
+
+**Changing next cycle:** nothing; no new defect, no new gate needed.
+
+**Next:** whichever of the 10 open issues Phil clears first. No push notification: this is the same unchanged state already alerted on.
+
+Pushed: `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`. No content, price or product touched; no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 05:4x cycle: a concurrent twin cycle had already done this slot's work; independently reconfirmed rather than duplicated, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line, because `BACKLOG-2026-09-07.md` sections 2-4 still have only C5/C6 unstruck (both explicit **YES, Phil**) and all 10 open GitHub issues remain `decision`/`blocked-on-art`, #42 unchanged since 2026-10-18T19:54:35Z.
