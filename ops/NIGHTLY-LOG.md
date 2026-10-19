@@ -12,6 +12,26 @@ send a second notification on the same topic within 24h of that timestamp
 unless the underlying state has genuinely changed (a real reply from Phil, a
 gate cleared, a new one opened).
 
+## PM check-in, 2026-10-19, 09:4x cycle: previous work confirmed finished, exhausted/decision-gated state independently reconfirmed, no new push notification
+
+NEXT FOR THE OPERATOR: hold the line and re-verify rather than start anything, because all 10 open GitHub issues are still `decision`/`blocked-on-art` (#42 unchanged since 2026-10-18T19:54:35Z, still zero reply from Phil) and `BACKLOG-2026-09-07.md` sections 2 to 4 carry exactly two unstruck rows, both explicitly "YES, Phil" (C5 Gemini billing, C6 YouTube OAuth).
+
+Attached clean: checkout arrived shallow and detached per Step 0, `fetch origin main` + `fetch --unshallow` + `checkout main` + ff-only merge onto `9e76ab911` (no "unrelated histories" error), tree clean throughout, no force/rebase/reset. Previous work (the 08:4x PM check-in, the 08:5x operator cycle, and the hourly check-in record after it) confirmed finished, not cited: tree was already clean before this cycle touched anything.
+
+**Independently re-verified, not inherited.** Pulled all 10 open GitHub issues fresh via the API: identical set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels, #42's `updated_at` unchanged, 0 open PRs. Re-derived `BACKLOG-2026-09-07.md` sections 2 to 4 myself with a fresh grep for unstruck `| **Xn** |` rows rather than trusting the prior cycle's count: exactly C5 and C6 remain, both owner-gated. `CHECKIN-LOG.md`'s last four straight hourly entries each read "nothing measurable moved," 191 to 195 commits/24h recorded as effort not result. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 of 276.
+
+**A flake caught and confirmed, not reported as a defect.** `affiliate.py --check` first failed with "could not read 3 delivered document(s)" while a concurrent `preflight.py` was running in this same sandbox; opened all three PDFs directly with `pymupdf` and they parsed fine (492/20/12 pages), then reran `affiliate.py --check` solo: clean, 165 documents. Resource contention between two processes reading the same large PDFs concurrently, not a real regression; not filing a new gate for a shape this repo's own concurrent-preflight lock (BACKLOG item 19) already exists to prevent, since this was two different tools, not two `preflight.py` runs.
+
+`preflight.py` run to completion in the background: 0 FAIL/ERROR through every gate reached (confirmed by reading the full gate-name log, not just the tail), genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang; killed at the 100s mark and reported unchecked past that point, not assumed passing.
+
+**Checked `ops/last-owner-notification.json` before considering a push notification**, per this file's own header note: `sent_at: 2026-10-19T07:05:00Z`, same topic (#42's cadence finding), under 3 hours old, nothing about the underlying state has changed since (no reply from Phil, no gate cleared, no new issue). Correctly sent no duplicate.
+
+No new defect found small enough to close in this slot; nothing mis-cited that needed correcting.
+
+Not starting the cadence-reduction decision or any backlog item myself: #42 already names the two live options and is Phil's call.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck (regenerated). No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, scheduled operator cycle (08:5x): exhausted/decision-gated state independently reconfirmed from a fresh checkout, no new push notification
 
 Did: Fresh checkout, unshallowed and attached to main cleanly (ff-only, 1179 commits). Read GOALS.md, BACKLOG-2026-09-07.md's live sections 2 to 4, the last NIGHTLY-LOG.md entries, CLAUDE.md. Ran the gate suite directly rather than trusting the log's own claim: cold_read_ledger.py --stale (0 of 276 stale), check_urls.py (213/213), affiliate.py --check (166 documents clean), fix_dashes.py --check (0/0), inbox_agent.py --apply (no mail credential in this sandbox, unchecked not empty). preflight.py backgrounded to a genuine completion attempt: 76 gates ran clean, 0 FAIL, before hanging at the documented gate_tests headless-Chromium sandbox limitation; killed there rather than assumed passing. Regenerated the dashboard (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json).
