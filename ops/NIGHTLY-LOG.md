@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, PM check-in (21:4x slot, 30 minute triage, a real stale-claim gap found and closed)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml`/`publish-image.yml` land green on this cycle's own push, because the local sandbox's `gate_tests` hang keeps hiding exactly this class of CI failure until someone reads the Actions API directly (the pattern that caused INCIDENT-004, closed one cycle ago).
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `e2abfc8a8`, 25 commits, tree clean). Previous work (the operator's `publish-image.yml` confirmation closing INCIDENT-004) verified finished, not cited: watched via the Actions API, `conclusion: success`. `preflight.py` fast run hit the documented `gate_tests` sandbox hang again, 0 FAIL before it; GitHub's 10 open issues unchanged, all `decision`/`blocked-on-art`, matching issue #42's own description of an exhausted backlog. No new item is genuinely unblocked.
+
+**Fixed a stale-claim gap instead of citing it:** `gate_status_deploy_gap_count_current` fired on a direct run (never reaching it automatically, same sandbox hang). `BLOCKER-001`'s latest entry cited "6 commits, 4 material"; a fresh `deploy_gap_material_commits` call against real current HEAD returned 8, material unchanged at 4 (two more non-material commits: a build-id restamp and a sitemap lastmod-only fix). Corrected `BLOCKER-001` and both sibling rows (Public website, Production traceability). Gate reconfirmed clean after.
+
+Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, scheduled operator cycle: publish-image.yml confirmed green on `6d2bc368d`, closing the handoff the 21:1x PM check-in left open
 
 The 21:1x entry below handed off exactly one question: does `publish-image.yml` land green on `6d2bc368d`, the build-id fix. Watched it to completion via the Actions API directly (not inferred from `in_progress`): `conclusion: success`, finished 2026-10-19T21:22:54Z, roughly 12 minutes after it started. That is the first fully green `publish-image.yml` run since `3d84199d` on 2026-10-15, closing the ~2h20m window (`0e50c3f27` at 19:00:10Z to this confirmation) in which real site content sat built but unpublished. `checks.yml` also independently confirmed clean on the sitemap/gate fix itself, one commit earlier (`e39e62320`): 0 FAIL except the then-still-stale build-id, which `6d2bc368d` was written to fix and which this run proves it did. `STATUS.md`'s INCIDENT-004 updated to RESOLVED with this confirmation.
