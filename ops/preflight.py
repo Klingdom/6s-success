@@ -86,6 +86,7 @@ import traceback
 
 import browser as B
 import b9_claims
+import cycle_signal
 import fix_dialect
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29720,7 +29721,38 @@ def main() -> int:
         return 1
     print(f"  every gate passed" +
           (f", {len(WARN)} warning(s) worth a read" if WARN else ""))
+    maybe_record_cycle_signal(FAIL)
     return 0
+
+
+def maybe_record_cycle_signal(fail_list: list) -> bool:
+    """Record a fresh cycle_signal.py snapshot, but only on a genuinely
+    clean pass (fail_list empty).
+
+    2026-10-19, this operator: a clean full pass is exactly the moment
+    cycle_signal.py's own docstring says to --record a fresh snapshot, but
+    no cycle prompt ever calls it, so 58 consecutive cycles since the last
+    legitimate STATUS.md edit (2026-10-18 20:4x) each paid for the
+    CHANGED path's manual diff instead of getting SAME for free. Recording
+    it here, right where a clean run already proves itself, means the
+    next cycle's own --check benefits automatically rather than depending
+    on a cycle remembering a step no prompt asks for. A run with any FAIL
+    must never record: that would mark a broken tree as the trusted
+    baseline every later cycle skips re-checking.
+    Returns True if a snapshot was written, for the test to assert on.
+    """
+    if fail_list:
+        print("  cycle_signal: not recorded, this run has failing gate(s)")
+        return False
+    try:
+        cycle_signal.record(
+            f"auto-recorded by preflight.py's own clean completion, "
+            f"git HEAD {cycle_signal.git_head()[:10]}")
+        print("  cycle_signal: snapshot recorded (clean pass)")
+        return True
+    except Exception as e:
+        print(f"  cycle_signal: snapshot NOT recorded, {e}")
+        return False
 
 
 if __name__ == "__main__":

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state independently reconfirmed; closed the cycle_signal recording gap that every cycle since 2026-10-18 20:4x had been paying for by hand
+
+**Did:** Unshallowed and attached clean (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-19, `CLAUDE.md`, and the head of this log. GitHub's 10 open issues pulled fresh: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; #42 unchanged since 2026-10-18T19:54:35Z, no reply from Phil. `inbox_agent.py --apply`: no mail credential, unchecked. `cold_read_ledger.py --stale`: 0 of 276. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. `check_sellable.py` and `affiliate.py --check` each false-FAILed once on the documented bootstrap race (`build/products/` mid-rebuild, a module installing) and passed clean on immediate re-run, the same explainable shape several prior cycles have already named, not a regression.
+
+**Found the real gap, not just re-confirmed the standing one.** `cycle_signal.py --check` reported CHANGED against a 2026-10-18T16:55:34Z snapshot. `git log` showed the one real diff (a legitimate `STATUS.md` edit at 20:4x that day) but also showed 58 commits since with zero `--record` calls: every one of those cycles paid for a manual diff instead of getting SAME for free, because no cycle prompt ever calls `--record` and `preflight.py` never did either. Fixed at the root: `maybe_record_cycle_signal()` in `preflight.py` now runs automatically at the end of any pass that reaches `return 0` with zero FAIL, so the snapshot updates itself the next time a clean run completes (here or in a future session), without depending on a step no prompt asks for. Did not hand-record a snapshot now, since this cycle's own full `preflight.py` run hit the documented `gate_tests` sandbox hang (killed at 280s, 0 FAIL before it) rather than completing; recording on anything short of a genuine clean completion would be exactly the premature trust the tool exists to prevent.
+
+**Verified:** fail-then-pass proved in `ops/tests/test_preflight_cycle_signal_record.py` (4/4 cases): broke the FAIL-gate by hand first, watched it record a snapshot despite a FAIL present (red), restored, watched it correctly skip on FAIL and record on a clean pass, then confirmed `cycle_signal.check()` reports SAME right after and CHANGED again once a signal file is touched. `py_compile` and `ast.parse` clean on both files; `fix_dashes.py`/`fix_dialect.py` clean. Stale `/tmp/.preflight_py_running.lock` (pid 1568, confirmed dead) cleaned after the timeout kill. Dashboard regenerated: YELLOW, $0/$20,000 (carried forward), $19 all-time, 2 P0, 8 need-you, 1272 seven-day commits.
+
+**Went well:** found a real, fixable instance of the exact waste issue #42 is escalating, rather than filing a 31st identical reconfirmation.
+
+**Did not go well:** still nothing customer-facing shipped; the backlog itself has no unblocked row left (C5/C6 both explicit YES-Phil).
+
+**Changing next cycle:** nothing; the fix is self-sufficient.
+
+**Next:** whichever of the 10 open issues Phil clears first. No push notification: issue #42's condition is unchanged since the 02:1x alert today; a repeat alert would be the exact waste it argues against.
+
+Pushed: `ops/preflight.py`, `ops/tests/test_preflight_cycle_signal_record.py`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 04:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, no push notification
 
 Attached clean (unshallowed, ff-only merge onto 8b4a6d56e, tree clean, no concurrent push). Previous work confirmed finished, not cited: 10 open GitHub issues re-pulled fresh, unchanged, all decision/blocked-on-art; #42's comments both self-authored, none from Phil since 2026-10-14. preflight.py --fast: 0 FAIL before the documented gate_tests sandbox hang, confirmed genuinely stalled (flat CPU), killed by its own timeout; cleaned the stale lock. cold_read_ledger: 276/276 ledgered, 0 stale, 0 new candidates. check_urls.py 213/213, fix_dashes.py 0/0, check_sellable.py 124/126. cycle_signal flagged BACKLOG/STATUS changed against an old snapshot; diffed via git log, both already-logged fixes from later cycles, nothing new unblocked.
