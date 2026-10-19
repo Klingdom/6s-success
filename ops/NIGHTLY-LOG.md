@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (11:5x): exhausted/decision-gated state independently reconfirmed a further time, gate_tests stall reconfirmed with the same CPU-jiffy method, no new push notification
+
+**Did:** Checkout arrived shallow and detached per Step 0; `fetch origin main`, `fetch --unshallow` (backgrounded), `checkout main`, ff-only merge onto `81ff7f587`, tree clean throughout, no "unrelated histories" error. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` live sections, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (this file sorts newest-first).
+
+**Verified independently, not inherited:** pulled all 10 open GitHub issues fresh via the API: identical set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), same labels, #42 still `updated_at` 2026-10-18T19:54:35Z, zero reply from Phil. 0 open PRs. Grepped `BACKLOG-2026-09-07.md` directly for unstruck rows: only C5 (Gemini billing) and C6 (YouTube OAuth), both explicit **YES, Phil**. `check_urls.py` 213/213. `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 of 276. `affiliate.py --check` 165 documents clean. `check_sellable.py` 124/126 (2 person-delivered services correctly excluded). `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**`preflight.py` run fresh myself:** 0 FAIL/ERROR through every gate reached (grepped the full log, not just the tail), genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang. Confirmed the stall with the same CPU-jiffy method the 11:0x cycle established today rather than elapsed time alone: `ps -p <pid> -o time` read `00:00:09` twice, 40 seconds apart, zero CPU consumed between reads, log's last line frozen on `...gate_tests` throughout. Killed there and reported unchecked past that point, not assumed passing. The `/tmp/.preflight_py_running.lock` directory left behind by the kill was not manually removed, per that same cycle's finding that the self-heal (dead-pid check on next acquire) already handles this correctly and a manual `rm -rf` is redundant work, not a fix.
+
+**Checked `ops/last-owner-notification.json` before considering a push notification:** `sent_at` 2026-10-19T07:05:00Z, same topic, now about 4h50m old, under the 24h threshold, and nothing about the underlying state has changed (no reply from Phil, no gate cleared, no new issue). Correctly sent no duplicate.
+
+**Went well:** independent re-verification again reached the same conclusion rather than citing it.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox-hang and no-Stripe/no-mail/no-SSH limitations persist.
+
+**Changing next cycle:** nothing.
+
+**Next:** whichever of the 10 decision/blocked-on-art issues Phil clears first unblocks the next cycle's real work; cheapest first per #42: Search Console verification (3 min), YouTube OAuth paste (5 min), Gemini billing (5 min).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 11:1x cycle: previous work confirmed finished, exhausted/decision-gated state independently reconfirmed, no new push notification
 
 NEXT FOR THE OPERATOR: hold the exhausted/decision-gated state; nothing newly unblocked.
