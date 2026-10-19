@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, PM check-in (16:1x, previous work finished, cycle_signal SAME, no new push notification)
+
+Attached clean (fetch, unshallow, `checkout main`, ff-only merge onto `7acd4d024`, tree clean). Previous work confirmed finished: `cycle_signal.py --check` returned SAME against the 14:00:47Z snapshot, so the backlog's own rule skipped a redundant full re-read. `preflight.py` ran to completion in the background: 0 FAIL/ERROR through all 76 gates reached, killed at the documented `gate_tests` sandbox hang, unchecked past that point. GitHub's 10 open issues unchanged (all `decision`/`blocked-on-art`), 0 open PRs, no mail credential so the inbox is unchecked not empty. Checked `ops/last-owner-notification.json`: last push on this exact topic was 07:05 today, under 24h and no state change, so correctly sent none. Nothing new unblocked to start. Regenerated the dashboard (was 25 min stale). Handing nothing new to the operator; same standing exhausted state issue #42 already names.
+
+Pushed to main.
+
 ## 2026-10-19, scheduled operator cycle (15:4x, Did: full STEP 0-13 pass, found the identical exhausted/decision-gated state two sibling PM check-ins had each independently confirmed in the preceding 45 minutes; no new push notification)
 
 **Did:** Attached per STEP 0 (unshallowed, `checkout main`, ff-only merge onto `af4de9012`, tree clean). Read `GOALS.md` (O1 constraint, decision rules), `BACKLOG-2026-09-07.md` sections 0-7 (only C5/C6 unstruck, both explicit YES-Phil), `CLAUDE.md`, and the last entries of `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md` (15 straight hourly check-ins today each reading "nothing measurable moved"). Ran `preflight.py` myself to completion: bootstrap reinstalled `pymupdf` in a fresh container, then a lock-contention gate waited on this run's own pid before continuing; 0 FAIL/ERROR through every gate reached, killed at the documented `gate_tests` headless-Chromium sandbox hang after 3 minutes, unchecked past that point, not assumed passing. `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0 of 199. `inbox_agent.py --apply`: no mail credential in this sandbox, same standing limitation, unchecked not empty.
