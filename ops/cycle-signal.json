@@ -1,8 +1,8 @@
 {
   "combined_hash": "86421264bf1ab8529e02a160270a4a569f4f4b58b246725f3238aa457c5a744e",
-  "git_head": "5a0911c6d8cdaed70906f35e059ff30d9ccb363b",
-  "note": "PM 04:4x: preflight --fast 0 FAIL/ERROR through gate_tests (killed there, confirmed genuine stall via 3 flat CPU-tick samples, stale lock pid 770 cleaned), post-gate_tests gates (status_currency, deploy_verdict_current, deploy_gap_count_current, owner_actions_last_measured_current) all called directly and clean, check_urls 213/213, fix_dashes 0/0, check_sellable 124/126. Snapshot had sat stale at 2026-10-18T16:55:34Z for 24+ cycles despite repeated clean passes; recording fresh so the next cycle can skip the manual diff.",
-  "recorded_at": "2026-10-19T04:47:24Z",
+  "git_head": "fec25a927f30fb42711f6cdb961749b88829a442",
+  "note": "auto-recorded by preflight.py's own clean completion, git HEAD fec25a927f",
+  "recorded_at": "2026-10-19T05:41:57Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "7e27f1f6a9d412310b4b887daa01b62b490674a8feffca240de4ac39fd7c5a5b",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",

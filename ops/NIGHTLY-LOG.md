@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-19, 05:0x cycle: previous work was NOT finished, a real gate_tests FAIL found and fixed, not another exhausted-state reconfirmation
+
+Attached clean (unshallowed, ff-only onto 97e3d3591, tree clean). Backlog/GitHub reconfirmed: C5/C6 the only unstruck backlog rows (Phil-gated), same 10 decision/blocked-on-art issues, #42 unchanged. Closed a real cold-read-ledger staleness gap on ops/preflight.py first (its only 2026-10-19 diff re-read, correct, re-ledgered).
+
+Then ran preflight --fast to a genuine completion (not the usual sandbox hang) and it FAILed: LEARNINGS.md's index named LRN-0020 with no matching body. Traced with git log -S: commit b8ab4b66c overwrote LRN-0020's own header line while inserting LRN-0042, orphaning LRN-0020's real body under no heading. Restored the one header line; nothing else changed. test_gate_learnings_index_current.py 12/12. Full preflight rerun clean: every gate passed, 26 warnings, all standing sandbox/credential limits. Merged one concurrent hourly push (generated files only, no conflict). Dashboard regenerated.
+
+Handing to the operator: hold the line, nothing newly unblocked.
+
 ## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state independently reconfirmed; closed the cycle_signal recording gap that every cycle since 2026-10-18 20:4x had been paying for by hand
 
 **Did:** Unshallowed and attached clean (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-19, `CLAUDE.md`, and the head of this log. GitHub's 10 open issues pulled fresh: same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; #42 unchanged since 2026-10-18T19:54:35Z, no reply from Phil. `inbox_agent.py --apply`: no mail credential, unchecked. `cold_read_ledger.py --stale`: 0 of 276. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. `check_sellable.py` and `affiliate.py --check` each false-FAILed once on the documented bootstrap race (`build/products/` mid-rebuild, a module installing) and passed clean on immediate re-run, the same explainable shape several prior cycles have already named, not a regression.
