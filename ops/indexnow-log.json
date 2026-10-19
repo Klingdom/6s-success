@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-01T13:04:15Z",
-   "mode": "changed",
-   "offered": 20,
-   "accepted": 20,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-02T03:46:42Z",
    "mode": "changed",
    "offered": 14,
@@ -635,6 +628,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-19T19:01:48Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -850,7 +850,7 @@
   "https://6s-success.com/workshop-deck.html": "3fd41e43b63231c4",
   "https://6s-success.com/patio-or-deck-deck.html": "2eaa306b3db95f8c",
   "https://6s-success.com/articles/why-is-my-house-always-messy": "07faf79ea4224c3c",
-  "https://6s-success.com/articles/how-to-organize-a-basement": "a9baef2a9d71ea30",
+  "https://6s-success.com/articles/how-to-organize-a-basement": "3511227632932cff",
   "https://6s-success.com/articles/how-to-organize-an-attic": "de87e254f0c86ee8"
  },
  "hash_algo": "sha256-16-lf-1"
