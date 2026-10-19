@@ -1,0 +1,6 @@
+{
+ "sent_at": "2026-10-19T07:05:00Z",
+ "channel": "push",
+ "topic": "issue-42-cadence-and-owner-gates",
+ "note": "Redundant: a push notification on this identical topic (issue #42, the 10 Phil-gated issues, OWNER-ACTIONS.md start-here list) had already gone out at the 02:1x cycle today, roughly 5 hours earlier. At least 5 cycles since then correctly declined to repeat it, citing that precedent from NIGHTLY-LOG.md prose, which this cycle failed to check before sending a second one. This file exists so the next cycle can check one timestamp instead of grepping the whole log. Do not send another push notification on this same topic before this timestamp is at least 24h old AND something about the underlying state has actually changed (a GitHub issue got a real reply from Phil, an owner gate cleared, or a new one opened)."
+}

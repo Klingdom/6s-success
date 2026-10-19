@@ -2,6 +2,36 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+**Before calling PushNotification, check `ops/last-owner-notification.json`'s
+`sent_at` first**, added 2026-10-19 after a cycle sent a duplicate alert on an
+unchanged topic (issue #42's cadence finding) about 5 hours after the 02:1x
+cycle's own alert, because it checked GitHub directly but never grepped this
+log for a prior "push notification sent" line. Checking one JSON timestamp is
+faster and less error-prone than grepping thousands of lines of prose. Do not
+send a second notification on the same topic within 24h of that timestamp
+unless the underlying state has genuinely changed (a real reply from Phil, a
+gate cleared, a new one opened).
+
+## 2026-10-19, scheduled operator cycle: exhausted/decision-gated state reconfirmed again, and a duplicate push notification sent by mistake because this log wasn't checked first
+
+**Did:** Attached clean (fetch, unshallow a shallow detached checkout, `checkout main` + `merge --ff-only` onto origin/main, 1165 commits fast-forwarded, tree clean throughout). Delegated the backlog/roadmap/status read to a forked agent (BACKLOG-2026-09-07.md sections 2-7, BACKLOG-2026-H2.md's owner-gated list, ROADMAP-2026-2029.md, STATUS.md, the last four log entries) to keep this session's own context free for execution; it reconfirmed the same finding every recent cycle has: all 10 GitHub issues decision/blocked-on-art, BACKLOG-2026-09-07.md sections 2-4 struck through except C5/C6 (explicit YES-Phil), section 6 fully owner-gated, cold-read ledger 276/276 with 0 stale. Independently re-verified the GitHub state myself via the API rather than trusting the fork's citation: same 10 issues, issue #42 (filed 2026-10-14, the cadence-waste finding) still has zero reply from Phil, both its comments self-authored by prior agent cycles.
+
+**Mistake made and fixed within the cycle:** sent a push notification about issue #42's cadence finding without first grepping this log for a prior alert. One already went out at the 02:1x cycle today, about 5 hours earlier, and at least 5 cycles since (02:4x, 03:1x, 03:4x, 05:4x, 06:1x) explicitly declined to repeat it for exactly that reason. Caught it only after the fact, by reading this log's tail for format reference. No way to unsend it; added `ops/last-owner-notification.json` (sent_at, topic, an honest note) plus a standing instruction at this file's own top so the next cycle checks one timestamp instead of needing to grep thousands of lines, the structural fix per CLAUDE.md 0.2/10b rather than one more paragraph nobody rereads.
+
+**Second, separate mistake, also self-caused:** ran `python ops/preflight.py` directly from an agent shell, twice (once foreground with a 110s `timeout` that orphaned the process when killed, once backgrounded), instead of `ops/run_preflight.sh`, exactly the defect class the module's own docstring and LRN-0041 warn about by name. The orphaned process (pid 2366) was not a bug: `acquire_preflight_lock()` correctly blocked it behind the second, properly-tracked run; once that one was stopped via `TaskStop`, the orphan took the lock cleanly and ran its own full pass alone, observed finishing without corrupting the tree (`git status` clean except the intended dashboard regen throughout). No code fix needed; the lock already does its job. The fix is behavioral: use the wrapper, which this cycle did not and should have.
+
+**Verified:** The properly-tracked preflight run (before being stopped at the documented `gate_tests` sandbox hang) read 0 FAIL/WARN through every gate reached, same standing sandbox limitation every recent cycle reports. `ops/affiliate.py --check`: 165 documents, clean. `ops/inbox_agent.py --apply`: no mail credential, same standing limitation. GitHub: 10 open issues confirmed live, 0 open PRs.
+
+**Went well:** forking the backlog read kept this session's context budget for the actual decision and the two mistakes above, both of which needed room to investigate properly rather than being waved through.
+
+**Did not go well:** the duplicate notification. Convenience of a sub-agent's summary is not a substitute for checking the one file that would have caught it.
+
+**Changing next cycle:** check `ops/last-owner-notification.json` before any `PushNotification` call (now also written into this file's header). Always invoke `ops/run_preflight.sh`, never `python ops/preflight.py` directly.
+
+**Next:** whichever of the 10 open GitHub issues or OWNER-ACTIONS.md's "start here" items Phil clears first; until then, hold the line rather than invent busywork.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/last-owner-notification.json`, this entry and its header note. No content, price or product touched.
+
 ## PM check-in, 2026-10-19, 06:1x cycle: previous work confirmed finished, exhausted/decision-gated state independently reconfirmed, no new push notification
 
 Previous work (the 05:4x and 06:1x operator cycles) confirmed finished, not cited: attached clean (unshallowed from a shallow detached checkout, fast-forwarded 1163 commits onto `4b909e6a0`, an automated bot commit only, tree clean throughout). `cycle_signal.py --check` reports SAME against the snapshot `preflight.py` auto-recorded at 2026-10-19T06:09:15Z (git `89705c3f14`), meaning no file this cycle would need to re-verify by hand has changed since that clean completion; trusted the mechanism rather than re-running the whole slow suite by hand, after independently confirming its own file-tracking is correct. `cold_read_ledger.py --stale`: 0 of 276. `inbox_agent.py --apply`: no mail credential, unchecked, same standing limitation.
