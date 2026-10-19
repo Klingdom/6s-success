@@ -18731,6 +18731,92 @@ def keyword_demand_staleness_problem(payload, now) -> str:
     return ""
 
 
+KEYWORD_DEMAND_RESCORE_STALE_COMMITS = 5
+
+
+def keyword_demand_rescore_staleness_problem(
+        scored_against_commit: str, site_commits_since: list) -> str:
+    """Pure logic behind gate_keyword_demand_rescored_current, unit
+    testable without git or disk.
+
+    LRN-0032 (2026-10-02) already named this exact failure once: `status`
+    in ops/keyword-demand.json is not a property of the query, it is the
+    result of scoring that query against `site/` AS IT STOOD when the
+    harvest, or the last `--rescore`, ran. `--rescore` re-derives every
+    status for free, no network, pure functions over files already on
+    disk, which is exactly why LRN-0032 called reading a stale status
+    inexcusable. Nothing wired that lesson into a gate, so it recurred:
+    found live 2026-10-19 by hand, scheduled operator, 19 of 2,821 rows
+    (including the attic and basement articles D-031 had already shipped
+    five days before the harvest's own `checked_at`) were still scoring
+    against a corpus five days stale, both pages wrongly reading as a
+    0.0-coverage `gap` against `/about.html` when a `--rescore` moved them
+    to `covered` in under a second. `gate_keyword_demand_not_stale`
+    above only watches the *harvest's* age, which the weekly network
+    fetch keeps within its own 10-day ceiling regardless; it says nothing
+    about whether the *scores* still match a `site/` that several
+    sessions a day keep editing. This gate watches that second thing.
+
+    scored_against_commit is payload.get("scored_against_commit") (the
+    commit `--rescore` or the harvest itself last scored against, or
+    None/"" if the field predates either). site_commits_since is the list
+    returned by a `git log <commit>..HEAD -- site/` style call (short
+    hashes or full, only the length is read here). A WARNING, matching
+    every sibling staleness gate: no customer-facing claim regresses
+    between a rescore and the next one, only this file's own accuracy.
+
+    Proof this can fail: ops/tests/test_gate_keyword_demand_rescored_
+    current.py calls this directly with 0, 4, and 5 commits and asserts
+    the warning is absent, absent, and present respectively, then with
+    scored_against_commit=None/"" and asserts it fires by name too.
+    """
+    if not scored_against_commit:
+        return ("ops/keyword-demand.json has no scored_against_commit "
+                "field, so whether its statuses still match the current "
+                "site/ has never been checked. Run "
+                "`python ops/keyword_demand.py --rescore` (free, no "
+                "network) to record one.")
+    n = len(site_commits_since)
+    if n >= KEYWORD_DEMAND_RESCORE_STALE_COMMITS:
+        return ("ops/keyword-demand.json was last scored against %s, but "
+                "%d commit(s) have touched site/ since. Per-query status "
+                "is scored against site/ as it stood at that commit, not "
+                "as it stands now (LRN-0032); run "
+                "`python ops/keyword_demand.py --rescore` (free, no "
+                "network, pure functions over files already on disk) to "
+                "re-derive every status against the current corpus."
+                % (scored_against_commit, n))
+    return ""
+
+
+def gate_keyword_demand_rescored_current() -> None:
+    """ops/keyword-demand.json's per-query statuses must not drift stale
+    against site/ between rescores. See keyword_demand_rescore_staleness_
+    problem's own docstring for the live defect that motivated this."""
+    path = os.path.join(ROOT, "ops", "keyword-demand.json")
+    if not os.path.exists(path):
+        return
+    try:
+        payload = json.loads(io.open(path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    commit = payload.get("scored_against_commit")
+    since = []
+    if commit:
+        try:
+            out = subprocess.run(
+                ["git", "log", "--format=%H", "%s..HEAD" % commit,
+                 "--", "site/"],
+                cwd=ROOT, capture_output=True, text=True, timeout=60,
+            ).stdout
+            since = [ln.strip() for ln in out.splitlines() if ln.strip()]
+        except Exception:                                      # noqa: BLE001
+            return
+    problem = keyword_demand_rescore_staleness_problem(commit, since)
+    if problem:
+        warn("keyword-demand-rescored-current", problem)
+
+
 def owner_questions_staleness_problem(payload, now, limit_days=10):
     """Pure logic for gate_owner_questions_not_stale, testable without a clock.
 
@@ -29619,6 +29705,7 @@ def main() -> int:
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_cold_read_lanes_complete)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_keyword_demand_rescored_current)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
     run_gate(gate_indexation_check_not_stale)

@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 218,
+  "pages_checked": 221,
   "failures": [],
   "rows": [
     {
@@ -90,7 +90,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -194,11 +194,11 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -212,13 +212,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "covered"
     },
     {
       "query": "attic organization tips",
@@ -230,13 +230,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "attic storage ideas",
@@ -248,13 +248,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "attic storage ideas australia",
@@ -266,13 +266,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage ideas diy",
@@ -284,11 +284,11 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -302,13 +302,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage ideas ikea",
@@ -320,13 +320,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage ideas on a budget",
@@ -338,11 +338,11 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -356,13 +356,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage ideas pinterest",
@@ -374,13 +374,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage ideas uk",
@@ -392,13 +392,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "attic storage ideas with trusses",
@@ -410,13 +410,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "attic storage organization ideas",
@@ -428,13 +428,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "baby clothes organizer ideas",
@@ -468,7 +468,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -809,13 +809,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "covered"
     },
     {
       "query": "basement organization ideas diy",
@@ -827,12 +827,12 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -845,13 +845,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "basement organization ideas pinterest",
@@ -863,13 +863,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "basement organization ideas reddit",
@@ -881,13 +881,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "basement stair landing storage ideas",
@@ -917,13 +917,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "basement storage ideas diy",
@@ -935,11 +935,11 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -953,13 +953,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "basement storage ideas for toys",
@@ -971,11 +971,11 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -989,13 +989,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "basement storage ideas minecraft",
@@ -1007,13 +1007,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "basement storage ideas on a budget",
@@ -1025,13 +1025,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "basement storage ideas pinterest",
@@ -1043,13 +1043,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "basement storage ideas reddit",
@@ -1061,13 +1061,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "basement storage ideas with doors",
@@ -1079,13 +1079,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "basement storage organization ideas",
@@ -1097,13 +1097,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "basic declutter home cleaning",
@@ -2148,7 +2148,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -2219,10 +2219,10 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best way to organize baby clothes",
@@ -2238,7 +2238,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2256,7 +2256,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2780,7 +2780,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -2798,7 +2798,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -3303,9 +3303,9 @@
       "best_page": "/zones/family-room-the-blanket-and-comfort-zone.html",
       "best_page_title": "How to organize the family room blanket storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/family-room.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -3576,7 +3576,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -3828,7 +3828,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -4975,7 +4975,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -6545,7 +6545,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -6800,7 +6800,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -7482,12 +7482,12 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -8126,7 +8126,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -10371,7 +10371,7 @@
       "best_page_title": "How to organize the pantry snack station",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/sentimental-items-without-guilt.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -11791,7 +11791,7 @@
       "best_page_title": "How to organize the garage sports gear storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -13185,7 +13185,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -13221,7 +13221,7 @@
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/entryway-deck.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -14340,8 +14340,8 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/photo-check.html",
+      "best_page_title": "Photo Check: 6S Success",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/kids-bedroom-deck.html",
@@ -14484,8 +14484,8 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/photo-check.html",
+      "best_page_title": "Photo Check: 6S Success",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/kids-bedroom-deck.html",
@@ -15225,7 +15225,7 @@
       "best_page_title": "How to organize the living room walkway",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -16412,7 +16412,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -16981,7 +16981,7 @@
       "best_page_title": "How to organize the living room walkway",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -16999,7 +16999,7 @@
       "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -17415,7 +17415,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/corporate.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -17850,7 +17850,7 @@
       "best_page_title": "How to organize the nursery book storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -18742,10 +18742,10 @@
       "best_page": "/family-room-deck.html",
       "best_page_title": "The Family Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/family-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a basement laundry room",
@@ -18761,10 +18761,10 @@
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a basement workshop",
@@ -18779,10 +18779,10 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a bathroom",
@@ -18893,7 +18893,7 @@
       "best_page_title": "Where to start decluttering when it all feels like too much",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -20897,7 +20897,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22311,7 +22311,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -22329,7 +22329,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -22457,7 +22457,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22957,7 +22957,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -22975,7 +22975,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -23011,7 +23011,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -23211,7 +23211,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -24660,7 +24660,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -24678,7 +24678,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -24714,7 +24714,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -24732,7 +24732,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25791,8 +25791,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/primary-bedroom-deck.html",
@@ -25809,8 +25809,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -25831,7 +25831,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -25845,8 +25845,8 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/primary-bedroom-deck.html",
@@ -27547,7 +27547,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27746,7 +27746,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -28416,8 +28416,8 @@
         "how to organize nightstand"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/primary-bedroom-deck.html",
@@ -28868,8 +28868,8 @@
         "how to organize gallery wall"
       ],
       "room": "",
-      "best_page": "/zones/garage-the-hand-tool-wall-and-cabinets.html",
-      "best_page_title": "How to organize the garage tool wall",
+      "best_page": "/photo-check.html",
+      "best_page_title": "Photo Check: 6S Success",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/kids-bedroom-deck.html",
@@ -29292,7 +29292,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -29634,10 +29634,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize stairs closet",
@@ -29653,7 +29653,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -29734,7 +29734,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -29773,7 +29773,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -29791,7 +29791,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -29809,7 +29809,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -31647,10 +31647,10 @@
       "best_page": "/articles/family-wont-put-things-back.html",
       "best_page_title": "Why your family won't put things back where they belong",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to put together drying rack",
@@ -31721,7 +31721,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -32141,7 +32141,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -32159,7 +32159,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -32213,7 +32213,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -32378,7 +32378,7 @@
       "best_page_title": "How to organize the patio or deck outdoor storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/zones/patio-or-deck-the-outdoor-storage-zone.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -32432,7 +32432,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -32739,7 +32739,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/dining-room-the-sideboard-storage.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -32774,10 +32774,10 @@
       "best_page": "/zones/hall-closet-the-seasonal-and-guest-zone.html",
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to store snacks",
@@ -33051,7 +33051,7 @@
       "best_page_title": "How to organize the living room walkway",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -33967,7 +33967,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -34040,7 +34040,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-keep-buying-things-you-already-own.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -34169,7 +34169,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -35111,7 +35111,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -35454,7 +35454,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -35562,7 +35562,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -35580,7 +35580,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -35904,7 +35904,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -36102,7 +36102,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -37887,7 +37887,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -38592,7 +38592,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -39046,7 +39046,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -39195,7 +39195,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -40078,7 +40078,7 @@
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -40096,7 +40096,7 @@
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -40932,7 +40932,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -44437,7 +44437,7 @@
       "best_page_title": "How to organize the hall closet seasonal storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -44760,13 +44760,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-an-attic.html",
+      "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "small bathroom organization ideas",
@@ -45645,7 +45645,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -46284,7 +46284,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46302,7 +46302,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/why-everyone-in-your-house-disagrees-about-clean.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -46465,7 +46465,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -46501,7 +46501,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46519,7 +46519,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46555,7 +46555,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46573,7 +46573,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -46663,7 +46663,7 @@
       "best_page_title": "How to organize the nursery baby clothes",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46754,7 +46754,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -46880,7 +46880,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -46952,7 +46952,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -47097,7 +47097,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -47151,7 +47151,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -48152,13 +48152,13 @@
         "basement organization ideas"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "best_page": "/articles/how-to-organize-a-basement.html",
+      "best_page_title": "How to organize a basement, one zone at a time",
+      "coverage": 0.5,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "unique dining room ideas",
@@ -48246,7 +48246,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48264,7 +48264,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48282,7 +48282,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48300,7 +48300,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48318,7 +48318,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48336,7 +48336,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48354,7 +48354,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48374,7 +48374,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48392,7 +48392,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48428,7 +48428,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -49061,7 +49061,7 @@
       "best_page_title": "How to organize the living room walkway",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/living-room-the-floor-and-circulation-path.html",
+      "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -49692,7 +49692,7 @@
       "best_page_title": "How to organize a stair landing, zone by zone",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -49820,7 +49820,7 @@
       "best_page_title": "How to organize the garage bulk and overhead storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -49874,7 +49874,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -50218,7 +50218,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -50823,7 +50823,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-basement.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -51606,5 +51606,7 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ]
+  ],
+  "scored_at": "2026-10-19T18:07:36Z",
+  "scored_against_commit": "c95de8903"
 }

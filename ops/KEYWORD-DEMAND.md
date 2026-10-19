@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-14T14:47:50Z from google, bing, 151 seeds, 302 attempts: 262 returned completions, 40 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** not recorded, so treat every status here as of unknown age against 218 page(s). Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-19T18:07:36Z against 221 page(s) at commit c95de8903. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2821. Checked against 218 published page titles: 1178 covered, 1457 partial, 186 gap.
+**Queries found:** 2821. Checked against 221 published page titles: 1198 covered, 1456 partial, 167 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,34 +17,26 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 186, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 167, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
-| 1 | attic organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | basement organization ideas pinterest | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) |
 | 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) |
 | 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) |
-| 2 | attic storage ideas ikea | - | More storage will not fix a messy room (0.33) |
 | 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
 | 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 2 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | attic storage ideas with trusses | - | More storage will not fix a messy room (0.33) |
-| 3 | basement organization ideas reddit | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
 | 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) |
 | 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) |
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
-| 3 | unfinished basement organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 4 | attic storage ideas for clothes | - | More storage will not fix a messy room (0.33) |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
 | 4 | foyer design ideas photos | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
@@ -65,7 +57,6 @@ Showing the top 80 of 186, ordered by the best rank the phrase reached in any on
 | 5 | how to organize crafts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
-| 6 | attic storage ideas pinterest | - | More storage will not fix a messy room (0.33) |
 | 6 | foyer design ideas for flat | - | What does a 5S engagement cost, and why no flat rate? (0.33) |
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) |
 | 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) |
@@ -74,7 +65,6 @@ Showing the top 80 of 186, ordered by the best rank the phrase reached in any on
 | 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
 | 6 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
 | 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 7 | attic storage ideas pictures | - | More storage will not fix a messy room (0.33) |
 | 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) |
 | 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
@@ -82,7 +72,6 @@ Showing the top 80 of 186, ordered by the best rank the phrase reached in any on
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 7 | organizing your bedroom tips for decluttering | - | Decluttering vs. organizing: what's actually different (0.33) |
 | 8 | back porch society | - | Why your family won't put things back where they belong (0.33) |
-| 8 | basement storage ideas minecraft | - | More storage will not fix a messy room (0.33) |
 | 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
 | 8 | foyer design ideas pinterest | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -96,15 +85,26 @@ Showing the top 80 of 186, ordered by the best rank the phrase reached in any on
 | 8 | how to store extra blankets | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 8 | stove on floor plan | - | Venture plan (0.33) |
-| 9 | attic storage ideas australia | - | More storage will not fix a messy room (0.33) |
-| 9 | basement storage ideas pinterest | - | More storage will not fix a messy room (0.33) |
 | 9 | clothes sorter hamper near me target | - | How to organize the nursery baby clothes (0.20) |
 | 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) |
+| 9 | how to hold a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) |
+| 9 | organize hard disk drives | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 9 | organize packing kit guide | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 9 | what problems exist in this kitchen | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
+| 9 | why do i have trouble climbing stairs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 10 | card games organizer storage | - | More storage will not fix a messy room (0.33) |
+| 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
+| 10 | foyer design ideas india | - | The Entryway Deck: the printable PDF has moved (0.00) |
+| 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) |
+| 10 | how to organize pc | - | - (0.00) |
+| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 10 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1457.
+Showing the top 60 of 1456.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -175,7 +175,7 @@ Showing the top 60 of 1457.
 |---|---|---|---|---|
 | Dining Room | 38 | 0 | 21 | 17 |
 | Entryway | 50 | 2 | 24 | 24 |
-| Family Room | 29 | 1 | 20 | 8 |
+| Family Room | 29 | 1 | 19 | 9 |
 | Garage | 80 | 2 | 36 | 42 |
 | Guest Bathroom | 22 | 2 | 15 | 5 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
@@ -183,7 +183,7 @@ Showing the top 60 of 1457.
 | Home Office | 59 | 1 | 29 | 29 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 96 | 2 | 48 | 46 |
-| Laundry Room | 72 | 0 | 20 | 52 |
+| Laundry Room | 72 | 0 | 19 | 53 |
 | Living Room | 91 | 2 | 58 | 31 |
 | Mudroom | 45 | 1 | 22 | 22 |
 | Nursery | 62 | 2 | 26 | 34 |
@@ -191,7 +191,7 @@ Showing the top 60 of 1457.
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
-| Workshop | 66 | 4 | 40 | 22 |
+| Workshop | 66 | 4 | 38 | 24 |
 
 1925 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

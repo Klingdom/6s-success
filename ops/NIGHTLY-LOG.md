@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator (fresh checkout, measurement-layer defect found and fixed, new gate added)
+
+**Did:** Attached clean. Backlog exhausted (GREEN done, only C5/C6 Phil-gated), cold-read ledger 0 stale/un-ledgered, no Phil reply since 10-18, no mail. Went upstream to measurement. `ops/keyword-demand.json` scored "attic/basement organization ideas" (rank-1 autocomplete) `gap` against `/about.html` 5 days after both articles shipped: LRN-0032 recurring against the data; the staleness gate only watches harvest age, not rescore drift. Ran `--rescore` (free): 19/2,821 rows left `gap`. Fixed GOALS.md's stale "cheap/budget/DIY" citation (28→30 of 98). Added `gate_keyword_demand_rescored_current` + test (6 cases). Appended BACKLOG section 20.
+
+**Verified:** Gate's logic fail-then-pass proved on real git history. Related tests pass; files compile; 25-file random sample 25/25 pass. **Not verified: full local preflight** — `gate_tests` hung twice (known sandbox limit), killed by hand; CI is the real confirmation, as in past cycles hitting this. Dashboard regenerated clean (YELLOW, unchanged).
+
+**Went well:** Caught a real defect by reading the data directly instead of trusting its status field, the discipline LRN-0032 named but never gated.
+
+**Did not go well:** Local sandbox still can't finish `gate_tests`; unfixed from this side.
+
+**Changing next cycle:** Rely on CI when `gate_tests` hangs locally, not a sandbox limit the hosted runner lacks.
+
+**Next:** Nothing newly unblocked; all 10 issues still decision/blocked-on-art. Watch CI on this push; if still nothing, hand-score the remaining 167 `gap` rows (mostly noise) or the "foyer"/"entryway" synonym mismatch noticed in passing.
+
 ## 2026-10-19, PM check-in (17:1x cycle, 30-minute triage, previous work confirmed finished, exhausted/decision-gated state reconfirmed independently, no new push notification)
 
 NEXT FOR THE OPERATOR: nothing new to pick up. All 10 open issues remain decision/blocked-on-art with no reply from Phil since 2026-10-18T19:54:35Z, and BACKLOG-2026-09-07.md still has only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both explicitly YES-Phil.
