@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-19, scheduled operator cycle (00:5x): exhausted/decision-gated state reconfirmed independently from a fresh checkout, a fifth stale preflight lock found and cleaned, no new push notification
+
+**Did:** Checkout arrived shallow and detached as STEP 0 warns. Unshallowed for real (`fetch origin main`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `a5b2100d6`, 1122 commits, tree clean throughout, no "unrelated histories" error). Read `GOALS.md`'s header, `BACKLOG-2026-09-07.md` sections 0 through 7 (all A/B/C rows in sections 2 to 4 struck Done or Closed except C5/C6, both marked `YES, Phil`; section 5 explicitly Hold; section 6 all owner gates), `ROADMAP-2026-2029.md`'s framing, `CLAUDE.md`, and the real head of this log, not a summary.
+
+**Verified independently rather than inherited.** GitHub issues pulled fresh via the API: the same 10 open (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, `updated_at` on #42 unchanged at 19:54 the previous day, no reply from Phil; 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked. `affiliate.py --check`: 165 delivered documents, no affiliate link, disclosure correct. `check_sellable.py --deep`: 124 of 126 buyable products in Stripe with delivery entries and files on disk (deep live-price check not possible, no `.env.secrets`). `check_urls.py`: 213/213. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `cold_read_ledger.py --stale`: 0 stale. `check_ledgerium.py`: not checked, no Stripe credential, reported as such rather than assumed clean. The weekly keyword-demand harvest (`keyword-demand.yml`, Wednesdays) last ran 2026-10-14; next due 2026-10-21, not stale yet.
+
+**Ran preflight to genuine completion, not a glance.** Backgrounded, watched by PID rather than piped through `tail`: 0 FAIL/ERROR across every gate reached, then the documented `gate_tests` headless-Chromium sandbox hang. Confirmed genuinely stalled, not merely slow: polled `/proc` CPU time three times over several minutes, flat at 0:09 throughout; killed it. The SIGKILL left a zombie (LRN-0042's documented blind spot) and a stale `/tmp/.preflight_py_running.lock` holding pid 897; confirmed dead via `kill -0` (ESRCH once the zombie was reaped) before removing it directly. Called `gate_status_currency`, `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current` directly (they sit after `gate_tests`): all three clean.
+
+**One thing double-checked rather than assumed, per LRN-0040.** This run had no network reach to the VPS database (no ssh key at `/root/.ssh/6s_deploy`, same standing fact this sandbox always reports), so `dashboard.py`'s deploy-asset list and `live_links_verdict` correctly degraded to empty/"unknown" rather than carrying forward a prior run's "ok" reading; `resolve_live_links_verdict()`'s own docstring explains this is deliberate (a stale "confirmed working" claim is its own trust problem). Not a regression, read the function before concluding that.
+
+Regenerated the dashboard: YELLOW, revenue $0 of $20,000 (carried forward, Stripe unreachable this month), $19 all-time from 1 sale, 2 P0, 8 need-you, 1266 seven-day commits.
+
+**Went well:** did not take the prior 20+ cycles' "exhausted" conclusion on faith; re-ran every check that could be re-run from this sandbox and got the identical answer independently.
+
+**Did not go well:** this is another consecutive cycle with nothing customer-facing to ship; the state genuinely has not moved since the 2026-10-18 20:0x escalation on issue #42.
+
+**Changing next cycle:** none. Not opening new work per 0.8/WIP limit; nothing on either backlog or among the 10 GitHub issues is unblocked without Phil.
+
+**Next:** hold the line until Phil acts on issue #42 or any of the other 9 decision/blocked-on-art issues. No push notification sent: the one thing worth a stranger's attention is unchanged since the 2026-10-18 20:0x escalation; a repeat alert on an unbroken state is the exact waste issue #42 argues against.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-10-19, 00:1x cycle: previous work confirmed finished, exhausted/decision-gated state unchanged, a fourth stale lock (this cycle's own) found and cleaned, no new push notification
 
 NEXT FOR THE OPERATOR: hold the line. Same standing list as every cycle since 2026-10-18 20:0x: all 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) unchanged, all `decision`/`blocked-on-art`, 0 open PRs, issue #42's own thread untouched since 19:54 the previous day; `BACKLOG-2026-09-07.md` sections 2 through 4 have nothing unstruck except C5/C6 (Gemini billing, YouTube OAuth), both explicitly Phil-gated, and section 6's six owner-gate rows are the only other open work, also all Phil-gated.
