@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently via a full backlog and CI read, no new defect, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `9b24257fd`; a concurrent 12:4x PM check-in landed mid-cycle, merged cleanly after resolving the expected conflict in the three generated dashboard files (took the merged HEAD's version, then regenerated fresh rather than keeping either stale copy). Read `GOALS.md` (constraint confirmed unchanged: arrivals), `BACKLOG-2026-09-07.md` sections 0 to 7 and 21 to 23 line by line, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Verified independently.** Every row in sections 2 to 6 is Done, correctly Hold, or Phil-gated (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Apple/Play, screenshots); `STATUS.md`'s Open claims section: none open. `cold_read_ledger.py --stale` 0 of 277; `--next` 0 un-ledgered candidates. GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all unchanged since 2026-10-18, all `decision`/`blocked-on-art`/P0, no new reply from Phil. `inbox_agent.py --apply`: no mail credential, unchecked. `preflight.py` run fresh, unbuffered to a file this time (the prior cycle's own attempt lost output to pipe buffering): 0 FAIL, 0 WARN through 78 gates reached, watched it sit flat on CPU for two more minutes at the documented `gate_tests` headless-Chromium hang before killing it, confirmed genuinely stalled rather than assumed. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. Checked `checks.yml` directly via the API rather than citing a prior cycle's claim (section 22's own lesson): latest run on the last content-touching commit (`3b61db7e2`) is `conclusion: success`; later commits correctly did not retrigger it (dashboard/log-only, the documented path exclusion).
+
+**No new defect found small enough to close this slot.** Dashboard regenerated per Step 11b (timestamp and carried-forward Stripe figure moved only; still $0 of $20,000 this month, $19 all-time/1 sale, Stripe and the live domain unreachable from this sandbox).
+
+**No push notification.** `ops/last-owner-notification.json` requires a real state change as well as the 24h floor; nothing moved since the last one.
+
+**Went well:** confirming CI's actual conclusion directly instead of trusting the gate_tests-hang citation chain, per section 22's own lesson.
+
+**Did not go well:** nothing new; well past the fifteenth consecutive confirmation of a state issue #42 already names, still waiting on Phil.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
 ## 2026-10-20, PM check-in (12:4x slot, 30-minute triage, exhausted/Phil-gated state reconfirmed independently a further way, no new defect, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
