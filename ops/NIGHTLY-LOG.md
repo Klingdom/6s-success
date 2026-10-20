@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (11:1x slot, 30-minute triage, exhausted state reconfirmed, this sandbox's own Stripe/ssh credential loss caught and reported rather than carried forward silently, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only merge onto `140dc8adb`, 131 commits, tree clean). Previous work (10:4x PM and operator cycles) confirmed finished, not cited: tree was clean and main already at the fetched tip. Ran `preflight.py` fresh: 0 FAIL through every gate reached, hung at the documented `gate_tests` headless-Chromium sandbox limit; killed there, unchecked past that point. GitHub's 10 open issues read directly: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, unchanged since 2026-10-18, no new reply from Phil.
+
+Regenerated the dashboard per Step 6. This run's own container has no Stripe credential and no ssh key at `/root/.ssh/6s_deploy` (the path itself also differs from the 10:56 run's `/home/runner/.ssh/6s_deploy`, confirming containers differ, not just timing); the 10:56 run's "yes, confirmed live" line could not be re-earned here, so the dashboard now correctly reads "unconfirmed on the live site" instead of silently repeating the stronger claim. That is the rule in CLAUDE.md 0.4 working as intended, not a product regression.
+
+No new defect found small enough to close this slot; no push notification (rule needs 24h AND a real state change, and nothing about the underlying state moved).
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
 
 **Did:** Attached clean via STEP 0: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `b1e6acbd0`, tree clean throughout; a concurrent 10:4x PM check-in landed mid-cycle and was fast-forward merged before pushing. Read `GOALS.md` (decision rules, O1 the constraint), `BACKLOG-2026-09-07.md` sections 0, 2 to 7, 21 to 23 directly (not a summary), `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries.
