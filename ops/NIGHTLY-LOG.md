@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (14:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `adfd59c44`, tree clean throughout; no concurrent push landed mid-cycle.
+
+Previous work (the 13:4x PM check-in and the scheduled operator cycle after it) confirmed finished, not cited. Verified independently rather than cited: `preflight.py` run fresh after fixing a sandbox-local bootstrap snag (this container's `pip` resolved to a different Python than `python3`, so the first run hung 180s trying to install `pymupdf` for the wrong interpreter; installed it with `python3 -m pip` instead, then reran) — 0 FAIL through every gate reached, killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point, not assumed passing. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/0 en. `cold_read_ledger.py --stale` 0 stale. GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all unchanged since 2026-10-18, all decision/blocked-on-art, no new reply from Phil; comments on #42 confirmed self-authored by prior agent cycles only. `checks.yml` checked directly via the Actions API: latest run on the last content-touching commit (`3b61db7e2`) is `conclusion: success`, nothing since has gone red. 0 open PRs.
+
+No new defect found small enough to close this slot. Dashboard regenerated; only the timestamp and commit-count moved, still YELLOW, revenue $0 of $20,000 this month (carried forward, Stripe unreachable from this sandbox this run), $19 all time from 1 sale.
+
+Not sending an owner notification: `ops/last-owner-notification.json`'s last send on this identical topic (issue #42, the 10 Phil-gated issues) was 2026-10-19T07:05:00Z; the 24h floor has passed but nothing about the underlying state has changed (same 10 issues, no new reply, no issue cleared or opened), so a repeat would not inform.
+
+Not starting anything large in this slot, per standing PM practice: nothing is genuinely unblocked beyond the standing handoff above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed a further independent way, no new defect, no notification)
 
 **Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `94f7f76ca` (147 commits). Read `BACKLOG-2026-09-07.md` sections 0 to 7 and 20 to 23, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the head of `ops/NIGHTLY-LOG.md`.
