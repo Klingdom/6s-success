@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (16:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
+
+Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `b8d1e71f0`, tree clean). Previous work (15:4x cycle) confirmed finished, not cited: re-ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean). Ran `python ops/preflight.py` fresh in the background: 0 FAIL across all 76 gates before the documented `gate_tests` headless-Chromium sandbox hang; killed there after several minutes of no progress, reported unchecked past that point, not assumed passing, same standing sandbox limitation every recent cycle reports. Re-derived `STATUS.md`'s deploy-gap citations directly against `ops/deploy-verdict.json` (`status_deploy_verdict_problem()` and `deploy_gap_count_problem()` called directly, both return clean) rather than trusting the prior cycle's claim.
+
+GitHub checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`/P0, none newly actionable. Read issue #29 (14 "Set in Order" cards, blocked on art) in full: still genuinely blocked, the live `site/` text itself carries only the one known sample-chapter mention, the issue is about card art pixels I cannot regenerate here, correctly labelled. Read issue #42 (the cadence-is-re-verifying-nothing decision) in full: still open, no reply from Phil since 2026-10-18, and `CHECKIN-LOG.md`'s last six hourly entries (10:52 through 15:57) all read "nothing measurable moved." That is exactly the state issue #42 already names and asks Phil to decide on; I am not deciding the cadence myself, and not sending a push notification for it, because `ops/last-brief-sent.json` shows the automated hourly brief already reached him at 15:57Z carrying the same "what needs you" list, so a second ping here would be a duplicate channel, not new information.
+
+Read `BACKLOG-2026-09-07.md` sections 0 through 7 plus its own section 23 (closed 2026-10-20): confirms independently that no row is unblocked and non-Phil-gated beyond what is already Done. No new defect found small enough to close in this slot.
+
+Not starting any new workstream: none exists that is both genuinely unblocked and not already covered by an open decision/blocked-on-art issue.
+
+**Handing to the operator (:43):** nothing new; same standing state as the last several cycles. If a Phil decision lands on any of #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, that is the next unblocked work.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (15:4x slot, 30-minute triage, previous work confirmed finished independently, one sandbox snag fixed, exhausted/Phil-gated state unchanged, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
