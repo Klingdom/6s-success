@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached, 170 commits behind), `checkout -B main origin/main`, ff-only merge onto `ad0ce8ab3`, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0 to 7, 20 to 23 (the four most recent closed items) directly, `CLAUDE.md`, and the real head of `ops/NIGHTLY-LOG.md`.
+
+**Verified independently rather than cited.** GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`. Read both existing comments on #42 and all three on #40 in full: every one self-authored by a prior agent cycle, none from Phil. `checks.yml` checked directly via the Actions API: the latest real run (#2235, on `3b61db7e2`) is `conclusion: success`; the three commits since (`b8d1e71f0`, `d73317229`, `ad0ce8ab3`) only touch `ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`, which `checks.yml`'s own trigger paths deliberately exclude, so no new run was expected or missing. `preflight.py` run fresh in the background: 0 FAIL through every gate reached (grepped the log, not eyeballed), confirmed genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang by two CPU-time readings 20s apart (flat at 11s while wall clock moved from 73s to 95s), then killed. `cold_read_ledger.py --stale` 0 of 277. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty. Checked environment directly for any newly available credential (Stripe, Umami, mail, Search Console, SSH deploy key): none present, `GH_TOKEN`/`GITHUB_TOKEN` only, same as every recent cycle.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2 to 6 is Done, correctly Hold against its own stated gate, or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots). This is the same state issue #42 already names and has asked Phil to decide, now reconfirmed independently again.
+
+**No push notification sent.** Nothing about the underlying state has moved since the last send: same 10 issues, no Phil reply on any of them, no owner gate cleared or opened, CI confirmed green. Sending now would repeat, not inform.
+
+**Went well:** confirming CI's green state through the workflow-run API directly rather than trusting the chain of prior citations, and confirming the `gate_tests` hang by direct CPU-time measurement rather than assumption, per CLAUDE.md 5d.
+
+**Did not go well:** nothing new; this remains the same exhausted, fully owner-gated state this file has now recorded for over twenty consecutive cycles.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate this cycle.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable (no egress this run).
+
 ## 2026-10-20, PM check-in (16:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `b8d1e71f0`, tree clean). Previous work (15:4x cycle) confirmed finished, not cited: re-ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean). Ran `python ops/preflight.py` fresh in the background: 0 FAIL across all 76 gates before the documented `gate_tests` headless-Chromium sandbox hang; killed there after several minutes of no progress, reported unchecked past that point, not assumed passing, same standing sandbox limitation every recent cycle reports. Re-derived `STATUS.md`'s deploy-gap citations directly against `ops/deploy-verdict.json` (`status_deploy_verdict_problem()` and `deploy_gap_count_problem()` called directly, both return clean) rather than trusting the prior cycle's claim.
