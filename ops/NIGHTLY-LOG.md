@@ -22,6 +22,22 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable (no egress this run).
 
+## 2026-10-20, PM check-in (16:4x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean: checkout arrived shallow and detached (local `main` and `origin/main` looked unrelated); fetched, real unshallow, `checkout -B main origin/main`, ff-only merge onto `ad0ce8ab3` (170 commits), tree clean throughout. Previous work (the 16:1x PM check-in) confirmed finished, not cited: only one hourly check-in bot commit landed since, nothing concurrent to collide with.
+
+Verified independently rather than cited: `preflight.py` run fresh with a 170s timeout, 0 FAIL through every gate reached (grepped, not eyeballed), killed at the documented `gate_tests` headless-Chromium sandbox hang (exit 124), same standing limitation; reported unchecked past that point, not assumed passing. `check_urls.py` 213/213 sitemap URLs resolve. `fix_dashes.py --check` 0 em/0 en. GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, every `updated_at` unchanged since 2026-10-18T19:54:35Z, no new reply from Phil, no new comments. `checks.yml` checked directly: latest run (#2235, `conclusion: success`) on `3b61db7e2` is still the newest; nothing since has retriggered it (dashboard/log-only commits, the documented path exclusion). `STATUS.md`'s Open claims section: none open, nothing to collide with. Working tree was clean before this cycle touched anything.
+
+No new defect found small enough to close this slot. Dashboard regenerated; only the timestamp and carried-forward Stripe figure moved, still YELLOW, revenue $0 of $20,000 this month (Stripe unreachable from this sandbox this run), $19 all time from 1 sale.
+
+No push notification sent: `ops/last-owner-notification.json` requires both a 24h floor and a real state change on this topic (issue #42, the 10 Phil-gated issues); the floor has passed but nothing about the underlying state has moved (same 10 issues, no Phil reply, no gate cleared or opened), so one is withheld again, same reasoning as every recent cycle.
+
+Not starting anything large in this slot, per standing PM practice: nothing is genuinely unblocked beyond the standing handoff above, and this slot is three minutes ahead of the operator's own.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (16:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `b8d1e71f0`, tree clean). Previous work (15:4x cycle) confirmed finished, not cited: re-ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (165 documents, clean). Ran `python ops/preflight.py` fresh in the background: 0 FAIL across all 76 gates before the documented `gate_tests` headless-Chromium sandbox hang; killed there after several minutes of no progress, reported unchecked past that point, not assumed passing, same standing sandbox limitation every recent cycle reports. Re-derived `STATUS.md`'s deploy-gap citations directly against `ops/deploy-verdict.json` (`status_deploy_verdict_problem()` and `deploy_gap_count_problem()` called directly, both return clean) rather than trusting the prior cycle's claim.
