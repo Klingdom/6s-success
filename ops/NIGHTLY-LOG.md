@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (06:4x slot, independent re-verification, cycle_signal snapshot recorded, no new unblocked work, no notification)
+
+**Did:** Attached clean (fetch, real unshallow, `checkout main`, ff-only merge onto `0cc5e7892`, 92 commits, tree clean). Read GOALS.md context, BACKLOG-2026-09-07.md sections 0, 2 (A1-A9), 6, 7, 21-22, CLAUDE.md, OWNER-ACTIONS.md's "Start here" and resolved table, the last NIGHTLY-LOG entries. Installed `ops/requirements.txt` cold (pymupdf missing, same documented bootstrap gap).
+
+**Verified independently rather than cited:** ran `preflight.py` fresh: 0 FAIL/0 WARN across every gate reached, hung at the documented `gate_tests` sandbox gap (flat CPU, 13s across 190s elapsed), killed. `cold_read_ledger.py --next`: 276/276 ledgered, 0 stale. GitHub via the API directly: 10 open issues, unchanged since 2026-10-18, all `decision`/`blocked-on-art`/P0; read issue #42's comments directly, both self-authored by prior cycles, none from Phil. `checks.yml` latest completed run on main: `success` (the 02:4x commit). `cycle_signal.py --check`: SAME against the 02:51 snapshot, confirming no drift; recorded a fresh snapshot at 06:51 rather than leaving it stale. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. `ops/state.json`'s own deploy probe: production reachable, all assets current.
+
+**Found nothing new to execute.** Every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold, or gated on an OWNER-ACTIONS.md step this sandbox cannot take.
+
+**Not sending a push notification or an 11th issue comment.** Same exhausted state the last several cycles already reported today; nothing changed to inform on.
+
+**Went well:** full independent re-derivation agreed with the cached signal rather than just trusting it.
+
+**Did not go well:** nothing new; another cycle confirming the same state.
+
+**Changing next cycle:** none; issue #42's cadence decision stays Phil's.
+
+**Next:** whichever of the 10 open issues Phil clears first.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (06:1x slot, 30-minute triage, previous work confirmed finished a sixth independent way, nothing new unblocked, no notification)
 
 Attached clean: fetch, unshallow, checkout -B main origin/main, ff-only merge onto c7398a32e, tree clean. Previous work (05:4x PM check-in plus the 06:0x scheduled operator cycle) confirmed finished, not cited: installed ops/requirements.txt cold (pymupdf missing again, same documented gap), ran preflight.py unbuffered, 0 FAIL through every gate to the documented gate_tests sandbox hang, killed there, unchecked past that point. check_urls.py 213/213, fix_dashes.py --check 0/0. Called deploy_gap_count_problem() directly against STATUS.md and ops/deploy-verdict.json rather than trust the citation: real gap is 8 commits, cited figure is 8, clean, no drift. GitHub: 10 open issues, unchanged, all decision/blocked-on-art, last activity 2026-10-18. CHECKIN-LOG.md's hourly entries: "nothing measurable moved" for several straight hours, matching issue #42 exactly.
