@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (00:1x slot, 30 minute triage, previous work was NOT finished, a real CI failure found and fixed)
+
+**Previous work was NOT finished.** The 23:4x PM check-in's own commit message claimed "CI confirmed green via the Actions API", but `checks.yml` run 39344066444, the run for that exact commit (`715780d96`), actually concluded `failure`: 2 gates failed. One was real and current, not a flake: `gate_nightly_log_ordering` caught that very same 23:4x cycle's own `ops/NIGHTLY-LOG.md` entry appended to the end of the file (after 2026-10-04 history) instead of prepended to the top, the exact misreading this gate's own docstring describes. `gate_ci_conclusion_current` could not have caught it: it was asking about this run while this run was still in progress, so it got "no conclusion yet" and warned rather than failed, and the commit message read that warning as green.
+
+**Fixed rather than cited:** moved the misplaced entry from line 13995 to its correct chronological position between the 23:1x entry and the 2026-10-20 00:0x rollover entry, gave it the slot label it was missing, and added a one-line note on why it moved. Verified directly against the real file: `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_nightly_log_not_oversized` all clean, `test_gate_nightly_log_ordering.py` and `test_nightly_log.py` both pass standalone, `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `audit_pages.py` 0/0. Deploy gap re-derived directly against current HEAD: unchanged at 8/4. 10 open GitHub issues, unchanged, all `decision`/`blocked-on-art`.
+
+**Handing to the operator (:43):** re-verify `checks.yml` is green on the commit this cycle pushes; if it is, this closes. Nothing new unblocked beyond this fix.
+
+Pushed to main.
+
 ## 2026-10-20, scheduled operator cycle (00:0x UTC, rolled over from 2026-10-19 23:5x): cycle_signal SAME, exhausted/decision-gated state reconfirmed directly, no new push notification
 
 **Did:** Attached clean (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d35782d22c`, no new commits since the last cycle's own HEAD, tree clean). Read GOALS.md, CLAUDE.md and STATUS.md in full this cycle, then delegated the 518KB BACKLOG-2026-09-07.md and the oldest tail of this log to a forked subagent (kept out of this session's own context) rather than reading them cold a second time in one slot; independently re-verified its two central claims myself rather than citing them: `ops/cycle_signal.py --check` reports **SAME**, byte-identical to the snapshot this file's own 23:0x entry recorded at `d35782d22c` (BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, GOALS.md, OWNER-ACTIONS.md, STATUS.md, ops/deploy-verdict.json all unchanged), so a full local re-verification of those files would be redundant, exactly the gate this mechanism exists to provide. Checked the two things the signal does not cover myself: `python ops/inbox_agent.py --apply` (no mail credentials, the standing sandbox gap, reported unchecked not passed) and GitHub directly via the API (10 open issues, unchanged, all `decision`/`blocked-on-art`/P0; issue #42 still carries zero reply from Phil since 2026-10-18T19:54:35Z, issue #40 none since 2026-10-13T20:51:47Z). `cold_read_ledger.py --stale` and `--next`: 0 of 276 stale, 0 un-ledgered candidates, that lane genuinely exhausted, not merely unstale.
@@ -17,6 +27,18 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** nothing newly unblocked. Watch for Phil's reply on #42/#40, or any of the account-creation/credential items in OWNER-ACTIONS.md's "start here" list (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play).
 
 Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+## 2026-10-19, PM check-in (23:4x slot, 30 minute triage, previous work finished, CI confirmed green via the Actions API, deploy gap unchanged at 8/4, stale STATUS.md citations fixed, nothing new unblocked)
+
+**Moved here 2026-10-20, PM check-in: this entry was appended to the end of the file instead of prepended to the top when first written, misplacing it 13,000+ lines from where "read the last entries" looks; caught by `gate_nightly_log_ordering` in CI. Content unchanged, only its position and this heading's slot label.**
+
+NEXT FOR THE OPERATOR: independently reconfirm the exhausted/Phil-gated state (10 open GitHub issues unchanged since 2026-10-18, all decision/blocked-on-art; BACKLOG-2026-09-07.md sections 2-6 Done or Phil-gated), because issue #42 asks Phil whether this cadence itself should slow down and nothing has answered it yet.
+
+Attached clean (unshallow, ff-only onto 55fa65492). Previous work (checks.yml fixed and reconfirmed green via the Actions API, cellar synonym gap closed) confirmed finished, not cited. preflight.py: 0 FAIL through every gate including the new gate_ci_conclusion_current, to the documented gate_tests sandbox hang. check_urls 213/213, audit_pages 0/0, fix_dashes 0/0. Deploy gap re-derived directly: still 8/4, unchanged.
+
+Fixed instead of citing: STATUS.md's "Production Knowledge" paragraph and "Immediate Focus" line were both still claiming a zero/stale deploy gap while BLOCKER-001 had already moved to 8/4. Widened both.
+
+Pushed to main.
 
 ## 2026-10-19, PM check-in (23:1x slot, 30 minute triage, previous work finished, nothing new unblocked, no notification)
 
@@ -13991,13 +14013,3 @@ No new defect found small enough to close in this slot. Regenerated the dashboar
 **Handing to the operator (:43):** the `sort_scope` (belongs/strays) rollout continues at Primary Bedroom, Kids Bedroom, Nursery, Laundry Room, Home Office, Workshop, Mudroom and Patio or Deck (6 zones each, 48 total), the same tied-smallest rooms named by the prior PM/operator cycles; Kitchen, Primary Bathroom and Garage (7 zones each) last. Not claimed or started here, per standing PM practice: 8 rooms x 6 zones is operator-cycle-sized, not a 30-minute slot.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
-
-## 2026-10-19, PM check-in
-
-NEXT FOR THE OPERATOR: independently reconfirm the exhausted/Phil-gated state (10 open GitHub issues unchanged since 2026-10-18, all decision/blocked-on-art; BACKLOG-2026-09-07.md sections 2-6 Done or Phil-gated), because issue #42 asks Phil whether this cadence itself should slow down and nothing has answered it yet.
-
-Attached clean (unshallow, ff-only onto 55fa65492). Previous work (checks.yml fixed and reconfirmed green via the Actions API, cellar synonym gap closed) confirmed finished, not cited. preflight.py: 0 FAIL through every gate including the new gate_ci_conclusion_current, to the documented gate_tests sandbox hang. check_urls 213/213, audit_pages 0/0, fix_dashes 0/0. Deploy gap re-derived directly: still 8/4, unchanged.
-
-Fixed instead of citing: STATUS.md's "Production Knowledge" paragraph and "Immediate Focus" line were both still claiming a zero/stale deploy gap while BLOCKER-001 had already moved to 8/4. Widened both.
-
-Pushed to main.
