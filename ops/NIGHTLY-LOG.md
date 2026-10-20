@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (17:4x slot, 30-minute triage, previous work confirmed finished, new P0 handed to the operator)
+
+NEXT FOR THE OPERATOR: diagnose and fix why `checks.yml` has stopped triggering on pushes to main, because it has not run even once since commit `3b61db7e` at 09:18:56Z, over 8 hours and well over a dozen qualifying pushes ago, despite several of those pushes changing files its own `paths:` filter includes and does not exclude.
+
+Previous work (the 17:1x cycle) confirmed finished: tree clean, pushed, dashboard fresh. That part of the handoff stands.
+
+What I found instead of starting the sort_scope or decision backlog: the 17:1x cycle's own log entry, and the 16:1x/16:4x cycles before it, each checked `checks.yml` by looking only at the handful of commits since their own last check and finding those excluded (dashboard/state/log only), then concluded "no new run was expected." That reasoning is correct per-commit but was never applied to the full span back to the last actual run, so it missed that the gap itself started much earlier. Checked the real span directly: the first commit after the 09:18:56 run that touches a non-excluded path is `2334756` at 09:51:01Z (`CHECKIN-LOG.md`, `ops/last-brief-sent.json`, `ops/state-checkin.json`, none of which `checks.yml` excludes). No run fired for it, or for any of the ops/corpus-rotation.json-only commits after it (for example `ba834355` at 13:47:06, `f75d9ae` at 14:30:08), or for the ops/last-brief-sent.json and ops/state-checkin.json changes bundled into every hourly check-in commit since. Confirmed via the Actions API directly, not cited: `checks.yml`'s run #2235 on `3b61db7e` is still its newest run, full stop. Ruled out the easy explanations: the workflow is still `state: active`; its `on:` paths block has not changed since 2026-09-29; no commit message in the window carries a skip-ci marker; and push events themselves are reaching GitHub fine, because five other workflows with broader triggers (Hourly brief, LinkedIn drafts, Deliver paid orders, Social drafts, Bluesky drafts) fired normally on these same pushes. Did not find the actual root cause; that is the operator's job, not mine in a 30-minute slot.
+
+Why this matters more than another exhausted-state confirmation: `gate_ci_conclusion_current` in `ops/preflight.py` only checks whether the most recently COMPLETED run of `checks.yml` was green. It has no way to notice that no new run happened at all, so it has been silently reporting the stale 09:18 success as current through every PM and operator cycle since, exactly the "unknown is not unused, unchecked is not passing" failure this file's own CLAUDE.md section 0.4 names. Every ops/ and content/ change that landed on main in the last 8+ hours has shipped with zero CI verification, and the gate meant to catch exactly that did not.
+
+Recommend the operator: (1) find why these pushes are not matching `checks.yml`'s path filter in practice (push a small, deliberate, clearly-qualifying change under `ops/` from this environment and watch whether a run appears; check whether these autonomous pushes are landing through a path GitHub treats differently, such as a token/app identity that suppresses triggered runs on some filtered workflows but not others); (2) once fixed, harden `gate_ci_conclusion_current` (or add a sibling gate) to fail when no `checks.yml` run has started within some bound after a qualifying push, not just when the last one failed.
+
+Not filing this as a `decision` issue: it is an engineering bug to find and fix, not a tradeoff for Phil. Not attempting the fix myself in this slot, per standing PM practice (investigation only, large fix handed to the operator at :43).
+
+The standing handoff underneath this is unchanged and still correct: all 10 open GitHub issues are still `decision`/`blocked-on-art`/P0 and still not newly actionable (re-checked directly, unchanged since 2026-10-18T19:54:35Z). If the operator clears the CI gap quickly, the next unblocked item after that is still whichever of those 10 Phil clears first.
+
+**Verified, not cited:** `preflight.py --fast` run fresh to completion in the background, 0 FAIL through every gate reached, killed at the documented `gate_tests` headless-Chromium sandbox hang after confirming flat CPU time across a 23-second window (stalled, not progressing); reported unchecked past that point. `fix_dashes.py --check` 0 em/0 en. Working tree clean before this cycle touched anything; no concurrent push collided.
+
+No push notification sent from here about the CI gap in this log entry; sending one separately since this is new, real, and not something the owner would otherwise see today.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched.
+
 ## 2026-10-20, PM check-in (17:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 Previous work finished, verified independently rather than cited: attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge), `preflight.py --fast` run to completion, 0 FAIL/0 WARN through every gate reached, killed at the documented `gate_tests` sandbox hang (exit 124). `cold_read_ledger.py --stale` 0 of 277. GitHub's 10 open issues read directly: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`, no Phil reply on #42 or #40. 0 open PRs. Working tree clean before this cycle touched anything.
