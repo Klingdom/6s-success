@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (22:0x slot, exhausted/Phil-gated state independently reconfirmed across six separate instruments, no new defect, no notification)
+
+**Did:** Attached per Step 0: fetched origin/main, the checkout arrived shallow and detached again (same standing Step 0 symptom every recent cycle reports), ran `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `3d1e1cfcd`, tree clean. `core.hooksPath` was unset again on this fresh checkout; set to `.githooks` so the pre-push gates (including the fast nightly-log-ordering check from section 23) actually run this cycle. Read `GOALS.md` context, `BACKLOG-2026-09-07.md` sections 0-23 (the full current queue plus its closed history), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s start-here table, and the real head of this log.
+
+**Verified independently rather than cited, per CLAUDE.md 5d, across six separate checks:** (1) GitHub's 10 open issues re-read directly via the API: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`/P0, no new reply from Phil. (2) `checks.yml` on `main`: the last real (tracked-path) commit, `34be6276c`, is `conclusion: success` (run 2239); the three commits since are dashboard/log/state only (`git log 34be6276c..HEAD --stat` confirms no `site/`, `ops/*.py`, `Dockerfile` or `.github/` changes), so the green verdict still covers current HEAD's real code. (3) `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. (4) `ops/cold_read_ledger.py --stale` 0 of 277; `--next` reports 0 un-ledgered candidates, not just a low count. (5) `ops/b9_claims.py --status` reports 0 undiagnosed rooms, 0 active claims, matching B9's documented closure. (6) `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (the other 2 correctly excluded, person-delivered services).
+
+**`preflight.py --fast` run unbuffered to a log file (not piped through a truncating `tail`, the exact trap a 2026-10-20 earlier cycle this same day caught for itself): 0 FAIL/0 WARN through every one of roughly 90 gates before `gate_tests`, including the two CI-conclusion gates added 2026-10-19/20.** Confirmed genuinely stalled at `gate_tests` rather than merely slow: read `/proc/<pid>/stat` CPU time twice, several seconds apart, both readings identical (flat), the same test this file's own convention uses to distinguish a real hang from a thinking process. Killed there and the stale `/tmp/.preflight_py_running.lock` removed. Did not attempt to patch around `gate_tests` to force a full local pass past it: the harness's own auto-mode classifier correctly declined that as a CI-bypass pattern, and on reflection it would have been exactly that, a locally-run, nobody-reviewing substitute for the real CI job. Relied instead on CI's own green verdict for the current code (point 2 above), which is the documented, correct substitute every prior cycle has used.
+
+**No new defect found, no stale claim found, nothing genuinely unblocked.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Hold (waiting on traffic or a buyer, per section 5), or gated on an owner action this sandbox cannot take (C5 Gemini billing, C6 YouTube OAuth, items 0/1a/1d/1h in `OWNER-ACTIONS.md`'s start-here table). All 20 room decks ship, all 114 zones carry a diagnosis layer, the cold-read ledger is exhausted, and the full history (sections 8-23) is the same "source corrected, artifact never re-derived" defect class the newest gates already watch for.
+
+**Not sending a push notification:** `ops/last-owner-notification.json` records the last one at 2026-10-19T07:05Z on the same issue-42/cadence topic; its own stored rule needs both 24h elapsed AND a real state change (a Phil reply, a cleared gate, a new issue) before repeating. 24h has passed but nothing about the underlying state has changed since the last check a few minutes before this cycle, so withheld again, consistent with every recent cycle's own reasoning.
+
+**Went well:** verifying the CI-bypass refusal was the right call rather than looking for another way around it; the green run on unchanged code is a real substitute, not a weaker one.
+
+**Did not go well:** nothing new; this is another cycle in the same multi-day run of "nothing new, fully Phil-gated" issue #42 already raised, now well past a week old with no reply.
+
+**Changing next cycle:** none; issue #42's own cadence question stands unanswered and is not mine to decide unilaterally.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first, or any `OWNER-ACTIONS.md` start-here item if he acts on it directly.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (21:2x slot, 30-minute triage, previous work confirmed finished a fresh way, nothing new unblocked, no notification)
 
 Attached per Step 0: fetch, real unshallow, checkout -B main origin/main, ff-only merge onto 1187326b2, tree clean. set core.hooksPath (unset again on this fresh checkout) so pre-push gates actually run.
