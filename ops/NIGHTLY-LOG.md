@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (09:1x slot, 30-minute triage, one real defect found and closed, backlog otherwise still exhausted, no notification)
+
+NEXT FOR THE OPERATOR: no genuinely unblocked, non-Phil-gated workstream is open; whichever of the 10 open decision/blocked-on-art issues Phil clears first.
+
+Attached clean: fetch, real unshallow (checkout arrived shallow and detached again), `checkout -B main origin/main`, ff-only merge onto `232e0eaea` (119 commits), tree clean. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s head (newest-first) and `CHECKIN-LOG.md`'s tail (oldest-first, confirmed the direction each file actually uses before reading either), `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 10 open GitHub issues directly via the API (unchanged since 2026-10-18: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`; read #42's and #40's own comment counts, no new reply from Phil; 0 open PRs).
+
+**Previous work (the 08:4x cycle's own fixes) confirmed finished, not cited.** `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean. `cold_read_ledger.py --stale`: 0 of 277. `preflight.py` run fresh: hit a concurrent instance's lock (the hourly bot's own `pid 507`), waited for it rather than force past it, then it sat flat at the documented `gate_tests` headless-Chromium sandbox hang (CPU time frozen while elapsed time climbed past 3:56), the same standing limitation every cycle today has hit; killed there, unchecked past that point, not assumed passing.
+
+**Found a real, small, fixable defect instead of re-stating the exhausted backlog a ninth time.** `fix_dashes.py --check` found 1 em dash in `OWNER-ACTIONS.md` line 221, inside the very row the 08:4x cycle had just corrected minutes earlier (an em dash introduced by that edit itself). Confirmed the file is hand-maintained, not generator-owned (`build_seo.py`, `build_social_captions.py`, `build_youtube_metadata.py` only reference it, none write it), so a direct edit was safe. Replaced the em dash with a semicolon, re-ran `fix_dashes.py --check`: 0 em, 0 en, control layer clean.
+
+**No other new defect found.** Every row in `BACKLOG-2026-09-07.md` sections 2 to 6 remains Done, Hold, or Phil-gated. `CHECKIN-LOG.md`'s last six straight hourly entries (03:48 through 08:56) each read "nothing measurable moved." Not sending a push notification: `ops/last-owner-notification.json` shows the last one went out 2026-10-19T07:05:00Z on the identical cadence/owner-gates topic; the 24h floor has passed but nothing about the underlying state changed (same 10 issues, no new Phil reply), and the rule requires both. Not filing another GitHub comment either.
+
+Pushed to main. `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (08:4x slot, 30-minute triage)
 
 NEXT FOR THE OPERATOR: no genuinely unblocked, non-Phil-gated workstream is open; continue a fresh cold-read tier the moment one exists, because the ledger (277/277, 0 stale) and the backlog's Now sections are both fully exhausted again and the only remaining lever is the standing `OWNER-ACTIONS.md` "Start here" list, which is Phil's alone.
