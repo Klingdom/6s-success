@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (04:4x slot, 30 minute triage, previous work confirmed finished a fourth independent way, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: unchanged, watch for Phil's reply on #42/#40 or any OWNER-ACTIONS.md item; every lane is still Phil-gated.
+
+Attached clean (fetch, unshallow, checkout -B main onto 1312be717, ff-only, tree clean). Previous work (the 04:1x PM check-in and the hourly check-in after it) confirmed finished, not cited: ran preflight.py fresh and unbuffered in the background to real completion: 0 FAIL across every gate reached, killed at the documented gate_tests headless-Chromium sandbox hang (same standing limitation), reported unchecked past that point. Re-derived the deploy gap by hand rather than trust STATUS.md's own line: resolve_verdict_commit('c36cb2794e581473') resolves to 086f6ba42; git log 086f6ba42..HEAD -- site/ Dockerfile returns 8 commits, read each diff directly, confirmed the same 4 material (f51eab183, 87e60d953, 3d84199d3, 0e50c3f27) and 4 pure build-id/sitemap-lastmod restamps STATUS.md already cites, no drift. cycle_signal.py --check: SAME as the 02:4x snapshot, confirming no undetected drift in the watched files. Checked checks.yml directly: it has not run since the 02:4x commit, traced to the workflow's own documented, dated paths-ignore (NIGHTLY-LOG.md, dashboard.html, state.json), not a gap; every commit since was generated-log-only. GitHub checked directly: 10 open issues unchanged, #42 (2026-10-18T19:54:35Z) and #40 (2026-10-13T20:51:47Z) still carry zero reply from Phil. 0 open PRs.
+
+No push notification: ops/last-owner-notification.json shows one sent 2026-10-19T07:05:00Z on this identical topic, now under 22 hours old, still below the 24h-plus-state-change floor, and nothing about the underlying state has changed. Not starting new work: every non-Phil-gated lane is closed.
+
+Pushed to main: this entry, dashboard trio. No content, price or product touched.
+
 ## 2026-10-20, PM check-in (04:1x slot, 30 minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: unchanged, watch for Phil's reply on #42/#40 or any OWNER-ACTIONS.md item; every lane is still Phil-gated.
