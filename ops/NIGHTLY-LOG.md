@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (03:4x slot, full STEP 0-13 pass from a fresh checkout, 8th+ day of exhausted/decision-gated state independently reconfirmed, no new work unblocked, no notification)
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `2095ad742`, 72 commits, tree clean). Read `BACKLOG-2026-09-07.md` sections 2 through 7 directly rather than cited: every row in epics 2-4 is struck through Done or explicitly Phil-gated (only owner gates 1-6 remain, all requiring Phil: YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts, screenshots), section 7's own one-line summary unchanged ("technically finished and commercially unproven"). Read `STATUS.md` section 14: Workstream 1 blocked on a Umami key, Workstream 2 blocked on a spending decision, Workstream 3 closed 2026-10-03, 0 of 3 slots in use. Read `CLAUDE.md`'s ordering rule and the last four `ops/NIGHTLY-LOG.md` entries (all same conclusion, independently re-verified rather than carried forward).
+
+**Verified directly, not cited:** `python ops/preflight.py` run to completion: 0 FAIL across every gate reached, killed at its own timeout at the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation every recent cycle reports; reported unchecked past that point. `check_urls.py` 213/213, `affiliate.py --check` clean (165 delivered documents), `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale`/`--next`: 276 of 276 ledgered, 0 stale, 0 un-ledgered candidates, that lane genuinely exhausted, re-confirmed myself rather than trusted. Re-derived the deploy-gap citation by hand rather than trust `STATUS.md`'s own line: `resolve_verdict_commit('c36cb2794e581473')` resolves to `086f6ba42`; `deploy_gap_material_commits('086f6ba42')` against real current HEAD returns 8 commits; read each of the 8 diffs directly (not inferred from subject lines) and confirmed exactly 4 material (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`) and 4 pure build-id/sitemap-lastmod restamps, matching the file's own "8 total, 4 material" citation exactly. GitHub via the API directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`/P0; read issues #42 and #40's full comment threads myself, both still carry zero reply from Phil (#42 last comment 2026-10-18T19:54:35Z, #40 2026-10-13T20:51:47Z), every comment self-authored by a prior cycle. 0 open PRs. `python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same standing gap.
+
+**No push notification sent.** `ops/last-owner-notification.json` shows one sent 2026-10-19T07:05:00Z on this identical topic; at 2026-10-20T03:46Z this cycle checked, that is under 21 hours old, below the file's own 24h-plus-state-change floor, and nothing about the underlying state has changed (no Phil reply, no cleared gate, no new issue), so the cooldown correctly withholds another one.
+
+**No new unblocked work exists, confirmed rather than carried forward as a claim.** Every non-Phil-gated lane is closed; the ordering rule forbids picking any of the 10 open issues, all of which wait on Phil.
+
+**Went well:** every standing gate stayed green on direct re-derivation; the cold-read and sellable lanes remain genuinely exhausted; reading the 8 gap-commit diffs by hand rather than trusting the subject line confirmed the material count without having to widen anything.
+
+**Did not go well:** nothing new; the 8th-plus day of a fully-exhausted, Phil-gated backlog continues at full cadence cost, already escalated on issue #42 and correctly not re-escalated again under cooldown.
+
+**Changing next cycle:** nothing structural; no new defect class recurred three times without a gate this cycle.
+
+**Next:** the moment any one of the 10 open `decision`/`blocked-on-art` issues closes, or any `OWNER-ACTIONS.md` "Start here" item clears, real new work unblocks immediately. Until then every cycle's honest job is re-verification, not invention.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-20, PM check-in (03:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 Checkout arrived shallow and detached (unrelated-histories symptom); fetched, unshallowed, `checkout -B main origin/main` onto `1fbdb5272` (0 ahead/70 behind before merge), ff-only, tree clean. Previous work confirmed finished without re-running a third preflight this hour: CI's own Checks run on the latest substantive commit (`d32c79ff9`, the only one of the last three not generated-file-only) returned `success`; `preflight.py` had already gone 0 FAIL to the documented `gate_tests` sandbox hang twice this same hour per the 02:1x/02:4x entries, re-running a third time would be exactly the redundant-reverification cost issue #42 names. GitHub checked directly: 10 open issues, unchanged, all `decision`/`blocked-on-art`/P0; read #42 and #40's full comment threads myself rather than trusting a citation, every comment self-authored by a prior Claude cycle, zero from Phil. 0 open PRs.
