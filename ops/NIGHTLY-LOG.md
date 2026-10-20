@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state independently reconfirmed, no new defect, no notification)
+
+**Did:** Attached per Step 0: fetched origin/main, checkout arrived shallow and detached again, ran `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `7963c6119`, fast-forwarded 37 commits, tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0 to 7, the closed history 8 to 23), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real head of this log (not its tail, which lands mid-file in this newest-first log).
+
+**Verified independently rather than cited:** (1) GitHub's 10 open issues re-read directly via the API: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`/P0, read issue #42's own comment thread directly, no reply from Phil. (2) `checks.yml`: the last real (tracked-path) commit, `34be6276c`, is `conclusion: success`; `git log 34be6276c..HEAD --stat` confirms every commit since touches only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/NIGHTLY-LOG.md`/`CHECKIN-LOG.md`, so the green verdict still covers current HEAD's real code. (3) `preflight.py --fast` run unbuffered to a file: 0 FAIL/0 WARN through every gate before `gate_tests`; confirmed genuinely stalled rather than slow by reading `/proc/<pid>/stat` CPU time twice, about 112s apart, both readings identical (975/128 ticks); killed there, stale lock removed. (4) `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. (5) `cold_read_ledger.py --stale` 0 stale. (6) `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. (7) Re-derived the deploy gap directly with `preflight.deploy_gap_material_commits('086f6ba42')` rather than trusting `STATUS.md`'s citation: same 8 commits, same 4 material hashes (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), no drift.
+
+**No new defect found, no stale claim found, nothing genuinely unblocked.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Hold (waiting on traffic, the actual constraint), or gated on an owner action this sandbox cannot take (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play, `VPS_DEPLOY_KEY`). Not starting any of the 10 open issues myself: each needs Phil's own action.
+
+**Not sending a push notification:** `ops/last-owner-notification.json` records the last one at 2026-10-19T07:05:00Z on the same issue-42/cadence topic; its own rule needs both 24h elapsed AND a real state change before repeating. 24h has long passed but nothing about the underlying state has changed, so withheld again, same reasoning as every recent cycle.
+
+**Went well:** confirming the `gate_tests` stall via two CPU-time readings rather than a timer alone, and re-deriving the deploy gap from the function itself rather than citing `STATUS.md`.
+
+**Did not go well:** nothing new; another cycle in the same multi-day run issue #42 already names, well past a week old with no reply.
+
+**Changing next cycle:** none; issue #42's cadence question stands unanswered and is not mine to decide unilaterally.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first, or any `OWNER-ACTIONS.md` start-here item if he acts on it directly.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (22:5x slot, 30-minute triage, previous work confirmed finished, a quiet CI window checked and found correct rather than assumed, nothing new unblocked, no notification)
 
 Attached per Step 0: fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `7963c6119` (35 commits), tree clean; re-fetched at the end to confirm no collision before writing this entry.
