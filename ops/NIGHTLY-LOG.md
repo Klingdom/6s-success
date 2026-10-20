@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (checks.yml red on main for 2 pushes, OWNER-ACTIONS.md's own List reviewed marker was stale behind its own body, fixed)
+
+**Found by checking GitHub's Checks run directly, not by local preflight** (same standing reason as every recent cycle: the `gate_tests` sandbox hang stops this sandbox's own preflight run from ever reaching this gate; CI has no such limitation and reached it fine). `checks.yml` had been red on `main` for at least the last two pushes (`715780d96`, `37a4203e8`): `gate_owner_actions_last_measured_current` failing because `OWNER-ACTIONS.md`'s own "List reviewed" marker said 2026-10-17 while the file body already carried 2026-10-20 dates (the 01:1x and 01:4x PM check-in entries earlier today).
+
+**Fixed:** bumped the "List reviewed" marker to 2026-10-20 with a note on why, in the same edit, per the gate's own instruction. Deliberately left the separate "Last measured" traffic-read date (2026-10-02) untouched, since that is `dashboard._owner_actions_traffic_citation()`'s anchor for a real database read and bumping it would have fabricated a fresh traffic measurement that did not happen, the exact failure mode this gate was split in two to prevent (see the gate's own docstring, 2026-10-02). Verified directly: `gate_owner_actions_last_measured_current()` now returns clean, `test_gate_owner_actions_last_measured_current.py` 8/8 including its own "traffic citation confirmed untouched" assertion, `fix_dashes.py --check` 0/0.
+
+**Why this is worth a second entry rather than folding into the one above:** it is real, newly-found, newly-fixed work (epic 2, broken), not another re-verification of the exhausted/Phil-gated state the entry above already covers honestly.
+
+HANDOFF-FILES: none
+
 ## 2026-10-20, scheduled operator cycle (full re-verification, exhausted/decision-gated state reconfirmed the 6th+ day running, no push sent, cooldown correctly withheld it)
 
 **Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `37a4203e8`, then merged a concurrent 01:4x push with one conflict in this file and the generated trio, resolved by keeping both entries and regenerating the dashboard fresh). Read `GOALS.md` context carried forward, `BACKLOG-2026-09-07.md` sections 0-7 and 354-end (owner gates, closures), `OWNER-ACTIONS.md`'s "Start here" block, `STATUS.md` workstream headers, GitHub's 10 open issues, and the last entries of `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`. Delegated a cross-check to a forked subagent rather than reading both multi-hundred-KB backlog files in full myself; its independent conclusion matched mine before I acted on it.

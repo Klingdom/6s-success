@@ -25,7 +25,7 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
-**List reviewed:** 2026-10-17, PM check-in: the same gap recurred one day
+**List reviewed:** 2026-10-20, scheduled operator cycle: every item below re-read cold against GitHub's live issues and `OWNER-ACTIONS.md`'s own body, same exhausted/Phil-gated state (see `ops/NIGHTLY-LOG.md`); the marker itself had drifted 3 days behind dated entries already in this file's body (first the 2026-10-17 PM check-in, then 2026-10-20 ones since), tripping `gate_owner_actions_last_measured_current` in CI. Earlier: 2026-10-17, PM check-in: the same gap recurred one day
 later. The 01:5x operator cycle added item 23 (the cadence-waste escalation,
 dated 2026-10-17 in its own body) without moving this marker, which left
 `gate_owner_actions_last_measured_current` failing in CI from that commit
