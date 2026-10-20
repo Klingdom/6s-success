@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (18:4x slot, 30-minute triage, previous work confirmed finished, nothing new to start)
+
+NEXT FOR THE OPERATOR: nothing new, because all 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are `decision` or `blocked-on-art` and the genuinely unblocked backlog remains exhausted.
+
+Attached clean (fetch, checkout main, ff-only merge onto `e0d1d6b14`, tree already clean). Previous work (18:0x cycle) confirmed finished independently, not cited: `preflight.py` fast run, 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang; working tree was clean before this cycle touched anything. 10 open GitHub issues read directly, none newly actionable, all waiting on Phil. Re-derived `BLOCKER-001`'s deploy-gap figure directly (`deploy_gap_material_commits` against the resolved verdict commit): 8 commits, same 4 named material commits, unchanged since the 2026-10-19 21:4x widening; no stale claim found.
+
+Not pushing a notification to Phil: issue #42 already raised the cadence-waste question six days ago and nothing changed here to add to it.
+
+No closing job small enough for this slot found (no stale claim, no red gate, no done-but-open item).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (18:0x slot, 30-minute triage, previous work confirmed finished, nothing new to start)
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto e0d1d6b14, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md sections 0, 1b, 2-7, 22-23, and the log's real head, not its physical tail.
