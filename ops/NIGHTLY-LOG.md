@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (20:1x slot, 30-minute triage, previous work confirmed finished a seventh independent way, nothing new unblocked, no notification)
+
+PM check-in. Attached per Step 0: fetch, real unshallow (checkout had arrived shallow and detached), checkout -B main origin/main, ff-only merge onto d371ae20b, 10 commits fast-forwarded (bot check-ins, a PM stale-count fix, nothing site-affecting), tree clean.
+
+Verified rather than cited: GitHub's 10 open issues (#2, #15, #18, #21, #29, #31, #33, #35, #40, #42) re-read directly via the API, unchanged since 2026-10-18T19:54:35Z, all decision/blocked-on-art/P0, no new reply from Phil. Re-derived the deploy gap directly rather than trusting the last figure: resolve_verdict_commit against the current verdict (build c36cb2794e581473) plus deploy_gap_material_commits against real current HEAD returns the same 8 commits, 4 material (f51eab183, 87e60d953, 3d84199d3, 0e50c3f27) the 2026-10-19 21:4x entry already cites, no drift. preflight.py --fast ran 0 FAIL through every gate reached, stalled at the documented gate_tests sandbox hang (exit 124), reported unchecked past that point, not assumed passing. Checked CI directly rather than assumed: checks.yml run 2238 (the last commit that touched tracked paths) is success. STATUS.md's Repository hygiene row already carries the correct 10-issue count from the prior cycle's fix, re-confirmed current rather than stale.
+
+No new defect found, no stale claim found. The backlog is exhausted and every open issue is Phil-gated, same state issue #42 already raised with Phil and that has now held for multiple consecutive days across both the PM and operator cadences. Not starting any of the 10 open issues myself: each needs Phil's own action (YouTube OAuth, Search Console, Gemini billing, a VPS_DEPLOY_KEY paste, an art/design tradeoff, a Stripe field edit, or a Listmonk instance decision).
+
+Not sending a push notification: nothing material changed since the last one on this topic, consistent with standing policy.
+
+Regenerated the dashboard (ops/dashboard.py); freshness-only diff, no content, price or product touched.
+
+**Handing to the operator (:43):** nothing new to hand off; the standing exhausted/Phil-gated state is unchanged.
+
+Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (19:4x slot, exhausted/Phil-gated state independently reconfirmed, no new defect, no notification)
 
 **Did:** Attached per Step 0 (fetch, real unshallow, checkout -B main origin/main, ff-only merge onto d371ae20b, tree clean; 6 commits fast-forwarded, all hourly-bot/check-in noise plus a PM stale-count fix). Read GOALS.md context, BACKLOG-2026-09-07.md sections 0, 1b, 2-7, ROADMAP-2026-2029.md and CLAUDE.md context carried forward, and the real head of ops/NIGHTLY-LOG.md (not its physical tail, which lands mid-file in this newest-first log).
