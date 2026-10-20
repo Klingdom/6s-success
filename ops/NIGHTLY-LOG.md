@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (08:4x slot, 30-minute triage)
+
+NEXT FOR THE OPERATOR: no genuinely unblocked, non-Phil-gated workstream is open; continue a fresh cold-read tier the moment one exists, because the ledger (277/277, 0 stale) and the backlog's Now sections are both fully exhausted again and the only remaining lever is the standing `OWNER-ACTIONS.md` "Start here" list, which is Phil's alone.
+
+Re-attached clean: fetch, unshallow (was shallow and detached), `checkout -B main origin/main`, ff-only merge onto `232e0eaea` (113 commits), tree clean. Read `git log -12`, `ops/NIGHTLY-LOG.md`'s last two entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, and the 10 open GitHub issues directly via the API (unchanged: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`, all `decision`/`blocked-on-art`, 0 open PRs).
+
+**Previous work confirmed finished, not cited.** `preflight.py` run fresh in the background: 0 FAIL through every gate up to and including `gate_image_coverage`, then `gate_tests` sat flat for 4+ minutes, the same documented headless-Chromium sandbox hang every recent cycle hits; killed there rather than trusted. The `sort_scope` (belongs/strays) rollout this and prior PM cycles kept handing off on 2026-10-03/04 is in fact long since finished: read `mcp/content.json` directly, 114/114 zones and 20/20 rooms carry `sort_scope`, not the 45/114, 9/20 those old entries cited. `ops/check_nightly_log_fast.py` (new this cycle, added by the pre-push-hook commit) read cold and run directly: exit 0, correct message, genuinely calls the three preflight gates it documents; added to the cold-read ledger as clean (was the one un-ledgered candidate, 276/277 -> 277/277).
+
+**One real document defect found and fixed, not just reported.** `OWNER-ACTIONS.md`'s "Start here" table still listed item 1a, "Verify the site in Google Search Console", as an open 3-minute task, 6 days after that same file's own `### 1a` section (line ~872) recorded Phil had done it 2026-10-14 (Domain property via DNS TXT, confirmed by `nslookup`, token live in `ops/site-verification.json`). The table had drifted from the body it summarizes. Corrected the row to reflect what is actually still open from that section: confirming the sitemap submission and sending the Pages/Performance reports, both unreadable by any sandboxed session. Checked the owner-actions preflight gates (`gate_dashboard_covers_top_owner_actions`, `gate_owner_actions_last_measured_current`, and 6 others) directly against the edit: all clean. Regenerated the dashboard twice (once to catch an awkward strikethrough/bold collision in the rendered bullet, fixed, regenerated clean).
+
+**No new customer-facing defect found.** `cold_read_ledger.py --stale`: 0 of 277. GitHub: unchanged as above. Working tree was clean and main already at the fetched tip before this cycle touched anything. No content, price or product touched. No push notification sent: nothing here needed Phil's immediate attention beyond what `OWNER-ACTIONS.md` and the 10 open issues already carry, unchanged.
+
+Pushed to main. `OWNER-ACTIONS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cold-read-ledger.json`, this entry.
+
 ## 2026-10-20, PM check-in (08:1x slot, 30-minute triage, previous work confirmed finished a second way, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first, because nothing else in the backlog is genuinely unblocked.

@@ -601,6 +601,11 @@
       "date": "2026-10-12",
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (294 lines). all_links() paginates correctly (starting_after on has_more, the exact bug the file's own comment says an earlier version had). Ran directly: correctly reports UNKNOWN, no Stripe credential, rather than a false OK. PAGES list includes consulting.html and all three JS catalogues (data.js, quest.js, shop.js), the exact blind spots the file's own history names as having caused silent misses before. No defect found."
     },
+    "check_nightly_log_fast.py": {
+      "status": "clean",
+      "date": "2026-10-20",
+      "note": "PM check-in (08:4x slot): read cold, ran directly (exit 0, correct message), confirms it calls the same three preflight gates (gate_nightly_log_not_oversized/ordering/no_duplicate_entries) it documents calling; no defect found"
+    },
     "check_pack_pages.py": {
       "status": "clean",
       "date": "2026-10-12",
