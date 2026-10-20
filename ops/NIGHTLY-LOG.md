@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (19:0x slot, the one genuinely stale item found and closed, backlog otherwise confirmed exhausted)
+
+**Did:** Attached clean: fetch, unshallow (was genuinely shallow this run), checkout -B main origin/main, ff-only onto b4bf15730, tree clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0, 1b, 2 to 7, CLAUDE.md, and the real head of ops/NIGHTLY-LOG.md. A concurrent push (PM check-in + hourly bot, onto a903da363) landed mid-cycle; re-fetched, diffed it first (bookkeeping and dashboard files only, nothing touching code), then ff-only merged before writing anything.
+
+**Verified, not cited.** GitHub's 10 open issues read directly: unchanged, all decision/blocked-on-art/P0, no reply from Phil on issue #42 (the cadence-waste question, open 6 days) or any other. ops/last-owner-notification.json: last push sent 2026-10-19T07:05Z, 24h floor long passed but underlying state unchanged, so withheld again, same policy as every recent cycle. preflight.py run fresh in the background: 0 FAIL through every gate including the two new ones added yesterday (gate_ci_conclusion_current, gate_checks_yml_real_gap), confirmed genuinely stalled at gate_tests by flat CPU time, then killed; gate_status_deploy_gap_count_current/gate_status_deploy_verdict_current/gate_build_id_current called directly past the hang, clean. check_urls.py 213/213, fix_dashes.py --check 0/0, affiliate.py --check 165 documents clean. inbox_agent.py: no mail credentials, unchecked not empty.
+
+**The one real find:** cold_read_ledger --stale showed ops/preflight.py one commit behind its own ledger entry. Cold-read the actual diff (301 lines, two new CI gates and a keyword-demand rescore gate), ran their test files directly (all pass), confirmed no defect, re-ledgered clean.
+
+**Went well:** the ledger catching its own staleness the same cycle it occurred.
+
+**Did not go well:** nothing new; the backlog is genuinely exhausted of unblocked work, same as the last several dozen cycles.
+
+**Changing next cycle:** none.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first.
+
 ## 2026-10-20, PM check-in (18:4x slot, 30-minute triage, previous work confirmed finished, nothing new to start)
 
 NEXT FOR THE OPERATOR: nothing new, because all 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) are `decision` or `blocked-on-art` and the genuinely unblocked backlog remains exhausted.
