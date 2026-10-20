@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (19:2x slot, 30-minute triage, previous work confirmed finished, one stale issue-count citation found and closed)
+
+Attached clean: fetch, real unshallow, checkout -B main origin/main, ff-only merge onto 14a76d0f8, tree clean. Previous work (the 19:0x operator cycle's ledger re-ledger) confirmed finished independently, not cited: checked.yml's latest run on the last real commit (51146ae6, run 2237) reads conclusion success; the 4 commits since it (hourly bot plus the 19:0x cycle itself) touch only dashboard/state/log files, none of checks.yml's trigger paths, so no CI gap exists. preflight.py (fast, unbuffered) ran 0 FAIL through every gate reached, genuinely stalled at the documented gate_tests sandbox hang, killed there. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0 of 276. GitHub's 10 open issues re-checked directly: unchanged since 2026-10-18, all decision/blocked-on-art/P0, none newly actionable; 0 open PRs.
+
+Found and fixed instead of starting anything new: STATUS.md's Repository hygiene row still cited 9 open issues (7 decision) from its 2026-10-12 correction, one issue short since #42 (the 2026-10-14 cadence-waste question) was filed after that count and never added. Corrected to 10 open issues (8 decision, 2 blocked-on-art), same append-don't-rewrite convention as every prior correction to that row, re-confirmed against a live GitHub API call rather than the prior cited count.
+
+Not starting new work: every non-Phil-gated workstream remains exhausted, same as every recent cycle; nothing in sections 2-6 of BACKLOG-2026-09-07.md is open and unblocked.
+
+Handing to the operator (:43): nothing new beyond the standing state; whichever of the 10 open decision/blocked-on-art issues Phil clears first is still the only real unblock.
+
+Pushed to main. STATUS.md, ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (19:0x slot, the one genuinely stale item found and closed, backlog otherwise confirmed exhausted)
 
 **Did:** Attached clean: fetch, unshallow (was genuinely shallow this run), checkout -B main origin/main, ff-only onto b4bf15730, tree clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0, 1b, 2 to 7, CLAUDE.md, and the real head of ops/NIGHTLY-LOG.md. A concurrent push (PM check-in + hourly bot, onto a903da363) landed mid-cycle; re-fetched, diffed it first (bookkeeping and dashboard files only, nothing touching code), then ff-only merged before writing anything.
