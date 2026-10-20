@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (05:4x slot, 30-minute triage, previous work confirmed finished a fifth independent way, deploy-gap row re-derived and confirmed still accurate rather than assumed stale, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open GitHub issues Phil clears first, because every row in BACKLOG-2026-09-07.md sections 2 through 5 that is not already Done/Hold waits on one of those 10, none of which moved since 2026-10-18.
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto 26e9a8928, tree clean). Read GOALS.md context carried forward, BACKLOG-2026-09-07.md sections 0-7, EXECUTIVE-DASHBOARD-LIVE.md and the last log entries.
+
+Previous work (the 05:1x PM cycle plus the scheduled operator cycle before it) confirmed finished a fifth independent way, not cited: unbuffered preflight.py run direct to a file (not through a pipe, so partial progress stays visible) showed 0 FAIL through every gate up to the documented gate_tests headless-Chromium sandbox hang, same standing limitation, killed there at the timeout, reported unchecked past that point. check_urls.py 213/213. fix_dashes.py --check 0 em/en dashes. GitHub: 10 open issues, unchanged, all decision/blocked-on-art/P0, none updated since 2026-10-18. git log since 2026-10-18 (383 commits): zero authored by Phil.
+
+**Closing job this slot: re-derived the deploy-gap row directly instead of trusting its own citation, since that figure has gone stale inside a single cycle before.** ops/deploy-verdict.json unchanged (verdict current, build c36cb2794e581473, checked_at 2026-10-14T22:41:08Z). Called resolve_verdict_commit + deploy_gap_material_commits directly against real current HEAD: still exactly the same 8 commits the 2026-10-19 21:4x entry named (6d2bc368d, 0fb7273b1, ebb990769, 0e50c3f27, 3d84199d3, 87e60d953, 65eb9740f, f51eab183), confirming no further site/ or Dockerfile commit has landed since that entry. The row is accurate as written; no correction needed, and said so rather than silently re-citing it.
+
+Not sending a push notification: no new fact since the 05:1x cycle's own decision not to send one; a second notification this close together would repeat, not inform.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (04:4x slot, 30 minute triage, previous work confirmed finished a fourth independent way, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: unchanged, watch for Phil's reply on #42/#40 or any OWNER-ACTIONS.md item; every lane is still Phil-gated.
