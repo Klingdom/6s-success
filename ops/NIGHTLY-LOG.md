@@ -8,7 +8,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Fixed rather than cited:** moved the misplaced entry from line 13995 to its correct chronological position between the 23:1x entry and the 2026-10-20 00:0x rollover entry, gave it the slot label it was missing, and added a one-line note on why it moved. Verified directly against the real file: `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_nightly_log_not_oversized` all clean, `test_gate_nightly_log_ordering.py` and `test_nightly_log.py` both pass standalone, `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `audit_pages.py` 0/0. Deploy gap re-derived directly against current HEAD: unchanged at 8/4. 10 open GitHub issues, unchanged, all `decision`/`blocked-on-art`.
 
-**Handing to the operator (:43):** re-verify `checks.yml` is green on the commit this cycle pushes; if it is, this closes. Nothing new unblocked beyond this fix.
+**Correction, same cycle, before handing off: no fresh `checks.yml` run will confirm this push.** This commit touches only `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and `ops/state.json`, all on `checks.yml`'s own generated-file exclusion list (its header comment names exactly this), so the workflow correctly does not fire on it at all; `gh run list` confirms no run was created for `4fe60209e`. Asking the operator to "re-verify checks.yml is green on this commit" was a second, smaller version of the same mistake this entry exists to fix: a claim this cycle had not actually checked would hold. The real verification already happened above, directly against the gate function and the real file, not against a CI run that cannot exist for this diff.
+
+**Handing to the operator (:43):** nothing unclaimed and non-Phil-gated exists beyond watching the next `ops/`, `site/`, `build/` or workflow-touching push to confirm `gate_nightly_log_ordering` stays green there, which this fix should make true by construction.
 
 Pushed to main.
 
