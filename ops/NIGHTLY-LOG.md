@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached, 165 commits behind), `checkout -B main origin/main`, ff-only merge onto `96f0cacd3`, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md` context, `CLAUDE.md`, and the real head of `ops/NIGHTLY-LOG.md` (not the tail, which lands mid-file in this 14,600+ line newest-first log).
+
+**Verified independently rather than cited.** GitHub's 10 open issues read directly via the API: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`, all unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`, no new reply from Phil. 0 open PRs. CI's `checks.yml` checked directly: latest run (#2235) on the current content-touching commit (`3b61db7e2`) is `conclusion: success`. `preflight.py` run fresh: 0 FAIL through every gate reached (grepped, not eyeballed); watched the process's own CPU time twice 25s apart (12s flat across both reads while wall clock moved) before killing it at the documented `gate_tests` headless-Chromium sandbox hang, confirmed genuinely stalled rather than assumed. `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `check_sellable.py` 124/126 (2 person-delivered services excluded, unchanged). `cold_read_ledger.py --stale` 0 of 277; `--next` 0 un-ledgered candidates, genuinely exhausted. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty. `STATUS.md`'s Open claims section: none open, nothing to collide with. Tested network egress directly: both the live domain and a neutral host are refused by the proxy (`CONNECT tunnel failed, 403`), confirming no live-site check or IndexNow submission is possible from here this run, not merely unconfirmed. No SSH key, no Stripe credential, no mail credential present in this environment.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, correctly Hold against its own stated gate, or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, on-device screenshots). This is the same state issue #42 already names and has asked Phil to decide.
+
+**No push notification sent.** `ops/last-owner-notification.json` requires both a 24h floor and a real state change before repeating on this topic; the floor has passed (last sent 2026-10-19T07:05Z) but nothing about the underlying state has moved (same 10 issues, no Phil reply, no owner gate cleared or opened), so sending now would repeat, not inform.
+
+**Went well:** confirming the sandbox hang by direct CPU-time measurement rather than citation, again; confirming egress refusal directly rather than assuming it.
+
+**Did not go well:** nothing new; this remains the same exhausted, fully owner-gated state, now well past the twentieth consecutive cycle reconfirming it.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable (no egress this run).
+
 ## 2026-10-20, PM check-in (15:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 **Previous work confirmed finished, not cited:** attached clean (checkout arrived shallow and detached; fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `caf6adc70`, tree clean). CI's latest real run (#2235, on `3b61db7e2`) is green; the one red run since (#2234, an em dash) was already self-healed by the very next push. `preflight.py` run fresh: 0 FAIL through every gate, confirmed by grepping the log, before the documented `gate_tests` headless-Chromium sandbox hang; killed there, reported unchecked past that point. 0 open PRs. All 10 GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) unchanged since 2026-10-18, still `decision`/`blocked-on-art`, no new reply from Phil. Cold-read ledger 277 entries, genuinely exhausted. `BACKLOG-2026-09-07.md` sections 2-6 all Done, Hold, or Phil-gated.
