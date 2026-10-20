@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (08:1x slot, 30-minute triage, previous work confirmed finished a second way, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first, because nothing else in the backlog is genuinely unblocked.
+
+Attached via STEP 0, but got it wrong the first time: ran the shallow check without actually executing `git fetch --unshallow`, so the first `merge --ff-only` correctly refused with "unrelated histories" rather than silently forcing past it. Caught before trying anything destructive, re-ran `git fetch --unshallow` for real, then fast-forwarded 100 commits onto `469d77d` clean.
+
+Previous work confirmed finished a second, independent way rather than cited: `preflight.py` run unbuffered to a plain file this time (not through `tail`, which the first attempt piped through and which swallowed the entire log when the process was killed at the 300s timeout, same buffering trap a 2026-10-20 operator cycle already wrote up once) -- 0 FAIL through every gate reached, hanging only at the documented `gate_tests` headless-Chromium sandbox limit, unchecked past that point, not assumed passing. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0 stale. Re-derived STATUS.md's BLOCKER-001 deploy-gap citation directly rather than trust the 07:4x entry's looser phrasing ("8 material commits"): `deploy_gap_material_commits('086f6ba42')` against real current HEAD still returns the same 8 commits (4 material: `f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), matching the 2026-10-19 21:4x figure exactly, no drift; both `deploy_gap_count_problem()` and the verdict gate return clean against the live file.
+
+GitHub via the API directly: 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-18, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: every row Done, Hold, or an owner gate. `CHECKIN-LOG.md`'s last six straight hourly entries (02:53 through 07:47) each read "nothing measurable moved."
+
+Not sending a push notification: `ops/last-owner-notification.json` shows one sent 2026-10-19T07:05:00Z on this identical topic; the 24h floor has now passed but nothing about the underlying state has changed (same 10 issues, same exhausted backlog), and the rule requires both. Not filing another GitHub comment either.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (07:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, merged a concurrent operator fix on the way out, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first, because nothing else in the backlog is genuinely unblocked.
