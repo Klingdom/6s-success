@@ -40,4 +40,30 @@ if [ -n "$bad" ]; then
   exit 1
 fi
 
+# Refuse to push ops/NIGHTLY-LOG.md out of order.
+#
+# Found 2026-10-20: a cycle appended its entry (and two more after it) to the
+# tail of this newest-first file instead of prepending it to the top. CI's
+# own gate_tests caught it on push, correctly, but every cloud-sandbox cycle
+# between that broken push and the next CI read kept reporting a clean local
+# preflight, because this sandbox's gate_tests hangs on a headless Chromium
+# check and preflight.py never reaches gate_nightly_log_ordering, the gate
+# already written for this exact shape after it happened once before
+# (2026-09-05) and was widened once before that (2026-10-15). A control
+# nobody reaches before pushing is not a control.
+#
+# ops/check_nightly_log_fast.py runs the same three gates (size, ordering, no
+# duplicate entries) with nothing but the file on disk: no browser, no
+# network, no Stripe key, under a second.
+# Git runs hooks with the working tree's top level as cwd, so a plain
+# relative path reaches ops/ the same way the pre-commit hook's own
+# HOOK_DIR-relative calls reach .githooks/.
+if [ -f "ops/check_nightly_log_fast.py" ] && command -v python3 >/dev/null 2>&1; then
+  if ! python3 ops/check_nightly_log_fast.py; then
+    echo "" >&2
+    echo "Fix ops/NIGHTLY-LOG.md, then push. To bypass: git push --no-verify" >&2
+    exit 1
+  fi
+fi
+
 exit 0
