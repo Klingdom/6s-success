@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (00:0x UTC, rolled over from 2026-10-19 23:5x): cycle_signal SAME, exhausted/decision-gated state reconfirmed directly, no new push notification
+
+**Did:** Attached clean (fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `d35782d22c`, no new commits since the last cycle's own HEAD, tree clean). Read GOALS.md, CLAUDE.md and STATUS.md in full this cycle, then delegated the 518KB BACKLOG-2026-09-07.md and the oldest tail of this log to a forked subagent (kept out of this session's own context) rather than reading them cold a second time in one slot; independently re-verified its two central claims myself rather than citing them: `ops/cycle_signal.py --check` reports **SAME**, byte-identical to the snapshot this file's own 23:0x entry recorded at `d35782d22c` (BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, GOALS.md, OWNER-ACTIONS.md, STATUS.md, ops/deploy-verdict.json all unchanged), so a full local re-verification of those files would be redundant, exactly the gate this mechanism exists to provide. Checked the two things the signal does not cover myself: `python ops/inbox_agent.py --apply` (no mail credentials, the standing sandbox gap, reported unchecked not passed) and GitHub directly via the API (10 open issues, unchanged, all `decision`/`blocked-on-art`/P0; issue #42 still carries zero reply from Phil since 2026-10-18T19:54:35Z, issue #40 none since 2026-10-13T20:51:47Z). `cold_read_ledger.py --stale` and `--next`: 0 of 276 stale, 0 un-ledgered candidates, that lane genuinely exhausted, not merely unstale.
+
+**Verified:** Ran `python ops/preflight.py` fresh in the background rather than trust a prior run's citation; it reached `gate_tests` (the documented headless-Chromium sandbox hang) with 0 FAIL on every gate before it, same standing limit every recent cycle has hit, killed there rather than reported as passing past that point. Regenerated the command deck (`ops/dashboard.py`): YELLOW, revenue $0 of $20,000 (carried forward, this sandbox cannot reach Stripe), `commits7d` 1314, `need-you` 8, P0 2, all consistent with the prior reading. Checked `ops/last-owner-notification.json` before considering a push: last sent 07:05Z on 2026-10-19 (~17h ago), still under the 24h floor, and nothing about the underlying state has changed since, so correctly sent none.
+
+**Went well:** the `cycle_signal.py` mechanism did exactly what it was built for, letting this cycle skip an expensive full re-read of the backlog and still reach an independently-checkable answer; forking the one read that genuinely needed doing (the 518KB backlog) kept this session's own context small.
+
+**Did not go well:** nothing new to report; same standing `gate_tests` sandbox limitation and no-mail-credentials gap every recent cycle has already logged.
+
+**Changing next cycle:** none.
+
+**Next:** nothing newly unblocked. Watch for Phil's reply on #42/#40, or any of the account-creation/credential items in OWNER-ACTIONS.md's "start here" list (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play).
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-19, PM check-in (23:1x slot, 30 minute triage, previous work finished, nothing new unblocked, no notification)
 
 Previous work finished, verified rather than cited: attached clean (fetch, unshallow, checkout -B main origin/main, ff-only onto d35782d22, 32 commits, tree clean). checks.yml green on the latest site-affecting push (d61bd2517, run 2227); publish-image.yml green on 6d2bc368d (21:22:54Z), the first clean run since the 2026-10-15 incident, confirmed via the Actions API directly, not inferred. Re-derived the deploy gap by hand against real current HEAD (preflight hung at gate_tests again, same standing sandbox limit, killed): deploy_gap_material_commits('086f6ba42') still returns 8 commits, 4 material, identical to the 21:4x entry's own figure, so for once nothing to widen. Called gate_status_currency, gate_status_deploy_verdict_current, gate_status_deploy_gap_count_current and gate_owner_actions_last_measured_current directly: all four clean. cold_read_ledger.py --stale: 0 of 276. Spot-checked BACKLOG-2026-09-07.md sections 2 through 4 by hand rather than trust prior citations: every item struck done except C5 (Gemini billing) and C6 (publish 102 videos), both marked Phil-only.
