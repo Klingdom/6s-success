@@ -1,14 +1,14 @@
 {
-  "combined_hash": "bb353e2a884290be592a4ed9175c8d1eb1934bdf729f5cf1c04cef29cbb82268",
-  "git_head": "0cc5e78926c13b40954d23d15faab885bef1568d",
-  "note": "Scheduled operator cycle 06:5x: fresh preflight (0 FAIL through every gate before the documented gate_tests sandbox hang, killed at 190s flat CPU, same standing limitation). check_urls/fix_dashes not separately re-run (cycle_signal SAME at start). GitHub: 10 open issues unchanged (checked directly), all decision/blocked-on-art/P0, #42 no new reply from Phil since 2026-10-18. checks.yml latest completed run on main: success (02:4x commit). cold_read_ledger 276/276, 0 stale. Production deploy.reachable true, all assets current. No mail credential, unchecked. No new unblocked work found.",
-  "recorded_at": "2026-10-20T06:51:08Z",
+  "combined_hash": "b90a639f86b8e9ab19a5c278521116d8c9e3cb0fd746afc790785e9fd1fe3b7f",
+  "git_head": "ff385e1a5fa1f9df78bd932af13cac509083006b",
+  "note": "",
+  "recorded_at": "2026-10-20T20:57:01Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "ed7daf65b2ffce0023298a5d3a7d686d86c375e783882d5b9f2277b7292d9cc2",
+    "BACKLOG-2026-09-07.md": "3290d418081f158fcac79ea0a5d5b8276c71d4cd1719a88eda7fb5132c9d60c1",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "30079132d4d658b448f9f8a0ba968474c09fd72a404651a6e16bf1315bbb091b",
-    "OWNER-ACTIONS.md": "cef0acb60c0093a502c2911139399698db03d9b1a718e55b726580739729aee4",
-    "STATUS.md": "decdf0a93b90dd2e69f0d9f49945abfd0c889a21c31055f7c17b7fc8080bae0e",
+    "OWNER-ACTIONS.md": "5e885061b360bde4e1aa516249a7cc9ba0090ec8dd74ca890019a19821c88e42",
+    "STATUS.md": "3981b51ed5b68b67d3506a6281be19ee482c1ecf258f3e2b783080d240f1e134",
     "ops/deploy-verdict.json": "9b302a3b7cb6b6dcf25a68a6f93fdcd88167a0c59407774f96017281720fc7d4"
   }
 }

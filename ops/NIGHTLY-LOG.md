@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed, two transient-tool traps caught and not mistaken for defects)
+
+**Did:** Attached clean: fetched origin/main, unshallowed (the checkout arrived shallow and detached again, same standing STEP 0 symptom), `checkout -B main origin/main`, ff-only merge onto `ff385e1a5`, 12 commits, tree clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-23), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, `STATUS.md`'s open claims (none), and the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Caught two tool-level traps before trusting either result, neither a repository defect.** First: a `preflight.py` run piped through `tail -150` was killed by its own 280s timeout with zero lines captured, because stdout was fully buffered and never flushed before SIGTERM; a null result, reported as such rather than mistaken for "0 FAIL." Re-ran with `python -u` and a direct file redirect, which captured output correctly: 0 FAIL, 0 WARN across 80 gates, then genuinely stalled (CPU time flat at 9s for 10+ minutes) at the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation every recent cycle reports; killed only after confirming the stall, not on a timer alone. Second: `audit_visual.py --all` (222 pages) reported one page, `primary-bathroom-the-linen-and-towel-storage.html`, as "not measured" (probe never wrote its RESULT block) — the identical transient batch-run hiccup a 2026-10-0x entry already diagnosed for a different page. Re-ran that one page alone rather than assuming either way: measured clean, 0 findings, confirming transient rather than a real defect. The "20 pages, fonts NOT loaded" line is the tool's own already-documented headless-font-race caveat, not new.
+
+**Verified independently, not cited:** `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 delivered documents), `check_sellable.py` 124/126 (the other 2 are person-delivered services, correctly excluded), `audit_pages.py` 218 pages/0 findings, `link_graph_report.py` 0 orphans across zones/rooms/articles, `cold_read_ledger.py --stale` 0 stale, `b9_claims.py --status` 0 active claims/0 undiagnosed rooms, `audit_visual.py --all` 0 real findings across 222 pages. `cycle_signal.py --check` correctly returned CHANGED (3 signal files moved since the 06:51 snapshot), which is why this cycle ran the full re-verification rather than the cheap path.
+
+**Re-derived the deploy gap rather than trusted the citation:** `git log 086f6ba42..HEAD -- site/ Dockerfile` against real current HEAD returns the same 8 commits, 4 material as `STATUS.md`'s own 20:1x citation. No drift; not corrected.
+
+**GitHub checked directly:** 10 open issues, unchanged, all `decision`/`blocked-on-art`, no comment or commit from Phil since 2026-10-18. Inbox: no mail credential in this sandbox, reported unchecked, not empty.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 that is not Done or Hold is gated on an owner action this sandbox cannot take; `OWNER-ACTIONS.md`'s "Start here" table (usage-limit check, `VPS_DEPLOY_KEY`, Search Console sitemap/reports, Gemini billing, YouTube authorisation, KDP/Etsy accounts) is unchanged.
+
+**No push notification sent.** The last one went out within the floor this repository's own practice has settled on (notify only past 24h since the prior one AND something changed); nothing changed since the 20:1x cycle's own re-confirmation a few minutes before this one started, so sending now would be the exact noise CLAUDE.md and issue #42 both warn against.
+
+**Went well:** neither tool trap was mistaken for a real result; both were checked rather than assumed, per CLAUDE.md 0.4.
+
+**Did not go well:** this is another cycle in the same multi-day run of "nothing new, fully Phil-gated" that issue #42 already names; no new ground covered beyond re-verification and the two trap catches.
+
+**Changing next cycle:** none proposed; issue #42's cadence question stays Phil's to decide.
+
+**Next:** whichever of the 10 open issues Phil clears first, or any `OWNER-ACTIONS.md` "Start here" item if he acts on it directly.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (20:1x slot, 30-minute triage, previous work confirmed finished a seventh independent way, nothing new unblocked, no notification)
 
 PM check-in. Attached per Step 0: fetch, real unshallow (checkout had arrived shallow and detached), checkout -B main origin/main, ff-only merge onto d371ae20b, 10 commits fast-forwarded (bot check-ins, a PM stale-count fix, nothing site-affecting), tree clean.
