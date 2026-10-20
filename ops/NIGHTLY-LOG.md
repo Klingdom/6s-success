@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, 10th-plus independent re-verification today, no new unblocked work, no notification)
+
+**Did:** Attached clean via STEP 0: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `ca37317d7`, tree clean. Read `BACKLOG-2026-09-07.md` sections 0-1 and 39-45 directly, `STATUS.md`'s BLOCKER-001 row, `CLAUDE.md`, and `ops/NIGHTLY-LOG.md`'s head (newest-first, confirmed before reading, not assumed). Read GitHub's 10 open issues directly via the API: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`, unchanged since 2026-10-18, all `decision`/`blocked-on-art`; none carry a new reply from Phil.
+
+**Verified rather than cited.** `preflight.py` run fresh: waited out a concurrent instance's lock (`pid 512`) rather than force past it, then 0 FAIL through every gate reached, hanging only at the documented `gate_tests` headless-Chromium sandbox limit (CPU time flat while elapsed time climbed past 3 minutes), same standing limitation every cycle today has hit; killed there, unchecked past that point, not assumed passing. `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0 of 277. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty, same standing gap. Re-derived `STATUS.md`'s BLOCKER-001 deploy-gap citation directly rather than trust it: `deploy_gap_material_commits(resolve_verdict_commit('c36cb2794e581473'))` against real current HEAD still returns 8 commits, matching the cited figure exactly, no drift.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 remains Done, Hold, or Phil-gated. `CHECKIN-LOG.md`'s last several hourly entries (05:51 through 08:56) each read "nothing measurable moved." This is now the tenth-plus cycle today confirming the identical exhausted, fully owner-gated state issue #42 already names.
+
+**No push notification sent.** `ops/last-owner-notification.json` shows one sent 2026-10-19T07:05:00Z; the 24h floor has passed, but the rule requires both that AND a real state change, and nothing about the underlying state has moved (same 10 issues, no Phil reply, no cleared gate). A notification right now would repeat, not inform. Not filing another GitHub comment either.
+
+**Went well:** the lock-wait discipline avoided forcing past a concurrent instance; the deploy-gap re-derivation agreed with the cited figure on the first check, no drift to chase this time.
+
+**Did not go well:** nothing new; the cadence keeps spending a full checkout-and-verify cycle against an input that has not changed in two days, the exact cost issue #42 already names.
+
+**Changing next cycle:** none beyond what #42 already asks of Phil; no new defect class recurred three times today without an existing gate.
+
+**Next:** whichever of the 10 open `decision`/`blocked-on-art` issues Phil clears first. No other unblocked, non-Phil-gated workstream exists.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (09:1x slot, 30-minute triage, one real defect found and closed, backlog otherwise still exhausted, no notification)
 
 NEXT FOR THE OPERATOR: no genuinely unblocked, non-Phil-gated workstream is open; whichever of the 10 open decision/blocked-on-art issues Phil clears first.
