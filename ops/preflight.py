@@ -11726,7 +11726,7 @@ def _workflow_trigger_paths(name):
     return includes + [":(exclude)%s" % e for e in excludes]
 
 
-def _commits_touching_paths_since(sha, paths):
+def _commits_touching_paths_since(sha, paths, exclude_author=None):
     """How many commits since `sha` (exclusive) touch any of `paths`, or
     None if that cannot be determined.
 
@@ -11740,15 +11740,33 @@ def _commits_touching_paths_since(sha, paths):
     live 2026-09-27: `mobile-checks.yml` flagged "not running (10 days)"
     with its last run a `success`, because nothing under `mobile/quest-app/
     lib/**` or `package.json` had changed since.
+
+    `exclude_author`, when given, drops commits whose author name contains
+    it (case-insensitive) before counting. Added 2026-10-20 for
+    gate_checks_yml_real_gap: a commit authored by `github-actions[bot]`
+    pushes with the default GITHUB_TOKEN, and GitHub's own documented
+    anti-recursion rule is that a GITHUB_TOKEN-authored push never triggers
+    another workflow run, by design, not a bug anywhere in this repository.
+    Without this filter, a run of bookkeeping-only bot commits (the hourly
+    check-in's own CHECKIN-LOG.md/ops/state-checkin.json update, neither
+    excluded by checks.yml's own paths filter) counts as "real work landed
+    unverified" when it structurally never could have retriggered anything,
+    exactly the false alarm a PM check-in raised live on 2026-10-20 before
+    this filter existed.
     """
     if not sha or not paths:
         return None
     out = subprocess.run(
-        ["git", "log", "--format=%H", "%s..HEAD" % sha, "--"] + paths,
+        ["git", "log", "--format=%H%x01%an", "%s..HEAD" % sha, "--"] + paths,
         cwd=ROOT, capture_output=True, text=True)
     if out.returncode != 0:
         return None
-    return len([ln for ln in out.stdout.splitlines() if ln.strip()])
+    rows = [ln for ln in out.stdout.splitlines() if ln.strip()]
+    if exclude_author:
+        needle = exclude_author.lower()
+        rows = [ln for ln in rows
+                if needle not in ln.partition("\x01")[2].lower()]
+    return len(rows)
 
 
 def gate_workflows_healthy() -> None:
@@ -11978,6 +11996,69 @@ def gate_ci_conclusion_current() -> None:
              "sandbox's gate_tests hang hides exactly that. Read the run "
              "log before building anything else on top of this."
              % (when or "time unknown", (head_sha or "unknown")[:10]))
+
+
+def gate_checks_yml_real_gap() -> None:
+    """Has a REAL (non-bot) commit touching checks.yml's own trigger paths
+    landed since its last completed run, with no later run to show for it?
+
+    gate_ci_conclusion_current above answers "was the last completed run
+    green"; it cannot tell "green because nothing since needed checking"
+    apart from "green because nothing has actually tried to check anything
+    since", which is exactly the gap a PM check-in raised live on
+    2026-10-20: checks.yml had not run in 8+ hours, framed as the workflow
+    having silently stopped triggering.
+
+    It had not. Every commit in that window either (a) was authored by
+    `github-actions[bot]` pushing with the default GITHUB_TOKEN, which
+    GitHub's own anti-recursion rule structurally prevents from triggering
+    any workflow, bug or not, or (b) was authored by a real session but
+    touched only the paths checks.yml already excludes (the generated
+    dashboard trio and this log), because every one of those cycles found
+    the backlog fully exhausted and had no real content to ship. Confirmed
+    by walking the actual commit list rather than trusting either claim.
+
+    So the thing worth gating is not "checks.yml went quiet", which can be
+    perfectly healthy, but the one shape that genuinely means unverified
+    work: a commit NOT authored by the bot that touches a trigger path
+    checks.yml does not exclude, sitting after the last completed run with
+    no run since. `_commits_touching_paths_since`'s new `exclude_author`
+    filter is what makes that distinction possible; without it, the bot's
+    own bookkeeping commits would count as "real work landed unverified"
+    forever, which is the false alarm this gate exists to not repeat.
+
+    Deliberately separate from gate_workflows_healthy's own staleness
+    branch rather than folded into it: that one only escalates after 7 days
+    because most workflows here are schedule-driven and a week of quiet is
+    the right bar. checks.yml verifies every push with real content before
+    anything is said to be checked; the right bar for it is "any real gap
+    at all", not a week of one.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    token = dashboard.gh_token()
+    if token:
+        conclusion, when, head_sha, err = _workflow_run_via_api(token, "checks.yml")
+    elif shutil.which("gh"):
+        conclusion, when, head_sha, err = _workflow_run_via_cli("checks.yml")
+    else:
+        return  # gate_ci_conclusion_current already warned about this above
+    if err or not head_sha:
+        return  # ditto: already warned, nothing new to add here
+    trigger_paths = _workflow_trigger_paths("checks.yml")
+    if not trigger_paths:
+        return
+    gap = _commits_touching_paths_since(head_sha, trigger_paths,
+                                         exclude_author="github-actions")
+    if gap:
+        fail("checks-yml-real-gap",
+             "%d non-bot commit(s) touching checks.yml's own trigger paths "
+             "have landed since its last completed run (%s, commit %s) "
+             "with no later run to show for it. That is real work shipped "
+             "with zero CI verification, not a workflow quietly idle by "
+             "design. Push a trivial qualifying change and confirm a new "
+             "run actually starts before trusting anything past this point."
+             % (gap, when or "time unknown", (head_sha or "unknown")[:10]))
 
 
 def _publish_image_runs(token, wf_name, extra_qs="", per_page=1):
@@ -29464,6 +29545,10 @@ def main() -> int:
     # getting that far, so a sandbox hang can no longer hide a real red
     # checks.yml the way it did on 2026-10-19 (three straight pushes).
     run_gate(gate_ci_conclusion_current)
+    # Same spot, same reason: a green last-completed-run and "no run has
+    # started on real work since" look identical to gate_ci_conclusion_
+    # current above, which only asks about the run that DID complete.
+    run_gate(gate_checks_yml_real_gap)
 
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
