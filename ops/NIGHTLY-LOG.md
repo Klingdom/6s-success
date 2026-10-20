@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently through a fuller set of checks than usual, no new defect, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached, 158 commits behind), `checkout -B main origin/main`, ff-only merge onto `f75d9aeb8`, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0 to 7 directly (not a summary table), `ROADMAP-2026-2029.md` context carried forward, `CLAUDE.md`, and the head of `ops/NIGHTLY-LOG.md`.
+
+**Verified independently, several ways not all used together before.** `cold_read_ledger.py --stale`: 0 of 277. `--next`: 0 un-ledgered candidates, genuinely exhausted. `preflight.py` run fresh in the background after a one-time sandbox snag (`pip` resolved to a different Python than `python3`; installed `pymupdf` with `python3 -m pip` instead): 0 FAIL through every gate reached, confirmed by grepping the log for FAIL (0 matches), not by eye. Watched the stuck process directly rather than trusting elapsed time alone: `ps -o etimes,time,pcpu` taken three times 20s apart showed CPU time flat at 13s while wall clock ran 137s to 171s, confirming the documented `gate_tests` headless-Chromium sandbox hang is real this run too, then killed it. `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `fix_dialect.py --check` 0 British spellings, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services excluded, unchanged), `link_graph_report.py` 0 orphans. GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all unchanged since 2026-10-18, all `decision`/`blocked-on-art`, no new reply from Phil; read both existing comments on #42 directly, confirmed both self-authored by prior agent cycles. Checked CI a different way than the recent citation chain: listed the `checks.yml` workflow runs directly rather than checking only the last content-touching commit's own run, and found one real `conclusion: failure` in between (run #2234, an em dash a prior cycle introduced into `OWNER-ACTIONS.md`), already caught and fixed by the very next run (#2235, `conclusion: success`, on `3b61db7e2`), so nothing is open now; confirmed no completed run since is red. Tested network egress directly: both `6s-success.com` and a neutral host are refused by the proxy (`connect_rejected`/403), confirming IndexNow and live-site verification are genuinely unreachable from this sandbox this run, not merely unconfirmed. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. `STATUS.md`'s Open claims section: none open, nothing to collide with.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2 to 6 is Done, correctly Hold against its own stated gate, or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, the six on-device screenshots). This is now well past the twentieth consecutive cycle independently reconfirming the identical state issue #42 already names and has asked Phil to decide.
+
+**No push notification sent.** `ops/last-owner-notification.json` requires both a 24h floor and a real state change before repeating on this topic; the floor has long passed (last sent 2026-10-19T07:05Z) but nothing about the underlying state has moved (same 10 issues, no Phil reply, no new owner gate cleared or opened), so sending now would repeat, not inform, exactly what that file and the last several cycles' own restraint were built to prevent.
+
+**Went well:** checking CI through the fuller workflow-run list instead of just the last content-commit's own run caught a real, already-self-healed failure the narrower check would have missed entirely (not a live problem, but a gap in how this cycle's own verification would have looked); confirming the sandbox hang and the egress refusal by direct measurement rather than citation, again.
+
+**Did not go well:** nothing new; this remains the same exhausted, fully owner-gated state at real continuing token cost, which is the business's real current constraint, not a technical one.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate, and the one standing meta-problem (cadence cost against an unchanged state) is already filed as issue #42 and not mine to resolve unilaterally.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable (no egress this run).
+
 ## 2026-10-20, PM check-in (14:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
