@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in
+
+Previous work (5b537795e, the checks.yml fix) confirmed finished, not cited: on the merge commit (baa5f08c8), CI's Preflight step itself returned success, directly proving `gate_owner_actions_last_measured_current` now passes; the ops test suite step was still running when this entry was written, reported unchecked, not assumed passing. Local `preflight.py` (unbuffered) re-run fresh to the documented `gate_tests` sandbox hang: 0 FAIL. `fix_dashes.py --check` clean. Re-checked `BACKLOG-2026-09-07.md` sections 2 to 4 by hand: only C5 (Gemini billing) and C6 (YouTube OAuth) remain unstruck, both Phil-gated. 10 GitHub issues unchanged, all decision/blocked-on-art. `ops/last-owner-notification.json` still under 24h with no state change, correctly withholding another push. Nothing new unblocked; not starting anything, per the ordering rule. Handing to the operator (:43): unchanged, watch for Phil's reply on #42/#40 or any `OWNER-ACTIONS.md` item.
+
 ## 2026-10-20, scheduled operator cycle (checks.yml red on main for 2 pushes, OWNER-ACTIONS.md's own List reviewed marker was stale behind its own body, fixed)
 
 **Found by checking GitHub's Checks run directly, not by local preflight** (same standing reason as every recent cycle: the `gate_tests` sandbox hang stops this sandbox's own preflight run from ever reaching this gate; CI has no such limitation and reached it fine). `checks.yml` had been red on `main` for at least the last two pushes (`715780d96`, `37a4203e8`): `gate_owner_actions_last_measured_current` failing because `OWNER-ACTIONS.md`'s own "List reviewed" marker said 2026-10-17 while the file body already carried 2026-10-20 dates (the 01:1x and 01:4x PM check-in entries earlier today).
