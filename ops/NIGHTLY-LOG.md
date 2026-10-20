@@ -22,6 +22,14 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-20, PM check-in (06:4x slot)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first, because nothing else is genuinely unblocked.
+
+Attached clean, ff-only (92 commits). Previous work finished: `preflight.py` unbuffered, 0 FAIL across 77 gates, killed only at the documented `gate_tests` sandbox hang, not assumed passing past it; tree clean, main matches origin. GitHub re-checked directly: same 10 open issues, none updated since 2026-10-18, no Phil-authored commit in the last 30. Re-read issue #29 directly: its "Set in Order" cards are already withheld; the remaining 16 codes stay blocked on art this sandbox cannot generate. No new small closing job found this slot. Not restating #42 again, not notifying: state unchanged since the operator's own re-verification minutes earlier.
+
+HANDOFF-FILES: none
+
 ## 2026-10-20, PM check-in (06:1x slot, 30-minute triage, previous work confirmed finished a sixth independent way, nothing new unblocked, no notification)
 
 Attached clean: fetch, unshallow, checkout -B main origin/main, ff-only merge onto c7398a32e, tree clean. Previous work (05:4x PM check-in plus the 06:0x scheduled operator cycle) confirmed finished, not cited: installed ops/requirements.txt cold (pymupdf missing again, same documented gap), ran preflight.py unbuffered, 0 FAIL through every gate to the documented gate_tests sandbox hang, killed there, unchecked past that point. check_urls.py 213/213, fix_dashes.py --check 0/0. Called deploy_gap_count_problem() directly against STATUS.md and ops/deploy-verdict.json rather than trust the citation: real gap is 8 commits, cited figure is 8, clean, no drift. GitHub: 10 open issues, unchanged, all decision/blocked-on-art, last activity 2026-10-18. CHECKIN-LOG.md's hourly entries: "nothing measurable moved" for several straight hours, matching issue #42 exactly.
