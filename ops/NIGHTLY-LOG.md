@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (13:1x slot, 30-minute triage, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean: fetch, real unshallow (checkout arrived shallow and detached, 144 commits behind), checkout -B main origin/main, ff-only merge onto 664974223, tree clean throughout. Previous work (the 12:4x PM check-in and the 12:48 hourly check-in bot) confirmed finished, not cited: tree was already clean at the fetched tip, nothing concurrent landed mid-cycle.
+
+Verified independently rather than cited: preflight.py run fresh, 0 FAIL through every gate reached (confirmed by grep, not by eye), killed at the documented gate_tests headless-Chromium sandbox hang after ~150s via its own timeout, confirmed genuinely stalled, reported unchecked past that point, not assumed passing. check_urls.py 213/213 sitemap URLs resolve. fix_dashes.py --check 0 em/0 en. GitHub's 10 open issues read directly via the API: 42, 40, 35, 33, 31, 29, 21, 18, 15, 2, all unchanged since 2026-10-18, all decision/blocked-on-art/P0, no new reply from Phil.
+
+No new defect found small enough to close this slot. Dashboard regenerated per Step 6; only the timestamp moved, still YELLOW, revenue $0 of $20,000 this month (carried forward, Stripe unreachable from this sandbox this month), $19 all time from 1 sale.
+
+Not sending an owner notification: last one on this identical topic (issue 42, the 10 Phil-gated issues) went out 2026-10-19T07:05:00Z, past the 24h floor, but nothing about the underlying state has actually changed since (no new reply, no issue cleared, no issue opened), so the stored condition in ops/last-owner-notification.json correctly withholds a repeat.
+
+Not starting anything large in this slot, per standing PM practice: nothing is genuinely unblocked beyond the standing handoff above. Issue 42 itself (the cadence re-verifying an unchanged state) remains the honest description of this entry too; still waiting on Phil, now 6 days open.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently via a full backlog and CI read, no new defect, no notification)
 
 **Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `9b24257fd`; a concurrent 12:4x PM check-in landed mid-cycle, merged cleanly after resolving the expected conflict in the three generated dashboard files (took the merged HEAD's version, then regenerated fresh rather than keeping either stale copy). Read `GOALS.md` (constraint confirmed unchanged: arrivals), `BACKLOG-2026-09-07.md` sections 0 to 7 and 21 to 23 line by line, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries.
