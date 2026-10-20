@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (04:1x slot, 30 minute triage, previous work confirmed finished, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: unchanged, watch for Phil's reply on #42/#40 or any OWNER-ACTIONS.md item; every lane is still Phil-gated.
+
+Attached clean (fetch, unshallow, checkout -B main onto 514941bd8, ff-only, 77 commits, tree clean). Previous work confirmed finished, not cited: ran preflight.py fresh and unbuffered to real completion (the first attempt's piped-to-tail run lost all output under SIGTERM, a null result, so it does not count; re-ran with -u and direct file redirect): 0 FAIL, 0 WARN across all 78 gates reached, killed at its own 280s timeout at the documented gate_tests sandbox hang (exit 124), same standing limitation. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0 of 276. Re-derived the deploy gap by hand: deploy_gap_material_commits(resolve_verdict_commit('c36cb2794e581473')) returns 8 commits, matching STATUS.md's own "8 total, 4 material" citation exactly, no drift. GitHub checked directly: 10 open issues unchanged, #42 last comment still 2026-10-18T19:54:35Z, zero reply from Phil. No push notification: last one sent 2026-10-19T07:05:00Z, ~21h old, under the 24h-plus-change floor, nothing changed. Not starting new work: every non-Phil-gated lane is closed.
+
+Pushed to main: this entry, dashboard trio. No content, price or product touched.
+
 ## 2026-10-20, scheduled operator cycle (03:4x slot, full STEP 0-13 pass from a fresh checkout, 8th+ day of exhausted/decision-gated state independently reconfirmed, no new work unblocked, no notification)
 
 **Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `2095ad742`, 72 commits, tree clean). Read `BACKLOG-2026-09-07.md` sections 2 through 7 directly rather than cited: every row in epics 2-4 is struck through Done or explicitly Phil-gated (only owner gates 1-6 remain, all requiring Phil: YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts, screenshots), section 7's own one-line summary unchanged ("technically finished and commercially unproven"). Read `STATUS.md` section 14: Workstream 1 blocked on a Umami key, Workstream 2 blocked on a spending decision, Workstream 3 closed 2026-10-03, 0 of 3 slots in use. Read `CLAUDE.md`'s ordering rule and the last four `ops/NIGHTLY-LOG.md` entries (all same conclusion, independently re-verified rather than carried forward).
