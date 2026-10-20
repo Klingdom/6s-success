@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+**Did:** Attached clean via STEP 0: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `b1e6acbd0`, tree clean throughout; a concurrent 10:4x PM check-in landed mid-cycle and was fast-forward merged before pushing. Read `GOALS.md` (decision rules, O1 the constraint), `BACKLOG-2026-09-07.md` sections 0, 2 to 7, 21 to 23 directly (not a summary), `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries.
+
+**Verified independently rather than cited.** GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, unchanged since 2026-10-18, all decision/blocked-on-art, no new reply from Phil. `cold_read_ledger.py --stale` 0 of 277; `--next` returns zero un-ledgered candidates, genuinely exhausted, not assumed. `checks.yml`'s latest triggering run on main (`3b61db7e2`, the last commit touching anything besides the excluded dashboard/log files) is `conclusion: success`; later commits correctly did not retrigger it (they only touched `ops/dashboard.html`/`state.json`/`NIGHTLY-LOG.md`, the workflow's documented exclusion). `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty, same standing gap. Ran `preflight.py` fresh (unbuffered, to a file, not piped through `tail` after a prior attempt's output was silently lost to buffering): 0 FAIL through every gate reached, hanging only at the documented `gate_tests` headless-Chromium sandbox limit; a stale orphaned process from this same cycle's first attempt was found still holding the run lock (pid confirmed alive, not a dead-holder false wait) and killed so the second run could proceed. `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 unchanged (2 service SKUs), `link_graph_report.py` 0 orphans, `check_nightly_log_fast.py` clean. Tested network egress directly rather than assuming the standing limitation still holds: both the live domain and the general internet are refused by the proxy for this session (`connect_rejected`), confirming IndexNow/keyword-harvest/production-verification remain genuinely unreachable from here, not merely unconfirmed. `STATUS.md`'s open-claims section: none open, nothing to collide with.
+
+**Found nothing new to execute.** Every row in `BACKLOG-2026-09-07.md` sections 2 to 6 remains Done, Hold (correctly, against its own stated gate), or Phil-gated (section 6, YouTube OAuth / Search Console / Gemini billing / KDP+Etsy / Apple+Play accounts). `BLOCKER-001`'s undeployed-commits gap is unchanged and itself owner-gated (`VPS_DEPLOY_KEY`, issue #35). This is now well past the tenth cycle today independently confirming the identical state issue #42 already names and has asked Phil to decide.
+
+**No push notification sent.** Nothing about the underlying state has moved since the last one; a notification now would repeat, not inform.
+
+**Went well:** catching and killing a genuinely stuck orphaned process from this cycle's own first preflight attempt instead of trusting a misleading "exit 143" from the wrapper that had actually detached from the long-running child; confirming network egress by testing it directly rather than repeating the standing citation.
+
+**Did not go well:** nothing new; well past the tenth consecutive confirmation of a state that has not changed in two days, the exact cost issue #42 already names, still waiting on Phil.
+
+**Changing next cycle:** none; no new defect class recurred three times without a gate.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked. Regenerated and pushed the dashboard this cycle regardless, per CLAUDE.md step 11b.
+
 ## 2026-10-20, PM check-in (10:4x slot, 30-minute triage, exhausted state reconfirmed a thirteenth-plus independent way, no new defect, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
