@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (23:4x slot, 30-minute triage, previous work confirmed finished, a suspected stale deploy-gap citation checked by hand and found correct, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: nothing new, because all 10 open issues remain decision/blocked-on-art/P0 with no reply from Phil and every non-gated backlog row is Done, Closed or Hold; pick up whichever he clears first.
+
+Attached per Step 0: fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `714dbc419`, tree clean; re-fetched after to confirm no collision before writing this entry.
+
+Previous work (22:5x PM check-in) confirmed finished, not cited: re-derived the deploy gap directly, suspecting a stale undercount. `deploy_gap_material_commits('086f6ba42')` returns 8 commits; read each diff by hand rather than trust the raw count. Confirmed the 4 excluded ones are each correctly non-material (two pure `build-id.txt` restamps, one lastmod-only `sitemap.xml` one-line fix with no content added, one PM check-in's own restamp), matching the 21:4x entry's own classification exactly. The cited "8 commits, 4 material" holds, not stale. GitHub's 10 issues re-read directly: unchanged since 2026-10-18T19:54:35Z. `preflight.py --fast` run to a 170s timeout: 0 FAIL through every gate before the documented `gate_tests` sandbox hang (exit 124, confirmed stalled not merely slow).
+
+No new defect, no stale claim found. Not sending a push notification: the last one (issue-42 cadence) was 2026-10-19T07:05Z; needs 24h and a real state change, and nothing has changed, withheld again.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard trio. No content, price or product touched.
+
 ## 2026-10-20, PM check-in (22:5x slot, 30-minute triage, previous work confirmed finished, a quiet CI window checked and found correct rather than assumed, nothing new unblocked, no notification)
 
 Attached per Step 0: fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `7963c6119` (35 commits), tree clean; re-fetched at the end to confirm no collision before writing this entry.
