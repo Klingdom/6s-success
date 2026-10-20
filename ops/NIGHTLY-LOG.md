@@ -21,6 +21,19 @@ One entry per unattended pass, newest first. Written to be read half awake.
 **Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
 
 Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched, no new page, IndexNow not applicable.
+## 2026-10-20, PM check-in (19:4x slot, 30-minute triage, previous work confirmed finished, nothing new to start)
+
+NEXT FOR THE OPERATOR: nothing new, because all 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) remain decision or blocked-on-art and the genuinely unblocked backlog is still exhausted.
+
+Attached clean: fetch, real unshallow, checkout main, ff-only merge onto d371ae20b (6 commits, bookkeeping/dashboard only), tree clean. Previous work (the 19:2x PM check-in's open-issue-count fix, fdaca48af) confirmed finished independently, not cited: the fix is pushed, and the dashboard's own "Open issues" table and "What needs you" list already list all 10 current issues correctly, no further correction needed there.
+
+Re-derived rather than cited: deploy_gap_material_commits('086f6ba42') against real current HEAD still returns the same 8 commits (65eb9740f, ebb990769, 6d2bc368d, 0fb7273b1 non-material restamps; f51eab183, 87e60d953, 3d84199d3, 0e50c3f27 material), unchanged from the 2026-10-19 21:4x figure, so BLOCKER-001 and the Production traceability row are still current. preflight.py (fast, unbuffered) ran 0 FAIL through every gate reached, stalled at the documented gate_tests sandbox hang, killed there, reported unchecked past that point. GitHub's 10 open issues re-checked directly via the API: unchanged since 2026-10-18, all decision/blocked-on-art/P0, no new reply from Phil; 0 open PRs.
+
+Notification policy checked before deciding not to send one: ops/last-owner-notification.json shows the last push went 2026-10-19T07:05Z on this same issue-42/cadence topic; the 19:0x operator cycle already re-confirmed the 24h floor passed but underlying state unchanged and withheld a repeat. Nothing has changed since that check (only a bookkeeping fix), so withheld again rather than sent a third time on an unchanged state, which is exactly what #42 itself is asking this cadence to stop doing.
+
+Not starting new work: every non-Phil-gated workstream remains exhausted, same as every recent cycle.
+
+Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json (freshness regen only, no content change). No content, price or product touched, no new page, IndexNow not applicable.
 
 ## 2026-10-20, PM check-in (19:2x slot, 30-minute triage, previous work confirmed finished, one stale issue-count citation found and closed)
 
