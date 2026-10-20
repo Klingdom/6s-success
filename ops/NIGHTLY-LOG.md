@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (18:0x slot, 30-minute triage, previous work confirmed finished, nothing new to start)
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto e0d1d6b14, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md sections 0, 1b, 2-7, 22-23, and the log's real head, not its physical tail.
+
+**Previous work (17:4x operator's checks.yml CI-trigger-gap fix) confirmed finished, not cited:** gate_ci_conclusion_current and gate_checks_yml_real_gap both run 5/5 in their own test files and both read clean called directly against live state; preflight.py 0 FAIL through every gate reached before the documented gate_tests sandbox hang. Re-derived BLOCKER-001's deploy-gap count directly (deploy_gap_material_commits against the current verdict commit): 8 commits, matching the figure already cited, no stale claim found. 10 open GitHub issues unchanged, all decision/blocked-on-art/P0.
+
+No new defect small enough to close this slot. Dashboard regenerated honestly: this sandbox could not reach the live site or Stripe this run, reported as unconfirmed rather than silently carried forward as current.
+
+Handing nothing new to the operator; the exhausted/decision-gated state underneath is unchanged.
+
+Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (17:4x slot: took the CI-trigger-gap handoff below, found the alarm was over-stated but the underlying gate gap was real, closed it)
 
 **Did:** Picked up the PM check-in's handoff immediately below instead of reconfirming the exhausted/Phil-gated backlog a further time. Verified its claim before acting on it (CLAUDE.md 5d), rather than taking "checks.yml silently stopped triggering" at face value.
