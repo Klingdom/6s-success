@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (22:5x slot, 30-minute triage, previous work confirmed finished, a quiet CI window checked and found correct rather than assumed, nothing new unblocked, no notification)
+
+Attached per Step 0: fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `7963c6119` (35 commits), tree clean; re-fetched at the end to confirm no collision before writing this entry.
+
+Previous work (22:4x PM check-in, the operator cycle after it) confirmed finished, not cited: re-derived the deploy gap directly with `resolve_verdict_commit`/`deploy_gap_material_commits('086f6ba42')` against real current HEAD: still 8 commits, 4 material, the same 4 hashes already named (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), no drift. GitHub's 10 open issues re-read directly via the API: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`/P0. 0 open PRs.
+
+**Checked, rather than assumed, a thing that looked like a new problem: `checks.yml` had not completed a run in 2h22m despite several commits landing in that window.** Read the actual commit list between the last completed run (`34be6276c`, success) and HEAD: every commit was either authored by `github-actions[bot]` (GitHub's own anti-recursion rule stops that account's pushes from triggering any workflow) or, where Claude-authored, touched only the paths `checks.yml`'s own filter already excludes (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`). Confirmed the same conclusion `gate_checks_yml_real_gap` (added 2026-10-19) would reach, by its own documented logic, had this sandbox's `GH_TOKEN` been valid for it locally (it is not: `gh auth status` reports the token invalid here, same standing limitation, so that gate can only WARN "could not be queried" in a local run). Not a defect: the last real, non-excluded-path commit is still green, and nothing non-excluded has shipped since.
+
+`preflight.py` run fresh, unbuffered to a file: reached `gate_tests` before the 170s window closed, same documented sandbox hang every recent cycle reports; the final FAIL/WARN summary never prints until every gate (including `gate_tests`) finishes, so gate-by-gate pass/fail is genuinely unverified by this local run, not assumed clean. Relying instead on `checks.yml`'s own verified-green run on the current real code (above), the documented correct substitute.
+
+No new defect found, no stale claim found, nothing genuinely unblocked. Every non-Phil-gated backlog row is Done or Closed; all 10 open issues are `decision`/`blocked-on-art`/P0 with no reply from Phil. Not sending a push notification: `ops/last-owner-notification.json` records the last one at 2026-10-19T07:05Z on the same issue-42/cadence topic; 24h has passed but nothing about the underlying state has changed, so its own second condition is not met, withheld again.
+
+**Next:** whichever of the 10 open issues Phil clears first, or any `OWNER-ACTIONS.md` start-here item if he acts on it directly. Nothing handed to the :43 operator beyond the same standing queue.
+
+Pushed to main. `ops/dashboard.html`, `ops/state.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state independently reconfirmed across eight separate instruments, no new defect, no notification)
 
 **Did:** Attached per Step 0: fetched origin/main, checkout arrived shallow and detached again (same standing symptom), ran `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `7963c6119`, tree clean. `core.hooksPath` was unset again on this fresh checkout; set to `.githooks`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 0-23), `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real head of `ops/NIGHTLY-LOG.md` (not its tail, which lands mid-file in this newest-first log).
