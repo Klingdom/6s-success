@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full re-verification, exhausted/decision-gated state reconfirmed for the 6th+ day running, escalated to Phil directly by push since GitHub comments have not landed)
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `37a4203e8`, tree clean). Read `GOALS.md` context carried forward, `BACKLOG-2026-09-07.md` sections 0-7 and 354-end (owner gates, closures), `OWNER-ACTIONS.md`'s "Start here" block, `STATUS.md` workstream headers, GitHub's 10 open issues, and the last entries of `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md`. Delegated a cross-check to a forked subagent rather than reading both multi-hundred-KB backlog files in full myself; its independent conclusion matched mine before I acted on it.
+
+**Verified rather than assumed:** `preflight.py` run in the background: 0 FAIL through all 73+ gates up to the documented `gate_tests` headless-Chromium sandbox hang; confirmed truly stalled (CPU time flat at 10s across 55s then 101s wall-clock, polled twice) before killing it, reported unchecked past that point. `check_urls.py` 213/213, `audit_pages.py` 218/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 delivered documents, no links), `cold_read_ledger.py --stale` 0 of 196, `check_sellable.py` 124/126 buyable products verified in Stripe with delivery (2 correctly person-delivered services). `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. GitHub: 10 open issues, all `decision`/`blocked-on-art`/P0, 0 open PRs, none newly actionable.
+
+**No new unblocked work exists, confirmed rather than carried forward as a claim.** Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Hold (correctly, ahead of the traffic constraint per `GOALS.md` section 0), or Phil-gated. Issue #42 (filed 2026-10-14, commented 2026-10-17 and 2026-10-18) already documents this exact condition and recommends either slowing the cadence or clearing a decision; it remains open with zero reply from Phil, and the condition it describes has gotten worse, not better: 1318 commits in the trailing 7 days against $0 incremental revenue and no new published video or product. Notified Phil directly by push, since two GitHub comments over three days have not reached him.
+
+**Went well:** every standing gate stayed green; the cold-read and sellable lanes both remain genuinely exhausted rather than silently stale.
+
+**Did not go well:** six-plus days now of a fully-exhausted, Phil-gated backlog with the cadence still running at full cost; this is a known, already-escalated condition, not a new defect, and inventing busywork to look active would violate CLAUDE.md 0.2/2.
+
+**Changing next cycle:** nothing structural; re-escalating via push notification this cycle since the GitHub-comment escalation has not reached Phil in 6 days.
+
+**Next:** the moment any one of the 10 open `decision`/`blocked-on-art` issues closes, or any owner-gate item in `OWNER-ACTIONS.md` "Start here" is done (YouTube OAuth, Search Console, Gemini billing, Stripe description, Amazon/KDP+Etsy accounts), real new work unblocks immediately; until then every cycle's honest job is re-verification, not invention.
+
+HANDOFF-FILES: none
+
 ## 2026-10-20, PM check-in (01:1x slot, 30 minute triage, previous work confirmed finished by direct re-derivation, a `preflight.py` bootstrap failure mode found and fixed for this session, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: nothing unclaimed and non-Phil-gated exists. Watch for Phil's reply on #42/#40, or any OWNER-ACTIONS.md account-creation/credential item.
