@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (fresh checkout, full re-verification, exhausted/decision-gated state independently reconfirmed, one transient test-race false positive caught and ruled out, no notification)
+
+**Did:** Fresh checkout, shallow and detached as documented. Unshallowed, `checkout -B main origin/main`, ff-only onto `1fe79a2fd` (49 commits), tree clean. Read `BACKLOG-2026-09-07.md` in full (not cited): sections 1b through 4 (the micro-zone/app, deck, and image/video epics) are each either struck through done or explicitly Phil-gated; the only two unstruck rows anywhere in epics 2-4 are C5 (enable Gemini billing) and C6 (publish 102 remaining videos, needs YouTube OAuth), both already named in `OWNER-ACTIONS.md`, matching `STATUS.md` section 14's own citation exactly. Read `STATUS.md` section 14: 0 of 3 workstream slots in use (Workstream 1 blocked on a Umami API key, Workstream 2 blocked on a spending decision, Workstream 3 closed 2026-10-03). A concurrent "Hourly check-in record" push landed mid-cycle (`6122ff1b7`); re-fetched and fast-forwarded onto it before touching anything, no conflict.
+
+**Verified directly, not cited:** `preflight.py` run fresh in the background to real completion: 0 FAIL across every gate, killed by its own 280s timeout at the documented `gate_tests` headless-Chromium sandbox hang (exit 124), same standing limitation every recent cycle reports. `cold_read_ledger.py --stale`/`--next`: 0 of 276 stale, 0 un-ledgered candidates, that lane genuinely exhausted. `inbox_agent.py --apply`: no mail credentials, the standing sandbox gap, reported unchecked not passed. GitHub via the API directly: 10 open issues unchanged, all `decision`/`blocked-on-art`/P0; read issue #42's and #40's comments in full rather than trust the count, both still carry zero reply from Phil, every comment self-authored by a prior cycle.
+
+**One real-looking failure chased down and ruled out, not just re-run until green.** `ops/affiliate.py --check` FAILed on first run: "could not read 1 delivered document(s) ... site/downloads/_test_bad_delivered_doc.html". The file did not exist and was never git-tracked; traced it to `ops/tests/test_affiliate.py`'s own `test_real_affiliate_violation_in_a_document_still_fails`, which writes that exact marker into `site/downloads/` as a fixture and removes it in its `finally` block. My own background `preflight.py` run was executing `gate_tests` (which runs this file) at the same moment I ran `affiliate.py --check` by hand; re-ran once the window closed and it passed clean (165 documents, 0 violations). Not a new defect, and not worth a new gate this cycle: this is the same documented class as the 2026-10-18 "test fixture leaking into site/ race" entries, just a different pair of callers racing the same directory; the fix for that class (don't trust a FAIL against `site/` without checking what else is running concurrently) already exists as operating discipline, and I followed it rather than reporting a false positive.
+
+**Went well:** caught my own false-positive before writing it down, instead of reporting a "FAIL" that wasn't real.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox limit and no-mail-credentials gap every recent cycle has already logged.
+
+**Changing next cycle:** none.
+
+**Next:** nothing newly unblocked. Watch for Phil's reply on #42/#40, or any of the account-creation/credential items in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy).
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification sent: last one went out 2026-10-19T07:05:00Z on the same topic, still under the 24h floor, and nothing about the underlying state has changed.
+
 ## 2026-10-20, PM check-in (00:4x slot, 30 minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: watch for Phil's reply on #42/#40 or any OWNER-ACTIONS.md account-creation item, because every non-Phil-gated workstream is closed and the cold-read ledger is fully exhausted.
