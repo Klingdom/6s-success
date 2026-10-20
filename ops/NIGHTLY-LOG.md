@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (09:4x slot, 30-minute triage, exhausted state reconfirmed independently, no new defect, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto ca37317d7, then ff-only onto the 09:43 operator cycle's 23347560a once it landed mid-cycle; tree clean). Independently reconfirmed, not cited: preflight.py fresh hit the documented gate_tests hang after 0 FAIL/WARN on every gate reached; check_urls.py 213/213; fix_dashes.py --check 0/0; cold_read_ledger.py --stale 0 of 277; check_nightly_log_fast.py clean; checks.yml green on main. GitHub: the same 10 issues, unchanged, no Phil reply; 0 open PRs. Eleventh-plus identical confirmation today of the state issue #42 names.
+
+No push notification: nothing changed since the last one sent.
+
+Pushed to main.
+
 ## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, 10th-plus independent re-verification today, no new unblocked work, no notification)
 
 **Did:** Attached clean via STEP 0: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `ca37317d7`, tree clean. Read `BACKLOG-2026-09-07.md` sections 0-1 and 39-45 directly, `STATUS.md`'s BLOCKER-001 row, `CLAUDE.md`, and `ops/NIGHTLY-LOG.md`'s head (newest-first, confirmed before reading, not assumed). Read GitHub's 10 open issues directly via the API: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`, unchanged since 2026-10-18, all `decision`/`blocked-on-art`; none carry a new reply from Phil.
