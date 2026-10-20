@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (10:4x slot, 30-minute triage, exhausted state reconfirmed a thirteenth-plus independent way, no new defect, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean, but slower than usual: fetch's own background `--unshallow` was still running when a second attempt collided on `.git/shallow.lock`; waited it out rather than forcing past it (per CLAUDE.md section 34), then `checkout main` and `ff-only merge onto b1e6acbd0`, tree clean. Previous work confirmed finished, not cited: `preflight.py` fresh, 0 FAIL/0 WARN through every gate reached, hanging only at the documented `gate_tests` headless-Chromium sandbox limit (killed at 150s, unchecked past that point); `check_urls.py` 213/213; `fix_dashes.py --check` 0 em/0 en; `cold_read_ledger.py --stale` 0 of 277; `check_nightly_log_fast.py` clean. Read all 10 open GitHub issues directly: `#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`, all still unchanged since 2026-10-18, no new reply from Phil.
+
+No new defect found small enough to close this slot. No push notification: `ops/last-owner-notification.json` names this exact topic (issue #42, the owner gates) and requires both the 24h floor and a real state change before repeating; the floor has passed but nothing has changed, so sending now would repeat, not inform.
+
+Dashboard was already current (regenerated 10:42 by the prior hourly cycle); not touched. Pushing this entry only.
+
 ## 2026-10-20, PM check-in (10:1x slot, 30-minute triage, exhausted state reconfirmed a twelfth-plus independent way, no new defect, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
