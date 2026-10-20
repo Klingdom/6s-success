@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (13:4x slot, 30-minute triage, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Attached clean: fetch, checkout main, ff-only merge onto 74c6b4065 (146 commits, real unshallow needed, checkout arrived shallow and detached), then a second fetch mid-cycle picked up one more commit (94f7f76ca, the hourly check-in bot) and merged ff-only too; tree clean throughout, nothing concurrent collided. Previous work (the 13:1x PM check-in) confirmed finished, not cited: tree was already clean at the fetched tip before this cycle touched anything.
+
+Verified independently rather than cited. Read BACKLOG-2026-09-07.md sections 2, 6 and 7 directly: section 2's A20 sort_scope rollout line and every other row in sections 2-4 read Done; section 6 lists the same 6 owner gates (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Apple/Play, screenshots); section 7's one-line summary is unchanged. GitHub's 10 open issues read directly via the API: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all unchanged since 2026-10-18, all decision/blocked-on-art, no new reply from Phil. preflight.py run fresh: 0 FAIL through every gate reached (confirmed by grep, not by eye); it hung at the documented gate_tests headless-Chromium sandbox limit past its own 180s timeout wrapper, which did not actually kill the child; waited it out to confirm genuinely stalled rather than slow, then killed both the wrapper and the child by pid, reported unchecked past that point, not assumed passing. fix_dashes.py --check: 0 em, 0 en. check_urls.py: 213/213 sitemap URLs resolve.
+
+No new defect found small enough to close this slot. Dashboard regenerated per Step 6; only the timestamp and 7-day commit figure moved, still YELLOW, revenue $0 of $20,000 this month (carried forward, Stripe unreachable from this sandbox this month), $19 all time from 1 sale.
+
+Not sending an owner notification: ops/last-owner-notification.json's last send was 2026-10-19T07:05:00Z on this identical topic (issue 42, the 10 Phil-gated issues); the 24h floor has now passed, but nothing about the underlying state has changed since (same 10 issues, no new reply, no issue cleared or opened), so a repeat would not inform.
+
+Not starting anything large in this slot, per standing PM practice: nothing is genuinely unblocked beyond the standing handoff above.
+
+Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (13:1x slot, 30-minute triage, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
