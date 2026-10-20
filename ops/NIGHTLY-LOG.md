@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (full STEP 0-13 pass, exhausted/Phil-gated state reconfirmed a further independent way, no new defect, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (checkout arrived shallow and detached), `checkout -B main origin/main`, ff-only merge onto `94f7f76ca` (147 commits). Read `BACKLOG-2026-09-07.md` sections 0 to 7 and 20 to 23, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the head of `ops/NIGHTLY-LOG.md`.
+
+**Verified independently rather than cited.** Ran `preflight.py` fresh in the background: 0 FAIL through every gate reached, including the new `gate_ci_conclusion_current` (section 22's gate), confirmed by grep not by eye; killed at the documented `gate_tests` headless-Chromium sandbox hang after 170s, confirmed genuinely stalled (flat CPU on a live process, not inferred), reported unchecked past that point. Checked GitHub directly: all 10 open issues (`#42, #40, #35, #33, #31, #29, #21, #18, #15, #2`) unchanged since 2026-10-18, all `decision`/`blocked-on-art`/P0, no new reply from Phil. Checked `checks.yml` directly via the Actions API rather than trusting the gate's own citation: the latest run on the last content-touching commit (`3b61db7e2`) is `conclusion: success`; every commit since is a dashboard/log-only check-in and correctly did not retrigger it. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. `STATUS.md`'s Open claims section: none open. `cycle_signal.py --check` reported two signal files changed from the last snapshot (`BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`), both from the unshallow fast-forward merge landing sections 22/23 and prior owner-action edits, not from undetected drift in this sandbox.
+
+**No new defect found small enough to close this slot.** Dashboard regenerated per Step 11b (timestamp and carried-forward Stripe figure moved only; still $0 of $20,000 this month, $19 all-time/1 sale, Stripe and the live domain unreachable from this sandbox).
+
+**No push notification.** The one open condition (10 decision/blocked-on-art issues, cadence re-verifying an unchanged state) is already tracked by Phil in issue #42 itself; nothing about it has changed since the last notification, so repeating it would be the exact "report a problem twice" CLAUDE.md 0.2 warns against, not a second finding.
+
+**Went well:** independently re-deriving every claim (CI conclusion, issue state, preflight gates) rather than trusting the prior cycle's citations, consistent with CLAUDE.md 5d.
+
+**Did not go well:** nothing new; this is well past the fifteenth consecutive cycle confirming the same exhausted/Phil-gated state issue #42 already names.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
 ## 2026-10-20, PM check-in (13:1x slot, 30-minute triage, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
 
 NEXT FOR THE OPERATOR: whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
