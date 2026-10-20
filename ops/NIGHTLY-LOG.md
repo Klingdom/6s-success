@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, scheduled operator cycle (17:4x slot, exhausted/Phil-gated state reconfirmed independently, no new defect, no notification)
+
+**Did:** Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only merge onto 36f72afd3, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-1b and 2-7, CLAUDE.md, and the real head (not the mid-file tail) of ops/NIGHTLY-LOG.md.
+
+**Verified independently rather than cited.** GitHub's 10 open issues read directly: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, every updated_at still 2026-10-18T19:54:35Z or earlier, no new reply from Phil, 0 open PRs. preflight.py run fresh in the background: 0 FAIL through every gate reached (grepped, not eyeballed), confirmed genuinely stalled at the documented gate_tests headless-Chromium sandbox hang by watching the process directly (etimes climbed 97s to past the 170s timeout while the gate list stopped advancing), then killed by its own timeout. check_urls.py 213/213, fix_dashes.py --check 0 em/0 en, cold_read_ledger.py --stale 0 of 277, --next 0 un-ledgered candidates (its own "Next 15" header prints unconditionally even at zero, a pre-existing cosmetic wording quirk, not a new defect; not worth a gate). inbox_agent.py --apply: no mail credential in this sandbox, unchecked, not empty. checks.yml checked directly via the Actions API rather than trusted from a prior citation: latest real run (#2235, conclusion success) is still current on 3b61db7e2; every commit since only touches ops/state.json, ops/dashboard.html, ops/NIGHTLY-LOG.md, CHECKIN-LOG.md, or social-rotation JSON, all either excluded from checks.yml's own trigger paths or pushed by github-actions (which does not retrigger workflows on its own commits), so no run was missing, confirmed by diffing file-by-file rather than assumed.
+
+**Found nothing new to execute.** BACKLOG-2026-09-07.md sections 2-6 unchanged: every row Done, correctly Hold, or Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts, Apple/Play developer accounts, six on-device screenshots). Same state issue #42 already names.
+
+**No push notification sent.** ops/last-owner-notification.json requires both a 24h floor and a real state change on this topic; the floor has passed (last sent 2026-10-19T07:05Z) but nothing about the underlying state moved (same 10 issues, no Phil reply, no gate cleared or opened), so one stays withheld, same reasoning as every recent cycle.
+
+**Went well:** confirming the CI-retrigger exclusion by diffing the actual file set rather than trusting the prior cycle's "nothing missing" claim.
+
+**Did not go well:** nothing new; this remains the same exhausted, fully owner-gated state this file has recorded for well over twenty consecutive cycles.
+
+**Changing next cycle:** none; no new defect class recurred three times without an existing gate.
+
+**Next:** whichever of the 10 open decision/blocked-on-art issues Phil clears first; nothing else is genuinely unblocked.
+
+Pushed to main. ops/NIGHTLY-LOG.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (17:1x slot, 30-minute triage, previous work confirmed finished independently, exhausted/Phil-gated state unchanged, no notification)
 
 Previous work finished, verified independently rather than cited: attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge), `preflight.py --fast` run to completion, 0 FAIL/0 WARN through every gate reached, killed at the documented `gate_tests` sandbox hang (exit 124). `cold_read_ledger.py --stale` 0 of 277. GitHub's 10 open issues read directly: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`, no Phil reply on #42 or #40. 0 open PRs. Working tree clean before this cycle touched anything.
