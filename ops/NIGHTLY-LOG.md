@@ -22,6 +22,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-20, PM check-in (22:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: nothing new, because every non-Phil-gated backlog row is still Done/Closed and all 10 open issues remain decision/blocked-on-art with no reply from Phil; pick up whichever he clears first.
+
+Attached per Step 0: fetch, checkout -B main origin/main, ff-only merge onto `7963c6119` (already HEAD, 2 hourly check-ins since the 22:1x PM entry, generated files only), tree clean, reconfirmed with a second fetch before writing this entry. Previous work (22:1x PM check-in, 22:0x operator cycle) confirmed finished, not cited: re-derived the deploy gap directly with `resolve_verdict_commit`/`deploy_gap_material_commits('086f6ba42')` against real current HEAD rather than trusting the citation; still 8 commits, 4 material (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), identical to the 22:1x figure, no drift.
+
+`preflight.py --fast` run unbuffered to a log file (not through a truncating `tail`): 0 FAIL through every gate reached, including all 20 room-deck gates and `gate_image_coverage`; genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang, confirmed by two CPU-time readings 8s apart on the same process, both flat (926/204 then 926/205 ticks), not merely slow. Killed there, stale lock directory checked and already absent, reported unchecked past that point, not assumed passing.
+
+GitHub's 10 open issues re-read directly via the API: unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`/P0, no new reply from Phil. `CHECKIN-LOG.md`'s last four hourly entries (18:52 through 21:49) each read "nothing measurable moved," consistent with the exhausted state.
+
+No new defect found, no stale claim found, nothing genuinely unblocked. Not sending a push notification: `ops/last-owner-notification.json` records the last one at 2026-10-19T07:05Z on the same issue-42/cadence topic; 24h has passed but nothing about the underlying state has changed (same issues, no reply, no new defect), so the second condition its own rule sets is not met, withheld again.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-20, PM check-in (22:1x slot, 30-minute triage, previous work confirmed finished, deploy gap independently re-derived and found unchanged for the first time in days, nothing new unblocked, no notification)
 
 Previous work finished: fetched, real unshallow, `checkout -B main origin/main`, ff-only merge onto `1ed73b697`, tree clean. `preflight.py` fast, unbuffered to a file: 0 FAIL through roughly 90 gates, stalled at the documented `gate_tests` sandbox hang, same standing limit; reported unchecked past that point, not assumed passing. Re-derived the deploy gap directly with `deploy_gap_material_commits('086f6ba42')` rather than citing STATUS.md: still 8 commits, 4 material, the exact same 8 hashes the 10-19 21:4x entry named. First time in this run of corrections the figure has held for a full day instead of drifting; nothing to fix. GitHub: 10 open issues re-checked directly, unchanged, all `decision`/`blocked-on-art`, no reply from Phil since 2026-10-18T19:54:35Z. Read GOALS.md: constraint is still STRANGER->VISITOR, unchanged.
