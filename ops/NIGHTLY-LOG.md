@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-20, PM check-in (20:4x slot, 30-minute triage, previous work confirmed finished an eighth independent way, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: independently reconfirm the exhausted/Phil-gated state using a fresh instrument of your choosing, because the cold-read ledger is 277 of 277 files tracked with 0 stale and every backlog row in `BACKLOG-2026-09-07.md` sections 2-6 is already Done or Phil-gated, so no genuinely unblocked workstream-sized item exists to hand you.
+
+PM check-in. Attached per Step 0: fetch, checkout -B main origin/main, ff-only merge onto `ff385e1a5` (already HEAD, 1 commit fast-forwarded on origin ahead of the 20:1x cycle's own base, the hourly bot's dashboard-only check-in record), tree clean throughout.
+
+Previous work (the 20:1x PM cycle) confirmed finished, verified independently rather than cited: `git log da591c6c9..HEAD --oneline` shows exactly one commit since, the hourly bot's generated-files-only dashboard regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), nothing site- or content-affecting. Re-derived the deploy gap from scratch rather than trusting the citation: found the actual commit that set `site/build-id.txt` to the live verdict's `c36cb2794e581473` (`086f6ba42`, not the first commit a naive `git log -S` match returns), confirmed it is an ancestor of HEAD, and counted forward: 8 commits touch `site/**`/`Dockerfile` since, of which 3 are pure build-id/sitemap restamps with no other content change (`65eb9740f`, `ebb990769`, `0fb7273b1`) and one more is a doc-only PM fix that also restamped the build id (`6d2bc368d`), leaving 4 material (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`) — the same 8/4 the 20:1x cycle cited, no drift.
+
+GitHub's 10 open issues re-read directly via the API: unchanged, all `decision`/`blocked-on-art`/P0, no new reply from Phil, 0 open PRs. `ops/cold_read_ledger.py --next`: 277 of 277 tracked files, 0 un-ledgered candidates remain; `--stale` separately confirms 0 of 277 stale. Ran the fast gates directly rather than trusting a cached result: a fresh `preflight.py --fast` reached the documented `gate_tests` headless-Chromium sandbox hang with 0 FAIL on every gate before it (killed there after confirming no process was actually progressing past it, stale `/tmp/.preflight_py_running.lock` directory from the kill removed so it does not block the next run); `check_urls.py` 213/213; `fix_dashes.py --check` 0 em/en dashes; `cold_read_ledger.py --stale` 0 of 277. CI checked directly: `checks.yml` run #2238, the most recent run on a tracked-path commit, is green.
+
+No new defect found small enough to close in this slot, and no stale claim found worth a correction. Not starting any of the 10 open issues myself: each needs Phil's own action (YouTube OAuth, Search Console reports, a VPS_DEPLOY_KEY paste, an art/design tradeoff, a Stripe field edit, a Listmonk decision, or the cadence question issue #42 itself raises).
+
+Not sending a push notification: `ops/last-owner-notification.json` records the last one on this same topic at 2026-10-19T07:05:00Z and its own stored rule requires both 24h elapsed AND a real state change (a Phil reply, a cleared gate, or a new issue) before repeating it; 24h has passed but nothing about the underlying state has changed, so the second condition is not met.
+
+Regenerated the dashboard (`ops/dashboard.py`); freshness-only diff, no content, price or product touched.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page.
+
 ## 2026-10-20, PM check-in (20:1x slot, 30-minute triage, previous work confirmed finished a seventh independent way, nothing new unblocked, no notification)
 
 PM check-in. Attached per Step 0: fetch, real unshallow (checkout had arrived shallow and detached), checkout -B main origin/main, ff-only merge onto d371ae20b, 10 commits fast-forwarded (bot check-ins, a PM stale-count fix, nothing site-affecting), tree clean.
