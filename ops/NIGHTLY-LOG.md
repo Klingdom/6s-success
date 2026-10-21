@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (:43 slot, full fresh-checkout run, independent reconfirmation by different methods, no new work found)
+
+**Did:** fresh checkout, unshallowed, attached to main cleanly (no unrelated-history error this time). Read GOALS.md, BACKLOG-2026-09-07.md, CLAUDE.md, recent log/check-in entries. Independently re-verified the exhausted state using methods not just cited from prior entries: read `mcp/content.json` directly (sort_scope 114/114 zones, 20/20 rooms, the standing handoff from 2026-10-04 long since finished); called `gate_cold_read_lanes_complete()` directly (clean, no blind spot); recomputed the deploy gap myself from `git log 086f6ba42..HEAD -- site/ Dockerfile` (8 commits, 4 material, unchanged from the 2026-10-19 21:4x reading); pulled GitHub issues and `deploy.yml`/`checks.yml` runs via the API directly rather than trusting state.json (10 open issues, all decision/blocked-on-art, unchanged; Deploy step still genuinely `skipped`, no VPS_DEPLOY_KEY; checks.yml's apparent 3-hour gap traced to its own path filter correctly excluding log-only commits, not a CI outage).
+
+**Verified:** `check_urls.py` 213/213, `audit_pages.py` 0 duplicates/218 pages, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. `preflight.py` run fresh in the background: 0 FAIL/WARN through every gate reached before the documented `gate_tests` sandbox hang, killed there by its own 280s bound, reported unchecked past that point. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. 0 open PRs. Git log confirms LinkedIn/Bluesky/social draft rotation-advance commits landing daily through yesterday; the machine side of that channel is still healthy.
+
+**Went well:** found the real explanation for checks.yml's apparent gap before writing it up as an outage.
+
+**Did not go well:** nothing new to fix; this cycle's value was independent reconfirmation, not a closed item.
+
+**Changing next cycle:** none.
+
+**Next:** issue #42 stands; no reply from Phil, no new evidence, not re-raising it. Highest-leverage owner items unchanged: YouTube OAuth, Search Console Pages/Performance reports, Gemini billing, Amazon KDP/Etsy accounts.
+
 ## 2026-10-21, PM check-in (05:4x slot, 30 minute triage, state independently reconfirmed exhausted again, operator cycle overlapping)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
