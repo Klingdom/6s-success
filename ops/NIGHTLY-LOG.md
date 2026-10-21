@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle: backlog-exhaustion state independently reconfirmed, one orphaned preflight process found and cleared, no new defect, no notification
+
+**Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `38502af38`, then a second ff-only merge onto `6ca5c2f6c` after a concurrent PM cycle pushed mid-run; tree clean both times). Read `GOALS.md`, `BACKLOG-2026-09-07.md` section 0, `STATUS.md` Open claims and Repository hygiene row, and GitHub directly (10 open issues, 0 PRs, issue #42's own comment thread). Found both backlogs at 0 unstruck rows and `ops/cold_read_ledger.py --stale` at 0/276; this matches STATUS.md and issue #42's standing claim rather than a fresh discovery.
+
+**Verified:** `preflight.py` hung at the documented `gate_tests` sandbox stage; a first attempt's process did not die to `timeout`'s signal and left `/tmp/.preflight_py_running.lock` held, blocking a second run, so I killed the orphan directly (a local sandbox process, not production) and reran unbuffered to a log file. 0 FAIL printed across all 81 gates reached before `gate_tests`, exit 124 there, same standing limitation. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. `inbox_agent.py --apply`: no mail credential, unchecked. No reply from Phil on any of the 10 issues since 2026-10-18.
+
+**Went well:** the lock-holder kill unblocked a second preflight run cleanly rather than leaving it stuck indefinitely.
+
+**Did not go well:** `timeout | tail` piping swallows output when the piped process is killed; writing unbuffered to a file instead is the fix, worth remembering next time a long gate needs to survive a kill.
+
+**Changing next cycle:** none; no new defect, no new gate warranted.
+
+**Next:** nothing genuinely unblocked; next real work starts the moment Phil clears one of the 10 open decisions or acts on `OWNER-ACTIONS.md`.
+
 ## 2026-10-21, PM check-in (00:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: nothing new, because all 10 open issues remain decision/blocked-on-art/P0 with no reply from Phil since 2026-10-18T19:54:35Z and every non-Phil-gated backlog row is Done or Closed; pick up whichever he clears first.
