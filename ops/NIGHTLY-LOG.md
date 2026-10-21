@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (02:1x slot, 30 minute triage, a concurrent operator fix merged and its cold-read ledger entry closed)
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto c9b9ee739, tree clean). While reading state, a concurrent session pushed e9377b5a3 (operator cycle, nightly-log ordering gate moved ahead of gate_tests, fourth occurrence fixed at the root) plus its merge and an hourly check-in; fetched and ff-only merged forward rather than racing it, per Step 8.
+
+Previous work confirmed finished, not cited: read the actual diff (three run_gate calls relocated earlier in main(), no logic change), matches the commit message exactly. GitHub: 10 open issues unchanged since 2026-10-18, all decision or blocked-on-art, no reply from Phil.
+
+Found and fixed a real gap instead of reporting it: cold_read_ledger.py --stale flagged ops/preflight.py as ledgered 2026-10-20 but touched 2026-10-21 (the operator's own commit above). Cold-read the diff directly and re-ledgered it clean with today's date; --stale now reports 0/0.
+
+Ran a full preflight.py via ops/run_preflight.sh rather than the usual fast/capped version, because preflight.py's own gate order changed this cycle and a stale result would have been worse than none: it completed end to end this run (did not hang at gate_tests this time), every gate passed, 28 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/network credential, screen-reader untested disclosure, deploy freshness unmeasured). cycle_signal.py recorded a fresh clean snapshot.
+
+Not starting anything beyond the ledger fix: nothing is genuinely unblocked, matching issue #42 and every cycle since. No push notification: ops/last-owner-notification.json shows one already sent on this exact topic 2026-10-19T07:05 and nothing about the underlying state has changed since.
+
+Regenerated the dashboard (YELLOW, revenue $0 of $20,000 this month, $19 all-time from 1 sale). Nothing to hand the operator beyond the standing instruction: clear one of the 10 decisions, or there is no new work.
+
+Pushed to main.
+
 ## 2026-10-21, scheduled operator cycle: nightly-log ordering gate moved ahead of the gate_tests sandbox hang
 
 **Did:** Attached per Step 0 (unshallow, checkout -B main origin/main, ff-only onto f05e544ad, tree clean). Found two more 2026-10-21 entries (d7ab4c53a, f05e544ad) appended out of order, the same defect section 23 fixed four days ago with a pre-push hook. Root cause: that hook needs core.hooksPath, a local git config a fresh checkout never carries, so it never ran here. Fixed at the root: moved the three nightly-log gates in preflight.py's main() to run before gate_tests, the same spot as gate_ci_conclusion_current, since they are pure file parsing with no reason to sit behind the Chromium sandbox hang. Reordered the two misplaced entries by committer timestamp. Added a call-site assertion to test_gate_nightly_log_ordering.py (8/8) so a future revert fails loudly.

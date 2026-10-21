@@ -993,8 +993,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-20",
-      "note": "2026-10-20, scheduled operator cycle: cold-read the diff since the 2026-10-19 ledger entry (654263cf7..HEAD, 301 lines): _commits_touching_paths_since gained exclude_author; new gate_ci_conclusion_current and gate_checks_yml_real_gap wired in right before gate_tests; new gate_keyword_demand_rescored_current wired in near its sibling. Verified rather than trusted: ran all four new/changed gates' own test files directly (test_gate_checks_yml_real_gap.py 5/5, test_gate_ci_conclusion_current.py 5/5, test_workflows_healthy.py clean, test_gate_keyword_demand_rescored_current.py all cases pass), and called gate_ci_conclusion_current/gate_checks_yml_real_gap live against this repository's real git history and GitHub state via a background preflight run: both executed cleanly with zero FAIL before the run reached the documented gate_tests sandbox hang. No defect found in the diff."
+      "date": "2026-10-21",
+      "note": "Cold-read the diff since the 2026-10-20 ledger entry (e9377b5a3, 2026-10-21 02:15Z): relocates the three NIGHTLY-LOG gates (gate_nightly_log_not_oversized, gate_nightly_log_ordering, gate_nightly_log_no_duplicate_entries) earlier in main(), ahead of gate_tests, with no logic change to the gates themselves. Matches commit message exactly, test_gate_nightly_log_ordering.py 8/8 per that commit. No defect."
     },
     "prerender_shop.py": {
       "status": "clean",
