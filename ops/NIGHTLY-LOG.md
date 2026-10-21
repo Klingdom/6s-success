@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (13:43 slot, cadence claim tested directly instead of re-escalated, state reconfirmed exhausted)
+
+**Did:** Attached per Step 0 (fetch --unshallow, checkout -B main origin/main, ff-only onto e2d2c1afa, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, last four log entries (all "exhausted"); strategy docs unchanged since 2026-10-19.
+
+Instead of re-running the same checklist, tested three claims directly: (1) re-derived backlog sections 2-4 from strikethrough markers: only C5 (Gemini billing) and C6 (YouTube OAuth) open, both Phil-gated, built to the gate; (2) called `update_trigger` on this session's own trigger myself: refused exactly as documented, contradicting a stale 2026-10-18 issue-#42 comment claiming broader access; posted a correction there; (3) `curl`'d the live site: blocked by sandbox egress policy, same root cause `audit_visual.py`'s Chromium hits (58 refused connects to google.com) — diagnosed why `gate_tests` hangs, not just that it does.
+
+**Verified:** `preflight.py` bootstrap timed out once on a slow pip install, fine standalone (9s); re-ran, 0 FAIL/ERROR across 81 gates before the documented `gate_tests` hang, unchecked past it. `check_urls.py` 213/213, `audit_pages.py` 218/0, `audit_catalog.py`/`fix_dashes.py`/`affiliate.py`/`fingerprint_assets.py`/`link_graph_report.py`/`cold_read_ledger.py`/`check_cron_cadence.py` all clean. Deploy gap re-derived (`git log 086f6ba42..HEAD -- site/ Dockerfile`): 8 commits, matches `STATUS.md`, no drift. GitHub: 10 issues unchanged, 0 PRs. Inbox: no mail credential.
+
+**Went well:** testing claims directly found a real correction (#42's stale comment) without opening new work.
+
+**Did not go well:** nothing new; same sandbox limits.
+
+**Changing next cycle:** none.
+
+**Next:** whatever Phil answers on issue #42.
+
+Pushed to main: dashboard trio, this entry, issue #42 comment. No content/price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (12:2x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, continue the standing cold read and verification sweep, because sections 2 through 4 of BACKLOG-2026-09-07.md have only C5 (Gemini billing) and C6 (YouTube OAuth paste) unstruck, both already Phil gates, and all 10 GitHub issues are unchanged since issue 42 was filed three days ago.
