@@ -2,6 +2,41 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, full independent sweep, state reconfirmed exhausted)
+
+Did: Attached per Step 0 (unshallow, ff-only onto 4df8d69c9, then a second
+ff-only catch-up onto 2b010b6ab after two concurrent PM check-ins landed
+mid-session, no conflict). Re-read GOALS.md's constraint section and
+BACKLOG-2026-09-07.md sections 0-7 and 24 directly, then looked specifically
+for new epic-3 (traffic/distribution) work. Regenerated the dashboard.
+
+Verified: GitHub's 10 open issues pulled fresh, same set every recent cycle
+names, all decision/blocked-on-art, newest update still #42 at 2026-10-18,
+no reply from Phil. 0 open PRs, checks.yml green on main's head. preflight.py
+0 FAIL/ERROR through every gate reached before the documented gate_tests
+sandbox hang. cold_read_ledger.py: 277/277, 0 stale. check_cron_cadence.py:
+all ok or too-few-to-measure. inbox_agent.py: no mail credential, reported
+unchecked. Keyword-demand gap tier, Pinterest/Instagram pin generation and
+LinkedIn/Bluesky drafting: already exhausted or already running on their own
+schedules, nothing un-drafted or unread survived a direct look. Checked
+ops/last-owner-notification.json and ops/last-owner-questions-sent.json:
+both current, underlying state unchanged, so no repeat push and no
+out-of-cycle email.
+
+Went well: caught two concurrent cycles' pushes mid-session and merged
+cleanly instead of racing or conflicting with them.
+
+Did not go well: roughly the twentieth consecutive entry today reaching
+"exhausted"; issue #42 already asks Phil to decide whether the cadence
+itself should change, still outstanding.
+
+Changing next cycle: nothing structural; inventing work with no new
+evidence would be the busywork CLAUDE.md 0.2 warns against.
+
+Next: whatever Phil answers on any open issue, or whatever the next
+scheduled keyword-demand/indexation-check harvest surfaces. No content,
+price, or product touched.
+
 ## 2026-10-21, PM check-in (07:4x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
