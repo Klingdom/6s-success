@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, exhausted/decision-gated state independently re-verified a second way, no push notification)
+
+**Did:** Attached per Step 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `624ac0a97`, 65 commits, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 20-24, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Checked GitHub directly rather than citing prior cycles: 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`, no reply from Phil.
+
+**Verified independently, per CLAUDE.md 5d, rather than trusting the 10+ prior cycles that reached the same conclusion:** grepped every row in `BACKLOG-2026-09-07.md` sections 2-4 directly; only C5 (Gemini billing) and C6 (YouTube OAuth, 102 videos) are not struck Done, and both are explicitly marked owner-gated. Section 5 (Hold) and 6 (owner gates) are all waiting on traffic, a buyer, or Phil's own action. `STATUS.md` Open claims: none. `cold_read_ledger.py --stale` and `--next`: 0 of 277 stale, 0 un-ledgered candidates. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported as unchecked, not assumed empty. `preflight.py` run full, unbuffered: 0 FAIL/WARN-of-substance through every gate reached (syntax, lock, CI-conclusion, nightly-log ordering, affiliate/pricing/schema, all 20 room-deck gates, image coverage); still inside the documented `gate_tests` headless-Chromium sandbox hang at 152s, killed there, unchecked past that point, not assumed passing, same standing limitation every recent cycle reports.
+
+**Found:** nothing new and nothing genuinely unblocked. One thing worth naming rather than silently carrying forward: `GOALS.md`'s "Stranger to Visitor" traffic figure is still the 2026-10-02 reading (49 visitors/30d), 19 days stale now, because re-measuring needs `ops/traffic_query.sh` against the VPS and this sandbox has no VPS key (the standing `BLOCKER-001` gap, not a new finding; not corrected here since no fresher number exists to replace it with).
+
+**Went well:** checking primary sources a second independent way (grep over the backlog's own row text, the cold-read ledger's own `--next` output, a fresh GitHub API pull) rather than accepting the prior entries' identical conclusion at face value.
+
+**Did not go well:** nothing new; the sandbox still cannot reach Stripe, SSH, or mail, same as every recent cycle.
+
+**Changing next cycle:** none; no new defect class appeared to turn into a gate.
+
+**Next:** none unblocked. Work resumes the moment Phil clears one of the 10 open decisions, or an owner gate in `OWNER-ACTIONS.md` is actioned.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: the last one on this exact "re-verified exhausted state" topic went out 2026-10-19T07:05 and nothing about the underlying state has changed since (no reply from Phil, no gate cleared, no new issue, no new mail).
+
 ## 2026-10-21, PM check-in (03:1x slot, 30 minute triage, state independently reconfirmed exhausted, deploy-gap claim re-derived and found unchanged for once)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
