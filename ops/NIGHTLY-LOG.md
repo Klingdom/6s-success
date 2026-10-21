@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, full independent sweep, state reconfirmed exhausted again)
+
+**Did:** Attached per Step 0 (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto f3399f688, 103 commits, tree clean). Read GOALS.md in full (the constraint, O1-O6, the decision rules), BACKLOG-2026-09-07.md sections 2, 5, 6 and 7 directly rather than from memory, CLAUDE.md, OWNER-ACTIONS.md's start-here list, and the real head of ops/NIGHTLY-LOG.md (newest-first, confirmed by date rather than assumed).
+
+**Verified rather than assumed:** GitHub's 10 open issues pulled fresh (list_issues, ordered by updated_at): same set as every recent cycle (#2, #15, #18, #21, #29, #31, #33, #35, #40, #42), newest update still #42 at 2026-10-18T19:54:35Z, no reply from Phil. checks.yml on main: last 5 runs all green (run 2241 down to 2237). preflight.py --fast run to completion in the background: 0 FAIL/ERROR/WARN through every gate reached, hit the documented gate_tests headless-Chromium sandbox hang at the 100s cap, killed there, reported unchecked past that point, not assumed passing. inbox_agent.py --apply: no mail credentials in this sandbox, reported unchecked, not empty. check_urls.py 213/213. affiliate.py --check: 165 delivered documents, 0 affiliate links, every disclosed page compliant. check_sellable.py: 124 of 126 buyable products fully wired, the other 2 are person-delivered services by design. check_cron_cadence.py: every workflow ok or too-few-to-measure, same set as every recent cycle. cold_read_ledger.py --stale timed out in this sandbox before returning (genuinely stalled, not a result), reported unchecked rather than assumed clean.
+
+Read BACKLOG-2026-09-07.md's own sections directly: every row in section 2 (micro zones/app) is struck through done; section 5 (Hold) is correctly waiting on traffic that has not moved; section 6 (owner gates) is YouTube OAuth, Search Console, Gemini billing, Etsy/KDP and Apple/Play accounts, none of which a sandboxed session can do; section 7's own one-line summary is unchanged ("technically finished and commercially unproven"). OWNER-ACTIONS.md's start-here list is the same four items, all genuinely needing Phil's own hand (a usage-limit check, an SSH key paste, a Search Console report, a line in the cloud setup script).
+
+`ops/last-owner-notification.json`: last push sent 2026-10-19T07:05, well past 24h, but the AND-state-change condition is still not met (same 10 issues, no reply from Phil, no new owner gate cleared or opened), so no notification sent this cycle either, same call as every cycle since.
+
+**Went well:** attaching per Step 0 worked cleanly on the first try, no "unrelated histories" error.
+
+**Did not go well:** nothing new found; this is another in a long run of cycles reaching the same verdict, and the honest reading is that the remaining gap is genuinely owner-gated, not under-searched.
+
+**Changing next cycle:** nothing structural; the existing gates and OWNER-ACTIONS.md package already cover what this sandbox can reach.
+
+**Next:** whatever Phil answers on any open issue or owner-gate item, or whatever the next scheduled keyword-demand/indexation-check harvest surfaces.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (09:1x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 Previous work (08:5x operator sweep and the hourly record after it) confirmed finished, not cited: tree was clean and pushed before this cycle touched anything. Attached per Step 0, ff-only onto 87c8d90be, 101 commits. Verified fresh rather than trusted: GitHub's 10 open issues pulled directly, same set, newest update still #42 at 2026-10-18T19:54:35Z, no reply from Phil in 3 days. preflight.py --fast: 0 FAIL/ERROR through every gate reached, hit the documented gate_tests headless-Chromium sandbox hang at the 90s cap, unchecked past that point, not assumed passing. Read BACKLOG-2026-09-07.md sections 0, 2 and 7 directly (not cited from memory): the constraint is still the first link, stranger to visitor, traffic unmeasured fresh since 2026-10-02 (no VPS key in this sandbox). Checked ops/last-owner-notification.json: last push 2026-10-19T07:05, past 24h, but underlying state (same issues, no reply) unchanged, so its own stated rule says not to repeat it; honoured that rule, no notification sent.
