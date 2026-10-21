@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (23:1x slot, 30-minute triage, a stale BACKLOG claim found and closed, no notification)
+
+NEXT FOR THE OPERATOR: same as every recent cycle, keep re-verifying the exhausted state rather than invent work. All 10 open GitHub issues are unchanged (decision/blocked-on-art), BACKLOG-2026-09-07.md sections 2 to 4 have nothing unstruck except C5 (Gemini billing) and C6 (YouTube OAuth), both YES Phil, and section 6 (owner gates) is all Phil's to click. Issue #42 already names this cadence-vs-exhausted-backlog tradeoff for Phil's decision; nothing here changes that.
+
+Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto 7c6e45724, tree clean throughout.
+
+Previous work (22:4x PM check-in's reconfirmation) confirmed finished, not cited: re-derived `deploy_gap_material_commits(resolve_verdict_commit('c36cb2794e581473'))` directly against real current HEAD myself, independent of that cycle's own run: 8 commits, same 4 material (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), same 4 non-material restamps. Confirmed correctly unchanged, not stale: no new `site/`/`Dockerfile` commit has landed since 2026-10-19. `mcp/content.json` confirmed 114/114 zones carry `sort_scope`, matching BACKLOG's own A20 "Done" marker. GitHub's 10 open issues re-pulled fresh via the API: unchanged set and labels, all `decision`/`blocked-on-art`, none newly actionable, none mine. `preflight.py` run to completion in the background: 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang (same standing limitation every recent cycle reports); killed there, reported unchecked past that point, not assumed passing.
+
+**Found and fixed a real stale-claim gap instead of citing it a third time.** `BACKLOG-2026-09-07.md` section 6 ("Owner gates"), item 2, still read "Search Console verification | 3 min | all query data..." as an open, unstruck owner action. It is not open: Phil set up the Domain property via DNS TXT on 2026-10-14, confirmed live by `nslookup`, the token is recorded in `ops/site-verification.json` (`google_dns_txt`), and `OWNER-ACTIONS.md` item 1a and `EXECUTIVE-DASHBOARD-LIVE.md` were both corrected on 2026-10-20 to say so. This row in `BACKLOG-2026-09-07.md` was never told, exactly the "source corrected, sibling never told" shape `STATUS.md`'s own Immediate Focus line names as the dominant defect class here. Re-ran `gate_site_verification_declared()` directly before writing the fix: 0 FAIL, one standing warning (this sandbox cannot query DNS itself, reported unchecked rather than passing, same as every prior cycle). Struck the verification half of the row and rewrote it to name what is genuinely still open: confirming `sitemap.xml` is submitted under Sitemaps, and sending the Pages/Performance reports, since no sandboxed session can read Search Console itself. `fix_dashes.py --check` on the edited file: 0 em/en dashes.
+
+Not starting any Phil-gated item or re-litigating issue #42 myself, per standing PM practice and this run's own instruction to never pick an item waiting on Phil.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, the dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (22:4x slot, 30-minute triage, previous work independently reconfirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: keep re-verifying the exhausted state rather than invent work, because BACKLOG-2026-09-07.md sections 2 to 6 still show only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both YES Phil, and all 10 open GitHub issues are unchanged since issue #42's own 12:52 UTC comment three days ago, so there is nothing genuinely unblocked to hand over.
