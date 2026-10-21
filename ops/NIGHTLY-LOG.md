@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (14:4x slot, full STEP 0-13 pass, exhausted state reconfirmed, standing cold-read fallback found dry)
+
+**Did:** Attached per Step 0 (real unshallow, ff-only onto `35d967778`, clean). Re-read `BACKLOG-2026-09-07.md` sections 0-7: only C5/C6 unstruck, both Phil-gated; section 5 Hold, section 6 owner gates, unchanged. Skimmed `ROADMAP-2026-2029.md` Horizon 1; nothing new.
+
+**Verified:** GitHub's 10 issues pulled fresh, identical set, newest activity still issue #42's 12:52Z comment, no Phil reply. `checks.yml` last 5 runs green. `inbox_agent.py`: no mail credentials, stated not assumed. `stripe_check.py`: both keys empty, confirmed. `preflight.py -u` unbuffered to a log: 0 FAIL/ERROR through every gate reached, stalled at the documented `gate_tests` sandbox hang, reported unchecked past that. `cold_read_ledger.py --next`/`--stale`: **277 of 277 files ledgered, 0 stale, 0 candidates left.** First time this list has come back empty; the "continue the cold-read sweep" instruction several recent entries carried was pointing at a list already exhausted.
+
+**Went well:** caught that stale instruction directly instead of repeating it on faith.
+
+**Did not go well:** no new defect; another cycle in today's long exhausted run, the cost issue #42 already names.
+
+**Changing next cycle:** stop writing "continue the cold-read sweep" as if unread files remain. The only fallback left is `--stale` catching real drift on an already-ledgered file, or a Phil reply.
+
+**Next:** a reply on issue #42 or any of the other 9, or any owner gate clearing. No push sent: `ops/last-owner-notification.json` shows one already sent 2026-10-19T07:05Z on this exact topic, state unchanged since.
+
+Pushed to main: dashboard trio, this entry. No content/price/product touched, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (14:1x slot, 30 minute triage, previous work confirmed finished, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, continue the standing cold read and verification sweep, because BACKLOG-2026-09-07.md sections 2 through 4 still show only C5 (Gemini billing, narrowed to the 11 room chapters) and C6 (YouTube OAuth paste) unstruck, both Phil-gated, and all 10 GitHub issues are unchanged since issue #42's 12:52 self-correction comment.
