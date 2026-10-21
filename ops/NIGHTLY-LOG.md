@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, exhausted/decision-gated state independently reconfirmed again, no new work found)
+
+**Did:** Checkout arrived shallow and detached; fetched origin/main, unshallowed, `checkout -B main origin/main`, ff-only merge onto `8a9af95` (clean, no unrelated-history error). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the head of ops/NIGHTLY-LOG.md (newest-first; today already carries roughly a dozen entries, every one exhausted/decision-gated).
+
+**Verified independently rather than citing prior cycles:** called GitHub directly (`list_issues`): still 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision` or `blocked-on-art`. Read issue #42's full comment thread: both comments are self-authored by prior agent cycles under the owner's token, author_association OWNER but no actual reply from Phil, confirming the state described there has not moved since 2026-10-18T19:54:35Z. `ops/last-owner-notification.json` shows one push already sent 2026-10-19T07:05 on this exact topic with an explicit rule (24h AND a real state change); now well past 24h but the underlying state has not changed, so no new push notification sent, same reasoning as every prior cycle today.
+
+Ran `preflight.py` unbuffered to a log file rather than trusting a piped tail (a genuine concurrent preflight, pid 879, was running too; waited on it rather than colliding): 0 FAIL/ERROR through every gate reached, hit the documented `gate_tests` headless-Chromium sandbox hang at an 85s cap, unchecked past that point, not assumed passing. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0/0. `inbox_agent.py --apply`: no mail credential in this sandbox, reported plainly, not assumed empty.
+
+**Found:** nothing new. No reply from Phil on any of the 10 issues, no new issue, no backlog row left unstruck outside Hold/Phil-gated sections.
+
+**Went well:** read the actual comment authorship on issue #42 directly instead of trusting the log's own characterization of it, and it held up.
+
+**Did not go well:** nothing new; this remains the same repeated finding most of today's cycles have independently reached.
+
+**Changing next cycle:** none new.
+
+**Next:** none unblocked. Work resumes the moment Phil clears one of the 10 open decisions or actions an `OWNER-ACTIONS.md` item (cheapest first: YouTube OAuth, Search Console verification, Gemini billing, Amazon KDP/Etsy accounts).
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: state unchanged since 2026-10-19T07:05.
+
 ## 2026-10-21, PM check-in (06:1x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
