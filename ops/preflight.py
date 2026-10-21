@@ -29550,6 +29550,22 @@ def main() -> int:
     # current above, which only asks about the run that DID complete.
     run_gate(gate_checks_yml_real_gap)
 
+    # Same spot, same reason again, found 2026-10-21: the pre-push hook that
+    # was supposed to catch a misordered NIGHTLY-LOG.md entry before it ever
+    # left a machine (section 23's own fix) only works in a sandbox where
+    # core.hooksPath has been set to .githooks, and that is a local git
+    # config, not something this repository's own checkout can carry. A
+    # fresh sandbox gets none of it, so the hook silently never ran, and a
+    # fourth instance of the exact defect (two more entries appended to the
+    # tail instead of prepended, by two different pushes) still reached
+    # main. These three gates are pure file-parsing with no browser and no
+    # network, so there is no reason they need to wait behind gate_tests;
+    # moving them here means every `python ops/preflight.py` run catches the
+    # defect before the hang, hook or no hook, sandbox or no sandbox.
+    run_gate(gate_nightly_log_not_oversized)
+    run_gate(gate_nightly_log_ordering)
+    run_gate(gate_nightly_log_no_duplicate_entries)
+
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
     run_gate(gate_unsourced_stats)
@@ -29667,9 +29683,6 @@ def main() -> int:
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
-    run_gate(gate_nightly_log_not_oversized)
-    run_gate(gate_nightly_log_ordering)
-    run_gate(gate_nightly_log_no_duplicate_entries)
     run_gate(gate_nav_current)
     run_gate(gate_nav_canonical)
     run_gate(gate_resources_page_wired)

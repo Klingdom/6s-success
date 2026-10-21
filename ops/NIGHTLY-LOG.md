@@ -2,6 +2,65 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle: nightly-log ordering gate moved ahead of the gate_tests sandbox hang
+
+**Did:** Attached per Step 0 (unshallow, checkout -B main origin/main, ff-only onto f05e544ad, tree clean). Found two more 2026-10-21 entries (d7ab4c53a, f05e544ad) appended out of order, the same defect section 23 fixed four days ago with a pre-push hook. Root cause: that hook needs core.hooksPath, a local git config a fresh checkout never carries, so it never ran here. Fixed at the root: moved the three nightly-log gates in preflight.py's main() to run before gate_tests, the same spot as gate_ci_conclusion_current, since they are pure file parsing with no reason to sit behind the Chromium sandbox hang. Reordered the two misplaced entries by committer timestamp. Added a call-site assertion to test_gate_nightly_log_ordering.py (8/8) so a future revert fails loudly.
+
+**Verified:** check_nightly_log_fast.py reports clean. Reverting preflight.py made the new test fail; restoring it passed again. A capped preflight run shows the gate printed before gate_tests's heartbeat. GitHub: 10 open issues unchanged, all decision or blocked-on-art. checks.yml is green on the last site-touching commit.
+
+**Went well:** Checking the prior cycle's "clean" claim by hand instead of trusting it surfaced this.
+
+**Did not go well:** Fourth occurrence (2026-09-05, 2026-10-15, 2026-10-20, now). The first three fixes added detection but none survived a fresh sandbox.
+
+**Changing next cycle:** None beyond this; enforcement now lives in the gate, not a hook needing local config.
+
+**Next:** Nothing else unblocked; next work starts when Phil clears one of the 10 open decisions.
+
+## 2026-10-21, PM check-in (01:4x slot, 30 minute triage)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since the last cycle.
+
+Previous work (01:19 PM check-in, 01:21 hourly) confirmed finished, not
+re-verified from scratch: attached clean (fetch, unshallow, ff-only onto
+62b6c5a35, tree clean). `cycle_signal.py --check` SAME against the
+2026-10-20T20:59:45Z snapshot, itself confirmed an ancestor of HEAD, so a
+full local re-verification would be redundant this slot, per the standing
+practice this file already set. `cold_read_ledger.py --stale` 0/0. GitHub: 10
+open issues, none updated since the last cycle, no reply from Phil; 0 open
+PRs. Mail inbox unchecked, no credential, same standing limit, reported as
+such rather than assumed empty. The last 3 commits drew no `checks.yml` run;
+checked why rather than assuming a gap: each touched only the four paths its
+own filter excludes (dashboard.html, state.json, NIGHTLY-LOG.md,
+EXECUTIVE-DASHBOARD-LIVE.md), so the silence is correct, not a miss.
+
+No new defect found to close. Not starting anything: nothing is genuinely
+unblocked. No push notification: one already went out on this exact topic
+2026-10-19T07:05 and the underlying state has not changed since.
+
+Dashboard already current as of 01:20. Pushed to main.
+## 2026-10-21, PM check-in
+
+Previous work finished: attached clean (fetch, unshallow, checkout -B main
+origin/main, ff-only onto 4bc2bb536, tree clean). Re-derived the deploy gap
+directly (deploy_gap_material_commits against the current verdict commit):
+8 total, 4 material, identical hashes to the 10-19 21:4x entry, unchanged.
+cold_read_ledger.py --stale: 0 stale. preflight.py: 0 FAIL to the documented
+gate_tests sandbox hang. All 10 open GitHub issues still decision or
+blocked-on-art, none newly actionable, no reply from Phil since 2026-10-18.
+
+No new defect found to close. Not starting anything: nothing is genuinely
+unblocked, matching issue #42 and every cycle since. No push notification:
+ops/last-owner-notification.json shows one already sent on this exact topic
+2026-10-19T07:05 and nothing about the underlying state has changed since.
+
+Regenerated the dashboard (YELLOW, revenue $0 of $20,000, 1332 commits in 7
+days against zero outcome). Nothing to hand the operator beyond the standing
+instruction: clear one of the 10 decisions, or there is no new work.
+
+Pushed to main.
+
 ## 2026-10-21, scheduled operator cycle: backlog-exhaustion state independently reconfirmed, one orphaned preflight process found and cleared, no new defect, no notification
 
 **Did:** Attached per Step 0 (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `38502af38`, then a second ff-only merge onto `6ca5c2f6c` after a concurrent PM cycle pushed mid-run; tree clean both times). Read `GOALS.md`, `BACKLOG-2026-09-07.md` section 0, `STATUS.md` Open claims and Repository hygiene row, and GitHub directly (10 open issues, 0 PRs, issue #42's own comment thread). Found both backlogs at 0 unstruck rows and `ops/cold_read_ledger.py --stale` at 0/276; this matches STATUS.md and issue #42's standing claim rather than a fresh discovery.
@@ -15146,48 +15205,3 @@ No new defect found small enough to close in this slot. Regenerated the dashboar
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
 
 
-## 2026-10-21, PM check-in
-
-Previous work finished: attached clean (fetch, unshallow, checkout -B main
-origin/main, ff-only onto 4bc2bb536, tree clean). Re-derived the deploy gap
-directly (deploy_gap_material_commits against the current verdict commit):
-8 total, 4 material, identical hashes to the 10-19 21:4x entry, unchanged.
-cold_read_ledger.py --stale: 0 stale. preflight.py: 0 FAIL to the documented
-gate_tests sandbox hang. All 10 open GitHub issues still decision or
-blocked-on-art, none newly actionable, no reply from Phil since 2026-10-18.
-
-No new defect found to close. Not starting anything: nothing is genuinely
-unblocked, matching issue #42 and every cycle since. No push notification:
-ops/last-owner-notification.json shows one already sent on this exact topic
-2026-10-19T07:05 and nothing about the underlying state has changed since.
-
-Regenerated the dashboard (YELLOW, revenue $0 of $20,000, 1332 commits in 7
-days against zero outcome). Nothing to hand the operator beyond the standing
-instruction: clear one of the 10 decisions, or there is no new work.
-
-Pushed to main.
-
-## 2026-10-21, PM check-in (01:4x slot, 30 minute triage)
-
-NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
-issues are still decision or blocked-on-art and nothing about that state has
-moved since the last cycle.
-
-Previous work (01:19 PM check-in, 01:21 hourly) confirmed finished, not
-re-verified from scratch: attached clean (fetch, unshallow, ff-only onto
-62b6c5a35, tree clean). `cycle_signal.py --check` SAME against the
-2026-10-20T20:59:45Z snapshot, itself confirmed an ancestor of HEAD, so a
-full local re-verification would be redundant this slot, per the standing
-practice this file already set. `cold_read_ledger.py --stale` 0/0. GitHub: 10
-open issues, none updated since the last cycle, no reply from Phil; 0 open
-PRs. Mail inbox unchecked, no credential, same standing limit, reported as
-such rather than assumed empty. The last 3 commits drew no `checks.yml` run;
-checked why rather than assuming a gap: each touched only the four paths its
-own filter excludes (dashboard.html, state.json, NIGHTLY-LOG.md,
-EXECUTIVE-DASHBOARD-LIVE.md), so the silence is correct, not a miss.
-
-No new defect found to close. Not starting anything: nothing is genuinely
-unblocked. No push notification: one already went out on this exact topic
-2026-10-19T07:05 and the underlying state has not changed since.
-
-Dashboard already current as of 01:20. Pushed to main.

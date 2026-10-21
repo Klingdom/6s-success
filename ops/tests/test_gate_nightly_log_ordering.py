@@ -102,12 +102,28 @@ def main() -> int:
         fails.append("correct date-second ordering wrongly flagged: %r"
                       % (r,))
 
+    # 8. Found 2026-10-21: the pre-push hook meant to catch this (section 23)
+    #    only fires in a sandbox where core.hooksPath has been set, a local
+    #    git config this repository's own checkout cannot carry, so a fresh
+    #    sandbox never runs it. Two more misordered entries still reached
+    #    main this way. The gate is now called before gate_tests in main()
+    #    so a local `python ops/preflight.py` run catches it even when the
+    #    hook never fires, the same shape gate_ci_conclusion_current already
+    #    proves for itself; assert the call site stays there.
+    import inspect
+    src = inspect.getsource(preflight.main)
+    before, _, after = src.partition("run_gate(gate_tests")
+    if "gate_nightly_log_ordering" not in before:
+        fails.append("gate_nightly_log_ordering is not called before "
+                      "gate_tests in main(), so the sandbox hang can hide "
+                      "it again regardless of core.hooksPath")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_nightly_log_ordering, 7/7 checks pass")
+    print("OK: gate_nightly_log_ordering, 8/8 checks pass")
     return 0
 
 
