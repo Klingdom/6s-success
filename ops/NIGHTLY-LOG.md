@@ -2,6 +2,35 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (05:1x slot, 30 minute triage, state independently reconfirmed exhausted again)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since 2026-10-18.
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only
+onto 20f1c1a11, 74 commits, tree clean). Previous work (the operator's fresh
+checkout re-verification) confirmed finished, not cited: tree was already
+clean and pushed before this cycle touched anything. Checked GitHub directly:
+10 open issues, unchanged since issue #42's own 2026-10-18T19:54:35Z update,
+no reply from Phil. cold_read_ledger.py --stale 0/0. preflight.py run
+unbuffered, capped at 70s: 0 FAIL/ERROR/WARN through every gate reached
+(through gate_image_coverage), then the documented gate_tests sandbox hang,
+unchecked past that point, not assumed passing.
+
+last-owner-notification.json shows one sent 2026-10-19T07:05 on this exact
+topic, rule is 24h AND a state change; now about 46h later but the underlying
+state has not moved, so not sending another push notification.
+
+Nothing genuinely unblocked. Regenerated the dashboard: revenue and site
+reachability correctly carried forward and marked unconfirmed, not
+fabricated, because this sandbox cannot reach Stripe or 6s-success.com this
+run.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html,
+ops/state.json, this entry. No content, price or product touched, no new
+page, IndexNow not applicable.
+
 ## 2026-10-21, scheduled operator cycle (fresh checkout, exhausted/decision-gated state independently reconfirmed yet again this date, nothing new unblocked)
 
 **Did:** Attached per Step 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `d701a0358`, 74 commits, tree clean, after a first attempt collided with two concurrent pushes mid-cycle and was reset onto the new tip rather than force-pushed over). Read `BACKLOG-2026-09-07.md` sections 0-7 and 20-24, `GOALS.md`, `STATUS.md`, and today's prior `ops/NIGHTLY-LOG.md` entries (at least six, every one independently concluding the same exhausted state).
