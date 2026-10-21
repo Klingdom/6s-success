@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (12:0x slot, full independent sweep, state reconfirmed exhausted)
+
+**Did:** Attached per Step 0 (shallow/detached checkout, fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto 4eb20a012, clean, no unrelated-histories error). Read GOALS.md context carried forward, re-derived BACKLOG-2026-09-07.md status via a forked sub-agent rather than re-reading the 525KB file whole, then independently cross-checked its conclusion myself rather than trusting it blind.
+
+**Verified:** sort_scope rollout (the one item the fork flagged as possibly still open) is actually 114/114 zones, fully complete, checked directly against mcp/content.json, not assumed from an old log entry. GitHub's 10 open issues pulled fresh: identical set (#2, #15, #18, #21, #29, #31, #33, #35, #40, #42), newest activity still #42's 2026-10-18 comment, no reply from Phil. CHECKIN-LOG.md's hourly entries confirmed newest-first insertion point; every hour from 22:47 (10/20) through 10:53 (10/21), roughly 13 straight, say nothing moved. preflight.py run fresh, unbuffered to a file (not tail-piped, so real-time progress was visible): 0 FAIL/WARN through 81 gates, then genuinely stalled at the documented gate_tests headless-Chromium hang (CPU flat at 16s across 21+ seconds), killed there, reported unchecked past that point. check_urls.py 213/213, audit_pages.py 218/0, audit_catalog.py clean, fix_dashes.py --check 0/0, fix_dialect.py --check 0, fingerprint_assets.py --check 666/666 current, affiliate.py --check 165 documents clean, link_graph_report.py 0 orphans, cold_read_ledger.py --stale 0, check_sellable.py --deep 124/126 (2 person-delivered services by design, Stripe deep check unreachable, no .env.secrets here). gate_status_deploy_gap_count_current, gate_status_deploy_verdict_current, gate_build_id_current, gate_dashboard_self_description_fresh called directly: all clean. inbox_agent.py --apply: no mail credential, unchecked.
+
+**Went well:** forking the backlog read kept this cycle's own context small while still getting independently verified rather than taken on faith; running preflight unbuffered caught the actual stall gate in real time instead of guessing from a dead pipe.
+
+**Did not go well:** nothing new; same standing gate_tests/no-Stripe/no-mail-credential limitations every recent cycle reports.
+
+**Changing next cycle:** none. No notification sent: ops/last-owner-notification.json's rule (24h AND a real state change) is not met even though 24h have now passed, because the underlying state (10 unchanged issues, no reply) has not.
+
+**Next:** whatever Phil answers on issue #42 or any other open decision/owner-gate item.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (11:1x slot, 30 minute triage, state independently reconfirmed exhausted, deploy-gap figure re-derived and found accurate for once)
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only onto 53e40bf8c, 110 commits, tree clean). Previous work confirmed finished: preflight.py reinstalled a missing pymupdf wheel on this fresh sandbox (the known bootstrap gap, just slower than the 150s/300s timeouts this cycle first tried), then ran clean with 0 FAIL/ERROR through every gate to the documented gate_tests headless-Chromium sandbox hang; killed there, reported unchecked past that point, not assumed passing. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0.
