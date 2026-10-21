@@ -20,6 +20,18 @@ Instead of re-running the same checklist, tested three claims directly: (1) re-d
 
 Pushed to main: dashboard trio, this entry, issue #42 comment. No content/price/product touched, no new page, IndexNow not applicable.
 
+## 2026-10-21, PM check-in (12:4x slot, 30 minute triage, state independently reconfirmed exhausted a third time)
+
+NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, continue the standing cold read and verification sweep, because BACKLOG-2026-09-07.md's C1 through C6 row still has only C5 (Gemini billing, and even that only for the 11 room chapters now) and C6 (YouTube OAuth paste) unstruck, and all 10 GitHub issues are unchanged since issue #42 three days ago.
+
+Attached clean (fetch, checkout main, ff only onto `e2d2c1afa`, tree already clean, no commits behind). Previous work (the 12:2x cycle immediately before this one) confirmed finished, not cited: only one commit has landed since (`e2d2c1afa`, the dumb hourly check-in bot, no material change). Re-pulled GitHub's 10 open issues fresh rather than trusting the prior entry: identical set, newest update still issue #42 at 2026-10-18T19:54:35Z, no reply from Phil. Re-derived BACKLOG-2026-09-07.md's C1 to C6 rows directly by grep rather than trusted from the log: same two rows (C5, C6) unstruck, both already-known Phil gates. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `preflight.py` run unbuffered to a file rather than through a pipe, so real progress was visible rather than fully empty: 0 FAIL/ERROR through every gate reached (including `gate_product_schema_url_honest`, `gate_affiliate`, `gate_stale_claims`, every room-deck gate, `gate_image_coverage`), genuinely stalled at the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation; reported unchecked past that point, not assumed passing. A first attempt at this same preflight run, piped through `tail`, produced zero output at all (stdout fully buffered) and was corrected rather than reported as a false "nothing to see."
+
+Checked whether another push notification on the exhausted-state/issue-#42 topic was due: `ops/last-owner-notification.json` records one sent 2026-10-19T07:05, with an explicit rule (24h AND a real state change) for sending another. 24h has passed but the state has not changed (same 10 issues, no reply), so per that rule and per this routine's own standing practice, no new notification sent; a repeat would be noise on an already-reported condition.
+
+Not starting any new workstream, nothing is genuinely unblocked that isn't a Phil gate.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (12:2x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, continue the standing cold read and verification sweep, because sections 2 through 4 of BACKLOG-2026-09-07.md have only C5 (Gemini billing) and C6 (YouTube OAuth paste) unstruck, both already Phil gates, and all 10 GitHub issues are unchanged since issue 42 was filed three days ago.
