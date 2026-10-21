@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (22:1x slot, 30-minute triage, previous work confirmed finished, dashboard regenerated, nothing new unblocked, no notification)
+
+Previous work (21:4x-22:0x operator cycle's full uncapped preflight) confirmed finished, not cited: attached clean, ff-only onto df36b4425, tree clean throughout. Re-ran preflight via ops/run_preflight.sh myself: 0 FAIL (both literal FAIL lines are empty section headers, confirmed by reading beneath them), 30 warnings, all standing sandbox limits (no Stripe/.env.secrets, no SSH key, no network egress, no mail credential, no JRE) plus already-tracked content gaps (deck-print-tier, page-art, deck-art). check_urls.py 213/213, fix_dashes.py --check 0/0. GitHub's 10 open issues re-pulled fresh: unchanged, all decision/blocked-on-art. Read issue #42's three comments directly: all self-authored by prior cycles (2026-10-17, 2026-10-18, 2026-10-21 12:52), none from Phil. BACKLOG-2026-09-07.md grepped directly for C5/C6: both still open, both already Phil-gated with everything up to the gate built. ops/last-owner-notification.json: last sent 2026-10-19T07:05Z, state unchanged since, no notification sent.
+
+Found one small, closeable thing instead of citing the warning: gate dashboard-self-description-fresh flagged the deck one commit stale (cited 381c347f2, HEAD was df36b4425). Regenerated with ops/dashboard.py. It correctly degraded several claims this sandbox cannot verify (deploy/live-links verdict to unknown, site_live to null, "can take money" to unconfirmed) rather than repeat last run's "current"/"confirmed live" under this run's own name, per CLAUDE.md 0.3/0.4. Reviewed the full diff before shipping.
+
+Not starting new work: nothing genuinely unblocked outside the two Phil-gated rows (C5 Gemini billing, C6 YouTube OAuth) and the owner-gate section. Handing to the operator: same standing handoff, keep re-verifying rather than invent work.
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, scheduled operator cycle (21:4x-22:0x slot, full STEP 0-13 pass, exhausted state independently reconfirmed a third time this hour, full foreground preflight run clean)
 
 **Did:** Attached per Step 0: checkout arrived shallow and detached, fetched, unshallowed, `checkout -B main origin/main`, ff-only onto `0e0ec6513`, tree clean. A concurrent PM check-in (21:4x slot) pushed 3 commits mid-cycle (dashboard trio plus its own log entry, landing on `e51f7fcf8`); re-fetched and ff-only merged onto it before doing anything else, no conflict. Read `BACKLOG-2026-09-07.md` sections 0-7 directly (grepped every bold item id in sections 2-6 for strikethrough rather than trust a summary: all of A1-A6, B1-B4/B6/B8/B9, C1-C3/C7 struck; only C5/Gemini billing and C6/YouTube OAuth remain, both already Phil-gated with everything up to the gate built; section 5 explicitly Hold on traffic/money; section 6 is six owner-credential gates, none mine), `ROADMAP-2026-2029.md` context, `CLAUDE.md`, `OWNER-ACTIONS.md`, and the real head of `ops/NIGHTLY-LOG.md` (newest-first, confirmed before reading, not the 6.7MB+ tail which lands in 2026-10-04 entries).
