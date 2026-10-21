@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, full independent sweep, state reconfirmed exhausted)
+
+**Did:** Attached per Step 0 (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto 53e40bf8c, 110 commits, tree clean). Read GOALS.md in full, this file's own last four entries, CLAUDE.md, and re-derived BACKLOG-2026-09-07.md sections 2 through 7 directly from the file rather than from memory or the log's own summary: grepped every row header in sections 2 through 4 (A1-A6, B1-B9, C1-C7) and confirmed by hand which carry strikethrough (done) versus which do not (C5 Gemini billing, C6 the 102-video YouTube OAuth paste, both already-known Phil gates); section 5 (Hold) and section 6 (owner gates) read in full, unchanged.
+
+**Verified rather than assumed:** GitHub's 10 open issues pulled fresh (list_issues): identical set to every recent cycle (#2, #15, #18, #21, #29, #31, #33, #35, #40, #42), newest update still #42 at 2026-10-18T19:54:35Z, no reply from Phil. `ops/inbox_agent.py --apply`: no mail credentials in this sandbox, reported unchecked, not empty. `preflight.py --fast` run to completion in the background (logged unbuffered to a file, not tail-piped): 0 FAIL/ERROR/WARN through every one of roughly 90 gates reached, hit the documented `gate_tests` headless-Chromium sandbox hang at its own 400s timeout, killed there, reported unchecked past that point, not assumed passing. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 delivered documents, 0 affiliate links, every disclosed page compliant. `check_sellable.py` 124 of 126 buyable products fully wired, the other 2 are person-delivered services by design. `check_cron_cadence.py`: every workflow ok or too-few-to-measure, same set as prior cycles. `cold_read_ledger.py --next`: 277 of 277 tracked files ledgered, 0 stale, 0 un-ledgered candidates, confirming the cold-read sweep is still genuinely exhausted.
+
+**Checked the repo's own notification governance before deciding whether to escalate, rather than re-raising issue #42 on instinct.** `ops/last-owner-notification.json` records a push sent 2026-10-19T07:05 on this exact topic (issue #42, the cadence-vs-exhausted-backlog decision) and states its own rule: do not repeat before 24h AND a real state change (a reply from Phil, an owner gate cleared, or a new one opened). State is unchanged (same 10 issues, no reply, no new gate), so no notification sent this cycle, honouring that rule rather than re-litigating it.
+
+**Went well:** attaching per Step 0 worked cleanly on the first try. Re-deriving the backlog's done/not-done status directly from the file's own strikethrough markers, rather than trusting this log's prior summaries, cost a few minutes and confirmed the prior cycles' conclusion rather than finding anything new.
+
+**Did not go well:** nothing new found; this is another in a long run of cycles (CHECKIN-LOG.md and this file both show dozens today) reaching the same verdict. `commits7d` in the dashboard reads 1,319, which is issue #42's own complaint restated in a single number: a very large amount of unattended cycle activity against an input that has not moved in days.
+
+**Changing next cycle:** nothing structural; the gates, `OWNER-ACTIONS.md` package, and issue #42 itself already name the real remaining gap (Phil's own hand on YouTube OAuth, Search Console, Gemini billing, Etsy/KDP/Apple/Play accounts, the Listmonk decision, and the cadence-vs-exhausted-backlog call).
+
+**Next:** whatever Phil answers on any open issue or owner-gate item, or whatever the next scheduled keyword-demand/indexation-check harvest surfaces.
+
 ## 2026-10-21, PM check-in (10:1x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 Previous work finished, not cited: tree was clean and pushed before this cycle touched anything. Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto 1633c0242, tree clean). ops/cycle_signal.py --check: SAME against the 2026-10-21T02:33:52Z snapshot, so the full local backlog re-derivation was skipped per its own design; GitHub, preflight, and the deploy-gap figure were still checked directly, not inferred.
