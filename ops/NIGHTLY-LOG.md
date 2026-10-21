@@ -2,6 +2,39 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (02:4x slot, 30 minute triage, state independently reconfirmed exhausted, one stale-prone claim checked and found accurate for once)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42 and the 02:1x cycle
+immediately before this one, because all 10 open issues are still decision
+or blocked-on-art and nothing about that state has moved.
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only
+onto b4bf15730, tree clean, 56 commits fast-forwarded). Read git log -12,
+this file's own last two entries, BACKLOG-2026-09-07.md sections 0-7 and
+20-24, EXECUTIVE-DASHBOARD-LIVE.md, and the 10 open GitHub issues directly
+via the API (not cited): unchanged since 2026-10-18, all `decision` or
+`blocked-on-art`, none newly actionable, none waiting on Phil that could be
+mistaken for unblocked.
+
+Previous work (the 02:1x cycle's ledger-sync fix and the ordering-gate
+relocation before it) confirmed finished, independently, not cited: working
+tree was clean and main already pushed before this cycle touched anything.
+`preflight.py` run unbuffered to completion: 0 FAIL through every gate
+reached, hung again at the documented `gate_tests` sandbox limit (this
+sandbox did not get the full run the 02:1x entry got), killed there,
+unchecked past that point. `check_urls.py` 213/213 (note: now 213, not the
+older 211 cited by several prior entries; no action needed, the count moves
+with the sitemap and nothing here regressed). `fix_dashes.py --check` 0/0.
+`check_nightly_log_fast.py` clean.
+
+**Checked a claim instead of citing it, per CLAUDE.md 0.3/5d, and for once it held.** `BLOCKER-001`'s deploy-gap row has gone stale on close to every cycle that has touched it since 2026-10-04. Called `deploy_gap_material_commits()` directly against the verdict's own resolved commit (`086f6ba42`) rather than trusting the 2026-10-19 21:4x citation: still 8 commits, 4 material (`f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`), 4 non-material restamps. Confirmed why it held this time: every commit since 2026-10-19 (sections 21-24, the keyword-demand and CI/ordering-gate fixes) touched `ops/` or `BACKLOG`/`NIGHTLY-LOG`, never `site/` or `Dockerfile`. No correction needed; not re-citing it as new work either.
+
+`sort_scope`: 114/114 zones, 20/20 rooms, re-confirmed directly against `mcp/content.json` (closed 2026-10-04, long since off the standing handoff). Backlog sections 2-4 (A/B/C rows): every item struck through as Done except C5 (Gemini billing) and C6 (YouTube OAuth), both Phil-gated. Section 5 is Hold by design. `STATUS.md` Open claims: none. `checks.yml` was green on the last completed run before this one (`7a9710195`); this cycle's own push was still `in_progress` on GitHub at the time this entry was written, not a failure.
+
+Not starting anything: nothing is genuinely unblocked. No push notification: the last one on this exact "re-verifying an exhausted state" topic went out 2026-10-19T07:05 and the underlying state has not changed since.
+
+Regenerated the dashboard. Pushed to main. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (02:1x slot, 30 minute triage, a concurrent operator fix merged and its cold-read ledger entry closed)
 
 Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto c9b9ee739, tree clean). While reading state, a concurrent session pushed e9377b5a3 (operator cycle, nightly-log ordering gate moved ahead of gate_tests, fourth occurrence fixed at the root) plus its merge and an hourly check-in; fetched and ff-only merged forward rather than racing it, per Step 8.
