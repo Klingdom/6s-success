@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (21:0x slot, full STEP 0-13 pass, exhausted state independently reconfirmed yet again, no notification)
+
+**Did:** Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto 0aea61dfa, tree clean. Read BACKLOG-2026-09-07.md sections 0-7 directly (grepped C5/C6 and the strikethrough state rather than trust a summary), ROADMAP-2026-2029.md context, CLAUDE.md, OWNER-ACTIONS.md, and the real head of ops/NIGHTLY-LOG.md (newest-first, not the tail, which lands in 2026-10-04 entries on this 530KB+ file).
+
+**Verified rather than cited:** ran preflight.py myself via ops/run_preflight.sh (the detach-and-poll wrapper, not a direct foreground call) to genuine completion this run: every gate passed, 0 FAIL (the two literal "FAIL" lines in the log are empty section headers, confirmed by reading the lines beneath them), 28 warnings, all previously diagnosed sandbox limits (no Stripe/.env.secrets credential, no SSH key, no network egress to 6s-success.com or GitHub's own cron-timing API, no JRE, no mail credential) plus already-tracked content gaps (deck-print-tier, page-art, deck-art). gate_tests did not hang this run. check_urls.py 213/213, affiliate.py --check 165 documents clean, cold_read_ledger.py --stale 0/277. check_ledgerium.py and stripe_check.py both correctly report unchecked, no credential, not assumed clean. GitHub's 10 open issues re-pulled fresh via the API: unchanged, all decision/blocked-on-art. Read issue #42's three comments directly rather than trust the count: all three self-authored by prior agent cycles (2026-10-17, 2026-10-18, 2026-10-21 12:52), none from Phil. 0 open PRs.
+
+**No new defect found small enough to close this slot.** Every row in BACKLOG-2026-09-07.md sections 2-4 is struck through except C5 (Gemini billing) and C6 (YouTube OAuth), both already Phil-gated with everything up to the gate built; section 5 explicitly on Hold for traffic; section 6 is six owner gates, none mine. This is the same exhausted state issue #42 itself names, independently reconfirmed rather than fabricated work to fill the slot.
+
+**Not notifying Phil:** checked ops/last-owner-notification.json before considering a push: last sent 2026-10-19T07:05Z on this identical topic (issue #42, the 10 decision/blocked-on-art issues, OWNER-ACTIONS.md's start-here list); state has not changed since (same issues, no Phil reply, no gate cleared), so per that file's own dedup rule, and per this run's own judgment, no notification sent.
+
+**Went well:** running preflight through the proper wrapper rather than a direct foreground call, avoiding the exact lock-deadlock incident the 19:0x cycle diagnosed and fixed earlier today.
+
+**Did not go well:** nothing new; same exhausted, fully Phil-gated state as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Next:** a Phil reply on issue #42 or any of the other 9 open issues, or Gemini billing/YouTube OAuth clearing. Nothing else is genuinely unblocked.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (20:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 Previous work (19:5x operator cycle) confirmed finished, not cited: attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto b363812, tree clean). Ran preflight.py myself in the background and killed it only after it reached the documented gate_tests sandbox hang (confirmed by reading the partial log, not timing alone): 0 FAIL across all 82 gates before that point, same standing limitation every recent cycle reports. sort_scope rollout re-confirmed 114/114 zones, 20/20 rooms, read directly from content.json. Working tree was clean before and after.
