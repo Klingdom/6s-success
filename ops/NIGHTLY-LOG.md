@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (11:1x slot, 30 minute triage, state independently reconfirmed exhausted, deploy-gap figure re-derived and found accurate for once)
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only onto 53e40bf8c, 110 commits, tree clean). Previous work confirmed finished: preflight.py reinstalled a missing pymupdf wheel on this fresh sandbox (the known bootstrap gap, just slower than the 150s/300s timeouts this cycle first tried), then ran clean with 0 FAIL/ERROR through every gate to the documented gate_tests headless-Chromium sandbox hang; killed there, reported unchecked past that point, not assumed passing. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0.
+
+GitHub read directly: same 10 open issues, newest update still #42 at 2026-10-18T19:54:35Z, no reply from Phil in 3 days. BACKLOG-2026-09-07.md sections 2-4 re-derived directly from the file's own strikethrough markers rather than trusted from a prior summary: every row done except C5 (Gemini billing) and C6 (YouTube OAuth), both explicitly Phil-gated. Section 5 (Hold) and 6 (owner gates) unchanged.
+
+Re-derived STATUS.md's BLOCKER-001 deploy-gap figure from scratch rather than trust it, since this is the single most repeated stale-claim shape in this repo's history: deploy_gap_material_commits against the resolved verdict commit (086f6ba42) returns the same 8 commits as cited (f51eab183, 87e60d953, 3d84199d3, 0e50c3f27 material; 65eb9740f, ebb990769, 6d2bc368d, 0fb7273b1 restamps). No correction needed this cycle, unlike most recent ones. gate_owner_actions_last_measured_current run directly: clean.
+
+Not starting any new workstream: nothing is genuinely unblocked, everything remaining is owner-gated or already done.
+
+Regenerated the dashboard (YELLOW, revenue carried forward, Stripe unreachable this run) and pushed. No notification sent: ops/last-owner-notification.json's rule (24h AND a real state change) is not met, same call as every recent cycle.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, scheduled operator cycle (fresh checkout, full independent sweep, state reconfirmed exhausted)
 
 **Did:** Attached per Step 0 (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto 53e40bf8c, 110 commits, tree clean). Read GOALS.md in full, this file's own last four entries, CLAUDE.md, and re-derived BACKLOG-2026-09-07.md sections 2 through 7 directly from the file rather than from memory or the log's own summary: grepped every row header in sections 2 through 4 (A1-A6, B1-B9, C1-C7) and confirmed by hand which carry strikethrough (done) versus which do not (C5 Gemini billing, C6 the 102-video YouTube OAuth paste, both already-known Phil gates); section 5 (Hold) and section 6 (owner gates) read in full, unchanged.
