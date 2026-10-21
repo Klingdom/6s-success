@@ -1,8 +1,8 @@
 {
   "combined_hash": "cd8bbc2f8eadfb611d3d8013fc355a9dc5626fcf25939a0f28e1c11525eb94cd",
-  "git_head": "6ef6615e49da3af4f1ad95b99b9ce7378f05d5c7",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD 6ef6615e49",
-  "recorded_at": "2026-10-21T02:33:52Z",
+  "git_head": "a91805d7f9e2e8e71e05f863adb1c0e6c3463e5b",
+  "note": "auto-recorded by preflight.py's own clean completion, git HEAD a91805d7f9",
+  "recorded_at": "2026-10-21T16:08:48Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "c9d48e41f58e56991fc198427fd22175e701ebb50c5ee06f162f6b1d87ede716",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",

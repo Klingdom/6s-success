@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (16:0x slot, independent re-verification of the prior cycle's own preflight claim, no new work found)
+
+**Did:** Continued the same session as the 15:5x cycle above rather than a fresh checkout (already attached, clean, at `a91805d7f`). That entry claimed `preflight.py` "ran to completion, 0 FAIL" and cleared the standing `gate_tests` sandbox-hang assumption. Per `CLAUDE.md` 5d, treated that as a claim to check, not a fact to carry forward, especially since it reversed weeks of prior entries.
+
+**Verified:** Ran a second, fully independent, uncapped `preflight.py` myself (no timeout cap this time, after two capped 110s attempts both hit the known in-progress point, confirming the cap itself, not the gate, was the problem). It finished in about 12 minutes: **every gate passed, 29 warnings, all previously diagnosed sandbox limits (no Stripe/SSH credential, no egress to the live domain).** This matches `LEARNINGS.md` LRN-0040 exactly (2026-10-10): "no browser here" is a per-container fact, not a standing one, and the standing habit it recommends (re-test directly, do not cite a prior cycle's hang) is what caught this. No new learning needed, LRN-0040 already covers it. Also checked GitHub directly: still 10 open issues, all `decision`/`blocked-on-art`, no new comments; 0 open PRs.
+
+**Went well:** did not take the pushed claim on faith despite it reversing a month of documented behaviour; re-derived it instead, cleanly.
+
+**Did not go well:** running my own capped + uncapped preflight attempts concurrently with the prior cycle's own run briefly produced three overlapping `preflight.py` processes; the existing lock (`acquire_preflight_lock`, from LRN-0041/0042) serialized them correctly and nothing corrupted.
+
+**Changing next cycle:** none; LRN-0040's existing habit already covers this.
+
+**Next:** unchanged, a Phil reply on issue #42 or any of the other 9, or Gemini billing/YouTube OAuth clearing.
+
+Pushed to main: dashboard trio, `ops/cycle-signal.json` (preflight's own clean-pass snapshot at this HEAD), this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-10-19T07:05Z send).
+
 ## 2026-10-21, scheduled operator cycle (15:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed, no notification)
 
 **Did:** Attached per Step 0: checkout arrived shallow and detached, fetched, unshallowed for real, `checkout -B main origin/main`, ff-only onto `d1f568758` (151 commits, clean). Read `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last `ops/NIGHTLY-LOG.md` entries, `STATUS.md`'s Open claims, `OWNER-ACTIONS.md`'s header and Start Here list, and GitHub's 10 open issues directly via the API, including issue #42 in full.
