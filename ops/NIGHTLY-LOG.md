@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (09:1x slot, 30 minute triage, state independently reconfirmed exhausted again)
+
+Previous work (08:5x operator sweep and the hourly record after it) confirmed finished, not cited: tree was clean and pushed before this cycle touched anything. Attached per Step 0, ff-only onto 87c8d90be, 101 commits. Verified fresh rather than trusted: GitHub's 10 open issues pulled directly, same set, newest update still #42 at 2026-10-18T19:54:35Z, no reply from Phil in 3 days. preflight.py --fast: 0 FAIL/ERROR through every gate reached, hit the documented gate_tests headless-Chromium sandbox hang at the 90s cap, unchecked past that point, not assumed passing. Read BACKLOG-2026-09-07.md sections 0, 2 and 7 directly (not cited from memory): the constraint is still the first link, stranger to visitor, traffic unmeasured fresh since 2026-10-02 (no VPS key in this sandbox). Checked ops/last-owner-notification.json: last push 2026-10-19T07:05, past 24h, but underlying state (same issues, no reply) unchanged, so its own stated rule says not to repeat it; honoured that rule, no notification sent.
+
+No new work genuinely unblocked and un-Phil-gated. Regenerated the dashboard. Handing to the operator (:43): nothing new, matches issue #42's standing account.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, scheduled operator cycle (fresh checkout, full independent sweep, state reconfirmed exhausted)
 
 Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto 5b50d4fb4, then a second ff-only onto 4d3d0a8ec after the concurrent 08:4x PM check-in landed mid-cycle, no conflict, tree clean). `ops/cycle_signal.py --check` read SAME against the 2026-10-21T02:33:52Z snapshot both before and after that merge, so the expensive local re-derivation (full backlog re-read, multi-minute `gate_tests`) was skipped per its own design; GitHub, the inbox and the scheduled workflows were still checked directly, not inferred from the signal.
