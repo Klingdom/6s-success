@@ -20,6 +20,28 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: the last one on this exact "re-verified exhausted state" topic went out 2026-10-19T07:05 and nothing about the underlying state has changed since (no reply from Phil, no gate cleared, no new issue, no new mail).
 
+## 2026-10-21, PM check-in (03:4x slot, 30 minute triage, state independently reconfirmed exhausted again)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since 2026-10-18.
+
+Attached per Step 0: this checkout's unshallow took unusually long (lock
+contention on a concurrent fetch), so this entry ships a few minutes past the
+03:4x slot; onto 624ac0a97, tree clean, fully unshallowed now. Previous work
+(the 03:1x PM check-in and the hourly check-in after it) confirmed finished,
+not cited: tree was already clean and pushed before this cycle touched
+anything. Checked GitHub directly: 10 open issues, newest update still
+issue #42 at 2026-10-18T19:54:35Z, no reply from Phil. `check_nightly_log_fast.py`
+clean, `cold_read_ledger.py --stale` 0/0, `cycle_signal.py --check` SAME.
+`preflight.py` capped at 90s: zero FAIL/ERROR/WARN before hitting the
+documented `gate_tests` sandbox hang; unchecked past that point, not assumed
+passing.
+
+Nothing genuinely unblocked. No push notification: the last one on this
+topic went out 2026-10-19T07:05 and the underlying state hasn't changed.
+Pushed to main. Dashboard regenerated. No content, price or product touched.
+
 ## 2026-10-21, PM check-in (03:1x slot, 30 minute triage, state independently reconfirmed exhausted, deploy-gap claim re-derived and found unchanged for once)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
