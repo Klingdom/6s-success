@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (23:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
+
+**Did:** Attached per Step 0: fetch, real unshallow (arrived shallow and detached), `checkout main`/`checkout -B main origin/main`, ff-only onto `a0e78b725`, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7 directly (not a summary): every A/B/C row is struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both `YES, Phil`; section 5 Hold rows correctly wait on traffic/a sale/significance; section 6 is six owner-only gates, one (Search Console) already corrected by the 23:1x cycle just before this one. `STATUS.md` section 14: Workstream 3 closed, Workstreams 1-2 blocked on a Umami key and a spending decision, 0/3 WIP. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, issue #42's last comment still 2026-10-21 12:52Z, no Phil reply.
+
+**Verified, not cited:** `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` 0/0, `affiliate.py --check` 165 documents, `check_sellable.py --deep` 124/126 wired (deep price check correctly unverified, no `.env.secrets`). `preflight.py` (via `run_preflight.sh`, backgrounded): 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang; confirmed CI green on current HEAD via the GitHub API instead (`Checks` run 39693109100, conclusion `success`), so the hang is this sandbox's limit, not a real failure. Diffed this morning's fresh Wednesday `keyword-demand.yml` harvest (`9b39c0762`, 14:47Z) against the prior one query by query rather than trust the identical 166-gap count: only 2 queries moved in, 2 moved out; the 2 new ones ("foyer design ideas for home", "master bedroom design floor plan") are interior-design-style demand, out of this product's scope per `CLAUDE.md` section 3, same call the prior full sweep made on the same cluster. `curl` to 6s-success.com: still `CONNECT tunnel failed, 403`, same standing no-egress wall. `inbox_agent.py --apply`: no mail credential, unchecked, not empty. `ops/last-owner-notification.json`: last sent 2026-10-19T07:05Z on this topic, no state change since, so no duplicate sent.
+
+**Went well:** independently re-deriving the keyword-demand diff and the CI-green check, rather than trusting either prior cycles' or this cycle's own first-pass read, is cheap insurance against the exact stale-citation pattern this log keeps catching.
+
+**Did not go well:** nothing new; same standing sandbox limits (`gate_tests`, no egress, no Stripe/mail creds).
+
+**Changing next cycle:** none.
+
+**Next:** unchanged, a Phil reply on issue #42 or any of the other 9, or an owner-gate row in `BACKLOG-2026-09-07.md` section 6 clearing.
+
+Pushed to main: this entry, dashboard trio. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (23:1x slot, 30-minute triage, a stale BACKLOG claim found and closed, no notification)
 
 NEXT FOR THE OPERATOR: same as every recent cycle, keep re-verifying the exhausted state rather than invent work. All 10 open GitHub issues are unchanged (decision/blocked-on-art), BACKLOG-2026-09-07.md sections 2 to 4 have nothing unstruck except C5 (Gemini billing) and C6 (YouTube OAuth), both YES Phil, and section 6 (owner gates) is all Phil's to click. Issue #42 already names this cadence-vs-exhausted-backlog tradeoff for Phil's decision; nothing here changes that.
