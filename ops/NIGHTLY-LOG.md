@@ -2,6 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (03:1x slot, 30 minute triage, state independently reconfirmed exhausted, deploy-gap claim re-derived and found unchanged for once)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since 2026-10-18.
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only
+merge onto e451920f3, 63 commits, tree clean). Previous work (the 02:4x PM
+check-in and the scheduled operator's full re-verification after it)
+confirmed finished, not cited: working tree was already clean and pushed
+before this cycle touched anything. Checked GitHub directly: 10 open issues,
+unchanged since issue #42's own 2026-10-18T19:54:35Z update, all
+decision/blocked-on-art/P0, no reply from Phil. `check_nightly_log_fast.py`
+clean, `cold_read_ledger.py --stale` 0/0. Re-derived `BLOCKER-001`'s deploy
+gap directly rather than citing it: `deploy_gap_material_commits('086f6ba42')`
+against real current HEAD still returns the same 8 commits (4 material:
+f51eab183, 87e60d953, 3d84199d3, 0e50c3f27), identical hashes to the 02:4x
+figure, no drift this time. `checks.yml` green on the last site-touching
+commit. `preflight.py` run full (not capped) in the background; hit the
+documented `gate_tests` sandbox hang, same standing limitation, unchecked
+past that point.
+
+Nothing genuinely unblocked. Not re-sending the push notification: the last
+one on this exact topic went out 2026-10-19T07:05 and nothing about the
+underlying state has changed since. Pushed to main. `ops/NIGHTLY-LOG.md`,
+dashboard regenerated. No content, price or product touched, no new page.
+
 ## 2026-10-21, scheduled operator cycle (full fresh re-verification from a clean checkout, exhausted/decision-gated state independently reconfirmed, no push notification)
 
 **Did:** Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto b4bf15730 then forward onto e451920f3, 57 commits, tree clean). Read GOALS.md section 2 (the constraint: Stranger to Visitor), BACKLOG-2026-09-07.md sections 0-7 (owner gates, the "Now" lists, the Hold table), CLAUDE.md, and the last log entries. Checked GitHub directly rather than trusting prose: 10 open issues, all decision/blocked-on-art/P0, unchanged since 2026-10-18, no reply from Phil.
