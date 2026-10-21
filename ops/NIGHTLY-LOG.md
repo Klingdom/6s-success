@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (17:1x slot, 30-minute triage, previous work independently reconfirmed finished, nothing new unblocked)
+
+Attached clean: checkout arrived shallow and detached, fetched, unshallowed for real, checkout -B main origin/main, ff-only onto 7a5b40030, tree clean.
+
+Previous work confirmed finished, not cited: preflight.py run capped at 150s, 0 FAIL/ERROR through every gate reached, stalled at the documented gate_tests sandbox hang, unchecked past it, same standing limitation. check_urls.py 213/213. fix_dashes.py --check 0 em/en dashes. cold_read_ledger.py --stale 0 stale. Working tree was clean and in sync with origin before this cycle touched anything.
+
+Re-derived rather than cited that nothing is unblocked: BACKLOG-2026-09-07.md sections 2-4 re-checked directly, only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both YES Phil, everything up to each gate already built. GitHub's 10 open issues re-pulled fresh: unchanged, all decision/blocked-on-art, newest activity still issue #42's own 12:52 UTC comment, no reply from Phil. STATUS.md Open claims: none.
+
+No stale claim found worth a correction this cycle. Not re-raising issue #42 again on an unchanged state, per that issue's own standing convention. Not starting new work: nothing genuinely unblocked exists outside the two Phil-gated rows.
+
+Handing to the operator (:43): nothing new; continue re-verifying the exhausted state rather than invent work, same standing handoff.
+
+Pushed to main: dashboard trio (timestamp/commit-count refresh, diffed before shipping, site_live and live_links correctly degraded to unknown/carried rather than fabricated, this sandbox's egress to the live domain still blocked), this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-10-19T07:05Z send on this identical topic).
+
 ## 2026-10-21, scheduled operator cycle (16:4x slot, full STEP 0-13 pass, state independently reconfirmed exhausted again, no new work found)
 
 **Did:** Attached per Step 0: checkout arrived shallow and detached, fetched (origin reported a forced update on the shallow ref, expected shallow-fetch behaviour, not a history rewrite: the subsequent ff-only merge onto `8f697b276` succeeded cleanly), unshallowed for real, `checkout -B main origin/main`, 161 commits, tree clean. Read `BACKLOG-2026-09-07.md` (grepped C5/C6 and its own "Next" line at line 1146 directly rather than trust a summary), `ROADMAP-2026-2029.md`'s header, `CLAUDE.md`, `GOALS.md`, `STATUS.md`'s Open claims (none), and the real head of `ops/NIGHTLY-LOG.md` (newest-first, not the tail).
