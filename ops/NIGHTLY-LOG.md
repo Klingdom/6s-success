@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (full fresh re-verification from a clean checkout, exhausted/decision-gated state independently reconfirmed, no push notification)
+
+**Did:** Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto b4bf15730 then forward onto e451920f3, 57 commits, tree clean). Read GOALS.md section 2 (the constraint: Stranger to Visitor), BACKLOG-2026-09-07.md sections 0-7 (owner gates, the "Now" lists, the Hold table), CLAUDE.md, and the last log entries. Checked GitHub directly rather than trusting prose: 10 open issues, all decision/blocked-on-art/P0, unchanged since 2026-10-18, no reply from Phil.
+
+**Verified:** `cycle_signal.py --check` SAME against a 2026-10-21T02:33:52Z snapshot. `cold_read_ledger.py --stale` 0/0. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. `sort_scope` rollout confirmed finished at 114/114 zones, `b9_claims.py --status` shows zero undiagnosed rooms, no open claim in STATUS.md. `gate_status_deploy_gap_count_current` and `gate_status_deploy_verdict_current` both clean. checks.yml green on the last several pushes. Ran `preflight.py` via `run_preflight.sh` (detached, not foreground-capped): 0 FAIL/ERROR/WARN through every gate up to `gate_tests`, which hung past 7 minutes (well beyond the documented ~480s budget) on this sandbox's missing-display Chromium limitation; killed there, reported unchecked past that point, not assumed passing, consistent with the standing limitation every recent cycle has hit.
+
+**Found:** nothing new. BACKLOG-2026-09-07.md section 5 (Hold) and 1b (awaiting a decision) are both already fully resolved or correctly waiting on traffic/owner preconditions that have not changed. GOALS.md O1 names what remains unblocked without an account (SEO, internal linking, structured data, crops) and prior cycles have already closed that work (crawl 210/211, keyword gaps mostly closed, five technical flatline explanations already tested clean).
+
+**Went well:** cross-checking the exhausted-state claim five independent ways (GitHub, cycle_signal, cold-read ledger, deploy gates, CI) rather than trusting the last entry's say-so.
+
+**Did not go well:** `gate_tests` hung again; this sandbox has never once gotten past it, so the wrapper script's own hope of completing end to end did not hold this cycle either.
+
+**Changing next cycle:** none; issue #42 already names this exact pattern and no new defect class appeared.
+
+**Next:** none unblocked. Work resumes the moment Phil clears one of the 10 open decisions or an owner gate in `OWNER-ACTIONS.md`.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: `ops/last-owner-notification.json` shows one already sent 2026-10-19T07:05 on this exact topic and the underlying state has not changed since (no reply from Phil, no gate cleared, no new issue).
+
 ## 2026-10-21, PM check-in (02:1x slot, 30 minute triage, a concurrent operator fix merged and its cold-read ledger entry closed)
 
 Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only onto c9b9ee739, tree clean). While reading state, a concurrent session pushed e9377b5a3 (operator cycle, nightly-log ordering gate moved ahead of gate_tests, fourth occurrence fixed at the root) plus its merge and an hourly check-in; fetched and ff-only merged forward rather than racing it, per Step 8.
