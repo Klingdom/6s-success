@@ -1,10 +1,10 @@
 {
-  "combined_hash": "cd8bbc2f8eadfb611d3d8013fc355a9dc5626fcf25939a0f28e1c11525eb94cd",
-  "git_head": "a91805d7f9e2e8e71e05f863adb1c0e6c3463e5b",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD a91805d7f9",
-  "recorded_at": "2026-10-21T16:08:48Z",
+  "combined_hash": "f65e4f287fa66eb69ba4e4e26ff4de1ff6f2ee20923a76a1eb16956a685a1580",
+  "git_head": "817c2076fe00e7e07ea502becccf396c79768c95",
+  "note": "auto-recorded by preflight.py's own clean completion, git HEAD 817c2076fe",
+  "recorded_at": "2026-10-21T19:55:38Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "c9d48e41f58e56991fc198427fd22175e701ebb50c5ee06f162f6b1d87ede716",
+    "BACKLOG-2026-09-07.md": "dcfa5ff3eb1220ca95765ae3bcabee1a20fcd0cd642de29f1929cbc79233082b",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "30079132d4d658b448f9f8a0ba968474c09fd72a404651a6e16bf1315bbb091b",
     "OWNER-ACTIONS.md": "5e885061b360bde4e1aa516249a7cc9ba0090ec8dd74ca890019a19821c88e42",
