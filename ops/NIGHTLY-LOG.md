@@ -2,6 +2,48 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (04:1x slot, 30 minute triage, state independently reconfirmed exhausted, no stale claim found this time)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since 2026-10-18.
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only
+onto ee4941a84, 70 commits, tree clean). Previous work (the 03:4x PM check-in
+and the scheduled operator's fresh-checkout re-verification after it)
+confirmed finished, not cited: tree was already clean and pushed before this
+cycle touched anything. Checked GitHub directly: 10 open issues, unchanged
+since issue #42's own 2026-10-18T19:54:35Z update, no reply from Phil.
+Grepped BACKLOG-2026-09-07.md sections 2-4 directly for unstruck rows: only
+C5 (Gemini billing) and C6 (YouTube OAuth, 102 videos) remain, both
+explicitly Phil-gated. `cold_read_ledger.py --stale` 0/0. `cycle_signal.py
+--check` SAME. `inbox_agent.py --apply`: no mail credential in this sandbox,
+unchecked, not assumed empty. `check_urls.py` 213/213. `fix_dashes.py
+--check` 0/0. `preflight.py` run unbuffered, capped at 90s: 0 FAIL/ERROR/WARN
+through every gate reached (one concurrent preflight, pid 977, also running,
+waited on rather than collided with); hit the documented `gate_tests`
+sandbox hang, unchecked past that point, not assumed passing.
+
+**Re-derived the deploy-gap claim directly rather than citing it, since it
+has gone stale on close to every cycle that has touched it since 2026-10-04:**
+called `gate_status_deploy_verdict_current()` and
+`gate_status_deploy_gap_count_current()` as functions against the live
+repository state. Both returned clean with no exception, i.e. `STATUS.md`'s
+own deploy-gap citations still match a fresh count. No correction needed,
+and not re-citing it as new work either.
+
+`ops/last-owner-notification.json` shows one already sent 2026-10-19T07:05
+on this exact topic, with an explicit rule to wait for either 24h or a real
+state change; it is now about 45h later but the underlying state has not
+moved (no reply from Phil, no gate cleared, no new issue), so the rule's
+"AND" is not satisfied. Not sending another push notification.
+
+Not starting anything: nothing is genuinely unblocked.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`,
+`ops/state.json`, this entry. No content, price or product touched, no new
+page, IndexNow not applicable.
+
 ## 2026-10-21, scheduled operator cycle (fresh checkout, exhausted/decision-gated state independently re-verified a second way, no push notification)
 
 **Did:** Attached per Step 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `624ac0a97`, 65 commits, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 20-24, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four `ops/NIGHTLY-LOG.md` entries. Checked GitHub directly rather than citing prior cycles: 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-18T19:54:35Z, all `decision`/`blocked-on-art`, no reply from Phil.
