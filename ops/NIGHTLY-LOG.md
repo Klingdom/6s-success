@@ -2,6 +2,37 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, PM check-in (04:4x slot, 30 minute triage, state independently reconfirmed exhausted again)
+
+NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
+issues are still decision or blocked-on-art and nothing about that state has
+moved since 2026-10-18.
+
+Attached per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only
+onto a16775a13, 72 commits, tree clean). Previous work (the 04:1x PM
+check-in and the hourly check-in record after it) confirmed finished, not
+cited: tree was already clean and pushed before this cycle touched
+anything. Checked GitHub directly: 10 open issues (#42, #40, #35, #33, #31,
+#29, #21, #18, #15, #2), unchanged since issue #42's own
+2026-10-18T19:54:35Z update, no reply from Phil. `cold_read_ledger.py
+--stale` 0/0. `cycle_signal.py --check` SAME. `check_urls.py` 213/213.
+`fix_dashes.py --check` 0/0. `preflight.py` run unbuffered, capped at 90s:
+0 FAIL/ERROR through every gate reached; hit the documented `gate_tests`
+sandbox hang at the cap, unchecked past that point, not assumed passing,
+same standing limitation every recent cycle reports.
+
+`ops/last-owner-notification.json` shows one already sent 2026-10-19T07:05
+on this exact topic, with an explicit rule to wait for either 24h or a real
+state change; it is now about 61h later, past the 24h bar, but the
+underlying state still has not moved (no reply from Phil, no gate cleared,
+no new issue), so the rule's "AND" is not satisfied. Not sending another
+push notification.
+
+Not starting anything: nothing is genuinely unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No content, price or
+product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (04:1x slot, 30 minute triage, state independently reconfirmed exhausted, no stale claim found this time)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
