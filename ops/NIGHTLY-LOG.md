@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (fresh checkout, exhausted/decision-gated state independently reconfirmed yet again this date, nothing new unblocked)
+
+**Did:** Attached per Step 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `d701a0358`, 74 commits, tree clean, after a first attempt collided with two concurrent pushes mid-cycle and was reset onto the new tip rather than force-pushed over). Read `BACKLOG-2026-09-07.md` sections 0-7 and 20-24, `GOALS.md`, `STATUS.md`, and today's prior `ops/NIGHTLY-LOG.md` entries (at least six, every one independently concluding the same exhausted state).
+
+**Verified independently rather than citing the prior cycles, per CLAUDE.md 5d:** called GitHub directly (`list_issues`): 10 open issues, all `decision`/`blocked-on-art`, unchanged since 2026-10-18T19:54:35Z; read issue #42's own comment thread end to end, confirmed every comment on it is self-authored by a prior agent cycle, none from Phil. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported plainly, not assumed empty. `ops/cold_read_ledger.py --stale`: 0 of 277 stale. `ops/cold_read_ledger.py --next`: 0 un-ledgered candidates across every tracked directory, confirming there is no cold-read fallback available either. Grepped `BACKLOG-2026-09-07.md` sections 2-4 directly for unstruck rows: only C5 (Gemini billing) and C6 (YouTube OAuth) remain, both explicitly Phil-gated; section 5 (Hold) and 6 (owner gates) are all waiting on traffic, a buyer, or Phil's own action.
+
+Ran a full, unbuffered `preflight.py` in the background rather than accepting the documented hang as an excuse to skip it: every gate through `gate_image_coverage` printed with 0 FAIL/ERROR/WARN in the captured log, then `gate_tests` hit the same standing headless-Chromium sandbox hang every recent cycle has independently hit and reported (killed by an external 170s timeout there, unchecked past that point, not assumed passing). Separately re-derived `gate_nightly_log_not_oversized`/`_ordering`/`_no_duplicate_entries` directly as functions against the edited file before committing: all three OK.
+
+**Found:** nothing new. No new defect class, no reply from Phil, no state change since the last push notification on this exact topic (2026-10-19T07:05); the standing rule (wait for 24h AND a real state change before re-notifying) is not satisfied by elapsed time alone, so none was sent, matching every one of today's prior cycles' own reasoning.
+
+**Went well:** independently re-deriving the "exhausted" conclusion from primary sources (GitHub API, the ledger tool, a fresh preflight run) rather than trusting the same-day prior entries that reached the identical conclusion; also handled a real concurrent-push collision cleanly (reset onto the new remote tip and regenerated the generator-owned files fresh, rather than hand-merging `ops/state.json`/`ops/dashboard.html` conflict markers).
+
+**Did not go well:** this is now at least the seventh same-day cycle to reach the identical "exhausted, decision-gated" conclusion, each spending a full preflight run and a GitHub round-trip to confirm it. The repetition itself, not any individual cycle, is the actual waste.
+
+**Changing next cycle:** none new; a cheap "is the state identical to the last N log entries, and if so skip straight to the dashboard refresh and a short confirmation line instead of a full re-verification" shortcut would reduce this cost, but changing the cadence or verification depth is Phil's call per issue #42, not mine to decide unilaterally.
+
+**Next:** none unblocked. Work resumes the moment Phil clears one of the 10 open decisions or actions an `OWNER-ACTIONS.md` item (cheapest first: YouTube OAuth 5 min, Search Console verification 3 min, Gemini billing 5 min).
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable. No push notification: state unchanged since 2026-10-19T07:05.
+
 ## 2026-10-21, PM check-in (04:4x slot, 30 minute triage, state independently reconfirmed exhausted again)
 
 NEXT FOR THE OPERATOR: no new work, matching issue #42, because all 10 open
