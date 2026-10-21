@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (13:5x slot, full independent re-check, state reconfirmed exhausted, no push notification)
+
+**Did:** Attached per Step 0 (fetch origin main, real unshallow needed this time, `checkout -B main origin/main`, ff-only merge onto `f9c81b10b`, 131 commits, tree clean). Read `GOALS.md` equivalents already covered this session, `BACKLOG-2026-09-07.md` sections 0 to 7 and the four most recent closed sections (21 to 24), `CLAUDE.md`, the last `ops/NIGHTLY-LOG.md` entries.
+
+Did not trust any of it without checking directly. GitHub: pulled all 10 open issues fresh via the API (not cited from a prior entry); same set as every recent cycle, all `decision`/`blocked-on-art`, newest activity issue #42's own 12:52 UTC comment, no reply from Phil. Read issue #42's full body and all 3 comments end to end rather than its title alone: it is the cadence-waste decision, correctly escalated, explicitly says "not re-raising further until something actually changes," so this entry does not add a fourth comment on an unchanged state. CI: queried `checks.yml`'s last 5 runs on main directly via the Actions API, all `conclusion: success`. Cold-read ledger: `ops/cold_read_ledger.py --stale` reports 0 stale. Mail: `ops/inbox_agent.py --apply` reports plainly "no mail credentials in this environment," not assumed empty. Stripe: `ops/stripe_check.py` confirms no secret key is present in this sandbox either, so a second-sale check genuinely cannot be done from here (consistent with every prior cycle, not re-asserted on faith).
+
+**Verified:** `python ops/preflight.py` run to a 110s cap: 0 FAIL/ERROR/WARN (besides the harmless root-pip notice) through every gate reached, including the two CI/nightly-log gates section 22-24 just landed; killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point, not assumed passing. Owner-notification rule checked before deciding to stay silent: `ops/last-owner-notification.json` shows the last push on this exact topic went out 2026-10-19T07:05Z; the 24h floor has long passed but the underlying state has not (same issues, no reply, no new gate), so per that file's own rule no notification was sent this cycle either.
+
+**Went well:** checking Stripe, mail, CI and the issue thread directly instead of citing the last cycle's identical-looking conclusions, per CLAUDE.md 5d; this did find one real thing worth recording even though nothing was actionable: a secret-key check that previously could only be inferred is now directly confirmed absent.
+
+**Did not go well:** nothing new; this is now well over a dozen consecutive cycles today reaching the identical conclusion, exactly the cost issue #42 already names.
+
+**Changing next cycle:** none beyond what section 24 already changed; still watching for a Phil reply on issue #42 or any of the 9 others.
+
+**Next:** whatever Phil answers on issue #42, or any owner gate clearing (YouTube OAuth, Search Console verification, Gemini billing, Amazon/Etsy accounts are the cheapest, per `OWNER-ACTIONS.md`).
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (13:4x slot, 30 minute triage, state independently reconfirmed exhausted, no new work for the operator)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, continue the standing cold-read and verification sweep, because `BACKLOG-2026-09-07.md` sections 2 through 7 still have only C5 (Gemini billing, now narrowed to the 11 room chapters only) and C6 (YouTube OAuth paste) unstruck, both already Phil-gated, and all 10 GitHub issues are unchanged since issue #42 three days ago.
