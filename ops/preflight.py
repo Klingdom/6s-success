@@ -128,11 +128,44 @@ def _run_lock_pid_alive(pid: int) -> bool:
     return True
 
 
+def _proc_start_time(pid: int):
+    """The kernel's own starttime field for `pid`, or None if unreadable.
+
+    A pid number alone cannot tell a still-running holder from a dead one
+    whose pid the kernel has already reused for a brand new process;
+    os.kill(pid, 0) succeeds against either. /proc/<pid>/stat's starttime
+    field (ticks since boot the process began) is set once at exec and
+    never repeats for two different processes that are both alive right
+    now, so comparing it to a value recorded when the lock was taken tells
+    "still that process" apart from "pid recycled." Found live 2026-10-21:
+    a preflight.py killed by `timeout` left its lock behind, the very next
+    `python ops/preflight.py` invocation was handed that exact pid back by
+    the kernel, and the old own_pid != holder guard below went silently
+    true-by-coincidence, downgrading an instantly-breakable dead lock into
+    a wait for the full PREFLIGHT_RUN_LOCK_STALE_AFTER timeout against
+    itself.
+    """
+    try:
+        with open(f"/proc/{pid}/stat") as fh:
+            stat_line = fh.read()
+        return stat_line[stat_line.rfind(")") + 2:].split()[19]
+    except (OSError, IndexError):
+        return None
+
+
 def _run_lock_holder_pid(path: str):
     try:
         with open(os.path.join(path, "pid")) as fh:
             return int(fh.read().strip())
     except (OSError, ValueError):
+        return None
+
+
+def _run_lock_holder_start(path: str):
+    try:
+        with open(os.path.join(path, "start")) as fh:
+            return fh.read().strip() or None
+    except OSError:
         return None
 
 
@@ -162,6 +195,7 @@ def acquire_preflight_lock(path: str = PREFLIGHT_RUN_LOCK, timeout: int = 1800,
     is gone or `timeout` elapses.
     """
     own_pid = own_pid if own_pid is not None else os.getpid()
+    own_start = _proc_start_time(own_pid)
     start = time.time()
     first = True
     while True:
@@ -170,13 +204,24 @@ def acquire_preflight_lock(path: str = PREFLIGHT_RUN_LOCK, timeout: int = 1800,
             try:
                 with open(os.path.join(path, "pid"), "w") as fh:
                     fh.write(str(own_pid))
+                if own_start is not None:
+                    with open(os.path.join(path, "start"), "w") as fh:
+                        fh.write(own_start)
             except OSError:
                 pass
             return True
         except FileExistsError:
             holder = _run_lock_holder_pid(path)
+            holder_start_recorded = _run_lock_holder_start(path)
+            pid_reused = (
+                holder is not None
+                and holder_start_recorded is not None
+                and _proc_start_time(holder) != holder_start_recorded
+            )
             stale = False
-            if holder is not None and holder != own_pid \
+            if holder is not None and pid_reused:
+                stale = True
+            elif holder is not None and holder != own_pid \
                     and not _run_lock_pid_alive(holder):
                 stale = True
             else:
@@ -3605,6 +3650,35 @@ def gate_preflight_lock_blocks_concurrent_runs() -> None:
     finally:
         release_preflight_lock(path)
         zp.wait()
+
+    # Half 4: a pid the kernel has already recycled back to THIS OWN
+    # process must still break instantly, not be mistaken for "that's just
+    # me, not stale." Reproduces the live 2026-10-21 incident directly:
+    # call acquire_preflight_lock() with its real default (own_pid=None,
+    # so it resolves to os.getpid(), exactly what the unwrapped main()
+    # call site does) against a lock whose "pid" file already equals our
+    # own real pid but whose "start" file records a different process's
+    # start time, the exact shape left behind when an earlier, unrelated
+    # preflight.py held this same now-recycled pid and was killed without
+    # releasing the lock.
+    shutil.rmtree(path, ignore_errors=True)
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(os.getpid()))
+    with open(os.path.join(path, "start"), "w") as fh:
+        fh.write("1")  # a start time no real running process has
+    start = time.time()
+    try:
+        ok = acquire_preflight_lock(path, timeout=5)
+        elapsed = time.time() - start
+        if not ok or elapsed > 2:
+            fail("preflight-lock-blocks-concurrent-runs",
+                 f"a lock whose recorded holder pid was recycled back to "
+                 f"this own process was not broken immediately (ok={ok}, "
+                 f"elapsed={elapsed:.1f}s); pid reuse is being mistaken "
+                 f"for 'that is just me, not stale'")
+    finally:
+        release_preflight_lock(path)
 
 
 def gate_dashboard_deploy_reachable_carry_forward() -> None:
