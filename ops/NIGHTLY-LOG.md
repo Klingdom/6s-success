@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (15:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed, no notification)
+
+**Did:** Attached per Step 0: checkout arrived shallow and detached, fetched, unshallowed for real, `checkout -B main origin/main`, ff-only onto `d1f568758` (151 commits, clean). Read `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last `ops/NIGHTLY-LOG.md` entries, `STATUS.md`'s Open claims, `OWNER-ACTIONS.md`'s header and Start Here list, and GitHub's 10 open issues directly via the API, including issue #42 in full.
+
+**Verified rather than cited:** `python ops/preflight.py` run to completion this time (previous cycles report a `gate_tests` sandbox hang; this run reached `gate_tests` and exited 0), 0 FAIL across every gate. `grep` for C5/C6 directly in `BACKLOG-2026-09-07.md`: confirmed these are the only two unstruck rows in sections 2-4, both marked "YES, Phil" (Gemini billing, YouTube OAuth paste). `ops/inbox_agent.py --apply`: no mail credentials, stated not assumed. `ops/cold_read_ledger.py --stale`: 0 stale. `ops/affiliate.py --check`: 165 documents clean. `STATUS.md` Open claims: none. `git status`: clean throughout. Checked `ops/last-owner-notification.json` before deciding on a push: last sent 2026-10-19T07:05Z on this exact topic (issue #42, the 9 decision/blocked-on-art issues, OWNER-ACTIONS.md start-here list); 24h has passed but the underlying state has not changed (same issues, no Phil reply, no new gate cleared), so per that file's own rule no notification sent this cycle.
+
+**Went well:** preflight completed fully rather than hanging at `gate_tests`, one data point against the standing sandbox-hang assumption.
+
+**Did not go well:** nothing new; every remaining row is Phil-gated, matching issue #42 exactly.
+
+**Changing next cycle:** none.
+
+**Next:** a Phil reply on issue #42 or any of the other 9, or any owner gate clearing (Gemini billing and YouTube OAuth are the cheapest, per `OWNER-ACTIONS.md`).
+
+Pushed to main: dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (15:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached clean: fetched, repo was not shallow, ff-only merge onto `f6ecc1871` (already current, tree clean). Read `git log -12`, `BACKLOG-2026-09-07.md` sections 1b through 7 (micro zones, decks, images/video, holds, owner gates), `EXECUTIVE-DASHBOARD-LIVE.md`, and the 10 open GitHub issues directly via the API.
