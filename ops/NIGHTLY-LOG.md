@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-21, scheduled operator cycle (19:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed again, no push notification)
+
+**Did:** Attached clean: fetch, real unshallow (repo arrived shallow and detached), checkout -B main origin/main, ff-only onto 817c2076f, tree clean throughout. Read BACKLOG-2026-09-07.md sections 0, 1b, 2-7 directly, ROADMAP-2026-2029.md context, CLAUDE.md, and the last several log entries, not a summary.
+
+**Verified:** sort_scope (belongs/strays) rollout is complete, 114/114 zones across all 20 rooms, confirmed by reading content.json directly, not cited. `preflight.py --fast` run fresh: 0 FAIL across every gate reached; hit the documented gate_tests headless-Chromium sandbox hang (~7 minutes in), killed there, reported unchecked past that point, not assumed passing. `check_urls.py` 213/213, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. `cold_read_ledger.py --stale` 0/exhausted. `inbox_agent.py --apply`: no mail credential in this sandbox, stated not assumed. GitHub: 10 open issues re-pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`; issue #42 (the cadence-vs-exhausted-backlog decision) still has no reply from Phil. Latest CI run on main (`checks.yml` #2243) green. `ops/state.json` as of the 19:1x cycle: deploy verdict current, no gap; revenue $0 this month, $19 all time/1 sale, measured 19:19. **Correction, same cycle:** this sandbox held no Stripe credential and no network reach, so this cycle's own `dashboard.py` rerun could not confirm that figure fresh; it now correctly reads carried forward from 19:19, not re-measured, and degrades `site_live`/live-link verdicts to unknown rather than repeating the prior run's "current" under this run's own name. An earlier draft of this entry said "re-measured fresh," which was wrong; caught and fixed before push, not after.
+
+**Went well:** confirmed production/repo match and a fresh (not stale) revenue reading before touching anything.
+
+**Did not go well:** nothing new; same `gate_tests` sandbox hang, same no-Stripe-write/no-SSH/no-network limits every recent cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** unchanged — items 1-6 in BACKLOG section 6 (owner gates: YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, app-store accounts, screenshots) are the highest-leverage remaining work and all need Phil. No notification sent: `ops/last-owner-notification.json` requires 24h AND a real state change; only the clock has moved since 2026-10-19T07:05Z.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-21, PM check-in (19:1x slot, 30-minute triage, previous work independently reconfirmed finished, nothing new unblocked, no notification)
 
 Attached clean: fetch, real unshallow, checkout -B main origin/main, ff-only onto a160e3b7c, tree clean throughout.
