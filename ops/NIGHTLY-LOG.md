@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (17:0x slot, full STEP 0-13 pass from a fresh checkout): independently reconfirmed the exhausted, Phil-gated state, nothing new found
+
+**Did.** Checkout arrived shallow and detached (the documented standing shape). `git fetch origin main`, real `git fetch --unshallow`, `checkout -B main origin/main`, ff-only merge onto `fce053374` (353 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, and the top entries of `ops/NIGHTLY-LOG.md`. Confirmed directly from the backlog's own strikethrough markers that sections 2-4 carry only C5 (Gemini billing) and C6 (YouTube OAuth, 102 videos) unstruck, both already Phil-gated with everything up to the gate built.
+
+**Verified rather than cited.** Ran `preflight.py` fresh: 0 FAIL through every gate reached, killed at the documented `gate_tests` headless-Chromium sandbox hang (a stray earlier invocation of my own left the run-lock held by a now-dead pid; `acquire_preflight_lock`'s dead-holder check cleared it on the next attempt with no manual fix needed, confirmed by inspecting the lock itself). `check_urls.py` 213/213. `audit_pages.py` 218 pages, 0 findings, 0 duplicate titles/descriptions. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 delivered documents, no affiliate link, disclosure correct. `check_sellable.py` 124 of 126 buyable products in Stripe with delivery entries and files on disk, the other 2 correctly flagged as person-delivered services. `cold_read_ledger.py --stale` 0 of the ledger stale. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same standing gap. All 10 GitHub issues pulled fresh via the API, not inherited: unchanged, all `decision`/`blocked-on-art`. Read issue #42's four comments in full rather than trust the comment count alone: all four are self-authored by prior agent cycles (footer confirms), none from Phil. 0 open PRs.
+
+**Mid-cycle, found origin had moved.** A `git log`/API check after the verification above showed `origin/main` had advanced one commit past what this cycle started from (a concurrent PM check-in, 16:4x slot, reaching the identical conclusion independently). Discarded this cycle's own dashboard-regen working-tree changes (reproducible, not authored content) rather than stash them, then ff-merged cleanly; no conflict, since the concurrent cycle had already pushed. Re-read its entry: same state, same reasoning, nothing it found that this cycle had not already found on its own.
+
+**No new defect found small enough to close in this slot**, and no stale claim turned up by the checks above. Not sending a push notification: `ops/last-owner-notification.json` shows one sent today at 13:5x on this exact topic, under the file's own 48h floor, and nothing about the underlying state has changed since (no Phil reply, no cleared gate, no new issue).
+
+**Verified:** Dashboard regenerated after the merge against the final HEAD, not before it.
+
+**Went well:** catching the concurrent push before pushing over it, by re-fetching rather than assuming origin was still where this cycle left it.
+
+**Did not go well:** an earlier background preflight invocation in this same cycle was left running past its useful point (duplicate run, the lock behaved correctly but the duplicate itself was waste); killed once noticed.
+
+**Changing next cycle:** none; the standing gates and lock behaviour are sufficient.
+
+**Next:** keep re-verifying the exhausted, decision-gated state until Phil clears C5, C6, or replies on an open decision issue; no other unblocked, non-Phil-gated workstream exists.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (16:4x slot, 30-minute triage): previous work (16:1x's ledger bookkeeping fix) confirmed finished, nothing new unblocked, no closing job found
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, so keep re-verifying the exhausted, decision-gated state until Phil clears C5 (Gemini billing) or C6 (YouTube OAuth), or replies on an open decision issue, because every remaining open row in `BACKLOG-2026-09-07.md` sections 2-4 and every open GitHub issue is his to decide.
