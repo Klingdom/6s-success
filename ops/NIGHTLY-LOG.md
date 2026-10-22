@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (~19:0x slot): exhausted/decision-gated state independently reconfirmed, one of my own process mistakes caught and corrected, no new work found
+
+**Did.** Checkout arrived shallow and detached. `git fetch origin main` (origin had force-updated), real `git fetch --unshallow` after a first transient RPC disconnect self-recovered on retry, `checkout -B main origin/main`, ff-only onto `3987e1489`, tree clean. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the recent `NIGHTLY-LOG.md` entries. Reread the backlog's own strikethrough markers directly: sections 2-4 carry only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both Phil-gated with everything up to the gate already built. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Verified, not cited.** `cold_read_ledger.py --stale`: 0 of 277. `lane_coverage_gaps()` against `git_tracked_py_js()`: 0 gaps, not just 0 stale. `ops/run_preflight.sh`: every gate passed, 27 warnings, all the standing no-credential/no-network shape plus `hooks-enabled` self-healing `core.hooksPath` (confirmed set after). Pulled all 10 GitHub issues fresh via the API, reread issue #42's 4 comments in full: Phil's two real pushes today (`2bddafa82`, `8173de0bd`) were already reconciled by the 18:1x/18:4x cycles (CI green, deploy confirmed, `STATUS.md` citations fixed); no new reply from him on the cadence question. `OWNER-ACTIONS.md`'s "two orphaned commits" item: the security half is already fixed (two missing checks in `photos/server.py`), the product-call half correctly still waits on Phil.
+
+**Went well:** the sanctioned `ops/run_preflight.sh` wrapper did its job.
+
+**Did not go well:** I first ran `timeout 280 python ops/preflight.py` directly, exactly the mistake the file's own docstring warns against; it was killed (SIGTERM) mid `gate_tests`. Checked afterward for damage: no orphaned `/tmp/.preflight_py_running.lock` or `_audit_catalog_fixture.lockdir`, so no harm, but it was still the wrong way to run it and cost a cycle.
+
+**Changing next cycle:** nothing new; use `run_preflight.sh` first, not as a recovery step.
+
+**Next:** keep re-verifying until Phil answers C5/C6 or issue #42. No push notification sent, nothing surfaced here beyond what prior cycles today already reported.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (18:4x slot): previous work confirmed finished, nothing new unblocked, no closing job found
 
 NEXT FOR THE OPERATOR: keep re-verifying the exhausted, decision-gated state until Phil clears C5 (Gemini billing) or C6 (YouTube OAuth) in BACKLOG-2026-09-07.md, or replies on issue #42, because every remaining open row is his to decide and none is newly unblocked.
