@@ -25,7 +25,7 @@ day. The hold was real: all 114 films were 30.2s while their captions ran to
 picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
 film length and caption sync, so the row is actionable again.
 
-**List reviewed:** 2026-10-20, scheduled operator cycle: every item below re-read cold against GitHub's live issues and `OWNER-ACTIONS.md`'s own body, same exhausted/Phil-gated state (see `ops/NIGHTLY-LOG.md`); the marker itself had drifted 3 days behind dated entries already in this file's body (first the 2026-10-17 PM check-in, then 2026-10-20 ones since), tripping `gate_owner_actions_last_measured_current` in CI. Earlier: 2026-10-17, PM check-in: the same gap recurred one day
+**List reviewed:** 2026-10-22, image cycle: added the unpushed-local-commits item at the top of "Open". Earlier, 2026-10-20, scheduled operator cycle: every item below re-read cold against GitHub's live issues and `OWNER-ACTIONS.md`'s own body, same exhausted/Phil-gated state (see `ops/NIGHTLY-LOG.md`); the marker itself had drifted 3 days behind dated entries already in this file's body (first the 2026-10-17 PM check-in, then 2026-10-20 ones since), tripping `gate_owner_actions_last_measured_current` in CI. Earlier: 2026-10-17, PM check-in: the same gap recurred one day
 later. The 01:5x operator cycle added item 23 (the cadence-waste escalation,
 dated 2026-10-17 in its own body) without moving this marker, which left
 `gate_owner_actions_last_measured_current` failing in CI from that commit
@@ -123,6 +123,25 @@ the text-only causes are fixed free, the pixels need this same billing gate. Ear
 ---
 
 ## Open, ranked by what they unblock
+
+### New 2026-10-22: two commits on your PC never reached GitHub. Decide whether to keep them, about five minutes.
+
+Your local checkout (`C:\Users\philk\6s-success`) was 1,402 commits behind
+GitHub and held two commits from 2026-10-14 that were never pushed:
+`9ac0bcea5` (a photo-check page, `site/photos.html`, indexable and in the
+sitemap, plus security fixes to `photos/`) and `af80cb6ca`
+(`video_cleanalong.py --skip-existing`). GitHub meanwhile got its own,
+different photo frontend on 2026-10-15 (`site/photo-check.html`, noindex,
+unlinked), which is what is live in the repository now. The two cannot both
+be right, and choosing is a product call, so neither was merged. They are
+kept, untouched, on the local branch `local-unpushed-2026-10-14`; your local
+`main` now matches GitHub. Worth checking before discarding: whether every
+`photos/` security fix in `9ac0bcea5` (decompression bombs, negative
+Content-Length, socket timeout, disk ceiling) exists on GitHub's side.
+`PHOTOS-API.md` records two review passes there, so most likely yes, but it
+was not verified line by line. Reply "drop them" or "port the security
+fixes" and it gets done.
+
 
 ### The one channel that has ever worked went silent on 28 September
 

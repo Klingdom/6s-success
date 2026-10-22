@@ -1416,6 +1416,7 @@ Maintain a compact index as the file grows.
 | D-030 | The two "dollar tree" keyword-gap queries stay uncovered; writing the brand name into page copy to chase them is declined | ACTIVE | Content |
 | D-031 | Basement and attic demand is answered as two method guides, not two new corpus rooms | ACTIVE | Content |
 | D-032 | Photos API built private-by-default and method-grounded; deploying it and choosing a vision provider are the owner's call | ACTIVE | Product |
+| D-033 | Room maps are drawn by the site and numbered in the page's order, not the book's | ACTIVE | UX |
 
 D-004 to D-013 and D-025 were never assigned; no record exists under those
 IDs anywhere in this repository. Not a gap to fill, just a numbering fact
@@ -2947,3 +2948,43 @@ may still record session ids in paths). Net effect: the YELLOW gate
 `AUTONOMY.md` sets for this kind of change has now been through independent
 review once, which is what "Deploy it?" in `OWNER-ACTIONS.md` item 22 was
 waiting on; the decision to actually deploy is still the owner's.
+
+## D-033 | 2026-10-22 | Room maps are drawn by the site and numbered in the page's order, not the book's
+
+**Decision.** The eleven room pages with no book photograph led on the
+chapter's zone map: a grid of identical empty boxes, each holding only a
+number and a zone name, which the list under it already gives. They now lead
+on overhead plans drawn by `ops/build_room_maps.py` (walls, doors, the
+furniture each zone is, dashed zone outlines, labelled leaders), written to
+`ops/room-maps.json` and preferred by `build_zone_pages.py`. Zones are
+numbered in `content.json` order, which is the order every room page lists
+them, and the zone the page says to start with carries a "start here" tag.
+
+**Why not keep the book's numbering.** The book numbers zones in recommended
+working order. On Patio, Workshop and Stair Landing that differs from the
+page's list, so the "1" on the map and the "1" in the list directly beneath
+it named different zones. The tag keeps the book's advice without breaking
+the page. The Patio caption, which leaned on the book's numbering ("the
+first one holds you"), is reworded in `CAPTIONS`; the other ten captions are
+carried over verbatim and were checked against their tags.
+
+**Alternatives.** Renumber the page lists to the book's order (rejected: 114
+zone pages, the quest, the decks and the shop all key on corpus order).
+Generate pictures of the rooms (rejected for now: the local model routinely
+draws the wrong subject, `PLAN-VISUAL-STRATEGY.md` section 1, and a plan can
+be exactly right where a render cannot). Keep the box grid (rejected: it
+shows nothing).
+
+**Consequence.** The website's maps now differ from the book's figures for
+those eleven chapters. The book is untouched; `ops/room-diagrams.json` and
+its importer still hold the book's drawings, and removing a room from
+`ROOMS` falls back to them. The same plans also supply the shop pictures for
+those room packs (`ops/build_pack_images.py`).
+
+**Measure.** Nothing measurable at current traffic (7 human visitors a week).
+Judged against the written standard in `PLAN-VISUAL-STRATEGY.md` section 2.2.
+Re-read once room pages have enough views to compare scroll depth past the
+lead figure.
+
+**Revisit.** If the book is revised, carry these plans into chapters 40 to 50
+rather than keeping two drawings of the same room.

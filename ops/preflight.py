@@ -1573,6 +1573,11 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_social_pins.py": ("gate_dashboard_social_pins_live",),
     "build_thumbnails.py": ("gate_dashboard_thumbnails_live",
                              "gate_thumbnail_font_face"),
+    "build_room_maps.py": ("gate_room_maps_current",),
+    # Writes the twenty room pack pictures. Its output is raster, rendered by
+    # a browser, so it cannot be byte-diffed here; what protects the shop is
+    # that every picture and every srcset sibling a tile names exists.
+    "build_pack_images.py": ("gate_product_images_exist",),
 }
 
 
@@ -15005,6 +15010,55 @@ def gate_pages_missing_art() -> None:
         warn("page-art",
              "pages shipping with no image at all. " + " ".join(out)
              + " TWO blockers, not one: GENERATING a replacement needs free system RAM (the local model load dies at about 2 GB free of 15.8; run ops/generate_zone_heroes.py for the measured figures), and REVIEWING what it generates needs the vision billing in OWNER-ACTIONS.md 1b. Naming only the second made this read as owner-blocked when the first half needs no decision and no spend.")
+
+
+def gate_room_maps_current() -> None:
+    """ops/room-maps.json must be exactly what ops/build_room_maps.py draws.
+
+    Added 2026-10-22 with the generator. The eleven room plans are drawn in
+    code and committed as JSON, and build_zone_pages.py (on the ownership
+    chain) inlines that JSON into the room pages. So the chain catches a page
+    that disagrees with the JSON, and this catches the JSON disagreeing with
+    its generator: a hand edit to the file, or a layout change committed
+    without --apply. Either would ship a drawing nobody can regenerate.
+
+    The build is deterministic and touches no network or browser, so it
+    regenerates in memory and compares room by room. A generator that cannot
+    run is reported as a failure, never as a pass.
+    """
+    import importlib
+    path = os.path.join(ROOT, "ops", "room-maps.json")
+    if not os.path.exists(path):
+        warn("room-maps", "ops/room-maps.json is missing, so the room pages "
+                          "fall back to the book's box-grid maps. NOT checked.")
+        return
+    try:
+        committed = json.load(io.open(path, encoding="utf-8"))
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        B = importlib.import_module("build_room_maps")
+        A = importlib.import_module("room_map_assemble")
+        names = A.corpus(B.CORPUS)
+        drift = []
+        for room, spec in B.ROOMS.items():
+            svg, L = A.build(spec, B.Labels)
+            bad = A.problems(spec, len(names.get(room, [])), svg, L)
+            if bad:
+                drift.append("%s: %s" % (room, "; ".join(bad)))
+            elif committed.get(room, {}).get("svg") != svg:
+                drift.append("%s: committed SVG differs from the generator"
+                             % room)
+        extra = sorted(set(committed) - set(B.ROOMS))
+        if extra:
+            drift.append("committed rooms the generator no longer draws: %s"
+                         % ", ".join(extra))
+    except Exception as exc:  # a broken generator is a failure, not a skip
+        fail("room-maps", "could not regenerate the room maps: %r" % (exc,))
+        return
+    if drift:
+        fail("room-maps", "ops/room-maps.json has drifted from "
+                          "ops/build_room_maps.py: " + " | ".join(drift)
+             + ". Run python ops/build_room_maps.py --apply, then "
+               "python ops/build_zone_pages.py.")
 
 
 def _visible_html(path: str) -> str:
@@ -29683,6 +29737,7 @@ def main() -> int:
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
+    run_gate(gate_room_maps_current)
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)

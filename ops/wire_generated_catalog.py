@@ -113,13 +113,34 @@ def _zone_image(p: dict):
     return rel
 
 
+def _pack_image(room):
+    """The room's own pack picture (ops/build_pack_images.py), or None.
+
+    Added 2026-10-22. A room pack is every zone in one room, so its tile shows
+    that room with its zones marked, where ROOM_IMG above could only offer the
+    nearest of eleven book figures (the Laundry Room Pack used to show a hand
+    wiping a dining table). A zone pack whose own picture was rejected falls
+    back to the same room picture: it shows the zone in its room, which is
+    true, where the borrowed figure showed some other room. Only used when
+    the file is actually published, so a checkout that has not run the
+    builder keeps the old picture rather than a broken one.
+    """
+    if not room:
+        return None
+    name = "pack-%s.jpg" % re.sub(r"[^a-z0-9]+", "-", room.lower()).strip("-")
+    if not os.path.exists(os.path.join(ROOT, "site", "assets", "img", name)):
+        return None
+    return name
+
+
 def image_for(p: dict, i: int) -> str:
     if p["kind"] == "zone":
         own = _zone_image(p)
         if own:
             return own
     if p["kind"] in ("zone", "room"):
-        return ROOM_IMG.get(p.get("room"), "room-map.jpg")
+        return (_pack_image(p.get("room"))
+                or ROOM_IMG.get(p.get("room"), "room-map.jpg"))
     return SPAN_IMG[i % len(SPAN_IMG)]
 
 

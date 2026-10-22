@@ -14,6 +14,36 @@ records were not trusted. Section 9 lists what I could not check.
 
 ---
 
+## Progress, 2026-10-22 (owner-directed: "review roadmap and start improving images")
+
+Done, free, no generation:
+
+* **Wave 2, the eleven drawing rooms (section 4, R2/R5).** The book's box-grid
+  maps are replaced by real overhead plans drawn in code
+  (`ops/build_room_maps.py`, D-033): walls, doors, the furniture each zone is,
+  dashed zone outlines, numbered labels with leaders, a "start here" tag.
+  Numbering now matches each page's own zone list, fixing three pages where
+  the map's "1" and the list's "1" were different zones. Labels are measured
+  to fit at 390px and 1200px in a real browser
+  (`ops/tests/test_room_diagram_fits.py`); `gate_room_maps_current` fails if
+  the committed JSON drifts from its generator.
+* **Section 6.4, the shop.** The twenty room packs no longer borrow eleven
+  book figures (the Laundry Room Pack showed a hand wiping a dining table).
+  Each shows its own room (`ops/build_pack_images.py`): the new plan for
+  thirteen rooms, the book's overhead plan for Entryway, Dining Room and Kids
+  Bedroom, and the book's whole-room before and after for Kitchen, Living
+  Room and both bedrooms, with the "Figure NN-NN" tab trimmed or painted out.
+  Zone packs whose own picture was rejected now fall back to their room's
+  picture instead of an unrelated one.
+
+Still open, in this plan's order: Wave 0.1 (vision audit of the 346 existing
+images, needs the review billing), the 7 rejected zone heroes and 89 card
+heroes (Wave 1), the ten hand-written products that still use book figures
+with baked figure tabs (shop.html top rows), and the print packs' zero
+images (6.2). The new SVG plans are the natural source for 6.2.
+
+**Deployment** is recorded in `STATUS.md` for this cycle.
+
 ## 0. The one-paragraph version
 
 **The standard already exists inside this estate, and it was never propagated.**

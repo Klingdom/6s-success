@@ -1992,6 +1992,17 @@ if os.path.exists(_DIAGRAMS_PATH):
 else:
     ROOM_DIAGRAMS = {}
 
+# The site's own plans of the same eleven rooms (ops/build_room_maps.py), which
+# draw the room and its furniture rather than a grid of empty named boxes, and
+# number the zones in the order this page lists them. Preferred per room when
+# present; any room it does not cover keeps the book's map above. Same rule as
+# that file: missing is allowed, unreadable is raised.
+_MAPS_PATH = os.path.join(ROOT, "ops", "room-maps.json")
+if os.path.exists(_MAPS_PATH):
+    ROOM_MAPS = json.load(io.open(_MAPS_PATH, encoding="utf-8"))
+else:
+    ROOM_MAPS = {}
+
 
 def room_figures(room):
     return ROOM_IMAGES.get(room, [])
@@ -2091,7 +2102,7 @@ def zone_also_called_html(room, zone):
 
 def room_diagram(room):
     """The book's zone-map drawing for a room with no photographic figure."""
-    return ROOM_DIAGRAMS.get(room)
+    return ROOM_MAPS.get(room) or ROOM_DIAGRAMS.get(room)
 
 
 # THE DRAWING IS 1000 UNITS WIDE AND A PHONE IS NOT.
@@ -2140,8 +2151,12 @@ def diagram_html(entry, room):
     return ('<figure class="room-lead room-lead-diagram">' + DIAGRAM_CSS + svg
             + '<figcaption style="font-family:var(--sans);font-size:13px;'
               'color:var(--soft);margin-top:8px">' + cap
-            + ' Drawn for the ' + esc(room) + ' chapter of the book, not a '
-              'photograph of a real home.</figcaption></figure>')
+            + (' A plan drawn for this page, numbered to match the list of '
+               'zones below; a drawing, not a photograph of a real home.'
+               if entry.get("source") == "site" else
+               ' Drawn for the ' + esc(room) + ' chapter of the book, not a '
+               'photograph of a real home.')
+            + '</figcaption></figure>')
 
 
 def figure_html(entry, cls=""):
