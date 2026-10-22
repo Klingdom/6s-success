@@ -613,8 +613,8 @@
     },
     "check_nightly_log_fast.py": {
       "status": "clean",
-      "date": "2026-10-20",
-      "note": "PM check-in (08:4x slot): read cold, ran directly (exit 0, correct message), confirms it calls the same three preflight gates (gate_nightly_log_not_oversized/ordering/no_duplicate_entries) it documents calling; no defect found"
+      "date": "2026-10-22",
+      "note": "PM check-in 2026-10-22, 22:4x slot: Phil's own 2026-10-22 commit ef733d176 added an empty/missing-log guard to the existing well-formedness check (fail on no dated '## 20..' entries, fail on empty file). Re-read the diff directly: correct, simple, matches its own commit message's fail-then-pass claim (empty exits 1, header-only exits 1, real file exits 0). Ran it fresh: exits 0, 'well formed'. No defect found."
     },
     "check_pack_pages.py": {
       "status": "clean",
