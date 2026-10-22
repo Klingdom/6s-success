@@ -2,6 +2,45 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle: STEP 10b, the pagination-bug lesson turned into a preflight gate
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`,
+ff-only onto `ec45c8d7b`). A background sub-task of this same session had
+already cold-read `ops/build_product_images.py` this cycle, found and fixed
+the hardcoded-page-index bug in `manual_spread()`, and pushed (`727a2154d`).
+Checked GitHub directly: 10 open issues, unchanged, all `decision`/
+`blocked-on-art`, none newly actionable; 0 open PRs. `inbox_agent.py
+--apply`: no mail credential, unchecked not empty.
+
+That fix's own text already named the gap precisely: "the only gate tied to
+this generator checks file existence, not content, so nothing would have
+caught it." Added `gate_manual_spread_no_hardcoded_page` to `preflight.py`,
+checking `manual_spread()`'s source for two `find_page()` calls instead of
+letting a future hand edit reintroduce a magic page number; wired into
+`main()`.
+
+**Verified:** Fail-then-pass proved directly against the real file in a
+scratch copy: planted the old `page(m, 22)`/`page(m, 5)` shape and,
+separately, a renamed-away `find_page()` helper, watched both fail by name,
+restored byte for byte, reran clean. New
+`ops/tests/test_gate_manual_spread_no_hardcoded_page.py` (4 cases). Full
+`preflight.py` rerun end to end with the new gate wired in: every gate
+passed, 28 warnings (all previously diagnosed sandbox limits), `gate_tests`
+completed this run rather than stalling or running long.
+
+**Went well:** the defect's own commit message had already named the exact
+gap, so no separate investigation was needed to find what to gate.
+
+**Did not go well:** nothing new; same standing no-Stripe/no-SSH/no-mail/
+no-network sandbox limits as every recent cycle.
+
+**Changing next cycle:** none.
+
+**Next:** push. Sections 2-6 of `BACKLOG-2026-09-07.md` remain exhausted
+(Done/Closed/Hold/Phil-gated); the next genuinely unblocked lane is whatever
+`ops/cold_read_ledger.py --next` names, or one of the 10 open `decision`
+issues if Phil weighs in on one.
+
 ## 2026-10-22, scheduled operator cycle: cold-read of ops/build_product_images.py found and fixed a real, reproduced-live pagination bug
 
 **Did:** Attached clean (fetch, unshallow, checkout -B main origin/main,

@@ -9157,6 +9157,53 @@ def gate_measure_page_type_exact_match() -> None:
              "mislabels site/workshop-deck.html as \"shop\"")
 
 
+def gate_manual_spread_no_hardcoded_page() -> None:
+    """build_product_images.py's manual_spread() must locate both pages of
+    product-manual.jpg's sample crop by heading text, never by a hardcoded
+    page number.
+
+    Found 2026-10-22, scheduled operator, cold-reading build_product_images.py
+    (369 lines, never ledgered): manual_spread() cropped the Manual's own
+    browser-printed PDF at a hardcoded page index (22, and separately 5) to
+    build the sample image every product tile shows. Chromium's HTML-to-PDF
+    pagination depends on font metrics and is not portable across rendering
+    environments: reproduced live, the identical source printed in this
+    sandbox put the intended "Lower Cabinet and Cookware Zone" heading two
+    pages earlier than where the shipped image was built, with no gate tied
+    to this generator checking content, only file existence
+    (gate_product_images_exist). Fixed by adding find_page(pdf, needle), which
+    returns the first page whose own text contains needle, and using it for
+    both crops instead of trusting a number that only held on one machine.
+
+    This is the cheap static half: it cannot see whether the shipped JPG is
+    currently correct (that needs a real PDF render, done once in
+    ops/tests/test_build_product_images.py), but it stops a future hand edit
+    from quietly reintroducing a magic page number that drifts the moment
+    pagination shifts again. Proof this can fail: revert either find_page()
+    call back to a literal int and this gate fails by name.
+    """
+    path = os.path.join(ROOT, "ops", "build_product_images.py")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    if "def manual_spread" not in src:
+        return
+    start = src.index("def manual_spread")
+    end = src.find("\n    return done(c)", start)
+    body = src[start:end if end != -1 else start + 1500]
+    if "def find_page" not in src:
+        fail("manual-spread-no-hardcoded-page",
+             "ops/build_product_images.py no longer defines find_page(); "
+             "manual_spread() has no way to locate a page by heading text")
+        return
+    if body.count("find_page(") < 2:
+        fail("manual-spread-no-hardcoded-page",
+             "ops/build_product_images.py's manual_spread() no longer calls "
+             "find_page() for both page lookups; a hardcoded page index "
+             "silently drifts onto the wrong zone across rendering "
+             "environments (found live 2026-10-22)")
+
+
 def gate_quest_session_placement() -> None:
     """A2: the whole-zone session length must not be the first number a
     first-time visitor reads.
@@ -29736,6 +29783,7 @@ def main() -> int:
     run_gate(gate_quest_data_videos_published)
     run_gate(gate_quest_funnel_events)
     run_gate(gate_measure_page_type_exact_match)
+    run_gate(gate_manual_spread_no_hardcoded_page)
     run_gate(gate_quest_session_placement)
     run_gate(gate_quest_card_victory_honesty)
     run_gate(gate_mobile_finish_actions_distinct)
