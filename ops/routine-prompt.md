@@ -54,7 +54,7 @@ STEP 8. READ THE INBOX. Run PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --a
 
 STEP 9. DEPLOY. Push. The image builds automatically. The host needs a Redeploy click you cannot make, so state plainly in your log entry that the change is pushed and awaiting deploy. If you added or rewrote a page, run python ops/indexnow.py --submit.
 
-STEP 10. RETROSPECTIVE. Append one dated entry to ops/NIGHTLY-LOG.md, under 250 words, headings exactly: Did, Verified, Went well, Did not go well, Changing next cycle, Next. Record failures as plainly as wins. Report what you shipped, not what is hard.
+STEP 10. RETROSPECTIVE. Prepend one dated entry to the TOP of ops/NIGHTLY-LOG.md (the file is newest first; never add to the end), using python ops/nightly_log.py --title "..." --handoff none --body-file <file>, which places it correctly and writes atomically, under 250 words, headings exactly: Did, Verified, Went well, Did not go well, Changing next cycle, Next. Record failures as plainly as wins. Report what you shipped, not what is hard.
 
 STEP 10b. TURN THE LESSON INTO A GATE. This is the step that compounds, and it matters more than the work you did this run.
 If you found a defect that a check could have caught, add that check to ops/preflight.py as a new function, wire it into main(), and prove it can fail by breaking something and watching it go red. A gate that cannot fail is theatre.

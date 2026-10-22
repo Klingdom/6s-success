@@ -80,7 +80,9 @@ mess; four bounded passes leave four commits.
    never "Set in Order", Safety is the fourth S, product types never brands.
    Never weakens a safety disclaimer.
 4. **Record it.** Commit and push, regenerate the dashboard, update `STATUS.md`
-   if the operating state changed, and append to `ops/NIGHTLY-LOG.md`.
+   if the operating state changed, and prepend an entry to the top of
+   `ops/NIGHTLY-LOG.md` with `python ops/nightly_log.py` (newest first; an entry
+   added at the end blocks every push via the pre-push hook).
 5. **Leave it clean.** Never a broken tree. Runs out of time, commits what works.
 
 If it hits something irreversible, financial, legally material, or strategically
