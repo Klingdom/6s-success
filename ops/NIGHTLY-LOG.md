@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle: cold read ledger date gap closed on check_nightly_log_fast.py, backlog and GitHub issues reconfirmed exhausted
+
+**Did:** Unshallowed and fast forwarded 393 commits onto origin/main. Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and recent CHECKIN-LOG.md/NIGHTLY-LOG.md entries. Ran preflight.py in the background: 0 FAIL through every gate before the documented gate_tests headless Chromium hang, killed at 152s, same standing sandbox limit as every recent cycle. Sections 2 to 4 of the current backlog are all Done or Phil gated; all 10 open GitHub issues are decision or blocked on art. Ran cold_read_ledger.py --stale and found one real gap: check_nightly_log_fast.py was ledgered 2026-10-20 but Phil's own commit ef733d176 on 2026-10-22 added an empty log check after that date. Re-read the file, verified the new check against a scratch copy (empty file fails, restored file passes), updated the ledger entry with today's date and a note on a harmless double fail path. 0 stale entries remain.
+
+**Verified:** check_nightly_log_fast.py proved live, not assumed. JSON validity of the ledger after edit. inbox_agent.py --apply: no mail credential, unchecked not empty. GitHub: 10 open issues unchanged, none newly actionable.
+
+**Went well:** the ledger's own stale check found a real, small, genuine gap instead of nothing.
+
+**Did not go well:** no new backlog work existed to pick up; this cycle is one more of roughly 1,289 commits in 7 days against an exhausted backlog, the exact cost issue #42 already flags.
+
+**Changing next cycle:** none from this cycle.
+
+**Next:** clear one of the 10 open decision issues, especially #42 itself (cadence cost) and #40 (usage limit stall risk), since both are the actual unblock for new autonomous work.
+
+HANDOFF-FILES: none
+
 ## 2026-10-22, PM check-in (21:2x cycle, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work finished, verified directly, not cited. Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, tree already matched origin, 385 commits fast-forwarded in since this session's own stale checkout). preflight.py --fast ran 0 FAIL through every gate up to the documented gate_tests sandbox hang (killed there at 170s, same standing limitation every recent cycle reports); the run's own gate_preflight_lock_blocks_concurrent_runs test left a stale lock at /tmp/.preflight_py_running.lock with a now-dead pid, same shape BACKLOG item 25 already fixed the detection for, not a new defect. cold_read_ledger.py: 282 of 282 files ledgered, 0 stale, 0 un-ledgered candidates remaining, so last cycle's closure of the 5 image/room-map files left nothing open in that lane either. 10 open GitHub issues read directly via the GitHub API, unchanged, all decision/blocked-on-art, none from Phil. Working tree was clean before I touched anything; main already matched origin after the fast-forward.

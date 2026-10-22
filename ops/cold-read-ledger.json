@@ -613,8 +613,8 @@
     },
     "check_nightly_log_fast.py": {
       "status": "clean",
-      "date": "2026-10-20",
-      "note": "PM check-in (08:4x slot): read cold, ran directly (exit 0, correct message), confirms it calls the same three preflight gates (gate_nightly_log_not_oversized/ordering/no_duplicate_entries) it documents calling; no defect found"
+      "date": "2026-10-22",
+      "note": "Re-read after Phil's own 2026-10-22 commit (ef733d176) added the empty/missing-log check this ledger entry predated. Verified directly against a scratch copy of the real file: emptying ops/NIGHTLY-LOG.md makes the script exit 1 with nightly-log-present, restoring it makes it exit 0 again; working tree confirmed clean after. Minor, non-blocking observation: an OSError on open() calls fail() once in the except block, then the following elif not text branch is also true and calls fail() a second time with a different message for the same root cause, a harmless double-report rather than a false pass or false fail, not worth a change on its own. No defect found."
     },
     "check_pack_pages.py": {
       "status": "clean",
