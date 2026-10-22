@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-22, PM check-in (22:1x cycle, 30-minute triage): previous work confirmed finished, a named gate blind spot closed
+## 2026-10-22, PM check-in (22:4x cycle, 30-minute triage): previous work confirmed finished, nothing new unblocked
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_product_images.py` (369 lines, un-ledgered since the 22:1x and 22:4x-earlier cycles both handed it over and neither the operator nor anyone else has touched it since), because it remains the only genuinely unblocked, never-reviewed surface this cycle found.
+
+Previous work (22:1x cycle's gate fix) confirmed finished, not cited: `cycle_signal.py --check` returns SAME against the 22:24:20Z snapshot; only two commits landed since, both bot-authored "Hourly check-in record" dashboard regens touching no `site/`, `ops/`, or test file. Re-derived the deploy gap directly rather than trusting the last entry: `git log 833401444..HEAD -- site/ Dockerfile` is empty, zero gap holds. `preflight.py` 0 FAIL to the documented `gate_tests` sandbox hang. `cold_read_ledger.py` 282/283, only `build_product_images.py` un-ledgered. 10 GitHub issues unchanged, decision/blocked-on-art, 0 PRs, checks.yml green on every recent push. Last owner push was 13:5x; 48h floor not reached, no push sent.
+
+No closing job found beyond what the checks above already re-verified; tree clean, nothing to ship.
+
+HANDOFF-FILES: `ops/build_product_images.py`
 
 Previous work (22:4x deploy-gap close) confirmed finished, not cited: re-derived git log 833401444..HEAD -- site/ Dockerfile empty, zero gap. preflight.py 0 FAIL to the documented gate_tests hang. cold_read_ledger 0 stale, 282/283; only build_product_images.py un-ledgered, already handed to the operator (369 lines, pixel-diff work, too large here). 10 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. Last owner push 13:5x, 48h floor not reached.
 
