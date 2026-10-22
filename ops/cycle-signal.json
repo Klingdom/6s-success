@@ -1,14 +1,14 @@
 {
-  "combined_hash": "99f7aba03263adcdcc69a0a527ca6f0e67d91f5cefdda6d96447c54bbf735ca7",
-  "git_head": "3987e1489502f0418a3851ff9caa11ee36dfb7e8",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD 3987e14895",
-  "recorded_at": "2026-10-22T19:06:05Z",
+  "combined_hash": "b4fe1bc636462e335ee930fb403d2193db0324fc656a4c375ae2ee93c87b8614",
+  "git_head": "97c8a000f4d0234ec9efae582ee794f09136264d",
+  "note": "PM check-in 22:1x: full local re-verification ran clean (preflight 0 FAIL to the gate_tests hang, cold-read ledger 0 stale, deploy gap re-derived 0, 10 GitHub issues unchanged). Snapshot taken after shipping the zero-commits gate fix.",
+  "recorded_at": "2026-10-22T22:24:20Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "e12ca361aa753ceac7bcbb5455ac3e276629f53c532b3a6f1d9d35f6ade8602b",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "30079132d4d658b448f9f8a0ba968474c09fd72a404651a6e16bf1315bbb091b",
     "OWNER-ACTIONS.md": "5e02c1ae4ca3cf87f03fcf05c6a7bf49b6b7667e3e03fa834fdd197204e8d9b3",
-    "STATUS.md": "214c0543ce1abec0b27e11c17d596919ff308aa5dfd2b7ce4dff6ae85c2f4d7c",
-    "ops/deploy-verdict.json": "e2d47eb52bf508a9f11fe4af8f9bd208afef10f61219e88aba3b488ad8468725"
+    "STATUS.md": "764e724c21426c7b6e87d4013984de6cc2a4bb8b508ad9fe87a3c757fcfbf1e2",
+    "ops/deploy-verdict.json": "805adce6002e8491dd50d641a04b49d87c42ab20f5655b366a80616bb67b9240"
   }
 }
