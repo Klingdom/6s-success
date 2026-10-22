@@ -52,7 +52,7 @@ from PIL import Image, ImageDraw, ImageFilter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 import browser                                                 # noqa: E402
-from build_pack_images import write, cover, W, H               # noqa: E402
+from build_pack_images import write, W, H                      # noqa: E402
 
 SITE = os.path.join(ROOT, "site")
 IMG = os.path.join(SITE, "assets", "img")
@@ -229,6 +229,23 @@ def phone(screen):
     c = table()
     lay(c, body, W / 2, H / 2 + 6, border=False)
     return done(c)
+
+
+def cover(im):
+    """Centre-crop to 4:3, the way the tile itself would, then size it.
+
+    Lives here, not in build_pack_images.py: that file's copy was removed as
+    dead code on 2026-10-22 because nothing there called it any more."""
+    target = W / H
+    if im.width / im.height > target:
+        nw = round(im.height * target)
+        x = (im.width - nw) // 2
+        im = im.crop((x, 0, x + nw, im.height))
+    else:
+        nh = round(im.width / target)
+        y = (im.height - nh) // 2
+        im = im.crop((0, y, im.width, y + nh))
+    return im.resize((W, H), Image.LANCZOS)
 
 
 def crop_frac(path, box):
