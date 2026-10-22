@@ -41,6 +41,28 @@ def main() -> int:
         except Exception as exc:  # pragma: no cover - defensive, see run_gate
             preflight.fail(gate.__name__, "gate raised %r" % (exc,))
 
+    # Found 2026-10-22: a script that crashed mid-rewrite left this file at
+    # zero bytes, and all three gates above passed it, because an empty log
+    # has nothing out of order, nothing duplicated and nothing oversized. A
+    # log with no entries is not well formed; it is a lost log.
+    log = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    try:
+        text = open(log, encoding="utf-8", errors="replace").read()
+    except OSError as exc:
+        text = ""
+        preflight.fail("nightly-log-present", "could not read %s: %s"
+                       % (log, exc))
+    if text and not any(line.startswith("## 20")
+                        for line in text.splitlines()):
+        preflight.fail("nightly-log-present", "ops/NIGHTLY-LOG.md has no "
+                       "dated '## 20..' entries at all; it was emptied or "
+                       "overwritten. Restore it from git.")
+    elif not text:
+        preflight.fail("nightly-log-present", "ops/NIGHTLY-LOG.md is empty "
+                       "or missing. Restore it from git.")
+    for name, msg in preflight.WARN:
+        print(f"  warn {name}: {msg}", file=sys.stderr)
+
     if preflight.FAIL:
         print("check_nightly_log_fast: FAIL", file=sys.stderr)
         for name, msg in preflight.FAIL:
