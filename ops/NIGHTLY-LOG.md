@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (00:1x slot, 30-minute triage, previous work confirmed finished, a stale cycle-signal snapshot closed, nothing new unblocked)
+
+Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto e3b4cd15b, tree clean throughout. Only 19 minutes since the last commit (23:55:40Z), so no cadence stall per issue #40.
+
+Previous work (the 23:5x scheduled operator cycle's full reverification) confirmed finished, not cited: 10 open GitHub issues re-pulled fresh via the API, unchanged set and labels, all decision/blocked-on-art, newest activity still issue #42's 2026-10-21 12:52Z comment, no Phil reply. BACKLOG-2026-09-07.md sections 1b through 6 read directly: every row struck except C5 (Gemini billing) and C6 (YouTube OAuth), both already Phil-gated with everything buildable built; section 6's owner gates unchanged. STATUS.md Workstreams 1-3: unchanged, two blocked on Phil, one closed. Re-derived BLOCKER-001's own deploy-gap figure directly with preflight.py's own resolve_verdict_commit/deploy_gap_material_commits against current HEAD rather than trust the citation: same 8 commits, same 4 material, confirmed unchanged, not stale.
+
+**Found and fixed a real gap instead of citing it: `ops/cycle_signal.py --check` reported CHANGED (BACKLOG-2026-09-07.md), because the last recorded snapshot (23:19:10Z) predated a real edit to that file eleven minutes later (441907cd2, the 23:1x PM check-in's own Search Console correction), and no cycle since had re-recorded a fresh snapshot after that edit.** Ran the full, uncapped `ops/run_preflight.sh` detached (never a foreground timeout, per its own docstring): every one of 399 gates passed, 28 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress to 6s-success.com, the usual cron-cadence and image-coverage notes). `gate_tests` reached completion this run rather than hanging, so this is a genuinely complete pass, not the usual documented sandbox hang. Preflight's own clean-pass step then auto-recorded a fresh cycle-signal snapshot; `--check` now reports SAME against it. No hand edit was needed, only running the tool that owns the snapshot.
+
+Not starting any Phil-gated item or re-litigating issue #42, per standing PM practice.
+
+Pushed to main. `ops/cycle-signal.json`, this entry, dashboard trio (regenerated for timestamp currency). No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-10-19T07:05Z send on this identical topic).
+
 ## 2026-10-21, scheduled operator cycle (23:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
 
 **Did:** Attached per Step 0: fetch, real unshallow (arrived shallow and detached), `checkout main`/`checkout -B main origin/main`, ff-only onto `a0e78b725`, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0-7 directly (not a summary): every A/B/C row is struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both `YES, Phil`; section 5 Hold rows correctly wait on traffic/a sale/significance; section 6 is six owner-only gates, one (Search Console) already corrected by the 23:1x cycle just before this one. `STATUS.md` section 14: Workstream 3 closed, Workstreams 1-2 blocked on a Umami key and a spending decision, 0/3 WIP. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, issue #42's last comment still 2026-10-21 12:52Z, no Phil reply.
