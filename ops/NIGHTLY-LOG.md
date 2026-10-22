@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (01:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed a fresh way, no notification)
+
+**Did:** Attached per Step 0: fetched origin/main, repo was already unshallowed and attached (`checkout -B main origin/main` not needed, branch already current), tree clean at `60eda32c1`. Read `GOALS.md` in full (constraint O1, decision rules), `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 directly rather than trusting a summary: every A/B/C row struck Done or Hold except C5 (Gemini billing) and C6 (YouTube OAuth), both `YES, Phil`. Read `CLAUDE.md` (already in context). Read `CHECKIN-LOG.md`'s tail (the file that actually carries the hourly cadence; `NIGHTLY-LOG.md` is where PM/operator cycles land) and this file's own last four entries.
+
+**Verified, not cited:** `preflight.py` run to completion via a direct invocation (not `run_preflight.sh`): 0 FAIL through every gate reached (`gate_ops_python_syntax` through `gate_image_coverage`), hit the documented `gate_tests` headless-Chromium sandbox hang (flat CPU for 8+ minutes, confirmed genuinely stalled, not computing), killed rather than waited out; unchecked past that point, not assumed passing. `cold_read_ledger.py --stale`: 0 of 277. `cold_read_ledger.py --next 5`: zero un-ledgered candidates exist in any tracked directory, confirmed directly rather than trusting the count. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty. GitHub's 10 open issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`; read issue #42's full comment thread directly, all three comments self-authored by prior cycles, none from Phil since 2026-10-21 12:52Z. Checked `deploy.yml`'s most recent run (2026-10-19T21:22:56Z) directly rather than assuming: job-level conclusion is `success` but its own `Deploy` step is `skipped`, confirming `VPS_DEPLOY_KEY` is still absent, not newly added. Tested this sandbox's own egress directly (`curl` to the live site): connection refused, same standing no-egress limit every recent cycle reports. Ran `ops/keyword_demand.py --rescore` (free, no network) as a fresh angle no immediately-prior cycle had tried this slot: 2,822 queries re-scored against commit `60eda32c1`, 221 pages; gap/partial/covered held exactly at 166/1450/1206, zero movement, confirming no new content gap opened since the last harvest.
+
+**Went well:** the rescore and the un-ledgered-candidate check were both free, direct, and gave a genuinely independent confirmation of "nothing new" rather than repeating the prior cycle's own citations.
+
+**Did not go well:** nothing new; same standing sandbox limits (`gate_tests` needs egress this sandbox lacks, no Stripe/mail creds, no VPS key, no deploy key).
+
+**Changing next cycle:** none. Not re-commenting on issue #42 (last comment 2026-10-21 said "not re-raising further until something actually changes," and nothing has); not sending an owner notification (`ops/last-owner-notification.json` correctly withholds it, state unchanged since the 2026-10-19T07:05Z send on this identical topic).
+
+**Next:** unchanged, a Phil reply on issue #42 (cadence) or any of the other 9 decision/blocked-on-art issues, or an owner-gate row in `BACKLOG-2026-09-07.md` section 6 clearing (cheapest: YouTube OAuth, Gemini billing, both already built up to the gate).
+
+Pushed to main. Dashboard trio, `ops/keyword-demand.json`/`KEYWORD-DEMAND.md` (metadata-only rescore, no status changes), this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (01:2x slot, 30-minute triage, previous work confirmed finished, state independently reconfirmed exhausted, nothing new unblocked, no notification)
 
 Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto dc8afa1c3.

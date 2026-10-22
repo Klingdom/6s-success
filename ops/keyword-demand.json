@@ -51627,5 +51627,7 @@
       "matched_on": "heading",
       "status": "partial"
     }
-  ]
+  ],
+  "scored_at": "2026-10-22T01:57:25Z",
+  "scored_against_commit": "60eda32c1"
 }
