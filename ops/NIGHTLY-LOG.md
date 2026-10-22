@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (04:4x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
+
+**Did:** Attached clean (unshallow, ff-only onto deedbac4c, 260 commits). Read BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md and the last four NIGHTLY-LOG entries via a research pass, then independently re-checked the conclusion rather than trusting it: pulled all 10 open GitHub issues fresh (same set, same labels, unchanged since issue #42's 2026-10-21 12:52:34Z comment), read issues #29 and #2 in full (both genuinely blocked on Desktop art access, already mitigated by withholding the bad cards). Ran the full, non-fast preflight.py to completion under a Monitor watch rather than an external timeout. Ran inbox_agent.py --apply: no mail credentials, reported unchecked.
+
+**Verified:** preflight 0 FAIL, 27 warnings, all documented sandbox limits (no Stripe/.env.secrets, no SSH deploy key, no mail, no network). Independently reran check_urls.py (213/213), affiliate.py --check (165 docs, clean), cold_read_ledger.py --stale (0/277), check_sellable.py (124/126, 2 are person-delivered services), fingerprint_assets.py --check (666/666 current), audit_pages.py (218/0). Checked CI directly: latest real Checks run (#2252) green; the 18 commits since then are all check-in/log-only and correctly excluded by checks.yml's own paths filter, not a trigger gap. Deploy gap re-derived: 8 commits / 4 material since the last confirmed deploy, matches STATUS.md.
+
+**Went well:** traced the "gate_tests sandbox hang" several prior cycles reported as a dead end: it is not stuck, it is a long but finite run (~14.5 min end to end for the uncapped suite). Confirmed live via /proc that the subprocess tree keeps moving between test files; letting the Bash tool's own backgrounding handle it, with a Monitor watch for completion, got a real clean result instead of another "unchecked past the hang."
+
+**Did not go well:** nothing new to report; no customer-facing change shipped this cycle.
+
+**Changing next cycle:** nothing structural; no defect recurred three times unguarded.
+
+**Next:** unchanged. Only C5 (Gemini billing) and C6 (YouTube OAuth) remain unstruck in BACKLOG-2026-09-07.md, both Phil-gated. Issue #42 (cadence) still awaits his reply; not re-litigating it without new evidence.
+
 ## 2026-10-22, PM check-in (04:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: unchanged from the two cycles before this one. Keep re-verifying rather than invent work. BACKLOG-2026-09-07.md sections 2 through 6 still show nothing unstruck except C5 (Gemini billing) and C6 (YouTube OAuth), both YES Phil; section 6's owner gates are his to click; all 10 open GitHub issues are unchanged since issue #42's 2026-10-21 12:52:34Z self-authored comment, no reply from Phil.
