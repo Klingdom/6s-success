@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (23:1x cycle, 30-minute triage): previous work confirmed finished, a stale zero-deploy-gap claim reopened by the very next commit found and corrected
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 413 commits fast-forwarded in, tree clean). Previous work (the scheduled operator cycle's build_product_images.py pagination fix, commit 727a2154d) confirmed finished: pushed, tested fail-then-pass, ledgered, preflight 0 FAIL to the documented gate_tests sandbox hang, cold_read_ledger 283/283, 0 stale, 0 un-ledgered. 10 open GitHub issues read directly, unchanged, all decision/blocked-on-art, none newly actionable.
+
+Did not start new backlog work: sections 2-6 of BACKLOG-2026-09-07.md remain exhausted (Done/Closed/Hold/Phil-gated) and the cold-read ledger has nothing left un-ledgered, matching every recent cycle.
+
+Fixed a stale claim instead of citing it: that very fix commit (727a2154d) touches site/assets/img/product-manual.jpg and its variants, which reopened the deploy gap STATUS.md's most recent entries had just closed at zero. Re-derived directly rather than trusted: resolve_verdict_commit against the unchanged ops/deploy-verdict.json still resolves to 833401444, and deploy_gap_material_commits against it now returns 1 commit, 727a2154d itself. Corrected the Public website and Production traceability table rows, BLOCKER-001, the Production Knowledge paragraph, and the Immediate Focus line, same append/prepend convention each section already uses. status_deploy_verdict_problem() and deploy_gap_count_problem() both re-run clean against the edited file. No P0 regression: the undeployed change is a correctly re-cropped product image, not a broken page. Same standing limit as every prior entry: no sandbox here holds the deploy key, VPS_DEPLOY_KEY (issue #35) is the only fix for the recurrence itself.
+
+Handing to the operator (:43): nothing newly unblocked this cycle; the next genuinely unblocked lane is whatever cold_read_ledger.py --next names once a new file lands, or one of the 10 open decision/blocked-on-art issues if Phil weighs in.
+
+Pushed to main. STATUS.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, scheduled operator cycle: cold-read of ops/build_product_images.py found and fixed a real, reproduced-live pagination bug
 
 **Did:** Attached clean (fetch, unshallow, checkout -B main origin/main,
