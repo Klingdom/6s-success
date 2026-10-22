@@ -1,9 +1,9 @@
 {
  "generated": "2026-10-22 16:20",
- "commit": "e9c16831e",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 1287,
- "commits_total": 8081,
+ "commit": "9e029e778",
+ "commit_msg": "PM check-in 16:1x: close 3 stale cold-read-ledger entries left behind by today's image-cycle commit",
+ "commits_7d": 1288,
+ "commits_total": 8082,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",

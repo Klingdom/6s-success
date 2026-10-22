@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (16:1x slot, 30-minute triage): previous work (16:0x's photos/server.py security fix) confirmed finished and shipped, a real bookkeeping gap it left behind found and closed
+
+Previous work finished. Attached clean (real `git fetch --unshallow` from a shallow checkout, `checkout -B main origin/main`, ff-only onto `e9c16831e`, tree clean throughout). The 16:0x cycle's two security fixes to `photos/server.py` (negative Content-Length guard, socket timeout) were pushed, gated, and logged in detail; `photos/` is not deployed, so nothing there needed a redeploy.
+
+**Found and fixed instead of only re-confirming:** `cold_read_ledger.py --stale` named 3 entries (`ops/build_zone_pages.py`, `ops/wire_generated_catalog.py`, `ops/preflight.py`) the 16:0x entry's own prose says it already read and cleared ("read each diff directly, no defect found") but never re-dated in the ledger, leaving them looking unchecked when they were not. Re-verified the claim myself rather than trust it: re-read the one commit that touched all three today (`2bddafa82`, Phil's own image commit, 08:37 local) diff by diff. `build_zone_pages.py` adds `ROOM_MAPS`, preferred over the book's `ROOM_DIAGRAMS`; `wire_generated_catalog.py` adds `_pack_image()`, preferring a room's own pack picture with a disk-existence guard before falling back; `preflight.py` adds `gate_room_maps_current`, which regenerates the 11 room maps in memory and fails on drift, registered correctly in `main()`'s run order and in `GENERATOR_PROTECTED_ELSEWHERE`. No defect in any of the three. Updated all three ledger entries with today's date and the verification note.
+
+**Re-verified rather than assumed:** ran `preflight.py` myself to a captured file: 0 FAIL, 1 WARN through every gate reached including the new `gate_room_maps_current`, killed at the documented `gate_tests` sandbox hang, reported unchecked past that point. GitHub: all 10 issues unchanged, `decision`/`blocked-on-art`; issue #42's comment count moved 3 to 4, but that fourth comment matches the 15:1x cycle's own already-logged self-authored comment, not a Phil reply. `BACKLOG-2026-09-07.md`: C5 and C6 still the only open rows, both Phil-gated.
+
+Not starting C5/C6 or any other Phil-gated item. No new defect found beyond the ledger gap above.
+
+**Handing to the operator (:43):** nothing newly unblocked; keep re-verifying the exhausted, decision-gated state until Phil clears C5 (Gemini billing), C6 (YouTube OAuth), or replies to issue #42.
+
+Pushed to main. `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, scheduled operator cycle (16:0x slot, full STEP 0-13 pass): closed a "most likely yes, not verified" gap in `OWNER-ACTIONS.md` by checking it, found two of four claimed security fixes genuinely missing, fixed and gated both
 
 **Did.** Attached clean (`git fetch origin main`, real `--unshallow` since the checkout arrived shallow, `checkout -B main origin/main`, ff-only onto `1bf7b6521`, tree clean throughout). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries. Every "Now" row in sections 2-4 of the backlog was again Done or Phil-gated (only C5/Gemini billing, C6/YouTube OAuth open); all 10 GitHub issues `decision`/`blocked-on-art`, unchanged. `cold_read_ledger.py --stale` named exactly 3 files touched by today's earlier image cycle (`build_zone_pages.py`, `wire_generated_catalog.py`, `preflight.py`); read each diff directly, no defect found, confirmed CI green on the commits that touched them (`checks.yml` #2262/#2263, `publish-image.yml` #604, `deploy.yml` #211, all `success`), and confirmed shop.html's 18 pack-image references exactly match `STATUS.md`'s own claim (not just trusted it).
