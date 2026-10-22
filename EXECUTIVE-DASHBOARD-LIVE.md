@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 10 (2 P0, 2 blocked on art, 8 need your call) |
 | Closed to date | 32 |
-| Commits (7 days) | 1293 of 8131 total |
+| Commits (7 days) | 1294 of 8132 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `7c2344004` Merge remote-tracking branch 'origin/main' |
+| Last commit | `839b1df35` PM check-in 22:4x: STATUS.md's reopened deploy-gap entries n |
 
 ## Product readiness
 

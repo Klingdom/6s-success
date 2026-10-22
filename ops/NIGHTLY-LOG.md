@@ -4,7 +4,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 ## 2026-10-22, PM check-in (22:4x cycle, 30-minute triage): previous work was NOT finished, a stale zero-deploy-gap claim corrected, one real unblocked item handed to the operator
 
-NEXT FOR THE OPERATOR: cold-read `ops/build_product_images.py` (369 lines, un-ledgered, behind the shop product-image commit `833401444` that just reopened the deploy gap), because it is the only genuinely unblocked, never-reviewed surface this cycle found, and it is the file directly behind the one real defect below.
+NEXT FOR THE OPERATOR: cold-read `ops/build_product_images.py` (369 lines, un-ledgered, written by the shop product-image commit `833401444` that briefly reopened and was then redeployed closed this same cycle, see below), because it is the only genuinely unblocked, never-reviewed surface this cycle found.
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 393 commits fast-forwarded in, tree clean). Read git log -12, BACKLOG-2026-09-07.md sections 2-6 (only C5/Gemini billing and C6/YouTube OAuth remain, both Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, and all 10 open GitHub issues directly via the API (unchanged, all decision/blocked-on-art, none from Phil).
 
