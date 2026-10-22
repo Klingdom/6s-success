@@ -58,8 +58,28 @@ fi
 # Git runs hooks with the working tree's top level as cwd, so a plain
 # relative path reaches ops/ the same way the pre-commit hook's own
 # HOOK_DIR-relative calls reach .githooks/.
-if [ -f "ops/check_nightly_log_fast.py" ] && command -v python3 >/dev/null 2>&1; then
-  if ! python3 ops/check_nightly_log_fast.py; then
+#
+# Found 2026-10-22: this used to test `command -v python3` and then run it.
+# On Windows `python3` is usually the Microsoft Store placeholder, which is
+# on PATH but only prints "Python was not found" and exits non-zero, so the
+# hook refused every push without checking anything. Same rule as
+# pre-commit: each candidate must prove it runs, not merely be present.
+# And no working interpreter is a refusal, not a silent skip.
+if [ -f "ops/check_nightly_log_fast.py" ]; then
+  PY=""
+  for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+      PY="$cand"
+      break
+    fi
+  done
+  if [ -z "$PY" ]; then
+    echo "pre-push: no working python found, so ops/NIGHTLY-LOG.md could not" >&2
+    echo "be checked. Refusing rather than pushing it unexamined." >&2
+    exit 1
+  fi
+  if ! "$PY" ops/check_nightly_log_fast.py; then
     echo "" >&2
     echo "Fix ops/NIGHTLY-LOG.md, then push. To bypass: git push --no-verify" >&2
     exit 1
