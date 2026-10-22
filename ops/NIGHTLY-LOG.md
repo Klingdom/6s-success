@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (00:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
+
+**Did:** Attached per Step 0: fetch, real unshallow (arrived shallow and detached), `checkout -B main origin/main`, ff-only onto `e3b4cd15b`, tree clean. A concurrent session pushed mid-cycle (`98261cdb5`, hourly check-in; ancestor `0d974942e` was an already-resolved merge of two concurrent pushes, checked for leftover conflict markers across md/json/html, none found); fetched and ff-merged before continuing, no collision. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 2, 5, 6, 7 directly: every A/B/C row struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both `YES, Phil`; section 5 Hold rows correctly wait on traffic/a sale/significance; section 6 is six owner-only gates. `ops/cold_read_ledger.py --next`: 277 of 277 ledgered, 0 stale, 0 un-ledgered candidates. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`; issue #42's three comments are all self-authored by prior cycles, no reply from Phil since 2026-10-21 12:52Z.
+
+**Verified, not cited:** `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 wired (2 are person-delivered services, correctly excluded). `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not empty. Local `preflight.py` hung at the documented `gate_tests` headless-Chromium step (no egress in this sandbox) after ~20 minutes of near-zero CPU time (I/O wait, not a hang in the test logic itself); killed rather than waited out, and cross-checked CI instead: `checks.yml` run history on `main` shows the last several pushes completed `success`, and the current push's run was still legitimately in-progress at normal duration when checked, not stuck. Independently re-derived the BLOCKER-001 deploy gap rather than trusting STATUS.md's citation: `deploy-verdict.json` still cites build `c36cb2794e581473` (`086f6ba42`, checked 2026-10-14); `deploy_gap_material_commits('086f6ba42')` against real current HEAD returns the identical 8 commits (4 material: `f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`) already named in STATUS.md's 2026-10-19 entry, byte for byte — nothing has touched `site/`/`Dockerfile` since that entry was written, so the citation is still current, not stale.
+
+**Went well:** re-deriving the deploy-gap commit list directly against git rather than trusting the prose caught that nothing had actually drifted, which is the cheap insurance this log keeps recommending and this cycle actually did rather than just noting.
+
+**Did not go well:** nothing new; same standing sandbox limits (`gate_tests` needs egress this sandbox lacks, no Stripe/mail creds, no VPS key).
+
+**Changing next cycle:** none.
+
+**Next:** unchanged, a Phil reply on issue #42 (cadence) or any of the other 9, or an owner-gate row in `BACKLOG-2026-09-07.md` section 6 clearing (cheapest: YouTube OAuth, Gemini billing).
+
+Pushed to main: this entry, dashboard trio. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (00:1x slot, 30-minute triage, previous work confirmed finished, a stale cycle-signal snapshot closed, nothing new unblocked)
 
 Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto e3b4cd15b, tree clean throughout. Only 19 minutes since the last commit (23:55:40Z), so no cadence stall per issue #40.
