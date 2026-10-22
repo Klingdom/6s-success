@@ -135,12 +135,24 @@ different photo frontend on 2026-10-15 (`site/photo-check.html`, noindex,
 unlinked), which is what is live in the repository now. The two cannot both
 be right, and choosing is a product call, so neither was merged. They are
 kept, untouched, on the local branch `local-unpushed-2026-10-14`; your local
-`main` now matches GitHub. Worth checking before discarding: whether every
-`photos/` security fix in `9ac0bcea5` (decompression bombs, negative
-Content-Length, socket timeout, disk ceiling) exists on GitHub's side.
-`PHOTOS-API.md` records two review passes there, so most likely yes, but it
-was not verified line by line. Reply "drop them" or "port the security
-fixes" and it gets done.
+`main` now matches GitHub.
+
+**Checked 2026-10-22, scheduled operator cycle, line by line rather than
+guessed: two of the four security fixes were missing, and are now fixed
+directly in `photos/server.py` rather than left as an open question.**
+Decompression bombs and the disk ceiling were already covered by the two
+review passes `PHOTOS-API.md` records. Negative Content-Length and socket
+timeout were not, in either pass, and were not present in the code: a
+negative `Content-Length` bypassed the size check and reached an unbounded
+`rfile.read()`, and no socket timeout existed to close an idle connection.
+Both fixed and proved fail-then-pass in `ops/tests/test_photos_service.py`
+(39/39); full account in `PHOTOS-API.md`'s 2026-10-22 entry. This closes
+the "worth checking" question this item used to raise; what remains is only
+the product call below.
+
+**Still yours: `site/photos.html` vs. the live `site/photo-check.html`.**
+Reply "drop the old page" or "merge anything `9ac0bcea5`'s page did better"
+and it gets done; the security half no longer depends on your answer.
 
 
 ### The one channel that has ever worked went silent on 28 September

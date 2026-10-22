@@ -43,6 +43,10 @@ SESSIONS_PER_IP_HOUR = int(os.environ.get("PHOTOS_SESSIONS_PER_IP_HOUR", "10"))
 ANALYSES_PER_IP_HOUR = int(os.environ.get("PHOTOS_ANALYSES_PER_IP_HOUR", "20"))
 ANALYSES_GLOBAL_PER_HOUR = int(os.environ.get("PHOTOS_ANALYSES_GLOBAL_PER_HOUR", "100"))
 ALLOW_ORIGIN = os.environ.get("PHOTOS_ALLOW_ORIGIN", "https://6s-success.com")
+# A client that opens a connection and never finishes sending (or never reads
+# the response) would otherwise pin one ThreadingHTTPServer thread forever;
+# this bounds a single idle read/write to one request.
+SOCKET_TIMEOUT_SECONDS = int(os.environ.get("PHOTOS_SOCKET_TIMEOUT", "30"))
 
 
 def openapi():
@@ -89,6 +93,7 @@ class Handler(BaseHTTPRequestHandler):
     analyze_call = None          # test hook: replaces the vision provider
     server_version = "6s-photos/1"
     sys_version = ""
+    timeout = SOCKET_TIMEOUT_SECONDS
 
     def log_message(self, fmt, *args):     # no paths, no tokens, no IPs in logs
         pass
@@ -115,7 +120,18 @@ class Handler(BaseHTTPRequestHandler):
         return h[7:].strip() if h.lower().startswith("bearer ") else ""
 
     def _body(self, limit):
-        n = int(self.headers.get("Content-Length") or 0)
+        raw = self.headers.get("Content-Length") or "0"
+        try:
+            n = int(raw)
+        except ValueError:
+            raise StoreError(400, "invalid Content-Length")
+        # A negative value is a valid Python int but not a valid length: it
+        # would pass the size check below and then reach rfile.read(n), which
+        # for a negative n reads until the connection closes rather than a
+        # bounded amount, so it must be rejected here rather than relying on
+        # the size check alone.
+        if n < 0:
+            raise StoreError(400, "invalid Content-Length")
         if n > limit:
             raise StoreError(413, "body too large")
         return self.rfile.read(n) if n else b""

@@ -118,6 +118,52 @@ Every fix above is proved fail-then-pass directly in
 against the pre-fix code first and confirmed to fail the way the finding
 describes, then confirmed to pass after.
 
+## Found and fixed, 2026-10-22: two fixes from an unpushed local commit never reached `photos/server.py`, and the gap had been guessed rather than checked
+
+`OWNER-ACTIONS.md` records a local commit on Phil's own machine
+(`9ac0bcea5`, 2026-10-14) that was never pushed, describing four security
+fixes to `photos/`: decompression bombs, negative Content-Length, socket
+timeout, disk ceiling. A later cycle noted "most likely" all four already
+existed on GitHub's side via the two review passes above, but said plainly
+it had not verified that line by line. Checked directly this cycle rather
+than carried forward as a guess: decompression bombs and the disk ceiling
+are both covered above; negative Content-Length and socket timeout were
+not, in either pass, and were not present in `photos/server.py`.
+
+1. **Negative Content-Length.** `_body()` parsed `Content-Length` with a
+   bare `int()` and only checked `n > limit`. A negative value parses
+   without error and is not caught by that check, and then reaches
+   `self.rfile.read(n)` with `n < 0`, which reads until the connection
+   closes rather than a bounded amount, pinning the handling thread for as
+   long as the client leaves the connection open (confirmed directly:
+   reverting the fix and sending `Content-Length: -1` over a raw socket
+   left the request hanging until the test's own client closed the
+   connection, at which point the server raised a different, wrong error
+   against a client already gone). Fixed: `n < 0` is rejected the same way
+   as an unparseable value, before the size check runs.
+2. **No socket timeout.** `BaseHTTPRequestHandler.timeout` defaults to
+   `None`, so a connection that opens and sends nothing holds its
+   `ThreadingHTTPServer` thread indefinitely; enough such connections from
+   one or many addresses exhausts the thread pool. Fixed:
+   `PHOTOS_SOCKET_TIMEOUT` (default 30s) sets `Handler.timeout`, so an idle
+   connection is closed rather than held.
+
+Both proved fail-then-pass directly in `ops/tests/test_photos_service.py`
+(39/39 checks): reverting the fix and rerunning reproduced the hang and the
+wrong error for the first, and an idle connection that was never closed for
+the second; both pass clean with the fix restored.
+
+**A third gap found while verifying the other two: the global disk-free
+floor from the first review pass (`shutil.disk_usage`, "a hard floor checked
+before any write") had never actually been exercised, only documented.**
+This cycle's own test for it (monkeypatching `shutil.disk_usage` to report
+free space under `MIN_FREE_BYTES`) is the first thing in this file's test
+suite that proves the floor fires; disabling the real check in `store.py`
+and rerunning confirmed the new test catches it (40/40 with the floor live,
+`disk-floor-refused` the one failure with it disabled). No code change
+needed here, since the floor itself was already correctly placed before any
+write in `add_photo()`; only its test coverage was missing.
+
 ## Found and fixed, 2026-10-16: a lost-upload race, not covered by the lanes above because `photos/` has no cold-read lane yet
 
 Not found by either security pass above; both reviewed the code adversarially

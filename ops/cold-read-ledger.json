@@ -982,9 +982,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, cross-checked IndexedDB API surface against quest.js's real call sites (objectUrl/supported/pair/put/del all match), privacy design (no network, EXIF stripped) matches CLAUDE.md 47, no defect found"
     },
     "photos/server.py": {
-      "status": "clean",
-      "date": "2026-10-16",
-      "note": "First cold read of this file, same cycle the photos/ lane was added. Traced every route in _dispatch against store.py and analyze.py directly: auth happens before a large body is read (S.open before self._body(MAX_BYTES) on the PUT route), zone is validated against methodology.method() before storage is touched, pid/sid lookups all go through dict membership (meta['photos']) or the _ID regex before any filesystem join, so an attacker-supplied pid or sid cannot reach a path outside the session directory. _ip() correctly reads the second-to-last X-Forwarded-For entry for the documented two-proxy chain. CORS sends a fixed Access-Control-Allow-Origin rather than reflecting the request Origin, consistent with bearer-token auth (no cookies, so no credentialed-CORS risk). No defect found in this file itself; the real defect this cycle found was in store.py (see its own ledger entry), reachable through this file's add_photo call but not caused by anything here."
+      "status": "fixed",
+      "date": "2026-10-22",
+      "note": "Verified the two outstanding security fixes from the unpushed local commit (9ac0bcea5, OWNER-ACTIONS.md) that the earlier guess (most likely yes) never checked line by line. Negative Content-Length bypassed the size check and reached an unbounded rfile.read(); no socket timeout existed to close an idle connection. Both fixed (guard on n<0 in _body, Handler.timeout=PHOTOS_SOCKET_TIMEOUT) and proved fail-then-pass in test_photos_service.py (39/39). Decompression bombs and the disk ceiling were already covered by the 2026-10-15 passes."
     },
     "pickCard.js": {
       "status": "clean",

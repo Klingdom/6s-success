@@ -1,6 +1,6 @@
 """End-to-end tests for the photo service, over real HTTP.
 Run: python ops/tests/test_photos_service.py"""
-import io, json, os, shutil, sys, tempfile, threading, urllib.request, urllib.error
+import io, json, os, shutil, socket, sys, tempfile, threading, urllib.request, urllib.error
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "photos"))
 os.environ.pop("ANTHROPIC_API_KEY", None)
 import server as SV
@@ -135,6 +135,19 @@ st, _ = req("POST", "/sessions/%s/analyze" % sid2, json.dumps({"photo_id": p2["i
 check("analyze-global-rate-limit", st == 503)
 SV.ANALYSES_GLOBAL_PER_HOUR = 100
 
+# The global disk-free floor (shutil.disk_usage, PHOTOS-API.md's "hard floor
+# checked before any write") is a separate control from the per-session byte
+# quota below; everything else in this file proves fail-then-pass, this one
+# had never actually been exercised, only documented.
+class _LowDisk:
+    free = ST.MIN_FREE_BYTES - 1
+_orig_disk_usage = ST.shutil.disk_usage
+ST.shutil.disk_usage = lambda path: _LowDisk()
+st, s6 = req("POST", "/sessions"); sid6, tok6 = s6["session_id"], s6["token"]
+st, _ = req("PUT", "/sessions/%s/photos?zone=%s&kind=before" % (sid6, ZONE), src, tok6, "image/jpeg")
+check("disk-floor-refused", st == 503)
+ST.shutil.disk_usage = _orig_disk_usage
+
 # A compressed file well under MAX_BYTES must still be refused once a
 # session's own cumulative storage would cross its quota, independent of
 # MAX_PHOTOS_PER_SESSION (set far higher, so this is the quota actually firing).
@@ -202,6 +215,41 @@ check("fresh-allow", store_a.allow("probe", "1.2.3.4", 1, 3600) is True)
 check("second-hit-blocked-same-instance", store_a.allow("probe", "1.2.3.4", 1, 3600) is False)
 store_b = ST.Store(tmp)                       # simulates the process restarting
 check("limit-persists-across-restart", store_b.allow("probe", "1.2.3.4", 1, 3600) is False)
+
+# int() parses a negative Content-Length without complaint, so it must be
+# rejected explicitly: left unrejected it reaches rfile.read(n) with n < 0,
+# which reads until the connection closes rather than a bounded amount,
+# holding the thread (sent over a raw socket because urllib computes its
+# own correct Content-Length and will not let a test lie about it).
+st, s5 = req("POST", "/sessions"); sid5, tok5 = s5["session_id"], s5["token"]
+sock = socket.create_connection(("127.0.0.1", port), timeout=5)
+sock.sendall((
+    "PUT /v1/sessions/%s/photos?zone=%s&kind=before HTTP/1.1\r\n"
+    "Host: 127.0.0.1\r\nAuthorization: Bearer %s\r\n"
+    "Content-Type: image/jpeg\r\nContent-Length: -1\r\n"
+    "Connection: close\r\n\r\n" % (sid5, ZONE, tok5)).encode())
+try:
+    resp = sock.recv(200)
+except socket.timeout:
+    resp = b""
+sock.close()
+check("negative-content-length-refused", b" 400 " in resp.split(b"\r\n", 1)[0])
+
+# A connection that opens and sends nothing must not pin a thread forever:
+# BaseHTTPRequestHandler.timeout, left at its default None, waits for a
+# request line indefinitely. Lowered here to prove the server actually
+# closes an idle connection rather than hanging on it.
+old_handler_timeout = SV.Handler.timeout
+SV.Handler.timeout = 1
+sock2 = socket.create_connection(("127.0.0.1", port), timeout=5)
+sock2.settimeout(3)
+try:
+    closed = sock2.recv(10) == b""
+except socket.timeout:
+    closed = False
+sock2.close()
+SV.Handler.timeout = old_handler_timeout
+check("idle-connection-closed-by-socket-timeout", closed)
 
 SV.SESSIONS_PER_IP_HOUR = 0
 st, _ = req("POST", "/sessions"); check("session-rate-limit", st == 429)
