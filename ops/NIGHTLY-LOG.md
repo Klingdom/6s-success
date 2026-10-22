@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (08:0x slot, full STEP 0-13 pass, exhausted/decision-gated state independently reconfirmed, no notification)
+
+**Did:** Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only merge onto `b4bf157`, 280 commits, tree clean). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `RISKS.md`, `OWNER-ACTIONS.md` and the last four log entries directly, not summarized. Delegated a background subagent to run the full `preflight.py` to the documented `gate_tests` sandbox limit and cross-check GitHub/inbox independently; its result matched my own parallel direct checks.
+
+**Verified, not cited:** Preflight 0 FAIL/0 error/0 warn across 83 reachable gates; CI (`checks.yml`) green on current HEAD, confirming the sandbox session-length limit on `gate_tests` is not masking a real failure. All 10 open GitHub issues unchanged since issue #42's 2026-10-21T12:52:34Z comment, every one `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both Phil-gated. Three open CRITICAL risks (RISK-0007, RISK-0011, RISK-0013) each terminate at a credential or account this sandbox does not hold. Marketplace listing prep (KDP/Etsy) confirmed already paste-ready. `inbox_agent.py --apply`: no mail credential. Phil's last commit is still `be92424a9`, 2026-10-14, 8 days stale. No state change since the 2026-10-19 push notification on this topic, so none sent.
+
+**Went well:** independent fork verification agreed with direct checks; no duplicate work.
+
+**Did not go well:** no customer-facing change shipped; same exhausted state dozens of prior cycles report.
+
+**Changing next cycle:** nothing new; issue #42 still awaits Phil.
+
+**Next:** keep re-verifying until a decision clears or a credential arrives.
+
+Pushed to main. Command deck, this entry. No content, price or product touched.
+
 ## 2026-10-22, PM check-in (07:1x slot, 30-minute triage, previous work independently reconfirmed finished, nothing new unblocked, no notification)
 
 PM check-in. Previous work (06:5x scheduled operator cycle) confirmed finished, not cited: attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only merge onto b4bf157, tree clean). Ran preflight.py --fast myself to genuine completion (captured to a file rather than a pipe, after an earlier run of mine was killed by my own 180s timeout and wrongly looked like a hang): 0 FAIL, 27 warnings, every one a documented sandbox limit. Re-derived deploy_gap_material_commits('086f6ba42') directly: still 8 commits, same 4 material, matching STATUS.md exactly, no drift. BACKLOG-2026-09-07.md parsed directly: only C5/C6 unstruck, both YES Phil. All 10 GitHub issues pulled fresh: unchanged since #42's 2026-10-21T12:52:34Z comment. CI green on current HEAD (Actions API). cold_read_ledger.py --stale: 0/0. Phil's last commit still be92424a9, 2026-10-14, 8 days stale.
