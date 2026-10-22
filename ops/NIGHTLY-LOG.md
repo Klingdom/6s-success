@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (09:5x slot, full STEP 0-13 pass, exhausted/decision-gated state independently reconfirmed, no notification)
+
+**Did:** Checkout arrived shallow and detached again (same STEP 0 shape every cycle today reports); fetched, real unshallowed, `checkout -B main origin/main`, ff-only merge onto `138216e52`, 296 commits, tree clean throughout. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 directly (not a summary), `GOALS.md` in full, `ROADMAP-2026-2029.md` section 1-3, `STATUS.md`'s Open claims section, and the last several `NIGHTLY-LOG.md` entries at the top of the file (it is newest-first; a stray byte-count `tail` earlier this session misread the oldest entries as the newest ones before this was caught and corrected).
+
+**Verified, not cited:** Ran `python ops/preflight.py` myself, in the background, to real completion of everything before `gate_tests`: 0 FAIL across every gate reached (deck rendering, image coverage, unique names, affiliate compliance, Ledgerium exclusion, sellable check, dash/dialect checks all clean), confirmed by reading the captured output file directly. Killed at `gate_tests`, the documented headless-Chromium sandbox hang every cycle today has hit; reported unchecked past that point, not assumed passing. `ops/cold_read_ledger.py --stale`: 0 stale, every file's clean/fixed date still covers its own last commit. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, unchanged. `git log` for commits by Phil (not a bot/operator commit): none since `be92424a9` (2026-10-14), still 8 days stale. All 10 open GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2) read fresh via the API: identical set and labels to every cycle today, newest activity still issue #42's 2026-10-21T12:52:34Z self-authored comment, no reply from Phil. `checks.yml` run #2259 (triggered by the prior cycle's own command-deck commit) is green on current `main`. `STATUS.md` Open claims: none open. `BACKLOG-2026-09-07.md` sections 2-6: only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both explicitly Phil-gated with everything up to the gate already built.
+
+**Went well:** nothing new to find was itself confirmed from five independent primary sources (preflight, cold-read ledger, inbox, GitHub, git log) rather than carried forward from a prior cycle's claim.
+
+**Did not go well:** same as every cycle today: no customer-facing change shipped, because none is currently actionable without Phil clearing a decision or supplying a credential. Issue #42 (the cadence-cost escalation) remains open with no reply.
+
+**Changing next cycle:** nothing new. Did not re-comment on issue #42: the last comment (2026-10-21) explicitly said not to raise it again until something actually changes, and nothing has.
+
+**Next:** keep re-verifying from primary sources each cycle rather than trusting a prior log entry's claim, until Phil clears a decision (cheapest first: Gemini billing 5 min, YouTube OAuth 5 min) or supplies a credential.
+
+Pushed to main. Command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this entry. No content, price or product touched; no new page; IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (09:3x slot, 30-minute triage, previous work independently reconfirmed finished a third way, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked. BACKLOG-2026-09-07.md sections 2-6 still show only C5 (Gemini billing) and C6 (YouTube OAuth publish) unstruck, both marked YES Phil; the three open CRITICAL risks (RISK-0007, RISK-0011, RISK-0013) each terminate at a credential or account this sandbox does not hold. Keep re-verifying from primary sources rather than invent work until Phil clears a decision or supplies a credential.
