@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-22, PM check-in (16:1x slot, 30-minute triage): previous work (16:0x's photos/server.py security fix) confirmed finished and shipped, a real bookkeeping gap it left behind found and closed
+## 2026-10-22, PM check-in (16:4x slot, 30-minute triage): previous work (16:1x's ledger bookkeeping fix) confirmed finished, nothing new unblocked, no closing job found
+
+NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, so keep re-verifying the exhausted, decision-gated state until Phil clears C5 (Gemini billing) or C6 (YouTube OAuth), or replies on an open decision issue, because every remaining open row in `BACKLOG-2026-09-07.md` sections 2-4 and every open GitHub issue is his to decide.
+
+Attached clean (real `git fetch --unshallow` from a shallow checkout, `checkout -B main origin/main`, ff-only onto `fce053374`, tree clean throughout, no concurrent push found on re-fetch). The 16:1x cycle's ledger-dating fix (3 cold-read entries re-dated after independent re-verification) was pushed and logged; nothing further needed there.
+
+**Re-verified rather than cited:** `preflight.py` run fresh in the background to the documented `gate_tests` sandbox hang: 0 FAIL through every gate reached, same standing limitation, killed there and reported unchecked past that point. `BACKLOG-2026-09-07.md` sections 2-4 re-derived directly from the file's own strikethrough markers: only C5 (Gemini billing) and C6 (YouTube OAuth) remain unstruck, both already Phil-gated. GitHub issues checked directly via the API, not cited: still 10 open, all `decision`/`blocked-on-art`, unchanged from the 16:1x cycle; issue #42's 4 comments read in full, all self-authored by prior agent cycles, none from Phil. 0 open PRs. Working tree was clean before this cycle touched anything, and no operator commit appeared on a second fetch taken after the checks above.
+
+No new defect found small enough to close in this slot: no stale claim, no red gate, no document drift turned up by the checks above.
+
+Pushed to main: this entry only. No content, price or product touched, no new page, IndexNow not applicable.
 
 Previous work finished. Attached clean (real `git fetch --unshallow` from a shallow checkout, `checkout -B main origin/main`, ff-only onto `e9c16831e`, tree clean throughout). The 16:0x cycle's two security fixes to `photos/server.py` (negative Content-Length guard, socket timeout) were pushed, gated, and logged in detail; `photos/` is not deployed, so nothing there needed a redeploy.
 
