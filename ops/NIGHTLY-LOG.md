@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (03:4x slot, 30-minute triage, previous work confirmed finished a further independent way including a fresh deploy-gap re-derivation, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: keep re-verifying the exhausted state rather than invent work, because BACKLOG-2026-09-07.md sections 2-6 still show only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both YES Phil, section 6's owner gates are all his to click, and all 10 open GitHub issues are unchanged since issue #42's own 2026-10-21 12:52:34Z self-authored comment, so there is nothing genuinely unblocked to hand over.
+
+Attached clean, but slowly: this checkout arrived shallow and detached with only 61 commits of local history against 71 on origin/main, so `git fetch --unshallow` had real work to do (several minutes, a 500MB+ index-pack); waited it out rather than forcing anything, then `checkout main`, ff-only merge, clean, fully unshallowed, 0 ahead/behind origin.
+
+Previous work (the 03:1x PM check-in) confirmed finished, not cited: re-pulled all 10 open GitHub issues fresh via the API, identical set and labels, newest activity still issue #42's 2026-10-21 12:52:34Z comment, no reply from Phil; 0 open PRs. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/277 (0 stale). Ran `preflight.py --fast` myself: 0 FAIL through every gate reached, hit the documented `gate_tests` headless-Chromium sandbox hang (confirmed genuinely stalled on a flat log line and near-zero CPU across two separate checks 15s apart, not slow); killed rather than waited out, reported unchecked past that point, not assumed passing. Cross-checked `checks.yml` on `main` instead of trusting the hang: latest run (`39708884088`, commit `00b4236e4`) completed/success; no newer run exists yet because no commit since then has touched anything `checks.yml` triggers on, consistent with nothing but log/dashboard churn landing since.
+
+**Re-derived BLOCKER-001's own deploy-gap figure directly, the recurring drift this log has caught and corrected on roughly half its recent entries, rather than assume it still holds:** `resolve_verdict_commit('c36cb2794e581473')` resolves to `086f6ba42`; `deploy_gap_material_commits('086f6ba42')` against real current HEAD returns the identical 8 commits (4 material: `f51eab183`, `87e60d953`, `3d84199d3`, `0e50c3f27`) already cited in `STATUS.md`'s 2026-10-19 21:4x entry, byte for byte. Unlike most recent cycles, this one found nothing to correct: no commit touching `site/` or `Dockerfile` has landed since that citation was written, which matches the three-days-flat GitHub issue state above.
+
+No new defect found small enough to close this slot beyond confirming the above. Regenerated the dashboard for timestamp currency.
+
+Not starting C5/C6 or re-litigating issue #42 myself, per standing PM practice and this run's own instruction to never pick an item waiting on Phil.
+
+Checked `ops/last-owner-notification.json` before considering a push: last sent 2026-10-19T07:05Z on this identical topic (issue #42, the 10 Phil-gated issues). No state change since (same 10 issues, same two YES-Phil backlog rows, same deploy-gap figure, no new Phil commit — his last remains `be92424a9`, 2026-10-14). No notification sent.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (03:1x slot, 30-minute triage, previous work confirmed finished a further independent way, nothing new unblocked, no notification)
 
 Previous work finished: attached clean, checked out a further 245 commits of history uneventfully. `preflight.py --fast` rerun in the background: 0 FAIL through every gate reached, a concurrent `preflight.py` (another cycle's own run) waited on and finished cleanly rather than colliding, hit the documented `gate_tests` headless-Chromium sandbox hang, killed there, reported unchecked past that point. GitHub's 10 open issues re-pulled fresh: identical set, all `decision`/`blocked-on-art`, none newly actionable. Checked `ops/last-owner-notification.json` before considering a push: last sent 2026-10-19T07:05Z on this same topic (issue #42, the cadence waste it names), its own rule needs a real state change since then, and there is none (no Phil reply, no gate cleared). No notification sent. Regenerated the dashboard (stale since 02:54). No small closing item found this slot beyond what the immediately prior cycle already did.
