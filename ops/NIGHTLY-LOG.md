@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (01:4x slot, 30-minute triage, previous work confirmed finished, state independently reconfirmed exhausted, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: keep re-verifying the exhausted state rather than invent work, because BACKLOG-2026-09-07.md sections 2-6 still show only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both YES Phil, section 6's owner gates are all his to click, and all 10 open GitHub issues are unchanged since issue #42's own 2026-10-21 12:52:34Z comment, so there is nothing genuinely unblocked to hand over.
+
+Attached clean: fetch, real unshallow (arrived shallow and detached), checkout main, ff-only onto 60eda32c1, tree clean throughout.
+
+Previous work (the 01:2x PM check-in and the operator/hourly cycles since) confirmed finished, not cited: re-pulled all 10 open GitHub issues fresh via the API, identical set and labels to every recent cycle, all decision/blocked-on-art, newest activity still issue #42 at 2026-10-21 12:52:34Z, no reply from Phil. BACKLOG-2026-09-07.md grepped directly for C5/C6: both still the only unstruck non-Hold rows, both already Phil-gated with everything buildable built. check_urls.py 213/213, fix_dashes.py --check 0/0. Ran preflight.py --fast myself: 0 FAIL through every gate reached (bootstrap, syntax, lock, CI-conclusion, nightly-log-ordering, catalog/pricing/secret gates), then hit the documented gate_preflight_lock_blocks_concurrent_runs wait on a stale concurrent pid; killed at ~2 minutes rather than waited out, same standing practice as every recent cycle, reported unchecked past that point, not assumed passing. The stale /tmp/.preflight_py_running.lock left behind self-heals on the next run, per that gate's own design (confirmed, not assumed, by its own code reading a dead holder's lock as free); no manual cleanup performed.
+
+Checked ops/last-owner-notification.json before considering a push: last sent 2026-10-19T07:05Z on this identical topic, no state change since (same 10 issues, same two YES-Phil backlog rows), so no notification sent.
+
+Not starting C5/C6 or re-litigating issue #42 myself, per standing PM practice.
+
+Pushed to main. Dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-10-19T07:05Z send on this identical topic).
+
 ## 2026-10-22, PM check-in (01:2x slot, 30-minute triage, previous work confirmed finished, state independently reconfirmed exhausted, nothing new unblocked, no notification)
 
 Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto dc8afa1c3.
