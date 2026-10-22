@@ -36,11 +36,19 @@ Done, free, no generation:
   Zone packs whose own picture was rejected now fall back to their room's
   picture instead of an unrelated one.
 
+* **Section 6.4, the rest of the shop's top rows.** The nine hand-written
+  products (book, Manual, bundle, both print packs, Home Quest, three
+  consulting offers) no longer share seven book figures with "Figure NN-NN"
+  tabs and unrelated headlines. Each shows the product itself
+  (`ops/build_product_images.py`): real pages and cards printed by a browser
+  from the files a buyer receives, the Home Quest's own first screen, and the
+  real audit sheet for Corporate. The two consults have nothing to show, so
+  they get a wordless crop of an existing illustration. The seven old files
+  stay, because they are still og:images elsewhere.
+
 Still open, in this plan's order: Wave 0.1 (vision audit of the 346 existing
 images, needs the review billing), the 7 rejected zone heroes and 89 card
-heroes (Wave 1), the ten hand-written products that still use book figures
-with baked figure tabs (shop.html top rows), and the print packs' zero
-images (6.2). The new SVG plans are the natural source for 6.2.
+heroes (Wave 1), and the print packs' zero images (6.2). The new SVG plans are the natural source for 6.2.
 
 **Deployment** is recorded in `STATUS.md` for this cycle.
 

@@ -139,8 +139,18 @@ def main() -> int:
     #    variants, so a variant missing from disk must fail by name even though
     #    the tile's own <img src> exists. One real file of each shape is moved
     #    aside and always restored.
-    for label, rel in (("top-level photo variant", os.path.join("assets", "img", "w", "standard-420.avif")),
+    #    The top-level case used to name standard-420.avif outright; it went
+    #    stale on 2026-10-22 when no product pointed at standard.jpg any more,
+    #    so the gate rightly ignored the file and the test reported a miss.
+    #    Like the zone case, it now picks a value data.js really uses.
+    tm = re.search(r'"img":\s*"([^"/]+)\.jpg"', real)
+    top = (os.path.join("assets", "img", "w", tm.group(1) + "-420.avif")
+           if tm else None)
+    for label, rel in (("top-level photo variant", top),
                        ("zone picture variant", None)):
+        if label.startswith("top") and rel is None:
+            fails.append("no bare top-level .jpg img value to test the photo variant case")
+            continue
         if rel is None:
             zm = re.search(r'"img":\s*"zones/([^"]+)-md\.jpg"', real)
             if not zm:

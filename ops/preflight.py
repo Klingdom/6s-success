@@ -1578,6 +1578,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     # a browser, so it cannot be byte-diffed here; what protects the shop is
     # that every picture and every srcset sibling a tile names exists.
     "build_pack_images.py": ("gate_product_images_exist",),
+    "build_product_images.py": ("gate_product_images_exist",),
 }
 
 
