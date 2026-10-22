@@ -614,7 +614,7 @@
     "check_nightly_log_fast.py": {
       "status": "clean",
       "date": "2026-10-22",
-      "note": "Re-read after Phil's own 2026-10-22 commit (ef733d176) added the empty/missing-log check this ledger entry predated. Verified directly against a scratch copy of the real file: emptying ops/NIGHTLY-LOG.md makes the script exit 1 with nightly-log-present, restoring it makes it exit 0 again; working tree confirmed clean after. Minor, non-blocking observation: an OSError on open() calls fail() once in the except block, then the following elif not text branch is also true and calls fail() a second time with a different message for the same root cause, a harmless double-report rather than a false pass or false fail, not worth a change on its own. No defect found."
+      "note": "PM check-in 2026-10-22, 22:4x slot: Phil's own 2026-10-22 commit ef733d176 added an empty/missing-log guard to the existing well-formedness check (fail on no dated '## 20..' entries, fail on empty file). Re-read the diff directly: correct, simple, matches its own commit message's fail-then-pass claim (empty exits 1, header-only exits 1, real file exits 0). Ran it fresh: exits 0, 'well formed'. No defect found."
     },
     "check_pack_pages.py": {
       "status": "clean",

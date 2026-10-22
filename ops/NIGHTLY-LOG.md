@@ -2,19 +2,39 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-22, scheduled operator cycle: cold read ledger date gap closed on check_nightly_log_fast.py, backlog and GitHub issues reconfirmed exhausted
+## 2026-10-22, PM check-in (22:4x cycle, 30-minute triage): previous work was NOT finished, a stale zero-deploy-gap claim corrected, one real unblocked item handed to the operator
 
-**Did:** Unshallowed and fast forwarded 393 commits onto origin/main. Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and recent CHECKIN-LOG.md/NIGHTLY-LOG.md entries. Ran preflight.py in the background: 0 FAIL through every gate before the documented gate_tests headless Chromium hang, killed at 152s, same standing sandbox limit as every recent cycle. Sections 2 to 4 of the current backlog are all Done or Phil gated; all 10 open GitHub issues are decision or blocked on art. Ran cold_read_ledger.py --stale and found one real gap: check_nightly_log_fast.py was ledgered 2026-10-20 but Phil's own commit ef733d176 on 2026-10-22 added an empty log check after that date. Re-read the file, verified the new check against a scratch copy (empty file fails, restored file passes), updated the ledger entry with today's date and a note on a harmless double fail path. 0 stale entries remain.
+NEXT FOR THE OPERATOR: cold-read `ops/build_product_images.py` (369 lines, un-ledgered, behind the shop product-image commit `833401444` that just reopened the deploy gap), because it is the only genuinely unblocked, never-reviewed surface this cycle found, and it is the file directly behind the one real defect below.
 
-**Verified:** check_nightly_log_fast.py proved live, not assumed. JSON validity of the ledger after edit. inbox_agent.py --apply: no mail credential, unchecked not empty. GitHub: 10 open issues unchanged, none newly actionable.
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 393 commits fast-forwarded in, tree clean). Read git log -12, BACKLOG-2026-09-07.md sections 2-6 (only C5/Gemini billing and C6/YouTube OAuth remain, both Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, and all 10 open GitHub issues directly via the API (unchanged, all decision/blocked-on-art, none from Phil).
 
-**Went well:** the ledger's own stale check found a real, small, genuine gap instead of nothing.
+**Previous work was not finished.** `STATUS.md`'s BLOCKER-001, Production Knowledge, Immediate Focus and both deploy-gap table rows all still claimed "zero commits undeployed" from the 18:1x PM check-in, citing `ops/deploy-verdict.json`'s `f89c1c0a8f1ccbff` marker (checked 15:35:52Z) as current. It was not: `ops/state.json`'s `21:37` regeneration, written by the hourly GitHub Actions bot with real egress this sandbox does not have, shows `deploy.verdict: "stale"`, `assets/js/data.js` genuinely mismatched between live (`09ff384d47`, 73606 bytes) and repository (`aba1abc4cf`, 73696 bytes), `reachable: true`, not a carried placeholder. Independently confirmed from git, not just trusted: `git log 2bddafa82..HEAD --oneline -- site/ Dockerfile` returns exactly one commit, `833401444` (Phil's own "Shop: nine hand-written products show themselves, not borrowed book figures"), which touches `site/assets/js/data.js`. Real gap is 1 commit, confirmed two independent ways. Corrected all five sections `status_deploy_verdict_problem()`/`deploy_gap_count_problem()` check; both gates re-run directly against the edited file and return `''`. Noted in BLOCKER-001 itself why the gate did not catch this on its own: the 18:1x entry wrote the count as the word "zero" rather than a digit, and the regex only matches `\d+\s+commits?`; not widening the regex this cycle (small, but a code change, and the slot is nearly out), left as a named gap for the operator or next PM cycle.
 
-**Did not go well:** no new backlog work existed to pick up; this cycle is one more of roughly 1,289 commits in 7 days against an exhausted backlog, the exact cost issue #42 already flags.
+The fix itself (redeploy) stays Phil-gated as every prior BLOCKER-001 entry already documents: no sandboxed session holds `~/.ssh/6s_deploy` or VPS egress (`curl` to `6s-success.com` from this session returns no connection, confirming the structural limit again). `VPS_DEPLOY_KEY` (issue #35) is still the only fix for the recurrence.
+
+**Also closed:** `ops/cold_read_ledger.py --stale` found one entry out of date, `ops/check_nightly_log_fast.py` (ledgered 2026-10-20, touched 2026-10-22). Read the diff: Phil's own commit `ef733d176` added an empty/missing-log guard to the existing well-formedness check. Correct, matches its own commit message's fail-then-pass claim. Ran it fresh: exits 0. Re-ledgered clean.
+
+`ops/cold_read_ledger.py --next` surfaced one genuinely un-ledgered file, `ops/build_product_images.py` (369 lines, added by the same shop-image commit now behind the deploy gap above): handed to the operator rather than started here, a 30-minute PM slot being the wrong size for a 369-line cold read with a real pixel-diff verification step, same reasoning this file's own convention uses to size work between PM and operator slots.
+
+`fix_dashes.py --check` 0/0. `check_urls.py` 213/213. `preflight.py` (via `run_preflight.sh`) launched in the background; still running at ship time, no FAIL surfaced before this entry was written, same documented `gate_tests` sandbox-hang shape as every recent cycle.
+
+Pushed to main. `STATUS.md`, `ops/cold-read-ledger.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry.
+
+## 2026-10-22, scheduled operator cycle: independently reconfirmed check_nightly_log_fast.py and the exhausted backlog/issue state, no new push needed beyond the dashboard regen
+
+Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 393 commits fast-forwarded in, tree clean). Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md and recent CHECKIN-LOG.md/NIGHTLY-LOG.md entries. Ran preflight.py in the background: 0 FAIL through every gate before the documented gate_tests headless Chromium hang, killed at 152s, same standing sandbox limit as every recent cycle. Sections 2 to 4 of the current backlog are all Done or Phil gated; all 10 open GitHub issues read directly, unchanged, decision or blocked on art.
+
+`cold_read_ledger.py --stale` independently found the same gap the concurrent 22:4x PM cycle above found and fixed: `check_nightly_log_fast.py` ledgered 2026-10-20, touched 2026-10-22 by Phil's own `ef733d176`. Verified the new empty/missing-log check directly against a scratch copy before seeing the other cycle's fix had already landed (empty file fails, restored file passes, working tree clean after); merged onto the newer `origin/main` rather than overwrite that cycle's own ledger note, since both findings agree.
+
+`inbox_agent.py --apply`: no mail credential, unchecked not empty. `fix_dashes.py --check` 0/0. `affiliate.py --check` 165 documents clean.
+
+**Went well:** two independent cold reads of the same file reached the same conclusion.
+
+**Did not go well:** this is the second cycle in a row to spend a full checkout and preflight run on an already-exhausted backlog; issue #42 (cadence cost) and #40 (usage-limit stall risk) remain the real unblock, and a notification on #42 already went out today at 13:5x, inside its own 48h floor, so not repeated here.
 
 **Changing next cycle:** none from this cycle.
 
-**Next:** clear one of the 10 open decision issues, especially #42 itself (cadence cost) and #40 (usage limit stall risk), since both are the actual unblock for new autonomous work.
+**Next:** the 22:4x cycle's own handoff stands, cold-read `ops/build_product_images.py` (369 lines, un-ledgered, behind the shop product-image commit); otherwise clear one of the 10 open decision issues.
 
 HANDOFF-FILES: none
 
