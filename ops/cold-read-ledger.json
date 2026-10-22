@@ -548,8 +548,8 @@
     },
     "build_zone_pages.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read the price/SKU logic in full (short_answer, _room_pack, _zone_pack, _catalog, _og_image, _zone_thumb, offer) out of 4120 lines, the highest-risk sections (money and generated links). Regenerated the entire site and diffed: git status fully clean, zero drift across all 220 site pages. Cross-checked _room_pack/_zone_pack's SKU reconstruction directly against ops/build_catalog.py's own SKU-generation code (lines 265-297): byte-for-byte identical truncation and hashing, confirmed by reading both, not assumed. PACK_BUY/PACK_PRICE/CONSULT_PRICE all read live from data.js, no hardcoded price or link found anywhere in the file. No defect found."
+      "date": "2026-10-22",
+      "note": "PM check-in 16:1x: cold_read_ledger.py --stale named this file (and two siblings below) as read but not re-dated after today's 08:37 image commit (2bddafa82, Phil + Opus 5.5). Diff re-read directly: adds ROOM_MAPS (ops/room-maps.json), preferred over the book's ROOM_DIAGRAMS in room_diagram(), and a per-source caption branch in diagram_html(). Gated by the new gate_room_maps_current (regenerates and diffs in memory, fail-proved per the commit message). Full preflight run twice by the 16:0x cycle, 0 FAIL both times through gate_tests. No defect found."
     },
     "canonical_links.py": {
       "status": "clean",
@@ -993,8 +993,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-21",
-      "note": "Cold-read the diff since the 2026-10-20 ledger entry (e9377b5a3, 2026-10-21 02:15Z): relocates the three NIGHTLY-LOG gates (gate_nightly_log_not_oversized, gate_nightly_log_ordering, gate_nightly_log_no_duplicate_entries) earlier in main(), ahead of gate_tests, with no logic change to the gates themselves. Matches commit message exactly, test_gate_nightly_log_ordering.py 8/8 per that commit. No defect."
+      "date": "2026-10-22",
+      "note": "PM check-in 16:1x: same stale-dating gap as the two siblings above, same commit (2bddafa82). Diff re-read directly: adds gate_room_maps_current (regenerates the 11 room maps in memory, fails on drift or a broken generator, never silently skips) and registers build_room_maps.py/build_pack_images.py in GENERATOR_PROTECTED_ELSEWHERE. New gate wired into main()'s run order correctly. No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1328,8 +1328,8 @@
     },
     "wire_generated_catalog.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (268 lines) and run directly: catalogue rebuilds to 130 entries (10 hand-written, 120 generated), every self-check passes (no SKU collisions, no duplicates, no subset priced at or above PACK-HOUSE, no lost buy links), data.js byte-identical after rewrite. 0 drift."
+      "date": "2026-10-22",
+      "note": "PM check-in 16:1x: same stale-dating gap as build_zone_pages.py above, same commit (2bddafa82). Diff re-read directly: adds _pack_image(room), preferring the room's own pack picture (ops/build_pack_images.py output) over ROOM_IMG's nearest-of-eleven book figure, falling back to the old behaviour when the file does not exist on disk (checkout has not built the packs). Guarded by os.path.exists before use. No defect found."
     },
     "wire_landmarks.py": {
       "status": "clean",
