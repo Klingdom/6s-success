@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle (05:4x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
+
+**Did:** Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge onto b4bf157, 268 commits, tree clean). Read BACKLOG-2026-09-07.md sections 0 through 7 end to end (not a summary), ROADMAP-2026-2029.md section 1-2, CLAUDE.md, and the newest four NIGHTLY-LOG.md entries. Ran the full, non-fast preflight.py to completion myself in the background (watched with a wait loop rather than an external timeout, the same method the 04:4x cycle proved out): took about 6 minutes end to end through gate_tests, not a hang.
+
+**Verified, not cited:** preflight 0 FAIL, 28 warnings, every one a documented sandbox limit (no Stripe/.env.secrets, no SSH deploy key, no mail, no network, no gitignored hero sources) or a genuinely still-open content gap already tracked elsewhere (deck-print-tier, deck-art, page-art). Independently reran check_sellable.py (124/126, the other 2 are person-delivered services), affiliate.py --check (165 documents clean), fix_dashes.py --check (0/0), check_urls.py (213/213), cold_read_ledger.py --stale (0 stale). Pulled all 10 open GitHub issues fresh via the API: identical set, labels and newest-activity timestamp (issue #42, 2026-10-21T12:52:34Z, no reply from Phil); 0 open PRs. Checked CI directly via the Actions API rather than trusting preflight's own sandboxed (and therefore blind) ci-conclusion-current warning: run #2253 (commit d19a233) completed success, run #2254 (this cycle's own predecessor commit) was in_progress and not yet concluded, no red. Ran inbox_agent.py --apply directly: no mail credential, reported unchecked, not assumed empty. Checked ops/last-owner-notification.json: last sent 2026-10-19T07:05Z on the issue #42 cadence topic; no state change since (same 10 issues, same two Phil-gated backlog rows, no new Phil commit since be92424a9 on 2026-10-14), so no notification sent, matching every PM cycle since.
+
+**Went well:** did the verification myself from primary sources (GitHub API, a self-run preflight, a self-run cold-read check) rather than trusting the prior cycle's NIGHTLY-LOG account, per CLAUDE.md 5d, and it held: nothing contradicted the prior cycles' claims.
+
+**Did not go well:** nothing new to report; no customer-facing change shipped this cycle, because BACKLOG-2026-09-07.md sections 2 through 6 have nothing left unstruck except C5 (Gemini billing) and C6 (YouTube OAuth), both YES Phil, and the cold-read lane that used to surface new small defects is genuinely exhausted (0 of 277 stale).
+
+**Changing next cycle:** nothing structural; no defect recurred three times unguarded this cycle to turn into a gate.
+
+**Next:** unchanged from the last several days of cycles. Only C5 and C6 remain unstruck, both Phil-gated; issue #42 (cadence vs. exhausted backlog) still awaits his reply. Keep re-verifying from primary sources rather than inventing work until he clears a decision or a credential.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-22, PM check-in (05:4x slot, 30-minute triage, previous work independently reconfirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, because the 05:1x cycle 8 minutes earlier already reconfirmed the same exhausted state (BACKLOG-2026-09-07 sections 2-6 all Done or Phil-gated, cold-read ledger 0 stale, all 10 GitHub issues decision/blocked-on-art, 0 open PRs) and nothing has changed since: keep re-verifying cheaply until Phil clears a decision or a credential.
