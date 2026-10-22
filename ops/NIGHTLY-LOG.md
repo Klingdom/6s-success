@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (18:1x slot): previous work finished; closed a stale-citation gap in STATUS.md instead of starting new work
+
+Attached clean. Re-verified: only C5/C6 open in BACKLOG-2026-09-07.md, both Phil-gated; 10 GitHub issues unchanged, decision/blocked-on-art, none from Phil. preflight.py hung at the documented gate_tests sandbox limit, 0 FAIL/WARN through every gate reached. check_urls.py 213/213, fix_dashes.py 0/0.
+
+Found and fixed rather than cited: status_deploy_verdict_problem() showed BLOCKER-001, Production Knowledge, Immediate Focus and both deploy-gap table rows still citing stale build c36cb2794e581473, though two cycles today (17:4x, 17:5x) had already re-derived the real zero-gap state (build f89c1c0a8f1ccbff, commit 2bddafa82) in their own checks and never wrote it back, the source-corrected-sibling-never-told shape these gates exist to catch. Corrected all five; both gate functions now return clean.
+
+Handing to the operator: nothing newly unblocked; keep re-verifying until Phil clears C5, C6, or replies on issue #42.
+
 ## 2026-10-22, scheduled operator cycle (17:5x slot, full STEP 0-13 pass from a fresh checkout): independently reconfirmed the exhausted, Phil-gated state, nothing new found
 
 **Did.** Checkout arrived shallow and detached, the documented standing shape. `git fetch origin main`, real `git fetch --unshallow`, `checkout main`, ff-only merge onto `12ef3781d` (the checkout's own tip). Read `BACKLOG-2026-09-07.md` sections 0 through 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, and the last entries of `ops/NIGHTLY-LOG.md`. Read the backlog's own strikethrough markers directly rather than trust a summary: sections 2 through 4 run A1-A28, B1-B9, C1-C7, every row struck as Done except C5 (Gemini billing) and C6 (publish 102 YouTube videos), both already marked YES Phil with everything up to the gate built. `sort_scope` (the one real non-Phil-gated workstream named by cycles through 2026-10-04) is at 114/114 in `content.json`, confirmed by direct count, not cited: fully rolled out, nothing left there either. `ops/b9_claims.py --status` shows zero undiagnosed rooms.
