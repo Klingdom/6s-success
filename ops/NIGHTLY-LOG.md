@@ -17221,3 +17221,22 @@ Checked ops/last-owner-notification.json before considering a push: last sent 13
 No new defect found, nothing to close. Regenerated the dashboard (no figures moved). Nothing handed to the operator beyond the standing owner gates.
 
 Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched.
+
+
+## 2026-10-22, scheduled operator cycle (21:0x, cold-read of the 5 new image/room-map files, one real fix)
+
+**Did.** Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only onto 63a3b765a). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, the last NIGHTLY-LOG.md entries, STATUS.md's latest entry, OWNER-ACTIONS.md's Open section. Confirmed independently, not cited: 10 open GitHub issues unchanged, all decision/blocked-on-art; preflight.py 0 FAIL through every gate to the documented gate_tests sandbox hang; no mail credential (inbox_agent.py unchecked); last-owner-notification.json 48h floor not reached, no push. Everything in sections 2-6 remained Done or Phil-gated, same as every recent cycle, until cold_read_ledger.py --next surfaced 5 genuinely un-ledgered files: today's image-cycle merge added ops/build_pack_images.py, ops/build_room_maps.py, ops/room_map_assemble.py, ops/room_map_draw.py and ops/room_map_layouts.py (1,839 lines), never cold-read.
+
+**Verified rather than skimmed.** Checked the one claim most likely to be wrong silently: that each of the 13 room-map plans numbers its zones to match the room page's own "Start here" zone. Compared all 13 against content.json's "Where to start" tips directly, including the three rooms the docstring names as the original bug (Workshop, Patio, Stair Landing): all 13 match. Checked zone name/order/count against content.json for all 13: exact match. Rendered all 13 SVGs through the real headless-Chromium pipeline and inspected every one: no overlap, nothing off-canvas, correct furniture, Pantry/Family Room correctly withheld from their own room pages (book photo wins). Found one real defect: build_pack_images.py's `cover()` function was dead code, never called anywhere (grep-confirmed). Removed it; reran with no --force, got the identical "made 0, already present 20, failed 0," no behavior change.
+
+**Verified after.** check_urls.py 213/213, audit_pages.py 0 duplicates, fix_dashes.py 0/0, affiliate.py --check clean. cold_read_ledger.py now 282/282, 0 stale.
+
+**Went well:** the un-ledgered check is still the one lane that finds real, if small, unreviewed surface after everything else reads exhausted.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** no unblocked backlog row remains; next genuine work is a Phil reply or a new merge creating fresh un-ledgered files.
+
+Pushed to main. ops/build_pack_images.py, ops/cold-read-ledger.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.

@@ -128,20 +128,6 @@ def letterbox(im):
     return out
 
 
-def cover(im):
-    """Centre-crop to 4:3, the way the tile itself would."""
-    target = W / H
-    if im.width / im.height > target:
-        nw = round(im.height * target)
-        x = (im.width - nw) // 2
-        im = im.crop((x, 0, x + nw, im.height))
-    else:
-        nh = round(im.width / target)
-        y = (im.height - nh) // 2
-        im = im.crop((0, y, im.width, y + nh))
-    return im.resize((W, H), Image.LANCZOS)
-
-
 def write(im, name):
     stem = name[:-4]
     im.save(os.path.join(IMG, name), "JPEG", quality=86, optimize=True,

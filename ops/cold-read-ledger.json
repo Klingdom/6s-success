@@ -376,6 +376,11 @@
       "date": "2026-10-18",
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. The one literal em-dash in the file is a search needle in its own self-check print statement (doc.count('—')), never written into the generated output."
     },
+    "build_pack_images.py": {
+      "status": "fixed",
+      "date": "2026-10-22",
+      "note": "Cold-read 2026-10-22, scheduled operator. Verified FIGURE table trims/patches against the room-maps.json plan rooms: all 20 content.json rooms covered exactly once (7 via FIGURE book figures, 13 via room-maps.json plans), no gap and no overlap. Found and fixed a real defect: cover() was dead code, defined but never called anywhere in this file or any other (grep confirmed), left over from an earlier design. Removed; reran with no --force and got the identical 'made 0, already present 20, failed 0' result, confirming no behavior change."
+    },
     "build_pantry_deck.py": {
       "status": "clean",
       "date": "2026-10-17",
@@ -465,6 +470,11 @@
       "status": "clean",
       "date": "2026-10-18",
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. One literal em-dash is a search needle in its own self-check print, not written into output."
+    },
+    "build_room_maps.py": {
+      "status": "clean",
+      "date": "2026-10-22",
+      "note": "Cold-read 2026-10-22, scheduled operator. Verified the fix this file claims: the start-here zone index for all 13 rooms matches each room page's own 'Where to start' tip text in content.json (checked directly, not assumed), including the three rooms the docstring names as the original bug (Workshop PPE station index 5, Patio surface-and-rail index 5, Stair Landing stair-and-floor-path index 2). Verified zone name/order/count against content.json for all 13 rooms, exact match. Rendered all 13 SVGs through the real headless Chromium pipeline and inspected each: no overlapping labels, no off-canvas elements, correct furniture per room, correct withheld rooms (Pantry/Family Room never shown on their own room page per build_zone_pages.py's figs-before-diagram rule, since both have book photos). No defect found in this file."
     },
     "build_sample_html.py": {
       "status": "clean",
@@ -1080,6 +1090,21 @@
       "status": "clean",
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:0x slot: ran live (python3.13, this sandbox's python3 lacks PIL), 41 source images processed, 316 variants already current, 0 new writes needed, index json byte-identical after rerun, no defect found"
+    },
+    "room_map_assemble.py": {
+      "status": "clean",
+      "date": "2026-10-22",
+      "note": "Cold-read 2026-10-22, scheduled operator. Verified the fix this file claims: the start-here zone index for all 13 rooms matches each room page's own 'Where to start' tip text in content.json (checked directly, not assumed), including the three rooms the docstring names as the original bug (Workshop PPE station index 5, Patio surface-and-rail index 5, Stair Landing stair-and-floor-path index 2). Verified zone name/order/count against content.json for all 13 rooms, exact match. Rendered all 13 SVGs through the real headless Chromium pipeline and inspected each: no overlapping labels, no off-canvas elements, correct furniture per room, correct withheld rooms (Pantry/Family Room never shown on their own room page per build_zone_pages.py's figs-before-diagram rule, since both have book photos). No defect found in this file."
+    },
+    "room_map_draw.py": {
+      "status": "clean",
+      "date": "2026-10-22",
+      "note": "Cold-read 2026-10-22, scheduled operator. Verified the fix this file claims: the start-here zone index for all 13 rooms matches each room page's own 'Where to start' tip text in content.json (checked directly, not assumed), including the three rooms the docstring names as the original bug (Workshop PPE station index 5, Patio surface-and-rail index 5, Stair Landing stair-and-floor-path index 2). Verified zone name/order/count against content.json for all 13 rooms, exact match. Rendered all 13 SVGs through the real headless Chromium pipeline and inspected each: no overlapping labels, no off-canvas elements, correct furniture per room, correct withheld rooms (Pantry/Family Room never shown on their own room page per build_zone_pages.py's figs-before-diagram rule, since both have book photos). No defect found in this file."
+    },
+    "room_map_layouts.py": {
+      "status": "clean",
+      "date": "2026-10-22",
+      "note": "Cold-read 2026-10-22, scheduled operator. Verified the fix this file claims: the start-here zone index for all 13 rooms matches each room page's own 'Where to start' tip text in content.json (checked directly, not assumed), including the three rooms the docstring names as the original bug (Workshop PPE station index 5, Patio surface-and-rail index 5, Stair Landing stair-and-floor-path index 2). Verified zone name/order/count against content.json for all 13 rooms, exact match. Rendered all 13 SVGs through the real headless Chromium pipeline and inspected each: no overlapping labels, no off-canvas elements, correct furniture per room, correct withheld rooms (Pantry/Family Room never shown on their own room page per build_zone_pages.py's figs-before-diagram rule, since both have book photos). No defect found in this file."
     },
     "root_causes.py": {
       "status": "clean",
