@@ -18344,6 +18344,15 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     second, the same order this function's own docstring already relies
     on for the parenthesised forms.
 
+    Found live again 2026-10-22, PM check-in (22:4x cycle): a correctly
+    zero gap was described in prose as "zero commits undeployed" rather
+    than a digit, so the regex (digits only) matched nothing and this gate
+    stayed silent through the whole reopen-and-close cycle that followed,
+    the same "phrasing drifted, gate went blind" shape as the two widenings
+    above, just for the word "zero" instead of a new punctuation style.
+    Widened to also match the bare word "zero" (case-insensitive) as the
+    count 0, alongside the existing digit match.
+
     Returns a problem string if the cited count and the real one disagree;
     '' if there is no BLOCKER-001 section, no build_id, the latest entry
     does not yet cite the current build_id (gate_status_deploy_verdict_
@@ -18364,11 +18373,13 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    matches = list(re.finditer(r"(\d+)\s+commits?\b", latest))
+    matches = list(re.finditer(r"(\d+|\bzero)\s+commits?\b", latest,
+                                re.IGNORECASE))
     if not matches:
         return ""
     last = matches[-1]
-    cited = int(last.group(1))
+    word = last.group(1)
+    cited = 0 if word.lower() == "zero" else int(word)
     if cited != real_count:
         return (
             "BLOCKER-001's latest entry cites a gap of %d commit(s) next "

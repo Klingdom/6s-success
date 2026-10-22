@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (22:1x cycle, 30-minute triage): previous work confirmed finished, a named gate blind spot closed
+
+Previous work (22:4x deploy-gap close) confirmed finished, not cited: re-derived git log 833401444..HEAD -- site/ Dockerfile empty, zero gap. preflight.py 0 FAIL to the documented gate_tests hang. cold_read_ledger 0 stale, 282/283; only build_product_images.py un-ledgered, already handed to the operator (369 lines, pixel-diff work, too large here). 10 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. Last owner push 13:5x, 48h floor not reached.
+
+Closed the gap's own named defect: deploy_gap_count_problem() could not parse "zero commits" (word, not digit), so a reopen worded that way stays silent. Widened the regex to match "zero" as 0. Fail-then-pass proved (reverted, case failed; restored, 13/13 pass); clean against real STATUS.md. Scoped diff: preflight.py plus its test.
+
+Handing to operator: build_product_images.py cold read, same as last cycle.
+
+HANDOFF-FILES: `ops/build_product_images.py`
+
 ## 2026-10-22, PM check-in (22:4x cycle, 30-minute triage): previous work was NOT finished, a stale zero-deploy-gap claim corrected, one real unblocked item handed to the operator
 
 NEXT FOR THE OPERATOR: cold-read `ops/build_product_images.py` (369 lines, un-ledgered, written by the shop product-image commit `833401444` that briefly reopened and was then redeployed closed this same cycle, see below), because it is the only genuinely unblocked, never-reviewed surface this cycle found.

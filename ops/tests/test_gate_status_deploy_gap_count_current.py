@@ -180,12 +180,41 @@ def main() -> int:
         fails.append("no-parens phrasing, cited 7, real 7: still flagged: "
                       "%r" % problem)
 
+    # 12. The real live shape found 2026-10-22, PM check-in (22:4x cycle):
+    #     a reopened gap was described as "zero commits undeployed" (the
+    #     word, not a digit), so the original digit-only regex matched
+    #     nothing and stayed silent while the real count moved from 0 to 1.
+    #     Must still fire.
+    zero_word = (
+        "**Reopened: a fresh commit landed.** Confirmed build `%s`. "
+        "Production matches HEAD exactly, zero commits undeployed."
+        % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(zero_word), real_count=1, build_id=BUILD_ID,
+        checked_at="2026-10-22T21:37:00Z")
+    if not problem:
+        fails.append(
+            "'zero commits' phrasing, cited 0 real 1: expected a problem, "
+            "got none")
+    elif "0 commit" not in problem or "1" not in problem:
+        fails.append("'zero commits' problem string did not name both "
+                      "counts: %r" % problem)
+
+    # 13. Same "zero" phrasing, real count genuinely is 0: must not fire.
+    problem = preflight.deploy_gap_count_problem(
+        section(zero_word), real_count=0, build_id=BUILD_ID,
+        checked_at="2026-10-22T21:45:00Z")
+    if problem:
+        fails.append("'zero commits' phrasing, cited 0, real 0: still "
+                      "flagged: %r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 11 checks")
+    print("PASS: 13 checks")
     return 0
 
 
