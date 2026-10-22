@@ -6539,3 +6539,14 @@ Commits in 24h: 190. Recorded as effort, not as a result.
 Commits in 24h: 189. Recorded as effort, not as a result.
 
 **Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-10-22 15:56
+
+**Moved**
+- avif: 935 to 975  (O1 arrivals, optimised images)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 192. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
