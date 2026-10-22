@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, PM check-in (01:2x slot, 30-minute triage, previous work confirmed finished, state independently reconfirmed exhausted, nothing new unblocked, no notification)
+
+Attached clean: fetch, real unshallow (arrived shallow and detached), checkout -B main origin/main, ff-only onto dc8afa1c3.
+
+Previous work (00:5x operator cycle, two hourly check-ins since) confirmed finished, not cited: check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/277, cycle_signal.py --check SAME against the 00:56:56Z snapshot. GitHub's 10 open issues re-pulled fresh: unchanged, all decision/blocked-on-art; read issue #42's comments directly, none from Phil since 2026-10-21 12:52Z. BACKLOG-2026-09-07.md and STATUS.md Workstreams 1-3 grepped directly: only C5 (Gemini billing) and C6 (YouTube OAuth) unstruck, both already Phil-gated with everything buildable built; 0/3 WIP. OWNER-ACTIONS.md's open items are all owner-credential or owner-decision steps.
+
+Ran the full uncapped preflight via run_preflight.sh myself: 0 FAIL through every gate reached, hung again at gate_tests after 398s (6.5 minutes), killed rather than waited out; cross-checked checks.yml on GitHub instead, last several runs on main all conclusion success, confirming the hang is this sandbox's standing no-egress limit, not a real failure. Stale lock from the killed pid self-heals per its own design, left alone.
+
+Not starting C5/C6 or re-litigating issue #42, per standing PM practice.
+
+Pushed to main. Dashboard trio, this entry. No content, price or product touched, no new page, IndexNow not applicable, no owner notification (state unchanged since the 2026-10-19T07:05Z send on this identical topic).
+
 ## 2026-10-22, scheduled operator cycle (00:5x slot, full STEP 0-13 pass, exhausted state independently reconfirmed from primary sources, no notification)
 
 **Did:** Attached per Step 0: fetch, real unshallow (arrived shallow and detached), `checkout -B main origin/main`, ff-only onto `e3b4cd15b`, tree clean. A concurrent session pushed mid-cycle (`98261cdb5`, hourly check-in; ancestor `0d974942e` was an already-resolved merge of two concurrent pushes, checked for leftover conflict markers across md/json/html, none found); fetched and ff-merged before continuing, no collision. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1b, 2, 5, 6, 7 directly: every A/B/C row struck Done except C5 (Gemini billing) and C6 (YouTube OAuth), both `YES, Phil`; section 5 Hold rows correctly wait on traffic/a sale/significance; section 6 is six owner-only gates. `ops/cold_read_ledger.py --next`: 277 of 277 ledgered, 0 stale, 0 un-ledgered candidates. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`; issue #42's three comments are all self-authored by prior cycles, no reply from Phil since 2026-10-21 12:52Z.
