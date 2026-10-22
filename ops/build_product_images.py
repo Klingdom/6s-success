@@ -112,6 +112,30 @@ def page(pdf, n, dpi=150, clip=None):
     return Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
 
 
+def find_page(pdf, needle):
+    """Index of the first page of pdf whose text contains needle.
+
+    A browser prints a flowing HTML document to PDF with whatever page
+    breaks its own text reflow lands on, which is not portable: the exact
+    byte of text that falls on page N depends on font metrics, and two
+    renders of the same source HTML on two machines (or even two runs on
+    this one, with different fonts installed) can paginate differently.
+    Reproduced directly: a hardcoded page 22 here once held the start of
+    the "Lower Cabinet and Cookware" zone on the machine that built the
+    shipped product-manual.jpg, and the unrelated tail end of a different
+    zone's cleaning table in this sandbox's own render of the identical
+    source file. Finding the page by its own heading text is immune to
+    that drift; a hardcoded index is not.
+    """
+    import pymupdf
+    doc = pymupdf.open(pdf)
+    for i in range(len(doc)):
+        if needle in doc[i].get_text():
+            return i
+    raise RuntimeError("no page in %s contains %r"
+                       % (os.path.basename(pdf), needle))
+
+
 def screenshot(url_path, width, height, exe, extra, tmp):
     shot = os.path.join(tmp, "shot.png")
     run_browser(["--force-device-scale-factor=2",
@@ -274,12 +298,15 @@ def build_all(exe, extra, tmp):
     def manual_spread():
         # A real zone page (Lower Cabinet and Cookware), its top two thirds
         # large enough that the zone name and the six passes read on a phone,
-        # over the page that lists the twenty rooms.
+        # over the page that lists the twenty rooms. Both found by their own
+        # text, not a hardcoded page number: see find_page()'s own docstring
+        # for why a fixed index silently drifts onto the wrong zone.
         m = pdf("man")
         c = table()
-        under = fit(page(m, 5), width=760)
+        under = fit(page(m, find_page(m, "Twenty rooms")), width=760)
         lay(c, under, W / 2 - 170, H / 2 + 40, angle=4)
-        top = fit(page(m, 22, dpi=220, clip=(0, 0, 504, 470)), width=980)
+        zone = find_page(m, "Lower Cabinet and Cookware Zone")
+        top = fit(page(m, zone, dpi=220, clip=(0, 0, 504, 470)), width=980)
         lay(c, top, W / 2 + 60, H / 2 + 20, angle=-1.5)
         return done(c)
 

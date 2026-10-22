@@ -2,6 +2,69 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-22, scheduled operator cycle: cold-read of ops/build_product_images.py found and fixed a real, reproduced-live pagination bug
+
+**Did:** Attached clean (fetch, unshallow, checkout -B main origin/main,
+ff-only, 407 commits fast-forwarded in, tree clean). Read BACKLOG-2026-09-07.md
+sections 0-7 (all Done/Closed/Hold/Phil-gated), ROADMAP-2026-2029.md and the
+last 4 log entries, which all pointed at the same handoff:
+`ops/cold_read_ledger.py --next` names `ops/build_product_images.py` (369
+lines, un-ledgered). Ran `preflight.py` in the background first; it took far
+longer than the usual documented stall point but was genuinely progressing
+(changing child processes throughout, not flat CPU), so let it run to
+completion instead of killing it: 0 FAIL on the clean tree, 29 standing
+warnings, all previously diagnosed sandbox-access limits (no Stripe
+credential, no network, no SSH key, no mail credential).
+
+Read `ops/build_product_images.py` in full. `manual_spread()` crops a
+hardcoded page (22) out of a fresh browser-print of the Manual's own HTML for
+`product-manual.jpg`'s sample. Reproduced live rather than suspected: printing
+the same committed source in this sandbox put the intended "Lower Cabinet and
+Cookware Zone" heading on page 20, not 22; page 22 held an unrelated zone's
+cleaning table with no zone name on it. Chromium's print-to-PDF pagination
+depends on font metrics and is not portable across machines, so a hardcoded
+index is fragile by construction. The shipped image (built elsewhere) was
+correct; nothing would have caught a future `--force` regeneration shipping
+the wrong zone, since the only gate tied to this generator checks file
+existence, not content.
+
+**Verified:** Fixed at the root with a new `find_page(pdf, needle)` that
+locates a page by its own heading text; `manual_spread()` now uses it for
+both crops it takes. Regenerated `product-manual.jpg` with the fix in this
+same sandbox: lands on page 20, shows the correct zone and all six passes.
+New `ops/tests/test_build_product_images.py`, fail-then-pass proved directly
+(`git stash` reproduces an `AttributeError` without the fix; clean with it
+restored). Regenerated the image's 420/840 jpg/webp variants and the two
+avif siblings `write()` correctly invalidated (`ops/build_avif.py --encode`).
+`gate_product_images_exist`, `check_urls.py` (213/213), `fix_dashes.py
+--check` (0/0), `affiliate.py --check` (165 documents) all clean after.
+Ledgered as fixed in `ops/cold-read-ledger.json`. No mail credential here
+(`inbox_agent.py --apply`: unchecked, not empty); 10 open GitHub issues read
+directly, unchanged, all `decision`/`blocked-on-art`, none from Phil, 0 PRs.
+No price or product touched; one existing product-tile image corrected in
+place.
+
+**Went well:** the designated handoff was unambiguous and the defect was
+real and reproducible in this exact environment, not merely theoretical,
+which made both the diagnosis and the fail-then-pass proof direct rather
+than simulated.
+
+**Did not go well:** `preflight.py` took over 15 minutes this run instead of
+the usual 150-280s before the documented `gate_tests` stall point; it was
+not actually stalled (checked process state twice, found real, changing
+child test processes both times), so this looks like ordinary load variance
+rather than a new defect, but it cost most of this cycle's wall clock
+confirming that rather than working.
+
+**Changing next cycle:** none; the gate_tests runtime is worth a glance if a
+future cycle sees it again, but one slow-not-stalled run is not yet a
+pattern.
+
+**Next:** push. Sections 2-6 of the backlog remain exhausted
+(Done/Closed/Hold/Phil-gated); the next genuinely unblocked lane is whatever
+`ops/cold_read_ledger.py --next` names once this ledger write lands, or one
+of the 10 open `decision` issues if a human weighs in on one.
+
 ## 2026-10-22, PM check-in (22:1x cycle, 30-minute triage): previous work confirmed finished, a named gate blind spot closed
 
 Previous work (22:4x deploy-gap close) confirmed finished, not cited: re-derived git log 833401444..HEAD -- site/ Dockerfile empty, zero gap. preflight.py 0 FAIL to the documented gate_tests hang. cold_read_ledger 0 stale, 282/283; only build_product_images.py un-ledgered, already handed to the operator (369 lines, pixel-diff work, too large here). 10 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. Last owner push 13:5x, 48h floor not reached.
