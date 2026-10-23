@@ -21079,6 +21079,54 @@ def gate_nightly_log_not_oversized() -> None:
                 len(text.encode("utf-8")), len(entries)))
 
 
+def gate_status_production_knowledge_not_oversized() -> None:
+    """STATUS.md's section 30 "Production Knowledge" chain must not carry
+    more than a small buffer of superseded entries.
+
+    Found 2026-10-23: the chain had grown to 37 entries back to 2026-09-24,
+    38KB of a 358KB file, each one explicitly superseding the entry right
+    below it ("the gap below has reopened", "same standing limit as every
+    entry below"), so only the newest line was ever current. STATUS.md's
+    own section 24 ("How to Update Status") already says to "move
+    historical detail to the appropriate long-term file" and "not allow
+    this document to become an archive"; nothing before this checked
+    whether that rule was being kept. ops/rotate_status_history.py now
+    moves everything but the newest entry into STATUS-ARCHIVE.md, verbatim;
+    this gate is what stops that from being a one-time cleanup that
+    quietly regrows, the same "source corrected, nothing keeps it that
+    way" shape BACKLOG-2026-09-07.md section 7 names as this repository's
+    dominant defect class, and the same move gate_nightly_log_not_oversized
+    just above already makes for ops/NIGHTLY-LOG.md.
+
+    A WARNING, not a FAIL: a long history wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. A
+    buffer of 3 lets a handoff add one or two follow-on entries within a
+    cycle without this firing immediately; it fires only once the chain
+    is genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_status_production_knowledge_
+    not_oversized.py builds a synthetic STATUS.md with the chain well past
+    the buffer and asserts this gate warns, then confirms a chain at or
+    under the buffer stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_history as rsh
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, lines, _ = rsh.split_chain(text)
+    except ValueError:
+        return
+    buffer = 3
+    if len(lines) > 1 + buffer:
+        warn("status-production-knowledge-not-oversized",
+             "STATUS.md's 'Production Knowledge' chain carries %d entries; "
+             "only the newest is current, the rest belong in STATUS-"
+             "ARCHIVE.md. Run `python ops/rotate_status_history.py "
+             "--apply`." % len(lines))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -29813,6 +29861,7 @@ def main() -> int:
     # moving them here means every `python ops/preflight.py` run catches the
     # defect before the hang, hook or no hook, sandbox or no sandbox.
     run_gate(gate_nightly_log_not_oversized)
+    run_gate(gate_status_production_knowledge_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: STATUS.md's own archive rule finally enforced for the Production Knowledge chain
+
+**Did:** Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only, 439 commits). Sections 2-6 and all 10 GitHub issues confirmed exhausted/Phil-gated directly, not cited (deploy gap re-derived: 0 material commits past `727a2154d`; issues unchanged, all `decision`/`blocked-on-art`). The prior cycle's own handoff (cold-read `ops/bluesky_drafts.py`, `ops/social_drafts.py` for the missing-link bug) checked out clean: both already append their link correctly, ledgered since 2026-10-11, the handoff was stale from the start. Cold-read `STATUS.md` instead: section 30's "Production Knowledge" chain had grown to 37 superseding paragraphs, 38KB, back to 2026-09-24, violating the file's own section 24 rule ("do not allow this document to become an archive") that nothing had ever enforced.
+
+**Fixed.** New `ops/rotate_status_history.py` (same shape as `ops/rotate_nightly_log.py`): keeps the newest entry live, moves the rest into `STATUS-ARCHIVE.md` verbatim. Applied once: 36 entries moved, STATUS.md now 1 live entry (was 37).
+
+**Verified:** `ops/tests/test_rotate_status_history.py` and `ops/tests/test_gate_status_production_knowledge_not_oversized.py` (new, both pass). Ran the new gate against the real file before (warned, 37) and after (silent) rotation. Full `preflight.py`: 0 FAIL, 28 warnings, all previously-diagnosed sandbox limits. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean.
+
+**Went well:** turned a rule the file already stated but nobody enforced into a gate, matching the NIGHTLY-LOG precedent exactly.
+
+**Did not go well:** `gate_tests` took ~10 minutes this cycle (headless Chromium), still the long pole.
+
+**Changing next cycle:** none.
+
+**Next:** every epic's top item remains Phil-gated. No new unblocked work found beyond this fix.
+
+HANDOFF-FILES: none
+
 ## 2026-10-23, PM check-in (02:2x slot, 30-minute triage): previous work confirmed finished a fourth way, one stale ledger entry closed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked. The backlog (`BACKLOG-2026-09-07.md` sections 2-4: every item struck through except C5/Gemini billing and C6/YouTube OAuth, both Phil-gated), the cold-read ledger, and all 10 open GitHub issues (`decision`/`blocked-on-art`, none from Phil) remain in the exact exhausted state issue #42 already tracks as a decision for him.
