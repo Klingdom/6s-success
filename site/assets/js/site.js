@@ -60,7 +60,12 @@
   window.renderProduct = function (p) {
     var priceHtml = (p.price === 0 && p.href)
       ? '<span class="price">Free</span>'
-      : '<span class="price">' + money(p.price) + (p.variant === "Pro (annual)" ? '<small>/yr</small>' : '') + '</span>';
+      : '<span class="price">' + money(p.price) +
+        /* "$19" alone is ambiguous to a buyer in Australia, Canada or New
+           Zealand, whose own currencies are also written "$". Every priced
+           item is charged in US dollars, so say so on the tag itself. */
+        ((typeof p.price === "number" && p.price > 0) ? '<small> USD</small>' : '') +
+        (p.variant === "Pro (annual)" ? '<small>/yr</small>' : '') + '</span>';
     /* available: false means no supplier, no stock, no platform, or no build behind
        the listing yet. Selling it would be taking money, or at least an order
        request, for something that does not exist. Route to the same interest
