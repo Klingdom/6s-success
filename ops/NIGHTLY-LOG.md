@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle (15:5x slot): full independent re-verification of "exhausted," not a citation of it; a stale preflight-lock pid cleared
+
+**Did:** Attached clean per STEP 0 (fetch, real unshallow, `checkout main`, ff-only onto `b4eb185b5`, 20 commits ahead of the stale checkout, tree clean throughout; no new commits landed during this cycle). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 directly (not the summary in the log), `ROADMAP-2026-2029.md`'s theory of the business, `CLAUDE.md`, and the real head of `ops/NIGHTLY-LOG.md` (newest-first, confirmed again rather than assumed).
+
+Rather than cite today's many prior cycles' own "genuinely exhausted" conclusion, re-derived it independently: `BACKLOG-2026-09-07.md` sections 2 through 4 (micro zones/app, decks, images/video) grepped directly for any non-struck row, found only C5 (Gemini billing) and C6 (YouTube OAuth), both explicitly Phil-gated; section 5 (Hold) and section 6 (owner gates) read in full, nothing there is unblocked either. All 10 open GitHub issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none newly actionable, matching issue #42's own standing analysis almost exactly, which is itself the subject of #42. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. Checked the cold-read ledger's own completeness claim directly rather than trust it: cross-referenced all 273 non-test Python files in the repository against `ops/cold-read-ledger.json`'s 291 entries, 0 missing. Spot-checked `ops/keyword-demand.json`'s 166 remaining `gap` rows for a real content opportunity: the cluster is long-tail noise outside this product's domain (cribbage tournaments, PC game organization, gardening, construction), not a new SEO lane; the genuine clusters found earlier this month (complaint, small space, cheap/budget/DIY) are already covered.
+
+**Found and fixed, a process gap rather than a code one:** this cycle's own `preflight.py` run hung at the documented `gate_tests` sandbox limit, same as every recent cycle, but the orphaned process (pid 1082) kept running after its shell wrapper was killed and then blocked two subsequent attempts on `gate_preflight_lock_blocks_concurrent_runs` for over five minutes, the exact "recycled pid" shape `BACKLOG-2026-09-07.md` section 25 already named and fixed once before. Confirmed it was genuinely hung, not merely slow, by rechecking elapsed time and CPU% twice (316s elapsed, CPU share falling); killed it directly (`kill -9`) rather than waiting indefinitely. Output captured before the hang: 0 FAIL, 0 WARN through all ~95 gates reached, grepped for `fail|warn|error` directly rather than eyeballed. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0 after the kill, standing in for the full run per the documented workaround.
+
+**Went well:** verifying every "exhausted" claim from scratch, rather than trusting the log's own repeated word, found nothing the prior cycles got wrong; the backlog and GitHub state really are exhausted of non-Phil-gated work right now.
+
+**Did not go well:** lost real cycle time to the same stale-pid lock contention section 25 already fixed once; worth a closer look at why it recurred (whether the fix only covers the lock file itself and not an orphan surviving its parent shell being killed).
+
+**Changing next cycle:** none; `ops/last-owner-notification.json` correctly withheld a repeat push (last sent 2026-10-22T13:5x, ~26h old, inside the 48h window, state unchanged), so none sent.
+
+**Next:** nothing newly unblocked. The standing state holds: all five epics ahead of operational honesty dead-end at a Phil decision or account action; issue #42 itself asks whether this exact re-verification cadence is still worth running, and remains unanswered.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (15:1x slot, 30-minute triage): previous work confirmed finished, two un-ledgered files cold-read and closed
 
 Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only onto `761825691`, tree clean). Previous work confirmed finished: CI green on the latest code-bearing push (run 2307), `deploy_gap_material_commits` re-derived directly against the live verdict, 0 material commits outstanding, `cold_read_ledger.py --stale` 0/289. All 10 GitHub issues re-pulled fresh: unchanged, `decision`/`blocked-on-art`, matching issue #42; no Phil reply. `preflight.py` hung at the documented `gate_tests` sandbox limit again, 0 FAIL before it.
