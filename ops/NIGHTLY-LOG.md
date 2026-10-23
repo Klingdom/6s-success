@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: full re-verification from a fresh checkout, state independently reconfirmed exhausted, no new push
+
+Did: fetched and fast-forwarded cleanly onto origin/main (86290a43c), tree clean throughout. Read GOALS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md sections 0, 1b, 2 to 7 and its three most recent closed sections (27 to 29), ROADMAP-2026-2029.md, and STATUS.md's Active Workstreams. Ran a fresh `ops/preflight.py` in the background rather than foreground so a hang could be confirmed rather than guessed: watched it reach `gate_tests` with CPU flat and elapsed time climbing past three minutes, then killed it, same documented headless-Chromium sandbox hang every recent cycle hits. Did not independently check anything past that point and am not claiming I did.
+
+Verified, not trusted: `preflight.py` ran 88 gates with 0 FAIL and 0 WARN before the hang. `ops/cold_read_ledger.py --stale` read 0 of 287 stale; `--next 1` returned no un-ledgered candidates, so the lane is genuinely exhausted, not merely reported so. Pulled all 10 open GitHub issues fresh: unchanged, all `decision`/`blocked-on-art`, matching issue #42's own analysis. Checked GitHub Actions directly rather than trust the last log entry's claim: the most recent `checks.yml` failure on main (`fffff2792`, a merge conflict leaving a duplicate NIGHTLY-LOG entry) is real, but its fix (`303e1a00c`) is confirmed an ancestor of current HEAD by `git merge-base --is-ancestor`, and the last run that could trigger on real content (`6b7838a8d`) is green. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+Went well: running preflight to a background log and polling it, instead of a foreground timeout, let the hang be confirmed by CPU/elapsed evidence rather than guessed from a truncated pipe.
+
+Did not go well: this sandbox still cannot read Stripe, Umami, or mail, so revenue, traffic, and the inbox are all carried-forward or explicitly unchecked rather than freshly read; nothing new to execute follows from any of them this cycle.
+
+Changing next cycle: none. Issue #42 already has the two live options in front of Phil; repeating the exhaustion finding again without new evidence is the cadence waste it names.
+
+Next: whichever OWNER-ACTIONS.md "Start here" item Phil clears first turns this state over (YouTube OAuth, Search Console sitemap/report confirmation, Gemini billing, KDP/Etsy accounts). Nothing else is genuinely unblocked this cycle.
+
+Pushed to main: `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-23, PM check-in (07:1x slot, 30-minute triage): previous work was NOT finished, checks.yml was red on main, closed
 
 Not finished: checks.yml on main (fffff2792, prior merge) had conclusion FAILURE, found by checking Actions directly, not the last entry's "pushed" claim. Preflight failed `gate_nightly_log_no_duplicate_entries`: that merge kept two byte-identical "06:4x slot" entries. Removed one; re-ran the gate and its test (6/6). Fresh `preflight.py`: 0 FAIL to the documented `gate_tests` hang. `check_urls.py` 213/213, `fix_dashes.py` 0/0. GitHub: 10 issues unchanged, all decision/blocked-on-art. No push sent (48h cooldown). Dashboard regenerated, pushed.
