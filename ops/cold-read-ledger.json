@@ -1126,6 +1126,11 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:2x slot: ran self-check live (17 causes, 0 dupes, all six_s values valid), verified all 16 referenced article slugs resolve to real committed files, no defect found"
     },
+    "rotate_checkin_log.py": {
+      "status": "fixed",
+      "date": "2026-10-23",
+      "note": "New file, built this cycle to fix CHECKIN-LOG.md's own unrotated growth; fail-then-pass proved with ops/tests/test_rotate_checkin_log.py and ops/tests/test_gate_checkin_log_not_oversized.py"
+    },
     "rotate_nightly_log.py": {
       "status": "fixed",
       "date": "2026-10-15",

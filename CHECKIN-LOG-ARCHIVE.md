@@ -1,0 +1,1208 @@
+# Hourly check-in log archive
+
+Entries older than ops/rotate_checkin_log.py's retention window, moved here verbatim and in their original (oldest-first) order by that script. Never hand-edited. The live entries and the reasoning for this split are in CHECKIN-LOG.md.
+
+## 2026-09-02 14:53
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 41. Recorded as effort, not as a result.
+
+**Next:** Publish. 228 videos and 114 caption files exist and the channel holds 0. Nothing downstream of arrivals matters until this moves.
+
+## 2026-09-02 15:02
+
+**Moved**
+- youtube_published: 0 to 1  (O1 arrivals, videos a stranger can actually find)
+
+Commits in 24h: 44. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-02 21:49
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 44. Recorded as effort, not as a result.
+
+**Next:** Last confirmed YouTube count was 1 as of 2026-09-02 15:02; this run could not reach YouTube to recheck. Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-02 21:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 43. Recorded as effort, not as a result.
+
+**Next:** Last confirmed YouTube count was 1 as of 2026-09-02 15:02; this run could not reach YouTube to recheck. Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-03 11:47
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 41. Recorded as effort, not as a result.
+
+**Next:** Last confirmed YouTube count was 1 as of 2026-09-02 15:02; this run could not reach YouTube to recheck. Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-03 18:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 35. Recorded as effort, not as a result.
+
+**Next:** Last confirmed YouTube count was 1 as of 2026-09-02 15:02; this run could not reach YouTube to recheck. Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-03 21:50
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 34. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 00:12
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 34. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-03 19:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 37. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 04:47
+
+**Moved**
+- videos_vertical: 114 to 0  (O1 arrivals, vertical videos built)
+- videos_wide: 114 to 0  (O1 arrivals, 16:9 videos built)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 48. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 09:47
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 59. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 14:26
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 61. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 18:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 73. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 21:36
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 74. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 00:13
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 75. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 04:42
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 66. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 09:12
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 57. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 12:51
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 57. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 16:12
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 64. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 18:26
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 51. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-05 21:24
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 51. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 00:02
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 50. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 04:51
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 45. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 09:32
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 45. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 13:44
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 46. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 17:10
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 43. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 19:19
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 48. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-06 21:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 53. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 00:05
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 57. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 04:58
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 58. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 10:31
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 56. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 16:34
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 53. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 20:40
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 73. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-07 23:37
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 78. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-08 04:55
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 106. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-08 09:53
+
+**Moved**
+- avif: 896 to 887  (O1 arrivals, optimised images)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 115. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-08 14:42
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 126. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-08 18:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 117. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-08 21:57
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 108. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 00:24
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 98. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 05:00
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 83. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 09:57
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 83. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 14:42
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 75. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 18:46
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 66. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-09 21:47
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 85. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 00:21
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 95. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 05:00
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 87. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 09:53
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 80. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 14:32
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 82. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 18:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 104. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-10 21:44
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 105. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 00:17
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 107. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 04:54
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 153. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 09:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 175. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 14:32
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 194. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 18:49
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 192. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-11 21:48
+
+**Moved**
+- avif: 887 to 884  (O1 arrivals, optimised images)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 191. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 00:24
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 191. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 05:58
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 183. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 10:59
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 181. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 14:15
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 175. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 17:18
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 169. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 19:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 167. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-12 22:26
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 154. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 01:12
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 150. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 06:21
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 144. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 12:11
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 150. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 16:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 182. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 19:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 190. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-13 22:31
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 193. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-14 01:16
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 190. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-14 06:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 181. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-14 14:17
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 164. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-14 19:30
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 158. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-14 23:14
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 161. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-15 01:37
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 177. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-15 07:55
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 196. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-15 13:43
+
+**Moved**
+- avif: 884 to 920  (O1 arrivals, optimised images)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 203. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-15 18:19
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 193. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-15 21:33
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 201. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 00:33
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 196. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 06:13
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 173. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 11:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 174. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 17:10
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 171. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 20:17
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 172. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-16 23:04
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 168. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-17 01:34
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 175. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-17 07:51
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 169. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-17 13:38
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 175. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-17 18:23
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 175. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-17 21:37
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 171. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 00:31
+
+**Moved**
+- avif: 920 to 935  (O1 arrivals, optimised images)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 184. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 06:05
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 219. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 11:31
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 210. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 16:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 210. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 19:47
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 221. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-18 22:42
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 213. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 01:19
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 186. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 06:04
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 156. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 11:15
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 157. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 14:33
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 154. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 18:09
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 128. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 20:52
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 122. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-19 23:16
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 123. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 01:20
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 129. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 06:31
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 136. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 12:32
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 137. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 16:54
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 157. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 19:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 162. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-20 22:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 166. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-21 01:17
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 164. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-21 06:35
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 167. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-21 14:23
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 162. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-21 19:40
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 169. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-21 23:25
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 166. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-22 05:12
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 170. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-22 10:08
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 176. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-22 15:04
+
+**Moved**
+- products_live: 159 to 138  (O3 purchase, products live on the site)
+
+Commits in 24h: 181. Recorded as effort, not as a result.
+
+**Next:** Production is behind the repository. Deploy.
+
+## 2026-09-22 19:01
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 163. Recorded as effort, not as a result.
+
+**Next:** Production is behind the repository. Deploy.
+
+## 2026-09-22 22:20
+
+**Nothing measurable moved since the last check-in.**
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 165. Recorded as effort, not as a result.
+
+**Next:** Production is behind the repository. Deploy.
+

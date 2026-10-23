@@ -21348,6 +21348,58 @@ def gate_status_immediate_focus_not_oversized() -> None:
              % len(entries))
 
 
+def gate_checkin_log_not_oversized() -> None:
+    """CHECKIN-LOG.md must not be carrying more than a generous buffer
+    past ops/rotate_checkin_log.py's own retention window.
+
+    Found 2026-10-23, the same cycle that found the STATUS.md and
+    ops/NIGHTLY-LOG.md growth defects above: CHECKIN-LOG.md is written
+    append-only, oldest first, by ops/checkin.py, once an hour, and
+    nothing had ever rotated it either, the identical shape and
+    trajectory ops/NIGHTLY-LOG.md was in before its own fix shipped,
+    just earlier in its growth (288KB/673 entries back to 2026-09-02,
+    not yet the 8.1MB that file reached). ops/rotate_checkin_log.py now
+    moves old entries into CHECKIN-LOG-ARCHIVE.md, verbatim; this gate
+    is what stops that from being a one-time cleanup that quietly
+    regrows back to the same cost, the same "source corrected, nothing
+    keeps it that way" shape BACKLOG-2026-09-07.md section 7 names as
+    this repository's dominant defect class.
+
+    A WARNING, not a FAIL: a long log wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from entries drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_checkin_log_not_oversized.py
+    builds a synthetic log with an entry well past the buffered window
+    and asserts this gate warns, then confirms a log with nothing past
+    the window stays silent.
+    """
+    path = os.path.join(ROOT, "CHECKIN-LOG.md")
+    if not os.path.exists(path):
+        return
+    import rotate_checkin_log as rcl
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        header, entries = rcl.split_header_and_entries(
+            text, rcl.HEADER_FIRST_LINE, rcl.HEADER_THIRD_PREFIX)
+    except ValueError:
+        return
+    buffered_days = rcl.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    dates = rcl.effective_dates(entries)
+    overdue = sum(1 for d in dates if d is not None and d < cutoff)
+    if overdue:
+        warn("checkin-log-not-oversized",
+             "CHECKIN-LOG.md carries %d entries older than %s (the %d-day "
+             "retention window plus a 7-day buffer), %d bytes total "
+             "across %d entries. Run `python ops/rotate_checkin_log.py "
+             "--apply`." % (overdue, cutoff.isoformat(),
+                             rcl.DEFAULT_RETENTION_DAYS,
+                             len(text.encode("utf-8")), len(entries)))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30084,6 +30136,7 @@ def main() -> int:
     run_gate(gate_nightly_log_not_oversized)
     run_gate(gate_status_production_knowledge_not_oversized)
     run_gate(gate_status_immediate_focus_not_oversized)
+    run_gate(gate_checkin_log_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 
