@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: BACKLOG-2026-09-07.md's own "Done this week" table had the identical unbounded-growth defect, section 32
+
+**Did:** Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `a3c7fd370`, tree clean). Sections 0-6 and all open backlog rows exhausted/Phil-gated again; all 10 GitHub issues re-confirmed `decision`/`blocked-on-art` via the API; `cold_read_ledger.py --next` 289/289 ledgered, 0 stale, 0 un-ledgered; `inbox_agent.py --apply` confirmed no mail credential, same standing limit.
+
+Picked up the designated next cold-read: section 30/31's own "Last measured/List reviewed" handoff named OWNER-ACTIONS.md as the remaining unbounded-growth candidate, but this file (BACKLOG-2026-09-07.md, read fresh every cycle as "the CURRENT queue") had the same defect and nobody had checked it. Its own "## 1. Done this week, for the record" table was 282KB across 48 rows back to 2026-09-07, over half the file's 568KB, append-only, never rotated. Built `ops/rotate_backlog.py` (modelled on `ops/rotate_nightly_log.py`'s date-cutoff shape, adapted for table rows) and a new `gate_backlog_done_table_not_oversized` in `preflight.py`, same WARNING/retention+buffer convention as its NIGHTLY-LOG/STATUS/CHECKIN-LOG/OWNER-ACTIONS siblings.
+
+While building it, found 14 of the 48 rows had degraded to bare paragraphs missing the table's leading/trailing pipes, breaking table rendering; `normalize_row()` fixes this as a side effect for every row it touches. Also found and deliberately left alone: one pre-existing row has two unrelated completed items merged onto a single physical line with no newline between them, the second item's own opening clause apparently lost. Flagged in section 32 rather than guessed at: the row's governing date keeps it live either way, so nothing is lost by leaving the two halves joined, and splitting it would mean inventing text that may no longer exist.
+
+**Verified:** `ops/tests/test_rotate_backlog.py` (11/11) and `ops/tests/test_gate_backlog_done_table_not_oversized.py` (5/5), both fail-then-pass proved against synthetic tables before touching the real file. `--check` (DUE, 45/48 rows) then `--apply` then `--check` again (CLEAN, 3 rows). Diffed the real file before/after: everything outside the table byte-identical; every archived row's content confirmed present in the new archive (0 missing); re-running rotation on its own output is a no-op. `check_urls.py` 213/213, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, all clean after. Full `preflight.py` run in the background including both new gates: 0 FAIL through every gate reached before the documented `gate_tests` headless-Chromium sandbox hang; killed there, unchecked past that point, not assumed passing.
+
+**Went well:** reusing `ops/rotate_nightly_log.py`'s exact shape made this a mechanical port rather than a new design.
+
+**Did not go well:** the pre-existing merged-row defect found while verifying is a real, if minor, data-quality gap; flagged rather than fixed, since fixing it would mean guessing at lost text.
+
+**Changing next cycle:** none.
+
+**Next:** sections 2-4's A/B/C tables (77-80KB each) mix open and closed rows and are not safe for this same blunt tool; sections 8-31 are individually small; OWNER-ACTIONS.md's "Last measured/List reviewed" paragraphs are still open too (section 31's own deferral). Any is a reasonable next pick; none is urgent at today's size.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/rotate_backlog.py`, `ops/preflight.py`, `ops/tests/test_rotate_backlog.py`, `ops/tests/test_gate_backlog_done_table_not_oversized.py`, dashboard files, this entry. No price, product or served page touched.
+
 ## PM check-in (12:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, state remains genuinely exhausted
 
 Attached clean per Step 0: fetch, real unshallow confirmed via `git rev-parse --is-shallow-repository`, `checkout main` onto an already-synced `origin/main`, ff-only trivial, tree clean throughout.

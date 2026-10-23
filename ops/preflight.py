@@ -21446,6 +21446,60 @@ def gate_owner_actions_history_not_oversized() -> None:
              "ops/rotate_owner_actions.py --apply`." % (size, limit))
 
 
+def gate_backlog_done_table_not_oversized() -> None:
+    """BACKLOG-2026-09-07.md's "Done this week, for the record" table
+    must not be carrying more than a generous buffer past ops/rotate_
+    backlog.py's own retention window.
+
+    Found 2026-10-23, the designated next cold-read left by that day's
+    ops/rotate_owner_actions.py fix: the live table had grown to 282KB
+    across 48 rows back to 2026-09-07, over half of the whole file's
+    568KB, never rotated, the identical "source corrected, nothing keeps
+    it that way" shape BACKLOG-2026-09-07.md section 7 itself names as
+    this repository's dominant defect class, and the same one its own
+    section 10 already named for ops/NIGHTLY-LOG.md. STEP 1 of the
+    operating prompt reads this file as "the CURRENT queue... your work
+    list" every single cycle, so every cycle was paying to load a month
+    of closed rows to find the handful still open elsewhere in the file.
+    ops/rotate_backlog.py now moves old rows into BACKLOG-2026-09-07-
+    ARCHIVE.md, verbatim; this gate is what stops that from being a
+    one-time cleanup that quietly regrows, the same role its NIGHTLY-LOG/
+    STATUS/CHECKIN-LOG/OWNER-ACTIONS siblings above already play.
+
+    A WARNING, not a FAIL: an oversized table wastes every later cycle's
+    reading time, it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from a row drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_backlog_done_table_not_
+    oversized.py builds a synthetic table with a row well past the
+    buffered window and asserts this gate warns, then confirms a table
+    with nothing past the window stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog as rb
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        body_start, body_end = rb.locate_section(text)
+    except ValueError:
+        return
+    rows = rb.parse_rows(text[body_start:body_end])
+    buffered_days = rb.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    overdue = [r for r in rows if (d := rb.row_date(r)) is not None and d < cutoff]
+    if overdue:
+        warn("backlog-done-table-not-oversized",
+             "BACKLOG-2026-09-07.md's 'Done this week' table carries %d "
+             "row(s) older than %s (the %d-day retention window plus a "
+             "7-day buffer), %d rows total. Run `python ops/rotate_"
+             "backlog.py --apply` to move them into BACKLOG-2026-09-07-"
+             "ARCHIVE.md." % (len(overdue), cutoff.isoformat(),
+                               rb.DEFAULT_RETENTION_DAYS, len(rows)))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30184,6 +30238,7 @@ def main() -> int:
     run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_checkin_log_not_oversized)
     run_gate(gate_owner_actions_history_not_oversized)
+    run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 
