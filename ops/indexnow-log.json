@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-02T13:05:28Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-02T13:19:11Z",
    "mode": "changed",
    "offered": 1,
@@ -635,6 +628,13 @@
    "offered": 212,
    "accepted": 212,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-23T17:30:50Z",
+   "mode": "changed",
+   "offered": 4,
+   "accepted": 4,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -696,7 +696,7 @@
   "https://6s-success.com/rooms/garage": "e49d4cea3639d7ad",
   "https://6s-success.com/rooms/guest-bathroom": "d077b0dcefad27ec",
   "https://6s-success.com/rooms/guest-bedroom": "41f93cda090fe29e",
-  "https://6s-success.com/rooms/hall-closet": "b971eea8719d1d0b",
+  "https://6s-success.com/rooms/hall-closet": "e6b0e437136e0205",
   "https://6s-success.com/rooms/home-office": "8093adc42f221b9d",
   "https://6s-success.com/rooms/kids-bedroom": "11fbcd38d467db5f",
   "https://6s-success.com/rooms/kitchen": "7a4c0446aa5ea2e3",
@@ -716,7 +716,7 @@
   "https://6s-success.com/zones/dining-room-the-sideboard-storage": "71b1cc21701df9e2",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "c6146a507489cbd6",
   "https://6s-success.com/zones/entryway-the-bench-or-console": "97040b074af2c590",
-  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "58f30e6c8857e560",
+  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "48fff95210ef315c",
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "e1777c42d2ab1055",
   "https://6s-success.com/zones/entryway-the-landing-spot": "4f4a19e57166ba92",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "d7c0b175d42d0751",
@@ -745,7 +745,7 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "d9af68c45b135c8d",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "536f7d738120ace6",
   "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "365ce16a638fd486",
-  "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "be5025047f2f5389",
+  "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "69ab126643f85f1f",
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "ee02c285df4e5544",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "abeccc251757da74",
   "https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone": "174f53060614bb4a",
@@ -814,7 +814,7 @@
   "https://6s-success.com/zones/primary-bedroom-the-dresser-drawers": "f05cae0acee4a871",
   "https://6s-success.com/zones/primary-bedroom-the-dresser-top": "37ca8eeea01c10fe",
   "https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand": "821b7da1de86efc9",
-  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "1f4727cf84ac0d17",
+  "https://6s-success.com/zones/primary-bedroom-the-primary-closet": "84ca3714544971fd",
   "https://6s-success.com/zones/primary-bedroom-your-own-nightstand": "b01224f63afd791d",
   "https://6s-success.com/zones/stair-landing-the-landing-surface-or-console": "17a3702acfb4d6f4",
   "https://6s-success.com/zones/stair-landing-the-stair-and-floor-path": "2be72da911063d27",
