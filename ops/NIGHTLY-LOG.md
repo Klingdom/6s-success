@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (02:2x slot, 30-minute triage): previous work confirmed finished a fourth way, one stale ledger entry closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing newly unblocked. The backlog (`BACKLOG-2026-09-07.md` sections 2-4: every item struck through except C5/Gemini billing and C6/YouTube OAuth, both Phil-gated), the cold-read ledger, and all 10 open GitHub issues (`decision`/`blocked-on-art`, none from Phil) remain in the exact exhausted state issue #42 already tracks as a decision for him.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only, 439 then 3 more commits fast-forwarded across two fetches, tree clean throughout).
+
+**Previous work confirmed finished, re-derived rather than cited:** the 01:4x PM check-in's re-verification held (preflight, deploy gap, cold-read ledger, GitHub, all matching this cycle's own direct checks). A concurrent hourly operator cycle landed mid-triage (`50fbc453b`, "Fix LinkedIn connection note and corporate post: no link, no arrival") and merged ff-only, no conflict. Read its diff directly rather than trusting the commit message: the new `gate_linkedin_drafts_every_item_has_link` in `ops/preflight.py` is wired into `main()`'s run order and checks the connection note and corporate block independently so one missing link can't hide behind another; `ops/linkedin_drafts.py`'s two fixes (reusing `LINK` for the note, a new `CORP_LINK` for the corporate pitch since that offer isn't the free book) are sound. Ran the new gate directly: passes.
+
+**Fixed a stale-ledger gap instead of citing it:** `cold_read_ledger.py --stale` flagged `ops/preflight.py` itself (ledgered 2026-10-22, touched again today by the commit above). Not a new defect, just the ledger not yet told about its own file's latest touch; re-ledgered clean with today's date after independently confirming the diff.
+
+Re-ran the fast checks after both merges: `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `audit_pages.py` 0 duplicate titles/descriptions, `affiliate.py --check` clean. `preflight.py` run fresh in the background: 0 FAIL across every gate before the documented `gate_tests` headless-Chromium sandbox hang, same standing limitation; killed there, reported unchecked past that point, not assumed passing. GitHub: 10 open issues re-pulled directly, unchanged; 0 open PRs.
+
+Not reopening issue #42: it is already the correct decision gate for this exact repeating pattern, and this cycle's own findings (one real bug fixed by the concurrent operator, one stale ledger entry closed by this cycle) are both genuinely new, not a restatement of the same unchanged state, so nothing here contradicts or needs re-flagging on that thread.
+
+Regenerated the dashboard. Pushed to main.
+
 ## 2026-10-23, scheduled operator cycle: the LinkedIn connection note and corporate post had no link either
 
 **Did:** Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 437 commits). Backlog sections 2-6 and all 10 GitHub issues were exhausted/Phil-gated (issue #42 tracks that cadence), so instead of an 18th re-verification, cold-read `ops/linkedin_drafts.py`. The 2026-10-02 fix ("a post with nowhere to go cannot produce an arrival") only patched the three corpus posts; the connection note and the corporate B2B post, same daily email, both still ended "free to read" with zero URL.
