@@ -2,6 +2,30 @@
 
 > Canonical evidence-backed learning memory for the autonomous 6S Success organization.
 
+## 2026-10-23: no visitor's country had ever been recorded, and nothing said so
+
+**Observation.** Asked to attract more global visitors, the first question was where visitors come from now. Umami had a country for 0 of this site's 109 sessions since launch, against 1,118 of 1,118 for the other site on the same Umami instance.
+
+**Evidence.** Umami 3.1 takes the client address from `X-Real-IP` before `X-Forwarded-For` (read from its shipped server bundle). Both `/stats` hops in `site/nginx/default.conf` set `X-Real-IP` to `$remote_addr`, which inside the container is Nginx Proxy Manager's bridge address, and a private address has no location. The comment above them said the visitor's address "survives the hop", and for `X-Forwarded-For` it did; Umami just never read that header. Fixed in `de603a05d` by forwarding the `X-Real-IP` NPM sets (NPM overwrites it, so it cannot be spoofed). Deployed as build `7dcb67a218d2d5c9`; a probe beacon to `/__geo_probe_2026-10-23` was recorded as US / US-ID, the first located session this site has had. `ops/tests/test_nginx_umami_client_ip.py` pins it.
+
+**Confidence.** High: cause read from the code, fix proved live.
+
+**Implication.** A dimension that is always empty looks the same as one nobody has looked at. Every beacon was accepted and counted, so no traffic figure was wrong and no check failed. Country data starts on 2026-10-23 and cannot be backfilled.
+
+**Next action.** After two to four weeks, read the country split of real visitors before deciding how much international-specific work is justified.
+
+## 2026-10-23: people outside the US search for our rooms with words we never use
+
+**Observation.** `ops/keyword_demand_global.py` (new) harvested the same 151 seeds from Google for gb, au, ca and in. Of 2,183 distinct queries, 995 never appeared in the US harvest.
+
+**Evidence.** The clearest pattern is vocabulary, not topic: "linen cupboard" (13 queries, 0 covered), "hall cupboard", "coat cupboard", "walk in wardrobe", "larder", "loft". The rooms are ones the site already covers in depth under American names. Autocomplete presence only, not volume.
+
+**Confidence.** Medium: the queries are real, and whether naming the word moves anyone is unmeasured until Search Console is verified.
+
+**Implication.** International reach starts with naming rooms the way their owners do, not with new pages. Four names were added through the existing measured also-called mechanism (`86159a729`).
+
+**Next action.** Re-run the global harvest monthly. Do not add words without measured queries, the same rule `ops/room-also-called.json` already enforces.
+
 ## 2026-10-22: a test that dates things in local time fails every evening
 
 **Observation.** `test_nightly_log.py` failed locally at 21:1x Denver with nothing wrong in the tool it tests.
