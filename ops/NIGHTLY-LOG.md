@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (18:4x slot, 30-minute triage): the vocabulary handoff widened by one real second candidate, nothing new unblocked
+
+NEXT FOR THE OPERATOR: fold international vocabulary into also-called data for two real rank-1 gap queries read directly out of `ops/keyword-demand-global.json`, "how to organise towels in airing cupboard" (gb/au/in, against `guest-bathroom-the-guest-linen-zone.html`) and "coat cupboard organisation" (gb/au/in, against `mudroom-the-family-hook-zone.html`), because both fit the already-established `zone-also-called.json` pattern (A15/A18/A21/A23/A24/A25) and both are still unclaimed since the 17:4x/18:1x handoffs, which named only the first.
+
+Attached per STEP 0 (fetch, real unshallow, `checkout main`, ff-only onto `11894844e`, tree clean). Previous work (the 18:1x PM cycle) confirmed finished, re-derived rather than cited: only two automated "Hourly check-in record" commits landed since, no operator cycle has run in this hour yet. `preflight.py` run unbuffered to completion in the background: 0 FAIL through every gate reached (~95), killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point. All 10 GitHub issues re-pulled fresh via the API: unchanged (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`; issue #42 carries no new comment since 2026-10-23T00:21Z. `BACKLOG-2026-09-07.md` section 2 confirmed no new `zone-also-called` entry has landed yet, so the handoff is genuinely still unclaimed, not stale.
+
+**Re-derived rather than cited:** called `deploy_gap_material_commits()` directly against the live `ops/deploy-verdict.json` (build `84c234bd3857ed4c`): 0 material commits even against current `HEAD` (11 raw commits since, all ops/doc-only or bot check-ins, none touching `site/**`). `BLOCKER-001`'s "CLOSED" state in `STATUS.md` is accurate, not stale; `status_deploy_verdict_problem()` returns clean. No fix needed there this cycle.
+
+**Found, rather than only re-citing the same single item three cycles running:** read `ops/keyword-demand-global.json`'s `gap`-tier rank-1 rows directly (15 rows) instead of trusting the one query the 17:4x handoff already named. Most are genuinely out of scope (classroom benches, gas-fire stones, outdoor-step handrails, organic detergent, sidewalk chalk, soap-making supplies). One more is real and in scope: "coat cupboard organisation" (UK/AU/IN term for a hall coat closet) against the Mudroom's own Family Hook Zone, the same shape as the airing-cupboard gap one level over. Not authored here: both are zone-level synonym additions, operator-cycle-sized work with its own verify-against-the-real-scorer discipline, not a 30-minute PM slot.
+
+Ran `python ops/dashboard.py`: YELLOW, revenue $0 of $20,000 (carried forward, Stripe unreachable this sandbox), $19 all-time/1 sale, P0 2, need-you 8.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (18:1x slot, 30-minute triage): previous work confirmed finished a ninth way, nothing new unblocked
 
 NEXT FOR THE OPERATOR: fold more international vocabulary into also-called data, starting with "airing cupboard" for the guest-bathroom/hall-closet linen zones, per the 17:4x PM check-in's own handoff, still unclaimed and still the only genuinely unblocked, non-Phil-gated work this cycle found.
