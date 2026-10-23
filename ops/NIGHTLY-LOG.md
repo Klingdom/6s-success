@@ -22,6 +22,18 @@ While building it, found 14 of the 48 rows had degraded to bare paragraphs missi
 
 Pushed to main. `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ARCHIVE.md`, `ops/rotate_backlog.py`, `ops/preflight.py`, `ops/tests/test_rotate_backlog.py`, `ops/tests/test_gate_backlog_done_table_not_oversized.py`, dashboard files, this entry. No price, product or served page touched.
 
+## PM check-in (12:4x slot, 30-minute triage): a real red CI gate found and fixed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: continue the standing re-verification practice, because all 10 open GitHub issues remain decision/blocked-on-art unanswered, and BACKLOG-2026-09-07.md sections 2-4 are struck through except C5/C6, both Phil-gated.
+
+Attached clean (fetch, real unshallow, checkout -B main, ff-only, tree clean). Previous work re-derived, not cited: preflight.py 0 FAIL/0 WARN to the gate_tests hang, check_urls 213/213, fix_dashes 0/0, cold_read_ledger 0 stale, deploy-gap/verdict gates clean. All 10 issues re-pulled, unchanged.
+
+Fixed a real red gate rather than re-cite it: checks.yml failed twice on main, gate_owner_actions_last_measured_current. OWNER-ACTIONS.md's "List reviewed" marker (2026-10-22) had drifted behind the preamble's own 2026-10-23 archival line. Bumped it; gate and its test suite clean after.
+
+No push sent: the 48h no-repeat window has not elapsed, state unchanged.
+
+HANDOFF-FILES: none
+
 ## PM check-in (12:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, state remains genuinely exhausted
 
 Attached clean per Step 0: fetch, real unshallow confirmed via `git rev-parse --is-shallow-repository`, `checkout main` onto an already-synced `origin/main`, ff-only trivial, tree clean throughout.
