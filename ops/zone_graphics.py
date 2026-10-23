@@ -349,6 +349,22 @@ def zone_diagram_html(room, zone, siblings, done_items):
         % (" is-here" if s_name == name else "", i + 1, esc(s_name))
         for i, s_name in enumerate(siblings))
 
+    # Where it sits in the room, for the rooms that have a drawn plan
+    # (ops/room_locator.py). No words in it; the list below names the zones.
+    plan = ""
+    try:
+        import room_locator
+        idx = siblings.index(name) if name in siblings else -1
+        svg = room_locator.locator_svg(room, idx, name) if idx >= 0 else None
+    except Exception:                                         # noqa: BLE001
+        svg = None
+    if svg:
+        plan = ('<div class="zd-plan" style="margin:6px 0 14px">%s</div>'
+                % svg.replace('<svg class="zd-plan-svg"',
+                              '<svg class="zd-plan-svg" style="display:block;'
+                              'width:100%;height:auto;border-radius:10px;'
+                              'border:1px solid var(--line)"', 1))
+
     shown = done_items[:4]
     items = "".join('<li>%s</li>' % esc(item) for item in shown)
     more = len(done_items) - len(shown)
@@ -371,7 +387,7 @@ def zone_diagram_html(room, zone, siblings, done_items):
         '<p class="zd-eyebrow">Where it is</p>'
         '<p class="zd-room">%s</p>'
         '<p class="zd-count">%d micro zones, one session each</p>'
-        '<ol class="zd-chips">%s</ol>'
+        '%s<ol class="zd-chips">%s</ol>'
         '</div>'
         '<div class="zd-done">'
         '<p class="zd-eyebrow zd-green">What done looks like</p>'
@@ -379,7 +395,8 @@ def zone_diagram_html(room, zone, siblings, done_items):
         '<ul class="zd-items">%s</ul>%s'
         '</div></div>%s</div>'
         % ("".join('<i style="background:%s"></i>' % c for c in S_COLOURS),
-           esc(room), len(siblings), chips, esc(purpose), items, more_html,
+           esc(room), len(siblings), plan, chips, esc(purpose), items,
+           more_html,
            foot))
 
 
