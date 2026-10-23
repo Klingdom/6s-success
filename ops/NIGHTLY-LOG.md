@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (04:1x slot, 30-minute triage): previous work confirmed finished, two real un-ledgered/stale cold-read gaps found and closed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: nothing newly unblocked. BACKLOG-2026-09-07.md sections 2-4 hold only C5 (Gemini billing) and C6 (YouTube OAuth), both Phil-gated with everything up to the gate built; all 10 open GitHub issues remain decision/blocked-on-art, none from Phil on issue 42's cadence question (his two direct commits on 2026-10-22 did not touch that question). Continue the standing full re-verification practice rather than start new work.
+
+Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only onto 9035bc85b, 469 commits fast-forwarded, tree clean throughout). Previous work (the share_cards/article_figures cold-read fix and the hourly check-in after it) confirmed finished, re-derived rather than cited: preflight.py run fresh, 0 FAIL through every gate up to the documented gate_tests sandbox hang, killed there, reported unchecked past that point. check_urls.py 213/213, fix_dashes.py --check 0/0, audit_pages.py 0 duplicate titles/descriptions.
+
+Fixed two real gaps instead of citing them. First: cold_read_ledger.py --stale found ops/zone_graphics.py ledgered 2026-10-14 but last touched 2026-10-22 (653fe8b55, Phil's own commit adding a room-plan panel to the zone page). Read the full current file (420 lines), not just the diff: the addition is a try/except import of the new ops/room_locator.py that falls back to no plan on any exception, matching the file's own stated fault-mode discipline. Second, found only by running --next after fixing the first: ops/room_locator.py itself, a brand-new file from the same commit, had never been ledgered at all. Read it in full (120 lines): it highlights a zone's outline in its room's drawn plan, returns None on every failure mode (room not drawn, bad index, no leader, no outline found) rather than show a wrong place. Ran gate_room_maps_current (clean) and ops/tests/test_room_locator.py directly (74 of 74 drawn-room zones carry exactly one highlighted plan, 0 carry stray text): both pass. Re-ledgered both entries dated today with what was actually checked. cold_read_ledger.py --stale now 0, --next now 0 un-ledgered candidates, 287 of 287 files ledgered.
+
+GitHub: 10 open issues re-pulled directly, unchanged. Read issue 42's full comment thread: all five comments are self-authored by prior agent cycles, none from Phil; his two 2026-10-22 commits were code, not a reply to the cadence question, so that decision still stands open and is not reopened again here.
+
+Not starting new work myself: nothing in BACKLOG-2026-09-07.md sections 2-6 is genuinely unblocked.
+
+Pushed to main. ops/cold-read-ledger.json, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-23, scheduled operator cycle: cold-read of ops/share_cards.py and ops/article_figures.py found and fixed a real link-preview gap on articles/index
 
 **Did:** Attached clean (fetch, real unshallow confirmed via `git rev-parse --is-shallow-repository`, `checkout -B main origin/main`, ff-only onto `6bc555c75`, 461 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md`. Delegated the initial survey to a background fork rather than reading the full 540KB backlog cold myself: confirmed sections 2-6 remain Done/Closed/Hold/Phil-gated (only C5/Gemini billing and C6/YouTube OAuth open), issue #42's cadence question still has no live reply from Phil (every comment under his account is self-authored by a prior agent cycle, confirmed by reading the actual comment bodies, not just the author field), and `inbox_agent.py --apply` still has no mail credential in this sandbox.

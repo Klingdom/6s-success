@@ -1101,6 +1101,11 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:0x slot: ran live (python3.13, this sandbox's python3 lacks PIL), 41 source images processed, 316 variants already current, 0 new writes needed, index json byte-identical after rerun, no defect found"
     },
+    "room_locator.py": {
+      "status": "clean",
+      "date": "2026-10-23",
+      "note": "New file, added whole in 653fe8b55 (2026-10-22), never ledgered. PM check-in found it via --next. Read in full (120 lines): locator_svg() finds a room's drawn plan (ops/build_room_maps.py), a subclass of B.Labels (_Targets) that draws nothing but records each leader's target point, the smallest dashed zone outline containing that point, highlights it (solid fill plus a 6px ring, drawn last so it sits over any furniture), fades every other zone's outline, strips text nodes (too small to read at panel width), and crops to the drawing's own bounding box. Returns None on every failure mode (room not in B.ROOMS, zone index out of range, no recorded leader for that index, no outline found), so the caller falls back to the plain zone list rather than show a wrong place, which ops/tests/test_room_locator.py checks by name rather than by count: 74 of 74 zones in the 13 drawn rooms get exactly one highlighted plan, 0 carry stray text, a room with no plan (Kitchen) correctly returns None. Ran the test directly: passes. No defect found."
+    },
     "room_map_assemble.py": {
       "status": "clean",
       "date": "2026-10-22",
@@ -1423,8 +1428,8 @@
     },
     "zone_graphics.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (404 lines) and run with --demo: both SVG and the parallel HTML-rendering functions read correct (computed, not fixed, canvas height; wrap/split logic that never truncates a sentence). Demo output written successfully, no errors."
+      "date": "2026-10-23",
+      "note": "Re-ledgered after 653fe8b55 (2026-10-22, Phil + Opus 5.5) added the room-plan panel to zone_diagram_html(): a try/except import of room_locator that falls back to no plan (svg=None) on any exception, so a zone it cannot place renders unchanged rather than wrong, matching the file's own stated fault-mode discipline. Read the full current file (420 lines) end to end, not just the diff. gate_room_maps_current() returns clean; ops/tests/test_room_locator.py passes directly (74 of 74 drawn-room zones carry exactly one highlighted plan). No defect found."
     },
     "zone_supplies.py": {
       "status": "clean",
