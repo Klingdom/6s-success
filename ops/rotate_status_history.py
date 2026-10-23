@@ -131,6 +131,113 @@ def plan_rotation(text: str):
     return new_text, archived
 
 
+# BLOCKER-001's own chain is a third shape, found 2026-10-23 while reading
+# it to decide whether its own stale-citation gates (status_blocker001.py's
+# neighbours above) needed a fourth sibling for the chain's size, not just
+# its content. Unlike the two chains above, which are newest-first with one
+# entry per physical line, BLOCKER-001 is appended to, oldest first, one
+# paragraph group per correction, and an entry can itself span more than
+# one paragraph (its opening paragraph bold, continuation paragraphs plain,
+# e.g. the very first entry's "What was actually behind: four room decks."
+# aside). The rule that holds across all 97 entries found today: a new
+# entry starts exactly where a paragraph's own text opens with a bold run;
+# every paragraph until the next one that does is a continuation of the
+# entry before it. Confirmed by reconstructing the whole section from the
+# entries this rule finds and diffing byte for byte against the original
+# before trusting it with --apply-blocker1.
+BLOCKER1_HEADING = ("## BLOCKER-001: Production State Verifiable Only From "
+                     "a Session With Real Access")
+BLOCKER1_END_BEFORE = "## BLOCKER-002:"
+_PARA_SPLIT_RE = re.compile(r"(\n[ \t]*\n)")
+
+
+def split_blocker1_chain(text: str):
+    """Return (before, entries, after). `entries` is the list of entry
+    texts found between the two section headings, in file order (oldest
+    first, this section's own growth direction, the opposite of
+    split_chain's newest-first convention above). Raises ValueError if
+    either heading is missing, appears more than once, or the span does
+    not open on a bold paragraph (refuse to guess at a shape this was
+    not built to read).
+    """
+    start_idx = text.find(BLOCKER1_HEADING)
+    if start_idx == -1:
+        raise ValueError("heading not found: %r" % BLOCKER1_HEADING)
+    if text.find(BLOCKER1_HEADING, start_idx + 1) != -1:
+        raise ValueError("heading appears more than once: %r"
+                          % BLOCKER1_HEADING)
+    heading_line_end = text.find("\n", start_idx)
+    if heading_line_end == -1:
+        raise ValueError("no newline after %r" % BLOCKER1_HEADING)
+    end_idx = text.find(BLOCKER1_END_BEFORE, heading_line_end)
+    if end_idx == -1:
+        raise ValueError("heading not found: %r" % BLOCKER1_END_BEFORE)
+    if text.find(BLOCKER1_END_BEFORE, end_idx + 1) != -1:
+        raise ValueError("heading appears more than once: %r"
+                          % BLOCKER1_END_BEFORE)
+
+    before = text[:heading_line_end + 1]
+    span = text[heading_line_end + 1:end_idx]
+    after = text[end_idx:]
+
+    parts = _PARA_SPLIT_RE.split(span)
+    paras = parts[0::2]
+    if not paras or not paras[0].strip():
+        raise ValueError("span is empty or has no first paragraph")
+    if not paras[0].strip().startswith("**"):
+        raise ValueError("first paragraph is not a bold entry start, "
+                          "refusing to guess: %r" % paras[0][:80])
+
+    bounds = []                        # list of (start_para_idx, end_para_idx)
+    cur_start = None
+    for i, p in enumerate(paras):
+        if not p.strip():
+            continue
+        if p.strip().startswith("**"):
+            if cur_start is not None:
+                bounds.append((cur_start, i - 1))
+            cur_start = i
+    if cur_start is not None:
+        bounds.append((cur_start, len(paras) - 1))
+
+    entries = ["".join(parts[2 * a:2 * b + 1]).strip() for a, b in bounds]
+
+    # Prove the split is lossless before handing it to a caller: the
+    # entries plus the separators between them must reconstruct `span`
+    # exactly. A failure here means the paragraph rule above does not
+    # hold for this text, and this function must refuse rather than let
+    # a caller archive something it cannot show round-trips.
+    recon_pieces = []
+    for i, (a, b) in enumerate(bounds):
+        recon_pieces.append("".join(parts[2 * a:2 * b + 1]))
+        if i < len(bounds) - 1:
+            recon_pieces.append(parts[2 * b + 1])
+    if "".join(recon_pieces) != span:
+        raise ValueError("entry split did not reconstruct the span "
+                          "exactly, refusing to guess")
+
+    return before, entries, after
+
+
+def plan_rotation_blocker1(text: str):
+    """Keep the newest (last, this section's own order) entry live,
+    archive the rest. Returns (new_status_text, archived_entries_newest_
+    first), or (text, []) if there is nothing to rotate. Pure function
+    of its input; does no I/O.
+    """
+    before, entries, after = split_blocker1_chain(text)
+    if len(entries) <= 1:
+        return text, []
+    keep, archived_oldest_first = entries[-1], entries[:-1]
+    new_text = before + "\n" + keep + "\n\n" + after
+    # STATUS-ARCHIVE.md's own header promises newest-first throughout,
+    # matching every other chain this script archives; this chain's own
+    # order is oldest-first, so reverse here rather than make
+    # apply_archive() guess which convention its caller used.
+    archived = list(reversed(archived_oldest_first))
+    return new_text, archived
+
+
 FOCUS_LABEL = "**Immediate Focus:**"
 
 # Every dated correction on the Immediate Focus line opens with one of
@@ -304,11 +411,18 @@ def main() -> int:
     ap.add_argument("--apply-focus", action="store_true",
                      help="Immediate Focus: rotate now, keep the base "
                           "statement live, archive every dated correction.")
+    ap.add_argument("--check-blocker1", action="store_true",
+                     help="BLOCKER-001: report whether its chain has grown "
+                          "past one live entry; makes no changes.")
+    ap.add_argument("--apply-blocker1", action="store_true",
+                     help="BLOCKER-001: rotate now, keep the newest entry "
+                          "live, archive the rest.")
     args = ap.parse_args()
-    modes = (args.check, args.apply, args.check_focus, args.apply_focus)
+    modes = (args.check, args.apply, args.check_focus, args.apply_focus,
+              args.check_blocker1, args.apply_blocker1)
     if sum(bool(m) for m in modes) != 1:
         ap.error("pass exactly one of --check, --apply, --check-focus, "
-                  "--apply-focus")
+                  "--apply-focus, --check-blocker1, --apply-blocker1")
 
     status_text = io.open(STATUS_PATH, encoding="utf-8").read()
 
@@ -336,29 +450,52 @@ def main() -> int:
         print("STATUS.md keeps 1 Production Knowledge entry live.")
         return 0
 
-    # --check-focus or --apply-focus
+    if args.check_focus or args.apply_focus:
+        try:
+            _, _, entries, _ = split_focus_line(status_text)
+        except ValueError as exc:
+            print("REFUSING: %s" % exc)
+            return 2
+        if args.check_focus:
+            if entries:
+                print("DUE: %d dated correction(s) live on the Immediate "
+                      "Focus line; they would move to %s on --apply-focus."
+                      % (len(entries), ARCHIVE_PATH))
+                return 1
+            print("CLEAN: no dated corrections on the Immediate Focus line.")
+            return 0
+        # --apply-focus
+        new_status_text, archived = plan_rotation_focus(
+            status_text, FOCUS_REPLACEMENT_TAIL)
+        if not archived:
+            print("No dated corrections on the Immediate Focus line; no "
+                  "change made.")
+            return 0
+        _write_rotated(new_status_text, archived, status_text)
+        print("Immediate Focus line kept to its base statement.")
+        return 0
+
+    # --check-blocker1 or --apply-blocker1
     try:
-        _, _, entries, _ = split_focus_line(status_text)
+        _, entries, _ = split_blocker1_chain(status_text)
     except ValueError as exc:
         print("REFUSING: %s" % exc)
         return 2
-    if args.check_focus:
-        if entries:
-            print("DUE: %d dated correction(s) live on the Immediate Focus "
-                  "line; they would move to %s on --apply-focus."
-                  % (len(entries), ARCHIVE_PATH))
+    if args.check_blocker1:
+        if len(entries) > 1:
+            print("DUE: %d entries live, only the newest should stay; "
+                  "%d would move to %s on --apply-blocker1."
+                  % (len(entries), len(entries) - 1, ARCHIVE_PATH))
             return 1
-        print("CLEAN: no dated corrections on the Immediate Focus line.")
+        print("CLEAN: %d entry live. Nothing to rotate." % len(entries))
         return 0
-    # --apply-focus
-    new_status_text, archived = plan_rotation_focus(
-        status_text, FOCUS_REPLACEMENT_TAIL)
+    # --apply-blocker1
+    new_status_text, archived = plan_rotation_blocker1(status_text)
     if not archived:
-        print("No dated corrections on the Immediate Focus line; no "
-              "change made.")
+        print("Already down to the newest entry; no change made.")
         return 0
     _write_rotated(new_status_text, archived, status_text)
-    print("Immediate Focus line kept to its base statement.")
+    print("STATUS.md's BLOCKER-001 keeps 1 entry live.")
     return 0
 
 

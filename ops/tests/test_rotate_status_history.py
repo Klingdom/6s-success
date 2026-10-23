@@ -187,6 +187,121 @@ def main() -> int:
         fails.append("a focus line with no corrections was rotated when "
                       "it should have been left alone")
 
+    # 13-18. BLOCKER-001's own shape: oldest-first, multi-paragraph
+    # entries, a new entry starting only where a paragraph opens bold.
+    b1_text = (
+        "# 17. Current Blockers\n\n"
+        "## BLOCKER-001: Production State Verifiable Only From a Session "
+        "With Real Access\n"
+        "\n**RESOLVED 2026-09-25, this session: production redeployed.** "
+        "`ops/deploy.py` confirms it.\n\n"
+        "What was actually behind: four room decks, explained here in a "
+        "second, plain paragraph.\n\n"
+        "**Corrected 2026-09-25, scheduled operator cycle: a superseded "
+        "citation fixed.** Re-derived directly.\n\n"
+        "**Reopened 2026-10-01, PM check-in: one real commit undeployed.** "
+        "Same standing limit as every entry above.\n\n"
+        "**CLOSED 2026-10-23, PM check-in (10:1x slot): the gap above "
+        "closed with a real redeploy.** Production matches HEAD exactly.\n"
+        "\n## BLOCKER-002: Live Business Data Established, Not Yet a Live "
+        "Feed\n\nUnrelated content.\n"
+    )
+
+    # 13. split_blocker1_chain() finds the 4 entries (the first spanning
+    #     its own 2 paragraphs), oldest first, and the span round-trips.
+    b1_before, b1_entries, b1_after = rsh.split_blocker1_chain(b1_text)
+    if len(b1_entries) != 4:
+        fails.append("expected 4 BLOCKER-001 entries, got %d: %r"
+                      % (len(b1_entries), b1_entries))
+    if "What was actually behind" not in b1_entries[0]:
+        fails.append("first entry lost its own continuation paragraph: %r"
+                      % b1_entries[0])
+    if not b1_entries[0].startswith("**RESOLVED 2026-09-25") or \
+            not b1_entries[1].startswith("**Corrected 2026-09-25") or \
+            not b1_entries[2].startswith("**Reopened 2026-10-01") or \
+            not b1_entries[3].startswith("**CLOSED 2026-10-23"):
+        fails.append("BLOCKER-001 entries came back out of their own "
+                      "oldest-first order: %r" % b1_entries)
+    if not b1_after.startswith("## BLOCKER-002:"):
+        fails.append("BLOCKER-001's own end boundary drifted: %r"
+                      % b1_after[:40])
+
+    # 14. A missing or duplicated heading is refused, not guessed past.
+    try:
+        rsh.split_blocker1_chain(b1_text.replace("BLOCKER-002", "X"))
+        fails.append("missing BLOCKER-002 heading was not refused")
+    except ValueError:
+        pass
+    try:
+        rsh.split_blocker1_chain(b1_text + "\n" + rsh.BLOCKER1_HEADING + "\n")
+        fails.append("a duplicated BLOCKER-001 heading was not refused")
+    except ValueError:
+        pass
+
+    # 15. A span that does not open on a bold paragraph is refused.
+    bad_open = b1_text.replace(
+        "\n**RESOLVED 2026-09-25, this session", "\nRESOLVED 2026-09-25, "
+        "this session", 1)
+    try:
+        rsh.split_blocker1_chain(bad_open)
+        fails.append("a non-bold opening paragraph was not refused")
+    except ValueError:
+        pass
+
+    # 16. plan_rotation_blocker1() keeps the newest (last, this section's
+    #     own order) entry live, and archives the rest newest-first (the
+    #     opposite of this chain's own oldest-first file order, matching
+    #     STATUS-ARCHIVE.md's stated convention).
+    new_b1_text, b1_archived = rsh.plan_rotation_blocker1(b1_text)
+    _, kept_b1_entries, kept_b1_after = rsh.split_blocker1_chain(new_b1_text)
+    if len(kept_b1_entries) != 1 or not kept_b1_entries[0].startswith(
+            "**CLOSED 2026-10-23"):
+        fails.append("BLOCKER-001 rotation did not keep exactly the "
+                      "newest entry live: %r" % kept_b1_entries)
+    if kept_b1_after != b1_after:
+        fails.append("BLOCKER-001 rotation disturbed BLOCKER-002: %r"
+                      % kept_b1_after[:40])
+    if len(b1_archived) != 3:
+        fails.append("expected 3 archived BLOCKER-001 entries, got %d: %r"
+                      % (len(b1_archived), b1_archived))
+    elif not b1_archived[0].startswith("**Reopened 2026-10-01") or \
+            not b1_archived[1].startswith("**Corrected 2026-09-25") or \
+            not b1_archived[2].startswith("**RESOLVED 2026-09-25"):
+        fails.append("BLOCKER-001 archive was not newest-first: %r"
+                      % b1_archived)
+    elif "What was actually behind" not in b1_archived[2]:
+        fails.append("archived last entry lost its continuation "
+                      "paragraph: %r" % b1_archived[2])
+
+    # 17. A BLOCKER-001 chain already down to one entry is a no-op.
+    b1_one = (
+        "# 17. Current Blockers\n\n"
+        "## BLOCKER-001: Production State Verifiable Only From a Session "
+        "With Real Access\n"
+        "\n**CLOSED 2026-10-23, PM check-in (10:1x slot): the gap above "
+        "closed with a real redeploy.** Production matches HEAD exactly.\n"
+        "\n## BLOCKER-002: Live Business Data Established, Not Yet a Live "
+        "Feed\n\nUnrelated content.\n"
+    )
+    new_b1_one, archived_b1_one = rsh.plan_rotation_blocker1(b1_one)
+    if new_b1_one != b1_one or archived_b1_one:
+        fails.append("a BLOCKER-001 chain already at one entry was "
+                      "rotated when it should have been left alone")
+
+    # 18. Round-trip proof against the real, committed STATUS.md: whatever
+    #     split_blocker1_chain finds there must reconstruct the file
+    #     exactly, the same safety check the function runs on every call,
+    #     proved again here against the real file rather than only the
+    #     synthetic text above.
+    real_status_path = os.path.join(ROOT, "STATUS.md")
+    if os.path.exists(real_status_path):
+        real_text = io.open(real_status_path, encoding="utf-8").read()
+        try:
+            rsh.split_blocker1_chain(real_text)
+        except ValueError as exc:
+            fails.append("split_blocker1_chain refused the real, "
+                          "committed STATUS.md: %s" % exc)
+
     if fails:
         print("FAILED (%d):" % len(fails))
         for f in fails:

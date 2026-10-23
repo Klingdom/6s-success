@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: STATUS.md's own BLOCKER-001 had the identical unbounded-growth defect every sibling file was already fixed for earlier today
+
+**Did:** Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `0b55d8022`, then a second ff-only merge onto `a8c626ab5` before pushing, tree clean throughout). All 10 GitHub issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, matching issue #42. `git log --author="Phil Kling"` confirmed his last commit is still `a791b54c4` (2026-10-22), nothing new. Sections 0-7 of `BACKLOG-2026-09-07.md` and `OWNER-ACTIONS.md`'s "Open, ranked" list read directly: exhausted or Phil-gated again. `inbox_agent.py --apply`: no mail credential, same standing limit.
+
+Rather than stop at "exhausted," sized every `*.md` file directly: `STATUS.md` was still 319KB even after today's earlier Production Knowledge/Immediate Focus fixes, and its own `BLOCKER-001` section was 135KB of that, the biggest section in the file. Found 97 entries back to 2026-09-25, the identical unbounded-growth shape already fixed today for `NIGHTLY-LOG.md`, `CHECKIN-LOG.md`, `STATUS.md`'s two sibling fields, `OWNER-ACTIONS.md`'s preamble, and `BACKLOG-2026-09-07.md`'s own "Done this week" table, never caught because the existing gates on `BLOCKER-001` only check whether its newest entry is current, never the chain's size.
+
+**Fixed:** `ops/rotate_status_history.py` gained `split_blocker1_chain()`/`plan_rotation_blocker1()` for this chain's own shape (oldest first, multi-paragraph entries, a new entry starting only where a paragraph opens bold), proving its split is lossless before returning. New `gate_status_blocker001_not_oversized` in `preflight.py`, same WARNING-not-FAIL, buffer-of-3 convention as its five siblings.
+
+**Verified:** `ops/tests/test_rotate_status_history.py` (18 cases, 6 new, including a round-trip proof against the real committed file) and the new gate's own test (6/6), both fail-then-pass proved. `--apply-blocker1` run for real: 96 entries moved, `STATUS.md` 319KB to 186KB, everything outside `BLOCKER-001` byte-identical before/after, all 96 archived entries confirmed present verbatim in `STATUS-ARCHIVE.md`. Both existing stale-citation gates that also read `BLOCKER-001` re-confirmed clean against the rotated file. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, full `py_compile` sweep clean. Full `preflight.py` run in the background twice (before and after the fix): 0 FAIL, 0 WARN through every gate reached both times, including the new one, before the documented `gate_tests` sandbox hang (confirmed CPU-flat, 15s CPU over 249s elapsed, before being killed there), unchecked past that point.
+
+**Went well:** sizing every markdown file directly, instead of trusting the log's own repeated "exhausted" word, found a real, concrete, non-Phil-gated gap today's narrower cold-reads had not named.
+
+**Did not go well:** nothing new found beyond the one gap.
+
+**Changing next cycle:** none.
+
+**Next:** `STATUS.md`'s remaining long sections (Status Metadata 59KB, Production Status 20KB, Active Major Workstreams 17KB) were sized but not read in full; none is flagged as a correction chain by name, so none is an obvious next target without a closer read. Sections 2-4 of `BACKLOG-2026-09-07.md` remain the harder, lower-value target already named by section 32.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/rotate_status_history.py`, `ops/preflight.py`, `ops/tests/test_rotate_status_history.py`, `ops/tests/test_gate_status_blocker001_not_oversized.py`, `BACKLOG-2026-09-07.md`, dashboard files, this entry. No price, product or served page touched.
+
 ## PM check-in (13:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, keep re-verifying the existing exhausted/decision-gated state, because all 10 open GitHub issues remain `decision`/`blocked-on-art` with no Phil reply, `BACKLOG-2026-09-07.md` sections 2-6 hold only C5 and C6, both already Phil-gated, and `OWNER-ACTIONS.md`'s Open list is unchanged.

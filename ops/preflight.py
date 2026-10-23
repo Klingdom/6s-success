@@ -21500,6 +21500,54 @@ def gate_backlog_done_table_not_oversized() -> None:
                                rb.DEFAULT_RETENTION_DAYS, len(rows)))
 
 
+def gate_status_blocker001_not_oversized() -> None:
+    """STATUS.md's BLOCKER-001 chain must not carry more than a small
+    buffer of superseded entries.
+
+    Found 2026-10-23, the same cold-read lane that found and fixed the
+    Production Knowledge, Immediate Focus, CHECKIN-LOG, OWNER-ACTIONS and
+    BACKLOG-2026-09-07.md growth defects earlier the same day: BLOCKER-001
+    had grown to 97 entries back to 2026-09-25, 135KB, by far the largest
+    section in a 319KB file, and none of this file's own stale-citation
+    gates (gate_status_deploy_verdict_current and its neighbours) had
+    ever checked the chain's SIZE, only whether its newest entry was
+    current. Unlike Production Knowledge's one-entry-per-line shape, this
+    chain is appended to oldest first and an entry can span more than one
+    paragraph, so ops/rotate_status_history.py's split_blocker1_chain/
+    plan_rotation_blocker1 (--check-blocker1/--apply-blocker1) read it by
+    a different rule: a new entry starts only where a paragraph opens
+    bold, proved to round-trip the real file exactly before being
+    trusted with an --apply.
+
+    A WARNING, not a FAIL: a long chain wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. A
+    buffer of 3 lets a handoff add one or two follow-on entries within a
+    cycle without this firing immediately; it fires only once the chain
+    is genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_status_blocker001_not_
+    oversized.py builds a synthetic STATUS.md with the chain well past
+    the buffer and asserts this gate warns, then confirms a chain at or
+    under the buffer stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_history as rsh
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, entries, _ = rsh.split_blocker1_chain(text)
+    except ValueError:
+        return
+    buffer = 3
+    if len(entries) > 1 + buffer:
+        warn("status-blocker001-not-oversized",
+             "STATUS.md's BLOCKER-001 chain carries %d entries; only the "
+             "newest is current, the rest belong in STATUS-ARCHIVE.md. "
+             "Run `python ops/rotate_status_history.py --apply-blocker1`."
+             % len(entries))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30239,6 +30287,7 @@ def main() -> int:
     run_gate(gate_checkin_log_not_oversized)
     run_gate(gate_owner_actions_history_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
+    run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 
