@@ -9,6 +9,7 @@ missed by writing at the physical end of the file instead.
 Run:  python ops/tests/test_nightly_log.py
 """
 import datetime
+import re
 import io
 import os
 import sys
@@ -89,7 +90,14 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp2:
         real_text = io.open(nightly_log.LOG_PATH, encoding="utf-8").read()
         copy_path = _write(tmp2, real_text)
-        today = datetime.date.today().isoformat()
+        # Found 2026-10-22 21:1x Denver: date.today() is LOCAL time, while
+        # cloud cycles date their entries in UTC, so every evening after
+        # 18:00 Denver the real file's top entry was already "tomorrow" and
+        # this case failed with nothing wrong in the tool. Use the later of
+        # the UTC date and the newest date the file itself carries.
+        dates = re.findall(r"^## (\d{4}-\d{2}-\d{2})", real_text, re.M)
+        today = max([datetime.datetime.now(datetime.timezone.utc)
+                     .date().isoformat()] + dates)
         result = nightly_log.prepend_entry(
             copy_path, "%s, test entry (not a real cycle)" % today,
             "**Did:** exercised the tool against a copy of the real file.")
