@@ -264,6 +264,11 @@ def write(fname, title, desc, ld, body):
     if not os.path.isdir(OUT):
         os.makedirs(OUT)
     path = os.path.join(OUT, fname)
+    try:                                  # its link preview card, if any
+        import share_cards
+        doc = share_cards.apply("articles/" + fname[:-5], doc)
+    except ImportError:
+        pass
     io.open(path, "w", encoding="utf-8", newline="\n").write(doc)
     return path, doc
 

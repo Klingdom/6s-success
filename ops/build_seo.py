@@ -410,6 +410,16 @@ def esc(s):
 
 def seo_block(fn, p):
     url = BASE + p["path"]
+    # A page with a link preview card (ops/share_cards.py) previews as that
+    # card: its own headline, not a book figure shared with 57 other pages.
+    # No card on disk, no change: the image named in PAGES stands.
+    try:
+        import share_cards
+        card = share_cards.card(fn[:-5] if fn.endswith(".html") else fn)
+    except Exception:                                         # noqa: BLE001
+        card = None
+    if card:
+        p = dict(p, image=card["file"], image_alt=card["alt"])
     L = [BEGIN,
          '<link rel="canonical" href="%s">' % url]
     if p.get("robots"):
@@ -425,6 +435,10 @@ def seo_block(fn, p):
         '<meta property="og:description" content="%s">' % esc(p["desc"]),
         '<meta property="og:image" content="%s%s">' % (IMG, p["image"]),
         '<meta property="og:image:alt" content="%s">' % esc(p["image_alt"]),
+    ] + ([
+        '<meta property="og:image:width" content="1200">',
+        '<meta property="og:image:height" content="630">',
+    ] if card else []) + [
         '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="twitter:title" content="%s">' % esc(p["title"]),
         '<meta name="twitter:description" content="%s">' % esc(p["desc"]),

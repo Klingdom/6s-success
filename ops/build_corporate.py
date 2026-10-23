@@ -1041,6 +1041,11 @@ def build() -> str:
 
 def main() -> int:
     doc = build()
+    try:                                  # its link preview card, if any
+        import share_cards
+        doc = share_cards.apply(os.path.basename(OUT)[:-5], doc)
+    except ImportError:
+        pass
     io.open(OUT, "w", encoding="utf-8", newline="").write(doc)
 
     import service_orders as SO

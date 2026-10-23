@@ -423,7 +423,7 @@ HEAD_TPL = """<!doctype html>
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{og_image}">
+<meta property="og:image" content="{og_image}">{og_extra}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
@@ -649,6 +649,29 @@ def _og_image(room, zone):
         W.derivatives(png, stem)
         return f"{BASE}/assets/zones/{stem}-lg.jpg"
     return f"{BASE}/assets/img/room-map.jpg"
+
+
+def _share_card(page, fallback):
+    """(og_image url, extra meta lines) for a page.
+
+    A page with a link preview card from ops/share_cards.py previews as the
+    card, with its alt and size; otherwise the fallback, unchanged. A zone
+    with an approved photograph is never given a card (share_cards.py only
+    makes them for zones without one), so this cannot hide a real picture.
+    """
+    try:
+        import share_cards
+        card = share_cards.card(page)
+    except Exception:                                         # noqa: BLE001
+        card = None
+    if not card or "/assets/zones/" in fallback:
+        return fallback, ""
+    extra = ('\n<meta property="og:image:alt" content="%s">'
+             '\n<meta property="og:image:width" content="1200">'
+             '\n<meta property="og:image:height" content="630">'
+             '\n<meta name="twitter:image:alt" content="%s">'
+             % ((html.escape(card["alt"], quote=True),) * 2))
+    return "%s/assets/img/%s" % (BASE, card["file"]), extra
 
 
 def _zone_thumb(room, zone, eager=False):
@@ -3015,7 +3038,9 @@ def zone_page(room, zone, header, footer, all_rooms=()):
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
                            BASE=BASE, ld=ld,
-                           og_image=_og_image(room["room"], zone["zone"])),
+                           **dict(zip(("og_image", "og_extra"), _share_card(
+                               "zones/%s-%s" % (rs, zs),
+                               _og_image(room["room"], zone["zone"]))))),
            header, '<main class="wrap">']
     out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
                'color:var(--soft);margin:26px 0 0">'
@@ -3713,8 +3738,12 @@ def room_page(room, header, footer, all_rooms=()):
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
                            BASE=BASE, ld=ld,
                            # A room is twenty zones; no one
-                           # zone photograph represents it.
-                           og_image=f"{BASE}/assets/img/room-map.jpg"),
+                           # zone photograph represents it, so its
+                           # preview is its own card (room plan and
+                           # headline) when one exists.
+                           **dict(zip(("og_image", "og_extra"), _share_card(
+                               "rooms/%s" % rs,
+                               f"{BASE}/assets/img/room-map.jpg")))),
            header, '<main class="wrap">']
     out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
                'color:var(--soft);margin:26px 0 0">'

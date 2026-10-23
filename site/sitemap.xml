@@ -3,41 +3,41 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://6s-success.com/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/index.jpg</image:loc>
       <image:caption>Sort, Straighten, Shine, Safety, Standardize, Sustain: the Lean six-S method rebuilt for the home. Twenty rooms, 114 micro zones, and a fifty-chapter book.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/method.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/method.jpg</image:loc>
       <image:caption>What each of the six S's actually asks of you, in the order that works, plus every way to learn the method: the book, courses, workshops, and the app.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/resources.html</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/resources.jpg</image:loc>
       <image:caption>Every room broken into its micro zones, with the product types each one needs. Twenty rooms, 114 micro zones.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/book.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/book.jpg</image:loc>
       <image:caption>Fifty chapters across nine parts, from your first room to twenty room-by-room playbooks. Chapters 1 to 30 are free to read online or download as a PDF.</image:caption>
     </image:image>
   </url>
@@ -47,7 +47,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/reset.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/shop.jpg</image:loc>
       <image:caption>The book, the Manual, the Print Pack, the free Entryway Deck, the free Home Quest app, and consulting. Checkout for every priced item is live.</image:caption>
     </image:image>
   </url>
@@ -73,91 +73,91 @@
   </url>
   <url>
     <loc>https://6s-success.com/contact.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/contact.jpg</image:loc>
       <image:caption>Tell us the room or the routine that keeps fighting you. Reach 6S Success about the book, a consulting quote, a workshop seat, or a press enquiry.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/privacy.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/privacy.jpg</image:loc>
       <image:caption>What 6S Success does with your information: self hosted visit counts only, no cookies, no trackers, no advertising networks and no third party requests.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/terms.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/terms.jpg</image:loc>
       <image:caption>Terms of use for 6s-success.com: what you can buy today through Stripe, what is not for sale yet, how the content may be used, and the limits of liability.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/accessibility.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/accessibility.jpg</image:loc>
       <image:caption>Our accessibility commitment for 6s-success.com, what the site does today, and an honest list of the gaps we have not closed yet.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/disclaimer.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/disclaimer.jpg</image:loc>
       <image:caption>Important safety information before following any 6S Success cleaning or organizing instruction: chemicals, tools, height, children, pets, and emergencies.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/how-we-make-money.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/how-we-make-money.jpg</image:loc>
       <image:caption>Where 6S Success revenue comes from: our own books, packs, decks and consulting. No ads, no sponsorship, no affiliate programme earning us anything.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/affiliate-disclosure.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/affiliate-disclosure.jpg</image:loc>
       <image:caption>6S Success has no approved affiliate programme, so no link here earns a commission today. What that means, and where a paying link would never appear.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/bundle.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/bundle.jpg</image:loc>
       <image:caption>The book, the Micro Zone Manual and the 684 card Whole House Print Pack, in one order for $49. Bought separately they are $57.99.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/corporate.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/corporate.jpg</image:loc>
       <image:caption>Workplace 6S for one area, end to end: baseline, event, standards, and an audit your own people run. Scoped per engagement.</image:caption>
     </image:image>
   </url>
@@ -399,11 +399,11 @@
   </url>
   <url>
     <loc>https://6s-success.com/standards.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/standards.jpg</image:loc>
       <image:caption>Twenty sheets, one per room, naming the standard each micro zone holds to and the everyday moment that triggers the reset. Free to print.</image:caption>
     </image:image>
   </url>
@@ -419,351 +419,351 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/decluttering-vs-organizing</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-decluttering-vs-organizing.jpg</image:loc>
       <image:caption>Decluttering decides what stays. Organizing decides where it lives. Mixing up the order is why a weekend of buying bins ends with the same stuff, tidier.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/everyday-things-out-of-reach</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-everyday-things-out-of-reach.jpg</image:loc>
       <image:caption>The everyday pan lives under two others. Poor accessibility is a distinct root cause, and the fix is simple: match height to how often something is used.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/everything-needs-an-assigned-home</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-everything-needs-an-assigned-home.jpg</image:loc>
       <image:caption>A surface with room on it is not a home. Why no assigned home is the most common root cause behind clutter, and how to give everything in a zone exactly one.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/family-wont-put-things-back</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-family-wont-put-things-back.jpg</image:loc>
       <image:caption>It is rarely willingness. Why a system only one person maintains fails, and how to make putting things back the easier choice for everyone in the house.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-long-does-it-take-to-organise-a-room.jpg</image:loc>
       <image:caption>Real session times for all 20 rooms, summed from the 114 micro zones. A room is 3 to 7 sessions, not one afternoon, and that is why whole-room attempts fail.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-long-to-keep-a-maybe</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-long-to-keep-a-maybe.jpg</image:loc>
       <image:caption>A fair, workable answer to the maybe pile: tag it, give it a decide-by date matched to what it is, and let time make the call instead of forcing a guess.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-basement</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-basement.jpg</image:loc>
       <image:caption>A basement is six small zones, not one room. Check for water, clear the utility zone first, get everything off the floor, then work one zone per session.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-junk-drawer</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-junk-drawer.jpg</image:loc>
       <image:caption>A junk drawer is not a failure, it is an unnamed drawer. Give it a category, a written list, and a dated overflow box, and it stops refilling itself.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-an-attic</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-an-attic.jpg</image:loc>
       <image:caption>Many attic floors were built to hold a ceiling, not boxes. What an attic can safely hold, what heat ruins, and how to store light things in sealed, dated bins.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-index.jpg</image:loc>
       <image:caption>Long form articles on why cleaning does not last and where to start when the whole house feels like too much.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/is-that-really-a-backup</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-is-that-really-a-backup.jpg</image:loc>
       <image:caption>A backup only counts if it has actually covered for the main one. The one question that tells a real backup apart from something you are just storing.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/more-storage-wont-fix-clutter</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-more-storage-wont-fix-clutter.jpg</image:loc>
       <image:caption>A bin cannot decide what stays, where it lives, or who owns it. Buying storage before diagnosing the problem just stores the mess a little longer.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/sentimental-items-without-guilt</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-sentimental-items-without-guilt.jpg</image:loc>
       <image:caption>The guilt is not about the object. Why sentimental items stall Sort more than anything else, and five ways to decide, once, on purpose.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/tidy-is-not-the-same-as-safe</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-tidy-is-not-the-same-as-safe.jpg</image:loc>
       <image:caption>A tidy zone can still hurt someone. Why unsafe placement is its own root cause, separate from clutter, and the three step check that catches it.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/what-a-5s-engagement-costs</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-what-a-5s-engagement-costs.jpg</image:loc>
       <image:caption>No honest 5S consultant prices your floor sight unseen. The nine real cost drivers, what a first engagement looks like, and the quote that should worry you.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/what-is-6s</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-what-is-6s.jpg</image:loc>
       <image:caption>6S is Sort, Straighten, Shine, Safety, Standardize, Sustain, in that order. What each step does, why Safety is fourth, and how it differs from 5S.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/what-is-a-micro-zone</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-what-is-a-micro-zone.jpg</image:loc>
       <image:caption>A room is too big to fix in one sitting; one object is too small to matter. A micro zone is the size in between: specific enough to diagnose and keep.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/where-to-start-decluttering</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-where-to-start-decluttering.jpg</image:loc>
       <image:caption>Start with one micro zone you can finish in a single session. How to pick your first using friction and effort, and why finishing small beats starting big.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-5s-decays-after-six-months</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-5s-decays-after-six-months.jpg</image:loc>
       <image:caption>A 5S launch event fades within months, usually for one reason: no layered audit. The missing sixth S, and the signs decay has already started.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-a-shared-zone-never-stays-reset</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-a-shared-zone-never-stays-reset.jpg</image:loc>
       <image:caption>A zone several people use can fail even when everyone is willing, because nobody specifically owns resetting it. Here is the fix, and how to assign it.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-everyone-in-your-house-disagrees-about-clean.jpg</image:loc>
       <image:caption>Clean is not a fact, it is a guess, so two honest people can look at the same counter and reach two different answers. Fix it with a standard that is specific.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-is-my-house-always-messy</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-is-my-house-always-messy.jpg</image:loc>
       <image:caption>Because it is almost never the whole house. It is four or five small zones failing for different reasons. How to find yours, and what each one needs.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-it-lives-in-one-room-but-gets-used-in-another.jpg</image:loc>
       <image:caption>An item can have a real, assigned home and still cause clutter, because the home sits in the wrong room. Wrong location is its own root cause, with its own fix.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-mail-piles-up-by-the-door</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-mail-piles-up-by-the-door.jpg</image:loc>
       <image:caption>A mail pile is not a filing problem, it is undecided paper. Give every piece a verdict, act, file, or recycle, with a deadline, and it stops forming.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-the-medicine-cabinet-never-gets-cleared-out</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-the-medicine-cabinet-never-gets-cleared-out.jpg</image:loc>
       <image:caption>A medicine cabinet never smells off the way food does, so nobody notices it needs checking. The trigger that works, and the item most likely to hurt a guest.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-the-same-spot-never-gets-clean</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-the-same-spot-never-gets-clean.jpg</image:loc>
       <image:caption>The blinds, the fridge top, the range hood filter. Not skipped from laziness. Skipped because reaching them costs more than everything else combined.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-always-lose-your-keys</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-always-lose-your-keys.jpg</image:loc>
       <image:caption>Losing your keys is not a memory problem. It is a missing assigned home. One tray, placed where your hand actually opens, in one session.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-cant-find-the-right-charger</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-cant-find-the-right-charger.jpg</image:loc>
       <image:caption>A drawer of tangled chargers is not clutter, it is a missing home per device. One strip, one named slot each, and what to actually do with the old phone.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-cant-see-your-own-clutter</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-cant-see-your-own-clutter.jpg</image:loc>
       <image:caption>Guests notice the pile by your door the second they walk in. Why your own eyes stopped flagging it months ago, and the three checks that make it visible again.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-have-to-dig-for-what-you-need</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-have-to-dig-for-what-you-need.jpg</image:loc>
       <image:caption>The thing you want is not missing, it is buried behind or under three others. Too many steps is its own root cause, distinct from no home or poor reach.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-keep-buying-things-you-already-own</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-keep-buying-things-you-already-own.jpg</image:loc>
       <image:caption>Duplicate cans, three half-used bottles, a fourth pack of batteries. Overbuying is a visibility problem, not a willpower problem, fixable at home.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-keep-running-out-of-things</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-keep-running-out-of-things.jpg</image:loc>
       <image:caption>You are not careless. A full cabinet hides a low count as well as it hides an empty one. Give the zone a line, not a count, and the surprise stops.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-never-finish-a-zone</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/rhythm.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-you-never-finish-a-zone.jpg</image:loc>
       <image:caption>Picking a small zone was the right move. Why the session still stalls anyway, and the four changes that fix finishing rather than starting.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-your-house-gets-messy-again</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-why-your-house-gets-messy-again.jpg</image:loc>
       <image:caption>Cleaning is an event, and events expire. Why a clean room drifts back within a week, and the two things that hold it: a written standard and a reset trigger.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/zone-too-small-for-what-it-holds</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/articles-zone-too-small-for-what-it-holds.jpg</image:loc>
       <image:caption>Small space organizing for the kitchen, nursery and mudroom. Why a zone still doesn't fit after you declutter, and what to do about it.</image:caption>
     </image:image>
   </url>
@@ -775,31 +775,31 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/dining-room</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-dining-room.jpg</image:loc>
       <image:caption>Every part of the dining room worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/entryway</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-entryway.jpg</image:loc>
       <image:caption>Every part of the entryway worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/family-room</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-family-room.jpg</image:loc>
       <image:caption>Every part of the family room worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -809,7 +809,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-garage.jpg</image:loc>
       <image:caption>Every part of the garage worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -819,17 +819,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-guest-bathroom.jpg</image:loc>
       <image:caption>Every part of the guest bathroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/guest-bedroom</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-guest-bedroom.jpg</image:loc>
       <image:caption>Every part of the guest bedroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -839,7 +839,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-hall-closet.jpg</image:loc>
       <image:caption>Every part of the hall closet worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -849,27 +849,27 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-home-office.jpg</image:loc>
       <image:caption>Every part of the home office worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/kids-bedroom</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-kids-bedroom.jpg</image:loc>
       <image:caption>Every part of the kids bedroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/kitchen</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-kitchen.jpg</image:loc>
       <image:caption>Every part of the kitchen worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -879,17 +879,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-laundry-room.jpg</image:loc>
       <image:caption>Every part of the laundry room worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/living-room</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-living-room.jpg</image:loc>
       <image:caption>Every part of the living room worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -899,7 +899,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-mudroom.jpg</image:loc>
       <image:caption>Every part of the mudroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -909,17 +909,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-nursery.jpg</image:loc>
       <image:caption>Every part of the nursery worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/pantry</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-pantry.jpg</image:loc>
       <image:caption>Every part of the pantry worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -929,7 +929,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-patio-or-deck.jpg</image:loc>
       <image:caption>Every part of the patio or deck worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -939,17 +939,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-primary-bathroom.jpg</image:loc>
       <image:caption>Every part of the primary bathroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/primary-bedroom</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-primary-bedroom.jpg</image:loc>
       <image:caption>Every part of the primary bedroom worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -959,7 +959,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-stair-landing.jpg</image:loc>
       <image:caption>Every part of the stair landing worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -969,7 +969,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/rooms-workshop.jpg</image:loc>
       <image:caption>Every part of the workshop worth its own hour, with what done looks like for each and where to start.</image:caption>
     </image:image>
   </url>
@@ -1375,11 +1375,11 @@
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-file-storage</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/zones-home-office-the-file-storage.jpg</image:loc>
       <image:caption>Keep the documents you are genuinely required to hold, and put your hand on any one of them without opening a second drawer.</image:caption>
     </image:image>
   </url>
@@ -1395,11 +1395,11 @@
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-printer-and-scanning-station</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/zones-home-office-the-printer-and-scanning-station.jpg</image:loc>
       <image:caption>Turn paper into files and files into paper, without hunting for either. Step by step, and how to keep it that way.</image:caption>
     </image:image>
   </url>
@@ -1415,11 +1415,11 @@
   </url>
   <url>
     <loc>https://6s-success.com/zones/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/zones-index.jpg</image:loc>
       <image:caption>Every micro zone in the house, 114 of them across 20 rooms. Filter by how long you have, and take any one through all six passes.</image:caption>
     </image:image>
   </url>
@@ -2095,11 +2095,11 @@
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-material-rack</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:loc>https://6s-success.com/assets/img/share/zones-workshop-the-material-rack.jpg</image:loc>
       <image:caption>Hold the wood and metal you will genuinely use, stored so it stays straight and does not fall on anyone. Step by step, and how to keep it that way.</image:caption>
     </image:image>
   </url>

@@ -1579,6 +1579,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     # that every picture and every srcset sibling a tile names exists.
     "build_pack_images.py": ("gate_product_images_exist",),
     "build_product_images.py": ("gate_product_images_exist",),
+    "share_cards.py": ("gate_share_cards_current",),
 }
 
 
@@ -15058,6 +15059,75 @@ def gate_pages_missing_art() -> None:
         warn("page-art",
              "pages shipping with no image at all. " + " ".join(out)
              + " TWO blockers, not one: GENERATING a replacement needs free system RAM (the local model load dies at about 2 GB free of 15.8; run ops/generate_zone_heroes.py for the measured figures), and REVIEWING what it generates needs the vision billing in OWNER-ACTIONS.md 1b. Naming only the second made this read as owner-blocked when the first half needs no decision and no spend.")
+
+
+def gate_share_cards_current() -> None:
+    """Every page with a link preview card previews as it, and says what it says.
+
+    Found 2026-10-22: 58 pages, every room page and every article among them,
+    shared one og:image, a book figure with "FIGURE 15-03" in its corner, so
+    every LinkedIn share of this site looked like every other one.
+    ops/share_cards.py now draws one 1200x630 card per page from the page's
+    own h1 and the generators point og:image at it. Four ways that rots, all
+    silent on the page itself, and all caught here:
+
+    * a card file is missing, so the preview is a broken image;
+    * a page's h1 changed and its card still shows the old words;
+    * a generator or a hand edit put the page's og:image back;
+    * a hand-written page was never re-wired after its card changed.
+    """
+    try:
+        import share_cards as SC
+    except Exception as exc:                                  # noqa: BLE001
+        fail("share-cards", "ops/share_cards.py could not be imported: %r"
+             % (exc,))
+        return
+    manifest = SC.load_manifest()
+    if not manifest:
+        fail("share-cards", "ops/share-cards.json is missing or empty. Run "
+             "python ops/share_cards.py.")
+        return
+    try:
+        now = SC.plan()
+    except Exception as exc:                                  # noqa: BLE001
+        fail("share-cards", "share_cards.plan() crashed: %r" % (exc,))
+        return
+    missing = [p for p, e in manifest.items()
+               if not os.path.exists(os.path.join(SC.IMG, e["file"]))]
+    drifted = sorted(p for p in now if manifest.get(p) != now[p])
+    gone = sorted(p for p in manifest if p not in now)
+    wrong, unwired = [], []
+    for page, e in manifest.items():
+        src = SC.read_page(page)
+        if src is None:
+            continue
+        og = SC.og_of(src)
+        if "/assets/zones/" in og:
+            continue
+        if not og.endswith("/assets/img/" + e["file"]):
+            wrong.append(page)
+        elif page in SC.hand_written() and SC.apply(page, src) != src:
+            unwired.append(page)
+    problems = []
+    if missing:
+        problems.append("%d card file(s) missing: %s" % (len(missing),
+                                                         missing[:5]))
+    if drifted or gone:
+        problems.append("%d page(s) no longer match their card (headline, "
+                        "picture or page changed): %s. Run python "
+                        "ops/share_cards.py" % (len(drifted) + len(gone),
+                                                (drifted + gone)[:5]))
+    if wrong:
+        problems.append("%d page(s) do not preview as their card: %s. Rerun "
+                        "the page's generator, or python ops/share_cards.py "
+                        "--wire for hand-written pages" % (len(wrong),
+                                                           wrong[:5]))
+    if unwired:
+        problems.append("%d hand-written page(s) need python "
+                        "ops/share_cards.py --wire: %s" % (len(unwired),
+                                                           unwired[:5]))
+    if problems:
+        fail("share-cards", "; ".join(problems))
 
 
 def gate_room_maps_current() -> None:
@@ -29910,6 +29980,7 @@ def main() -> int:
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_room_maps_current)
+    run_gate(gate_share_cards_current)
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)

@@ -449,6 +449,11 @@ def main() -> int:
 </html>
 """
 
+    try:                                  # its link preview card, if any
+        import share_cards
+        html = share_cards.apply(os.path.basename(OUT)[:-5], html)
+    except ImportError:
+        pass
     io.open(OUT, "w", encoding="utf-8", newline="").write(html)
 
     # The analytics id is a placeholder in this file only if the rest of the

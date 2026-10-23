@@ -465,6 +465,11 @@ def build():
 
 def main():
     page = build()
+    try:                                  # its link preview card, if any
+        import share_cards
+        page = share_cards.apply("articles/why-is-my-house-always-messy", page)
+    except ImportError:
+        pass
     io.open(OUT, "w", encoding="utf-8", newline="\n").write(page)
     words = len(re.findall(r"[A-Za-z']+",
                            re.sub(r"(?is)<(script|style)\b.*?</\1>", " ",

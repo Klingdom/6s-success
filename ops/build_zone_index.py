@@ -375,6 +375,11 @@ def main() -> int:
 """
 
     out = os.path.join(SITE, "zones", "index.html")
+    try:                                  # its link preview card, if any
+        import share_cards
+        page = share_cards.apply("zones/index", page)
+    except ImportError:
+        pass
     io.open(out, "w", encoding="utf-8", newline="").write(page)
 
     print(f"  site/zones/index.html  {len(zones)} zones, {len(rooms)} rooms, "

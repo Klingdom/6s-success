@@ -770,6 +770,11 @@ habits and the play layer that ties them together.">
 </body>
 </html>
 """
+    try:                                  # its link preview card, if any
+        import share_cards
+        doc = share_cards.apply(os.path.basename(OUT)[:-5], doc)
+    except ImportError:
+        pass
     io.open(OUT, "w", encoding="utf-8", newline="").write(doc)
 
     assert doc.count("<picture>") == len(cards) * 2, "a face is missing"
