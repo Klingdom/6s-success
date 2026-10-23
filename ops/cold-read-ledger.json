@@ -1126,6 +1126,16 @@
       "date": "2026-10-14",
       "note": "cold-read 2026-10-14 17:2x slot: ran self-check live (17 causes, 0 dupes, all six_s values valid), verified all 16 referenced article slugs resolve to real committed files, no defect found"
     },
+    "rotate_backlog.py": {
+      "status": "clean",
+      "date": "2026-10-23",
+      "note": "PM check-in cold read: locate_section/parse_rows/row_date/plan_rotation/apply_archive reviewed line by line against the real BACKLOG-2026-09-07.md (35 sequential, non-duplicate numbered headings, no false-positive heading matches). Edge cases checked by hand (all-rows-archived body, missing/duplicate anchors, degraded bare-paragraph rows) all fail safely or round-trip correctly. ops/tests/test_rotate_backlog.py 11/11 pass; python ops/rotate_backlog.py --check against the live file reports CLEAN (3 rows, 7795 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
+    },
+    "rotate_backlog_closed.py": {
+      "status": "clean",
+      "date": "2026-10-23",
+      "note": "PM check-in cold read: find_sections/plan_rotation/apply_archive/count_stats reviewed line by line against the real BACKLOG-2026-09-07.md. SECTION_RE's '^## (\\d+)\\.' match checked directly against the live file: 35 sequential headings (0-34), zero duplicates, no body text falsely matched as a heading. ops/tests/test_rotate_backlog_closed.py 7/7 pass; python ops/rotate_backlog_closed.py --check against the live file reports CLEAN (27 sections, 110564 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
+    },
     "rotate_checkin_log.py": {
       "status": "fixed",
       "date": "2026-10-23",
