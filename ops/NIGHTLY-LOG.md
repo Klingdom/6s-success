@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle (16:4x slot): independent re-verification through live CI and listing readiness, not a citation; one stale claim in OWNER-ACTIONS.md fixed
+
+**Did:** Attached clean per STEP 0 (fetch, real unshallow, `checkout main`, ff-only onto `8b923c5e4`, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7 directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last entries of this log. Rather than cite today's many prior "genuinely exhausted" conclusions, checked different evidence than they did: `mcp__github__actions_list` on `checks.yml` and `fulfil-orders.yml` directly, both green on every run today with no silent failure; `build/listings/check_etsy.py` and `check_kdp.py` both zero failures, confirming the Etsy/KDP listing packages are still genuinely a single step from Phil, not just claimed so. Re-tested `update_trigger` on this session's own routine (`trig_011oe2y7KR3AiPxUTd6b9P6c`) directly rather than trust the standing finding: still refused except `enabled=false`, so cadence cannot be slowed from here, only fully stopped, which stays the wrong trade. Found OWNER-ACTIONS.md item 23's "zero comments" line stale: issue #42 actually carries 5 comments (2026-10-17 to 2026-10-23), all status updates, the latest explicitly declining to re-raise again without new evidence. Fixed the stale line with a dated addendum rather than leave it uncorrected; did not add a 6th comment to #42 itself, matching its own stated intent since nothing new changed the cadence question.
+
+**Verified:** `preflight.py` run unbuffered to a file (not piped through `tail`, which swallows all output on a mid-run kill): 0 FAIL, 0 WARN through all ~95 gates reached, killed at the documented `gate_tests` sandbox hang. `gate_owner_actions_last_measured_current`'s logic confirmed by hand: the new addendum's date (2026-10-23) does not exceed the header's "List reviewed" date, so it cannot trip that gate.
+
+**Went well:** found real, different evidence instead of re-running the same exhaustion check a dozen cycles have already run today.
+
+**Did not go well:** the first preflight attempt piped through `timeout 540 ... | tail -80` and lost all output when the timeout killed it mid-run (Python's block buffering never flushed before the pipe closed); had to rerun with `python -u` to a plain file to get a real signal.
+
+**Changing next cycle:** run `preflight.py` with `python -u ... > file 2>&1`, never piped through `tail`, when a kill is possible before it finishes.
+
+**Next:** nothing newly unblocked. All five epics ahead of operational honesty still dead-end at a Phil decision or account action (items 14/15 in `OWNER-ACTIONS.md`, Etsy and KDP, remain the highest-leverage single step once taken). Issue #42's cadence question is unchanged and still not mine to decide.
+
+Pushed to main. `OWNER-ACTIONS.md`, `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (16:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked
 
 Attached clean per STEP 0 (fetch, real unshallow since the checkout arrived shallow and detached, `checkout main`, ff-only onto `c8f49cc06`, 26 commits ahead of the stale checkout, tree clean throughout). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last `ops/NIGHTLY-LOG.md` and `CHECKIN-LOG.md` entries, and all 10 open GitHub issues directly via the API (unchanged: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`).
