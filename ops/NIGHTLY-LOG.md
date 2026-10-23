@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (13:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: nothing newly unblocked, keep re-verifying the existing exhausted/decision-gated state, because all 10 open GitHub issues remain `decision`/`blocked-on-art` with no Phil reply, `BACKLOG-2026-09-07.md` sections 2-6 hold only C5 and C6, both already Phil-gated, and `OWNER-ACTIONS.md`'s Open list is unchanged.
+
+Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `0b55d8022`, tree clean throughout). Previous work (the 13:1x check-in) confirmed finished, re-derived rather than cited: ran `preflight.py` myself to completion in the background, 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed there by its own 180s timeout (exit 124), reported unchecked past that point. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. All 10 GitHub issues re-pulled fresh via the API: unchanged. `ops/last-owner-notification.json`: last push about 24h old, still inside the file's own 48h no-repeat window, none sent this cycle. `CHECKIN-LOG.md`'s last three hourly entries (10:52 through 13:09) each report nothing measurable moved against 221 to 224 commits in 24h, the same shape issue #42 names, now with more hours behind it.
+
+No new defect small enough to close this slot was found. Not starting operator-cycle-sized work myself, per standing practice.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, this entry. No content, price or product touched.
+
 ## PM check-in (13:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work confirmed finished, not cited: attached clean (fetch, unshallow check, ff-only onto `a3c7fd370`, tree clean). `preflight.py` fast: 0 FAIL before the documented `gate_tests` sandbox hang. `cold_read_ledger.py --stale`: 0 stale. Deploy verdict re-derived directly (`deploy-verdict.json` current at `1e15140736f2a808`; 64 commits since that check, 0 touching `site/`, `ops/build_*.py` or `mcp/`), so still current. All 10 open GitHub issues re-pulled: unchanged, `decision`/`blocked-on-art`. Issue #42 (cadence vs. exhausted backlog) unchanged since 00:21; nothing material to add, not reposting.
