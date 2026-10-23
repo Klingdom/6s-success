@@ -51,6 +51,11 @@
       "date": "2026-10-18",
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
+    "article_figures.py": {
+      "status": "fixed",
+      "date": "2026-10-23",
+      "note": "Cold-read 2026-10-23: found one real defect (site/articles/index.html missing twitter:title/description/image entirely; gate_share_cards_current's apply()-diff check cannot catch a tag that never existed), fixed, and gated (gate_twitter_card_complete, fail-then-pass proven). Everything else checked clean: manifest cross-checks against FIGURES/plan() exact match, all referenced image files on disk, all 76/33 pages' served og:image/figure match the manifest exactly."
+    },
     "audit_catalog.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -58,8 +63,8 @@
     },
     "audit_pages.py": {
       "status": "clean",
-      "date": "2026-10-15",
-      "note": "Scheduled operator cycle cold read: re-read in full (416 lines) end to end, independent of the 2026-10-14 pass that last touched this file (the probe-allowlist widening in c5717c324/e60f1c358). Checked whether the images check (line ~268) silently skips root-relative img src=\"/...\" paths from the img-missing check: it does (only non-http/data/absolute paths are resolved against disk), a real gap in the check's coverage, but verified directly against the live site (grep + a standalone scan of every <img> tag across all non-probe, non-downloads pages) that zero images on the site currently use a root-relative src, so no live defect exists behind the gap today. gate_page_ownership_registry (preflight.py) confirms GENERATED_TOP_LEVEL_PAGES/HAND_MAINTAINED_PAGES stay exhaustive and disjoint against the real site/ tree, which is_generated() here depends on. No new defect found; the root-relative-src gap is recorded here rather than fixed, since CLAUDE.md's own guidance is not to add validation for a scenario that cannot currently happen, and fixing it would need a planted fixture this cycle has no spare budget for."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "audit_visual.py": {
       "status": "clean",
@@ -113,8 +118,8 @@
     },
     "build_articles.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (1039 lines) and run directly on a clean tree: both articles (what-is-6s, how-long-does-it-take) regenerate byte-identical, full wiring chain (canonical_links through fingerprint_assets) reruns clean, 0 drift."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_avif.py": {
       "status": "clean",
@@ -143,8 +148,8 @@
     },
     "build_corporate.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: generator reads clean against its own asserts, no defect found"
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_corporate_asset.py": {
       "status": "clean",
@@ -158,8 +163,8 @@
     },
     "build_deck_gallery.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (796 lines) and run directly: both deck galleries (entryway, mudroom) regenerate byte-identical including the full wiring chain, every face/file assertion passes, 0 drift."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_deck_pdf.py": {
       "status": "clean",
@@ -338,8 +343,8 @@
     },
     "build_messy_article.py": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "Read in full (482 lines) and run directly: regenerates the article byte-identical (30,858 bytes, 3,678 words, 7 causes/4 rooms/9 FAQ), 0 drift. Verified its chrome() head-stripping logic (which deliberately keeps PWA/progressive markers from its template rather than re-wiring them) against the real output: nothing missing."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_microzone_coverage.py": {
       "status": "clean",
@@ -488,8 +493,8 @@
     },
     "build_seo.py": {
       "status": "clean",
-      "date": "2026-10-15",
-      "note": ""
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_social_captions.py": {
       "status": "clean",
@@ -523,8 +528,8 @@
     },
     "build_standards_page.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; regenerated and diffed against committed site (0 diff); the generator's own inline assertions all passed (download exists, analytics wired, one paid path present, hero quotes 2 zones verbatim from content.json, all 5 FAQ answers verbatim from the page, room_list raises SystemExit on any missing zone-page link so no dead link could ship); live-read PACK-HOUSE buy link and price cross-checked directly against data.js (exact match, $19, current Stripe link). No defect found."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_thumbnails.py": {
       "status": "clean",
@@ -553,8 +558,8 @@
     },
     "build_zone_index.py": {
       "status": "clean",
-      "date": "2026-10-12",
-      "note": "Third-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (459 lines). Regenerated site/zones/index.html directly and diffed against the committed file: byte-identical. The full downstream wiring chain it calls (canonical_links, prune_catalog_js, wire_landmarks, wire_progressive, wire_measure, wire_pwa, wire_aria_current, build_avif.wire, fingerprint_assets) left git status completely clean afterward, proving every one of those generators also still agrees with its own committed output. No defect found."
+      "date": "2026-10-23",
+      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
     },
     "build_zone_map_pack.py": {
       "status": "clean",
@@ -1140,6 +1145,11 @@
       "status": "fixed",
       "date": "2026-10-12",
       "note": "third-pass cold-read, 2026-10-12: find_time() parsed a month-first ordinal date (Oct. 14th) but not the identical date day-first (14th October), so a customer naming a clear appointment in the more common day-first phrasing got no calendar invite and a 'no time could be read' forward instead. Fixed DATE_PATTERNS' day-first branch to accept an optional ordinal suffix and optional 'of', matching the leniency already given to the month-first branch. 2 new regression cases added to test_service_orders.py, fail-then-pass proved."
+    },
+    "share_cards.py": {
+      "status": "fixed",
+      "date": "2026-10-23",
+      "note": "Cold-read 2026-10-23: found one real defect (site/articles/index.html missing twitter:title/description/image entirely; gate_share_cards_current's apply()-diff check cannot catch a tag that never existed), fixed, and gated (gate_twitter_card_complete, fail-then-pass proven). Everything else checked clean: manifest cross-checks against FIGURES/plan() exact match, all referenced image files on disk, all 76/33 pages' served og:image/figure match the manifest exactly."
     },
     "ship.py": {
       "status": "clean",

@@ -15182,6 +15182,38 @@ def gate_share_cards_current() -> None:
         fail("share-cards", "; ".join(problems))
 
 
+def gate_twitter_card_complete() -> None:
+    """A page with og:image and twitter:card must carry the full Twitter block.
+
+    Found 2026-10-23: site/articles/index.html had og:title/og:description/
+    og:image (correct, and what LinkedIn and Facebook actually read) plus a
+    bare `twitter:card` tag, but no `twitter:title`, `twitter:description`,
+    `twitter:image` or `twitter:image:alt` at all. `gate_share_cards_current`
+    did not catch it: its "unwired" check calls `share_cards.apply()` and
+    compares the result to the page, but `apply()` only ever rewrites the
+    `content` of a tag that already exists; it never inserts a `twitter:
+    image` tag from nothing, so a page missing the tag entirely sails through
+    that comparison unchanged. This gate checks tag presence directly instead
+    of trusting apply()'s diff.
+    """
+    missing = []
+    for path in all_pages():
+        src = io.open(path, encoding="utf-8").read()
+        if "<meta property=\"og:image\"" not in src:
+            continue
+        if "name=\"twitter:card\"" not in src:
+            continue
+        gaps = [name for name in ("twitter:title", "twitter:description",
+                                  "twitter:image")
+                if "name=\"%s\"" % name not in src]
+        if gaps:
+            missing.append((os.path.relpath(path, SITE), gaps))
+    if missing:
+        fail("twitter-card-complete",
+             "%d page(s) have og:image and twitter:card but are missing "
+             "tag(s): %s" % (len(missing), missing[:5]))
+
+
 def gate_room_maps_current() -> None:
     """ops/room-maps.json must be exactly what ops/build_room_maps.py draws.
 
@@ -30033,6 +30065,7 @@ def main() -> int:
     run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_room_maps_current)
     run_gate(gate_share_cards_current)
+    run_gate(gate_twitter_card_complete)
     run_gate(gate_article_figures_current)
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
