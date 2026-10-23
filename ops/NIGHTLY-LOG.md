@@ -2,6 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: "Immediate Focus" had the same unbounded-growth defect section 28 just fixed, in a shape nothing existing could rotate
+
+Did: attached clean, ff-only onto main. Preflight stale-warned
+`ops/keyword-demand.json`; rescored (counts held), read all 166 gap
+queries, found nothing worth chasing (off-topic/decor noise, out of
+`CLAUDE.md` section 3 scope). Cold-read lane confirmed exhausted
+(287/287). Re-reading section 28's own fix found its sibling: the
+"Immediate Focus" line had grown 27 corrections since 2026-09-02 onto
+one physical line (no line break to anchor a bold paragraph), 15KB,
+all re-stating the same deploy-gap figure tracked elsewhere. Extended
+`ops/rotate_status_history.py` with a parallel operation (`split_focus_
+line`/`plan_rotation_focus`/`--apply-focus`); kept the base statement
+live with a pointer to Production Knowledge/BLOCKER-001, archived all
+27 corrections verbatim to STATUS-ARCHIVE.md.
+
+Verified: caught and fixed a real splitter bug before trusting it live
+(a comma-introduced clause in the base statement was mismatched as a
+correction; fixed by requiring sentence-ending punctuation before a
+marker). New `gate_status_immediate_focus_not_oversized`, new/extended
+tests fail-then-pass proved, including against the real rotated file.
+Full preflight: 0 FAIL/0 WARN through every gate reached, then the
+documented `gate_tests` sandbox hang (killed after confirming it was
+genuinely stalled). Ledger, backlog, dashboard updated. Pushed.
+
+Went well: testing the splitter against real content caught the
+comma-clause trap before it reached the live file.
+
+Did not go well: the full 166-query gap-tier read found nothing; a
+smaller sample first would have shown that sooner.
+
+Changing next cycle: sample 20-30 gap queries before reading a noisy
+full list.
+
+Next: nothing newly unblocked (sections 2-6 Phil-gated on C5/C6, all
+issues decision/blocked-on-art). Watch for new un-ledgered `ops/*.py`
+files, the only thing that reopens the cold-read lane.
+
 ## 2026-10-23, PM check-in (05:4x slot, 30-minute triage): previous work and two of Phil's own direct commits confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked. BACKLOG-2026-09-07.md sections 2-6 still hold only C5 (Gemini billing) and C6 (YouTube OAuth), both Phil-gated with everything up to the gate already built; all 10 open GitHub issues remain decision/blocked-on-art, none from Phil. Continue the standing full re-verification practice rather than start new work.

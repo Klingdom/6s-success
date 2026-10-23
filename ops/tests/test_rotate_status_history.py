@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 Prove ops/rotate_status_history.py keeps only the newest STATUS.md
-"Production Knowledge" entry live and moves the rest into the archive
-correctly: every entry ends up on exactly one side, nothing is edited, and
-a file that does not match the expected shape is refused rather than
-guessed past.
+"Production Knowledge" entry live (cases 1-9) and the base statement of
+the "Immediate Focus" line (cases 10-12), moving the rest into the archive
+correctly in both cases: every entry ends up on exactly one side, nothing
+is edited, and a file that does not match the expected shape is refused
+rather than guessed past.
 
 Run:  python ops/tests/test_rotate_status_history.py
 """
@@ -134,6 +135,57 @@ def main() -> int:
         fails.append("a malformed existing archive was silently accepted")
     except ValueError:
         pass
+
+    # 10. split_focus_line() finds the base statement and every dated
+    #     correction, oldest first, and does not mistake a comma-
+    #     introduced date clause inside the base statement itself (the
+    #     real 2026-10-23 bug: "SINCE 2026-09-02, RE-CONFIRMED 2026-09-15:"
+    #     is one sentence, not two) for a chain entry.
+    focus_text = (
+        "**Immediate Focus:** UNCHANGED SINCE 2026-09-02, RE-CONFIRMED "
+        "2026-09-15: TRAFFIC IS THE CONSTRAINT. UPDATED 2026-09-30, ops: "
+        "first correction. WIDENED 2026-10-01, ops: second correction.\n"
+        "**Next field:** unrelated.\n"
+    )
+    f_before, f_base, f_entries, f_after = rsh.split_focus_line(focus_text)
+    if "RE-CONFIRMED 2026-09-15" not in f_base:
+        fails.append("base statement's own comma-introduced date clause "
+                      "was wrongly split off: %r" % f_base)
+    if len(f_entries) != 2:
+        fails.append("expected 2 dated entries, got %d: %r"
+                      % (len(f_entries), f_entries))
+    elif not f_entries[0].startswith("UPDATED 2026-09-30") or \
+            not f_entries[1].startswith("WIDENED 2026-10-01"):
+        fails.append("dated entries came back out of order: %r" % f_entries)
+    if not f_after.startswith("\n**Next field:**"):
+        fails.append("focus line's own end boundary drifted: %r"
+                      % f_after[:40])
+
+    # 11. plan_rotation_focus() keeps the base statement plus the given
+    #     tail live, and archives every dated entry newest-first (the
+    #     archive's own stated convention), reformatted only to bold its
+    #     header.
+    new_focus_text, focus_archived = rsh.plan_rotation_focus(
+        focus_text, "TAIL POINTER.")
+    _, kept_base, kept_entries, _ = rsh.split_focus_line(new_focus_text)
+    if kept_entries:
+        fails.append("rotation left dated entries live: %r" % kept_entries)
+    if "TAIL POINTER." not in kept_base:
+        fails.append("replacement tail was not appended to the kept line")
+    if len(focus_archived) != 2:
+        fails.append("expected 2 archived focus entries, got %d: %r"
+                      % (len(focus_archived), focus_archived))
+    elif not focus_archived[0].startswith("**Immediate Focus, WIDENED "
+                                           "2026-10-01"):
+        fails.append("focus archive was not newest-first: %r"
+                      % focus_archived)
+
+    # 12. A focus line with no dated corrections is a no-op.
+    plain_focus = "**Immediate Focus:** NOTHING TO ROTATE HERE.\n"
+    new_plain, archived_plain = rsh.plan_rotation_focus(plain_focus, "X")
+    if new_plain != plain_focus or archived_plain:
+        fails.append("a focus line with no corrections was rotated when "
+                      "it should have been left alone")
 
     if fails:
         print("FAILED (%d):" % len(fails))

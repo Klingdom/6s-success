@@ -1132,9 +1132,9 @@
       "note": "Cold-read 2026-10-15, PM cycle: logic (header split, date inheritance, rotation, archive append order) correct and matches its own docstrings; fail-then-pass proved against the real test file. Found and fixed a real reporting defect: the --check DUE message printed the whole live log's total byte count (n_bytes) labelled as if it were the size of the entries being archived, so the real file read '82 of 813 entries (2302955 bytes)' where 2302955 was the entire file, not the 82 entries (252293 bytes). Fixed to report the actual archived-chunk size (n_bytes - new_n_bytes, the same quantity --apply's own success message already used correctly). Test extended to assert the correct byte count and to catch a regression back to the whole-file figure. Also applied the now-overdue real rotation while here: 82 of 813 entries (14+ days old) moved to ops/NIGHTLY-LOG-ARCHIVE.md verbatim, live log now 731 entries / 2.0MB."
     },
     "rotate_status_history.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-23",
-      "note": "New this cycle (2026-10-23): STATUS.md's Production Knowledge chain had grown to 37 entries, 38KB, with no automated rotation (unlike NIGHTLY-LOG.md's own fix). Wrote this script plus gate_status_production_knowledge_not_oversized in preflight.py, tests fail-then-pass proved, applied once (36 entries archived to STATUS-ARCHIVE.md)."
+      "note": "Re-touched 2026-10-23: added a second, parallel operation for STATUS.md's sibling 'Immediate Focus' field, which had grown the identical unbounded-correction-chain defect as Production Knowledge but in a single-line, oldest-first shape nothing existing could rotate. New split_focus_line/plan_rotation_focus/--check-focus/--apply-focus, plus gate_status_immediate_focus_not_oversized in preflight.py, both fail-then-pass proved."
     },
     "send_brief.py": {
       "status": "clean",

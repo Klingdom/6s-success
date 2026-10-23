@@ -21281,6 +21281,56 @@ def gate_status_production_knowledge_not_oversized() -> None:
              "--apply`." % len(lines))
 
 
+def gate_status_immediate_focus_not_oversized() -> None:
+    """STATUS.md's "Immediate Focus" line must not carry more than a
+    small buffer of dated corrections appended onto it.
+
+    Found 2026-10-23, the same cycle that found gate_status_production_
+    knowledge_not_oversized's own defect, in the sibling field right
+    below it: 27 corrections since 2026-09-02 had piled up on ONE
+    physical line (this field has no per-entry line break to anchor a
+    new bold paragraph against, so each correction was appended as a
+    plain sentence instead), 15KB of a single line, every one of them
+    re-stating the same deploy-gap figure the Production Knowledge
+    paragraph above already tracks and never catching up with it
+    ("THIS LINE NEVER CAUGHT UP WITH THE PRODUCTION KNOWLEDGE PARAGRAPH
+    ABOVE OR BLOCKER-001" is the chain's own words for it, written
+    2026-10-19). ops/rotate_status_history.py's new split_focus_line/
+    plan_rotation_focus/--apply-focus now move everything but the base
+    statement into STATUS-ARCHIVE.md; this gate is what stops that from
+    being a one-time cleanup that quietly regrows, the same role
+    gate_status_production_knowledge_not_oversized plays for its own
+    field.
+
+    A WARNING, not a FAIL: a long line wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. A
+    buffer of 3 lets a handoff add a follow-on correction within a
+    cycle without this firing immediately; it fires only once the line
+    is genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_status_immediate_focus_
+    not_oversized.py builds a synthetic STATUS.md with the line well
+    past the buffer and asserts this gate warns, then confirms a line
+    at or under the buffer stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_history as rsh
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, _, entries, _ = rsh.split_focus_line(text)
+    except ValueError:
+        return
+    buffer = 3
+    if len(entries) > buffer:
+        warn("status-immediate-focus-not-oversized",
+             "STATUS.md's 'Immediate Focus' line carries %d dated "
+             "correction(s); they belong in STATUS-ARCHIVE.md. Run "
+             "`python ops/rotate_status_history.py --apply-focus`."
+             % len(entries))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30016,6 +30066,7 @@ def main() -> int:
     # defect before the hang, hook or no hook, sandbox or no sandbox.
     run_gate(gate_nightly_log_not_oversized)
     run_gate(gate_status_production_knowledge_not_oversized)
+    run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 
