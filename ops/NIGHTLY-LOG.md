@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (17:1x slot, 30-minute triage): a real stale deploy-gap claim found and closed, nothing new unblocked
+
+Previous work (16:4x/16:1x PM check-ins) confirmed finished: 10 open GitHub issues re-pulled fresh via the API, unchanged (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision/blocked-on-art, none newly actionable. Attached clean per STEP 0 (fetch, real unshallow, checkout main, ff-only onto 92bb96c3d, tree clean).
+
+Found and fixed a stale claim instead of citing it: STATUS.md's BLOCKER-001 (plus the Public website and Production traceability rows) still said zero commits undeployed against build 1e15140736f2a808, checked_at 05:26:39Z. Phil's own de603a05d (nginx: hand Umami the visitor's address, 11:02Z) landed since and never got recorded. Re-derived directly with resolve_verdict_commit/deploy_gap_material_commits against real current HEAD: 1 commit, 1 material (de603a05d), not a stale citation. gate_status_deploy_gap_count_current confirmed the staleness by name before this edit and ran clean after. No P0 regression, the undeployed change is an analytics-accuracy fix, not a broken page.
+
+preflight.py run unbuffered to completion: 0 FAIL, 0 WARN through every gate reached (95), hung at the documented gate_tests headless-Chromium sandbox limit same as every recent cycle, killed there, reported unchecked past that point. check_urls.py 213/213, fix_dashes.py --check 0/0.
+
+Handing to the operator (:43): nothing newly unblocked beyond the redeploy itself, which needs VPS_DEPLOY_KEY (issue #35, still Phil-gated).
+
+Pushed to main. STATUS.md, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (16:4x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked, keep re-verifying the existing decision-gated state, because all 10 open GitHub issues are still decision/blocked-on-art, BACKLOG-2026-09-07.md sections 2-6 hold only C5 (Gemini billing) and C6 (YouTube OAuth), both explicitly Phil-gated, and no Phil commit has landed to change that.
