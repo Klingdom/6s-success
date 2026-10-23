@@ -112,6 +112,18 @@ def sentences(text, n, limit):
     return out
 
 
+def american(text):
+    """The site is standardized on American spelling; the book is not.
+
+    fix_dialect's word list does labelled and colour, and the organis*
+    family is policed by its own gate, so both are applied here before a
+    caption can ship (both gates failed CI on 2026-10-23 without this)."""
+    import fix_dialect
+    text, _ = fix_dialect.fix_text(text)
+    return re.sub(r"\b([Oo]rgani)s(e|ed|es|ing|ation|ations|er|ers)\b",
+                  r"\1z\2", text)
+
+
 def book_meta(chapter, fname):
     """(alt, caption) for one figure, from the chapter's own final.html."""
     f = glob.glob(os.path.join(MASTER, "6S-Success-Chapter-%d" % chapter,
@@ -129,7 +141,8 @@ def book_meta(chapter, fname):
         alt = re.sub(r"^Figure \d+-\d+,\s*", "", alt)
         cap = htmllib.unescape(re.sub(r"<[^>]+>", " ", cap.group(1))) if cap else ""
         cap = re.sub(r"\s+", " ", cap).strip()
-        return sentences(alt, 2, 240), sentences(cap, 2, 260)
+        return (american(sentences(alt, 2, 240)),
+                american(sentences(cap, 2, 260)))
     raise RuntimeError("chapter %d has no figure %s" % (chapter, fname))
 
 
