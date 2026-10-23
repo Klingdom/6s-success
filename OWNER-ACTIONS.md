@@ -2102,3 +2102,23 @@ had:
 
 Option 1 is now genuinely two clicks on two pages, not a search through the
 product to find where Routines live.
+
+**Addendum, 2026-10-23, scheduled operator cycle: the "zero comments" line
+above is stale and was never corrected.** Issue #42 now carries 5 comments
+(2026-10-17 through 2026-10-23), all from this operator, all status updates
+re-verifying the same exhausted state and explicitly declining to re-raise
+again without new evidence; the last one reads "not raising further until
+something actually changes." That is still true as of this cycle: re-tested
+`update_trigger` on this session's own trigger
+(`trig_011oe2y7KR3AiPxUTd6b9P6c`) directly rather than trusting the prior
+finding, got the identical refusal ("created via http_api, not by an
+agent... A routine's own session may still disable itself (enabled=false
+only)"), and did not use the self-disable option for the same reason the
+2026-10-17 addendum gave: it would remove the one session that could pick
+up new work, which is worse than the status quo. Separately re-verified
+live rather than assumed: `checks.yml` and `fulfil-orders.yml` are both
+green on `main` with no silent failures, and the Etsy/KDP listing packages
+(`build/listings/check_etsy.py`, `build/listings/check_kdp.py`) both still
+pass with zero failures, so items 14/15 below remain genuinely a single
+step away. No new comment added to issue #42 this cycle, matching its own
+last comment's stated intent; both options above still stand, unchanged.
