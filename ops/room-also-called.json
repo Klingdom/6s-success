@@ -3,11 +3,58 @@
  "_rule": "Do not add a word with no measured queries. 'master closet', 'rec room', 'ensuite' and 'lounge' were all considered and all returned zero, so naming them would be inventing demand. Do not add a word the site already covers: 'utility room' (13 queries, 9 covered), 'linen closet' (51, 24), 'coat closet' (21, 11), 'walk in closet' (34, 15) and 'front hall' (6, 4) are all answered already and adding them would be noise.",
  "_measured_at": "2026-10-02T08:12:24Z",
  "rooms": {
-  "Primary Bedroom": {"names": ["master bedroom"], "queries": 16, "covered": 0},
-  "Primary Bathroom": {"names": ["master bathroom"], "queries": 13, "covered": 0},
-  "Entryway": {"names": ["foyer", "entrance hall"], "queries": 25, "covered": 0},
-  "Pantry": {"names": ["larder"], "queries": 11, "covered": 0},
-  "Family Room": {"names": ["den", "bonus room"], "queries": 19, "covered": 0},
-  "Stair Landing": {"names": ["stairway landing"], "queries": 3, "covered": 0}
- }
+  "Primary Bedroom": {
+   "names": [
+    "master bedroom"
+   ],
+   "queries": 16,
+   "covered": 0
+  },
+  "Primary Bathroom": {
+   "names": [
+    "master bathroom"
+   ],
+   "queries": 13,
+   "covered": 0
+  },
+  "Entryway": {
+   "names": [
+    "foyer",
+    "entrance hall"
+   ],
+   "queries": 25,
+   "covered": 0
+  },
+  "Pantry": {
+   "names": [
+    "larder"
+   ],
+   "queries": 11,
+   "covered": 0
+  },
+  "Family Room": {
+   "names": [
+    "den",
+    "bonus room"
+   ],
+   "queries": 19,
+   "covered": 0
+  },
+  "Stair Landing": {
+   "names": [
+    "stairway landing"
+   ],
+   "queries": 3,
+   "covered": 0
+  },
+  "Hall Closet": {
+   "names": [
+    "hall cupboard"
+   ],
+   "queries": 3,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+  }
+ },
+ "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."
 }

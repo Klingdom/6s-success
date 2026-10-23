@@ -12124,10 +12124,10 @@
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "hallway cabinet organization ideas",
@@ -18371,10 +18371,10 @@
       "best_page": "/hall-closet-deck.html",
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/hall-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organise a laundry room",
@@ -18556,10 +18556,10 @@
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/hall-closet-the-linen-shelf-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organise your pantry",
@@ -36631,10 +36631,10 @@
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/dining-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/hall-closet-the-linen-shelf-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "linen storage for small space",
@@ -49045,10 +49045,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-primary-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "walk-in closet organization ideas",
@@ -51628,6 +51628,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-23T06:04:26Z",
-  "scored_against_commit": "51ee512d0"
+  "scored_at": "2026-10-23T17:29:01Z",
+  "scored_against_commit": "2140c7f83"
 }

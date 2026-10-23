@@ -44,10 +44,21 @@ def load():
     return json.loads(io.open(MAP, encoding="utf-8").read())
 
 
+# The same seeds harvested for gb, au, ca and in (ops/keyword_demand_global.py,
+# added 2026-10-23). A word people type in London or Sydney is as real as one
+# typed in Denver, and "hall cupboard" is the international name for a room
+# this site calls the hall closet.
+DEMAND_GLOBAL = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+
+
 def demand_rows():
     if not os.path.exists(DEMAND):
         return None
-    return json.loads(io.open(DEMAND, encoding="utf-8").read())["rows"]
+    rows = json.loads(io.open(DEMAND, encoding="utf-8").read())["rows"]
+    if os.path.exists(DEMAND_GLOBAL):
+        rows = rows + json.loads(
+            io.open(DEMAND_GLOBAL, encoding="utf-8").read())["rows"]
+    return rows
 
 
 def main():
