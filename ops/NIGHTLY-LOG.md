@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: full re-verification, state independently reconfirmed exhausted, no new push
+
+Did: Unshallowed and attached to main (ff onto 30d7e2bbe, clean). Read GOALS.md, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md sections 0-7 plus 25-29, ROADMAP-2026-2029.md, recent NIGHTLY-LOG.md. Ran preflight.py to a log. Checked GitHub Actions directly. Pulled all 10 open issues fresh. Ran cold_read_ledger.py --stale/--next. Ran inbox_agent.py --apply. Tried to fetch the live site.
+
+Verified: preflight 88 gates, 0 FAIL, 0 WARN, then hung at gate_tests with the documented sandbox signature; killed there, unchecked past it. cold_read_ledger: 0 of 287 stale, 0 un-ledgered candidates. GitHub: 10 issues unchanged, all decision or blocked-on-art. Actions: last several pushes green across every workflow. inbox_agent.py: no mail credential here, unchecked, not assumed empty. No GEMINI_API_KEY or Stripe key in this environment, so C5 and a second-sale check stay unreadable. Live-site fetch: connection failure, no egress to production from here either.
+
+Went well: checked the notification cooldown file before considering a push. Last one went out 2026-10-22T13:5x, under 48h, so none sent, per that file's rule.
+
+Did not go well: nothing new to execute. Sections 2-6 are Done, Hold, or Phil-gated; all 10 issues unchanged; cold-read lane at 0 stale. This sandbox still cannot reach Stripe, the live site, Gemini, or mail. OWNER-ACTIONS.md item 23 and issue #42 already name the cost of this cadence against unchanged state; this is one more data point, not a new finding.
+
+Changing next cycle: none. Repeating the finding without new evidence is the cadence waste issue #42 names.
+
+Next: whichever OWNER-ACTIONS.md item Phil clears first turns this state over.
+
+HANDOFF-FILES: none
+
 ## PM check-in (08:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked
 
 Previous work (08:0x scheduled operator's full re-verification from a fresh checkout) confirmed finished, re-derived rather than cited: 10 GitHub issues re-pulled fresh this cycle, unchanged, all decision/blocked-on-art, matching issue #42's own analysis; working tree was clean and main already pushed at attach. Own independent preflight run reached gate_tests with 0 FAIL, 0 WARN across 88 gates; confirmed the documented sandbox hang by its CPU-flat signature (about 12s of CPU time over 5+ minutes wall clock) rather than assuming it, left to its own timeout rather than killed, unchecked past that point. BACKLOG-2026-09-07.md sections 2-6 remain Done, Hold or Phil-gated; the cold-read ledger is already exhausted per the prior cycle (287/287, 0 stale). No new defect small enough to close this slot was found. Not sending a fresh owner notification on issue #42: no new evidence since the last one.
