@@ -61,6 +61,14 @@
    "queries": 2,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+  },
+  "Guest Bathroom|Guest Linen Zone": {
+   "names": [
+    "airing cupboard"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
   }
  }
 }

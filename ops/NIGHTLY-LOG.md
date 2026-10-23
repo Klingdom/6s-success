@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: "airing cupboard" folded into zone-level also-called data, and the zone-level mechanism's own missing gate closed alongside it
+
+**Did:** Attached per STEP 0, clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 and 7, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG.md entries. The last two PM check-ins both named the same unclaimed task: fold "airing cupboard" into also-called data for the linen zones, from `ops/keyword-demand-global.json`'s rank-1 gaps. All 10 GitHub issues re-pulled fresh: unchanged, decision/blocked-on-art. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Verified before acting:** the handoff said "guest-bathroom/hall-closet linen zones" but the real data has exactly one row for "airing cupboard", pointing at Guest Bathroom's Guest Linen Zone, not Hall Closet (which already carries a different, separately-measured term, "linen cupboard"). Added the entry only where the evidence points, matching that existing convention.
+
+**Found while verifying, not after shipping:** the zone-level also-called mechanism had no gate at all, unlike its room-level twin (`gate_also_called_is_heading`, closed 2026-10-02 for the same defect: a synonym only counts to the keyword scorer inside a real h1 to h3 heading, and nothing checked that a committed zone entry actually renders there).
+
+**Fixed:** regenerated the one changed page with `build_zone_pages.py`. Added `check_zone_also_called_is_heading()` and `gate_zone_also_called_is_heading()` to preflight.py, the zone-scoped twin, wired in right after the room-level gate. New `ops/tests/test_gate_zone_also_called_is_heading.py` (6 cases, including the real site).
+
+**Verified:** fail-then-pass proved directly against the real file, not only synthetic cases, planting the pre-fix shape on the real committed page and watching the check fail by name, then restoring byte for byte. `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents, all clean. `preflight.py` run to completion in the background: 0 FAIL through every gate reached including the new one, killed at the documented `gate_tests` sandbox hang, unchecked past that point. `cold_read_ledger.py --stale`: 0 of 292.
+
+**Went well:** checking the handoff's exact wording against the real measured row caught a real one-word overreach before it shipped as an unsupported claim; the gate gap was a genuine, previously unguarded defect class.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the remaining rank-1 gap rows in the global keyword harvest are mostly unrelated autocomplete noise (classroom benches, a staircase trivia question, dollar-store brand names); treat that lane as exhausted rather than rescan it. Otherwise unchanged: every epic ahead of operational honesty dead-ends at a Phil decision or account action.
+
+Pushed to main. `ops/zone-also-called.json`, `site/zones/guest-bathroom-the-guest-linen-zone.html`, `ops/preflight.py`, `ops/tests/test_gate_zone_also_called_is_heading.py`, `ops/sitemap-content-hashes.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price or product touched; one existing free page changed, IndexNow will pick it up on its next successful run.
+
 ## 2026-10-23, PM check-in (18:1x slot, 30-minute triage): previous work confirmed finished a ninth way, nothing new unblocked
 
 NEXT FOR THE OPERATOR: fold more international vocabulary into also-called data, starting with "airing cupboard" for the guest-bathroom/hall-closet linen zones, per the 17:4x PM check-in's own handoff, still unclaimed and still the only genuinely unblocked, non-Phil-gated work this cycle found.

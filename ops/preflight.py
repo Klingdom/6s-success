@@ -26832,6 +26832,82 @@ def gate_also_called_is_heading() -> None:
         fail("also-called-is-heading", "; ".join(problems[:6]))
 
 
+def check_zone_also_called_is_heading(zones, page_bodies) -> list:
+    """The zone-level twin of `check_also_called_is_heading`.
+
+    `ops/zone-also-called.json` has carried real entries since before this
+    gate existed, with no check at all that a committed entry actually
+    renders where `zone_also_called_html()` says it will (an `<h2>` right
+    after the H1), the same unguarded gap the room-level map had until
+    2026-10-02. Written 2026-10-23 adding the "airing cupboard" entry for
+    Guest Bathroom|Guest Linen Zone, rather than wait for this to drift
+    silently the way the room-level one once did.
+
+    `zones` is {"Room|Zone": [name, ...]} from `ops/zone-also-called.json`'s
+    own `zones` key. `page_bodies` is {filename: html} for the real
+    `site/zones/*.html` files.
+
+    Returns problem strings, empty when every zone named in the map carries
+    its alternative name inside a real `<h1>`-`<h3>` heading on its own
+    page.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import build_zone_pages as bzp
+    problems = []
+    for key, names in sorted(zones.items()):
+        if not names or "|" not in key:
+            continue
+        room, zone = key.split("|", 1)
+        fname = f"{bzp.slug(room)}-{bzp.slug(bzp.display(room, zone))}.html"
+        body = page_bodies.get(fname)
+        if body is None:
+            problems.append(f"{key}: no site/zones/{fname} found to check")
+            continue
+        heads = " ".join(
+            re.sub(r"<[^>]+>", " ", h) for h in
+            re.findall(r"(?is)<h[1-3][^>]*>(.*?)</h[1-3]>", body)).lower()
+        for name in names:
+            if name.lower() not in heads:
+                problems.append(
+                    f"{fname}: {name!r} does not appear inside any h1-h3 "
+                    f"heading, so keyword_demand.py's scorer cannot see it")
+    return problems
+
+
+def gate_zone_also_called_is_heading() -> None:
+    """The shipped-HTML half of the zone-level also-called map (see
+    `check_zone_also_called_is_heading`'s own docstring for what this
+    catches). Re-derives the expected zone/name map from the real,
+    committed `ops/zone-also-called.json` and diffs it against the real
+    `site/zones/*.html` files, so a future edit cannot drop an entry's
+    rendering, or a new entry can't be added to the JSON without ever
+    being built, and ship silently either way.
+
+    Proved to fail on a planted regression: see
+    ops/tests/test_gate_zone_also_called_is_heading.py.
+    """
+    map_path = os.path.join(ROOT, "ops", "zone-also-called.json")
+    if not os.path.exists(map_path):
+        return
+    data = json.load(io.open(map_path, encoding="utf-8"))
+    zones = {key: entry.get("names") or []
+             for key, entry in (data.get("zones") or {}).items()}
+    if not zones:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("zone-also-called-is-heading", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_zone_also_called_is_heading(zones, page_bodies)
+    if problems:
+        fail("zone-also-called-is-heading", "; ".join(problems[:6]))
+
+
 def check_general_reading_picks(picks, diagnosed_usage, pool,
                                 floor=3, cap_ceiling=None,
                                 zones_linking=None) -> list:
@@ -30603,6 +30679,7 @@ def main() -> int:
     run_gate(gate_room_hub_current)
     run_gate(gate_room_time_rounding_current)
     run_gate(gate_also_called_is_heading)
+    run_gate(gate_zone_also_called_is_heading)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_no_duplicate_hazard_labels)
