@@ -883,11 +883,20 @@ def _git_content_date(fp, depth=15):
         except Exception:                                      # noqa: BLE001
             return None
 
-    log = run(["git", "log", "-%d" % depth, "--format=%H %ad",
-               "--date=short", "--", rel])
+    # The commit's Unix time, turned into a UTC date here. "%ad
+    # --date=short" printed each commit in its own recorded offset, so a
+    # commit at 03:00 UTC could date as the previous day on one machine and
+    # the next on another, and CI's generator-ownership check read the
+    # difference as a hand edit to sitemap.xml (found 2026-10-23).
+    log = run(["git", "log", "-%d" % depth, "--format=%H %at", "--", rel])
     if not log or not log.stdout.strip():
         return ""
-    rows = [l.split() for l in log.stdout.strip().splitlines() if l.strip()]
+    rows = []
+    for l in log.stdout.strip().splitlines():
+        parts = l.split()
+        if len(parts) == 2 and parts[1].isdigit():
+            rows.append([parts[0], datetime.datetime.fromtimestamp(
+                int(parts[1]), datetime.timezone.utc).date().isoformat()])
 
     def body(commit):
         r = run(["git", "show", "%s:%s" % (commit, rel)], text=False)

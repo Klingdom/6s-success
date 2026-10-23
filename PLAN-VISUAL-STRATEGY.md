@@ -46,6 +46,10 @@ Done, free, no generation:
   they get a wordless crop of an existing illustration. The seven old files
   stay, because they are still og:images elsewhere.
 
+* **Link previews (not in the original plan, found 2026-10-22).** 58 pages, every room page and every article, shared one og:image, a book figure with "FIGURE 15-03" in its corner; 18 more used four other tabbed figures, the home page included. `ops/share_cards.py` now draws one 1200x630 card per page (76) from the page's own h1, with a picture only where one belongs (the room's plan on its room page, a product's pages on its product page). Generators ask it for the card, so a rebuild cannot undo it; `gate_share_cards_current` watches it.
+* **Articles.** 33 of 35 articles now carry one captioned book figure chosen for the argument they make (`ops/article_figures.py`, figures imported from the book's master folder with the book's own alt text and caption, American spelling). The 5S-cost article and the index get none: nothing fits closely.
+* **Zone pages.** The "Where it is" panel on 74 zone pages (the 13 drawn rooms) shows the room plan with this zone filled in (`ops/room_locator.py`), above the numbered list. No words in it; the panel is phone-width.
+
 Still open, in this plan's order: Wave 0.1 (vision audit of the 346 existing
 images, needs the review billing), the 7 rejected zone heroes and 89 card
 heroes (Wave 1), and the print packs' zero images (6.2). The new SVG plans are the natural source for 6.2.

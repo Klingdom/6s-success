@@ -2,6 +2,18 @@
 
 > Canonical evidence-backed learning memory for the autonomous 6S Success organization.
 
+## 2026-10-22: a test that dates things in local time fails every evening
+
+**Observation.** `test_nightly_log.py` failed locally at 21:1x Denver with nothing wrong in the tool it tests.
+
+**Evidence.** The test dated its entry with `date.today()`, which is local time (still 22 October); the cloud cycles that write the real log date in UTC (already 23 October), so the test's entry looked older than the file's top entry. Fixed in `a3495d8b6`.
+
+**Confidence.** High: reproduced, and the fix passes at the same moment.
+
+**Implication.** Anything in this repository that compares a locally computed date with a date written by a cloud cycle is wrong for seven hours a day. Use UTC, or the data's own newest date.
+
+**Next action.** When a date comparison fails only in the evening, check the time zone first.
+
 ## 1. Purpose
 
 `LEARNINGS.md` preserves what 6S Success has actually learned so Claude Code and specialist agents become smarter over time instead of repeatedly rediscovering the same facts.
