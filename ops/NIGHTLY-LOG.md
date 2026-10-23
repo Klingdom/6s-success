@@ -6,7 +6,13 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Not finished: checks.yml on main (fffff2792, prior merge) had conclusion FAILURE, found by checking Actions directly, not the last entry's "pushed" claim. Preflight failed `gate_nightly_log_no_duplicate_entries`: that merge kept two byte-identical "06:4x slot" entries. Removed one; re-ran the gate and its test (6/6). Fresh `preflight.py`: 0 FAIL to the documented `gate_tests` hang. `check_urls.py` 213/213, `fix_dashes.py` 0/0. GitHub: 10 issues unchanged, all decision/blocked-on-art. No push sent (48h cooldown). Dashboard regenerated, pushed.
 
-Handing to the operator: confirm this push's own Checks run is green before building on it; nothing else in BACKLOG-2026-09-07.md 2-6 is Phil-unblocked.
+Handing to the operator: nothing else in BACKLOG-2026-09-07.md 2-6 is Phil-unblocked.
+
+HANDOFF-FILES: none
+
+## 2026-10-23, PM check-in (07:1x slot, correction minutes later): the handoff above asked the operator to watch for something that cannot happen
+
+The fix commit (303e1a00c) touched only ops/NIGHTLY-LOG.md and the three generated dashboard files, and checks.yml's own `on.push.paths` explicitly negates all four (`!ops/NIGHTLY-LOG.md`, `!ops/state.json`, `!ops/dashboard.html`, `!EXECUTIVE-DASHBOARD-LIVE.md`), by design, so that commit alone cannot and will not trigger a new Checks run. Confirmed directly: no `in_progress` or `queued` Checks run exists for it. The "confirm this push's own Checks run is green" line above is unachievable and has been removed. The fix is verified the correct way instead: `check_nightly_log_fast.py` and `test_gate_nightly_log_no_duplicate_entries.py`, the exact script and test that failed in the fffff2792 run, both re-run directly against the now-fixed file and both pass. The next push that touches `ops/**` (etc.) will carry this fix through a real Checks run; nothing further to do here.
 
 HANDOFF-FILES: none
 
