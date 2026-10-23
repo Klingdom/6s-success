@@ -37,6 +37,16 @@ Run:
   python ops/keyword_demand_global.py            harvest all four markets
   python ops/keyword_demand_global.py --dry-run  6 seeds, nothing written
   python ops/keyword_demand_global.py --status   summarise the last harvest
+  python ops/keyword_demand_global.py --rescore  re-derive coverage against
+                                                  the current corpus, free,
+                                                  no network (LRN-0032; this
+                                                  file's own sibling never
+                                                  got this until 2026-10-23,
+                                                  which is why "coat cupboard
+                                                  organisation" sat scored
+                                                  against a stale corpus and
+                                                  misattributed to the wrong
+                                                  zone)
 """
 import datetime
 import json
@@ -207,8 +217,59 @@ def status():
     return 0
 
 
+def rescore():
+    """Re-derive every status against the corpus as it stands right now,
+    free, no network. Same LRN-0032 shape as keyword_demand.py's own
+    --rescore: a stored status is the result of scoring a query against
+    site/ AS IT WAS at the last harvest, not a property of the query.
+
+    Found live 2026-10-23: "coat cupboard organisation" (rank 1, gb/au/in)
+    scored `gap` with heading_page pointing at an unrelated downloads page,
+    because the stored reading predated zone-level also-called data that
+    is live today. Re-scoring with the current page_inventory() finds
+    /zones/entryway-the-coats-and-outerwear.html (which already carries
+    "Also called the coat cupboard") as the real best heading match, 0.667
+    against the stale 0.333, moving the row to `partial` with no new
+    content needed. Nothing watched this drift for the global file the
+    way gate_keyword_demand_rescored_current already watches the US one;
+    see gate_keyword_demand_global_rescored_current in preflight.py.
+    """
+    if not os.path.exists(OUT_JSON):
+        print("No global harvest on record to re-score. Run: python "
+              "ops/keyword_demand_global.py")
+        return 1
+    with open(OUT_JSON, encoding="utf-8") as fh:
+        payload = json.load(fh)
+    before = {}
+    for row in payload["rows"]:
+        before[row["status"]] = before.get(row["status"], 0) + 1
+    results = {r["query"]: {"query": r["query"], "markets": r["markets"],
+                            "best_rank": r["best_rank"], "seeds": r["seeds"]}
+               for r in payload["rows"]}
+    rows, pages = score(results)
+    payload["rows"] = rows
+    payload["pages_checked"] = pages
+    payload["scored_at"] = (datetime.datetime.now(datetime.timezone.utc)
+                            .strftime("%Y-%m-%dT%H:%M:%SZ"))
+    payload["scored_against_commit"] = kd.head_commit()
+    after = {}
+    for row in payload["rows"]:
+        after[row["status"]] = after.get(row["status"], 0) + 1
+    with open(OUT_JSON, "w", encoding="utf-8", newline="\n") as fh:
+        json.dump(payload, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    with open(OUT_MD, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(report(payload))
+    print("re-scored %d quer(ies) against %d page(s) at commit %s"
+          % (len(payload["rows"]), pages,
+             payload["scored_against_commit"] or "unknown"))
+    for st in ("gap", "partial", "covered"):
+        print("  %-8s %5d -> %5d" % (st, before.get(st, 0), after.get(st, 0)))
+    return 0
+
+
 def main(argv):
-    flags = {"--dry-run", "--status", "--help", "-h"}
+    flags = {"--dry-run", "--status", "--rescore", "--help", "-h"}
     bad = [a for a in argv if a not in flags]
     if bad:
         print("unknown argument(s): %s. Refusing to harvest." % ", ".join(bad))
@@ -218,6 +279,8 @@ def main(argv):
         return 0
     if "--status" in argv:
         return status()
+    if "--rescore" in argv:
+        return rescore()
     markets = list(MARKETS)
     seeds = kd.build_seeds()
     dry = "--dry-run" in argv

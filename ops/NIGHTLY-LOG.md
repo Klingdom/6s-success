@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle (19:4x slot): verified the 19:1x handoff before acting on it, and the real fix was a missing `--rescore` and gate, not a new synonym
+
+**Did:** Attached per STEP 0 (fetch, unshallow, `checkout main`, ff-only onto `64eebe04b`, tree clean). Read `GOALS.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 27-36 (the current queue, all Done or Phil-gated), and the 19:1x check-in's own handoff: fold "coat cupboard organisation" into Mudroom's Family Hook Zone also-called data, but verify a disambiguating term against the real scorer first, since "coat cupboard" already names Entryway's Coat and Outerwear Zone.
+
+**Verified before acting, per `CLAUDE.md` 5d, and the handoff's premise did not survive.** Ran `kd.best_by()` directly against the live corpus: both coat-cupboard queries score higher against Entryway's existing "Also called the coat cupboard" heading (0.667, 1.0) than against Mudroom's Family Hook Zone (0.333, 0.5, which uses "hooks"/"named column", never an enclosed space). The stored `ops/keyword-demand-global.json` disagreed only because it was never re-scored since the harvest ran: `ops/keyword_demand_global.py` had no `--rescore` at all, unlike its US sibling (gained one 2026-10-19 for the identical LRN-0032 shape), and nothing watched that drift. `STATUS.md`'s own 18:xx entry had already flagged this exact gap as unchecked the same day without anyone closing it.
+
+**Fixed at the root.** Added `rescore()`/`--rescore` to `ops/keyword_demand_global.py`; ran it for real (2,183 queries re-scored against 221 live pages, 20 moved off `gap` corpus-wide, both coat-cupboard rows now `partial`/`covered` with `heading_page` correctly pointing at Entryway). New `gate_keyword_demand_global_rescored_current` in `preflight.py`, reusing the US gate's own pure staleness function, wired in immediately after its sibling.
+
+**Verified:** `ops/tests/test_gate_keyword_demand_global_rescored_current.py` (5 cases) fail-then-pass proved directly: with the `preflight.py` addition stashed out, the test crashes with `AttributeError`; restored, all 5 pass. Sibling tests rerun clean. Also closed: `ops/cold-read-ledger.json`'s `check_cron_cadence.py` entry had gone stale the moment `d3d824c4c` fixed its `WORKFLOWS` registry without bumping the ledger date; checked directly (11 of 11 real cron files match) and corrected. `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `py_compile` clean on all touched files. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (killed cleanly, stale lock directory removed); narrower checks stand in, the standing workaround.
+
+GitHub: all 10 open issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`. Inbox: no mail credential in this sandbox, unchecked, not assumed empty. No push notification: the standing one (issue #42, 2026-10-22) is not yet 48h old and nothing material changed.
+
+**Went well:** verifying the handoff's own premise against the live scorer, rather than trusting its wording, avoided shipping a duplicate/wrong synonym and found a real structural gap (a missing rescore capability and gate) instead, matching this cycle's own theme from the 17:4x slot.
+
+**Did not go well:** this is the second "vocabulary handoff" in a row that turned out to need verification rather than direct execution; the backlog should flag that lane as needing a scorer check before any future hand-off, not just before this one.
+
+**Changing next cycle:** none; `gate_keyword_demand_global_rescored_current` now holds this file to the same discipline as its US sibling going forward.
+
+**Next:** no further coat-cupboard-shaped vocabulary work is warranted on Mudroom. Every epic ahead of operational honesty still dead-ends at a Phil decision or account action (owner gates section 6 of `BACKLOG-2026-09-07.md`).
+
+Pushed to main. `ops/keyword_demand_global.py`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/preflight.py`, `ops/tests/test_gate_keyword_demand_global_rescored_current.py`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or served page touched; IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (19:1x slot, 30-minute triage): previous work was NOT finished, CI was red; found and closed the real cause rather than re-citing "exhausted"
 
 Attached per STEP 0, clean (fetch, unshallow, `checkout main`, ff-only onto `a66b09d0b`, tree clean). Did not take STEP 1's summary at face value: the last `NIGHTLY-LOG.md` entry (the 18:5x operator cycle, airing-cupboard zone-also-called plus its new gate) read as finished and verified, but CI on `checks.yml` for the merge commit that shipped it (`1ecccb0f5`, run 2318) actually says `conclusion: failure`, something no log entry mentioned. Pulled the job log directly rather than trust the green-sounding prose.

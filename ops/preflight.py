@@ -19318,6 +19318,60 @@ def gate_keyword_demand_rescored_current() -> None:
         warn("keyword-demand-rescored-current", problem)
 
 
+def gate_keyword_demand_global_rescored_current() -> None:
+    """ops/keyword-demand-global.json's per-query statuses must not drift
+    stale against site/ between rescores, the same LRN-0032 shape
+    gate_keyword_demand_rescored_current already watches for its US
+    sibling. See keyword_demand_rescore_staleness_problem's own docstring.
+
+    Found live 2026-10-23, scheduled operator cycle: this file had no
+    `--rescore` at all (unlike keyword_demand.py, which gained one
+    2026-10-19) and no gate watching it, so "coat cupboard organisation"
+    (rank 1, gb/au/in) sat scored `gap` with heading_page pointing at an
+    unrelated downloads page, because the stored reading predated the
+    zone-level also-called data that made /zones/entryway-the-coats-and-
+    outerwear.html ("Also called the coat cupboard") the real best match.
+    `ops/keyword_demand_global.py --rescore` (new, same cycle) re-derives
+    it for free and moved the row to `partial` with no new content
+    needed. A WARNING, not a failure: a stale reading is a measurement
+    gap, not something a customer can feel.
+
+    Proof this can fail: ops/tests/test_gate_keyword_demand_global_
+    rescored_current.py points preflight.ROOT at a temp directory holding
+    a payload with no scored_against_commit and confirms the gate warns,
+    then at one whose scored_against_commit sits 5+ real commits behind
+    HEAD on site/ and confirms it still warns, then restores ROOT and
+    confirms the real committed file (freshly rescored this same cycle)
+    passes clean.
+    """
+    path = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+    if not os.path.exists(path):
+        return
+    try:
+        payload = json.loads(io.open(path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    commit = payload.get("scored_against_commit")
+    since = []
+    if commit:
+        try:
+            out = subprocess.run(
+                ["git", "log", "--format=%H", "%s..HEAD" % commit,
+                 "--", "site/"],
+                cwd=ROOT, capture_output=True, text=True, timeout=60,
+            ).stdout
+            since = [ln.strip() for ln in out.splitlines() if ln.strip()]
+        except Exception:                                      # noqa: BLE001
+            return
+    problem = keyword_demand_rescore_staleness_problem(commit, since)
+    if problem:
+        warn("keyword-demand-global-rescored-current",
+             problem.replace("ops/keyword-demand.json",
+                              "ops/keyword-demand-global.json")
+             .replace("python ops/keyword_demand.py --rescore",
+                      "python ops/keyword_demand_global.py --rescore"))
+
+
 def owner_questions_staleness_problem(payload, now, limit_days=10):
     """Pure logic for gate_owner_questions_not_stale, testable without a clock.
 
@@ -30810,6 +30864,7 @@ def main() -> int:
     run_gate(gate_keyword_demand_not_stale)
     run_gate(gate_keyword_demand_global_not_stale)
     run_gate(gate_keyword_demand_rescored_current)
+    run_gate(gate_keyword_demand_global_rescored_current)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)
     run_gate(gate_indexation_check_not_stale)
