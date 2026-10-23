@@ -896,6 +896,11 @@
       "date": "2026-10-13",
       "note": "Re-ledgered after the 2026-10-13 FORMAT_WORDS widening (arrange excluded as an organize synonym, commit 6774e2895). Already independently verified twice same day: the authoring cycle simulated all 71 affected queries before landing, and the following PM check-in (18:2x) reran test_keyword_demand.py (21/21) and diffed a full --rescore against the committed keyword-demand.json byte for byte, confirming the 187/1455/1177 gap/partial/covered counts are current. This entry only updates the stale ledger date; no new read was needed beyond that double verification."
     },
+    "keyword_demand_global.py": {
+      "status": "fixed",
+      "date": "2026-10-23",
+      "note": "Cold-read 2026-10-23, scheduled operator cycle: faithful, correctly-scoped port of keyword_demand.py's harvest/canary/refusal logic for gb/au/ca/in (score_rows interface, refusal_reason canary-dict shape, localise() regex both checked line by line against the US file's own precedent, no mismatch found). Found and fixed, not just read clean: it shipped with no staleness gate and no scheduled workflow, the exact gap gate_keyword_demand_not_stale was built to close for the US harvest, so this one could go stale forever after its first hand-fired run. Added gate_keyword_demand_global_not_stale (ops/preflight.py) and .github/workflows/keyword-demand-global.yml (Thursdays, offset from the US harvest's Wednesday slot)."
+    },
     "launch_plan_pdf.py": {
       "status": "clean",
       "date": "2026-10-14",
@@ -1198,8 +1203,8 @@
     },
     "site.js": {
       "status": "clean",
-      "date": "2026-10-14",
-      "note": "cold-read 2026-10-14 17:3x slot: test_site_js_no_runtime_error.py passes (32 real pages, 0 JS errors, nav toggle and reveal visibility both verified live); classified all 112 distinct catalogue image paths against pictureSources()'s three branches, all 112 matched (99 zone, 12 page, 1 cards, 0 fell through to null), spot-checked that the expected -420/-840 and -sm/-lg variant files actually exist on disk for samples of each branch. No defect found."
+      "date": "2026-10-23",
+      "note": "Cold-read 2026-10-23, scheduled operator cycle: re-read against the one commit since the last ledger entry (2140c7f8, 'shop: mark prices USD and say the catalogue works from anywhere'). renderProduct()'s new USD suffix guards correctly on typeof p.price === number and p.price > 0, so it cannot fire for the null (quote-based) or 0 (free) price branches already handled above it; order with the existing /yr suffix reads correctly ('$49 USD/yr'). No defect found."
     },
     "social_drafts.py": {
       "status": "clean",

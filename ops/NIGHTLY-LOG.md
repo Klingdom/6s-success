@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle (17:4x slot): a brand-new harvest file had no staleness gate and no scheduled refresh, closed within minutes of it shipping
+
+**Did:** Attached clean (unshallow, `checkout main`, ff-only onto `b7afb5112`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 and 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. All 10 GitHub issues re-pulled fresh: unchanged, `decision`/`blocked-on-art`, matching issue #42. `OWNER-ACTIONS.md`'s "Open, ranked" list read directly: every item is Phil-gated (account creation, a product call, a VPS credential). `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `preflight.py` run unbuffered to completion in the background: 0 FAIL, 0 WARN through every gate before the documented `gate_tests` headless-Chromium sandbox hang, killed there, unchecked past that point.
+
+A concurrent session was actively pushing real traffic-and-distribution work the entire time this cycle ran (`ops/keyword_demand_global.py`, international autocomplete harvesting for gb/au/ca/in; visitor-country tracking in `site/nginx/default.conf`; USD price labels on the shop). Re-fetched and ff-only merged twice mid-cycle rather than let the local branch drift; confirmed no file overlap with this cycle's own changes before each merge.
+
+**Found and fixed, rather than only re-confirming "exhausted":** `ops/cold_read_ledger.py --next` surfaced `ops/keyword_demand_global.py` (just shipped, 0 ledger mentions). Read it in full against `ops/keyword_demand.py`'s own proven logic, line by line (the `score_rows`/`refusal_reason` interface shapes, the `localise()` regex, the pre/post canary-merge pattern): a faithful, correctly-scoped port, no defect in the harvest logic. What it lacked is structural: no staleness gate in `preflight.py` and no scheduled workflow to refresh it, the exact gap `gate_keyword_demand_not_stale`/`keyword-demand.yml` were built to close for the US harvest, so this reading could sit stale indefinitely after its one hand-fired run.
+
+**Fixed:** `keyword_demand_global_staleness_problem()` + `gate_keyword_demand_global_not_stale()` in `preflight.py` (14-day ceiling, modelled directly on the US pair), wired into `main()` right after its sibling. New `.github/workflows/keyword-demand-global.yml`, same shape as `keyword-demand.yml`, Thursdays rather than Wednesdays so the two harvests do not compete for the same hour's patience from Google's side. Also cold-read `site/assets/js/site.js` (separately flagged stale by the ledger against the concurrent session's own USD-label commit): correct, ledgered clean.
+
+**Verified:** `ops/tests/test_gate_keyword_demand_global_not_stale.py` (6 cases, fail-then-pass proved: missing file, 21-day-stale, a real-shaped 15-day-old reading, 2-day-fresh, missing `checked_at`, unparseable `checked_at`). Called the real gate function directly against the live committed `ops/keyword-demand-global.json`: clean. New workflow YAML parsed with `yaml.safe_load`. `py_compile` clean on all three touched files. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale`: 0 of 292.
+
+**Went well:** cold-reading a concurrent session's own brand-new file, rather than only re-verifying yesterday's "exhausted" conclusion, found a real, concrete, non-Phil-gated gap within minutes of it shipping.
+
+**Did not go well, confirmed rather than newly found:** this gate (like its sibling) is registered after `gate_tests` in `main()`'s call order, so it never actually executes in this sandbox's own `preflight.py` runs, which hang at `gate_tests` first every time. `checks.yml` runs `python3 ops/preflight.py` directly on a GitHub-hosted runner where `gate_tests` does not hang, so it does run there; this is a pre-existing ordering quirk, not something this cycle introduced, and not fixed here (reordering every gate after `gate_tests` is a separate, larger change).
+
+**Changing next cycle:** none.
+
+**Next:** nothing else newly unblocked; same standing Phil-gated state otherwise. The concurrent session's international/visitor-country work is still landing; a future cycle should re-read `GOALS.md` O1 once it settles, since this is the first new traffic-and-distribution evidence in days.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_keyword_demand_global_not_stale.py`, `.github/workflows/keyword-demand-global.yml`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, dashboard files, this entry. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (17:4x slot, 30-minute triage): the deploy gap reopened and closed twice within one slot, caught both times by re-deriving rather than citing
 
 NEXT FOR THE OPERATOR: fold more international vocabulary into also-called data (start with "airing cupboard" for the guest-bathroom/hall-closet linen zones), because `ops/keyword-demand-global.json`'s rank-1 gap rows still have real British/Australian/Indian search terms this site has no page-side vocabulary for, and it is the only genuinely unblocked, non-Phil-gated work this cycle found; everything else remains decision/blocked-on-art.

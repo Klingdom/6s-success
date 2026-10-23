@@ -19522,6 +19522,86 @@ def gate_keyword_demand_not_stale() -> None:
         warn("keyword-demand-not-stale", problem)
 
 
+KEYWORD_DEMAND_GLOBAL_STALE_DAYS = 14
+
+
+def keyword_demand_global_staleness_problem(payload, now) -> str:
+    """Pure logic behind gate_keyword_demand_global_not_stale, unit testable
+    without touching the real file or the real clock.
+
+    payload is the parsed ops/keyword-demand-global.json (or None if the
+    file does not exist or does not parse). now is a tz-aware datetime.
+
+    Same shape as keyword_demand_staleness_problem above, 14 not 10 days:
+    ops/keyword_demand_global.py (2026-10-23) harvests the same corpus for
+    gb/au/ca/in, the one reading this business has of demand outside the
+    US now that GOALS.md records Umami had captured no visitor country,
+    ever, until the same day. Its first harvest was taken by hand and has
+    no scheduled workflow of its own feeding it the way
+    keyword-demand.yml feeds the US file; without this gate a hand harvest
+    that nobody re-runs would sit unnoticed exactly the way the US file
+    did before that workflow existed (this gate's own docstring explains
+    the original shape). 14 days, not 10: this is a newer, smaller-scope
+    reading than the US harvest and does not yet have a dedicated
+    always-on workflow, so a slightly wider window avoids warning on the
+    very first few days after a hand-fired run before one is added."""
+    if payload is None:
+        return ("ops/keyword-demand-global.json does not exist or does "
+                "not parse, so demand outside the US has never been read. "
+                "Run `python ops/keyword_demand_global.py` from a runner "
+                "with real internet access (this ops sandbox cannot reach "
+                "Google's autocomplete endpoint directly, the same "
+                "connect_rejected ops/keyword_demand.py's own harvest "
+                "hits here).")
+    checked_at = payload.get("checked_at")
+    if not checked_at:
+        return "ops/keyword-demand-global.json has no checked_at field."
+    try:
+        when = dt.datetime.strptime(checked_at, "%Y-%m-%dT%H:%M:%SZ").replace(
+            tzinfo=dt.timezone.utc)
+    except ValueError:
+        return ("ops/keyword-demand-global.json's checked_at %r does not "
+                 "parse." % checked_at)
+    age_days = (now - when).total_seconds() / 86400
+    if age_days > KEYWORD_DEMAND_GLOBAL_STALE_DAYS:
+        return ("ops/keyword-demand-global.json's reading of demand "
+                "outside the US is %.1f days old (checked_at %s), past "
+                "the %d-day ceiling. Nothing refreshes this one on a "
+                "schedule yet; fire `python ops/keyword_demand_global.py` "
+                "from a runner with real network access."
+                % (age_days, checked_at, KEYWORD_DEMAND_GLOBAL_STALE_DAYS))
+    return ""
+
+
+def gate_keyword_demand_global_not_stale() -> None:
+    """ops/keyword-demand-global.json, the only reading this business has
+    of what people outside the US actually type (GOALS.md O1's "distribution
+    beats production" decision rule, and the 2026-10-23 owner direction to
+    attract more global visitors), must not go quietly stale the same way
+    the US harvest once did before gate_keyword_demand_not_stale existed.
+
+    A WARNING, not a failure: a stale reading is a measurement gap, not
+    something a customer can feel.
+
+    Proof this can fail: ops/tests/test_gate_keyword_demand_global_not_stale.py
+    calls keyword_demand_global_staleness_problem() directly with a payload
+    dated three weeks before `now` and asserts the warning fires by name,
+    then with one dated two days before `now` and asserts it does not, then
+    with payload=None and asserts it fires for a missing file too.
+    """
+    path = os.path.join(ROOT, "ops", "keyword-demand-global.json")
+    payload = None
+    if os.path.exists(path):
+        try:
+            payload = json.loads(io.open(path, encoding="utf-8").read())
+        except Exception:                                          # noqa: BLE001
+            payload = None
+    problem = keyword_demand_global_staleness_problem(
+        payload, dt.datetime.now(dt.timezone.utc))
+    if problem:
+        warn("keyword-demand-global-not-stale", problem)
+
+
 INDEXATION_CHECK_STALE_DAYS = 14
 
 
@@ -30651,6 +30731,7 @@ def main() -> int:
     run_gate(gate_cold_read_ledger_entries_not_stale)
     run_gate(gate_cold_read_lanes_complete)
     run_gate(gate_keyword_demand_not_stale)
+    run_gate(gate_keyword_demand_global_not_stale)
     run_gate(gate_keyword_demand_rescored_current)
     run_gate(gate_owner_questions_not_stale)
     run_gate(gate_roadmap_gate_in_owner_email)

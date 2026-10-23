@@ -1,0 +1,63 @@
+name: Keyword demand, outside the US
+
+# ops/keyword_demand_global.py reads what people in gb/au/ca/in actually type,
+# the same way ops/keyword_demand.py already does for the US, straight from
+# Google's public autocomplete endpoint: no account, no key, no Search
+# Console. It exists because GOALS.md records Umami had captured no visitor
+# country at all until 2026-10-23, so this business had no evidence of what
+# demand outside the US sounds like, and the owner's direction the same day
+# was to attract more global visitors.
+#
+# Same cloud-sandbox limitation as the US harvest's own workflow: this ops
+# sandbox cannot reach Google's autocomplete endpoint directly (a
+# connect_rejected from the egress proxy itself), so this has to run from a
+# GitHub-hosted runner, which already has ordinary outbound internet.
+#
+# Weekly, offset from keyword-demand.yml's own Wednesday slot so the two
+# harvests (five fetches a seed between them: one US engine pair plus four
+# markets) never compete for the same hour's patience from Google's side.
+#
+# No push fallback, same reasoning as keyword-demand.yml: a late or skipped
+# week here costs nothing a customer can feel, it is a measurement, and
+# ops/preflight.py's gate_keyword_demand_global_not_stale is the backstop
+# that notices if a real gap opens up.
+#
+# The tool itself refuses to write a partial or blocked harvest over a good
+# one (every market's canary must answer, and the error/empty rate must stay
+# under its own ceilings), so a run that could not reach the engine fails
+# this job loudly instead of silently committing nothing or committing
+# garbage.
+
+on:
+  schedule:
+    - cron: '30 11 * * 4'      # Thursdays, mid-morning UTC
+  workflow_dispatch:
+
+concurrency:
+  group: keyword-demand-global
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write        # commits the global json and its .md report
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Harvest autocomplete demand outside the US
+        run: python ops/keyword_demand_global.py
+
+      - name: Commit the new reading
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/keyword-demand-global.json ops/KEYWORD-DEMAND-GLOBAL.md
+          git diff --cached --quiet || git commit -m 'Weekly global keyword demand harvest'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main
