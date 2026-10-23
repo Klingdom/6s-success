@@ -21400,6 +21400,52 @@ def gate_checkin_log_not_oversized() -> None:
                              len(text.encode("utf-8")), len(entries)))
 
 
+def gate_owner_actions_history_not_oversized() -> None:
+    """OWNER-ACTIONS.md's preamble must not be carrying a regrown
+    correction chain between its "List reviewed" paragraph and the
+    "Resolved today" table.
+
+    Found 2026-10-23, the cycle section 30's own handoff pointed at: the
+    file Phil reads directly to decide what needs him had the identical
+    unbounded-growth shape as STATUS.md's "Production Knowledge" and
+    "Immediate Focus" fields before gate_status_production_knowledge_
+    not_oversized/gate_status_immediate_focus_not_oversized existed,
+    just in a span with no single consistent entry order (a 2026-09-24
+    paragraph sat after a 2026-09-25 one), so the right fix was archiving
+    the whole span behind one pointer rather than "keep the newest."
+    ops/rotate_owner_actions.py now does that; this gate is what stops it
+    from being a one-time cleanup that quietly regrows, the same role its
+    STATUS.md and CHECKIN-LOG.md siblings above already play.
+
+    A WARNING, not a FAIL: a long preamble wastes every later cycle's
+    reading time, it does not ship anything broken to a customer. The
+    buffer (ops/rotate_owner_actions.py's own SIZE_BUFFER_BYTES, on top of
+    the pointer sentence's own size) lets a handoff add one short note
+    without this firing immediately; it fires only once the span is
+    genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_history_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with the span well
+    past the buffer and asserts this gate warns, then confirms a freshly
+    rotated span stays silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions as roa
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        size = roa.region_size(text)
+    except ValueError:
+        return
+    limit = len(roa.REPLACEMENT.encode("utf-8")) + roa.SIZE_BUFFER_BYTES
+    if size > limit:
+        warn("owner-actions-history-not-oversized",
+             "OWNER-ACTIONS.md's preamble history is %d bytes, over the "
+             "%d-byte buffer past its own pointer sentence. Run `python "
+             "ops/rotate_owner_actions.py --apply`." % (size, limit))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30137,6 +30183,7 @@ def main() -> int:
     run_gate(gate_status_production_knowledge_not_oversized)
     run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_checkin_log_not_oversized)
+    run_gate(gate_owner_actions_history_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 

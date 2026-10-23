@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: OWNER-ACTIONS.md's own preamble history fixed, the exact gap section 30's handoff left for a future cycle
+
+**Did:** Attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `54f3b4511`, tree clean). Sections 1-5 and all 10 GitHub issues exhausted/Phil-gated again (`cold_read_ledger.py --next`: 288/288 ledgered, 0 un-ledgered). `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty.
+
+Picked up section 30's own deferred handoff: `OWNER-ACTIONS.md`'s preamble carried two superseded correction chains (14,875 bytes) between "List reviewed" and "Resolved today", the identical unbounded-growth shape STATUS.md and CHECKIN-LOG.md already had gates for. Read in full first: unlike STATUS.md's chain, this one is not reliably newest-first, so "keep the newest entry" would have kept a stale paragraph live. Built `ops/rotate_owner_actions.py` instead to archive the whole bounded span to new `OWNER-ACTIONS-ARCHIVE.md`, replaced with one pointer sentence. Deliberately left untouched: the "Last measured"/"List reviewed" paragraphs themselves, both gate-parsed by exact first-sentence shape.
+
+**Verified:** `ops/tests/test_rotate_owner_actions.py` (10/10) and `ops/tests/test_gate_owner_actions_history_not_oversized.py` (5/5), both fail-then-pass proved. Ran `--check` (DUE, 14,875 bytes) then `--apply` then `--check` again (CLEAN, 357 bytes). Diffed real file before/after: everything from "Resolved today" onward byte-identical, both chain boundaries present in the archive and absent live. `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean. Full `preflight.py`: 0 FAIL/0 WARN through `gate_image_coverage`, including the new gate, then the documented `gate_tests` sandbox hang; killed there, unchecked past that point.
+
+**Went well:** choosing "archive the whole span, keep a pointer" over copying STATUS.md's "keep the newest" pattern, once the position-vs-chronology mismatch was actually checked rather than assumed away.
+
+**Did not go well:** nothing new found.
+
+**Changing next cycle:** none.
+
+**Next:** the "Last measured"/"List reviewed" paragraphs are the remaining candidate for this treatment; both are gate-parsed by exact first-sentence shape, a different job from archiving dead narrative.
+
+Pushed to main. `OWNER-ACTIONS.md`, `OWNER-ACTIONS-ARCHIVE.md`, `ops/rotate_owner_actions.py`, `ops/preflight.py`, `ops/tests/test_rotate_owner_actions.py`, `ops/tests/test_gate_owner_actions_history_not_oversized.py`, `BACKLOG-2026-09-07.md`, `ops/cold-read-ledger.json`, dashboard files, this entry. No price, product or served page touched.
+
 ## 2026-10-23, PM check-in (11:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, state remains genuinely exhausted
 
 Previous work (10:4x cycle) confirmed finished, not cited: attached clean (fetch, real unshallow, `checkout -B main origin/main`, ff-only onto `e4c05e9ed`, 530 commits, tree clean). Re-derived rather than trusted: `preflight.py` 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed there at 250s, unchecked past that point. `cold_read_ledger.py`: 0 stale, 0 un-ledgered candidates, that lane fully exhausted. All 10 GitHub issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, matching issue #42's own standing analysis. `ops/last-owner-notification.json`: last push ~21h old, still under the file's 48h no-repeat rule, none sent. No new defect small enough to close this slot. Regenerated the dashboard (revenue still $0 of $20,000, carried forward, Stripe unreachable). Nothing new to hand the operator: `BACKLOG-2026-09-07.md` sections 2-6 remain Done, Hold, or Phil-gated.
