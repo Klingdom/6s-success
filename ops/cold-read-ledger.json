@@ -912,9 +912,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot, scheduled operator cycle: read in full, cross-checked against real callers/output, no defect found"
     },
     "linkedin_drafts.py": {
-      "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; ran --preview live: all 3 corpus posts end with the tracked link (book.html?from=li), corporate_facts() anchors verified live against site/corporate.html (all 7 present), honesty block figures (20 rooms/114 zones/684 cards/.99 ebook) match the live catalogue. No defect."
+      "status": "fixed",
+      "date": "2026-10-23",
+      "note": "Scheduled operator cycle: cold read found the 2026-10-11 entry's own re-verification had only checked the 3 corpus posts for a link; the connection note and the corporate B2B post, same build() email, both ended in 'free to read' or an offer to discuss with no URL at all, same 2026-10-02 bug in two code paths that fix never reached. Fixed: note reuses LINK, corporate post gets its own CORP_LINK (corporate.html, not the consumer book). Word caps re-verified clear across 40 rotation days. New gate_linkedin_drafts_every_item_has_link in preflight.py, fail-then-pass proven via git stash."
     },
     "linkedin_posts.py": {
       "status": "clean",

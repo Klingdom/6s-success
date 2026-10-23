@@ -21961,6 +21961,69 @@ def gate_corporate_linkedin_claims_current() -> None:
                  % angle)
 
 
+def gate_linkedin_drafts_every_item_has_link() -> None:
+    """Every item in the daily LinkedIn draft email must carry a clickable
+    URL, not just the three corpus posts.
+
+    Found 2026-10-23: the 2026-10-02 fix ("a post with nowhere to go cannot
+    produce an arrival") only patched the three corpus POSTS. The single
+    CONNECTION NOTE, a direct message to someone Phil actually knows and
+    arguably the highest-propensity send in the whole email, and the
+    corporate B2B post both still ended in "free to read" / an offer to
+    discuss with no URL anywhere in the message. Same bug, two code paths
+    the earlier fix never reached, live for three weeks unnoticed because
+    nothing checked the NOTE or the CORPORATE block specifically, only the
+    posts loop's own LINK constant.
+
+    Builds a real day's draft via build(record=False), a pure preview call
+    that cannot advance the rotation, and checks each of the three sections
+    independently so one missing link cannot hide behind the other two.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import linkedin_drafts
+    except Exception as e:
+        warn("linkedin-drafts-every-item-has-link",
+             "ops/linkedin_drafts.py could not be imported (%s), so the "
+             "daily draft's links were not checked." % e)
+        return
+
+    try:
+        _, text = linkedin_drafts.build(record=False)
+    except Exception as e:
+        warn("linkedin-drafts-every-item-has-link",
+             "ops/linkedin_drafts.py.build() raised (%s), so today's draft "
+             "could not be checked for links." % e)
+        return
+
+    sections = [
+        ("the connection note", "AND ONE CONNECTION NOTE", "A SECOND POST"),
+        ("the corporate B2B post", "A SECOND POST", "WHAT IS TRUE TODAY"),
+    ]
+    for label, start_marker, end_marker in sections:
+        if start_marker not in text:
+            continue
+        start = text.index(start_marker)
+        end = text.index(end_marker, start) if end_marker in text[start:] else len(text)
+        chunk = text[start:end]
+        if "https://" not in chunk and "http://" not in chunk:
+            fail("linkedin-drafts-every-item-has-link",
+                 "%s in today's daily draft email has no URL at all. A "
+                 "message that only says 'free to read' or offers a "
+                 "conversation, with nowhere for the reader to click, "
+                 "cannot produce an arrival, the exact defect "
+                 "gate_linkedin_drafts_price_current's own history already "
+                 "describes for the posts above it." % label)
+
+    posts_end = text.index("AND ONE CONNECTION NOTE") if "AND ONE CONNECTION NOTE" in text else len(text)
+    posts_chunk = text[:posts_end]
+    if ("These are your own writing" in posts_chunk
+            and "https://" not in posts_chunk and "http://" not in posts_chunk):
+        fail("linkedin-drafts-every-item-has-link",
+             "today's three corpus posts in the daily draft email carry no "
+             "URL at all, the original 2026-10-02 defect, regressed.")
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -30101,6 +30164,7 @@ def main() -> int:
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_linkedin_drafts_customer_count_current)
     run_gate(gate_corporate_linkedin_claims_current)
+    run_gate(gate_linkedin_drafts_every_item_has_link)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_corpus_posts_no_manuscript_leak)
     run_gate(gate_corpus_posts_extraction_yield)

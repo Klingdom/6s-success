@@ -65,6 +65,18 @@ WORD_CAP = 100
 # the same query every other traffic number here comes from.
 LINK = "https://6s-success.com/book.html?from=li"
 
+# Found 2026-10-23: the fix above only reached the three corpus POSTS. The
+# single CONNECTION NOTE (a direct message to someone Phil actually knows,
+# arguably the highest-propensity send of the whole email) and the
+# corporate B2B post both still ended in "free to read" / an offer to
+# discuss, with no URL anywhere in the message, same bug, two code paths
+# the 2026-10-02 fix never touched. The connection note reuses LINK, same
+# as the posts above, since both are selling the same free book. The
+# corporate post is a different offer (paid consulting, not the free
+# book) so it gets its own destination: the page that pitch is actually
+# describing, not book.html.
+CORP_LINK = "https://6s-success.com/corporate.html?from=li"
+
 
 def facts() -> dict:
     """Every number these messages are allowed to use, measured now."""
@@ -270,7 +282,7 @@ def corporate_block(today: datetime.date) -> list:
             "A SECOND POST, FOR A DIFFERENT AUDIENCE (B2B, not the consumer "
             "feed above)",
             "For: %s   Angle: %s" % (aud, angle), "",
-            body, "",
+            body + chr(10) + chr(10) + CORP_LINK, "",
             "Every claim in that post is on site/corporate.html today; "
             "nothing above states a client, a result, or a count of "
             "engagements, since none has been sold through 6S Success yet.",
@@ -361,7 +373,7 @@ def build(today: datetime.date | None = None, record: bool = False) -> tuple[str
     note = pick(today.toordinal(), 1)[0]
     L += ["=" * 64, "AND ONE CONNECTION NOTE, for a direct message rather than a post",
           f"To: {note[0]}", f"Angle: {note[1]}", "",
-          note[2].format(**f), ""]
+          note[2].format(**f) + chr(10) + chr(10) + LINK, ""]
 
     L += corporate_block(today)
 

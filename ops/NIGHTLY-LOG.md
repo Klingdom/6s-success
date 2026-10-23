@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: the LinkedIn connection note and corporate post had no link either
+
+**Did:** Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only, 437 commits). Backlog sections 2-6 and all 10 GitHub issues were exhausted/Phil-gated (issue #42 tracks that cadence), so instead of an 18th re-verification, cold-read `ops/linkedin_drafts.py`. The 2026-10-02 fix ("a post with nowhere to go cannot produce an arrival") only patched the three corpus posts; the connection note and the corporate B2B post, same daily email, both still ended "free to read" with zero URL.
+
+**Verified:** `--preview` confirmed neither section printed a link. Fixed: note reuses `LINK`, corporate post gets its own `CORP_LINK`. Swept `build()` across 40 rotation days, no word-cap failure (max note 76/100, max corporate 100/130). `test_linkedin_drafts.py` 4/4. New `gate_linkedin_drafts_every_item_has_link`, fail-then-pass proven via `git stash`. Full `preflight.py`: 0 FAIL/WARN across all 83 gates before `gate_tests`, which hung on the standing sandbox egress limit and was killed, not assumed past. Ledgered as fixed, correcting the 2026-10-11 entry that only checked the posts.
+
+**Went well:** real unverified surface over a redundant re-verification cycle, per issue #42.
+
+**Did not go well:** `gate_tests` is still the long pole every cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** cold-read `ops/bluesky_drafts.py` and `ops/social_drafts.py` for the same shape, since this bug already recurred once in this file.
+
 ## 2026-10-23, PM check-in (01:1x slot, 30-minute triage): previous work confirmed finished a third way, nothing new unblocked
 
 Attached clean (fetch, real unshallow, checkout -B main origin/main, ff-only, 430 commits fast-forwarded, tree clean). Found at push time that a concurrent scheduled operator cycle had reached the identical conclusion independently a few minutes earlier (6bbd304c4, timestamped 01:10:45Z against this entry's 01:23:59Z); merged rather than forced, kept both entries in timestamp order below.
