@@ -101,7 +101,8 @@ REPO = "klingdom/6s-success"
 WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
              "roadmap-report.yml", "status-email.yml", "social-drafts.yml",
              "bluesky-drafts.yml", "indexation-check.yml",
-             "keyword-demand.yml", "owner-questions.yml"]
+             "keyword-demand.yml", "keyword-demand-global.yml",
+             "owner-questions.yml"]
 
 
 def gh_token() -> str | None:

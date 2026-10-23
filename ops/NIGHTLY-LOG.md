@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (19:1x slot, 30-minute triage): previous work was NOT finished, CI was red; found and closed the real cause rather than re-citing "exhausted"
+
+Attached per STEP 0, clean (fetch, unshallow, `checkout main`, ff-only onto `a66b09d0b`, tree clean). Did not take STEP 1's summary at face value: the last `NIGHTLY-LOG.md` entry (the 18:5x operator cycle, airing-cupboard zone-also-called plus its new gate) read as finished and verified, but CI on `checks.yml` for the merge commit that shipped it (`1ecccb0f5`, run 2318) actually says `conclusion: failure`, something no log entry mentioned. Pulled the job log directly rather than trust the green-sounding prose.
+
+**The previous work was not finished. Four gates failed on the real GitHub-hosted runner, where `gate_tests` does not hang the way it does in this sandbox:** `tests` (3 files), `build-id` (stale), `architecture-workflow-count-current`, `cron-cadence-workflows-registry-current`. All four traced to one root cause: the 17:4x operator cycle's `.github/workflows/keyword-demand-global.yml` never got added to `ARCHITECTURE.md`'s own workflow count/named list or to `ops/check_cron_cadence.py`'s `WORKFLOWS` registry, and `site/build-id.txt` had drifted from the real content hash sometime after.
+
+**Fixed, not just reported:** `ARCHITECTURE.md` now says 17 workflows (was 16) in both citations and names `keyword-demand-global.yml` in the inventory list. `ops/check_cron_cadence.py`'s `WORKFLOWS` now includes it. `ops/tests/test_gate_architecture_workflow_count_current.py`'s own fail-then-pass needle/replacement updated from 16/15 to 17/16 to match. Regenerated `site/build-id.txt` with `ops/build_id.py` (was `84c234bd3857ed4c`, now `541ea555c2789913`, matching the hash preflight itself computed).
+
+**Verified:** `gate_architecture_workflow_count_current()` and `gate_cron_cadence_workflows_registry_current()` called directly: both clean, 0 FAIL. All three previously-failing test files rerun directly: `test_gate_architecture_workflow_count_current.py` 6/6, `test_gate_cron_cadence_workflows_registry_current.py` 4/4, `test_check_cron_cadence.py` 12/12. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. `preflight.py` run unbuffered in the background: 0 FAIL through every gate reached, hung again at the documented `gate_tests` sandbox limit, unchecked past that point, not assumed passing; this is the standing sandbox-only limitation, not evidence the CI fix is wrong (the real runner reaches `gate_tests` fine, which is how this defect was visible there and invisible here).
+
+GitHub: all 10 open issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`, none newly actionable.
+
+Not starting the "coat cupboard organisation" vocabulary gap (confirmed still real and still unclaimed: `ops/keyword-demand-global.json` rank-1, gb/au/in, maps to `/zones/mudroom-the-family-hook-zone.html`, distinct from the "coat cupboard" synonym Phil already added for Entryway's own zone) myself this slot: closing the red CI was this slot's actual highest-priority item, and reusing the identical bare synonym "coat cupboard" for a second, different zone risks recreating the exact alphabetical-tie mis-attribution bug fixed once already (commit `968385e19`), so it needs the scorer-verification discipline operator cycles give it, not a 30-minute slot.
+
+**Handing to the operator (:43):** fold "coat cupboard organisation" into Mudroom's Family Hook Zone also-called data, but verify a disambiguating term choice against `ops/keyword_demand_global.py`'s real scorer first rather than reusing "coat cupboard" verbatim, since that exact string already names a different zone.
+
+Pushed to main. `ARCHITECTURE.md`, `ops/check_cron_cadence.py`, `ops/tests/test_gate_architecture_workflow_count_current.py`, `site/build-id.txt`, dashboard files, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-23, scheduled operator cycle: "airing cupboard" folded into zone-level also-called data, and the zone-level mechanism's own missing gate closed alongside it
 
 **Did:** Attached per STEP 0, clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0 and 7, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG.md entries. The last two PM check-ins both named the same unclaimed task: fold "airing cupboard" into also-called data for the linen zones, from `ops/keyword-demand-global.json`'s rank-1 gaps. All 10 GitHub issues re-pulled fresh: unchanged, decision/blocked-on-art. `inbox_agent.py --apply`: no mail credential, unchecked.
