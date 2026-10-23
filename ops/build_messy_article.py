@@ -468,6 +468,8 @@ def main():
     try:                                  # its link preview card, if any
         import share_cards
         page = share_cards.apply("articles/why-is-my-house-always-messy", page)
+        import article_figures            # and its book figure, if any
+        page = article_figures.apply("articles/why-is-my-house-always-messy", page)
     except ImportError:
         pass
     io.open(OUT, "w", encoding="utf-8", newline="\n").write(page)

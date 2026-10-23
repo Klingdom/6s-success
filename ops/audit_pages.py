@@ -293,7 +293,10 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
                  for m in re.finditer(r"<img\b[^>]*>", html, re.I)]
     hero_candidate = next(
         (tag for start, tag in img_spans
-         if 'class="video-play"' not in html[max(0, start - 200):start]),
+         if 'class="video-play"' not in html[max(0, start - 200):start]
+         # An article's book figure (ops/article_figures.py) sits after the
+         # opening section, hundreds of words down: lazy is right for it.
+         and 'class="article-figure"' not in html[max(0, start - 700):start]),
         None)
     if hero_candidate and 'loading="lazy"' in hero_candidate and "eager" not in hero_candidate:
         add("hero-lazy", "first image is lazy loaded")

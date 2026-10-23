@@ -267,6 +267,8 @@ def write(fname, title, desc, ld, body):
     try:                                  # its link preview card, if any
         import share_cards
         doc = share_cards.apply("articles/" + fname[:-5], doc)
+        import article_figures            # and its book figure, if any
+        doc = article_figures.apply("articles/" + fname[:-5], doc)
     except ImportError:
         pass
     io.open(path, "w", encoding="utf-8", newline="\n").write(doc)

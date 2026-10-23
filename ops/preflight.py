@@ -1580,6 +1580,7 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_pack_images.py": ("gate_product_images_exist",),
     "build_product_images.py": ("gate_product_images_exist",),
     "share_cards.py": ("gate_share_cards_current",),
+    "article_figures.py": ("gate_article_figures_current",),
 }
 
 
@@ -15059,6 +15060,57 @@ def gate_pages_missing_art() -> None:
         warn("page-art",
              "pages shipping with no image at all. " + " ".join(out)
              + " TWO blockers, not one: GENERATING a replacement needs free system RAM (the local model load dies at about 2 GB free of 15.8; run ops/generate_zone_heroes.py for the measured figures), and REVIEWING what it generates needs the vision billing in OWNER-ACTIONS.md 1b. Naming only the second made this read as owner-blocked when the first half needs no decision and no spend.")
+
+
+def gate_article_figures_current() -> None:
+    """Every article given a book figure shows it, and its files exist.
+
+    Found 2026-10-22: 35 articles of about 1,900 words, zero content images.
+    ops/article_figures.py now puts one captioned book figure in each article
+    that has a close match. Two ways that rots silently: a figure file or
+    variant goes missing (a broken image mid-article), or a page loses its
+    figure because a generator or a hand edit rewrote it.
+    """
+    try:
+        import article_figures as AF
+    except Exception as exc:                                  # noqa: BLE001
+        fail("article-figures", "ops/article_figures.py could not be "
+             "imported: %r" % (exc,))
+        return
+    manifest = AF.load_manifest()
+    if not manifest:
+        fail("article-figures", "ops/article-figures.json is missing or "
+             "empty. Run python ops/article_figures.py --import where the "
+             "book's master folder is.")
+        return
+    missing, unwired = [], []
+    for page, e in sorted(manifest.items()):
+        files = [os.path.join(AF.IMG, e["file"])] + [
+            os.path.join(AF.IMG, "w", "%s-%d.%s" % (e["stem"], n, ext))
+            for n in (420, 840) for ext in ("jpg", "webp", "avif")]
+        gone = [f for f in files if not os.path.exists(f)]
+        if gone:
+            missing.append("%s (%s)" % (page, os.path.basename(gone[0])))
+        path = os.path.join(AF.SITE, page + ".html")
+        if not os.path.exists(path):
+            missing.append("%s (the page itself)" % page)
+            continue
+        src = io.open(path, encoding="utf-8", newline="").read()
+        if AF.START not in src or AF.apply(page, src) != src:
+            unwired.append(page)
+    problems = []
+    if missing:
+        problems.append("%d figure file(s) missing: %s. Run python "
+                        "ops/article_figures.py --import, then "
+                        "ops/build_avif.py --encode" % (len(missing),
+                                                         missing[:4]))
+    if unwired:
+        problems.append("%d article(s) do not carry their figure: %s. Rerun "
+                        "the page's generator, or python "
+                        "ops/article_figures.py --wire" % (len(unwired),
+                                                           unwired[:4]))
+    if problems:
+        fail("article-figures", "; ".join(problems))
 
 
 def gate_share_cards_current() -> None:
@@ -29981,6 +30033,7 @@ def main() -> int:
     run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_room_maps_current)
     run_gate(gate_share_cards_current)
+    run_gate(gate_article_figures_current)
     run_gate(gate_kitchen_micro_quests)
     run_gate(gate_kitchen_action_related)
     run_gate(gate_kitchen_deck_print_tracked)
