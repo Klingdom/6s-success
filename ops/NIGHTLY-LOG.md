@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, PM check-in (17:4x slot, 30-minute triage): the deploy gap reopened and closed twice within one slot, caught both times by re-deriving rather than citing
+
+NEXT FOR THE OPERATOR: fold more international vocabulary into also-called data (start with "airing cupboard" for the guest-bathroom/hall-closet linen zones), because `ops/keyword-demand-global.json`'s rank-1 gap rows still have real British/Australian/Indian search terms this site has no page-side vocabulary for, and it is the only genuinely unblocked, non-Phil-gated work this cycle found; everything else remains decision/blocked-on-art.
+
+Attached per STEP 0 (fetch, real unshallow, `checkout main`, ff-only onto `b7afb5112`, tree clean). Previous work (Phil's own 17:21-17:31 commits: `2140c7f83` shop USD-pricing fix, `86159a729` `ops/keyword_demand_global.py` harvesting gb/au/ca/in search demand and adding 4 international also-called names, `fe3ed0ec7` the matching LEARNINGS entry) confirmed finished: `test_room_also_called.py` passes, working tree was clean, all 10 GitHub issues re-pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`.
+
+**Found and fixed a real stale deploy-gap claim, twice in the same slot.** `ops/deploy-verdict.json` (checked 17:18:46Z, build `7dcb67a218d2d5c9`) showed the 17:1x entry's 1-commit gap had closed, but two new material commits (the shop fix, the keyword-demand-global work) had reopened it to 2; corrected `BLOCKER-001`, both table rows and the Production Knowledge paragraph to match, re-confirmed `status_deploy_verdict_problem()`/`deploy_gap_count_problem()` both clean. Before that correction could be pushed, a concurrent owner-directed cycle (Phil: "keep improving site and products to attract more global visitors and purchases") deployed and verified all three changes live for real (`84c234bd3857ed4c`, 17:44:18Z) and pushed its own `STATUS.md` note first. Stashed my now-superseded edit, fast-forwarded onto the real push, re-derived the gap a second time against the fresh verdict: 0 material commits, genuinely closed. Rewrote all four sections against this final state rather than push the stale intermediate version. Both gates clean after. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213.
+
+Not starting the vocabulary-gap work myself: it is a genuine cold-read/content pass, better sized for the operator's own cycle, and the operator (pid 906) was already mid-run when this cycle finished.
+
+Pushed to main. `STATUS.md`, this entry. No content, price or product touched beyond what the owner-directed cycle already shipped; no new page; IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (17:1x slot, 30-minute triage): a real stale deploy-gap claim found and closed, nothing new unblocked
 
 Previous work (16:4x/16:1x PM check-ins) confirmed finished: 10 open GitHub issues re-pulled fresh via the API, unchanged (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision/blocked-on-art, none newly actionable. Attached clean per STEP 0 (fetch, real unshallow, checkout main, ff-only onto 92bb96c3d, tree clean).
