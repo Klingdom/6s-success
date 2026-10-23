@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-23, scheduled operator cycle (19:4x slot): verified the 19:1x handoff before acting on it, and the real fix was a missing `--rescore` and gate, not a new synonym
+## 2026-10-23, scheduled operator cycle (19:4x slot): verified the 19:1x/19:4x handoff before acting on it, and the real fix was a missing `--rescore` and gate, not a new synonym
 
 **Did:** Attached per STEP 0 (fetch, unshallow, `checkout main`, ff-only onto `64eebe04b`, tree clean). Read `GOALS.md`, `OWNER-ACTIONS.md`, `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 and 27-36 (the current queue, all Done or Phil-gated), and the 19:1x check-in's own handoff: fold "coat cupboard organisation" into Mudroom's Family Hook Zone also-called data, but verify a disambiguating term against the real scorer first, since "coat cupboard" already names Entryway's Coat and Outerwear Zone.
 
@@ -23,6 +23,20 @@ GitHub: all 10 open issues re-pulled fresh, unchanged, all `decision`/`blocked-o
 **Next:** no further coat-cupboard-shaped vocabulary work is warranted on Mudroom. Every epic ahead of operational honesty still dead-ends at a Phil decision or account action (owner gates section 6 of `BACKLOG-2026-09-07.md`).
 
 Pushed to main. `ops/keyword_demand_global.py`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/preflight.py`, `ops/tests/test_gate_keyword_demand_global_rescored_current.py`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or served page touched; IndexNow not applicable.
+
+## 2026-10-23, PM check-in (19:4x slot, 30-minute triage): previous work confirmed finished, a shallow-clone trap found and closed instead of reported as 271 "stale" files
+
+NEXT FOR THE OPERATOR: fold "coat cupboard organisation" (gb/au/in) into also-called data for Mudroom's Family Hook Zone, using a disambiguating term rather than the bare string "coat cupboard", because that exact string already names a different zone (Entryway's Coat and Outerwear Zone, `ops/zone-also-called.json` line 57), the same pattern the three prior PM cycles (17:4x, 18:1x, 18:4x) all handed off and the 19:1x cycle still left unclaimed while it fixed red CI instead.
+
+Attached per STEP 0: fetch, checkout main, ff-only merge onto `64eebe0`, tree clean. Checked the real GitHub runner rather than trust the log's prose: the 19:1x cycle's CI fix (`d3d824c`, ARCHITECTURE.md workflow count, `check_cron_cadence.py` registry, `build-id.txt`) is confirmed actually green, not just claimed, `checks.yml` run 2319 `conclusion: success` on that commit, and the automated deploy that followed (`run 226`, head `64eebe0`) also succeeded at 19:40.
+
+**Found and fixed rather than reported twice:** `ops/cold_read_ledger.py --stale` first returned 271 entries, a number that has never appeared before (every recent cycle reports 0 of ~292). Before writing that down as a new defect, checked the actual cause: `git rev-parse --is-shallow-repository` was still `true` even after STEP 0's unshallow step ran, because that fetch hit a mid-transfer TLS disconnect (`GnuTLS recv error`) that left a stale `.git/shallow.lock`, so the later unconditional `git fetch --unshallow` silently no-opped. With the clone stuck shallow at a 61-commit synthetic root, `git log -1 -- path` for any file last really touched before that boundary returns the boundary commit's own date, which is today, manufacturing 271 false "last touched 2026-10-23" readings out of a sandbox limitation, exactly the trap CLAUDE.md 0.4 warns against (unchecked must not report as passing, and the same logic cuts the other way: a measurement tool's own blind spot must not get written down as a code defect either). Retried the unshallow until the stale lock cleared; repo is now a real 8,336-commit history, not shallow. Re-ran the ledger: 1 genuinely stale entry (`ops/check_cron_cadence.py`, touched by this hour's own CI fix, not yet re-ledgered), which is correct and expected, not a defect.
+
+**Verified rather than assumed:** `preflight.py` run unbuffered to completion in the background: 0 FAIL across every gate reached (~98), killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point. GitHub: 10 open issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`; issue #42 (the cadence-re-verifying-exhaustion decision) carries no new comment since 2026-10-23T00:21Z. 0 open PRs.
+
+**Did not start myself:** the coat-cupboard-organisation vocabulary fold, per standing PM practice (needs the scorer-verification discipline an operator cycle gives it, not a 30-minute slot), and this slot landed right at the operator's own :43 boundary, so speed mattered more than scope.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard files. No content, price or product touched, no new page, IndexNow not applicable. Worth a standing note for future cycles: a `.git/shallow.lock` left over from an interrupted fetch can make STEP 0's own unshallow silently fail, and the symptom shows up downstream as a wave of false "stale"/"last touched today" readings, not as an error in STEP 0 itself.
 
 ## 2026-10-23, PM check-in (19:1x slot, 30-minute triage): previous work was NOT finished, CI was red; found and closed the real cause rather than re-citing "exhausted"
 
