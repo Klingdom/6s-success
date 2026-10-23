@@ -32,6 +32,13 @@ earlier cycles that same day had already fixed. These two rows are the
 ones that cite BLOCKER-001 as their own "Full account" and the gate still
 never checked them. Same shape, a fourth and fifth section further out.
 
+Narrowed 2026-10-23, PM check-in (10:1x slot): `ops/rotate_status_
+history.py --apply-focus` (same date, scheduled operator) deliberately
+stopped "Immediate Focus" from ever citing a build id again, replacing it
+with a fixed pointer to Production Knowledge/BLOCKER-001. Checks 7 and 8
+below now exercise that pointer instead of a build_id, the field's own new
+shape.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -121,27 +128,34 @@ def main() -> int:
         fails.append("both sections current, but still flagged: %r"
                      % problem)
 
-    # 7. The real defect shape found 2026-09-30: BLOCKER-001 and Production
-    #    Knowledge both current, but a third section, "Immediate Focus",
-    #    independently cites a stale build_id. Must fire, and must name
-    #    only that section.
+    # 7. The real defect shape found 2026-10-23: BLOCKER-001 and Production
+    #    Knowledge both current, but "Immediate Focus" (which by design,
+    #    since the same-day --apply-focus rotation, never cites a build id)
+    #    has lost its pointer to Production Knowledge/BLOCKER-001. Must
+    #    fire, and must name only that section.
     third_stale = (
         both_current +
-        "\n**Immediate Focus:** production matches HEAD exactly (last "
-        "confirmed at build `04167f5ad701b0e4`).\n\n"
+        "\n**Immediate Focus:** production matches HEAD exactly, see "
+        "ops/deploy-verdict.json for the current build.\n\n"
         "**Correction:** unrelated paragraph.\n"
     )
     problem = preflight.status_deploy_verdict_problem(third_stale, verdict)
     if not problem:
-        fails.append("Immediate Focus stale while the other two are "
-                     "current: expected a problem, got none")
+        fails.append("Immediate Focus missing its pointer while the other "
+                     "two are current: expected a problem, got none")
     elif "Immediate Focus" not in problem or "BLOCKER-001" in problem \
             or "Production Knowledge" in problem:
         fails.append("problem string did not correctly name only the "
                       "stale 'Immediate Focus' section: %r" % problem)
 
-    # 8. All three sections current: must not fire.
-    all_current = third_stale.replace("04167f5ad701b0e4", verdict["build_id"])
+    # 8. All three sections current, Immediate Focus pointing at Production
+    #    Knowledge as the --apply-focus rotation now writes it: must not
+    #    fire, even though this field names no build id at all.
+    all_current = third_stale.replace(
+        "production matches HEAD exactly, see ops/deploy-verdict.json for "
+        "the current build.",
+        "SEE THE PRODUCTION KNOWLEDGE PARAGRAPH ABOVE AND `BLOCKER-001`, "
+        "NOT THIS LINE.")
     problem = preflight.status_deploy_verdict_problem(all_current, verdict)
     if problem:
         fails.append("all three sections current, but still flagged: %r"

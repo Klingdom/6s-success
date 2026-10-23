@@ -18390,6 +18390,20 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     superseded build ids, which a blanket scan cannot tell from a live
     citation.
 
+    Narrowed 2026-10-23, PM check-in (10:1x slot): `ops/rotate_status_
+    history.py --apply-focus` (same date, scheduled operator) deliberately
+    stopped "Immediate Focus" from citing a build id at all, replacing the
+    27-entry correction chain with a pointer to Production Knowledge and
+    BLOCKER-001 instead ("FOR CURRENT DEPLOY STATUS SEE THE PRODUCTION
+    KNOWLEDGE PARAGRAPH ABOVE AND BLOCKER-001, NOT THIS LINE"). The build-id
+    check this gate still ran against that field could therefore never
+    clear again, firing on every future verdict change for a field that by
+    design will never name one; found live when this cycle's own deploy-gap
+    correction left Immediate Focus untouched and the gate still warned.
+    "Immediate Focus" now checks for the pointer phrase instead of a build
+    id, the same "does this field still point at the section that owns the
+    fact" question, adapted to the field's new shape.
+
     Returns a problem string naming every stale section found; '' if there
     is nothing to check or every citation is current.
     """
@@ -18400,8 +18414,6 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
         "BLOCKER-001": r"##\s*BLOCKER-001.*?(?=\n##\s|\Z)",
         "Production Knowledge (Current Overall Assessment)":
             r"\*\*Production Knowledge.*?(?=\n\*\*|\Z)",
-        "Immediate Focus":
-            r"\*\*Immediate Focus:\*\*.*?(?=\n\*\*|\Z)",
         "Public website (status table row)":
             r"\|\s*Public website\s*\|.*?(?=\n\|)",
         "Production traceability (status table row)":
@@ -18414,6 +18426,11 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
             continue
         if build_id not in m.group(0):
             stale.append(label)
+    focus_m = re.search(r"\*\*Immediate Focus:\*\*.*?(?=\n\*\*|\Z)",
+                         status_text, re.DOTALL)
+    if focus_m and "PRODUCTION KNOWLEDGE PARAGRAPH" not in focus_m.group(0):
+        stale.append("Immediate Focus (lost its pointer to the deploy "
+                      "status sections)")
     if stale:
         return (
             "%s does not mention the real current build_id (%s, "
