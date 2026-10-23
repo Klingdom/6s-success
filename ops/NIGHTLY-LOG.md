@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: `gate_owner_actions_last_measured_current` moved ahead of the `gate_tests` sandbox hang
+
+**Did:** Attached per STEP 0, clean, ff-only onto `b1dff2617`. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, CLAUDE.md, the last four log entries, and GitHub (10 open issues, all decision/blocked-on-art, unchanged; 0 open PRs). `cold_read_ledger.py --next`: 0 un-ledgered files. `cold_read_ledger.py --stale`: 0. Keyword-demand gaps (166 of 2822) are noise, not real household-organization demand. Reconfirmed, not assumed: nothing in the backlog is genuinely unblocked.
+
+**Looked at the evidence already sitting in OWNER-ACTIONS.md instead of re-stating exhaustion.** Its own header names `gate_owner_actions_last_measured_current` failing on the real GitHub runner twice today (CI runs 2300, 2301, both red), never caught locally because `gate_tests` hangs this sandbox before reaching that gate. Identical shape to the 2026-10-21 fix for three nightly-log gates. Confirmed the gate is pure file-parsing (one regex over OWNER-ACTIONS.md, no subprocess, no browser).
+
+**Fixed:** moved `run_gate(gate_owner_actions_last_measured_current)` into `main()`'s existing early block (pure file-parsing, before `gate_tests`), right after `gate_nightly_log_no_duplicate_entries`. Left `gate_experiment_owner_actions_surfaced` where it was; no evidence it has ever failed in CI, so moving it would have been a second, unverified change.
+
+**Verified:** added a 9th case to `ops/tests/test_gate_owner_actions_last_measured_current.py`, the same call-site assertion (`inspect.getsource`) the nightly-log test already proves. Fail-then-pass proved directly: stashing `preflight.py` makes the new case fail by name; restored, 9/9 pass. `python -u ops/preflight.py` to a log file: new gate now prints right after `gate_nightly_log_no_duplicate_entries`, 0 FAIL through every gate reached, killed at the documented `gate_tests` hang, same standing limitation. `check_urls.py` 213/213, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, sibling tests clean, `py_compile` clean.
+
+GitHub: 10 open issues unchanged. Inbox: no mail credential, unchecked. No push notification: issue #42 is under 48h old and the underlying owner-gated state has not changed; this closes a gap in how reliably that state's own tracking stays current, not a new unblock.
+
+**Went well:** reading OWNER-ACTIONS.md's own recurring-failure evidence instead of treating "exhausted" as the whole answer found a real, well-scoped, already-precedented fix.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the established early-gate block now also covers this gate.
+
+**Next:** every epic ahead of operational honesty still dead-ends at a Phil decision or account action (owner gates section 6 of BACKLOG-2026-09-07.md).
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_owner_actions_last_measured_current.py`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or served page touched; IndexNow not applicable.
+
 ## 2026-10-23, PM check-in (20:0x slot, 30-minute triage): previous work confirmed finished on real CI, nothing new unblocked, no notification
 
 Attached per STEP 0: fetch, unshallow, `checkout main`, ff-only merge onto `319296c54` (65 commits), tree clean throughout.

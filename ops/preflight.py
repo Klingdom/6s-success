@@ -30548,6 +30548,13 @@ def main() -> int:
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
+    # OWNER-ACTIONS.md's own freshness marker is the same shape: pure
+    # file-parsing, no browser, no network, and it has now failed on the
+    # real GitHub runner at least twice (CI runs 2300 and 2301) while
+    # sitting undetected behind this sandbox's gate_tests hang, caught only
+    # by reading job logs by hand. Moved here for the same reason the three
+    # gates above were moved on 2026-10-21.
+    run_gate(gate_owner_actions_last_measured_current)
 
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
@@ -30682,7 +30689,6 @@ def main() -> int:
     run_gate(gate_accept_image_contradicts_name_an_object)
     run_gate(gate_zone_graphics_trigger_not_truncated)
     run_gate(gate_zone_hero_rejects_have_subjects)
-    run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_experiment_owner_actions_surfaced)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_image_prompts_tiers_current)

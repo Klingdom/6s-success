@@ -145,12 +145,28 @@ def main() -> int:
         fails.append(f"the real committed OWNER-ACTIONS.md must parse "
                       f"clean: {preflight.FAIL!r}")
 
+    # 9. Found 2026-10-23: this gate is pure file-parsing, no browser, no
+    #    network, yet sat behind gate_tests in main(), so the sandbox's own
+    #    gate_tests hang (documented throughout NIGHTLY-LOG.md) hid every
+    #    drift of this marker from a local run; only the real GitHub
+    #    runner ever caught it (CI runs 2300 and 2301, both red, found only
+    #    by reading job logs by hand). Moved before gate_tests, the same
+    #    fix already proved for the nightly-log gates on 2026-10-21; assert
+    #    the call site stays there.
+    import inspect
+    src = inspect.getsource(preflight.main)
+    before, _, after = src.partition("run_gate(gate_tests")
+    if "gate_owner_actions_last_measured_current" not in before:
+        fails.append("gate_owner_actions_last_measured_current is not "
+                      "called before gate_tests in main(), so the sandbox "
+                      "hang can hide it again")
+
     if fails:
         print("FAIL:")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: 8/8 cases (fail-then-pass proved, traffic citation confirmed untouched)")
+    print("OK: 9/9 cases (fail-then-pass proved, traffic citation confirmed untouched, call site pinned ahead of gate_tests)")
     return 0
 
 
