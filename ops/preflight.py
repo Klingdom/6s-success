@@ -21548,6 +21548,53 @@ def gate_status_blocker001_not_oversized() -> None:
              % len(entries))
 
 
+def gate_backlog_closed_sections_not_oversized() -> None:
+    """BACKLOG-2026-09-07.md's numbered "## N. Closed/Done ..." sections
+    (8 and up) must not carry more than a generous buffer past ops/
+    rotate_backlog_closed.py's own retention window.
+
+    Found 2026-10-23, the same cold-read lane that fixed NIGHTLY-LOG.md,
+    STATUS.md (twice), CHECKIN-LOG.md, OWNER-ACTIONS.md and this file's
+    own "Done this week" table for the identical shape earlier the same
+    day: sections 8-33 already account for 105KB of this file's 304KB,
+    and STEP 1 of the operating prompt reads the whole file every cycle
+    as "the CURRENT queue... your work list". ops/rotate_backlog.py's own
+    docstring deliberately left these sections out of its scope ("a
+    different, higher-risk job"); they turn out not to be, since nothing
+    else references any of these section numbers by name, and this gate
+    and ops/rotate_backlog_closed.py close that gap the same way its five
+    siblings above closed theirs.
+
+    A WARNING, not a FAIL: an oversized file wastes every later cycle's
+    reading time, it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from a section drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_backlog_closed_sections_not_
+    oversized.py builds a synthetic file with a section well past the
+    buffered window and asserts this gate warns, then confirms a file
+    with nothing past the window stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_closed as rbc
+    text = io.open(path, encoding="utf-8").read()
+    buffered_days = rbc.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    n_sections, overdue, n_bytes = rbc.count_stats(text, cutoff)
+    if overdue:
+        warn("backlog-closed-sections-not-oversized",
+             "BACKLOG-2026-09-07.md carries %d numbered Closed/Done "
+             "section(s) older than %s (the %d-day retention window "
+             "plus a 7-day buffer), %d bytes across %d sections. Run "
+             "`python ops/rotate_backlog_closed.py --apply` to move "
+             "them into BACKLOG-2026-09-07-CLOSED-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rbc.DEFAULT_RETENTION_DAYS,
+                n_bytes, n_sections))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30288,6 +30335,7 @@ def main() -> int:
     run_gate(gate_owner_actions_history_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
+    run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
 

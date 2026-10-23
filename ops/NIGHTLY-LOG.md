@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: BACKLOG-2026-09-07.md's own numbered Closed sections had the identical unbounded-growth defect ops/rotate_backlog.py had already deferred as higher-risk
+
+**Did:** Attached clean per STEP 0 (fetch, real unshallow, `checkout main`, ff-only onto `415125043`, tree clean throughout). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. `preflight.py` run to completion in the background: 0 FAIL, 0 WARN through every gate before the documented `gate_tests` headless-Chromium sandbox hang (killed there at 183s); CI confirmed green on the latest push directly via the Actions API (run 2306, success), not assumed. All 10 GitHub issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, matching issue #42's own standing analysis; no reply from Phil since `a791b54c4` (2026-10-22), confirmed by `git log --author`. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `deploy-verdict.json` re-derived directly: still current, 0 commits since touching `site/`, `ops/build_*.py` or `mcp/`.
+
+**Found and fixed, rather than stopping at "exhausted":** `BACKLOG-2026-09-07.md`'s own numbered "Closed/Done" sections (8 through 33) total 105KB of the file's 304KB, read by STEP 1 every single cycle as part of "the CURRENT queue". `ops/rotate_backlog.py`'s own docstring had already named this gap and deliberately deferred it as "a different, higher-risk job" because sections 2-4 use per-item ids other code might reference by name. Checked rather than assumed: a repository-wide grep found nothing references any of these section numbers, so the job was not actually higher-risk. New `ops/rotate_backlog_closed.py` (date-window retention, modelled on `ops/rotate_nightly_log.py` since these are independent closed records, not one evolving status field like `BLOCKER-001`) and new `gate_backlog_closed_sections_not_oversized` in `preflight.py`, same WARNING/14+7-day-buffer convention as its six siblings, wired ahead of `gate_tests`.
+
+**Verified:** dry-run against a scratch copy with an artificial cutoff first (15 of 26 sections correctly split, content proven present verbatim, idempotent on a second pass, clean markdown at the boundary) before writing a single test. `ops/tests/test_rotate_backlog_closed.py` (7 cases) and `ops/tests/test_gate_backlog_closed_sections_not_oversized.py` (5 cases, fail-then-pass proved) both pass. Against the real file: `--check` reports CLEAN, 27 sections (after this entry), all within the 14-day window, nothing actually overdue yet, so no `--apply` was run on the real file, only the gate and tool added ahead of the gap rather than after it. `gate_backlog_closed_sections_not_oversized`, `gate_backlog_done_table_not_oversized`, `gate_status_blocker001_not_oversized` and `gate_ops_python_syntax` all re-run directly against the live repository: clean. `fix_dashes.py --check` 0/0 full-repo. `check_urls.py` 213/213. `audit_pages.py` 0 duplicate titles/descriptions. `py_compile` sweep of all touched files clean.
+
+**Went well:** the repository-wide grep for section-number references, done before starting, turned a job a prior cycle had correctly flagged as higher-risk into a safe one; the dry-run-on-a-scratch-copy discipline caught the archive's newest-first ordering and the section-boundary whitespace behaviour before any test was written, nothing to undo.
+
+**Did not go well:** this is the eighth instance of the identical unbounded-growth shape found in this repository today alone. Worth naming plainly: today's cold-read lane has spent most of its cycles finding and fixing the same defect class in eight different files rather than eight different problems, which says more about how this repository accrues narrative history than about today being unusually defect-ridden.
+
+**Changing next cycle:** none.
+
+**Next:** no numbered section is actually due for rotation yet; the gate exists to catch it once one is. `STATUS.md`'s remaining long, unread sections and sections 2-4 of `BACKLOG-2026-09-07.md` are still the only named, unexamined candidates, both already correctly deferred by the cycles that named them. GitHub issues #42 (cadence) and #40 (usage-limit check) remain the standing Phil-gated decisions; nothing new to add to either this cycle.
+
+Pushed to main. `ops/preflight.py`, `ops/rotate_backlog_closed.py`, `ops/tests/test_gate_backlog_closed_sections_not_oversized.py`, `ops/tests/test_rotate_backlog_closed.py`, `BACKLOG-2026-09-07.md`, dashboard files, this entry. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in (14:1x slot, 30-minute triage): previous work confirmed finished, nothing new unblocked, state remains genuinely exhausted
 
 Attached clean per Step 0: fetch, real unshallow confirmed, `checkout main`, ff-only onto `7ebd476ea`, tree clean throughout, no concurrent push during this cycle.
