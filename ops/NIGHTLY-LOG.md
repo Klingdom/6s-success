@@ -2,6 +2,36 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-23, scheduled operator cycle: cold-read of ops/share_cards.py and ops/article_figures.py found and fixed a real link-preview gap on articles/index
+
+**Did:** Attached clean (fetch, real unshallow confirmed via `git rev-parse --is-shallow-repository`, `checkout -B main origin/main`, ff-only onto `6bc555c75`, 461 commits). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real head of `ops/NIGHTLY-LOG.md`. Delegated the initial survey to a background fork rather than reading the full 540KB backlog cold myself: confirmed sections 2-6 remain Done/Closed/Hold/Phil-gated (only C5/Gemini billing and C6/YouTube OAuth open), issue #42's cadence question still has no live reply from Phil (every comment under his account is self-authored by a prior agent cycle, confirmed by reading the actual comment bodies, not just the author field), and `inbox_agent.py --apply` still has no mail credential in this sandbox.
+
+**The one genuinely new thing: `ops/cold_read_ledger.py --stale` found 8 entries, contradicting the standing "0 stale" claim**, because Phil's 2026-10-22 commits (`47ac6058b`, `476931507`) added two brand-new, never-cold-read files (`ops/share_cards.py`, `ops/article_figures.py`) and mechanically touched 8 already-ledgered generators to call into them.
+
+**Cold-read both new files in full rather than trusting the commit message.** `share_cards.py` (494 lines): draws one 1200x630 link-preview card per page from its own h1, LinkedIn being the one channel GOALS.md says has ever sent visitors. Verified sitewide, not by sampling: `plan()` regenerates the manifest byte-identical to the committed one (0 diff); all 76 manifest entries' card files exist on disk; every one of the 76 pages' actual served `og:image` matches its manifest entry exactly (scripted cross-check, 0 mismatches). `article_figures.py` (267 lines): same treatment, manifest-vs-`FIGURES` dict exact match (33/33), all referenced book-figure images and their 420/840 jpg+webp variants exist on disk.
+
+**Found one real, verified defect `gate_share_cards_current` cannot catch.** `site/articles/index.html` has correct `og:title`/`og:description`/`og:image` (what LinkedIn and Facebook actually read) but a bare `twitter:card` tag with no `twitter:title`, `twitter:description` or `twitter:image` at all, the only page of 222 scanned sitewide with this gap. Root cause: `gate_share_cards_current`'s "unwired" check compares `share_cards.apply()`'s output to the page, but `apply()` only ever rewrites the *content* of a tag that already exists; it never inserts a `twitter:image` tag from nothing, so a page missing the tag entirely sails through that diff unchanged, a blind spot rather than a false negative in the gate's own stated four fault modes.
+
+**Fixed and gated, per step 10b.** Added the four missing tags directly to `site/articles/index.html` (hand-written, no generator owns it, confirmed by grep across every `ops/build_*.py`), matching the exact convention every other article already carries. Added `gate_twitter_card_complete` to `ops/preflight.py`, checking tag presence directly instead of trusting `apply()`'s diff; wired into `main()`. Fail-then-pass proven directly against the real file (planted the old missing-tags shape, confirmed the gate catches it, restored byte-identical); new `ops/tests/test_gate_twitter_card_complete.py`, 2/2. Re-scanned all 222 site pages after the fix: 0 remaining pages with an incomplete Twitter block.
+
+**Closed the 8 stale-ledger entries.** Read each one's actual diff since its last ledger date rather than assuming "touched by a known commit" means "safe": all 8 are the same trivial five-line `try: import share_cards (or article_figures); apply(); except ImportError: pass` addition, or, for `audit_pages.py`, a one-line hero-lazy exclusion for article figures. Confirmed mechanical, re-ledgered.
+
+**Merge collision:** a concurrent PM check-in (`52aa5a72b`) landed mid-cycle and had independently re-ledgered the same 8 files (sound, no defect found) but had not cold-read `share_cards.py`/`article_figures.py` themselves, so it missed the twitter-card gap. Fetched before pushing, merged (one JSON conflict in `ops/cold-read-ledger.json`, resolved by keeping this cycle's entries, since they are a superset); re-verified the merged tree directly rather than trusting either side: `cold_read_ledger.py --stale` 0, `gate_twitter_card_complete`/`gate_share_cards_current`/`gate_article_figures_current` all clean, `fix_dashes.py --check` 0/0, `check_urls.py` 213/213.
+
+**Verified:** Full `preflight.py` run to a log file in the background: 0 FAIL anywhere in the captured output through every gate up to the documented `gate_tests` headless-Chromium sandbox hang; confirmed genuinely stalled (CPU time flat) before killing it, reported unchecked past that point, not assumed passing. `cold_read_ledger.py --next`: 0 un-ledgered candidates remain, lane fully exhausted again.
+
+**Went well:** forking the initial backlog/GitHub/inbox survey kept that large, mostly-unchanging read out of this cycle's own context, leaving room to actually read two 500-line files end to end and script a sitewide cross-check instead of sampling.
+
+**Did not go well:** `gate_tests` is still the long pole every cycle reports; no new mitigation attempted this cycle, same standing sandbox limitation.
+
+**Changing next cycle:** none; the cold-read-ledger discipline (checking `--stale` every cycle rather than trusting a cached "0 stale" from memory) is what surfaced real, un-ledgered, customer-facing code this time, and it worked exactly as intended.
+
+**Next:** cold-read ledger is genuinely exhausted again (286/286, 0 stale). Backlog sections 2-6 remain Done/Closed/Hold/Phil-gated. Every epic's top item is Phil-gated (YouTube OAuth, Search Console verification, Gemini billing, VPS_DEPLOY_KEY, the Listmonk decision). No new unblocked work found beyond this fix.
+
+Pushed to main. `ops/preflight.py`, `site/articles/index.html`, `ops/tests/test_gate_twitter_card_complete.py`, `ops/cold-read-ledger.json`, command deck, this entry. No price or product touched; no new page; IndexNow not applicable (existing page edited in its head only, not added).
+
+HANDOFF-FILES: none
+
 ## 2026-10-23, PM check-in (03:4x slot, 30-minute triage): previous work confirmed finished a seventh way, a real stale cold-read-ledger gap found and closed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked. `BACKLOG-2026-09-07.md` sections 2-4 (grepped directly for unstruck item codes) hold only C5 (Gemini billing) and C6 (YouTube OAuth publish), both already explicitly Phil-gated with everything up to the gate built; all 10 open GitHub issues (`decision`/`blocked-on-art`, none from Phil since issue #42's 2026-10-17 original post) remain the same exhausted/decision-gated state that issue already tracks. Continue the standing full re-verification practice rather than start new work.
