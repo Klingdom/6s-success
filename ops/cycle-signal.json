@@ -1,14 +1,14 @@
 {
-  "combined_hash": "866049d0692b1654e326cb466bf6f3a9ba676ebba4d2ed0c3e2af4539f2ecd6f",
-  "git_head": "c877e68d5c0870c48370efae62c45a0f2dd594f6",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD c877e68d5c",
-  "recorded_at": "2026-10-23T03:06:51Z",
+  "combined_hash": "560aa5c0b942b14660dae0684e0d4779bb33cf70ff9291b4e95da7d1a14337b9",
+  "git_head": "f6922ea95e884e59c6733c86b4f59b2ff403b216",
+  "note": "",
+  "recorded_at": "2026-10-23T05:22:01Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "fc6766daf83600573d12fe397204fa362d4d73f58b9e721fc925368077f1269a",
+    "BACKLOG-2026-09-07.md": "f0b10d567759d7075ad17ef94ce068ed34017d637b3a789e45bb66b9f8b1c81b",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "30079132d4d658b448f9f8a0ba968474c09fd72a404651a6e16bf1315bbb091b",
     "OWNER-ACTIONS.md": "5e02c1ae4ca3cf87f03fcf05c6a7bf49b6b7667e3e03fa834fdd197204e8d9b3",
-    "STATUS.md": "efac2bb012620203d323aaeafe8a3e04c28bf163225ea83e2ee3614c24115823",
-    "ops/deploy-verdict.json": "805adce6002e8491dd50d641a04b49d87c42ab20f5655b366a80616bb67b9240"
+    "STATUS.md": "85640903c61c6ce2cc9fb7e554e49c08fe1d6706351e131f9a3b86d4ffd4adca",
+    "ops/deploy-verdict.json": "b75807ed4246870ffa1d673ba492d21efb1e15ba4f88e15c81ea79e9880d372d"
   }
 }
