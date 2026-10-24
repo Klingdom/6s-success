@@ -21729,6 +21729,72 @@ def gate_backlog_closed_sections_not_oversized() -> None:
                 n_bytes, n_sections))
 
 
+LIVING_DOC_SIZE_LIMITS = {
+    "STATUS.md": 110_000,
+    "CHECKIN-LOG.md": 110_000,
+    "OWNER-ACTIONS.md": 110_000,
+    "BACKLOG-2026-09-07.md": 150_000,
+}
+
+
+def gate_living_docs_total_size_tripwire() -> None:
+    """A living-state document (one whose own stated job is to be the
+    fast, current read, not an archive) must not grow past a generous
+    ceiling on its TOTAL size, regardless of which part of it is the
+    cause.
+
+    Found 2026-10-24: by this date seven separate gates already existed
+    (gate_nightly_log_not_oversized and the six siblings just above this
+    one), each hand-written after a cold read happened to notice one
+    named chain or section of one named file had grown unbounded. Every
+    one of those gates checks a SLICE it already knows about. None of
+    them adds up to the whole file: this same cold-read lane's own
+    comment on gate_backlog_closed_sections_not_oversized records that
+    its tracked sections were 105KB of a 304KB file, leaving most of the
+    file's size unaccounted for by any gate, and by this date STATUS.md
+    (whose own Document Role says it is "the fastest authoritative
+    summary of what is happening now... not... an archive") had reached
+    197KB, CHECKIN-LOG.md 249KB, OWNER-ACTIONS.md 148KB and
+    BACKLOG-2026-09-07.md ("the CURRENT queue" per STEP 1 of the
+    operating prompt) 331KB. CLAUDE.md step 10b says that once the same
+    class of defect recurs three times with no gate for the class
+    itself, the fix is the gate, not the next instance; this is the
+    eighth occurrence of "a living document grew unbounded" and the
+    first time anything checked the file as a whole instead of a named
+    part of it.
+
+    This is deliberately dumb: a raw byte-count ceiling, not aware of
+    sections, dates or rotation tools. That is the point. It catches
+    the NEXT oversized chain or table before anyone has to notice it,
+    name it and write a ninth bespoke gate; it does not replace the
+    seven gates above, which still say WHICH part to rotate once this
+    one says a file is worth looking at.
+
+    A WARNING, not a FAIL: an oversized operating document wastes a
+    later cycle's reading time, it does not ship anything broken to a
+    customer.
+
+    Proof this can fail: ops/tests/test_gate_living_docs_total_size_
+    tripwire.py writes a synthetic file past its limit and asserts this
+    gate warns, then shrinks it under the limit and asserts it stays
+    silent, for more than one tracked document so the per-file limit
+    table itself is exercised rather than one hardcoded path.
+    """
+    for name, limit in sorted(LIVING_DOC_SIZE_LIMITS.items()):
+        path = os.path.join(ROOT, name)
+        if not os.path.exists(path):
+            continue
+        size = os.path.getsize(path)
+        if size > limit:
+            warn("living-docs-total-size-tripwire",
+                 "%s is %d bytes, over its %d-byte tripwire. This file's "
+                 "own job is to be the fast current read, not an archive; "
+                 "cold-read it for the next prunable chain, table or "
+                 "correction-on-correction run and give it the same "
+                 "rotate_*.py/gate_*_not_oversized treatment this file's "
+                 "siblings already got." % (name, size, limit))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30546,6 +30612,7 @@ def main() -> int:
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
+    run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
     # OWNER-ACTIONS.md's own freshness marker is the same shape: pure

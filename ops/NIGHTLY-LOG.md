@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: the recurring "living document grew unbounded" defect, seven times over, finally generalized into one gate
+
+**Did:** Attached per STEP 0 (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `14c6f0b02`, clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four `NIGHTLY-LOG.md` entries, and `OWNER-ACTIONS.md`. Pulled all 10 open GitHub issues directly: unchanged, all `decision`/`blocked-on-art`; read issue #42's full comment thread rather than trust a summary, confirmed every comment on it is a prior agent cycle, none from Phil. Backlog sections 2-6 again all Done or Phil-gated (only C5 Gemini billing, C6 YouTube OAuth open); `cold_read_ledger.py --stale` 0/0. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty.
+
+Rather than re-run yet another full re-verification pass of an already-exhausted backlog, picked up the pattern this same log's own sections 10/28/29/30/32/33/34 (all 2026-10-14 through 2026-10-23) already show without anyone naming it: seven separate hand-written `gate_*_not_oversized` gates now exist, each catching one named chain or section of one named file, and CLAUDE.md step 10b says a defect class recurring three times with no gate for the class itself means write the gate, not the next instance. This is the eighth occurrence.
+
+**Built:** `gate_living_docs_total_size_tripwire` in `ops/preflight.py`, a deliberately dumb raw byte-count ceiling per tracked file (`LIVING_DOC_SIZE_LIMITS`: STATUS.md/CHECKIN-LOG.md/OWNER-ACTIONS.md at 110KB, BACKLOG-2026-09-07.md at 150KB), wired ahead of `gate_tests` alongside its seven siblings since it is pure file-reading. It does not replace them; they still say which part to rotate once this one says a file is worth looking at.
+
+**Verified:** `ops/tests/test_gate_living_docs_total_size_tripwire.py` fail-then-pass proved, 7/7 (one oversized case per tracked file, one all-under-limit case, one mixed-present/absent case, one no-files-present case). Confirmed it fires live and correctly on the real repository today: STATUS.md 197KB, CHECKIN-LOG.md 249KB, OWNER-ACTIONS.md 148KB, BACKLOG-2026-09-07.md 331KB, all over their tripwires, 0 FAIL. Ran the five sibling oversized-gate tests to confirm no regression, all still pass. `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, full `py_compile` sweep of `ops/*.py` clean. Full `preflight.py` independently re-confirmed hung at the documented `gate_tests` sandbox limit, 0 FAIL on every gate reached before it, same standing workaround every recent cycle uses.
+
+**Went well:** found a real, generalizable, non-Phil-gated gap instead of re-running an already-exhausted backlog search for the Nth time.
+
+**Did not go well:** did not prune any of the four flagged files this cycle; the gate makes the cost visible, it does not yet fix it.
+
+**Changing next cycle:** the natural next step is pruning STATUS.md/CHECKIN-LOG.md/OWNER-ACTIONS.md/BACKLOG-2026-09-07.md's own correction-on-correction prose into their `*-ARCHIVE.md` files, scoped as its own cycle rather than rushed at the end of this one.
+
+**Next:** prune the four flagged files; otherwise hold the standing exhausted state (C5 Gemini billing, C6 YouTube OAuth, issue #42's cadence decision all still sit with Phil).
+
+Regenerated the dashboard. Pushed to main. No price, product or site page touched; no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (02:1x slot, 30-minute triage): previous work confirmed finished independently, nothing new unblocked
 
 Previous work (the 01:5x scheduled operator cycle) finished and verified, not cited. Attached per STEP 0: fetch, unshallow, checkout -B main onto origin/main, ff-only merge, tree clean. Re-derived deploy gap directly: resolve_verdict_commit -> 86159a729, deploy_gap_material_commits against real HEAD returns the same 2 commits (d3d824c4c non-material, a24a667c6 material), matching STATUS.md's BLOCKER-001 row exactly, confirmed by reading both diffs rather than trusting the count. preflight.py run to a hard timeout: 0 FAIL on every gate reached, hit the documented gate_tests sandbox hang, killed there, reported unchecked past that point. checks.yml run 2325 on the latest site-affecting commit is success; the two newest commits on top (dashboard/log only) touch neither site/ nor Dockerfile, so no new CI run was expected or missing. All 10 open GitHub issues re-pulled fresh: unchanged, all decision/blocked-on-art. BACKLOG-2026-09-07.md sections 2-6 re-checked directly: every row done or Phil-gated except C5 (Gemini billing) and C6 (YouTube OAuth). Issue #42's 48h no-repeat-push window (last sent 2026-10-22T13:5x) is not due until roughly 13:5x today; nothing material changed, no repeat push or comment this slot.
