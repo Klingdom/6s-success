@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: re-verified the fully-exhausted state directly; nothing new unblocked, no new findings
+
+**Did:** Attached per STEP 0 (already unshallowed and fast-forwarded to `9c7274668` before this cycle began). Read `BACKLOG-2026-09-07.md` sections 0-7, `STATUS.md`'s three workstreams, and `GOALS.md`. Ran `preflight.py`, `cold_read_ledger.py --next`/`--stale`, `check_urls.py`, `fix_dashes.py --check`, `affiliate.py --check`, `inbox_agent.py --apply`, and re-derived `BLOCKER-001`'s deploy gap directly from git rather than citing `STATUS.md`'s own number.
+
+**Verified:** `preflight.py` 0 FAIL across every gate reached before the documented `gate_tests` sandbox hang (killed at the 180s mark, same standing limitation). `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. Cold-read ledger: 293/293, 0 stale, independently reproducing issue #42's 07:4x finding rather than citing it. `inbox_agent.py`: no mail credential in this sandbox, unchecked, not assumed empty. `deploy_gap_material_commits('86159a729')` returns the same 2 commits (1 material, `a24a667c6`) `STATUS.md`'s `BLOCKER-001` already states; no drift. All 10 open GitHub issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`. Issue #42's own comment from earlier this same day (07:49 UTC) already states today's exhaustion finding, so not re-posted.
+
+**Went well:** re-deriving the deploy gap independently against git, rather than trusting `STATUS.md`'s own citation, is a cheap check and caught zero drift this time.
+
+**Did not go well:** nothing new to report; this cycle, like several before it, produced confirmation rather than progress.
+
+**Changing next cycle:** none. The cadence question is Phil's decision per issue #42, already escalated several times with no reply; re-raising it again with no new evidence would itself be the "report a problem twice you could have fixed once" pattern, in reverse.
+
+**Next:** same standing queue: Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42. Every genuinely unblocked lane is built and done.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard files only. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
 ## PM check-in (08:1x slot, 30-minute triage): previous work reconfirmed finished, cold-read lane confirmed still empty, nothing new unblocked
 
 Previous work (07:4x PM check-in and the concurrent operator merge) confirmed finished, not re-litigated: cold-read lane re-checked, still 293/293 ledgered, 0 stale, 0 un-ledgered candidates. 10 open GitHub issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`; issue #42's own last comment (same slot, prior cycle) already states the backlog is genuinely exhausted. Verified narrowly rather than redone in full: `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, working tree clean, main attached and current. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (CPU flat for 7 minutes before killing it); narrower checks stand in. No owner push sent: last one (2026-10-22) is under 48h old and nothing changed. Nothing new unblocked. Handing the operator nothing new; same Phil-gated queue.
