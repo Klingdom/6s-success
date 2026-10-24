@@ -21580,6 +21580,52 @@ def gate_owner_actions_history_not_oversized() -> None:
              "ops/rotate_owner_actions.py --apply`." % (size, limit))
 
 
+def gate_owner_actions_closed_items_rotated() -> None:
+    """OWNER-ACTIONS.md's "Open, ranked by what they unblock" section must
+    not be carrying a numbered item whose own header already says it is
+    closed (DONE / WITHDRAWN / Superseded / NO LONGER NEEDED), or one that
+    merely duplicates a row already in "Resolved today".
+
+    Found 2026-10-24, scheduled operator cycle, picking up the handoff the
+    04:4x PM check-in left: gate_owner_actions_history_not_oversized above
+    only ever watches the one fixed preamble span ops/rotate_owner_
+    actions.py rotates, and reported CLEAN while the real 148KB of bloat
+    sat one section lower, in eight numbered items that were not open at
+    all. ops/rotate_owner_actions_closed_items.py now archives those; this
+    gate is what stops the same shape recurring the next time a cycle
+    marks an item DONE in place instead of rotating it out, the same role
+    its siblings above already play for their own files.
+
+    A WARNING, not a FAIL: a closed item left in the open list wastes a
+    later cycle's reading time, it does not ship anything broken to a
+    customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_closed_items_
+    rotated.py builds a synthetic OWNER-ACTIONS.md with one already-closed
+    header left unarchived and asserts this gate warns, then confirms a
+    freshly rotated copy stays silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_closed_items as roaci
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, _, due_bytes = roaci.plan_rotation(text)
+    except SystemExit as e:
+        warn("owner-actions-closed-items-rotated",
+             "OWNER-ACTIONS.md has a partially-archived closed item: %s"
+             % e)
+        return
+    if due_bytes > 0:
+        warn("owner-actions-closed-items-rotated",
+             "OWNER-ACTIONS.md has %d bytes of already-closed numbered "
+             "items still sitting in \"Open, ranked by what they "
+             "unblock\". Run `python "
+             "ops/rotate_owner_actions_closed_items.py --apply`."
+             % due_bytes)
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -30609,6 +30655,7 @@ def main() -> int:
     run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_checkin_log_not_oversized)
     run_gate(gate_owner_actions_history_not_oversized)
+    run_gate(gate_owner_actions_closed_items_rotated)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
