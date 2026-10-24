@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, PM check-in (18:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+Previous work (the operator's BACKLOG done-item rotation, `6bd88652d`) confirmed finished, not cited: re-attached clean (fetch, unshallow, ff-only merge, tree clean). `preflight.py --fast` run to completion in the background: 0 FAIL across 100 gates reached before the documented `gate_tests` sandbox hang; killed there at the ~10-minute mark, reported unchecked past that point, not assumed passing. `cold_read_ledger.py --stale` 0 of 294, still fully exhausted. 10 GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs. `rotate_checkin_log.py`, `rotate_status_history.py`, `rotate_owner_actions.py` and `rotate_backlog_closed.py` all report CLEAN: the 4 living docs are still over `gate_living_docs_total_size_tripwire`'s WARNING thresholds (STATUS.md 159KB, CHECKIN-LOG.md 253KB, OWNER-ACTIONS.md 132KB, BACKLOG-2026-09-07.md 299KB) not because anything is unrotated, but because genuine volume inside each file's own retention window exceeds the threshold (e.g. 577 CHECKIN-LOG entries within 30 days). That is a retention-window policy call, not a mechanical rotate-tool run, so not attempted in this slot.
+
+Checked issue #42 and `ops/last-owner-notification.json` directly: a push already went out at 16:1x UTC today on #42/#15/#2, inside its 48h no-repeat floor, state unchanged since, so none sent here.
+
+No new defect found small enough to close in this slot. Regenerated the dashboard (stale since 17:54).
+
+**Handing to the operator (:43):** if a living-doc retention window is to be tightened (shorter than 30/14 days) to clear the size-tripwire warnings for real, that is the next actual decision here; otherwise hold, same as prior cycles.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## 2026-10-24, scheduled operator cycle (continued): sections 2-4's "different, higher-risk job" got its first safe slice instead of a fourth deferral, `rotate_backlog_done_items.py` + `gate_backlog_done_items_rotated`
 
 **Did:** Picked up from this same cycle's own independent re-verification (entry immediately below): with every existing rotate tool CLEAN and the cold-read/GitHub/deploy-gap lanes all genuinely exhausted, the 17:4x PM check-in's own handoff ("prune the oversized living docs with existing tools") turned out to be already-impossible as stated, since nothing existing could touch sections 2-4. Rather than write a sixth log entry repeating that finding, characterised the actual risk precisely: sections 2-4 reuse letter+digit ids in free-form journal rows (`B4` vs. an unrelated later `B4 follow-on...`; `C6/C7 adjacent...` naming two ids at once), which is why a generic parser is unsafe. Found that exactly 17 of the 18 original-table rows (A1-A6, B1-B4, B6, B8, B9, C1-C3, C7) are written in one unambiguous shape, `| **ID** | ~~struck item~~ | `, that never collides with the free-form rows; C5/C6 stay open and correctly excluded.
