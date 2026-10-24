@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: BACKLOG-2026-09-07.md's own section 6 Gemini-billing row quoted a cost figure section 2 already marked superseded, fixed and gated
+
+**Did:** Attached per STEP 0 (fetch, unshallow, `checkout main`, ff-only merge onto `a0412bef3`, tree clean). Read `GOALS.md` context, `BACKLOG-2026-09-07.md` sections 0-7 directly, `BACKLOG-2026-H2.md`'s ordering note, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the real newest-first head of this log. Pulled all 10 open GitHub issues fresh: unchanged (#42, #40, #15, #35, #2, #33, #21, #31, #29, #18), all `decision`/`blocked-on-art`, matching every cycle logged today; confirmed epics 1-5 are genuinely exhausted, everything buildable already built, only the section 6 owner gates remain.
+
+**Found reading the live queue directly, not from a dedicated sweep.** Section 6's "Owner gates" row 3 (Gemini billing) still quoted $13.53 to $47.26, the exact pair section 2's own row C5 already disclaims as superseded by `OWNER-ACTIONS.md` 1b's later, more careful measurement (most of that original estimate turned out to be free local retries, not billing-gated). Verified the correct figure against `OWNER-ACTIONS.md` 1b's own cost table directly rather than guess: $8.62 Flash / $4.32 Flash batch / $29.62 Pro. Fixed the row with a dated note.
+
+**Built the gate, not just the instance.** New `gate_backlog_gemini_cost_current` in `ops/preflight.py`, same shape as its siblings `gate_backlog_h2_video_count_current` and `gate_linkedin_drafts_price_current`: reads OWNER-ACTIONS.md's cost table and BACKLOG section 6's Gemini row, fails on a mismatch. Wired into `main()` beside its sibling. `ops/tests/test_gate_backlog_gemini_cost_current.py` written against the old row first (fails, naming both figures) then the fixed one (passes), 6/6 cases. Re-ran against the real committed documents: 0 FAIL.
+
+**Verified:** `ast.parse` on `ops/preflight.py` clean. `ops/affiliate.py --check`: 165 documents, clean. `preflight.py` run to the documented `gate_tests` sandbox hang: 0 FAIL across roughly 130 gates reached; confirmed the hang genuinely rather than assumed, checking process 741's elapsed-vs-CPU time twice 16s apart (19s CPU both times) before killing it, reported unchecked past that point. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. No price or product touched, so Stripe/sellable steps do not apply.
+
+**Went well:** caught a real instance of this repository's own named defect class ("source corrected, artifact never re-derived") inside a single document, during a routine read rather than a dedicated cold-read.
+
+**Did not go well:** nothing new found beyond this; every other lane is independently reconfirmed exhausted again, the thirteenth consecutive cycle to land there.
+
+**Changing next cycle:** none.
+
+**Next:** Gemini billing, YouTube OAuth, Amazon/Etsy/Apple/Play accounts, the Search Console reports, issue #15 (Listmonk) and issue #42 (cadence) all sit with Phil; everything buildable ahead of each is already built.
+
+Regenerated the dashboard. Pushed to main. No price, product or served page touched; no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (05:4x slot, 30-minute triage): previous work confirmed finished, nothing new to close
 
 Attached per STEP 0 (fetch, unshallow, checkout main, ff-only merge onto b555feccf, tree clean).

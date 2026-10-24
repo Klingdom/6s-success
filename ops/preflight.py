@@ -22546,6 +22546,60 @@ def gate_backlog_h2_video_count_current() -> None:
              f". Update the row, not just GOALS.md.")
 
 
+def gate_backlog_gemini_cost_current() -> None:
+    """BACKLOG-2026-09-07.md's own Gemini-billing owner-gate row must not
+    repeat a dollar figure its own `OWNER-ACTIONS.md` 1b table has since
+    superseded.
+
+    Found 2026-10-24, scheduled operator cycle: row C5 of this same file
+    (section 2) already carries a note that its original $13.53/$47.26
+    figures are superseded by `OWNER-ACTIONS.md` 1b's measured cost table,
+    but the section 6 "Owner gates" row for the identical ask, two sections
+    later in the same file, still quoted the stale pair with no such note.
+    This is the file's own named defect class ("the source was corrected
+    and the shipped artifact was never re-derived from it") recurring
+    inside one document rather than across two, so it gets the same
+    narrow, reusable-if-wrong shape as gate_backlog_h2_video_count_current
+    and gate_linkedin_drafts_price_current just above: it does not try to
+    prove the whole row current, only that this one already-measured
+    figure cannot silently regress to the stale pair again.
+    """
+    oa_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    backlog_path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(oa_path) or not os.path.exists(backlog_path):
+        return
+    oa = io.open(oa_path, encoding="utf-8").read()
+    m = re.search(
+        r"\|\s*\*\*Everything\*\*\s*\|\s*\*\*\d+\*\*\s*\|\s*\*\*\$([\d.]+)"
+        r"\*\*\s*\|\s*\*\*\$([\d.]+)\*\*\s*\|\s*\*\*\$([\d.]+)\*\*\s*\|",
+        oa)
+    if not m:
+        warn("backlog-gemini-cost-current",
+             "OWNER-ACTIONS.md's cost table 'Everything' row has moved or "
+             "changed shape; this gate could not read it and needs "
+             "updating to match.")
+        return
+    flash, flash_batch, pro = m.group(1), m.group(2), m.group(3)
+
+    backlog = io.open(backlog_path, encoding="utf-8").read()
+    row_m = re.search(r"\|\s*3\s*\|\s*\*\*Gemini billing\*\*.*", backlog)
+    if not row_m:
+        warn("backlog-gemini-cost-current",
+             "BACKLOG-2026-09-07.md's section 6 'Gemini billing' row has "
+             "moved or changed shape; this gate could not find it and "
+             "needs updating to match.")
+        return
+    row = row_m.group(0)
+    expected = {f"${flash_batch} to ${pro}", f"${flash} to ${pro}"}
+    if not any(e in row for e in expected):
+        fail("backlog-gemini-cost-current",
+             f"BACKLOG-2026-09-07.md section 6's Gemini billing row does "
+             f"not quote OWNER-ACTIONS.md 1b's current measured range "
+             f"(Flash batch ${flash_batch} to Pro ${pro}, or Flash "
+             f"${flash} to Pro ${pro}). Update the row, not just "
+             f"OWNER-ACTIONS.md.")
+
+
 def gate_linkedin_drafts_price_current() -> None:
     """The daily LinkedIn draft email must not hand Phil a stale price as fact.
 
@@ -31020,6 +31074,7 @@ def main() -> int:
     run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_backlog_h2_video_count_current)
+    run_gate(gate_backlog_gemini_cost_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_linkedin_drafts_customer_count_current)
     run_gate(gate_corporate_linkedin_claims_current)
