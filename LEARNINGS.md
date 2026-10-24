@@ -381,6 +381,7 @@ Maintain:
 | LRN-0040 | "No browser in this sandbox" is a per-container fact, not a standing one, and it was being treated as the latter | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0041 | Two of my own `preflight.py` processes running at once produced one real-looking FAIL with no real defect behind it | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0042 | The lock that fixed LRN-0041 could not tell a zombie (SIGKILLed, unreaped) holder from a live one, so the routine way every cycle ends a hung preflight run held the next cycle's lock for up to 20 minutes | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0043 | A gate's own `except ValueError: return` hid a live rotate_owner_actions.py regression all day; a sibling PM check-in had already cited the same refusal as a non-defect hours earlier | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1819,6 +1820,64 @@ exercises the exact shape every real cycle produces. Standing habit for
 whoever reads a "waited on the lock" line in a future log entry: check
 whether the holder was a zombie before assuming the stale-mtime path is
 the only way locks clear.
+
+#### LRN-0043: A gate that catches an exception and returns is not "handling" a broken anchor, it is hiding it, and a sibling PM check-in cited that exact shape as a non-defect hours before it was found and fixed
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (reproduced the live breakage, confirmed the silent
+pass, confirmed the fix on both the anchor and the gate)
+**Domain:** ENGINEERING / TOOLING
+**Measured:** 2026-10-24
+
+**Observation.** `ops/rotate_owner_actions.py`'s `REGION_START_AFTER`
+constant was a frozen copy of one sentence from OWNER-ACTIONS.md's own
+"List reviewed:" paragraph. Commit `bd7f59312`, 07:10 UTC the same day,
+rewrote that paragraph as part of a different, correct fix (rotating its
+own accumulated history behind `LR_REPLACEMENT`), and the sentence
+`REGION_START_AFTER` searched for then existed nowhere in the file.
+`region_size()`/`plan_rotation()` started raising `ValueError` on every
+call against the real file. Both preflight gates that call them
+(`gate_owner_actions_history_not_oversized`,
+`gate_owner_actions_preamble_not_oversized`) caught it with a bare
+`except ValueError: return`, so a full `preflight.py` run produced
+neither a WARN nor a FAIL. The 13:1x PM check-in, roughly six hours
+later, ran `rotate_owner_actions.py --check` directly, saw the refusal,
+and wrote it into `ops/NIGHTLY-LOG.md` as "the already-diagnosed non-
+defect (the file is already fully rotated, `gate_owner_actions_history_
+not_oversized` already expects it)" -- a specific, confident, and wrong
+claim: the gate did not "expect" the refusal, it silently ate it, which
+is a different thing from verifying the span is clean. Found by refusing
+to accept that citation and calling `region_size()` directly, per
+`CLAUDE.md` 5d.
+
+**Why the existing rule did not prevent it.** The sibling gate for the
+same file's closed-items rotation
+(`gate_owner_actions_closed_items_rotated`) already shows the correct
+pattern: it catches its own tool's `SystemExit` refusal and turns it into
+a named `warn()`. The two `ValueError`-swallowing gates were written
+differently from their own neighbour in the same file, and nothing
+compared the two patterns until this cycle.
+
+**Fix.** `REGION_START_AFTER` now derives from `LR_REPLACEMENT` itself
+instead of copying its words, so the two cannot drift apart again. Both
+gates now warn by name on a parse failure, guarded so a document with
+none of the gate's structural markers (never shaped like OWNER-ACTIONS.md
+at all) stays silent exactly as before -- only a file that looks real but
+fails to parse speaks up. Full account in `BACKLOG-2026-09-07.md` section
+44.
+
+**Implication.** "The gate did not fire" and "the thing the gate checks
+is fine" are not the same fact, and the gap between them is exactly where
+this one hid for most of a day across several cycles that each ran the
+tool, saw a refusal, and moved on without asking why a refusal and a
+clean pass look identical from the gate's own output. Any `except
+ValueError: return` (or similarly bare catch) guarding a preflight gate
+is a candidate for the same defect until proven otherwise.
+
+**Next action.** None structural beyond this fix; the pattern is narrow
+(one file's own two gates). If a third instance of "gate swallows its own
+tool's refusal silently" turns up elsewhere, generalise then rather than
+patch a third instance by hand (`CLAUDE.md` STEP 10b).
 
 #### LRN-0020: When a gate has no available action, the format is usually the thing to change, not the blocker
 

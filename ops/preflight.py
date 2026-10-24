@@ -21562,6 +21562,25 @@ def gate_owner_actions_history_not_oversized() -> None:
     oversized.py builds a synthetic OWNER-ACTIONS.md with the span well
     past the buffer and asserts this gate warns, then confirms a freshly
     rotated span stays silent.
+
+    Fixed 2026-10-24, scheduled operator cycle: this gate's own
+    `except ValueError: return` had been silently passing since
+    `bd7f59312`, the same-day commit that rewrote the "List reviewed"
+    paragraph region_size()'s hardcoded anchor was tied to, which made
+    every call raise. Nothing here warned; the gate just went quiet,
+    exactly the "unchecked is not passing" shape CLAUDE.md 0.4 names.
+    Fixed at the root (ops/rotate_owner_actions.py's REGION_START_AFTER
+    now derives from LR_REPLACEMENT instead of copying its words) and
+    defensively here too: a future anchor break now warns by name
+    instead of returning clean. Reproduced directly before fixing
+    (reverted the anchor fix, confirmed ValueError, confirmed this gate
+    returned silently) and confirmed the warning fires once the
+    `return` was replaced, then stays silent again once the anchor fix
+    landed. The warning is gated on "**List reviewed:**" and "## Resolved
+    today" both being present, so a document that never had this shape
+    at all (this gate's own case 5 test) stays silent exactly as before;
+    only a file that looks like a real OWNER-ACTIONS.md but fails to
+    parse now speaks up.
     """
     path = os.path.join(ROOT, "OWNER-ACTIONS.md")
     if not os.path.exists(path):
@@ -21570,7 +21589,14 @@ def gate_owner_actions_history_not_oversized() -> None:
     text = io.open(path, encoding="utf-8").read()
     try:
         size = roa.region_size(text)
-    except ValueError:
+    except ValueError as e:
+        if "**List reviewed:**" in text and "## Resolved today" in text:
+            warn("owner-actions-history-not-oversized",
+                 "could not check OWNER-ACTIONS.md's deploy-gap/per-item-"
+                 "history span: %s. Unchecked is not passing (CLAUDE.md "
+                 "0.4): this means the anchor text rotate_owner_actions.py "
+                 "searches for has gone stale, most likely because another "
+                 "edit changed the text it is tied to." % e)
         return
     limit = len(roa.REPLACEMENT.encode("utf-8")) + roa.SIZE_BUFFER_BYTES
     if size > limit:
@@ -21614,6 +21640,17 @@ def gate_owner_actions_preamble_not_oversized() -> None:
     oversized.py builds a synthetic OWNER-ACTIONS.md with one paragraph's
     history well past the buffer and asserts this gate warns, then confirms
     a freshly rotated copy, and the real committed file, both stay silent.
+
+    Fixed 2026-10-24, scheduled operator cycle, alongside its sibling
+    gate_owner_actions_history_not_oversized above: this gate's own
+    `except ValueError: return` had the same silent-pass shape, found
+    while fixing that sibling's real breakage. This one was not actually
+    broken (preamble_sizes() still parsed the real file clean), but the
+    same blind spot was there and would have shipped the same way;
+    fixed defensively to warn by name instead. Same guard as its
+    sibling: the warning only fires when "**Last measured:**" or
+    "**List reviewed:**" is actually present, so a document with
+    neither (this gate's own case 5 test) stays silent.
     """
     path = os.path.join(ROOT, "OWNER-ACTIONS.md")
     if not os.path.exists(path):
@@ -21622,7 +21659,14 @@ def gate_owner_actions_preamble_not_oversized() -> None:
     text = io.open(path, encoding="utf-8").read()
     try:
         lm_size, lr_size = roa.preamble_sizes(text)
-    except ValueError:
+    except ValueError as e:
+        if "**Last measured:**" in text or "**List reviewed:**" in text:
+            warn("owner-actions-preamble-not-oversized",
+                 "could not check OWNER-ACTIONS.md's Last measured/List "
+                 "reviewed paragraphs: %s. Unchecked is not passing "
+                 "(CLAUDE.md 0.4): this means one of those paragraphs no "
+                 "longer matches the shape this script and ops/dashboard.py "
+                 "both require." % e)
         return
     lm_limit = len(roa.LM_REPLACEMENT.encode("utf-8")) + roa.PREAMBLE_BUFFER_BYTES
     lr_limit = len(roa.LR_REPLACEMENT.encode("utf-8")) + roa.PREAMBLE_BUFFER_BYTES

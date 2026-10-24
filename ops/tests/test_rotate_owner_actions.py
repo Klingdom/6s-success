@@ -31,8 +31,7 @@ BEFORE = (
     "# Owner actions\n\n"
     "**Last measured:** some traffic sentence, untouched by this script.\n\n"
     "**List reviewed:** some review sentence, also untouched. "
-    "it says nothing about traffic."
-)
+) + roa.REGION_START_AFTER
 AFTER = "\n\n---\n\n## Resolved today\n\n| # | Action | Outcome |\n"
 
 
@@ -55,7 +54,7 @@ def main() -> int:
     if "day-0" not in region or "day-2" not in region:
         fails.append("region did not capture all synthetic entries: %r"
                      % region[:120])
-    if not before.endswith("it says nothing about traffic."):
+    if not before.endswith(roa.REGION_START_AFTER):
         fails.append("before boundary drifted: %r" % before[-50:])
     if not after.startswith("\n\n---\n\n## Resolved today"):
         fails.append("after boundary drifted: %r" % after[:50])
@@ -63,7 +62,7 @@ def main() -> int:
     # 2. A missing start anchor is refused, not guessed past.
     try:
         roa.region_between(
-            BEFORE.replace("it says nothing about traffic.",
+            BEFORE.replace(roa.REGION_START_AFTER,
                             "something else entirely") + AFTER,
             roa.REGION_START_AFTER, roa.REGION_END_BEFORE)
         fails.append("missing start anchor was silently accepted")
@@ -72,11 +71,21 @@ def main() -> int:
 
     # 3. A duplicated start anchor is refused.
     try:
-        roa.region_between(text + "\n\nit says nothing about traffic.\n",
+        roa.region_between(text + "\n\n" + roa.REGION_START_AFTER + "\n",
                             roa.REGION_START_AFTER, roa.REGION_END_BEFORE)
         fails.append("duplicated start anchor was silently accepted")
     except ValueError:
         pass
+
+    # 2b. Regression, 2026-10-24: REGION_START_AFTER must be derived from
+    #     LR_REPLACEMENT, not a frozen copy of its words, so a future edit
+    #     to the "List reviewed" paragraph's own pointer sentence carries
+    #     this anchor with it instead of silently orphaning it the way
+    #     bd7f59312 did to the old hardcoded "it says nothing about
+    #     traffic." string (found live: region_size() raised ValueError
+    #     and both preflight gates that call it swallowed it silently).
+    if roa.REGION_START_AFTER != roa.LR_REPLACEMENT.strip():
+        fails.append("REGION_START_AFTER has drifted from LR_REPLACEMENT")
 
     # 4. A missing end anchor is refused.
     try:
@@ -281,7 +290,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 18/18 cases ok.")
+    print("PASS: 19/19 cases ok.")
     return 0
 
 
