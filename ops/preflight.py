@@ -21900,6 +21900,65 @@ def gate_living_docs_total_size_tripwire() -> None:
                  "siblings already got." % (name, size, limit))
 
 
+def gate_status_workstreams_rotated() -> None:
+    """STATUS.md section 14 ("Active Major Workstreams") must not be
+    carrying Workstream 3's closed, dated build-log narrative (2026-09-07
+    through 2026-09-25, M1 through B9) again, once ops/rotate_status_
+    workstreams.py has archived it to its pointer.
+
+    Found 2026-10-24, cold-reading ops/rotate_status_workstreams.py
+    itself (the 10:2x PM check-in's own new file, the single candidate
+    `cold_read_ledger.py --next` had left): the script that performs the
+    rotation has no gate watching it, unlike every sibling rotate_*.py
+    (gate_owner_actions_closed_items_rotated,
+    gate_backlog_done_table_not_oversized, the gate_status_* chain
+    gates above), each of which checks a specific, named span rather
+    than the file's raw byte count. The commit that added the script
+    reasoned that gate_living_docs_total_size_tripwire already watches
+    this file, so a dedicated gate would duplicate it; that is only
+    true for TOTAL size. The tripwire fires on the whole file crossing
+    110000 bytes, not on this one span re-growing: another section of
+    STATUS.md could shrink by more than this one regrows and the
+    tripwire would stay silent while a future cycle re-appends dated
+    entries under the closure summary, the exact "source corrected,
+    nothing keeps it that way" shape this repository's own history
+    keeps naming (BLOCKER-001's drifting citations, OWNER-ACTIONS.md's
+    growing preamble, both already gated for the same reason).
+
+    A WARNING, not a FAIL: a re-grown narrative wastes a later cycle's
+    reading time (STEP 1 of the operating prompt reads this file in
+    full every cycle); it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_status_workstreams_rotated.py
+    builds a synthetic STATUS.md with the narrative left unarchived and
+    asserts this gate warns, then confirms a freshly rotated copy, and
+    one with new text appended after the pointer, each behave correctly
+    (the former silent, the latter warning again).
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_workstreams as rsw
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, narrative, _ = rsw.split_workstream3(text)
+    except ValueError as e:
+        warn("status-workstreams-rotated",
+             "STATUS.md section 14's Workstream 3 narrative no longer "
+             "matches the anchors ops/rotate_status_workstreams.py "
+             "expects: %s. Confirm the section was not restructured "
+             "out from under the rotation tool." % e)
+        return
+    already_rotated = narrative.strip("\n") == rsw.POINTER.strip("\n")
+    if narrative and not already_rotated:
+        warn("status-workstreams-rotated",
+             "STATUS.md section 14 has %d bytes of Workstream 3's "
+             "closed build-log narrative sitting live again, past the "
+             "pointer ops/rotate_status_workstreams.py left behind. Run "
+             "`python ops/rotate_status_workstreams.py --apply`."
+             % len(narrative.encode("utf-8")))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -30774,6 +30833,7 @@ def main() -> int:
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_living_docs_total_size_tripwire)
+    run_gate(gate_status_workstreams_rotated)
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_nightly_log_no_duplicate_entries)
     # OWNER-ACTIONS.md's own freshness marker is the same shape: pure
