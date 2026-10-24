@@ -1159,7 +1159,7 @@
     "rotate_owner_actions_closed_items.py": {
       "status": "clean",
       "date": "2026-10-24",
-      "note": "Cold-read 2026-10-24, scheduled operator cycle: read in full. --check reports CLEAN against the real OWNER-ACTIONS.md (the 8 groups already archived earlier today); own test suite 4/4; wired into preflight.py as gate_owner_actions_closed_items_rotated. No defect found."
+      "note": "Read cold 2026-10-24 PM check-in (07:4x). Archives OWNER-ACTIONS.md items whose own header already declares them DONE/WITHDRAWN/Superseded/duplicate, leaving a one-line pointer; refuses on partial/non-contiguous spans rather than guessing. --check confirms CLEAN (already applied this same cycle by its own author). No defect found."
     },
     "rotate_status_history.py": {
       "status": "fixed",
