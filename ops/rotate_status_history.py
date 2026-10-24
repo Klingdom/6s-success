@@ -238,6 +238,95 @@ def plan_rotation_blocker1(text: str):
     return new_text, archived
 
 
+# Section 4's Production Status table grew the identical defect a fourth
+# way. "Public website" and "Production traceability" are both markdown
+# table rows, so the whole history has to live in one physical line (a
+# table cell cannot hold a newline), unlike every chain above. The
+# convention adopted for both rows is still newest-first, one bold entry
+# per correction, but instead of a line break between entries the chain
+# uses its own literal separator, TABLE_CHAIN_MARKER, repeated verbatim
+# before every entry after the first. Found 2026-10-24, the exact gap
+# named by name in the 13:4x PM check-in's own handoff: 20 superseded
+# entries each, 17551 and 8978 bytes, no gate watching either row's size.
+TABLE_ROW_LABELS = ("Public website", "Production traceability")
+TABLE_CHAIN_MARKER = "Prior state, kept because the shape recurs: "
+
+
+def split_table_row_chain(text: str, row_label: str):
+    """Return (before, entries, after) for one Production Status table
+    row's third column (Evidence / Notes), identified by its first
+    column's exact label. `entries` is the list of chain entries in file
+    order (newest first, the same convention split_chain uses). Raises
+    ValueError if the row is missing, appears more than once, is not
+    shaped as a 3-column table row with exactly 4 pipes (refuse to guess
+    at a row carrying a literal `|` in its own prose), or its third
+    column does not open on a bold entry.
+    """
+    row_marker = "\n| %s |" % row_label
+    start_idx = text.find(row_marker)
+    if start_idx == -1:
+        raise ValueError("row not found: %r" % row_label)
+    if text.find(row_marker, start_idx + 1) != -1:
+        raise ValueError("row appears more than once: %r" % row_label)
+    line_start = start_idx + 1
+    line_end = text.find("\n", line_start)
+    if line_end == -1:
+        raise ValueError("row has no terminating newline: %r" % row_label)
+    line = text[line_start:line_end]
+    pipes = [i for i, ch in enumerate(line) if ch == "|"]
+    if len(pipes) != 4:
+        raise ValueError("row %r does not have exactly 4 pipes (3 "
+                          "columns), refusing to guess" % row_label)
+    p2, p3 = pipes[2], pipes[3]
+    cell_start = line_start + p2 + 1
+    cell_end = line_start + p3
+    before = text[:cell_start]
+    cell = text[cell_start:cell_end]
+    after = text[cell_end:]
+
+    entries = cell.split(TABLE_CHAIN_MARKER)
+    if not entries or not entries[0].strip().startswith("**"):
+        raise ValueError("row %r's cell does not open on a bold entry, "
+                          "refusing to guess" % row_label)
+    for e in entries[1:]:
+        if not e.strip().startswith("**"):
+            raise ValueError("row %r has an entry not opening bold right "
+                              "after the chain marker, refusing to guess"
+                              % row_label)
+    return before, entries, after
+
+
+def plan_rotation_table_row(text: str, row_label: str):
+    """Keep the newest (first) entry live in the named table row, archive
+    the rest. Returns (new_status_text, archived_entries_newest_first),
+    or (text, []) if there is nothing to rotate. Pure function of its
+    input; does no I/O.
+    """
+    before, entries, after = split_table_row_chain(text, row_label)
+    if len(entries) <= 1:
+        return text, []
+    keep, archived = entries[0], entries[1:]
+    new_cell = " " + keep.strip() + " "
+    new_text = before + new_cell + after
+    # Already newest-first, the same order split_chain's archived list
+    # uses, so no reversal needed here (unlike plan_rotation_blocker1,
+    # whose source chain is oldest-first).
+    return new_text, archived
+
+
+def plan_rotation_table_rows(text: str, row_labels=TABLE_ROW_LABELS):
+    """Apply plan_rotation_table_row to each row in turn, feeding each
+    row's own output forward as the next row's input so both edits land
+    in one pass. Returns (new_status_text, archived_entries_newest_first)
+    with every row's archived entries concatenated in `row_labels` order.
+    """
+    archived_all = []
+    for label in row_labels:
+        text, archived = plan_rotation_table_row(text, label)
+        archived_all.extend(archived)
+    return text, archived_all
+
+
 FOCUS_LABEL = "**Immediate Focus:**"
 
 # Every dated correction on the Immediate Focus line opens with one of
@@ -417,12 +506,23 @@ def main() -> int:
     ap.add_argument("--apply-blocker1", action="store_true",
                      help="BLOCKER-001: rotate now, keep the newest entry "
                           "live, archive the rest.")
+    ap.add_argument("--check-table-rows", action="store_true",
+                     help="Production Status table: report whether the "
+                          "Public website / Production traceability rows "
+                          "have grown past one live entry each; makes no "
+                          "changes.")
+    ap.add_argument("--apply-table-rows", action="store_true",
+                     help="Production Status table: rotate both rows now, "
+                          "keep the newest entry live in each, archive "
+                          "the rest.")
     args = ap.parse_args()
     modes = (args.check, args.apply, args.check_focus, args.apply_focus,
-              args.check_blocker1, args.apply_blocker1)
+              args.check_blocker1, args.apply_blocker1,
+              args.check_table_rows, args.apply_table_rows)
     if sum(bool(m) for m in modes) != 1:
         ap.error("pass exactly one of --check, --apply, --check-focus, "
-                  "--apply-focus, --check-blocker1, --apply-blocker1")
+                  "--apply-focus, --check-blocker1, --apply-blocker1, "
+                  "--check-table-rows, --apply-table-rows")
 
     status_text = io.open(STATUS_PATH, encoding="utf-8").read()
 
@@ -475,27 +575,60 @@ def main() -> int:
         print("Immediate Focus line kept to its base statement.")
         return 0
 
-    # --check-blocker1 or --apply-blocker1
-    try:
-        _, entries, _ = split_blocker1_chain(status_text)
-    except ValueError as exc:
-        print("REFUSING: %s" % exc)
-        return 2
-    if args.check_blocker1:
-        if len(entries) > 1:
-            print("DUE: %d entries live, only the newest should stay; "
-                  "%d would move to %s on --apply-blocker1."
-                  % (len(entries), len(entries) - 1, ARCHIVE_PATH))
-            return 1
-        print("CLEAN: %d entry live. Nothing to rotate." % len(entries))
+    if args.check_blocker1 or args.apply_blocker1:
+        try:
+            _, entries, _ = split_blocker1_chain(status_text)
+        except ValueError as exc:
+            print("REFUSING: %s" % exc)
+            return 2
+        if args.check_blocker1:
+            if len(entries) > 1:
+                print("DUE: %d entries live, only the newest should stay; "
+                      "%d would move to %s on --apply-blocker1."
+                      % (len(entries), len(entries) - 1, ARCHIVE_PATH))
+                return 1
+            print("CLEAN: %d entry live. Nothing to rotate." % len(entries))
+            return 0
+        # --apply-blocker1
+        new_status_text, archived = plan_rotation_blocker1(status_text)
+        if not archived:
+            print("Already down to the newest entry; no change made.")
+            return 0
+        _write_rotated(new_status_text, archived, status_text)
+        print("STATUS.md's BLOCKER-001 keeps 1 entry live.")
         return 0
-    # --apply-blocker1
-    new_status_text, archived = plan_rotation_blocker1(status_text)
+
+    # --check-table-rows or --apply-table-rows
+    due = {}
+    for label in TABLE_ROW_LABELS:
+        try:
+            _, entries, _ = split_table_row_chain(status_text, label)
+        except ValueError as exc:
+            print("REFUSING (%s): %s" % (label, exc))
+            return 2
+        due[label] = entries
+    if args.check_table_rows:
+        total_extra = sum(len(e) - 1 for e in due.values() if len(e) > 1)
+        if total_extra:
+            for label, entries in due.items():
+                if len(entries) > 1:
+                    print("DUE (%s): %d entries live, only the newest "
+                          "should stay." % (label, len(entries)))
+            print("%d entries total would move to %s on "
+                  "--apply-table-rows." % (total_extra, ARCHIVE_PATH))
+            return 1
+        print("CLEAN: 1 entry live in each of %s. Nothing to rotate."
+              % ", ".join(TABLE_ROW_LABELS))
+        return 0
+    # --apply-table-rows
+    new_status_text, archived = plan_rotation_table_rows(status_text)
     if not archived:
-        print("Already down to the newest entry; no change made.")
+        print("Already down to the newest entry in each row; no change "
+              "made.")
         return 0
     _write_rotated(new_status_text, archived, status_text)
-    print("STATUS.md's BLOCKER-001 keeps 1 entry live.")
+    print("STATUS.md's Production Status table keeps 1 entry live in "
+          "each of %s." % ", ".join(TABLE_ROW_LABELS))
     return 0
 
 

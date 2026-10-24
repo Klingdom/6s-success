@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
 Prove ops/rotate_status_history.py keeps only the newest STATUS.md
-"Production Knowledge" entry live (cases 1-9) and the base statement of
-the "Immediate Focus" line (cases 10-12), moving the rest into the archive
-correctly in both cases: every entry ends up on exactly one side, nothing
-is edited, and a file that does not match the expected shape is refused
-rather than guessed past.
+"Production Knowledge" entry live (cases 1-9), the base statement of the
+"Immediate Focus" line (cases 10-12), the newest BLOCKER-001 entry
+(cases 13-18), and the newest entry in each Production Status table row
+("Public website" / "Production traceability", cases 19-26), moving the
+rest into the archive correctly in every case: every entry ends up on
+exactly one side, nothing is edited, and a file that does not match the
+expected shape is refused rather than guessed past.
 
 Run:  python ops/tests/test_rotate_status_history.py
 """
@@ -301,6 +303,136 @@ def main() -> int:
         except ValueError as exc:
             fails.append("split_blocker1_chain refused the real, "
                           "committed STATUS.md: %s" % exc)
+
+    # 19. split_table_row_chain() finds a Production Status table row's
+    #     3 entries, newest first, all on one physical line (a table
+    #     cell cannot hold a newline).
+    tr_text = (
+        "| Area | Status | Evidence / Notes |\n"
+        "|---|---|---|\n"
+        "| Public website | LIVE, some status | **REOPENED 2026-10-23: "
+        "gap reopened.** Detail one. " + rsh.TABLE_CHAIN_MARKER
+        + "**CLOSED 2026-10-23: gap closed.** Detail two. "
+        + rsh.TABLE_CHAIN_MARKER
+        + "**WIDENED 2026-10-19: gap widened.** Detail three. |\n"
+        "| Production traceability | Tracked, some status | **ONLY ONE "
+        "ENTRY HERE.** |\n"
+    )
+    tr_before, tr_entries, tr_after = rsh.split_table_row_chain(
+        tr_text, "Public website")
+    if len(tr_entries) != 3:
+        fails.append("expected 3 table-row entries, got %d: %r"
+                     % (len(tr_entries), tr_entries))
+    elif not tr_entries[0].strip().startswith("**REOPENED 2026-10-23") or \
+            not tr_entries[1].strip().startswith("**CLOSED 2026-10-23") or \
+            not tr_entries[2].strip().startswith("**WIDENED 2026-10-19"):
+        fails.append("table-row entries came back out of their own "
+                      "newest-first order: %r" % tr_entries)
+    if tr_before + rsh.TABLE_CHAIN_MARKER.join(tr_entries) + tr_after \
+            != tr_text:
+        fails.append("split_table_row_chain did not round-trip the "
+                      "synthetic text exactly")
+    if not tr_after.startswith("|\n| Production traceability |"):
+        fails.append("Public website row's own end boundary drifted "
+                      "into the next row: %r" % tr_after[:60])
+
+    # 20. The sibling row, already down to one entry, is found correctly
+    #     and independently of the first row.
+    _, one_entries, _ = rsh.split_table_row_chain(
+        tr_text, "Production traceability")
+    if len(one_entries) != 1 or not one_entries[0].strip().startswith(
+            "**ONLY ONE ENTRY HERE"):
+        fails.append("Production traceability row was not read "
+                      "independently of Public website: %r" % one_entries)
+
+    # 21. A missing or duplicated row label is refused, not guessed past.
+    try:
+        rsh.split_table_row_chain(tr_text, "Nonexistent row")
+        fails.append("a missing row label was not refused")
+    except ValueError:
+        pass
+    try:
+        rsh.split_table_row_chain(
+            tr_text + "| Public website | dup | **DUP.** |\n",
+            "Public website")
+        fails.append("a duplicated row label was not refused")
+    except ValueError:
+        pass
+
+    # 22. A row whose cell carries a stray literal `|` (breaking the
+    #     expected 4-pipe, 3-column shape) is refused rather than
+    #     mis-split.
+    bad_pipe_text = tr_text.replace(
+        "Detail three. |\n", "Detail | three. |\n", 1)
+    try:
+        rsh.split_table_row_chain(bad_pipe_text, "Public website")
+        fails.append("a row with a stray literal pipe was not refused")
+    except ValueError:
+        pass
+
+    # 23. plan_rotation_table_row() keeps the newest (first) entry live
+    #     and archives the rest, newest-first (this chain's own order,
+    #     unlike BLOCKER-001's oldest-first, so no reversal is needed).
+    new_tr_text, tr_archived = rsh.plan_rotation_table_row(
+        tr_text, "Public website")
+    _, kept_tr_entries, _ = rsh.split_table_row_chain(
+        new_tr_text, "Public website")
+    if len(kept_tr_entries) != 1 or not kept_tr_entries[0].strip() \
+            .startswith("**REOPENED 2026-10-23"):
+        fails.append("table-row rotation did not keep exactly the "
+                      "newest entry live: %r" % kept_tr_entries)
+    if len(tr_archived) != 2 or \
+            not tr_archived[0].strip().startswith("**CLOSED 2026-10-23") \
+            or not tr_archived[1].strip().startswith("**WIDENED 2026-10-19"):
+        fails.append("table-row archive was not the remaining 2 entries, "
+                      "newest-first: %r" % tr_archived)
+    # The sibling row must be untouched by rotating the other one.
+    _, untouched_entries, _ = rsh.split_table_row_chain(
+        new_tr_text, "Production traceability")
+    if len(untouched_entries) != 1:
+        fails.append("rotating Public website disturbed Production "
+                      "traceability: %r" % untouched_entries)
+
+    # 24. plan_rotation_table_rows() rotates both named rows in one pass,
+    #     and a row already at one entry contributes nothing to archive.
+    new_tr_both, archived_both = rsh.plan_rotation_table_rows(tr_text)
+    if len(archived_both) != 2:
+        fails.append("plan_rotation_table_rows archived the wrong count "
+                      "across both rows: %r" % archived_both)
+    _, both_public, _ = rsh.split_table_row_chain(
+        new_tr_both, "Public website")
+    _, both_trace, _ = rsh.split_table_row_chain(
+        new_tr_both, "Production traceability")
+    if len(both_public) != 1 or len(both_trace) != 1:
+        fails.append("plan_rotation_table_rows did not leave exactly "
+                      "one live entry in each row: %r, %r"
+                      % (both_public, both_trace))
+
+    # 25. A table with both rows already down to one entry each is a
+    #     no-op.
+    tr_clean = (
+        "| Area | Status | Evidence / Notes |\n"
+        "|---|---|---|\n"
+        "| Public website | LIVE | **ONLY ONE.** |\n"
+        "| Production traceability | Tracked | **ONLY ONE TOO.** |\n"
+    )
+    new_tr_clean, archived_clean = rsh.plan_rotation_table_rows(tr_clean)
+    if new_tr_clean != tr_clean or archived_clean:
+        fails.append("a table already at one entry per row was rotated "
+                      "when it should have been left alone")
+
+    # 26. Round-trip proof against the real, committed STATUS.md: both
+    #     named rows must be readable there too, the same safety check
+    #     each function runs on every call, proved again here against
+    #     the real file rather than only the synthetic text above.
+    if os.path.exists(real_status_path):
+        for label in rsh.TABLE_ROW_LABELS:
+            try:
+                rsh.split_table_row_chain(real_text, label)
+            except ValueError as exc:
+                fails.append("split_table_row_chain refused the real, "
+                              "committed STATUS.md row %r: %s"
+                              % (label, exc))
 
     if fails:
         print("FAILED (%d):" % len(fails))

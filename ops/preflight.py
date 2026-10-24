@@ -21831,6 +21831,65 @@ def gate_status_blocker001_not_oversized() -> None:
              % len(entries))
 
 
+def gate_status_production_table_rows_not_oversized() -> None:
+    """STATUS.md's Production Status table rows ("Public website",
+    "Production traceability") must not each carry more than a small
+    buffer of superseded entries.
+
+    Found 2026-10-24, the exact gap the 13:4x PM check-in's own handoff
+    named by name: both rows accumulate a full dated correction history
+    inline in their own table cell every time the deploy-gap figure
+    changes, the same shape BLOCKER-001, Production Knowledge, Immediate
+    Focus, CHECKIN-LOG, OWNER-ACTIONS and this file's own Workstream 3
+    narrative were each already fixed for across sections 28-41 of
+    BACKLOG-2026-09-07.md, but nothing had ever checked these two rows:
+    grepping preflight.py for either row's name found only
+    status_deploy_verdict_problem()'s citation-currency regex, never a
+    size check. By the time this gate shipped the rows held 21 entries
+    each (17551 and 8978 bytes). A table cell cannot hold a newline, so
+    the chain is a different shape again: one physical line, newest
+    first, each entry after the first introduced by the literal text
+    "Prior state, kept because the shape recurs: " instead of a line
+    break or a paragraph break. ops/rotate_status_history.py's
+    split_table_row_chain/plan_rotation_table_rows
+    (--check-table-rows/--apply-table-rows) read it by that rule, proved
+    to round-trip the real file exactly before being trusted with an
+    --apply.
+
+    A WARNING, not a FAIL: a long chain wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. A
+    buffer of 3 lets a handoff add one or two follow-on entries within a
+    cycle without this firing immediately; it fires only once a row is
+    genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_status_production_table_
+    rows_not_oversized.py builds a synthetic STATUS.md with one row's
+    chain well past the buffer and asserts this gate warns, then
+    confirms a chain at or under the buffer in both rows stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_history as rsh
+    text = io.open(path, encoding="utf-8").read()
+    buffer = 3
+    oversized = []
+    for label in rsh.TABLE_ROW_LABELS:
+        try:
+            _, entries, _ = rsh.split_table_row_chain(text, label)
+        except ValueError:
+            continue
+        if len(entries) > 1 + buffer:
+            oversized.append((label, len(entries)))
+    if oversized:
+        warn("status-production-table-rows-not-oversized",
+             "STATUS.md's Production Status table row(s) carry more "
+             "entries than only the newest current one: %s. The rest "
+             "belong in STATUS-ARCHIVE.md. Run `python "
+             "ops/rotate_status_history.py --apply-table-rows`."
+             % ", ".join("%s (%d)" % (label, n) for label, n in oversized))
+
+
 def gate_backlog_closed_sections_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's numbered "## N. Closed/Done ..." sections
     (8 and up) must not carry more than a generous buffer past ops/
@@ -30875,6 +30934,7 @@ def main() -> int:
     run_gate(gate_owner_actions_closed_items_rotated)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
+    run_gate(gate_status_production_table_rows_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
