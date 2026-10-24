@@ -41,13 +41,47 @@ left for a future cycle exactly as this file's own 2026-10-23 backlog entry
 (section 30) deferred the "Resolved today"-style preamble work rather than
 guess at it.
 
+Extended 2026-10-24, scheduled operator cycle, to do the job this file's own
+docstring above deferred: the "Last measured:" and "List reviewed:"
+paragraphs it deliberately left untouched had grown the identical
+unbounded-growth shape, one bold-prefixed "Corrected"/"Earlier, DATE:"
+sentence at a time, exactly as section 32 of BACKLOG-2026-09-07.md predicted
+when it named both as "the next candidate for this treatment." Each
+paragraph's own load-bearing citation (the one sentence
+ops/dashboard.py's _owner_actions_traffic_citation() or
+ops/preflight.py's gate_owner_actions_last_measured_current actually reads)
+sits at the very front, confirmed by reading both parsers directly rather
+than guessing at the regex: the dashboard's own paragraph-capture regex and
+the "list reviewed" header regex both match on the FIRST occurrence inside
+the paragraph, so the real, current reading was never at risk, only hidden
+inside everything appended after it. `--check-preamble`/`--apply-preamble`
+rotate both paragraphs at once, the same way the two dead chains above were
+rotated together: keep only the one load-bearing sentence (found fresh each
+run, never a hardcoded date, because a real re-measurement is expected to
+rewrite it in place), archive everything accumulated after it to
+OWNER-ACTIONS-ARCHIVE.md, and replace it with a fixed, timeless pointer
+sentence. The "List reviewed" marker's own standing definition (what
+bumping its date does and does not mean, the real operational knowledge
+behind the original closing clause) is folded permanently into that
+pointer rather than kept as live prose that could grow again. Proved
+against the real parsing functions before shipping: both regexes and both
+gates still parse the rotated text clean (see
+ops/tests/test_rotate_owner_actions.py's preamble cases, which call
+ops.dashboard._owner_actions_traffic_citation and
+ops.preflight.gate_owner_actions_last_measured_current directly against the
+rotated text, not just against this script's own output).
+
 Usage:
-    python ops/rotate_owner_actions.py --check   report only, exit 1 if due
-    python ops/rotate_owner_actions.py --apply   rotate now
+    python ops/rotate_owner_actions.py --check             report only
+    python ops/rotate_owner_actions.py --apply             rotate now
+    python ops/rotate_owner_actions.py --check-preamble    report only
+    python ops/rotate_owner_actions.py --apply-preamble    rotate now
 """
 import argparse
+import datetime
 import io
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,6 +115,91 @@ REPLACEMENT = (
 # REPLACEMENT itself (currently ~370 bytes) plus normal whitespace drift.
 SIZE_BUFFER_BYTES = 400
 
+# The "Last measured:" paragraph re-measures every so often (a real session
+# with a VPS key edits the date and the numbers in place), so the boundary
+# that matters cannot be a fixed string tied to today's reading -- it has to
+# be found the same way ops/dashboard.py's _owner_actions_traffic_citation()
+# finds it, every time this runs. LM_CITATION_RE matches exactly the
+# sentence that function and gate_dashboard_owner_actions_traffic_citation_
+# current both require; everything from the end of that match up to the
+# next paragraph is pure accumulated correction history with its own live
+# duplicate elsewhere (item 1, "Authorise YouTube uploads").
+LM_CITATION_RE = re.compile(
+    r"\*\*Last measured:\*\*\s*"
+    r"(\d{4}-\d{2}-\d{2}(?:\s+\d{2}:\d{2})?)\s*UTC,?\s*"
+    r"traffic re-measured by a direct database read:\s*"
+    r"(\d+)\s*visitors?/\s*(\d+)\s*visits?/\s*30\s+days",
+    re.S)
+LM_END_BEFORE = "\n\n**List reviewed:**"
+# Deliberately generic and evergreen: whatever accumulates here between
+# rotations will not always be about the same item, so the live pointer
+# names no specific topic. Nothing is lost either way; the full text,
+# whatever it was about, is always in OWNER-ACTIONS-ARCHIVE.md verbatim.
+LM_REPLACEMENT = (
+    ". Earlier corrections accumulated here between rotations archived to "
+    "`OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py "
+    "--apply-preamble`; each numbered item's own current status lives in "
+    "its own entry below, not in this paragraph."
+)
+
+# The "List reviewed:" header only ever needs to carry its own date
+# (gate_owner_actions_last_measured_current reads nothing else from it), so
+# the live KEEP text is the header and date alone; LR_END_BEFORE is the
+# fixed, timeless pointer phrase ops/rotate_owner_actions.py's OTHER
+# rotation (the deploy-gap/per-item-history span, section 31) already
+# replaced its own neighbour with, so it never changes underneath this one.
+# The real operational knowledge from the old closing clause (why this
+# marker is separate from "Last measured" and must never be bumped to imply
+# a fresh traffic read) is folded into LR_REPLACEMENT itself, permanently,
+# rather than kept as live prose that could grow again.
+LR_DATE_RE = re.compile(r"\*\*List reviewed:\*\*\s*(\d{4}-\d{2}-\d{2})")
+LR_END_BEFORE = "\n\n**Deploy-gap and per-item history"
+# Timeless on purpose: this restates the marker's own standing definition
+# (what bumping the date does and does not mean) rather than claiming any
+# particular cycle's review happened, since that claim belongs to whoever
+# bumps the date, not to this mechanical rotation.
+LR_REPLACEMENT = (
+    ", every item below has been read as of this date. A separate marker, "
+    "\"Last measured\" above (issue #38), is the exact sentence the "
+    "dashboard parses for the real traffic-measurement date; bumping this "
+    "marker must never imply a fresh database read. Earlier review "
+    "history accumulated here between rotations archived to "
+    "`OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py "
+    "--apply-preamble`."
+)
+
+PREAMBLE_BUFFER_BYTES = 400
+
+
+def _lm_region(text: str):
+    """(citation_end_index, region_end_index). Raises ValueError if the
+    citation sentence or the next paragraph's header cannot be found.
+    """
+    m = LM_CITATION_RE.search(text)
+    if not m:
+        raise ValueError("'Last measured' citation sentence not found or "
+                          "no longer matches the shape dashboard.py and "
+                          "preflight.py both require")
+    end_idx = text.find(LM_END_BEFORE, m.end())
+    if end_idx == -1:
+        raise ValueError("'List reviewed' header not found after the "
+                          "'Last measured' citation")
+    return m.end(), end_idx
+
+
+def _lr_region(text: str):
+    """(date_end_index, region_end_index). Raises ValueError if the header
+    date or the deploy-gap pointer that follows it cannot be found.
+    """
+    m = LR_DATE_RE.search(text)
+    if not m:
+        raise ValueError("'List reviewed' header date not found")
+    end_idx = text.find(LR_END_BEFORE, m.end())
+    if end_idx == -1:
+        raise ValueError("deploy-gap/per-item-history pointer not found "
+                          "after the 'List reviewed' date")
+    return m.end(), end_idx
+
 
 def region_between(text: str, start_after: str, end_before: str):
     """Return (before, region, after) where region is everything strictly
@@ -101,14 +220,54 @@ def region_between(text: str, start_after: str, end_before: str):
     return text[:start], text[start:end], text[end:]
 
 
-def region_size(text: str) -> int:
+def region_size(text: str, start_after: str = REGION_START_AFTER,
+                 end_before: str = REGION_END_BEFORE) -> int:
     """Pure function used by the preflight gate: bytes of live history
     still sitting in the bounded span, stripped of surrounding whitespace.
     Raises ValueError if the anchors cannot be found (same refusal as
-    region_between).
+    region_between). Defaults to the deploy-gap/per-item-history span;
+    pass LM_START_AFTER/LM_END_BEFORE or LR_START_AFTER/LR_END_BEFORE for
+    the two preamble paragraphs.
     """
-    _, region, _ = region_between(text, REGION_START_AFTER, REGION_END_BEFORE)
+    _, region, _ = region_between(text, start_after, end_before)
     return len(region.strip().encode("utf-8"))
+
+
+def preamble_sizes(text: str):
+    """(last_measured_region_bytes, list_reviewed_region_bytes), each the
+    live, un-rotated history still sitting in that paragraph. Raises
+    ValueError if either paragraph has been reworded away from the shape
+    this script expects.
+    """
+    s, e = _lm_region(text)
+    lm = len(text[s:e].strip().encode("utf-8"))
+    s, e = _lr_region(text)
+    lr = len(text[s:e].strip().encode("utf-8"))
+    return lm, lr
+
+
+def plan_rotation_preamble(text: str):
+    """Pure function, same contract as plan_rotation() above but for both
+    preamble paragraphs at once. Returns (new_text, archived_blocks) where
+    archived_blocks is a list of (label, content) pairs for whichever
+    paragraph(s) still carry more than their own pointer sentence; a
+    paragraph already at its pointer is left out of the list entirely.
+    """
+    archived_blocks = []
+
+    s, e = _lm_region(text)
+    region = text[s:e]
+    if region.strip() != LM_REPLACEMENT.strip():
+        archived_blocks.append(("Last measured", region.strip()))
+        text = text[:s] + LM_REPLACEMENT + text[e:]
+
+    s, e = _lr_region(text)
+    region = text[s:e]
+    if region.strip() != LR_REPLACEMENT.strip():
+        archived_blocks.append(("List reviewed", region.strip()))
+        text = text[:s] + LR_REPLACEMENT + text[e:]
+
+    return text, archived_blocks
 
 
 def plan_rotation(text: str):
@@ -149,6 +308,18 @@ def apply_archive(archived_region: str, existing_archive_text) -> str:
     return header + "\n" + block + "\n"
 
 
+def format_preamble_archive_blocks(archived_blocks) -> str:
+    """Render plan_rotation_preamble()'s (label, content) pairs as one
+    archive-ready block, each under its own sub-heading so a later reader
+    can tell which paragraph a given piece of history came from.
+    """
+    parts = []
+    for label, content in archived_blocks:
+        today = datetime.date.today().isoformat()
+        parts.append("### %s, archived %s\n\n%s" % (label, today, content))
+    return "\n\n".join(parts)
+
+
 def _write_rotated(new_text: str, archived_region: str) -> None:
     existing_archive_text = None
     if os.path.exists(ARCHIVE_PATH):
@@ -172,11 +343,58 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true",
                      help="rotate now: archive the historical span, leave "
                           "the pointer sentence live.")
+    ap.add_argument("--check-preamble", action="store_true",
+                     help="report whether the 'Last measured'/'List "
+                          "reviewed' paragraphs have regrown; makes no "
+                          "changes.")
+    ap.add_argument("--apply-preamble", action="store_true",
+                     help="rotate the 'Last measured'/'List reviewed' "
+                          "paragraphs now.")
     args = ap.parse_args()
-    if sum([args.check, args.apply]) != 1:
-        ap.error("pass exactly one of --check, --apply")
+    if sum([args.check, args.apply, args.check_preamble,
+            args.apply_preamble]) != 1:
+        ap.error("pass exactly one of --check, --apply, --check-preamble, "
+                  "--apply-preamble")
 
     text = io.open(OA_PATH, encoding="utf-8").read()
+
+    if args.check_preamble or args.apply_preamble:
+        try:
+            lm_size, lr_size = preamble_sizes(text)
+        except ValueError as exc:
+            print("REFUSING: %s" % exc)
+            return 2
+        lm_replacement_size = len(LM_REPLACEMENT.encode("utf-8"))
+        lr_replacement_size = len(LR_REPLACEMENT.encode("utf-8"))
+        due = (lm_size > lm_replacement_size + PREAMBLE_BUFFER_BYTES or
+               lr_size > lr_replacement_size + PREAMBLE_BUFFER_BYTES)
+
+        if args.check_preamble:
+            if due:
+                print("DUE: Last measured %d bytes (pointer %d), List "
+                      "reviewed %d bytes (pointer %d); would move the "
+                      "excess to %s on --apply-preamble."
+                      % (lm_size, lm_replacement_size, lr_size,
+                         lr_replacement_size, ARCHIVE_PATH))
+                return 1
+            print("CLEAN: Last measured %d bytes, List reviewed %d bytes, "
+                  "both at or near their own pointer sentence's size."
+                  % (lm_size, lr_size))
+            return 0
+
+        # --apply-preamble
+        new_text, archived_blocks = plan_rotation_preamble(text)
+        if not archived_blocks:
+            print("Already rotated; no change made.")
+            return 0
+        combined = format_preamble_archive_blocks(archived_blocks)
+        _write_rotated(new_text, combined)
+        print("Moved %d bytes (%s) to %s."
+              % (len(combined.encode("utf-8")),
+                 ", ".join(label for label, _ in archived_blocks),
+                 ARCHIVE_PATH))
+        return 0
+
     try:
         size = region_size(text)
     except ValueError as exc:
