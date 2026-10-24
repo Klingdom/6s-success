@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: the last un-ledgered ops/*.py file cold-read, found clean; everything else reconfirmed unchanged
+
+**Did:** Attached per STEP 0 (fetch, unshallow onto a forced-updated `origin/main`, `checkout main`, ff-only merge, 162 commits fast-forwarded, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md`, the last four log entries. Pulled all 10 GitHub issues and 0 PRs fresh: unchanged, all `decision`/`blocked-on-art`, matching every recent cycle's own reading.
+
+`preflight.py` (fast, direct to a file rather than through `tail`, to avoid losing output to the pipe-buffer-eats-SIGTERM problem a prior run hit): 0 FAIL across every gate reached, then genuinely hung at `gate_tests`, confirmed by CPU time flat at 11s across 30 seconds elapsed before killing it, same standing sandbox limitation every recent cycle reports, unchecked past that gate rather than passing. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, all clean independently of the hang.
+
+`ops/cold_read_ledger.py --next` named exactly one un-ledgered `ops/*.py` candidate left across the whole tree: `ops/rotate_owner_actions_closed_items.py` (a same-day script from an earlier cycle today). Read in full. `--check` reports CLEAN against the real `OWNER-ACTIONS.md` (its 8 groups already archived earlier today); its own test suite 4/4; it is already wired into `preflight.py` as `gate_owner_actions_closed_items_rotated`. No defect found. Recorded in `ops/cold-read-ledger.json` as clean, which brings every file the ledger tracks to 0 stale and the un-ledgered queue to empty for the first time this cycle series.
+
+Re-derived `BLOCKER-001`'s deploy gap directly with `resolve_verdict_commit`/`deploy_gap_material_commits` against real current `HEAD` rather than citing `STATUS.md`: still 2 commits since the last verdict, 1 material (`a24a667c6`, the airing-cupboard also-called fold touching a real zone page; `d3d824c4c` touches only `site/build-id.txt` plus non-`site/` files). Matches `STATUS.md` exactly, no drift to correct.
+
+`ops/inbox_agent.py --apply`: no mail credentials in this environment, same standing limitation. No price, product or served page touched this cycle, so no Stripe catalogue re-apply and no IndexNow submission applies.
+
+**Verified:** as described above; nothing shipped beyond the ledger entry and the regenerated command deck, so there is nothing further to verify.
+
+**Went well:** redirecting `preflight.py`'s stdout straight to a file instead of through `| tail -150` avoided losing the whole run's output to a SIGTERM-before-flush when the sandbox-hang kill fired, which happened to an earlier attempt this same cycle.
+
+**Did not go well:** nothing new; the forced-update/detached-checkout shape at STEP 0 did not recur.
+
+**Changing next cycle:** none.
+
+**Next:** the un-ledgered cold-read queue is now empty (every `ops/*.py`, `site/assets/js/*`, `mobile/quest-app/*`, `photos/*`, `ops/cardtext/*`, `build/listings/*`, `.githooks/*` and `mcp/*` file is in the ledger with 0 stale). The next lower-value, harder-to-rotate target is the A/B/C item tables in `BACKLOG-2026-09-07.md` itself, or a fresh `--stale` sweep once more commits land. Every epic ahead of operational honesty still dead-ends at Phil (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42).
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry, dashboard files. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-24, PM check-in (07:1x slot, 30-minute triage): previous work reconfirmed finished a third way, nothing new unblocked, same standing queue
 
 NEXT FOR THE OPERATOR: same standing queue (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42), because every genuinely unblocked lane is already built and everything that remains sits with Phil.
