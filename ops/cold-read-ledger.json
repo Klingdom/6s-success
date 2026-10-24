@@ -1018,8 +1018,8 @@
     },
     "preflight.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "PM check-in 02:2x: re-read today's own diff (50fbc453b, adds gate_linkedin_drafts_every_item_has_link) directly rather than the file wholesale, since the stale flag was this file's own same-day edit. Gate is wired into main()'s run order, checks the connection note and corporate block independently so one missing link cannot hide behind another, and the fail-then-pass proof is named in the commit message. Ran the gate directly: passes. No defect found."
+      "date": "2026-10-24",
+      "note": "Re-read 2026-10-24 scheduled operator cycle: verified today's own diff (1ed882f94, adds gate_living_docs_total_size_tripwire) directly against the committed file rather than trusting the log. Gate wired into main() ahead of gate_tests, deliberately file-size-only (no section awareness), correctly complements its 7 siblings rather than replacing them. Re-ran ops/tests/test_gate_living_docs_total_size_tripwire.py directly: 7/7 pass. No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
