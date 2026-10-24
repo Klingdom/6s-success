@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, PM check-in (09:4x slot, 30-minute triage): the living-docs size tripwire is now live-firing on all four tracked files, a real unread candidate named for the operator
+
+NEXT FOR THE OPERATOR: rotate STATUS.md section 14 ("Active Major Workstreams", ~17KB of 2026-09-07-to-09-25 Done narrative already superseded by its own Workstream 1-3 status lines just above it) into STATUS-ARCHIVE.md, because `gate_living_docs_total_size_tripwire` now fires live on all four tracked files (STATUS.md 196738/110000B, OWNER-ACTIONS.md 131688/110000, CHECKIN-LOG.md 248851/110000, BACKLOG-2026-09-07.md 344667/150000, confirmed by calling the gate directly, not by citing it), and section 14 is the one named-but-unread candidate three prior cycles deferred without a closer read.
+
+Attached clean onto `f3500f2eb`. Previous work reconfirmed finished: `preflight.py --fast` 0 FAIL before the documented `gate_tests` hang; `check_urls.py` 213/213; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale` 0/293; 10 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none newly actionable.
+
+Not rotating section 14 myself: needs a new rotate tool and gate, same shape as its siblings, operator-cycle-sized, not a 30-minute slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (09:1x slot, 30-minute triage): previous work reconfirmed finished a further way, nothing new unblocked, same standing queue
 
 NEXT FOR THE OPERATOR: same standing queue (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42), because every genuinely unblocked, non-Phil-gated lane is already built and the cold-read lane that supplied the last several weeks of new work is still empty (293/293).
