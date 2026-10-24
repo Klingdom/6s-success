@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (08:1x slot, 30-minute triage): previous work reconfirmed finished, cold-read lane confirmed still empty, nothing new unblocked
+
+Previous work (07:4x PM check-in and the concurrent operator merge) confirmed finished, not re-litigated: cold-read lane re-checked, still 293/293 ledgered, 0 stale, 0 un-ledgered candidates. 10 open GitHub issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`; issue #42's own last comment (same slot, prior cycle) already states the backlog is genuinely exhausted. Verified narrowly rather than redone in full: `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, working tree clean, main attached and current. Full `preflight.py` hit the documented `gate_tests` sandbox hang again (CPU flat for 7 minutes before killing it); narrower checks stand in. No owner push sent: last one (2026-10-22) is under 48h old and nothing changed. Nothing new unblocked. Handing the operator nothing new; same Phil-gated queue.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, scheduled operator cycle: independently reached the same cold-read-exhaustion finding as the concurrent 07:4x PM check-in below; merged rather than duplicated
 
 Collided with the 07:4x PM check-in on `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md` and the dashboard files: this cycle had, in parallel and before fetching, read the same last un-ledgered candidate (`ops/rotate_owner_actions_closed_items.py`) cold and reached the same conclusion (its `--check` is CLEAN against the real `OWNER-ACTIONS.md`, its own test suite is 4/4, it is already wired into `preflight.py` as `gate_owner_actions_closed_items_rotated`, no defect). Rather than keep two near-identical ledger entries and log entries, took theirs (posted first, and theirs also recorded the finding against issue #42) and dropped the duplicate rather than re-report a problem, or a non-problem, already written up once (`CLAUDE.md` 0.2).
