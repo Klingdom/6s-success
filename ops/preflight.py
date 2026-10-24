@@ -21937,6 +21937,56 @@ def gate_backlog_closed_sections_not_oversized() -> None:
                 n_bytes, n_sections))
 
 
+def gate_backlog_done_items_rotated() -> None:
+    """BACKLOG-2026-09-07.md's 17 whitelisted done, struck-through item
+    rows in sections 2-4 (A1-A6, B1-B4, B6, B8, B9, C1-C3, C7) must not
+    be carrying their original trailing narrative live again, once
+    ops/rotate_backlog_done_items.py has rotated it to a one-line
+    pointer.
+
+    Found 2026-10-24, scheduled operator cycle: those 17 rows are the
+    only ones in sections 2-4 this file formats unambiguously (id
+    immediately followed by `**` then ` | ~~struck item~~ | `), unlike
+    the free-form "ID, ..." journal rows (A7 onward) that reuse the same
+    letter+digit prefixes; ops/rotate_backlog.py and ops/rotate_backlog_
+    closed.py both explicitly left all of sections 2-4 out of scope for
+    exactly that mixing. This gate and its rotate tool close the
+    unambiguous slice of that gap, not the whole thing.
+
+    A WARNING, not a FAIL: stale narrative in a done row wastes a later
+    cycle's reading time (STEP 1 of the operating prompt reads this file
+    in full every cycle); it does not ship anything broken to a
+    customer.
+
+    Proof this can fail: ops/tests/test_gate_backlog_done_items_rotated.
+    py builds a synthetic file with an unrotated whitelisted row and
+    asserts this gate warns, then confirms a freshly rotated copy stays
+    silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_done_items as rbdi
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        n_rows, n_bytes = rbdi.count_stats(text)
+    except SystemExit as e:
+        warn("backlog-done-items-rotated",
+             "BACKLOG-2026-09-07.md sections 2-4 no longer match what "
+             "ops/rotate_backlog_done_items.py expects: %s. Confirm the "
+             "rows were not restructured out from under the rotation "
+             "tool." % e)
+        return
+    if n_rows:
+        warn("backlog-done-items-rotated",
+             "BACKLOG-2026-09-07.md carries %d of its 17 whitelisted "
+             "done-item rows still live with their original narrative "
+             "(%d bytes). Run `python ops/rotate_backlog_done_items.py "
+             "--apply` to move it into "
+             "BACKLOG-2026-09-07-ITEMS-ARCHIVE.md."
+             % (n_rows, n_bytes))
+
+
 LIVING_DOC_SIZE_LIMITS = {
     "STATUS.md": 110_000,
     "CHECKIN-LOG.md": 110_000,
@@ -30936,6 +30986,7 @@ def main() -> int:
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_production_table_rows_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
+    run_gate(gate_backlog_done_items_rotated)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
     run_gate(gate_nightly_log_ordering)

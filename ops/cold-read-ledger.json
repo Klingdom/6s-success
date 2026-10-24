@@ -1141,6 +1141,11 @@
       "date": "2026-10-23",
       "note": "PM check-in cold read: find_sections/plan_rotation/apply_archive/count_stats reviewed line by line against the real BACKLOG-2026-09-07.md. SECTION_RE's '^## (\\d+)\\.' match checked directly against the live file: 35 sequential headings (0-34), zero duplicates, no body text falsely matched as a heading. ops/tests/test_rotate_backlog_closed.py 7/7 pass; python ops/rotate_backlog_closed.py --check against the live file reports CLEAN (27 sections, 110564 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
     },
+    "rotate_backlog_done_items.py": {
+      "status": "fixed",
+      "date": "2026-10-24",
+      "note": "New tool, authored and verified this cycle: archives sections 2-4's 17 unambiguous struck-through done-item rows (whitelisted ids only) to BACKLOG-2026-09-07-ITEMS-ARCHIVE.md, leaving a one-line pointer. Round-trip proved byte-for-byte against the real file before and after --apply; 8/8 unit tests plus gate_backlog_done_items_rotated (4/4 fail-then-pass)."
+    },
     "rotate_checkin_log.py": {
       "status": "fixed",
       "date": "2026-10-23",

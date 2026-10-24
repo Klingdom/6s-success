@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle (continued): sections 2-4's "different, higher-risk job" got its first safe slice instead of a fourth deferral, `rotate_backlog_done_items.py` + `gate_backlog_done_items_rotated`
+
+**Did:** Picked up from this same cycle's own independent re-verification (entry immediately below): with every existing rotate tool CLEAN and the cold-read/GitHub/deploy-gap lanes all genuinely exhausted, the 17:4x PM check-in's own handoff ("prune the oversized living docs with existing tools") turned out to be already-impossible as stated, since nothing existing could touch sections 2-4. Rather than write a sixth log entry repeating that finding, characterised the actual risk precisely: sections 2-4 reuse letter+digit ids in free-form journal rows (`B4` vs. an unrelated later `B4 follow-on...`; `C6/C7 adjacent...` naming two ids at once), which is why a generic parser is unsafe. Found that exactly 17 of the 18 original-table rows (A1-A6, B1-B4, B6, B8, B9, C1-C3, C7) are written in one unambiguous shape, `| **ID** | ~~struck item~~ | `, that never collides with the free-form rows; C5/C6 stay open and correctly excluded.
+
+**Built:** `ops/rotate_backlog_done_items.py` (new), a hardcoded 17-id whitelist matched only against that exact shape, refusing rather than guessing on a mismatch or a duplicate. Archives each row's trailing cell verbatim into `BACKLOG-2026-09-07-ITEMS-ARCHIVE.md` (new), shrinking the live row to id + struck title + a one-line pointer, the same convention the earlier B9-ARCHIVE one-off already set (and whose own remaining ~3.2KB live cell this fix finishes). `gate_backlog_done_items_rotated` added to `preflight.py`'s `main()`. Every free-form journal row is explicitly left untouched.
+
+**Verified:** dry-run against a scratch copy, round-trip proved byte-for-byte before the real `--apply`; the real output matched the pure `plan_rotation()` prediction computed from the pre-apply file, and `git diff --stat` shows exactly 17/17 lines changed, nothing else. `BACKLOG-2026-09-07.md` 317652 to 293184 bytes. 8/8 new unit tests, 4/4 new fail-then-pass gate tests, `py_compile` clean, `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, the new gate silent against the real rotated file. Full `preflight.py` re-run in the background: 0 FAIL through every gate reached before the documented `gate_tests` sandbox hang, including the new gate. Ledgered the new tool as authored-and-verified this cycle. Full account in `BACKLOG-2026-09-07.md` section 46.
+
+**Went well:** characterising the ambiguity precisely turned "higher-risk job" from a standing excuse to defer into an enforceable boundary.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none structural. The free-form journal rows (A7-A28, B5/B7, C4-C6's later notes) still have no safe classification rule; a future tool, not this one.
+
+**Next:** `BACKLOG-2026-09-07.md` is still ~143KB over its tripwire, almost entirely those journal rows. Everything else is the same standing Phil-gated queue (Gemini billing, YouTube OAuth, issue #15, issue #2, issue #42). Pushed to main: `ops/rotate_backlog_done_items.py`, `ops/tests/test_rotate_backlog_done_items.py`, `ops/tests/test_gate_backlog_done_items_rotated.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-09-07-ITEMS-ARCHIVE.md`, `ops/cold-read-ledger.json`, command deck, this entry. No content, price or product touched, not customer-facing, IndexNow not applicable.
+
 ## 2026-10-24, scheduled operator cycle (full 13-step routine): independently re-verified the standing exhausted state from a fresh checkout, nothing new unblocked, no duplicate notification sent
 
 **Did:** Attached per STEP 0 onto a shallow, detached checkout: fetched, unshallowed, `checkout -B main origin/main`, ff-only merge onto `f555c4bc2` (243 commits fast-forwarded), tree clean throughout. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 and its section headers through 45 (all struck through or marked Closed except the two Phil-gated rows, C5 Gemini billing and C6 YouTube OAuth), `ROADMAP-2026-2029.md` context, `CLAUDE.md`, and this log's real newest-first head (not the tail, which is 2026-10-04).
