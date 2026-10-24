@@ -9,7 +9,7 @@ Nothing on this list stops other work.
 **Last measured:** 2026-10-02 UTC, traffic re-measured by a direct database read:
 49 visitors/121 visits/30 days. Earlier corrections accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`; each numbered item's own current status lives in its own entry below, not in this paragraph.
 
-**List reviewed:** 2026-10-23, every item below has been read as of this date. A separate marker, "Last measured" above (issue #38), is the exact sentence the dashboard parses for the real traffic-measurement date; bumping this marker must never imply a fresh database read. Earlier review history accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`.
+**List reviewed:** 2026-10-24, every item below has been read as of this date. A separate marker, "Last measured" above (issue #38), is the exact sentence the dashboard parses for the real traffic-measurement date; bumping this marker must never imply a fresh database read. Earlier review history accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`.
 
 **Deploy-gap and per-item history, 2026-09-04 through 2026-09-25, archived 2026-10-23 by `ops/rotate_owner_actions.py`:** none of it is a standing owner action any more. Current deploy status lives in `STATUS.md`'s `BLOCKER-001`; the one still-open ask this chain ever raised is item 0 below (`VPS_DEPLOY_KEY`). Moved verbatim to `OWNER-ACTIONS-ARCHIVE.md`.
 
