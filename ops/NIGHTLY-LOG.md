@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, PM check-in (14:1x slot, 30-minute triage): previous work confirmed finished, handoff to operator still pending (one cycle only, not overdue), nothing new unblocked
+
+Previous work (13:4x handoff) reconfirmed, not assumed: the STATUS.md Production Status table gap (Public website/Production traceability rows carrying unrotated dated correction chains, no gate watching either row's size) is still real and still unbuilt, confirmed directly (`rotate_status_history.py` still only supports Production Knowledge and Immediate Focus, section is 22680 bytes). The one operator cycle since the handoff (13:5x) did only its own routine dashboard/state regen, not the handoff itself; that is not overdue, since the handoff only just landed.
+
+Re-verified independently rather than cited: `preflight.py` fast run to completion, 0 FAIL across every gate reached before the documented `gate_tests` sandbox hang, killed there. `check_urls.py` 213/213. `audit_pages.py` 0 duplicate titles/descriptions. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0/294, `--next` 294/294 ledgered, still fully exhausted. Deploy gap re-derived directly against current HEAD: 2 commits undeployed, 1 material, unchanged from the prior cycle, still gated on `VPS_DEPLOY_KEY` (issue #35). GitHub: 10 open issues, unchanged, all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. Issue #42's own thread already covers this exact state as of its 07:4x comment this morning (cold-read lane exhausted, every epic dead-ends at a Phil action); nothing material has changed since, so not re-raised there. Working tree was clean before this cycle touched anything.
+
+No new defect found small enough to close in this slot. Regenerated the dashboard (YELLOW, revenue $0 of $20,000, carried forward, could not reach Stripe this month).
+
+**Handing to the operator (:43):** the STATUS.md Production Status table rotation support named by the 13:4x cycle, still outstanding, still operator-cycle-sized.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
+
 ## 2026-10-24, PM check-in (13:4x slot, 30-minute triage): previous work reconfirmed finished independently, found a real new unrotated-history gap in STATUS.md's Production Status table, handed to the operator rather than built in this slot
 
 NEXT FOR THE OPERATOR: build `rotate_status_history.py` support (split/plan/apply) for the "Public website" and "Production traceability" rows in STATUS.md's `# 4. Production Status` table, plus a `gate_status_production_table_rows_not_oversized` to keep it from regrowing, because each row already carries 20 unrotated "Prior state, kept because the shape recurs" entries (17551 and 8978 bytes) and no existing gate watches either row's size, only whether its newest entry cites the current build id.
