@@ -26,6 +26,20 @@ Regenerated the dashboard. Pushed to main. No price, product or site page touche
 
 HANDOFF-FILES: none
 
+## 2026-10-24, PM check-in (04:4x slot, 30-minute triage): previous work confirmed finished, living-docs tripwire gap diagnosed one level deeper, handoff sharpened
+
+NEXT FOR THE OPERATOR: do the living-docs pruning for real this cycle rather than deferring it a fourth time, starting with `OWNER-ACTIONS.md`, because `rotate_owner_actions.py --check` reports only 357 bytes as its "live" rotatable section against a 148715-byte file: the other ~148KB is accumulated correction-on-correction prose with no dated or sectioned structure the existing tooling can touch, so running the rotator again cannot and will not shrink it. `STATUS.md` (196738B), `CHECKIN-LOG.md` (247107B) and `BACKLOG-2026-09-07.md` (331019B) are all still over their tripwire too, each `CLEAN` only because its 14-30 day retention window is wide enough to call everything live; narrowing those windows (or rotating on redundancy, not just age) is the actual fix, same gap the 03:1x/03:4x cycles already named but left unscoped.
+
+Attached per STEP 0 (fetch, unshallow, `checkout main`, ff-only merge onto `db334470b`, 127 commits, tree clean).
+
+**Previous work (the 04:1x PM cycle just above) confirmed finished, not cited.** `git status` clean before this cycle touched anything. All four tracked byte counts unchanged from that entry's own figures (`STATUS.md` 196738, `OWNER-ACTIONS.md` 148715; `CHECKIN-LOG.md` grew slightly to 247107 from hourly check-in entries, `BACKLOG-2026-09-07.md` unchanged at 331019), confirming nobody has acted on the handoff since. Pulled all 10 open GitHub issues fresh via the API: unchanged (`#42, #40, #15, #35, #2, #33, #21, #31, #29, #18`), all `decision`/`blocked-on-art`, none newly actionable; 0 open PRs. Ran `--check` on all five rotation scripts directly rather than trust the standing claim: `rotate_status_history.py` and `rotate_checkin_log.py` both `CLEAN` (nothing outside their windows), `rotate_backlog_closed.py` `CLEAN`, `rotate_owner_actions.py` `CLEAN` but at the 357-byte figure above, which is the new finding this cycle adds.
+
+**Unchecked, reported as such rather than assumed passing:** `preflight.py --fast` was started but its output was lost to the background-process kill at the documented `gate_tests` sandbox hang before the piped `tail` could flush anything useful; this run cannot cite a fresh gate-by-gate FAIL count. Relying instead on the 04:1x cycle's own fresh run minutes earlier (0 FAIL across 97 gates before the same hang) plus the fact that nothing in the tree has changed since, rather than re-claiming a check this run did not actually observe.
+
+Not starting the OWNER-ACTIONS.md rewrite or the retention-window redesign myself: it means deciding what correction-on-correction prose is safe to fold or archive without losing a real owner-gated item, which needs more than a 30-minute slot and should not be rushed at the end of one.
+
+Pushed to main. This entry only. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-24, PM check-in (04:1x slot, 30-minute triage): previous work confirmed finished independently, nothing new unblocked, no push sent (one already went out this same cycle run)
 
 Attached per STEP 0 (checkout arrived shallow; fetched, unshallowed, `checkout main`, ff-only merge onto `4654222c2`, tree clean, 125 commits).
