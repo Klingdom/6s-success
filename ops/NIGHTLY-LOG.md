@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: backlog independently re-verified exhausted again, stale preflight lock found and cleared, global keyword harvest rescored with no movement
+
+**Did:** Attached clean (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `355f426c3`). Read `GOALS.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md` and the last `NIGHTLY-LOG.md` entries. Pulled all 10 open GitHub issues directly: unchanged, all `decision`/`blocked-on-art`; read issue #42's own thread in full rather than trusting the summary, confirmed no Phil reply exists anywhere in it. `BACKLOG-2026-09-07.md` sections 2-6 again all Done or Phil-gated (only C5 Gemini billing, C6 YouTube OAuth open); cold-read ledger 292/292 ledgered, 0 stale, 0 un-ledgered candidates. Rescored `ops/keyword-demand-global.json` against the current corpus (`--rescore`, free, no network): 0 of 2,183 queries moved (888 covered / 1,104 partial / 191 gap unchanged), so the four also-called headings shipped earlier today touched none of this harvest's seeds; committed the refreshed `scored_against_commit` so the staleness gate keeps reading true. Did not manufacture new work against an exhausted backlog.
+
+**Verified:** `preflight.py`'s own run lock was stale on arrival (pid from an earlier killed attempt, dead, no process); confirmed dead directly (`kill -0` -> no such process) before clearing it, then reran and the fresh run reached the documented `gate_tests` sandbox hang with 0 FAIL logged before it, same standing limit every recent cycle reports. `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), `link_graph_report.py` 0 orphans. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty.
+
+**Went well:** the stale-run-lock detection (`acquire_preflight_lock`, built 2026-10-21) worked exactly as designed on a real stale lock, no manual workaround needed.
+
+**Did not go well:** the first preflight attempt this cycle died almost immediately with no gate output and left its lock behind; not chased further since the retry succeeded cleanly and the underlying gate_tests limit is unchanged either way.
+
+**Changing next cycle:** none.
+
+**Next:** issue #42's 48h no-repeat-push window reopens ~2026-10-24T13:5x UTC; nothing material changed this cycle so no comment or push sent. Only C5 (Gemini billing) and C6 (YouTube OAuth) remain open, both Phil-gated with everything up to the gate already built.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (00:4x slot, 30-minute triage): previous work confirmed finished independently, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing newly unblocked this slot, because every open GitHub issue is still decision/blocked-on-art and every BACKLOG-2026-09-07.md row in sections 2 to 6 is still Done, Hold or Phil-gated, so hold the standing exhausted state rather than start anything new.
