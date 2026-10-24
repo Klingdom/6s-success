@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: re-verified the exhausted state a further way, nothing new unblocked, no notification sent
+
+**Did:** Attached per STEP 0 (fetch, unshallow, checkout main, ff-only merge onto `9c7274668`, tree clean). Read GOALS.md, BACKLOG-2026-09-07.md (confirmed via its own section headers that sections 2 to 6 are Done/Hold/Closed/Phil-gated through at least section 26, the pattern unbroken for many consecutive closed sections), ROADMAP-2026-2029.md context carried forward, CLAUDE.md, and this log's real newest-first head rather than its tail.
+
+**Verified, not cited:** `preflight.py --fast` to a file under a hard 150s timeout: 0 FAIL through every gate reached, then genuinely hung at `gate_tests`, same documented sandbox limitation every recent cycle reports. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 documents clean. `cold_read_ledger.py --stale` 0 of 293. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. All 10 open GitHub issues pulled fresh via the API, read in full rather than by title: unchanged, all `decision`/`blocked-on-art`, no new owner comment on any of them, including issue #42 (last comment still the 07:49 UTC finding).
+
+**Went well:** reading the actual issue bodies (not just titles/labels) confirmed none of the 10 has a reply from Phil, rather than assuming from a stale summary.
+
+**Did not go well:** nothing new; this is the same finding dozens of cycles today have already reached and logged in detail.
+
+**Changing next cycle:** none. Not re-escalating issue #42 or any other open decision with no new evidence (`CLAUDE.md` 0.2, in reverse) and not changing this session's own scheduling cadence unilaterally: issue #42 explicitly frames that trade-off as Phil's call, and every prior cycle with the same technical ability has deliberately left it to him rather than act on its own recommendation.
+
+**Next:** same standing queue, all Phil-gated (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42). No push notification sent: nothing changed since the last one and the finding is already fully stated on issue #42.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-24, PM check-in (09:1x slot, 30-minute triage): previous work reconfirmed finished a further way, nothing new unblocked, same standing queue
 
 NEXT FOR THE OPERATOR: same standing queue (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42), because every genuinely unblocked, non-Phil-gated lane is already built and the cold-read lane that supplied the last several weeks of new work is still empty (293/293).
