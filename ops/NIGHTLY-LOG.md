@@ -16,6 +16,14 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** unchanged — Gemini billing (C5), YouTube OAuth (C6), issue #15 (Listmonk), issue #2 (card art), issue #42 (cadence) are the entire queue, all Phil-gated. `ops/last-owner-notification.json` shows a push already sent this same day (16:1x UTC) covering this identical condition, well inside the 48h no-repeat floor, so none sent again. Pushed to main: command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
+## 2026-10-24, PM check-in (17:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, handoff: prune oversized living docs)
+
+NEXT FOR THE OPERATOR: prune STATUS.md, CHECKIN-LOG.md, OWNER-ACTIONS.md and BACKLOG-2026-09-07.md with their existing `rotate_*.py` tools, because `gate_living_docs_total_size_tripwire` is WARNING on all four (158/252/132/318KB against 110/110/110/150KB), left for a later cycle on purpose when the gate was built.
+
+Previous work (17:1x PM check-in, 17:21 bot) reconfirmed finished, not cited: `preflight.py` 0 FAIL before the documented `gate_tests` hang; `cold_read_ledger.py --stale` 0 of 294; deploy gap re-derived against HEAD, unchanged at 2 commits/1 material (`a24a667c6`, a household synonym, no P0); 10 GitHub issues unchanged, all `decision`/`blocked-on-art`, none newly actionable. A push already went out at 16:1x on issues #42/#15/#2, inside its 48h floor, so none sent here. No new defect small enough to close this slot. Tree was clean beforehand.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (17:1x slot, 30-minute triage): reconfirmed independently, nothing new unblocked, no owner notification
 
 NEXT FOR THE OPERATOR: hold, same as the 16:4x handoff immediately below. Every open item (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) is still `decision`/`blocked-on-art`, cold-read ledger still exhausted (0/294 stale).
