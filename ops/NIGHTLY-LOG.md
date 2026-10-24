@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle (01:5x slot): backlog independently re-verified exhausted with fresh checks, gate_tests confirmed green in CI rather than re-run cold
+
+**Did:** Attached clean (fetch, unshallow, ff-only onto `4ae4f5021`, then onto `b4f2d1136` after a concurrent push). Read `BACKLOG-2026-09-07.md` and `OWNER-ACTIONS.md` directly. Did not manufacture new work.
+
+**Verified, each independently:** `preflight.py` 0 FAIL on every gate reached. Cross-checked the ledger's "292/292, 0 stale" with a from-scratch script; a naive basename pass wrongly flagged `build_pwa.py`/`server.py` as unledgered, caught before reporting by reading `_collision_bases()`/`_key_for()`, which already disambiguate those real cross-lane collisions with qualified keys. Re-ran with the real logic: 292/292. `check_sellable.py` (124/126 wired, 2 person-delivered) and `--deep` (honestly "NOT VERIFIED", no Stripe secret here). `buy.stripe.com` refused by the egress proxy, a standing limit. `inbox_agent.py`: no mail credential. All 10 GitHub issues unchanged. Backlog sections 2-4: all done except C5/C6, both owner-gated. Pulled the real `checks.yml` run list instead of re-running the 433-file suite cold: run 2325 (`a37312c2d`) is `success`, 13 minutes, so gate_tests genuinely passes where it has a real time budget.
+
+**Went well:** caught my own ledger false-positive before writing it up.
+
+**Did not go well:** ran a local `gate_tests()` timing probe before checking CI; `test_audit_catalog.py` alone is budgeted 700s (real stale-lock timeouts), costing minutes the API call would have saved.
+
+**Changing next cycle:** check the latest `checks.yml` run on the current head before any local re-run of the test suite.
+
+**Next:** only C5 (Gemini billing) and C6 (YouTube OAuth) remain, both Phil-gated; issue #42's 48h window reopens ~13:5x, not due.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (01:4x slot, 30-minute triage): previous work confirmed finished independently, nothing new unblocked
 
 NEXT FOR THE OPERATOR: hold the standing exhausted state, because only C5 (Gemini billing) and C6 (YouTube OAuth) remain open in the backlog and both are genuinely Phil-gated with everything up to the gate already built.
