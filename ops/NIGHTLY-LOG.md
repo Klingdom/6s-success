@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle (05:0x slot, continued): picked up the 04:4x living-docs handoff, archived OWNER-ACTIONS.md's 8 already-closed items
+
+**Did:** After the exhausted-backlog verification logged in the entry just below, merged a concurrent 04:4x PM check-in's own finding rather than stop at "nothing new": that cycle had read `rotate_owner_actions.py --check` directly and found it CLEAN for the wrong reason, 357 bytes of live preamble against a 148715-byte file, because the real bloat sat one section lower, in numbered items under "Open, ranked by what they unblock" whose own header already says DONE, WITHDRAWN, Superseded or NO LONGER NEEDED, or that simply duplicate a row already in "Resolved today" (items 10 and 12 against R4 and R2). That cycle explicitly deferred acting on it as operator-cycle-sized; picked it up here rather than leave a fourth deferral.
+
+**Read every candidate's full body before archiving, not just its header.** Found and skipped two look-alikes that were NOT safe: item 9 (HTTP/2 and HSTS) reads "done by me" in its own header but still carries a genuinely open sub-ask (HSTS/HTTP2 in Nginx Proxy Manager); item 7a (Listmonk) contains the actual live decision ask, not just history. Confirmed 8 groups were genuinely closed: 1f (VPS disk), 1a plus its superseded pre-Phil original, 0 (Ledgerium secrets) plus its superseded follow-up, 1 (SSH key) plus its superseded follow-up, 3 (narration) plus its withdrawn record, 10 (routine STEP 0, duplicate of R4), 12 (book cover, duplicate of R2), and 4b (an explicitly "wrong" original framing).
+
+**Built** `ops/rotate_owner_actions_closed_items.py`: archives each group verbatim to `OWNER-ACTIONS-ARCHIVE.md` under one dated entry, replaces each with a one-line pointer naming why it is closed. Refuses rather than guesses on a partially-archived group (one header moved, its sibling not) or a duplicated header.
+
+**Verified:** dry-run against scratch copies of both files first, diffed the result line by line before touching the real files; scanned the full diff for `sk_live|whsec_|password|api[_-]?key|BEGIN (RSA|PRIVATE)` patterns before archiving anything (0 hits; the only values present are public Stripe price IDs and a public SSH key already committed, so no new exposure). Confirmed via direct grep that no gate or dashboard function (`top_owner_actions()`, the "Last measured"/"List reviewed" parsers, `gate_owner_actions_last_measured_current`, item-1h's citation gate) parses any of these 8 items by number. Applied for real: `OWNER-ACTIONS.md` 148715 to 134437 bytes (15526 moved, matching the dry run exactly), `OWNER-ACTIONS-ARCHIVE.md` grew by the same amount. Re-ran all nine owner-actions-related gates directly: all clean. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `audit_pages.py` 218/0.
+
+**Built the gate so this cannot quietly regrow:** `gate_owner_actions_closed_items_rotated` in `ops/preflight.py`, wired ahead of `gate_tests` beside its living-doc siblings. Proved fail-then-pass twice: `ops/tests/test_rotate_owner_actions_closed_items.py` (4/4, including a monkeypatched-bug run that correctly failed 6 assertions before the real fix) and `ops/tests/test_gate_owner_actions_closed_items_rotated.py` (4/4; this test itself caught a real bug in `plan()`, which treated "none of this group's headers exist in this synthetic fixture" the same as "partially archived" and refused incorrectly, fixed before shipping). Full `preflight.py --fast` re-run in the background after: 0 FAIL across every gate including the new one, confirmed genuinely stalled at the documented `gate_tests` sandbox hang (flat CPU/time over 15s) before killing it, reported unchecked past that point.
+
+**Went well:** the test itself caught a real logic bug before it shipped, exactly what "prove this can fail" is for.
+
+**Did not go well:** this is a partial fix, not a close. `OWNER-ACTIONS.md` is still 134KB against a 110KB tripwire; the three remaining big items (Gemini billing ~20KB, YouTube ~12.5KB, "Start here" ~12.4KB) each still mix a live ask into a long correction history and need a careful per-item split, left for a future cycle exactly as this one was left by the last several.
+
+**Changing next cycle:** none to the process; the next cold-read candidate is explicit this time: split the live ask from the correction history inside items 1b (Gemini), 1 (YouTube) and "Start here", the same way this cycle did for the 8 fully-closed ones, but reading each in full first since none of their headers alone say what is safe to move.
+
+**Next:** that split, or (unchanged) C5/C6/the Search Console reports/Amazon-Etsy-Apple-Play accounts/issue #42's cadence question, all still Phil's.
+
+Regenerated the dashboard. Pushed to main. No price, product or site page touched; no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, scheduled operator cycle (04:4x slot): backlog independently re-verified exhausted, no new push (one went out ~30 min earlier with identical content)
 
 **Did:** Unshallowed and attached per STEP 0 (origin arrived shallow and force-updated; `fetch origin main`, `fetch --unshallow`, `checkout main`, `checkout -B main origin/main`, ff-only merge onto `db334470b`, tree clean throughout). Read `GOALS.md` context, `ROADMAP-2026-2029.md` in full, `BACKLOG-2026-09-07.md` sections 0 through 7 directly (not cited), and the real head of `ops/NIGHTLY-LOG.md` (the file is newest-first; confirmed this myself rather than repeat the 2026-10-04 tail-misread mistake this log already records).
