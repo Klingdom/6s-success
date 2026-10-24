@@ -14,6 +14,22 @@ No new defect found small enough to close in this slot. Regenerated the dashboar
 
 Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched.
 
+## 2026-10-24, scheduled operator cycle: a sibling PM check-in's own 'already-diagnosed non-defect' citation was wrong, and the real defect was a preflight gate silently swallowing a live rotate_owner_actions.py regression
+
+**Did:** Attached per STEP 0, ff-only onto `957e5e63a`. Re-verified rather than cited the standing "fully exhausted" state (cold-read ledger 293/293 0 stale, 10 GitHub issues unchanged all decision/blocked-on-art, 0 PRs, no mail credential, no VPS access). Instead of re-confirming a sixth time, ran `rotate_owner_actions.py --check` directly rather than trust the 13:1x PM check-in's claim its refusal was already-diagnosed and harmless. It was not: `bd7f59312` (07:10 UTC, same morning) rewrote the "List reviewed" paragraph, and `REGION_START_AFTER` was a frozen copy of its old wording, so `region_size()` raised `ValueError`. Both preflight gates reading it caught that with a bare `except: return`, no WARN, no FAIL, all day. Fixed: the anchor now derives from `LR_REPLACEMENT` itself; both gates warn by name on a parse failure, guarded so an unrelated document stays silent.
+
+**Verified:** reproduced the live breakage, confirmed the fix against the real file, confirmed the gate fires on a broken anchor and stays silent once fixed. Updated 3 tests hardcoding the dead sentence, added a "drifted but real-shaped" case to each gate test: 19/19, 6/6, 7/7. check_urls 213/213, audit_pages 218/0, fix_dashes 0/0, affiliate clean, link_graph 0 orphans, py_compile clean, cold_read_ledger --stale 0. Full preflight 0 FAIL before the documented gate_tests hang. Added LRN-0043 and BACKLOG section 44.
+
+**Went well:** not trusting a six-hour-old sibling citation found this; the sibling gate's own correct pattern gave the fix template.
+
+**Did not go well:** `bd7f59312` tested its own change and missed a same-file dependency; a PM check-in ran the exact command and misread the refusal as expected.
+
+**Changing next cycle:** none structural; one-off fix, not a new class unless a third instance turns up.
+
+**Next:** nothing else new, non-Phil-gated. Standing queue unchanged: Gemini billing, YouTube OAuth, issue #15, issue #42. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (13:4x slot, 30-minute triage): previous work reconfirmed finished independently, found a real new unrotated-history gap in STATUS.md's Production Status table, handed to the operator rather than built in this slot
 
 NEXT FOR THE OPERATOR: build `rotate_status_history.py` support (split/plan/apply) for the "Public website" and "Production traceability" rows in STATUS.md's `# 4. Production Status` table, plus a `gate_status_production_table_rows_not_oversized` to keep it from regrowing, because each row already carries 20 unrotated "Prior state, kept because the shape recurs" entries (17551 and 8978 bytes) and no existing gate watches either row's size, only whether its newest entry cites the current build id.

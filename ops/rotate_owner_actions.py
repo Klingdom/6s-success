@@ -88,14 +88,22 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OA_PATH = os.path.join(ROOT, "OWNER-ACTIONS.md")
 ARCHIVE_PATH = os.path.join(ROOT, "OWNER-ACTIONS-ARCHIVE.md")
 
-# The historical span sits strictly between these two anchors. Neither
-# names a date, so both stay valid after rotation and keep working as the
-# ongoing gate's bounds, unlike a marker tied to the specific chain found
-# today. "it says nothing about traffic." is the last sentence of the
-# untouched "List reviewed:" paragraph; "## Resolved today" is the next
-# heading in the file. Both are currently unique; a script that cannot
-# find exactly one of each refuses rather than guesses which text to move.
-REGION_START_AFTER = "it says nothing about traffic."
+# The historical span sits strictly between these two anchors. "## Resolved
+# today" is the next heading in the file and does not move.
+#
+# The start anchor used to be a hardcoded copy of the "List reviewed:"
+# paragraph's own closing sentence ("it says nothing about traffic."), on
+# the reasoning that it "names no date, so it stays valid after rotation."
+# That reasoning missed the actual risk: bd7f59312 (2026-10-24) rewrote
+# that whole sentence to LR_REPLACEMENT below, as part of rotating the
+# paragraph's OWN accumulated history, and the literal words this constant
+# searched for then existed nowhere in the file. Both preflight gates that
+# read region_size()/plan_rotation() caught the resulting ValueError and
+# silently returned with no warning (CLAUDE.md 0.4, "unchecked is not
+# passing"), so the breakage shipped invisibly. REGION_START_AFTER is now
+# assigned from LR_REPLACEMENT itself, just below that constant's own
+# definition, so the two can never drift apart again: whatever this file's
+# own pointer sentence says, that is where the next region starts.
 REGION_END_BEFORE = "\n\n---\n\n## Resolved today"
 
 ARCHIVE_HEADER_FIRST_LINE = "# OWNER-ACTIONS.md archive"
@@ -167,6 +175,12 @@ LR_REPLACEMENT = (
     "`OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py "
     "--apply-preamble`."
 )
+
+# Deferred from the REGION_END_BEFORE comment above this module's top: the
+# deploy-gap/per-item-history region always starts exactly where the "List
+# reviewed" paragraph's own live text ends, so that boundary is derived
+# from LR_REPLACEMENT itself rather than copied as a separate string.
+REGION_START_AFTER = LR_REPLACEMENT.strip()
 
 PREAMBLE_BUFFER_BYTES = 400
 

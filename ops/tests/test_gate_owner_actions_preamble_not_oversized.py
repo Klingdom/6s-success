@@ -132,13 +132,32 @@ def main() -> int:
                          "clean: fails=%r warns=%r"
                          % (real_fails, real_warns))
 
+    # 7. Regression, 2026-10-24: a file that DOES carry a "**Last
+    #    measured:**" header but whose citation sentence has drifted
+    #    away from the shape dashboard.py/preflight.py both require must
+    #    warn, not go quiet like case 5's completely foreign document.
+    drifted_text = (
+        "# Owner actions\n\n"
+        "**Last measured:** reworded away from the shape this gate "
+        "expects, no digits here at all.\n\n"
+        "**List reviewed:** also reworded, no date." + TAIL)
+    with tempfile.TemporaryDirectory() as tmp7:
+        fails7, warns7 = _run_gate(tmp7, drifted_text)
+    if fails7:
+        fails.append("gate should WARN, not FAIL, on a drifted real-"
+                     "shaped file: %r" % (fails7,))
+    if not any(g == "owner-actions-preamble-not-oversized"
+               for g, _ in warns7):
+        fails.append("gate stayed silent on a drifted real-shaped file "
+                     "instead of warning: %r" % (warns7,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
     print("OK: gate_owner_actions_preamble_not_oversized, fail-then-pass "
-          "proved, 6/6 checks pass")
+          "proved, 7/7 checks pass")
     return 0
 
 

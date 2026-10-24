@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-24",
-      "note": "Re-read 2026-10-24 scheduled operator cycle: verified today's own diff (1ed882f94, adds gate_living_docs_total_size_tripwire) directly against the committed file rather than trusting the log. Gate wired into main() ahead of gate_tests, deliberately file-size-only (no section awareness), correctly complements its 7 siblings rather than replacing them. Re-ran ops/tests/test_gate_living_docs_total_size_tripwire.py directly: 7/7 pass. No defect found."
+      "note": "gate_owner_actions_history_not_oversized and gate_owner_actions_preamble_not_oversized both had a silent except ValueError: return that swallowed today's real rotate_owner_actions.py regression with no warning (CLAUDE.md 0.4, unchecked is not passing). Both now warn by name when the anchor cannot be parsed, guarded so a document with none of the gate's structural markers stays silent as before. Fail-then-pass proved directly."
     },
     "prerender_shop.py": {
       "status": "clean",
@@ -1152,9 +1152,9 @@
       "note": "Cold-read 2026-10-15, PM cycle: logic (header split, date inheritance, rotation, archive append order) correct and matches its own docstrings; fail-then-pass proved against the real test file. Found and fixed a real reporting defect: the --check DUE message printed the whole live log's total byte count (n_bytes) labelled as if it were the size of the entries being archived, so the real file read '82 of 813 entries (2302955 bytes)' where 2302955 was the entire file, not the 82 entries (252293 bytes). Fixed to report the actual archived-chunk size (n_bytes - new_n_bytes, the same quantity --apply's own success message already used correctly). Test extended to assert the correct byte count and to catch a regression back to the whole-file figure. Also applied the now-overdue real rotation while here: 82 of 813 entries (14+ days old) moved to ops/NIGHTLY-LOG-ARCHIVE.md verbatim, live log now 731 entries / 2.0MB."
     },
     "rotate_owner_actions.py": {
-      "status": "clean",
+      "status": "fixed",
       "date": "2026-10-24",
-      "note": "Extended this cycle (--check-preamble/--apply-preamble) to rotate the 'Last measured'/'List reviewed' paragraphs themselves, the next candidate section 32 of BACKLOG-2026-09-07.md named; proved against the real dashboard.py/preflight.py parsing functions, not just this script's own output. Ledgered as read/clean."
+      "note": "Fixed a real, live regression this same cycle introduced (bd7f59312): REGION_START_AFTER was a frozen copy of the 'List reviewed' paragraph's own closing sentence, which bd7f59312 rewrote the same day, leaving region_size()/plan_rotation() raising ValueError with both preflight gates swallowing it silently. REGION_START_AFTER now derives from LR_REPLACEMENT itself so the two cannot drift apart again; both preflight gates now warn by name instead of returning clean, guarded so a document with none of this gate's structural markers still stays silent. Fail-then-pass proved against the real committed file and against synthetic fixtures."
     },
     "rotate_owner_actions_closed_items.py": {
       "status": "clean",

@@ -22,8 +22,7 @@ BEFORE = (
     "# Owner actions\n\n"
     "**Last measured:** some traffic sentence, untouched by this gate.\n\n"
     "**List reviewed:** some review sentence, also untouched. "
-    "it says nothing about traffic."
-)
+) + roa.REGION_START_AFTER
 AFTER = "\n\n---\n\n## Resolved today\n\n| # | Action | Outcome |\n"
 
 
@@ -96,8 +95,8 @@ def main() -> int:
         finally:
             preflight.ROOT = old_root
 
-    # 5. A file missing the "it says nothing about traffic." anchor (a
-    #    differently-shaped document) is skipped, not crashed on.
+    # 5. A file with none of this gate's structural markers (a
+    #    differently-shaped document entirely) is skipped, not crashed on.
     unrelated_text = "# Owner actions\n\nnothing recognisable here.\n"
     with tempfile.TemporaryDirectory() as tmp5:
         fails5, warns5 = _run_gate(tmp5, unrelated_text)
@@ -106,13 +105,37 @@ def main() -> int:
                       "recognisable anchors: fails=%r warns=%r"
                       % (fails5, warns5))
 
+    # 6. Regression, 2026-10-24: a file that DOES look like a real
+    #    OWNER-ACTIONS.md ("**List reviewed:**" and "## Resolved today"
+    #    both present) but whose pointer sentence has drifted away from
+    #    REGION_START_AFTER must warn, not go quiet like case 5. This is
+    #    the exact shape bd7f59312 produced live: the "List reviewed"
+    #    paragraph was rewritten, region_size() started raising, and
+    #    nothing warned because the old `except ValueError: return` could
+    #    not tell this case apart from case 5's foreign document.
+    drifted_text = (
+        "# Owner actions\n\n"
+        "**Last measured:** some traffic sentence.\n\n"
+        "**List reviewed:** 2026-10-24, reworded away from the pointer "
+        "sentence this gate expects."
+        + "\n\n" + AFTER)
+    with tempfile.TemporaryDirectory() as tmp6:
+        fails6, warns6 = _run_gate(tmp6, drifted_text)
+    if fails6:
+        fails.append("gate should WARN, not FAIL, on a drifted real-"
+                      "shaped file: %r" % (fails6,))
+    if not any(g == "owner-actions-history-not-oversized"
+               for g, _ in warns6):
+        fails.append("gate stayed silent on a drifted real-shaped file "
+                      "instead of warning: %r" % (warns6,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
     print("OK: gate_owner_actions_history_not_oversized, fail-then-pass "
-          "proved, 5/5 checks pass")
+          "proved, 6/6 checks pass")
     return 0
 
 
