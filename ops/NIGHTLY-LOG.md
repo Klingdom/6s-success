@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: picked up the 09:4x handoff, rotated STATUS.md's closed Workstream 3 build-log narrative into STATUS-ARCHIVE.md
+
+**Did:** Attached per STEP 0, merged a concurrent 09:4x PM check-in and an hourly check-in that landed mid-cycle (4-file conflict in the generated command deck and nightly log; kept both log entries in true order, regenerated the three generated dashboard files fresh with `ops/dashboard.py` rather than trusting either side of the conflict). That PM check-in had named real, unblocked, operator-sized work instead of deferring a fourth time: `gate_living_docs_total_size_tripwire` (new 2026-10-24, generic byte-ceiling check across STATUS.md/CHECKIN-LOG.md/OWNER-ACTIONS.md/BACKLOG-2026-09-07.md) was firing live on all four, and STATUS.md section 14 ("Active Major Workstreams") was the one named-but-unread candidate. Read it in full: Workstreams 1 and 2 are still BLOCKED, their short descriptions current; Workstream 3 was CLOSED 2026-10-03 but ~18 dated "Done"/"Found"/"Corrected" entries (2026-09-07 through 2026-09-25, M1 through B9) documenting how it closed still sat live underneath the closure summary.
+
+**Built** `ops/rotate_status_workstreams.py` (`--check`/`--apply`), same shape as its siblings (`rotate_status_history.py`, `rotate_owner_actions.py`): refuses on a missing or duplicated anchor rather than guessing, moves the narrative verbatim into `STATUS-ARCHIVE.md` under its own dated heading, idempotent on a second run. Did not add a dedicated preflight gate for this one section: the generic `gate_living_docs_total_size_tripwire` already watches this exact file and would duplicate it.
+
+**Verified:** `ops/tests/test_rotate_status_workstreams.py`, 12 cases, fail-then-pass proved twice: once for the core split/rotate logic, and separately for a real bug this cycle's own first draft had (`main()`'s `--check` tested bare `if narrative:` and would have reported an already-rotated file as DUE forever, because the pointer sentence left behind is itself non-empty narrative between the two anchors; caught by a test that runs `main()` itself against a scratch file, not just the pure functions, deliberately broke the fix to confirm the test fails, then restored it). Applied for real: moved 13563 bytes, `STATUS.md` 196738 to 183568 bytes (still over the 110000-byte tripwire, this is one candidate of the overage, not the whole fix), `STATUS-ARCHIVE.md` to 524322 bytes (not tracked by the tripwire, it is the designated archive). Confirmed by direct read: Workstream 1/2/3 headers and the closure summary are untouched, section 15 follows immediately after the new pointer, nothing lost. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean. `preflight.py --fast` run fresh: 0 FAIL through every gate reached before the documented `gate_tests` sandbox hang (confirmed genuine, not assumed).
+
+**Went well:** running the new test through `main()` itself, not only the pure split/plan functions, caught a real idempotency bug before it shipped.
+
+**Did not go well:** the first draft of `--check` would have nagged every future cycle with a false DUE on an already-rotated file; same "test the function, not the entry point" gap as a few other tools in this repository's history.
+
+**Changing next cycle:** none.
+
+**Next:** STATUS.md is still 183568 of 110000 bytes; the next cold-read of this file should look at its other long sections (Open claims, section 20 "Recently Completed Meaningful Work", the BLOCKER-001 chain) for the next prunable candidate. Everything else remains the same standing Phil-gated queue (Gemini billing, YouTube OAuth, Search Console reports, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42).
+
+Pushed to main. `ops/rotate_status_workstreams.py`, `ops/tests/test_rotate_status_workstreams.py`, `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
 ## 2026-10-24, PM check-in (09:4x slot, 30-minute triage): the living-docs size tripwire is now live-firing on all four tracked files, a real unread candidate named for the operator
 
 NEXT FOR THE OPERATOR: rotate STATUS.md section 14 ("Active Major Workstreams", ~17KB of 2026-09-07-to-09-25 Done narrative already superseded by its own Workstream 1-3 status lines just above it) into STATUS-ARCHIVE.md, because `gate_living_docs_total_size_tripwire` now fires live on all four tracked files (STATUS.md 196738/110000B, OWNER-ACTIONS.md 131688/110000, CHECKIN-LOG.md 248851/110000, BACKLOG-2026-09-07.md 344667/150000, confirmed by calling the gate directly, not by citing it), and section 14 is the one named-but-unread candidate three prior cycles deferred without a closer read.

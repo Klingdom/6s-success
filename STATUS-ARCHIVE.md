@@ -9,6 +9,216 @@
 
 ---
 
+**Archived 2026-10-24: STATUS.md section 14, Workstream 3's closed build-log narrative (2026-09-07 through 2026-09-25, M1 through B9).**
+
+**Done:** M1, the frozen 17-cause vocabulary (`ops/root_causes.py`,
+`gate_root_cause_vocabulary`), corrected from the plan's own uncross-checked
+"21" (a friction-card count, not a cause count). Separately this same cycle,
+not part of this workstream's plan but found while verifying it: a live CI
+break (three control docs' em/en dashes, plus real bugs in the fixing tool
+itself) and a real generator-ownership drift (the $19 Print Pack, the live
+Quest app's own data, and the mobile app's corpus all served pre-Sustain-
+rewrite text after a concurrent session's content change), both fixed.
+
+**Done 2026-09-07, operator, this cycle:** M2, the `diagnosis` schema and
+validator (`ops/diagnosis.py`, `content/manual/source/validate.py` GATE 8,
+`ops/tests/test_diagnosis_schema.py`). First draft flattened each friction to
+one cause; corrected in the same cycle after checking it against the real
+`kitchen-deck.json` FRICTION CARDs, which branch one symptom to two or three
+causes. Zones without `diagnosis` still build (0 of 114 diagnosed today).
+Also fixed this cycle, found by preflight at the start: `site/build-id.txt`
+was stale against the prior commit's own `sw.js` regeneration, failing both
+`checks.yml` and `publish-image.yml` at HEAD; fixed and both confirmed green.
+
+**Done 2026-09-07, operator, same cycle:** M3's Kitchen half. All 7 Kitchen
+zones now carry `diagnosis`, every string reused verbatim from
+`ops/cardtext/kitchen-deck.json`'s own FRICTION and 15-minute ACTION cards
+(0 schema problems). Entryway 5 is still open: those zones have no
+equivalent card deck to reuse from, so it needs real authorship rather than
+a mechanical mapping.
+
+**Done 2026-09-07, operator, this cycle:** M3's Entryway half, and M3 is now
+complete (12 of 12 pilot zones). The 5 Entryway zones carry hand-authored
+`diagnosis`, since no Entryway card deck exists to reuse from; grounded
+directly in each zone's own already-published `passes`/`the_call`/`watch_for`
+text, every cause drawn from `ops/root_causes.py`'s frozen 17, no fact
+invented. Reconciled with a concurrent session's own commit of the Kitchen
+half (`3e58d480`, pushed while this cycle was in flight): rather than
+re-push a conflicting `content.json`, reset onto their tip and layered only
+the new Entryway zones on top, keeping their Kitchen authorship untouched.
+
+New `gate_diagnosis_authoring` in `preflight.py` asserts, on every run, that
+every Kitchen pilot zone's frictions reuse a real FRICTION CARD's `title` or
+`objective` and branches character-for-character (their commit used `title`;
+the gate accepts either real field, not one hardcoded guess), and scans
+every diagnosed zone anywhere for a customer/reviewer attribution claim.
+`ops/tests/test_diagnosis_authoring.py`, 5 cases, proves both defect classes
+get caught on a planted mutation, then restores; real corpus clean.
+`content/manual/source/validate.py` GATE 8: 12 of 114 zones diagnosed, 0
+problems. `content.json`'s Entryway diff is a verified pure addition (259
+lines, 0 changed), confirmed by a controlled round-trip before editing.
+
+**Done 2026-09-07, operator, this cycle:** M4. `ops/build_zone_pages.py` now
+renders the diagnosis block (symptom, branches, 30-second confirm test,
+which pass to start at, plus the 15-minute entry) above the six passes on
+all 12 pilot zone pages, adds one FAQPage Q&A per friction, and swaps their
+related reading from the shared 19-link block to 3 to 5 articles chosen by
+the zone's own diagnosed causes, no two of the 12 identical. Two real
+grammar defects (a blanket `.lower()` and `str.capitalize()` both turning a
+mid-sentence "I" into "i") caught by reading the rendered page, not by any
+upstream check, and fixed before shipping. New `gate_diagnosis_rendered` in
+`preflight.py` (`ops/tests/test_gate_diagnosis_rendered.py`, 8 cases) checks
+render coverage, the link-count range, cross-zone uniqueness, and that exact
+pronoun defect on every future run. Not checked against the live domain
+itself (`CLAUDE.md` 0.3): no egress to 6s-success.com from this sandbox,
+same wall every prior cycle records. Full detail in
+`PLAN-MICROZONES-DECKS-APP.md`'s M4 row.
+
+**Done 2026-09-07, operator, this cycle:** K0/B3, the deck card-count gate.
+`gate_deck_count` counted rendered card-front PNGs to learn the deck's true
+size, and returned immediately when `build/cards-rendered/` was empty, which
+is every cloud run: the entire check, including every catalogue/page
+comparison, silently never ran anywhere except a full local render. Rewrote
+it to read `build/entryway-cardtext.json` (a committed corpus file, real in
+every environment) instead, and to assert `ops/build_deck_gallery.py`'s
+hardcoded `DECKS['entryway']['written']` against that corpus so the count
+itself can never quietly drift. Verified a real, live defect this surfaced:
+`deck.html`'s title, meta description and OG/Twitter tags said "89 cards"
+with no explanation, while `data.js`, `shop.html` and the print-and-play
+redirect page all said 88; fixed the six flat instances on `deck.html` to
+88. Left the already-correct "72 of the deck's 89 cards are drawn" progress
+sentences alone (89, the full written total, is the right denominator
+there; `deck-gallery.html` already explains the 89/88 split). Also found
+and corrected a stale claim in `PLAN-MICROZONES-DECKS-APP.md` 3.2: the "46
+cards" figure it named in `ops/build_printpack.py`/`ops/build_standards.py`
+no longer exists in either file, consistent with Phil's 2026-08-30 sweep;
+that row was never re-read against the code after that fix landed. New
+`ops/tests/test_gate_deck_count.py` (7 cases) proves the gate catches a
+third-number catalogue claim and a bare wrong-number page, does not
+false-positive on a CSS comment inside `<style>` (found live, a dormant
+bug the never-runs gate had been hiding) or on the honest "X of Y drawn"
+phrasing, and that the DECKS table matches the real corpus. `preflight.py`
+confirmed clean after: every gate passed, same 15 sandbox-limitation
+warnings. The 404-shop-tile half of K0 is unchanged: the referenced image
+exists in this repository's own build, not the same claim as a live 200,
+and this sandbox still has no egress to 6s-success.com to check that
+directly.
+
+**Next:** M4's 21-day clock starts once this is deployed and verified live.
+A2 is now done (see below). M6 (diagnosis for the remaining 102 zones) stays
+gated on M4's 21-day read, per the plan's own rule: do not start it early.
+
+**A5 done, 2026-09-09, operator.** The three genuinely missing funnel events
+(`quest-cause-shown`, `quest-card-abandoned`, `quest-return`) are now shipped
+in `site/assets/js/quest.js`, verified by a new static gate and a real
+headless-Chromium run; see `BACKLOG-2026-09-07.md`'s "A5 (funnel
+instrumentation) closed" row and `PLAN-MICROZONES-DECKS-APP.md`'s A5 row for
+the full account.
+
+**S1-S4 re-measured, 2026-09-09, operator, rather than trusted from the
+prior line's own hedge.** The prior note here was right to be suspicious:
+the concurrent Sustain prose rewrite already covers most of what S1-S4 asked
+for as authored content. Measured directly against `content.json`'s 114
+`passes.sustain` strings: all 114 are now 87 to 106 words (median 94,
+comfortably inside S2/S4's 90-to-130 target), and a rough keyword scan finds
+recovery language in 102 of 114. What is still genuinely absent is the
+*structured, machine-checkable* schema S1 itself asks for (a `sustain_detail`
+object with six typed fields, a closed cadence list, a `drift_signal` noun
+check): 0 of 114 zones carry any such field today, so S1's schema and gate
+do not exist. Given the prose already answers the content gap that made S1
+urgent, S1 as originally scoped (add the schema, then re-author it a second
+time in structured form) reads as more product work ahead of the constraint
+(`GOALS.md` rule 1: distribution beats production) rather than the
+measurement-tier item it was filed as. Recommend re-scoping S1 to something
+narrower before spending 0.5 to 3.5 days on it, or dropping it in favour of
+Epic 3 (traffic) work; left as an open question rather than started this
+cycle.
+
+**S1-S4 dropped, 2026-10-03, PM check-in, closing the open question above
+after 24 days with nobody revisiting it.** Epic 3 (traffic) work this
+paragraph named as the alternative is itself done now: A11/A13/A14/A15/A18
+all shipped between 2026-09-20 and 2026-10-02, closing the keyword-cluster
+gaps they targeted. The condition that would make S1 worth its 0.5-to-3.5-day
+cost (more distribution to protect with a stricter gate) has not changed in
+the meantime: Umami read 2026-09-29/30 shows 7 to 14 visitors a week across
+the whole site, Search Console is still unverified (`OWNER-ACTIONS.md`), and
+`BACKLOG-2026-09-07.md` section 1b's own test for new work is "does this help
+somebody arrive, or does it improve something nobody is looking at yet."
+Re-authoring 114 already-adequate prose passes into a structured schema is
+the second kind, with no reader behind it. Recorded as `DECISIONS.md` D-029
+rather than left open a second month; revisit condition is the same one that
+would also reopen M6 (real zone entrances or a Search Console read).
+
+**A2 done, 2026-09-09, operator, a later cycle the same day.** "45 to 75
+minutes" was still the first number a first-timer read on card one of the
+classic ("show me the house instead" -> "Start at the door") path; the
+symptom flow's own simplified card zero already hid it, but that path did
+not. `site/assets/js/quest.js` now withholds `#c-session` on any card one of
+a genuine first run (`run.i === 0 && isFirstRun()`), covering both paths with
+one condition instead of two. The number moved to the finish screen instead
+of disappearing: a new `#f-session` in `site/quest.html`, populated once at
+least one card of a single-zone run is done, phrased against whether the
+zone was just fully held. The zone page already stated it and is untouched.
+Verified in a real headless-Chromium run of the classic path end to end
+(card one empty, card two correctly shows "15-30 min for the whole zone, six
+passes", finish screen reads "The whole zone runs about 15-30 min, all six
+passes, whenever you want the rest of it."), plus the existing
+`test_quest_flow.py` (symptom path) still passing unmodified. New
+`gate_quest_session_placement` in `preflight.py`,
+`ops/tests/test_gate_quest_session_placement.py` (6 cases, fail-then-pass
+proved on both halves: the withholding and the finish-screen restatement).
+`ops/fingerprint_assets.py` rerun; `site/quest.html`'s script-tag
+fingerprint and `site/sw.js` follow. See `PLAN-MICROZONES-DECKS-APP.md`'s A2
+row for the full account.
+
+**M7/A1 found already fixed by Phil, closed against reality, 2026-09-09,
+operator, a later cycle the same day.** Both rows still read as 1.5 days of
+open work ("570 of 684 cards print a stop condition that card cannot
+reach"). Phil's own `fa491b1a` (2026-09-07) had already fixed the actual
+lie: `renderCard()` no longer heads a card "You can stop when" over the
+whole-zone `done_looks_like` text, it says what the text is and where the
+reader stands against it. The literal M7 acceptance criteria (a distinct
+authored `victory` line per card) is still unmet and correctly unstarted;
+`PLAN-MICROZONES-DECKS-APP.md` updated to say so. New
+`gate_quest_card_victory_honesty` in `preflight.py`
+(`ops/tests/test_gate_quest_card_victory_honesty.py`, 6 cases, fail-then-pass
+proved by reintroducing the exact old heading live) protects the fix from
+regressing. Also confirmed A3 and A4 already fully shipped under A5/A6's own
+2026-09-08 commits, never marked against their own rows: A3's symptom
+screen and A4's two-minute first-action override both live in
+`site/assets/js/quest.js`, verified by reading the code directly. See
+`PLAN-MICROZONES-DECKS-APP.md`'s M7/A1 rows and section 1.4 for the full
+account.
+
+**Done 2026-09-25, scheduled operator: the first of B9's five room decks
+(Entryway) shipped, correcting this section's own now-stale line above
+("Entryway 5 is still open: those zones have no equivalent card deck to
+reuse from, so it needs real authorship rather than a mechanical
+mapping").** That was true on 2026-09-07; the Manual's `diagnosis` layer
+reached Entryway on 2026-09-24, which made a mechanical mapping possible
+after all. New `ops/cardtext/build_entryway_deck.py` and
+`ops/build_entryway_deck_page.py` ship a 57-card, corpus-accurate Entryway
+deck at `site/entryway-deck.html`, mirroring
+`ops/cardtext/build_kitchen_deck.py`'s pattern card for card; the frozen 12
+root causes this section's M1 froze are reused verbatim (13 of the 17 are
+reachable from Entryway's real frictions), so this new deck composes with
+the Kitchen deck rather than forking its own vocabulary. Does not touch
+the old illustrated 12-zone free deck (`deck.html`, the live `DECK-ENTRY`
+SKU); both are live, each disclosing the other. New
+`gate_entryway_deck_rendered` in `preflight.py`, fail-then-pass proved.
+Full account in `ops/NIGHTLY-LOG.md`, 2026-09-25, and
+`BACKLOG-2026-09-07.md` row B9. Four rooms remain (Laundry, Home Office,
+Primary Bathroom, Garage).
+
+**Corrected 2026-09-25, PM check-in: the line above is stale.** All four
+named rooms have since shipped the same way (`site/laundry-room-deck.html`,
+`site/home-office-deck.html`, `site/primary-bathroom-deck.html`,
+`site/garage-deck.html`), each with its own `gate_<room>_deck_current`/
+`gate_<room>_deck_rendered` pair, fail-then-pass proved, per
+`ops/NIGHTLY-LOG.md`'s 2026-09-25 entries and `BACKLOG-2026-09-07.md` row
+B9. B9 is fully closed, five of five rooms; no room deck row remains
+open in section 3.
+
 **CLOSED 2026-10-23, PM check-in (17:4x slot): the 1-commit gap above closed for real, found by re-deriving directly rather than citing, superseding the 17:1x entry before this cycle's own two-commit draft of it could even be pushed.** Phil's own owner-directed global cycle landed and deployed three changes (the nginx fix above, international also-called vocabulary, and the shop USD-pricing copy) and verified all three live. `ops/deploy-verdict.json` now records `verdict: "current"`, build `84c234bd3857ed4c`, `checked_at: 2026-10-23T17:44:18Z`, resolving via `resolve_verdict_commit` to `86159a729` itself. `deploy_gap_material_commits('86159a729')` re-derived directly against real current `HEAD` (`7a5c3ce5a`), not cited, returns an empty list: production matches `HEAD` exactly, zero commits undeployed, confirmed by `status_deploy_verdict_problem()`/`deploy_gap_count_problem()` both returning `''` against this edited file. No P0 regression. Same standing limit as above: no operator sandbox holds the deploy key; `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) is the only fix for the recurrence itself.
 
 **REOPENED 2026-10-23, PM check-in (17:1x slot): the zero gap above reopened by one real commit, found by re-deriving `deploy_gap_material_commits` directly against real current `HEAD` rather than trusting the stale 10:1x marker; `gate_status_deploy_gap_count_current` confirmed the staleness by name before this edit.** `ops/deploy-verdict.json` is unchanged, still `verdict: "current"`, build `1e15140736f2a808`, `checked_at: 2026-10-23T05:26:39Z`, resolving via `resolve_verdict_commit` to `54375841b`. `deploy_gap_material_commits('54375841b')` re-derived directly against real current `HEAD` (`92bb96c3d`), not cited, returns 1 commit: `de603a05d`, Phil's own commit fixing `site/nginx/default.conf` to forward NPM's real `X-Real-IP` to Umami instead of the proxy bridge address, so visitor country gets recorded instead of staying NULL on every one of 109 sessions to date. No P0 regression: the undeployed change is an analytics-accuracy fix, not a broken page. Same standing limit as above: no operator sandbox holds the deploy key; `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35) is the only fix for the recurrence itself.
