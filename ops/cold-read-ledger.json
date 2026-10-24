@@ -1153,8 +1153,8 @@
     },
     "rotate_owner_actions.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "Built this cycle to fix the preamble unbounded-growth defect; ledgered as read/clean."
+      "date": "2026-10-24",
+      "note": "Extended this cycle (--check-preamble/--apply-preamble) to rotate the 'Last measured'/'List reviewed' paragraphs themselves, the next candidate section 32 of BACKLOG-2026-09-07.md named; proved against the real dashboard.py/preflight.py parsing functions, not just this script's own output. Ledgered as read/clean."
     },
     "rotate_status_history.py": {
       "status": "fixed",

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-24, scheduled operator cycle: `OWNER-ACTIONS.md`'s "Last measured"/"List reviewed" paragraphs rotated, the item sections 31/32 deferred
+
+**Did:** Attached per STEP 0 (fetch, unshallow, `checkout main`, ff-only onto `0eaa7cc10`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `CLAUDE.md`, and the real head of this log directly. Pulled all 10 GitHub issues fresh: unchanged, all `decision`/`blocked-on-art`; read issue #42's full comment thread, confirmed the exhausted/Phil-gated state is current, not stale. Epics 1-5 genuinely exhausted again, so worked epic 6: section 32's own "Next" line named `OWNER-ACTIONS.md`'s "Last measured"/"List reviewed" paragraphs as the one still-open candidate section 31 had deliberately deferred (both parsed by name for their first sentence, rewriting them judged a different, higher-risk job than the dead-narrative archiving section 31 did do).
+
+**Found:** both paragraphs had kept growing exactly as predicted: "Last measured" carried its live 2026-10-02 traffic citation plus a full correction chain plus an unrelated item-1 (YouTube) narrative (1,318 bytes); "List reviewed" carried its date plus a four-entry changelog plus a closing clause (2,204 bytes).
+
+**Fixed:** `ops/rotate_owner_actions.py` gained `--check-preamble`/`--apply-preamble`. Found each paragraph's live sentence by the same regex shape `ops/dashboard.py`'s `_owner_actions_traffic_citation()` and `ops/preflight.py`'s `gate_owner_actions_last_measured_current` themselves require, never a hardcoded date, so a real future re-measurement is found the same way rather than breaking this script. Archived everything after it to `OWNER-ACTIONS-ARCHIVE.md`, replaced with an evergreen pointer naming no specific date or topic. New `gate_owner_actions_preamble_not_oversized` in `preflight.py`, same WARNING shape as its sibling.
+
+**Verified:** `ops/tests/test_rotate_owner_actions.py` extended to 18/18, including a case that runs the real `dashboard`/`preflight` functions against the real committed file, not a synthetic copy. New `ops/tests/test_gate_owner_actions_preamble_not_oversized.py` 6/6, fail-then-pass proved. Applied for real: moved 3,462 bytes to the archive, diffed everything outside the two paragraphs byte-identical, reran the real consumer functions against the rotated live file (`dashboard._owner_actions_traffic_citation()` still returns the same real reading, both gates 0 FAIL/0 WARN). `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `cold_read_ledger.py --stale` 0. `preflight.py` fast run: 0 FAIL through every gate including the new one, before the documented `gate_tests` sandbox hang; confirmed the hang by CPU-flat evidence (same process, 14s CPU at both 267s and 972s elapsed) before killing it.
+
+**Went well:** testing candidate replacement text against the real consumer functions before writing the rotation script caught a fragile first design (fixed anchors tied to today's exact date/numbers, which would silently break the next time either paragraph legitimately changed) before it shipped.
+
+**Did not go well:** the first `--apply-preamble` run produced a malformed sentence (missing terminal period, an awkward double-colon) because the citation regex's match boundary excludes trailing punctuation; caught by reading the actual output before committing, fixed, reapplied.
+
+**Changing next cycle:** none.
+
+**Next:** sections 2-4 of `BACKLOG-2026-09-07.md` (A/B/C item tables) remain the lower-value, harder-to-rotate target; `STATUS.md`'s other long sections (Status Metadata, Production Status, Active Major Workstreams) sized but not read. Every epic ahead of operational honesty still dead-ends at Phil (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy/Apple/Play accounts, issue #15, issue #42).
+
+Pushed to main. `OWNER-ACTIONS.md`, `OWNER-ACTIONS-ARCHIVE.md`, `ops/rotate_owner_actions.py`, `ops/preflight.py`, two test files, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md`, this entry, dashboard files. No price, product or served page touched; not customer-facing, so IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-24, PM check-in (30-minute triage): previous work confirmed finished, nothing new unblocked, gate_tests hang reconfirmed
 
 Attached clean onto `509741ad7`, tree clean. Previous work (operator's Gemini-billing fix) confirmed finished: CI green, 10 open issues unchanged, all decision/blocked-on-art. `cold_read_ledger.py --stale`: 0 stale.

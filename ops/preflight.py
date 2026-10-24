@@ -21580,6 +21580,65 @@ def gate_owner_actions_history_not_oversized() -> None:
              "ops/rotate_owner_actions.py --apply`." % (size, limit))
 
 
+def gate_owner_actions_preamble_not_oversized() -> None:
+    """OWNER-ACTIONS.md's own "Last measured" and "List reviewed"
+    paragraphs must not be carrying a regrown correction chain after their
+    one load-bearing sentence.
+
+    Found 2026-10-24, scheduled operator cycle, the designated next
+    candidate section 32 of BACKLOG-2026-09-07.md named when gate_owner_
+    actions_history_not_oversized above was built: that gate rotates the
+    span between the two paragraphs and the "Resolved today" table, but
+    deliberately left both paragraphs themselves alone, because each is
+    parsed by name for its first sentence (ops/dashboard.py's
+    _owner_actions_traffic_citation(), ops/preflight.py's own
+    gate_owner_actions_last_measured_current below) and rewriting them
+    safely was a different, higher-risk job than archiving dead narrative.
+    Both paragraphs had grown the identical shape anyway, one
+    "Corrected"/"Earlier, DATE:" sentence at a time: "Last measured" carried
+    a whole superseded correction chain plus an unrelated item-1 (YouTube)
+    narrative after its own live citation, and "List reviewed" carried a
+    multi-entry changelog after its own live date.
+    ops/rotate_owner_actions.py's --apply-preamble now rotates both at
+    once, finding each paragraph's live sentence by the same regex
+    ops/dashboard.py and this file's own gate_owner_actions_last_measured_
+    current use (never a hardcoded date, so a real future re-measurement
+    does not break this). This gate is what stops either paragraph being a
+    one-time cleanup that quietly regrows, the same role its sibling above
+    already plays for the span between them.
+
+    A WARNING, not a FAIL: a long preamble wastes every later cycle's
+    reading time, it does not ship anything broken to a customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_preamble_not_
+    oversized.py builds a synthetic OWNER-ACTIONS.md with one paragraph's
+    history well past the buffer and asserts this gate warns, then confirms
+    a freshly rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions as roa
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        lm_size, lr_size = roa.preamble_sizes(text)
+    except ValueError:
+        return
+    lm_limit = len(roa.LM_REPLACEMENT.encode("utf-8")) + roa.PREAMBLE_BUFFER_BYTES
+    lr_limit = len(roa.LR_REPLACEMENT.encode("utf-8")) + roa.PREAMBLE_BUFFER_BYTES
+    over = []
+    if lm_size > lm_limit:
+        over.append("Last measured (%d bytes, limit %d)" % (lm_size, lm_limit))
+    if lr_size > lr_limit:
+        over.append("List reviewed (%d bytes, limit %d)" % (lr_size, lr_limit))
+    if over:
+        warn("owner-actions-preamble-not-oversized",
+             "OWNER-ACTIONS.md's %s paragraph(s) carry a regrown correction "
+             "chain past their own buffer. Run `python "
+             "ops/rotate_owner_actions.py --apply-preamble`."
+             % " and ".join(over))
+
+
 def gate_owner_actions_closed_items_rotated() -> None:
     """OWNER-ACTIONS.md's "Open, ranked by what they unblock" section must
     not be carrying a numbered item whose own header already says it is
@@ -30709,6 +30768,7 @@ def main() -> int:
     run_gate(gate_status_immediate_focus_not_oversized)
     run_gate(gate_checkin_log_not_oversized)
     run_gate(gate_owner_actions_history_not_oversized)
+    run_gate(gate_owner_actions_preamble_not_oversized)
     run_gate(gate_owner_actions_closed_items_rotated)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)

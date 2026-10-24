@@ -7,38 +7,9 @@ Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
 **Last measured:** 2026-10-02 UTC, traffic re-measured by a direct database read:
-49 visitors/121 visits/30 days (1.6 a day), flat on the 48/119 of three days
-earlier. **Corrected 2026-10-03, scheduled operator: this header still cited
-the 2026-09-29 reading while GOALS.md, STATUS.md and DATA-SOURCES.md had all
-moved on to this one.** The trailing week as recorded is 22 visitors/29
-visits/62 pageviews; excluding its single busiest 20-minute bucket (the same
-27 September burst every prior reading has excluded) it is 13 visitors/20
-visits/32 pageviews, against 7 ex-burst on 2026-09-29, the first rise this
-figure has shown, though 13 against 7 is a small enough number that it could
-still be noise. Item 1 (YouTube) made
-genuinely actionable 2026-09-27: the two prerequisites that would each have
-broken the first run are now done (the credential files are gitignored, the
-Google client libraries are installed), and the publish pair is verified at
-114 of 114. Earlier, 2026-09-26, item 1 was held and then CLEARED the same
-day. The hold was real: all 114 films were 30.2s while their captions ran to
-74.8s, so publishing would have put captions 45 seconds past the end of the
-picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
-film length and caption sync, so the row is actionable again.
+49 visitors/121 visits/30 days. Earlier corrections accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`; each numbered item's own current status lives in its own entry below, not in this paragraph.
 
-**List reviewed:** 2026-10-23, PM check-in: the marker had drifted a day behind the preamble's own "archived 2026-10-23" line (the rotation that moved the 2026-09-04 through 2026-09-25 deploy-gap history to `OWNER-ACTIONS-ARCHIVE.md`), the identical recurring gap this marker's own history keeps naming; `gate_owner_actions_last_measured_current` had already caught it twice on CI (runs 2300 and 2301, both red) with nobody acting on the failure before this cycle read the job logs directly rather than trust a local preflight run past its own `gate_tests` sandbox hang. Nothing newly reviewed below, bumped alongside the fix per this marker's own rule ("the same edit that adds or resolves an item"). Earlier, 2026-10-22, image cycle: added the unpushed-local-commits item at the top of "Open". Earlier, 2026-10-20, scheduled operator cycle: every item below re-read cold against GitHub's live issues and `OWNER-ACTIONS.md`'s own body, same exhausted/Phil-gated state (see `ops/NIGHTLY-LOG.md`); the marker itself had drifted 3 days behind dated entries already in this file's body (first the 2026-10-17 PM check-in, then 2026-10-20 ones since), tripping `gate_owner_actions_last_measured_current` in CI. Earlier: 2026-10-17, PM check-in: the same gap recurred one day
-later. The 01:5x operator cycle added item 23 (the cadence-waste escalation,
-dated 2026-10-17 in its own body) without moving this marker, which left
-`gate_owner_actions_last_measured_current` failing in CI from that commit
-onward (`c75c6d69d`); the next three cycles missed it the same way as
-2026-10-16, because the sandbox's own local preflight run hangs earlier, at
-`gate_tests`, and gets killed before reaching this gate. Caught by reading
-the CI "Checks" run directly rather than trusting a local rerun, same fix as
-yesterday. A separate marker from "Last measured" above
-(issue #38, 2026-10-02): that header is the exact sentence the dashboard
-parses for the real traffic-measurement date, and bumping it to mark this
-list as reviewed was quietly telling the dashboard a fresh database read
-had happened on days it had not. This marker only means "every item below
-has been read as of this date"; it says nothing about traffic.
+**List reviewed:** 2026-10-23, every item below has been read as of this date. A separate marker, "Last measured" above (issue #38), is the exact sentence the dashboard parses for the real traffic-measurement date; bumping this marker must never imply a fresh database read. Earlier review history accumulated here between rotations archived to `OWNER-ACTIONS-ARCHIVE.md` by `ops/rotate_owner_actions.py --apply-preamble`.
 
 **Deploy-gap and per-item history, 2026-09-04 through 2026-09-25, archived 2026-10-23 by `ops/rotate_owner_actions.py`:** none of it is a standing owner action any more. Current deploy status lives in `STATUS.md`'s `BLOCKER-001`; the one still-open ask this chain ever raised is item 0 below (`VPS_DEPLOY_KEY`). Moved verbatim to `OWNER-ACTIONS-ARCHIVE.md`.
 

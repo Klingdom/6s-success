@@ -6,6 +6,16 @@ the pointer sentence, repeated runs are a no-op, a missing or duplicated
 anchor is refused rather than guessed past, and the archive write appends
 above existing content without disturbing it.
 
+Extended 2026-10-24, scheduled operator cycle, for --check-preamble/
+--apply-preamble (the "Last measured"/"List reviewed" paragraphs
+themselves): cases 11-18 prove the citation/date are found by regex rather
+than a hardcoded string (so a real future re-measurement does not break
+this script), that rotation never touches either load-bearing sentence,
+and -- the actual risk this whole feature carries -- that the rotated text
+still parses clean through the real ops/dashboard.py and ops/preflight.py
+functions that read it in production, not just through this test's own
+assertions about the string shape.
+
 Run:  python ops/tests/test_rotate_owner_actions.py
 """
 import io
@@ -144,12 +154,134 @@ def main() -> int:
     except ValueError:
         pass
 
+    # 11. _lm_region()/_lr_region() find their anchors by regex, not a
+    #     hardcoded date, so a different real reading (a future
+    #     re-measurement) is found exactly the same way.
+    preamble = (
+        "# Owner actions\n\n"
+        "**Last measured:** 2027-03-11 14:05 UTC, traffic re-measured by a "
+        "direct database read: 212 visitors/400 visits/30 days. "
+        "**Corrected 2027-03-12: this was wrong.** More stale narrative "
+        "that should not still be here next cycle.\n\n"
+        "**List reviewed:** 2027-03-12: the marker had drifted. Earlier, "
+        "2027-03-10: something else changed. A separate marker, \"Last "
+        "measured\" above, means something different.\n\n"
+        "**Deploy-gap and per-item history** stays untouched here.\n\n"
+        "---\n\n## Resolved today\n\n| # | Action | Outcome |\n"
+    )
+    s, e = roa._lm_region(preamble)
+    if preamble[s:e].strip() != (
+            ". **Corrected 2027-03-12: this was wrong.** More stale "
+            "narrative that should not still be here next cycle.").strip():
+        fails.append("_lm_region found the wrong span for a non-today "
+                      "reading: %r" % preamble[s:e])
+    s, e = roa._lr_region(preamble)
+    if "the marker had drifted" not in preamble[s:e]:
+        fails.append("_lr_region found the wrong span: %r" % preamble[s:e])
+
+    # 12. plan_rotation_preamble() rotates both paragraphs in one pass,
+    #     keeps the citation and the date live, and the archived blocks
+    #     carry exactly what was removed.
+    new_text, blocks = roa.plan_rotation_preamble(preamble)
+    labels = [label for label, _ in blocks]
+    if labels != ["Last measured", "List reviewed"]:
+        fails.append("plan_rotation_preamble did not report both chains: "
+                     "%r" % labels)
+    if "212 visitors/400 visits/30 days" not in new_text:
+        fails.append("rotation lost the live traffic citation")
+    if "2027-03-12" not in new_text.split("**Deploy-gap")[0]:
+        # the List reviewed date itself must survive in the KEEP portion
+        fails.append("rotation lost the List reviewed date")
+    if "This was wrong" in new_text or "the marker had drifted" in new_text:
+        fails.append("rotation left old narrative live instead of "
+                     "archiving it")
+    if roa.LM_REPLACEMENT.strip() not in new_text:
+        fails.append("rotated text missing the Last measured pointer")
+    if roa.LR_REPLACEMENT.strip() not in new_text:
+        fails.append("rotated text missing the List reviewed pointer")
+
+    # 13. Re-running on already-rotated preamble text is a no-op.
+    new_again, blocks_again = roa.plan_rotation_preamble(new_text)
+    if new_again != new_text or blocks_again:
+        fails.append("an already-rotated preamble was rotated again")
+
+    # 14. A citation sentence that no longer matches the required shape
+    #     (dashboard.py's own contract) is refused, not guessed past.
+    broken = preamble.replace(
+        "traffic re-measured by a direct database read:",
+        "traffic re-read somehow:")
+    try:
+        roa._lm_region(broken)
+        fails.append("a reworded citation sentence was silently accepted")
+    except ValueError:
+        pass
+
+    # 15. A missing "List reviewed" header is refused.
+    try:
+        roa._lr_region(preamble.replace("**List reviewed:**", "Reviewed:"))
+        fails.append("a missing List reviewed header was silently accepted")
+    except ValueError:
+        pass
+
+    # 16. preamble_sizes() matches the stripped byte length of each region,
+    #     and a long synthetic history past the buffer registers as DUE.
+    lm_size, lr_size = roa.preamble_sizes(preamble)
+    s, e = roa._lm_region(preamble)
+    if lm_size != len(preamble[s:e].strip().encode("utf-8")):
+        fails.append("preamble_sizes() Last measured did not match the "
+                     "stripped region length")
+    big_history = (" **Corrected again:** " +
+                   "filler text padding this out past the buffer. " * 40)
+    preamble_big = preamble.replace(
+        "**Corrected 2027-03-12: this was wrong.** More stale narrative "
+        "that should not still be here next cycle.",
+        "**Corrected 2027-03-12: this was wrong.**" + big_history)
+    lm_big, _ = roa.preamble_sizes(preamble_big)
+    if lm_big <= len(roa.LM_REPLACEMENT.encode("utf-8")) + roa.PREAMBLE_BUFFER_BYTES:
+        fails.append("a long synthetic Last measured history did not "
+                     "register as DUE")
+
+    # 17. Rotation never touches anything outside the two paragraphs:
+    #     the Deploy-gap pointer and everything after it stay byte-for-byte
+    #     identical.
+    tail_before = preamble[preamble.find("**Deploy-gap"):]
+    tail_after = new_text[new_text.find("**Deploy-gap"):]
+    if tail_before != tail_after:
+        fails.append("rotation disturbed text outside the two paragraphs")
+
+    # 18. The real, currently-committed OWNER-ACTIONS.md parses clean
+    #     through the actual production functions that read it -- not a
+    #     synthetic copy. This is the real risk this feature carries: a
+    #     rotation that looks right in isolation but breaks the live gate
+    #     or the live dashboard reading against the real file.
+    oa_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if os.path.exists(oa_path):
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import preflight as _preflight                          # noqa: E402
+        import dashboard as _dashboard                           # noqa: E402
+        _preflight.FAIL.clear()
+        _preflight.WARN.clear()
+        _preflight.gate_dashboard_owner_actions_traffic_citation_current()
+        _preflight.gate_owner_actions_last_measured_current()
+        if _preflight.FAIL:
+            fails.append("the real committed OWNER-ACTIONS.md fails a live "
+                         "gate: %r" % _preflight.FAIL)
+        if _dashboard._owner_actions_traffic_citation() is None:
+            fails.append("the real committed OWNER-ACTIONS.md no longer "
+                         "parses through dashboard._owner_actions_"
+                         "traffic_citation()")
+        try:
+            roa.preamble_sizes(io.open(oa_path, encoding="utf-8").read())
+        except ValueError as exc:
+            fails.append("the real committed OWNER-ACTIONS.md no longer "
+                         "matches this script's own anchors: %s" % exc)
+
     if fails:
         print("FAIL (%d):" % len(fails))
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 10/10 cases ok.")
+    print("PASS: 18/18 cases ok.")
     return 0
 
 

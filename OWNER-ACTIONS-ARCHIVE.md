@@ -4,6 +4,43 @@
 
 ---
 
+### Last measured, archived 2026-10-24
+
+(1.6 a day), flat on the 48/119 of three days
+earlier. **Corrected 2026-10-03, scheduled operator: this header still cited
+the 2026-09-29 reading while GOALS.md, STATUS.md and DATA-SOURCES.md had all
+moved on to this one.** The trailing week as recorded is 22 visitors/29
+visits/62 pageviews; excluding its single busiest 20-minute bucket (the same
+27 September burst every prior reading has excluded) it is 13 visitors/20
+visits/32 pageviews, against 7 ex-burst on 2026-09-29, the first rise this
+figure has shown, though 13 against 7 is a small enough number that it could
+still be noise. Item 1 (YouTube) made
+genuinely actionable 2026-09-27: the two prerequisites that would each have
+broken the first run are now done (the credential files are gitignored, the
+Google client libraries are installed), and the publish pair is verified at
+114 of 114. Earlier, 2026-09-26, item 1 was held and then CLEARED the same
+day. The hold was real: all 114 films were 30.2s while their captions ran to
+74.8s, so publishing would have put captions 45 seconds past the end of the
+picture. All 114 have been re-rendered and re-verified, 114 of 114 on both
+film length and caption sync, so the row is actionable again.
+
+### List reviewed, archived 2026-10-24
+
+, PM check-in: the marker had drifted a day behind the preamble's own "archived 2026-10-23" line (the rotation that moved the 2026-09-04 through 2026-09-25 deploy-gap history to `OWNER-ACTIONS-ARCHIVE.md`), the identical recurring gap this marker's own history keeps naming; `gate_owner_actions_last_measured_current` had already caught it twice on CI (runs 2300 and 2301, both red) with nobody acting on the failure before this cycle read the job logs directly rather than trust a local preflight run past its own `gate_tests` sandbox hang. Nothing newly reviewed below, bumped alongside the fix per this marker's own rule ("the same edit that adds or resolves an item"). Earlier, 2026-10-22, image cycle: added the unpushed-local-commits item at the top of "Open". Earlier, 2026-10-20, scheduled operator cycle: every item below re-read cold against GitHub's live issues and `OWNER-ACTIONS.md`'s own body, same exhausted/Phil-gated state (see `ops/NIGHTLY-LOG.md`); the marker itself had drifted 3 days behind dated entries already in this file's body (first the 2026-10-17 PM check-in, then 2026-10-20 ones since), tripping `gate_owner_actions_last_measured_current` in CI. Earlier: 2026-10-17, PM check-in: the same gap recurred one day
+later. The 01:5x operator cycle added item 23 (the cadence-waste escalation,
+dated 2026-10-17 in its own body) without moving this marker, which left
+`gate_owner_actions_last_measured_current` failing in CI from that commit
+onward (`c75c6d69d`); the next three cycles missed it the same way as
+2026-10-16, because the sandbox's own local preflight run hangs earlier, at
+`gate_tests`, and gets killed before reaching this gate. Caught by reading
+the CI "Checks" run directly rather than trusting a local rerun, same fix as
+yesterday. A separate marker from "Last measured" above
+(issue #38, 2026-10-02): that header is the exact sentence the dashboard
+parses for the real traffic-measurement date, and bumping it to mark this
+list as reviewed was quietly telling the dashboard a fresh database read
+had happened on days it had not. This marker only means "every item below
+has been read as of this date"; it says nothing about traffic.
+
 **Corrected 2026-09-25 00:1x, PM check-in: the "3 commits" figure below was already stale, and citing a superseded build_id besides.** Before re-deriving from the same `28ed2709194afab5`/`d5b0d5c8` citation the note below used, checked `ops/deploy-verdict.json` directly. It now records a newer, unread confirmation: `verdict: "current"`, build `6a10df205a3d058c`, `checked_at: 2026-09-24T23:35:51Z`, resolving (`git log -S`) to commit `b8eca135` ("Micro zones: Laundry Room personalised"). A session with real access redeployed again after the `d5b0d5c8` confirmation and closed the gap in full at that time. Reopened since by exactly one further `site/**` commit, Phil's own `ca49aa25` ("Micro zones: Garage personalised"): `git log b8eca135..HEAD -- site/ Dockerfile` reads 1 commit, 44 files, 547 insertions, 323 deletions, not the 4 a recount against the older, superseded build would have shown. No new action needed beyond item 0 below, same structural gap, just correctly sized against the current verdict; `STATUS.md`'s `BLOCKER-001` carries the same correction.
 
 **Widened 2026-09-25 01:4x, PM check-in: the "1 commit" figure above had already gone stale, caught by `gate_status_deploy_gap_count_current` on this cycle's own `preflight.py` run.** Same build_id (`6a10df205a3d058c`), same resolved commit (`b8eca135`), but a fresh `git log b8eca135..HEAD -- site/ Dockerfile` now reads 2 commits, not 1: Phil's own D-026 checkpoint (`fa78db8c`, which shipped `measure.js`'s new zone-block-seen instrumentation to every zone page) landed the same day as `ca49aa25` and was not counted. Real gap is now (2 commits, `fa78db8c`, `ca49aa25`; 197 files, 808 insertions, 520 deletions). No new action needed beyond item 0 below, same structural gap, just correctly sized; `STATUS.md`'s `BLOCKER-001` carries the same correction.
