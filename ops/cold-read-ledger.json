@@ -1156,6 +1156,11 @@
       "date": "2026-10-24",
       "note": "Extended this cycle (--check-preamble/--apply-preamble) to rotate the 'Last measured'/'List reviewed' paragraphs themselves, the next candidate section 32 of BACKLOG-2026-09-07.md named; proved against the real dashboard.py/preflight.py parsing functions, not just this script's own output. Ledgered as read/clean."
     },
+    "rotate_owner_actions_closed_items.py": {
+      "status": "clean",
+      "date": "2026-10-24",
+      "note": "Read cold 2026-10-24 PM check-in (07:4x). Archives OWNER-ACTIONS.md items whose own header already declares them DONE/WITHDRAWN/Superseded/duplicate, leaving a one-line pointer; refuses on partial/non-contiguous spans rather than guessing. --check confirms CLEAN (already applied this same cycle by its own author). No defect found."
+    },
     "rotate_status_history.py": {
       "status": "fixed",
       "date": "2026-10-23",
