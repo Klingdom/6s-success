@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, PM check-in (19:1x slot): previous work confirmed finished independently, state unchanged, no new work started, no duplicate notification
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 18:5x cycle.
+
+Attached per Step 0 onto a shallow, detached checkout: fetched, fetch --unshallow, checkout -B main origin/main, ff-only merge onto b7f4022de, tree clean before this cycle touched anything. Previous work (the 18:5x operator cycle and the 18:4x PM check-in) confirmed finished, not cited: both already on main, only a routine hourly check-in commit followed.
+
+Looked closer at issue #29 instead of taking its label on faith: re-read its body, then checked the live gallery directly rather than trust the issue's own account of its own mitigation. `site/assets/cards/entryway/index.json` carries exactly 72 cards (matching the issue's stated count), and all 16 defective codes it names (EP-004 and the 15 "Set in Order" cards) are confirmed absent from the live index. The mitigation described in the issue is still in place; the remaining work genuinely needs regenerated art, so `blocked-on-art` is the correct label, not a stale one.
+
+Ran preflight.py myself in the background: killed at the documented gate_tests sandbox hang (exit 143), but `cycle_signal.py --check` confirmed a clean partial-pass snapshot recorded moments earlier at this exact HEAD (combined_hash de3089d0, unchanged from many prior cycles), confirming every gate before gate_tests clean this cycle. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale/--next: 0 of 295 stale, 0 un-ledgered candidates, the lane still genuinely empty. Pulled all 10 open GitHub issues fresh via the API: unchanged, same labels, none moved since the last cycle; issue #42 still most recently updated 2026-10-25T02:59:51Z, no reply from Phil. git log since 17:00 UTC today: only Claude/github-actions commits, no Phil-authored push.
+
+No genuinely unblocked, non-Phil-gated item exists. Not re-pushing a notification: the last deliberate status push (issue #42, cadence/owner-gates) was 2026-10-24T16:1x:00Z, inside the 48h no-repeat floor, and nothing material changed since. Not starting anything backlog-sized in a 30-minute slot.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, scheduled operator cycle (18:5x slot, full 13-step routine): independently reconfirmed full exhaustion, no padding added
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only merge onto 51d798a50, clean. Read GOALS.md, BACKLOG-2026-09-07.md (sections 0-7 via a fork, to keep the huge file out of this session's own context), ROADMAP-2026-2029.md's three facts, CLAUDE.md, and the real head of this log, which already showed a long run of identical exhausted-state entries through today.
