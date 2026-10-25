@@ -1018,8 +1018,8 @@
     },
     "preflight.py": {
       "status": "fixed",
-      "date": "2026-10-24",
-      "note": "gate_owner_actions_history_not_oversized and gate_owner_actions_preamble_not_oversized both had a silent except ValueError: return that swallowed today's real rotate_owner_actions.py regression with no warning (CLAUDE.md 0.4, unchecked is not passing). Both now warn by name when the anchor cannot be parsed, guarded so a document with none of the gate's structural markers stays silent as before. Fail-then-pass proved directly."
+      "date": "2026-10-25",
+      "note": "Found and fixed the cycle_signal auto-record checkpoint sitting after gate_tests (never reached in this sandbox), moved an equivalent checkpoint before it; new test_gate_tests_cycle_signal_checkpoint.py, fail-then-pass proved against the real historical ordering."
     },
     "prerender_shop.py": {
       "status": "clean",
