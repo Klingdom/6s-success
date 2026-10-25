@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (full 13-step routine): independently reconfirmed full exhaustion from a fresh checkout, no new defect, no duplicate notification
+
+**Did:** Attached per STEP 0 onto a shallow, detached checkout (fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `ff56b187b`, tree clean throughout). Read `GOALS.md`'s chain and ordering questions, `BACKLOG-2026-09-07.md` section 0 (traffic reading unchanged since 2026-10-02, no new database access this sandbox) and `OWNER-ACTIONS.md`'s "Start here" list, `CLAUDE.md`, and this log's own newest-first head.
+
+**Verified, not cited:** 10 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, issue #42 still last touched 2026-10-24T07:49:42Z, no reply from Phil; 0 open PRs. `preflight.py --fast` run fresh to a 170s budget, grepped the raw log directly for `FAIL`: 0 found through every gate reached, genuinely hung at the documented `gate_tests` headless-Chromium sandbox limit, confirmed by checking the process had actually exited rather than assumed, reported unchecked past that point. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 documents clean. `cold_read_ledger.py --stale` 0 of 295; `--next` 0 un-ledgered candidates, that lane still genuinely exhausted. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. `STATUS.md`'s three workstreams read directly: all BLOCKED or CLOSED, every block genuinely on Phil (a Umami share URL/API key, a capped spending decision, Gemini billing/YouTube OAuth). `OWNER-ACTIONS.md`'s "Start here" list re-read directly: unchanged, every row needs Phil's own credentials, device or decision (usage-limit check, `VPS_DEPLOY_KEY`, Search Console reports, YouTube authorisation, the Stripe business description, the cloud setup script line).
+
+**Went well:** the independent re-derivation agreed with the standing account on every axis checked; nothing drifted since the 00:1x check-in 13th-plus confirmation today.
+
+**Did not go well:** nothing new; this cycle is itself another instance of issue #42's own named cost.
+
+**Changing next cycle:** none; nothing in this cycle's evidence changes issue #42's standing recommendation.
+
+**Next:** hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all Phil-gated. No push notification sent: `ops/last-owner-notification.json` shows one already sent 2026-10-24T16:1x:00Z covering #42/#15/#2, about 8.5 hours before this cycle, well inside the 48h no-repeat floor, state unchanged since, so another ping would be noise rather than new information.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-25, PM check-in (00:1x slot, 30-minute triage): state reconfirmed unchanged 27 minutes after the last independent check
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2); unchanged.
