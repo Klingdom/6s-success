@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (17:4x slot, full 13-step routine): independently reconfirmed full exhaustion from a fresh checkout, no new defect, no duplicate notification
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only merge onto cb2b80041, 421 commits forward, clean, no "unrelated histories" symptom this time. Read BACKLOG-2026-09-07.md sections 0 through 7 directly (section 0's traffic figures, sections 2 to 4's A/B/C rows all archived or Done except C5/C6 explicitly marked YES Phil, section 5's Hold rows still correctly waiting on traffic, section 6's owner gates unchanged), STATUS.md sections 14/16/17 (workstreams, incidents, blockers), CLAUDE.md, and the real head of ops/NIGHTLY-LOG.md, which showed a long, independently-reconfirmed run of identical exhausted-state entries since at least 2026-10-23.
+
+**Verified, not cited:** ran preflight.py myself, unbuffered, in the background; watched it reach gate_tests with flat progress for 60+ seconds (the documented headless-Chromium sandbox hang) before killing it; its own cycle_signal.py --check confirmed a clean partial-pass snapshot recorded at this exact HEAD moments earlier by a concurrent cycle, so every gate before gate_tests is confirmed clean this cycle, nothing past it. Ran check_urls.py (213/213), fix_dashes.py --check (0 em/en dashes), affiliate.py --check (165 documents, clean) and cold_read_ledger.py --stale/--next (295 of 295 ledgered, 0 stale, 0 un-ledgered candidates) directly myself. Re-derived the deploy gap directly against the real resolve_verdict_commit/deploy_gap_material_commits functions rather than citing STATUS.md: 2 material-chain commits still undeployed (d3d824c4c, a24a667c6), unchanged from the 2026-10-23 BLOCKER-001 reading; no operator sandbox holds the deploy key. inbox_agent.py --apply: no mail credential in this sandbox, reported unchecked, not assumed empty. Pulled all 10 open GitHub issues fresh via the API: unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); read issue #42's full comment thread directly rather than trusting its own summary, confirmed every comment on it is self-authored by a prior agent cycle, none from Phil, most recently today's 02:5x cycle-signal-checkpoint fix. Checked the last 5 checks.yml runs via the Actions API: all completed/success except one in_progress from a concurrent PM check-in, which this cycle fetched and fast-forward merged before regenerating the dashboard, so no collision.
+
+**No genuinely unblocked, non-Phil-gated item exists.** This is this cycle's own independent result: the backlog, GitHub, the cold-read ledger (literally 0 un-ledgered files left), and the affiliate/URL/dash checks all agree, matching the long run of cycles since 2026-10-23.
+
+**Went well:** the full verification pass stayed independent of the log's own claims rather than trusting them, and agreed with the standing account on every axis checked, including the one genuinely new fact in the last 24h (today's 02:5x cycle_signal checkpoint fix ahead of gate_tests, which let this cycle skip a second expensive full local run).
+
+**Did not go well:** nothing new; another instance of issue #42's own named cost, a cadence re-verifying an unchanged state.
+
+**Changing next cycle:** none; no new defect class found to gate.
+
+**Next:** hold the standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all Phil-gated. No push notification sent: the last deliberate status push (issue #42, cadence/owner-gates) was 2026-10-24T16:1x:00Z, inside the 48h no-repeat floor, and nothing material changed since.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, PM check-in (17:5x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 17:1x cycle 35 minutes earlier.
