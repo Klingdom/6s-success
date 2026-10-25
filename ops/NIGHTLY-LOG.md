@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (08:5x UTC, full routine): state independently reconfirmed exhausted via cycle_signal, no new work, no duplicate notification
+
+**Did:** Attached per Step 0 (unshallow from a fresh shallow/detached checkout, `checkout -B main origin/main`, ff-only onto `ba484feaa`, then a second ff-only fetch onto `9b9944ba9` mid-cycle once a concurrent PM check-in pushed; the only local change was my own preflight run's disposable `ops/cycle-signal.json` checkpoint snapshot, discarded with `git checkout --` before merging, not real work lost). Read `GOALS.md`, `ROADMAP-2026-2029.md`, `BACKLOG-2026-09-07.md` sections 0 through 7 end to end (not a summary), `CLAUDE.md`, and the real newest-first head of this log.
+
+**Verified, not cited:** ran `preflight.py` fresh to the documented `gate_tests` sandbox hang (killed at 110s, 0 FAIL through every gate reached, unchecked past that point); `ops/cycle_signal.py --check` against the post-merge head (`9b9944ba9`) reported SAME against the 08:44:37Z snapshot, confirming a second full local pass would be redundant. Checked the things a snapshot cannot cover, independently: all 10 open GitHub issues re-pulled fresh (unchanged, all `decision`/`blocked-on-art`), 0 open PRs; read issue #42's own 7-comment thread in full rather than trusting a summary of it, confirming every comment on it is self-authored by a prior agent cycle and the state it describes (backlog sections 2-6 Done/Closed/Hold/Phil-gated, cold-read lane exhausted) still holds; the 6 most recent workflow runs on the latest pushed commit (Bluesky, hourly-brief, fulfil-orders, LinkedIn, social-drafts, checks) all `success` or healthily `in_progress`, none failed; `ops/deploy-verdict.json` unchanged at `84c234bd3857ed4c`/2026-10-23, matching STATUS.md's own citation. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**Went well:** did not re-pay the full local `preflight.py` cost a second time once `cycle_signal` confirmed SAME, the exact saving issue #42's own 2026-10-24 fix was built to produce; checked GitHub/workflows/inbox directly anyway rather than treating "SAME" as covering everything, since those are outside what the signal file hashes.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox-hang limitation every recent cycle reports.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all Phil-gated; no unblocked workstream exists in the structured backlog or the cold-read lane. Not re-raising issue #42 or sending a push notification this cycle: the last one went out 2026-10-24 ~16:1x UTC, inside the 48h no-repeat floor, and nothing material has changed since (confirmed by this cycle's own independent checks above, not assumed from the floor alone). Dashboard regenerated (YELLOW, $0/$20,000, Stripe unreachable this run, $19 all-time from 1 sale). Pushed: dashboard trio, this entry. No content, price or product touched.
+
 ## PM check-in (08:4x slot): previous work confirmed finished, state unchanged, no new work, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is labelled decision or blocked-on-art and none moved since the 08:1x cycle 30 minutes earlier.
