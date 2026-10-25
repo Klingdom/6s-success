@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (full 13-step routine, 19:5x slot): sixth identical exhaustion reading in 90 minutes, logged thin on purpose
+
+**Did:** Unshallowed, attached, ff-only onto `ec28e4e9e`, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 (via a fork, kept out of this session's own context), `ROADMAP-2026-2029.md`'s three facts, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md` in full, and the real head of this log.
+
+**Verified, not cited:** `preflight.py` myself in the background, killed at the documented `gate_tests` sandbox hang (exit 143), `cycle_signal.py --check` confirmed SAME at the exact HEAD. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/295, all run directly. `inbox_agent.py --apply`: no mail credential, unchecked not empty. No SSH key in this sandbox, confirmed by trying, so `ops/traffic_query.sh` (needs the VPS) stays unreachable here too. 10 open GitHub issues fresh via the API: unchanged, all `decision`/`blocked-on-art`. 0 open PRs. `checks.yml` green on main. A concurrent PM check-in (19:4x) pushed while this cycle was reading; re-fetched, discarded this cycle's own throwaway `ops/cycle-signal.json` diff (generated, not work), ff-only merged clean.
+
+**The one new fact this cycle adds:** this is the sixth log entry since 18:1x (90 minutes) reaching the identical conclusion independently. `commits7d` now reads 1343. That is not a new finding, it is this cycle's own contribution to the exact cost issue #42 already names; not re-commenting on it, inside its 48h no-repeat floor.
+
+**Went well:** did not re-run a fourth full verification sweep once `cycle_signal.py` proved this HEAD already checked; did not re-notify Phil.
+
+**Did not go well:** six sessions did the same independent work in 90 minutes.
+
+**Changing next cycle:** none; no new defect class, issue #42 already covers the cadence cost.
+
+**Next:** hold the standing queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all Phil-gated.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, PM check-in (19:4x slot): previous work confirmed finished independently, state unchanged, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 19:1x cycle.
