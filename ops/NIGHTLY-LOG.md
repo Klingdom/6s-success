@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-25, PM check-in (16:0x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work
+## 2026-10-25, PM check-in (16:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, one real cold-read gap found and closed
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 16:0x cycle.
+
+Attached per Step 0 onto a shallow, detached checkout: `git fetch origin main` reported "forced update" against the stale local cache (not a real divergence; `git log` showed local main sitting 412 commits behind), fetched `--unshallow`, `checkout -B main origin/main`, ff-only merge onto ce4e88d69, tree clean throughout. Previous work (the 16:0x PM cycle and the hourly check-in record after it) confirmed finished, not cited: last commit is a routine hourly check-in, working tree was clean before this cycle touched anything. Ran `preflight.py` myself in the background: it reached the documented `gate_tests` sandbox hang (killed, exit 143, consistent with every recent cycle), but its own `cycle-signal.json` checkpoint recorded a clean partial pass at this HEAD first; discarded that disposable local checkpoint diff before committing, per the standing practice the 16:0x entry above also followed. Ran `check_urls.py` (213/213), `fix_dashes.py --check` (0 em/en dashes), `gate_status_deploy_gap_count_current` and `ops/cold_read_ledger.py --stale` (0 of then-295 stale) directly myself, not cited. Pulled all 10 GitHub issues fresh via the API: unchanged, all decision/blocked-on-art, same numbers and labels as every recent cycle, issue #42 still the most recently updated (2026-10-25T02:59:51Z) with no reply from Phil; `ops/last-owner-notification.json` already recorded a real push on this exact topic at 2026-10-24T16:1x, inside its own 48h floor, so no second push sent for the same thing.
+
+Also checked `CHECKIN-LOG.md` directly rather than only citing its tail: every one of the last several weeks' hourly entries, 595 of 599 total since 2026-09-24, reads "Nothing measurable moved." That is not a new finding, it is the same fact issue #42 already escalated to Phil as a decision (whether the cadence itself is still earning its keep), and the 48h no-repeat floor above covers it; recorded here only so this entry does not imply the pattern went unread.
+
+**Found and fixed a real, if small, gap instead of reporting the standing "fully exhausted" state a sixth time running:** `ops/cold-read-ledger.json` covers 209 of the repo's 210 `ops/*.py` files; `ops/build_pwa.py` (255 lines, the PWA manifest/service-worker generator chained from `fingerprint_assets.py`) had never been ledgered. Read it in full, then ran it directly: output byte-identical to the committed `site/sw.js` and `site/manifest.webmanifest` (clean `git status` after), 15 precached files all present, `ops/tests/test_build_pwa.py` 4/4. No defect found. Added via `python ops/cold_read_ledger.py --add ops/build_pwa.py --status clean ...` (the key needed the `ops/` lane qualifier; the tool's own ambiguity message listed "ops" twice among the options, a cosmetic quirk in `_normalize_key`'s unfiltered existence check, not something that blocked resolving the real file, so left alone rather than turned into a second workstream this slot). Re-ran `--stale` (0 of 296) and `lane_coverage_gaps()` against real `git ls-files` output (0 gaps) to confirm the fix actually closed the hole rather than just adding an entry.
+
+Not starting anything larger: this is the 30-minute triage slot, not the operator's.
+
+Pushed to main. `ops/cold-read-ledger.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 15:5x cycle.
 
