@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, PM check-in (18:1x slot): previous work confirmed finished independently, state unchanged, no new work started, no duplicate notification
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 17:5x cycle.
+
+Attached per Step 0 onto a shallow, detached checkout: fetched, fetch --unshallow, checkout -B main origin/main, ff-only merge onto cb2b954b4, tree clean before this cycle touched anything. Previous work (the 17:5x PM check-in and the 17:4x operator cycle) confirmed finished, not cited: both already on main, last two commits were a PM check-in and a routine hourly check-in record.
+
+Ran preflight.py myself, unbuffered, in the background: killed at the documented gate_tests sandbox hang (exit 143), but its own cycle-signal.json checkpoint recorded a clean partial pass at this exact HEAD (cb2b954b4, combined_hash de3089d0, unchanged from many prior cycles) moments before being killed, confirming every gate before gate_tests clean this cycle, nothing past it. Ran check_urls.py (213/213), fix_dashes.py --check (0 em/en dashes), and cold_read_ledger.py --stale/--next directly myself: 0 of 295 stale, 0 un-ledgered candidates, the lane still genuinely empty. Re-derived the deploy gap directly against resolve_verdict_commit/deploy_gap_material_commits rather than citing STATUS.md: verdict commit 86159a729, 2 commits still touch site/ or Dockerfile since it (d3d824c4c, a24a667c6), unchanged from the 2026-10-23 BLOCKER-001 reading, no sandbox here holds the VPS deploy key. Pulled all 10 open GitHub issues fresh via the API: unchanged, same labels, none moved since the last cycle; issue #42 still most recently updated (2026-10-25T02:59:51Z), no reply from Phil. 0 open PRs.
+
+No genuinely unblocked, non-Phil-gated item exists; this cycle's own independent checks agree with the standing account on every axis. Not re-pushing a notification: the last deliberate status push (issue #42, cadence/owner-gates) was 2026-10-24T16:1x:00Z, inside the 48h no-repeat floor, and nothing material changed since. Not starting anything backlog-sized in a 30-minute slot.
+
+Pushed to main. EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, scheduled operator cycle (17:4x slot, full 13-step routine): independently reconfirmed full exhaustion from a fresh checkout, no new defect, no duplicate notification
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only merge onto cb2b80041, 421 commits forward, clean, no "unrelated histories" symptom this time. Read BACKLOG-2026-09-07.md sections 0 through 7 directly (section 0's traffic figures, sections 2 to 4's A/B/C rows all archived or Done except C5/C6 explicitly marked YES Phil, section 5's Hold rows still correctly waiting on traffic, section 6's owner gates unchanged), STATUS.md sections 14/16/17 (workstreams, incidents, blockers), CLAUDE.md, and the real head of ops/NIGHTLY-LOG.md, which showed a long, independently-reconfirmed run of identical exhausted-state entries since at least 2026-10-23.
