@@ -1,14 +1,14 @@
 {
-  "combined_hash": "5575d427357a841268baab91b54108464ff78aa055f00054f793948bdfd79d3e",
-  "git_head": "fb7c02d3be7ea48e0e6fd1d3170f39cef2242501",
-  "note": "preflight fast clean (0 FAIL, hung at gate_tests sandbox limitation as documented), check_urls 213/213, affiliate 165 docs clean, fix_dashes 0/0, cold_read_ledger 0 stale, 10 GitHub issues unchanged, no mail credential, no Phil commit since a791b54c4 (2026-10-22), last-owner-notification ~46h old (under 48h floor, none sent)",
-  "recorded_at": "2026-10-24T11:52:00Z",
+  "combined_hash": "7af75e4d97a41edb1e43c396639691d8eb573a8b2d078b961ae540f0aca3a2b5",
+  "git_head": "efbba7bad76948afd22d3ea5357ad6a7aea59ccd",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD efbba7bad7",
+  "recorded_at": "2026-10-25T02:53:40Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "c6c04a4a3ff382f9e08581e2ad05930eda6b6440bace7f50ef3ccfaa80dfae07",
+    "BACKLOG-2026-09-07.md": "a6b6dd867957dfd8d30a63922eedfdfe78f49f7ea99fb0309fb84def7aa75d02",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "30079132d4d658b448f9f8a0ba968474c09fd72a404651a6e16bf1315bbb091b",
     "OWNER-ACTIONS.md": "cc95e4c971cd32e6ffa39e686de47e5602cd032040e37810c0a0f2251d095ac3",
-    "STATUS.md": "e172a25e928d8c8fc5e3dad5f458aec52ca491307c3b12bb43a0652247e6cf12",
+    "STATUS.md": "f0f053aaf33fd9d2c1a8a0c140968ee0ac3ecb9934e1c3103533c11f175ceef6",
     "ops/deploy-verdict.json": "efa5c8bbb9ac4086f55b1c5332e2f1357a1776e7421a4781156790034e1d0ffc"
   }
 }

@@ -31074,6 +31074,30 @@ def main() -> int:
     run_gate(gate_deck_article_grammar)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
+
+    # Found 2026-10-25: the cycle_signal recording call at the bottom of
+    # this function (added 2026-10-19 to stop cycles paying for the CHANGED
+    # path for free) sits after gate_tests, which this sandbox has hung on
+    # every single run since. The process is SIGKILLed there, so that call
+    # has never once executed locally, and nobody noticed because the only
+    # symptom is "no benefit from a tool that looks like it should be
+    # helping" rather than an error. Same root cause as the three
+    # not-oversized gates moved ahead of gate_tests on 2026-10-21: this one
+    # is pure file hashing, no browser, no network, so it belongs here too.
+    # One push's worth of cycles that day reached "fourteenth exhaustion
+    # confirmation" before any of them got a snapshot to actually skip the
+    # work. This checkpoint only records when every gate reached so far
+    # passed; the note says plainly that gate_tests and everything after it
+    # was not reached, the same qualifier every NIGHTLY-LOG entry already
+    # uses in prose. The end-of-run call below still fires on a sandbox
+    # that reaches it (CI does), overwriting this with the fuller note.
+    maybe_record_cycle_signal(
+        FAIL,
+        note=(f"partial pass: every gate before gate_tests passed, "
+              f"gate_tests and everything after it not reached this run "
+              f"(cycle_signal checkpoint, not a full preflight pass), "
+              f"git HEAD {cycle_signal.git_head()[:10]}"))
+
     run_gate(gate_tests)
     run_gate(gate_conflict_markers)
     run_gate(gate_no_duplicate_html_close)
@@ -31422,7 +31446,7 @@ def main() -> int:
     return 0
 
 
-def maybe_record_cycle_signal(fail_list: list) -> bool:
+def maybe_record_cycle_signal(fail_list: list, note: str = None) -> bool:
     """Record a fresh cycle_signal.py snapshot, but only on a genuinely
     clean pass (fail_list empty).
 
@@ -31436,15 +31460,23 @@ def maybe_record_cycle_signal(fail_list: list) -> bool:
     on a cycle remembering a step no prompt asks for. A run with any FAIL
     must never record: that would mark a broken tree as the trusted
     baseline every later cycle skips re-checking.
+
+    2026-10-25: also called from a checkpoint before gate_tests (see
+    there), with its own `note` describing the narrower, partial-pass
+    scope, since this sandbox never reaches the call below this
+    docstring. Whichever call runs last wins, which is correct: a sandbox
+    that reaches the full end of main() overwrites the partial note with
+    the complete one.
     Returns True if a snapshot was written, for the test to assert on.
     """
     if fail_list:
         print("  cycle_signal: not recorded, this run has failing gate(s)")
         return False
+    if note is None:
+        note = (f"auto-recorded by preflight.py's own clean completion, "
+                f"git HEAD {cycle_signal.git_head()[:10]}")
     try:
-        cycle_signal.record(
-            f"auto-recorded by preflight.py's own clean completion, "
-            f"git HEAD {cycle_signal.git_head()[:10]}")
+        cycle_signal.record(note)
         print("  cycle_signal: snapshot recorded (clean pass)")
         return True
     except Exception as e:
