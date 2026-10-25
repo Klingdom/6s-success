@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-25 02:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-25 03:01 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-10-25 02:54 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-10-25 02:56 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 10 (2 P0, 2 blocked on art, 8 need your call) |
 | Closed to date | 32 |
-| Commits (7 days) | 1362 of 8583 total |
+| Commits (7 days) | 1364 of 8585 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `e648212b8` Move cycle_signal checkpoint ahead of gate_tests in prefligh |
+| Last commit | `ed8fd30ca` Nightly log entry and command deck refresh for the cycle_sig |
 
 ## Product readiness
 
