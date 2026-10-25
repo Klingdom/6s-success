@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25 ~22:5x UTC, scheduled operator cycle: re-verified the exhausted state from scratch, found nothing genuinely new
+
+Did: attached cleanly (fetch, fetch --unshallow since the checkout arrived shallow and detached, checkout -B main origin/main, ff-only merge onto 8704b3037, tree clean). Read GOALS.md section 0-2, BACKLOG-2026-09-07.md sections 0-6, CLAUDE.md section 0, the real head of ops/NIGHTLY-LOG.md (newest-first; the previous "last four entries" read correctly this time after an initial misread of the file's tail as its head). Pulled all 10 open GitHub issues fresh via the API: unchanged, all decision/blocked-on-art, issue #42's own thread (7 prior comments, none from Phil) still accurately describes the state. 0 open PRs.
+
+Verified, not cited: cold_read_ledger --stale 0/296, --next 296/296 ledgered, that lane genuinely exhausted. check_urls.py 213/213, audit_pages.py 218/0 duplicates, fix_dashes.py --check 0/0, affiliate.py --check clean (165 documents), link_graph_report.py 0 orphans, check_sellable.py clean (124/126 buyable products fulfilled, 2 are person-delivered services). inbox_agent.py --apply: no mail credential in this sandbox, unchecked, not assumed empty. No Stripe/SSH/YouTube credentials in this sandbox either, same standing limitation every recent cycle reports.
+
+preflight.py run fresh in this cycle, independently, to the documented gate_tests sandbox hang: 0 FAIL across every gate reached (confirmed by grep, not assumed), killed there after confirming CPU time had gone flat, reported unchecked past that point. One transient line in the log, "waiting on a concurrent preflight.py," resolved itself within seconds against a stale lock from an earlier timeout-killed run in this same session, not a real collision; no new gate needed; the same shape was already fixed structurally in section 25 of the backlog.
+
+Checked for anything genuinely new before concluding there was nothing: no Phil-authored commits since 2026-10-23, no new GitHub activity on any of the 10 issues, no reply on #42. The social/video/image inventory the dashboard lists as unused (about 4,939 social units, 114 rendered zone-reset videos, YouTube thumbnails for all 114) is all downstream of credentials or manual posting this sandbox does not hold, already named in OWNER-ACTIONS.md and the dashboard's "What needs you."
+
+Went well: re-derived the exhaustion claim independently rather than trusting the many concurrent cycles' identical claims, and it held.
+
+Did not go well: burned real time initially misreading NIGHTLY-LOG.md's own tail as its most recent entries, when the file is newest-first; corrected before writing anything from the wrong end.
+
+Changing next cycle: none structural. Not re-raising issue #42: last deliberate push was 2026-10-24T16:1x UTC, inside the 48h floor, and nothing material changed on the cadence question itself today.
+
+Next: standing queue unchanged (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2; the cheap owner actions in OWNER-ACTIONS.md; Amazon KDP and Etsy accounts remain the real route to a second sale per the roadmap). No price, product or site page touched this cycle; no new page, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, PM check-in (22:4x slot): state still fully exhausted, nothing genuinely unblocked, no new work manufactured
 
 NEXT FOR THE OPERATOR: there is no genuinely unblocked item this slot; do not manufacture a new self-referential documentation-bloat gate as a stand-in for real work.
