@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (02:xx UTC slot): full exhaustion independently reconfirmed from a fresh checkout, no new defect, no notification sent
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch origin main, unshallow, `checkout -B main origin/main`, ff-only merge onto `713d9c25f`, 297 commits fast-forwarded, tree clean throughout). Read `BACKLOG-2026-09-07.md` section 0 and section 1 (traffic figure still unchanged since 2026-10-02, no new database access this sandbox; recent items all Done, Closed, or archived), `CLAUDE.md`, and the newest-first head of this log (dozens of same-day entries, all reporting the same exhausted state).
+
+**Verified directly, not cited:** 10 open GitHub issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, issue #42 (the cadence-cost decision itself) still last touched 2026-10-24T07:49:42Z, no reply from Phil; 0 open PRs. `preflight.py --fast` run fresh to a 170s budget, grepped the raw log directly for FAIL: 0 found through every gate reached, genuinely hung again at the documented `gate_tests` headless-Chromium sandbox limit (this sandbox's egress proxy also refuses direct connections to `6s-success.com:443`, consistent with the documented limit), reported unchecked past that point, not assumed passing. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0 stale, re-run directly after an initial 30s timeout was raised. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. `ops/last-owner-notification.json` re-read directly: last push sent 2026-10-24T16:1x:00Z covering #42/#15/#2, about 9.6 hours before this cycle, well inside the 48h no-repeat floor, state unchanged since, so no push sent.
+
+**Went well:** the independent re-derivation agreed with the standing account on every axis checked; nothing drifted since the last several cycles today.
+
+**Did not go well:** nothing new; this cycle is itself another instance of issue #42's own named cost (a scheduled cadence re-verifying an unchanged, fully owner-gated state).
+
+**Changing next cycle:** none; nothing in this cycle's evidence changes issue #42's standing recommendation.
+
+**Next:** hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all Phil-gated. No new work started: inventing busywork now would be the exact pattern issue #42 is open about.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-25, PM check-in (01:1x slot, 30-minute triage): previous work confirmed finished, state unchanged, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none has moved since the last cycle checked 20 minutes ago.
