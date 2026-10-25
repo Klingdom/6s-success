@@ -21729,6 +21729,63 @@ def gate_owner_actions_closed_items_rotated() -> None:
              % due_bytes)
 
 
+def gate_owner_actions_gemini_billing_not_oversized() -> None:
+    """OWNER-ACTIONS.md's item 1b ("Turn on Gemini API billing") must not
+    be carrying a regrown card-hero/zone-hero correction-on-correction
+    chain, or a zone table row for a hero already fixed.
+
+    Found 2026-10-25, scheduled operator cycle: gate_living_docs_total_
+    size_tripwire warned this file at 131688 bytes, but neither gate_
+    owner_actions_history_not_oversized nor gate_owner_actions_closed_
+    items_rotated above fired, because neither touches item 1b. ops/
+    rotate_owner_actions.py's own docstring names this exact item as
+    "correctly left alone... splitting that safely is a different,
+    larger job, left for a future cycle exactly as this one was." This
+    is that cycle: item 1b had grown a dated chain of "Corrected"/
+    "Correction to the correction" paragraphs narrating a changing count
+    of broken images (12 then 7 card heroes; 30, 8, 4, 7, then 3 zone
+    heroes) with no single current reading, plus a "what the image must
+    show" table still listing four zones already fixed on 2026-09-17.
+    ops/rotate_owner_actions_gemini_billing.py now archives that chain
+    and those rows, verified against the live ops/card-hero-verdicts.json
+    and ops/hero-verdicts.json counts rather than trusted; this gate is
+    what stops it being a one-time cleanup that quietly regrows, the
+    same role its siblings above already play for their own spans.
+
+    A WARNING, not a FAIL: a long correction chain wastes a later
+    cycle's reading time, it does not ship anything broken to a
+    customer.
+
+    Proof this can fail: ops/tests/test_gate_owner_actions_gemini_
+    billing_not_oversized.py builds a synthetic OWNER-ACTIONS.md with a
+    regrown chain and asserts this gate warns, then confirms a freshly
+    rotated copy, and the real committed file, both stay silent.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_owner_actions_gemini_billing as roagb
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, archived_blocks = roagb.plan_rotation(text)
+    except ValueError as e:
+        warn("owner-actions-gemini-billing-not-oversized",
+             "could not check OWNER-ACTIONS.md's item 1b for a regrown "
+             "correction chain: %s. Unchecked is not passing (CLAUDE.md "
+             "0.4): this means an anchor rotate_owner_actions_gemini_"
+             "billing.py searches for has gone stale, most likely "
+             "because another edit changed the text it is tied to." % e)
+        return
+    if archived_blocks:
+        total = sum(len(c.encode("utf-8")) for _, c in archived_blocks)
+        warn("owner-actions-gemini-billing-not-oversized",
+             "OWNER-ACTIONS.md's item 1b has %d bytes across %d "
+             "block(s) due for rotation (a regrown correction chain, a "
+             "stale claim, or a resolved zone table row). Run `python "
+             "ops/rotate_owner_actions_gemini_billing.py --apply`."
+             % (total, len(archived_blocks)))
+
+
 def gate_backlog_done_table_not_oversized() -> None:
     """BACKLOG-2026-09-07.md's "Done this week, for the record" table
     must not be carrying more than a generous buffer past ops/rotate_
@@ -30982,6 +31039,7 @@ def main() -> int:
     run_gate(gate_owner_actions_history_not_oversized)
     run_gate(gate_owner_actions_preamble_not_oversized)
     run_gate(gate_owner_actions_closed_items_rotated)
+    run_gate(gate_owner_actions_gemini_billing_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
     run_gate(gate_status_production_table_rows_not_oversized)

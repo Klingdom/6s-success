@@ -4,6 +4,179 @@
 
 ---
 
+### Gemini billing, card/zone hero counts, archived 2026-10-25
+
+**What it is costing right now, measured 2026-09-08.** This gate is not only
+holding back future pictures. It is visible in the product today.
+
+Twelve of the 88 reviewed card heroes were rejected in art review, correctly, for
+garbled labels and distorted objects. The card still renders without one: it
+prints a placeholder glyph where the photograph goes. Those twelve cards are in
+`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf`, the free ungated download
+linked from `deck.html` and `deck-gallery.html`. EE-002 "Rainstorm" is on page 1
+of it, confirmed by matching all 178 images embedded in that PDF.
+
+On those same two pages, the gallery shows Rainstorm as a photographic card with
+five numbered callouts, because the gallery is built from a separate source. So a
+visitor browses illustrated cards, downloads the deck, and finds that one card in
+seven has no picture. That download is the top of this funnel and the first thing
+a stranger is asked to take.
+
+**Correction, 2026-09-11, this operator, against GitHub issue #2's own last two
+comments and commits `cc6e68e7`/`6a10e6af`: the twelve card heroes are not
+behind this gate at all, and have not been since 2026-08-30.**
+`ops/generate_card_heroes.py` generates them locally through
+`ops/image_local.py` (SDXL on your machine), the same free path as the zone
+heroes, not the paid Gemini API this section is about. What actually stopped
+all twelve, silently, since 2026-08-30: `image_local.py`'s pipeline load hung
+online instead of using the fully-cached local model, and the probe/exception
+handling could not see a native crash, so every run looked like nothing to do
+rather than a failure. Both defects are fixed. The real, current blocker is
+that the load itself dies for lack of free system RAM on your machine at the
+moment you run it (measured: it failed with 2.0 of 15.8 GB free, and a load
+needs headroom neither a browser tab count nor a VRAM check will show you).
+This needs no billing, no decision and no art call, only running
+`python ops/generate_card_heroes.py --run` on your machine when it is
+otherwise idle. See issue #2 for the exact twelve stems.
+
+**Correction to the correction, later on 9 September 2026. I was wrong, and
+the way I was wrong is the one this repository keeps paying for.**
+
+I wrote below that the seven zone pages are blocked on model capability rather
+than on money, because I regenerated all seven locally and `ops/accept_image.py`
+rejected five of them. Then I kept running the reviewer and it started returning
+HTTP 429: "You exceeded your current quota, please check your plan and billing
+details."
+
+The reviewer uses the Gemini vision API. The free quota ran out partway through
+my own batch. So some of those verdicts were real and some were a blind tool
+reporting confident findings, and I cannot now tell which is which, because the
+quota is spent. The two runs I recorded as "no verdict" were the tool dying, not
+an inconclusive review.
+
+What is actually true: GENERATION is free and local, and REVIEW is not. Zone
+heroes come from SDXL Turbo on this machine at about nine seconds each, but
+nothing can judge them without the same billing this action is about. So the
+seven are behind this gate after all, at the review step rather than the
+generation step, and the count below stands at thirty.
+
+One thing I did verify with my own eyes rather than the tool, and it is worth
+keeping: the nursery hero can be fixed. Its prompt put the negation in the
+positive prompt, "a bare white fitted sheet only, no blankets or toys", and
+diffusion models tend to draw what the words name. Moving that to the negative
+prompt produced a crib with a genuinely bare mattress on the first try. Two of
+the 114 zone prompts carry a negation like that.
+
+**Superseded: seven of the thirty are NOT this gate.** Zone
+heroes do not use the paid API at all. `ops/generate_zone_heroes.py` runs SDXL
+Turbo locally through `ops/image_local.py`, on the RTX 2070 SUPER in this
+machine, and the model is already downloaded. I regenerated all seven rejected
+zone heroes today: 1 minute, about 9 seconds each, zero dollars.
+
+They still failed. `ops/accept_image.py` reviewed them and rejected five, with
+two returning no verdict, for the same reason they were rejected the first time:
+the model produces a pretty room but not the SPECIFIC standard each zone
+teaches. The clearest case is the nursery. The zone's own "what done looks like"
+says "a bare mattress with one fitted sheet pulled tight to the corners", and
+the generated crib had a pillow in it. Publishing that would have put a picture
+of the wrong thing on a page telling parents to do the opposite, on a
+safety-critical subject, and the review caught it as a hard fail on the primary
+object.
+
+So the seven zone pages are blocked on model capability, not on your credit
+card, and enabling billing will not fix them by itself. The originals are back
+in place and every one of the 114 verdict shas matches its image again, so the
+bookkeeping is intact.
+
+**Corrected 2026-09-11: billing does NOT buy the twelve card heroes either**
+(see the correction above the table below), so of the thirty surfaces counted
+2026-09-09, only the eleven room chapters actually need this gate. Nineteen of
+the thirty need nothing from you at all: twelve need a local retry on your own
+machine when it has free RAM, and seven are blocked on model capability, not
+money, per the correction above.
+
+**Correction, 2026-09-11, this operator: an eighth zone joined the "no
+picture" list, for a reason none of the other seven share.** The other seven
+were rejected because the model could not draw what the zone's own standard
+names (a rule, a place, no single object). This one, `kitchen--primary-prep-counter`,
+was wrongly marked "ok": the approved image shows a butcher block counter
+covered in bowls, a cutting board, produce and a vase of flowers, directly
+contradicting the zone's own done_looks_like ("holding only the board, the
+knife block or strip, and the salt... no fruit bowl... anywhere on the
+surface"). Found reading the live app, not the review tool; withdrawn, and a
+hand written subject added to `ops/hero-subjects.json` so a future local
+regeneration run has one. Still free, still local, still nothing from you but
+a retry when your machine has RAM free. Counts below now say 31 and 8 rather
+than 30 and 7.
+
+**Thirty-one customer-facing surfaces currently have no picture; only eleven
+of them need this gate.** Counted 2026-09-09, corrected 2026-09-11: 12 blank
+cards in the free print-and-play deck (now understood as a local retry, not a
+billing question), 11 room pages (still genuinely behind Gemini billing), and
+8 zone pages that turn out to be a different problem (see the correction
+above). Eleven is the honest number this specific action buys.
+
+**Corrected 2026-09-30, this operator, the same finding as the correction
+further down this section:** the "31" total is stale on the zone half. It
+was already 3, not 8, as of 2026-09-17, and since 2026-09-27 none of them
+count as "no picture" at all, only as "no photograph" (they carry an honest
+text panel). The 11 room pages and the 12 print-and-play cards in this count
+are unaffected and still current, per their own sections. Eleven still holds
+as the number this gate buys, unchanged.
+
+The room eleven are not a separate problem: the nine room pages that DO have art
+are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
+eleven without are chapters 40 to 50, which have none. `gate_pages_missing_art`
+names the zone and room pages every run; `gate_deck_download_has_art` names the
+cards.
+
+**As of 2026-09-09 and 2026-09-11, eight zone pages shipped with no picture
+at all** (superseded below; this is history, not a current reading).
+`build_zone_pages.py` refused to show a hero the art
+review marked "no", which was correct, so those pages carried no image whatsoever:
+family room board game zone, home office file storage, home office printer
+station, kitchen primary prep counter, mudroom family hook zone, nursery crib
+and sleep zone, primary bathroom under-sink cabinet, workshop material rack.
+Each is a 2,600 word instruction page with nothing to look at, on the surface
+this business is trying to be found on. They are the "Zone hero gaps,
+measured, 8 images" line in the table below, which is 31 cents at Flash
+prices, though none of them actually need Flash: all eight are free local
+retries. `gate_zone_pages_have_art` named them every run at the time
+(renamed/superseded since, see the correction below: the live gate is
+`gate_pages_missing_art`).
+
+### Gemini billing, zone hero row recount (2026-09-07), archived 2026-10-25
+
+**Corrected 2026-09-07, this operator, checked against `ops/hero-verdicts.json`
+directly rather than trusting this row.** The zone hero row above had read 4
+since 2026-09-04. The verdicts file holds 7 zones marked "no", not 4, and two
+of the seven (`mudroom--family-hook-zone`, `nursery--crib-and-sleep-zone`) had
+no hand written subject waiting in `ops/hero-subjects.json` at all, so working
+the old four-item list would have left three zones permanently textless with
+nothing to flag it. Both missing subjects added, table below now lists all
+seven. I am not authorised to enable billing, because that is a payment
+method on your account.
+
+### Gemini billing, stale 'empty folder' claim, archived 2026-10-25
+
+**What is blocked behind it right now:** card art for all 89 Entryway cards
+(that folder is empty, so cards render with stock photography), the zone hero
+gaps, imagery for the web app, and any new micro zone deck.
+
+**The zone hero row above was corrected 2026-09-04 from 114 to 4, then to 7
+on 2026-09-07 against the verdicts file itself.** 107 of the 114 zone heroes
+are generated, reviewed, approved and live on their pages right now. Seven
+were rejected on review, each for a real reason, and each now has a hand
+written prompt waiting in `ops/hero-subjects.json`, so this is seven images
+and well under a dollar, not a hundred and fourteen:
+
+### Gemini billing, resolved zone table rows, archived 2026-10-25
+
+| Family Room, Board Game and Puzzle Zone | `/zones/family-room-the-board-game-and-puzzle-zone` | six board game boxes stacked flat on a wooden shelf. The rejected render is a bookshop wall of paperbacks, no game boxes at all |
+| Mudroom, Family Hook Zone | `/zones/mudroom-the-family-hook-zone` | two coats and one bag hung on a labelled wall hook column, mounted low, bare floor beneath |
+| Nursery, Crib and Sleep Zone | `/zones/nursery-the-crib-and-sleep-zone` | a crib with a bare white fitted sheet only, no blankets or toys, monitor cable clipped high on the wall |
+| Primary Bathroom, Under Sink Cabinet | `/zones/primary-bathroom-the-under-sink-cabinet` | an open cabinet under a sink with two plastic bins and a pipe |
+
 ### Last measured, archived 2026-10-24
 
 (1.6 a day), flat on the 48/119 of three days

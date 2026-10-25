@@ -1166,6 +1166,11 @@
       "date": "2026-10-24",
       "note": "Read cold 2026-10-24 PM check-in (07:4x). Archives OWNER-ACTIONS.md items whose own header already declares them DONE/WITHDRAWN/Superseded/duplicate, leaving a one-line pointer; refuses on partial/non-contiguous spans rather than guessing. --check confirms CLEAN (already applied this same cycle by its own author). No defect found."
     },
+    "rotate_owner_actions_gemini_billing.py": {
+      "status": "clean",
+      "date": "2026-10-25",
+      "note": "authored and verified this cycle: archives item 1b's superseded correction chain and resolved zone table rows, fail-then-pass proved in test_gate_owner_actions_gemini_billing_not_oversized.py"
+    },
     "rotate_status_history.py": {
       "status": "fixed",
       "date": "2026-10-24",

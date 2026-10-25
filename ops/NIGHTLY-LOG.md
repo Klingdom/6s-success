@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25 ~22:1x UTC, scheduled operator cycle: OWNER-ACTIONS.md item 1b's correction chain cold-read and archived, the first prunable chain found behind this cycle's living-docs tripwire warning
+
+Did: unshallowed and attached cleanly onto fcdab5a5f, no shallow-clone symptom. Re-verified rather than cited: all 10 GitHub issues unchanged via a fresh API pull; KDP and Etsy packages both re-run live, 0 FAIL each; inbox unchecked, no mail credential in this sandbox. `preflight.py` warned all four tracked living docs over their size tripwire. Ran every existing rotate tool for them (`rotate_owner_actions.py`, `rotate_owner_actions_closed_items.py`, `rotate_status_workstreams.py`, `rotate_status_history.py`, `rotate_backlog_closed.py`, `rotate_backlog_done_items.py`): all CLEAN, so the overage sat outside their known chains. Cold-read OWNER-ACTIONS.md item 1b (Gemini billing) and found a non-chronological correction-on-correction chain plus a false claim ("that folder is empty") and four already-fixed zone-table rows, none covered by an existing tool.
+
+Verified: checked the chain's claims against `ops/card-hero-verdicts.json` (7 missing, matches) and `ops/hero-verdicts.json` (3 rejected, matches) directly rather than trusting its own words. Built `ops/rotate_owner_actions_gemini_billing.py` and `gate_owner_actions_gemini_billing_not_oversized`, fail-then-pass proved. `OWNER-ACTIONS.md` 131688 to 121685 bytes, still over tripwire, honestly reported rather than forced. Every pre-existing OWNER-ACTIONS test and `gate_owner_actions_zone_art_citation_current` re-run clean. Full `preflight.py` re-run, 0 FAIL before the documented `gate_tests` sandbox hang. Dashboard regenerated.
+
+Went well: checking the chain against live verdict files caught a stale, false claim the chain's own corrections had never touched.
+
+Did not go well: a concurrent PM check-in's push to `ops/cycle-signal.json` collided with this cycle's; resolved by normal merge, nothing lost. Three of four oversized living docs still untouched.
+
+Changing next cycle: none structural. Not re-raising issue #42 (still inside its 48h floor, nothing material changed on the cadence question itself).
+
+Next: STATUS.md, CHECKIN-LOG.md and BACKLOG-2026-09-07.md each still warn on the same tripwire; each needs its own cold read for its next prunable chain. Standing queue otherwise unchanged (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2; KDP/Etsy accounts the real route to a second sale).
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, PM check-in (21:4x slot): previous work confirmed finished independently, state still fully exhausted, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 21:1x cycle.
