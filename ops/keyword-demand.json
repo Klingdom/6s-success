@@ -18557,7 +18557,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/hall-closet-the-linen-shelf-zone.html",
+      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -51628,6 +51628,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-23T17:29:01Z",
-  "scored_against_commit": "2140c7f83"
+  "scored_at": "2026-10-25T23:55:58Z",
+  "scored_against_commit": "4b0a6b276"
 }

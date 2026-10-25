@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle: a real global-keyword mis-attribution fixed, the exhausted-cadence finding reconfirmed and left to issue #42's own 48h floor
+
+**Did:** Attached cleanly (unshallow, ff-only onto origin/main, 464 commits). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md and CHECKIN-LOG.md's recent entries. Confirmed sections 2-6 of the backlog were again Done or Phil-gated and all 10 GitHub issues unchanged (decision/blocked-on-art), including #42, which already names this exact exhausted-cadence shape and was pushed to Phil 2026-10-24, still inside its 48h no-repeat floor, so not re-pushed. Read the global keyword harvest's own gap tier rather than trust the count and found a real one: "how to organise/organize bedsheets" (gb/au/in/ca) tied to `/about.html` at 0.0 coverage, the same alphabetical-tie-break shape A25/A26 fixed, because no zone used the word "bedsheets". Added it to `zone-also-called.json` for Primary Bedroom's Bed and Bedding Zone.
+
+**Verified:** Both queries moved `gap` to `covered` via the heading surface after `--rescore` (free, no network). `check_urls.py` 213/213, `audit_pages.py` 0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` clean, `link_graph_report.py` 0 orphans, `check_sellable.py` unaffected, `audit_visual.py` desktop+mobile 0 findings. `preflight.py` run live this cycle (not cited from memory): 0 FAIL across every gate reached, hung again at the documented `gate_tests` sandbox limit. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** found one real, in-scope, cheap fix instead of adding another meta-gate on top of the 47 already closed this month.
+
+**Did not go well:** the business metric (traffic/revenue) still has not moved; this fix, like its predecessors, is unmeasured until the next live harvest.
+
+**Changing next cycle:** none. The honest state is that everything unblocked below Phil's own gates (YouTube OAuth, Search Console reports, Gemini billing, Amazon/Etsy/Apple/Play accounts) is now this granular; issue #42 already asks Phil to decide whether the cadence itself should change.
+
+**Next:** whichever owner gate Phil clears first unblocks the most (YouTube OAuth, 5 min, 102 videos); failing that, the next live `keyword-demand-global.yml` run is what actually tests this cycle's fix.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25 23:4x UTC, PM check-in (30-minute triage, exhausted state reconfirmed independently, nothing new, no duplicate notification)
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved since the 23:1x cycle.

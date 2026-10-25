@@ -10,6 +10,14 @@
    "queries": 3,
    "covered": 0
   },
+  "Primary Bedroom|Bed and Bedding Zone": {
+   "names": [
+    "bedsheets"
+   ],
+   "queries": 2,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in, ca): 'how to organise bedsheets' (rank 2, gap, gb/au/in) and 'how to organize bedsheets' (rank 9, gap, ca), both 0.0 coverage, scored to /about.html via tie-break since no page used the word 'bedsheets'"
+  },
   "Garage|Automotive Care Zone": {
    "names": [
     "car maintenance zone"

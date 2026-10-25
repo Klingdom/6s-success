@@ -17410,10 +17410,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -25216,10 +25216,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bedroom-the-bed-and-bedding-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -44458,6 +44458,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-24T00:53:52Z",
-  "scored_against_commit": "355f426c3"
+  "scored_at": "2026-10-25T23:56:13Z",
+  "scored_against_commit": "4b0a6b276"
 }
