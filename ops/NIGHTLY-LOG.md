@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle (03:5x UTC): state re-confirmed via the lightweight signal rather than re-run in full, no new work, no duplicate notification
+
+**Did:** Attached cleanly (fetch, unshallow 314 commits, `checkout -B main origin/main`, ff-only onto `39940942a`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own recent entries, which are "newest first", not a stale 2026-10-04 tail as a naive `tail -c` read of the file first suggested (no action taken on that false lead; `CHECKIN-LOG.md` is a separate, also-current hourly log, not a replacement for this one). Ran `preflight.py` fresh in the background: 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (killed after confirming genuine stall at the 03:50:44Z checkpoint, 11.2% CPU over several minutes wall clock, not assumed passing past that point). `cycle_signal.py --check` immediately after: `SAME`, matching the checkpoint two PM cycles in the last hour had already independently recorded, so the full 170s+ local run this cycle just paid for was itself the redundant cost issue #42 names; noted here rather than repeated a third time this hour. `cold_read_ledger.py --next`: 295 of 295 ledgered, 0 un-ledgered candidates, independently re-verified rather than cited. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. GitHub re-pulled fresh via the API, not cited: 10 open issues, unchanged, all `decision`/`blocked-on-art`; issue #42's own thread read in full, including its newest comment (02:59:51Z, the prior cycle's own cycle_signal-checkpoint fix writeup); 0 open PRs; `checks.yml` green on the last two completed runs, two more `in_progress` from concurrent PM check-ins. `last-owner-notification.json` checked directly: last push 2026-10-24T16:1x:00Z, ~11.75h ago, inside the 48h no-repeat floor, state unchanged since, so no push sent this cycle, consistent with every cycle since.
+
+**Verified:** Every claim above was checked this cycle, not carried forward: the preflight run, the cycle_signal check, the cold-read ledger query, the GitHub API pulls and the notification-floor file were each read directly in this session.
+
+**Went well:** The 2026-10-25T02:59:51Z `cycle_signal` checkpoint fix (previous cycle) is doing its job: this cycle could tell, before spending anything further, that nothing had changed since the last recorded snapshot, exactly the signal issue #42 asked for.
+
+**Did not go well:** This cycle still ran a full local `preflight.py` before consulting `cycle_signal.py --check`, paying the 170s+ cost the fix exists to let later cycles skip. The checkpoint only tells a cycle "nothing changed" after that cycle's own run reaches it; it does not yet let a cycle skip the run altogether when the immediately preceding cycle already recorded `SAME` minutes earlier.
+
+**Changing next cycle:** Check `ops/cycle-signal.json`'s own `recorded_at` against the current `git_head` BEFORE running `preflight.py`, not after. If `git_head` matches and the snapshot is recent, skip the full local run entirely and only check GitHub, inbox and workflow health directly, which is the part that can change between cycles without a local file changing.
+
+**Next:** Hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision or blocked-on-art, unmoved. No push sent. Dashboard regenerated and pushed this cycle regardless, per standing practice.
+
 ## 2026-10-25, PM check-in (03:1x slot, 30-minute triage): previous cycle's cycle_signal fix independently verified working, state unchanged, no new work started, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision or blocked-on-art, none moved since the prior cycle 20 minutes ago.
