@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-25, scheduled operator cycle: found and fixed why the cycle_signal anti-redundancy snapshot never refreshed locally, closing the mechanism behind issue #42's own repeated finding
+
+**Did:** Attached clean (unshallow, ff-only onto `efbba7bad`). Read GOALS.md, BACKLOG-2026-09-07.md, issue #42 and its 6 comments, the other 9 open issues, and the head of this log (14+ same-day "exhaustion confirmation" entries).
+
+**Found why the 2026-10-19 cycle_signal fix never worked locally, and fixed it.** `maybe_record_cycle_signal(FAIL)`, meant to auto-refresh the "nothing changed, skip local re-verification" snapshot after every clean preflight pass, sits at the end of `main()`, after `gate_tests`. `gate_tests` hangs on every sandbox this project runs in and gets SIGKILLed, so that call has never once executed locally: the snapshot was 14+ hours and 14+ cycles stale. Fixed by adding an identical checkpoint right before `gate_tests` (same idiom as the three not-oversized gates moved there 2026-10-21), with an honest "partial pass, gate_tests not reached" note.
+
+**Verified:** new `test_gate_tests_cycle_signal_checkpoint.py` fail-then-pass proved against the real historical ordering. Real `preflight.py --fast` run to its natural hang: 0 FAIL, checkpoint fired, `cycle_signal --check` now reports SAME. `check_urls` 213/213, `fix_dashes --check` 0/0, `affiliate --check` clean, cold-read ledger re-ledgered for `preflight.py`, 0 stale. No mail credential, inbox unchecked.
+
+**Went well:** a real instance of the exact waste issue #42 names, found by reading the anti-waste tool's own code rather than trusting it worked. Does not touch the Routines' cadence (Phil's call, unchanged).
+
+**Did not go well:** does not close #42 itself. No duplicate push sent (last one 2026-10-24T16:1x, inside the 48h floor); commented on #42 instead.
+
+**Next:** hold, same 10 issues, all Phil-gated.
+
+HANDOFF-FILES: none
+
 ## 2026-10-25, PM check-in (02:4x slot, 30-minute triage): state reconfirmed unchanged a third time this hour, no new work, no duplicate notification
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all decision or blocked-on-art, unchanged since the 02:1x PM check-in 20 minutes earlier.
