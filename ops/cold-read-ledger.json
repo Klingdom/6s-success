@@ -973,8 +973,8 @@
     },
     "ops/build_pwa.py": {
       "status": "clean",
-      "date": "2026-10-25",
-      "note": "Read in full (255 lines) and run directly, not just inspected. shell_assets() scans both SHELL_PAGES (/quest.html and /, the latter needed because index.html loads data.js which quest.html never references) and extracts every hashed css/js asset by regex. Ran python ops/build_pwa.py against the live site tree: output byte-identical to the committed site/sw.js and site/manifest.webmanifest (git status clean after), 15 files precached, all exist (icons, apple-touch-icon.png, both fingerprinted JS/CSS assets). The missing-file assert, the atomic addAll install behaviour, the cache-first branch for images/fonts (keyed on the ?v= hash or a fixed extension list) and the network-first/offline-fallback branch for HTML all read correctly against their own inline rationale. python ops/tests/test_build_pwa.py: 4/4 passed. No defect found."
+      "date": "2026-10-12",
+      "note": "second-pass cold read, 2026-10-12 scheduled operator cycle: regenerated and diffed against the committed output, byte-identical, no defect found"
     },
     "optimize_sample_pdf.py": {
       "status": "clean",
