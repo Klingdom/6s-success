@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (22:4x slot, 30-minute triage, caught a repeat shallow-clone false-stale reading before trusting it, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and none has moved since 2026-10-25.
+
+Step 0's background fetch was still mid-unshallow when its own timeout fired; the foreground checkout landed on a repo still shallow (65 commits visible). Did not trust it: `cold_read_ledger.py --stale` on that shallow state reported 10 false-stale rows (same shape the 21:4x cycle already named, a shallow ancestor making ordinary 2026-10-26 commits look like near-rewrites). Waited out the in-flight `git fetch --unshallow` rather than killing it or removing its lock file, confirmed 8,928 commits reachable, re-ran: genuinely 0 stale. No real defect; same recurring caution as 21:4x, now twice-named.
+
+Reconfirmed rather than cited: `fix_dashes.py --check` 0 em/0 en; `check_urls.py` 213/213; `cycle_signal.py --check` SAME against the 21:53:56Z snapshot; `preflight.py` run live, 0 FAIL through every gate up to the documented `gate_tests` sandbox hang, killed there at 90s, same known shape. GitHub's 10 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25. Deploy gap re-derived directly (not cited from STATUS.md): `deploy_gap_material_commits` against the live verdict (build `a0bbe5bb276ee21b`) returns the same 1 commit (`840f3e11b`), blocked on `VPS_DEPLOY_KEY` (issue #35), no P0 regression. Traffic/affiliate dashboard rows stay carried-forward and marked unchecked, not zero: no ssh key at `/home/runner/.ssh/6s_deploy` in this sandbox, same standing limitation.
+
+No new defect found, nothing newly unblocked. Regenerated and shipped the dashboard. No code, price, product or page touched. No push notification sent: nothing changed since the 22:1x cycle.
+
 ## 2026-10-26, PM check-in (22:1x slot, 30-minute triage, chased down a transient cold-read-ledger false stale reading, ruled out rather than reported as fact, nothing new unblocked, no notification)
 
 Attached cleanly (fetch, checkout main, ff-only merge onto origin/main e2c500c85, working tree clean before and after, no concurrent push appeared during the run). Previous work IS finished: cycle_signal.py --check read SAME against the 21:53:56Z snapshot. Verified rather than cited: check_urls.py 213/213, fix_dashes.py --check 0 em/0 en. GitHub re-pulled live, 10 open issues unchanged (all decision or blocked-on-art), none updated since 2026-10-25, 0 open PRs. preflight.py run live, hung at the documented gate_tests sandbox limit, same known shape.
