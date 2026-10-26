@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (03:4x slot, 30-minute triage, previous work confirmed finished, no new defect)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because the cold-read ledger is 296/296 exhausted and backlog sections 2-6 are Done/Hold/Phil-gated, so nothing is genuinely unblocked.
+
+Previous work (the operator's two-defect cold-read fix) confirmed finished, not cited: regression tests pass (8/8, 5/5), CI green on `e2533b80d`. Re-derived the deploy gap directly against real current HEAD: still 4 commits/2 material, unchanged, matching STATUS.md. `preflight.py` reached the documented `gate_tests` sandbox hang with 0 FAIL on every gate before it; `cycle_signal` recorded a fresh clean checkpoint (HEAD `355cdfb9d`) so the next cycle can skip re-running this if nothing has moved. No push sent: issue #42's last real push (2026-10-24T16:1x) is inside the 48h floor, and nothing here changes what Phil is being asked to decide. Dashboard regenerated, pushed.
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, scheduled operator cycle: two real defects found cold-reading the six ops scripts the opening pull introduced
 
 **Did:** Attached onto a shallow checkout (fetch, --unshallow, checkout -B main, ff-only), 485 commits. Backlog/roadmap/status digest: every "Now" epic done or Phil-gated, zero open workstreams, no unfixed P0. Cold-read the six ops scripts that pull introduced and that section 48's "ledger exhausted" reading never covered (checked directly against `ops/cold-read-ledger.json`, not assumed). Found and fixed two real defects: `rotate_backlog_closed.py`'s `count_stats()` reported the whole 180769-byte corpus as the size of a 2888-byte pending rotation, in both its own `--check` and preflight's `gate_backlog_closed_sections_not_oversized`; `rotate_owner_actions_closed_items.py` appended new archive entries to the bottom of `OWNER-ACTIONS-ARCHIVE.md` instead of prepending like every sibling tool, breaking newest-first ordering.
