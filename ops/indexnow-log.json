@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-02T16:07:34Z",
-   "mode": "changed",
-   "offered": 3,
-   "accepted": 3,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-02T16:13:37Z",
    "mode": "changed",
    "offered": 1,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-26T14:38:34Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -734,7 +734,7 @@
   "https://6s-success.com/zones/garage-the-primary-workbench": "73cda1f15d4260ad",
   "https://6s-success.com/zones/garage-the-sports-and-recreation-zone": "bcb4696b096bd81f",
   "https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone": "2122a2d22928868c",
-  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "743ee48448f9e994",
+  "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter": "fa3a7a09a9618407",
   "https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage": "8dadc6666315fafb",
   "https://6s-success.com/zones/guest-bathroom-the-shower-or-tub": "ea47f1714551f3b1",
   "https://6s-success.com/zones/guest-bathroom-the-toilet-area": "22a3ed702adf2c8b",
@@ -763,7 +763,7 @@
   "https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone": "116023efef49744c",
   "https://6s-success.com/zones/kitchen-the-cooking-zone": "18718b330917a990",
   "https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware": "4ed0e871dbb01f39",
-  "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "2ac6c5724807261d",
+  "https://6s-success.com/zones/kitchen-the-primary-prep-counter": "bdfaf88b45dac2ff",
   "https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer": "d4e79b6ee05160db",
   "https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone": "793b119e3aaccc41",
   "https://6s-success.com/zones/kitchen-the-upper-cabinets": "aef139a4874e277b",
@@ -790,7 +790,7 @@
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "06dff9c3d3e5fd74",
   "https://6s-success.com/zones/nursery-the-changing-station": "902fca8303e308da",
   "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "c8a5117806964cb0",
-  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "a9dbc624ea781e1e",
+  "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "c1e11f6f0217c083",
   "https://6s-success.com/zones/nursery-the-feeding-station": "e627c53affe80b4b",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "c3f6e1b4e7dd2216",
   "https://6s-success.com/zones/pantry-the-baking-zone": "5937e6d39b1342dc",
