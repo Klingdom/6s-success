@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (15:1x slot, 30-minute triage, collided with a concurrent cycle on the same fix, backed off, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), re-pulled fresh via the API this cycle, unchanged. Cold-read ledger independently re-confirmed 296/296, 0 stale.
+
+Attached per Step 0 (checkout arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `267697dcf`, clean). Independently found the same real defect a concurrent cycle was already fixing: `STATUS.md`'s Production Status table, `BLOCKER-001` and Production Knowledge sections cited a stale 4-commit/2-material deploy gap against build `84c234bd3857ed4c`, even though Phil's own owner-directed global cycle (`aabf2e871`, 08:49 local) had already deployed `00187aebb3255957` hours earlier; re-derived directly (`resolve_verdict_commit`/`deploy_gap_material_commits` against real `HEAD`), confirmed the gap is genuinely zero. Fixed it locally, then `ops/ship.py` reported a push conflict on `STATUS.md`/`ops/cycle-signal.json`: a concurrent cycle (`b359a945d`) had landed first with a more thorough fix (the same four spots plus a fifth, "Repository HEAD Build", that this cycle had not found, and a widened `status_deploy_verdict_problem()` so this class cannot drift silently again). Per Step 8, did not force or hand-resolve: `git reset --hard origin/main` to adopt the better fix rather than duplicate or fight it, discarding this cycle's own superseded commit (never pushed).
+
+Verified rather than assumed, against the post-reset state: `preflight.py` fast run, 0 FAIL through the documented `gate_tests` sandbox hang. `check_urls.py` 213/213. `fix_dashes.py --check` 0/0. 10 open GitHub issues re-pulled fresh, unchanged. Also noted in passing: `ops/last-owner-notification.json` records a second PushNotification tool-misuse (same shape as 2026-10-25), found and procedurally logged by the concurrent cycle; the 48h no-repeat floor for issue #42's cadence topic still measures from 2026-10-24T16:1x and was not reached this slot, so no notification sent here either.
+
+No new work started this slot: with the one real finding already landed by someone else and the backlog genuinely exhausted (confirmed independently, not cited), starting something else risked a second collision in the same busy window. Working tree clean, nothing pushed from here this cycle; `ops/NIGHTLY-LOG.md` only.
+
 ## 2026-10-26, PM check-in (14:4x slot, 30-minute triage, cold-read ledger genuinely un-exhausted for the first time in days, one entry refreshed, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated; the cold-read ledger is exhausted again after this cycle's own fix, so there is nothing else genuinely unblocked.
