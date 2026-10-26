@@ -61,6 +61,17 @@ def demand_rows():
     return rows
 
 
+def own_pages(room):
+    """A predicate: was this row covered by one of the room's own pages?"""
+    slug = re.sub(r"[^a-z0-9]+", "-", room.lower()).strip("-")
+    marks = ("/rooms/%s" % slug, "/zones/%s-" % slug, "/%s-deck" % slug)
+
+    def test(row):
+        pages = (row.get("best_page") or "", row.get("heading_page") or "")
+        return any(m in p for p in pages for m in marks)
+    return test
+
+
 def main():
     fails = []
     if not os.path.exists(MAP):
@@ -100,7 +111,15 @@ def main():
                         "zero of the %d harvested queries. Naming it invents "
                         "demand." % (room, name, len(rows)))
                     continue
-                covered = sum(1 for r in hits if r["status"] == "covered")
+                # Coverage earned by this room's OWN pages does not count:
+                # once the line ships it covers its own queries, and the
+                # first version of this rule then called every successful
+                # name noise. Found 2026-10-26 when "hall cupboard" (added
+                # 2026-10-23 at 0 of 3 covered) failed as "all 5 covered",
+                # every one of them by the Hall Closet's own pages.
+                own = own_pages(room)
+                covered = sum(1 for r in hits if r["status"] == "covered"
+                              and not own(r))
                 if covered and covered == len(hits):
                     fails.append(
                         "%s claims the name %r, but all %d harvested queries "

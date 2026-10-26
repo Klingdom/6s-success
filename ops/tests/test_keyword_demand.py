@@ -376,6 +376,24 @@ def main():
         if got != want:
             fails.append("room_of(%r) was %r, wanted %r" % (url, got, want))
 
+    # 18. British and Commonwealth spellings score as the American words the
+    #     site is written in. "organisation" survived as a content word while
+    #     "organization" was dropped as a format word, so every query typed
+    #     in the UK, Australia or India carried a word nothing could match.
+    #     Planted: an unfolded "organisation" must not survive.
+    if kd.content_words("larder organisation and layout") !=             kd.content_words("larder organization and layout"):
+        fails.append("organisation and organization score differently: %r"
+                     % kd.content_words("larder organisation and layout"))
+    for brit, us in (("colour", "color"), ("organiser", "organizer"),
+                     ("centre", "center"), ("mouldy", "moldy")):
+        if kd.words(brit) != [us]:
+            fails.append("words(%r) was %r, wanted %r"
+                         % (brit, kd.words(brit), [us]))
+    # A word that merely contains the letters must not be rewritten.
+    if kd.words("concentrate") != ["concentrate"]:
+        fails.append("words() rewrote 'concentrate': %r"
+                     % kd.words("concentrate"))
+
     if fails:
         print("FAIL")
         for f in fails:

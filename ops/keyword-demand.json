@@ -35329,10 +35329,10 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "larder organisation ideas",
@@ -35347,10 +35347,10 @@
       "best_page": "/pantry-deck.html",
       "best_page_title": "The Pantry Deck: 57 cards, free to read",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/pantry.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "larder organization and layout",
@@ -49819,12 +49819,12 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/what-is-a-micro-zone.html",
+      "best_page_title": "What is a micro zone? The unit that actually gets organized",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/family-wont-put-things-back.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -51628,6 +51628,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-25T23:55:58Z",
-  "scored_against_commit": "4b0a6b276"
+  "scored_at": "2026-10-26T14:31:10Z",
+  "scored_against_commit": "1461eee70"
 }

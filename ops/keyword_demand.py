@@ -355,8 +355,31 @@ def bing_suggest(seed):
 SOURCES = {"google": google_suggest, "bing": bing_suggest}
 
 
+# British and Commonwealth spellings, folded to the American forms the site
+# is written in. Search engines treat "organise" and "organize" as one word;
+# this scorer did not, and since "organization" is a FORMAT_WORD (dropped)
+# while "organisation" was not, every query typed in the UK, Australia or
+# India carried one extra word no page here could ever match. Found
+# 2026-10-23 when "larder organisation and layout" scored gap against a
+# pantry page headed "Also called the larder" (ops/keyword_demand_global.py).
+_SPELLING = (
+    (re.compile(r"^organis"), "organiz"),
+    (re.compile(r"^reorganis"), "reorganiz"),
+    (re.compile(r"^colour"), "color"),
+    (re.compile(r"^favourite"), "favorite"),
+    (re.compile(r"^centre(s?)$"), r"center\1"),
+    (re.compile(r"^mould"), "mold"),
+)
+
+
+def _fold(word):
+    for pat, rep in _SPELLING:
+        word = pat.sub(rep, word)
+    return word
+
+
 def words(text):
-    return [w for w in re.findall(r"[a-z0-9]+", text.lower()) if w]
+    return [_fold(w) for w in re.findall(r"[a-z0-9]+", text.lower()) if w]
 
 
 def content_words(query):
