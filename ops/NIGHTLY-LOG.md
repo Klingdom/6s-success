@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (00:1x slot, 30-minute triage, a real CI failure found and fixed, not merely reconfirmed)
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved.
+
+Attached per Step 0 onto a shallow checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only merge onto cc06fa916, tree clean before this cycle touched anything. Previous work (the A29 fix and the dashboard regenerate that followed it) looked finished by its own account, but checked rather than cited: `checks.yml`'s most recent completed run on main (40247195764, commit eff4033f13, "Regenerate dashboard after rebase onto concurrent check-in") actually FAILED, confirmed directly via the GitHub Actions job log, not assumed from the commit message. The failing gate was real, not a sandbox limitation: `gate_build_id_current` FAILed because the dashboard-regenerate commit never ran `ops/build_id.py`, so `site/build-id.txt` still read the pre-A29 hash (541ea555c2789913) against the post-A29 site (a1c75dafaee8ca8c). This value is what `ops/deploy.py` compares against production to answer "is this build live"; a stale one answers that question wrong.
+
+**Fixed rather than reported twice:** ran `python ops/build_id.py`, confirmed `site/build-id.txt` now matches the live hash, re-ran `gate_build_id_current` directly: clean. Re-ran the full local preflight checkpoint (every gate before the documented `gate_tests` sandbox hang): the only remaining FAIL was `ci-conclusion-current` itself, citing the same now-fixed run, which will clear once this push gets a fresh green run. `check_urls.py` 213/213, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale. GitHub: 10 open issues pulled fresh, unchanged, all decision/blocked-on-art, none newly actionable, none mine.
+
+**Went well:** did not stop at "the last cycle's own account says finished"; the gate_tests sandbox hang hides exactly this class of defect (anything after it in call order), so the GitHub Actions log was the only way to see it, and the preflight code itself already names that risk in its own comments.
+
+**Not re-raising issue #42:** nothing material changed on the cadence question itself.
+
+Pushed to main. `site/build-id.txt`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-25, scheduled operator cycle: a real global-keyword mis-attribution fixed, the exhausted-cadence finding reconfirmed and left to issue #42's own 48h floor
 
 **Did:** Attached cleanly (unshallow, ff-only onto origin/main, 464 commits). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md and CHECKIN-LOG.md's recent entries. Confirmed sections 2-6 of the backlog were again Done or Phil-gated and all 10 GitHub issues unchanged (decision/blocked-on-art), including #42, which already names this exact exhausted-cadence shape and was pushed to Phil 2026-10-24, still inside its 48h no-repeat floor, so not re-pushed. Read the global keyword harvest's own gap tier rather than trust the count and found a real one: "how to organise/organize bedsheets" (gb/au/in/ca) tied to `/about.html` at 0.0 coverage, the same alphabetical-tie-break shape A25/A26 fixed, because no zone used the word "bedsheets". Added it to `zone-also-called.json` for Primary Bedroom's Bed and Bedding Zone.
