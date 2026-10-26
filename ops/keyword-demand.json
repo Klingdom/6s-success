@@ -1357,10 +1357,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "bathroom vanity organizing ideas",
@@ -14574,10 +14574,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to begin decluttering your home",
@@ -16231,7 +16231,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/zones/kitchen-the-primary-prep-counter.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -23541,10 +23541,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize bathroom drawers",
@@ -23725,10 +23725,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize bathroom vanity top",
@@ -38382,10 +38382,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "narrow entryway organization ideas",
@@ -51628,6 +51628,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-26T14:31:10Z",
-  "scored_against_commit": "1461eee70"
+  "scored_at": "2026-10-26T14:37:38Z",
+  "scored_against_commit": "b5c3df1bc"
 }

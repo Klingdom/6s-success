@@ -5,10 +5,12 @@
  "zones": {
   "Nursery|Diaper and Care Backstock": {
    "names": [
-    "diaper caddy"
+    "diaper caddy",
+    "nappy caddy"
    ],
    "queries": 3,
-   "covered": 0
+   "covered": 0,
+   "source_nappy": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in): 'nappy' 5 queries, 0 covered"
   },
   "Primary Bedroom|Bed and Bedding Zone": {
    "names": [
@@ -77,6 +79,22 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+  },
+  "Kitchen|Primary Prep Counter": {
+   "names": [
+    "kitchen countertops"
+   ],
+   "queries": 3,
+   "covered": 0,
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26"
+  },
+  "Guest Bathroom|Guest Vanity Counter": {
+   "names": [
+    "bathroom countertop"
+   ],
+   "queries": 6,
+   "covered": 0,
+   "source": "ops/keyword-demand.json + ops/keyword-demand-global.json, scored 2026-10-26"
   }
  }
 }

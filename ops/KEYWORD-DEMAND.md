@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-21T14:47:44Z from google, bing, 151 seeds, 302 attempts: 262 returned completions, 40 had none, 0 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-26T14:31:10Z against 221 page(s) at commit 1461eee70. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-26T14:37:38Z against 221 page(s) at commit b5c3df1bc. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2822. Checked against 221 published page titles: 1213 covered, 1443 partial, 166 gap.
+**Queries found:** 2822. Checked against 221 published page titles: 1217 covered, 1440 partial, 165 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 166, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 165, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -75,7 +75,6 @@ Showing the top 80 of 166, ordered by the best rank the phrase reached in any on
 | 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
 | 8 | foyer design ideas pinterest | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to attach countertop to vanity | - | How to organize the guest bathroom vanity counter (0.33) |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
 | 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -101,10 +100,11 @@ Showing the top 80 of 166, ordered by the best rank the phrase reached in any on
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) |
 | 10 | how to organize pc | - | - (0.00) |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1443.
+Showing the top 60 of 1440.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -186,7 +186,7 @@ Showing the top 60 of 1443.
 | Laundry Room | 73 | 0 | 19 | 54 |
 | Living Room | 93 | 2 | 60 | 31 |
 | Mudroom | 47 | 1 | 22 | 24 |
-| Nursery | 60 | 2 | 24 | 34 |
+| Nursery | 60 | 2 | 23 | 35 |
 | Pantry | 61 | 1 | 33 | 27 |
 | Primary Bathroom | 14 | 1 | 9 | 4 |
 | Primary Bedroom | 15 | 1 | 12 | 2 |

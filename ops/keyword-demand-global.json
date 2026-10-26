@@ -15960,10 +15960,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/kit.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial",
+      "status": "covered",
       "markets": [
         "gb"
       ],
@@ -16996,10 +16996,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -24793,10 +24793,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -24874,10 +24874,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -26674,10 +26674,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-primary-prep-counter.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -44458,6 +44458,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-26T14:31:11Z",
-  "scored_against_commit": "1461eee70"
+  "scored_at": "2026-10-26T14:37:39Z",
+  "scored_against_commit": "b5c3df1bc"
 }
