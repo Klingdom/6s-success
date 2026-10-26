@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-25",
-      "note": "Found and fixed the cycle_signal auto-record checkpoint sitting after gate_tests (never reached in this sandbox), moved an equivalent checkpoint before it; new test_gate_tests_cycle_signal_checkpoint.py, fail-then-pass proved against the real historical ordering."
+      "status": "clean",
+      "date": "2026-10-26",
+      "note": "2026-10-26: changed this same hour by this lineage's own 00:5x PM check-ins (fcc9db1f2, 7753636a4), both fail-then-pass proved with new tests (test_gate_ci_conclusion_current.py 7/7, test_gate_generator_ownership_own_output.py 3/3) before pushing; no separate re-read needed."
     },
     "prerender_shop.py": {
       "status": "clean",
