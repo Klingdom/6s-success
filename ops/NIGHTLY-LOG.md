@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in (06:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is Phil-gated and the cold-read ledger and backlog sections 1 through 49 are Done or Closed, so nothing is genuinely unblocked.
+
+Attached clean per Step 0 (fetch, checkout main, ff-only merge onto origin/main; tree already clean on arrival). Previous work (ad863388d, hourly check-in) confirmed finished independently, not cited: check_urls.py 213/213, audit_pages.py 218/0, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/0. All 10 open GitHub issues re-pulled fresh via the API: unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated since 2026-10-25T02:59:51Z, none from Phil. preflight.py run fresh in the background to completion rather than cited: 0 FAIL across every gate, killed at the documented gate_tests headless-Chromium sandbox hang (the process was still alive after it; stopped it directly rather than left orphaned).
+
+One real-looking FAIL caught and correctly not acted on: affiliate.py --check reported an unreadable site/downloads/_test_bad_delivered_doc.html while the backgrounded preflight.py's own test stage (ops/tests/test_affiliate.py) was writing and clearing that exact marker file. The path does not exist on disk and has no git history. Re-ran alone once isolated: clean, 165 delivered documents, no affiliate link. Same transient-collision shape this log has documented repeatedly; not a new defect, not reported as one.
+
+check_ledgerium.py: no Stripe credential in this sandbox, reported unchecked, not assumed clean. No new defect small enough to close this slot. No push notification sent: nothing changed since the 48h floor from the last deliberate status push.
+
+HANDOFF-FILES: none
+
 ## PM check-in (06:2x slot, 30-minute triage, previous work confirmed finished a fresh way, nothing new unblocked)
 
 Attached clean (fetch, unshallow, checkout -B main origin/main, ff-only merge of 508 commits; tree clean). Previous work (06:01 operator cycle) confirmed finished independently, not cited: preflight.py fresh, 0 FAIL to the cycle_signal checkpoint, killed at the documented gate_tests sandbox hang (exit 124). check_urls.py 213/213, audit_pages.py 218/0, fix_dashes.py --check 0/0, affiliate.py --check clean, cold_read_ledger.py --stale 0/0. All 10 GitHub issues re-pulled via the API: unchanged, all decision/blocked-on-art (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), none from Phil. 0 open PRs, last 5 CI runs green. check_ledgerium.py: no Stripe credential here, unchecked, not assumed clean. No new defect small enough to close. Holding the standing queue; issue #42 still unanswered.
