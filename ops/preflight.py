@@ -1772,8 +1772,16 @@ def gate_generator_ownership() -> None:
     # not what this gate asks about, so they cannot be evidence either way.
     # Excluding them by name rather than loosening the check: anything else
     # dirty still blocks, because it would make the diff afterwards meaningless.
+    #
+    # ops/cycle-signal.json joined this list 2026-10-26, found live: a clean
+    # publish-image.yml run (the one this gate's own demotion for
+    # gate_ci_conclusion_current had just unblocked) failed HERE instead,
+    # on the exact same shape, because maybe_record_cycle_signal() writes
+    # this file's own checkpoint earlier in this same main() run, before
+    # gate_tests, same as the dashboard trio above; it had just never been
+    # added to this set.
     _own_output = {"EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html",
-                   "ops/state.json"}
+                   "ops/state.json", "ops/cycle-signal.json"}
     dirty = [f for f in worktree_changes() if f not in _own_output]
     if dirty:
         # A failure, not a warning. This gate only runs when it is explicitly
