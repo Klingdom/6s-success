@@ -177,7 +177,7 @@ drawer with the wifi name and password,
 38
 00:00:40,550 --> 00:00:41,600
 where the bathroom is, and which way the
-shower tap turns.
+shower faucet turns.
 
 39
 00:00:41,600 --> 00:00:43,500

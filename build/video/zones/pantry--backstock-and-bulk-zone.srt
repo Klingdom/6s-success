@@ -23,8 +23,8 @@ What done looks like
 
 6
 00:00:06,967 --> 00:00:07,733
-1 Sacks of rice, cases of tinned tomatoes
-and packs of kitchen roll, each written
+1 Sacks of rice, cases of canned tomatoes
+and packs of paper towels, each written
 
 7
 00:00:07,733 --> 00:00:08,500
@@ -98,20 +98,20 @@ Straighten Weight decides height.
 22
 00:00:25,000 --> 00:00:25,950
 Straighten Sacks and cases go on the floor
-or the bottom shelf on a board, kitchen
+or the bottom shelf on a board, paper
 
 23
 00:00:25,950 --> 00:00:26,900
-roll and paper napkins go up top
+towels and paper napkins go up top
 
 24
 00:00:26,900 --> 00:00:27,600
 Straighten Sacks and cases go on the floor
-or the bottom shelf on a board, kitchen
+or the bottom shelf on a board, paper
 
 25
 00:00:27,600 --> 00:00:28,300
-roll and paper napkins go up top because
+towels and paper napkins go up top because
 they are light, and everything sits one
 
 26

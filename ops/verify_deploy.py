@@ -62,7 +62,7 @@ PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
          "resources", "invest", "privacy", "terms", "accessibility",
          "disclaimer", "quest", "deck", "corporate", "thanks",
          "how-we-make-money", "affiliate-disclosure", "kit",
-         "bundle", "standards"]
+         "bundle", "standards", "how-to-clean-anything"]
 
 # The subset of PAGES that must never silently disappear from it again.
 # gate_verify_deploy_pages_current in preflight.py re-derives this set on
@@ -71,7 +71,7 @@ PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
 # cannot recur unnoticed a second time.
 CRITICAL_PAGES = {"", "shop", "quest", "deck", "corporate", "thanks",
                    "how-we-make-money", "affiliate-disclosure",
-                   "bundle", "standards"}
+                   "bundle", "standards", "how-to-clean-anything"}
 NONSENSE = "this-path-does-not-exist-6s-check"
 
 results = []

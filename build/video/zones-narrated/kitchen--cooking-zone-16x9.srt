@@ -1,400 +1,404 @@
 1
-00:00:00,000 --> 00:00:04,032
-Kitchen Cooking Zone The step of space
+00:00:00,000 --> 00:00:04,080
+Kitchen Cooking Zone The strip of space
 either side of the burners where cooking
 
 2
-00:00:04,032 --> 00:00:08,064
+00:00:04,080 --> 00:00:08,160
 happens with your hands busy and heat
 already on.
 
 3
-00:00:08,064 --> 00:00:11,832
+00:00:08,160 --> 00:00:11,928
 Where it is Cooking Zone One of 7 micro
 zones in the Kitchen.
 
 4
-00:00:11,832 --> 00:00:15,600
+00:00:11,928 --> 00:00:15,696
 Each one is a session that finishes on its
 own.
 
 5
-00:00:15,600 --> 00:00:18,840
+00:00:15,696 --> 00:00:18,970
 What done looks like
 
 6
-00:00:18,840 --> 00:00:22,080
+00:00:18,970 --> 00:00:22,245
 1 Oil, salt, and pepper within one reach
 of the burners
 
 7
-00:00:22,080 --> 00:00:25,320
+00:00:22,245 --> 00:00:25,519
 2 A utensil crock holding no more than six
 tools, every one of which you used this
 
 8
-00:00:25,320 --> 00:00:28,560
+00:00:25,519 --> 00:00:28,793
 month
 
 9
-00:00:28,560 --> 00:00:31,800
+00:00:28,793 --> 00:00:32,067
 3 Pot holders on a hook you can find
 without looking, the spices you reach for
 
 10
-00:00:31,800 --> 00:00:35,040
+00:00:32,067 --> 00:00:35,342
 weekly at the front of the rack, and a
-clear landing space beside the hob wide
+clear landing space beside the stovetop
+wide
 
 11
-00:00:35,040 --> 00:00:38,280
+00:00:35,342 --> 00:00:38,616
 enough to set down a hot pan
 
 12
-00:00:38,280 --> 00:00:43,032
+00:00:38,616 --> 00:00:43,368
 One session Cooking Zone 45-75 min
 
 13
-00:00:43,032 --> 00:00:48,072
+00:00:43,368 --> 00:00:48,408
 Sort Empty the utensil crock into a box
 and cook for a week,
 
 14
-00:00:48,072 --> 00:00:52,476
+00:00:48,408 --> 00:00:52,812
 Sort Empty the utensil crock into a box
 and cook for a week, returning to the
 crock
 
 15
-00:00:52,476 --> 00:00:56,880
+00:00:52,812 --> 00:00:57,216
 only what your hand actually reaches for.
 
 16
-00:00:56,880 --> 00:01:00,036
+00:00:57,216 --> 00:01:00,372
 Sort The warped plastic turner, the corn
 holders, and the third pair of tongs are
 
 17
-00:01:00,036 --> 00:01:03,192
+00:01:00,372 --> 00:01:03,528
 still
 
 18
-00:01:03,192 --> 00:01:07,812
+00:01:03,528 --> 00:01:08,148
 Sort The warped plastic turner, the corn
 holders, and the third pair of tongs are
 
 19
-00:01:07,812 --> 00:01:12,432
+00:01:08,148 --> 00:01:12,768
 still in the box at the end of the week,
 which is your answer.
 
 20
-00:01:12,432 --> 00:01:15,816
+00:01:12,768 --> 00:01:16,152
 Straighten Arrange by the moment of
 
 21
-00:01:15,816 --> 00:01:20,616
+00:01:16,152 --> 00:01:20,952
 Straighten Arrange by the moment of need,
 not by shape.
 
 22
-00:01:20,616 --> 00:01:25,032
+00:01:20,952 --> 00:01:25,368
 Straighten Oil, salt, and the turner
 within one reach of the burner, spices in
 a
 
 23
-00:01:25,032 --> 00:01:29,448
+00:01:25,368 --> 00:01:29,784
 shallow drawer or tiered rack where
 
 24
-00:01:29,448 --> 00:01:34,272
+00:01:29,784 --> 00:01:34,608
 Straighten Oil, salt, and the turner
 within one reach of the burner, spices in
 a
 
 25
-00:01:34,272 --> 00:01:39,096
+00:01:34,608 --> 00:01:39,432
 shallow drawer or tiered rack where you
 read the lids from above rather than
 
 26
-00:01:39,096 --> 00:01:43,920
+00:01:39,432 --> 00:01:44,256
 shuffling jars, pans stored on the side
 you plate from.
 
 27
-00:01:43,920 --> 00:01:48,600
+00:01:44,256 --> 00:01:48,936
 Shine Lift the burner grates off and soak
 them while you wash the
 
 28
-00:01:48,600 --> 00:01:52,548
+00:01:48,936 --> 00:01:52,884
 Shine Lift the burner grates off and soak
 them while you wash the splash wall and
 
 29
-00:01:52,548 --> 00:01:56,496
+00:01:52,884 --> 00:01:56,832
 the underside of the hood with dish soap.
 
 30
-00:01:56,496 --> 00:02:01,824
+00:01:56,832 --> 00:02:02,160
 Shine Take the hood filter out and run it
 through hot soapy water, because
 
 31
-00:02:01,824 --> 00:02:06,828
+00:02:02,160 --> 00:02:07,164
 Shine Take the hood filter out and run it
 through hot soapy water, because a
 
 32
-00:02:06,828 --> 00:02:11,832
+00:02:07,164 --> 00:02:12,168
 saturated filter stops pulling steam and
 starts dripping it back down.
 
 33
-00:02:11,832 --> 00:02:16,584
+00:02:12,168 --> 00:02:16,920
 Safety Turn every pan handle inward so it
 cannot catch
 
 34
-00:02:16,584 --> 00:02:20,100
+00:02:16,920 --> 00:02:20,436
 Safety Turn every pan handle inward so it
 cannot catch a sleeve or a small hand
 
 35
-00:02:20,100 --> 00:02:23,616
+00:02:20,436 --> 00:02:23,952
 reaching up.
 
 36
-00:02:23,616 --> 00:02:26,772
-Safety Keep the tea towel, the paper roll,
-and the oil bottle off the burner side
+00:02:23,952 --> 00:02:27,192
+Safety Keep the dish towel, the paper
+roll, and the oil bottle off the burner
+side
 
 37
-00:02:26,772 --> 00:02:29,928
+00:02:27,192 --> 00:02:30,432
 of the
 
 38
-00:02:29,928 --> 00:02:33,648
-Safety Keep the tea towel, the paper roll,
-and the oil bottle off the burner side
+00:02:30,432 --> 00:02:34,336
+Safety Keep the dish towel, the paper
+roll, and the oil bottle off the burner
+side
 
 39
-00:02:33,648 --> 00:02:37,368
-of the hob, and know where the fire
+00:02:34,336 --> 00:02:38,240
+of the stovetop, and know where the fire
 blanket or extinguisher is before a pan is
 
 40
-00:02:37,368 --> 00:02:41,088
+00:02:38,240 --> 00:02:42,144
 smoking.
 
 41
-00:02:41,088 --> 00:02:47,472
-Safety If the hob burns gas, three things
-belong in this pass. Know where the
+00:02:42,144 --> 00:02:48,912
+Safety If the stovetop burns gas, three
+things belong in this pass. Know where the
 
 42
-00:02:47,472 --> 00:02:51,104
-Safety If the hob burns gas, three things
-belong in this pass.
+00:02:48,912 --> 00:02:52,672
+Safety If the stovetop burns gas, three
+things belong in this pass.
 
 43
-00:02:51,104 --> 00:02:54,736
+00:02:52,672 --> 00:02:56,432
 Know where the shutoff valve is before you
 need it, usually behind or beneath the
 
 44
-00:02:54,736 --> 00:02:58,368
+00:02:56,432 --> 00:03:00,192
 appliance.
 
 45
-00:02:58,368 --> 00:03:04,320
+00:03:00,192 --> 00:03:06,144
 Safety Check that each burner actually
 lights rather than clicking unlit, because
 
 46
-00:03:04,320 --> 00:03:08,808
+00:03:06,144 --> 00:03:10,632
 Safety Check that each burner actually
 lights rather than clicking unlit, because
 a
 
 47
-00:03:08,808 --> 00:03:13,296
+00:03:10,632 --> 00:03:15,120
 burner left running unlit fills a room
 quietly.
 
 48
-00:03:13,296 --> 00:03:16,764
+00:03:15,120 --> 00:03:18,588
 Safety And if you ever smell gas, do not
 touch a light switch or anything
 
 49
-00:03:16,764 --> 00:03:20,232
+00:03:18,588 --> 00:03:22,056
 electrical, open
 
 50
-00:03:20,232 --> 00:03:24,360
+00:03:22,056 --> 00:03:26,184
 Safety And if you ever smell gas, do not
 touch a light switch or anything
 
 51
-00:03:24,360 --> 00:03:28,488
+00:03:26,184 --> 00:03:30,312
 electrical, open a window, leave, and call
 the emergency number on your supplier's
 
 52
-00:03:28,488 --> 00:03:32,616
+00:03:30,312 --> 00:03:34,440
 bill from outside.
 
 53
-00:03:32,616 --> 00:03:35,760
+00:03:34,440 --> 00:03:37,584
 Safety Repairs and fittings are a
 
 54
-00:03:35,760 --> 00:03:40,224
+00:03:37,584 --> 00:03:42,048
 Safety Repairs and fittings are a licensed
 job, always.
 
 55
-00:03:40,224 --> 00:03:44,400
-Standardize Photograph the hob and one
-step of surround in its ready state and
-tape
+00:03:42,048 --> 00:03:46,308
+Standardize Photograph the stovetop and
+one step of surround in its ready state
+and
 
 56
-00:03:44,400 --> 00:03:48,576
-the photo inside the nearest
+00:03:46,308 --> 00:03:50,568
+tape the photo inside the nearest
 
 57
-00:03:48,576 --> 00:03:53,120
-Standardize Photograph the hob and one
-step of surround in its ready state and
-tape
+00:03:50,568 --> 00:03:55,176
+Standardize Photograph the stovetop and
+one step of surround in its ready state
+and
 
 58
-00:03:53,120 --> 00:03:57,664
-the photo inside the nearest cabinet door,
-so ready is a picture anyone can match
+00:03:55,176 --> 00:03:59,784
+tape the photo inside the nearest cabinet
+door, so ready is a picture anyone can
 
 59
-00:03:57,664 --> 00:04:02,208
-rather than a standard only you hold.
+00:03:59,784 --> 00:04:04,392
+match rather than a standard only you
+hold.
 
 60
-00:04:02,208 --> 00:04:05,748
+00:04:04,392 --> 00:04:07,932
 Sustain The reset runs inside the cooking:
 while the pan comes up to heat, the
 
 61
-00:04:05,748 --> 00:04:09,288
+00:04:07,932 --> 00:04:11,472
 spice goes
 
 62
-00:04:09,288 --> 00:04:14,712
+00:04:11,472 --> 00:04:16,896
 Sustain The reset runs inside the cooking:
 while the pan comes up to heat, the
 
 63
-00:04:14,712 --> 00:04:20,136
+00:04:16,896 --> 00:04:22,320
 spice goes back to the front of the rack
 and any loose utensil drops into the
 crock.
 
 64
-00:04:20,136 --> 00:04:23,544
+00:04:22,320 --> 00:04:25,728
 Sustain Whoever is cooking does it, in
 
 65
-00:04:23,544 --> 00:04:28,728
+00:04:25,728 --> 00:04:30,912
 Sustain Whoever is cooking does it, in
 time already spent waiting.
 
 66
-00:04:28,728 --> 00:04:34,200
+00:04:30,912 --> 00:04:36,384
 Sustain The signal is the landing space,
 and if there is nowhere clear
 
 67
-00:04:34,200 --> 00:04:38,340
+00:04:36,384 --> 00:04:40,524
 Sustain The signal is the landing space,
 and if there is nowhere clear to set a hot
 
 68
-00:04:38,340 --> 00:04:42,480
+00:04:40,524 --> 00:04:44,664
 pan down the zone has slipped dangerously.
 
 69
-00:04:42,480 --> 00:04:46,752
+00:04:44,664 --> 00:04:48,936
 Sustain Recovery is thinning the crock
 back to six
 
 70
-00:04:46,752 --> 00:04:52,824
+00:04:48,936 --> 00:04:55,008
 Sustain Recovery is thinning the crock
 back to six tools, two minutes at the
 sink.
 
 71
-00:04:52,824 --> 00:04:58,104
+00:04:55,008 --> 00:05:00,288
 Sustain Mid cook you cannot put anything
 away, so everything you
 
 72
-00:04:58,104 --> 00:05:01,968
+00:05:00,288 --> 00:05:04,152
 Sustain Mid cook you cannot put anything
 away, so everything you touch waits for a
 
 73
-00:05:01,968 --> 00:05:05,832
+00:05:04,152 --> 00:05:08,016
 moment nobody wants afterwards.
 
 74
-00:05:05,832 --> 00:05:09,800
+00:05:08,016 --> 00:05:11,984
 The call Every cook keeps jars bought for
 one recipe from one holiday.
 
 75
-00:05:09,800 --> 00:05:13,768
+00:05:11,984 --> 00:05:15,952
 Open them and smell them, one by one, over
 the bin.
 
 76
-00:05:13,768 --> 00:05:17,736
+00:05:15,952 --> 00:05:19,920
 Ground spices fade first, and if a jar
 smells of dust rather than of itself, it
 is
 
 77
-00:05:17,736 --> 00:05:21,704
+00:05:19,920 --> 00:05:23,888
 no longer seasoning anything you cook, and
 keeping it does not recover what you
 
 78
-00:05:21,704 --> 00:05:25,672
+00:05:23,888 --> 00:05:27,856
 paid.
 
 79
-00:05:25,672 --> 00:05:29,640
+00:05:27,856 --> 00:05:31,824
 Then make the harder call underneath: keep
 spices for the food you cooked in the
 
 80
-00:05:29,640 --> 00:05:33,608
+00:05:31,824 --> 00:05:35,792
 last year, not the food you imagine
 cooking.
 
 81
-00:05:33,608 --> 00:05:37,576
+00:05:35,792 --> 00:05:39,760
 If you want that cuisine back, buy the two
 spices fresh on the day you cook it.
 
 82
-00:05:37,576 --> 00:05:41,544
+00:05:39,760 --> 00:05:43,728
 A rack you can read is worth more than a
 rack that is complete.
 
 83
-00:05:41,544 --> 00:05:47,136
+00:05:43,728 --> 00:05:49,320
 Cooking Zone The full reset, free at
 6s-success.com
