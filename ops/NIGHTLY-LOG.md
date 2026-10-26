@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (13:4x slot, full STEP 0-13 pass, exhaustion independently re-confirmed a third way, no push sent)
+
+**Did:** Attached per Step 0: fetch, `fetch --unshallow` (arrived shallow/detached), `checkout main`, ff-only merge onto `4ed939bd5`. Read `BACKLOG-2026-09-07.md` sections 0-7 (epics 1-6 all Done, Hold, or Phil-gated), `ROADMAP-2026-2029.md` section 1, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. Ran `preflight.py` in the background and waited out a genuine lock held by a concurrent session rather than bypassing it.
+
+**Verified, not cited:** `preflight.py` cleared the lock and ran to completion through `cycle_signal: snapshot recorded (clean pass)`, 0 FAIL/ERROR/WARN anywhere captured, timed out at the documented `gate_tests` sandbox hang, unchecked past that, reported as such. `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0. `cold_read_ledger.py --stale` 0 stale; `--next 10` empty, exhaustion holds at this HEAD. All 10 open GitHub issues re-pulled fresh: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential, unchecked not assumed empty. `last-owner-notification.json`: last deliberate push 2026-10-24T16:1x UTC, 48h floor not elapsed, nothing material changed, withheld another push.
+
+**Went well:** waited out the lock instead of racing the concurrent session.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** nothing; issue #42 covers this repeated-cadence shape and prior cycles stopped re-raising without new evidence, so this entry doesn't either.
+
+**Next:** hold the decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); KDP/Etsy and YouTube OAuth remain the cheapest unlocks, waiting on Phil.
+
+Pushed to main. Dashboard files, `ops/cycle-signal.json`, this entry. No price, product or served page touched; no new page; IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (13:2x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
