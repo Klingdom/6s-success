@@ -2,6 +2,18 @@
 
 > Canonical evidence-backed learning memory for the autonomous 6S Success organization.
 
+## 2026-10-26: a word list cannot convert vocabulary; only reading the result can
+
+**Observation.** Converting the cleaning corpus from British to American vocabulary with a reviewed phrase list produced two wrong results on the first pass: "jumper cables" became "sweater cables" (6 places in content.json, 3 in each Manual file) and the bathroom "extractor" fan became a "range hood" in the toilet-area method.
+
+**Evidence.** Both were found by reading the changed sentences in context after applying the list, not by any check: every gate was green with "sweater cables" in the sold Manual. A third class surfaced only when a generator refused to build: deck builders hold frozen copies split across string literals ("sun " / "cream"), which a phrase match cannot see.
+
+**Confidence.** High.
+
+**Implication.** Spelling (colour/color) is safe to automate; vocabulary is not, because the same word carries different senses in different rooms. Rules must be phrase-level and sense-specific ("wool jumper", "the extractor running"), and every application must be followed by reading each changed phrase in context.
+
+**Next action.** When extending `fix_dialect.VOCAB`, grep the American replacement afterwards for nonsense ("sweater cables", "range hood" outside the kitchen) before committing.
+
 ## 2026-10-23: no visitor's country had ever been recorded, and nothing said so
 
 **Observation.** Asked to attract more global visitors, the first question was where visitors come from now. Umami had a country for 0 of this site's 109 sessions since launch, against 1,118 of 1,118 for the other site on the same Umami instance.
