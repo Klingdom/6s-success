@@ -18432,6 +18432,15 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     id, the same "does this field still point at the section that owns the
     fact" question, adapted to the field's new shape.
 
+    Widened a fourth time 2026-10-26, scheduled operator cycle: a fifth
+    section, "Currently Deployed Build (last confirmed)"/"Repository HEAD
+    Build" under the Technical Operations table, independently cites its
+    own build id and had drifted twice in a row (named and left unfixed by
+    a 05:4x PM check-in the same day, then found stale again by this cycle)
+    specifically because this gate's own section map never covered it,
+    even though both prior cycles said so by name. Added rather than
+    deferred a third time.
+
     Returns a problem string naming every stale section found; '' if there
     is nothing to check or every citation is current.
     """
@@ -18446,6 +18455,8 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
             r"\|\s*Public website\s*\|.*?(?=\n\|)",
         "Production traceability (status table row)":
             r"\|\s*Production traceability\s*\|.*?(?=\n\|)",
+        "Currently Deployed Build / Repository HEAD Build":
+            r"\*\*Currently Deployed Build.*?(?=\n\*\*Release / Tag:|\Z)",
     }
     stale = []
     for label, pattern in sections.items():

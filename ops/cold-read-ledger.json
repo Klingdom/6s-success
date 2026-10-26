@@ -894,7 +894,7 @@
     "keyword_demand.py": {
       "status": "clean",
       "date": "2026-10-26",
-      "note": "PM cold read (14:4x slot): reviewed the 2026-10-26 British-spelling fold (_SPELLING/_fold) and the 2026-10-13 arrange/organize FORMAT_WORDS widening against the live file. Fold regexes are prefix-anchored and each output lands on an existing FORMAT_WORDS entry (organise->organize, organising->organizing, organisation->organization, organiser/organisers->organizer/organizers); colour/favourite/centre/mould fold consistently. No defect found; reorganise/reorganising fold to forms not in FORMAT_WORDS, same as pre-existing reorganize/reorganizing, not a regression from this touch."
+      "note": "PM cold read (14:4x slot): reviewed the 2026-10-26 British-spelling fold (_SPELLING/_fold) and the 2026-10-13 arrange/organize FORMAT_WORDS widening against the live file. Fold regexes are prefix-anchored and each output lands on an existing FORMAT_WORDS entry (organise->organize, organising->organizing, organisation->organization, organiser/organisers->organizer/organizers); colour/favourite/centre/mould fold consistently. No defect found; reorganise/reorganising fold to forms not in FORMAT_WORDS, same as pre-existing reorganize/reorganizing, not a regression from this touch. A separate scheduled-operator cycle reached the same clean verdict independently at nearly the same time (rescored both keyword-demand.json and keyword-demand-global.json against current HEAD, both counts unchanged; its own ledger edit discarded on merge rather than duplicated)."
     },
     "keyword_demand_global.py": {
       "status": "clean",

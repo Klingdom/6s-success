@@ -39,6 +39,13 @@ with a fixed pointer to Production Knowledge/BLOCKER-001. Checks 7 and 8
 below now exercise that pointer instead of a build_id, the field's own new
 shape.
 
+Widened a fourth time 2026-10-26, scheduled operator cycle: found a FIFTH
+section, "Currently Deployed Build (last confirmed)"/"Repository HEAD
+Build" under the Technical Operations table, independently citing its own
+build id. Named twice the same day as a known gap in this gate's own
+section map (a 05:4x PM check-in, then this cycle) before either time
+actually widening it; checks 12 and 13 below exercise it directly.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -218,12 +225,51 @@ def main() -> int:
         fails.append("both table rows current, but still flagged: %r"
                      % problem)
 
+    # 12. Same shape, for the fifth section found 2026-10-26: BLOCKER-001,
+    #     Production Knowledge and both table rows are all current, but the
+    #     "Currently Deployed Build (last confirmed)"/"Repository HEAD
+    #     Build" paragraph independently cites a stale build_id. Must fire,
+    #     and must name only that section.
+    fifth_stale = (
+        both_rows_current +
+        "\n**Currently Deployed Build (last confirmed):** "
+        "`4444444444444444` (resolves to commit `aaaaaaaaa`), confirmed "
+        "2026-10-20T00:00:00Z\n"
+        "**Confirmed At:** `2026-10-20T00:00:00Z` (`ops/deploy-verdict."
+        "json`, a session with real production access)\n"
+        "**Repository HEAD Build:** `4444444444444444` (`site/build-id."
+        "txt`). Matches the confirmed deployed build above exactly.\n"
+        "**Release / Tag:** NONE, every deploy is tracked by commit SHA\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(fifth_stale, verdict)
+    if not problem:
+        fails.append("Currently Deployed Build/Repository HEAD Build "
+                     "paragraph stale while every other section is "
+                     "current: expected a problem, got none")
+    elif "Currently Deployed Build" not in problem \
+            or "BLOCKER-001" in problem \
+            or "Production Knowledge" in problem \
+            or "Immediate Focus" in problem \
+            or "Public website" in problem \
+            or "Production traceability" in problem:
+        fails.append("problem string did not correctly name only the "
+                     "stale 'Currently Deployed Build' section: %r"
+                     % problem)
+
+    # 13. The fifth section also current: must not fire.
+    fifth_current = fifth_stale.replace(
+        "4444444444444444", verdict["build_id"])
+    problem = preflight.status_deploy_verdict_problem(fifth_current, verdict)
+    if problem:
+        fails.append("all five sections current, but still flagged: %r"
+                     % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 11 checks")
+    print("PASS: 13 checks")
     return 0
 
 
