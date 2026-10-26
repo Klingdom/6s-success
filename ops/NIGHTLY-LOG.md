@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: CHECKIN-LOG.md rotation applied, exhaustion reconfirmed independently
+
+**Did:** Attached per Step 0 (fetch, --unshallow from a shallow detached checkout, checkout -B main origin/main, ff-only merge of 508 commits onto 35700c78e, tree clean). Read GOALS.md context, BACKLOG-2026-09-07.md sections 0 and 6 to 8 (section 49's own close: cold-read lane re-exhausted, remaining unblocked work limited to re-measurement drift or whatever Phil's next action unblocks), ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG.md entries. Ran preflight.py fast in the foreground: 0 FAIL through every gate before the documented gate_tests headless-Chromium sandbox hang (timed out there at 600s, same standing limitation every recent cycle reports), unchecked past that point, not assumed passing.
+
+**Did not trust the standing "exhausted" claim, re-derived it myself:** cold_read_ledger.py --stale, 0 of 294 stale. inbox_agent.py --apply, no mail credential in this sandbox, reported unchecked, not assumed empty. All 10 open GitHub issues pulled fresh via the API: unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil. Re-derived gate_status_deploy_gap_count_current and gate_stale_claims directly against current HEAD: both clean (None), no drift found.
+
+**Found one genuine, small, non-Phil-gated task: CHECKIN-LOG.md's own rotation was due, not yet urgent.** ops/rotate_checkin_log.py --check reported 10 of 612 entries (4360 bytes) older than the 30-day retention window, though gate_checkin_log_not_oversized was not yet failing on it. Applied: ops/rotate_checkin_log.py --apply moved the 10 entries to CHECKIN-LOG-ARCHIVE.md. Verified after: --check reports CLEAN (602 entries, all within the retention window); gate_checkin_log_not_oversized, gate_stale_claims and gate_status_deploy_gap_count_current all still return clean; ops/tests/test_rotate_checkin_log.py run directly (it is a standalone script, not unittest-discoverable; `python -m unittest` on it correctly collects 0 and would be a false pass if trusted, so it was run as a script instead): prints "OK: ops/rotate_checkin_log.py, checks pass". fix_dashes.py --check: 0 em/en dashes. git diff confirmed only CHECKIN-LOG.md, CHECKIN-LOG-ARCHIVE.md and ops/cycle-signal.json (preflight's own snapshot) changed.
+
+**Went well:** the re-derivation caught no stale claim this cycle (a genuine clean result, not a gap in the check); the rotation tool's own --check/--apply/--check cycle worked exactly as designed.
+
+**Did not go well:** nothing new; this is the same shape dozens of recent cycles report. Issue #42 (cadence vs. a fully exhausted structured queue) remains unanswered since 2026-10-25.
+
+**Changing next cycle:** none. No new gate needed: both rotation defects in this class (over/undercounting, wrong append direction) were already fixed and tested by the immediately preceding cycle (BACKLOG-2026-09-07.md section 49); this cycle only ran the now-correct tool.
+
+**Next:** hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); nothing else genuinely unblocked exists. No push notification sent: the 48h floor from the last deliberate status push (2026-10-24T16:1x, issue-42-cadence-and-owner-gates) has not elapsed and nothing material changed.
+
+Pushed to main. CHECKIN-LOG.md, CHECKIN-LOG-ARCHIVE.md, ops/cycle-signal.json, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (05:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached clean per Step 0 (fetch, unshallow, checkout -B main origin/main, ff-only merge 506 commits onto eac061391, landing on the just-completed scheduled operator cycle e8642c6a4; tree clean). Previous work confirmed finished, not cited: `cycle_signal.py --check` reports SAME at the current HEAD (46386749b, recorded by that same prior cycle), so the fast-path signal files (BACKLOG, GOALS, OWNER-ACTIONS, STATUS, deploy-verdict) are unchanged since the last full pass; re-verified the parts that checkpoint does not cover directly rather than trusting it blind: all 10 open GitHub issues re-pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`; read issue #42's full comment history (7 comments, all self-authored by prior cycles, none from Phil since 2026-10-25); `inbox_agent.py --apply` confirmed no mail credential in this sandbox (unchecked, not assumed empty); the last 10 GitHub Actions workflow runs on main all `completed`/`success`. `git log --since=2026-10-24` shows 207 Claude-authored commits against 159 bot commits, the same shape issue #42 already names, now larger.
