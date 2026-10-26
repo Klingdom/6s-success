@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (17:1x slot, 30-minute triage, collided with the operator on the same backlog item, adopted its more thorough fix, refreshed the cycle-signal snapshot the merge left stale, no notification)
+
+Previous work (16:4x PM cycle: deploy gap closed, 3 citations fixed) confirmed finished: clean tree, pushed, preflight fresh with 0 FAIL/WARN through the cycle_signal checkpoint. GitHub re-pulled: 10 issues unchanged, 0 PRs.
+
+Started on the same item the 16:4x cycle had handed the operator (the 18-file cold-read ledger gap): read and re-ledgered the two smallest files myself (`ops/fix_dialect.py`, `ops/verify_deploy.py`), both clean. Push conflicted: a concurrent operator cycle (`840f3e11b`, logged below) had independently done all 18, including mine, and additionally found and fixed two real defects (a missing `build_avif.wire()` chain call, six live British-vocabulary misses the gate never matched). Per step 8, did not force or hand-resolve: discarded my own superseded, never-pushed commit and moved local `main` to match `origin/main`.
+
+Found one thing their merge had left wrong: `ops/cycle-signal.json` on `main` still held a stale pre-merge snapshot (older than either side's own preflight run), so `cycle_signal.py --check` read CHANGED against current HEAD. Regenerated it properly with a fresh `preflight.py` run rather than hand-editing the JSON: 0 FAIL/WARN through the checkpoint, snapshot now matches real HEAD.
+
+Pushed to main. Dashboard regenerated. Cold-read ledger and backlog both genuinely exhausted; nothing new to hand the next operator beyond the standing Phil-gated queue.
+
 ## 2026-10-26, scheduled operator cycle: closed the 18-entry cold-read-ledger gap, one real generator-chain defect and six live British-vocabulary misses
 
 **Did:** attached cleanly (fetch, unshallow, ff-only merge onto origin/main). Backlog sections 2-7 confirmed exhausted (Done/Archived/Phil-gated), so this cycle took the only genuine unblocked work: 18 cold-read-ledger entries left stale by Phil's own cleaning-content review (`ad933f9e5`/`be352e857`), handed off by name in a same-day PM check-in. Read each diff rather than trusting the count. Found and fixed two real defects: (1) `ops/build_cleaning_index.py` never chained `build_avif.wire()`/`fingerprint_assets.main()` despite claiming to mirror `build_articles.py`'s chain; a standalone run stripped the committed AVIF source off the Manual offer card, invisible inside a full preflight run because a later generator's own global `build_avif.wire()` call repaired it as a side effect. (2) The new `fix_dialect.VOCAB` list was fixed in its source targets and the deck builders' frozen copies, but `gate_no_british_spellings_shipped` only ever matched `PAIRS`, so six live pages kept shipping "torch"/"takeaway menus"/"tea towel" (junk-drawer article), "a fortnight" (consulting.html, the messy-house article generator) and "a rubbish bag" (deck.html). Fixed all six at the right layer (generator source vs. hand-maintained HTML, per step 5b) and regenerated.
