@@ -32,17 +32,31 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 import preflight                                               # noqa: E402
 
 
-def _run(api_result, token="t", has_gh=True):
-    """Run the gate with the API/CLI stubbed. Returns (fails, warns)."""
+def _run(api_result, token="t", has_gh=True, github_workflow=None):
+    """Run the gate with the API/CLI stubbed. Returns (fails, warns).
+
+    github_workflow is always set explicitly, never inherited from the
+    ambient environment: when this test module runs for real inside
+    publish-image.yml's own "Publish site image" job, GITHUB_WORKFLOW
+    genuinely equals that string for the whole process, so a caller that
+    never touches it would silently exercise the wrong branch (see
+    test_publish_image_current.py, 2026-09-17, same shape).
+    """
     import dashboard
     old_api = preflight._workflow_run_via_api
     old_cli = preflight._workflow_run_via_cli
     old_tok = dashboard.gh_token
     old_which = preflight.shutil.which
+    had_env = "GITHUB_WORKFLOW" in os.environ
+    old_env = os.environ.get("GITHUB_WORKFLOW")
     preflight._workflow_run_via_api = lambda t, n: api_result
     preflight._workflow_run_via_cli = lambda n: api_result
     dashboard.gh_token = lambda: token
     preflight.shutil.which = (lambda name: "/usr/bin/gh" if has_gh else None)
+    if github_workflow is None:
+        os.environ.pop("GITHUB_WORKFLOW", None)
+    else:
+        os.environ["GITHUB_WORKFLOW"] = github_workflow
     preflight.FAIL, preflight.WARN = [], []
     try:
         preflight.gate_ci_conclusion_current()
@@ -52,6 +66,10 @@ def _run(api_result, token="t", has_gh=True):
         preflight._workflow_run_via_cli = old_cli
         dashboard.gh_token = old_tok
         preflight.shutil.which = old_which
+        if had_env:
+            os.environ["GITHUB_WORKFLOW"] = old_env
+        else:
+            os.environ.pop("GITHUB_WORKFLOW", None)
 
 
 def main():
@@ -99,12 +117,37 @@ def main():
         fails.append("gate_ci_conclusion_current is not called before "
                       "gate_tests in main(), so the hang can still hide it")
 
+    # 6. Found 2026-10-26: a failed checks.yml run demoted to WARN, not
+    #    FAIL, inside publish-image.yml's own job. That job already runs
+    #    this whole preflight against its own HEAD, and hard-failing here
+    #    too is what let checks.yml and publish-image.yml deadlock on each
+    #    other's prior failure with no way out (gate_publish_image_current
+    #    already gets this same demotion for the mirror-image reason).
+    f, w = _run(("failure", "2026-10-19T19:57:25Z", "7c630782ef6b", None),
+                github_workflow="Publish site image")
+    if f:
+        fails.append("a failed checks.yml run still hard-FAILed inside "
+                      "publish-image.yml's own job, the exact deadlock "
+                      "this demotion exists to break: %r" % f)
+    if not w or "ci-conclusion-current" not in w[0][0]:
+        fails.append("the failure was not even reported as a warning "
+                      "inside publish-image.yml's own job: %r" % (w,))
+
+    # 7. The demotion is scoped to publish-image.yml specifically, not a
+    #    blanket "anything under GITHUB_WORKFLOW passes": a different (or
+    #    absent) workflow name still gets the hard FAIL.
+    f, w = _run(("failure", "2026-10-19T19:57:25Z", "7c630782ef6b", None),
+                github_workflow="Checks")
+    if not f:
+        fails.append("the demotion leaked into a differently-named "
+                      "workflow, which should still hard-FAIL: %r" % (w,))
+
     if fails:
         print("FAIL")
         for x in fails:
             print(" -", x)
         return 1
-    print("OK: gate_ci_conclusion_current, 5/5 checks pass")
+    print("OK: gate_ci_conclusion_current, 7/7 checks pass")
     return 0
 
 

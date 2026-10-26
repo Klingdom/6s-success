@@ -12098,9 +12098,29 @@ def gate_ci_conclusion_current() -> None:
     that is simply whatever the last push actually did; on CI it is the
     previous push, which is exactly the question "is it safe to build on
     top of main right now" needs answered.
+
+    Demoted to warn when called from inside publish-image.yml's own job,
+    mirroring gate_publish_image_current's own self-reference guard just
+    below it. Found 2026-10-26: checks.yml hard-fails on
+    gate_publish_image_current whenever HEAD's site/ has not been
+    successfully published; publish-image.yml hard-failed right back on
+    THIS gate whenever checks.yml's last completed run had failed, with no
+    way for either to recover once both happened to fail in the same
+    window (eff4033f13, then 3f64badf5, then 62fa72bfc: three straight
+    commits, each workflow citing the other's prior failure, neither one
+    able to produce the single green/published result that would have
+    cleared the other). publish-image.yml already runs this entire
+    preflight against its own HEAD before it is allowed to build or push
+    anything, so a real defect on this commit is still caught here, by
+    every other gate, on the same run; what this gate adds on top, inside
+    that one job, is only "and was main also green last time", which is
+    not worth a permanent deadlock the system cannot exit without a human
+    editing this file.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import dashboard
+    in_own_workflow = os.environ.get("GITHUB_WORKFLOW") == "Publish site image"
+    report = warn if in_own_workflow else fail
     token = dashboard.gh_token()
     if token:
         conclusion, when, head_sha, err = _workflow_run_via_api(token, "checks.yml")
@@ -12118,13 +12138,13 @@ def gate_ci_conclusion_current() -> None:
              "Unchecked, not green." % (err or "no conclusion returned"))
         return
     if conclusion == "failure":
-        fail("ci-conclusion-current",
-             "checks.yml's most recent completed run FAILED (%s, commit "
-             "%s). Every gate after gate_tests in this file's own call "
-             "order is unverified on whatever landed there, because this "
-             "sandbox's gate_tests hang hides exactly that. Read the run "
-             "log before building anything else on top of this."
-             % (when or "time unknown", (head_sha or "unknown")[:10]))
+        report("ci-conclusion-current",
+               "checks.yml's most recent completed run FAILED (%s, commit "
+               "%s). Every gate after gate_tests in this file's own call "
+               "order is unverified on whatever landed there, because this "
+               "sandbox's gate_tests hang hides exactly that. Read the run "
+               "log before building anything else on top of this."
+               % (when or "time unknown", (head_sha or "unknown")[:10]))
 
 
 def gate_checks_yml_real_gap() -> None:

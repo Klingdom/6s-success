@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (00:5x slot, 30-minute triage, previous work NOT finished: checks.yml red on main, root cause found and fixed)
+
+**Previous work was not finished.** The 00:4x cycle's own handoff said `gate_ci_conclusion_current` "should read clean once that run completes, not before"; checked against the actual completed run (40251825158, commit `62fa72bfc`) rather than assumed: it did not read clean, it FAILED, on a different gate than the one being waited on.
+
+**Root cause, from both workflows' own job logs, not inferred:** `checks.yml` and `publish-image.yml` had deadlocked on each other. `checks.yml` hard-fails `gate_publish_image_current` because HEAD's site/ has not been successfully published since `d3d824c4`. `publish-image.yml`'s last two attempts (`eff4033f13`, `3f64badf5`) each hard-failed their own Preflight step on `gate_ci_conclusion_current`, citing `checks.yml`'s prior failure. Each gate pointed at the other workflow's last failure; no commit could clear either side on its own. `gate_publish_image_current` already carries a one-sided fix for exactly this shape (demoted to WARN inside its own job); `gate_ci_conclusion_current` had no matching demotion for the mirror case, so the deadlock had no exit.
+
+**Fixed, not just diagnosed:** `ops/preflight.py`'s `gate_ci_conclusion_current` now also demotes to WARN when `GITHUB_WORKFLOW == "Publish site image"`, mirroring the existing pattern one gate down. `test_gate_ci_conclusion_current.py` gained 2 cases (a failed run demoted inside publish-image.yml's own job; the same failure still hard-FAILs under any other workflow name, so the demotion does not leak), 7/7. `test_publish_image_current.py` and `test_publish_image_cheap_checks_first.py` re-run clean, no regression. `py_compile` and `fix_dashes.py --check` both clean. `STATUS.md`'s `BLOCKER-001` corrected with the real finding rather than left citing an expectation that did not hold.
+
+**Not yet done, this cycle's own next step:** ship this fix, then `workflow_dispatch` `publish-image.yml` directly (GITHUB_WORKFLOW will read "Publish site image" there, so the new demotion applies) rather than waiting for a future site/-touching commit to happen to retrigger it. Confirms whether the deadlock is actually broken or whether a further real defect was hiding behind it.
+
+**Next for the operator:** hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged and still decision/blocked-on-art.
+
 ## 2026-10-26, scheduled operator cycle: the cold-read lane confirmed fully exhausted; its own stale-deploy-gap finding was beaten to the fix by a concurrent PM check-in
 
 **Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `cc53a220d`). Delegated the search for unblocked work to a sub-agent rather than re-read the whole backlog myself. It ran `preflight.py` (0 FAIL through every gate reached before the documented sandbox slowness at `gate_etsy_pdfs_current`/`gate_tests`), confirmed `cold_read_ledger.py --stale` at 0 of 296 and `--next 10` at 0 un-ledgered candidates (that lane, running since 2026-10-16, is now also exhausted, not just epics 1-5), read the backlog's remaining sections, `OWNER-ACTIONS.md` and GitHub (10 open issues, all decision/blocked-on-art, 0 PRs; nothing newly resolved). It found one real, bounded gap: `STATUS.md`'s stale "2 commits, 1 material" deploy-gap citation.
