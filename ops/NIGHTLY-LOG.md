@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (16:1x slot, 30-minute triage, deploy gap genuinely reopened by real safety content, fixed 5 stale citations, no notification)
+
+PM check-in (16:1x slot). Previous work (15:4x cycle) was finished; cycle_signal flagged BACKLOG.md changed, so ran full checks live rather than citing the snapshot: preflight 0 FAIL through 31 gates before the documented lock/sandbox limit, check_urls 213/213, fix_dashes 0/0, 10 GitHub issues unchanged. Re-derived the deploy gap directly, not cited, and found it genuinely reopened: Phil's cleaning-review commit (ad933f9e5, safety fixes across 222 site/zones pages) sits undeployed; build-id.txt confirms it. Fixed all 5 stale zero-gap citations in STATUS.md, verified against the gate functions directly, rotated BLOCKER-001's chain (6 entries archived). Checked the vocabulary-fold risk LEARNINGS.md named against every generated output: clean. Handing to operator: 17 cold-read-ledger entries the fold touched need a real full read, too large for this slot.
+
 ## 2026-10-26, PM check-in (15:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
