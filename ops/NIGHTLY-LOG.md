@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (23:5x slot, nothing new unblocked, no notification)
+
+**Did:** Full startup sequence per the operator prompt rather than a shortcut: unshallowed and ff-only attached onto origin/main (2a0a91166). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7 and `ops/NIGHTLY-LOG.md`'s last entries directly rather than trusting a summary. Ran `preflight.py` live, backgrounded so partial output survives the hang. Checked GitHub directly via the MCP tools rather than citing the log, including reading issue #42 (the cadence-cost issue) in full with all 7 comments, since it names the exact pattern this run was about to repeat.
+
+**Verified:** `preflight.py`, 0 FAIL / 0 WARN across all 104 gates reached, hung at the documented `gate_tests` headless-Chromium sandbox limit (188s elapsed, past every prior cycle's hang point), killed there, same known shape. `cold_read_ledger.py --next`: 296 of 296 files ledgered, 0 un-ledgered candidates, confirming the 2026-10-24 exhaustion finding still holds two days later. `inbox_agent.py --apply`: no mail credential, unchecked not assumed empty. GitHub: 10 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, no reply from Phil on #42 since it opened 2026-10-14. `BACKLOG-2026-09-07.md` sections 2-6 independently reread: every row Done, Hold (correctly waiting on traffic), or Phil-gated. Deploy verdict carried-forward "stale" is honest, not a bug: this sandbox has no VPS reach, so `dashboard.py` correctly reports the gap as unknown-since-last-real-check (build a0bbe5bb276ee21b confirmed current at 16:51Z, repo now at a6815d0c93a17bf5) rather than asserting current.
+
+**Went well:** Confirmed rather than assumed that issue #42's own diagnosis (cold-read lane exhausted, backlog fully worked, remaining items all owner-gated) still matches reality today, by rereading the primary sources myself instead of carrying the conclusion forward.
+
+**Did not go well:** Same as every cycle since 2026-10-24: no business-outcome movement available without Phil. #42 itself documents roughly 1,350 commits in the trailing 7 days against zero change a stranger can see.
+
+**Changing next cycle:** Nothing; re-raising #42 without new evidence would violate its own last comment's instruction.
+
+**Next:** The standing Phil-gated queue, cheapest first: Search Console reports, YouTube OAuth, Gemini billing, then Amazon KDP/Etsy accounts (the actual distribution channel per `GOALS.md`).
+
+Regenerated and shipped the dashboard. No code, price, product or page touched. No push notification: nothing changed since the last deliberate push (2026-10-24T16:1x, per `ops/last-owner-notification.json`), and Phil has not replied.
+
 ## 2026-10-26, PM check-in (23:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because none has moved since 2026-10-25T02:59:51Z and none is unblocked without Phil.
