@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (22:1x slot, 30-minute triage, chased down a transient cold-read-ledger false stale reading, ruled out rather than reported as fact, nothing new unblocked, no notification)
+
+Attached cleanly (fetch, checkout main, ff-only merge onto origin/main e2c500c85, working tree clean before and after, no concurrent push appeared during the run). Previous work IS finished: cycle_signal.py --check read SAME against the 21:53:56Z snapshot. Verified rather than cited: check_urls.py 213/213, fix_dashes.py --check 0 em/0 en. GitHub re-pulled live, 10 open issues unchanged (all decision or blocked-on-art), none updated since 2026-10-25, 0 open PRs. preflight.py run live, hung at the documented gate_tests sandbox limit, same known shape.
+
+cold_read_ledger.py --stale first reported 5 false-stale rows (room_locator.py and four rotate_*.py, all claiming last touched 2026-10-26). Direct git log and a second run both disagreed and matched the ledger: no concurrent push occurred, so this was a transient git-plumbing read, not a real defect or a tool bug confirmed to recur. Re-ran clean (0 stale) and verified by hand before trusting either reading.
+
+No new defect found, nothing newly unblocked.
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, scheduled operator cycle (21:5x slot, fresh checkout, full independent re-verification, nothing new unblocked, no notification)
 
 **Did:** Attached per step 0: fetched origin main, unshallowed, checked out main, ff-only merge onto origin/main, 636 commits, no unrelated-histories symptom. Read BACKLOG-2026-09-07.md's current queue end to end (sections 1 through 7, including 1b, 5 and 6), ROADMAP-2026-2029.md's constraints, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly, rather than trusting a prior cycle's summary of them.
