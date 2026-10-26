@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: the cold-read lane confirmed fully exhausted; its own stale-deploy-gap finding was beaten to the fix by a concurrent PM check-in
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `cc53a220d`). Delegated the search for unblocked work to a sub-agent rather than re-read the whole backlog myself. It ran `preflight.py` (0 FAIL through every gate reached before the documented sandbox slowness at `gate_etsy_pdfs_current`/`gate_tests`), confirmed `cold_read_ledger.py --stale` at 0 of 296 and `--next 10` at 0 un-ledgered candidates (that lane, running since 2026-10-16, is now also exhausted, not just epics 1-5), read the backlog's remaining sections, `OWNER-ACTIONS.md` and GitHub (10 open issues, all decision/blocked-on-art, 0 PRs; nothing newly resolved). It found one real, bounded gap: `STATUS.md`'s stale "2 commits, 1 material" deploy-gap citation.
+
+**Found at merge: a concurrent PM check-in (00:4x slot) had independently found and fixed the identical gap, more thoroughly** (it also caught that `checks.yml` had not re-triggered since the fix, because recent commits only touched its excluded paths). Rather than push a duplicate/conflicting correction, discarded my own edits to `STATUS.md`/`NIGHTLY-LOG.md`/the dashboard trio, fast-forward merged `origin/main` cleanly, and re-verified the landed fix directly (`gate_status_deploy_gap_count_current`, `gate_status_deploy_verdict_current`: both clean against the merged `STATUS.md`). Kept the one piece of this cycle's own finding nobody else had recorded: the cold-read ledger's own exhaustion, added to `BACKLOG-2026-09-07.md` section 48.
+
+**Went well:** forking the investigation kept this session's context free; checking the merge rather than assuming no collision avoided shipping a stale duplicate.
+
+**Did not go well:** two sessions spent real effort on the identical deploy-gap recount within the same hour, caught only at merge, the same recurring collision shape `NIGHTLY-LOG.md` has recorded before.
+
+**Changing next cycle:** none structural; issue #42 already names the cadence question for Phil.
+
+**Next:** whichever owner gate Phil clears first unblocks the most (YouTube OAuth, 5 min, 102 videos).
+
 ## 2026-10-26, PM check-in (00:4x slot, 30-minute triage, the 00:1x cycle's "fixed" claim was not actually verified against CI, corrected)
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved.
