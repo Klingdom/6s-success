@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: independent re-verification, exhaustion confirmed, no push sent (within issue #42's own 48h floor)
+
+**Did:** Attached per Step 0 (shallow detached checkout, fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `1ca5e83ac`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 2, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries. Re-derived rather than cited: `cold_read_ledger.py --stale` (0 of 296) and `--next` (296 of 296 ledgered, 0 un-ledgered candidates); all 10 open GitHub issues pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`; `git log --author="Phil Kling"` still shows his last commit at 2026-10-23 11:44, against 186 autonomous commits in the trailing 24h. Re-derived `STATUS.md`'s own `BLOCKER-001` figure directly with `deploy_gap_material_commits('84c234bd3857ed4c')` rather than trust it: still 4 commits, 2 material, matching the citation exactly, no drift.
+
+**Verified:** `check_urls.py` 213/213, `audit_pages.py` 218/0, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents). `check_ledgerium.py` and `inbox_agent.py --apply` both unchecked, no Stripe or mail credential in this sandbox, not assumed clean or empty. `preflight.py` run fresh: 0 FAIL through every gate before the documented `gate_tests` sandbox hang; killed there, reported unchecked past that point.
+
+**Went well:** running preflight unbuffered straight to a log file, rather than through a piped `tail`, avoided a near-miss: a first attempt piped through `tail` was killed by its own timeout with zero bytes delivered, which would have been easy to misread as "nothing ran" instead of "buffering ate it."
+
+**Did not go well:** nothing new; the same exhausted state dozens of recent cycles report.
+
+**Changing next cycle:** none.
+
+**Next:** hold the standing decision/`blocked-on-art` queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Amazon KDP and Etsy (`OWNER-ACTIONS.md` items 14 to 15) remain the cheapest real distribution unlock and are fully prepared on our side (`check_etsy.py`/`check_kdp.py` both clean), waiting only on Phil creating the accounts himself. No push notification sent: within issue #42's own 48h floor from 2026-10-24T16:1x UTC, and nothing material changed since.
+
 ## 2026-10-26, PM check-in (07:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Attached per Step 0 (shallow detached checkout, fetch, unshallow, checkout -B main origin/main, ff-only merge, tree clean). Previous work (the 06:4x hourly bot and the 06:4x PM cycle) confirmed finished, not cited: preflight.py run fresh to completion, 0 FAIL through every gate before the documented gate_tests sandbox hang, killed there rather than left orphaned. Re-derived the deploy gap myself rather than trust STATUS.md's figure: resolve_verdict_commit then deploy_gap_material_commits against current HEAD both returned the same 4 commits, 2 material, no drift. fix_dashes.py --check 0/0, check_urls.py 213/213. All 10 GitHub issues re-pulled fresh via the API: unchanged, all decision/blocked-on-art, none from Phil. Last 3 checks.yml runs green. No new defect small enough to close this slot. Holding the standing decision/blocked-on-art queue; issue #42's 48h notification floor (from 2026-10-24T16:1x UTC) has not elapsed and nothing material changed, so no push sent. Handing nothing new to the operator beyond the same standing queue.
