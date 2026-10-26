@@ -181,6 +181,24 @@ order by n desc
 limit 8;
 SQL
 
+# Country, aggregate only: a count of visitors per country and nothing about
+# any one of them. Recorded from 2026-10-23 onward; before that every session
+# has country NULL because the nginx hop handed Umami the proxy's address
+# (LEARNINGS 2026-10-23), so "(unknown)" is mostly history, not a fault.
+echo "== visitors by country, last 30 days (recorded since 2026-10-23) =="
+docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
+select coalesce(nullif(s.country, ''), '(unknown)') as country,
+       count(distinct e.session_id) as visitors
+from website_event e
+join session s on s.session_id = e.session_id
+where e.website_id = :'w' and not starts_with(coalesce(e.url_path, ''), '/__')
+  and e.event_type = 1
+  and e.created_at > now() - interval '30 days'
+group by 1
+order by visitors desc
+limit 15;
+SQL
+
 echo "== custom events, all time =="
 docker exec -i "$C" psql -U umami -d umami -At -F'|' -v w="$W" <<'SQL'
 select event_name, count(*) as n, count(distinct session_id) as visitors
