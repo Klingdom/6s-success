@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (21:5x slot, fresh checkout, full independent re-verification, nothing new unblocked, no notification)
+
+**Did:** Attached per step 0: fetched origin main, unshallowed, checked out main, ff-only merge onto origin/main, 636 commits, no unrelated-histories symptom. Read BACKLOG-2026-09-07.md's current queue end to end (sections 1 through 7, including 1b, 5 and 6), ROADMAP-2026-2029.md's constraints, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly, rather than trusting a prior cycle's summary of them.
+
+**Verified:** Did not accept "exhausted" from the log's own dozens of same-day entries without re-checking it myself. Read sections 2 to 6 of the backlog directly: every A/B/C row is struck through (archived), marked Done with a dated fix, or genuinely owner-gated (C5 Gemini billing superseded except 11 room chapters, C6 YouTube OAuth, section 6's six owner-gate rows). Section 5's Holds (email capture, physical decks, A/B tests, a 6-product cleaning-master-list completeness gap, "programme"/"program" spelling, Impact re-application) each still wait on traffic or are genuinely low-value. Ran `preflight.py` live myself (not backgrounded and trusted): 0 FAIL through every gate up to and including `cycle_signal: snapshot recorded (clean pass)`, hung at the documented `gate_tests` headless-Chromium sandbox limitation, same known shape, not a new defect. `cold_read_ledger.py --stale`: 0/296. `cold_read_ledger.py --next`: 0 un-ledgered candidates. `fix_dashes.py --check`: 0 em/0 en. `affiliate.py --check`: 165 documents clean. `check_urls.py`: 213/213. `cycle_signal.py --check`: SAME against the 20:50:33Z snapshot. GitHub's 10 open issues re-pulled live via the MCP tools: unchanged, all `decision` or `blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated since 2026-10-25. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty. STATUS.md's incident/blocker section: all four incidents RESOLVED or confirmed not recurring; the one standing gap is the same 1-material-commit deploy lag (`840f3e11b`) every recent cycle has logged, blocked on `VPS_DEPLOY_KEY` (issue #35), no P0 regression.
+
+**Went well:** Read the actual backlog rows rather than the log's summary of them, and the independent read reached the same conclusion with direct evidence rather than inherited confidence.
+
+**Did not go well:** Still zero business-outcome movement. Every remaining unblocked path requires either traffic that does not exist yet or a credential/decision only Phil holds.
+
+**Changing next cycle:** Nothing in the process; the standing tooling already fits the problem.
+
+**Next:** Same standing Phil-gated queue: `OWNER-ACTIONS.md`'s owner-gates table and "Start here" items, the ten open `decision`/`blocked-on-art` GitHub issues.
+
+Regenerated and shipped the dashboard, as required every run. No code, price, product or site page touched. No push notification sent: nothing changed since the 21:1x cycle, and this cycle's own independent read confirmed the same exhausted state rather than finding anything new.
+
 ## 2026-10-26, PM check-in (21:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 Attached cleanly (fetch, unshallowed, checkout -B main onto origin/main, ff-only, 636 commits, working tree clean before and after). Previous work IS finished: `ops/cycle_signal.py --check` read SAME against the 20:50:33Z snapshot (git 1a7dfd346c, partial pass: every gate before gate_tests clean). Verified rather than only cited: ran `check_urls.py` fresh, 213/213; `fix_dashes.py --check` fresh, 0 em/0 en; `cold_read_ledger.py --stale` fresh, 0 stale. Ran `preflight.py` live myself (not backgrounded and trusted), tailing partial output: 0 FAIL through every gate up to and including the cycle_signal clean-pass snapshot, hung at the documented `gate_tests` headless-Chromium sandbox limitation, killed there, same known shape every cycle today has logged, not a new defect. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle. GitHub's 10 open issues re-pulled live via the MCP tools: unchanged, all `decision` or `blocked-on-art`, none updated since 2026-10-25 (issue #42 still has no reply from Phil across 7 comments).
