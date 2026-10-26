@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-26 19:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-26 19:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-10-26 19:46 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
+| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 218 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. A session with real access confirmed production current at 2026-10-26T16:51:56Z (build a0bbe5bb276ee21b). The repository has since moved to build a6815d0c93a17bf5, not yet redeployed, so this gap is whatever changed since that confirmation, not an unknown backlog. Waiting behind that deploy: 129 of 130 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -24,13 +24,13 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not rea). This is not a reading of zero.) |
+| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 10 (2 P0, 2 blocked on art, 8 need your call) |
 | Closed to date | 32 |
-| Commits (7 days) | 1362 of 8906 total |
-| Working tree | clean, in sync |
-| Last commit | `1e47d2c` PM check-in (19:4x slot): previous work reconfirmed finished |
+| Commits (7 days) | 1360 of 8907 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `4cd355707` Hourly check-in record |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 114/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 114/114 zone pages carry a reviewed picture (live) |
+| Zone imagery | 114/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,939 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,6 +56,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 ## What needs you
 
+- **Redeploy the site.** Production is serving an older build: 0 of 13 assets on the live homepage differ from this repository, and zone photography already matches the last confirmed deploy (114 zone pages carrying their reviewed picture); this gap is elsewhere. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left.
 - **Check your Claude Code usage limit or plan status** (2 min). **Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead.
 - **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **~~Verify the site in Google Search Console~~, send the Pages/Performance reports** (2 min). **Corrected 2026-10-20, PM check-in: this row still described the original verification task as open, 6 days after the full `### 1a` section below it (line ~872) recorded Phil had done it.** Verification itself is done: Phil set up the Domain property via DNS TXT, confirmed live by `nslookup`, token recorded in `ops/site-verification.json`, `gate_site_verification_declared` now finds it.

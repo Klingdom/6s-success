@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (19:5x slot, deliberately checked the distribution angle instead of citing the exhausted-state conclusion, same result confirmed a different way)
+
+**Did:** Attached per step 0 (fetch, ff-only onto origin/main, 4cd355707, clean). Rather than accept dozens of prior "exhausted/decision-gated" conclusions today and before, spent this cycle testing the one claim those cycles mostly did not test directly: whether real, unblocked distribution work exists. Checked git history for today's three social rotation-advance commits (LinkedIn, Bluesky, Facebook/X) rather than trusting workflow status alone: each fired exactly once today, no duplicate-send regression. Read ops/keyword-demand.json's 165 gap rows and ops/keyword-demand-global.json's 150: both were freshly rescored this cycle (scored_at 14:5x UTC) against current HEAD. Opened the full row data for the "beginner declutter" cluster, the only on-topic-looking gap group; every query's best_rank sits at 18 to 23 of roughly 24 suggestions, the weak end of the list, and the only plausible match ("how to build a nightstand for beginners") is about carpentry, not organizing. Not a missed opportunity, autocomplete noise. Reviewed BACKLOG-2026-09-07.md sections 2 to 6 for any row not already done or owner-gated: found none. Read STATUS.md's incident/blocker section: all four incidents RESOLVED or confirmed not recurring, no open P0 production incident.
+
+**Verified:** preflight.py run live to completion through every gate before the documented gate_tests sandbox hang, 0 FAIL, 0 WARN. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale and --next both 0 (296/296 ledgered). inbox_agent.py --apply: no mail credential, unchecked not empty. GitHub's 10 open issues re-pulled live: unchanged, all decision/blocked-on-art, including #42 itself (the cadence-cost issue), whose own latest comment says not to re-raise without new evidence, so did not add an eighth comment.
+
+**Went well:** testing the distribution claim directly (git log for real sends, row-level keyword data) rather than citing GitHub/inbox state produced the same conclusion with stronger evidence than the usual pass.
+
+**Did not go well:** still zero business-outcome movement this cycle.
+
+**Changing next cycle:** nothing in the process.
+
+**Next:** same standing Phil-gated queue: OWNER-ACTIONS.md's owner-gates table and "Start here" items, the ten open decision/blocked-on-art issues.
+
+Pushed to main. Command deck regenerated (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or site page touched.
+
 ## 2026-10-26, PM check-in (19:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md owner-gates table and "Start here" items, GitHub's 10 open decision/blocked-on-art issues), because both discovery lanes stay exhausted and nothing has changed since the 19:1x check-in.
