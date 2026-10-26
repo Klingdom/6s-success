@@ -22010,16 +22010,17 @@ def gate_backlog_closed_sections_not_oversized() -> None:
     text = io.open(path, encoding="utf-8").read()
     buffered_days = rbc.DEFAULT_RETENTION_DAYS + 7
     cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
-    n_sections, overdue, n_bytes = rbc.count_stats(text, cutoff)
+    n_sections, overdue, n_bytes, overdue_bytes = rbc.count_stats(text, cutoff)
     if overdue:
         warn("backlog-closed-sections-not-oversized",
              "BACKLOG-2026-09-07.md carries %d numbered Closed/Done "
              "section(s) older than %s (the %d-day retention window "
-             "plus a 7-day buffer), %d bytes across %d sections. Run "
-             "`python ops/rotate_backlog_closed.py --apply` to move "
-             "them into BACKLOG-2026-09-07-CLOSED-ARCHIVE.md."
+             "plus a 7-day buffer), %d bytes, out of %d sections live "
+             "(%d bytes total). Run `python ops/rotate_backlog_closed.py "
+             "--apply` to move them into "
+             "BACKLOG-2026-09-07-CLOSED-ARCHIVE.md."
              % (overdue, cutoff.isoformat(), rbc.DEFAULT_RETENTION_DAYS,
-                n_bytes, n_sections))
+                overdue_bytes, n_sections, n_bytes))
 
 
 def gate_backlog_done_items_rotated() -> None:

@@ -129,12 +129,39 @@ def main() -> int:
     except ValueError:
         pass
 
+    # 8. count_stats()'s overdue byte count must reflect only the
+    #    overdue sections, not every live section. Found 2026-10-26:
+    #    --check's own DUE message quoted the whole corpus's size as the
+    #    size of the one section that would actually move. One recent
+    #    (kept live) and one old (moved) section of deliberately
+    #    different sizes makes the two figures impossible to confuse by
+    #    accident.
+    text8 = _file(_section(8, d(1), "r"),
+                  _section(9, d(30), "much longer body text here"))
+    cutoff8 = today - datetime.timedelta(days=21)
+    n_sections8, n_overdue8, n_bytes8, overdue_bytes8 = \
+        rbc.count_stats(text8, cutoff8)
+    if n_overdue8 != 1:
+        fails.append("count_stats() miscounted overdue sections: %r"
+                      % n_overdue8)
+    if overdue_bytes8 >= n_bytes8:
+        fails.append("count_stats() overdue_bytes (%d) is not smaller "
+                      "than the live total n_bytes (%d); the kept-live "
+                      "section 8 carries no weight in either figure"
+                      % (overdue_bytes8, n_bytes8))
+    expected_overdue_bytes = len(
+        _section(9, d(30), "much longer body text here").encode("utf-8"))
+    if overdue_bytes8 != expected_overdue_bytes:
+        fails.append("count_stats() overdue_bytes %d != the one overdue "
+                      "section's own size %d"
+                      % (overdue_bytes8, expected_overdue_bytes))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: rotate_backlog_closed.py, 7/7 checks pass")
+    print("OK: rotate_backlog_closed.py, 8/8 checks pass")
     return 0
 
 

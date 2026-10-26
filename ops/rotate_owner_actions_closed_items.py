@@ -214,6 +214,31 @@ def do_check():
     return 1
 
 
+def insert_after_divider(entry: str, existing_archive_text: str) -> str:
+    """Place `entry` right after the archive's fixed header divider, so
+    repeated rotations keep the newest material on top, the same
+    "new material on top" convention ops/rotate_owner_actions.py,
+    ops/rotate_owner_actions_gemini_billing.py and ops/rotate_status_
+    workstreams.py all already use for this same file's archive.
+
+    Found 2026-10-26: this tool's own do_apply() opened ARCHIVE_PATH in
+    "a" (append) mode instead, growing at the bottom while every sibling
+    tool grows at the top. One entry (archived 2026-10-24, this tool's
+    own first real run) already landed out of chronological order because
+    of it; left as-is, since the archive's own contract ("nothing here
+    was edited on the way over") means a past entry's position is not
+    this fix's to correct, only future ones.
+    """
+    marker = "\n---\n"
+    at = existing_archive_text.find(marker)
+    if at == -1:
+        raise ValueError("OWNER-ACTIONS-ARCHIVE.md has no '---' divider "
+                          "after its header; refusing to guess.")
+    head = existing_archive_text[:at + len(marker)]
+    tail = existing_archive_text[at + len(marker):]
+    return head + "\n" + entry.strip("\n") + "\n\n" + tail.lstrip("\n")
+
+
 def do_apply():
     text = open(OA_PATH, encoding="utf-8").read()
     new_text, archive_entry, total = plan_rotation(text)
@@ -223,8 +248,14 @@ def do_apply():
 
     with open(OA_PATH, "w", encoding="utf-8", newline="\n") as f:
         f.write(new_text)
-    with open(ARCHIVE_PATH, "a", encoding="utf-8", newline="\n") as f:
-        f.write(archive_entry)
+
+    existing_archive_text = ""
+    if os.path.exists(ARCHIVE_PATH):
+        existing_archive_text = open(ARCHIVE_PATH, encoding="utf-8").read()
+    new_archive_text = insert_after_divider(archive_entry,
+                                             existing_archive_text)
+    with open(ARCHIVE_PATH, "w", encoding="utf-8", newline="\n") as f:
+        f.write(new_archive_text)
 
     _, spans = plan(text)
     print(f"APPLIED: archived {len(spans)} items.")

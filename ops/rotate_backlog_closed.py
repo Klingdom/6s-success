@@ -142,11 +142,22 @@ def apply_archive(archived_blocks, existing_archive_text):
 
 
 def count_stats(text: str, cutoff: datetime.date):
+    """Returns (n_sections, n_overdue, n_bytes, overdue_bytes).
+
+    n_bytes is every numbered section's size, the live corpus total.
+    overdue_bytes is only the sections --apply would actually move. The
+    two were collapsed into one `n_bytes` until found 2026-10-26: --check
+    printed overdue_bytes's value as n_bytes's own ("1 of 41 numbered
+    sections (180769 bytes) are older than ... and would move ... on
+    --apply"), so a 2888-byte rotation read as a 180769-byte one, the
+    entire corpus's size misquoted as the one overdue section's size.
+    """
     sections = find_sections(text)
     overdue = [s for s in sections
                if s["date"] is not None and s["date"] < cutoff]
     n_bytes = sum(len(s["block"].encode("utf-8")) for s in sections)
-    return len(sections), len(overdue), n_bytes
+    overdue_bytes = sum(len(s["block"].encode("utf-8")) for s in overdue)
+    return len(sections), len(overdue), n_bytes, overdue_bytes
 
 
 def main() -> int:
@@ -166,14 +177,15 @@ def main() -> int:
 
     text = io.open(BACKLOG_PATH, encoding="utf-8").read()
     cutoff = datetime.date.today() - datetime.timedelta(days=args.days)
-    n_sections, overdue, n_bytes = count_stats(text, cutoff)
+    n_sections, overdue, n_bytes, overdue_bytes = count_stats(text, cutoff)
 
     if args.check:
         if overdue:
-            print("DUE: %d of %d numbered sections (%d bytes) are older "
-                  "than %s (retention %d days) and would move to %s on "
-                  "--apply." % (overdue, n_sections, n_bytes,
-                                 cutoff.isoformat(), args.days, ARCHIVE_PATH))
+            print("DUE: %d of %d numbered sections (%d bytes total live) "
+                  "are older than %s (retention %d days); %d bytes would "
+                  "move to %s on --apply."
+                  % (overdue, n_sections, n_bytes, cutoff.isoformat(),
+                     args.days, overdue_bytes, ARCHIVE_PATH))
             return 1
         print("CLEAN: all %d numbered sections (%d bytes) are within the "
               "%d-day retention window (cutoff %s). Nothing to rotate."
@@ -204,7 +216,7 @@ def main() -> int:
     io.open(backlog_tmp, "w", encoding="utf-8").write(new_text)
     os.replace(backlog_tmp, BACKLOG_PATH)
 
-    new_n_sections, _, new_n_bytes = count_stats(new_text, cutoff)
+    new_n_sections, _, new_n_bytes, _ = count_stats(new_text, cutoff)
     print("Moved %d sections to %s. Live file now carries %d numbered "
           "sections (%d bytes); was %d sections, %d bytes."
           % (len(archived_blocks), ARCHIVE_PATH, new_n_sections,

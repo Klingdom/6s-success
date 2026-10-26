@@ -897,9 +897,9 @@
       "note": "Re-ledgered after the 2026-10-13 FORMAT_WORDS widening (arrange excluded as an organize synonym, commit 6774e2895). Already independently verified twice same day: the authoring cycle simulated all 71 affected queries before landing, and the following PM check-in (18:2x) reran test_keyword_demand.py (21/21) and diffed a full --rescore against the committed keyword-demand.json byte for byte, confirming the 187/1455/1177 gap/partial/covered counts are current. This entry only updates the stale ledger date; no new read was needed beyond that double verification."
     },
     "keyword_demand_global.py": {
-      "status": "fixed",
-      "date": "2026-10-23",
-      "note": "Cold-read 2026-10-23, scheduled operator cycle: faithful, correctly-scoped port of keyword_demand.py's harvest/canary/refusal logic for gb/au/ca/in (score_rows interface, refusal_reason canary-dict shape, localise() regex both checked line by line against the US file's own precedent, no mismatch found). Found and fixed, not just read clean: it shipped with no staleness gate and no scheduled workflow, the exact gap gate_keyword_demand_not_stale was built to close for the US harvest, so this one could go stale forever after its first hand-fired run. Added gate_keyword_demand_global_not_stale (ops/preflight.py) and .github/workflows/keyword-demand-global.yml (Thursdays, offset from the US harvest's Wednesday slot)."
+      "status": "clean",
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: --status, --rescore verified against live data (2183 rows, counts stable); norm()'s narrow British/American spelling map checked against the current corpus and produces zero false in_us_harvest=false rows today; network harvest path (suggest()) could not be exercised, this sandbox has no route to suggestqueries.google.com"
     },
     "launch_plan_pdf.py": {
       "status": "clean",
@@ -1137,14 +1137,14 @@
       "note": "PM check-in cold read: locate_section/parse_rows/row_date/plan_rotation/apply_archive reviewed line by line against the real BACKLOG-2026-09-07.md (35 sequential, non-duplicate numbered headings, no false-positive heading matches). Edge cases checked by hand (all-rows-archived body, missing/duplicate anchors, degraded bare-paragraph rows) all fail safely or round-trip correctly. ops/tests/test_rotate_backlog.py 11/11 pass; python ops/rotate_backlog.py --check against the live file reports CLEAN (3 rows, 7795 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
     },
     "rotate_backlog_closed.py": {
-      "status": "clean",
-      "date": "2026-10-23",
-      "note": "PM check-in cold read: find_sections/plan_rotation/apply_archive/count_stats reviewed line by line against the real BACKLOG-2026-09-07.md. SECTION_RE's '^## (\\d+)\\.' match checked directly against the live file: 35 sequential headings (0-34), zero duplicates, no body text falsely matched as a heading. ops/tests/test_rotate_backlog_closed.py 7/7 pass; python ops/rotate_backlog_closed.py --check against the live file reports CLEAN (27 sections, 110564 bytes, within the 14-day window), matching the gate's own current silence. No defect found."
+      "status": "fixed",
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: count_stats() conflated total-corpus bytes with overdue bytes in the --check DUE message and in preflight's gate_backlog_closed_sections_not_oversized warn text (reported 180769 bytes would move when only 2888 would); fixed both call sites, added overdue_bytes to count_stats()'s return, added a regression test"
     },
     "rotate_backlog_done_items.py": {
-      "status": "fixed",
-      "date": "2026-10-24",
-      "note": "New tool, authored and verified this cycle: archives sections 2-4's 17 unambiguous struck-through done-item rows (whitelisted ids only) to BACKLOG-2026-09-07-ITEMS-ARCHIVE.md, leaving a one-line pointer. Round-trip proved byte-for-byte against the real file before and after --apply; 8/8 unit tests plus gate_backlog_done_items_rotated (4/4 fail-then-pass)."
+      "status": "clean",
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
     "rotate_checkin_log.py": {
       "status": "fixed",
@@ -1162,14 +1162,14 @@
       "note": "Fixed a real, live regression this same cycle introduced (bd7f59312): REGION_START_AFTER was a frozen copy of the 'List reviewed' paragraph's own closing sentence, which bd7f59312 rewrote the same day, leaving region_size()/plan_rotation() raising ValueError with both preflight gates swallowing it silently. REGION_START_AFTER now derives from LR_REPLACEMENT itself so the two cannot drift apart again; both preflight gates now warn by name instead of returning clean, guarded so a document with none of this gate's structural markers still stays silent. Fail-then-pass proved against the real committed file and against synthetic fixtures."
     },
     "rotate_owner_actions_closed_items.py": {
-      "status": "clean",
-      "date": "2026-10-24",
-      "note": "Read cold 2026-10-24 PM check-in (07:4x). Archives OWNER-ACTIONS.md items whose own header already declares them DONE/WITHDRAWN/Superseded/duplicate, leaving a one-line pointer; refuses on partial/non-contiguous spans rather than guessing. --check confirms CLEAN (already applied this same cycle by its own author). No defect found."
+      "status": "fixed",
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: do_apply() appended to OWNER-ACTIONS-ARCHIVE.md (mode 'a') instead of prepending like every sibling rotate_*.py, breaking the file's newest-first convention for future entries; fixed to prepend after the header divider, added a regression test; left the one already-misplaced 2026-10-24 entry as-is per the archive's own never-edit contract"
     },
     "rotate_owner_actions_gemini_billing.py": {
       "status": "clean",
-      "date": "2026-10-25",
-      "note": "authored and verified this cycle: archives item 1b's superseded correction chain and resolved zone table rows, fail-then-pass proved in test_gate_owner_actions_gemini_billing_not_oversized.py"
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
     "rotate_status_history.py": {
       "status": "fixed",
@@ -1177,9 +1177,9 @@
       "note": "Re-touched 2026-10-24: added split_table_row_chain/plan_rotation_table_row/plan_rotation_table_rows plus --check-table-rows/--apply-table-rows, a fourth chain shape (one table-cell line, newest-first, entries separated by the literal 'Prior state, kept because the shape recurs: ' instead of a line/paragraph break) for STATUS.md's 'Public website'/'Production traceability' table rows. Applied for real, both rows rotated to their current entry only; new gate_status_production_table_rows_not_oversized added to preflight.py. Dry-run round-trip proved byte-identical before the real apply; new test file 6/6, 8 new cases in test_rotate_status_history.py, fail-then-pass proved on the new gate."
     },
     "rotate_status_workstreams.py": {
-      "status": "fixed",
-      "date": "2026-10-24",
-      "note": "Cold-read 2026-10-24: idempotent rotation logic correct, already-rotated cleanly on the live STATUS.md. Real gap: no dedicated preflight gate (siblings all have one). Added gate_status_workstreams_rotated and its test (ops/tests/test_gate_status_workstreams_rotated.py, 6/6, fail-then-pass proven), wired into main()."
+      "status": "clean",
+      "date": "2026-10-26",
+      "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
     "send_brief.py": {
       "status": "clean",

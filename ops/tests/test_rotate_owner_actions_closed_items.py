@@ -104,12 +104,36 @@ def main() -> int:
     finally:
         m.GROUPS, m.POINTERS = orig_groups, orig_pointers
 
+    # 5. insert_after_divider() places new material right after the
+    #    header's own '---' divider, above whatever the archive already
+    #    held, the same "new material on top" convention every sibling
+    #    rotate_*.py uses for this file. Found 2026-10-26: do_apply() used
+    #    to open the archive in "a" (append) mode instead, growing at the
+    #    bottom while every sibling grows at the top.
+    archive_header = (
+        "# OWNER-ACTIONS.md archive\n\n"
+        "> Historical entries moved here. Nothing here was edited on the "
+        "way over.\n\n---\n"
+    )
+    existing = archive_header + "\n### Old top entry\n\nold body.\n"
+    new_entry = "\n\n## Archived 2026-01-02 by this test\n\nnew body.\n"
+    result = m.insert_after_divider(new_entry, existing)
+    if not result.startswith("# OWNER-ACTIONS.md archive"):
+        fails.append("insert_after_divider() lost the fixed header")
+    idx_new = result.find("## Archived 2026-01-02")
+    idx_old = result.find("### Old top entry")
+    if idx_new == -1 or idx_old == -1 or idx_new > idx_old:
+        fails.append("insert_after_divider() did not place new material "
+                      "above the existing top content: %r" % result[:300])
+    if "old body." not in result:
+        fails.append("insert_after_divider() lost existing archive content")
+
     if fails:
         print("FAIL (%d):" % len(fails))
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 4/4 cases ok.")
+    print("PASS: 5/5 cases ok.")
     return 0
 
 
