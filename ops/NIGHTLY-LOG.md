@@ -12,7 +12,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Done, same cycle:** shipped (`fcc9db1f2`) and dispatched `publish-image.yml` directly (run 40254040880). `gate_ci_conclusion_current` correctly demoted to WARN this time, confirmed in the run's own log, but the job still failed one gate further down: `gate_generator_ownership` refused to run because `ops/cycle-signal.json` sat modified, written by this same run's own `maybe_record_cycle_signal()` checkpoint earlier in `main()`, the identical shape its `_own_output` set already excuses for the dashboard trio but had never been extended to cover. Fixed by adding it to `_own_output`; proved with a new, fast `test_gate_generator_ownership_own_output.py` (3/3: the file alone excused, the full quartet excused, a genuine extra dirty file alongside them still blocks). Shipping this second fix and re-dispatching now rather than stopping at the first green-looking signal.
 
-**Next for the operator:** hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged and still decision/blocked-on-art.
+**Confirmed, not assumed: both fixes held.** `publish-image.yml` run 40254991305 (commit `7753636a4`) completed SUCCESS; `checks.yml` run 40254987270 on that same commit also completed SUCCESS. `checks.yml` is green on main for the first time since `eff4033f13`. The real, separate, Phil-gated deploy gap (production has not pulled the new image, `VPS_DEPLOY_KEY`, issue #35) is unchanged on purpose: this cycle fixed the CI tooling that was stuck on itself, not the production pull, which still needs the owner's credential regardless.
+
+**Next for the operator:** hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged and still decision/blocked-on-art. CI is healthy again; nothing further to pick up from this cycle's own work.
 
 ## 2026-10-26, scheduled operator cycle: the cold-read lane confirmed fully exhausted; its own stale-deploy-gap finding was beaten to the fix by a concurrent PM check-in
 
