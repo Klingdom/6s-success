@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (10:1x slot, 30-minute triage, previous work confirmed finished, one small rotation applied)
+
+Previous work (the 09:4x PM cycle and the scheduled operator's full-pass re-verification) confirmed finished, not cited. Attached per Step 0 (shallow detached checkout, fetch, fetch --unshallow, checkout main, ff-only merge of 544 commits onto eac061391, tree clean). Re-derived rather than trusted: resolve_verdict_commit then deploy_gap_material_commits against real current HEAD both return the same 4 commits (3f64badf5, 3ed019f81, d3d824c4c, a24a667c6), 2 material, matching STATUS.md exactly, no drift. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/0. All 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all decision/blocked-on-art, none from Phil. 0 open PRs, last 3 checks.yml runs green. preflight.py run fresh: 0 FAIL through every gate before the documented gate_tests sandbox hang, unchecked past that point.
+
+**Found and closed a small item instead of just re-reporting exhaustion:** rotate_backlog_closed.py --check reported 1 of 42 numbered BACKLOG-2026-09-07.md sections past its 14-day retention window, not yet gate-failing but due. Applied via its own script, never hand-edited; --check clean after (41 sections, 181316 bytes), gate_backlog_closed_sections_not_oversized confirmed None directly.
+
+Regenerated the dashboard. Checked ops/last-owner-notification.json: last deliberate push 2026-10-24T16:1x UTC (issue #42), 48h floor not yet elapsed, nothing material changed, so no push sent.
+
+Pushed to main. BACKLOG-2026-09-07.md, BACKLOG-2026-09-07-CLOSED-ARCHIVE.md, EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, this entry.
+
 ## 2026-10-26, scheduled operator cycle: full STEP 0-13 pass, independent re-verification, exhaustion confirmed again, no push sent (within issue #42's own 48h floor)
 
 **Did:** Attached per Step 0 (shallow detached checkout, fetch, `fetch --unshallow`, `checkout main`, ff-only merge of 540 commits onto `eac061391`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several `NIGHTLY-LOG.md` entries in full, not a summary. Ran `python ops/preflight.py` myself rather than trust a sibling cycle's reading: 0 FAIL through every gate (confirmed by grepping the raw log, not trusting silence), stopped at the documented `gate_tests` sandbox hang after 300s, same standing limitation every recent cycle reports. A concurrent PM check-in (09:4x slot) pushed mid-run; fetched and fast-forwarded onto it rather than work from a stale base, discarding only my own local `cycle-signal.json` checkpoint, which the newer push had already superseded.
