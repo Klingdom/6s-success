@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (11:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
+
+Previous work (11:1x PM) confirmed finished, not cited. Attached per Step 0, 550 commits, clean; no new commit since the 11:1x push except the hourly bot. Re-verified independently: `cold_read_ledger.py --stale` 0 of 296 stale. `preflight.py` run fresh in the background with output redirected to a file (not piped): 0 FAIL across every gate reached, same as every recent cycle, killed at the documented `gate_tests` sandbox hang after confirming no FAIL string anywhere in 107 lines of output; unchecked past that point, not assumed passing. 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil. 0 open PRs. Last commit's CI (`checks.yml` and the rest) all green.
+
+Checked `ops/last-owner-notification.json`: last deliberate push 2026-10-24T16:1x UTC (issue #42), 48h floor runs to roughly 2026-10-26T16:1x UTC, not yet elapsed, nothing material changed, so correctly withheld another push this cycle too.
+
+No new defect found small enough to close in this slot. Not starting anything large (this is a 30-minute slot, three minutes before the operator).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (11:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work (10:4x PM, 10:5x operator) confirmed finished, not cited. Attached per Step 0, 550 commits, clean; only 1 new commit since (hourly bot). Re-verified independently: cold_read_ledger.py 296/296 ledgered, 0 stale; all 8 rotation --check scripts clean; check_urls.py 213/213; fix_dashes.py 0/0; 10 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs; preflight.py 0 FAIL through every gate before the documented gate_tests sandbox hang, killed there, unchecked past it. Owner-notification 48h floor for issue #42 (from 2026-10-24T16:1x) not elapsed, nothing material changed, no push sent. No new defect small enough to close this slot. Holding the standing decision/blocked-on-art queue for the operator.
