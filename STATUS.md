@@ -439,16 +439,18 @@ re-verify these fields directly (no VPS egress, no deploy key here), so
 treat them as only as fresh as the verdict file's own `checked_at`, not as
 this session's own measurement.
 
-**Currently Deployed Build (last confirmed):** `a6c5f96b77c7cff2` (resolves to commit `223f5111`), confirmed 2026-09-25T22:21:27Z, superseding the earlier `d40585d97500a3ca`/14:15:05Z confirmation
-**Confirmed At:** `2026-09-24T21:10:12Z` (`ops/deploy-verdict.json`,
+**CORRECTED 2026-10-26, PM check-in (05:4x slot): this section had stood unedited since the 2026-09-25T22:21:27Z confirmation even though `ops/deploy-verdict.json`, `BLOCKER-001` and section 4's own "Public website" row had each moved past it since, the same "source corrected, sibling section never told" shape `status_deploy_verdict_problem`'s own docstring names, just for a fifth section that gate does not parse (it checks only BLOCKER-001, Production Knowledge, and the Public website/Production traceability table rows).** Found while confirming the previous cycle's handoff rather than citing it; not yet added to that gate's section map, so this can still drift silently again until it is.
+
+**Currently Deployed Build (last confirmed):** `84c234bd3857ed4c` (resolves to commit `86159a729`), confirmed 2026-10-23T17:44:18Z, superseding the earlier `a6c5f96b77c7cff2`/2026-09-25T22:21:27Z confirmation
+**Confirmed At:** `2026-10-23T17:44:18Z` (`ops/deploy-verdict.json`,
 a session with real production access)
-**Repository HEAD Build:** `6e4992daa2791557` (`site/build-id.txt`,
-this scheduled operator cycle, 21:2x. One commit ahead of the confirmed
-deployed build above: `869d4e93` ("Home Office personalised") landed
-after the confirmation and touched `site/`, so `git diff --quiet
-d5b0d5c8 HEAD -- site/ Dockerfile` is dirty again. Production is one
-commit stale, not current; see `BLOCKER-001` below for the full account
-and the standing caveat that this will keep recurring until
+**Repository HEAD Build:** `a1c75dafaee8ca8c` (`site/build-id.txt`,
+this PM check-in, 05:4x slot). Four commits ahead of the confirmed deployed
+build above (`3f64badf5`, `3ed019f81`, `d3d824c4c`, `a24a667c6`), 2 of them
+material (`3ed019f81`, `a24a667c6`, each a household also-called synonym
+fold on an existing live zone page, not a broken page). Production is 4
+commits stale, 2 material, not current; see `BLOCKER-001` below for the
+full account and the standing caveat that this will keep recurring until
 `VPS_DEPLOY_KEY` makes redeploy automatic)
 **Release / Tag:** NONE, every deploy is tracked by commit SHA / image
 digest, 0 GitHub tags or releases exist
