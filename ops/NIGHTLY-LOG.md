@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (01:4x slot, 30-minute triage, previous work confirmed finished against real CI, not cited)
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved.
+
+Attached per Step 0 onto a shallow checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto `c95232eef`, tree clean before this cycle touched anything.
+
+**Previous work (the 00:5x cycle's two-part CI deadlock fix) checked against the actual completed runs, not assumed from its own account: it held.** `checks.yml` run 40254987270 and `publish-image.yml` run 40254991305, both on commit `7753636a4`, each completed `conclusion: success`, confirmed directly via the GitHub Actions API, job-by-job. `publish-image.yml`'s "Preflight, including generator ownership" and "Build and push" steps both succeeded: the site actually republished for the first time since `d3d824c4`, not merely gated clean. Deploy gap re-derived directly (`deploy_gap_material_commits`): still 4 commits/2 material against `ops/deploy-verdict.json`, unchanged, because this CI fix publishes the image, not the VPS; `VPS_DEPLOY_KEY` (issue #35) remains the only fix for that separate gap. `STATUS.md`'s existing figure already agreed; no stale claim found there. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, local `preflight.py` fast: 0 FAIL through every gate before the documented `gate_tests` sandbox hang. 10 open GitHub issues pulled fresh: unchanged, all decision/blocked-on-art, none newly actionable.
+
+Not starting new work: BACKLOG-2026-09-07.md sections 2-4 are archived or Phil-gated (C5, C6); no genuinely unblocked item exists this slot.
+
+Pushed to main. This entry, `ops/cycle-signal.json`, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (00:5x slot, 30-minute triage, previous work NOT finished: checks.yml red on main, root cause found and fixed)
 
 **Previous work was not finished.** The 00:4x cycle's own handoff said `gate_ci_conclusion_current` "should read clean once that run completes, not before"; checked against the actual completed run (40251825158, commit `62fa72bfc`) rather than assumed: it did not read clean, it FAILED, on a different gate than the one being waited on.
