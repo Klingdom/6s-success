@@ -46,6 +46,15 @@ build id. Named twice the same day as a known gap in this gate's own
 section map (a 05:4x PM check-in, then this cycle) before either time
 actually widening it; checks 12 and 13 below exercise it directly.
 
+Corrected a fifth time 2026-10-26, scheduled operator cycle (later the same
+day): the fifth section's check matched build_id as a substring anywhere
+in the whole paragraph, so a real stale "Currently Deployed Build" value
+read as clean the moment a 1-commit gap reopened, because the paragraph's
+own "Repository HEAD Build" sentence named the real current build_id too,
+just to say it did not match. Check 14 below exercises exactly that shape:
+the current build_id present in the paragraph, but not as the "Currently
+Deployed Build" field's own value.
+
 Run:  python ops/tests/test_gate_status_deploy_verdict_current.py
 """
 import os
@@ -264,12 +273,44 @@ def main() -> int:
         fails.append("all five sections current, but still flagged: %r"
                      % problem)
 
+    # 14. Found 2026-10-26, scheduled operator cycle (later the same day):
+    #     the real current build_id appears in the paragraph, but only as
+    #     the "Repository HEAD Build" value, explicitly saying it does not
+    #     match the deployed build; "Currently Deployed Build" itself still
+    #     cites a stale one. The old substring-anywhere check read this as
+    #     current. Must fire, and must name only this section.
+    sixth_stale = (
+        both_rows_current +
+        "\n**Currently Deployed Build (last confirmed):** "
+        "`5555555555555555` (resolves to commit `bbbbbbbbb`), confirmed "
+        "2026-10-20T00:00:00Z\n"
+        "**Confirmed At:** `2026-10-20T00:00:00Z` (`ops/deploy-verdict."
+        "json`, a session with real production access)\n"
+        "**Repository HEAD Build:** `" + verdict["build_id"] + "` "
+        "(`site/build-id.txt`). No longer matches the confirmed deployed "
+        "build above: 1 material commit sits undeployed.\n"
+        "**Release / Tag:** NONE, every deploy is tracked by commit SHA\n"
+    )
+    problem = preflight.status_deploy_verdict_problem(sixth_stale, verdict)
+    if not problem:
+        fails.append("Currently Deployed Build cites a stale build even "
+                     "though the real current build_id appears elsewhere "
+                     "in the same paragraph, as Repository HEAD Build: "
+                     "expected a problem, got none")
+    elif "Currently Deployed Build" not in problem \
+            or "BLOCKER-001" in problem \
+            or "Production Knowledge" in problem \
+            or "Public website" in problem \
+            or "Production traceability" in problem:
+        fails.append("problem string did not correctly name only the "
+                     "stale 'Currently Deployed Build' field: %r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 13 checks")
+    print("PASS: 14 checks")
     return 0
 
 

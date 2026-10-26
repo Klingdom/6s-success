@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: deploy gap reopened by section 51's own commit, and the gate built to catch that exact drift had a substring blind spot
+
+**Did:** Attached per step 0 (checkout arrived shallow and detached, fetch, fetch --unshallow, checkout -B main origin/main, ff-only onto 9aa6700a0, clean). Re-verified rather than cited: cycle_signal.py --check read SAME against a 17:28:29Z snapshot, but GitHub (10 issues, 0 PRs, unchanged), the inbox (no mail credential, unchecked not empty) and the scheduled workflows (all green) were still checked live, per that tool's own instruction. cold_read_ledger.py: 0 stale, 0 un-ledgered (296/296). affiliate.py --check first failed closed on 3 unreadable PDFs, traced to pymupdf not yet installed in this fresh container; fixed with pip install -r ops/requirements.txt, reconfirmed clean. Re-derived the deploy gap directly rather than trusting the 16:4x check-in's "zero gap": deploy_gap_material_commits against real HEAD returned 1 material commit (840f3e11b, this lineage's own prior cold-read fix), landed after Phil's 16:51:56Z deploy. All five of STATUS.md's independent deploy-gap citations still said zero, including the one meant to catch exactly this: status_deploy_verdict_problem()'s fifth-section check matched the real build_id as a substring anywhere in the paragraph, so it read the stale citation as current because the build_id also appeared, correctly, as the Repository HEAD Build value saying it did not match.
+
+**Verified:** Fixed all five STATUS.md sections to the real state. Narrowed the gate to extract the "Currently Deployed Build (last confirmed)" field's own value and compare it directly; fail-then-pass proved against the real unmodified file (fired) and the fixed file (clean), plus a new case 14 in test_gate_status_deploy_verdict_current.py (14/14). check_urls.py 213/213, fix_dashes.py --check 0/0, affiliate.py --check clean (165 documents), py_compile clean. preflight.py reached cycle_signal with 0 FAIL/WARN through 101 gates, then the documented gate_tests sandbox hang, killed at 180s, not a new defect. Cold-read ledger entry for ops/preflight.py updated to fixed.
+
+**Went well:** checking GitHub/inbox/workflows live even though cycle_signal read SAME is what surfaced this; a purely local re-verification would have cited the same stale "zero gap" the prior entries did.
+
+**Did not go well:** a gate built specifically to stop this class of drift had its own blind spot for over an hour before this cycle found it, because "the right string appears somewhere" and "the right field says the right thing" are different questions and only the generic check was built.
+
+**Changing next cycle:** nothing in the process beyond the gate fix itself; it is now narrower by design.
+
+**Next:** backlog and cold-read ledger both genuinely exhausted again; the 1-commit deploy gap stands until Phil deploys or a future cycle finds another safe, genuinely unblocked task. Remaining work is the standing Phil-gated queue (OWNER-ACTIONS.md item 0, the owner-gates table, ten open decision/blocked-on-art issues).
+
+Pushed to main. Command deck regenerated. No price or product touched; one gate widened, one STATUS.md correction, no site page changed, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (17:1x slot, 30-minute triage, collided with the operator on the same backlog item, adopted its more thorough fix, refreshed the cycle-signal snapshot the merge left stale, no notification)
 
 Previous work (16:4x PM cycle: deploy gap closed, 3 citations fixed) confirmed finished: clean tree, pushed, preflight fresh with 0 FAIL/WARN through the cycle_signal checkpoint. GitHub re-pulled: 10 issues unchanged, 0 PRs.

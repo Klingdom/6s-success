@@ -18476,6 +18476,17 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
     even though both prior cycles said so by name. Added rather than
     deferred a third time.
 
+    Corrected a fifth time 2026-10-26, scheduled operator cycle (later the
+    same day): the fifth section's own check, added above, matched build_id
+    as a substring anywhere in the whole paragraph, so it passed clean on a
+    real stale "Currently Deployed Build" value the moment a 1-commit gap
+    reopened, because the paragraph's own "Repository HEAD Build" sentence
+    named the real current build_id too, just to say it no longer matched.
+    Checking "does the right build id appear somewhere" is not the same
+    question as "does the Currently Deployed Build field say the right
+    thing", and only the second one is this section's actual job. Now
+    extracts that field's own value and compares it directly.
+
     Returns a problem string naming every stale section found; '' if there
     is nothing to check or every citation is current.
     """
@@ -18490,8 +18501,6 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
             r"\|\s*Public website\s*\|.*?(?=\n\|)",
         "Production traceability (status table row)":
             r"\|\s*Production traceability\s*\|.*?(?=\n\|)",
-        "Currently Deployed Build / Repository HEAD Build":
-            r"\*\*Currently Deployed Build.*?(?=\n\*\*Release / Tag:|\Z)",
     }
     stale = []
     for label, pattern in sections.items():
@@ -18500,6 +18509,19 @@ def status_deploy_verdict_problem(status_text: str, verdict: dict) -> str:
             continue
         if build_id not in m.group(0):
             stale.append(label)
+    # The fifth section checks the "Currently Deployed Build (last
+    # confirmed)" field's own value specifically, not whether build_id
+    # appears anywhere in the paragraph. Found 2026-10-26, scheduled
+    # operator cycle: the old substring-anywhere check could read a stale
+    # "Currently Deployed Build" as current merely because the real
+    # build_id also appeared a few words later, named as "Repository HEAD
+    # Build" in a sentence explaining the two no longer match, exactly the
+    # inverted state this field exists to report correctly.
+    cdb_m = re.search(
+        r"\*\*Currently Deployed Build \(last confirmed\):\*\*\s*`([^`]+)`",
+        status_text)
+    if cdb_m and cdb_m.group(1) != build_id:
+        stale.append("Currently Deployed Build / Repository HEAD Build")
     focus_m = re.search(r"\*\*Immediate Focus:\*\*.*?(?=\n\*\*|\Z)",
                          status_text, re.DOTALL)
     if focus_m and "PRODUCTION KNOWLEDGE PARAGRAPH" not in focus_m.group(0):
