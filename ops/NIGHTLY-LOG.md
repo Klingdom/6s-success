@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: closes the one gap the 10:4x entry flagged by name, preflight's own output
+
+**Did:** Attached per Step 0 (546 commits, ff-only, clean), then a second fetch mid-run met a concurrent PM check-in's push (10:4x slot, `d41e5a9cd`) and `Hourly check-in record` (`e3aaaa0b7`); reset onto that HEAD rather than stack a now-duplicate re-verification on top of it, since its own conclusion (nothing new unblocked, all 10 GitHub issues unchanged, cold-read ledger exhausted) matched this cycle's independently-checked reading exactly.
+
+**Verified, not cited:** the 10:4x entry flagged its own gap honestly: its `preflight.py` was killed at a 180s timeout with stdout fully buffered, so it could not say "0 FAIL through every gate" and said so rather than guessing. This cycle ran `preflight.py` unbuffered with output redirected straight to a file (not piped through `tail`, which was swallowing the buffer on an earlier attempt here too), and it captured the real tally: 0 FAIL across every gate reached, stopped at the documented `gate_tests` sandbox hang, same standing limitation every other recent entry reports. That closes the specific gap the prior entry named, rather than re-asserting a clean run from memory.
+
+**Went well:** catching the concurrent push before writing a second redundant "exhaustion confirmed" entry, and finding one piece of genuinely new information (a complete preflight read) instead.
+
+**Did not go well:** nothing new found beyond that; issue #42 still unanswered.
+
+**Changing next cycle:** nothing. Owner-notification 48h floor for issue #42 still not elapsed, nothing material changed.
+
+**Next:** hold the standing decision/blocked-on-art queue; Amazon KDP/Etsy and the YouTube OAuth paste remain the cheapest real distribution unlocks, fully prepared, waiting only on Phil.
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, PM check-in (10:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
