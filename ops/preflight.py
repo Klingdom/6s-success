@@ -11282,12 +11282,44 @@ def gate_no_british_spellings_shipped() -> None:
     them) the whole time it existed, each one sitting directly beside the
     correctly-spelled American word in the same card's own body text. A
     gate added to close A12 reopened the exact hole it was built to find.
+
+    Widened 2026-10-26 (this operator cycle) to also match
+    fix_dialect.VOCAB, the word-choice list Phil's own cleaning-content
+    review added the same day. That review fixed VOCAB's three TARGET
+    source files (content.json, the two Manual copies) and the deck
+    builders' frozen copies, but this gate itself still only matched
+    PAIRS, so six live pages it never touches kept shipping the exact
+    vocabulary the review was fixing elsewhere: a live "torch" and
+    "takeaway menus" on the junk-drawer article (five paragraphs plus its
+    own FAQPage JSON-LD, so a sighted reader and a crawler both saw the
+    stale word), a "tea towel" in the same article's Sort step, "a
+    fortnight" on consulting.html and in why-is-my-house-always-messy's
+    own generator (ops/build_messy_article.py), and "a rubbish bag" in
+    deck.html's own card alt text. All six found by direct scan and fixed
+    the same cycle; this widened pattern is what stops the next one.
+
+    "trainers" is deliberately NOT in the enforced pattern, the same way
+    fix_dialect.py's own docstring excludes "cupboard"/"fridge"/"mobile":
+    unlike VOCAB's other entries, it has a live, correct American sense
+    with no room-name to disambiguate it by, found on two real pages
+    (corporate.html, what-a-5s-engagement-costs.html) both meaning
+    "whether we train your trainers," people, not shoes. Enforcing it
+    site-wide would make the gate wrong on its own terms.
+
+    "airing cupboard" on site/zones/guest-bathroom-the-guest-linen-zone.html
+    is excepted by name below, not fixed: it is the zone's own "Also
+    called the airing cupboard" synonym heading (BACKLOG-2026-09-07.md
+    section 36), naming the British term deliberately so a reader who
+    searched for it still lands here. Converting it would delete the
+    thing it exists to catch, not fix a drift.
     """
+    ENFORCED_VOCAB = [(b, a) for b, a in fix_dialect.VOCAB if b != "trainers"]
     pattern = re.compile(
-        r"\b(" + "|".join(re.escape(b) for b, _a in fix_dialect.PAIRS) + r")\b",
+        r"\b(" + "|".join(re.escape(b) for b, _a in
+                           fix_dialect.PAIRS + ENFORCED_VOCAB) + r")\b",
         re.IGNORECASE,
     )
-    KNOWN_BOOK_SVG_EXCEPTIONS = {
+    KNOWN_EXCEPTIONS = {
         "site/zones/family-room-the-toy-and-play-zone.html": 4,
         # Names the real JSON field quest-data-symptoms.js carries
         # ("symptoms/six/colours/purpose"), not a dialect choice; renaming
@@ -11295,6 +11327,9 @@ def gate_no_british_spellings_shipped() -> None:
         # scope for a prose fix. See ops/build_quest.py and quest.js's own
         # `Q.colours[...]` reads.
         "site/quest.html": 1,
+        # The zone's own "Also called the airing cupboard" synonym
+        # heading, naming the British term on purpose. See docstring.
+        "site/zones/guest-bathroom-the-guest-linen-zone.html": 1,
     }
     hit = []
     for f in sorted(glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)):
@@ -11309,7 +11344,7 @@ def gate_no_british_spellings_shipped() -> None:
             continue
         body = io.open(f, encoding="utf-8", errors="replace").read()
         n = len(pattern.findall(body))
-        allowed = KNOWN_BOOK_SVG_EXCEPTIONS.get(rel.replace(os.sep, "/"), 0)
+        allowed = KNOWN_EXCEPTIONS.get(rel.replace(os.sep, "/"), 0)
         if n > allowed:
             hit.append(f"{rel} ({n}, {allowed} allowed)")
     for f in sorted(glob.glob(os.path.join(ROOT, "ops", "cardtext", "build_*.py"))):
@@ -11320,11 +11355,11 @@ def gate_no_british_spellings_shipped() -> None:
     if hit:
         fail("no-british-spellings-shipped",
              f"{len(hit)} shipped file(s) still carry a British spelling "
-             f"this catalogue has otherwise standardised to American: "
-             f"{hit[:5]}. Run ops/fix_dialect.py's word list against the "
-             f"file directly (it is prose embedded in a generator or deck "
-             f"card text, not one of fix_dialect.py's own source targets) "
-             f"and regenerate.")
+             f"or word choice this catalogue has otherwise standardised "
+             f"to American: {hit[:5]}. Run ops/fix_dialect.py's word list "
+             f"against the file directly (it is prose embedded in a "
+             f"generator or deck card text, not one of fix_dialect.py's "
+             f"own source targets) and regenerate.")
 
 
 # Chapter 2 of the book deliberately names "Set in Order" once, as one of
@@ -23568,6 +23603,68 @@ def gate_generator_chains_fingerprint() -> None:
                  "pattern to copy." % (fname, trigger))
 
 
+def gate_generator_chains_avif() -> None:
+    """Every page generator that writes a WebP <picture> source must also
+    chain build_avif.wire(), the sibling gap gate_generator_chains_fingerprint
+    (above) does not cover: that gate only fires once a generator ALREADY
+    chains build_avif.wire(), so a generator that writes webp markup and
+    chains neither avif nor the fingerprinter is invisible to it.
+
+    Found 2026-10-26, this operator cycle, cold-reading ops/build_cleaning_
+    index.py (named in the cold-read ledger after Phil's own 2026-10-26
+    cleaning-content-review commit touched it). Its own comment claimed to
+    chain "exactly as ops/build_articles.py does", but build_articles.py's
+    chain calls build_avif.wire() after wire_aria_current and then
+    fingerprints (with its own comment citing CI failing eleven times on
+    2026-09-01 for this exact gap), and build_cleaning_index.py chained
+    neither. Reproduced directly, not assumed: a standalone run stripped
+    the committed AVIF <source> off the manual-offer picture, confirmed by
+    diffing the result against the committed site/how-to-clean-
+    anything.html; invisible inside a full `preflight.py --own` run
+    because build_avif.wire() runs globally, later in that same gens list,
+    for every page including this one. Fixed by chaining both calls, and
+    two consecutive standalone runs now reproduce the committed file byte
+    for byte.
+
+    Three real "image/webp" hits are deliberately excluded, each checked
+    directly, not assumed: ops/build_avif.py is wire()'s own
+    implementation, not a consumer of it. ops/build_epub.py's "webp" hit is
+    a MIME-type table entry for its own EPUB container, a different
+    deliverable format build_avif.wire() does not scan (it only reads
+    site/**/*.html). ops/wire_zone_heroes.py is an internal helper, never
+    run as its own entry point: it is only ever called from inside
+    ops/build_zone_pages.py's own main() (wire_zone_heroes.main(True)),
+    which already chains build_avif.wire() itself, afterward in the same
+    run, so the hero images it wires get covered by the caller.
+    """
+    EXCLUDED = {"build_avif.py", "build_epub.py", "wire_zone_heroes.py"}
+    hit = []
+    for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
+        in_scope = (fname.startswith("build_") or fname.startswith("wire_")) \
+            and fname.endswith(".py") and fname not in EXCLUDED
+        if not in_scope:
+            continue
+        path = os.path.join(ROOT, "ops", fname)
+        try:
+            src = io.open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        if 'type="image/webp"' not in src:
+            continue
+        if "build_avif.wire()" not in src:
+            hit.append(fname)
+    if hit:
+        fail("generator-chains-avif",
+             f"{len(hit)} generator(s) write a WebP <picture> source but "
+             f"never chain build_avif.wire(): {hit[:5]}. A standalone run "
+             f"ships a page missing its AVIF source, and the drift is "
+             f"invisible inside a full preflight.py --own run because a "
+             f"sibling generator's own build_avif.wire() call repairs it "
+             f"globally as a side effect. See ops/build_articles.py for "
+             f"the pattern to copy (build_avif.wire() after the nav-mark "
+             f"pass, then fingerprint_assets.main(False)).")
+
+
 def gate_hero_prompt_budget_checked() -> None:
     """Every local image-hero generator must verify its own prompts fit.
 
@@ -31249,6 +31346,7 @@ def main() -> int:
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_generator_chains_fingerprint)
+    run_gate(gate_generator_chains_avif)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_image_prompt_negations_handled)
     run_gate(gate_accept_image_contradicts_name_an_object)

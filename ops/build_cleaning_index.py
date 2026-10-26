@@ -323,6 +323,34 @@ def main() -> int:
         except Exception as _exc:                              # noqa: BLE001
             print("  WARNING: %s did not run (%s), so this page may be "
                   "missing its wiring" % (_mod, _exc))
+
+    # Found 2026-10-26, cold-reading this file after Phil's own cleaning
+    # review touched it: the comment above claims this chains "exactly as
+    # ops/build_articles.py does", but build_articles.py's own chain calls
+    # build_avif.wire() after wire_aria_current and then fingerprints,
+    # and this file never did either. build_avif's function is wire(), not
+    # main(), so it could not have been folded into the generic
+    # hasattr(_m, "main") loop above without silently no-op'ing, the exact
+    # trap build_articles.py's own comment names by date ("failed CI eleven
+    # times on 2026-09-01: the wiring pass existed and was never chained").
+    # Reproduced directly: a standalone run of this file (the way an
+    # operator actually reaches for it, after a content.json edit) stripped
+    # the committed AVIF <source> off the manual-offer picture, confirmed
+    # by diffing the result against the committed site/how-to-clean-
+    # anything.html. Invisible inside a full preflight.py --own run,
+    # because build_avif.wire() runs globally later in that same chain and
+    # repairs it as a side effect everywhere, this page included.
+    try:
+        import build_avif
+        build_avif.wire()
+        import fingerprint_assets
+        fingerprint_assets.main(False)
+    except SystemExit:
+        pass
+    except Exception as _exc:                                  # noqa: BLE001
+        print("  WARNING: build_avif/fingerprint_assets did not run (%s), "
+              "so this page may be missing its AVIF source or cache-"
+              "busting fingerprint" % _exc)
     print("  wrote %s" % os.path.relpath(OUT, ROOT))
     print("  %d zones, %d surfaces, %d rooms"
           % (len(zones), total, len(rooms)))

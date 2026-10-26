@@ -63,8 +63,8 @@
     },
     "audit_pages.py": {
       "status": "clean",
-      "date": "2026-10-23",
-      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
+      "date": "2026-10-26",
+      "note": "New clean-offer hero-lazy exemption (class=clean-offer, 900px lookback) verified against the real page: audit_pages.py reports 0 findings on the live site."
     },
     "audit_visual.py": {
       "status": "clean",
@@ -142,9 +142,9 @@
       "note": "second pass: WHOLE_HOUSE price-ceiling assert, SKU-collision self-check via the duplicate-SKU assert, and SITUATIONS/AREAS zone-resolution asserts all still hold. One harmless stale line: main()'s --check print says 'existing catalogue adds 6 buyable and 3 free' as a hardcoded fallback count; it is console-only output from a manual run, asserted nowhere, written to no file, and not read by any test or gate, so left as-is rather than fixed."
     },
     "build_cleaning_index.py": {
-      "status": "clean",
-      "date": "2026-10-12",
-      "note": "second pass: re-read the </footer> rfind guard, the strip_tags double-unescape fix, and the site.js presence check in the lifted script tail. No new defect."
+      "status": "fixed",
+      "date": "2026-10-26",
+      "note": "Chain claimed to mirror build_articles.py but never called build_avif.wire()/fingerprint_assets.main(): standalone run stripped the committed AVIF source off the manual-offer picture. Fixed by chaining both; two consecutive standalone runs now reproduce the committed file byte for byte. New gate_generator_chains_avif in preflight.py."
     },
     "build_corporate.py": {
       "status": "clean",
@@ -183,8 +183,8 @@
     },
     "build_entryway_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_entryway_deck_page.py": {
       "status": "clean",
@@ -218,8 +218,8 @@
     },
     "build_garage_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_garage_deck_page.py": {
       "status": "clean",
@@ -228,8 +228,8 @@
     },
     "build_guest_bathroom_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_guest_bathroom_deck_page.py": {
       "status": "clean",
@@ -238,8 +238,8 @@
     },
     "build_guest_bedroom_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_guest_bedroom_deck_page.py": {
       "status": "clean",
@@ -258,8 +258,8 @@
     },
     "build_home_office_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_home_office_deck_page.py": {
       "status": "clean",
@@ -288,8 +288,8 @@
     },
     "build_kids_bedroom_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_kids_bedroom_deck_page.py": {
       "status": "clean",
@@ -303,8 +303,8 @@
     },
     "build_kitchen_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Ran all 20 build_*_deck.py generators live: all pass extensive internal asserts (related-field cross-refs, orphan/untreated root causes, per-zone friction/action counts, art subject never requests lettering, safety coverage) and produce output byte-identical to committed ops/cardtext/*.json (0 drift). Checked for duplicate card IDs across all 20 room decks: ROOT CAUSE CARD ids ARE deliberately shared across rooms (ops/root_causes.py, 'the shared vocabulary' per derive_room_deck.py), not a bug. Found a real, latent gap in the sibling page builders (ops/build_*_deck_page.py, a different lane): each has the identical unguarded 'assert whole_ids == [...] inside the generator' risk gate_kitchen_deck_page_counts_current (2026-09-18) fixed for Kitchen alone. Generalised: new gate_room_deck_pages_counts_current covers the other 19 rooms, proved fail-then-pass."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_kitchen_deck_page.py": {
       "status": "clean",
@@ -318,8 +318,8 @@
     },
     "build_laundry_room_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_laundry_room_deck_page.py": {
       "status": "clean",
@@ -328,8 +328,8 @@
     },
     "build_living_room_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_living_room_deck_page.py": {
       "status": "clean",
@@ -358,8 +358,8 @@
     },
     "build_mudroom_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_mudroom_deck_page.py": {
       "status": "clean",
@@ -368,8 +368,8 @@
     },
     "build_nursery_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_nursery_deck_page.py": {
       "status": "clean",
@@ -388,8 +388,8 @@
     },
     "build_pantry_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_pantry_deck_page.py": {
       "status": "clean",
@@ -433,8 +433,8 @@
     },
     "build_primary_bedroom_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_primary_bedroom_deck_page.py": {
       "status": "clean",
@@ -543,8 +543,8 @@
     },
     "build_workshop_deck.py": {
       "status": "clean",
-      "date": "2026-10-17",
-      "note": "Same cycle as build_kitchen_deck.py (see its note): runs clean, internal asserts pass, output matches committed JSON exactly (0 drift). Contributed to the real finding there: its sibling page builder's hardcoded whole_ids assert, now independently covered by gate_room_deck_pages_counts_current."
+      "date": "2026-10-26",
+      "note": "2026-10-26 VOCAB frozen-copy fix read against the diff and the real site: no stale British term remains (confirmed by scan against fix_dialect.VOCAB across all 14 cardtext/build_*_deck.py and the live site). Regenerated deck page(s) reproduce committed output byte for byte."
     },
     "build_workshop_deck_page.py": {
       "status": "clean",
@@ -798,8 +798,8 @@
     },
     "fix_dialect.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; ran --check live against all 8 real TARGETS: all report clean, 0 British spellings remaining, matching A12's original fix. Word-boundary regex and case-preservation logic (_replacement()) read correct. No defect."
+      "date": "2026-10-26",
+      "note": "Read the 2026-10-26 VOCAB addition (24 word-choice pairs): replacement order correctly handles overlapping phrases (longest/most-specific first), capitalisation helper correct, deliberate ambiguous-word exclusions documented. fix_dialect.py --check clean."
     },
     "format.js": {
       "status": "clean",
@@ -1348,8 +1348,8 @@
     },
     "verify_deploy.py": {
       "status": "clean",
-      "date": "2026-10-11",
-      "note": "second-pass cold read, 2026-10-11 scheduled operator cycle: re-read in full; cannot be exercised live from this sandbox (no egress to 6s-success.com). PAGES/CRITICAL_PAGES logic checked (CRITICAL_PAGES subset of PAGES, confirmed). The contact-page truthfulness check (looks for literal \"mail pipe is not connected\" in the served page) was cross-checked against the real committed site/contact.html: the exact phrase is still present verbatim at line 195, so the check's assumption about the live page has not drifted. No defect found in the code; live exercise remains blocked on network reach, as every prior cycle has found."
+      "date": "2026-10-26",
+      "note": "be352e857 added how-to-clean-anything.html to PAGES/CRITICAL_PAGES since it now carries a live payment link (the Micro Zone Manual offer card). Correct: the page does carry a real buy link read from data.js."
     },
     "verify_epub.py": {
       "status": "clean",
