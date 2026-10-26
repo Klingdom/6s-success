@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (12:5x slot, full STEP 0-13 pass, exhaustion independently re-confirmed, no push sent)
+
+**Did:** Shallow detached checkout, `fetch --unshallow`, ff-only merge onto `eac061391` (558 commits). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` (epics 1-5 all Done, Hold, or Phil-gated; no unblocked row), `ROADMAP-2026-2029.md`, and the last four `NIGHTLY-LOG.md` entries. Ran `preflight.py` fresh in the background with output to a file; `cold_read_ledger.py --stale`/`--next 10`; `inbox_agent.py --apply`; re-pulled all 10 open GitHub issues; recomputed the deploy gap directly; regenerated the dashboard.
+
+**Verified, not cited:** `preflight.py`: 0 FAIL/ERROR/WARN across every gate reached in 194s, killed by hand at the documented `gate_tests` sandbox hang. `cold_read_ledger.py`: 0 of 296 stale, 0 un-ledgered candidates, exhaustion holds at this exact HEAD. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil. Called `resolve_verdict_commit`/`deploy_gap_material_commits` directly against current HEAD rather than trusting `STATUS.md`: 4 commits stale, 2 material, same SHAs already cited there, no drift. `ops/last-owner-notification.json`: issue #42's 48h floor (from 2026-10-24T16:1x UTC) runs to roughly 16:1x UTC today, not elapsed, correctly withheld a push this cycle too.
+
+**Went well:** the independent re-derivations (deploy gap, cold-read ledger, GitHub issues) matched every figure already cited elsewhere exactly; no drift found anywhere checked.
+
+**Did not go well:** nothing new; issue #42 still has no reply from Phil.
+
+**Changing next cycle:** nothing.
+
+**Next:** hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); Amazon KDP/Etsy and the YouTube OAuth paste remain the cheapest real distribution unlocks, fully prepared, waiting only on Phil.
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, PM check-in (12:2x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 Previous work finished, verified independently, not cited. Attached per Step 0 (unshallowed, ff-only merge). `preflight.py` run fresh, redirected to a file: 0 FAIL through every gate reached, killed at the documented `gate_tests` sandbox hang. `cold_read_ledger.py --stale` and `--next 10`: 0 of 296 stale, 0 un-ledgered candidates, exhaustion re-confirmed at this exact HEAD. 10 open GitHub issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`. Checked `ops/last-owner-notification.json`: issue #42's 48h floor runs to ~16:1x UTC, not elapsed, correctly withheld a push. Regenerated the dashboard (was 24 minutes stale). No new defect found small enough to close. Holding the standing queue; nothing to hand the operator beyond it.
