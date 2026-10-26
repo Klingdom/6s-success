@@ -12,6 +12,22 @@ Reconfirmed rather than cited: `fix_dashes.py --check` 0 em/0 en; `check_urls.py
 
 No new defect found, nothing newly unblocked. Regenerated and shipped the dashboard. No code, price, product or page touched. No push notification sent: nothing changed since the 22:1x cycle.
 
+## 2026-10-26, scheduled operator cycle (22:4x slot, fresh checkout, full re-verification, nothing new unblocked, no notification)
+
+**Did:** Attached cleanly (fetch, unshallow not needed, ff-only onto origin/main, ca913431c). `cycle_signal.py --check` read SAME against the 21:53:56Z snapshot, but ran the live checks myself anyway rather than only cite it. GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, 0 PRs; issue #42's comment thread re-read in full, every entry self-authored by a prior cycle, nothing from Phil. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty.
+
+**Verified:** `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en. `affiliate.py --check` initially FAILed closed on 3 PDFs with the known cold-container `pymupdf` gap (`OWNER-ACTIONS.md` item 1h); installed `ops/requirements.txt` for this session, re-ran clean (10 documents, no affiliate link, disclosures present). `check_sellable.py --deep` initially flagged 120 missing `build/products/` files, the same expected empty-cache state item 1h documents; ran `ops/build_catalog.py --build` (155 products, all checks pass, gitignored artifact, not committed), re-ran clean: 124/126 buyable products fully wired, the other 2 are person-delivered services by design; live-price check still unreachable (no `.env.secrets`), correctly unchecked not assumed. `cold_read_ledger.py --stale` 0. `deploy-verdict.json`: current, build `a0bbe5bb276ee21b`, no gap.
+
+**Went well:** the two FAILs were both diagnosed against an already-documented cause before being treated as new defects, not reported as findings.
+
+**Did not go well:** nothing new to build; every backlog row remains Done, Phil-gated, or closed by decision.
+
+**Changing next cycle:** nothing in the process.
+
+**Next:** the standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", issue #42's cadence question, the nine other open decision/blocked-on-art issues).
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, PM check-in (22:1x slot, 30-minute triage, chased down a transient cold-read-ledger false stale reading, ruled out rather than reported as fact, nothing new unblocked, no notification)
 
 Attached cleanly (fetch, checkout main, ff-only merge onto origin/main e2c500c85, working tree clean before and after, no concurrent push appeared during the run). Previous work IS finished: cycle_signal.py --check read SAME against the 21:53:56Z snapshot. Verified rather than cited: check_urls.py 213/213, fix_dashes.py --check 0 em/0 en. GitHub re-pulled live, 10 open issues unchanged (all decision or blocked-on-art), none updated since 2026-10-25, 0 open PRs. preflight.py run live, hung at the documented gate_tests sandbox limit, same known shape.
