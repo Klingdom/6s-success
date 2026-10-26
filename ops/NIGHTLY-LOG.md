@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (00:4x slot, 30-minute triage, the 00:1x cycle's "fixed" claim was not actually verified against CI, corrected)
+
+NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved.
+
+Attached per Step 0 onto a shallow checkout: fetch, fetch --unshallow, checkout -B main origin/main, ff-only merge onto `cc53a220d`, tree clean. 10 GitHub issues confirmed unchanged via the API.
+
+**The 00:1x cycle's "fixed" build-id claim was checked against live CI, not cited: it had not actually cleared.** `publish-image.yml`'s own run on the fix commit (`3f64badf5`, run 40249053836) still FAILED, same `ci-conclusion-current` gate, because `checks.yml` itself never re-ran: the fix commit only touched `site/build-id.txt` and the four files `checks.yml`'s push filter excludes, so nothing re-triggered it. Re-derived the deploy gap directly (`deploy_gap_material_commits`): widened from the stale "2 commits/1 material" in `STATUS.md` to the real 4 commits/2 material (`3ed019f81` and `a24a667c6`, both real zone-page content changes). Corrected both summary rows and `BLOCKER-001` with the real figures and the root cause, rather than reporting it twice.
+
+**Fixed, not just diagnosed:** this edit touches `STATUS.md`, a root `*.md` file `checks.yml`'s push filter does cover, so this push itself re-triggers a fresh `checks.yml` run; `gate_ci_conclusion_current` should read clean once it completes, not before. Local preflight: 0 FAIL through every gate before the documented `gate_tests` sandbox hang except the now-explained `ci-conclusion-current`; `fix_dashes.py --check` 0/0. Not starting new work: previous work was not finished until this correction.
+
 ## 2026-10-26, PM check-in (00:1x slot, 30-minute triage, a real CI failure found and fixed, not merely reconfirmed)
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every one is still decision or blocked-on-art and none moved.
