@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (18:4x slot, 30-minute triage, no notification)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md's owner-gates table and "Start here" items, GitHub's 10 open decision/blocked-on-art issues), because both discovery lanes stay exhausted and nothing has changed since the 18:2x check-in three minutes earlier.
+
+Attached cleanly (fetch, unshallow not needed, ff-only merge onto origin/main, landed on `8f836310f`). Previous work (`acca672ca`'s 18:2x check-in) IS finished: working tree was clean, main pushed, nothing newly changed in the tracked signal files. `ops/cycle_signal.py --check` read SAME against the 18:21:38Z snapshot. Verified rather than only cited: ran a full `preflight.py` live (unbuffered, direct to file, not piped, after an earlier piped attempt lost its output to buffering) through every gate before `gate_tests`, 0 FAIL, then hung at the documented headless-Chromium sandbox limitation, same known shape every prior cycle has logged; killed at the hang point and recorded a fresh clean snapshot at current HEAD. Substitute checks run fresh: `check_urls.py` 213/213, `fix_dashes.py --check` 0 em/0 en, `affiliate.py --check` clean (165 documents), `cold_read_ledger.py --stale` 0.
+
+GitHub re-pulled live via the MCP tools (not `gh`): 10 open issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. `EXECUTIVE-DASHBOARD-LIVE.md` (generated 18:25) confirms: $0 revenue this month, site can take money for 129/130 catalog items, 2 P0 items open (issue #15 Listmonk decision, issue #2 stale card art), nothing new. Backlog sections 1/1b/2-6 reviewed: every row already Done, Phil-gated, or closed by decision; no new defect found, nothing newly unblocked this slot.
+
+No new defect found, nothing newly unblocked. Not starting anything large in this 30-minute slot, three minutes before the operator.
+
+Regenerated and shipped the dashboard, as required every run. No code, price, product or page touched.
+
 ## 2026-10-26, PM check-in (18:2x slot, 30-minute triage, verified a concurrent cycle's fix, nothing new unblocked, no notification)
 
 Attached per Step 0 (fetch, unshallow not needed, ff-only onto origin/main). A concurrent cycle pushed mid-attach (same shape as the twin collision logged at 17:1x): re-fetched and ff-merged a second time onto `1475c66661` before doing anything, so nothing here was built on a stale HEAD.
