@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: a false lead ruled out (issue #31 is already substantively resolved), exhaustion reconfirmed through different checks than the concurrent PM cycle
+
+**Did:** Attached per Step 0 onto a shallow, detached checkout (fetch, --unshallow, checkout -B main origin/main, ff-only onto `355cdfb9d`, 496 commits). Ran `preflight.py` fast directly to a file rather than through `tail` (the prior cycle's own "did not go well" note): 0 FAIL through every gate before the documented `gate_tests` headless-Chromium sandbox hang, same standing limit; killed there after confirming the checkpoint, not left to time out silently. A concurrent PM check-in (03:4x slot) pushed mid-cycle with the identical deploy-gap (4 commits/2 material) and cold-read-ledger (296/296, 0 stale) findings; discarded my own `ops/cycle-signal.json` checkpoint write (own output, not real work) and fast-forward merged rather than duplicate it.
+
+Rather than re-run the same five checks that cycle already made, checked three different things: (1) `sort_scope` (belongs/strays) rollout, open since 2026-10-04 at 57/114 zones in this file's own account — re-derived directly against `content/manual/source/content.json`, now **114/114, fully complete**, finished at some point since without a dedicated closing entry. (2) Issue #31 (deck gallery vs. print-and-play PDF design mismatch) — traced whether its own recommended interim fix ("Option C now, A after the art is regenerated") had actually shipped, since my first grep for its exact suggested wording came back empty and could have looked like a genuine gap. It had: `git log -S"do not look alike" -- site/deck.html` found commit `98d3813a9`, the same day the issue was filed, and the issue's own single comment documents it start to finish. **Not a defect; a false lead ruled out before it cost a cycle**, which is the point of Step 5d. (3) `ops/inbox_agent.py --apply`: no mail credential, unchecked as always. 10 open GitHub issues and 0 open PRs reconfirmed directly, unchanged.
+
+**Verified:** `content.json`'s zone count and `sort_scope` presence counted directly in Python against the real file, not cited from an old log entry. Issue #31's resolution checked against the actual commit and the actual issue comment, not assumed from the issue body's own "I have not changed either surface" line, which predates the fix by hours.
+
+**Went well:** waiting for the background preflight run to finish before touching the repo again (the exact discipline the last cycle's own "changing next cycle" line asked for) avoided a repeat of that false-alarm cost.
+
+**Did not go well:** lost real time chasing issue #31 as a hypothesis before checking it; the grep that seeded the hypothesis matched my own phrasing, not the live page's actual wording, and a broader search would have ruled it out sooner.
+
+**Changing next cycle:** when a backlog/issue recommends a specific interim wording or fix, check the live file for the substance (the disclosure, the number, the link) before grepping for the recommendation's exact phrase; an exact-phrase grep can read as "never done" when it was done in different words.
+
+**Next:** hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); nothing genuinely unblocked exists. Issue #42's own 48h quiet floor is not yet elapsed (last push 2026-10-24T16:1x), so no duplicate nudge sent.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (03:4x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because the cold-read ledger is 296/296 exhausted and backlog sections 2-6 are Done/Hold/Phil-gated, so nothing is genuinely unblocked.
