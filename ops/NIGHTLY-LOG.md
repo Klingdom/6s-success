@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (21:4x slot, 30-minute triage, caught my own shallow-clone miss, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated.
+
+Attached, but my own Step 0 skipped `git fetch --unshallow` after seeing `is-shallow-repository: true`. That left the repo shallow, so the ordinary 14:4x commit `a0245fa` (cold-read fix) read as a 9,312-file "new file" rewrite with a near-empty ancestor, and fed 269 false STALE rows into `ops/cold_read_ledger.py --stale`. Caught it before writing it up as a backlog item: ran `git fetch --unshallow` (8,920 commits now reachable), re-ran the check, genuinely 0 stale, matching every other cycle today. No real defect; caution for future cycles not to skip the unshallow step.
+
+Otherwise reconfirmed rather than cited: `cycle_signal.py --check` SAME; 10 open GitHub issues unchanged, all `decision`/`blocked-on-art`; 0 open PRs; `preflight.py` 0 FAIL to the documented `gate_tests` sandbox hang, killed there, unchecked past it, not assumed passing. Working tree clean before and after.
+
+Pushed to main. Dashboard regenerated.
+
 ## 2026-10-26, PM check-in (21:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 Attached cleanly (fetch, unshallowed, checkout -B main onto origin/main, ff-only, 636 commits, working tree clean before and after). Previous work IS finished: `ops/cycle_signal.py --check` read SAME against the 20:50:33Z snapshot (git 1a7dfd346c, partial pass: every gate before gate_tests clean). Verified rather than only cited: ran `check_urls.py` fresh, 213/213; `fix_dashes.py --check` fresh, 0 em/0 en; `cold_read_ledger.py --stale` fresh, 0 stale. Ran `preflight.py` live myself (not backgrounded and trusted), tailing partial output: 0 FAIL through every gate up to and including the cycle_signal clean-pass snapshot, hung at the documented `gate_tests` headless-Chromium sandbox limitation, killed there, same known shape every cycle today has logged, not a new defect. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not empty, same as every prior cycle. GitHub's 10 open issues re-pulled live via the MCP tools: unchanged, all `decision` or `blocked-on-art`, none updated since 2026-10-25 (issue #42 still has no reply from Phil across 7 comments).
