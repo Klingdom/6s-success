@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (14:4x slot, 30-minute triage, cold-read ledger genuinely un-exhausted for the first time in days, one entry refreshed, no notification)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated; the cold-read ledger is exhausted again after this cycle's own fix, so there is nothing else genuinely unblocked.
+
+Attached per Step 0 (checkout arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `b014f8a15`, clean). Previous work confirmed finished, verified directly: `preflight.py` run fresh with output to a file, 0 `FAIL` anywhere through `cycle_signal: snapshot recorded (clean pass)`, killed at the documented `gate_tests` sandbox hang, unchecked past that point, not assumed passing. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0. 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil.
+
+**Found something every very recent cycle's identical check had reported clean: `cold_read_ledger.py --stale` returned 1, not 0.** `ops/keyword_demand.py` was ledgered 2026-10-13 but Phil (with Claude Opus 5.5) touched it again this morning (`b5c3df1bc`, folding British spellings into the American forms the scorer already recognizes, plus a same-commit fix so a room's own pages no longer count as "covered elsewhere" and falsely flag their own name as noise). Read both the 2026-10-13 and 2026-10-26 diffs against the live file rather than trust the commit message: the new `_SPELLING`/`_fold` prefix-regex table lands every folded form (organise/organising/organisation/organiser/organisers, colour, favourite, centre, mould) on an existing `FORMAT_WORDS` entry, so the fix is internally consistent; `reorganise`/`reorganising` fold to forms not in `FORMAT_WORDS`, same gap `reorganize`/`reorganizing` already had before this touch, not a regression. No defect found. Recorded the read in `ops/cold_read_ledger.py --add` (status `clean`, dated today, noting what was checked); `--stale` now reports 0 again.
+
+Not pulling a new cold-read candidate this slot: the one genuine gap this check surfaced is now closed, and `--next 10` after the fix returned empty, same exhaustion as every other recent cycle.
+
+Pushed to main. `ops/cold-read-ledger.json`, `ops/NIGHTLY-LOG.md`, command deck. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (14:10 slot, 30-minute triage, previous work confirmed finished a fourth independent way, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); still every item Phil-gated.

@@ -893,8 +893,8 @@
     },
     "keyword_demand.py": {
       "status": "clean",
-      "date": "2026-10-13",
-      "note": "Re-ledgered after the 2026-10-13 FORMAT_WORDS widening (arrange excluded as an organize synonym, commit 6774e2895). Already independently verified twice same day: the authoring cycle simulated all 71 affected queries before landing, and the following PM check-in (18:2x) reran test_keyword_demand.py (21/21) and diffed a full --rescore against the committed keyword-demand.json byte for byte, confirming the 187/1455/1177 gap/partial/covered counts are current. This entry only updates the stale ledger date; no new read was needed beyond that double verification."
+      "date": "2026-10-26",
+      "note": "PM cold read (14:4x slot): reviewed the 2026-10-26 British-spelling fold (_SPELLING/_fold) and the 2026-10-13 arrange/organize FORMAT_WORDS widening against the live file. Fold regexes are prefix-anchored and each output lands on an existing FORMAT_WORDS entry (organise->organize, organising->organizing, organisation->organization, organiser/organisers->organizer/organizers); colour/favourite/centre/mould fold consistently. No defect found; reorganise/reorganising fold to forms not in FORMAT_WORDS, same as pre-existing reorganize/reorganizing, not a regression from this touch."
     },
     "keyword_demand_global.py": {
       "status": "clean",
