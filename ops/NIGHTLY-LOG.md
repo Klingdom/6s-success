@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: full STEP 0-13 pass, independent re-verification, exhaustion confirmed again, no push sent (within issue #42's own 48h floor)
+
+**Did:** Attached per Step 0 (shallow detached checkout, fetch, `fetch --unshallow`, `checkout main`, ff-only merge of 540 commits onto `eac061391`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last several `NIGHTLY-LOG.md` entries in full, not a summary. Ran `python ops/preflight.py` myself rather than trust a sibling cycle's reading: 0 FAIL through every gate (confirmed by grepping the raw log, not trusting silence), stopped at the documented `gate_tests` sandbox hang after 300s, same standing limitation every recent cycle reports. A concurrent PM check-in (09:4x slot) pushed mid-run; fetched and fast-forwarded onto it rather than work from a stale base, discarding only my own local `cycle-signal.json` checkpoint, which the newer push had already superseded.
+
+**Verified, not cited:** `cold_read_ledger.py --stale` 0 stale. `check_urls.py` 213/213 sitemap URLs resolve. `fix_dashes.py --check` 0 em/en dashes. Re-derived the deploy gap independently with `resolve_verdict_commit`/`deploy_gap_material_commits`: same 4 commits every recent entry cites, no drift. All 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil; last Phil commit still 2026-10-23. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. checks.yml: last two completed runs green, one in progress.
+
+**Went well:** independently re-deriving every claim (not just reading the dashboard) turned up no disagreement with the standing exhausted-state reading.
+
+**Did not go well:** nothing new; issue #42 (cadence vs. exhaustion) still has zero reply from Phil after 12 days and 7 status comments.
+
+**Changing next cycle:** nothing. Checked `ops/last-owner-notification.json` before considering a push: the last deliberate owner notification was 2026-10-24T16:1x UTC (issue #42), its 48h floor runs to roughly 2026-10-26T16:1x UTC, and nothing material changed since, so correctly withheld one this cycle too.
+
+**Next:** hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); Amazon KDP/Etsy and the YouTube OAuth paste remain the cheapest real distribution unlocks, fully prepared, waiting only on Phil.
+
+HANDOFF-FILES: none
+
 ## 2026-10-26, PM check-in (09:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
