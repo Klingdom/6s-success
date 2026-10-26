@@ -342,9 +342,9 @@
       "note": "Read roughly 700 of 1365 lines in full (all data/appendix/gate logic; the remainder is print CSS) and run directly: all gates pass (0 em/en dashes, 0 brand names, 114 zone cards, 21 room sections, 123 product types, 10 @page rules) across the manual, print edition and both appendices; 0 drift on rerun."
     },
     "build_messy_article.py": {
-      "status": "clean",
-      "date": "2026-10-23",
-      "note": "Re-ledgered 2026-10-23: the only touch since the last ledger date was the 2026-10-22 share_cards/article_figures wiring commits, a trivial try/import/apply()/except ImportError:pass addition (or, for audit_pages.py, a one-line hero-lazy exclusion for article figures); diff read directly, confirmed mechanical."
+      "status": "fixed",
+      "date": "2026-10-26",
+      "note": "Fixed a live British word choice this cycle: 'a fortnight' -> 'two weeks' (fix_dialect.VOCAB, missed by gate_no_british_spellings_shipped before this cycle widened it). Regenerated the page; no other content changed."
     },
     "build_microzone_coverage.py": {
       "status": "clean",
