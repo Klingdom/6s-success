@@ -349,13 +349,13 @@
    "objective": "Holds the reserve that feeds the working shelves, and nothing else.",
    "callouts": [
     "Sacks of rice standing at or below waist height",
-    "Cases of tinned tomatoes with the arrival month written on each one",
-    "Packs of kitchen roll stored up high, off the floor",
+    "Cases of canned tomatoes with the arrival month written on each one",
+    "Packs of paper towels stored up high, off the floor",
     "A maximum number written on the shelf edge for each line",
     "The count on the shelf sitting at or under its written maximum",
     "Nothing stacked directly in front of anything else"
    ],
-   "done_looks_like": "Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
+   "done_looks_like": "Sacks of rice, cases of canned tomatoes and packs of paper towels, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
    "session": "45-75 min",
    "safety_checks": [
     {
@@ -391,11 +391,11 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a pantry backstock area with sacks of rice and cases of tinned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of kitchen roll stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else",
+    "subject": "a pantry backstock area with sacks of rice and cases of canned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of paper towels stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else",
     "must_show": [
      "Sacks of rice standing at or below waist height",
-     "Cases of tinned tomatoes with the arrival month written on each one",
-     "Packs of kitchen roll stored up high, off the floor",
+     "Cases of canned tomatoes with the arrival month written on each one",
+     "Packs of paper towels stored up high, off the floor",
      "A maximum number written on the shelf edge for each line",
      "The count on the shelf sitting at or under its written maximum",
      "Nothing stacked directly in front of anything else"
@@ -2303,7 +2303,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a pantry backstock area with sacks of rice and cases of tinned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of kitchen roll stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a pantry backstock area with sacks of rice and cases of canned tomatoes standing at or below waist height, each case marked with its arrival month, light packs of paper towels stored higher up, a small dated sticker fixed to the shelf edge, and nothing stacked in front of anything else, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],

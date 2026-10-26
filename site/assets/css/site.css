@@ -1108,6 +1108,37 @@ main:focus{outline:none}
 .clean-zone a{display:inline-block;padding:9px 2px;min-height:44px;
   box-sizing:border-box;line-height:1.35}
 
+/* Cleaning index layout, 2026-10-26. The page had no .wrap and ran from the
+   window's left edge; it is now the site's container with each room's zones
+   as cards, so a reader scans twenty rooms instead of one 762-line column. */
+.clean-head{padding:34px 0 10px}
+.clean-body{padding:10px 0 72px}
+.clean-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:12px;margin:22px 0 26px}
+.clean-rules p{margin:0;padding:14px 16px;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;font-size:16px;line-height:1.5}
+.clean-rooms a .n{font-size:12px;color:var(--soft);margin-left:4px}
+.clean-room{margin:0 0 30px;scroll-margin-top:80px}
+.clean-room h2{margin:34px 0 14px}
+.clean-n{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--soft);
+  margin-left:6px}
+.clean-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;align-items:start}
+.clean-card{background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:4px 18px 6px}
+.clean-card .clean-zone{margin:10px 0 0;font-size:19px}
+.clean-count{font-family:var(--sans);font-size:13px;color:var(--soft);margin:0 0 2px}
+.clean-card .clean-list{margin:0 0 6px}
+.clean-offer{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:26px;
+  align-items:center;margin:36px 0 40px;padding:22px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.clean-offer img{width:100%;height:auto;border-radius:10px;display:block}
+.clean-offer .clean-offer-h{margin:4px 0 10px;font-size:24px}
+.clean-offer p{margin:0 0 12px}
+.clean-offer-note{display:block;margin-top:10px;font-family:var(--sans);
+  font-size:13px;color:var(--soft)}
+@media (max-width:760px){.clean-offer{grid-template-columns:1fr;padding:16px}}
+
 /* JUMP LIST on a zone page.
 
    Measured 2026-10-09: the median zone page is 4,462 words across 22 h2

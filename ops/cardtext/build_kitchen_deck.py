@@ -101,16 +101,16 @@ ZONES = {
    "Utensil crock holding six tools, no more",
    "Pot holders on a hook you find without looking",
    "Weekly spices at the front of the rack",
-   "Clear landing space beside the hob, wide enough for a hot pan",
+   "Clear landing space beside the stovetop, wide enough for a hot pan",
    "Pan handles turned in, never over the front edge",
   ],
-  "art": ("a four burner hob with one steel frying pan on it, its handle "
-          "turned inward over the hob rather than out over the counter edge, "
+  "art": ("a four burner stovetop with one steel frying pan on it, its handle "
+          "turned inward over the stovetop rather than out over the counter edge, "
           "a stoneware crock beside it holding five wooden and steel cooking "
           "tools, a bottle of oil and a pepper mill within arm's reach, two "
           "quilted pot holders hanging on a small hook on the wall, a spice "
           "rack with its front row standing proud, and an empty stretch of "
-          "counter to the right of the hob"),
+          "counter to the right of the stovetop"),
  },
  "Sink and Dishwashing Zone": {
   "id": "KZ-003", "order": 3, "difficulty": 2,
@@ -156,7 +156,7 @@ ZONES = {
    "Stacks capped at three, or pans on edge in a divider",
    "Lids in a rack or on a door rail, never loose",
    "Baking sheets standing on end",
-   "The two nightly pans at the front, nearest the hob",
+   "The two nightly pans at the front, nearest the stovetop",
    "Heaviest pieces on the cabinet floor",
   ],
   "art": ("an open lower kitchen cabinet seen straight on, a wire divider on "
@@ -228,7 +228,7 @@ MICRO_QUESTS = {
   "it from lying flat.",
  ],
  "Cooking Zone": [
-  "Turn every pan handle inward over the hob and move the tea towel and the "
+  "Turn every pan handle inward over the stovetop and move the dish towel and the "
   "paper roll off the burner side.",
   "Take the tools out of the crock, put back only the ones your hand "
   "actually reaches for, and box the rest.",
@@ -303,7 +303,7 @@ CAUSES = [
   "Stand where you use it and count the steps to where it is kept. More than "
   "two is the wrong cabinet.",
   "a kitchen with a large cooking pan stored in an open cabinet on the far "
-  "wall, the hob visible in the distance across an empty floor"),
+  "wall, the stovetop visible in the distance across an empty floor"),
  ("KC-004", "EXCESS MOTION", "Straighten",
   "Getting it out means bending, lifting, unstacking, or moving something "
   "else first.",
@@ -377,7 +377,7 @@ FRICTIONS = [
    ("There is more kitchen here than the counter can hold", "KC-001"),
    ("Nobody ever agreed what is allowed to live on it", "KC-008")],
   "a kitchen counter carrying a fruit bowl, a stack of post, two small "
-  "appliances and a folded tea towel, with only a hand's width of bare "
+  "appliances and a folded dish towel, with only a hand's width of bare "
   "surface left at the front"),
  ("Primary Prep Counter", "KF-002", "I COOK ON A CHOPPING BOARD OF SPACE",
   "There is a meter of counter and I use twenty centimetres of it.",
@@ -399,14 +399,14 @@ FRICTIONS = [
   [("The crock holds twenty tools and I use six", "KC-001"),
    ("The tool I need lives on the other side of the kitchen", "KC-003"),
    ("The drawer is a jumble and nothing shows", "KC-005")],
-  "a crowded utensil crock beside a hob holding more than a dozen tools "
+  "a crowded utensil crock beside a stovetop holding more than a dozen tools "
   "packed tight, a pan heating on the burner behind it"),
  ("Cooking Zone", "KF-005", "NOWHERE TO PUT A HOT PAN DOWN",
   "I stand holding it, looking round my own kitchen, arm aching.",
   [("The landing space has slowly filled with other things", "KC-007"),
    ("Those things have no home of their own", "KC-002"),
    ("Nobody calls that space anything, so it is fair game", "KC-008")],
-  "the counter beside a hob covered with a chopping board, a jar, an open "
+  "the counter beside a stovetop covered with a chopping board, a jar, an open "
   "cookbook and a mug, leaving no clear surface"),
  ("Cooking Zone", "KF-006", "I BUY SPICES I ALREADY OWN",
   "Three jars of cumin, and I bought two of them this year.",
@@ -481,7 +481,7 @@ FRICTIONS = [
   "THE HEAVY POT LIVES OVER MY HEAD",
   "I lift it down with both arms and hope.",
   [("Weight is stored above shoulder height", "KC-010"),
-   ("It is nowhere near the hob it is used at", "KC-003"),
+   ("It is nowhere near the stovetop it is used at", "KC-003"),
    ("The cabinet floor, where it should be, is already full", "KC-007")],
   "a heavy cast iron pot standing on a high shelf above a kitchen counter, "
   "well above shoulder height"),
@@ -610,14 +610,14 @@ ACTIONS = [
    "Put back six tools, each one you actually used this month. The rest go "
    "to a drawer or leave the kitchen.",
    "Oil, salt and pepper within one reach of the burner you use most.",
-   "Clear the landing space beside the hob down to bare counter, wide enough "
+   "Clear the landing space beside the stovetop down to bare counter, wide enough "
    "to set a hot pan on.",
    "Turn every pan handle in, so nothing sticks out over the front edge."],
   "causes": ["KC-001", "KC-007"],
   "victory": "With your feet still, you can reach oil, salt and a turner, and "
              "you have somewhere to set a hot pan down.",
   "next": "KS-002",
-  "art": "a stoneware crock beside a hob holding exactly six cooking tools "
+  "art": "a stoneware crock beside a stovetop holding exactly six cooking tools "
          "with space around them, a bottle of oil and a salt pot alongside, "
          "and a clear stretch of bare counter to the right"},
 
@@ -625,7 +625,7 @@ ACTIONS = [
   "minutes": 30, "players": "1", "six_s": "Safety",
   "goal": "Lay the burner surround out for one reach, and take the fire risk "
           "out of it.",
-  "why": "Oil left heating and a tea towel stored within reach of a live "
+  "why": "Oil left heating and a dish towel stored within reach of a live "
          "burner are the two ways a kitchen fire actually starts.",
   "inputs": ["a small hook and its fixing", "a bin bag",
              "a food area degreaser and a microfibre cloth"],
@@ -634,9 +634,9 @@ ACTIONS = [
    "and clear of the heat, so you never hunt for them with a hot pan.",
    "Pull every spice jar. Anything not used in a year leaves. The ones you "
    "reach for weekly go to the front row.",
-   "Move the paper towel roll, the tea towels and any packaging off the "
+   "Move the paper towel roll, the dish towels and any packaging off the "
    "burner side entirely.",
-   "Degrease the surround and the hob, working top down so what you loosen "
+   "Degrease the surround and the stovetop, working top down so what you loosen "
    "falls onto surfaces you have not cleaned yet.",
    "After cleaning, light every burner once and watch for an even blue ring. "
    "A lazy yellow flame, or a burner that clicks and will not catch, is a "
@@ -646,7 +646,7 @@ ACTIONS = [
              "row, nothing that burns within reach of a burner, and every "
              "burner lighting evenly.",
   "next": "KA-016",
-  "art": "the wall and counter beside a clean gas hob, two quilted pot "
+  "art": "the wall and counter beside a clean gas stovetop, two quilted pot "
          "holders hanging on a small hook clear of the burners, a spice rack "
          "with its front row standing proud, and no cloth or paper anywhere "
          "near the heat"},
@@ -664,7 +664,7 @@ ACTIONS = [
    "One brush and one sponge, standing where they drain. Everything else "
    "comes off the surround.",
    "Take out of the drying rack anything that is already dry.",
-   "Wipe the tap and the surround, and dry them so no water sits."],
+   "Wipe the faucet and the surround, and dry them so no water sits."],
   "causes": ["KC-009", "KC-008"],
   "victory": "Dry basin, two tools standing, nothing lying in water.",
   "next": "KS-003",
@@ -765,7 +765,7 @@ ACTIONS = [
   "steps": [
    "Take out every pan and every lid.",
    "Put back the two you cook with nightly, at the front, in the cabinet "
-   "nearest the hob.",
+   "nearest the stovetop.",
    "Cap every stack at three, or stand pans on edge if you have a divider.",
    "Stand the baking sheets on end rather than laying them flat.",
    "Whatever is still on the floor when you finish has not earned the "
@@ -923,7 +923,7 @@ ACTIONS = [
   "steps": [
    "Sink empty, basin dry.",
    "Prep run clear to bare counter, board down.",
-   "Landing space beside the hob clear.",
+   "Landing space beside the stovetop clear.",
    "Anything that does not live in the kitchen leaves the kitchen.",
    "Press start on the dishwasher. That is the trigger, and it is the "
    "finish line."],
@@ -946,7 +946,7 @@ ACTIONS = [
    "Blades. Every blade sheathed, in a block, or on a strip. None loose in a "
    "drawer, none blade up in a drying rack, none under suds in a full sink.",
    "Weight. Nothing heavy above shoulder height. No glass above head height.",
-   "Heat. Tea towels, paper roll and packaging out of reach of any burner, "
+   "Heat. Dish towels, paper roll and packaging out of reach of any burner, "
    "and the toaster clear of the cabinet above it.",
    "Water and electricity. No kettle, socket, or charging phone within "
    "splash distance of the basin.",
@@ -961,7 +961,7 @@ ACTIONS = [
              "not a job for this card.",
   "next": "KS-001",
   "art": "a calm kitchen seen wide with a knife block on the counter, a "
-         "clear space around the hob, a closed low cabinet, and no cloth or "
+         "clear space around the stovetop, a closed low cabinet, and no cloth or "
          "paper near the burners"},
 
  {"id": "KA-017", "zone": None, "title": "THE SHOPPING LIST LOOP",
@@ -1041,7 +1041,7 @@ EVENTS = [
   "You opened no more than two drawers looking for a tool, and there was "
   "somewhere clear to set the hot pan down.",
   "Every extra drawer you opened is a point of use problem. Draw KA-003.",
-  "a hob with two pans going and a clear stretch of counter beside them, "
+  "a stovetop with two pans going and a clear stretch of counter beside them, "
   "steam rising, evening light through a window"),
  ("KE-003", "THE DISHWASHER IS BROKEN",
   "Three days of washing by hand, with everyone still eating.",
@@ -1072,11 +1072,11 @@ EVENTS = [
  ("KE-006", "GUESTS IN THE KITCHEN",
   "Three people and one work triangle, and none of them live here.",
   ["KZ-004", "KZ-006"],
-  "A guest found a glass without asking, and nobody had to cross the hob to "
+  "A guest found a glass without asking, and nobody had to cross the stovetop to "
   "get anywhere.",
   "If they had to ask, the cabinet is not readable from outside. Draw "
   "KA-007, then name the drawers with KA-012.",
-  "an open kitchen with a clear walkway past the hob and an open cabinet "
+  "an open kitchen with a clear walkway past the stovetop and an open cabinet "
   "showing plainly separated glasses, plates and bowls"),
 ]
 
@@ -1333,7 +1333,7 @@ def room_card(zones: dict) -> dict:
         "source": "content/manual/source/content.json",
         "art": {"framing": "Room",
                 "subject": "a wide establishing view of a whole modern "
-                           "kitchen in its settled state, hob, sink, prep "
+                           "kitchen in its settled state, stovetop, sink, prep "
                            "counter, upper cabinets and refrigerator all "
                            "visible in one frame, everything put away",
                 "must_show": ["all seven zones legible in one frame"],

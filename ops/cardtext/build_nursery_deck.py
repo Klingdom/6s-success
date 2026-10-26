@@ -813,7 +813,7 @@ MICRO_QUESTS = {
   "since this is a mouthing surface.",
   "Vacuum the soft-toy basket's interior and rim, where drool and dust "
   "collect in the weave.",
-  "Vacuum under the low ledge and into the skirting behind it, the "
+  "Vacuum under the low ledge and into the baseboard behind it, the "
   "strip your baby rolls closest to.",
  ],
 }

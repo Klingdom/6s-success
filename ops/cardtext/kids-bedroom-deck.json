@@ -2240,7 +2240,7 @@
    "players": "1",
    "inputs": [
     "a cloth",
-    "a torch",
+    "a flashlight",
     "a calendar reminder"
    ],
    "steps": [
@@ -2267,7 +2267,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a closet emptied completely, a hand wiping the bare back wall with a torch checking the corner behind where boxes sat",
+    "subject": "a closet emptied completely, a hand wiping the bare back wall with a flashlight checking the corner behind where boxes sat",
     "must_show": [
      "The back wall and top shelf are wiped clean with no damp or mold found, or any found is flagged, and a calendar date is set for the next check."
     ],
@@ -2633,7 +2633,7 @@
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
     "Wipe each bin's outer face and its taped photo label with a damp cloth, going gently so the picture doesn't peel.",
-    "Vacuum tight into the skirting corners and carpet edges where small parts and dust migrate out of sight.",
+    "Vacuum tight into the baseboard corners and carpet edges where small parts and dust migrate out of sight.",
     "Wash the hard plastic blocks and figures in warm soapy water and spread them on a towel to dry fully."
    ],
    "related": {

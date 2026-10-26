@@ -106,7 +106,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Hold the footwear that comes off at the door, and keep the grit it carried in off every other floor in the house.
 
-Show it BEFORE any work, in the honest state described here: Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the trainers with the split sole all go, and so does the tin of polish that has dried solid.
+Show it BEFORE any work, in the honest state described here: Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the sneakers with the split sole all go, and so does the tin of polish that has dried solid.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -190,7 +190,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Somewhere to sit while you lace a boot, and somewhere to set a bag down for thirty seconds.
 
-Show it BEFORE any work, in the honest state described here: Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeaway menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room.
+Show it BEFORE any work, in the honest state described here: Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeout menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -401,7 +401,7 @@ A photograph of this exact subject: The strip of space either side of the burner
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named kitchen--cooking-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.
+Show it AFTER, in exactly this finished state: Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the stovetop wide enough to set down a hot pan.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -653,7 +653,7 @@ A photograph of this exact subject: Deep, low storage for the heavy pieces: pots
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named kitchen--lower-cabinet-and-cookware-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.
+Show it AFTER, in exactly this finished state: Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the stovetop. Nothing has to come out to reach anything else.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -694,7 +694,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps.
 
-Show it BEFORE any work, in the honest state described here: Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in.
+Show it BEFORE any work, in the honest state described here: Tip one drawer at a time onto a dish towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeout chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -1241,7 +1241,7 @@ A photograph of this exact subject: Holds the reserve that feeds the working she
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named pantry--backstock-and-bulk-zone--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.
+Show it AFTER, in exactly this finished state: Sacks of rice, cases of canned tomatoes and packs of paper towels, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 

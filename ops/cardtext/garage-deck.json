@@ -510,7 +510,7 @@
    ],
    "the_call": {
     "title": "The box you have never opened",
-    "text": "There is at least one box up there that moved in with you and has not been opened since. You keep it because opening it costs an afternoon and might cost more than that. Here is what settles it. Bring it down, open it on the floor with three things beside you: a rubbish sack, a donation box, and one empty container. Whatever you truly want to keep has to fit inside that single container and has to have a living person's name attached to it. Anything you cannot name an owner for goes today. Do not tape it up and send it back overhead, because a box that goes back unopened has just bought itself another five years and taught the rack that this is allowed."
+    "text": "There is at least one box up there that moved in with you and has not been opened since. You keep it because opening it costs an afternoon and might cost more than that. Here is what settles it. Bring it down, open it on the floor with three things beside you: a trash bag, a donation box, and one empty container. Whatever you truly want to keep has to fit inside that single container and has to have a living person's name attached to it. Anything you cannot name an owner for goes today. Do not tape it up and send it back overhead, because a box that goes back unopened has just bought itself another five years and taught the rack that this is allowed."
    },
    "supplies": [
     "Compact vacuum with attachments",
@@ -1042,7 +1042,7 @@
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Cables, gauge and torch are stored in three different places",
+     "answer": "Cables, gauge and flashlight are stored in three different places",
      "root_cause": "KC-002"
     },
     {
@@ -2867,13 +2867,13 @@
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
-    "a rubbish sack",
+    "a trash bag",
     "a donation box",
     "one empty container"
    ],
    "steps": [
     "Bring the oldest-dated bin down to the floor before judging anything in it.",
-    "Open it beside a rubbish sack, a donation box and one empty container.",
+    "Open it beside a trash bag, a donation box and one empty container.",
     "Keep only what fits in that one container and has a living person's name attached to it.",
     "Write today's date on the bin before it goes back up, whatever is left inside it."
    ],
@@ -2898,7 +2898,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "an overhead storage bin lowered onto a garage floor beside a rubbish sack, a donation box and one small empty container",
+    "subject": "an overhead storage bin lowered onto a garage floor beside a trash bag, a donation box and one small empty container",
     "must_show": [
      "The oldest bin in the garage has a fresh date on it, and everything inside it now has either a name or an ending."
     ],
@@ -3014,7 +3014,7 @@
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
-    "a rubbish sack",
+    "a trash bag",
     "a donation box",
     "nothing else beyond thirty minutes"
    ],
@@ -3039,7 +3039,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a rubbish sack and a donation box open on a garage floor, a half-finished project on the workbench carrying a strip of tape marked with a weekend date",
+    "subject": "a trash bag and a donation box open on a garage floor, a half-finished project on the workbench carrying a strip of tape marked with a weekend date",
     "must_show": [
      "Nothing in the garage is sitting there postponed. Every item has either a real home or has left the building today."
     ],

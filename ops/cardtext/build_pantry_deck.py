@@ -177,15 +177,15 @@ ZONES = {
   "tagline": "DATED ON ARRIVAL. A MAXIMUM ON THE EDGE. ONE ROW DEEP.",
   "callouts": [
    "Sacks of rice standing at or below waist height",
-   "Cases of tinned tomatoes with the arrival month written on each one",
-   "Packs of kitchen roll stored up high, off the floor",
+   "Cases of canned tomatoes with the arrival month written on each one",
+   "Packs of paper towels stored up high, off the floor",
    "A maximum number written on the shelf edge for each line",
    "The count on the shelf sitting at or under its written maximum",
    "Nothing stacked directly in front of anything else",
   ],
   "art": ("a pantry backstock area with sacks of rice and cases of "
-          "tinned tomatoes standing at or below waist height, each case "
-          "marked with its arrival month, light packs of kitchen roll "
+          "canned tomatoes standing at or below waist height, each case "
+          "marked with its arrival month, light packs of paper towels "
           "stored higher up, a small dated sticker fixed to the shelf "
           "edge, and nothing stacked in front of anything else"),
  },

@@ -291,7 +291,7 @@ EXPECTED_DIAGNOSIS = {
     ]},
   ],
   "first_15": {
-   "action": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+   "action": "This is where the household's undecided things hide behind a closed front: off-season sweaters, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The sweaters go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
    "victory": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed.",
   },
  },
@@ -408,7 +408,7 @@ FRICTION_META = [
   "and the wall, a low drawer cracked open showing loose plastic "
   "dry-cleaning film"),
  ("Guest Dresser", "GBF-009", "THE TOP DRAWER THAT ISN'T EMPTY",
-  "a dresser's top drawer half open, showing folded off-season jumpers "
+  "a dresser's top drawer half open, showing folded off-season sweaters "
   "and a tangle of cables instead of standing empty"),
 
  ("Guest Closet", "GBF-010", "THE BOX SEALED SINCE THE LAST ADDRESS",
@@ -649,12 +649,12 @@ ACTIONS = [
          "overflow is a week the guest room is not actually a guest "
          "room.",
   "inputs": ["a marker for the drawer label", "somewhere for the "
-             "jumpers and cables to go"],
+             "sweaters and cables to go"],
   "steps": [
    "This is where the household's undecided things hide behind a "
-   "closed front: off-season jumpers, a bin of cables, wrapping paper "
+   "closed front: off-season sweaters, a bin of cables, wrapping paper "
    "and ribbon, a bag of outgrown baby clothes waiting on a decision "
-   "about a second child. The jumpers go to your own wardrobe, the "
+   "about a second child. The sweaters go to your own wardrobe, the "
    "cables to the drawer that already holds cables, and the baby "
    "clothes get the decision today rather than another year of "
    "storage.",

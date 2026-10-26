@@ -268,7 +268,7 @@ FRICTION_META = [
 CAUSE_ART = {
  "KC-001": "a shoe rack shelf holding four nearly identical black shoes "
            "side by side with no others in sight",
- "KC-002": "an entryway console with a phone charger, a dog lead and a "
+ "KC-002": "an entryway console with a phone charger, a dog leash and a "
            "single loose sock lying on it, none of them near any drawer "
            "or hook",
  "KC-003": "a winter coat hanging on a hook in a hallway far from the "
@@ -285,7 +285,7 @@ CAUSE_ART = {
  "KC-011": "an empty shoe polish tin standing on an otherwise bare "
            "entry console shelf beside a pair of dull leather shoes",
  "RC-013": "a front hallway floor with a pair of shoes, a school bag "
-           "and a dog lead all left in the same spot, nobody's coat "
+           "and a dog leash all left in the same spot, nobody's coat "
            "hook nearby claimed",
  "RC-014": "a single tailored coat with its price tag still attached "
            "hanging untouched at the end of an otherwise ordinary coat "
@@ -295,7 +295,7 @@ CAUSE_ART = {
            "half pulled out",
  "RC-016": "the corner of a boot tray pushed hard against a wall, a "
            "build-up of dried grit visible in the angle where it meets "
-           "the skirting board",
+           "the baseboard",
  "RC-017": "a coat rail with one coat hanging crookedly off a bent "
            "hook, everything around it otherwise orderly",
 }
@@ -720,7 +720,7 @@ EVENTS = [
   "If mud reached the hallway floor past the mats, the mats have "
   "finished, or the swing was not clear. Draw EYA-010.",
   "a front doormat holding two pairs of muddy wet boots set down on it, "
-  "a damp dog lead hanging on a hook beside the door, water beading on "
+  "a damp dog leash hanging on a hook beside the door, water beading on "
   "the mat's surface"),
  ("EYE-003", "THE MOVING BOX DROP",
   "A delivery of three flattened cardboard boxes and a parcel lands "

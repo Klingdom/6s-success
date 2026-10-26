@@ -624,7 +624,7 @@ CAUSE_ART = {
 
 MICRO_QUESTS = {
  "Guest Vanity Counter": [
-  "Wipe the collar at the base of the tap where a chalky ring hides, "
+  "Wipe the collar at the base of the faucet where a chalky ring hides, "
   "working it with a folded cloth corner until it lifts.",
   "Lift the soap pump and wipe the sticky ring under its base before "
   "setting it back down.",

@@ -106,7 +106,7 @@
     "Compact vacuum with attachments",
     "Neutral pH multi-surface cleaner",
     "Portable cleaning caddy",
-    "Soft detail brush (not in this zone's list, needed for vent grooves)"
+    "Soft detail brush (for vent grooves)"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -173,7 +173,7 @@
     "Compact vacuum with attachments",
     "Neutral pH multi-surface cleaner",
     "Portable cleaning caddy",
-    "Mesh wash bag (not in this zone's list, needed for soft toys in the machine)"
+    "Mesh wash bag (for soft toys in the machine)"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -373,7 +373,7 @@
     "Compact vacuum with attachments",
     "Neutral pH multi-surface cleaner",
     "Portable cleaning caddy",
-    "Soft detail brush or compressed air (not in this zone's list, needed to clear charging ports)"
+    "Soft detail brush or compressed air"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -440,8 +440,8 @@
     "Neutral pH multi-surface cleaner",
     "Color-coded microfiber cloth set",
     "Portable cleaning caddy",
-    "Plastic scraper (not in this zone's list, needed to lift dried glue and paint)",
-    "Soft detail brush (not in this zone's list, needed for glitter in seams)"
+    "Plastic scraper",
+    "Soft detail brush (for glitter in seams)"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"

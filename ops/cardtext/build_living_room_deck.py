@@ -226,7 +226,7 @@ FRICTION_META = [
   "furthest from the seats"),
  ("Coffee Table", "LVF-005",
   "THE MAGAZINES UNDER THE ONE BOOK YOU'RE READING",
-  "a stack of old magazines and takeaway menus on a coffee table with a "
+  "a stack of old magazines and takeout menus on a coffee table with a "
   "single bookmarked book sitting on top of the pile"),
  ("Coffee Table", "LVF-006", "THE CANDLE TOO CLOSE TO THE MAGAZINE PILE",
   "a lit candle burned close to its rim sitting on a coffee table right "
@@ -468,7 +468,7 @@ ACTIONS = [
    "Clear the whole top onto the floor and put back only what somebody "
    "used in the last two days. The candle burned down to the foil, the "
    "coasters nobody uses because they sit on the far corner, the "
-   "three-month-old magazines and the takeaway menus all go now.",
+   "three-month-old magazines and the takeout menus all go now.",
    "Recycle the paper pile and return the tray to its spot within reach "
    "of the sofa.",
    "Set back only the four coasters, the remote in use, and at most one "

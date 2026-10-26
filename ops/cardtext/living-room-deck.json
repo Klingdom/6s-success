@@ -106,7 +106,7 @@
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
     "Portable cleaning caddy",
-    "Upholstery spot cleaner for a set-in stain (not in this zone's list)"
+    "Upholstery spot cleaner for a set-in stain"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -173,7 +173,7 @@
     "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy",
-    "Streak-free glass cleaner for a glass top (not in this zone's list)"
+    "Streak-free glass cleaner for a glass top"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -240,7 +240,7 @@
     "Compact vacuum with attachments (brush head)",
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
-    "Small detail brush for the vent slots (not in this zone's list)"
+    "Small detail brush for the vent slots"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -307,7 +307,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
-    "Soft dusting brush for carved objects (not in this zone's list)"
+    "Soft dusting brush for carved objects"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -374,7 +374,7 @@
     "Portable cleaning caddy",
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
-    "Streak-free glass cleaner for a glass top (not in this zone's list)"
+    "Streak-free glass cleaner for a glass top"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -653,11 +653,11 @@
    "zone": "Coffee Table",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading.",
+   "objective": "There are three magazines and a stack of old takeout menus on this table, sitting under the one book somebody's actually still reading.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Old menus and magazines don't obviously look like rubbish once they've sat there a while, so nobody flags them",
+     "answer": "Old menus and magazines don't obviously look like trash once they've sat there a while, so nobody flags them",
      "root_cause": "RC-017"
     },
     {
@@ -681,9 +681,9 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a stack of old magazines and takeaway menus on a coffee table with a single bookmarked book sitting on top of the pile",
+    "subject": "a stack of old magazines and takeout menus on a coffee table with a single bookmarked book sitting on top of the pile",
     "must_show": [
-     "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading."
+     "There are three magazines and a stack of old takeout menus on this table, sitting under the one book somebody's actually still reading."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -1964,7 +1964,7 @@
     "a recycling bin"
    ],
    "steps": [
-    "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
+    "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeout menus all go now.",
     "Recycle the paper pile and return the tray to its spot within reach of the sofa.",
     "Set back only the four coasters, the remote in use, and at most one book or plant."
    ],

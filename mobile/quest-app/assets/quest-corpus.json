@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "6888c30740492ee6a2b77ebc1e252485d154177143dbe8536e191a95b9a6ffb0",
+ "sourceSha256": "b75e863a9f64d5870fae5ebf2f02eef9497b8b324d6812a61a2022ad09e3fc55",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
@@ -191,7 +191,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the trainers with the split sole all go, and so does the tin of polish that has dried solid."
+     "text": "Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the sneakers with the split sole all go, and so does the tin of polish that has dried solid."
     },
     {
      "s": "straighten",
@@ -227,11 +227,11 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeaway menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room."
+     "text": "Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeout menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room."
     },
     {
      "s": "straighten",
-     "text": "Divide the drawer into named sections and hold to them: dog lead and waste bags, sun cream and insect spray, a torch, one pen. Bags and the vacuum go underneath the bench, never on the seat."
+     "text": "Divide the drawer into named sections and hold to them: dog leash and waste bags, sunscreen and insect spray, a flashlight, one pen. Bags and the vacuum go underneath the bench, never on the seat."
     },
     {
      "s": "shine",
@@ -331,7 +331,7 @@
    "zone": "Cooking Zone",
    "session": "45-75 min",
    "purpose": "The strip of space either side of the burners where cooking happens with your hands busy and heat already on.",
-   "done": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
+   "done": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the stovetop wide enough to set down a hot pan.",
    "steps": [
     {
      "s": "sort",
@@ -347,11 +347,11 @@
     },
     {
      "s": "safety",
-     "text": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the tea towel, the paper roll, and the oil bottle off the burner side of the hob, and know where the fire blanket or extinguisher is before a pan is smoking. If the hob burns gas, three things belong in this pass. Know where the shutoff valve is before you need it, usually behind or beneath the appliance. Check that each burner actually lights rather than clicking unlit, because a burner left running unlit fills a room quietly. And if you ever smell gas, do not touch a light switch or anything electrical, open a window, leave, and call the emergency number on your supplier's bill from outside. Repairs and fittings are a licensed job, always."
+     "text": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the dish towel, the paper roll, and the oil bottle off the burner side of the stovetop, and know where the fire blanket or extinguisher is before a pan is smoking. If the stovetop burns gas, three things belong in this pass. Know where the shutoff valve is before you need it, usually behind or beneath the appliance. Check that each burner actually lights rather than clicking unlit, because a burner left running unlit fills a room quietly. And if you ever smell gas, do not touch a light switch or anything electrical, open a window, leave, and call the emergency number on your supplier's bill from outside. Repairs and fittings are a licensed job, always."
     },
     {
      "s": "standardize",
-     "text": "Photograph the hob and one step of surround in its ready state and tape the photo inside the nearest cabinet door, so ready is a picture anyone can match rather than a standard only you hold."
+     "text": "Photograph the stovetop and one step of surround in its ready state and tape the photo inside the nearest cabinet door, so ready is a picture anyone can match rather than a standard only you hold."
     },
     {
      "s": "sustain",
@@ -415,7 +415,7 @@
     },
     {
      "s": "shine",
-     "text": "Take each shelf completely empty before wiping, because the band of dust at the back is how you find out it has not been cleared in years. Wipe the underside of the cabinet nearest the hob, where a greasy film settles that you only see when you look at it from an angle."
+     "text": "Take each shelf completely empty before wiping, because the band of dust at the back is how you find out it has not been cleared in years. Wipe the underside of the cabinet nearest the stovetop, where a greasy film settles that you only see when you look at it from an angle."
     },
     {
      "s": "safety",
@@ -439,7 +439,7 @@
    "zone": "Lower Cabinet and Cookware Zone",
    "session": "45-75 min",
    "purpose": "Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls.",
-   "done": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.",
+   "done": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the stovetop. Nothing has to come out to reach anything else.",
    "steps": [
     {
      "s": "sort",
@@ -463,7 +463,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the pans come off the drying rack they go back into their named slots, done by whoever set them there to dry. The hob is the tell. A pan that sleeps on the burner is not laziness, it is a slot that costs a crouch to reach, and the pan is reporting that honestly. Recovery is changing the slot rather than the person: move that pan to the front, ten minutes with the cabinet open. This zone fails physically, so it goes at the end of a long day before anything else in the kitchen."
+     "text": "When the pans come off the drying rack they go back into their named slots, done by whoever set them there to dry. The stovetop is the tell. A pan that sleeps on the burner is not laziness, it is a slot that costs a crouch to reach, and the pan is reporting that honestly. Recovery is changing the slot rather than the person: move that pan to the front, ten minutes with the cabinet open. This zone fails physically, so it goes at the end of a long day before anything else in the kitchen."
     }
    ],
    "img": "kitchen--lower-cabinet-and-cookware-zone",
@@ -479,11 +479,11 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in."
+     "text": "Tip one drawer at a time onto a dish towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeout chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in."
     },
     {
      "s": "straighten",
-     "text": "Dividers go in before anything else, and you name the drawer before you fill it. Flatware nearest the dishwasher, cooking tools nearest the hob, measuring spoons and the scale beside the baking cupboard, and wraps in the drawer you can pull open while holding a dish in your other hand."
+     "text": "Dividers go in before anything else, and you name the drawer before you fill it. Flatware nearest the dishwasher, cooking tools nearest the stovetop, measuring spoons and the scale beside the baking cupboard, and wraps in the drawer you can pull open while holding a dish in your other hand."
     },
     {
      "s": "shine",
@@ -535,7 +535,7 @@
     },
     {
      "s": "sustain",
-     "text": "Writing the shopping list is the trigger, and the writer does it: empty the eat-first bin of anything past, then write the list from the gaps that leaves. Ten minutes, replacing a job you were doing anyway. Two signals read with the door open are an eat-first bin that is filling rather than emptying, and a container with no name and date on the lid. Recovery is one shelf and the bin, not a full unload. This is the only zone whose contents get worse while nobody touches them, so a fortnight of not looking is never neutral."
+     "text": "Writing the shopping list is the trigger, and the writer does it: empty the eat-first bin of anything past, then write the list from the gaps that leaves. Ten minutes, replacing a job you were doing anyway. Two signals read with the door open are an eat-first bin that is filling rather than emptying, and a container with no name and date on the lid. Recovery is one shelf and the bin, not a full unload. This is the only zone whose contents get worse while nobody touches them, so two weeks of not looking is never neutral."
     }
    ],
    "img": "kitchen--refrigerator-and-freezer",
@@ -691,7 +691,7 @@
    "zone": "Backstock and Bulk Zone",
    "session": "45-75 min",
    "purpose": "Holds the reserve that feeds the working shelves, and nothing else.",
-   "done": "Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
+   "done": "Sacks of rice, cases of canned tomatoes and packs of paper towels, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
    "steps": [
     {
      "s": "sort",
@@ -699,7 +699,7 @@
     },
     {
      "s": "straighten",
-     "text": "Weight decides height. Sacks and cases go on the floor or the bottom shelf on a board, kitchen roll and paper napkins go up top because they are light, and everything sits one row deep so you never move a case to see a case."
+     "text": "Weight decides height. Sacks and cases go on the floor or the bottom shelf on a board, paper towels and paper napkins go up top because they are light, and everything sits one row deep so you never move a case to see a case."
     },
     {
      "s": "shine",
@@ -947,7 +947,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now."
+     "text": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeout menus all go now."
     },
     {
      "s": "straighten",
@@ -1531,7 +1531,7 @@
     },
     {
      "s": "shine",
-     "text": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a gray line, and check the back wall and skirting for damp before the shoes go back down."
+     "text": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a gray line, and check the back wall and baseboard for damp before the shoes go back down."
     },
     {
      "s": "safety",
@@ -1611,7 +1611,7 @@
     },
     {
      "s": "standardize",
-     "text": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower tap turns. Write it out even for guests you know well, because the whole point is that nobody has to knock on your door at midnight to ask. The card stays in that drawer permanently, and the password is the one line on it that goes out of date without warning, so it gets checked whenever you change it."
+     "text": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower faucet turns. Write it out even for guests you know well, because the whole point is that nobody has to knock on your door at midnight to ask. The card stays in that drawer permanently, and the password is the one line on it that goes out of date without warning, so it gets checked whenever you change it."
     },
     {
      "s": "sustain",
@@ -1631,7 +1631,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage."
+     "text": "This is where the household's undecided things hide behind a closed front: off-season sweaters, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The sweaters go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage."
     },
     {
      "s": "straighten",
@@ -1783,7 +1783,7 @@
     },
     {
      "s": "shine",
-     "text": "Run the hard plastic through a sink of warm soapy water and dry it on a towel. Vacuum the skirting corners where small parts migrate, and check the bin bottoms for splits before you refill them."
+     "text": "Run the hard plastic through a sink of warm soapy water and dry it on a towel. Vacuum the baseboard corners where small parts migrate, and check the bin bottoms for splits before you refill them."
     },
     {
      "s": "safety",
@@ -2183,7 +2183,7 @@
     },
     {
      "s": "safety",
-     "text": "Water and a plugged-in dryer share one small surface in here. Keep the cord on the far side of the basin from the tap, and pull the plug at the wall the moment you set the tool down, not once your hair is finished."
+     "text": "Water and a plugged-in dryer share one small surface in here. Keep the cord on the far side of the basin from the faucet, and pull the plug at the wall the moment you set the tool down, not once your hair is finished."
     },
     {
      "s": "standardize",
@@ -2335,7 +2335,7 @@
     },
     {
      "s": "sustain",
-     "text": "Whoever gets out last runs the squeegee over the glass and the walls, props the door open and leaves the fan going, while they are still wet and standing there. Thirty seconds. Two signals show from outside the enclosure: a dark line where the wall meets the tray, and a bottle nobody has picked up in a fortnight. Recovery is a hot rinse and a squeegee run plus one empty leaving, no deep clean if you catch the line early. This zone gets worse on its own, with water, whether or not anybody does anything wrong."
+     "text": "Whoever gets out last runs the squeegee over the glass and the walls, props the door open and leaves the fan going, while they are still wet and standing there. Thirty seconds. Two signals show from outside the enclosure: a dark line where the wall meets the tray, and a bottle nobody has picked up in two weeks. Recovery is a hot rinse and a squeegee run plus one empty leaving, no deep clean if you catch the line early. This zone gets worse on its own, with water, whether or not anybody does anything wrong."
     }
    ],
    "img": "primary-bathroom--shower-or-tub",
@@ -2419,7 +2419,7 @@
    "zone": "Guest Vanity Counter",
    "session": "15-30 min",
    "purpose": "It gives a visitor somewhere to wash their hands and set a phone down, with nothing of yours in the way.",
-   "done": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.",
+   "done": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the faucet, no dried soap ring under the dispenser.",
    "steps": [
     {
      "s": "sort",
@@ -2431,7 +2431,7 @@
     },
     {
      "s": "shine",
-     "text": "Wipe the counter, then the tap and the drain lip where toothpaste film and hard water scale build up, including the collar at the base of the tap where a chalky ring hides. Do the mirror last, top to bottom, so drips land on surfaces you have not finished yet."
+     "text": "Wipe the counter, then the faucet and the drain lip where toothpaste film and hard water scale build up, including the collar at the base of the faucet where a chalky ring hides. Do the mirror last, top to bottom, so drips land on surfaces you have not finished yet."
     },
     {
      "s": "safety",
@@ -2747,7 +2747,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool jumper that has been draped over the end rung since spring either goes away properly or leaves the house."
+     "text": "Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool sweater that has been draped over the end rung since spring either goes away properly or leaves the house."
     },
     {
      "s": "straighten",
@@ -2759,7 +2759,7 @@
     },
     {
      "s": "safety",
-     "text": "Water on a hard floor under a drying rack is a slip you take in socks with an armful of laundry. Keep the drip tray in place, and never stand the rack where drips can reach a wall outlet or a plugged in extension lead running along the skirting."
+     "text": "Water on a hard floor under a drying rack is a slip you take in socks with an armful of laundry. Keep the drip tray in place, and never stand the rack where drips can reach a wall outlet or a plugged in extension lead running along the baseboard."
     },
     {
      "s": "standardize",
@@ -3055,7 +3055,7 @@
     },
     {
      "s": "sustain",
-     "text": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin and the top is swept, all before the task light goes off. Pulling the last plug out of the bench outlet is the signal to sweep, not the clock on your phone. Ten minutes, by whoever ran the job. Slip is anything on the bench the photo behind it does not show. Projects here do not end, they pause, and after a fortnight a pause looks like abandonment."
+     "text": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin and the top is swept, all before the task light goes off. Pulling the last plug out of the bench outlet is the signal to sweep, not the clock on your phone. Ten minutes, by whoever ran the job. Slip is anything on the bench the photo behind it does not show. Projects here do not end, they pause, and after two weeks a pause looks like abandonment."
     }
    ],
    "img": "garage--primary-workbench",
@@ -3451,7 +3451,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can with the lid down. Both happen at the tap, by whoever did the finishing. Slip is an undated lid, a container that is not the original, or an oily rag anywhere outside that can. Recovery is a marker for the first two and the can for the third, immediately. Drift here does not show as mess, it shows as incompatibles ending up on one shelf."
+     "text": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can with the lid down. Both happen at the faucet, by whoever did the finishing. Slip is an undated lid, a container that is not the original, or an oily rag anywhere outside that can. Recovery is a marker for the first two and the can for the third, immediately. Drift here does not show as mess, it shows as incompatibles ending up on one shelf."
     }
    ],
    "img": "workshop--finishing-and-chemical-zone",
@@ -3647,7 +3647,7 @@
    "steps": [
     {
      "s": "sort",
-     "text": "Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sun cream and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label."
+     "text": "Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sunscreen and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label."
     },
     {
      "s": "straighten",
@@ -3659,7 +3659,7 @@
     },
     {
      "s": "safety",
-     "text": "Insect repellent and sun cream sitting in a low open bin will find their way into a small mouth, so anything carrying a warning on the label goes in a closed box above child reach. Store umbrellas points down, because a spike stood upright sits at a toddler's eye height."
+     "text": "Insect repellent and sunscreen sitting in a low open bin will find their way into a small mouth, so anything carrying a warning on the label goes in a closed box above child reach. Store umbrellas points down, because a spike stood upright sits at a toddler's eye height."
     },
     {
      "s": "standardize",
@@ -3967,7 +3967,7 @@
    "zone": "Stair and Floor Path",
    "session": "30-45 min",
    "purpose": "The treads, runner, handrail and lighting that carry every person in the house between floors, several times a day, often with their arms full.",
-   "done": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog lead hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
+   "done": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog leash hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
    "steps": [
     {
      "s": "sort",

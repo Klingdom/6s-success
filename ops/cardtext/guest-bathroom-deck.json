@@ -84,7 +84,7 @@
     "No toothbrush cup or hair clips anywhere on the counter",
     "A dry, ring-free patch of counter under the soap dispenser"
    ],
-   "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.",
+   "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the faucet, no dried soap ring under the dispenser.",
    "session": "15-30 min",
    "safety_checks": [
     {
@@ -103,7 +103,7 @@
    "supplies": [
     "Bathroom grime and soap-film cleaner",
     "Neutral pH multi-surface cleaner",
-    "Streak-free glass and mirror cleaner (not in this zone's list, and the mirror needs it)",
+    "Streak-free glass and mirror cleaner",
     "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy"
@@ -170,8 +170,8 @@
    },
    "supplies": [
     "Bathroom grime and soap-film cleaner",
-    "Neutral pH multi-surface cleaner (not in this zone's list, but the sealed cabinet interior needs it)",
-    "Color-coded microfiber cloth set (not in this zone's list, and you cannot wipe the cabinet down without cloths)",
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy"
    ],
@@ -241,8 +241,8 @@
     "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy",
-    "Dedicated mildew remover (not in this zone's list, for grout the soap-film cleaner will not shift)",
-    "Stiff grout or detail brush (not in this zone's list, and the grout and the non-slip floor need bristles)"
+    "Dedicated mildew remover (for grout the soap-film cleaner will not shift)",
+    "Stiff grout or detail brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -310,7 +310,7 @@
     "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy",
-    "Toilet bowl cleaner and a dedicated bowl brush (not in this zone's list, and the bowl needs both)"
+    "Toilet bowl cleaner and a dedicated bowl brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -377,7 +377,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
-    "Washing machine (not a listed product, but the stored linens need a hot wash)"
+    "Washing machine (for a hot wash of the stored linens)"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -2227,7 +2227,7 @@
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
-    "Wipe the collar at the base of the tap where a chalky ring hides, working it with a folded cloth corner until it lifts.",
+    "Wipe the collar at the base of the faucet where a chalky ring hides, working it with a folded cloth corner until it lifts.",
     "Lift the soap pump and wipe the sticky ring under its base before setting it back down.",
     "Wipe the towel ring and its mount clean before you rehang a fresh folded towel."
    ],

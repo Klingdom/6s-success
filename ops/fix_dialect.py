@@ -109,6 +109,52 @@ PAIRS = [
 ]
 
 
+# VOCABULARY, not spelling. Added 2026-10-26 after reading every cleaning
+# method on the live site: the corpus spells American and SPEAKS British, so a
+# US reader was told to degrease the hob, wipe the skirting, rinse under the
+# tap and fetch a torch. Each pair below was checked in context across every
+# TARGET before it went in, and each is a phrase with no competing American
+# sense at a word boundary. Deliberately NOT here:
+#   "cupboard", "fridge", "mobile"   ordinary American usage too
+#   bare "takeaway"                  room-images.json uses it to mean "the
+#                                    lesson", so only the food senses below
+#   bare "tap"                       also a verb ("tap the papers square",
+#                                    "when you tap it"), so only noun phrases
+VOCAB = [
+    ("skirting boards", "baseboards"), ("skirting board", "baseboard"),
+    ("skirting", "baseboard"),
+    # "the extractor" is a range hood in a kitchen and an exhaust fan in a
+    # bathroom; the first version of this list made it a range hood in
+    # the toilet area. Only phrases whose room is unambiguous.
+    ("extractor hood", "range hood"),
+    ("the extractor is not clearing", "the range hood is not clearing"),
+    ("the extractor running", "the exhaust fan running"),
+    ("hobs", "stovetops"), ("hob", "stovetop"),
+    ("washing-up liquid", "dish soap"),
+    # Clothing senses only: "jumper cables" is correct American and the
+    # first version of this list turned it into "sweater cables".
+    ("jumpers", "sweaters"), ("wool jumper", "wool sweater"),
+    ("a jumper or", "a sweater or"),
+    ("cotton buds", "cotton swabs"), ("cotton bud", "cotton swab"),
+    ("chiselling", "chiseling"),
+    ("kitchen roll", "paper towels"),
+    ("tea towels", "dish towels"), ("tea towel", "dish towel"),
+    ("torches", "flashlights"), ("torch", "flashlight"),
+    ("trainers", "sneakers"),
+    ("wellies", "rain boots"),
+    ("sun cream", "sunscreen"),
+    ("tinned", "canned"),
+    ("takeaway menus", "takeout menus"),
+    ("takeaway chopsticks", "takeout chopsticks"),
+    ("dog lead", "dog leash"),
+    ("rubbish sack", "trash bag"), ("rubbish", "trash"),
+    ("airing cupboard", "linen closet"),
+    ("a fortnight", "two weeks"),
+    ("the taps", "the faucets"), ("the tap", "the faucet"),
+    ("outdoor tap", "outdoor faucet"), ("shower tap", "shower faucet"),
+]
+
+
 def _replacement(match: "re.Match", american: str) -> str:
     word = match.group(0)
     if word[0].isupper():
@@ -118,7 +164,7 @@ def _replacement(match: "re.Match", american: str) -> str:
 
 def fix_text(text: str) -> tuple[str, dict]:
     counts: dict = {}
-    for british, american in PAIRS:
+    for british, american in PAIRS + VOCAB:
         pattern = re.compile(r"\b" + re.escape(british) + r"\b", re.IGNORECASE)
         n = len(pattern.findall(text))
         if n:
@@ -146,7 +192,7 @@ def main(apply: bool) -> int:
         any_file_changed = True
         print(f"  {rel}: {file_total} instance(s)")
         for british, n in sorted(counts.items(), key=lambda kv: -kv[1]):
-            american = dict(PAIRS)[british]
+            american = dict(PAIRS + VOCAB)[british]
             print(f"      {british} -> {american}: {n}")
         if apply:
             with open(path, "w", encoding="utf-8", newline="") as f:

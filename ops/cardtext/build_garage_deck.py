@@ -833,11 +833,11 @@ ACTIONS = [
          "ladder, so a bin can hold an unmade decision for years "
          "without anyone feeling it; the only fix is opening it on "
          "purpose.",
-  "inputs": ["a rubbish sack", "a donation box", "one empty container"],
+  "inputs": ["a trash bag", "a donation box", "one empty container"],
   "steps": [
    "Bring the oldest-dated bin down to the floor before judging "
    "anything in it.",
-   "Open it beside a rubbish sack, a donation box and one empty "
+   "Open it beside a trash bag, a donation box and one empty "
    "container.",
    "Keep only what fits in that one container and has a living "
    "person's name attached to it.",
@@ -848,7 +848,7 @@ ACTIONS = [
              "everything inside it now has either a name or an ending.",
   "next": "GAA-013",
   "art": "an overhead storage bin lowered onto a garage floor beside a "
-         "rubbish sack, a donation box and one small empty container"},
+         "trash bag, a donation box and one small empty container"},
 
  {"id": "GAA-015", "zone": None, "title": "THE FUEL-AND-CHEMISTRY WALK",
   "minutes": 30, "players": "1", "six_s": "Safety",
@@ -916,7 +916,7 @@ ACTIONS = [
          "could not decide about, and anything carried in with no "
          "rail, shelf or bin already waiting for it either gets a "
          "verdict the same day or quietly becomes part of the floor.",
-  "inputs": ["a rubbish sack", "a donation box",
+  "inputs": ["a trash bag", "a donation box",
              "nothing else beyond thirty minutes"],
   "steps": [
    "Name the half-finished project on the workbench and give it a "
@@ -932,7 +932,7 @@ ACTIONS = [
              "item has either a real home or has left the building "
              "today.",
   "next": "GAA-015",
-  "art": "a rubbish sack and a donation box open on a garage floor, a "
+  "art": "a trash bag and a donation box open on a garage floor, a "
          "half-finished project on the workbench carrying a strip of "
          "tape marked with a weekend date"},
 ]

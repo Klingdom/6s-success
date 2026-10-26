@@ -379,7 +379,8 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Mineral spirits or matching brush cleaner",
-    "Clean shop rags"
+    "Clean shop rags",
+    "Reusable or disposable nitrile gloves"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -1019,7 +1020,7 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "The rule is the rag goes in the can right at the tap when you wash the brush, but tonight the brush got washed somewhere else",
+     "answer": "The rule is the rag goes in the can right at the faucet when you wash the brush, but tonight the brush got washed somewhere else",
      "root_cause": "KC-009"
     },
     {
@@ -2704,7 +2705,7 @@
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
    "objective": "Original containers, dated lids, incompatibles on separate shelves, and rags in a lidded metal can.",
-   "trigger": "When the brush goes under the tap, the rag goes in the can and the lid goes down.",
+   "trigger": "When the brush goes under the faucet, the rag goes in the can and the lid goes down.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
     "Date: ____ / ____ / ______",

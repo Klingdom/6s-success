@@ -94,7 +94,7 @@
        "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy",
-       "Small detail brush (not in this zone's kit)"
+       "Small detail brush"
       ],
       "inspect_as_you_clean": [
        "A brown water ring or a spreading stain on the wall or console top directly under the hooks, the sign that wet sleeves have been dripping in the same line for a while. Flag it.",
@@ -265,7 +265,7 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Portable cleaning caddy",
-       "Small detail brush (not in this zone's kit)"
+       "Small detail brush"
       ],
       "inspect_as_you_clean": [
        "A hook whose base plate has started to pull away from the wall, a gap opening behind it or the screw head standing proud. Flag it before it lets go with a coat on it.",
@@ -368,7 +368,7 @@
      "purpose": "Hold the footwear that comes off at the door, and keep the grit it carried in off every other floor in the house.",
      "done_looks_like": "Two pairs per person on the rack, soles down, boots standing in the tray, one pair of slippers each, and a clear stretch of floor a full stride wide between the door and the rack.",
      "passes": {
-      "sort": "Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the trainers with the split sole all go, and so does the tin of polish that has dried solid.",
+      "sort": "Pull every shoe out and pair them up on the floor. Odd shoes, outgrown children's pairs and the sneakers with the split sole all go, and so does the tin of polish that has dried solid.",
       "straighten": "Daily pairs on the rack at a height you can reach standing up, boots in the tray because they will always come in wet, off-season pairs boxed in a closet. Nothing at all on the floor between the door and the rack.",
       "shine": "Take the boot tray outside and hose it. The salt and grit sitting in it is precisely what scratches your hallway floor. Wipe down the rack shelves too, they hold more dried mud than they look like they do.",
       "safety": "Wet soles on a hard floor are how people go down in this room. The tray has to catch the drip, and anything that walked in soaked stays on the tray until it is dry rather than being carried through the house.",
@@ -377,7 +377,7 @@
      },
      "the_call": {
       "title": "The worn out pair you keep for the garden",
-      "text": "Everyone has a pair with the tread rubbed smooth that survives on the grounds that it is fine for mucky jobs. Count them honestly and there are usually three such pairs and about one muddy job a year. The rule is that the sole decides, not the memory. Turn the shoe over. If the tread has gone smooth or the heel has worn through on the outer edge, that shoe is no longer safe on a wet step or a slick pavement, which means it is not gardening footwear, it is rubbish with sentimental value attached. Keep exactly one dirty-job pair per person and store it where the dirty jobs happen, not at the front door. The pair you would be embarrassed to be seen in is not a spare. It is a decision you already made and have not carried out."
+      "text": "Everyone has a pair with the tread rubbed smooth that survives on the grounds that it is fine for mucky jobs. Count them honestly and there are usually three such pairs and about one muddy job a year. The rule is that the sole decides, not the memory. Turn the shoe over. If the tread has gone smooth or the heel has worn through on the outer edge, that shoe is no longer safe on a wet step or a slick pavement, which means it is not gardening footwear, it is trash with sentimental value attached. Keep exactly one dirty-job pair per person and store it where the dirty jobs happen, not at the front door. The pair you would be embarrassed to be seen in is not a spare. It is a decision you already made and have not carried out."
      },
      "watch_for": [
       {
@@ -414,8 +414,8 @@
         "method": "Carry it outside and hose it down, then scrub the salt film and grit out of the corners with the stiff brush and the multi-surface cleaner and rinse it clear. Dry it fully before it comes back in, because a wet tray just re-wets the floor."
        },
        {
-        "surface": "the wall and skirting behind the rack",
-        "method": "Wipe the skirting board and the lower wall behind the rack with a barely damp cloth to lift the mud spray and scuff. Dry it after."
+        "surface": "the wall and baseboard behind the rack",
+        "method": "Wipe the baseboard and the lower wall behind the rack with a barely damp cloth to lift the mud spray and scuff. Dry it after."
        },
        {
         "surface": "the floor under the rack",
@@ -432,13 +432,13 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Portable cleaning caddy",
-       "Stiff dry brush (not in this zone's kit)"
+       "Stiff dry brush"
       ],
       "inspect_as_you_clean": [
        "A hairline crack or a split in the boot tray letting water seep onto the floor under it. Flag it, and note any dark stain that has formed underneath.",
        "A rack shelf that sags, or a joint that has worked loose so the whole rack rocks. Note it.",
        "Rust blooming on the metal frame where salt water keeps pooling. Flag it.",
-       "A dark damp stain or a soft patch on the skirting behind the tray. Note it.",
+       "A dark damp stain or a soft patch on the baseboard behind the tray. Note it.",
        "The floor finish worn dull or gone gray and rough under the tray, where repeated salt has eaten the seal. Flag it."
       ]
      },
@@ -526,7 +526,7 @@
       "strays": [
        "Odd shoes with no match",
        "Outgrown children's pairs",
-       "Trainers with a split sole",
+       "Sneakers with a split sole",
        "Polish that has dried solid"
       ]
      }
@@ -538,8 +538,8 @@
      "purpose": "Somewhere to sit while you lace a boot, and somewhere to set a bag down for thirty seconds.",
      "done_looks_like": "Three items or fewer on the top, a seat with nothing on it at all, and a drawer where every divided section has one named category and you can see the base of the drawer between things.",
      "passes": {
-      "sort": "Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeaway menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room.",
-      "straighten": "Divide the drawer into named sections and hold to them: dog lead and waste bags, sun cream and insect spray, a torch, one pen. Bags and the vacuum go underneath the bench, never on the seat.",
+      "sort": "Tip the drawer out onto the bench. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago and takeout menus all go now. Anything you would not want while wearing your outdoor shoes belongs in a different room.",
+      "straighten": "Divide the drawer into named sections and hold to them: dog leash and waste bags, sunscreen and insect spray, a flashlight, one pen. Bags and the vacuum go underneath the bench, never on the seat.",
       "shine": "Take the drawer fully out and tip the sand and crumbs out of its corners. Wipe the seat itself, which collects the same grit as the floor because people sit on it in outdoor clothes.",
       "safety": "Fix the console to the wall if it is taller than it is deep, because children climb open drawer fronts like a ladder. Move the box cutter and the scissors out of the shallow drawer that opens at toddler head height.",
       "standardize": "Write the three permitted top items on a card and tape it inside the drawer, so the cap survives everyone who did not read this book.",
@@ -547,7 +547,7 @@
      },
      "the_call": {
       "title": "What the drawer is for",
-      "text": "This drawer becomes the second junk drawer within a month of being emptied. It happens every time, because it is the nearest place to set down something you do not want to carry any further. The decision being avoided is not what to throw away. It is admitting the drawer needs a job at all. The rule: this drawer serves the door and nothing else. One test question per item, would you need this while wearing your shoes, either on the way out or in the first ten seconds back in. Dog lead, yes. Sun cream, yes. Spare car charger, yes. The screwdriver, the birthday candles and the case for a phone you no longer own all fail, and they fail even though they genuinely have nowhere better to live. Find them somewhere better today, in another room, with a name on it. If you do not, they will be back in this drawer by the weekend and so will four of their friends."
+      "text": "This drawer becomes the second junk drawer within a month of being emptied. It happens every time, because it is the nearest place to set down something you do not want to carry any further. The decision being avoided is not what to throw away. It is admitting the drawer needs a job at all. The rule: this drawer serves the door and nothing else. One test question per item, would you need this while wearing your shoes, either on the way out or in the first ten seconds back in. Dog leash, yes. Sunscreen, yes. Spare car charger, yes. The screwdriver, the birthday candles and the case for a phone you no longer own all fail, and they fail even though they genuinely have nowhere better to live. Find them somewhere better today, in another room, with a name on it. If you do not, they will be back in this drawer by the weekend and so will four of their friends."
      },
      "watch_for": [
       {
@@ -561,7 +561,7 @@
      ],
      "leave_behind": {
       "standard": "Three items on the top, an empty seat, and every drawer section holding one named category.",
-      "trigger": "You already open this drawer to put the dog lead back after a walk. While it is open, glance at the top and take it back to three."
+      "trigger": "You already open this drawer to put the dog leash back after a walk. While it is open, glance at the top and take it back to three."
      },
      "chapter_ref": "See Chapter 23, the written standard.",
      "shine_detail": {
@@ -602,7 +602,7 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Portable cleaning caddy",
-       "Small detail brush (not in this zone's kit)"
+       "Small detail brush"
       ],
       "inspect_as_you_clean": [
        "A console that rocks or tips toward you when you lean on the top, the sign it is top-heavy and not yet held to the wall. Flag it.",
@@ -678,9 +678,9 @@
       "does_not_fit": "If the honest, daily-use set for this household is genuinely more than three items, or a named drawer section is packed flat with no base showing even after duplicates and expired items leave, the bench top or the drawer is smaller than the job asked of it."
      },
      "common_items": [
-      "Dog lead and waste bags",
-      "Sun cream and insect spray",
-      "A torch",
+      "Dog leash and waste bags",
+      "Sunscreen and insect spray",
+      "A flashlight",
       "A pen",
       "Spare car charger"
      ],
@@ -695,7 +695,7 @@
        "Pens that do not write",
        "A single earbud",
        "Sunscreen from three summers ago",
-       "Takeaway menus",
+       "Takeout menus",
        "Anything you would not want while wearing outdoor shoes"
       ]
      }
@@ -771,7 +771,7 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Portable cleaning caddy",
-       "Streak-free glass and mirror cleaner (if the door has a glass panel; not in this zone's kit)"
+       "Streak-free glass and mirror cleaner (if the door has a glass panel)"
       ],
       "inspect_as_you_clean": [
        "A mat with a corner that has curled and stopped lying flat, or backing that has gone brittle and is shedding crumbs, both signs the grip is failing. Flag it.",
@@ -866,7 +866,7 @@
    ]
   },
   {
-   "intro": "The kitchen is the busiest room in the house, and the one 6S pays back fastest, because you cross it a dozen times a day and feel every extra step. Start at the sink: it is the room's recovery point, and every other zone eventually drains into it, so nothing else can be judged fairly while dirty dishes have nowhere to be. Then work outward to the counter and the hob, and save the refrigerator for a morning when you have real time.",
+   "intro": "The kitchen is the busiest room in the house, and the one 6S pays back fastest, because you cross it a dozen times a day and feel every extra step. Start at the sink: it is the room's recovery point, and every other zone eventually drains into it, so nothing else can be judged fairly while dirty dishes have nowhere to be. Then work outward to the counter and the stovetop, and save the refrigerator for a morning when you have real time.",
    "room": "Kitchen",
    "tips": [
     {
@@ -941,7 +941,7 @@
        },
        {
         "surface": "the coffee maker, its reservoir, and the carafe and drip tray",
-        "method": "Work from the water in to the coffee out. Empty the reservoir, wipe it with a microfiber cloth, and leave the lid open to dry rather than closing damp. Descale on whatever interval your water hardness calls for, following the machine's own instructions, because scale is what kills these machines long before anything else does. Wash the brew basket and carafe with hot water and washing-up liquid to cut the coffee oils that turn bitter, and lift out the drip tray and its grille, which is usually the wettest neglected thing on the counter."
+        "method": "Work from the water in to the coffee out. Empty the reservoir, wipe it with a microfiber cloth, and leave the lid open to dry rather than closing damp. Descale on whatever interval your water hardness calls for, following the machine's own instructions, because scale is what kills these machines long before anything else does. Wash the brew basket and carafe with hot water and dish soap to cut the coffee oils that turn bitter, and lift out the drip tray and its grille, which is usually the wettest neglected thing on the counter."
        },
        {
         "surface": "the blender or food processor base, its gasket, and the blade seal",
@@ -1060,13 +1060,13 @@
      "session": "45-75 min",
      "time_note": "most of it in Shine, because degreasing the hood and the grates is slow work",
      "purpose": "The strip of space either side of the burners where cooking happens with your hands busy and heat already on.",
-     "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
+     "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the stovetop wide enough to set down a hot pan.",
      "passes": {
       "sort": "Empty the utensil crock into a box and cook for a week, returning to the crock only what your hand actually reaches for. The warped plastic turner, the corn holders, and the third pair of tongs are still in the box at the end of the week, which is your answer.",
       "straighten": "Arrange by the moment of need, not by shape. Oil, salt, and the turner within one reach of the burner, spices in a shallow drawer or tiered rack where you read the lids from above rather than shuffling jars, pans stored on the side you plate from.",
       "shine": "Lift the burner grates off and soak them while you wash the splash wall and the underside of the hood with dish soap. Take the hood filter out and run it through hot soapy water, because a saturated filter stops pulling steam and starts dripping it back down.",
-      "safety": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the tea towel, the paper roll, and the oil bottle off the burner side of the hob, and know where the fire blanket or extinguisher is before a pan is smoking. If the hob burns gas, three things belong in this pass. Know where the shutoff valve is before you need it, usually behind or beneath the appliance. Check that each burner actually lights rather than clicking unlit, because a burner left running unlit fills a room quietly. And if you ever smell gas, do not touch a light switch or anything electrical, open a window, leave, and call the emergency number on your supplier's bill from outside. Repairs and fittings are a licensed job, always.",
-      "standardize": "Photograph the hob and one step of surround in its ready state and tape the photo inside the nearest cabinet door, so ready is a picture anyone can match rather than a standard only you hold.",
+      "safety": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the dish towel, the paper roll, and the oil bottle off the burner side of the stovetop, and know where the fire blanket or extinguisher is before a pan is smoking. If the stovetop burns gas, three things belong in this pass. Know where the shutoff valve is before you need it, usually behind or beneath the appliance. Check that each burner actually lights rather than clicking unlit, because a burner left running unlit fills a room quietly. And if you ever smell gas, do not touch a light switch or anything electrical, open a window, leave, and call the emergency number on your supplier's bill from outside. Repairs and fittings are a licensed job, always.",
+      "standardize": "Photograph the stovetop and one step of surround in its ready state and tape the photo inside the nearest cabinet door, so ready is a picture anyone can match rather than a standard only you hold.",
       "sustain": "The reset runs inside the cooking: while the pan comes up to heat, the spice goes back to the front of the rack and any loose utensil drops into the crock. Whoever is cooking does it, in time already spent waiting. The signal is the landing space, and if there is nowhere clear to set a hot pan down the zone has slipped dangerously. Recovery is thinning the crock back to six tools, two minutes at the sink. Mid cook you cannot put anything away, so everything you touch waits for a moment nobody wants afterwards."
      },
      "the_call": {
@@ -1076,11 +1076,11 @@
      "watch_for": [
       {
        "question": "Burn or fire",
-       "text": "Oil left heating unattended, and a tea towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts."
+       "text": "Oil left heating unattended, and a dish towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts."
       },
       {
        "question": "Fall, cut, or crush",
-       "text": "A pan handle turned out over the front edge of the hob is at exactly the height a toddler grabs, and it comes down with the contents."
+       "text": "A pan handle turned out over the front edge of the stovetop is at exactly the height a toddler grabs, and it comes down with the contents."
       },
       {
        "question": "Burn or fire",
@@ -1088,7 +1088,7 @@
       }
      ],
      "leave_behind": {
-      "standard": "Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the hob at all times.",
+      "standard": "Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the stovetop at all times.",
       "trigger": "Every time you put a pan on to heat."
      },
      "chapter_ref": "See Chapter 22, prevent and prepare.",
@@ -1096,20 +1096,20 @@
       "shine_summary": "Grease is the whole job here, and it hides upward. Get the burner grates soaking first so they clean themselves while you tackle the wall and the hood, and remember the hood filter, because a saturated one stops pulling steam and starts dripping it back at you.",
       "surfaces": [
        {
-        "surface": "the extractor hood, its underside, and the grease filter",
+        "surface": "the range hood, its underside, and the grease filter",
         "method": "Start at the top. Lift the metal filter out and run it through hot water with the food-area degreaser, letting it soak while you work, because that soak does what scrubbing cannot. Spray the underside and face of the hood with degreaser, give it the label dwell time, then wipe down with a microfiber cloth and finish with a clean damp pass."
        },
        {
-        "surface": "the splash wall behind the hob",
-        "method": "Work top to bottom and back to front. Spray the splash wall with degreaser, let it sit, then wipe from the top down so the loosened grease runs toward the hob and not onto clean wall. Repeat on any spot where a fine spatter has baked hard."
+        "surface": "the splash wall behind the stovetop",
+        "method": "Work top to bottom and back to front. Spray the splash wall with degreaser, let it sit, then wipe from the top down so the loosened grease runs toward the stovetop and not onto clean wall. Repeat on any spot where a fine spatter has baked hard."
        },
        {
         "surface": "the burner grates and caps",
-        "method": "Lift the grates and caps off and set them to soak in hot soapy water at the start. Once softened, scrub the baked rings with a detail brush, rinse, and dry them fully before they go back so they do not rust onto the hob."
+        "method": "Lift the grates and caps off and set them to soak in hot soapy water at the start. Once softened, scrub the baked rings with a detail brush, rinse, and dry them fully before they go back so they do not rust onto the stovetop."
        },
        {
-        "surface": "the hob surface, the burner wells, and the control knobs",
-        "method": "With the grates off, degrease the exposed hob and work the burner wells where boil-overs bake into a ring. Pull the knobs off if they lift, wash them, and run a detail brush around the knob stems where sticky grime collars them."
+        "surface": "the stovetop surface, the burner wells, and the control knobs",
+        "method": "With the grates off, degrease the exposed stovetop and work the burner wells where boil-overs bake into a ring. Pull the knobs off if they lift, wash them, and run a detail brush around the knob stems where sticky grime collars them."
        },
        {
         "surface": "the oven door front, its handle, and the control panel",
@@ -1120,12 +1120,12 @@
         "method": "Empty the utensil crock, wash and dry it, and wipe each tool before it goes back. Wipe the pot-holder hook and the fronts and shoulders of the spice jars with a damp neutral pH cloth, since airborne grease settles into a tacky coat on everything standing near the burners."
        },
        {
-        "surface": "the clear landing space beside the hob",
+        "surface": "the clear landing space beside the stovetop",
         "method": "Finish with the stretch of counter you set hot pans down on. Degrease it, wipe it, and dry it, so the one surface a hot pan lands on is never slick."
        },
        {
         "surface": "the microwave cavity, its turntable, and the door seal",
-        "method": "Soften first, scrub second. Heat a bowl of water inside for a few minutes and leave the door shut for five more, so the steam lifts what is baked on and you are not chiselling. Lift the turntable and its roller ring out and wash them in the sink. Then wipe the cavity with a microfiber cloth and neutral pH multi-surface cleaner, starting with the CEILING, which is where splatter lands and where almost nobody looks. Finish with a detail brush along the door seal and the latch recess, and wipe the vent grille on the top or side where a film of grease collects. Nothing abrasive anywhere inside, and never a spray aimed at the vents."
+        "method": "Soften first, scrub second. Heat a bowl of water inside for a few minutes and leave the door shut for five more, so the steam lifts what is baked on and you are not chiseling. Lift the turntable and its roller ring out and wash them in the sink. Then wipe the cavity with a microfiber cloth and neutral pH multi-surface cleaner, starting with the CEILING, which is where splatter lands and where almost nobody looks. Finish with a detail brush along the door seal and the latch recess, and wipe the vent grille on the top or side where a film of grease collects. Nothing abrasive anywhere inside, and never a spray aimed at the vents."
        }
       ],
       "products_used": [
@@ -1139,7 +1139,7 @@
        "A hood filter so grease-soaked it stays soft and drips, and a fan behind it that sounds strained or barely moves air.",
        "A burner that lights slow, burns yellow and sooty, or a grate that rocks on its seat.",
        "Scorching, discoloring, or bubbling paint on the splash wall or the hood underside where heat is building.",
-       "A chip, a crack, or a spidered line in the hob surface or its enamel, found once the baked-on ring is cleared.",
+       "A chip, a crack, or a spidered line in the stovetop surface or its enamel, found once the baked-on ring is cleared.",
        "A frayed or heat-stiffened cord on any appliance parked on the burner side of the counter."
       ]
      },
@@ -1214,8 +1214,8 @@
       }
      ],
      "capacity": {
-      "rule": "A utensil crock holding six tools or fewer, every one used in the last month, and a landing space beside the hob wide enough to set down a hot pan.",
-      "does_not_fit": "If the honest, used-this-month count is still more than six tools, or a genuinely hot-pan-sized landing space will not fit beside the hob without moving something else first, the counter beside the hob is smaller than the cooking this household actually does."
+      "rule": "A utensil crock holding six tools or fewer, every one used in the last month, and a landing space beside the stovetop wide enough to set down a hot pan.",
+      "does_not_fit": "If the honest, used-this-month count is still more than six tools, or a genuinely hot-pan-sized landing space will not fit beside the stovetop without moving something else first, the counter beside the stovetop is smaller than the cooking this household actually does."
      },
      "common_items": [
       "The utensil crock, holding six tools or fewer, every one used this month",
@@ -1273,8 +1273,8 @@
       "shine_summary": "This is the point the whole kitchen resets from, so it has to be genuinely clean, not just rinsed. The sponge is the dirtiest object in the room and the dishwasher filter is the reason your glasses come out gritty, so neither gets skipped.",
       "surfaces": [
        {
-        "surface": "the tap, its base, and the aerator",
-        "method": "Work top to bottom. Wipe the tap and handle with a neutral pH cloth, then push a detail brush around the base collar where limescale and grime ring it. Where the water has slowed, this is where scale is building at the aerator tip, so brush the tip too."
+        "surface": "the faucet, its base, and the aerator",
+        "method": "Work top to bottom. Wipe the faucet and handle with a neutral pH cloth, then push a detail brush around the base collar where limescale and grime ring it. Where the water has slowed, this is where scale is building at the aerator tip, so brush the tip too."
        },
        {
         "surface": "the basin, the drain flange, and the overflow",
@@ -1290,7 +1290,7 @@
        },
        {
         "surface": "the dishwasher door seal and the filter",
-        "method": "Wipe the rubber gasket all the way around the dishwasher door, pulling gently into its folds with a damp cloth where black specks hide. Then twist the filter out of the floor of the machine and rinse it under the tap, clearing the mesh, because a filter that has never come out is why things come out gritty."
+        "method": "Wipe the rubber gasket all the way around the dishwasher door, pulling gently into its folds with a damp cloth where black specks hide. Then twist the filter out of the floor of the machine and rinse it under the faucet, clearing the mesh, because a filter that has never come out is why things come out gritty."
        },
        {
         "surface": "the under-sink cabinet, its tray, and the pipes",
@@ -1416,7 +1416,7 @@
      "passes": {
       "sort": "Count the mugs, then count the people who drink from them. The conference giveaway, the chipped one, and the one nobody ever chooses off the shelf come out first, because chips and crazed glaze are the easy calls and they shorten the argument about the rest.",
       "straighten": "Put dinner plates and everyday bowls at eye level on the side nearest the dishwasher or the table, glasses beside them, and send the serving platters and the punch bowl to the top shelf, where a step stool is an honest once-a-year cost.",
-      "shine": "Take each shelf completely empty before wiping, because the band of dust at the back is how you find out it has not been cleared in years. Wipe the underside of the cabinet nearest the hob, where a greasy film settles that you only see when you look at it from an angle.",
+      "shine": "Take each shelf completely empty before wiping, because the band of dust at the back is how you find out it has not been cleared in years. Wipe the underside of the cabinet nearest the stovetop, where a greasy film settles that you only see when you look at it from an angle.",
       "safety": "Heavy and breakable do not belong above head height. The stack of casserole dishes or the cast iron lid stored overhead is the one that eventually comes down on somebody, so move that weight low. Use a real step stool, never a chair edge and never an open drawer front.",
       "standardize": "Label the shelf edge rather than the contents: plates, bowls, glasses, mugs. Then anyone emptying the dishwasher can put things away correctly without asking you where they go.",
       "sustain": "Emptying the dishwasher is the check, done by whoever is emptying it, so the household audits this zone several times a week without an extra minute. The signal comes to your hand: a clean mug you cannot lift without moving another, or a plate with nowhere obvious to go. Either means the shelf is over its limit, and recovery is one item leaving that day rather than a re-stack. This zone does not slip through mess, it slips through arrival, because mugs come in as gifts and nothing ever chooses to leave."
@@ -1441,7 +1441,7 @@
      },
      "chapter_ref": "See Chapter 14, visual controls.",
      "shine_detail": {
-      "shine_summary": "Take each shelf completely empty before the cloth touches it, because the band of dust at the back is how you learn how long it has really been. The greasy film on the cabinet underside nearest the hob is the tell that this zone lives downwind of the cooking.",
+      "shine_summary": "Take each shelf completely empty before the cloth touches it, because the band of dust at the back is how you learn how long it has really been. The greasy film on the cabinet underside nearest the stovetop is the tell that this zone lives downwind of the cooking.",
       "surfaces": [
        {
         "surface": "the tops of the cabinets and the top interior shelf",
@@ -1452,7 +1452,7 @@
         "method": "Empty each shelf completely. Wipe front to back with a neutral pH cloth, giving the rear lip and back wall a second pass where the dust band sits. Let the shelf dry before the stacks return."
        },
        {
-        "surface": "the underside of the cabinet nearest the hob",
+        "surface": "the underside of the cabinet nearest the stovetop",
         "method": "Look up at it from an angle to find the greasy film, then wipe it with the food-area degreaser and finish with a clean damp pass so nothing tacky is left overhead."
        },
        {
@@ -1477,7 +1477,7 @@
        "A shelf that flexes or bows under its stack, or a shelf pin sitting loose in its hole.",
        "A hinge screw pulling out of the cabinet side, or a door that no longer sits square when closed.",
        "A water stain or a ring on a shelf under a rarely moved item, hinting at a leak from a pipe or roof above.",
-       "A greasy film on the cabinet underside that keeps coming back fast, a sign the extractor is not clearing the air.",
+       "A greasy film on the cabinet underside that keeps coming back fast, a sign the range hood is not clearing the air.",
        "A soft, swollen, or lifting patch on the cabinet bottom above the kettle, where steam has been rising into it."
       ]
      },
@@ -1577,14 +1577,14 @@
      "session": "45-75 min",
      "time_note": "most of it in Sort, once everything is out on the floor",
      "purpose": "Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls.",
-     "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.",
+     "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the stovetop. Nothing has to come out to reach anything else.",
      "passes": {
       "sort": "Empty the entire cabinet onto the floor, which is the only way you will ever find the third saucepan and the wok bought for one weekend. Keep what actually cooked something in the past year. Nonstick worn through to the metal in the middle is not a spare, it is finished, and it goes to metal recycling rather than to the back of the shelf.",
       "straighten": "Nest by size but cap any stack at three, with a cloth or a sheet of paper between coated surfaces. Lids stand in a rack or on a rail inside the door, and baking sheets go on edge in a divider so you stop lifting three to reach the fourth.",
       "shine": "Wipe the shelf floor itself, where oil creeps down from pan bases and holds dust into a tacky film that resists a dry cloth. While everything is out, twist every pan handle and tighten any rivet or screw that moves.",
       "safety": "Keep the cast iron and the full stockpot on the cabinet floor, never above waist height, and lift them from a squat rather than bending over the open door. If a stack slides when the door is closed hard, it will one day land on a foot, so build the stack so it survives a slam.",
       "standardize": "Size the divider slots to your actual pans and write the pan on the front edge of each slot, so the wide skillet slot cannot quietly become the place lids get dropped.",
-      "sustain": "When the pans come off the drying rack they go back into their named slots, done by whoever set them there to dry. The hob is the tell. A pan that sleeps on the burner is not laziness, it is a slot that costs a crouch to reach, and the pan is reporting that honestly. Recovery is changing the slot rather than the person: move that pan to the front, ten minutes with the cabinet open. This zone fails physically, so it goes at the end of a long day before anything else in the kitchen."
+      "sustain": "When the pans come off the drying rack they go back into their named slots, done by whoever set them there to dry. The stovetop is the tell. A pan that sleeps on the burner is not laziness, it is a slot that costs a crouch to reach, and the pan is reporting that honestly. Recovery is changing the slot rather than the person: move that pan to the front, ten minutes with the cabinet open. This zone fails physically, so it goes at the end of a long day before anything else in the kitchen."
      },
      "the_call": {
       "title": "The third frying pan",
@@ -1688,7 +1688,7 @@
           "cause": "KC-010"
          },
          {
-          "answer": "It is nowhere near the hob it is used at",
+          "answer": "It is nowhere near the stovetop it is used at",
           "cause": "KC-003"
          },
          {
@@ -1715,20 +1715,20 @@
       }
      ],
      "capacity": {
-      "rule": "Pans nested no more than three deep, or stood on edge in a divider, with the two pans cooked with nightly at the front nearest the hob.",
+      "rule": "Pans nested no more than three deep, or stood on edge in a divider, with the two pans cooked with nightly at the front nearest the stovetop.",
       "does_not_fit": "If the pots and pans actually used this month, with any duplicate or long-unused piece already gone, still will not sit at a three-deep nest or in the divider, the cabinet is smaller than the cookware this kitchen runs on, and a second home for the least-used pieces is the honest fix, not a deeper stack."
      },
      "common_items": [
       "Pots and pans, nested no more than three deep or stood on edge in a divider",
       "Lids, in a rack or on a door rail instead of loose",
       "Baking sheets, standing on end in a divider",
-      "The two pans you cook with nightly, at the front nearest the hob"
+      "The two pans you cook with nightly, at the front nearest the stovetop"
      ],
      "sort_scope": {
       "belongs": [
        "Pans nested no more than three deep, or stood on edge in a divider",
        "Lids in a rack or on a door rail, instead of loose",
-       "The two pans you cook with nightly, at the front nearest the hob"
+       "The two pans you cook with nightly, at the front nearest the stovetop"
       ],
       "strays": [
        "The third saucepan",
@@ -1744,8 +1744,8 @@
      "purpose": "The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps.",
      "done_looks_like": "Each drawer has one job and a name written inside its front edge. Flatware sits in a divided insert with nothing loose beside it. Foil, cling film, and baking paper stand on end so you can read the boxes from above. Every drawer closes flush with one push.",
      "passes": {
-      "sort": "Tip one drawer at a time onto a tea towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeaway chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in.",
-      "straighten": "Dividers go in before anything else, and you name the drawer before you fill it. Flatware nearest the dishwasher, cooking tools nearest the hob, measuring spoons and the scale beside the baking cupboard, and wraps in the drawer you can pull open while holding a dish in your other hand.",
+      "sort": "Tip one drawer at a time onto a dish towel and put back only what you have used since the season changed. Two can openers means one leaves. The takeout chopsticks, the rubber bands, the unlabeled key, and the loose batteries are not cooking tools and do not go back in.",
+      "straighten": "Dividers go in before anything else, and you name the drawer before you fill it. Flatware nearest the dishwasher, cooking tools nearest the stovetop, measuring spoons and the scale beside the baking cupboard, and wraps in the drawer you can pull open while holding a dish in your other hand.",
       "shine": "Lift the insert right out and tip the grit, because the crumbs that jam a drawer collect underneath the divider and in the runner track. Wipe both runners and check that the drawer closes flush again before you refill it.",
       "safety": "The peeler, the mandoline blade, and the loose paring knife are exactly what your fingers meet when you rummage without looking. Give every blade a sheath, a sleeve, or its own shallow tray at the front where you see it before you reach past it.",
       "standardize": "Write the name inside each drawer front: flatware, cooking tools, wraps and bags, utility. The name is the rule, and anything that does not match the name does not go in that drawer.",
@@ -1753,7 +1753,7 @@
      },
      "the_call": {
       "title": "The drawer everyone calls the junk drawer",
-      "text": "A kitchen is allowed one drawer of small useful things, but it has to be a named drawer with a category and a divider, not an amnesty. Write its list: tape, string, a torch, batteries, a working pen, the takeaway menus you actually order from. Everything in there must be something you would come to the kitchen looking for. Then take an empty box, and anything you cannot name a use for while you are holding it goes in the box. Date the box, put it on a shelf, and if nothing has been pulled out of it by the end of the season it leaves unopened. The screws in the envelope and the manual for the dead printer are not kitchen items, and they are the reason the drawer no longer opens."
+      "text": "A kitchen is allowed one drawer of small useful things, but it has to be a named drawer with a category and a divider, not an amnesty. Write its list: tape, string, a flashlight, batteries, a working pen, the takeout menus you actually order from. Everything in there must be something you would come to the kitchen looking for. Then take an empty box, and anything you cannot name a use for while you are holding it goes in the box. Date the box, put it on a shelf, and if nothing has been pulled out of it by the end of the season it leaves unopened. The screws in the envelope and the manual for the dead printer are not kitchen items, and they are the reason the drawer no longer opens."
      },
      "watch_for": [
       {
@@ -1778,7 +1778,7 @@
        },
        {
         "surface": "the drawer base under the insert",
-        "method": "With the insert out, wipe the exposed drawer base, working into the corners where flour, seeds, and crumbs settle. If grease has built up on a drawer near the hob, use the food-area degreaser here and finish with a clean damp pass."
+        "method": "With the insert out, wipe the exposed drawer base, working into the corners where flour, seeds, and crumbs settle. If grease has built up on a drawer near the stovetop, use the food-area degreaser here and finish with a clean damp pass."
        },
        {
         "surface": "both runner tracks and the rollers",
@@ -1884,7 +1884,7 @@
      },
      "common_items": [
       "Flatware, in a divided insert with nothing loose beside it",
-      "Spatulas, peelers, and other cooking tools, nearest the hob",
+      "Spatulas, peelers, and other cooking tools, nearest the stovetop",
       "Measuring spoons, beside the baking cupboard",
       "Foil, cling film, and baking paper, standing on end so the boxes read from above"
      ],
@@ -1896,7 +1896,7 @@
       ],
       "strays": [
        "A second can opener",
-       "Takeaway chopsticks",
+       "Takeout chopsticks",
        "Rubber bands",
        "An unlabeled key",
        "Loose batteries"
@@ -1915,7 +1915,7 @@
       "shine": "Pull the crisper drawers right out and wash them in the sink, because the sticky ring under a drawer is where a forgotten cucumber ended. Vacuum the condenser coils at the back or underneath, and wipe the door gasket in its folds, since a gasket usually fails from grime long before it fails from age.",
       "safety": "Raw meat sealed and stored below ready-to-eat food is nearly the whole of cross contamination prevention in one move. Keep the rear vents clear so the compartment actually holds its temperature, and put a cheap thermometer on the middle shelf so you know what the fridge is running at instead of assuming.",
       "standardize": "A roll of tape and a marker live on top of the fridge, and nothing goes in without a name and a date on the lid. If it is not named and dated, it is not stored, it is abandoned.",
-      "sustain": "Writing the shopping list is the trigger, and the writer does it: empty the eat-first bin of anything past, then write the list from the gaps that leaves. Ten minutes, replacing a job you were doing anyway. Two signals read with the door open are an eat-first bin that is filling rather than emptying, and a container with no name and date on the lid. Recovery is one shelf and the bin, not a full unload. This is the only zone whose contents get worse while nobody touches them, so a fortnight of not looking is never neutral."
+      "sustain": "Writing the shopping list is the trigger, and the writer does it: empty the eat-first bin of anything past, then write the list from the gaps that leaves. Ten minutes, replacing a job you were doing anyway. Two signals read with the door open are an eat-first bin that is filling rather than emptying, and a container with no name and date on the lid. Recovery is one shelf and the bin, not a full unload. This is the only zone whose contents get worse while nobody touches them, so two weeks of not looking is never neutral."
      },
      "the_call": {
       "title": "The container you keep moving to the front",
@@ -2403,7 +2403,7 @@
        "guidance": "Risers stop helping and rotation becomes the whole job. Load from the back, take from the front, and write the month on the lid in marker so one glance gives you the order without reading the small print."
       },
       {
-       "condition": "You buy tinned goods in bulk a few times a year",
+       "condition": "You buy canned goods in bulk a few times a year",
        "guidance": "Keep this shelf at the size of a normal month and let the rest live in the backstock zone. A working shelf sized for the bulk delivery is full of things you will not reach for eleven months of the year."
       }
      ],
@@ -2770,10 +2770,10 @@
      "session": "45-75 min",
      "time_note": "most of it in Sort and in the lifting, since bulk packs are heavy and each one needs dating before it goes back",
      "purpose": "Holds the reserve that feeds the working shelves, and nothing else.",
-     "done_looks_like": "Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
+     "done_looks_like": "Sacks of rice, cases of canned tomatoes and packs of paper towels, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
      "passes": {
       "sort": "Open up the back of this zone and meet what you forgot you owned: the second sack of rice, the twelve-pack of a sauce nobody liked, the case of sparkling water from a party in another season. Anything you hold more than one spare of moves forward into the working shelves this month or it leaves.",
-      "straighten": "Weight decides height. Sacks and cases go on the floor or the bottom shelf on a board, kitchen roll and paper napkins go up top because they are light, and everything sits one row deep so you never move a case to see a case.",
+      "straighten": "Weight decides height. Sacks and cases go on the floor or the bottom shelf on a board, paper towels and paper napkins go up top because they are light, and everything sits one row deep so you never move a case to see a case.",
       "shine": "Sweep the floor of this zone and check the underside of the bottom case for damp, where a concrete floor or an outside wall is sweating. Cardboard that has gone soft is warning you about moisture before your food does.",
       "safety": "Fall, cut, or crush: a stacked column of cases is stable right up until somebody pulls the second one from the bottom. Stack no higher than your chest, bend at the knees for the rice sack, and never store a heavy case overhead where getting it down means catching it.",
       "standardize": "Write a maximum for each line on the shelf edge, two of this, one of that, and mark every pack with its arrival month as it goes in. Undated bulk is where the saving quietly expires out of sight.",
@@ -2913,7 +2913,7 @@
      "common_items": [
       "Sacks of rice",
       "Cases of canned goods",
-      "Kitchen roll and paper napkins"
+      "Paper towels and paper napkins"
      ],
      "sort_scope": {
       "belongs": [
@@ -3009,7 +3009,7 @@
        },
        {
         "surface": "The floor under the table",
-        "method": "Push the chairs out and vacuum the whole footprint under the table with the floor tool, then run it along the skirting behind where the table usually stands."
+        "method": "Push the chairs out and vacuum the whole footprint under the table with the floor tool, then run it along the baseboard behind where the table usually stands."
        }
       ],
       "products_used": [
@@ -3897,7 +3897,7 @@
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
        "Portable cleaning caddy",
-       "Upholstery spot cleaner for a set-in stain (not in this zone's list)"
+       "Upholstery spot cleaner for a set-in stain"
       ],
       "inspect_as_you_clean": [
        "A musty smell or a damp patch deep in the seat foam, where a drink went down between the cushions and never dried out",
@@ -4008,7 +4008,7 @@
      "purpose": "A small shared surface for whatever is happening right now, and nothing that is not.",
      "done_looks_like": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it. No mugs, no charging cables, no post, and the wood or glass showing across most of the top.",
      "passes": {
-      "sort": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
+      "sort": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeout menus all go now.",
       "straighten": "The tray sets the table's entire standing inventory. Coasters go on it within arm's reach of whoever sits on the sofa, so a mug lands on a coaster without anyone leaning across the table.",
       "shine": "Lift the tray and wipe the whole top including the ring marks, then get the underside edge and the lower shelf where crumbs and dust collect unseen. A glass top needs two passes, one for grease and one dry, or every fingerprint shows by lamplight.",
       "safety": "A glass top or a hard square corner sits at exactly the height of a toddler's forehead, so corner guards or a different table is the real fix, not vigilance. A candle here is surrounded by throws, magazines and paper, which is the wrong neighborhood for an open flame.",
@@ -4063,7 +4063,7 @@
        "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy",
-       "Streak-free glass cleaner for a glass top (not in this zone's list)"
+       "Streak-free glass cleaner for a glass top"
       ],
       "inspect_as_you_clean": [
        "A hairline crack or a chipped edge in a glass top catching the cloth as it passes",
@@ -4092,10 +4092,10 @@
         ]
        },
        {
-        "symptom": "There are three magazines and a stack of old takeaway menus on this table, sitting under the one book somebody's actually still reading.",
+        "symptom": "There are three magazines and a stack of old takeout menus on this table, sitting under the one book somebody's actually still reading.",
         "branches": [
          {
-          "answer": "Old menus and magazines don't obviously look like rubbish once they've sat there a while, so nobody flags them",
+          "answer": "Old menus and magazines don't obviously look like trash once they've sat there a while, so nobody flags them",
           "cause": "RC-017"
          },
          {
@@ -4127,7 +4127,7 @@
        }
       ],
       "first_15": {
-       "action": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.",
+       "action": "Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeout menus all go now.",
        "victory": "The table holds four coasters, the remote in use, and at most one book or plant, nothing else."
       }
      },
@@ -4161,7 +4161,7 @@
        "A candle burned down to the foil",
        "Coasters nobody uses because they sit on the far corner",
        "Three-month-old magazines",
-       "Takeaway menus"
+       "Takeout menus"
       ]
      }
     },
@@ -4239,7 +4239,7 @@
        "Compact vacuum with attachments (brush head)",
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
-       "Small detail brush for the vent slots (not in this zone's list)"
+       "Small detail brush for the vent slots"
       ],
       "inspect_as_you_clean": [
        "A hot-plastic or scorched smell around the back panel, strongest near the amplifier",
@@ -4400,8 +4400,8 @@
         "method": "Lift each frame and object and dust under and behind it rather than around it, using a soft brush for anything carved or grooved."
        },
        {
-        "surface": "The base and skirting of the unit",
-        "method": "Finish at the bottom: vacuum the base and the skirting behind the unit, and look over the wall strap while you are down there."
+        "surface": "The base and baseboard of the unit",
+        "method": "Finish at the bottom: vacuum the base and the baseboard behind the unit, and look over the wall strap while you are down there."
        }
       ],
       "products_used": [
@@ -4409,7 +4409,7 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
-       "Soft dusting brush for carved objects (not in this zone's list)"
+       "Soft dusting brush for carved objects"
       ],
       "inspect_as_you_clean": [
        "A shelf board bowed in the middle under the weight of the books standing on it",
@@ -4584,7 +4584,7 @@
        "Portable cleaning caddy",
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
-       "Streak-free glass cleaner for a glass top (not in this zone's list)"
+       "Streak-free glass cleaner for a glass top"
       ],
       "inspect_as_you_clean": [
        "A bulb that flickers, buzzes, or is browned at the tip, or a switch gone loose in its housing",
@@ -4659,7 +4659,7 @@
       },
       {
        "condition": "No side table, only a floor lamp",
-       "guidance": "The tray rule moves to a small shelf or an arm caddy, and the cord rule gets stricter, because a floor lamp's cable crosses open floor by default. Clip it along the skirting rather than running it under the rug."
+       "guidance": "The tray rule moves to a small shelf or an arm caddy, and the cord rule gets stricter, because a floor lamp's cable crosses open floor by default. Clip it along the baseboard rather than running it under the rug."
       }
      ],
      "capacity": {
@@ -4744,8 +4744,8 @@
         "method": "Once the loose grit is up, damp mop the hard floor with the floor-material-compatible cleaner, following the run of the boards, and let it dry before anyone crosses."
        },
        {
-        "surface": "The skirting boards along the route",
-        "method": "Wipe the skirting down the length of the route with a just-damp cloth. That low ledge collects dust and scuffs and is easy to walk straight past."
+        "surface": "The baseboards along the route",
+        "method": "Wipe the baseboard down the length of the route with a just-damp cloth. That low ledge collects dust and scuffs and is easy to walk straight past."
        },
        {
         "surface": "The baskets pushed against the wall",
@@ -4767,7 +4767,7 @@
        "The gripper pad under the rug gone smooth and no longer tacky when you press it",
        "A rug backing crumbling, or a thin worn patch opening up along the most-walked line",
        "A floorboard that lifts or creaks underfoot, or a tile that sounds hollow when you tap it",
-       "A pale stain or a soft, springy patch of floor under the rug, or skirting swelling low down near it"
+       "A pale stain or a soft, springy patch of floor under the rug, or baseboard swelling low down near it"
       ]
      },
      "diagnosis": {
@@ -4960,7 +4960,7 @@
        "Compact vacuum with attachments",
        "Neutral pH multi-surface cleaner",
        "Portable cleaning caddy",
-       "Soft detail brush (not in this zone's list, needed for vent grooves)"
+       "Soft detail brush (for vent grooves)"
       ],
       "inspect_as_you_clean": [
        "A cracked, stiffened, or scorched section on any power or video cable as it passes through your hand, especially near the plug end.",
@@ -5138,7 +5138,7 @@
        "Compact vacuum with attachments",
        "Neutral pH multi-surface cleaner",
        "Portable cleaning caddy",
-       "Mesh wash bag (not in this zone's list, needed for soft toys in the machine)"
+       "Mesh wash bag (for soft toys in the machine)"
       ],
       "inspect_as_you_clean": [
        "A cracked hard plastic edge sharp enough to catch a knee, and any toy piece that has split or snapped.",
@@ -5649,7 +5649,7 @@
        "Compact vacuum with attachments",
        "Neutral pH multi-surface cleaner",
        "Portable cleaning caddy",
-       "Soft detail brush or compressed air (not in this zone's list, needed to clear charging ports)"
+       "Soft detail brush or compressed air"
       ],
       "inspect_as_you_clean": [
        "A cracked or heat-stiffened cable sheath in the last few centimetres before the plug.",
@@ -5823,8 +5823,8 @@
        "Neutral pH multi-surface cleaner",
        "Color-coded microfiber cloth set",
        "Portable cleaning caddy",
-       "Plastic scraper (not in this zone's list, needed to lift dried glue and paint)",
-       "Soft detail brush (not in this zone's list, needed for glitter in seams)"
+       "Plastic scraper",
+       "Soft detail brush (for glitter in seams)"
       ],
       "inspect_as_you_clean": [
        "A scorch mark or a melted ring on the surface where the glue gun sits and cools.",
@@ -5938,7 +5938,7 @@
     },
     {
      "label": "Cleaning note",
-     "text": "Cases and sheets get washed and the pillows inside them almost never do. Put the pillows themselves through the machine when the seasons turn, and while the bed is stripped run the upholstery tool over the bare mattress and along the skirting behind the headboard."
+     "text": "Cases and sheets get washed and the pillows inside them almost never do. Put the pillows themselves through the machine when the seasons turn, and while the bed is stripped run the upholstery tool over the bare mattress and along the baseboard behind the headboard."
     },
     {
      "label": "The trap",
@@ -5988,7 +5988,7 @@
        },
        {
         "surface": "The wall and floor behind the headboard",
-        "method": "Run the vacuum crevice tool down the gap where dust and hair pack against the wall, then draw a dry cloth down the skirting behind the frame."
+        "method": "Run the vacuum crevice tool down the gap where dust and hair pack against the wall, then draw a dry cloth down the baseboard behind the frame."
        },
        {
         "surface": "The pillowcases, sheets, duvet cover and the folded throw",
@@ -6180,7 +6180,7 @@
        },
        {
         "surface": "The floor and cable run behind the leg",
-        "method": "Vacuum behind and beneath, then follow the lamp cord down to the floor to make sure nothing is snagged along the skirting."
+        "method": "Vacuum behind and beneath, then follow the lamp cord down to the floor to make sure nothing is snagged along the baseboard."
        }
       ],
       "products_used": [
@@ -6763,7 +6763,7 @@
      "variants": [
       {
        "condition": "Two people share one chest of drawers",
-       "guidance": "Split it by person first and by category second, whole drawers each, never half a drawer each. A drawer with a line down the middle collapses within a fortnight because neither person can see where their own half ends, and one category per person per drawer is the only split that survives a busy week."
+       "guidance": "Split it by person first and by category second, whole drawers each, never half a drawer each. A drawer with a line down the middle collapses within two weeks because neither person can see where their own half ends, and one category per person per drawer is the only split that survives a busy week."
       },
       {
        "condition": "A child, or anyone seated, uses these drawers",
@@ -6799,7 +6799,7 @@
      "passes": {
       "sort": "Pull out anything you have not worn in a year, anything waiting on a repair you are never going to make, and every wire hanger and plastic sheath the dry cleaner sent home. Winter coats and heavy knits go into a labeled bin or the guest wardrobe so the rod carries only what this month asks for.",
       "straighten": "Switch to one hanger style so everything hangs at the same depth and the row reads flat, group by type and then by shade, and hang the short items together so the floor under them opens up for the shoe rack. Bags stand up on the shelf rather than nesting inside one another where you forget the inner three.",
-      "shine": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a gray line, and check the back wall and skirting for damp before the shoes go back down.",
+      "shine": "Clear the floor completely, vacuum it and the corners, wipe the shelf edges and the rod itself where hangers leave a gray line, and check the back wall and baseboard for damp before the shoes go back down.",
       "safety": "An overloaded rod pulls its brackets out of the plasterboard, and it does it while you are standing underneath reaching in. Lean your weight on it and see, anchor the brackets into a stud, and get the shoe pile off the floor so you are not standing on a heel in the dark.",
       "standardize": "The rod is full when you cannot slide two fingers between hangers. From there it is one in, one out, and the bare stretch of rod at the end stays bare, because that is where the next coat lands.",
       "sustain": "Turn every hanger backwards at the start of a season and turn each one the right way round as you wear the item, so the record keeps itself. Slip gets measured with two fingers: when they will not fit between hangers the rod is full, and from there it is one in, one out. Recovery is not a purge, it is reading the hangers still facing backwards at the end of the season, because they have already made the donation decisions for you. This is the slowest zone in the house, and the easiest to keep."
@@ -6839,8 +6839,8 @@
         "method": "Run a damp cloth the full length of the rod to take off the fuzzy gray film that otherwise transfers straight onto a dark shoulder."
        },
        {
-        "surface": "The back wall and skirting",
-        "method": "With the rod and floor clear, wipe the back wall and draw a cloth along the skirting, looking closely as you go."
+        "surface": "The back wall and baseboard",
+        "method": "With the rod and floor clear, wipe the back wall and draw a cloth along the baseboard, looking closely as you go."
        },
        {
         "surface": "The shoe rack",
@@ -6862,7 +6862,7 @@
        "Portable cleaning caddy"
       ],
       "inspect_as_you_clean": [
-       "A damp patch, a bloom of mildew or a musty smell on the back wall or skirting, the sign of moisture coming through.",
+       "A damp patch, a bloom of mildew or a musty smell on the back wall or baseboard, the sign of moisture coming through.",
        "A rod bracket screw backing out of the wall, or the bracket flexing when you press down on the rod.",
        "Moth casings or grazed holes on the shoulders of stored wool coats.",
        "A soft or springy board underfoot in the closet floor."
@@ -7023,7 +7023,7 @@
        },
        {
         "surface": "The wall side and the gap behind the bed",
-        "method": "Pull the bed a stride out from the wall. Vacuum the strip of floor and skirting that lives behind it, and run the cloth down the back of the headboard, the one face you never see when the bed is pushed back."
+        "method": "Pull the bed a stride out from the wall. Vacuum the strip of floor and baseboard that lives behind it, and run the cloth down the back of the headboard, the one face you never see when the bed is pushed back."
        },
        {
         "surface": "The mattress surface and seams",
@@ -7133,7 +7133,7 @@
      ],
      "capacity": {
       "rule": "One complete set made up on the bed, one complete spare folded inside its own pillowcase on the shelf in this room, two pillows that spring back, and nothing under the bed but one empty suitcase lying flat.",
-      "does_not_fit": "If the spare set will not fit on the shelf in this room, it is living somewhere a guest cannot reach it at midnight, which is the entire reason it belongs here rather than in the airing cupboard."
+      "does_not_fit": "If the spare set will not fit on the shelf in this room, it is living somewhere a guest cannot reach it at midnight, which is the entire reason it belongs here rather than in the linen closet."
      },
      "common_items": [
       "Mattress protector",
@@ -7167,7 +7167,7 @@
       "straighten": "Set the lamp on the side a right hand reaches first from the pillow, run the charger head over the top edge of the nightstand so it hangs where a hand lands, and stand the tissue box upright rather than laying it in the drawer.",
       "shine": "Wipe the lamp base and the inner rim of the shade, vacuum the drawer out rather than wiping it, and clean the water ring the last guest left because they could not find the coaster.",
       "safety": "The water glass, the lamp cord and the outlet all meet in one square foot here, so run the cord behind the nightstand rather than across the top, and keep the glass on the far side from the lamp. Take your own medication out of this drawer entirely, because a visiting child opens drawers before anything else.",
-      "standardize": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower tap turns. Write it out even for guests you know well, because the whole point is that nobody has to knock on your door at midnight to ask. The card stays in that drawer permanently, and the password is the one line on it that goes out of date without warning, so it gets checked whenever you change it.",
+      "standardize": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower faucet turns. Write it out even for guests you know well, because the whole point is that nobody has to knock on your door at midnight to ask. The card stays in that drawer permanently, and the password is the one line on it that goes out of date without warning, so it gets checked whenever you change it.",
       "sustain": "The night before an arrival, switch the lamp on and plug your own phone into each cable while you make the bed, so a dead bulb or a failed cable is found by you rather than by them at two in the morning. Two minutes, host's job. Slip shows when you open the drawer and find something of the household's in it, because a drawer that has started storing is no longer empty for a guest. Recovery is removing that item and retesting. A bulb and a cable both fail in silence, in an empty room."
      },
      "the_call": {
@@ -7329,7 +7329,7 @@
      "done_looks_like": "The top two drawers completely empty and lined, the lower drawers holding spare linens folded to one uniform footprint with a label on the inside front edge, an anti-tip strap fixed to the wall, and the dresser top carrying a lamp or a mirror and nothing else.",
      "chapter_ref": "See Chapter 14, visual controls.",
      "passes": {
-      "sort": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+      "sort": "This is where the household's undecided things hide behind a closed front: off-season sweaters, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The sweaters go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
       "straighten": "Put the empty drawers at the top, where a guest opens first and bends least, and the spare linens underneath, since you fetch those twice a year and they fetch socks twice a day.",
       "shine": "Vacuum inside each drawer and wipe the runners, then leave the empty drawers open with the window cracked while you finish the rest of the room. Old wood holds a smell, and a guest's clothes take it on in one night.",
       "safety": "A dresser with two empty top drawers is lighter at the top than it looks, and a visiting child will climb it. Strap it into a stud, and pull each drawer fully out to check that it stops rather than sliding free onto a foot.",
@@ -7448,7 +7448,7 @@
        }
       ],
       "first_15": {
-       "action": "This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
+       "action": "This is where the household's undecided things hide behind a closed front: off-season sweaters, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The sweaters go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.",
        "victory": "The top two drawers stand empty and lined, and the lower drawers hold only spare linens for this room's bed."
       }
      },
@@ -7480,7 +7480,7 @@
        "An anti-tip strap fixed to the wall"
       ],
       "strays": [
-       "Off-season jumpers that belong in your own wardrobe",
+       "Off-season sweaters that belong in your own wardrobe",
        "A bin of cables that belongs with the household's other cables",
        "Wrapping paper and ribbon",
        "A bag of outgrown baby clothes waiting on a decision"
@@ -7540,8 +7540,8 @@
         "method": "If the doors slide, run a detail brush or the vacuum nozzle along the bottom track to clear the grit that makes them stick. If they are hinged, wipe the hinge edges where dust cakes."
        },
        {
-        "surface": "The floor, corners, and skirting",
-        "method": "Move the suitcase out and vacuum the whole floor, working the nozzle hard into the corners where dust has gathered undisturbed for months. Finish along the skirting inside the door."
+        "surface": "The floor, corners, and baseboard",
+        "method": "Move the suitcase out and vacuum the whole floor, working the nozzle hard into the corners where dust has gathered undisturbed for months. Finish along the baseboard inside the door."
        }
       ],
       "products_used": [
@@ -8024,7 +8024,7 @@
      "passes": {
       "sort": "Tip every bin onto the floor and sort into families first, blocks with blocks, figures with figures. Broken toys, orphan puzzle pieces and party bag plastic go out during the sort, never into a decide later pile that becomes a seventh bin.",
       "straighten": "One open bin per family and no lids anywhere. A lid is an extra step, and an extra step is the reason a five year old drops the dinosaur on the carpet instead. Heaviest bin on the bottom, the daily favorites at hand height.",
-      "shine": "Run the hard plastic through a sink of warm soapy water and dry it on a towel. Vacuum the skirting corners where small parts migrate, and check the bin bottoms for splits before you refill them.",
+      "shine": "Run the hard plastic through a sink of warm soapy water and dry it on a towel. Vacuum the baseboard corners where small parts migrate, and check the bin bottoms for splits before you refill them.",
       "safety": "Anything smaller than a toilet roll tube is a choking hazard for a younger sibling and belongs in a bin they cannot reach. Then check every battery hatch: button batteries are the serious one, so bin any toy whose battery cover has lost its screw.",
       "standardize": "Photo label on the front face of every bin, never on a lid, at the child's eye level rather than yours. A picture of six blocks works long before reading does.",
       "sustain": "Clearing the carpet is what buys the story, and it happens while the book is being chosen rather than after it. The child does it alone in about five minutes, which is the whole point of putting every photo label at their eye level and never on a lid. Slip is a bin whose picture no longer matches what is inside, or carpet you could not lie down on. Recovery is one family of toys going up to the dated rotation box for a month. That box is the pressure valve, and a month of skipping it beats the bins however good the labels are."
@@ -8049,7 +8049,7 @@
      },
      "chapter_ref": "See Chapter 14, visual controls.",
      "shine_detail": {
-      "shine_summary": "Shine here is mostly the bins and the small parts that escape them. Work from the wardrobe top down to the skirting corners, wash the hard toys properly, and check each empty bin before you refill it. The skirting corners are where the lost pieces gather.",
+      "shine_summary": "Shine here is mostly the bins and the small parts that escape them. Work from the wardrobe top down to the baseboard corners, wash the hard toys properly, and check each empty bin before you refill it. The baseboard corners are where the lost pieces gather.",
       "surfaces": [
        {
         "surface": "the rotation box on the wardrobe top shelf",
@@ -8072,8 +8072,8 @@
         "method": "Lift the bins out and wipe each cube opening and shelf edge with a barely damp microfiber cloth, working from the top row down. This is the frame the child grabs and leans on, so finger marks and dust build along the front edges and in the back of each empty cube."
        },
        {
-        "surface": "the skirting corners and carpet edges",
-        "method": "Vacuum tight into the skirting corners and along the carpet edge with the crevice tool, because that is where small parts and dust migrate and settle out of sight."
+        "surface": "the baseboard corners and carpet edges",
+        "method": "Vacuum tight into the baseboard corners and along the carpet edge with the crevice tool, because that is where small parts and dust migrate and settle out of sight."
        },
        {
         "surface": "the open floor the child plays on",
@@ -8091,7 +8091,7 @@
        "A bin bottom starting to split or a corner going brittle, found when you turn the empty bin over, which will spill the load next time it is lifted.",
        "A cracked toy with a sharp broken edge, or flaking paint on a wooden toy, spotted as you wash and dry each piece.",
        "A mildew smell or a dark bloom inside a bin, which means something went back in damp.",
-       "A carpet gripper or a lifting seam at the skirting, felt as the vacuum snags on it."
+       "A carpet gripper or a lifting seam at the baseboard, felt as the vacuum snags on it."
       ]
      },
      "diagnosis": {
@@ -8962,7 +8962,7 @@
        },
        {
         "surface": "the floor under and behind the crib (hidden)",
-        "method": "With the crib easy to move or reach behind, vacuum the floor under it and the skirting behind it, then damp-mop or wipe the hard floor. This strip only gets cleaned when the crib is stripped, so do it now while it is open."
+        "method": "With the crib easy to move or reach behind, vacuum the floor under it and the baseboard behind it, then damp-mop or wipe the hard floor. This strip only gets cleaned when the crib is stripped, so do it now while it is open."
        }
       ],
       "products_used": [
@@ -9305,8 +9305,8 @@
         "method": "Wipe the hook, and empty and shake out or wash the outgoing bag so it is ready to keep taking outgrown clothes rather than becoming a permanent fixture."
        },
        {
-        "surface": "the floor and skirting behind and under the chest (hidden)",
-        "method": "Vacuum the floor under and behind the chest and wipe the skirting, the strip that only gets reached when you are already down there cleaning."
+        "surface": "the floor and baseboard behind and under the chest (hidden)",
+        "method": "Vacuum the floor under and behind the chest and wipe the baseboard, the strip that only gets reached when you are already down there cleaning."
        }
       ],
       "products_used": [
@@ -9813,8 +9813,8 @@
         "method": "Wipe the outside of the box and the closet shelf it sits on, and give the stored toys a quick look before you rotate the next set out."
        },
        {
-        "surface": "the clear floor play space, any rug or mat, and the skirting (hidden edges)",
-        "method": "Vacuum the whole floor space and get right into the skirting and under the ledge. If a rug or foam play mat covers the floor, vacuum the rug or lift and wipe the foam tiles top and underside where drool presses in, then damp-wipe or mop any hard floor. Finish this surface clean and dry, since it is the one your baby lies and rolls on."
+        "surface": "the clear floor play space, any rug or mat, and the baseboard (hidden edges)",
+        "method": "Vacuum the whole floor space and get right into the baseboard and under the ledge. If a rug or foam play mat covers the floor, vacuum the rug or lift and wipe the foam tiles top and underside where drool presses in, then damp-wipe or mop any hard floor. Finish this surface clean and dry, since it is the one your baby lies and rolls on."
        }
       ],
       "products_used": [
@@ -9955,7 +9955,7 @@
       "sort": "Pull everything off the counter onto a towel and put back only what your hands touched today and yesterday. The travel bottles, the sample sachets, and the hair tie graveyard go into a drawer or out of the room entirely.",
       "straighten": "Give the daily set one tray, on the side you reach with your dominant hand. The heat tool gets a heat-safe rest and its cord parks behind the basin rather than draped across it.",
       "shine": "Wipe the tray, then the counter under it, then the base of the faucet where toothpaste dries into a crust. Finish with the mirror and the light switch plate, the thing in this room nobody ever wipes.",
-      "safety": "Water and a plugged-in dryer share one small surface in here. Keep the cord on the far side of the basin from the tap, and pull the plug at the wall the moment you set the tool down, not once your hair is finished.",
+      "safety": "Water and a plugged-in dryer share one small surface in here. Keep the cord on the far side of the basin from the faucet, and pull the plug at the wall the moment you set the tool down, not once your hair is finished.",
       "standardize": "Write the four-product limit on a strip of tape stuck under the tray, and tape a photo of the cleared counter inside the vanity door. A fifth bottle then has something to argue with before it lands.",
       "sustain": "The tray goes back to match the photo when you rinse your toothbrush at night, same moment every night, each adult resetting their own products. Twenty seconds. Slip is a fifth bottle standing on bare stone, seen from the door before anything else, because this counter's whole standard is the emptiness either side of the basin. Recovery is matching the photo inside the vanity door, once. Bottles arrive here faster than in any other room, because almost none of them are finished, and a half used product feels wasteful to bin."
      },
@@ -9983,14 +9983,14 @@
      },
      "chapter_ref": "See Chapter 25, the ideal-state photo.",
      "shine_detail": {
-      "shine_summary": "Work the whole station top to bottom: mirror and switch plate first, then the tray and its daily few, then the tap and the stone, so every drip lands on something you have not cleaned yet. The base of the faucet and the switch plate are the two spots nobody ever wipes.",
+      "shine_summary": "Work the whole station top to bottom: mirror and switch plate first, then the tray and its daily few, then the faucet and the stone, so every drip lands on something you have not cleaned yet. The base of the faucet and the switch plate are the two spots nobody ever wipes.",
       "surfaces": [
        {
         "surface": "The mirror and the light fixture above it",
         "method": "Dry-dust the fixture and bulbs with the microfiber first so grime does not rain down later, then spray glass cleaner onto the cloth, not the mirror, and wipe the glass top to bottom in overlapping strokes. Buff dry with a second dry cloth so no film shows under the bulb light."
        },
        {
-        "surface": "The light switch plate and the wall behind the tap",
+        "surface": "The light switch plate and the wall behind the faucet",
         "method": "Mist a cloth with neutral pH cleaner and wipe the switch plate and its screw heads, where fingertips leave a gray bloom, keeping the cloth damp rather than wet so nothing runs into the switch. Wipe the backsplash wall down to the counter and give the caulk seam where wall meets stone a firm pass."
        },
        {
@@ -9999,7 +9999,7 @@
        },
        {
         "surface": "The faucet, its base collar, and the handles",
-        "method": "Work bathroom grime and soap-film cleaner into a detail brush and scrub the collar where the tap meets the stone, the crust of dried toothpaste, and the hard-water scale around the handles. Let it dwell a minute, then wipe and buff the metal dry so it does not spot."
+        "method": "Work bathroom grime and soap-film cleaner into a detail brush and scrub the collar where the faucet meets the stone, the crust of dried toothpaste, and the hard-water scale around the handles. Let it dwell a minute, then wipe and buff the metal dry so it does not spot."
        },
        {
         "surface": "The basin bowl, drain flange, and overflow hole",
@@ -10025,9 +10025,9 @@
       "inspect_as_you_clean": [
        "A caulk line at the backsplash or around the basin going black or lifting away from the stone, which is water getting in behind.",
        "Dark spots creeping in from the edges of the mirror silvering, a sign moisture is sitting behind the glass.",
-       "Water pooling or a chalky ring under the faucet base that keeps coming back, which points to a slow seep at the tap fitting.",
+       "Water pooling or a chalky ring under the faucet base that keeps coming back, which points to a slow seep at the faucet fitting.",
        "A hairline crack in the basin, or a switch plate that is cracked, warm to the touch, or loose on the wall.",
-       "Rust freckling on the tap fixings, or a towel ring that has begun to wobble in its screws."
+       "Rust freckling on the faucet fixings, or a towel ring that has begun to wobble in its screws."
       ]
      },
      "capacity": {
@@ -10642,7 +10642,7 @@
       "shine": "Spray the walls and the tray, then step out and do the counter or the toilet while the cleaner works. Come back, wipe, rinse, squeegee glass and tile from the top down, and leave the door standing open.",
       "safety": "Wet glaze under a film of soap is the most slippery surface in the house, so the mat or the grip strips are not optional, and a grab bar is a morning's work to fit. Razors go on a high hook, never on the tub edge where a small hand reaches for balance.",
       "standardize": "Hold the caddy to a bottle limit: a new bottle comes in only on the day an empty goes out. The squeegee has one hook and hangs on it wet, every time.",
-      "sustain": "Whoever gets out last runs the squeegee over the glass and the walls, props the door open and leaves the fan going, while they are still wet and standing there. Thirty seconds. Two signals show from outside the enclosure: a dark line where the wall meets the tray, and a bottle nobody has picked up in a fortnight. Recovery is a hot rinse and a squeegee run plus one empty leaving, no deep clean if you catch the line early. This zone gets worse on its own, with water, whether or not anybody does anything wrong."
+      "sustain": "Whoever gets out last runs the squeegee over the glass and the walls, props the door open and leaves the fan going, while they are still wet and standing there. Thirty seconds. Two signals show from outside the enclosure: a dark line where the wall meets the tray, and a bottle nobody has picked up in two weeks. Recovery is a hot rinse and a squeegee run plus one empty leaving, no deep clean if you catch the line early. This zone gets worse on its own, with water, whether or not anybody does anything wrong."
      },
      "the_call": {
       "title": "The bottle you are keeping out of guilt",
@@ -10675,7 +10675,7 @@
         "method": "Spray the whole wall surface and screen with the soap-film cleaner and leave it to work while you step out. Return, wipe from the top down, rinse, then squeegee the glass and tile so nothing dries into a film. A fabric liner goes through the washing machine instead."
        },
        {
-        "surface": "The taps, valve trim, and diverter",
+        "surface": "The faucets, valve trim, and diverter",
         "method": "Scrub the handles, the trim plate, and the diverter with the detail brush to lift limescale from the crevices, rinse, and buff the metal dry."
        },
        {
@@ -10865,8 +10865,8 @@
         "method": "Rinse the brush under the flush, stand it to drip, then tip and wipe out the holder so no liquid pools in the bottom. Wipe the bin lid and replace the liner."
        },
        {
-        "surface": "the tiled floor and the grout lines around the pan",
-        "method": "Sweep or vacuum the loose grit first, because mopping grit is just moving sandpaper around. Then work the grout, which is where the smell in a bathroom usually lives: a detail brush and your bathroom cleaner along the lines, given its label dwell time rather than scrubbed dry, and the tightest attention paid to the horseshoe of floor immediately around the pan and behind it. Mop the tile last, from the far corner back towards the door, and leave it to dry with the extractor running rather than walking on it."
+        "surface": "the tiled floor and the grout lines around the toilet",
+        "method": "Sweep or vacuum the loose grit first, because mopping grit is just moving sandpaper around. Then work the grout, which is where the smell in a bathroom usually lives: a detail brush and your bathroom cleaner along the lines, given its label dwell time rather than scrubbed dry, and the tightest attention paid to the horseshoe of floor immediately around the toilet and behind it. Mop the tile last, from the far corner back towards the door, and leave it to dry with the exhaust fan running rather than walking on it."
        }
       ],
       "products_used": [
@@ -11034,8 +11034,8 @@
         "method": "Wipe the inside of the door and its edges, and run the detail brush through any louvre or vent slots so air keeps moving through the cupboard."
        },
        {
-        "surface": "The cupboard floor and skirting",
-        "method": "Vacuum the floor of the cupboard and along the inner skirting, then wipe it, since this is where fiber dust and stray damp gather low down."
+        "surface": "The cupboard floor and baseboard",
+        "method": "Vacuum the floor of the cupboard and along the inner baseboard, then wipe it, since this is where fiber dust and stray damp gather low down."
        },
        {
         "surface": "The towels and linens themselves",
@@ -11174,11 +11174,11 @@
      "session": "15-30 min",
      "time_note": "short and even, with the longest stretch in Sort deciding what belongs to the household rather than the guest",
      "purpose": "It gives a visitor somewhere to wash their hands and set a phone down, with nothing of yours in the way.",
-     "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.",
+     "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the faucet, no dried soap ring under the dispenser.",
      "passes": {
       "sort": "Take everything off the counter and put back only what a visitor would use: soap, tissues, hand towel. The travel conditioner, the spare contact lens case, and the razor that ended up here because the main bathroom ran out of room all go back where they belong or into the trash.",
       "straighten": "Set the soap on the side your hand reaches without crossing over the basin, tissues at the back corner clear of splash, and the hand towel on a ring or hook visible from the door. A guest should never have to open a cabinet to find a towel.",
-      "shine": "Wipe the counter, then the tap and the drain lip where toothpaste film and hard water scale build up, including the collar at the base of the tap where a chalky ring hides. Do the mirror last, top to bottom, so drips land on surfaces you have not finished yet.",
+      "shine": "Wipe the counter, then the faucet and the drain lip where toothpaste film and hard water scale build up, including the collar at the base of the faucet where a chalky ring hides. Do the mirror last, top to bottom, so drips land on surfaces you have not finished yet.",
       "safety": "Water and electricity: a shaver or hair dryer left plugged in beside a full basin is a live cord within splash reach, so unplug it and put it away rather than coiling it on the counter. Swap any glass tumbler or glass trinket dish for ceramic, because glass on a wet counter slides and it breaks onto a tile floor where feet are bare.",
       "standardize": "Three things live on this counter permanently: soap, tissues, hand towel. Photograph that exact arrangement and tape the picture inside the vanity door, so anyone in the house can reset the counter without asking you which three.",
       "sustain": "The moment someone confirms they are coming over, walk in, top up the soap and hang a fresh hand towel, both done before you have put the phone down. The laundry version is smaller: when you put fresh towels away, the guest hand towel swaps in the same motion. Slip is a soap pump below half or a towel that has hung there since the last visit, both readable from the doorway. Recovery is those two items. This counter has no daily user, so you have to look on purpose."
@@ -11203,19 +11203,19 @@
      },
      "chapter_ref": "See Chapter 25, the ideal-state photo.",
      "shine_detail": {
-      "shine_summary": "Work top to bottom so every drip lands on something you have not finished yet, and save the mirror for last. The tap collar and the drain lip are where hard water hides, and they are the first things a guest looks at up close.",
+      "shine_summary": "Work top to bottom so every drip lands on something you have not finished yet, and save the mirror for last. The faucet collar and the drain lip are where hard water hides, and they are the first things a guest looks at up close.",
       "surfaces": [
        {
         "surface": "the light fixture and the mirror above the basin",
         "method": "Do this pair last, and dust before you wet anything. Wipe the cool bulbs and the fixture housing with a dry microfiber cloth so the dust does not smear down onto glass you are about to clean. Then spray streak-free glass cleaner onto a cloth, never straight onto the mirror where it runs behind the frame, and wipe from the top down in one direction. Buff dry with a second dry cloth so no film shows by the vanity light."
        },
        {
-        "surface": "the wall and backsplash behind the tap",
+        "surface": "the wall and backsplash behind the faucet",
         "method": "Mist the splash zone with the bathroom soap-film cleaner and wait about a minute for the toothpaste flecks and dried spray to soften, then wipe down and off to one side. Dry the wall so no cleaner sits in the caulk line at the counter."
        },
        {
-        "surface": "the tap, the collar at its base, and the drain lip",
-        "method": "Give the tap and the chalky ring at its foot a coat of soap-film cleaner and let it dwell while you do the basin, because scale lets go far more easily wet than scrubbed dry. Work the collar with a folded cloth corner, wipe the drain lip and the overflow slot, then rinse with a damp cloth and dry to a shine so no new water spots set."
+        "surface": "the faucet, the collar at its base, and the drain lip",
+        "method": "Give the faucet and the chalky ring at its foot a coat of soap-film cleaner and let it dwell while you do the basin, because scale lets go far more easily wet than scrubbed dry. Work the collar with a folded cloth corner, wipe the drain lip and the overflow slot, then rinse with a damp cloth and dry to a shine so no new water spots set."
        },
        {
         "surface": "the basin bowl and the overflow hole",
@@ -11237,14 +11237,14 @@
       "products_used": [
        "Bathroom grime and soap-film cleaner",
        "Neutral pH multi-surface cleaner",
-       "Streak-free glass and mirror cleaner (not in this zone's list, and the mirror needs it)",
+       "Streak-free glass and mirror cleaner",
        "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy"
       ],
       "inspect_as_you_clean": [
-       "Chalky scale that comes straight back within a day or two of wiping the tap collar, which tells you how hard the water running through this room is.",
-       "A wobble or a little give in the tap as you wipe its base, or a damp patch that keeps reappearing at its foot.",
+       "Chalky scale that comes straight back within a day or two of wiping the faucet collar, which tells you how hard the water running through this room is.",
+       "A wobble or a little give in the faucet as you wipe its base, or a damp patch that keeps reappearing at its foot.",
        "The caulk seam where the counter meets the basin or the wall going dark, soft, or lifting at one end.",
        "A water mark or a swollen edge on the underside lip of the counter, the kind of sign that something above it drips."
       ]
@@ -11336,7 +11336,7 @@
       ],
       "strays": [
        "Your family's toothbrushes in a cup on this counter",
-       "Hair clips left behind the tap",
+       "Hair clips left behind the faucet",
        "Travel conditioner or a spare contact lens case that drifted in",
        "A razor that ended up here because the main bathroom ran out of room"
       ]
@@ -11405,8 +11405,8 @@
       ],
       "products_used": [
        "Bathroom grime and soap-film cleaner",
-       "Neutral pH multi-surface cleaner (not in this zone's list, but the sealed cabinet interior needs it)",
-       "Color-coded microfiber cloth set (not in this zone's list, and you cannot wipe the cabinet down without cloths)",
+       "Neutral pH multi-surface cleaner",
+       "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy"
       ],
@@ -11567,8 +11567,8 @@
         "method": "Send a fabric liner straight to the washing machine rather than scrubbing it by hand. A plastic liner or a glass screen gets soap-film cleaner over its face and along the bottom edge where the pink film starts, then a rinse. Wipe the rod or the screen track, and wipe the screen dry so it does not spot."
        },
        {
-        "surface": "the taps, the spout, the diverter, and the tub surround",
-        "method": "Wipe the surround from the back wall forward, then bring the taps, spout, and diverter up with soap-film cleaner, working the scale off the handles and the base of each fitting. Rinse and buff the metal dry so it shines."
+        "surface": "the faucets, the spout, the diverter, and the tub surround",
+        "method": "Wipe the surround from the back wall forward, then bring the faucets, spout, and diverter up with soap-film cleaner, working the scale off the handles and the base of each fitting. Rinse and buff the metal dry so it shines."
        },
        {
         "surface": "the tub floor, the non-slip surface, the drain, and the rim",
@@ -11585,8 +11585,8 @@
        "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy",
-       "Dedicated mildew remover (not in this zone's list, for grout the soap-film cleaner will not shift)",
-       "Stiff grout or detail brush (not in this zone's list, and the grout and the non-slip floor need bristles)"
+       "Dedicated mildew remover (for grout the soap-film cleaner will not shift)",
+       "Stiff grout or detail brush"
       ],
       "inspect_as_you_clean": [
        "Pink or black film that returns in the same grout lines within days, the sign that moisture is sitting there and not drying.",
@@ -11726,7 +11726,7 @@
       "surfaces": [
        {
         "surface": "the inside of the bowl, under the rim and at the water line",
-        "method": "Start here so it can dwell. Run bowl cleaner around under the rim and let it sheet down over the water line, then leave it while you work everything outward. Come back with the bowl brush, scrub under the rim and around the ring, and flush."
+        "method": "Start here so it can dwell. Run bowl cleaner around under the rim and let it sheet down over the water line, then leave it while you work everything outward. Come back with the bowl brush, scrub under the rim and around the ring, and flush. Keep the room ventilated while it works, and keep the bowl cleaner the only product in the bowl: never add bleach or another cleaner to it."
        },
        {
         "surface": "the wall behind and above the tank",
@@ -11759,7 +11759,7 @@
        "Color-coded microfiber cloth set",
        "Compact vacuum with attachments",
        "Portable cleaning caddy",
-       "Toilet bowl cleaner and a dedicated bowl brush (not in this zone's list, and the bowl needs both)"
+       "Toilet bowl cleaner and a dedicated bowl brush"
       ],
       "inspect_as_you_clean": [
        "Water pooling or a stain creeping out at the base of the pedestal where it meets the floor, a sign the seal beneath is passing.",
@@ -11928,7 +11928,7 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
-       "Washing machine (not a listed product, but the stored linens need a hot wash)"
+       "Washing machine (for a hot wash of the stored linens)"
       ],
       "inspect_as_you_clean": [
        "A cool, damp, or musty back wall, the sign moisture is coming through from outside or from a pipe run behind it.",
@@ -12073,7 +12073,7 @@
       },
       {
        "question": "Water and electricity",
-       "text": "Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand's width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the tap."
+       "text": "Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand's width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the faucet."
       },
       {
        "question": "Fall, cut, or crush",
@@ -12118,7 +12118,7 @@
        },
        {
         "surface": "Behind and underneath the machines, and the floor",
-        "method": "Ease the machines out on their feet, vacuum the dust and lint drift off the back panel and the slab, and wipe the skirting and the floor where damp collects."
+        "method": "Ease the machines out on their feet, vacuum the dust and lint drift off the back panel and the slab, and wipe the baseboard and the floor where damp collects."
        }
       ],
       "products_used": [
@@ -12618,7 +12618,7 @@
        },
        {
         "surface": "the iron soleplate, its steam vents, and the ironing board cover",
-        "method": "Unplugged and cold. Wipe the soleplate with a damp microfiber cloth, and for anything stuck on use nothing metal: a wooden or plastic edge only, because one scratch on a soleplate marks every shirt after it. Clear the steam vents with a cotton bud, and run the machine's own self-clean or descale cycle if your water is hard, since blocked vents are what spit brown water onto a white collar. Strip the board cover and wash it, and check the pad underneath, which is usually scorched and flattened long before anyone thinks to look."
+        "method": "Unplugged and cold. Wipe the soleplate with a damp microfiber cloth, and for anything stuck on use nothing metal: a wooden or plastic edge only, because one scratch on a soleplate marks every shirt after it. Clear the steam vents with a cotton swab, and run the machine's own self-clean or descale cycle if your water is hard, since blocked vents are what spit brown water onto a white collar. Strip the board cover and wash it, and check the pad underneath, which is usually scorched and flattened long before anyone thinks to look."
        }
       ],
       "products_used": [
@@ -12734,10 +12734,10 @@
      "purpose": "Dry the few things a hot drum would ruin, and get them off the rack the moment they are dry.",
      "done_looks_like": "The rack folded flat against the wall with dry bars, its drip tray wiped out and empty, the rail holding six spare hangers, and nothing hanging that was washed before today.",
      "passes": {
-      "sort": "Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool jumper that has been draped over the end rung since spring either goes away properly or leaves the house.",
+      "sort": "Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool sweater that has been draped over the end rung since spring either goes away properly or leaves the house.",
       "straighten": "The rack gets one spot with a drip tray underneath, not wherever the last load abandoned it. Hang bras, wool and swimwear on the top rungs where air actually moves, and keep the bottom rungs for flat items that can take the slower dry.",
       "shine": "A rack that is stored damp grows a musty smell and passes it straight to the next load hung on it. Wipe the bars dry when you strip it, and fold it flat so both faces get air rather than pressing wet metal against wet metal.",
-      "safety": "Water on a hard floor under a drying rack is a slip you take in socks with an armful of laundry. Keep the drip tray in place, and never stand the rack where drips can reach a wall outlet or a plugged in extension lead running along the skirting.",
+      "safety": "Water on a hard floor under a drying rack is a slip you take in socks with an armful of laundry. Keep the drip tray in place, and never stand the rack where drips can reach a wall outlet or a plugged in extension lead running along the baseboard.",
       "standardize": "The rack is either in use holding one set of damp items, or folded flat against the wall. Nothing has permanent residence on the rungs, and no garment starts a second night up there without a reason you could say out loud.",
       "sustain": "Before you open the washer to start the next load, you clear the rack. Anything dry comes off first, so the rack is always ready for the load you are about to run, and it belongs to whoever is starting it. Slip is anything hanging that was washed before today, and you can tell by touch in two seconds. Recovery is carrying those items to their rooms, not folding them in here. Slow drying is the rack's job, so a garment up for six days looks exactly like one up since this morning."
      },
@@ -12780,7 +12780,7 @@
        },
        {
         "surface": "The wall and floor beneath the rack",
-        "method": "Wipe the skirting behind the rack for splash marks, then mop the floor under it with the floor-material-compatible cleaner so the wet patch does not stay slick."
+        "method": "Wipe the baseboard behind the rack for splash marks, then mop the floor under it with the floor-material-compatible cleaner so the wet patch does not stay slick."
        }
       ],
       "products_used": [
@@ -12794,7 +12794,7 @@
        "Rust blooming at the rack's joints and folding pivots, where water pools and never fully dries. Flag it.",
        "Black mold speckling the tray corners, or a bar that still smells musty after you have wiped it. Note it.",
        "A hinge or lock gone loose, or a bar that no longer holds its angle when you set it. Flag it.",
-       "A water stain spreading on the wall or skirting behind the rack. Note it."
+       "A water stain spreading on the wall or baseboard behind the rack. Note it."
       ]
      },
      "capacity": {
@@ -12884,7 +12884,7 @@
       ],
       "strays": [
        "Anything hanging that was washed before today",
-       "A jumper or garment left draped over the end rung long-term"
+       "A sweater or garment left draped over the end rung long-term"
       ]
      }
     },
@@ -12946,7 +12946,7 @@
        },
        {
         "surface": "The chemical shelf above the bucket",
-        "method": "Wipe the bottle exteriors and the shelf where drain cleaner and bleach weep, keeping the cloth off the labels so they stay readable."
+        "method": "Put gloves on first. Wipe the bottle exteriors and the shelf where drain cleaner and bleach weep, keeping the cloth off the labels so they stay readable. Stand the bleach apart from the drain cleaner and from anything containing ammonia or acid, so a slow leak can never meet another chemical and give off a toxic gas."
        },
        {
         "surface": "The floor of the corner",
@@ -12958,7 +12958,8 @@
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
        "Portable cleaning caddy",
-       "Floor-material-compatible cleaner"
+       "Floor-material-compatible cleaner",
+       "Reusable or disposable nitrile gloves"
       ],
       "inspect_as_you_clean": [
        "A mop head still slimy or sour after rinsing, or a broom head shedding its bristles. Flag them.",
@@ -13433,7 +13434,7 @@
      },
      "the_call": {
       "title": "What you are actually required to keep",
-      "text": "Most of this drawer is neither obviously permanent nor obviously rubbish, and that middle band is why the whole job stalls. Split it into three by rule. Permanent originals, meaning birth and marriage certificates, deeds, vehicle titles, wills, and immigration papers, go into one closed fireproof box and never into the filing cabinet. Tax returns and their supporting paper get one folder per year and are held for whatever your local retention period is, which you look up once and write on the card. Everything else, the bank statements, the utility bills, the receipts for things you no longer own, goes by this test: if the issuer will reprint it on request, or it already lives inside an online account, it is information, not a record, and information does not get a folder."
+      "text": "Most of this drawer is neither obviously permanent nor obviously trash, and that middle band is why the whole job stalls. Split it into three by rule. Permanent originals, meaning birth and marriage certificates, deeds, vehicle titles, wills, and immigration papers, go into one closed fireproof box and never into the filing cabinet. Tax returns and their supporting paper get one folder per year and are held for whatever your local retention period is, which you look up once and write on the card. Everything else, the bank statements, the utility bills, the receipts for things you no longer own, goes by this test: if the issuer will reprint it on request, or it already lives inside an online account, it is information, not a record, and information does not get a folder."
      },
      "watch_for": [
       {
@@ -13634,8 +13635,8 @@
         "method": "Wipe the bracket or strap that ties the unit to the wall and clear the dust from around the fixing so you can actually see it while you work."
        },
        {
-        "surface": "The floor and skirting behind and beneath the unit",
-        "method": "Vacuum along the bottom shelf, the skirting, and as far behind the unit as the crevice tool reaches, since this gap is where dust bunnies and dropped papers hide."
+        "surface": "The floor and baseboard behind and beneath the unit",
+        "method": "Vacuum along the bottom shelf, the baseboard, and as far behind the unit as the crevice tool reaches, since this gap is where dust bunnies and dropped papers hide."
        }
       ],
       "products_used": [
@@ -14110,7 +14111,7 @@
       "shine": "Vacuum sawdust and metal filings out of the bench dog holes and the seam where the top meets the back wall, then wipe the vise screw down and put a drop of oil on it.",
       "safety": "Check the bench outlet and the task light cord for nicks, and confirm you can plug the sander in without a lead crossing the strip of floor you stand on. Chisels and utility blades never rest edge-up on the top, where a hand sweeps sawdust without looking.",
       "standardize": "Tape a photo of the cleared bench, vise and task light and nothing else, on the wall directly behind it at eye height. When you look up and see a paint tin or a coil of wire that the photo does not show, that is the next thing to leave.",
-      "sustain": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin and the top is swept, all before the task light goes off. Pulling the last plug out of the bench outlet is the signal to sweep, not the clock on your phone. Ten minutes, by whoever ran the job. Slip is anything on the bench the photo behind it does not show. Projects here do not end, they pause, and after a fortnight a pause looks like abandonment."
+      "sustain": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin and the top is swept, all before the task light goes off. Pulling the last plug out of the bench outlet is the signal to sweep, not the clock on your phone. Ten minutes, by whoever ran the job. Slip is anything on the bench the photo behind it does not show. Projects here do not end, they pause, and after two weeks a pause looks like abandonment."
      },
      "the_call": {
       "title": "The project that has been there since spring",
@@ -14338,8 +14339,8 @@
         "method": "Empty each shelf, vacuum the corners, wipe the boards, and dry them before the tools go back sorted."
        },
        {
-        "surface": "The floor and skirting under the cabinet",
-        "method": "Vacuum along the skirting under the cabinet where filings and small offcuts gather out of sight."
+        "surface": "The floor and baseboard under the cabinet",
+        "method": "Vacuum along the baseboard under the cabinet where filings and small offcuts gather out of sight."
        }
       ],
       "products_used": [
@@ -14759,7 +14760,7 @@
         "symptom": "In an emergency I could not lay my hands on the jump leads.",
         "branches": [
          {
-          "answer": "Cables, gauge and torch are stored in three different places",
+          "answer": "Cables, gauge and flashlight are stored in three different places",
           "cause": "KC-002"
          },
          {
@@ -15214,7 +15215,7 @@
      },
      "the_call": {
       "title": "The box you have never opened",
-      "text": "There is at least one box up there that moved in with you and has not been opened since. You keep it because opening it costs an afternoon and might cost more than that. Here is what settles it. Bring it down, open it on the floor with three things beside you: a rubbish sack, a donation box, and one empty container. Whatever you truly want to keep has to fit inside that single container and has to have a living person's name attached to it. Anything you cannot name an owner for goes today. Do not tape it up and send it back overhead, because a box that goes back unopened has just bought itself another five years and taught the rack that this is allowed."
+      "text": "There is at least one box up there that moved in with you and has not been opened since. You keep it because opening it costs an afternoon and might cost more than that. Here is what settles it. Bring it down, open it on the floor with three things beside you: a trash bag, a donation box, and one empty container. Whatever you truly want to keep has to fit inside that single container and has to have a living person's name attached to it. Anything you cannot name an owner for goes today. Do not tape it up and send it back overhead, because a box that goes back unopened has just bought itself another five years and taught the rack that this is allowed."
      },
      "watch_for": [
       {
@@ -16107,7 +16108,7 @@
       "shine": "Wipe the rim of every can before the lid goes back on, because a rim full of dried finish is why the can skins over. Clean brushes right through to the ferrule and wipe down the spill tray.",
       "safety": "A rag soaked in oil finish generates its own heat as it cures and can ignite with nothing touching it, so it goes in a lidded metal can or gets spread flat outdoors to dry. Keep flammable liquids away from any pilot light or heater, and ventilate before you spray, not after.",
       "standardize": "Date every container with a marker the day it arrives, and write the shelf layout on the inside of the cabinet door so the solvents and the water based finishes stay apart even when you are putting things away in a hurry.",
-      "sustain": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can with the lid down. Both happen at the tap, by whoever did the finishing. Slip is an undated lid, a container that is not the original, or an oily rag anywhere outside that can. Recovery is a marker for the first two and the can for the third, immediately. Drift here does not show as mess, it shows as incompatibles ending up on one shelf."
+      "sustain": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can with the lid down. Both happen at the faucet, by whoever did the finishing. Slip is an undated lid, a container that is not the original, or an oily rag anywhere outside that can. Recovery is a marker for the first two and the can for the third, immediately. Drift here does not show as mess, it shows as incompatibles ending up on one shelf."
      },
      "the_call": {
       "title": "The wall of half-used paint",
@@ -16125,7 +16126,7 @@
      ],
      "leave_behind": {
       "standard": "Original containers, dated lids, incompatibles on separate shelves, and rags in a lidded metal can.",
-      "trigger": "When the brush goes under the tap, the rag goes in the can and the lid goes down."
+      "trigger": "When the brush goes under the faucet, the rag goes in the can and the lid goes down."
      },
      "chapter_ref": "See Chapter 22, prevent and prepare.",
      "shine_detail": {
@@ -16145,11 +16146,11 @@
        },
        {
         "surface": "Brushes and application tools",
-        "method": "Clean each brush right through to the ferrule with the matching thinner or brush cleaner, work it dry, and hang it bristle down."
+        "method": "Open the door or a window and put gloves on first. Clean each brush right through to the ferrule with the matching thinner or brush cleaner, work it dry, and hang it bristle down. Any rag wet with thinner or an oil-based finish goes straight into the oily rag can, never the trash, because those rags can heat up and catch fire on their own as they dry."
        },
        {
         "surface": "The oily rag can",
-        "method": "Wipe the outside of the rag can and check that the self-closing lid falls shut on its own weight."
+        "method": "Wipe the outside of the rag can and check that the self-closing lid falls shut on its own weight. Empty it the way your local hazardous-waste rules say, not into household trash."
        },
        {
         "surface": "The cabinet floor and the shop floor beneath it",
@@ -16162,7 +16163,8 @@
        "Compact vacuum with attachments",
        "Color-coded microfiber cloth set",
        "Mineral spirits or matching brush cleaner",
-       "Clean shop rags"
+       "Clean shop rags",
+       "Reusable or disposable nitrile gloves"
       ],
       "inspect_as_you_clean": [
        "A can rim skinned over, a lid rusting into the seam, or a container bulging or swollen out of shape.",
@@ -16181,7 +16183,7 @@
           "cause": "KC-010"
          },
          {
-          "answer": "The rule is the rag goes in the can right at the tap when you wash the brush, but tonight the brush got washed somewhere else",
+          "answer": "The rule is the rag goes in the can right at the faucet when you wash the brush, but tonight the brush got washed somewhere else",
           "cause": "KC-009"
          },
          {
@@ -16509,12 +16511,12 @@
         "method": "Take each coat down and brush the shoulders and collar with a soft clothing brush, following the weave, to lift the hair and street dust that settles on the tops. Turn bag straps and hoods out and brush them too before they go back on their named column."
        },
        {
-        "surface": "The skirting board behind the run",
-        "method": "Run the damp cloth along the top edge and face of the skirting board behind where the coats hang, since it collects a felted band of dust and hood fluff that the coats hide. Follow the whole length of the wall, not just the ends."
+        "surface": "The baseboard behind the run",
+        "method": "Run the damp cloth along the top edge and face of the baseboard behind where the coats hang, since it collects a felted band of dust and hood fluff that the coats hide. Follow the whole length of the wall, not just the ends."
        },
        {
         "surface": "The floor strip directly under the hooks",
-        "method": "Vacuum the narrow strip of floor beneath the run with the crevice tool, working into the corner where the floor meets the skirting, then damp-mop or wipe the sealed floor with the floor-material-compatible cleaner. Do this pass last so nothing you knocked down stays behind."
+        "method": "Vacuum the narrow strip of floor beneath the run with the crevice tool, working into the corner where the floor meets the baseboard, then damp-mop or wipe the sealed floor with the floor-material-compatible cleaner. Do this pass last so nothing you knocked down stays behind."
        }
       ],
       "products_used": [
@@ -16523,7 +16525,7 @@
        "Compact vacuum with attachments",
        "Floor-material-compatible cleaner",
        "Portable cleaning caddy",
-       "Soft clothing brush (not in this zone's list)"
+       "Soft clothing brush"
       ],
       "inspect_as_you_clean": [
        "As you take each coat off its hook, flag any hook that has started to lean, wobble, or leave a dark rim of pulled plaster around its screw.",
@@ -16799,7 +16801,7 @@
      },
      "the_call": {
       "title": "The boots waiting for a winter that has not come",
-      "text": "Everyone has a pair kept for conditions that never quite arrive: the proper wellies, the hiking boots worn twice, the smart shoes for the event you keep not going to. They are expensive and undamaged, which is why you will not decide. So separate the two questions. Keeping the pair is one decision; giving it a slot at the door is another. The rule for the door is simple: a pair earns a slot only if it has been on someone's feet in the last four weeks. Everything else goes to the wardrobe with today's date on a slip of paper tucked in the toe. When the season it was bought for has come and gone with that slip still in place, you have your answer, and it is not a hard one any more."
+      "text": "Everyone has a pair kept for conditions that never quite arrive: the proper rain boots, the hiking boots worn twice, the smart shoes for the event you keep not going to. They are expensive and undamaged, which is why you will not decide. So separate the two questions. Keeping the pair is one decision; giving it a slot at the door is another. The rule for the door is simple: a pair earns a slot only if it has been on someone's feet in the last four weeks. Everything else goes to the wardrobe with today's date on a slip of paper tucked in the toe. When the season it was bought for has come and gone with that slip still in place, you have your answer, and it is not a hard one any more."
      },
      "watch_for": [
       {
@@ -16850,8 +16852,8 @@
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
        "Floor-material-compatible cleaner",
-       "Garden hose or outdoor tap (not in this zone's list)",
-       "Stiff scrubbing brush (not in this zone's list)"
+       "Garden hose or outdoor faucet",
+       "Stiff scrubbing brush"
       ],
       "inspect_as_you_clean": [
        "If a boot dryer or heated mat lives here, flag any flex that is cracked, taped, or lying across the wet strip of floor where boots drip.",
@@ -16874,7 +16876,7 @@
           "cause": "KC-001"
          },
          {
-          "answer": "Even after the honest four-week test clears out what shouldn't be here, one active kid's cleats, wellies and school shoes are already more than two pairs",
+          "answer": "Even after the honest four-week test clears out what shouldn't be here, one active kid's cleats, rain boots and school shoes are already more than two pairs",
           "cause": "KC-007"
          }
         ]
@@ -17016,7 +17018,7 @@
        "Color-coded microfiber cloth set",
        "Neutral pH multi-surface cleaner",
        "Floor-material-compatible cleaner",
-       "Dish soap for bowls and scoop (not in this zone's list)"
+       "Dish soap for bowls and scoop"
       ],
       "inspect_as_you_clean": [
        "As you coil the lead, flag a clip whose spring is weak, a collar buckle that is fraying, or webbing worn thin where it takes the strain.",
@@ -17125,10 +17127,10 @@
      "purpose": "Holds the small weather items the family grabs on the way out, for the season you are actually in.",
      "done_looks_like": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labeled with the month you packed it, and up on the high shelf.",
      "passes": {
-      "sort": "Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sun cream and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label.",
+      "sort": "Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sunscreen and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label.",
       "straighten": "Open bins with no lids, one per person, set at their own reach so a child can get their own gloves without asking anyone. Umbrellas go in the stand and never in a bin, because one wet umbrella soaks everything it lies against.",
       "shine": "Everything goes into off-season storage washed and bone dry, because damp wool packed away in April comes out smelling in October. Wipe out the empty bins and get the sand out of the corners before you refill them.",
-      "safety": "Insect repellent and sun cream sitting in a low open bin will find their way into a small mouth, so anything carrying a warning on the label goes in a closed box above child reach. Store umbrellas points down, because a spike stood upright sits at a toddler's eye height.",
+      "safety": "Insect repellent and sunscreen sitting in a low open bin will find their way into a small mouth, so anything carrying a warning on the label goes in a closed box above child reach. Store umbrellas points down, because a spike stood upright sits at a toddler's eye height.",
       "standardize": "Two changeovers a year, spring and autumn, and the month you closed a bin goes on its lid. Write the same short order on that lid as well: gloves matched, hats washed, creams checked for date, umbrellas emptied out.",
       "sustain": "The first cold morning you reach into the bin for gloves and find it empty is the signal, and the changeover happens that weekend, run by one adult from the short order written on the lid. An hour, twice a year. Slip in between is two seasons within reach at once, or a bin holding unmatched singles. Recovery is matching pairs and giving the singles one bag and one season to be reunited. Gloves are lost one at a time, so this zone degrades into halves, and half a pair still looks like stock."
      },
@@ -17139,7 +17141,7 @@
      "watch_for": [
       {
        "question": "Poison, choke, or strangle",
-       "text": "Insect repellent and sun cream stored in an open low bin that a young child is encouraged to help themselves from."
+       "text": "Insect repellent and sunscreen stored in an open low bin that a young child is encouraged to help themselves from."
       },
       {
        "question": "Fall, cut, or crush",
@@ -17209,10 +17211,10 @@
         ]
        },
        {
-        "symptom": "A bottle of sun cream from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from.",
+        "symptom": "A bottle of sunscreen from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from.",
         "branches": [
          {
-          "answer": "Sun cream and insect repellent sitting where a small child can reach and taste them is a safety constraint that outranks tidy",
+          "answer": "Sunscreen and insect repellent sitting where a small child can reach and taste them is a safety constraint that outranks tidy",
           "cause": "KC-010"
          },
          {
@@ -17244,8 +17246,8 @@
        }
       ],
       "first_15": {
-       "action": "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sun cream and insect repellent for their dates, moving anything expired out of the low bin.",
-       "victory": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin."
+       "action": "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sunscreen and insect repellent for their dates, moving anything expired out of the low bin.",
+       "victory": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sunscreen or insect repellent remains in the low bin."
       }
      },
      "variants": [
@@ -17275,7 +17277,7 @@
       ],
       "strays": [
        "Unmatched gloves and mittens, the singles",
-       "Sun cream or insect repellent past its printed date"
+       "Sunscreen or insect repellent past its printed date"
       ]
      }
     },
@@ -17524,8 +17526,8 @@
         "method": "Shake each folded sheet and towel out and refold to one width. Anything carrying a musty note gets a rewash now rather than going back to seal the smell into the shelf."
        },
        {
-        "surface": "The closet floor and skirting under the bottom shelf",
-        "method": "Vacuum the corners and along the skirting where lint gathers, then wipe the floor with a damp cloth and let it dry before you reload the low shelf."
+        "surface": "The closet floor and baseboard under the bottom shelf",
+        "method": "Vacuum the corners and along the baseboard where lint gathers, then wipe the floor with a damp cloth and let it dry before you reload the low shelf."
        },
        {
         "surface": "The inside face of the door and the shelf-edge labels",
@@ -18494,7 +18496,7 @@
       },
       {
        "condition": "The landing is the only place a router or a charger can live",
-       "guidance": "Fix the cable along the skirting and under the tread nose, never across the walking line, and count the router as one of the three. A trailing cable at the top of a staircase is the worst version of a trip hazard in the house."
+       "guidance": "Fix the cable along the baseboard and under the tread nose, never across the walking line, and count the router as one of the three. A trailing cable at the top of a staircase is the worst version of a trip hazard in the house."
       }
      ],
      "capacity": {
@@ -18597,8 +18599,8 @@
         "method": "As you take your hand off each frame, tilt it slightly and lift the dust off the wire and the hook behind it."
        },
        {
-        "surface": "The skirting at the foot of the wall and the landing floor",
-        "method": "Finish low: vacuum the crevice along the skirting, wipe the board, then damp mop the landing floor beneath with a cleaner matched to its material."
+        "surface": "The baseboard at the foot of the wall and the landing floor",
+        "method": "Finish low: vacuum the crevice along the baseboard, wipe the board, then damp mop the landing floor beneath with a cleaner matched to its material."
        },
        {
         "surface": "the thermostat, the light switches, and the wall around them",
@@ -18717,7 +18719,7 @@
      "session": "30-45 min",
      "time_note": "most of it in Safety, walking the flight tread by tread and fixing what you find",
      "purpose": "The treads, runner, handrail and lighting that carry every person in the house between floors, several times a day, often with their arms full.",
-     "done_looks_like": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog lead hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
+     "done_looks_like": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog leash hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
      "passes": {
       "sort": "Nothing lives on stairs. Clear the folded laundry, the shoes, the box that has sat on step four since the weekend, all of it in one trip, and put each thing where it belongs on its own floor rather than restaging it on the landing above.",
       "straighten": "The one thing that must stay reachable here is the handrail, so strip both newel posts of coats, bags and leads. If a stair gate is fitted, set the top gate to swing away from the flight and never out over it.",
@@ -18815,7 +18817,7 @@
        "Note any runner corner that has lifted as you clean the edges, and any worn strip on a nose where the pile has gone thin.",
        "While you wipe the rail's length, notice any bracket that has worked loose or any section that turns slightly in its fixing under the cloth.",
        "While you clean the treads under each fitting, flag a bulb over the top or bottom step that is dim, flickering, or dead, because that is the most dangerous fault this room can hold.",
-       "Watch the stringer and skirting for a cracked or springy board, and the switch plates for warmth or discoloring as you wipe them."
+       "Watch the stringer and baseboard for a cracked or springy board, and the switch plates for warmth or discoloring as you wipe them."
       ]
      },
      "diagnosis": {
@@ -19145,11 +19147,11 @@
        },
        {
         "surface": "The flavorizer bars and the firebox interior",
-        "method": "Pull the bars and scrape the baked-on crust off them into the bin. Scrape the loose carbon flakes off the firebox floor down toward the grease channel while everything is out."
+        "method": "Once the grill has cooled, pull the bars and scrape the baked-on crust off them into the bin. Scrape the loose carbon flakes off the firebox floor down toward the grease channel while everything is out."
        },
        {
         "surface": "The burner tubes and venturi openings",
-        "method": "With the bars lifted, look straight up into each burner tube and the venturi opening at the valve end, and brush any nest debris out of the mouth of the tube so the gas runs clean."
+        "method": "With the grill cold and the tank valve closed, lift the bars and look straight up into each burner tube and the venturi opening at the valve end, and brush any nest debris out of the mouth of the tube so the gas runs clean."
        },
        {
         "surface": "The grease tray and drip pan",
@@ -19833,7 +19835,7 @@
      },
      "the_call": {
       "title": "The board that gives",
-      "text": "There is a board you step over without thinking, or one that flexes slightly under your weight, and you have quietly filed it as fine. Test it properly instead. Push a screwdriver into the board where it crosses a joist, and again into the board end nearest the house. If the tip sinks in with light pressure, that board is finished and replacing one board is a morning's work. The harder judgment is what a soft board is telling you. If two boards side by side are soft, or if the softness is at the ledger where the deck meets the wall of the house, then the framing underneath has the problem and the surface is only the symptom. The rule that settles it: soft in one spot on top, replace the board yourself; soft in two adjacent places or soft at the wall, stop putting people on it and get someone underneath it with a torch before the next time you have guests standing out here together."
+      "text": "There is a board you step over without thinking, or one that flexes slightly under your weight, and you have quietly filed it as fine. Test it properly instead. Push a screwdriver into the board where it crosses a joist, and again into the board end nearest the house. If the tip sinks in with light pressure, that board is finished and replacing one board is a morning's work. The harder judgment is what a soft board is telling you. If two boards side by side are soft, or if the softness is at the ledger where the deck meets the wall of the house, then the framing underneath has the problem and the surface is only the symptom. The rule that settles it: soft in one spot on top, replace the board yourself; soft in two adjacent places or soft at the wall, stop putting people on it and get someone underneath it with a flashlight before the next time you have guests standing out here together."
      },
      "watch_for": [
       {

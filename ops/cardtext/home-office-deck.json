@@ -229,7 +229,7 @@
    ],
    "the_call": {
     "title": "What you are actually required to keep",
-    "text": "Most of this drawer is neither obviously permanent nor obviously rubbish, and that middle band is why the whole job stalls. Split it into three by rule. Permanent originals, meaning birth and marriage certificates, deeds, vehicle titles, wills, and immigration papers, go into one closed fireproof box and never into the filing cabinet. Tax returns and their supporting paper get one folder per year and are held for whatever your local retention period is, which you look up once and write on the card. Everything else, the bank statements, the utility bills, the receipts for things you no longer own, goes by this test: if the issuer will reprint it on request, or it already lives inside an online account, it is information, not a record, and information does not get a folder."
+    "text": "Most of this drawer is neither obviously permanent nor obviously trash, and that middle band is why the whole job stalls. Split it into three by rule. Permanent originals, meaning birth and marriage certificates, deeds, vehicle titles, wills, and immigration papers, go into one closed fireproof box and never into the filing cabinet. Tax returns and their supporting paper get one folder per year and are held for whatever your local retention period is, which you look up once and write on the card. Everything else, the bank statements, the utility bills, the receipts for things you no longer own, goes by this test: if the issuer will reprint it on request, or it already lives inside an online account, it is information, not a record, and information does not get a folder."
    },
    "supplies": [
     "Compact vacuum with attachments",
@@ -847,7 +847,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "a wastebasket beside a desk with a bank statement visible among ordinary rubbish, no shredder or shred bag anywhere nearby",
+    "subject": "a wastebasket beside a desk with a bank statement visible among ordinary trash, no shredder or shred bag anywhere nearby",
     "must_show": [
      "Paper with my account numbers on it goes out in the bin."
     ],
@@ -1989,7 +1989,7 @@
    "six_s": "Sort",
    "tagline": "30 MINUTES. 1.",
    "objective": "Work the backlog pile into three piles by rule, and get the retention card written.",
-   "why_it_matters": "The middle band, neither obviously permanent nor obviously rubbish, is why this job stalls; a rule applied once settles the whole pile instead of one sheet at a time.",
+   "why_it_matters": "The middle band, neither obviously permanent nor obviously trash, is why this job stalls; a rule applied once settles the whole pile instead of one sheet at a time.",
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [

@@ -370,7 +370,7 @@ EXPECTED_DIAGNOSIS = {
                 "season, and a pair waiting on weather that hasn't come "
                 "is more than that job needs", "cause": "KC-001"},
      {"answer": "Even after the honest four-week test clears out what "
-                "shouldn't be here, one active kid's cleats, wellies and "
+                "shouldn't be here, one active kid's cleats, rain boots and "
                 "school shoes are already more than two pairs",
       "cause": "KC-007"},
     ]},
@@ -488,11 +488,11 @@ EXPECTED_DIAGNOSIS = {
                 "grows a bit worse every season without anyone noticing "
                 "the accumulation", "cause": "RC-017"},
     ]},
-   {"symptom": "A bottle of sun cream from two summers ago is still "
+   {"symptom": "A bottle of sunscreen from two summers ago is still "
                "sitting in the open, low bin a young child is encouraged "
                "to help themselves from.",
     "branches": [
-     {"answer": "Sun cream and insect repellent sitting where a small "
+     {"answer": "Sunscreen and insect repellent sitting where a small "
                 "child can reach and taste them is a safety constraint "
                 "that outranks tidy", "cause": "KC-010"},
      {"answer": "Nobody's reading the dates on these bottles at the "
@@ -520,12 +520,12 @@ EXPECTED_DIAGNOSIS = {
   "first_15": {
    "action": "Tip every glove, mitten and hat from this season's bin "
              "onto the floor and match them into pairs. Put any single "
-             "into the dated singles bag, and check the sun cream and "
+             "into the dated singles bag, and check the sunscreen and "
              "insect repellent for their dates, moving anything expired "
              "out of the low bin.",
    "victory": "Every glove and mitten in the bin is matched into a pair, "
-              "the singles bag carries today's date, and no expired sun "
-              "cream or insect repellent remains in the low bin.",
+              "the singles bag carries today's date, and no expired sunscreen "
+              "or insect repellent remains in the low bin.",
   },
  },
  "Cleaning and Utility Zone": {
@@ -651,8 +651,8 @@ FRICTION_META = [
   "a bag stuffed with unmatched single gloves and mittens sitting on a "
   "shelf beside two neatly matched seasonal bins"),
  ("Seasonal Outdoor Gear", "MDF-014",
-  "SUN CREAM FROM TWO SUMMERS AGO IS STILL IN THE LOW BIN",
-  "an old, faded sun cream bottle sitting in an open low bin at a small "
+  "Sunscreen FROM TWO SUMMERS AGO IS STILL IN THE LOW BIN",
+  "an old, faded sunscreen bottle sitting in an open low bin at a small "
   "child's reach among gloves and hats"),
  ("Seasonal Outdoor Gear", "MDF-015",
   "AN UMBRELLA IS STANDING POINT UP AT FACE HEIGHT",
@@ -732,7 +732,7 @@ MICRO_QUESTS = {
   "Brush the shoulders and collar of each coat with a soft clothing "
   "brush before it goes back on its column.",
   "Vacuum the floor strip under the hooks with the crevice tool, working "
-  "into the corner where it meets the skirting.",
+  "into the corner where it meets the baseboard.",
  ],
  "Bench and Transition Surface": [
   "Wipe the seat's front edge and apron where boot heels leave a dark "
@@ -918,7 +918,7 @@ ACTIONS = [
   "why": "Dried mud on a tray turns to dust that gets walked straight "
          "back inside, and a caked rail underside is where rust starts "
          "unseen.",
-  "inputs": ["a stiff scrubbing brush", "a garden hose or outdoor tap"],
+  "inputs": ["a stiff scrubbing brush", "a garden hose or outdoor faucet"],
   "steps": [
    "Carry the tray outside, tip out the grit, and scrub it with a stiff "
    "brush until the lip runs clean.",
@@ -987,7 +987,7 @@ ACTIONS = [
   "title": "MATCH THE GLOVES AND CHECK THE DATES",
   "minutes": 15, "players": "1", "six_s": "Sort", "from_first_15": True,
   "goal": "Match every glove into a pair, bag the singles with today's "
-          "date, and clear any expired sun cream or repellent from the "
+          "date, and clear any expired sunscreen or repellent from the "
           "low bin.",
   "why": "An unmatched glove and an expired bottle in a low bin both "
          "cost the bin's one job, which is holding what this season "
@@ -996,15 +996,15 @@ ACTIONS = [
   "steps": [
    "Tip every glove, mitten and hat from this season's bin onto the "
    "floor and match them into pairs. Put any single into the dated "
-   "singles bag, and check the sun cream and insect repellent for their "
+   "singles bag, and check the sunscreen and insect repellent for their "
    "dates, moving anything expired out of the low bin."],
   "causes": ["RC-017", "KC-011", "KC-010"],
   "victory": "Every glove and mitten in the bin is matched into a pair, "
-             "the singles bag carries today's date, and no expired sun "
-             "cream or insect repellent remains in the low bin.",
+             "the singles bag carries today's date, and no expired sunscreen "
+             "or insect repellent remains in the low bin.",
   "next": "MDS-005",
   "art": "a hand matching gloves into pairs on the floor beside a dated "
-         "singles bag and an old sun cream bottle set aside"},
+         "singles bag and an old sunscreen bottle set aside"},
 
  {"id": "MDA-010", "zone": "Seasonal Outdoor Gear",
   "title": "CLOSE THE SEASON, LABEL THE MONTH, AND SETTLE THE SINGLES "

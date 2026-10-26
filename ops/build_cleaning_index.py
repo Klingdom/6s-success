@@ -89,6 +89,52 @@ def read_zone(fp: str) -> dict | None:
     }
 
 
+def manual_offer() -> str | None:
+    """The one offer on this page, drawn from the live catalogue.
+
+    The Micro Zone Manual is the book these 762 methods come from, so it is
+    the honest next step for a reader who wants them offline and in order.
+    Price and payment link are read from site/assets/js/data.js, the single
+    source the shop renders from, so this card can never quote a price or a
+    link the shop does not.
+    """
+    import json as _json
+    src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                  encoding="utf-8").read()
+    row = None
+    for line in src.splitlines():
+        line = line.strip().rstrip(",")
+        if '"sku": "MZ-MANUAL"' in line and line.startswith("{"):
+            try:
+                row = _json.loads(line)
+            except ValueError:
+                return None
+    if not row or not row.get("buy") or not row.get("price"):
+        return None
+    price = ("%g" % row["price"])
+    return (
+        '<aside class="clean-offer" aria-label="The Micro Zone Manual">'
+        '<picture><source type="image/webp" srcset="assets/img/w/'
+        'product-manual-420.webp 420w, assets/img/w/product-manual-840.webp 840w"'
+        ' sizes="(max-width:760px) 92vw, 360px">'
+        '<img src="assets/img/product-manual.jpg" width="1280" height="960" '
+        'loading="lazy" decoding="async" alt="Pages of the Micro Zone Manual '
+        'laid out on paper"></picture>'
+        '<div><p class="eyebrow">All of it, in one place</p>'
+        '<h2 class="clean-offer-h">Every method on this page, offline and '
+        'in order</h2>'
+        '<p>The Micro Zone Manual is where these methods come from: all 20 '
+        'rooms and 114 micro zones, each with the exact clean-and-shine '
+        'steps, the products it needs and what done looks like. A field '
+        'guide you can print or keep on a phone in the room.</p>'
+        '<p class="clean-offer-buy"><a class="btn btn-primary" '
+        'data-sku="MZ-MANUAL" href="' + html.escape(row["buy"]) + '" '
+        'rel="nofollow noopener">Get the Manual, $' + price + ' USD</a> '
+        '<span class="clean-offer-note">' + html.escape(row.get("fulfil", "")) +
+        '. Every method stays free on this site either way.</span></p>'
+        '</div></aside>')
+
+
 def main() -> int:
     zones = []
     for fp in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
@@ -155,10 +201,25 @@ def main() -> int:
     for z in zones:
         rooms.setdefault(z["room"], []).append(z)
 
+    manual = manual_offer()
+    if manual is None:
+        print("  the Micro Zone Manual (MZ-MANUAL) has no price and buy link "
+              "in site/assets/js/data.js, so the offer card cannot be drawn "
+              "honestly. Refusing to write the page without it.")
+        return 1
+
+    def rid_of(room):
+        return re.sub(r"[^a-z0-9]+", "-", room.lower()).strip("-")
+
     body = []
     body.append('<main id="main">')
+    # THE PAGE SAT FLUSH AGAINST THE LEFT EDGE OF THE WINDOW until 2026-10-26:
+    # every other page puts its content inside .section > .wrap and this one
+    # wrote straight into <main>, so 762 links ran from x=0 with no margin on
+    # desktop. Same container as the rest of the site now.
+    body.append('<section class="section clean-head"><div class="wrap">')
     body.append('<nav class="crumb" style="font-family:var(--sans);'
-                'font-size:13px;margin:26px 0 0">'
+                'font-size:13px;margin:0 0 14px">'
                 '<a href="index.html">Home</a> / How to clean anything</nav>')
     body.append(f"<h1>{html.escape(TITLE)}</h1>")
     body.append(
@@ -166,33 +227,50 @@ def main() -> int:
         f'cleaning it: {total} of them, grouped by the room and the micro '
         'zone they belong to. Each one links straight to its own method, '
         'which names the product, the order of work and the reason for it.</p>')
-    body.append(
-        '<p>Two rules run through all of it. <b>Work down, not across</b>, '
-        'because whatever comes off a high surface lands on the one below. '
-        'And <b>sort before you shine</b>, because cleaning around something '
-        'that should not be there is cleaning you will do again next week.</p>')
-
+    body.append('<div class="clean-rules">'
+                '<p><b>Work down, not across.</b> Whatever comes off a high '
+                'surface lands on the one below, so the floor is always last.</p>'
+                '<p><b>Sort before you shine.</b> Cleaning around something that '
+                'should not be there is cleaning you will do again next week.</p>'
+                '<p><b>Never mix cleaners.</b> One product at a time, the room '
+                'aired, and gloves on for anything that says so on the label.</p>'
+                '</div>')
     body.append('<nav aria-label="Jump to a room" class="clean-rooms">')
     for room in sorted(rooms):
-        body.append(f'<a href="#{re.sub(r"[^a-z0-9]+", "-", room.lower()).strip("-")}">'
-                    f'{html.escape(room)}</a> ')
-    body.append("</nav>")
-
-    for room in sorted(rooms):
-        rid = re.sub(r"[^a-z0-9]+", "-", room.lower()).strip("-")
         n = sum(len(z["surfaces"]) for z in rooms[room])
-        body.append(f'<h2 id="{rid}">{html.escape(room)} '
-                    f'<span style="font-weight:400;opacity:.7">'
-                    f'({n} surfaces)</span></h2>')
+        body.append(f'<a href="#{rid_of(room)}">{html.escape(room)} '
+                    f'<span class="n">{n}</span></a>')
+    body.append("</nav>")
+    body.append("</div></section>")
+
+    body.append('<section class="section clean-body"><div class="wrap">')
+    ordered = sorted(rooms)
+    for i, room in enumerate(ordered):
+        n = sum(len(z["surfaces"]) for z in rooms[room])
+        body.append(f'<section class="clean-room" aria-labelledby="{rid_of(room)}">')
+        body.append(f'<h2 id="{rid_of(room)}">{html.escape(room)} '
+                    f'<span class="clean-n">{n} surfaces</span></h2>')
+        body.append('<div class="clean-grid">')
         for z in sorted(rooms[room], key=lambda x: x["title"]):
+            k = len(z["surfaces"])
+            body.append('<div class="clean-card">')
             body.append(f'<h3 class="clean-zone">'
                         f'<a href="{z["url"]}">{html.escape(z["title"])}'
                         f'</a></h3>')
+            body.append(f'<p class="clean-count">{k} '
+                        f'{"surface" if k == 1 else "surfaces"}</p>')
             body.append('<ul class="clean-list">')
             for anchor, name in z["surfaces"]:
                 body.append(f'<li><a href="{z["url"]}#{anchor}">'
                             f'{html.escape(name)}</a></li>')
-            body.append("</ul>")
+            body.append("</ul></div>")
+        body.append("</div></section>")
+        # One offer, once, after the third room: far enough in that the
+        # reader has seen what the methods are, early enough that a reader
+        # who wants them all in one place is not made to scroll 700 links.
+        if i == 2:
+            body.append(manual)
+    body.append("</div></section>")
     body.append("</main>")
 
     # CollectionPage, matching kit.html's own established pattern for a

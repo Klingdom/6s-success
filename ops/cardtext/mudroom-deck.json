@@ -107,7 +107,7 @@
     "Compact vacuum with attachments",
     "Floor-material-compatible cleaner",
     "Portable cleaning caddy",
-    "Soft clothing brush (not in this zone's list)"
+    "Soft clothing brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -234,7 +234,7 @@
    ],
    "the_call": {
     "title": "The boots waiting for a winter that has not come",
-    "text": "Everyone has a pair kept for conditions that never quite arrive: the proper wellies, the hiking boots worn twice, the smart shoes for the event you keep not going to. They are expensive and undamaged, which is why you will not decide. So separate the two questions. Keeping the pair is one decision; giving it a slot at the door is another. The rule for the door is simple: a pair earns a slot only if it has been on someone's feet in the last four weeks. Everything else goes to the wardrobe with today's date on a slip of paper tucked in the toe. When the season it was bought for has come and gone with that slip still in place, you have your answer, and it is not a hard one any more."
+    "text": "Everyone has a pair kept for conditions that never quite arrive: the proper rain boots, the hiking boots worn twice, the smart shoes for the event you keep not going to. They are expensive and undamaged, which is why you will not decide. So separate the two questions. Keeping the pair is one decision; giving it a slot at the door is another. The rule for the door is simple: a pair earns a slot only if it has been on someone's feet in the last four weeks. Everything else goes to the wardrobe with today's date on a slip of paper tucked in the toe. When the season it was bought for has come and gone with that slip still in place, you have your answer, and it is not a hard one any more."
    },
    "supplies": [
     "Portable cleaning caddy",
@@ -242,8 +242,8 @@
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
     "Floor-material-compatible cleaner",
-    "Garden hose or outdoor tap (not in this zone's list)",
-    "Stiff scrubbing brush (not in this zone's list)"
+    "Garden hose or outdoor faucet",
+    "Stiff scrubbing brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -311,7 +311,7 @@
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
     "Floor-material-compatible cleaner",
-    "Dish soap for bowls and scoop (not in this zone's list)"
+    "Dish soap for bowls and scoop"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -362,7 +362,7 @@
    "safety_checks": [
     {
      "question": "Poison, choke, or strangle",
-     "text": "Insect repellent and sun cream stored in an open low bin that a young child is encouraged to help themselves from."
+     "text": "Insect repellent and sunscreen stored in an open low bin that a young child is encouraged to help themselves from."
     },
     {
      "question": "Fall, cut, or crush",
@@ -757,7 +757,7 @@
      "root_cause": "KC-001"
     },
     {
-     "answer": "Even after the honest four-week test clears out what shouldn't be here, one active kid's cleats, wellies and school shoes are already more than two pairs",
+     "answer": "Even after the honest four-week test clears out what shouldn't be here, one active kid's cleats, rain boots and school shoes are already more than two pairs",
      "root_cause": "KC-007"
     }
    ],
@@ -1047,17 +1047,17 @@
   },
   {
    "id": "MDF-014",
-   "title": "SUN CREAM FROM TWO SUMMERS AGO IS STILL IN THE LOW BIN",
+   "title": "Sunscreen FROM TWO SUMMERS AGO IS STILL IN THE LOW BIN",
    "type": "FRICTION CARD",
    "room": "Mudroom",
    "zone": "Seasonal Outdoor Gear",
    "difficulty": 1,
    "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
-   "objective": "A bottle of sun cream from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from.",
+   "objective": "A bottle of sunscreen from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from.",
    "prompt": "Why does this happen here?",
    "branches": [
     {
-     "answer": "Sun cream and insect repellent sitting where a small child can reach and taste them is a safety constraint that outranks tidy",
+     "answer": "Sunscreen and insect repellent sitting where a small child can reach and taste them is a safety constraint that outranks tidy",
      "root_cause": "KC-010"
     },
     {
@@ -1081,9 +1081,9 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Friction",
-    "subject": "an old, faded sun cream bottle sitting in an open low bin at a small child's reach among gloves and hats",
+    "subject": "an old, faded sunscreen bottle sitting in an open low bin at a small child's reach among gloves and hats",
     "must_show": [
-     "A bottle of sun cream from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from."
+     "A bottle of sunscreen from two summers ago is still sitting in the open, low bin a young child is encouraged to help themselves from."
     ],
     "must_show_kind": "condition",
     "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
@@ -2121,7 +2121,7 @@
    "players": "1",
    "inputs": [
     "a stiff scrubbing brush",
-    "a garden hose or outdoor tap"
+    "a garden hose or outdoor faucet"
    ],
    "steps": [
     "Carry the tray outside, tip out the grit, and scrub it with a stiff brush until the lip runs clean.",
@@ -2258,7 +2258,7 @@
    "difficulty": 2,
    "six_s": "Sort",
    "tagline": "15 MINUTES. 1.",
-   "objective": "Match every glove into a pair, bag the singles with today's date, and clear any expired sun cream or repellent from the low bin.",
+   "objective": "Match every glove into a pair, bag the singles with today's date, and clear any expired sunscreen or repellent from the low bin.",
    "why_it_matters": "An unmatched glove and an expired bottle in a low bin both cost the bin's one job, which is holding what this season actually needs.",
    "time_target_minutes": 15,
    "players": "1",
@@ -2266,7 +2266,7 @@
     "a dated singles bag"
    ],
    "steps": [
-    "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sun cream and insect repellent for their dates, moving anything expired out of the low bin."
+    "Tip every glove, mitten and hat from this season's bin onto the floor and match them into pairs. Put any single into the dated singles bag, and check the sunscreen and insect repellent for their dates, moving anything expired out of the low bin."
    ],
    "root_causes": [
     "RC-017",
@@ -2282,14 +2282,14 @@
     "zone": "MDZ-005",
     "standard": "MDS-005"
    },
-   "victory_condition": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin.",
+   "victory_condition": "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sunscreen or insect repellent remains in the low bin.",
    "next_card": "MDS-005",
    "source": "content/manual/source/content.json, first_15",
    "art": {
     "framing": "Action",
-    "subject": "a hand matching gloves into pairs on the floor beside a dated singles bag and an old sun cream bottle set aside",
+    "subject": "a hand matching gloves into pairs on the floor beside a dated singles bag and an old sunscreen bottle set aside",
     "must_show": [
-     "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sun cream or insect repellent remains in the low bin."
+     "Every glove and mitten in the bin is matched into a pair, the singles bag carries today's date, and no expired sunscreen or insect repellent remains in the low bin."
     ],
     "must_show_kind": "condition",
     "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
@@ -2603,7 +2603,7 @@
    "micro_quest": [
     "Wipe the rail and the wall behind it in downward strokes, working the gray shoulder-height smear until it lifts.",
     "Brush the shoulders and collar of each coat with a soft clothing brush before it goes back on its column.",
-    "Vacuum the floor strip under the hooks with the crevice tool, working into the corner where it meets the skirting."
+    "Vacuum the floor strip under the hooks with the crevice tool, working into the corner where it meets the baseboard."
    ],
    "related": {
     "zone": "MDZ-001",

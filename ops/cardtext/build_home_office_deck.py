@@ -248,7 +248,7 @@ FRICTION_META = [
   "is packed too tightly to slide a new folder into"),
  ("File Storage", "HOF-009", "A BANK STATEMENT WENT OUT WITH THE TRASH",
   "a wastebasket beside a desk with a bank statement visible among "
-  "ordinary rubbish, no shredder or shred bag anywhere nearby"),
+  "ordinary trash, no shredder or shred bag anywhere nearby"),
 
  ("Bookshelf and Reference Zone", "HOF-010",
   "THE SHELF IS FULL BUT THE BOOK ISN'T THERE",
@@ -536,7 +536,7 @@ ACTIONS = [
   "goal": "Work the backlog pile into three piles by rule, and get the "
           "retention card written.",
   "why": "The middle band, neither obviously permanent nor obviously "
-         "rubbish, is why this job stalls; a rule applied once settles "
+         "trash, is why this job stalls; a rule applied once settles "
          "the whole pile instead of one sheet at a time.",
   "inputs": ["the shred bag", "a scanner if you keep digital copies",
              "an index card for the retention rule"],

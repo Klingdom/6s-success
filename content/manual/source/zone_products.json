@@ -175,6 +175,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Entryway||Coat and Outerwear Zone": [
@@ -353,6 +364,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Entryway||Shoe and Boot Zone": [
@@ -531,6 +553,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00119",
+      "name": "Stiff scrubbing brush",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Scrub caked mud and salt out of a boot tray, a bin, or an outdoor surface",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "each",
+      "safety": "Work outdoors where the run-off goes to ground rather than into a household drain"
     }
   ],
   "Entryway||Entry Console or Bench": [
@@ -709,6 +742,17 @@
       "qty": 12,
       "unit": "cloths",
       "safety": "Wash by use color; avoid fabric softener"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Entryway||Door, Mat, and Immediate Floor": [
@@ -898,6 +942,17 @@
       "qty": 1,
       "unit": "set",
       "safety": "Lay flat with no curled edge, which is a trip hazard at a doorway; shake the outside mat and dry the inside one on the same day"
+    },
+    {
+      "id": "MPL-00002",
+      "name": "Streak-free glass and mirror cleaner",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Clean glass, mirrors, and polished surfaces",
+      "phase": "Shine; Sustain",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Do not spray electronics directly"
     }
   ],
   "Kitchen||Primary Prep Counter": [
@@ -4214,6 +4269,17 @@
       "qty": 4,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00002",
+      "name": "Streak-free glass and mirror cleaner",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Clean glass, mirrors, and polished surfaces",
+      "phase": "Shine; Sustain",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Do not spray electronics directly"
     }
   ],
   "Living Room||Media Center": [
@@ -4392,6 +4458,17 @@
       "qty": 4,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Living Room||Bookshelves and Display": [
@@ -4570,6 +4647,17 @@
       "qty": 1,
       "unit": "pack",
       "safety": "Avoid irreplaceable surfaces"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Living Room||Side Tables and Lighting": [
@@ -4748,6 +4836,17 @@
       "qty": 2,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00002",
+      "name": "Streak-free glass and mirror cleaner",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Clean glass, mirrors, and polished surfaces",
+      "phase": "Shine; Sustain",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Do not spray electronics directly"
     }
   ],
   "Living Room||Floor and Circulation Path": [
@@ -5104,6 +5203,17 @@
       "qty": 2,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Family Room||Toy and Play Zone": [
@@ -5994,6 +6104,28 @@
       "qty": 1,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00112",
+      "name": "Plastic scraper set",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Lift dried glue and finish off a bench top without marking the surface",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Plastic rather than steel so the bench top is not gouged; work flat to the surface"
+    },
+    {
+      "id": "MPL-00007",
+      "name": "Small detail brush set",
+      "family": "Cleaning Tools",
+      "level": "Recommended",
+      "use": "Clean seams, tracks, corners, and hardware",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "set",
+      "safety": "Use surface-safe bristles"
     }
   ],
   "Primary Bedroom||Bed and Bedding Zone": [
@@ -11512,6 +11644,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Install and use according to product instructions"
+    },
+    {
+      "id": "MPL-00002",
+      "name": "Streak-free glass and mirror cleaner",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Clean glass, mirrors, and polished surfaces",
+      "phase": "Shine; Sustain",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Do not spray electronics directly"
     }
   ],
   "Guest Bathroom||Guest Vanity Storage": [
@@ -11690,6 +11833,28 @@
       "qty": 1,
       "unit": "each",
       "safety": "Use appropriate attachment"
+    },
+    {
+      "id": "MPL-00001",
+      "name": "Neutral pH multi-surface cleaner",
+      "family": "Cleaning Supplies",
+      "level": "Core",
+      "use": "Routine cleaning of sealed surfaces",
+      "phase": "Shine; Sustain",
+      "qty": 1,
+      "unit": "bottle",
+      "safety": "Verify surface compatibility; lock around children and pets"
+    },
+    {
+      "id": "MPL-00006",
+      "name": "Color-coded microfiber cloth set",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Wipe, dust, and dry surfaces",
+      "phase": "Shine",
+      "qty": 12,
+      "unit": "cloths",
+      "safety": "Wash by use color; avoid fabric softener"
     }
   ],
   "Guest Bathroom||Shower or Tub": [
@@ -11868,6 +12033,17 @@
       "qty": 2,
       "unit": "each",
       "safety": "Do not overload; anchor wall-mounted or tall systems where required"
+    },
+    {
+      "id": "MPL-00119",
+      "name": "Stiff scrubbing brush",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Scrub caked mud and salt out of a boot tray, a bin, or an outdoor surface",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "each",
+      "safety": "Work outdoors where the run-off goes to ground rather than into a household drain"
     }
   ],
   "Guest Bathroom||Toilet Area": [
@@ -13314,6 +13490,17 @@
       "qty": 1,
       "unit": "pack",
       "safety": "Install and use according to product instructions"
+    },
+    {
+      "id": "MPL-00015",
+      "name": "Reusable or disposable nitrile gloves",
+      "family": "Safety",
+      "level": "Recommended",
+      "use": "Protect hands during cleaning and sorting",
+      "phase": "Safety; Shine",
+      "qty": 1,
+      "unit": "box",
+      "safety": "Use per product label"
     }
   ],
   "Home Office||Primary Desk": [
@@ -17538,6 +17725,17 @@
       "qty": 1,
       "unit": "each",
       "safety": "Work outdoors where the run-off goes to ground rather than into a household drain"
+    },
+    {
+      "id": "MPL-00124",
+      "name": "Garden hose",
+      "family": "Cleaning Tools",
+      "level": "Core",
+      "use": "Float loose grit off outdoor furniture, decking, and pots before any cleaner is applied",
+      "phase": "Shine",
+      "qty": 1,
+      "unit": "each",
+      "safety": "Drain and disconnect before the first frost. Never run a hose across the walking route between the door and the steps."
     }
   ],
   "Mudroom||Pet Station": [

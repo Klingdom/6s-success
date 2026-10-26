@@ -8,7 +8,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. A wide establishing view of the whole Kitchen, in its settled state. This is the room's title card, so it should read as the whole space rather than one corner of it.
 
-SUBJECT, IN FULL. a wide establishing view of a whole modern kitchen in its settled state, hob, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away.
+SUBJECT, IN FULL. a wide establishing view of a whole modern kitchen in its settled state, stovetop, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away.
 
 EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - all seven zones legible in one frame
@@ -55,14 +55,14 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. A close, straight-on view of one specific area of the Kitchen: COOKING ZONE, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
 
-SUBJECT, IN FULL. a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob.
+SUBJECT, IN FULL. a four burner stovetop with one steel frying pan on it, its handle turned inward over the stovetop rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the stovetop.
 
 EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - Oil, salt and pepper within one reach of the burners
   - Utensil crock holding six tools, no more
   - Pot holders on a hook you find without looking
   - Weekly spices at the front of the rack
-  - Clear landing space beside the hob, wide enough for a hot pan
+  - Clear landing space beside the stovetop, wide enough for a hot pan
   - Pan handles turned in, never over the front edge
 
 WHAT THE PICTURE HAS TO COMMUNICATE. The strip of space either side of the burners where cooking happens with your hands busy and heat already on. The idea behind it: HANDS BUSY, HEAT ON. EVERYTHING WITHIN ONE REACH
@@ -140,7 +140,7 @@ EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
   - Stacks capped at three, or pans on edge in a divider
   - Lids in a rack or on a door rail, never loose
   - Baking sheets standing on end
-  - The two nightly pans at the front, nearest the hob
+  - The two nightly pans at the front, nearest the stovetop
   - Heaviest pieces on the cabinet floor
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls. The idea behind it: OUT IN ONE MOTION. BACK IN ONE MOTION
@@ -211,7 +211,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The same kind of area, showing the problem honestly: THE COUNTER IS NEVER CLEAR. Believably lived in, the way a real Tuesday looks, not staged as a disaster and not secretly tidy.
 
-SUBJECT, IN FULL. a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded tea towel, with only a hand's width of bare surface left at the front.
+SUBJECT, IN FULL. a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded dish towel, with only a hand's width of bare surface left at the front.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. I wipe it on Sunday and by Tuesday it is gone again. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
 
@@ -265,7 +265,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The same kind of area, showing the problem honestly: I HUNT FOR THE TURNER WITH THE PAN HOT. Believably lived in, the way a real Tuesday looks, not staged as a disaster and not secretly tidy.
 
-SUBJECT, IN FULL. a crowded utensil crock beside a hob holding more than a dozen tools packed tight, a pan heating on the burner behind it.
+SUBJECT, IN FULL. a crowded utensil crock beside a stovetop holding more than a dozen tools packed tight, a pan heating on the burner behind it.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. The oil is smoking and I am opening the third drawer. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
 
@@ -283,7 +283,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The same kind of area, showing the problem honestly: NOWHERE TO PUT A HOT PAN DOWN. Believably lived in, the way a real Tuesday looks, not staged as a disaster and not secretly tidy.
 
-SUBJECT, IN FULL. the counter beside a hob covered with a chopping board, a jar, an open cookbook and a mug, leaving no clear surface.
+SUBJECT, IN FULL. the counter beside a stovetop covered with a chopping board, a jar, an open cookbook and a mug, leaving no clear surface.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. I stand holding it, looking round my own kitchen, arm aching. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
 
@@ -625,7 +625,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. A single quiet illustration of one idea, WRONG LOCATION, shown through one arrangement of ordinary objects rather than through symbols. One idea, one object group, no room tour.
 
-SUBJECT, IN FULL. a kitchen with a large cooking pan stored in an open cabinet on the far wall, the hob visible in the distance across an empty floor.
+SUBJECT, IN FULL. a kitchen with a large cooking pan stored in an open cabinet on the far wall, the stovetop visible in the distance across an empty floor.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. It is stored somewhere. Just not where it is used. The idea behind it: STRAIGHTEN FIXES THIS ONE
 
@@ -841,7 +841,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The finished state this action produces: COOKING ZONE RESET. The result after the work, never the work itself and never a person doing it.
 
-SUBJECT, IN FULL. a stoneware crock beside a hob holding exactly six cooking tools with space around them, a bottle of oil and a salt pot alongside, and a clear stretch of bare counter to the right.
+SUBJECT, IN FULL. a stoneware crock beside a stovetop holding exactly six cooking tools with space around them, a bottle of oil and a salt pot alongside, and a clear stretch of bare counter to the right.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Put oil, salt and one turner back within a single reach, and clear the landing space. The idea behind it: 15 MINUTES. 1
 
@@ -859,7 +859,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The finished state this action produces: REBUILD THE COOKING ZONE. The result after the work, never the work itself and never a person doing it.
 
-SUBJECT, IN FULL. the wall and counter beside a clean gas hob, two quilted pot holders hanging on a small hook clear of the burners, a spice rack with its front row standing proud, and no cloth or paper anywhere near the heat.
+SUBJECT, IN FULL. the wall and counter beside a clean gas stovetop, two quilted pot holders hanging on a small hook clear of the burners, a spice rack with its front row standing proud, and no cloth or paper anywhere near the heat.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Lay the burner surround out for one reach, and take the fire risk out of it. The idea behind it: 30 MINUTES. 1
 
@@ -1075,7 +1075,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The finished state this action produces: THE HOT ZONE WALK. The result after the work, never the work itself and never a person doing it.
 
-SUBJECT, IN FULL. a calm kitchen seen wide with a knife block on the counter, a clear space around the hob, a closed low cabinet, and no cloth or paper near the burners.
+SUBJECT, IN FULL. a calm kitchen seen wide with a knife block on the counter, a clear space around the stovetop, a closed low cabinet, and no cloth or paper near the burners.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Six checks across the whole kitchen, and an honest answer on each. The idea behind it: 15 MINUTES. 1, AND ONE OTHER PERSON TO DISAGREE WITH YOU
 
@@ -1147,9 +1147,9 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The zone holding its standard, calm and ordinary, with a generous area of visually quiet surface across the lower half of the frame because write-on lines are printed over it: COOKING ZONE STANDARD.
 
-SUBJECT, IN FULL. a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
+SUBJECT, IN FULL. a four burner stovetop with one steel frying pan on it, its handle turned inward over the stovetop rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the stovetop, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
 
-WHAT THE PICTURE HAS TO COMMUNICATE. Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the hob at all times. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
+WHAT THE PICTURE HAS TO COMMUNICATE. Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the stovetop at all times. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
 
 HOW THIS IMAGE WILL BE JUDGED. The lower half of the frame must be visually quiet enough to print three blank lines over it and still read.
 
@@ -1273,7 +1273,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The Kitchen during a specific moment that tests it: WEEKNIGHT DINNER, FORTY MINUTES. The pressure should be visible in the objects.
 
-SUBJECT, IN FULL. a hob with two pans going and a clear stretch of counter beside them, steam rising, evening light through a window.
+SUBJECT, IN FULL. a stovetop with two pans going and a clear stretch of counter beside them, steam rising, evening light through a window.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Everyone is hungry, nothing is prepped, and it is a school night. The idea behind it: THE DAY THAT TESTS IT
 
@@ -1345,7 +1345,7 @@ Photorealistic interior photograph, warm natural window light, eye-level ~40mm l
 
 SCENE. The Kitchen during a specific moment that tests it: GUESTS IN THE KITCHEN. The pressure should be visible in the objects.
 
-SUBJECT, IN FULL. an open kitchen with a clear walkway past the hob and an open cabinet showing plainly separated glasses, plates and bowls.
+SUBJECT, IN FULL. an open kitchen with a clear walkway past the stovetop and an open cabinet showing plainly separated glasses, plates and bowls.
 
 WHAT THE PICTURE HAS TO COMMUNICATE. Three people and one work triangle, and none of them live here. The idea behind it: THE DAY THAT TESTS IT
 

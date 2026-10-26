@@ -94,7 +94,7 @@
     },
     {
      "question": "Water and electricity",
-     "text": "Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand's width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the tap."
+     "text": "Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand's width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the faucet."
     }
    ],
    "the_call": {
@@ -443,7 +443,8 @@
     "Color-coded microfiber cloth set",
     "Neutral pH multi-surface cleaner",
     "Portable cleaning caddy",
-    "Floor-material-compatible cleaner"
+    "Floor-material-compatible cleaner",
+    "Reusable or disposable nitrile gloves"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -2904,7 +2905,7 @@
    "zone": null,
    "difficulty": 3,
    "tagline": "THE DAY THAT TESTS IT.",
-   "objective": "The temperature drops overnight and every wool jumper and hand wash item in the house needs washing and drying at once.",
+   "objective": "The temperature drops overnight and every wool sweater and hand wash item in the house needs washing and drying at once.",
    "tests_zones": [
     "LRZ-002",
     "LRZ-005"
@@ -2921,9 +2922,9 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a row of wool jumpers laid flat to dry across a drying rack, a bottle of wool safe detergent standing on a nearby shelf",
+    "subject": "a row of wool sweaters laid flat to dry across a drying rack, a bottle of wool safe detergent standing on a nearby shelf",
     "must_show": [
-     "The temperature drops overnight and every wool jumper and hand wash item in the house needs washing and drying at once."
+     "The temperature drops overnight and every wool sweater and hand wash item in the house needs washing and drying at once."
     ],
     "must_show_kind": "condition",
     "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."

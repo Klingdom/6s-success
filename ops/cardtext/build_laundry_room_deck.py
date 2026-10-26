@@ -871,7 +871,7 @@ EVENTS = [
   "folding counter, none of them tipped over or spilling onto the "
   "floor"),
  ("LRE-006", "THE COLD SNAP WOOL SURGE",
-  "The temperature drops overnight and every wool jumper and hand wash "
+  "The temperature drops overnight and every wool sweater and hand wash "
   "item in the house needs washing and drying at once.",
   ["LRZ-002", "LRZ-005"],
   "A wool safe detergent was already on the shelf rather than needing an "
@@ -880,7 +880,7 @@ EVENTS = [
   "If there was no wool safe detergent in the house, or the rack was "
   "already full of things that should have come down days ago, draw "
   "LRA-003 or LRA-009.",
-  "a row of wool jumpers laid flat to dry across a drying rack, a "
+  "a row of wool sweaters laid flat to dry across a drying rack, a "
   "bottle of wool safe detergent standing on a nearby shelf"),
 ]
 

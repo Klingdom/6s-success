@@ -756,7 +756,7 @@ MICRO_QUESTS = {
  "Toy Storage Zone": [
   "Wipe each bin's outer face and its taped photo label with a damp "
   "cloth, going gently so the picture doesn't peel.",
-  "Vacuum tight into the skirting corners and carpet edges where small "
+  "Vacuum tight into the baseboard corners and carpet edges where small "
   "parts and dust migrate out of sight.",
   "Wash the hard plastic blocks and figures in warm soapy water and "
   "spread them on a towel to dry fully.",
@@ -1003,7 +1003,7 @@ ACTIONS = [
          "exactly where damp and mold get a head start, and reaching "
          "it at all takes clearing everything else out of the way "
          "first.",
-  "inputs": ["a cloth", "a torch", "a calendar reminder"],
+  "inputs": ["a cloth", "a flashlight", "a calendar reminder"],
   "steps": [
    "Empty the closet floor, rod and top shelf completely onto the "
    "bed.",
@@ -1017,7 +1017,7 @@ ACTIONS = [
              "date is set for the next check.",
   "next": "KBA-007",
   "art": "a closet emptied completely, a hand wiping the bare back wall "
-         "with a torch checking the corner behind where boxes sat"},
+         "with a flashlight checking the corner behind where boxes sat"},
 
  {"id": "KBA-009", "zone": "Dresser Drawers",
   "title": "EMPTY THE JAMMED DRAWER AND CUT THE COUNT",

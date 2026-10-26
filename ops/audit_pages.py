@@ -296,7 +296,10 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
          if 'class="video-play"' not in html[max(0, start - 200):start]
          # An article's book figure (ops/article_figures.py) sits after the
          # opening section, hundreds of words down: lazy is right for it.
-         and 'class="article-figure"' not in html[max(0, start - 700):start]),
+         and 'class="article-figure"' not in html[max(0, start - 700):start]
+         # The cleaning index's one offer card sits after its third room,
+         # about 3,000 pixels down on a desktop: lazy is right there too.
+         and 'class="clean-offer"' not in html[max(0, start - 900):start]),
         None)
     if hero_candidate and 'loading="lazy"' in hero_candidate and "eager" not in hero_candidate:
         add("hero-lazy", "first image is lazy loaded")

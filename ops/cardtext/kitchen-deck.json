@@ -60,7 +60,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Room",
-    "subject": "a wide establishing view of a whole modern kitchen in its settled state, hob, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away",
+    "subject": "a wide establishing view of a whole modern kitchen in its settled state, stovetop, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away",
     "must_show": [
      "all seven zones legible in one frame"
     ],
@@ -149,19 +149,19 @@
     "Utensil crock holding six tools, no more",
     "Pot holders on a hook you find without looking",
     "Weekly spices at the front of the rack",
-    "Clear landing space beside the hob, wide enough for a hot pan",
+    "Clear landing space beside the stovetop, wide enough for a hot pan",
     "Pan handles turned in, never over the front edge"
    ],
-   "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
+   "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the stovetop wide enough to set down a hot pan.",
    "session": "45-75 min",
    "safety_checks": [
     {
      "question": "Burn or fire",
-     "text": "Oil left heating unattended, and a tea towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts."
+     "text": "Oil left heating unattended, and a dish towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts."
     },
     {
      "question": "Fall, cut, or crush",
-     "text": "A pan handle turned out over the front edge of the hob is at exactly the height a toddler grabs, and it comes down with the contents."
+     "text": "A pan handle turned out over the front edge of the stovetop is at exactly the height a toddler grabs, and it comes down with the contents."
     }
    ],
    "the_call": {
@@ -188,13 +188,13 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Zone",
-    "subject": "a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob",
+    "subject": "a four burner stovetop with one steel frying pan on it, its handle turned inward over the stovetop rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the stovetop",
     "must_show": [
      "Oil, salt and pepper within one reach of the burners",
      "Utensil crock holding six tools, no more",
      "Pot holders on a hook you find without looking",
      "Weekly spices at the front of the rack",
-     "Clear landing space beside the hob, wide enough for a hot pan",
+     "Clear landing space beside the stovetop, wide enough for a hot pan",
      "Pan handles turned in, never over the front edge"
     ],
     "must_show_kind": "objects",
@@ -351,10 +351,10 @@
     "Stacks capped at three, or pans on edge in a divider",
     "Lids in a rack or on a door rail, never loose",
     "Baking sheets standing on end",
-    "The two nightly pans at the front, nearest the hob",
+    "The two nightly pans at the front, nearest the stovetop",
     "Heaviest pieces on the cabinet floor"
    ],
-   "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.",
+   "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the stovetop. Nothing has to come out to reach anything else.",
    "session": "45-75 min",
    "safety_checks": [
     {
@@ -397,7 +397,7 @@
      "Stacks capped at three, or pans on edge in a divider",
      "Lids in a rack or on a door rail, never loose",
      "Baking sheets standing on end",
-     "The two nightly pans at the front, nearest the hob",
+     "The two nightly pans at the front, nearest the stovetop",
      "Heaviest pieces on the cabinet floor"
     ],
     "must_show_kind": "objects",
@@ -436,7 +436,7 @@
    ],
    "the_call": {
     "title": "The drawer everyone calls the junk drawer",
-    "text": "A kitchen is allowed one drawer of small useful things, but it has to be a named drawer with a category and a divider, not an amnesty. Write its list: tape, string, a torch, batteries, a working pen, the takeaway menus you actually order from. Everything in there must be something you would come to the kitchen looking for. Then take an empty box, and anything you cannot name a use for while you are holding it goes in the box. Date the box, put it on a shelf, and if nothing has been pulled out of it by the end of the season it leaves unopened. The screws in the envelope and the manual for the dead printer are not kitchen items, and they are the reason the drawer no longer opens."
+    "text": "A kitchen is allowed one drawer of small useful things, but it has to be a named drawer with a category and a divider, not an amnesty. Write its list: tape, string, a flashlight, batteries, a working pen, the takeout menus you actually order from. Everything in there must be something you would come to the kitchen looking for. Then take an empty box, and anything you cannot name a use for while you are holding it goes in the box. Date the box, put it on a shelf, and if nothing has been pulled out of it by the end of the season it leaves unopened. The screws in the envelope and the manual for the dead printer are not kitchen items, and they are the reason the drawer no longer opens."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -573,7 +573,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Friction",
-    "subject": "a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded tea towel, with only a hand's width of bare surface left at the front",
+    "subject": "a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded dish towel, with only a hand's width of bare surface left at the front",
     "must_show": [
      "I wipe it on Sunday and by Tuesday it is gone again."
     ],
@@ -705,7 +705,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Friction",
-    "subject": "a crowded utensil crock beside a hob holding more than a dozen tools packed tight, a pan heating on the burner behind it",
+    "subject": "a crowded utensil crock beside a stovetop holding more than a dozen tools packed tight, a pan heating on the burner behind it",
     "must_show": [
      "The oil is smoking and I am opening the third drawer."
     ],
@@ -749,7 +749,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Friction",
-    "subject": "the counter beside a hob covered with a chopping board, a jar, an open cookbook and a mug, leaving no clear surface",
+    "subject": "the counter beside a stovetop covered with a chopping board, a jar, an open cookbook and a mug, leaving no clear surface",
     "must_show": [
      "I stand holding it, looking round my own kitchen, arm aching."
     ],
@@ -1169,7 +1169,7 @@
      "root_cause": "KC-010"
     },
     {
-     "answer": "It is nowhere near the hob it is used at",
+     "answer": "It is nowhere near the stovetop it is used at",
      "root_cause": "KC-003"
     },
     {
@@ -1573,7 +1573,7 @@
    "source": "hand authored, from the product root cause model",
    "art": {
     "framing": "Root Cause",
-    "subject": "a kitchen with a large cooking pan stored in an open cabinet on the far wall, the hob visible in the distance across an empty floor",
+    "subject": "a kitchen with a large cooking pan stored in an open cabinet on the far wall, the stovetop visible in the distance across an empty floor",
     "must_show": [
      "It is stored somewhere. Just not where it is used."
     ],
@@ -2039,7 +2039,7 @@
     "Empty the utensil crock out onto the counter.",
     "Put back six tools, each one you actually used this month. The rest go to a drawer or leave the kitchen.",
     "Oil, salt and pepper within one reach of the burner you use most.",
-    "Clear the landing space beside the hob down to bare counter, wide enough to set a hot pan on.",
+    "Clear the landing space beside the stovetop down to bare counter, wide enough to set a hot pan on.",
     "Turn every pan handle in, so nothing sticks out over the front edge."
    ],
    "root_causes": [
@@ -2059,7 +2059,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a stoneware crock beside a hob holding exactly six cooking tools with space around them, a bottle of oil and a salt pot alongside, and a clear stretch of bare counter to the right",
+    "subject": "a stoneware crock beside a stovetop holding exactly six cooking tools with space around them, a bottle of oil and a salt pot alongside, and a clear stretch of bare counter to the right",
     "must_show": [
      "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down."
     ],
@@ -2077,7 +2077,7 @@
    "six_s": "Safety",
    "tagline": "30 MINUTES. 1.",
    "objective": "Lay the burner surround out for one reach, and take the fire risk out of it.",
-   "why_it_matters": "Oil left heating and a tea towel stored within reach of a live burner are the two ways a kitchen fire actually starts.",
+   "why_it_matters": "Oil left heating and a dish towel stored within reach of a live burner are the two ways a kitchen fire actually starts.",
    "time_target_minutes": 30,
    "players": "1",
    "inputs": [
@@ -2088,8 +2088,8 @@
    "steps": [
     "Mount a hook for the pot holders within a hand's reach of the burners and clear of the heat, so you never hunt for them with a hot pan.",
     "Pull every spice jar. Anything not used in a year leaves. The ones you reach for weekly go to the front row.",
-    "Move the paper towel roll, the tea towels and any packaging off the burner side entirely.",
-    "Degrease the surround and the hob, working top down so what you loosen falls onto surfaces you have not cleaned yet.",
+    "Move the paper towel roll, the dish towels and any packaging off the burner side entirely.",
+    "Degrease the surround and the stovetop, working top down so what you loosen falls onto surfaces you have not cleaned yet.",
     "After cleaning, light every burner once and watch for an even blue ring. A lazy yellow flame, or a burner that clicks and will not catch, is a call to a registered engineer and not a thing to adjust yourself."
    ],
    "root_causes": [
@@ -2109,7 +2109,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "the wall and counter beside a clean gas hob, two quilted pot holders hanging on a small hook clear of the burners, a spice rack with its front row standing proud, and no cloth or paper anywhere near the heat",
+    "subject": "the wall and counter beside a clean gas stovetop, two quilted pot holders hanging on a small hook clear of the burners, a spice rack with its front row standing proud, and no cloth or paper anywhere near the heat",
     "must_show": [
      "Pot holders found without looking, weekly spices in the front row, nothing that burns within reach of a burner, and every burner lighting evenly."
     ],
@@ -2139,7 +2139,7 @@
     "Wipe the basin dry, and wipe the drain flange, which is the part nobody cleans and everybody smells.",
     "One brush and one sponge, standing where they drain. Everything else comes off the surround.",
     "Take out of the drying rack anything that is already dry.",
-    "Wipe the tap and the surround, and dry them so no water sits."
+    "Wipe the faucet and the surround, and dry them so no water sits."
    ],
    "root_causes": [
     "KC-009",
@@ -2337,7 +2337,7 @@
    ],
    "steps": [
     "Take out every pan and every lid.",
-    "Put back the two you cook with nightly, at the front, in the cabinet nearest the hob.",
+    "Put back the two you cook with nightly, at the front, in the cabinet nearest the stovetop.",
     "Cap every stack at three, or stand pans on edge if you have a divider.",
     "Stand the baking sheets on end rather than laying them flat.",
     "Whatever is still on the floor when you finish has not earned the cabinet. Decide about it now, not next week."
@@ -2650,7 +2650,7 @@
    "steps": [
     "Sink empty, basin dry.",
     "Prep run clear to bare counter, board down.",
-    "Landing space beside the hob clear.",
+    "Landing space beside the stovetop clear.",
     "Anything that does not live in the kitchen leaves the kitchen.",
     "Press start on the dishwasher. That is the trigger, and it is the finish line."
    ],
@@ -2694,7 +2694,7 @@
    "steps": [
     "Blades. Every blade sheathed, in a block, or on a strip. None loose in a drawer, none blade up in a drying rack, none under suds in a full sink.",
     "Weight. Nothing heavy above shoulder height. No glass above head height.",
-    "Heat. Tea towels, paper roll and packaging out of reach of any burner, and the toaster clear of the cabinet above it.",
+    "Heat. Dish towels, paper roll and packaging out of reach of any burner, and the toaster clear of the cabinet above it.",
     "Water and electricity. No kettle, socket, or charging phone within splash distance of the basin.",
     "Chemicals. Bleach stored apart from any acidic or ammonia cleaner, everything labeled, and anything hazardous out of a child's reach.",
     "Raw above ready to eat. Nothing raw stored above anything that will not be cooked again."
@@ -2714,7 +2714,7 @@
    "source": "hand authored, steps grounded in the Manual passes",
    "art": {
     "framing": "Action",
-    "subject": "a calm kitchen seen wide with a knife block on the counter, a clear space around the hob, a closed low cabinet, and no cloth or paper near the burners",
+    "subject": "a calm kitchen seen wide with a knife block on the counter, a clear space around the stovetop, a closed low cabinet, and no cloth or paper near the burners",
     "must_show": [
      "Six checks done, and you can say out loud which ones failed. Anything involving gas, a scorch mark, a frayed cord, or a burner that will not light is a call to a qualified person and not a job for this card."
     ],
@@ -2864,7 +2864,7 @@
    "difficulty": 1,
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
-   "objective": "Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the hob at all times.",
+   "objective": "Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the stovetop at all times.",
    "trigger": "Every time you put a pan on to heat.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
@@ -2873,7 +2873,7 @@
    ],
    "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
    "micro_quest": [
-    "Turn every pan handle inward over the hob and move the tea towel and the paper roll off the burner side.",
+    "Turn every pan handle inward over the stovetop and move the dish towel and the paper roll off the burner side.",
     "Take the tools out of the crock, put back only the ones your hand actually reaches for, and box the rest.",
     "Turn the spice rack's back row to the front so every label reads without shuffling a jar."
    ],
@@ -2887,7 +2887,7 @@
    "source": "content/manual/source/content.json",
    "art": {
     "framing": "Standard",
-    "subject": "a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "subject": "a four burner stovetop with one steel frying pan on it, its handle turned inward over the stovetop rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the stovetop, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
     "must_show": [
      "the zone holding its standard"
     ],
@@ -3153,7 +3153,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a hob with two pans going and a clear stretch of counter beside them, steam rising, evening light through a window",
+    "subject": "a stovetop with two pans going and a clear stretch of counter beside them, steam rising, evening light through a window",
     "must_show": [
      "Everyone is hungry, nothing is prepped, and it is a school night."
     ],
@@ -3271,7 +3271,7 @@
     "KZ-004",
     "KZ-006"
    ],
-   "held_if": "A guest found a glass without asking, and nobody had to cross the hob to get anywhere.",
+   "held_if": "A guest found a glass without asking, and nobody had to cross the stovetop to get anywhere.",
    "if_it_failed": "If they had to ask, the cabinet is not readable from outside. Draw KA-007, then name the drawers with KA-012.",
    "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
    "related": {
@@ -3283,7 +3283,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "an open kitchen with a clear walkway past the hob and an open cabinet showing plainly separated glasses, plates and bowls",
+    "subject": "an open kitchen with a clear walkway past the stovetop and an open cabinet showing plainly separated glasses, plates and bowls",
     "must_show": [
      "Three people and one work triangle, and none of them live here."
     ],

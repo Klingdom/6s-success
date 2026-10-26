@@ -107,7 +107,7 @@
     "Color-coded microfiber cloth set",
     "Compact vacuum with attachments",
     "Portable cleaning caddy",
-    "Small detail brush (not in this zone's kit)"
+    "Small detail brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -175,7 +175,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Portable cleaning caddy",
-    "Small detail brush (not in this zone's kit)"
+    "Small detail brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -235,7 +235,7 @@
    ],
    "the_call": {
     "title": "The worn out pair you keep for the garden",
-    "text": "Everyone has a pair with the tread rubbed smooth that survives on the grounds that it is fine for mucky jobs. Count them honestly and there are usually three such pairs and about one muddy job a year. The rule is that the sole decides, not the memory. Turn the shoe over. If the tread has gone smooth or the heel has worn through on the outer edge, that shoe is no longer safe on a wet step or a slick pavement, which means it is not gardening footwear, it is rubbish with sentimental value attached. Keep exactly one dirty-job pair per person and store it where the dirty jobs happen, not at the front door. The pair you would be embarrassed to be seen in is not a spare. It is a decision you already made and have not carried out."
+    "text": "Everyone has a pair with the tread rubbed smooth that survives on the grounds that it is fine for mucky jobs. Count them honestly and there are usually three such pairs and about one muddy job a year. The rule is that the sole decides, not the memory. Turn the shoe over. If the tread has gone smooth or the heel has worn through on the outer edge, that shoe is no longer safe on a wet step or a slick pavement, which means it is not gardening footwear, it is trash with sentimental value attached. Keep exactly one dirty-job pair per person and store it where the dirty jobs happen, not at the front door. The pair you would be embarrassed to be seen in is not a spare. It is a decision you already made and have not carried out."
    },
    "supplies": [
     "Floor-material-compatible cleaner",
@@ -243,7 +243,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Portable cleaning caddy",
-    "Stiff dry brush (not in this zone's kit)"
+    "Stiff dry brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -303,7 +303,7 @@
    ],
    "the_call": {
     "title": "What the drawer is for",
-    "text": "This drawer becomes the second junk drawer within a month of being emptied. It happens every time, because it is the nearest place to set down something you do not want to carry any further. The decision being avoided is not what to throw away. It is admitting the drawer needs a job at all. The rule: this drawer serves the door and nothing else. One test question per item, would you need this while wearing your shoes, either on the way out or in the first ten seconds back in. Dog lead, yes. Sun cream, yes. Spare car charger, yes. The screwdriver, the birthday candles and the case for a phone you no longer own all fail, and they fail even though they genuinely have nowhere better to live. Find them somewhere better today, in another room, with a name on it. If you do not, they will be back in this drawer by the weekend and so will four of their friends."
+    "text": "This drawer becomes the second junk drawer within a month of being emptied. It happens every time, because it is the nearest place to set down something you do not want to carry any further. The decision being avoided is not what to throw away. It is admitting the drawer needs a job at all. The rule: this drawer serves the door and nothing else. One test question per item, would you need this while wearing your shoes, either on the way out or in the first ten seconds back in. Dog leash, yes. Sunscreen, yes. Spare car charger, yes. The screwdriver, the birthday candles and the case for a phone you no longer own all fail, and they fail even though they genuinely have nowhere better to live. Find them somewhere better today, in another room, with a name on it. If you do not, they will be back in this drawer by the weekend and so will four of their friends."
    },
    "supplies": [
     "Neutral pH multi-surface cleaner",
@@ -311,7 +311,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Portable cleaning caddy",
-    "Small detail brush (not in this zone's kit)"
+    "Small detail brush"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -379,7 +379,7 @@
     "Compact vacuum with attachments",
     "Color-coded microfiber cloth set",
     "Portable cleaning caddy",
-    "Streak-free glass and mirror cleaner (if the door has a glass panel; not in this zone's kit)"
+    "Streak-free glass and mirror cleaner (if the door has a glass panel)"
    ],
    "draw_next": [
     "the three FRICTION cards for this zone"
@@ -1081,7 +1081,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "an entryway console with a phone charger, a dog lead and a single loose sock lying on it, none of them near any drawer or hook",
+    "subject": "an entryway console with a phone charger, a dog leash and a single loose sock lying on it, none of them near any drawer or hook",
     "must_show": [
      "The thing has no single defined destination, so it lands wherever the hand opens."
     ],
@@ -1322,7 +1322,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "a front hallway floor with a pair of shoes, a school bag and a dog lead all left in the same spot, nobody's coat hook nearby claimed",
+    "subject": "a front hallway floor with a pair of shoes, a school bag and a dog leash all left in the same spot, nobody's coat hook nearby claimed",
     "must_show": [
      "Nobody specific is responsible for resetting this zone, so upkeep depends on whoever notices first."
     ],
@@ -1421,7 +1421,7 @@
    "source": "ops/root_causes.py, the shared vocabulary",
    "art": {
     "framing": "Root Cause",
-    "subject": "the corner of a boot tray pushed hard against a wall, a build-up of dried grit visible in the angle where it meets the skirting board",
+    "subject": "the corner of a boot tray pushed hard against a wall, a build-up of dried grit visible in the angle where it meets the baseboard",
     "must_show": [
      "Reaching the surface to clean it costs more effort than the rest of the zone combined, so it gets skipped."
     ],
@@ -2215,7 +2215,7 @@
    "six_s": "Standardize",
    "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
    "objective": "Three items on the top, an empty seat, and every drawer section holding one named category.",
-   "trigger": "You already open this drawer to put the dog lead back after a walk. While it is open, glance at the top and take it back to three.",
+   "trigger": "You already open this drawer to put the dog leash back after a walk. While it is open, glance at the top and take it back to three.",
    "write_on": [
     "Who agreed this: ______________  and  ______________",
     "Date: ____ / ____ / ______",
@@ -2343,7 +2343,7 @@
    "source": "hand authored, not in the Manual",
    "art": {
     "framing": "Event",
-    "subject": "a front doormat holding two pairs of muddy wet boots set down on it, a damp dog lead hanging on a hook beside the door, water beading on the mat's surface",
+    "subject": "a front doormat holding two pairs of muddy wet boots set down on it, a damp dog leash hanging on a hook beside the door, water beading on the mat's surface",
     "must_show": [
      "A soaked dog, muddy leads and two pairs of wet boots come through the door at once."
     ],

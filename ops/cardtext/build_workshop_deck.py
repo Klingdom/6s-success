@@ -505,7 +505,7 @@ EXPECTED_DIAGNOSIS = {
       "cause": "KC-010"
      },
      {
-      "answer": "The rule is the rag goes in the can right at the tap when you wash the brush, but tonight the brush got washed somewhere else",
+      "answer": "The rule is the rag goes in the can right at the faucet when you wash the brush, but tonight the brush got washed somewhere else",
       "cause": "KC-009"
      },
      {

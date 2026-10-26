@@ -526,7 +526,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: A small shared surface for whatever is happening right now, and nothing that is not.
 
-Show it BEFORE any work, in the honest state described here: Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeaway menus all go now.
+Show it BEFORE any work, in the honest state described here: Clear the whole top onto the floor and put back only what somebody used in the last two days. The candle burned down to the foil, the coasters nobody uses because they sit on the far corner, the three-month-old magazines and the takeout menus all go now.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -2122,7 +2122,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Somewhere a guest can unpack, so they stop living out of a half open suitcase on the floor.
 
-Show it BEFORE any work, in the honest state described here: This is where the household's undecided things hide behind a closed front: off-season jumpers, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The jumpers go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.
+Show it BEFORE any work, in the honest state described here: This is where the household's undecided things hide behind a closed front: off-season sweaters, a bin of cables, wrapping paper and ribbon, a bag of outgrown baby clothes waiting on a decision about a second child. The sweaters go to your own wardrobe, the cables to the drawer that already holds cables, and the baby clothes get the decision today rather than another year of storage.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -3425,7 +3425,7 @@ A photograph of this exact subject: It gives a visitor somewhere to wash their h
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named guest-bathroom--guest-vanity-counter--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.
+Show it AFTER, in exactly this finished state: A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the faucet, no dried soap ring under the dispenser.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
@@ -4138,7 +4138,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Dry the few things a hot drum would ruin, and get them off the rack the moment they are dry.
 
-Show it BEFORE any work, in the honest state described here: Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool jumper that has been draped over the end rung since spring either goes away properly or leaves the house.
+Show it BEFORE any work, in the honest state described here: Strip the rack completely. Anything still damp goes back on, anything dry goes to its drawer right now, and the wool sweater that has been draped over the end rung since spring either goes away properly or leaves the house.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -5650,7 +5650,7 @@ surface, showroom emptiness.
 ```
 A photograph of this exact subject: Holds the small weather items the family grabs on the way out, for the season you are actually in.
 
-Show it BEFORE any work, in the honest state described here: Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sun cream and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label.
+Show it BEFORE any work, in the honest state described here: Tip every glove, mitten and hat onto the floor and match them into pairs. Put the singles in one bag, and read the dates on the sunscreen and the insect repellent, because a bottle opened two summers ago is no longer doing the job printed on the label.
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
@@ -6449,7 +6449,7 @@ A photograph of this exact subject: The treads, runner, handrail and lighting th
 
 MATCHED PAIR: identical camera position, height, framing, lens and light to the before image named stair-landing--stair-and-floor-path--before.jpg. Only the state of the zone changes. This is the whole point of the pair, so if the angle moves the image is unusable.
 
-Show it AFTER, in exactly this finished state: Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog lead hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.
+Show it AFTER, in exactly this finished state: Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog leash hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 

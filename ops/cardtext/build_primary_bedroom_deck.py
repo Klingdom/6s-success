@@ -618,7 +618,7 @@ MICRO_QUESTS = {
   "Tip out the drawer's divided sections, vacuum the grit from the "
   "corners, then wipe the base and both runners.",
   "Follow the lamp cord down to the floor and check nothing is snagged "
-  "along the skirting behind the leg.",
+  "along the baseboard behind the leg.",
  ],
  "Nightstand Right": [
   "Lift the framed photo, dust the back and stand, then mist glass "
