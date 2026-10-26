@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: closed the fifth deploy-gap citation drift and widened the gate for it, rotated the oversized nightly log
+
+**Did:** Attached per Step 0 (checkout arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout -B main origin/main`, ff-only onto `b014f8a15`, clean). Backlog sections 2-6 confirmed exhausted (every row Done, Archived, or Phil-gated), consistent with sections 47-49's own recent closures. Found STATUS.md's "Currently Deployed Build"/"Repository HEAD Build" paragraph still citing the stale build `84c234bd3857ed4c` and a false 4-commit/2-material gap, even though a same-day 05:4x PM check-in had already named this exact fifth section as a known hole in `status_deploy_verdict_problem()`'s section map and left it unfixed. Re-derived directly (`site/build-id.txt`, `ops/deploy-verdict.json`, `deploy_gap_material_commits` against current HEAD) and confirmed the real gap is zero. Fixed the prose and widened the gate itself to parse this fifth section, rather than deferring a third time. Also rotated `ops/NIGHTLY-LOG.md` (249 entries, 734565 bytes, past its 14-day retention window) into the archive, and regenerated the command deck.
+
+**Verified:** `status_deploy_verdict_problem()` run directly against the real file (clean) and against a planted corrupted copy (fires, names the right section). `ops/tests/test_gate_status_deploy_verdict_current.py` widened with 2 new cases, 13/13 passing. `py_compile` clean on both edited files. `rotate_nightly_log.py --check` CLEAN after `--apply`; `gate_nightly_log_ordering`/`gate_nightly_log_no_duplicate_entries` both clean. A full `preflight.py` run was started but this cycle's own copy was redundant: a concurrent cycle (15:1x slot) independently completed one cleanly (0 FAIL through the documented `gate_tests` sandbox hang) at essentially the same HEAD, so this cycle's duplicate was killed rather than waited out twice. 10 GitHub issues re-pulled live, unchanged, all decision/blocked-on-art. No mail credential in this sandbox, reported unchecked.
+
+**Went well:** the gate widening closes a gap two prior cycles had each named and left open; a concurrent session independently found the same STATUS.md defect minutes later, compared commits, and adopted this one as the more thorough fix rather than duplicating or fighting it, exactly as Step 8 asks.
+
+**Did not go well:** running a second full `preflight.py` cold was wasted effort once a concurrent clean pass existed; a planning fork spent 200 turns and 314k tokens without returning useful output.
+
+**Changing next cycle:** check for a recent clean `cycle_signal.py` record before starting a redundant full `preflight.py` run of my own.
+
+**Next:** backlog genuinely exhausted (two independent cycles today). Remaining work is re-measurement drift as it recurs, plus Phil's own next action in `OWNER-ACTIONS.md`/issue #42.
+
 ## 2026-10-26, PM check-in (15:1x slot, 30-minute triage, collided with a concurrent cycle on the same fix, backed off, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), re-pulled fresh via the API this cycle, unchanged. Cold-read ledger independently re-confirmed 296/296, 0 stale.
