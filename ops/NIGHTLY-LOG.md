@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (10:4x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
+
+Attached per Step 0 (shallow detached checkout, fetch, `fetch --unshallow`, `checkout main`, ff-only merge of 546 commits onto `eac061391`, tree clean). Previous work (the 10:1x PM cycle's backlog rotation and the scheduled operator's full re-verification) confirmed finished, not cited: re-fetched a second time immediately before writing this entry, still `7cb64bc99`, nothing landed concurrently. `check_urls.py` 213/213, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale. `rotate_backlog_closed.py --check` and `rotate_backlog_done_items.py --check` both clean, confirming the 10:1x rotation held. All 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art`, none from Phil.
+
+**`preflight.py` run this cycle is reported unchecked, not passing:** started fresh in the background with a 180s timeout; it was killed at that timeout (exit 143) and stdout was fully buffered, so no gate-level output survived the kill, not even the usual pre-hang tally. Unlike every recent cycle's entry, this one cannot say "0 FAIL through every gate before the hang" because it never actually read that output; it can only say the individual checks above (`check_urls`, `fix_dashes`, `cold_read_ledger`, both rotation checks) ran directly and came back clean. Flagging this rather than copying the usual clean-preflight line from memory.
+
+Checked `ops/last-owner-notification.json`: last deliberate push 2026-10-24T16:1x UTC (issue #42), 48h floor runs to roughly 2026-10-26T16:1x UTC, not yet elapsed, nothing material changed, so correctly withheld another push this cycle.
+
+No new defect found small enough to close in this slot; this cycle landed at :43, the operator's own slot, so shipping now rather than starting anything further.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, PM check-in (10:1x slot, 30-minute triage, previous work confirmed finished, one small rotation applied)
 
 Previous work (the 09:4x PM cycle and the scheduled operator's full-pass re-verification) confirmed finished, not cited. Attached per Step 0 (shallow detached checkout, fetch, fetch --unshallow, checkout main, ff-only merge of 544 commits onto eac061391, tree clean). Re-derived rather than trusted: resolve_verdict_commit then deploy_gap_material_commits against real current HEAD both return the same 4 commits (3f64badf5, 3ed019f81, d3d824c4c, a24a667c6), 2 material, matching STATUS.md exactly, no drift. check_urls.py 213/213, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/0. All 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all decision/blocked-on-art, none from Phil. 0 open PRs, last 3 checks.yml runs green. preflight.py run fresh: 0 FAIL through every gate before the documented gate_tests sandbox hang, unchecked past that point.
