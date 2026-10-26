@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle (20:5x slot, fresh checkout, previous work confirmed finished, nothing new unblocked, no notification)
+
+**Did:** Attached per step 0: fetched origin main, checkout -B main onto it, ff-only merge, 636 commits, clean (no unrelated-histories symptom). Read GOALS.md, BACKLOG-2026-09-07.md's current queue, ROADMAP-2026-2029.md, CLAUDE.md, and the last four NIGHTLY-LOG.md entries before touching anything, per step 1.
+
+**Verified:** Ran `preflight.py` live (not backgrounded and trusted), redirecting to a file so partial output survives the hang: 0 FAIL through every gate up to and including the `cycle_signal` clean-pass snapshot, hung at the documented `gate_tests` headless-Chromium sandbox limitation, killed at the 170s mark, same known shape every cycle today has logged, not a new defect. `cycle_signal.py --check` reads SAME against that same snapshot (git `1a7dfd346c`). GitHub re-pulled live via the MCP tools rather than cited: 10 open issues unchanged, all `decision` or `blocked-on-art`, none updated since 2026-10-25 (issue #42, the cadence/exhaustion question, still has no reply from Phil across 7 comments, all self-authored by prior cycles), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, reported UNCHECKED, not assumed empty. Re-derived the deploy gap directly with `preflight.resolve_verdict_commit`/`deploy_gap_material_commits` against the live `ops/deploy-verdict.json` (build `a0bbe5bb276ee21b`) rather than citing STATUS.md: 1 material commit undeployed (`840f3e11b`), matching what STATUS.md's `BLOCKER-001` already records; no P0 regression, same standing `VPS_DEPLOY_KEY` limit (issue #35).
+
+**Went well:** Every independent check this cycle ran (preflight, cycle_signal, GitHub issues/PRs, inbox, deploy-gap re-derivation) landed on the same exhausted state prior cycles already reported today, which is what a genuinely stable state should look like, not grounds to stop checking.
+
+**Did not go well:** Nothing new to build. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Phil-gated, or closed by decision; the cold-read ledger stays exhausted. Issue #42 is now 12 days old with 7 self-authored comments and still no reply.
+
+**Changing next cycle:** Nothing in the process; the standing tooling already fits the problem.
+
+**Next:** Same standing Phil-gated queue: `OWNER-ACTIONS.md`'s owner-gates table and "Start here" items, and the 10 open `decision`/`blocked-on-art` GitHub issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+No push notification sent: nothing changed since the 20:1x cycle 40 minutes earlier, and issue #42's own 48h no-repeat floor (last real push 2026-10-24T16:1x) still holds.
+
 ## 2026-10-26, PM check-in (20:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked, no notification)
 
 Attached cleanly (fetch, unshallowed, checkout -B main onto origin/main, ff-only, 634 commits, working tree clean before and after). Previous work IS finished: cycle_signal.py --check read SAME against the 20:15:43Z snapshot (git 942a28e80c, the prior cycle's own HEAD). Verified rather than only cited: ran preflight.py live to its own 180s timeout, 0 FAIL through every gate up through cycle_signal's clean-pass snapshot, hung at the documented gate_tests headless-Chromium sandbox limitation, same known shape every recent cycle has logged, not a new defect. GitHub re-pulled live via the MCP tools: 10 open issues unchanged, all decision or blocked-on-art, none updated since 2026-10-25, 0 open PRs, comment counts match the prior cycle's own account.
