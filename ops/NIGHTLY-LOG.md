@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, scheduled operator cycle: two real defects found cold-reading the six ops scripts the opening pull introduced
+
+**Did:** Attached onto a shallow checkout (fetch, --unshallow, checkout -B main, ff-only), 485 commits. Backlog/roadmap/status digest: every "Now" epic done or Phil-gated, zero open workstreams, no unfixed P0. Cold-read the six ops scripts that pull introduced and that section 48's "ledger exhausted" reading never covered (checked directly against `ops/cold-read-ledger.json`, not assumed). Found and fixed two real defects: `rotate_backlog_closed.py`'s `count_stats()` reported the whole 180769-byte corpus as the size of a 2888-byte pending rotation, in both its own `--check` and preflight's `gate_backlog_closed_sections_not_oversized`; `rotate_owner_actions_closed_items.py` appended new archive entries to the bottom of `OWNER-ACTIONS-ARCHIVE.md` instead of prepending like every sibling tool, breaking newest-first ordering.
+
+**Verified:** Both fixes confirmed with new regression tests (8/8, 5/5), the two preflight gate tests, syntax checks, and the broad `test_gates.py`/`test_gate_ops_python_syntax.py` meta-tests. `preflight.py` fast runs twice reached the pre-gate_tests checkpoint clean (0 FAIL); `gate_tests` itself takes real headless-Chrome rendering time rather than hanging, confirmed directly, so stopped there as documented. All six files recorded in the ledger.
+
+**Went well:** the ledger caught its own staleness once checked against a fresh pull.
+
+**Did not go well:** running other commands alongside a background preflight run caused one transient "failing gate" false alarm; cost time to diagnose.
+
+**Changing next cycle:** never run other repo-touching commands while a preflight run is in flight; wait for it cleanly.
+
+**Next:** re-check `ops/cold_read_ledger.py --next` against fresh HEAD after any multi-commit pull, before trusting a prior cycle's "exhausted" reading.
+
 ## 2026-10-26, PM check-in (03:1x slot, 30-minute triage, previous work confirmed finished, no new defect)
 
 NEXT FOR THE OPERATOR: hold, same standing queue (issues #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, all decision or blocked-on-art.
