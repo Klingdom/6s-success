@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-26, PM check-in (08:1x slot, 30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is Phil-gated and the cold-read ledger is exhausted, so nothing is genuinely unblocked.
+
+Attached per Step 0 (shallow detached checkout, fetch, `fetch --unshallow`, `checkout -B main origin/main`, ff-only merge of 532 commits onto `eac061391`, tree clean). Previous work (the 07:4x scheduled operator cycle) confirmed finished, not cited: ran `preflight.py` fresh to completion, 0 FAIL through every gate before the documented `gate_tests` sandbox hang, killed there rather than left orphaned. Re-derived the deploy gap myself rather than trust `STATUS.md`'s figure: `resolve_verdict_commit('84c234bd3857ed4c')` then `deploy_gap_material_commits` against real current HEAD both return the same 4 commits (`3f64badf5`, `3ed019f81`, `d3d824c4c`, `a24a667c6`), matching the citation exactly, no drift. `cold_read_ledger.py --stale` 0/0. `rotate_checkin_log.py --check` clean (605 entries, 264983 bytes, all within the 30-day window). `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `audit_pages.py` 0 duplicate descriptions. All 10 open GitHub issues re-pulled fresh via the API: unchanged since 2026-10-25T02:59:51Z, all `decision`/`blocked-on-art` (#42, #40, #15, #35, #2, #33, #21, #31, #29, #18), none from Phil.
+
+No new defect found small enough to close this slot. Checked `ops/last-owner-notification.json` before deciding whether to push: the last deliberate owner notification was 2026-10-24T16:1x UTC (issue #42), its 48h no-repeat floor runs to roughly 2026-10-26T16:1x UTC, and nothing material has changed since, so correctly withheld another push this cycle.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck, this entry. No content, price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-26, scheduled operator cycle: independent re-verification, exhaustion confirmed, no push sent (within issue #42's own 48h floor)
 
 **Did:** Attached per Step 0 (shallow detached checkout, fetch, unshallow, `checkout -B main origin/main`, ff-only merge onto `1ca5e83ac`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 2, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries. Re-derived rather than cited: `cold_read_ledger.py --stale` (0 of 296) and `--next` (296 of 296 ledgered, 0 un-ledgered candidates); all 10 open GitHub issues pulled fresh via the API, unchanged, all `decision`/`blocked-on-art`; `git log --author="Phil Kling"` still shows his last commit at 2026-10-23 11:44, against 186 autonomous commits in the trailing 24h. Re-derived `STATUS.md`'s own `BLOCKER-001` figure directly with `deploy_gap_material_commits('84c234bd3857ed4c')` rather than trust it: still 4 commits, 2 material, matching the citation exactly, no drift.
