@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (15:4x slot): previous work independently reconfirmed finished, one small cold-container gap fixed again, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked; continue independent reconfirmation rather than assuming yesterday's exhausted read still holds.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (163 commits), no unrelated-history symptom.
+
+**Previous work was finished, checked rather than cited.** `git diff --stat` from the last recorded `cycle_signal` snapshot (`d673c9dcf2`, 15:19:32Z, partial pass: every gate before `gate_tests` clean) to this cycle's HEAD showed zero code diff, only dashboard/log/state files, so that partial pass still covers current HEAD; `cycle_signal.py --check` confirms SAME.
+
+**This container repeated the exact cold-container `pymupdf`/`fitz` gap the 14:5x operator cycle already documented and fixed for its own session: `affiliate.py --check` failed closed on 3 unreadable delivered documents.** Expected, not a new defect: the fix was session-scoped, not persistent, and this is a fresh container. Applied the same documented remedy (`python3 -m pip install pymupdf==1.28.2`); `affiliate.py --check` went clean (10 delivered documents, 0 affiliate links, every linked page discloses above them).
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil, none mine. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py`: 213/213. `ops/state.json`: `deploy_verdict: current`, `deploy_stale_assets: 0`. `C7`'s video-caption gap is already fully root-caused in `BACKLOG-2026-09-07.md` as machine-dependent (Microsoft's edge-tts endpoint rejects both this sandbox's and GitHub Actions' datacenter IPs identically); nothing left to try from a sandbox.
+
+**Did not duplicate the issue #42 notification.** `ops/last-owner-notification.json`: last deliberate push was 2026-10-27T12:58Z, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (14:5x slot): fixed a real cold-container gap, root-caused a CI red to a network flake instead of citing it, backlog independently reconfirmed exhausted
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (152 commits), clean, no unrelated-history symptom. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-6, `OWNER-ACTIONS.md`, `CLAUDE.md`, and this log's own last four entries.
