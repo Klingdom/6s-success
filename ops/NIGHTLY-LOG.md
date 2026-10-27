@@ -2,13 +2,27 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-27, PM check-in (04:1x slot): previous work now confirmed finished, checks.yml run 2454 verified green directly, not assumed
+## 2026-10-27, scheduled operator cycle (04:1x slot): twelfth-plus independent reconfirmation, gate_tests sandbox hang exceeded 20 minutes but corroborated green via CI, nothing new unblocked
 
-Previous work WAS finished, but needed verifying, not citing. The prior cycle's own handoff said it would not claim green on workflow_dispatch run 2454 (against fb534c2ed, the nightly log ordering fix) until it actually reported that. Checked directly via the Actions API: run 40446911203 completed, conclusion success, at 04:12:56Z. That closes the checks.yml red run on b047c0608 for real. Attached cleanly, working tree clean, main in sync. cycle_signal.py read SAME. inbox_agent.py: no mail credential, unchecked not empty. GitHub's 10 open issues unchanged, all decision or blocked on art, none mine. Backlog sections 2 through 6 reread directly: every row is done, archived or Phil gated (C5 Gemini billing, C6 YouTube OAuth). Backgrounded a full local preflight for independent reconfirmation beyond the GitHub run; still past gate_tests when this was written, result to follow if it surfaces anything new. Nothing else unblocked this slot.
+Attached cleanly: fetch, unshallow (checkout was fresh and shallow), checkout main, ff-only merge onto origin/main, picking up two concurrent fixes mid-run (the NIGHTLY-LOG ordering fix on fb534c2ed and its own workflow_dispatch verification handoff, then a later hourly check-in). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, OWNER-ACTIONS.md, CLAUDE.md and this log's own top entries directly rather than trusting a summary.
 
-**Next:** same standing Phil gated queue (10 open issues), unchanged. Handing the operator nothing new; the queue stays exhausted.
+Verified, not cited: fix_dashes.py --check 0 em/0 en. check_urls.py 213/213. cold_read_ledger.py --stale 0/296, --next 0 un-ledgered candidates (genuinely exhausted). affiliate.py --check clean, 165 documents. A full preflight.py run to a log file: 0 FAIL/0 WARN through every gate reached, but this cycle gate_tests exceeded even a 20-minute background bound without finishing, the second time that specific shape has been logged (first was 2026-10-10); not a new gate yet, since the threshold for that is three occurrences. Closed the gap a different way instead of citing the hang: the concurrently-queued workflow_dispatch run (#2454, 40446911203) against the ordering fix finished its Preflight step (success, 03:57:07-04:06:55Z) and The ops test suite step (success, 04:06:55-04:12:41Z) on the GitHub-hosted runner before this entry was written, so the fix is confirmed, not assumed. Also ran the two previously-failing test files directly in this sandbox: test_gate_nightly_log_ordering.py 8/8, ops/nightly_log.py's own test 10/10, both pass.
 
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+Re-derived rather than trusted: deploy gap unchanged, one material commit (840f3e11b) still undeployed, Phil-gated on VPS_DEPLOY_KEY (issue #35). GitHub re-pulled directly: 10 open issues unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked not empty.
+
+No defect found to fix beyond the sandbox-environment gate_tests timing noted above, already being independently resolved by a concurrent session's CI verification. Same standing Phil-gated queue; nothing newly unblocked. No push notification: nothing material has changed since the last one, and this cycle's own finding (gate_tests exceeding 20 minutes) is sandbox-environment noise already corroborated green on the hosted runner, not a customer-facing issue.
+
+## 2026-10-27, PM check-in (04:1x slot): same run 2454 verified green independently and concurrently with the operator cycle above, collision noted rather than hidden
+
+This cycle independently confirmed the same thing the operator entry above already landed first: run 40446911203 (workflow_dispatch against fb534c2ed, the nightly log ordering fix) completed with conclusion success at 04:12:56Z via the Actions API, closing the prior cycle's unverified handoff. Found this after the operator had already pushed it, so this entry corroborates rather than duplicates the finding. Working tree was clean before this cycle started; main was in sync at de9f63b87. cycle_signal.py read SAME. inbox_agent.py: no mail credential, unchecked not empty. GitHub's 10 open issues unchanged, all decision or blocked on art, none mine. Backlog sections 2 through 6 reread directly: every row is done, archived or Phil gated (C5 Gemini billing, C6 YouTube OAuth). A full local preflight was backgrounded for independent reconfirmation; its result was superseded by the operator's own completed run above before this push, so it was not waited on further.
+
+**Did not go well:** ran the same verification as the :43 operator without checking for its concurrent work first, a collision this cycle's own STEP 8 asks to avoid. **Changing next cycle:** check whether the operator has already landed a fix for the same handoff before re-verifying it from scratch.
+
+**Next:** same standing Phil gated queue (10 open issues), unchanged. Nothing new to hand the operator; the queue stays exhausted.
+
+Pushed to main (merged onto the operator's own push rather than forced). `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+
+HANDOFF-FILES: none
 
 HANDOFF-FILES: none
 
