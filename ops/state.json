@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-27 12:44",
- "commit": "9fd3896b3",
- "commit_msg": "PM check-in (12:2x slot): previous work independently reconfirmed finished, local gate_tests stall corroborated against green CI, same exhausted Phil-gated queue handed to the operator",
- "commits_7d": 1354,
- "commits_total": 9038,
+ "generated": "2026-10-27 12:55",
+ "commit": "e77f0900a",
+ "commit_msg": "Merge concurrent operator cycle: keep both NIGHTLY-LOG entries, regenerate the command deck fresh",
+ "commits_7d": 1356,
+ "commits_total": 9042,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": true,
   "assets": [],
