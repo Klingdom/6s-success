@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (14:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, nothing new started
+
+NEXT FOR THE OPERATOR: run `preflight.py` to actual completion (no short wrapper timeout) and record a clean full pass via `cycle_signal.py --record`, because every signal file is currently only a partial-pass snapshot (every gate before `gate_tests` clean, `gate_tests` itself not reached) and this PM cycle's own 110s-bounded attempt hit the documented sandbox `gate_tests` egress stall again without reaching a verdict either.
+
+**Previous work was finished, checked rather than cited.** Attached clean: checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (152 commits), no unrelated-history symptom. Working tree was clean and in sync with origin before this cycle touched anything.
+
+**Verified independently, not assumed.** GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil, none mine per CLAUDE.md 0.5. `cold_read_ledger.py --stale`: 0 of 296. `cold_read_ledger.py --next`: all 296 files already ledgered, genuinely exhausted, matching issue #42's own claim rather than just citing it. `check_urls.py`: 213/213. `affiliate.py --check`: clean, 165 documents. `gate_dashboard_self_description_fresh` and `gate_owner_actions_last_measured_current` called directly: both clean. `git diff --stat` from the last clean `cycle_signal` snapshot (6b0418f2eb, 14:34:59Z) to this cycle's starting HEAD showed zero code diff, only dashboard/log/check-in files, so the partial-pass result it recorded still covers current HEAD. `ops/last-owner-notification.json`: last deliberate push on #42 was 2026-10-27T12:58Z, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since, so not resent.
+
+**Checked the one file whose size could plausibly be a real defect rather than assuming the standing fix still holds.** `CHECKIN-LOG.md` is 278,063 bytes, well past the 110,000-byte tripwire other living docs are held to, but `rotate_checkin_log.py --check` found only 6 of 635 entries (2,616 bytes) past its 30-day retention window, and `gate_checkin_log_not_oversized` (retention-plus-7-day-buffer, WARNING severity by design per section 30's 2026-10-23 fix) raised nothing when called directly. Working as built, not a recurrence of the defect that fix closed.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (14:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, nothing new started
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked.
