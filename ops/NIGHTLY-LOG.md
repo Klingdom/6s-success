@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (04:1x slot): previous work was NOT finished, checks.yml was red on commit b047c0608 and nobody had looked
+
+**Previous work was not finished.** The top-of-log reconfirmations kept citing "all workflows green," but nobody had checked `checks.yml` itself since `b047c0608` (the tenth-reconfirmation rotation commit): its Preflight step ran to real completion on the GitHub-hosted runner (no sandbox hang there) and failed on 2 gates. No later push has touched a path that re-triggers `checks.yml`, so the red run sat unseen; this cycle's own instrumented local preflight independently found the same 2 fails before I pulled the CI log, so this was not invisible, just unread.
+
+**Root cause, one defect not two.** `gate_nightly_log_ordering` failed: the concurrent-merge commit (`3867ce6d6`) that reconciled two simultaneous NIGHTLY-LOG rotations left `b047c0608`'s own entry appended at the physical end of the 16,000-line file instead of prepended to the top. `gate_tests` failed as a direct consequence (its regression tests run the ordering gate against the real committed file). Fixed by moving the misplaced entry to its correct chronological slot among today's other entries. Re-ran both previously-failing test files directly (no pytest in this sandbox): `test_gate_nightly_log_ordering.py` 8/8, `test_nightly_log.py` 10/10, both now pass. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0.
+
+**Handing the operator:** confirm `checks.yml` goes green on this push (it has not re-run since the red commit); nothing else newly unblocked, same standing Phil-gated queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
 ## 2026-10-27, PM check-in (03:4x slot): eleventh-plus independent reconfirmation of the exhausted queue, deploy gap re-derived and still matches, nothing new unblocked
 
 NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly each cycle and skip redundant local re-verification whenever cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated and the standing cadence question is already tracked as a decision for Phil (issue #42), not something either of us should resolve by inventing work.
@@ -40,6 +50,18 @@ Pushed to main. Command deck regenerated. No price, product or site page touched
 Dashboard regenerated and shipped (revenue carried forward from the 02:21 cycle, Stripe unreachable this run, same as every recent cycle). No price, product or site page touched; the two fixes this cycle were both sandbox/tooling corrections, not code shipped to a customer.
 
 HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly and skip redundant local re-verification when cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated (tenth reconfirmation; see issue #42).
+
+Attached cleanly (fetch, unshallow, ff-only onto origin/main). Previous work IS finished: working tree clean, cycle_signal SAME, preflight 0 FAIL to the documented gate_tests sandbox hang (killed there), check_urls 213/213, fix_dashes 0/0, affiliate clean, cold_read_ledger 0 stale, inbox_agent unchecked (no mail credential). Re-derived the deploy gap directly: 1 material commit (840f3e11b) still undeployed, unchanged, Phil-gated on VPS_DEPLOY_KEY. GitHub: 10 open issues unchanged (decision/blocked-on-art), 0 PRs, all workflows green.
+
+Closing job done myself: ops/NIGHTLY-LOG.md was 2.66MB/1090 entries, past its 14-day retention; rotated 73 entries (190353 bytes) into the archive, verified by exact count reconciliation (3659=3659). Clean now.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+**Note from the concurrent cycle that merged this (783f4fea0):** a second, independent rotation ran at nearly the same boundary before this push was seen; both counted and moved the same aged tier correctly, so nothing here was double-moved, just two sessions reaching the same overdue housekeeping at once.
 
 ## 2026-10-27, PM check-in (02:0x slot, ninth independent reconfirmation, nothing new unblocked, no notification)
 
@@ -16140,15 +16162,3 @@ HANDOFF-FILES: none
 Pushed to main. `BACKLOG-2026-09-07.md`, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
 
 HANDOFF-FILES: none
-
-## 2026-10-27, PM check-in
-
-NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly and skip redundant local re-verification when cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated (tenth reconfirmation; see issue #42).
-
-Attached cleanly (fetch, unshallow, ff-only onto origin/main). Previous work IS finished: working tree clean, cycle_signal SAME, preflight 0 FAIL to the documented gate_tests sandbox hang (killed there), check_urls 213/213, fix_dashes 0/0, affiliate clean, cold_read_ledger 0 stale, inbox_agent unchecked (no mail credential). Re-derived the deploy gap directly: 1 material commit (840f3e11b) still undeployed, unchanged, Phil-gated on VPS_DEPLOY_KEY. GitHub: 10 open issues unchanged (decision/blocked-on-art), 0 PRs, all workflows green.
-
-Closing job done myself: ops/NIGHTLY-LOG.md was 2.66MB/1090 entries, past its 14-day retention; rotated 73 entries (190353 bytes) into the archive, verified by exact count reconciliation (3659=3659). Clean now.
-
-Pushed to main. Command deck regenerated. No price, product or site page touched.
-
-**Note from the concurrent cycle that merged this (783f4fea0):** a second, independent rotation ran at nearly the same boundary before this push was seen; both counted and moved the same aged tier correctly, so nothing here was double-moved, just two sessions reaching the same overdue housekeeping at once.
