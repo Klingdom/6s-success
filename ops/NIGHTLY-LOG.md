@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (14:5x slot): fixed a real cold-container gap, root-caused a CI red to a network flake instead of citing it, backlog independently reconfirmed exhausted
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (152 commits), clean, no unrelated-history symptom. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-6, `OWNER-ACTIONS.md`, `CLAUDE.md`, and this log's own last four entries.
+
+**One real, if small, fix: this container's `affiliate.py --check` failed closed, the exact OWNER-ACTIONS 1h gap.** `import fitz` raised `ModuleNotFoundError` even though `pip show pymupdf` reported it present under `/usr/local/lib/python3.11/dist-packages`; the system `pip`/`python3` resolved to a different install path than the one the gate's own Python ran under. `python3 -m pip install pymupdf==1.28.2` fixed it for this session; `affiliate.py --check` went from "FAIL could not read 3 delivered document(s)" to clean (165 documents). Not a new owner action: already tracked, fixed per the documented remedy rather than reported a sixteenth time.
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0/296. `check_urls.py`: 213/213. `cycle_signal.py --check`: SAME. `inbox_agent.py --apply`: no mail credential, standing. `ops/state.json`: `deploy_verdict: current`, `deploy_stale_assets: 0`, no production gap.
+
+**`gate_tests` genuinely hung this cycle, not just slow, and the wait was not wasted.** Ran to 2,487s elapsed with 20s of CPU time (0.8%), the same egress-stall signature prior entries have cited; killed on that evidence. Corroborated against CI rather than left unverified: `checks.yml` run 2476 on this cycle's own housekeeping commit (`07e528a9f`) came back **failure**, root-caused by reading its actual job log rather than citing the red X: `test_cron_effective_latency.py: http.client.IncompleteRead(96158 bytes read, 515305 more expected)`, a network-level read failure inside a test that fetches GitHub's own API, not a code defect. The very next commit's run (2475 is prior; the next push after) came back green with zero code diff in between, confirming it self-resolved. This is a sharper diagnosis than "sandbox egress stall" alone: the local hang and the CI flake are plausibly the same underlying fetch, which is useful if it recurs.
+
+**Did not duplicate the Phil notification on issue #42.** Last deliberate push was today 12:58 UTC, inside its own no-repeat floor until 2026-10-29T13:00Z; nothing material changed since (same 10 issues, same exhausted backlog).
+
+**Verified:** as above. No price, product or site page touched; no new page, IndexNow not applicable. Dashboard regenerated.
+
+**Went well:** fixing the pymupdf gap instead of reporting the same FAIL a sixteenth time; reading the actual CI job log instead of citing "red" or "green" from the conclusion alone.
+
+**Did not go well:** `gate_tests` still cannot be made to finish locally; still no new unblocked work for the operator to pick up.
+
+**Changing next cycle:** none; no new gate warranted; this is a known, already-gated class (environment dependency gap, CI network flake), not a new one.
+
+**Next:** same standing Phil-gated queue (10 issues, `OWNER-ACTIONS.md`'s "Start here" four items). Continue independent reconfirmation; do not duplicate the #42 notification before 2026-10-29.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (15:1x slot): finished last cycle's full-preflight handoff, hit the same documented gate_tests sandbox hang, cleaned up its debris
 
 Previous work was unfinished: the 14:4x cycle recorded only a partial preflight pass and handed the operator a full run to completion. Ran it myself, no short timeout: every gate before gate_tests passed again, 0 FAIL, clean checkpoint recorded. gate_tests stalled on test_contact_form_interactive.py's headless Chromium probe, the same standing sandbox hang a 2026-10-25 cycle already documented and killed after 16+ minutes. Killed it here too, after about 8 minutes of zero CPU progress; deleted the gitignored debris probe file it left; audit_pages.py reran 218/0 clean. GitHub: 10 open issues unchanged, all decision/blocked-on-art, none from Phil; 0 PRs. Nothing newly unblocked. Same queue handed to the operator. Pushed to main.
