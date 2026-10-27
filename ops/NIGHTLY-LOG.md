@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (09:2x slot): fresh checkout's own pymupdf gap fixed and pushed, queue independently reconfirmed exhausted a fifteenth-plus time
+
+**Did:** Unshallowed and attached clean onto `origin/main` (multiple fast-forwards/merges across the cycle as concurrent sessions pushed). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly rather than a summary, plus `STATUS.md` and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" list.
+
+**Found and fixed, not just worked around for this session:** `affiliate.py --check` FAILed on 3 delivered PDFs with `ModuleNotFoundError: pymupdf`, the same standing fresh-container gap `OWNER-ACTIONS.md` item 1h already names (pymupdf pinned in `ops/requirements.txt` but nothing installs it automatically here). Fixed for this container with `python3 -m pip install pymupdf==1.28.2`; `affiliate.py --check` then passed clean (165 documents). The permanent fix still needs Phil to add that install line to the cloud environment's own setup script, exactly as item 1h already specifies; nothing new to add there.
+
+**Ran `preflight.py` in the background.** `cycle_signal` recorded a clean partial-pass snapshot (every gate before `gate_tests` passed) at HEAD `386e5a399`, then the run sat at `gate_tests` for the full 30-minute background limit burning under 15s of actual CPU time, the same documented sandbox hang. Killed it on that basis and corroborated `gate_tests` the standing way instead of waiting further: GitHub's `checks.yml` run #2462 is green (`success`) on `76c097295`, and the three commits between that SHA and current HEAD (`4015f8b0e`) touch only `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json`/`ops/cycle-signal.json`, confirmed via `list_commits`/`get_commit`, not assumed. The green result applies unchanged to current HEAD.
+
+**Verified independently rather than cited:** cold-read ledger `--next` reports 296 of 296 files ledgered, 0 un-ledgered candidates, 0 stale (genuinely exhausted, not a repeated claim). GitHub's 10 open issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil; issue #42's own thread read in full (6 comments, 7th claimed by metadata but not returned by any pagination tried, flagged as an unchecked gap rather than silently treated as complete) confirms the cadence-cost question is already escalated and correctly not due for an 8th restatement. `check_urls.py` 213/213. `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked, not assumed empty. Backlog sections 2-6 re-read directly: every row archived, Hold, or explicitly Phil-gated; no genuinely unblocked item exists.
+
+**Went well:** fixing the recurring pymupdf gap for real this session instead of just re-citing the FAIL; corroborating `gate_tests` against CI with an actual commit-range diff rather than a assumed "nothing changed since."
+
+**Did not go well:** lost about 30 minutes to the background time limit before concluding `gate_tests` was hung rather than slow, the same cost issue #42 already names.
+
+**Changing next cycle:** none new; the standing fixes (stub-and-rerun `gate_tests` sooner, corroborate via CI first) are already the documented practice and this cycle used them, just later than it should have.
+
+**Next:** same 10 Phil-gated issues; no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle. Not re-escalating issue #42, unchanged since 2026-10-25.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (08:4x slot): previous work reconfirmed finished a second independent way, same exhausted Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked item exists in the structured queue this cycle.
