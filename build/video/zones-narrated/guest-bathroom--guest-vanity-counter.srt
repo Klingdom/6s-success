@@ -19,338 +19,340 @@ Each one is a session that finishes on its
 own.
 
 5
-00:00:17,568 --> 00:00:21,332
+00:00:17,568 --> 00:00:21,340
 What done looks like
 
 6
-00:00:21,332 --> 00:00:25,096
+00:00:21,340 --> 00:00:25,112
 1 A soap pump above half full, one folded
 hand towel on the ring where you can see
 
 7
-00:00:25,096 --> 00:00:28,860
+00:00:25,112 --> 00:00:28,884
 it from the doorway, a box of tissues at
 the back corner, and enough bare counter
 
 8
-00:00:28,860 --> 00:00:32,624
+00:00:28,884 --> 00:00:32,656
 to set down a phone and a pair of glasses
 
 9
-00:00:32,624 --> 00:00:36,388
+00:00:32,656 --> 00:00:36,428
 2 No toothbrush cup holding your family's
 toothbrushes, no hair clips behind the
 
 10
-00:00:36,388 --> 00:00:40,152
-tap, no dried soap ring under the
+00:00:36,428 --> 00:00:40,200
+faucet, no dried soap ring under the
 dispenser
 
 11
-00:00:40,152 --> 00:00:44,904
+00:00:40,200 --> 00:00:44,952
 One session Guest Vanity Counter 15-30 min
 
 12
-00:00:44,904 --> 00:00:49,440
+00:00:44,952 --> 00:00:49,488
 Sort Take everything off the counter and
 put back only what
 
 13
-00:00:49,440 --> 00:00:53,364
+00:00:49,488 --> 00:00:53,412
 Sort Take everything off the counter and
 put back only what a visitor would use:
 
 14
-00:00:53,364 --> 00:00:57,288
+00:00:53,412 --> 00:00:57,336
 soap, tissues, hand towel.
 
 15
-00:00:57,288 --> 00:01:00,924
+00:00:57,336 --> 00:01:00,972
 Sort The travel conditioner, the spare
 contact lens case, and the razor that
 ended
 
 16
-00:01:00,924 --> 00:01:04,560
+00:01:00,972 --> 00:01:04,608
 up here because the
 
 17
-00:01:04,560 --> 00:01:08,304
+00:01:04,608 --> 00:01:08,352
 Sort The travel conditioner, the spare
 contact lens case, and the razor that
 ended
 
 18
-00:01:08,304 --> 00:01:12,048
+00:01:08,352 --> 00:01:12,096
 up here because the main bathroom ran out
 of room all go back where they belong or
 
 19
-00:01:12,048 --> 00:01:15,792
+00:01:12,096 --> 00:01:15,840
 into the trash.
 
 20
-00:01:15,792 --> 00:01:19,152
+00:01:15,840 --> 00:01:19,200
 Straighten Set the soap on the side your
 hand reaches without crossing over the
 
 21
-00:01:19,152 --> 00:01:22,512
+00:01:19,200 --> 00:01:22,560
 basin, tissues at the back
 
 22
-00:01:22,512 --> 00:01:26,288
+00:01:22,560 --> 00:01:26,336
 Straighten Set the soap on the side your
 hand reaches without crossing over the
 
 23
-00:01:26,288 --> 00:01:30,064
+00:01:26,336 --> 00:01:30,112
 basin, tissues at the back corner clear of
 splash, and the hand towel on a ring or
 
 24
-00:01:30,064 --> 00:01:33,840
+00:01:30,112 --> 00:01:33,888
 hook visible from the door.
 
 25
-00:01:33,840 --> 00:01:37,344
+00:01:33,888 --> 00:01:37,392
 Straighten A guest should never have to
 open
 
 26
-00:01:37,344 --> 00:01:42,192
+00:01:37,392 --> 00:01:42,240
 Straighten A guest should never have to
 open a cabinet to find a towel.
 
 27
-00:01:42,192 --> 00:01:45,900
-Shine Wipe the counter, then the tap and
-the drain lip where toothpaste film and
+00:01:42,240 --> 00:01:46,056
+Shine Wipe the counter, then the faucet
+and the drain lip where toothpaste film
+and
 
 28
-00:01:45,900 --> 00:01:49,608
+00:01:46,056 --> 00:01:49,872
 hard water scale
 
 29
-00:01:49,608 --> 00:01:53,624
-Shine Wipe the counter, then the tap and
-the drain lip where toothpaste film and
+00:01:49,872 --> 00:01:53,944
+Shine Wipe the counter, then the faucet
+and the drain lip where toothpaste film
+and
 
 30
-00:01:53,624 --> 00:01:57,640
+00:01:53,944 --> 00:01:58,016
 hard water scale build up, including the
-collar at the base of the tap where a
+collar at the base of the faucet where a
 
 31
-00:01:57,640 --> 00:02:01,656
+00:01:58,016 --> 00:02:02,088
 chalky ring hides.
 
 32
-00:02:01,656 --> 00:02:06,336
+00:02:02,088 --> 00:02:06,768
 Shine Do the mirror last, top to bottom,
 so drips
 
 33
-00:02:06,336 --> 00:02:09,732
+00:02:06,768 --> 00:02:10,164
 Shine Do the mirror last, top to bottom,
 so drips land on surfaces you have not
 
 34
-00:02:09,732 --> 00:02:13,128
+00:02:10,164 --> 00:02:13,560
 finished yet.
 
 35
-00:02:13,128 --> 00:02:17,220
+00:02:13,560 --> 00:02:17,652
 Safety Water and electricity: a shaver or
 hair dryer left plugged in beside a full
 
 36
-00:02:17,220 --> 00:02:21,312
+00:02:17,652 --> 00:02:21,744
 basin is a live cord
 
 37
-00:02:21,312 --> 00:02:25,984
+00:02:21,744 --> 00:02:26,416
 Safety Water and electricity: a shaver or
 hair dryer left plugged in beside a full
 
 38
-00:02:25,984 --> 00:02:30,656
+00:02:26,416 --> 00:02:31,088
 basin is a live cord within splash reach,
 so unplug it and put it away rather than
 
 39
-00:02:30,656 --> 00:02:35,328
+00:02:31,088 --> 00:02:35,760
 coiling it on the counter.
 
 40
-00:02:35,328 --> 00:02:38,916
+00:02:35,760 --> 00:02:39,348
 Safety Swap any glass tumbler or glass
 trinket dish for ceramic, because glass on
 a
 
 41
-00:02:38,916 --> 00:02:42,504
+00:02:39,348 --> 00:02:42,936
 wet
 
 42
-00:02:42,504 --> 00:02:47,952
+00:02:42,936 --> 00:02:48,384
 Safety Swap any glass tumbler or glass
 trinket dish for ceramic, because glass on
 a
 
 43
-00:02:47,952 --> 00:02:53,400
+00:02:48,384 --> 00:02:53,832
 wet counter slides and it breaks onto a
 tile floor where feet are bare.
 
 44
-00:02:53,400 --> 00:02:57,000
+00:02:53,832 --> 00:02:57,432
 Standardize Three things live on this
 counter
 
 45
-00:02:57,000 --> 00:03:00,252
+00:02:57,432 --> 00:03:00,684
 Standardize Three things live on this
 counter permanently: soap, tissues, hand
 
 46
-00:03:00,252 --> 00:03:03,504
+00:03:00,684 --> 00:03:03,936
 towel.
 
 47
-00:03:03,504 --> 00:03:07,344
+00:03:03,936 --> 00:03:07,776
 Standardize Photograph that exact
 arrangement and tape the picture inside
 the
 
 48
-00:03:07,344 --> 00:03:11,184
+00:03:07,776 --> 00:03:11,616
 vanity door, so anyone
 
 49
-00:03:11,184 --> 00:03:14,928
+00:03:11,616 --> 00:03:15,360
 Standardize Photograph that exact
 arrangement and tape the picture inside
 the
 
 50
-00:03:14,928 --> 00:03:18,672
+00:03:15,360 --> 00:03:19,104
 vanity door, so anyone in the house can
 reset the counter without asking you which
 
 51
-00:03:18,672 --> 00:03:22,416
+00:03:19,104 --> 00:03:22,848
 three.
 
 52
-00:03:22,416 --> 00:03:25,740
+00:03:22,848 --> 00:03:26,172
 Sustain The moment someone confirms they
 are coming over, walk in, top up the soap
 
 53
-00:03:25,740 --> 00:03:29,064
+00:03:26,172 --> 00:03:29,496
 and
 
 54
-00:03:29,064 --> 00:03:34,380
+00:03:29,496 --> 00:03:34,812
 Sustain The moment someone confirms they
 are coming over, walk in, top up the soap
 
 55
-00:03:34,380 --> 00:03:39,696
+00:03:34,812 --> 00:03:40,128
 and hang a fresh hand towel, both done
 before you have put the phone down.
 
 56
-00:03:39,696 --> 00:03:45,312
+00:03:40,128 --> 00:03:45,744
 Sustain The laundry version is smaller:
 when you put fresh towels away,
 
 57
-00:03:45,312 --> 00:03:49,680
+00:03:45,744 --> 00:03:50,112
 Sustain The laundry version is smaller:
 when you put fresh towels away, the guest
 
 58
-00:03:49,680 --> 00:03:54,048
+00:03:50,112 --> 00:03:54,480
 hand towel swaps in the same motion.
 
 59
-00:03:54,048 --> 00:03:59,808
+00:03:54,480 --> 00:04:00,240
 Sustain Slip is a soap pump below half or
 a towel that has hung there since
 
 60
-00:03:59,808 --> 00:04:03,440
+00:04:00,240 --> 00:04:03,872
 Sustain Slip is a soap pump below half or
 a towel that has hung there since the
 
 61
-00:04:03,440 --> 00:04:07,072
+00:04:03,872 --> 00:04:07,504
 last visit, both readable from the
 doorway.
 
 62
-00:04:07,072 --> 00:04:10,704
+00:04:07,504 --> 00:04:11,136
 Recovery is those two items.
 
 63
-00:04:10,704 --> 00:04:14,640
+00:04:11,136 --> 00:04:15,072
 Sustain This counter has no daily user, so
 
 64
-00:04:14,640 --> 00:04:19,800
+00:04:15,072 --> 00:04:20,232
 Sustain This counter has no daily user, so
 you have to look on purpose.
 
 65
-00:04:19,800 --> 00:04:24,173
+00:04:20,232 --> 00:04:24,605
 The call If a child or a housemate
 genuinely brushes their teeth in here, the
 hotel
 
 66
-00:04:24,173 --> 00:04:28,547
+00:04:24,605 --> 00:04:28,979
 counter standard loses every time and you
 end up resetting it twice a week.
 
 67
-00:04:28,547 --> 00:04:32,920
+00:04:28,979 --> 00:04:33,352
 The decision you have been dodging is
 which room this actually is.
 
 68
-00:04:32,920 --> 00:04:37,293
+00:04:33,352 --> 00:04:37,725
 Pick out loud: either it is a used
 bathroom, in which case one named person
 gets a
 
 69
-00:04:37,293 --> 00:04:41,667
+00:04:37,725 --> 00:04:42,099
 labeled caddy or drawer and the counter
 holds their two items alongside the guest
 
 70
-00:04:41,667 --> 00:04:46,040
+00:04:42,099 --> 00:04:46,472
 three, or it is a guest bathroom, in which
 case that toothbrush moves today and
 
 71
-00:04:46,040 --> 00:04:50,413
+00:04:46,472 --> 00:04:50,845
 nothing personal comes back.
 
 72
-00:04:50,413 --> 00:04:54,787
+00:04:50,845 --> 00:04:55,219
 Holding a hotel standard against a
 resident who lives here is not a
 discipline
 
 73
-00:04:54,787 --> 00:04:59,160
+00:04:55,219 --> 00:04:59,592
 problem, it is a standard aimed at the
 wrong room.
 
 74
-00:04:59,160 --> 00:05:05,352
+00:04:59,592 --> 00:05:05,784
 Guest Vanity Counter The full reset, free
 at 6s-success.com

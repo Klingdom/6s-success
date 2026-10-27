@@ -23,336 +23,336 @@ Each one is a session that finishes on its
 own.
 
 6
-00:00:21,768 --> 00:00:25,032
+00:00:21,768 --> 00:00:25,035
 What done looks like
 
 7
-00:00:25,032 --> 00:00:28,296
+00:00:25,035 --> 00:00:28,302
 1 Every tread bare from nose to riser,
 including the bottom three steps that
 
 8
-00:00:28,296 --> 00:00:31,560
+00:00:28,302 --> 00:00:31,569
 usually stage things
 
 9
-00:00:31,560 --> 00:00:34,824
+00:00:31,569 --> 00:00:34,836
 2 The runner lies flat with no lifted
 corner at the turn
 
 10
-00:00:34,824 --> 00:00:38,088
+00:00:34,836 --> 00:00:38,103
 3 The handrail runs unbroken and
 unobstructed from the top newel post to
 the
 
 11
-00:00:38,088 --> 00:00:41,352
-bottom, with no bag, coat or dog lead hung
-on either post
+00:00:38,103 --> 00:00:41,370
+bottom, with no bag, coat or dog leash
+hung on either post
 
 12
-00:00:41,352 --> 00:00:44,616
+00:00:41,370 --> 00:00:44,637
 4 Both switches work, so the top step and
 the bottom step are lit before you take
 
 13
-00:00:44,616 --> 00:00:47,880
+00:00:44,637 --> 00:00:47,904
 them
 
 14
-00:00:47,880 --> 00:00:53,088
+00:00:47,904 --> 00:00:53,112
 One session Stair and Floor Path 30-45 min
 
 15
-00:00:53,088 --> 00:00:55,656
+00:00:53,112 --> 00:00:55,680
 Sort Nothing lives on
 
 16
-00:00:55,656 --> 00:00:58,632
+00:00:55,680 --> 00:00:58,656
 Sort Nothing lives on stairs.
 
 17
-00:00:58,632 --> 00:01:02,880
+00:00:58,656 --> 00:01:02,904
 Sort Clear the folded laundry, the shoes,
 the box that has sat on step four since
 
 18
-00:01:02,880 --> 00:01:07,128
+00:01:02,904 --> 00:01:07,152
 the weekend, all of it in one
 
 19
-00:01:07,128 --> 00:01:11,848
+00:01:07,152 --> 00:01:11,872
 Sort Clear the folded laundry, the shoes,
 the box that has sat on step four since
 
 20
-00:01:11,848 --> 00:01:16,568
+00:01:11,872 --> 00:01:16,592
 the weekend, all of it in one trip, and
 put each thing where it belongs on its own
 
 21
-00:01:16,568 --> 00:01:21,288
+00:01:16,592 --> 00:01:21,312
 floor rather than restaging it on the
 landing above.
 
 22
-00:01:21,288 --> 00:01:25,896
+00:01:21,312 --> 00:01:25,920
 Straighten The one thing that must stay
 reachable here is the handrail,
 
 23
-00:01:25,896 --> 00:01:30,060
+00:01:25,920 --> 00:01:30,084
 Straighten The one thing that must stay
 reachable here is the handrail, so strip
 
 24
-00:01:30,060 --> 00:01:34,224
+00:01:30,084 --> 00:01:34,248
 both newel posts of coats, bags and leads.
 
 25
-00:01:34,224 --> 00:01:38,592
+00:01:34,248 --> 00:01:38,616
 Straighten If a stair gate is fitted, set
 the top gate to
 
 26
-00:01:38,592 --> 00:01:42,072
+00:01:38,616 --> 00:01:42,096
 Straighten If a stair gate is fitted, set
 the top gate to swing away from the
 
 27
-00:01:42,072 --> 00:01:45,552
+00:01:42,096 --> 00:01:45,576
 flight and never out over it.
 
 28
-00:01:45,552 --> 00:01:51,144
+00:01:45,576 --> 00:01:51,168
 Shine Vacuum the tread noses, the crevice
 where each tread meets its
 
 29
-00:01:51,144 --> 00:01:55,476
+00:01:51,168 --> 00:01:55,500
 Shine Vacuum the tread noses, the crevice
 where each tread meets its riser, and
 
 30
-00:01:55,476 --> 00:01:59,808
+00:01:55,500 --> 00:01:59,832
 along the stringer where a runner is
 tucked.
 
 31
-00:01:59,808 --> 00:02:06,216
+00:01:59,832 --> 00:02:06,240
 Shine That trapped grit is what polishes a
 runner slick under a stocking foot. Wipe
 
 32
-00:02:06,216 --> 00:02:11,508
+00:02:06,240 --> 00:02:11,532
 Shine That trapped grit is what polishes a
 runner slick under a stocking foot.
 
 33
-00:02:11,508 --> 00:02:16,800
+00:02:11,532 --> 00:02:16,824
 Wipe the handrail its full length,
 including the underside your fingers wrap
 around.
 
 34
-00:02:16,800 --> 00:02:20,784
+00:02:16,824 --> 00:02:20,808
 Safety Walk the flight slowly and test as
 you go: press each tread nose for
 
 35
-00:02:20,784 --> 00:02:24,768
+00:02:20,808 --> 00:02:24,792
 movement, tug each runner
 
 36
-00:02:24,768 --> 00:02:29,064
+00:02:24,792 --> 00:02:29,088
 Safety Walk the flight slowly and test as
 you go: press each tread nose for
 
 37
-00:02:29,064 --> 00:02:33,360
+00:02:29,088 --> 00:02:33,384
 movement, tug each runner edge, and grip
 the rail hard at top, middle and bottom to
 
 38
-00:02:33,360 --> 00:02:37,656
+00:02:33,384 --> 00:02:37,680
 find a loose bracket.
 
 39
-00:02:37,656 --> 00:02:42,096
+00:02:37,680 --> 00:02:42,120
 Safety Then stand at the bottom in the
 dark and look at the top
 
 40
-00:02:42,096 --> 00:02:45,852
+00:02:42,120 --> 00:02:45,876
 Safety Then stand at the bottom in the
 dark and look at the top step, and stand
 at
 
 41
-00:02:45,852 --> 00:02:49,608
+00:02:45,876 --> 00:02:49,632
 the top and look at the bottom.
 
 42
-00:02:49,608 --> 00:02:55,248
+00:02:49,632 --> 00:02:55,272
 Safety A burnt-out bulb over a top step is
 the single most dangerous
 
 43
-00:02:55,248 --> 00:02:58,056
+00:02:55,272 --> 00:02:58,080
 Safety A burnt-out bulb over a top step is
 the single most dangerous thing in this
 
 44
-00:02:58,056 --> 00:03:00,864
+00:02:58,080 --> 00:03:00,888
 room.
 
 45
-00:03:00,864 --> 00:03:03,672
+00:03:00,888 --> 00:03:03,696
 Find it, and fix it now.
 
 46
-00:03:03,672 --> 00:03:08,976
+00:03:03,696 --> 00:03:09,000
 Standardize The standard is one sentence
 anyone in the house can check:
 
 47
-00:03:08,976 --> 00:03:13,776
+00:03:09,000 --> 00:03:13,800
 Standardize The standard is one sentence
 anyone in the house can check: bare
 
 48
-00:03:13,776 --> 00:03:18,576
+00:03:13,800 --> 00:03:18,600
 treads, full width, lit at both ends, rail
 clear.
 
 49
-00:03:18,576 --> 00:03:24,648
+00:03:18,600 --> 00:03:24,672
 Standardize Photograph the empty flight
 from the bottom and put that picture where
 
 50
-00:03:24,648 --> 00:03:29,532
+00:03:24,672 --> 00:03:29,556
 Standardize Photograph the empty flight
 from the bottom and put that picture where
 
 51
-00:03:29,532 --> 00:03:34,416
+00:03:29,556 --> 00:03:34,440
 the staging happens, which is almost
 always beside the bottom step.
 
 52
-00:03:34,416 --> 00:03:39,600
+00:03:34,440 --> 00:03:39,624
 Sustain The last person up at night takes
 the flight with one hand
 
 53
-00:03:39,600 --> 00:03:43,704
+00:03:39,624 --> 00:03:43,728
 Sustain The last person up at night takes
 the flight with one hand on the rail and
 
 54
-00:03:43,704 --> 00:03:47,808
+00:03:43,728 --> 00:03:47,832
 carries whatever is sitting on a tread.
 
 55
-00:03:47,808 --> 00:03:53,592
+00:03:47,832 --> 00:03:53,616
 Sustain If their hands are too full to
 hold the rail, that is the signal to
 
 56
-00:03:53,592 --> 00:03:58,332
+00:03:53,616 --> 00:03:58,356
 Sustain If their hands are too full to
 hold the rail, that is the signal to make
 
 57
-00:03:58,332 --> 00:04:03,072
+00:03:58,356 --> 00:04:03,096
 two trips, and two trips is the right
 answer rather than a failure.
 
 58
-00:04:03,072 --> 00:04:08,592
+00:04:03,096 --> 00:04:08,616
 Sustain Slip is anything on a step, or a
 runner corner lifted at the
 
 59
-00:04:08,592 --> 00:04:12,136
+00:04:08,616 --> 00:04:12,160
 Sustain Slip is anything on a step, or a
 runner corner lifted at the turn, both
 
 60
-00:04:12,136 --> 00:04:15,680
+00:04:12,160 --> 00:04:15,704
 visible from the bottom.
 
 61
-00:04:15,680 --> 00:04:19,224
+00:04:15,704 --> 00:04:19,248
 Recovery is clearing the treads now.
 
 62
-00:04:19,224 --> 00:04:22,752
+00:04:19,248 --> 00:04:22,776
 Sustain The bottom three steps are the
 most
 
 63
-00:04:22,752 --> 00:04:28,152
+00:04:22,776 --> 00:04:28,176
 Sustain The bottom three steps are the
 most natural staging shelf in the house.
 
 64
-00:04:28,152 --> 00:04:32,396
+00:04:28,176 --> 00:04:32,420
 The call If your stairs have a runner and
 one corner has lifted or one rod has
 
 65
-00:04:32,396 --> 00:04:36,639
+00:04:32,420 --> 00:04:36,663
 worked loose, you have almost certainly
 pressed it back down and carried on.
 
 66
-00:04:36,639 --> 00:04:40,883
+00:04:36,663 --> 00:04:40,907
 That is the decision you keep deferring,
 and it is the wrong shape, because a
 
 67
-00:04:40,883 --> 00:04:45,127
+00:04:40,907 --> 00:04:45,151
 runner that has lifted once has already
 told you what it will do again.
 
 68
-00:04:45,127 --> 00:04:49,370
+00:04:45,151 --> 00:04:49,394
 Choose today between two honest options
 and refuse the third.
 
 69
-00:04:49,370 --> 00:04:53,614
+00:04:49,394 --> 00:04:53,638
 Either refix it properly along its whole
 length, with rods or full-width tape on
 
 70
-00:04:53,614 --> 00:04:57,857
+00:04:53,638 --> 00:04:57,881
 every tread rather than a patch on the one
 failed corner, or take it up entirely
 
 71
-00:04:57,857 --> 00:05:02,101
+00:04:57,881 --> 00:05:02,125
 and live with bare treads.
 
 72
-00:05:02,101 --> 00:05:06,345
+00:05:02,125 --> 00:05:06,369
 Bare wood you know is slippery beats a
 runner you have quietly stopped trusting,
 
 73
-00:05:06,345 --> 00:05:10,588
+00:05:06,369 --> 00:05:10,612
 because you adjust your step for the first
 and not the second.
 
 74
-00:05:10,588 --> 00:05:14,832
+00:05:10,612 --> 00:05:14,856
 The one thing you may not do is press it
 down again and wait.
 
 75
-00:05:14,832 --> 00:05:21,384
+00:05:14,856 --> 00:05:21,408
 Stair and Floor Path The full reset, free
 at 6s-success.com
