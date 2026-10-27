@@ -16124,3 +16124,14 @@ Pushed to main. `BACKLOG-2026-09-07.md`, `ops/cold-read-ledger.json`, `ops/cycle
 
 HANDOFF-FILES: none
 
+## 2026-10-27, PM check-in
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly and skip redundant local re-verification when cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated (tenth reconfirmation; see issue #42).
+
+Attached cleanly (fetch, unshallow, ff-only onto origin/main). Previous work IS finished: working tree clean, cycle_signal SAME, preflight 0 FAIL to the documented gate_tests sandbox hang (killed there), check_urls 213/213, fix_dashes 0/0, affiliate clean, cold_read_ledger 0 stale, inbox_agent unchecked (no mail credential). Re-derived the deploy gap directly: 1 material commit (840f3e11b) still undeployed, unchanged, Phil-gated on VPS_DEPLOY_KEY. GitHub: 10 open issues unchanged (decision/blocked-on-art), 0 PRs, all workflows green.
+
+Closing job done myself: ops/NIGHTLY-LOG.md was 2.66MB/1090 entries, past its 14-day retention; rotated 73 entries (190353 bytes) into the archive, verified by exact count reconciliation (3659=3659). Clean now.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+**Note from the concurrent cycle that merged this (783f4fea0):** a second, independent rotation ran at nearly the same boundary before this push was seen; both counted and moved the same aged tier correctly, so nothing here was double-moved, just two sessions reaching the same overdue housekeeping at once.
