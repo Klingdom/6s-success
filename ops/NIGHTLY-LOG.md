@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (04:1x slot): twelfth-plus independent reconfirmation, gate_tests sandbox hang exceeded 20 minutes but corroborated green via CI, nothing new unblocked
+
+Attached cleanly: fetch, unshallow (checkout was fresh and shallow), checkout main, ff-only merge onto origin/main, picking up two concurrent fixes mid-run (the NIGHTLY-LOG ordering fix on fb534c2ed and its own workflow_dispatch verification handoff, then a later hourly check-in). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, OWNER-ACTIONS.md, CLAUDE.md and this log's own top entries directly rather than trusting a summary.
+
+Verified, not cited: fix_dashes.py --check 0 em/0 en. check_urls.py 213/213. cold_read_ledger.py --stale 0/296, --next 0 un-ledgered candidates (genuinely exhausted). affiliate.py --check clean, 165 documents. A full preflight.py run to a log file: 0 FAIL/0 WARN through every gate reached, but this cycle gate_tests exceeded even a 20-minute background bound without finishing, the second time that specific shape has been logged (first was 2026-10-10); not a new gate yet, since the threshold for that is three occurrences. Closed the gap a different way instead of citing the hang: the concurrently-queued workflow_dispatch run (#2454, 40446911203) against the ordering fix finished its Preflight step (success, 03:57:07-04:06:55Z) and The ops test suite step (success, 04:06:55-04:12:41Z) on the GitHub-hosted runner before this entry was written, so the fix is confirmed, not assumed. Also ran the two previously-failing test files directly in this sandbox: test_gate_nightly_log_ordering.py 8/8, ops/nightly_log.py's own test 10/10, both pass.
+
+Re-derived rather than trusted: deploy gap unchanged, one material commit (840f3e11b) still undeployed, Phil-gated on VPS_DEPLOY_KEY (issue #35). GitHub re-pulled directly: 10 open issues unchanged, all decision/blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked not empty.
+
+No defect found to fix beyond the sandbox-environment gate_tests timing noted above, already being independently resolved by a concurrent session's CI verification. Same standing Phil-gated queue; nothing newly unblocked. No push notification: nothing material has changed since the last one, and this cycle's own finding (gate_tests exceeding 20 minutes) is sandbox-environment noise already corroborated green on the hosted runner, not a customer-facing issue.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (04:1x slot): previous work was NOT finished, checks.yml was red on commit b047c0608 and nobody had looked
 
 **Previous work was not finished.** The top-of-log reconfirmations kept citing "all workflows green," but nobody had checked `checks.yml` itself since `b047c0608` (the tenth-reconfirmation rotation commit): its Preflight step ran to real completion on the GitHub-hosted runner (no sandbox hang there) and failed on 2 gates. No later push has touched a path that re-triggers `checks.yml`, so the red run sat unseen; this cycle's own instrumented local preflight independently found the same 2 fails before I pulled the CI log, so this was not invisible, just unread.
