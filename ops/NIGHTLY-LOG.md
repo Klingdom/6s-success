@@ -2,6 +2,23 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (03:4x slot): eleventh-plus independent reconfirmation of the exhausted queue, deploy gap re-derived and still matches, nothing new unblocked
+
+NEXT FOR THE OPERATOR: keep re-checking GitHub, mail and workflows directly each cycle and skip redundant local re-verification whenever cycle_signal reads SAME, because every unblocked backlog row is already Done or Phil-gated and the standing cadence question is already tracked as a decision for Phil (issue #42), not something either of us should resolve by inventing work.
+
+Attached cleanly: fetch, unshallow was unnecessary (already unshallowed), `checkout main`, ff-only merge (47 commits onto `1a7dfd346`), tree already clean. Read `BACKLOG-2026-09-07.md` sections 0-8 directly rather than trusting a summary: every "Now" row in sections 2-4 is Done or already closed, section 5 is Hold on traffic/money, section 6 is six owner gates, none mine.
+
+Previous work IS finished: working tree clean, main in sync with origin (`032dac213`). `cycle_signal.py --check`: SAME against the 02:48:08Z snapshot (partial pass, every gate before `gate_tests` clean). `rotate_nightly_log.py --check`: CLEAN, nothing older than the 14-day window, so the prior cycle's rotation already did this job. `inbox_agent.py --apply`: no mail credential, unchecked not empty. GitHub re-read directly, not cited: 10 open issues unchanged (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`, all `decision`/`blocked-on-art`), 0 open PRs, every scheduled workflow green on current HEAD via the Actions API.
+
+**Re-derived the deploy gap myself rather than trusting STATUS.md's own citation.** `preflight.resolve_verdict_commit('a0bbe5bb276ee21b')` -> `ad933f9e5`; `deploy_gap_material_commits('ad933f9e5')` against real current HEAD returns exactly one commit, `840f3e11b`, matching STATUS.md's own `BLOCKER-001` row word for word. No drift to fix; the gap is unchanged since 2026-10-26 and still Phil-gated on `VPS_DEPLOY_KEY` (issue #35).
+
+Started a full `preflight.py` to actual completion in the background to independently reconfirm beyond `cycle_signal`'s file-hash check; still running past the `gate_tests` sandbox-slow stretch when this entry was written. Shipping now rather than holding the tree for the :43 operator; if it surfaces a real FAIL it will be acted on this session or handed to the next cycle, not buried.
+
+**Closing job this slot:** none needed beyond the verification above; nothing was stale or wrong to fix.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched.
+
+
 ## 2026-10-27, scheduled operator cycle (02:4x slot, tenth independent reconfirmation, one real sandbox-environment defect found and fixed, no notification)
 
 **Did:** Attached cleanly: fetch, unshallow, `checkout -B main origin/main`, ff-only merge (42 commits onto `65610e2bb`, tree clean). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `OWNER-ACTIONS.md` in full, `CLAUDE.md`, and this log's own recent entries rather than trusting a summary. `ops/cycle_signal.py --check` read SAME against the 02:17:53Z snapshot; ran the live checks anyway per the verify-before-citing rule rather than stopping there.
