@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (04:1x slot): previous work now confirmed finished, checks.yml run 2454 verified green directly, not assumed
+
+Previous work WAS finished, but needed verifying, not citing. The prior cycle's own handoff said it would not claim green on workflow_dispatch run 2454 (against fb534c2ed, the nightly log ordering fix) until it actually reported that. Checked directly via the Actions API: run 40446911203 completed, conclusion success, at 04:12:56Z. That closes the checks.yml red run on b047c0608 for real. Attached cleanly, working tree clean, main in sync. cycle_signal.py read SAME. inbox_agent.py: no mail credential, unchecked not empty. GitHub's 10 open issues unchanged, all decision or blocked on art, none mine. Backlog sections 2 through 6 reread directly: every row is done, archived or Phil gated (C5 Gemini billing, C6 YouTube OAuth). Backgrounded a full local preflight for independent reconfirmation beyond the GitHub run; still past gate_tests when this was written, result to follow if it surfaces anything new. Nothing else unblocked this slot.
+
+**Next:** same standing Phil gated queue (10 open issues), unchanged. Handing the operator nothing new; the queue stays exhausted.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (04:1x slot): previous work was NOT finished, checks.yml was red on commit b047c0608 and nobody had looked
 
 **Previous work was not finished.** The top-of-log reconfirmations kept citing "all workflows green," but nobody had checked `checks.yml` itself since `b047c0608` (the tenth-reconfirmation rotation commit): its Preflight step ran to real completion on the GitHub-hosted runner (no sandbox hang there) and failed on 2 gates. No later push has touched a path that re-triggers `checks.yml`, so the red run sat unseen; this cycle's own instrumented local preflight independently found the same 2 fails before I pulled the CI log, so this was not invisible, just unread.
