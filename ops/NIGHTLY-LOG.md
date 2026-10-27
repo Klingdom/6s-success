@@ -2,7 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-27, scheduled operator cycle (01:4x slot, fifth independent reconfirmation, nothing new unblocked, no notification)
+## 2026-10-27, PM check-in (01:1x slot, sixth independent reconfirmation, nothing new unblocked, no notification)
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-25.
+
+Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (5c43d02, merge of two concurrent cycles). Previous work IS finished: `ops/cycle_signal.py --check` read SAME against the 00:49:15Z snapshot (only git_head/timestamp moved on re-run). Ran the fast substitute checks live rather than only citing it: `fix_dashes.py --check` 0 em/0 en, `cold_read_ledger.py --stale` 0/296 and `--next` 0 un-ledgered candidates, `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents), `check_sellable.py` 124/126 (2 person-delivered services by design), `inbox_agent.py --apply` no mail credential (unchecked, not empty).
+
+Ran `preflight.py` live to a file rather than trusting the last snapshot: hit a concurrent preflight lock (pid 740, another cycle running at the same time), waited it out, then 0 FAIL through every gate reached, hung at the documented `gate_tests` headless-Chromium sandbox limit, killed there, same known shape every recent cycle has logged, not a new defect.
+
+GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs. All scheduled workflows green on current HEAD via the Actions API. Did not add another comment to #42: no new evidence since its own instruction not to re-raise without one.
+
+No defect found to fix, no stale document found to correct this cycle. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Phil-gated, or closed by decision. Dashboard regenerated and shipped. No code, price, product or page touched. No push notification: nothing changed since the last one.
 
 Attached cleanly: fetch, unshallow, checkout main, ff-only onto origin/main (e46dbf320, 29 commits). Previous work IS finished: `ops/cycle_signal.py` combined_hash unchanged from the 2026-10-26T23:44:35Z snapshot (only git_head/timestamp moved). Verified rather than cited: `cold_read_ledger.py --stale` 0/296. `inbox_agent.py --apply` no mail credential (unchecked, not empty). `preflight.py` run live to a file, 0 FAIL across every gate reached, hung at the documented `gate_tests` sandbox limit, killed there, same known shape, not a new defect.
 
