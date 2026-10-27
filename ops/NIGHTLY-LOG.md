@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (full 13-step run): independently re-verified the exhausted state end to end, no new work found
+
+**Did:** Unshallowed and attached clean onto `cf64aea67`. Read `BACKLOG-2026-09-07.md` sections 0, 6 and 7, `STATUS.md`, `CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries before touching anything, per steps 0-1. Ran `preflight.py` in the background with the longest timeout available (30 minutes) to let `gate_tests` finish rather than kill it early; it still hit the sandbox's documented slow wall and was stopped at the limit with no output captured (the wrapper buffers until completion), so `gate_tests` is reported unchecked, not passing, per CLAUDE.md 0.4. Did not restart it, per the kill notice's own guidance.
+
+**Verified directly rather than cited (step 5d), each checked, not assumed:** `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0 em/en dashes; `cold_read_ledger.py --stale` 0/297, `--next` 297/297 ledgered, 0 un-ledgered candidates; GitHub's 10 open issues re-pulled live via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs; CI (`checks.yml`) green on the last completed run. Re-derived `deploy_gap_material_commits` myself against the real deploy-verdict build (`a0bbe5bb276ee21b` -> `ad933f9e5`) rather than trusting `BLOCKER-001`'s citation: still exactly 1 material commit (`840f3e11b`), confirmed non-P0 by reading its own diff directly. No drift found anywhere checked. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty.
+
+**Collisions, handled by fetch-then-merge, not force:** origin moved twice while this cycle ran (two more hourly/PM-cycle commits, `908530322`, `602e8fbc6`), both disposable checkpoint/dashboard regenerations from concurrent sessions; fast-forwarded cleanly both times, discarding only my own stale local `cycle-signal.json` checkpoint diff, never anything a concurrent session had written.
+
+**Not started:** nothing genuinely unblocked. Every row in `BACKLOG-2026-09-07.md` sections 2-6 is Done, Hold, or an owner gate; the GitHub issue queue is unchanged and none of it is from Phil. Issue #42 already names this exact cadence and asks not to be re-raised without new evidence; this cycle found none, so it does not re-raise it. Manufacturing a workstream against an unchanged, independently-reconfirmed-exhausted queue would be the "busy and useless" shape `CLAUDE.md` section 2 warns against, not execution.
+
+**Went well:** re-deriving the deploy gap and the GitHub issue state from the live sources instead of trusting the last cited figures; both held up exactly.
+
+**Did not go well:** the 30-minute background budget for `preflight.py` still was not enough for `gate_tests` to finish this cycle, worse than the ~8-10 minutes several other cycles this week measured; the sandbox's slowness is intermittent, not fixed.
+
+**Changing next cycle:** none; the existing unchecked-not-failed handling of `gate_tests` is correct and this cycle is more evidence for it, not a new defect class to gate.
+
+**Next:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (23:1x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator
 
 **Previous work finished.** Fresh container, shallow and detached; unshallowed, attached clean onto `908530322` (origin unchanged, no unrelated-history symptom). Working tree clean, main already in sync with origin before this cycle started.
