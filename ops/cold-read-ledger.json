@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-26",
-      "note": "2026-10-26, scheduled operator cycle: widened status_deploy_verdict_problem's fifth-section check (Currently Deployed Build / Repository HEAD Build), which matched build_id as a substring anywhere in the paragraph and so passed clean on a real stale citation; now checks that field's own value directly. Fail-then-pass proved against the real STATUS.md and in test_gate_status_deploy_verdict_current.py (14/14)."
+      "status": "clean",
+      "date": "2026-10-27",
+      "note": "Re-read the one unread change since the 2026-10-26 ledger date: the gate_status_metadata_not_oversized addition (5c0ce1586, this cycle's own rotate_status_metadata.py build). WARN-only, wired ahead of gate_tests alongside its seven siblings, buffer of 3, fail-then-pass proved in ops/tests/test_gate_status_metadata_not_oversized.py (7/7). No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
