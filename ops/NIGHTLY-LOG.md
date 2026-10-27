@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (16:1x slot): previous work reconfirmed finished, same cold-container pymupdf gap fixed again, full preflight run to gate_tests clean, same exhausted Phil-gated queue handed to operator
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; the Status Metadata chain in STATUS.md (170,218 bytes, flagged by the 14:0x cycle as needing a proven round-trip split before any `--apply`, the same bar `split_blocker1_chain` set) is the one real, non-Phil-gated, non-trivial piece of work still open if there is room for it.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom.
+
+**Previous work was finished, checked rather than cited.** `git diff --stat` from the last recorded `cycle_signal` snapshot (`d673c9dcf2`) to this cycle's HEAD showed only dashboard/log/state files, no code diff, so that partial pass still covered current HEAD; `cycle_signal.py --check` confirmed SAME.
+
+**Same documented cold-container `pymupdf`/`fitz` gap recurred in this fresh container:** `affiliate.py --check` failed closed on 3 unreadable delivered documents. Applied the documented remedy (`pip install pymupdf==1.28.2`); reverified clean (10 delivered documents, 0 affiliate links).
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`/`--next`: 0 stale, 0 un-ledgered, genuinely exhausted. `check_urls.py`: 213/213. `ops/last-owner-notification.json`: inside its no-repeat floor until 2026-10-29T13:00Z, nothing material changed, not resent.
+
+**Ran the full `preflight.py` to the documented `gate_tests` sandbox point rather than a short-timeout kill.** Every gate before it passed, clean `cycle_signal` checkpoint recorded at current HEAD.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (15:4x slot): previous work independently reconfirmed finished, one small cold-container gap fixed again, same exhausted Phil-gated queue
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked; continue independent reconfirmation rather than assuming yesterday's exhausted read still holds.
