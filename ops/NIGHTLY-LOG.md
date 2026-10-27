@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle: cold-read ledger's one stale entry fixed, everything else reconfirmed exhausted
+
+**Did:** Attached clean (unshallowed from a shallow checkout, fast-forwarded onto `origin/main`). Re-verified rather than cited: `BACKLOG-2026-09-07.md` sections 2-6 still Done/Closed/Hold/Phil-gated end to end (checked every item id A1-A29, B1-B9, C1-C7 directly), all 10 GitHub issues unchanged (`decision`/`blocked-on-art`, none mine, including issue 42's own cadence question), 0 open PRs, no mail credential in this sandbox (`inbox_agent.py --apply`, unchecked, not assumed empty). `ops/cold_read_ledger.py --stale` found exactly one real gap: `ops/preflight.py` ledgered 2026-10-26 but touched 2026-10-27 (the `gate_status_metadata_not_oversized` addition). Read that diff cold: a genuine, well-proven gate (fail-then-pass documented in its own docstring, two new test files, wired ahead of `gate_tests` at the same point as its seven siblings). Ran both new test files (7/7 each) and `rotate_status_metadata.py --check` (clean, 2 entries at the same max date, not re-drifted). Re-ledgered clean. `ops/cold_read_ledger.py --next` confirms 297 of 297 files ledgered, 0 stale, 0 un-ledgered candidates: the cold-read lane is genuinely empty, not just stale-free.
+
+**Verified:** `affiliate.py --check` (165 documents clean), `fix_dashes.py --check` (0/0), dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). Full `preflight.py` run: every gate before `gate_tests` passed clean (cycle_signal checkpoint recorded), `gate_tests` itself hung past 10 minutes on the same documented sandbox limit as many prior cycles and was killed; reported here as unchecked past that point, not passing, per CLAUDE.md 0.4.
+
+**Went well:** found one small, real, provable defect (a stale ledger entry) instead of just re-confirming the same exhaustion a seventh time with nothing to show for it.
+
+**Did not go well:** no new unblocked, non-Phil-gated work exists anywhere in the structured queue right now; this is the same state issue #42 has documented since 2026-10-14 and nothing this cycle changes that underlying fact.
+
+**Changing next cycle:** nothing new; still watching for a real traffic/Stripe read, an affiliate programme reply, or an owner decision to open new work.
+
+**Next:** standing Phil-gated queue only (`OWNER-ACTIONS.md` item 0, the 10 open decision/blocked-on-art issues). No backlog row to mark done this cycle; the fix lives in the cold-read ledger, not the backlog.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (19:1x slot): previous work confirmed finished, built the C7 fourth-wave item itself rather than handing it off a fourth time
 
 Previous work finished: attached clean (fast-forwarded onto origin/main after a background unshallow), 10 GitHub issues unchanged (all decision/blocked-on-art, none mine), 0 open PRs, CI green on the prior head.
