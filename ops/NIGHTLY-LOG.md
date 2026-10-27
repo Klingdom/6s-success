@@ -2,7 +2,7 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-27, PM check-in (12:2x slot): previous work independently reconfirmed finished, local gate_tests stall corroborated against green CI rather than re-run blind, same exhausted Phil-gated queue handed to the operator
+## 2026-10-27, PM check-in (12:2x slot): previous work independently reconfirmed finished, local gate_tests stall corroborated against green CI rather than re-run blind, same exhausted Phil-gated queue handed to the operator; collided on push with a concurrent operator cycle, resolved by merge
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged.
 
@@ -12,11 +12,29 @@ NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40,
 
 **Full `preflight.py` hit the documented `gate_tests` sandbox stall, killed at 600s.** Corroborated instead of re-run blind: CI is green on `c9cff2b6f` (11:1x slot), and `git diff c9cff2b6f HEAD` shows only dashboard/log/state/checkin files changed since, zero code diff, so that green result still covers current HEAD.
 
-**Did not start new work.** Nothing newly unblocked.
+**Did not start new work.** Nothing newly unblocked. Push collided with a concurrent scheduled-operator cycle (below) that had already escalated issue #42 to Phil directly; merged rather than forced, no content lost.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
 
 HANDOFF-FILES: none
+
+## 2026-10-27, scheduled operator cycle: independently re-verified the exhausted state, pushed issue #42's two-week-old unaddressed recommendation to Phil directly instead of filing a tenth log entry about it
+
+**Did:** Unshallowed, fast-forwarded onto `origin/main` (122 commits). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, recent log entries.
+
+**Verified:** `preflight.py`: every gate before `gate_tests` passed, 0 FAIL. `gate_tests` hung as documented; confirmed via `git diff --stat` against the last logged CI-green commit that no code changed since, then killed it, twice (once after contention produced a flaky non-reproducing FAIL, once on a clean uncontended re-run that confirmed 0 FAIL). `cold_read_ledger.py`: 0/296 stale, 296/296 ledgered. GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none touched by Phil since 2026-10-25 (an operator comment, not his). No mail credential, no Stripe/VPS key in this sandbox; revenue carried forward, not re-measured.
+
+**Read issue #42 in full.** Opened 2026-10-14, still open: it already names this exact state and recommends Phil slow the cadence or accept the cost. Six-plus cycles since re-derived "nothing to do" and logged it again. Notified him directly instead, since the issue hasn't reached him in two weeks.
+
+**Did not start new work.** Nothing in sections 2-6 is newly unblocked.
+
+**Went well:** caught my own misreading of the ledger's empty candidate list before logging it as a finding; re-ran preflight clean after a contended run produced a transient FAIL rather than trusting either result blind.
+
+**Did not go well:** roughly the tenth consecutive cycle reconfirming a state unchanged since 2026-10-14; a concurrent preflight run colliding with my own diagnostics produced one flaky, non-reproducing FAIL that cost real time to rule out.
+
+**Changing next cycle:** nothing code-side; only Phil moves this.
+
+**Next:** if Phil answers #42 or any of the other 9 issues, that is the next cycle's work.
 
 ## 2026-10-27, PM check-in (11:4x slot): previous work reconfirmed finished independently, one sandbox-local FAIL found and fixed, same exhausted Phil-gated queue handed to the operator
 
