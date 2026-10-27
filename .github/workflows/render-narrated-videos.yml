@@ -12,8 +12,10 @@ name: Render stale narrated videos
 # The cloud sandbox this repository is usually operated from refuses that
 # destination at its own egress proxy (confirmed directly: a DNS-level
 # connection failure to that host specifically), which is why this runs on a
-# GitHub-hosted runner instead, the same pattern keyword-demand.yml and
-# indexation-check.yml use for a different host.
+# GitHub-hosted runner instead, the same pattern publish-mcp.yml uses
+# (push scoped to content/manual/source/content.json) rather than
+# keyword-demand.yml/indexation-check.yml, which are schedule-only and
+# trigger on no file path at all.
 #
 # Corrected 2026-10-14, this operator: the three prior failures here
 # (WSServerHandshakeError: 403 from speech.platform.bing.com, across three
@@ -29,13 +31,32 @@ name: Render stale narrated videos
 # then be worth re-examining; it was never confirmed, only assumed, the first
 # three times.
 #
-# Manual only. check_video_standard.py's own gate already warns preflight.py
-# every time a video goes stale, and rendering is slow (narration, a
+# C7 fourth-wave prevention (BACKLOG-2026-09-07.md): three straight waves
+# of this exact drift (2026-10-09, 2026-10-13, 2026-10-27) were each only
+# caught because some later cycle happened to notice gate_tests's
+# gate_zone_videos_match_standard WARN and hand-dispatch this workflow.
+# check_video_standard.py's own gate still warns preflight.py every time a
+# video goes stale, but nothing used to act on that warning by itself.
+# Added 2026-10-27: a push trigger scoped to content.json's own path, the
+# same pattern publish-mcp.yml already uses, so an edit to that file
+# re-renders any now-stale captions on its own instead of waiting for the
+# next cycle's cold read. Still no schedule: rendering is slow (narration, a
 # screenshot per beat, and an ffmpeg encode for each of two orientations per
-# zone), so this runs on request rather than on a schedule that would
-# re-render nothing most weeks and silently burn minutes checking.
+# zone), and a schedule would re-render nothing most weeks while silently
+# burning minutes checking. Safe as a push trigger for the same reason
+# fulfil-orders.yml's push trigger is safe: ops/render_stale_narrated.py's
+# own stale_pairs() re-derives which zones are stale fresh each run, straight
+# from check_video_standard.py's compare(), rather than trusting what an
+# earlier run thought was stale, so two overlapping runs (a push run racing
+# a manual workflow_dispatch) converge on the same result instead of
+# double-rendering, and cancel-in-progress: false below queues rather than
+# kills either one.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/manual/source/content.json'
   workflow_dispatch:
 
 concurrency:

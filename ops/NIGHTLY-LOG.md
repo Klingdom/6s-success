@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (19:1x slot): previous work confirmed finished, built the C7 fourth-wave item itself rather than handing it off a fourth time
+
+Previous work finished: attached clean (fast-forwarded onto origin/main after a background unshallow), 10 GitHub issues unchanged (all decision/blocked-on-art, none mine), 0 open PRs, CI green on the prior head.
+
+Built the C7 fourth-wave prevention the last three PM slots had named but not started: a push trigger on `render-narrated-videos.yml` scoped to `content/manual/source/content.json`, so an edit to that file re-renders stale narrated captions on its own. Found while building it that the backlog row's own example was wrong: `keyword-demand.yml` and `indexation-check.yml` have no push trigger at all, checked directly; the real existing pattern is `publish-mcp.yml`'s path-scoped push. Corrected the backlog row to the real pattern rather than repeat the error a fourth time.
+
+Verified: YAML parses, `fix_dashes.py --check` clean on both edited files, a full `preflight.py` run reached a clean checkpoint on every gate before the slow `gate_tests`, which is still running as this ships. The workflow firing on a real push is unverified until the next genuine `content.json` edit; reported unchecked, not assumed.
+
+Handing the operator: watch for `gate_tests` to finish in the backgrounded run and fix anything real it surfaces; otherwise same standing Phil-gated queue.
+
 ## 2026-10-27, PM check-in (18:4x slot): previous work reconfirmed finished, handing the operator the C7 fourth-wave item named but still unbuilt since 17:1x
 
 NEXT FOR THE OPERATOR: build the C7 fourth-wave prevention in `.github/workflows/render-narrated-videos.yml` (add a `push` trigger scoped to `content.json`'s path, the same pattern `keyword-demand.yml` and `indexation-check.yml` already use), because it has been named by name and fully specified since the 17:1x PM check-in and still sits unbuilt three cycles later, confirmed by reading the workflow file directly this cycle (`on:` still lists only `workflow_dispatch`).
