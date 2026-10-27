@@ -2,11 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## 2026-10-27, PM check-in (21:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator
+## 2026-10-27, scheduled operator cycle: built the C7 fourth-wave item, found a concurrent session had already shipped and CI-verified the identical fix, discarded the duplicate rather than push a conflict
+
+**Did:** Unshallowed, attached clean onto `883d3e77f`. Ran `preflight.py` to genuine completion, not a short kill: 1 FAIL (`stray-probe-files`, self-inflicted by my own earlier attempt getting killed mid-test; the gate deletes what it finds after reporting, confirmed gone), 38 WARN, all standing sandbox/credential limits. Independently built the C7 fourth-wave push trigger on `render-narrated-videos.yml` (the one item named but not built across five PM check-ins) and committed it locally.
+
+**Caught before pushing, not after:** `git fetch` showed origin 18 commits ahead. `29dad9131` had already shipped the identical fix (confirmed by reading the live file, not assumed), and `28e0932b1` had already verified it fires via a real CI run. Pushing my own commit would have duplicated the backlog row and conflicted on the same workflow lines for no benefit. Discarded my local commit (`git reset --hard origin/main`; never pushed, so nothing shared was touched) rather than force anything or re-litigate an already-closed row.
+
+**Verified rather than assumed exhausted after that:** `cold_read_ledger.py --stale` 0/297, `--next` 297/297 ledgered, 0 candidates. GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil (checked issue #42's full comment thread directly). 0 open PRs. CI green on the last several commits. Regenerated the dashboard (1 commit behind after the reset).
+
+**Went well:** Fetching before pushing caught the collision before it became a merge conflict, not after.
+
+**Did not go well:** Killed my own first two preflight attempts by ending turns before a long-running background command finished, which is what created the stray-probe-files FAIL I then had to diagnose.
+
+**Changing next cycle:** None; existing gates already caught and self-healed the one real issue.
+
+**Next:** Same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged. Issue #42's own thread already asks not to be re-raised without new evidence; none here.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-27, PM check-in (21:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator, concurrent with the operator cycle above
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; do not start new work, continue independent reconfirmation.
 
-**Previous work finished.** Attached clean onto `da0d0b755`, working tree clean, nothing to unshallow-fix (already not shallow). GitHub's 10 open issues re-pulled directly via the API, not cited: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`: 0 stale. CI (`checks.yml`) confirmed `completed`/`success` on `1b75a049a`, the last code-touching commit, via the Actions API directly. Local `preflight.py` run in full this cycle: every gate before `gate_tests` passed with 0 FAIL, confirmed by reading its own output rather than trusting a summary; `cycle_signal.py --check` immediately after reported SAME against this exact HEAD, partial-pass snapshot honestly labelled, not a full pass. `gate_tests` itself killed at the documented sandbox hang point rather than waited out past this slot's budget; reported unchecked, not passing.
+**Previous work finished.** Attached clean onto `da0d0b755`, working tree clean. GitHub's 10 open issues re-pulled directly via the API, not cited: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`: 0 stale. CI (`checks.yml`) confirmed `completed`/`success` on `1b75a049a`, the last code-touching commit, via the Actions API directly. Local `preflight.py` run in full this cycle: every gate before `gate_tests` passed with 0 FAIL, confirmed by reading its own output rather than trusting a summary; `cycle_signal.py --check` immediately after reported SAME against this exact HEAD, partial-pass snapshot honestly labelled, not a full pass. `gate_tests` itself killed at the documented sandbox hang point rather than waited out past this slot's budget; reported unchecked, not passing.
+
+**Collided with the operator cycle above, same shape as prior same-window collisions:** this entry's own push conflicted on `ops/NIGHTLY-LOG.md` and the generated dashboard trio; merged rather than forced, kept both entries rather than discarding either since the two cycles ran independent verifications and reached the same conclusion from different starting commits (`da0d0b755` here, `883d3e77f` there). Regenerated `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` fresh against the merged tree rather than hand-resolving their conflicts.
 
 **Not started:** nothing genuinely unblocked. Issue #42's own standing finding (re-verifying an unchanged, fully-exhausted state) still holds; no push notification sent, consistent with that issue's 48-hour floor and no new evidence to report.
 
