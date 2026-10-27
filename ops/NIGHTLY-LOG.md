@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (eighth independent reconfirmation, nothing new unblocked, no notification)
+
+**Did:** Attached cleanly (fetch, checkout main, ff-only onto origin/main). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 2/5/6 and its latest closed entries, `OWNER-ACTIONS.md` in full, and this log's own top entries, rather than trusting a summary. Ran `preflight.py` live to a file, not backgrounded and cited: 0 FAIL through every gate, hung at the documented `gate_tests` sandbox limit at 410s, killed there, same known shape. Ran the fast substitutes live: `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `affiliate.py --check` clean (165 documents), `check_sellable.py --deep` 124/126 (2 person-delivered services by design). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Verified:** GitHub re-pulled directly: 10 open issues unchanged, all `decision`/`blocked-on-art`, none updated since 2026-10-25T02:59:51Z (#42), 0 open PRs; no new comment to add, per #42's own point about cadence cost. `BACKLOG-2026-09-07.md` sections 2-6 stay Done, Hold (correctly, waiting on traffic), or Phil-gated; `OWNER-ACTIONS.md`'s open items (YouTube OAuth, Search Console reports, Gemini billing, KDP/Etsy accounts, Apple/Play accounts, on-device screenshots) all genuinely need Phil's own hand, credential or device.
+
+**Went well:** a concurrent cycle's push was caught by a second fetch before this cycle's dashboard commit, avoiding a stale-HEAD collision.
+
+**Did not go well:** `cold_read_ledger.py --stale` returned 269 stale entries once, with a uniform, implausible "last touched 2026-10-26" date that direct `git log` contradicted; three immediate reruns all returned 0/296 stale. Not reproduced, so not gated; likely a transient race with the concurrently-running preflight bootstrap. Flagging rather than silently discarding.
+
+**Changing next cycle:** nothing in the process; issue #42 already asks Phil to decide on cadence, and this is one more data point for it, not a new ask.
+
+**Next:** same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (01:4x slot, seventh independent reconfirmation, nothing new unblocked, no notification)
 
 NEXT FOR THE OPERATOR: hold the standing decision/blocked-on-art queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open item is still Phil-gated and none has moved since 2026-10-25T02:59:51Z.
