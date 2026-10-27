@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (22:1x slot): an intermittent pre-gate_tests FAIL found but not pinned down, reported honestly rather than guessed at
+
+Attached clean onto `00f955dee`, tree clean, 0 open PRs, 10 issues unchanged (all decision/blocked-on-art), cold-read ledger 0/296 stale. Previous work was finished.
+
+Ran `preflight.py` three times this cycle (one killed by a container restart, two by this session's own background time limit on the slow `gate_tests` gate). Two of the three printed "failing gate(s)" at the checkpoint just before `gate_tests`, but the exact gate was never named: that message only fires before the final summary, which only prints after `gate_tests` finishes, and all three runs died before reaching it. Wrote a standalone script replaying the exact same ~100 pre-test gates without `gate_tests`; it passed clean 4/4 times. So the FAIL is real but load- or timing-dependent, not reproduced in isolation; a hardcoded 2-second threshold in `gate_preflight_lock_blocks_concurrent_runs` is a plausible but unconfirmed suspect. Cleaned a stale lock dir from a killed run. Logging this rather than guessing a fix blind; next cycle should re-run `preflight.py` under real concurrent load and capture the actual FAIL line.
+
+Same exhausted Phil-gated queue handed to the :43 operator. No push notification (floor until 2026-10-29T13:00Z unchanged).
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (22:0x slot): independently reconfirmed exhausted state, one real concurrent-edit collision resolved cleanly, no new work manufactured
 
 **Did:** Unshallowed and attached clean onto `e82ac104e`. Ran `preflight.py` to real completion (not a short kill): every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean partial-pass checkpoint, then the run hit the documented sandbox-slow `gate_tests` wall and was killed by an 1100s external timeout (exit 124), same standing limitation several 2026-10-27 cycles already root-caused as intermittent headless-Chromium flakiness rather than a content defect. Reported unchecked past that point, not passing.
