@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (05:3x slot): gate_tests hung past 43 minutes locally, corroborated green via CI instead of waited on; queue reconfirmed fully exhausted
+
+**Did:** Unshallowed, attached to `main`, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the tail of the prior nightly-log entries directly rather than a summary. Ran `ops/preflight.py` in full: every gate before `gate_tests` passed clean (recorded in `cycle-signal.json`), then `gate_tests` itself ran past 43 minutes with no output, well past every previously logged occurrence of this same sandbox limitation; killed it rather than wait indefinitely. Ran `check_urls.py` (213/213), `affiliate.py --check` (165 documents, clean), `check_ledgerium.py` (unchecked, no Stripe credential, as always in this sandbox), `check_sellable.py --deep` (124/126 buyable products verified against disk; deep Stripe price check unchecked, no `.env.secrets`), `inbox_agent.py --apply` (no mail credential, unchecked, not assumed empty), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered candidates). Regenerated the command deck.
+
+**Verified, not cited:** GitHub's Actions API shows the same `preflight.py` completing `success` on the current HEAD (run 40453055127, commit `ae3fe3a81`) minutes after the local run stalled, so the test suite itself is not broken, only slow-to-hanging in this sandbox. Re-derived the deploy gap directly (`deploy_gap_material_commits('ad933f9e5')`): 1 material commit (`840f3e11b`) still undeployed, matching `STATUS.md`'s own figure exactly, no drift. All 10 GitHub issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read directly: every row Done, Hold, or Phil-gated (C5 Gemini billing, C6 YouTube OAuth, issue #35 VPS_DEPLOY_KEY, among others); nothing newly unblocked.
+
+**Went well:** corroborating a stuck local gate instead of either declaring a false failure or burning the rest of the cycle waiting on it.
+
+**Did not go well:** the same `gate_tests` sandbox hang recurred, worse than the worst previously logged duration (20+ minutes); the underlying cause is still unknown, only worked around.
+
+**Changing next cycle:** none new; this is the same standing, already-documented sandbox limitation with an established workaround (corroborate via CI), not a fresh defect class needing a new gate.
+
+**Next:** same standing Phil-gated queue (10 open issues, all decision/blocked-on-art); no genuinely unblocked item exists to execute.
+
+Pushed to main. `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (05:1x slot): previous work confirmed finished (checks.yml green on two separate commits, verified directly), queue still fully exhausted, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues, all decision/blocked-on-art), unchanged; no genuinely unblocked item exists to hand over.
