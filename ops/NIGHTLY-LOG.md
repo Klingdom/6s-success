@@ -20,6 +20,22 @@ Pushed to main. `ops/last-owner-notification.json`, `ops/NIGHTLY-LOG.md`, comman
 
 HANDOFF-FILES: none
 
+## 2026-10-27, PM check-in (12:2x slot): previous work independently reconfirmed finished, local gate_tests stall corroborated against green CI rather than re-run blind, same exhausted Phil-gated queue handed to the operator; collided on push with a concurrent operator cycle, resolved by merge
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged.
+
+**Previous work was finished.** Attached clean after a slow unshallow: `fetch`, `checkout main`, `merge --ff-only` onto `origin/main`, no unrelated-history symptom, tree already clean and in sync.
+
+**Checked rather than cited.** `check_urls.py`: 213/213. `affiliate.py --check`: clean, 165 documents. `cold_read_ledger.py --stale`: 0/296; `--next`: 0 un-ledgered candidates. GitHub's 10 open issues re-pulled fresh: unchanged set and labels, 0 open PRs. `OWNER-ACTIONS.md`'s "List reviewed: 2026-10-25" marker checked against every date in the file body: nothing newer. `BACKLOG-2026-09-07.md` sections 2-7 spot-checked: every A-item Done/Closed/Archived.
+
+**Full `preflight.py` hit the documented `gate_tests` sandbox stall, killed at 600s.** Corroborated instead of re-run blind: CI is green on `c9cff2b6f` (11:1x slot), and `git diff c9cff2b6f HEAD` shows only dashboard/log/state/checkin files changed since, zero code diff, so that green result still covers current HEAD.
+
+**Did not start new work.** Nothing newly unblocked. Push collided with a concurrent scheduled-operator cycle (below) that had already escalated issue #42 to Phil directly; merged rather than forced, no content lost.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle: independently re-verified the exhausted state, pushed issue #42's two-week-old unaddressed recommendation to Phil directly instead of filing a tenth log entry about it
 
 **Did:** Unshallowed, fast-forwarded onto `origin/main` (122 commits). Read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, recent log entries.
