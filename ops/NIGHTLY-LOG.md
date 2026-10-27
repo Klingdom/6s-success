@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle: found and fixed a third wave of stale narrated-video captions, root-caused the browser-interactive gate_tests hang signature
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `655552ed3`). Backlog sections 2-6, cold-read ledger (296/296, 0 stale, 0 un-ledgered) and GitHub's 10 open issues (all `decision`/`blocked-on-art`, unchanged since 2026-10-25) all reconfirmed exhausted by direct re-check, not cited. Re-derived the deploy gap directly: `deploy_gap_material_commits` against real HEAD matches STATUS.md's own current figure (1 material commit), no correction needed there.
+
+**Real finding, not a re-citation:** `python ops/check_video_standard.py` read 4 of 114 narrated videos stale, a finding no prior log entry names. Root cause: Phil's own 2026-10-26 cleaning-content review (`ad933f9e5`) edited `content.json` for many zones without a matching re-render, the same recurring shape as the two earlier waves. Triggered `render-narrated-videos.yml` (`run 40545360567`), watched it to real completion via the Actions API (`completed`/`success`, not the queued response alone), then re-verified independently: 114 of 114 matching, 0 stale. Corrected `BACKLOG-2026-09-07.md`'s stale C7 row, which still told readers not to re-trigger this workflow based on a wrong 2026-10-13 diagnosis that was itself superseded 2026-10-14; added a dated row recording the real root cause (content edits never auto-trigger a re-render) so it is named as a recurring pattern, not a one-time close.
+
+**Investigated rather than re-cited the standing `gate_tests` hang:** ran the suspect test files directly outside the gate, bisected a reproducible-looking case down to a single script tag, then watched it stop reproducing on the next attempt. Confirmed this is genuine intermittent headless-Chromium flakiness in this sandbox, not a deterministic content defect, consistent with the 2026-09-23 finding already in `preflight.py`'s own code comments and already handled correctly as "unverified," never a FAIL. No new gate needed; the existing classification is doing its job.
+
+**Verified:** `check_urls.py` 213/213, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 service SKUs, expected), `fix_dashes.py --check` 0/0 including this cycle's own edits, `cold_read_ledger.py --stale`/`--next` 0/296. Dashboard regenerated.
+
+**Went well:** treating a WARN-only gate's finding as real work instead of re-confirming the same "exhausted" conclusion a sixth time; watching the triggered workflow to actual completion before claiming the fix.
+
+**Did not go well:** a half hour went into chasing the browser-hang signature before concluding it was already correctly handled; worth remembering before the next cycle re-investigates it from scratch.
+
+**Changing next cycle:** none; the video-standard gate and the browser-timeout classifier both did their job, they just needed someone to act on the warning.
+
+**Next:** same standing Phil-gated queue (10 open issues, all `decision`/`blocked-on-art`) and `OWNER-ACTIONS.md`. The 17:1x PM check-in's handoff (a Status Metadata chain rotator for `STATUS.md` section 1, hours-scale) still stands, not attempted here.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `ops/NIGHTLY-LOG.md`, command deck, plus the render workflow's own commit (`98b0404ec`, `.srt` sidecars only). No price or product touched; IndexNow not applicable (no new or rewritten page).
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (17:1x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, gate_tests hang signature confirmed and killed rather than waited out blind
 
 Previous work finished: attached clean (unshallowed, fast-forwarded onto `5889f031a`), tree clean, main in sync. GitHub's 10 open issues re-pulled directly: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`/`--next`: 0/296 stale, 0 un-ledgered, genuinely exhausted. Ran `preflight.py` fresh (cold container repeated the known pymupdf gap, reinstalled): every gate before `gate_tests` passed, clean checkpoint recorded at HEAD. `gate_tests` hit the documented egress-stall signature (308s elapsed, 14s CPU) and was killed on that evidence rather than run further; CI's own recent runs on this branch are consistently green, corroborating. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213. Nothing new unblocked; no small item found to close this slot beyond the checkpoint.
