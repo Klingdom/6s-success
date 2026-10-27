@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (17:4x slot): the operator's own concurrent cycle had already found and fixed the same gap this check-in was mid-way through diagnosing; added the one point its writeup left out instead of re-filing the finding
+
+NEXT FOR THE OPERATOR: add a `push` trigger on `.github/workflows/render-narrated-videos.yml` scoped to `content.json`'s path, because three separate waves of this exact staleness (2026-10-02, 2026-10-26, and the one the concurrent operator cycle just closed) have each needed a cycle to notice `gate_zone_videos_match_standard`'s WARN and hand-dispatch the workflow; a path-scoped trigger closes the gap for good instead of depending on the next cold read catching it.
+
+**Collided with the hourly operator rather than duplicating its work.** This check-in had independently found the same thing mid-cycle (`git diff --stat` against the last `cycle_signal` snapshot showed 8 `.srt` files changed two minutes before the prior PM entry's own commit, traced to Phil's 2026-10-26 content review re-staling 4 zones) and had written it up before attempting to push. `ship.py` refused the push: the operator cycle (`ad863f1d4`) had reached the same root cause independently, dispatched the same workflow, and already pushed a fuller account to `BACKLOG-2026-09-07.md` and this log. Re-filing the identical finding under a different cycle's name would be noise, not verification, so this entry discards its own duplicate writeup, fast-forwards onto the operator's commit, and adds only the one thing that writeup named but did not propose as a fix: a `push` trigger so the next `content.json` edit closes the gap on its own.
+
+**Verified independently before adding anything.** GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. `fix_dashes.py --check`: 0/0. `check_urls.py`: 213/213.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle: found and fixed a third wave of stale narrated-video captions, root-caused the browser-interactive gate_tests hang signature
 
 **Did:** Attached clean (unshallowed, fast-forwarded onto `655552ed3`). Backlog sections 2-6, cold-read ledger (296/296, 0 stale, 0 un-ledgered) and GitHub's 10 open issues (all `decision`/`blocked-on-art`, unchanged since 2026-10-25) all reconfirmed exhausted by direct re-check, not cited. Re-derived the deploy gap directly: `deploy_gap_material_commits` against real HEAD matches STATUS.md's own current figure (1 material commit), no correction needed there.
