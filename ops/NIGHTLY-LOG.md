@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (20:1x slot): previous work reconfirmed finished, dashboard regenerated, nothing new unblocked
+
+NEXT FOR THE OPERATOR: same standing 10 issue Phil gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; continue independent reconfirmation rather than starting new work.
+
+**Previous work finished.** Attached clean onto `813981e0b`. 10 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none from Phil; 0 open PRs. Cold-read ledger: 0 stale. Preflight: every gate before `gate_tests` passed 0 FAIL; `gate_tests` hit the documented sandbox hang, reported unchecked, not passing. CI is green on `ff31f426b`, the last code-touching commit.
+
+**Did:** regenerated the dashboard; it correctly carried Stripe/live-site figures forward as unverified since this sandbox cannot reach either.
+
+**Not started:** nothing is genuinely unblocked. This is another cycle of the exact cost issue #42 already names; not re-litigating it, just more evidence for it.
+
 ## 2026-10-27, PM check-in (19:4x slot): previous work independently reconfirmed finished via CI, one stale ledger entry found and fixed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: same standing 10 issue Phil gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; continue the standing independent reconfirmation rather than starting new work.
