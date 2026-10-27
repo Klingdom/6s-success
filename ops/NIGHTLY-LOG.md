@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (05:4x slot): previous work confirmed finished, two sandbox-local FAILs found and fixed (not repo defects), same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42,#40,#35,#33,#31,#29,#21,#18,#15,#2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Attached clean, ff-only onto `origin/main`, tree already clean. `cycle_signal.py --check`: SAME against 04:47:16Z. Ran the live checks anyway: `check_urls.py` 213/213; `cold_read_ledger.py --stale` 0/296, `--next` exhausted; `rotate_nightly_log.py --check` CLEAN. Re-derived the deploy gap directly (`resolve_verdict_commit`/`deploy_gap_material_commits`): 1 material commit (`840f3e11b`), matches `STATUS.md` exactly, unchanged. GitHub re-pulled directly: 10 issues unchanged, none mine; 0 open PRs; `checks.yml` green on current HEAD (run 2456).
+
+Found and fixed two sandbox-local FAILs, both environment artifacts of this fresh container, not product defects: `affiliate.py --check` failed 3 PDFs because bare `pip` wrote `pymupdf` under Python 3.13 while `python` resolves to 3.11 (fixed with `python -m pip install pymupdf`, rechecked clean); `check_sellable.py --deep` flagged 120 missing build files because `build/products/` is gitignored on a fresh checkout (fixed with `ops/build_catalog.py --build`, rechecked 124/126 clean). Neither touches tracked files; nothing to commit for either. No full local `preflight.py` run this slot given `cycle_signal` SAME and the operator three minutes out.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (05:4x slot): fresh checkout, gate_tests hang corroborated against a zero-code-diff CI commit rather than waited on; queue still fully exhausted
 
 **Did:** Unshallowed, attached to `main`, ff-only onto `origin/main` (`c25f49dcf`, 66 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly. Ran `ops/preflight.py`: every gate through the `cycle_signal` snapshot passed clean, then `gate_tests` ran with no output. Rather than wait out the 20-43 minute span prior cycles logged, checked `git log ae3fe3a8..HEAD` for non-doc changes: none (log/dashboard/state files only), a tighter corroboration than previous cycles had, since the last CI-green commit (run 2456, `ae3fe3a8`, success) and current HEAD carry identical code; killed the hung process on that basis. Ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py --deep` (124/126 verified on disk; Stripe deep check unchecked, no `.env.secrets`), `check_ledgerium.py` (unchecked, no Stripe credential), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `inbox_agent.py --apply` (no mail credential, unchecked not assumed empty), `rotate_nightly_log.py --check` (clean).
