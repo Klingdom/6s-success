@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (22:0x slot): independently reconfirmed exhausted state, one real concurrent-edit collision resolved cleanly, no new work manufactured
+
+**Did:** Unshallowed and attached clean onto `e82ac104e`. Ran `preflight.py` to real completion (not a short kill): every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean partial-pass checkpoint, then the run hit the documented sandbox-slow `gate_tests` wall and was killed by an 1100s external timeout (exit 124), same standing limitation several 2026-10-27 cycles already root-caused as intermittent headless-Chromium flakiness rather than a content defect. Reported unchecked past that point, not passing.
+
+**Collision, resolved rather than forced.** A `preflight.py` run's own `cycle_signal` checkpoint write collided with a concurrent session's push: `git fetch` showed origin two commits ahead (`da0d0b755`, `1b75a049a`...up to `c59194ccf`, both automated hourly/PM-cycle commits). Stashed my local `ops/cycle-signal.json` edit, fast-forwarded onto the new origin head, hit a merge conflict on that same file (both sides had written a checkpoint against different HEADs), and kept origin's version rather than mine: mine was already stale the moment origin moved, and the file is a disposable checkpoint, not a record worth preserving a redundant copy of. Working tree confirmed clean afterward.
+
+**Independently re-verified rather than cited:** GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil (read issue #42's full 7-comment thread directly; its last comment explicitly says not to re-raise without new evidence or a reply, and there is neither, so this entry does not re-raise it). 0 open PRs. CI green on the two most recent completed runs on this branch. `cold_read_ledger.py --stale`/`--next`: 0/297 stale, 0 un-ledgered candidates, genuinely exhausted. `BACKLOG-2026-09-07.md` sections 2-6 re-scanned by their own item markers: every row is struck through (Done), Hold, or an owner gate in section 6; nothing unblocked. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not assumed empty. No Phil-authored commits since the last check (`git log` shows only `Claude`/`github-actions` authors on everything new). `check_urls.py` 213/213, `affiliate.py --check` 165 documents clean, `fix_dashes.py --check` 0/0.
+
+**Not started:** nothing genuinely unblocked. Manufacturing a workstream against an unchanged, already-exhausted queue would be the "busy and useless" shape `GOALS.md` and `CLAUDE.md` section 2 both warn against, not execution.
+
+**Went well:** fetching before resolving the stash/merge caught the collision at the one file both sides had written, instead of pushing a conflicting value.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox wall as the last several cycles.
+
+**Changing next cycle:** none; existing classification of `gate_tests` as unchecked-not-failed is correct and doing its job.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
+
+Pushed to main. `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle: built the C7 fourth-wave item, found a concurrent session had already shipped and CI-verified the identical fix, discarded the duplicate rather than push a conflict
 
 **Did:** Unshallowed, attached clean onto `883d3e77f`. Ran `preflight.py` to genuine completion, not a short kill: 1 FAIL (`stray-probe-files`, self-inflicted by my own earlier attempt getting killed mid-test; the gate deletes what it finds after reporting, confirmed gone), 38 WARN, all standing sandbox/credential limits. Independently built the C7 fourth-wave push trigger on `render-narrated-videos.yml` (the one item named but not built across five PM check-ins) and committed it locally.
