@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle: a mid-run "failing gate(s)" signal chased down rather than trusted or ignored, resolved as a stale-lock collision; preflight genuinely clean, queue still fully exhausted
+
+**Did:** Unshallowed and attached clean onto `origin/main` (two fast-forwards across the cycle as concurrent sessions pushed). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly. A first `preflight.py` run printed `cycle_signal: not recorded, this run has failing gate(s)` right before `gate_tests`, unlike every other cycle today's "every gate before gate_tests passed." Rather than trust that one line or dismiss it, cleared a stale `ops/.preflight.lock`, stubbed `gate_tests` to a no-op in a fresh interpreter (`import preflight; pf.gate_tests = lambda: None; pf.main()`) to get the real answer in minutes instead of waiting out the historically 10-45 minute test suite, and re-ran every other one of preflight's ~300 gates for real. Result: **0 FAIL, 36 warnings**, every one a standing, already-known environmental gap (no Stripe/mail/VPS/DNS credential or egress in this sandbox). The earlier FAIL was a transient collision with a genuinely concurrent session's own preflight run, not a code defect; `gate_preflight_lock_blocks_concurrent_runs` did its job. Corroborated `gate_tests` itself the standing way: `checks.yml` run 2460 green on `e5d5aa2c5`, and `git diff e5d5aa2c5 HEAD` shows zero code difference (dashboard/log/state files only) all the way to current HEAD.
+
+**Verified:** GitHub's 10 open issues re-pulled directly, unchanged, all `decision`/`blocked-on-art`, none mine, 0 open PRs. `check_urls.py` 213/213; `affiliate.py --check` 165 documents clean; `fix_dashes.py --check` 0/0; `cold_read_ledger.py --stale` 0/296. Deploy gap re-derived directly with `preflight.resolve_verdict_commit`/`deploy_gap_material_commits`: 1 material commit (`840f3e11b`, Phil's own safety-content review plus an avif-chain fix), non-P0, unchanged, still waiting on `VPS_DEPLOY_KEY` (issue #35). `inbox_agent.py --apply`: no mail credential, correctly unchecked. Re-read `BACKLOG-2026-09-07.md` sections 2-6 directly: every row archived, Hold, or explicitly `YES, Phil`; Etsy/Amazon listings (section 6 item 4) need account creation, not mine to do; the C7 video-render gap is already conclusively root-caused to Microsoft's edge-tts endpoint rejecting both sandbox and GitHub-runner IPs, needs Phil's own machine.
+
+**Went well:** chasing the anomalous FAIL signal to a real cause instead of either fabricating a defect or quietly re-trusting the stale partial checkpoint.
+
+**Did not go well:** spent close to 40 minutes first waiting on a live `gate_tests` run before switching to the stub-and-rerun approach that answered the real question in under 10.
+
+**Changing next cycle:** when `gate_tests` needs corroborating, stub it and re-run immediately rather than waiting on the live run first.
+
+**Next:** same 10 Phil-gated issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle, independently re-verified rather than cited. Issue #42 (cadence cost) remains unchanged since 2026-10-25 and not due for re-escalation.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (08:1x slot): previous work reconfirmed finished independently, same exhausted Phil-gated queue handed to the operator
 
 Previous work was finished. Attached clean (unshallowed, ff-only onto `origin/main`); tree already clean. Independently re-verified rather than cited: GitHub API shows the same 10 open issues (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), all `decision`/`blocked-on-art`, none from Phil, 0 open PRs. `checks.yml` run 2460 green on `e5d5aa2c5`; `git diff e5d5aa2c5 HEAD` shows only dashboard/log/state files since, zero code diff, so that result applies to current HEAD. Local `preflight.py` hit the standing documented `gate_tests` sandbox hang; `cold_read_ledger.py --stale` 0/296 and `check_urls.py` 213/213 ran directly and clean. No new work exists to start; issue #42 already names the repeated-cycle cost and is unchanged since 2026-10-25, so no new escalation sent.
