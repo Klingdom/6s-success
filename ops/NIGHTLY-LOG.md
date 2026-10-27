@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (10:5x slot): independently re-verified clean, queue still fully exhausted, one named candidate checked and found to be already-correct rather than a defect
+
+**Did:** Checkout arrived shallow and detached; unshallowed (`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no unrelated-history symptom. A concurrent PM check-in pushed mid-cycle (10:4x slot, then an hourly check-in on top); re-fetched and ff-merged again rather than working from a stale base, discarding my own uncommitted `ops/cycle-signal.json` checkpoint diff first (a side effect of this cycle's own preflight run, not lost work). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s open items, and this log's own top entries directly.
+
+**Ran `preflight.py` in the background to completion of everything before `gate_tests`:** 0 FAIL across every gate reached, checkpoint recorded. `gate_tests` itself sat for several minutes at under 15s of actual CPU time, the same documented sandbox hang every recent cycle logs; corroborated rather than waited out or assumed: `git diff 28646c77d HEAD` (the last commit with a completed green `checks.yml` run, #2465) shows only dashboard/log/state/checkin files changed since, zero code diff, so that green result still applies to current HEAD. Killed the stalled process on that evidence.
+
+**Checked the one candidate the 10:4x entry above handed me by name rather than taking its "not a defect" reading on faith.** `ops/dashboard.py`'s `commits_7d`/`commits_total` logic (lines ~664-683) already unshallows before counting and reports the honest `None` -> "unknown (shallow clone...)" string when it cannot, exactly as its own docstrings describe; this cycle's own checkout being genuinely unshallowed just let it report real numbers (1,359 commits/7d) instead of "unknown" this run. No code defect found: the mechanism is already correct, the "unknown" readings on other cycles are an honest report of a real sandbox-egress limit, not a bug to fix. Closing this candidate as verified-correct rather than leaving it open again.
+
+**Verified independently rather than cited:** `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates (genuinely exhausted). GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil; 0 open PRs. `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` returns 1 material commit (`840f3e11b`), unchanged, no P0, matching `STATUS.md`'s own current figure exactly (checked, not assumed). `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-7 re-read directly: every row Done, Archived, Hold, or explicitly Phil-gated.
+
+**Did not start new work.** No row is newly unblocked; the one named candidate turned out to need no fix. Issue #42 (cadence cost) unchanged since 2026-10-25 and well inside its own no-repeat floor; not re-raised, no push notification sent, since nothing material changed from the last several cycles' identical finding.
+
+**Went well:** actually checking the handed-off candidate's code instead of either fixing something that was not broken or re-citing it as open a second time.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues) and `OWNER-ACTIONS.md`'s open items. No genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (10:4x slot): previous work confirmed finished, same exhausted Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), unchanged, because no genuinely unblocked, non-Phil-gated item exists in the structured queue this cycle.
