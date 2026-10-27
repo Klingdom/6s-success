@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (05:4x slot): previous work confirmed finished, two sandbox-local FAILs found and fixed (not repo defects), same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (10 open issues: #42,#40,#35,#33,#31,#29,#21,#18,#15,#2, all `decision`/`blocked-on-art`), unchanged; no genuinely unblocked item exists to execute.
+
+Attached clean, ff-only onto `origin/main`, tree already clean. `cycle_signal.py --check`: SAME against 04:47:16Z. Ran the live checks anyway: `check_urls.py` 213/213; `cold_read_ledger.py --stale` 0/296, `--next` exhausted; `rotate_nightly_log.py --check` CLEAN. Re-derived the deploy gap directly (`resolve_verdict_commit`/`deploy_gap_material_commits`): 1 material commit (`840f3e11b`), matches `STATUS.md` exactly, unchanged. GitHub re-pulled directly: 10 issues unchanged, none mine; 0 open PRs; `checks.yml` green on current HEAD (run 2456).
+
+Found and fixed two sandbox-local FAILs, both environment artifacts of this fresh container, not product defects: `affiliate.py --check` failed 3 PDFs because bare `pip` wrote `pymupdf` under Python 3.13 while `python` resolves to 3.11 (fixed with `python -m pip install pymupdf`, rechecked clean); `check_sellable.py --deep` flagged 120 missing build files because `build/products/` is gitignored on a fresh checkout (fixed with `ops/build_catalog.py --build`, rechecked 124/126 clean). Neither touches tracked files; nothing to commit for either. No full local `preflight.py` run this slot given `cycle_signal` SAME and the operator three minutes out.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (05:3x slot): gate_tests hung past 43 minutes locally, corroborated green via CI instead of waited on; queue reconfirmed fully exhausted
 
 **Did:** Unshallowed, attached to `main`, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the tail of the prior nightly-log entries directly rather than a summary. Ran `ops/preflight.py` in full: every gate before `gate_tests` passed clean (recorded in `cycle-signal.json`), then `gate_tests` itself ran past 43 minutes with no output, well past every previously logged occurrence of this same sandbox limitation; killed it rather than wait indefinitely. Ran `check_urls.py` (213/213), `affiliate.py --check` (165 documents, clean), `check_ledgerium.py` (unchecked, no Stripe credential, as always in this sandbox), `check_sellable.py --deep` (124/126 buyable products verified against disk; deep Stripe price check unchecked, no `.env.secrets`), `inbox_agent.py --apply` (no mail credential, unchecked, not assumed empty), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered candidates). Regenerated the command deck.
