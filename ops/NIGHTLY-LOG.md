@@ -8,7 +8,9 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Root cause, one defect not two.** `gate_nightly_log_ordering` failed: the concurrent-merge commit (`3867ce6d6`) that reconciled two simultaneous NIGHTLY-LOG rotations left `b047c0608`'s own entry appended at the physical end of the 16,000-line file instead of prepended to the top. `gate_tests` failed as a direct consequence (its regression tests run the ordering gate against the real committed file). Fixed by moving the misplaced entry to its correct chronological slot among today's other entries. Re-ran both previously-failing test files directly (no pytest in this sandbox): `test_gate_nightly_log_ordering.py` 8/8, `test_nightly_log.py` 10/10, both now pass. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213, `cold_read_ledger.py --stale` 0.
 
-**Handing the operator:** confirm `checks.yml` goes green on this push (it has not re-run since the red commit); nothing else newly unblocked, same standing Phil-gated queue.
+**Verifying, not just fixing.** The fix itself only touched `ops/NIGHTLY-LOG.md`/dashboard files, which `checks.yml`'s own trigger deliberately excludes (`!ops/NIGHTLY-LOG.md` etc., to stop generated-output churn from cancelling real runs), so the push would never re-trigger it on its own. Triggered it directly via `workflow_dispatch` instead of asking the operator to wait for a push that was never coming: run `#2454` (id `40446911203`) against `fb534c2ed`, queued 03:56:01Z. Still `in_progress` as this entry is written (the Preflight step alone runs ~9-10 minutes on the hosted runner); not claiming green until it actually reports that.
+
+**Handing the operator:** check run `40446911203`'s final conclusion (`gh`/Actions API, workflow `checks.yml`) before trusting this fix; if it is anything but success, read its job log rather than re-citing this entry. Nothing else newly unblocked, same standing Phil-gated queue.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
 
