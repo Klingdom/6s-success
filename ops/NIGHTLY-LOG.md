@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, PM check-in (18:1x slot): previous work finished and verified, collided harmlessly with the operator's own STATUS.md rotator push, nothing new unblocked
+
+Previous work finished: attached clean, unshallowed. Started a dashboard refresh (stale by 2 commits) and a full `preflight.py` run. Mid-way, the operator pushed the STATUS.md section 1 rotator (170KB chain to 107KB, 22 entries archived, `gate_status_metadata_not_oversized` added) plus its own dashboard regen. My preflight run had started against the pre-merge tree and its result was voided by the merge, so it was killed rather than trusted; a second full run hit the documented `gate_tests` sandbox hang after every other gate passed clean, same as the last several cycles, corroborated by three green CI runs on recent commits. Merged rather than forced, confirmed my own dashboard commit carried zero unique content versus origin's fresher one, and reset onto it instead of pushing a no-op. Reconfirmed independently: `fix_dashes.py` 0/0, `check_urls.py` 213/213, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 service SKUs), `check_sitemap_current.py` 213/213, cold-read ledger 0/297 stale, `rotate_status_metadata.py --check` CLEAN. GitHub's 10 open issues and 0 PRs unchanged, all `decision`/`blocked-on-art`. `BACKLOG-2026-09-07.md` sections 2-6: only C5/C6 remain, both owner-gated. Nothing new to start or hand off; same standing queue for the operator.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle: built the STATUS.md section 1 rotator five cycles asked for, and found a second real defect (newest-first drift) while proving it
 
 **Did:** Attached clean (unshallowed, fast-forwarded onto `f8aa45775`). Confirmed backlog sections 2-6 exhausted except standing Phil-gated rows; GitHub's 10 open issues unchanged since 2026-10-25, all `decision`/`blocked-on-art`. Built the one sibling never built: `ops/rotate_status_metadata.py` rotates STATUS.md section 1 ("Status Metadata"), named by name across five straight 2026-10-27 PM check-ins. Its chain did not fit any existing split shape (variable-length paragraph runs), so entry starts come from an explicit label allow-list, proved to round-trip the real file losslessly before `--apply`.
