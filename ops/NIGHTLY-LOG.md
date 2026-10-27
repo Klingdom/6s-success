@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (09:5x slot): preflight and all fast checks independently re-verified clean, queue still fully exhausted, no new owner activity, no push sent
+
+**Did:** Unshallowed and attached clean onto `origin/main` (101 commits fast-forwarded). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`'s open items, and this log's own top entries, rather than a summary.
+
+**Ran `preflight.py` fresh in the background rather than citing a prior run.** `cycle_signal` recorded a clean partial-pass checkpoint (every gate before `gate_tests`, 0 FAIL/WARN across roughly 100 gates) at HEAD `880b25af9`. `gate_tests` itself sat flat at 11s of actual CPU over 215s wall clock, the same documented headless-Chromium sandbox hang; killed it on that evidence rather than waiting further, then corroborated rather than assumed: `checks.yml` run #2463 is green (`success`) on `fe2aa285a`, and the one commit between that SHA and HEAD touches only the dashboard/log/signal files, confirmed via `git diff --stat`, not assumed.
+
+**Independently re-ran every fast substitute rather than citing the last entry's numbers:** `affiliate.py --check` clean (165 documents, `pymupdf` already present in this container, no reinstall needed this time); `check_urls.py` 213/213; `fix_dashes.py --check` 0 em/0 en; `cold_read_ledger.py --stale` 0/296, `--next` 0 un-ledgered candidates; `check_sellable.py --deep` 124/126 (2 person-delivered services excluded by design, live-price check correctly unchecked, no `.env.secrets`). Re-derived the deploy gap directly with `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` rather than trusting `STATUS.md`'s figure: 1 material commit (`840f3e11b`), unchanged, no P0, still waiting only on `VPS_DEPLOY_KEY` (issue #35). GitHub's 10 open issues re-pulled fresh: unchanged, all `decision`/`blocked-on-art`, none from Phil. `inbox_agent.py --apply`: no mail credential in this sandbox, correctly unchecked, not assumed empty. Backlog sections 2-6 confirmed archived, Hold, or Phil-gated; cold-read lane genuinely empty.
+
+**Checked issue #42 (the cadence-cost question) before deciding whether to act on it.** Last comment 2026-10-25, all 7 comments self-authored by prior agent cycles, none from Phil, state unchanged since. Per that thread's own stated intent ("not raising further until something actually changes") and per `ops/last-owner-notification.json`'s standing 48h-no-repeat floor for this exact topic, did not add an 8th comment and did not send a push notification: nothing material changed since the last one, and a notification about an unchanged state is the opposite of what the signal is for.
+
+**Verified:** as above. No price, product or site page touched; no new page, IndexNow not applicable.
+
+**Went well:** corroborating `gate_tests` via CI with an actual diff rather than trusting a prior cycle's claim; resisting the pull to pad this cycle with another rotation/gate when nothing failed and nothing is actually unblocked.
+
+**Did not go well:** nothing new; the structural blocker (every remaining lever needs Phil: YouTube OAuth, Search Console numbers, Gemini billing, Amazon/Etsy/Pinterest/Instagram/Facebook/X accounts, `VPS_DEPLOY_KEY`) is unchanged from the last several cycles.
+
+**Changing next cycle:** none; continue treating "re-confirmed exhausted, nothing to add" as the honest and correct result rather than manufacturing a new gate or rotation to look productive, per `GOALS.md`'s own rule that a cycle with no plausible increase in arrivals should be able to say why that was still the right call.
+
+**Next:** the moment any of the Phil-gated items in `OWNER-ACTIONS.md`/`EXECUTIVE-DASHBOARD-LIVE.md` clears, or new traffic/inbox evidence arrives, work it immediately; until then there is no genuinely unblocked, non-Phil-gated item in the structured queue.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (09:2x slot): fresh checkout's own pymupdf gap fixed and pushed, queue independently reconfirmed exhausted a fifteenth-plus time
 
 **Did:** Unshallowed and attached clean onto `origin/main` (multiple fast-forwards/merges across the cycle as concurrent sessions pushed). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly rather than a summary, plus `STATUS.md` and `EXECUTIVE-DASHBOARD-LIVE.md`'s "What needs you" list.
