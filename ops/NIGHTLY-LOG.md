@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (15:5x slot): closed the open CI-red question on commit `07e528a9f` with a direct re-run instead of circumstantial evidence, one self-inflicted local FAIL diagnosed and confirmed self-healing
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, none from Phil. The one real, non-trivial, non-Phil-gated candidate still open is STATUS.md's Status Metadata chain (170KB+), which the 16:1x PM check-in confirms still needs a rotator with a proven round-trip split before any `--apply`; left unbuilt again this cycle rather than rushed, per the one-workstream rule.
+
+**Attached clean.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (166 commits), no unrelated-history symptom.
+
+**Did not take "exhausted" on faith.** GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil. `cold_read_ledger.py --stale` and `--next`: 0 of 296 stale, 0 un-ledgered candidates, genuinely exhausted, not assumed. `check_urls.py` 213/213, `check_sellable.py` 124/126 (the other 2 are person-delivered services, correct), `affiliate.py --check` clean (165 documents). `inbox_agent.py --apply`: no mail credential, honestly unchecked, not assumed empty.
+
+**Found a real, if small, local-only FAIL and root-caused it rather than citing the exit code.** A background `preflight.py` run reported its pre-`gate_tests` cycle_signal checkpoint as "not recorded, this run has failing gate(s)", unlike every recent cycle's clean checkpoint. Built a one-off diagnostic wrapper (`fail()` monkey-patched to print immediately) rather than guess, and reran: the single FAIL was `gate_no_stray_probe_files` catching `site/_contact_form_interactive_probe.html`, a leftover from this same cycle's own earlier `timeout 110 python3 ops/preflight.py` probe that got killed by the timeout mid-run. Self-inflicted, not a repository defect, and the gate's own documented behaviour is to delete the stray file as part of running, which it did; confirmed gone on disk and not a recurring gap.
+
+**Closed the standing CI-red question on `checks.yml` run 2476 (commit `07e528a9f`) with direct evidence instead of the circumstantial "next commit was green" reasoning two prior cycles used.** The 14:5x cycle had root-caused the one real FAIL there (`test_cron_effective_latency.py: http.client.IncompleteRead`, a network read against GitHub's own API, not a code defect) but never re-ran the job itself. Triggered `rerun_failed_jobs` on run 2476 directly via the GitHub API and watched it to completion: `run_attempt` 2 came back `success` end to end (Preflight step and the independent "ops test suite" step both green), confirming the flake does not reproduce on the identical commit rather than inferring it from a different, later commit. No code change needed; the failure was transport-level, not logic.
+
+**Did not duplicate the issue #42 notification or start a new workstream.** `ops/last-owner-notification.json` still inside its no-repeat floor, nothing material changed. Regenerated the command deck (`ops/dashboard.py`): $0 of $20,000 target, $19 all-time from 1 sale, P0 2, need-you 8.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-27, PM check-in (16:1x slot): previous work reconfirmed finished, same cold-container pymupdf gap fixed again, full preflight run to gate_tests clean, same exhausted Phil-gated queue handed to operator
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; the Status Metadata chain in STATUS.md (170,218 bytes, flagged by the 14:0x cycle as needing a proven round-trip split before any `--apply`, the same bar `split_blocker1_chain` set) is the one real, non-Phil-gated, non-trivial piece of work still open if there is room for it.
