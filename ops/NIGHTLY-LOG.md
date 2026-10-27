@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle: built the STATUS.md section 1 rotator five cycles asked for, and found a second real defect (newest-first drift) while proving it
+
+**Did:** Attached clean (unshallowed, fast-forwarded onto `f8aa45775`). Confirmed backlog sections 2-6 exhausted except standing Phil-gated rows; GitHub's 10 open issues unchanged since 2026-10-25, all `decision`/`blocked-on-art`. Built the one sibling never built: `ops/rotate_status_metadata.py` rotates STATUS.md section 1 ("Status Metadata"), named by name across five straight 2026-10-27 PM check-ins. Its chain did not fit any existing split shape (variable-length paragraph runs), so entry starts come from an explicit label allow-list, proved to round-trip the real file losslessly before `--apply`.
+
+**Verified:** Ran `--apply`: 22 entries (62,995 bytes) moved to `STATUS-ARCHIVE.md`; STATUS.md 170KB to 107KB, nothing lost (checked by file-size diff). New `gate_status_metadata_not_oversized` wired ahead of `gate_tests`, fail-then-pass proved directly and in 2 new test files (7/7 each). Full `preflight.py` clean to the documented `gate_tests` hang (0 FAIL). `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents, `check_urls.py` 213/213. Cold-read ledger 297/297.
+
+**Went well:** A round-trip-proof split for a genuinely irregular chain, instead of reusing a sibling's "every bold paragraph is an entry" shortcut that would have corrupted it.
+
+**Did not go well:** Verifying surfaced a second defect: the chain was not reliably newest-first by file position (two 2026-10-26 entries sat below 2026-10-23/24 ones, a mis-anchored prepend). Fixed by keeping the true max-date entries live, not the physically-first one, but the root cause (no enforced insertion point) is not fixed.
+
+**Changing next cycle:** Watch for the same misordering recurring; nothing yet enforces the insertion point.
+
+**Next:** Backlog and ledger both exhausted again. Remaining work is the standing Phil-gated queue (10 open issues, `OWNER-ACTIONS.md` item 0).
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (17:1x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, gate_tests hang signature confirmed and killed rather than waited out blind
 
 Previous work finished: attached clean (unshallowed, fast-forwarded onto `5889f031a`), tree clean, main in sync. GitHub's 10 open issues re-pulled directly: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil; 0 open PRs. `cold_read_ledger.py --stale`/`--next`: 0/296 stale, 0 un-ledgered, genuinely exhausted. Ran `preflight.py` fresh (cold container repeated the known pymupdf gap, reinstalled): every gate before `gate_tests` passed, clean checkpoint recorded at HEAD. `gate_tests` hit the documented egress-stall signature (308s elapsed, 14s CPU) and was killed on that evidence rather than run further; CI's own recent runs on this branch are consistently green, corroborating. `fix_dashes.py --check` 0/0, `check_urls.py` 213/213. Nothing new unblocked; no small item found to close this slot beyond the checkpoint.

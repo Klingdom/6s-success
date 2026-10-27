@@ -21984,6 +21984,71 @@ def gate_status_blocker001_not_oversized() -> None:
              % len(entries))
 
 
+def gate_status_metadata_not_oversized() -> None:
+    """STATUS.md section 1 ("Status Metadata") must not carry more than a
+    small buffer of entries that are not at the chain's own most recent
+    date.
+
+    Named by name across five consecutive cycles on 2026-10-27 (14:0x
+    through 17:1x) as the one `rotate_status_history.py`-style sibling
+    never built: section 1 had grown to 24 entries, 67KB of a 170KB file,
+    the identical "a living document grows unbounded" shape already fixed
+    for Production Knowledge, Immediate Focus, BLOCKER-001, the Production
+    Status table rows, CHECKIN-LOG.md, OWNER-ACTIONS.md and the backlog's
+    own Done table (the gates just above and below this one).
+
+    This chain's shape is messier than any of those: entries are variable-
+    length runs of one or more paragraphs (some bold-led paragraphs inside
+    a long entry are sub-points, not entries of their own), identified by
+    an explicit allow-list of the literal labels this section has actually
+    used (see ops/rotate_status_metadata.py's ENTRY_START_RE), and -- the
+    real defect found while building this -- the chain was not reliably
+    newest-first by file position: two entries dated 2026-10-26 sat below
+    entries dated 2026-10-23/24 because a session had prepended at the
+    wrong anchor point. So "is this chain oversized" here means "how many
+    entries are NOT at the chain's own most recent date", not simply
+    "entries beyond the first", matching ops/rotate_status_metadata.py's
+    own --check/--apply, which keeps every entry at the max date live
+    (one, almost always; two on the day this was built, a genuine tie)
+    rather than just whichever entry happened to sit on top.
+
+    A WARNING, not a FAIL: a long chain wastes every later cycle's time
+    re-reading it, it does not ship anything broken to a customer. A
+    buffer of 3 lets a handoff add a couple of follow-on entries within a
+    cycle without this firing immediately; it fires only once the chain
+    is genuinely left to grow.
+
+    Proof this can fail: ops/tests/test_gate_status_metadata_not_oversized.
+    py builds a synthetic STATUS.md with the chain well past the buffer
+    and asserts this gate warns, then confirms a chain at or under the
+    buffer stays silent.
+    """
+    path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(path):
+        return
+    import rotate_status_metadata as rsm
+    text = io.open(path, encoding="utf-8").read()
+    try:
+        _, entries, _, _ = rsm.split_metadata_chain(text)
+    except ValueError:
+        return
+    try:
+        dates = [rsm._entry_date(e) for e in entries]
+    except ValueError:
+        return
+    if not dates:
+        return
+    max_date = max(dates)
+    extra = sum(1 for d in dates if d != max_date)
+    buffer = 3
+    if extra > buffer:
+        warn("status-metadata-not-oversized",
+             "STATUS.md section 1 carries %d entries, %d of them older "
+             "than the chain's own most recent date (%s); those belong "
+             "in STATUS-ARCHIVE.md. Run `python ops/rotate_status_"
+             "metadata.py --apply`." % (len(entries), extra, max_date))
+
+
 def gate_status_production_table_rows_not_oversized() -> None:
     """STATUS.md's Production Status table rows ("Public website",
     "Production traceability") must not each carry more than a small
@@ -31201,6 +31266,7 @@ def main() -> int:
     run_gate(gate_owner_actions_gemini_billing_not_oversized)
     run_gate(gate_backlog_done_table_not_oversized)
     run_gate(gate_status_blocker001_not_oversized)
+    run_gate(gate_status_metadata_not_oversized)
     run_gate(gate_status_production_table_rows_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_backlog_done_items_rotated)
