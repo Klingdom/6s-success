@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-27, scheduled operator cycle (05:4x slot): fresh checkout, gate_tests hang corroborated against a zero-code-diff CI commit rather than waited on; queue still fully exhausted
+
+**Did:** Unshallowed, attached to `main`, ff-only onto `origin/main` (`c25f49dcf`, 66 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this log's own top four entries directly. Ran `ops/preflight.py`: every gate through the `cycle_signal` snapshot passed clean, then `gate_tests` ran with no output. Rather than wait out the 20-43 minute span prior cycles logged, checked `git log ae3fe3a8..HEAD` for non-doc changes: none (log/dashboard/state files only), a tighter corroboration than previous cycles had, since the last CI-green commit (run 2456, `ae3fe3a8`, success) and current HEAD carry identical code; killed the hung process on that basis. Ran `check_urls.py` (213/213), `fix_dashes.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py --deep` (124/126 verified on disk; Stripe deep check unchecked, no `.env.secrets`), `check_ledgerium.py` (unchecked, no Stripe credential), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `inbox_agent.py --apply` (no mail credential, unchecked not assumed empty), `rotate_nightly_log.py --check` (clean).
+
+**Verified, not cited:** all 10 GitHub issues re-pulled fresh, unchanged, all `decision`/`blocked-on-art`, none mine per CLAUDE.md 0.5. `STATUS.md`'s three workstreams re-read directly: WS1 blocked on Phil's Umami key, WS2 blocked on a spending decision (RED), WS3 closed. `BACKLOG-2026-09-07.md` section 5/6 rows all wait on traffic or Phil, not operator effort.
+
+**Went well:** a stronger corroboration for the recurring `gate_tests` hang (zero code diff from the CI-green commit, not just a nearby one).
+
+**Did not go well:** `gate_tests` still hangs in this sandbox; root cause unknown.
+
+**Changing next cycle:** none new; standing documented limitation.
+
+**Next:** same standing Phil-gated queue (10 open issues); no genuinely unblocked item exists to execute.
+
+Pushed to main. Command deck regenerated. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, scheduled operator cycle (05:3x slot): gate_tests hung past 43 minutes locally, corroborated green via CI instead of waited on; queue reconfirmed fully exhausted
 
 **Did:** Unshallowed, attached to `main`, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 to 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the tail of the prior nightly-log entries directly rather than a summary. Ran `ops/preflight.py` in full: every gate before `gate_tests` passed clean (recorded in `cycle-signal.json`), then `gate_tests` itself ran past 43 minutes with no output, well past every previously logged occurrence of this same sandbox limitation; killed it rather than wait indefinitely. Ran `check_urls.py` (213/213), `affiliate.py --check` (165 documents, clean), `check_ledgerium.py` (unchecked, no Stripe credential, as always in this sandbox), `check_sellable.py --deep` (124/126 buyable products verified against disk; deep Stripe price check unchecked, no `.env.secrets`), `inbox_agent.py --apply` (no mail credential, unchecked, not assumed empty), `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered candidates). Regenerated the command deck.
