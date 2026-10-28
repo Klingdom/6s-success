@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (12:5x slot): full routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main` (forced update on `origin/main`, an old shallow clone catching up 179 commits, not a history rewrite), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2 through 7 directly, `ops/NIGHTLY-LOG.md`'s own head (newest-first, read correctly), and GitHub's open issues pulled fresh via the API.
+
+**Verified, not cited.** GitHub: 10 open issues, unchanged set and labels since 2026-10-25 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), 0 open PRs. `git log --since=2026-10-27` with bot/Claude commits filtered: zero human commits. `cold_read_ledger.py --stale`: 0 stale. `preflight.py --fast` run myself, backgrounded, output straight to a file: 0 FAIL through every gate reached (through `gate_image_coverage`), `cycle_signal` recorded a fresh clean partial-pass snapshot at this HEAD, then the documented `gate_tests` headless-Chromium sandbox hang; confirmed genuinely stuck (CPU time flat across repeated `/proc` reads) before killing it, reported unchecked past that point per CLAUDE.md 0.4, not as a pass. One reparented `test_audit_catalog.py` subprocess left running after the kill; checked it was progressing (not a stray lock risk) and left it to exit on its own. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `affiliate.py --check`: clean, 166 documents. `check_urls.py`: 213/213. `ops/deploy-verdict.json`: current, unchanged since 2026-10-26. `ops/last-owner-notification.json`'s no-repeat floor on the #42 cadence topic runs to 2026-10-29T13:00Z with no material change since (no Phil reply, no cleared decision, no new credential), so no notification sent this slot.
+
+**Nothing 30-minutes sized and unblocked found this slot.** No stale ledger entry, no red CI, no merge conflict, no document found drifted from reality this pass. Working tree was clean before this cycle's own change.
+
+**Went well:** independently re-deriving every claim (issues, commits, ledger, preflight, deploy gap) instead of trusting the prior cycle's own account, and it matched exactly.
+
+**Did not go well:** nothing new; the same `gate_tests` sandbox limit every recent cycle hits.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), cheapest first (YouTube OAuth paste, Search Console Pages/Performance reports, Gemini billing, Stripe business description, VPS_DEPLOY_KEY).
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (12:1x slot): previous work finished, independently reconfirmed, nothing new unblocked, no re-notify
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is `decision`/`blocked-on-art` and nothing else is genuinely unblocked.**
