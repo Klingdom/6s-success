@@ -2,6 +2,66 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (04:4x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, no new unblocked work
+
+**NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.**
+
+Attached clean (shallow, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, 2 commits, no reset). Tree clean throughout. GitHub's 10 open issues pulled fresh via the API, not cited from the deck: unchanged since the 04:1x entry above, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0 stale. `preflight.py --fast` run myself: 0 FAIL through every gate including `gate_image_coverage`, `cycle_signal` recorded a second clean snapshot, then `gate_tests` hit its own 150s budget and timed out (exit 124), the same documented sandbox limit every recent cycle has hit; reported unchecked past that point, not passing. Dashboard already fresh at this HEAD (04:22).
+
+Not re-notifying Phil on #42; already flagged directly earlier today by the 03:1x-adjacent operator cycle, and nothing has changed since.
+
+Pushed to main: this log entry and `ops/cycle-signal.json`. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+## 2026-10-28, PM check-in (04:1x slot): previous work finished, independently reconfirmed exhausted, nothing new unblocked
+
+**Previous work finished.** Attached clean (shallow and detached on arrival, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast forward). Did not take the 03:5x operator cycle's own conclusion on faith: reran `cycle_signal.py --check`, SAME against its clean snapshot; reran `cold_read_ledger.py --stale` fresh, 0 of 297 files stale; pulled GitHub issues directly, 10 open, unchanged, all `decision` or `blocked-on-art`, none from Phil; `list_triggers` for all three scheduled Routines, all `SUCCEEDED`, no `FAILED`. Ran `preflight.py --fast` myself rather than citing the prior run: 0 FAIL through every gate, cycle_signal recorded a second clean snapshot before the documented `gate_tests` sandbox hang killed it at its own 115s budget, same standing limit, reported unchecked past that point, not passing. `CHECKIN-LOG.md`'s hourly entries still read "nothing measurable moved" for several hours straight.
+
+**Nothing hours or 30-minutes sized and unblocked found this slot.** Every remaining backlog row is Done or Phil-gated; no stale ledger entry to close, no failing test to fix beyond the known sandbox limit, no document found drifted from reality.
+
+**Next for the operator:** same standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", the 10 open `decision`/`blocked-on-art` issues including #42's own cadence question). Not re-flagging #42, already open.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+
+## 2026-10-28, scheduled operator cycle (full 13-step routine): independently reconfirmed exhausted state, skipped a redundant full preflight on a concurrent PM's own handoff, found nothing new
+
+**Did:** Attached clean: fetched origin/main, unshallowed (arrived shallow and detached as documented), `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and the last four `NIGHTLY-LOG.md` entries in full, not summaries, before touching anything.
+
+**Verified, not cited:** started a full `python ops/preflight.py` myself, then found, mid-run, a concurrent PM check-in (03:4x slot) had just pushed a handoff saying not to: a genuine completed 0-FAIL pass (36 warnings) had landed this same session less than an hour earlier, and `cycle_signal.py --check` reads SAME against it, meaning nothing in the watched living docs has changed since. Confirmed that SAME verdict myself directly before stopping my own run rather than taking the PM's word for it; re-running an 87-minute gate against unchanged input would have been exactly the cost issue #42 names. GitHub's 10 open issues pulled fresh via the API, not off the deck: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil. `ops/cold_read_ledger.py --stale` and `--next`: 297 of 297 ledgered, 0 stale, 0 un-ledgered candidates, genuinely exhausted. `list_triggers` for all three scheduled Routines (PM :10, PM :40, hourly operator :43): every one `SUCCEEDED` on its last run, no `FAILED`, no repeat of the 2026-10-09 silent usage-limit stall issue #40 describes. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**Went well:** caught my own redundant work mid-flight by checking `cycle_signal.py --check` directly instead of either trusting the PM's commit message blindly or ignoring it and burning the sandbox on a known-expensive, known-unchanged check.
+
+**Did not go well:** nothing new; every lane (backlog, GitHub, cold-read ledger, routines, inbox) still comes back exhausted or owner-gated, same as the last 20+ cycles.
+
+**Changing next cycle:** none proposed; the only open lever is Phil clearing one of the 9 `decision`/`blocked-on-art` issues, or #42's own cadence question, neither of which is mine to decide.
+
+**Next:** same standing 10-issue Phil-gated queue. Not re-flagging #42; already flagged today by an earlier cycle.
+
+Pushed to main: this log entry and the regenerated command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-28, PM check-in (03:4x slot): previous work finished, exhausted queue reconfirmed, telling the operator not to redo the 87-minute full preflight
+
+**NEXT FOR THE OPERATOR: do not re-run a full `preflight.py --deep`; the 03:1x addendum already got a genuine completed verdict (0 FAIL, 36 warnings, HEAD `c9dd37034e`) and `cycle_signal.py --check` reads SAME against it, because re-running an 87-minute gate against unchanged input is exactly the cost issue #42 names.**
+
+Attached clean (shallow, unshallowed, ff-only onto origin/main, 102 commits, no reset). Tree clean. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, #42 still open since 2026-10-14. `cycle_signal.py --check`: SAME, no redundant re-verification run. Dashboard already fresh (03:25, this HEAD). No new unblocked work; same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Not sending another notification on #42; already flagged today by the operator cycle above.
+
+**Went well:** trusted a verified recent clean signal instead of re-burning the sandbox on a known-expensive, known-unchanged check.
+**Did not go well:** nothing new to report; the cadence-vs-value question in #42 is still Phil's to decide, now 14 days open.
+
+Nothing of mine to push beyond this entry. Not customer-facing.
+
+## 2026-10-28, PM check-in (03:1x slot): a false preflight alarm traced to my own collision, previous work finished, no new unblocked work
+
+**Previous work finished.** Tree clean, main up to date. GitHub's 10 issues unchanged, all decision or blocked on art.
+
+**Chased a scare, not a defect.** A first preflight run showed a failing gate before gate_tests, unlike recent clean partial passes. Traced, not cited: two preflight processes were running at once here, a collision I caused. A clean rerun recorded a genuine clean checkpoint; gate_tests still hits the known sandbox hang. A concurrent session's own backgrounded preflight (entry directly below) finished the full run while I worked: every gate passed, 0 FAIL, confirming there was never a real defect. cold_read_ledger: 0 stale. Dashboard regenerated by that same concurrent cycle, taken as is rather than regenerated twice.
+
+**Next:** same 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Not renotifying on #42, already flagged by the 02:57 cycle.
+
+Pushed: this entry only; the dashboard and cycle-signal.json came from the concurrent cycle below. Not customer-facing.
+
 ## 2026-10-28, same PM session, addendum: the backgrounded full preflight finally reached a real completed verdict, answering the question the 01:4x entry further below raised, and it took far longer than any prior recorded wall
 
 The full `preflight.py` run backgrounded earlier this cycle (before the 01:4x entry further below was written and shipped) finished after that entry had already landed: **every gate passed, 36 warnings, 0 FAIL.** This is the first genuine pass/fail verdict `gate_tests` has produced in several cycles, directly answering the open question that entry hands to the operator. Several cycles landed on main between this preflight being started and it finishing; this addendum is placed here, not immediately above that entry, because the file's own ordering rule only requires same-day entries to stay a contiguous block, not a strict sub-day sequence.
