@@ -141,7 +141,46 @@ def _lock_holder_pid(path: str):
         return None
 
 
+def _lock_holder_start(path: str):
+    try:
+        with open(os.path.join(path, "start")) as fh:
+            return fh.read().strip() or None
+    except OSError:
+        return None
+
+
+def _proc_start_time(pid: int):
+    """The kernel's own starttime field for `pid`, or None if unreadable
+    (always None on Windows, where pid reuse is guarded a different way:
+    Popen holds a handle that keeps the old pid reserved, per
+    _check_lock_breaks_on_dead_pid_fast's own comment above).
+
+    A pid number alone cannot tell a still-running holder from a dead one
+    whose pid the kernel already reused for a brand new process;
+    _pid_alive(pid) succeeds against either. /proc/<pid>/stat's starttime
+    field (ticks since boot the process began) is set once at exec and
+    never repeats for two processes alive at once, so comparing it to a
+    value recorded when the lock was taken tells "still that process"
+    apart from "pid recycled." Ported 2026-10-28 from
+    ops/preflight.py's acquire_preflight_lock(), which gained this exact
+    check 2026-10-21 (LRN, BACKLOG section 25) after a killed
+    preflight.py handed its own now-dead pid straight back to the very
+    next invocation; this file's own fixture lock never got the same
+    port, and reaching 700s of flat-CPU "elapsed climbing, no progress"
+    in gate_tests() is the shape a waiter stuck on a recycled pid would
+    produce, not merely slow, since every FileExistsError branch below
+    previously treated "pid alive" as "still that same holder."
+    """
+    try:
+        with open(f"/proc/{pid}/stat") as fh:
+            stat_line = fh.read()
+        return stat_line[stat_line.rfind(")") + 2:].split()[19]
+    except (OSError, IndexError):
+        return None
+
+
 def _lock(path: str, timeout: int = STALE_AFTER + 120) -> None:
+    own_start = _proc_start_time(os.getpid())
     start = time.time()
     while True:
         try:
@@ -149,19 +188,34 @@ def _lock(path: str, timeout: int = STALE_AFTER + 120) -> None:
             try:
                 with open(os.path.join(path, "pid"), "w") as fh:
                     fh.write(str(os.getpid()))
+                if own_start is not None:
+                    with open(os.path.join(path, "start"), "w") as fh:
+                        fh.write(own_start)
             except OSError:
                 pass
             return
         except FileExistsError:
             # A run that was killed leaves its directory behind and would
-            # otherwise block every later run forever. Two ways to recognise
-            # that: the pid that made it is provably gone (checked first,
-            # breaks immediately), or it is simply old enough that no
-            # legitimate hold would still need it (the pre-existing
-            # fallback, for when the pid file cannot be read).
+            # otherwise block every later run forever. Three ways to
+            # recognise that: the recorded pid has been recycled back to a
+            # different process, including this own one (checked first,
+            # breaks immediately; a bare pid match is not "that's just
+            # me," since the kernel can hand our own pid right back to us);
+            # the pid that made it is provably gone (also breaks
+            # immediately); or it is simply old enough that no legitimate
+            # hold would still need it (the pre-existing fallback, for when
+            # the pid file cannot be read).
             holder = _lock_holder_pid(path)
+            holder_start_recorded = _lock_holder_start(path)
+            pid_reused = (
+                holder is not None
+                and holder_start_recorded is not None
+                and _proc_start_time(holder) != holder_start_recorded
+            )
             stale = False
-            if holder is not None and holder != os.getpid() \
+            if holder is not None and pid_reused:
+                stale = True
+            elif holder is not None and holder != os.getpid() \
                     and not _pid_alive(holder):
                 stale = True
             else:
@@ -281,6 +335,46 @@ def _check_lock_breaks_on_dead_pid_fast() -> str:
     return ""
 
 
+def _check_lock_breaks_on_pid_reuse_fast() -> str:
+    """A lock whose recorded holder pid has been recycled back to THIS OWN
+    process must still break instantly, not be read as "that's just me,
+    still holding it."
+
+    Mirrors ops/preflight.py's gate_preflight_lock_blocks_concurrent_runs
+    "Half 4" directly: stage a lockdir whose pid file already equals our
+    own real pid but whose start file records a start time no real
+    process has, the exact shape left behind when an earlier, unrelated
+    run held this same now-recycled pid and was killed without releasing
+    the lock. Before _proc_start_time()/pid_reused existed, the old
+    `holder != os.getpid()` guard went true-by-coincidence here and this
+    fell through to the STALE_AFTER age fallback instead of breaking at
+    once, exactly the shape gate_tests()'s own externally-killed runs
+    produce in this sandbox.
+    """
+    path = LOCK + ".pidreuse_%d" % os.getpid()
+    shutil.rmtree(path, ignore_errors=True)
+    os.mkdir(path)
+    with open(os.path.join(path, "pid"), "w") as fh:
+        fh.write(str(os.getpid()))
+    with open(os.path.join(path, "start"), "w") as fh:
+        fh.write("1")  # a start time no real running process has
+    start = time.time()
+    try:
+        _lock(path, timeout=5)
+    except RuntimeError as e:
+        return ("a lock whose recorded holder pid was recycled back to this "
+                 "own process was not broken within 5s: %s" % e)
+    finally:
+        _unlock(path)
+    elapsed = time.time() - start
+    if elapsed >= STALE_AFTER:
+        return ("a lock whose recorded holder pid was recycled back to this "
+                 "own process took %.1fs to break, no faster than the "
+                 "age-only fallback: pid reuse is being mistaken for 'that "
+                 "is just me, not stale'" % elapsed)
+    return ""
+
+
 def run(inner: str) -> str:
     _lock(LOCK)
     try:
@@ -316,6 +410,9 @@ def main() -> int:
     pid_failure = _check_lock_breaks_on_dead_pid_fast()
     if pid_failure:
         bad.append(pid_failure)
+    reuse_failure = _check_lock_breaks_on_pid_reuse_fast()
+    if reuse_failure:
+        bad.append(reuse_failure)
     dec_name, dec_price = pick(True)
     int_name, int_price = pick(False)
     retired = A.load_retired()
