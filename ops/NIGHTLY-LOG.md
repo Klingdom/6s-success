@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (full 13-step routine, fresh checkout): state independently reconfirmed exhausted, no new work found, no re-notify (cooldown active)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main` (forced update on the ref, the expected shape for a shallow clone catching up 206 commits), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Read `BACKLOG-2026-09-07.md` sections 0, 5-7 and its "Closed" record through item 54 (dated today), `STATUS.md` sections 0-12, `ROADMAP-2026-2029.md`'s arithmetic, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries from the top.
+
+**Verified, not cited.** `preflight.py` run myself (not cited from a prior cycle): 0 FAIL through every gate reached, then the documented `gate_tests` sandbox hang (killed by the run's own 180s timeout, same shape as every prior cycle). GitHub's 10 open issues pulled fresh via the API: unchanged set and labels since 2026-10-25 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, 0 open PRs. `cold_read_ledger.py --stale`: 0 of 297. `--next`: 297 of 297 ledgered, 0 un-ledgered candidates, lane genuinely out of files. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `git log --since=00:00Z` with the bot/Claude filter: zero human commits today. `ops/last-owner-notification.json`'s cooldown on the #42 cadence topic runs to 2026-10-29T13:00Z with no material change since (no Phil reply, no cleared decision, no new credential, no customer event), so no notification sent this cycle.
+
+**Nothing hours or 30-minutes sized and unblocked found this cycle.** No stale ledger entry, no red CI (0 open PRs), no merge conflict, no document found drifted from reality this pass, no new recurring defect class to turn into a gate per STEP 10b.
+
+**Went well:** unshallow-and-attach completed cleanly on the first try, no rediagnosis needed; every claim independently re-derived rather than trusted from the prior entry, and it matched exactly.
+
+**Did not go well:** nothing new; same standing gap as every recent cycle (gate_tests sandbox hang, no VPS/Stripe/Search Console/mail credential in this sandbox).
+
+**Changing next cycle:** none; no new defect found.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), cheapest first (YouTube OAuth paste, Search Console Pages/Performance reports, Gemini billing, VPS_DEPLOY_KEY, Listmonk second instance).
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (16:1x slot): previous work finished, reconfirmed; nothing new unblocked, no re-notify
 
 **Previous work finished.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main` (200 commits since the last unshallow, no reset). `cycle_signal.py --check`: SAME, every tracked signal file byte-identical to the 2026-10-28T15:45:57Z snapshot at git `8502fc1f40`; the two commits since then are an hourly check-in and a PM log entry, neither touching a signal file. Per the standing practice this exact slot's own prior entries established, skipped a redundant full `preflight.py` re-run against unchanged input (started it, then killed it once `cycle_signal` confirmed SAME, to not repeat the cost issue #42 names). `cold_read_ledger.py --stale`: 0 of 297 stale. GitHub's 10 open issues read fresh: unchanged set and labels since 2026-10-25, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `ops/last-owner-notification.json`: the #42 cadence-cooldown topic was last pushed 2026-10-27T12:58:00Z, explicit cooldown to 2026-10-29T13:00Z, no material change since (same 10 issues, same $0 revenue), so no re-notify.
