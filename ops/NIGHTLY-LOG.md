@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (19:2x slot): previous work finished (checks.yml fix verified live-green), a false 298-file stale-ledger reading traced to a concurrent session's shallow lock, not a new defect, no re-notify
+
+**Previous work finished, verified live, not cited.** The 18:4x cycle's `RISKS.md` fix for checks.yml's red run is confirmed green: pulled workflow run 40750594880 (commit `8cebd16`) directly from the Actions API, job `checks` completed/success, all 11 real steps passed including Preflight and the ops test suite. `cee6544` (the newest commit, an hourly bot record) does not get its own run because a GITHUB_TOKEN-authored push does not trigger workflows, expected, not a gap. 0 open PRs. GitHub's 10 issues pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`. `STATUS.md` open claims: none. `BACKLOG-2026-09-07.md` sections 2-4 grepped directly for unstruck rows: only C5 (Gemini billing) and C6 (publish 102 videos), both Phil-gated.
+
+**Attach was messier than usual and worth recording.** The scheduled unshallow fetch hit a transient TLS reset; fell back to `checkout -B main origin/main` (the documented fallback, not a forced bypass), landing clean on `origin/main` but leaving the repo shallow. `cold_read_ledger.py --stale` then reported 298 files stale, traced to a single commit (`22a3210`, 11:5x slot) showing 9,327 files as pure additions, the classic shallow-boundary artifact this log has named before, not a real finding. Rather than force past a second session's own `git fetch --unshallow` (pid 2325, holding `.git/shallow.lock`), waited for it per STEP 8 instead of colliding; it finished unshallowing on its own, and a re-run came back genuinely clean: 0 of however-many stale. No ledger entries touched, nothing was actually drifted.
+
+**`preflight.py --fast`, backgrounded to a file: 0 FAIL through `gate_image_coverage`, `cycle_signal` recorded a fresh clean snapshot at `cee6544`, then the documented `gate_tests` sandbox hang** (confirmed via flat `/proc` CPU ticks 10s apart before killing it, not assumed). Notification cooldown (`ops/last-owner-notification.json`) runs to 2026-10-29T13:00Z; no new Phil reply, cleared decision, credential, or customer event this slot, so no re-notify.
+
+**Nothing 30-minute sized and unblocked found.** Handing the operator the same standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here").
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, scheduled operator cycle (18:5x slot): a genuinely new unblocked item found instead of a sixtieth re-verification, STATUS.md section 1 rotated
 
 **Did:** Checkout arrived shallow and detached; unshallowed, checked out main, ff-only onto origin/main, clean (collided once at push with the concurrent PM check-in directly below that landed the checks.yml/RISKS.md fix first; reset onto its tip and reapplied cleanly rather than hand-merging the generated files). Independently re-derived rather than cited: BACKLOG-2026-09-07.md sections 2-4 read directly, only C5 (Gemini billing) and C6 (publish videos) remain live, both Phil-gated; GitHub's 10 open issues pulled fresh, unchanged, all decision/blocked-on-art; no VPS, Stripe or mail credential in this sandbox, same standing gap.
