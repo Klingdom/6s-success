@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (full 13-step routine): independently reconfirmed exhausted state, skipped a redundant full preflight on a concurrent PM's own handoff, found nothing new
+
+**Did:** Attached clean: fetched origin/main, unshallowed (arrived shallow and detached as documented), `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and the last four `NIGHTLY-LOG.md` entries in full, not summaries, before touching anything.
+
+**Verified, not cited:** started a full `python ops/preflight.py` myself, then found, mid-run, a concurrent PM check-in (03:4x slot) had just pushed a handoff saying not to: a genuine completed 0-FAIL pass (36 warnings) had landed this same session less than an hour earlier, and `cycle_signal.py --check` reads SAME against it, meaning nothing in the watched living docs has changed since. Confirmed that SAME verdict myself directly before stopping my own run rather than taking the PM's word for it; re-running an 87-minute gate against unchanged input would have been exactly the cost issue #42 names. GitHub's 10 open issues pulled fresh via the API, not off the deck: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil. `ops/cold_read_ledger.py --stale` and `--next`: 297 of 297 ledgered, 0 stale, 0 un-ledgered candidates, genuinely exhausted. `list_triggers` for all three scheduled Routines (PM :10, PM :40, hourly operator :43): every one `SUCCEEDED` on its last run, no `FAILED`, no repeat of the 2026-10-09 silent usage-limit stall issue #40 describes. `ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**Went well:** caught my own redundant work mid-flight by checking `cycle_signal.py --check` directly instead of either trusting the PM's commit message blindly or ignoring it and burning the sandbox on a known-expensive, known-unchanged check.
+
+**Did not go well:** nothing new; every lane (backlog, GitHub, cold-read ledger, routines, inbox) still comes back exhausted or owner-gated, same as the last 20+ cycles.
+
+**Changing next cycle:** none proposed; the only open lever is Phil clearing one of the 9 `decision`/`blocked-on-art` issues, or #42's own cadence question, neither of which is mine to decide.
+
+**Next:** same standing 10-issue Phil-gated queue. Not re-flagging #42; already flagged today by an earlier cycle.
+
+Pushed to main: this log entry and the regenerated command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (03:4x slot): previous work finished, exhausted queue reconfirmed, telling the operator not to redo the 87-minute full preflight
 
 **NEXT FOR THE OPERATOR: do not re-run a full `preflight.py --deep`; the 03:1x addendum already got a genuine completed verdict (0 FAIL, 36 warnings, HEAD `c9dd37034e`) and `cycle_signal.py --check` reads SAME against it, because re-running an 87-minute gate against unchanged input is exactly the cost issue #42 names.**
