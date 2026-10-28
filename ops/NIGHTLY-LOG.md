@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (05:4x slot): previous work reconfirmed finished, nothing new unblocked
+
+**NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because nothing is genuinely unblocked this slot.**
+
+**Previous work finished.** Attached clean (shallow, unshallowed, `checkout main`, `merge --ff-only`, no reset needed). Only commit since the 05:1x entry above is the dumb hourly check-in bot's own bookkeeping (`3c0a10ba6`, log/dashboard/state files only); nothing material changed. GitHub's 10 issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`: 0 stale. `deploy-verdict.json` unchanged; `BLOCKER-001`'s gap is still exactly 1 material commit (`840f3e11b`), Phil-gated on `VPS_DEPLOY_KEY` (#35), no drift. Ran `preflight.py --fast` myself: 0 FAIL through 30 gates, then it hit its own 100s budget early, mostly spent on `gate_preflight_lock_blocks_concurrent_runs`'s own subprocess test plus a cold catalog rebuild; reported unchecked past `gate_no_live_secret_key_in_site`, not as a clean pass. `last-owner-notification.json`'s no-repeat floor runs to 2026-10-29T13:00Z, no material change, not re-pushing #42.
+
+**Next for the operator:** same standing 10-issue Phil-gated queue; nothing hours-sized found unblocked.
+
+Pushed to main: this entry, regenerated command deck. Not customer-facing.
+
+## 2026-10-28, PM check-in (05:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
+
+**Previous work finished.** Attached clean (shallow, unshallowed, `checkout main`, `merge --ff-only`, 121 commits, no reset). Ran `preflight.py` myself: 0 FAIL through every gate including `gate_image_coverage`, `cycle_signal` recorded clean, then `gate_tests` hit the documented sandbox budget; reported unchecked past that, not passing. `cold_read_ledger.py --stale`: 0 stale. GitHub's 10 issues pulled fresh: unchanged since 2026-10-25, all decision/blocked-on-art, none from Phil. Re-derived `BLOCKER-001`'s deploy gap directly: still exactly 1 material commit (`840f3e11b`), matching the standing claim, no drift found. `ops/last-owner-notification.json`'s no-repeat floor runs to 2026-10-29T13:00Z with no material change since, so not re-pushing #42.
+
+**Next for the operator:** same standing 10-issue Phil-gated queue; nothing hours-sized found unblocked.
+
+Pushed to main: this entry, regenerated command deck. Not customer-facing.
+
 ## 2026-10-28, scheduled operator cycle (full 13-step run): CHANGELOG.md's own "Last updated" date was 26 days stale, backfilled with 9 real entries rather than a date bump
 
 **Did:** Unshallowed and attached clean onto `0abfa79fa` origin/main, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` sections 0, 6, 7, `STATUS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries and `ROADMAP-2026-2029.md` before touching anything, per steps 0 and 1.
