@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (17:4x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted, no new work found, no re-notify (cooldown active)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no reset. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 directly (not cited), `ROADMAP-2026-2029.md` section 1, `CLAUDE.md`, `GOALS.md`, `DECISIONS.md`'s latest entry (D-033), `RISKS.md`, and the newest `ops/NIGHTLY-LOG.md` entries from the top.
+
+**Verified, not cited.** `cycle_signal.py --check`: CHANGED (`BACKLOG-2026-09-07.md`, `STATUS.md`, from Phil's own direct commit `ba69e8d0f` this afternoon, an owner-invoked CEO cycle shipping `/articles/how-to-store-blankets`), so did not skip the full local re-verification. GitHub's 10 open issues pulled fresh: unchanged set and labels since 2026-10-25 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. Re-read `BACKLOG-2026-09-07.md` sections 2-4's unstruck rows directly: only C5 (Gemini billing) and C6 (publish 102 videos) remain, both explicitly `YES, Phil`. Ran `preflight.py` myself to real completion, backgrounded with output redirected straight to a file: 0 FAIL through every gate reached, including `gate_image_coverage`; `cycle_signal` recorded a fresh clean snapshot at this HEAD, then the documented `gate_tests` headless-Chromium sandbox hang. Confirmed genuinely stuck, not assumed: read `/proc/<pid>/stat` for the `test_audit_catalog.py` child twice, 8 seconds apart, CPU ticks identical both times (5,1); killed the parent and child myself and confirmed both pids actually dead before proceeding, rather than waiting out the full timeout.
+
+**Checked whether anything met the bar for a fresh owner push (`ops/last-owner-notification.json`'s own cooldown: no re-push before 2026-10-29T13:00Z absent a new Phil reply, a cleared decision, a new credential, or a real customer event).** None of the four occurred this cycle: the 10 issues carry no new comments; Phil's commit today was content work (a blanket-storage guide), not a decision clearance on any gated issue; no new credential appeared in the sandbox; no mail credential to check for a customer event, and no Stripe credential either. Cooldown correctly held; no notification sent.
+
+**Nothing hours or 30-minutes sized and unblocked found this cycle.** No stale ledger entry, no red CI (0 open PRs), no merge conflict, no document found drifted from reality this pass beyond the cycle_signal CHANGED flag, which traced cleanly to Phil's own already-verified commit.
+
+**Went well:** independently re-deriving every claim (issues, PRs, backlog rows, preflight, cooldown criteria) instead of trusting the prior entries, and it matched exactly; confirming the `gate_tests` hang with CPU-time evidence before killing it.
+
+**Did not go well:** nothing new; same standing `gate_tests` sandbox limitation every prior cycle today has hit.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (17:1x slot): previous work finished, independently reconfirmed; nothing new unblocked, no re-notify
 
 Previous work finished, independently reconfirmed. Checkout arrived shallow and detached; fetch, unshallow (210 commits), checkout main, merge --ff-only, clean, no reset. cold_read_ledger.py --stale first read 297 of 297 stale, a shallow-graft artifact; reconfirmed 0 of 297 once unshallow finished, not a real finding. cycle_signal.py: SAME, byte-identical to 16:50:04Z, 0 FAIL before gate_tests. GitHub's 10 open issues unchanged since 2026-10-25, all decision/blocked-on-art, 0 PRs. Backlog: only C5, C6 remain live, both Phil-gated. Issue #42 cooldown runs to 2026-10-29T13:00Z, no material change, no re-notify. A concurrent preflight.py held its lock; did not force past it. Nothing 30 minute sized and unblocked found. Handing the operator the same standing queue.
