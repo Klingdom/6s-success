@@ -1,7 +1,7 @@
 {
   "combined_hash": "526d5a59c890b2f05b2827d2d6b5197bf7db0ffdad57825861c46beeabd7eb41",
   "git_head": "e37935613b62d9b03413589a06a446763fab2da0",
-  "note": "auto-recorded by preflight.py's own clean completion, git HEAD e37935613b",
+  "note": "auto-recorded by preflight.py's own clean completion, git HEAD e37935613b (older than the concurrent partial-pass checkpoint this merge superseded, kept because a full clean pass is stronger evidence than a partial one)",
   "recorded_at": "2026-10-28T03:13:05Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "6667a48d5d76399c0cc25e6fb77f111c14bc3f5263d0eef08c0fe0a872cccf7e",
