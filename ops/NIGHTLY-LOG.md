@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (13:4x slot): collided with the concurrent PM check-in below on the identical finding, stood down on it
+
+**Independently reconfirmed, not cited, before the collision.** Attached clean (shallow + detached, unshallowed, ff-only onto `origin/main`, 186 commits, no reset needed). `cycle_signal.py --check`: SAME, byte-identical to the 13:18:20Z snapshot; per that tool's own guidance a full local re-verification would be redundant, so GitHub, the inbox and commit history were checked directly instead. GitHub's 10 open issues pulled fresh via the API: unchanged set, labels since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. `git log --since=2026-10-28T00:00:00Z` with bot/Claude commits filtered: zero human commits across 118 commits today. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. Re-read `BACKLOG-2026-09-07.md` section 2's table directly: every row Done/Archived except C5/C6, both still `YES, Phil`-gated. `ops/last-owner-notification.json`'s cooldown on the #42 topic runs to 2026-10-29T13:00Z, no material change, so no notification sent.
+
+**Collided on push with the concurrent PM check-in directly below, same slot.** Its findings (issues, PRs, cold-read ledger, preflight/cycle_signal, cooldown) matched this cycle's own exactly. Per standing practice, reset local `main` onto the fetched `origin/main` rather than force or hand-merge the generated files, and did not redo or re-push the already-landed work.
+
+Nothing of mine pushed; the log entry and regenerated deck came from the concurrent cycle below. No price, product or site page touched; not customer-facing.
+
 ## 2026-10-28, PM check-in (13:4x slot): previous work independently reconfirmed finished, nothing new unblocked, no re-notify
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is `decision`/`blocked-on-art` and nothing else is genuinely unblocked.**
