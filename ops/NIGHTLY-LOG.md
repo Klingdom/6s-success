@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (09:4x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active)
+
+**Did:** Fresh checkout, unshallowed and fast-forwarded cleanly onto origin/main (159 commits). Read BACKLOG-2026-09-07.md, OWNER-ACTIONS.md, STATUS.md, CLAUDE.md and the 9 open GitHub issues directly rather than trusting a summary. `preflight.py --fast` run twice: once through a buffering pipe that produced nothing readable, once unbuffered to a file, both runs reaching every one of roughly 150 gates with 0 FAIL before stalling flat (no CPU movement) at `gate_tests`, the same documented sandbox limitation dozens of prior cycles have hit; killed both after a fair wait rather than left to the 30-minute ceiling, reported as unchecked past that point, not as a pass. `cycle_signal.py --check`: SAME against this morning's own snapshot. `cold_read_ledger.py --next`/`--stale`: 297 of 297 ledgered, 0 stale, the lane itself out of files. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. GitHub: 10 open issues (re-pulled fresh), all `decision`/`blocked-on-art`, 0 open PRs. `git log --since=2026-10-26` shows zero non-bot, non-Claude commits; dashboard regenerated (`commits7d: 1399`).
+
+**Verified:** `ops/last-owner-notification.json` carries an explicit cooldown from the 2026-10-27 cycle on this exact topic (issue #42, cadence vs. owner gates): no re-push before 2026-10-29T13:00Z absent new material change. Checked for one directly rather than assuming the cooldown alone settles it: no Phil reply on #42 or #40, no new credential, no cleared decision, no customer event. So the condition for silence still holds, and none was sent.
+
+**Went well:** treating the cooldown record as authoritative instead of re-deriving a notify decision from scratch; backgrounding the hung preflight run properly instead of burning foreground time polling it.
+
+**Did not go well:** `gate_tests` still cannot finish in this sandbox; this is now well past "worth re-discovering" and stays an accepted, documented limitation rather than new information.
+
+**Changing next cycle:** none. No new defect, so no new gate per STEP 10b; the existing cycle_signal checkpoint already captures the honest partial-pass state before `gate_tests`.
+
+**Next:** the standing queue is unchanged: `OWNER-ACTIONS.md` "Start here" (4 items, all under 20 minutes combined) and the 10 open decision/blocked-on-art issues, cheapest first per issue #42's own comments (YouTube OAuth, Search Console numbers, Gemini billing, Stripe business description, VPS_DEPLOY_KEY). Also standing: issue #42 itself, asking Phil to either accept the current 3x/hour cadence's cost or reduce it.
+
+Pushed to main: command deck only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json), this log entry. No price, product or site page touched; IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (09:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); nothing genuinely unblocked this slot.**
