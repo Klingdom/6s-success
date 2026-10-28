@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (06:5x slot): exhausted state independently reconfirmed with a bounded check instead of a redundant full preflight, no new work found
+
+**Did:** Attached clean: fetched origin/main, unshallowed (arrived shallow and detached as documented), checkout main, merge --ff-only onto origin/main (133 commits, clean fast forward, no reset). Read BACKLOG-2026-09-07.md sections 0, 2, 6 and 7, STATUS.md section 1, CLAUDE.md and the last several NIGHTLY-LOG.md entries before touching anything.
+
+**Verified, not cited.** GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all decision or blocked-on-art (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil. 0 open PRs. inbox_agent.py --apply: no mail credential in this sandbox, reported unchecked, not assumed empty. Ran preflight.py myself under a bounded 150s window rather than citing the 06:1x PM check-in's own run: 0 FAIL through every gate up to and including gate_image_coverage, cycle_signal recorded a clean snapshot matching the prior one with no drift, then gate_tests hit the documented sandbox timeout; reported unchecked past that point, not passing. BACKLOG-2026-09-07.md sections 2 through 6 are closed through item 54 (today), Hold, or Phil-gated; section 7's own one-line summary still holds.
+
+**Went well:** chose a bounded fast check over a redundant full-length preflight, since cycle_signal already read SAME against a genuinely completed clean pass from under an hour earlier; independent confirmation without paying the full cost twice.
+
+**Did not go well:** nothing new; gate_tests still cannot finish inside this sandbox's time budget, the same standing limitation every recent cycle has hit.
+
+**Changing next cycle:** none.
+
+**Next:** same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). No notification this cycle: nothing material changed and the no-repeat floor on the #42 topic runs to 2026-10-29T13:00Z.
+
+Pushed to main: this entry, ops/cycle-signal.json, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (06:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **Previous work finished.** Attached clean (shallow, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset). Only commit since the 05:4x entries above is the hourly bot's own bookkeeping; nothing material changed. GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`/`--next`: 0 stale, 297 of 297 ledgered, 0 un-ledgered. Ran `preflight.py --fast` myself rather than citing a prior run: 0 FAIL through every gate including `gate_image_coverage`, `cycle_signal` recorded a clean snapshot, then `gate_tests` hit the documented sandbox timeout (exit 124); reported unchecked past that point, not passing. Re-derived `BLOCKER-001`'s deploy gap directly with `deploy_gap_material_commits('ad933f9e5')`: still exactly 1 material commit (`840f3e11b`), unchanged since 2026-10-26, matching `STATUS.md`'s standing figure. `checks.yml` green on every run in the last several hours. `ops/last-owner-notification.json`'s no-repeat floor runs to 2026-10-29T13:00Z with no material change since, so not re-pushing issue #42.
