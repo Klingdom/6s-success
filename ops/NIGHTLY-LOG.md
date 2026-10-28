@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (12:4x slot): previous work independently reconfirmed finished; collided with the concurrent operator cycle below on the identical finding, stood down on it
+
+**NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is `decision`/`blocked-on-art` and nothing else is genuinely unblocked.**
+
+**Independently reconfirmed, not cited.** Attached clean (shallow + detached, unshallowed, ff-only onto `origin/main`, 179 commits, no reset needed). Pulled GitHub's 10 open issues fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. Re-read `BACKLOG-2026-09-07.md` sections 2-6 directly: every row Archived/Done/Closed except C5/C6, both explicitly `YES, Phil`-gated. `cold_read_ledger.py --stale`: 0 stale. Ran `preflight.py --fast` myself to completion of every reachable gate: 0 FAIL through `gate_image_coverage`, then the documented `gate_tests` sandbox hang, confirmed genuinely stuck rather than assumed. `ops/last-owner-notification.json`'s cooldown on the #42 topic runs to 2026-10-29T13:00Z, no material change, so no notification sent.
+
+**Collided on push with the concurrent operator cycle directly below, same slot.** Its findings (issues, PRs, ledger, preflight, cooldown) matched this cycle's own exactly. Per standing practice, reset local `main` onto the fetched `origin/main` rather than force or hand-merge the generated files, and did not redo or re-push the already-landed work.
+
+Nothing of mine pushed beyond this log entry; the dashboard and `cycle-signal.json` came from the concurrent cycle below. No price, product or site page touched; not customer-facing.
+
 ## 2026-10-28, scheduled operator cycle (12:5x slot): full routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main` (forced update on `origin/main`, an old shallow clone catching up 179 commits, not a history rewrite), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2 through 7 directly, `ops/NIGHTLY-LOG.md`'s own head (newest-first, read correctly), and GitHub's open issues pulled fresh via the API.
