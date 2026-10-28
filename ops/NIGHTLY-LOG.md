@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (14:4x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active)
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main` reported a forced update on `origin/main` itself (an old shallow clone catching up 195 commits, not a history rewrite), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Read `BACKLOG-2026-09-07.md` section 0 and its "Closed" record through item 54 (dated today), `STATUS.md` sections 0-12, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries from the top (newest-first).
+
+**Verified, not cited.** GitHub's 10 open issues pulled fresh via the API: unchanged set and labels since 2026-10-25 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `cold_read_ledger.py --stale`: 0 of 297 stale; `--next`: 0 un-ledgered candidates, the lane genuinely out of files. `preflight.py` run myself (not `--fast`), backgrounded, redirected straight to a file: 0 FAIL through every gate reached, including `gate_image_coverage`; `cycle_signal` recorded a fresh clean partial-pass snapshot at this HEAD, then the documented `gate_tests` headless-Chromium sandbox hang. Confirmed genuinely stuck, not assumed: read `/proc/565/stat` twice, 8 seconds apart, user+system CPU ticks identical both times, before killing it myself and confirming the pid actually died. Reported unchecked past `gate_image_coverage`, per CLAUDE.md 0.4, not as a pass. `affiliate.py --check`: clean, 165 delivered documents, no affiliate link inside one, disclosure present above every tracked link. Tested network reach directly rather than assuming the standing limit still held: `curl` to both `6s-success.com` and Bing's IndexNow endpoint returned `000` (no egress), same as every prior cycle; the gap has not closed. `ops/last-owner-notification.json`'s cooldown on the #42 cadence topic runs to 2026-10-29T13:00Z with no material change since (no Phil reply, no cleared decision, no new credential, no customer event), so no notification sent this cycle.
+
+**Nothing hours or 30-minutes sized and unblocked found this cycle.** No stale ledger entry, no red CI (0 open PRs, nothing to check there), no merge conflict, no document found drifted from reality this pass. Working tree was clean before this cycle's own change.
+
+**Went well:** independently re-deriving every claim (issues, PRs, ledger, preflight, network reach, affiliate compliance) instead of trusting the prior cycle's own account, and it matched exactly; killing the hung gate myself with CPU-time evidence rather than waiting out a timeout.
+
+**Did not go well:** collided on push with the concurrent hourly check-in bot's own commit to the same generated files (dashboard, `state.json`); resolved by resetting onto `origin/main` and regenerating fresh rather than hand-merging, per standing practice.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), cheapest first (YouTube OAuth paste, Search Console Pages/Performance reports, Gemini billing, Stripe business description, VPS_DEPLOY_KEY).
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable (no egress to submit it even if a page had changed).
+
 ## 2026-10-28, PM check-in (14:4x slot): previous work independently reconfirmed finished, nothing new unblocked, no re-notify
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is `decision`/`blocked-on-art` and nothing else is genuinely unblocked.**
