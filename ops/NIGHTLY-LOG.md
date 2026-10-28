@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (full 13-step run): CHANGELOG.md's own "Last updated" date was 26 days stale, backfilled with 9 real entries rather than a date bump
+
+**Did:** Unshallowed and attached clean onto `0abfa79fa` origin/main, no unrelated-history symptom. Read `BACKLOG-2026-09-07.md` sections 0, 6, 7, `STATUS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries and `ROADMAP-2026-2029.md` before touching anything, per steps 0 and 1.
+
+**Independently re-verified the exhausted state before looking for new work.** `cold_read_ledger.py --stale`/`--next`: 0 stale, 0 un-ledgered, genuinely exhausted. `check_urls.py` 213/213. `fix_dashes.py --check` 0/0. `affiliate.py --check` 165 documents clean. Mobile `npm test`: all three suites pass. GitHub's 10 open issues re-pulled live: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil; read issue #42's body directly rather than citing an old summary. 0 open PRs. Re-derived the deploy gap myself (`resolve_verdict_commit`/`deploy_gap_material_commits` against the real `ops/deploy-verdict.json`): still exactly 1 material commit (`840f3e11b`), unchanged since 2026-10-26. `inbox_agent.py --apply`: no mail credential, reported unchecked.
+
+**Ran `preflight.py` to a real completion (about 34 minutes; gate_tests genuinely progressing the whole time, confirmed by reading `/proc`'s child process tree twice, never hung): every gate passed, 36 warnings, one new and real: `gate_changelog_current` flagged `CHANGELOG.md`'s "Last updated" date at 26 days old, past its own 21-day threshold.** Rather than bump the date and move on (the gate's own docstring explicitly warns against exactly that), read `git log`, `BACKLOG-2026-09-07.md`'s closed sections 9 through 53 and `STATUS-ARCHIVE.md` for what actually shipped since 2026-10-02, and wrote 9 real, commit-grounded `CHG-2026-NNNN` entries (0016 through 0024): the room/product image fixes, the link-preview/article-figure/room-locator rollout, visitor-country tracking and the shop's international clarity, the global keyword vocabulary and scorer fixes, the full cleaning-method safety and dialect review, the unexposed Photos API hardening, the LinkedIn draft link bug, the video re-render root cause, and the recurring operating-system integrity gates (grouped, pointing at `NIGHTLY-LOG.md` for the individual dates rather than 15 separate entries). `fix_dashes.py --check` clean on the new text. Called `gate_changelog_current()` directly: raises nothing. Ran a second full `preflight.py` after committing, to confirm no regression from the edit: every gate passed again, 35 warnings (the changelog warning gone, nothing new), same standing environment-access shape as before.
+
+**Not started beyond the changelog fix.** Nothing else in `BACKLOG-2026-09-07.md` sections 2-6 is newly unblocked; the GitHub queue is unchanged and none of it is from Phil. No push notification: `ops/last-owner-notification.json`'s no-repeat floor runs until 2026-10-29T13:00Z and nothing material changed in the owner-gated state.
+
+**Went well:** reading the gate's own docstring before fixing it, which explicitly said not to just bump the date, and had a worked precedent (section 105's own 2026-09-12 backfill) to follow the same shape against.
+
+**Did not go well:** the review needed reading roughly 50 backlog sections and several `STATUS-ARCHIVE.md` entries to separate genuinely material, customer or business facing work from routine internal doc rotation; a narrower, automatic "what shipped" extraction does not exist yet and would make this cheaper next time it recurs.
+
+**Changing next cycle:** none; `gate_changelog_current` worked exactly as built.
+
+**Next:** same standing Phil-gated queue (10 issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+Pushed to main. `CHANGELOG.md`, `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (04:4x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, no new unblocked work
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.**
