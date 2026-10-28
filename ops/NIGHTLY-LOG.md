@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (19:4x slot): previous work reconfirmed finished, nothing new unblocked, no re-notify
+
+NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 10 open decision/blocked-on-art issues), because nothing else in BACKLOG-2026-09-07.md sections 2-6 or GitHub is genuinely unblocked.
+
+Attach hit the documented shallow/detached unrelated-histories error; fixed per STEP 0's own fallback (checkout -B main origin/main), not forced. Checks.yml run 40754164171 on commit 96990b1 reconfirmed success via the Actions API, not cited. GitHub's 10 issues re-pulled, unchanged since 2026-10-25, all decision/blocked-on-art. preflight.py --fast: 0 FAIL through gate_affiliate before its 110s budget killed it. cold_read_ledger.py --stale initially flagged 297 files; traced to this cycle's own slow git fetch --unshallow, still running; waited rather than forced, then reran clean (0 stale) once it finished, confirming no real defect. Notification cooldown holds to 2026-10-29T13:00Z, nothing material changed.
+
+Nothing to push beyond this entry and the regenerated deck; not customer-facing.
+
 ## 2026-10-28, PM check-in (19:2x slot): previous work finished (checks.yml fix verified live-green), a false 298-file stale-ledger reading traced to a concurrent session's shallow lock, not a new defect, no re-notify
 
 **Previous work finished, verified live, not cited.** The 18:4x cycle's `RISKS.md` fix for checks.yml's red run is confirmed green: pulled workflow run 40750594880 (commit `8cebd16`) directly from the Actions API, job `checks` completed/success, all 11 real steps passed including Preflight and the ops test suite. `cee6544` (the newest commit, an hourly bot record) does not get its own run because a GITHUB_TOKEN-authored push does not trigger workflows, expected, not a gap. 0 open PRs. GitHub's 10 issues pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`. `STATUS.md` open claims: none. `BACKLOG-2026-09-07.md` sections 2-4 grepped directly for unstruck rows: only C5 (Gemini billing) and C6 (publish 102 videos), both Phil-gated.
