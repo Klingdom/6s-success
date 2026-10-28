@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (full 13-step run): independently re-verified the exhausted state end to end, preflight run to a real 22-minute wall rather than a short kill
+
+**Did:** Unshallowed and attached clean onto `0abfa79fa` origin/main (no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` sections 0, 6, 7, `STATUS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries before touching anything, per steps 0-1. Ran `preflight.py` unbuffered and nohup'd in the background with no short wrapper timeout, so it would run to its actual wall rather than be killed early.
+
+**Verified directly, not cited:** `cold_read_ledger.py --stale` 0/297; `--next` 0 un-ledgered candidates, genuinely exhausted. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 documents, clean. Mobile `npm test`: all three suites pass. GitHub's 10 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`; read #15's and #2's full comment threads directly rather than trusting the count, confirmed both still genuinely Phil-gated (Listmonk sender identity; card-hero art needs a stronger model or photographs), nothing newly actionable. 0 open PRs. Re-derived the deploy gap myself (`resolve_verdict_commit`/`deploy_gap_material_commits` against the real `ops/deploy-verdict.json` build): still exactly 1 material commit, `840f3e11b`, unchanged since 2026-10-26, same standing `VPS_DEPLOY_KEY` gap (issue #35). `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**`preflight.py` reached a real 22-minute wall this cycle, longest yet recorded.** Every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean checkpoint. `gate_tests` itself was confirmed genuinely progressing, not hung, by inspecting `/proc` and the child process tree directly: a real headless-Chromium interactive test (`test_contact_form_interactive.py`) was mid-run with live renderer/gpu/network child processes. Left running rather than killed, since killing a genuinely progressing test to "finish" the cycle faster would be worse than reporting it unchecked. Per `CLAUDE.md` 0.4, `gate_tests` is reported unchecked past this point, not passing and not failed.
+
+**Not started:** nothing genuinely unblocked; `BACKLOG-2026-09-07.md` sections 2-6 are Done/Hold/owner-gated, the GitHub queue is unchanged. Dashboard regenerated and committed earlier this cycle (`a1576bd82`, `d98960032`), merged cleanly with two concurrent cycles' own regenerations.
+
+**Went well:** diagnosing a slow gate by reading its actual process tree instead of guessing hung vs. slow from elapsed time alone.
+
+**Did not go well:** 22 minutes is the longest `gate_tests` wall this log has recorded; still not pinned to a single root cause (Chromium startup cost in this sandbox, test count growth, or both).
+
+**Changing next cycle:** none; continue reporting `gate_tests` unchecked past a long wall rather than guessing a FAIL.
+
+**Next:** same standing Phil-gated queue (10 issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (00:4x slot): previous work still finished 22 minutes on, light re-check only, same exhausted Phil-gated queue handed to the operator
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
