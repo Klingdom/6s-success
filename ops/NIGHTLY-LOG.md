@@ -18,6 +18,50 @@ NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/NIGHTLY-LOG-ARCHIVE.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
 
+## 2026-10-28, PM check-in (01:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, handing the operator the one genuinely open question (whether gate_tests actually finishes) instead of another re-verification lap
+
+NEXT FOR THE OPERATOR: run `preflight.py` with a long enough background budget to let `gate_tests` finish for real, rather than reporting it unchecked again, because the last several cycles (including the 01:1x full run above) have each hit a wall mid-`gate_tests` and reported it unchecked without ever confirming pass or fail, and converting that into a real answer is the one unresolved question left in an otherwise fully-reconfirmed state.
+
+**Previous work was finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`01dd4d65a`), no unrelated-history symptom. Working tree already clean, main already in sync with origin before this cycle started.
+
+**Checked, not cited.** `git log -12`: last real work is the 01:1x full 13-step operator cycle immediately above, which ran `preflight.py` to a genuine 22-minute wall (every gate before `gate_tests` passed, `gate_tests` itself confirmed genuinely progressing via `/proc`, not hung, left unchecked per CLAUDE.md 0.4 rather than guessed at). `cycle_signal.py --check`: SAME, every tracked signal file byte-identical to the last snapshot, so the expensive local re-verification was skipped per that tool's own guidance. GitHub's 10 open issues re-pulled live via the API, not cited: unchanged, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none from Phil since the last cycle checked. 0 open PRs. `BACKLOG-2026-09-07.md` sections 0, 1, 1b, 6, 7, 9 re-read directly: every row outside the standing owner-gate table is Done, Hold, or closed by decision; section 7's own one-line summary ("technically finished and commercially unproven") still holds. `EXECUTIVE-DASHBOARD-LIVE.md` re-read: revenue $0/$20,000, 0 paying customers, 10 open issues (2 P0, 2 blocked-on-art, 8 need Phil's call), the deck itself one commit stale against HEAD for the structural reason section 9 already documents (a self-describing file cannot cite the commit that regenerates it), not a new defect.
+
+**Did not start new work**, per this slot's own instruction not to begin something large three minutes before the operator. Did not re-run the full `preflight.py` myself this cycle: the immediately prior cycle already ran it to a real 22-minute wall minutes ago, and re-running it again now against an unchanged state would be exactly the usage-limit-exposure-for-no-gain shape issue #42 names, not independent verification.
+
+**One real open thread, not a new finding: `gate_tests` has now gone unchecked (not pass, not fail) for several consecutive cycles running**, each hitting a different wall (170s external timeout, a 22-minute real wall, a 30-minute background budget) without ever reaching the gate's own completion. One 2026-10-13 cycle did get a true completion once, in under 10 minutes total; the recent walls are longer, not shorter, so something about this sandbox's `gate_tests` cost may be growing (more tests, slower Chromium cold-start, or both), not just flaking. Handing this to the operator rather than chasing it myself this slot, since the operator's hourly cadence gives it more runway than my 30-minute window to let the gate actually finish and report a real pass or fail instead of unchecked.
+
+**Went well:** recognizing that another full local re-verification this cycle would add cost with no new information, per `cycle_signal.py`'s own SAME result and issue #42's standing guidance, and handing off the one question that is still genuinely open instead.
+
+**Did not go well:** nothing new; `gate_tests` not finishing to a real verdict is now the single most-repeated unresolved item in this log, longer unresolved than any Phil-gated decision.
+
+**Changing next cycle:** when `gate_tests` again goes unchecked past a wall, name the wall's actual cause (external timeout vs. background budget vs. genuine stall) as this cycle and the one above it both did, so the pattern stays legible instead of each cycle re-discovering "it's slow" from scratch.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked. Operator's one open task: get `gate_tests` to an actual completed verdict.
+
+Nothing pushed except this log entry and the regenerated command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
+## 2026-10-28, scheduled operator cycle (full 13-step run): independently re-verified the exhausted state end to end, preflight run to a real 22-minute wall rather than a short kill
+
+**Did:** Unshallowed and attached clean onto `0abfa79fa` origin/main (no unrelated-history symptom). Read `BACKLOG-2026-09-07.md` sections 0, 6, 7, `STATUS.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries before touching anything, per steps 0-1. Ran `preflight.py` unbuffered and nohup'd in the background with no short wrapper timeout, so it would run to its actual wall rather than be killed early.
+
+**Verified directly, not cited:** `cold_read_ledger.py --stale` 0/297; `--next` 0 un-ledgered candidates, genuinely exhausted. `check_urls.py` 213/213. `fix_dashes.py --check` 0 em/en dashes. `affiliate.py --check` 165 documents, clean. Mobile `npm test`: all three suites pass. GitHub's 10 open issues re-pulled live: unchanged, all `decision`/`blocked-on-art`; read #15's and #2's full comment threads directly rather than trusting the count, confirmed both still genuinely Phil-gated (Listmonk sender identity; card-hero art needs a stronger model or photographs), nothing newly actionable. 0 open PRs. Re-derived the deploy gap myself (`resolve_verdict_commit`/`deploy_gap_material_commits` against the real `ops/deploy-verdict.json` build): still exactly 1 material commit, `840f3e11b`, unchanged since 2026-10-26, same standing `VPS_DEPLOY_KEY` gap (issue #35). `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked.
+
+**`preflight.py` reached a real 22-minute wall this cycle, longest yet recorded.** Every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean checkpoint. `gate_tests` itself was confirmed genuinely progressing, not hung, by inspecting `/proc` and the child process tree directly: a real headless-Chromium interactive test (`test_contact_form_interactive.py`) was mid-run with live renderer/gpu/network child processes. Left running rather than killed, since killing a genuinely progressing test to "finish" the cycle faster would be worse than reporting it unchecked. Per `CLAUDE.md` 0.4, `gate_tests` is reported unchecked past this point, not passing and not failed.
+
+**Not started:** nothing genuinely unblocked; `BACKLOG-2026-09-07.md` sections 2-6 are Done/Hold/owner-gated, the GitHub queue is unchanged. Dashboard regenerated and committed earlier this cycle (`a1576bd82`, `d98960032`), merged cleanly with two concurrent cycles' own regenerations.
+
+**Went well:** diagnosing a slow gate by reading its actual process tree instead of guessing hung vs. slow from elapsed time alone.
+
+**Did not go well:** 22 minutes is the longest `gate_tests` wall this log has recorded; still not pinned to a single root cause (Chromium startup cost in this sandbox, test count growth, or both).
+
+**Changing next cycle:** none; continue reporting `gate_tests` unchecked past a long wall rather than guessing a FAIL.
+
+**Next:** same standing Phil-gated queue (10 issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`. No price, product or site page touched; IndexNow not applicable.
+
 HANDOFF-FILES: none
 
 ## 2026-10-28, PM check-in (00:4x slot): previous work still finished 22 minutes on, light re-check only, same exhausted Phil-gated queue handed to the operator
