@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (10:1x slot): previous work finished, independently reconfirmed, nothing new unblocked, no re-notify
+
+**NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); nothing genuinely unblocked this slot.**
+
+**Previous work finished.** Checkout arrived shallow and detached; `git fetch origin main` reported a forced update on `origin/main` itself (expected shape catching up 164 commits on an old shallow clone, not a history rewrite), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Tree clean before this cycle's own change. Read `git log -12`, `OWNER-ACTIONS.md` items 0 and the two still-open product calls, `BACKLOG-2026-09-07.md` header, `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/state.json`, and GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil, 0 open PRs. `git log --since=2026-10-27` with bot/Claude commits filtered out: zero human commits.
+
+**Verified rather than cited.** `cycle_signal.py --check`: SAME, every tracked signal file byte-identical to a fresh clean snapshot at this exact HEAD. `cold_read_ledger.py --stale`: 0 of 297 files stale. Ran `preflight.py --fast` myself, redirected straight to a file (not through `tail`, the documented pitfall): 0 FAIL through every gate up to and including `gate_image_coverage`, then the documented `gate_tests` headless-Chromium sandbox hang; confirmed it was genuinely stuck, not just slow, by checking process CPU time across three separate reads (13s of CPU time frozen while elapsed climbed from 73s to 76s+), then killed it and reported unchecked past that point, not passing, per CLAUDE.md 0.4. `ops/last-owner-notification.json`'s no-repeat floor on the #42 cadence topic runs to 2026-10-29T13:00Z; no material change since (no Phil reply, no cleared decision, no new credential), so not re-pushing it this slot.
+
+**Nothing hours or 30-minutes sized and unblocked found this slot.** No stale ledger entry, no failing test beyond the known sandbox limit, no red CI, no merge conflict, no document found drifted from reality this pass.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, scheduled operator cycle (09:4x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active)
 
 **Did:** Fresh checkout, unshallowed and fast-forwarded cleanly onto origin/main (159 commits). Read BACKLOG-2026-09-07.md, OWNER-ACTIONS.md, STATUS.md, CLAUDE.md and the 9 open GitHub issues directly rather than trusting a summary. `preflight.py --fast` run twice: once through a buffering pipe that produced nothing readable, once unbuffered to a file, both runs reaching every one of roughly 150 gates with 0 FAIL before stalling flat (no CPU movement) at `gate_tests`, the same documented sandbox limitation dozens of prior cycles have hit; killed both after a fair wait rather than left to the 30-minute ceiling, reported as unchecked past that point, not as a pass. `cycle_signal.py --check`: SAME against this morning's own snapshot. `cold_read_ledger.py --next`/`--stale`: 297 of 297 ledgered, 0 stale, the lane itself out of files. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. GitHub: 10 open issues (re-pulled fresh), all `decision`/`blocked-on-art`, 0 open PRs. `git log --since=2026-10-26` shows zero non-bot, non-Claude commits; dashboard regenerated (`commits7d: 1399`).
