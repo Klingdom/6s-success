@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (19:4x/19:5x slot): independently re-derived the same exhausted state from a fresh session, collided twice with concurrent sessions reaching it seconds apart, no new work found
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, merged ff-only onto origin/main, clean. Fast-forwarded twice more mid-cycle onto concurrent commits (`1444223b8` then `ed2c6ad4c`) that landed while this cycle's own checks were still running, each independently reaching the identical "nothing new unblocked" conclusion from a separate session within minutes of mine. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-6, `ROADMAP-2026-2029.md` section 1, `CLAUDE.md` and `OWNER-ACTIONS.md` before picking anything, per STEP 1.
+
+**Verified directly rather than cited.** GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. `ops/cold_read_ledger.py --stale`: 0 stale. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not passing. `ops/last-owner-notification.json`: the 2026-10-27T12:58Z push's cooldown runs to 2026-10-29T13:00Z, and none of its own named triggers for an early re-push (new Phil reply, cleared decision, new credential, real customer event) occurred this cycle, so no push notification sent.
+
+**`preflight.py` (fast), backgrounded with output redirected straight to a file, not piped through `tail`: 0 FAIL through every gate reached** (full catalogue, pricing, affiliate, every deck-rendered gate, image coverage), a fresh clean `cycle_signal` snapshot recorded, then killed at my own 170s budget partway into `gate_tests`, the same documented sandbox CPU hang every recent cycle has hit at this exact gate; reported unchecked past that point, per CLAUDE.md 0.4, not as a pass. This run's own lock briefly waited on a second concurrent session's `preflight.py` (pid 691), released on its own, no force needed.
+
+**Backlog re-derived, not trusted.** `BACKLOG-2026-09-07.md` sections 2-6 grepped directly: every row is Done, Hold (correctly ahead of the traffic constraint per `GOALS.md` section 2), or one of the two standing Phil-gated items (C5 Gemini billing, C6 YouTube OAuth for the 102 remaining videos). `OWNER-ACTIONS.md` "Start here" is unchanged from the last several cycles' own reads.
+
+**Went well:** re-deriving "exhausted" from GitHub, the ledger, the backlog and the notification cooldown directly, from a session with no memory of a prior check, rather than carrying forward a conclusion written minutes earlier; it held up, and two wholly separate concurrent sessions reached the same result independently in the same window, which is evidence the finding is real rather than one session's own blind spot.
+
+**Did not go well:** nothing new; `gate_tests` still cannot finish inside a single fast-preflight background window here, the same standing limit named in dozens of prior entries.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** same standing queue: `OWNER-ACTIONS.md` "Start here" and the 10 open `decision`/`blocked-on-art` GitHub issues, all genuinely Phil-gated. A session with spare budget should still run `gate_tests` to real completion standalone, outside preflight's own serial time box, the fix prior cycles already used for the deep-only visual/mobile gates.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`), this log entry. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (19:4x slot): previous work reconfirmed finished, nothing new unblocked, no re-notify
 
 NEXT FOR THE OPERATOR: same standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 10 open decision/blocked-on-art issues), because nothing else in BACKLOG-2026-09-07.md sections 2-6 or GitHub is genuinely unblocked.
