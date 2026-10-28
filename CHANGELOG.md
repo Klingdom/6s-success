@@ -10,7 +10,7 @@ meaningful changes across 6S Success\
 **Primary contributors:** GitHub Manager, Hostinger VPS/Docker Manager,
 DevOps/SRE, Product, Home Quest, Content, Data, Commerce, Services,
 Security, AI/ML, and other domain agents\
-**Last updated:** 2026-10-02
+**Last updated:** 2026-10-28
 
 ------------------------------------------------------------------------
 
@@ -2814,3 +2814,340 @@ new real count (12 to 13) and re-confirmed it still fails on the historical
 defect shape and passes clean on the real file. Full `preflight.py` clean
 after. The harvest itself has not fired yet as of this entry; whether the
 complaint-cluster queries move off `gap` is unverified until its first run.
+
+## CHG-2026-0016: Room pages and shop products stopped borrowing book figures that did not match what they sold
+
+**Date:** 2026-10-22 **Category:** CONTENT / COMMERCE **Type:** FIXED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Eleven room pages had shown empty placeholder boxes instead of a real
+room plan; `ops/build_room_maps.py` now draws each room's own overhead
+plan in code, numbered to match that page's own zone list, correcting
+three pages that had been contradicting their own text. The shop's
+twenty room packs gained their own room image each (`ops/build_pack_images.py`)
+in place of eleven borrowed, unrelated book figures. Separately, the
+shop's nine hand written products (the book, the Manual, the bundle,
+both print packs, Home Quest, and all three consulting offers) had
+shown seven shared book figures with "Figure NN-NN" tabs still visible,
+two of them a product that was not the one being sold (both consults
+read "Good Homes. No Shared Picture.", one showed a home pantry).
+`ops/build_product_images.py` now prints the real artefact (sample PDF,
+Manual, Print Pack, Standards Pack, audit sheet, Home Quest's first
+screen) and lays it on paper; the two consults, which have no printed
+artefact, get wordless crops of existing illustrations instead.
+
+### Why
+
+A product page showing a different product, or a tab from the source
+book still visible, is a trust defect a first time visitor notices
+before reading a word of copy, the exact thing CLAUDE.md section 9
+and 10 ask every page to avoid.
+
+### Verification
+
+Deployed and confirmed live in two steps: production `c36cb2794e581473`
+to `f89c1c0a8f1ccbff` (room plans and room packs, all 11 room pages
+and 18 listed room pack images checked live, Garage rendered in a
+browser), then `f89c1c0a8f1ccbff` to `18c8f6d939cbad33` (product
+images, all nine 200 live as jpg, avif and webp, referenced by live
+`data.js` and `shop.html`, product JSON-LD on shop and consulting
+pointed at the same images, live shop screenshotted). `test_room_locator`
+fails by name if a zone ever loses its plan. Full `preflight.py` run
+through every gate it could reach before the documented `gate_tests`
+sandbox hang; CI ran it complete on both commits and passed.
+
+## CHG-2026-0017: Link previews, article figures and a room locator shipped across roughly 180 pages that had none
+
+**Date:** 2026-10-22 to 2026-10-23 **Category:** CONTENT / SEO **Type:** ADDED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Fifty eight pages, every room page and every article, had shared one
+og:image, a book figure still carrying "FIGURE 15-03" in its corner;
+eighteen more, the home page among them, used four other tabbed
+figures. `ops/share_cards.py` now draws one 1200x630 card per page from
+that page's own heading, seventy six pages in total. Thirty three of
+thirty five articles gained one captioned book figure chosen for the
+argument the article makes, placed after the opening section
+(`ops/article_figures.py`). The "Where it is" panel on seventy four
+zone pages across thirteen drawn rooms now shows that room's real plan
+with the current zone filled in (`ops/room_locator.py`).
+
+### Why
+
+A shared, mismatched preview image is what a reader sees first on
+LinkedIn or in a search result, before the page itself; an article
+making an argument with no picture of the thing it describes is a
+weaker argument than it needs to be.
+
+### Verification
+
+`gate_share_cards_current`, `gate_article_figures_current` and
+`test_room_locator`, each with a fail-proved test. Checked live with a
+LinkedIn user agent: every page sampled previews as its own card, not
+the shared default. Two local versus UTC date bugs found and fixed
+along the way (`test_nightly_log.py` failing every evening;
+`build_seo._git_content_date` dating commits in their own timezone
+offset instead of UTC, which had made CI read a rebuilt sitemap as a
+hand edit). Deployed and confirmed live; CI ran full `preflight.py` on
+each commit and passed.
+
+## CHG-2026-0018: Visitor country had never once been recorded, and the shop did not say clearly it ships to every country
+
+**Date:** 2026-10-23 **Category:** ENGINEERING / MEASUREMENT / COMMERCE
+**Type:** FIXED **Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Zero of 109 recorded Umami sessions had ever carried a country, since
+Umami 3.1 reads `X-Real-IP` first and the site's own `/stats` proxy hop
+set that header to the proxy's own bridge address, not the visitor's.
+Fixed in nginx; a live probe beacon recorded correctly as US/US-ID
+immediately after. Country data begins 2026-10-23 and cannot be
+backfilled for anything recorded before it. Separately, every priced
+tile on the shop now reads "$N USD" and the shop's own introduction
+states plainly that every book, pack and deck is digital and works
+wherever the visitor lives, and that the virtual consult runs by
+video, so a visitor outside the US is not left to guess.
+
+### Why
+
+A business cannot read where its visitors come from if the one field
+built to record it has never once been correct, and a shop that lets
+an international visitor wonder whether a US dollar price or a
+shippable product applies to them is friction this business can
+remove for free.
+
+### Verification
+
+`test_nginx_umami_client_ip.py`, fail then pass proved against the
+real nginx config. Checked live: a probe beacon recorded with a real
+country immediately after the fix. Every priced tile's "$N USD" text
+checked in the live rendered DOM (102 catalogue tiles plus 18 more).
+Full account and the first weeks of country data: `STATUS-ARCHIVE.md`,
+2026-10-23 entry; re-read the actual split again in two to four weeks
+before acting on it, per that entry's own note.
+
+## CHG-2026-0019: International search demand measured for the first time, and the vocabulary gap it found was real, not noise
+
+**Date:** 2026-10-23 and 2026-10-26 **Category:** SEO / CONTENT **Type:** ADDED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+`ops/keyword_demand_global.py` harvested the existing 151 US seed
+queries against gb, au, ca and in (604 attempts, 0 errors): 2,183
+queries, 995 of them absent from the US harvest entirely. Four
+measured names were added through the existing "also called"
+mechanism (hall cupboard for Hall Closet, linen cupboard for Linen
+Shelf, walk in wardrobe for Primary Closet, coat cupboard for Coat and
+Outerwear), each verified live on its heading. Separately, the keyword
+scorer itself was found penalising non-US spelling outright: it folded
+"organization" as a format word but not "organisation", so every UK,
+Australian or Indian query carrying the British spelling of that word,
+or of colour, favourite, centre or mould, could never match. Folding
+those forms into the scorer moved the global gap from 189 to 150 and
+covered queries from 890 to 965, all of it scorer correction, not new
+content.
+
+### Why
+
+A gap count that is actually a spelling bug in the thing measuring it
+is not a content gap at all, and fixing the measurement was worth more
+here than writing a page against a number that was wrong.
+
+### Verification
+
+`ops/tests/test_gate_keyword_demand_global_not_stale.py` and the
+scorer's own test case 18 (fail proved against the real "organisation"
+query). Four new headings confirmed live. Full `preflight.py` clean
+after both changes. Remaining items in the gap list checked by hand:
+mostly off topic (cooking, handrails, a band name) or rooms the site
+does not carry (loft, under stairs cupboard), not a further vocabulary
+miss.
+
+## CHG-2026-0020: A full read of all 762 cleaning methods found live safety omissions, leaked internal notes on 21 pages and in the sold Manual, and a corpus that spelled American and spoke British
+
+**Date:** 2026-10-26 **Category:** CONTENT / SAFETY / COMMERCE **Type:** FIXED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Owner directed ("review and improve all cleaning instructions, steps,
+cleaning products, and monetizable aspects"). Every one of 762 cleaning
+methods read in full. Safety: the guest bathroom toilet method now
+says ventilate and never add bleach to another cleaner; the laundry
+chemical shelf method says gloves, and keep bleach apart from drain
+cleaner, ammonia and acids; the workshop brush method says ventilate,
+gloves, and that thinner or oil finish rags go in the oily rag can
+because they can self ignite; the grill method says cold and the tank
+valve closed before the burners. Nitrile gloves added to both chemical
+zones. Twenty five internal editor notes reading "(not in this zone's
+list)" had been shipping on 21 live zone pages and inside the sold
+Micro Zone Manual; removed, and 18 of those items added to their own
+zone's kit where a matching product type already existed. The corpus
+spelled American but spoke British in several places (hob, skirting,
+the tap, torch, tea towel, kitchen roll, sun cream); `fix_dialect.py`
+gained a reviewed vocabulary list applied to `content.json`, both
+Manual files and the deck builders. The cleaning index page was
+rebuilt with cards per zone, rule cards including never mix cleaners,
+room links with counts, and one honest offer for the Micro Zone Manual
+at its real live price.
+
+### Why
+
+An internal note left on a page a stranger reads, or inside a document
+a customer paid for, is the exact kind of defect CLAUDE.md section 0.2
+calls not to report twice once found; a method that omits ventilation
+or a chemical to keep separate is a safety gap, the fourth S by
+Phil's own 2009 curriculum (D-014), not a polish item.
+
+### Verification
+
+Downstream regenerated and checked: Manual print edition and
+appendices, Standards Pack download, Etsy PDFs, mobile corpus, card
+prompts, 25 caption files, and two zones' narrated films re-rendered
+(Kitchen Cooking Zone, Mudroom Seasonal Outdoor Gear). Two first-pass
+mistakes in the dialect rule ("sweater cables", a range hood placed in
+the toilet area) were caught by reading the generated output and fixed
+at the rule, recorded in `LEARNINGS.md`. Deployed and verified live;
+production `a0bbe5bb276ee21b`, 130 products before and after. Known and
+left: the Kitchen Cooking Zone film already live on YouTube still says
+"hob"; replacing it would change its video ID and break its existing
+embeds. Six product types the methods name still have no master
+catalogue row (`BACKLOG-2026-09-07.md` section 5, Hold). Unchecked:
+the full local `preflight.py` was stopped by the sandbox for low
+memory that cycle; every generator and every CI-flagged gate was
+re-run individually and passed before the image build, which then
+passed.
+
+## CHG-2026-0021: Two unexposed denial-of-service shapes fixed in the Photos API before it ever reaches production
+
+**Date:** 2026-10-22 **Category:** SECURITY **Type:** FIXED **Impact:** MODERATE
+**Status:** VERIFIED
+
+### Changed
+
+A negative `Content-Length` header parsed as a valid integer, skipped
+the existing size limit check, and reached a read call with a negative
+count, which blocks until the peer closes the connection rather than
+reading a bounded amount. Separately, the handler's socket timeout had
+been left at its default of none, so an idle connection could hold its
+thread forever. Fixed with a guard rejecting a negative length in
+`_body()`, and an explicit socket timeout (30 seconds by default).
+
+### Why
+
+`photos/server.py` is not wired into production (`CLAUDE.md` section
+36b's sibling note, D-028), so this is a fix made ahead of exposure
+rather than a live patch, but the two shapes are a real resource
+exhaustion risk against anything that does hold a household's photos,
+and the fix was cheap to make now rather than carried as a known gap
+until the exposure decision is made.
+
+### Verification
+
+Both reverted individually and reran to reproduce the real hang and
+the real unclosed idle connection before restoring the fix.
+`ops/tests/test_photos_service.py` 39 of 39 after. A third related gap,
+a disk free floor check with no test despite `PHOTOS-API.md` claiming
+every fix there is fail then pass proved, found while verifying and
+closed the same way (40 of 40). `PHOTOS-API.md` and `OWNER-ACTIONS.md`
+corrected to state the verified fact rather than the earlier guess.
+
+## CHG-2026-0022: The LinkedIn daily draft's connection note and corporate post were both missing a link, the same bug in a second code path the first fix never reached
+
+**Date:** 2026-10-23 **Category:** GROWTH **Type:** FIXED **Impact:** MODERATE
+**Status:** VERIFIED
+
+### Changed
+
+The automated LinkedIn daily draft's connection note and its separate
+corporate post template both omitted the link the original 2026-10-02
+fix had already added to the main post path. Both corrected to use the
+same link logic.
+
+### Why
+
+A growth channel post with no link to follow cannot send a visitor
+anywhere, which is the entire point of publishing it; the bug recurred
+because the earlier fix touched one code path and not its sibling.
+
+### Verification
+
+Full account in `BACKLOG-2026-09-07.md` section 27. Both corrected
+templates checked against a real generated draft; `preflight.py` clean
+after.
+
+## CHG-2026-0023: The 15 stale narrated video captions got a real, workflow dispatch verified attempt, and the actual blocker turned out to be the TTS host itself, not the sandbox
+
+**Date:** 2026-10-13 **Category:** ENGINEERING / CONTENT **Type:** INVESTIGATED
+**Impact:** MINOR **Status:** VERIFIED
+
+### Changed
+
+A new GitHub Actions workflow (ffmpeg, headless Chromium, edge-tts) was
+built and run by a real `workflow_dispatch` call, watched to its actual
+terminal state rather than assumed successful, to re-render 15 of 114
+narrated zone videos whose captions had gone stale after the dialect
+fix. The run failed: `WSServerHandshakeError: 403` from
+`speech.platform.bing.com`, the same rejection this project's own
+sandbox gets, confirming the block is Microsoft's edge-tts service
+rejecting the request at the application layer, not a network-layer
+limit specific to either environment.
+
+### Why
+
+A prior backlog entry had guessed, without a completed run to check it
+against, that a GitHub-hosted runner's ordinary egress would be enough
+to fix this. It was not, and the guess was corrected rather than
+repeated a third time.
+
+### Verification
+
+Job logs read directly: 30 identical 403 responses across 28 minutes.
+The one path that has already worked once is unchanged: rendering on
+Phil's own machine (`ops/video_narrated.py`, 99 zones, 260 minutes, 0
+failures, 2026-09-18). None of the 15 stale pairs are public;
+`ops/youtube_upload.py` already withholds anything stale, so this is
+not a live customer-facing gap, and `OWNER-ACTIONS.md` carries the
+follow-on step.
+
+## CHG-2026-0024: A sequence of self-inflicted operating-system defects, unbounded document growth, stale cross-file citations and two concurrent-run races, found and closed at the gate rather than left to recur
+
+**Date:** 2026-10-14 to 2026-10-27 **Category:** ENGINEERING **Type:** FIXED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+Across roughly fifteen operator cycles, the same shape of defect kept
+recurring in a different file each time: a living document growing
+without bound (`ops/NIGHTLY-LOG.md`, `CHECKIN-LOG.md`,
+`OWNER-ACTIONS.md`, and several individual fields inside `STATUS.md`
+and `BACKLOG-2026-09-07.md` itself), a fact corrected in one place that
+never propagated to a sibling citation of the same number (the
+production deploy gap drifted stale five separate times), and two
+concurrent `preflight.py` runs colliding, once on a prose warning and
+once on an actual lock file left by a dead process holder. Each was
+fixed at its source and given a dedicated `preflight.py` gate (WARNING
+or FAILURE as fits) with its own fail-then-pass test, rather than
+corrected once in prose and left to recur a sixth time.
+
+### Why
+
+CLAUDE.md section 0.2 and this project's own repeated experience both
+say the same thing: a lesson recorded only in prose prevents nothing,
+and this exact class of defect had already recurred three or more
+times before each gate was finally written.
+
+### Verification
+
+Each fix has its own fail-then-pass test, named in the corresponding
+`BACKLOG-2026-09-07.md` section (10, 14 through 19, 24 through 25, 28
+through 46, 50, 52 through 53) and in `ops/NIGHTLY-LOG.md` on its own
+date. Full detail, including the exact before and after counts for
+each rotation, lives in those two files rather than being repeated
+here.
