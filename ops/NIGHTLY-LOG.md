@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (06:4x slot): full preflight run to real completion for once, every lane independently reconfirmed exhausted, no new work found
+
+**Did:** Unshallowed and attached clean onto origin/main (ff-only, no reset). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. Ran `python ops/preflight.py` to genuine completion, not `--fast`: ~92 minutes wall clock, 0 FAIL, 35 warnings, all previously-diagnosed environment-access limits. Regenerated the command deck after.
+
+**Verified, not cited:** GitHub's 10 open issues pulled live: unchanged, all `decision`/`blocked-on-art`. `cold_read_ledger.py --stale`: 0 stale, 297/297 ledgered. Read `OWNER-ACTIONS.md` item 7 (Listmonk) and item 23 (cadence) in full rather than trusting a summary: both genuinely owner-gated, confirmed by the standing `update_trigger` refusal already on record. `inbox_agent.py --apply`: no mail credential, reported unchecked.
+
+**Went well:** letting the full run finish instead of the usual `--fast` shortcut confirmed `gate_tests`' sandbox hang is slow, not stuck; three checkpoint-file merge conflicts with concurrent sessions resolved correctly by keeping the newer, more complete note each time.
+
+**Did not go well:** the full run cost ~92 minutes of wall clock for zero new findings, the same usage-cost problem issue #42 already names, now with a harder number on it.
+
+**Changing next cycle:** none; no new defect, so no new gate.
+
+**Next:** same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Amazon KDP, Etsy and Pinterest/Instagram remain the real route to a second sale, and remain account-creation items only Phil can do.
+
+Pushed to main: this entry, merge-resolved `cycle-signal.json`, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (06:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **Previous work finished.** Attached clean (shallow, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset). Only commit since the 05:4x entries above is the hourly bot's own bookkeeping; nothing material changed. GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, none from Phil. `cold_read_ledger.py --stale`/`--next`: 0 stale, 297 of 297 ledgered, 0 un-ledgered. Ran `preflight.py --fast` myself rather than citing a prior run: 0 FAIL through every gate including `gate_image_coverage`, `cycle_signal` recorded a clean snapshot, then `gate_tests` hit the documented sandbox timeout (exit 124); reported unchecked past that point, not passing. Re-derived `BLOCKER-001`'s deploy gap directly with `deploy_gap_material_commits('ad933f9e5')`: still exactly 1 material commit (`840f3e11b`), unchanged since 2026-10-26, matching `STATUS.md`'s standing figure. `checks.yml` green on every run in the last several hours. `ops/last-owner-notification.json`'s no-repeat floor runs to 2026-10-29T13:00Z with no material change since, so not re-pushing issue #42.
