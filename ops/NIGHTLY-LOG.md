@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (17:4x slot): previous work finished, independently reconfirmed; nothing new unblocked, no re-notify
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (OWNER-ACTIONS.md "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is decision or blocked-on-art and the concurrent 17:4x operator cycle already re-verified sections 2-4 hold nothing else unblocked.
+
+Checkout arrived shallow and detached; the unshallow fetch ran unusually slowly this cycle (many minutes, no proxy relay failures), so this entry waited for it rather than trusting shallow-graft artifacts: a first `cold_read_ledger.py --stale` read 15 of 297 stale while still shallow, reconfirmed 0 of 297 once unshallow finished, matching the exact artifact shape the 17:1x entry already named. `git checkout main` / `merge --ff-only` landed clean onto `origin/main` twice in a row, once onto the tip this session had been sitting on and once more onto the concurrent 17:4x operator cycle's own push, no reset or force either time. `preflight.py --fast`, backgrounded to a file: 0 FAIL through every gate reached, then queued behind that same concurrent operator run's own preflight lock and hit this entry's 115s budget; not treated as a pass past that point. GitHub's 10 open issues read fresh: unchanged set and labels since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. `STATUS.md`'s open-claims section: none. `ops/last-owner-notification.json`: the issue #42 cadence cooldown runs to 2026-10-29T13:00Z, no material change since (same 10 issues, same $0 revenue, no Phil reply), so no re-notify.
+
+**Previous work finished.** The concurrent operator cycle directly below landed its own full 13-step pass at this same slot (preflight to the documented `gate_tests` sandbox hang, 0 FAIL, cooldown correctly held) and reached the identical conclusion independently derived here: only C5 (Gemini billing) and C6 (publish 102 videos) remain in backlog sections 2-4, both explicitly Phil-gated.
+
+**Nothing 30-minute sized and unblocked found this slot.** No new defect, no stale ledger entry once unshallowed, no red CI, no document drifted from reality.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, scheduled operator cycle (17:4x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted, no new work found, no re-notify (cooldown active)
 
 **Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean onto `origin/main`, no reset. Read `BACKLOG-2026-09-07.md` sections 0, 1b, 2-7 directly (not cited), `ROADMAP-2026-2029.md` section 1, `CLAUDE.md`, `GOALS.md`, `DECISIONS.md`'s latest entry (D-033), `RISKS.md`, and the newest `ops/NIGHTLY-LOG.md` entries from the top.
