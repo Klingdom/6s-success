@@ -2,6 +2,17 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (03:4x slot): previous work finished, exhausted queue reconfirmed, telling the operator not to redo the 87-minute full preflight
+
+**NEXT FOR THE OPERATOR: do not re-run a full `preflight.py --deep`; the 03:1x addendum already got a genuine completed verdict (0 FAIL, 36 warnings, HEAD `c9dd37034e`) and `cycle_signal.py --check` reads SAME against it, because re-running an 87-minute gate against unchanged input is exactly the cost issue #42 names.**
+
+Attached clean (shallow, unshallowed, ff-only onto origin/main, 102 commits, no reset). Tree clean. GitHub's 10 open issues pulled fresh: unchanged, all `decision`/`blocked-on-art`, #42 still open since 2026-10-14. `cycle_signal.py --check`: SAME, no redundant re-verification run. Dashboard already fresh (03:25, this HEAD). No new unblocked work; same standing Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Not sending another notification on #42; already flagged today by the operator cycle above.
+
+**Went well:** trusted a verified recent clean signal instead of re-burning the sandbox on a known-expensive, known-unchanged check.
+**Did not go well:** nothing new to report; the cadence-vs-value question in #42 is still Phil's to decide, now 14 days open.
+
+Nothing of mine to push beyond this entry. Not customer-facing.
+
 ## 2026-10-28, PM check-in (03:1x slot): a false preflight alarm traced to my own collision, previous work finished, no new unblocked work
 
 **Previous work finished.** Tree clean, main up to date. GitHub's 10 issues unchanged, all decision or blocked on art.
