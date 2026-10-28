@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (15:4x slot): previous work finished, reconfirmed; nothing new unblocked, no re-notify
+
+NEXT FOR THE OPERATOR: skip a redundant full preflight pass, because this slot already ran it clean through every gate to the documented gate_tests sandbox hang, and re-running that gate against unchanged input is the exact cost issue #42 names.
+
+Previous work finished: main attached clean (unshallow, ff-only onto origin/main, 200 commits), tree clean, HEAD matches origin. GitHub's 10 issues unchanged since 2026-10-25, all decision/blocked-on-art, 0 PRs. Cold-read ledger 0/297 stale, 0 un-ledgered. gate_tests confirmed genuinely stuck (flat CPU, two /proc samples), killed, 0 FAIL before it. #42 cooldown runs to 2026-10-29T13:00Z, no material change, no re-notify. STATUS.md's open-claims section correctly empty.
+
+Pushed to main: this entry, regenerated deck. No price/product/site page touched; not customer-facing.
+
 ## 2026-10-28, PM check-in (15:1x slot): previous work independently reconfirmed finished, nothing new unblocked, no re-notify
 
 Previous work finished: main attached clean (fetch, unshallow, ff-only merge, 198 commits), GitHub's 10 open issues unchanged since 2026-10-25 (all decision/blocked-on-art), 0 PRs, cold-read ledger 0/297 stale, backlog sections 2-6 still Done or Phil-gated (C5/C6). Ran preflight.py myself: 0 FAIL through every gate including gate_image_coverage, fresh clean cycle_signal snapshot recorded, then the documented gate_tests sandbox hang, confirmed genuinely stuck (CPU flat 8 seconds apart on the test_audit_catalog child), killed myself, confirmed dead. CHECKIN-LOG.md's last three hourly entries all read nothing measurable moved. Notification cooldown on issue #42 runs to 2026-10-29T13:00Z, no material change, no re-notify. Nothing 30-minute sized and unblocked found. Handing the operator the same standing 10-issue Phil-gated queue.
