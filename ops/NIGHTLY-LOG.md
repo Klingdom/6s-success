@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (08:4x slot): full 13-step routine run, state independently reconfirmed exhausted, deploy gap re-derived and unchanged, no new work found
+
+**Did:** Checkout arrived shallow and detached, with `git fetch origin main` reporting a forced update on `origin/main` itself (expected shape for a very old shallow clone catching up 150+ commits, not a history rewrite); `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, 152 commits, no unrelated-history error). Read `GOALS.md` in full, `OWNER-ACTIONS.md`'s open items, `BACKLOG-2026-09-07.md` sections 0-7 and its item rows in sections 2-4, `CLAUDE.md`, and the newest `NIGHTLY-LOG.md` entries (the file is newest-first; the prompt's "last four entries" read correctly means the top, not the tail, which this cycle initially misread before catching it from the dates).
+
+**Verified directly, not cited.** GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); read #42 in full, 7 comments, all agent status updates, none from Phil. `ops/last-owner-notification.json`: the deliberate push on the #42 cadence topic was sent 2026-10-27T12:58Z with a no-repeat floor to 2026-10-29T13:00Z; no material change since (no Phil reply, no cleared decision, no new credential), so not re-pushing it this cycle. `preflight.py --fast`, backgrounded and redirected straight to a file: 0 FAIL through 102 gates reached (through `gate_image_coverage`), `cycle_signal` recorded a fresh clean partial-pass snapshot, then the documented `gate_tests` sandbox hang (killed after 3:22 elapsed, 21s of CPU time, the same flat-CPU signature every recent cycle has hit); reported unchecked past that point, not passing, per CLAUDE.md 0.4. `cold_read_ledger.py --stale`: 0 stale. `inbox_agent.py --apply`: no mail credential in this environment. `affiliate.py --check`: clean, 165 documents. `check_sellable.py`: 124 of 126 buyable products confirmed in Stripe with delivery entries, the other 2 are person-delivered services. `BACKLOG-2026-09-07.md` sections 2-4: every item row is struck through (archived or done); section 6 (owner gates): all six genuinely need Phil's hand. `checks.yml` green on the last several runs on `main`.
+
+**Re-derived the deploy gap from git directly rather than trusting `STATUS.md`'s 2026-10-26 citation.** `deploy_gap_material_commits()` against the verdict commit for build `a0bbe5bb276ee21b` (`ad933f9e5`) still returns exactly 1 commit (`840f3e11b`, the British-vocabulary/avif-chain fix), unchanged from the existing citation despite 150+ commits landing since that citation was written; every one of those was bookkeeping (dashboard, logs, check-ins) rather than a `site/`/`Dockerfile` change. No drift to fix. Standing limit unchanged: no VPS deploy key in this sandbox, so this stays Phil-gated (issue #35).
+
+**Did not start new work.** Every lane this prompt's STEP 3 ordering covers (measurement, broken/dishonest, traffic, conversion, product, operational honesty) is Done, Hold, or genuinely Phil-gated, confirmed by this cycle's own checks rather than carried forward.
+
+**Went well:** re-deriving the deploy gap count from git instead of trusting the 2-day-old citation, since 150+ intervening commits made that a real question rather than a formality this time.
+
+**Did not go well:** initially misread the nightly log's own newest-first convention before the commit dates caught it; no cost beyond a few minutes.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2). No sale, product, or site page changed; IndexNow not applicable.
+
+Pushed to main: this log entry, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/cycle-signal.json`. No price, product or site page touched; not customer-facing.
+
 ## 2026-10-28, PM check-in (08:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because nothing is genuinely unblocked this slot.**
