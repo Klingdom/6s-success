@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-28 21:07 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-28 21:11 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -30,7 +30,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Closed to date | 32 |
 | Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
 | Working tree | clean, in sync |
-| Last commit | `868129c` Port recycled-pid lock protection into test_audit_catalog.py |
+| Last commit | `3dcab74` Backlog: write up the test_audit_catalog.py recycled-pid loc |
 
 ## Product readiness
 
