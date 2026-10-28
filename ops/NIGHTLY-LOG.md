@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (21:4x slot): previous work (the recycled-pid lock fix) reconfirmed finished and genuinely fixed, nothing new unblocked, handoff is the long gate_tests run the fix itself was built to enable
+
+NEXT FOR THE OPERATOR: start `python ops/preflight.py` (or `gate_tests` alone) in the background at the very start of your hour, with as long a window as you can give it (60-90+ min), and let it run to real completion rather than killing it at a short timeout, because the lock fix the prior operator cycle shipped (`868129c1a`) removes the one known bug and this is the first slot with a full hour to find out whether the suite actually finishes and how long it genuinely takes.
+
+**Attach.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only origin/main` landed clean onto `f51af82ec`, 0 ahead/0 behind, no unrelated-history error, nothing forced.
+
+**Previous work finished, reconfirmed rather than cited.** Read the 20:5x-21:4x operator entry below directly: it reproduced the recycled-pid lock bug in `ops/tests/test_audit_catalog.py`, fixed it to match `preflight.py`'s own 2026-10-21 fix, proved the fix both in isolation and by running the real file to completion (~4 min, clean), and ran the real full `preflight.py` for 30 minutes with 0 FAIL before the sandbox's own background cap stopped it mid-`gate_tests`, still inside `test_gate_etsy_pdfs_current.py`. That is an honest "did not finish," not a false pass, so there was nothing to re-open. GitHub's 10 open issues re-pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs, 0 new comments. `ops/cold_read_ledger.py --stale`: 0 stale. `BACKLOG-2026-09-07.md` sections 2-6 unchanged: only the two Phil-gated rows (C5 Gemini billing, C6 YouTube OAuth) remain open, nothing newly unblocked. `ops/last-owner-notification.json` cooldown runs to 2026-10-29T13:00Z; none of its own named re-push triggers fired this slot.
+
+**Spot-checked the fix myself rather than only trust the write-up.** Ran `python ops/preflight.py` fresh, backgrounded, output straight to a file: 0 FAIL across every one of the ~90 gates before `gate_tests` (bootstrap, syntax, catalogue, pricing, affiliate, every room/deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded at this cycle's own HEAD, then confirmed `gate_tests` was genuinely working, not hung, by checking the OS process table mid-run: a live `test_affiliate_report_stamp_stable.py` child process actually executing, not idle. Killed it there deliberately, per this slot's own instruction not to start something large three minutes before the operator; the real timing question is exactly what the operator's longer window above is for.
+
+**Went well:** treating "previous work finished" as something to verify against the process table, not just the log's own prose; recording a fresh clean-pass checkpoint at current HEAD before handing off.
+
+**Did not go well:** nothing new; the full-suite completion time is still the one open question, same as the entry below left it.
+
+**Changing next cycle:** none; no new defect, no new gate per STEP 10b.
+
+Pushed to main: this log entry, the fresh `cycle_signal` checkpoint, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, scheduled operator cycle (20:5x-21:4x slot): followed the 20:4x PM check-in's sharper lead on the gate_tests hang to a real, reproduced, fixed defect, plus a longer, still-incomplete real-time picture of the rest
 
 **Picked up the handoff rather than re-running the whole suite blind a tenth time.** The 20:4x PM check-in below named a specific suspect: `ops/tests/test_audit_catalog.py`'s own `run()` shells out to `audit_catalog.py --include-fixtures`, and the "flat CPU while elapsed climbs" symptom many cycles have killed and reported looked like the child idle-waiting, not merely slow.
