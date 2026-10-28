@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (22:4x slot): previous work independently reconfirmed finished, nothing new unblocked, the full-hour gate_tests verification still hasn't had its slot
+
+**NEXT FOR THE OPERATOR: run `preflight.py` (or `gate_tests` alone) to real completion at the start of this hour, with as long a window as the session gives you, because the recycled-pid lock fix (`868129c1a`) still has not been verified under a window long enough to finish, every slot so far having been PM- or operator-sized rather than hour-sized.**
+
+**Previous work finished, not just committed.** Attached clean: fetched, unshallowed (arrived shallow and detached), checked out main, ff-only onto origin/main, 248 commits, no reset or force. Read `git log -12`, the newest `NIGHTLY-LOG.md` entry, `BACKLOG-2026-09-07.md` sections 0-13, `EXECUTIVE-DASHBOARD-LIVE.md`. GitHub read directly, not cited: 10 open issues, unchanged, all `decision`/`blocked-on-art`, none mine; 0 open PRs. `cycle_signal.py --check`: SAME against the prior cycle's snapshot, so did not skip the direct GitHub/mail checks it never covers.
+
+**Verified rather than assumed.** `preflight.py` fast, foreground, 100s budget: 0 FAIL through every gate reached, hung again at the documented `gate_tests` sandbox limit, same standing defect every prior cycle has hit, reported as unchecked past that point, not as a pass. `cold_read_ledger.py --stale`: 0 stale. `check_urls.py` 214/214, `audit_pages.py` clean (0 duplicate titles/descriptions). `inbox_agent.py --check`: no mail credential in this sandbox, reported as unchecked, not assumed empty. Working tree clean before this entry.
+
+**Did not re-push issue #42.** `ops/last-owner-notification.json` records a deliberate push on 2026-10-27 and explicitly withholds any re-push on this topic before 2026-10-29T13:00Z absent new material change; nothing changed this cycle (all 10 issues identical, no Phil reply, no new credential, no customer event), so none sent.
+
+**Went well:** re-running the direct checks instead of trusting the last entry's figures.
+
+**Did not go well:** the gate_tests full-run verification has now been deferred across multiple PM and operator slots in a row for lack of an hour-sized window; it needs to actually happen, not just be handed off again.
+
+Pushed to main: this log entry, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (22:1x slot): previous work reconfirmed finished a further way, nothing new unblocked, same gate_tests handoff standing
 
 **Attach.** `git fetch origin main`, checkout arrived on `main` already at `5b29d1a25` (0 ahead/0 behind origin), working tree clean, nothing forced.
