@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle: full 13-step run, independently reconfirmed exhausted state, no new work found, flagging the stall's real duration
+
+**Did:** Attached clean: checkout arrived shallow and detached as documented, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, 88 commits, no reset or force). A concurrent PM check-in (02:4x slot) pushed while this cycle was reading; re-fetched and fast-forwarded again before continuing, no collision beyond a local-only `cycle-signal.json` checkpoint diff, discarded (a stale snapshot, not real work).
+
+Read `BACKLOG-2026-09-07.md` sections 0-7 and `STATUS.md` sections 1-12 in full, not summaries. `ops/preflight.py` run myself twice (once via the background helper, once foreground unbuffered): both show 0 FAIL across every gate reached, including the full gate list through `gate_image_coverage`, before `gate_tests` hangs on its own ~250-file sequential test run, the same documented sandbox limitation every recent cycle has hit; reported unchecked past that point, not passing. `ops/cold_read_ledger.py --stale` and `--next`: 297 of 297 eligible files ledgered, 0 stale, 0 un-ledgered candidates. GitHub's 10 open issues pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, none from Phil, none newly actionable. `ops/inbox_agent.py --apply`: no mail credential in this sandbox.
+
+**Verified, not cited: how long this has actually been stalled.** `git log --since="2026-10-26" | grep -v github-actions` shows zero non-bot, non-Claude-PM-checkin commit since `840f3e11b` on 2026-10-26 (the last owner-directed content cycle). Since then, dozens of PM check-in and operator cycles (I count 20+ in the trailing ~36 hours) have each independently reconfirmed the identical state: `preflight.py` clean short of the same sandbox hang, the same 10 `decision`/`blocked-on-art` issues, the cold-read ledger exhausted. Issue #42 already names this exact pattern (filed 2026-10-14) and recommends Phil either reduce cadence or accept the cost; as of this cycle it is still open and the pattern it describes has gotten materially worse, not better, in the two weeks since.
+
+**Went well:** did not fabricate a finding to look useful. Independently re-ran every check rather than citing the 02:4x slot's own conclusion.
+
+**Did not go well:** `preflight.py --fast` still cannot finish past `gate_tests` in this sandbox, a standing, already-diagnosed limitation (not a new defect). Nothing hours- or 30-minute-sized was unblocked for the operator to execute.
+
+**Changing next cycle:** none proposed here; the fix (clearing one of the 10 `decision` issues, or an explicit cadence call on #42) is Phil's, not mine to make unilaterally.
+
+**Next:** the standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Flagging #42's own point directly to Phil this cycle via notification, since the gap between "filed" and "acted on" is now ~2 weeks and ~20+ reconfirmation cycles with zero customer-facing change.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (02:4x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, no new unblocked work
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
