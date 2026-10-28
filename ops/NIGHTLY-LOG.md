@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle: ran the three already-due living-doc rotations instead of a fourth re-verification lap
+
+**Did:** Unshallowed and attached clean onto origin/main. Read `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last `NIGHTLY-LOG.md` entries. Ran `preflight.py` to real completion (31 minutes wall): 0 FAIL, 36 warnings, all previously-diagnosed sandbox limits (no Stripe/SSH/mail credentials, site unreachable) plus three living-doc size-tripwire warnings. `cold_read_ledger.py --stale` 0/297, `--next` 0 candidates. GitHub's 10 open issues unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential here.
+
+**Verified before acting:** `rotate_backlog.py`, `rotate_backlog_closed.py` and `rotate_checkin_log.py` each reported real due rows via their own `--check`, not assumed from the tripwire alone. Ran each `--apply`, then re-checked all three clean. `OWNER-ACTIONS.md`'s own rotate tools already reported CLEAN; its 121KB is 117KB of one still-open section, genuinely live content with no safe rotation target, left as an honest unresolved warning rather than hand-trimmed.
+
+**Went well:** the tripwire warnings pointed at real, already-tooled work; no new gate was needed since existing tooling already covered it.
+
+**Did not go well:** `BACKLOG-2026-09-07.md` is still 321KB against a 150KB tripwire; the bulk is sections 2-4's per-item prose, which no tool rotates (deliberately deferred, section 46, as higher-risk mixed open/closed rows), not attempted by hand this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** same exhausted Phil-gated queue (10 issues). A future cycle should scope a safe rotation for sections 2-4 rather than keep re-citing the tripwire.
+
+Pushed to main. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (16:4x slot): previous work finished, reconfirmed; one stale dashboard field fixed, nothing new unblocked, no re-notify
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (OWNER-ACTIONS.md "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is decision or blocked-on-art and nothing else is genuinely unblocked.
