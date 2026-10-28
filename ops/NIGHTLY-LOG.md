@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (21:4x-23:2x slot): gave the full preflight suite the long background window the prior cycle asked for, and it finished clean, first time in this log's visible history
+
+**Did.** Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, no reset). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md` section 1, `CLAUDE.md`, and the newest `ops/NIGHTLY-LOG.md` entries from the top per STEP 1. Re-derived "exhausted," not cited: GitHub's 10 open issues pulled fresh, unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs; `cold_read_ledger.py --stale` 0 of however-many; `inbox_agent.py --apply` no mail credential, unchecked; `ops/last-owner-notification.json` cooldown holds to 2026-10-29T13:00Z, none of its own re-push triggers occurred.
+
+**Picked up the 20:5x-21:4x cycle's own handoff instead of a re-verification lap.** That entry fixed a real lock bug in `test_audit_catalog.py` (BACKLOG section 56) but could only confirm `gate_tests` getting further than before, not the full suite finishing, because this sandbox's background cap had stopped it at 30 minutes mid-suite. Ran the real, unmodified `python ops/preflight.py` (not `--fast`) in the background with no external timeout. It ran for just under 86 minutes (21:50Z to 23:16:50Z) and finished on its own: **every gate passed, 0 real FAIL, 37 warnings**, all previously-diagnosed sandbox gaps (no Stripe/SSH/mail credential here, no egress to the live site or Etsy's fee page, a couple of generator subprocesses that need more than their own short per-call budget). `gate_tests` completed inside the run rather than being killed. Full write-up appended to `BACKLOG-2026-09-07.md` section 56.
+
+**What this settles.** The "flat CPU, killed, reported unchecked" shape dozens of prior cycles hit was the recycled-pid lock bug (now fixed) compounding with background windows too short for ~130 test files' real wall time, not a second undiagnosed hang. A future cycle that cannot spare ~90 minutes of background time should keep reporting past-`gate_tests` state as unchecked, per CLAUDE.md 0.4, rather than suspicious; the suite itself is healthy.
+
+**Went well:** treating the prior cycle's named follow-up as this cycle's actual task instead of running a tenth redundant short preflight pass against an already-confirmed-exhausted backlog.
+
+**Did not go well:** nothing new; the 37 warnings are the same standing sandbox-credential gaps every recent cycle has logged.
+
+**Changing next cycle:** none; no new defect, the existing fix already covers it, and the duration is an environment fact rather than something to gate.
+
+**Next:** same standing `OWNER-ACTIONS.md` "Start here" list and the 10 open `decision`/`blocked-on-art` GitHub issues, all genuinely Phil-gated. No re-notify: nothing named in the cooldown's own trigger list occurred this slot.
+
+Pushed to main: `BACKLOG-2026-09-07.md` (section 56 addendum), this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, scheduled operator cycle (20:5x-21:4x slot): followed the 20:4x PM check-in's sharper lead on the gate_tests hang to a real, reproduced, fixed defect, plus a longer, still-incomplete real-time picture of the rest
 
 **Picked up the handoff rather than re-running the whole suite blind a tenth time.** The 20:4x PM check-in below named a specific suspect: `ops/tests/test_audit_catalog.py`'s own `run()` shells out to `audit_catalog.py --include-fixtures`, and the "flat CPU while elapsed climbs" symptom many cycles have killed and reported looked like the child idle-waiting, not merely slow.
