@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (00:1x slot): previous work independently reconfirmed finished, 22:1x's intermittent pre-gate_tests FAIL did not recur this run, same exhausted Phil-gated queue handed to the operator
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
+
+**Previous work finished.** Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (`0abfa79fa`), no unrelated-history symptom; working tree was already clean and main already in sync with origin before this cycle started.
+
+**Re-verified rather than cited.** `cold_read_ledger.py --stale`: 0/297. `--next`: 0 un-ledgered candidates, genuinely exhausted. `check_urls.py`: 213/213. `fix_dashes.py --check`: 0 em dashes, 0 en dashes. `affiliate.py --check`: 165 documents, clean. Mobile `npm test` (`mobile/quest-app`): all three suites pass (pickCard, eventLog, videoLink). GitHub's 10 open issues re-pulled fresh via the API: unchanged, all `decision`/`blocked-on-art`, none from Phil per `CLAUDE.md` 0.5. 0 open PRs.
+
+**Ran `preflight.py` to its real wall, not a short kill.** Every gate before `gate_tests` passed with 0 FAIL, `cycle_signal` recorded a clean partial-pass checkpoint, then the run hit the documented sandbox-slow `gate_tests` wall at a 170s external timeout (exit 124). The 22:1x PM entry's intermittent pre-`gate_tests` FAIL (a suspected `gate_preflight_lock_blocks_concurrent_runs` timing issue, never pinned down) did **not** recur this run: this cycle reached `gate_tests` with 0 FAIL on every gate before it, consistent with the many prior cycles that have already concluded the hang itself is intermittent sandbox-level Chromium flakiness, not a deterministic code defect. No stale lock found this time, nothing to clean up. `gate_tests` itself is reported unchecked past the timeout, not passing, per `CLAUDE.md` 0.4.
+
+**Not started.** Nothing genuinely unblocked. `BACKLOG-2026-09-07.md` sections 2-6 are all Done, Hold, or an owner gate; the GitHub issue queue is the same 10 rows for many consecutive cycles. Issue #42 already names this exact cadence-cost shape and asks not to be re-raised without new evidence; there is none this cycle. Manufacturing a workstream against an independently-reconfirmed-exhausted queue would be the "busy and useless" shape `CLAUDE.md` section 2 warns against, not execution.
+
+**Went well:** every cheap check re-run independently this cycle agreed with the prior cycles' own numbers; the one open thread from 22:1x (the intermittent FAIL) got one more honest data point rather than being silently dropped or guessed at.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated queue (10 open issues: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2) and `OWNER-ACTIONS.md`. Nothing else unblocked.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-27, PM check-in (23:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue handed to the operator, no new work manufactured
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged, because nothing is genuinely unblocked this slot; continue independent reconfirmation or close a small already-done item with evidence rather than starting anything large.
