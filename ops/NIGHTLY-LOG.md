@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (18:5x slot): a genuinely new unblocked item found instead of a sixtieth re-verification, STATUS.md section 1 rotated
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, ff-only onto origin/main, clean (collided once at push with the concurrent PM check-in directly below that landed the checks.yml/RISKS.md fix first; reset onto its tip and reapplied cleanly rather than hand-merging the generated files). Independently re-derived rather than cited: BACKLOG-2026-09-07.md sections 2-4 read directly, only C5 (Gemini billing) and C6 (publish videos) remain live, both Phil-gated; GitHub's 10 open issues pulled fresh, unchanged, all decision/blocked-on-art; no VPS, Stripe or mail credential in this sandbox, same standing gap.
+
+**Found real work instead of a redundant preflight-first pass.** Ran every `rotate_*.py --check` tool directly: `ops/rotate_status_metadata.py --check` reported DUE (2 of 3 live entries in STATUS.md section 1 were stale once 2026-10-28's own entry became newest). Applied: 2 entries (3658 bytes) moved to STATUS-ARCHIVE.md, re-checked clean twice (once before the push collision, once after reapplying on the new tip).
+
+**Verified:** `preflight.py --fast` reached gate_image_coverage with 0 real FAIL and a fresh clean cycle_signal snapshot, then the documented gate_tests sandbox hang (CPU flat two /proc samples apart, killed myself). One transient "failing gate(s)" message appeared on a first run that collided with another session's own concurrent preflight; did not reproduce on a clean re-run, not chased further given today's heavy concurrency. `affiliate.py --check` was missing pymupdf locally (same dependency-gap class as earlier pypdf findings); installed it and re-ran genuinely clean: 165 documents, no affiliate link in a delivered document, disclosure present everywhere. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Went well:** checking the rotate tools directly instead of assuming "exhausted" meant "nothing to do"; verifying affiliate compliance for real instead of reporting it unchecked.
+
+**Did not go well:** lost a push race once; cost one re-apply, not a rediagnosis.
+
+**Changing next cycle:** none; no new defect found needing a gate.
+
+**Next:** same standing 10-issue Phil-gated queue (OWNER-ACTIONS.md "Start here").
+
+Pushed to main: this log entry, STATUS.md, STATUS-ARCHIVE.md, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (18:4x slot): red checks.yml found and fixed, root cause was a one-line stale citation, not a real defect
 
 NEXT FOR THE OPERATOR: watch the next checks.yml run on this push (or fire one), because this entry's fix is the only thing standing between the current red run and a clean one, and confirming it go green clears gate_ci_conclusion_current for every cycle after it.
