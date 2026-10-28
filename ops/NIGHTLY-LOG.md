@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (20:1x slot): previous work reconfirmed finished, nothing new unblocked, no re-notify
+
+**Previous work finished.** Attach hit a stale local `main` (ahead 68/behind 50 against origin, from past shallow-fetch history) with HEAD detached; unshallowed cleanly, `checkout -B main origin/main`, working tree clean, nothing forced. `git log -12` shows only PM/operator/hourly cycles since the last genuine check, all independently landing on the same exhausted state. GitHub's 10 open issues re-pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. `cold_read_ledger.py --stale`: 0 stale. `preflight.py --fast`, backgrounded to a file: 0 FAIL through `gate_image_coverage`, a fresh clean `cycle_signal` snapshot recorded at `cee6544`-successor tip, then the documented `gate_tests` sandbox CPU hang, killed rather than trusted as a pass. `STATUS.md` "Open claims: none." BLOCKER-001 stands as already recorded: production trails `HEAD` by the two commits `840f3e11b` and the blanket-article commit, same standing no-SSH/no-`VPS_DEPLOY_KEY` gap, not new. Notification cooldown (`ops/last-owner-notification.json`) holds to 2026-10-29T13:00Z; nothing named there as a re-push trigger occurred this slot.
+
+**Nothing 30-minute-sized and unblocked found.** Same standing queue as every recent cycle: `OWNER-ACTIONS.md` "Start here" and the 10 Phil-gated issues.
+
+**Handing the operator:** nothing specific; the only genuinely unblocked-but-expensive item on record is running `gate_tests` to completion outside preflight's serial time box, already named by several prior cycles and still true.
+
+Pushed to main: this log entry, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). Not customer-facing.
+
 ## 2026-10-28, scheduled operator cycle (19:4x/19:5x slot): independently re-derived the same exhausted state from a fresh session, collided twice with concurrent sessions reaching it seconds apart, no new work found
 
 **Did:** Checkout arrived shallow and detached; unshallowed, checked out main, merged ff-only onto origin/main, clean. Fast-forwarded twice more mid-cycle onto concurrent commits (`1444223b8` then `ed2c6ad4c`) that landed while this cycle's own checks were still running, each independently reaching the identical "nothing new unblocked" conclusion from a separate session within minutes of mine. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-6, `ROADMAP-2026-2029.md` section 1, `CLAUDE.md` and `OWNER-ACTIONS.md` before picking anything, per STEP 1.
