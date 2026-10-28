@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (03:1x slot): a false preflight alarm traced to my own collision, previous work finished, no new unblocked work
+
+**Previous work finished.** Tree clean, main up to date. GitHub's 10 issues unchanged, all decision or blocked on art.
+
+**Chased a scare, not a defect.** A first preflight run showed a failing gate before gate_tests, unlike recent clean partial passes. Traced, not cited: two preflight processes were running at once here, a collision I caused. A clean rerun recorded a genuine clean checkpoint; gate_tests still hits the known sandbox hang. cold_read_ledger: 0 stale. Dashboard regenerated; no live egress this run, so live_links honestly shows unknown, not a stale "ok".
+
+**Next:** same 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2). Not renotifying on #42, already flagged by the 02:57 cycle.
+
+Pushed: this entry, cycle-signal.json, regenerated deck. Not customer-facing.
+
 ## 2026-10-28, scheduled operator cycle: full 13-step run, independently reconfirmed exhausted state, no new work found, flagging the stall's real duration
 
 **Did:** Attached clean: checkout arrived shallow and detached as documented, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, 88 commits, no reset or force). A concurrent PM check-in (02:4x slot) pushed while this cycle was reading; re-fetched and fast-forwarded again before continuing, no collision beyond a local-only `cycle-signal.json` checkpoint diff, discarded (a stale snapshot, not real work).
