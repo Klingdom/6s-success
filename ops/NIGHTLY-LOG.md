@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (22:5x slot): independently reconfirmed fully exhausted, concurrently resolved gate_tests question not re-litigated, two orphaned test processes from my own kills left to self-heal rather than chased
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, merged ff-only onto origin/main, clean, no reset or force needed (248 commits on first attach, 4 more mid-cycle). Delegated the first full read of BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md and the newest NIGHTLY-LOG.md entries to a fork to keep this session light; cross-checked its claims directly rather than trusting them alone.
+
+**Verified directly.** GitHub's 10 open issues pulled fresh: unchanged since 2026-10-25, all decision/blocked-on-art (read issue 42 and its 7 comments in full, since it is literally the "is this cadence still worth its cost" question; no genuine Phil reply yet, only prior agent cycles). cold_read_ledger.py --next: 297 of 297 ledgered, 0 un-ledgered candidates, the lane is empty. BACKLOG-2026-09-07.md sections 2-6 grepped directly: only C5 (Gemini billing) and C6 (YouTube OAuth) remain open, both Phil-gated. inbox_agent.py --apply: no mail credential, unchecked not assumed empty.
+
+**The gate_tests question I set out to answer got answered by a concurrent session while I was working it from the other end.** I started a background preflight.py run with no artificial timeout specifically to give gate_tests the hour-plus window many prior cycles asked for. Before it finished, a concurrent PM check-in (21:1x slot, commit 2c83b691c) had already done exactly that: instrumented a kill instead of citing the standing "hang" note, found the real cause (an external kill reaches the parent, never the grandchild subprocess.communicate() is blocked on, so "flat CPU on the top-level process" looks identical to a deadlock from outside and is not one), then let a second fresh run sit untouched for ~100 minutes and got a genuine verdict: 1 self-healing FAIL (a stray fixture file from an earlier kill, deleted by the gate itself), 38 standing warnings, otherwise clean. gate_tests does not hang; it is 450 subprocess-spawning test files that legitimately need about an hour of uninterrupted wall time in this shared sandbox. I killed my own redundant run on seeing this rather than let two long preflight runs fight over the same lock, and verified the standing note is now correctly retired (the 21:1x entry says so explicitly and asks future cycles to stop re-chasing it).
+
+**My own kill left exactly the orphan debris that entry describes, confirming its diagnosis a second way.** `kill -9` on my backgrounded preflight.py's PID reparented two grandchild test processes (test_contact_form_interactive.py, test_audit_catalog.py) to pid 1; both kept running headless-Chromium work on their own. One left `site/_audit_catalog_fixture_5151.html`, gitignored and untracked, which the next full preflight run's gate_no_stray_probe_files will delete the same way the 21:1x run's did. Left both orphans alone rather than killing again, per that entry's own "the cleaner way to get this evidence next time" note; nothing here needed a code change.
+
+**A second, separate concurrent preflight.py (pid 4982, a different session) was also running at the same time**, confirmed by my own run's lock-wait message naming it by pid. Did not contend with it.
+
+**Went well:** treating a prior cycle's resolved finding as authoritative evidence once verified, instead of re-running the same hour-long probe a second time out of not having seen it yet.
+
+**Did not go well:** started the long preflight run before checking whether a concurrent session was already on it; worth checking GitHub/the log for in-flight concurrent work before launching an expensive duplicate next time.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b. The gate_tests standing note is retired as of the 21:1x entry; do not re-open it without new evidence.
+
+**Next:** same standing Phil-gated queue, unchanged: OWNER-ACTIONS.md "Start here" (VPS_DEPLOY_KEY foremost, since production still trails HEAD by two site commits and traffic has been unmeasured since 2026-10-03) and the 10 open decision/blocked-on-art GitHub issues, issue 42 foremost among them since it is a standing cost with no decision yet.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (21:1x slot, ran long): gate_tests finally given the hour-plus window every recent cycle asked for; it is not hung, it finishes, one self-healing FAIL found and already gone
 
 **NEXT FOR THE OPERATOR AND THE TWIN: stop handing off "run gate_tests to a real completion" as open work. It is done, verified, and the standing diagnosis behind it was wrong. Do not keep re-running it blind on a 30 or 60 minute budget; a normal slot's own fast/partial checkpoint (0 FAIL before gate_tests, reported unchecked past it) is the correct, honest default, not a symptom to keep chasing.**
