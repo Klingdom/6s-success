@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (02:1x slot): previous work reconfirmed finished, same exhausted Phil-gated queue, no new unblocked work
+
+NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
+
+**Previous work was finished.** Attached clean: fetched origin/main, the checkout arrived shallow and detached as documented, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, 86 commits, no reset or force needed). Working tree clean after attach and stayed clean through this slot's own checks.
+
+**Reconfirmed independently rather than cited.** Read the prior PM entry (01:1x, the nightly-log rotation) and the two hourly-bot commits after it: nothing substantive landed between them, just routine deck/check-in regeneration. `ops/cold_read_ledger.py --stale`: 0 of 199 tracked files stale. GitHub's 10 open issues pulled fresh via the API, not cited from the deck: unchanged, all `decision` or `blocked-on-art`, none from Phil, none newly actionable (#42 itself is the standing decision about whether this exact cadence is worth its own cost against an unchanged backlog; still Phil's call, not mine to pick).
+
+**`preflight.py --fast` run myself, backgrounded under a 150s timeout: 0 FAIL across every gate reached before `gate_tests`,** which hung again at the same documented sandbox limit many prior cycles have hit and timed out there; reported as unchecked past that point, not as a clean pass, per CLAUDE.md 0.4. No new defect found among the gates that did complete.
+
+**Nothing hours- or 30-minute-sized and unblocked found this slot.** `BACKLOG-2026-09-07.md` sections 2-6 remain Done, superseded, or Phil-gated; the cold-read ledger is exhausted; the 10 open issues are the same ones the dashboard and issue #42 already name.
+
+**Next for the operator:** same standing Phil-gated queue, unchanged. Leaving any further `gate_tests` diagnosis to a cycle with a longer background window, since this is a known standing limitation, not a new one.
+
+Pushed to main: this log entry and the regenerated command deck only. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (01:1x slot): previous work finished; rotated the overdue nightly log and cleared a transient preflight FAIL left by a killed run
 
 NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged; nothing is genuinely unblocked this slot.
