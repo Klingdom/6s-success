@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (07:3x slot): full 13-step routine run, state independently reconfirmed exhausted, no new work found
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (clean fast-forward, no unrelated-history error, 2 commits: a PM check-in and the hourly bot's check-in record, both bookkeeping only). Read `BACKLOG-2026-09-07.md` sections 0-2, `STATUS.md` sections 1-12, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries.
+
+**Verified, not cited.** `cycle_signal.py --check`: SAME as the 07:19:09Z snapshot (the two intervening commits only touched dashboard/check-in bookkeeping, not the backlog or cold-read ledger). Ran `preflight.py --fast` myself anyway rather than trusting the snapshot alone: 0 FAIL through every gate up to and including `gate_image_coverage`, then the documented `gate_tests` sandbox timeout (170s wall clock, flat CPU, the standing sandbox limit every recent cycle hits); reported unchecked past that point, not passing. `cold_read_ledger.py --stale`: 0 of the tracked files stale. GitHub's 10 open issues pulled fresh, directly: unchanged since 2026-10-25, all `decision`/`blocked-on-art` (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this environment, reported honestly as unchecked rather than silently skipped.
+
+**Did not start new work.** Every lane this prompt's STEP 3 ordering covers (measurement, broken/dishonest, traffic, conversion, product, operational honesty) is Done, Hold, or genuinely Phil-gated; no stale ledger entry, no failing test beyond the known sandbox hang, no red CI, no merge conflict, no document found drifted from reality this pass. Issue #42 already names the cost of re-running this full exhaustion check on a short cadence against an unchanged input; `ops/last-owner-notification.json`'s no-repeat floor on that topic runs past this cycle with no material change (no Phil reply, no cleared decision, no new credential), so not re-escalating it again here.
+
+**Went well:** running the real gates myself instead of only citing the snapshot, so this entry's "exhausted" claim is this cycle's own measurement, not an inherited one.
+
+**Did not go well:** nothing new; same standing Phil-gated queue every recent cycle has already found and reported.
+
+**Changing next cycle:** none; no new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2). No sale, product, or site page changed; IndexNow not applicable.
+
+Pushed to main: this log entry, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/cycle-signal.json`. No price, product or site page touched; not customer-facing.
+
 ## 2026-10-28, PM check-in (07:1x slot): previous work finished, independently reconfirmed, nothing new unblocked
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2); nothing genuinely unblocked this slot.**
