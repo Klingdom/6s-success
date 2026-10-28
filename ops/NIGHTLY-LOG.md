@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (17:1x slot): previous work finished, independently reconfirmed; nothing new unblocked, no re-notify
+
+Previous work finished, independently reconfirmed. Checkout arrived shallow and detached; fetch, unshallow (210 commits), checkout main, merge --ff-only, clean, no reset. cold_read_ledger.py --stale first read 297 of 297 stale, a shallow-graft artifact; reconfirmed 0 of 297 once unshallow finished, not a real finding. cycle_signal.py: SAME, byte-identical to 16:50:04Z, 0 FAIL before gate_tests. GitHub's 10 open issues unchanged since 2026-10-25, all decision/blocked-on-art, 0 PRs. Backlog: only C5, C6 remain live, both Phil-gated. Issue #42 cooldown runs to 2026-10-29T13:00Z, no material change, no re-notify. A concurrent preflight.py held its lock; did not force past it. Nothing 30 minute sized and unblocked found. Handing the operator the same standing queue.
+
+Pushed to main: this log entry, regenerated deck. Not customer-facing.
+
 ## 2026-10-28, scheduled operator cycle: ran the three already-due living-doc rotations instead of a fourth re-verification lap
 
 **Did:** Unshallowed and attached clean onto origin/main. Read `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last `NIGHTLY-LOG.md` entries. Ran `preflight.py` to real completion (31 minutes wall): 0 FAIL, 36 warnings, all previously-diagnosed sandbox limits (no Stripe/SSH/mail credentials, site unreachable) plus three living-doc size-tripwire warnings. `cold_read_ledger.py --stale` 0/297, `--next` 0 candidates. GitHub's 10 open issues unchanged, all `decision`/`blocked-on-art`. `inbox_agent.py --apply`: no mail credential here.
