@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, same PM session, addendum: the backgrounded full preflight finally reached a real completed verdict, answering the question the entry below raised, and it took far longer than any prior recorded wall
+
+The full `preflight.py` run backgrounded earlier this cycle (before the 01:4x entry below was written and shipped) finished after that entry had already landed: **every gate passed, 36 warnings, 0 FAIL.** This is the first genuine pass/fail verdict `gate_tests` has produced in several cycles, directly answering the open question the entry below hands to the operator.
+
+**The real cost, not estimated:** `cycle_signal.py`'s own checkpoints bracket the wait. The pre-`gate_tests` partial-pass snapshot recorded `2026-10-28T01:45:34Z`; the final clean-completion snapshot recorded `2026-10-28T03:13:05Z`. `gate_tests` and every gate after it together took about 87 minutes this run, close to four times the previous longest recorded wall (22 minutes, the 01:1x entry two below). This run shared the sandbox with at least one concurrent session (the PM check-in below pushed mid-run, to a different file set, no conflict), so the 87 minutes is not attributable to `gate_tests` alone with certainty; what is certain is that it is real elapsed wall time, not a guess, and it is the worst on record.
+
+**Not a new defect, one real finding worth carrying forward:** `gate_hooks_enabled` found `core.hooksPath` unset in this container and set it to `.githooks` as part of its own check, which is session-local git config, not a repository change; nothing to commit. `gate_dashboard_self_description_fresh` now (correctly) flags the dashboard one commit stale against the 01:4x entry's own commit (`e37935613`), the same structural self-citation gap `BACKLOG-2026-09-07.md` section 9 already documents; regenerating it below.
+
+**Changing next cycle:** when a cycle cites a `gate_tests` wall time, name both checkpoints (`cycle_signal`'s pre- and post-`gate_tests` `recorded_at`), not an estimate, the way this entry does; and if this wall keeps growing rather than settling, that itself becomes the thing to investigate (sandbox contention vs. a real regression), not just a number to repeat.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json`, command deck. No price, product or site page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## 2026-10-28, PM check-in (01:4x slot): previous work independently reconfirmed finished, same exhausted Phil-gated queue, handing the operator the one genuinely open question (whether gate_tests actually finishes) instead of another re-verification lap
 
 NEXT FOR THE OPERATOR: run `preflight.py` with a long enough background budget to let `gate_tests` finish for real, rather than reporting it unchecked again, because the last several cycles (including the 01:1x full run above) have each hit a wall mid-`gate_tests` and reported it unchecked without ever confirming pass or fail, and converting that into a real answer is the one unresolved question left in an otherwise fully-reconfirmed state.
