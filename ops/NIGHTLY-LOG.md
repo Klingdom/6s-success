@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (23:1x slot): previous work finished; closed a real drift STATUS.md had not caught up to, Phil's own new article landed undeployed and only one of two sibling sections knew it
+
+**Previous work finished.** Attached clean: unshallowed, checked out main, ff-only onto origin/main. GitHub's 10 open issues pulled fresh: unchanged since 2026-10-25, all decision/blocked-on-art; issue #42's cooldown (`ops/last-owner-notification.json`) runs to 2026-10-29T13:00Z, no trigger fired this slot, no push sent. BACKLOG-2026-09-07.md sections 2-6: only C5 (Gemini billing) and C6 (YouTube OAuth) remain, both Phil-gated.
+
+**Found and closed instead of re-reporting.** `deploy_gap_material_commits()` re-derived directly against real HEAD returned 2 commits, not the 1 that `BLOCKER-001` and the two production-table rows still cited: Phil's own `ba69e8d0f` (a new article, `/articles/how-to-store-blankets`, landed today) alongside the known `840f3e11b`. Phil's own commit message had already recorded this correctly in section 1's "Latest" line; `BLOCKER-001` and the table rows had not been told, the exact "corrected source, sibling section never told" shape this file has drifted into before. Fixed all three to agree, appending (not prepending, this section's own convention runs oldest-first) a new dated entry. Caught and fixed a real parsing trap of my own making along the way: writing "2026-10-28 commit" let `gate_status_deploy_gap_count_current`'s bare-digit regex read "28 commit" out of the date; reworded to avoid it. Verified directly, not assumed: `gate_status_deploy_verdict_current`, `gate_status_deploy_gap_count_current`, `gate_status_blocker001_not_oversized` and `gate_status_production_table_rows_not_oversized` all ran clean (0 FAIL, 0 WARN) against the fixed file; their four test files all pass. `check_urls.py` 214/214.
+
+**preflight.py --fast, backgrounded, output to a file:** 0 FAIL through every gate reached, a fresh `cycle_signal` checkpoint recorded, then stopped deliberately at `gate_tests` (8+ minutes in, process genuinely active, not hung) rather than let a 30-minute slot sit on the hour-plus run that gate needs; that window belongs to the hourly operator.
+
+**Went well:** verifying the gate's own parsing logic against the real file instead of trusting that restating a bigger number would be enough.
+
+**Did not go well:** wrote the fix wrong twice before checking it against the actual gate function instead of guessing at the convention.
+
+**Next:** same standing Phil-gated queue (`OWNER-ACTIONS.md` "Start here", `VPS_DEPLOY_KEY` foremost since it would also clear this exact recurring gap, the 10 open decision/blocked-on-art issues). Handing the operator: run `gate_tests` to a real completion if a slot with the hour it needs comes up; none has confirmed total runtime recently.
+
+Pushed to main: `STATUS.md`, this log entry, `ops/cycle-signal.json`, regenerated command deck. No price or product touched. Customer-facing only in that it documents a real undeployed article; the article itself was not and cannot be deployed from here (no `VPS_DEPLOY_KEY`). No push notification: not a new topic, cooldown on #42 still holds, and this finding is a documentation correction, not new information for Phil (his own commit message already named the gap).
+
 ## 2026-10-28, scheduled operator cycle (23:xx slot): independently reconfirmed exhausted via direct checks, not delegated reports; issue #42's full comment history read, confirming no genuine Phil reply exists
 
 **Did:** Checkout arrived shallow and detached; unshallowed, checked out main, ff-only onto origin/main, clean. Rather than read the dense backlog/roadmap files myself, forked out that digest to keep this session light, then independently verified the fork's claims directly instead of citing them, per CLAUDE.md 5d.
