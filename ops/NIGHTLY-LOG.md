@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, scheduled operator cycle (11:5x slot): full 13-step routine from a fresh checkout, state independently reconfirmed exhausted again, no new work found, no re-notify (cooldown active), collided once at push and re-fetched clean
+
+**Did:** Checkout arrived shallow and detached; `git fetch origin main` (forced update on `origin/main`, an old shallow clone catching up 173 commits, not a history rewrite), `git fetch --unshallow`, `checkout main`, `merge --ff-only` landed clean, no reset. Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0, 1, 1b, 2 through 7 directly, `OWNER-ACTIONS.md`'s "Start here" and item 1b/1c/4 sections, and the four most recent `ops/NIGHTLY-LOG.md` entries, all from earlier today, each independently confirmed exhausted.
+
+**Verified, not cited.** GitHub's 10 open issues pulled fresh via the API: unchanged set, titles and labels since 2026-10-25 (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2, all `decision`/`blocked-on-art`), 0 open PRs. `git log --since=2026-10-27` with bot/Claude commits filtered: zero human commits. `cold_read_ledger.py --stale`: 0 of 297 stale. `cold_read_ledger.py --next`: 0 un-ledgered candidates, the lane genuinely out of files. `preflight.py --fast` run myself, redirected to a file, backgrounded past the Bash tool's own foreground limit rather than left unverified: 0 FAIL through every one of roughly 150 gates reached (through `gate_image_coverage`), `cycle_signal` recorded a fresh clean partial-pass snapshot at that HEAD, then the documented `gate_tests` headless-Chromium sandbox hang; the process was confirmed gone (killed by its own 280s timeout) with no `FAIL` anywhere in the captured output, reported unchecked past that point per CLAUDE.md 0.4, not as a pass. `inbox_agent.py --apply`: no mail credential in this sandbox, unchecked, not assumed empty. `cycle_signal.py --check`: SAME, byte-identical to this cycle's own preflight snapshot.
+
+**Checked the notification cooldown rather than assuming it still held.** `ops/last-owner-notification.json` records a deliberate push on 2026-10-27T12:58:00Z on the issue-42 cadence topic, with an explicit floor of no re-push before 2026-10-29T13:00Z absent new material change. No Phil reply on #42 or #40, no new credential, no cleared decision, no customer event, no change in the open-issue set. The condition for silence still holds, so none was sent this cycle either.
+
+**Collided on push, handled cleanly.** The first push attempt was rejected: a concurrent PM check-in (11:4x slot) and an hourly bot commit had landed on `origin/main` while this cycle was running preflight. Rather than force or hand-resolve conflicts in generated files (`ops/state.json`, `ops/dashboard.html`, `ops/cycle-signal.json`, `EXECUTIVE-DASHBOARD-LIVE.md`), reset local `main` to the fetched `origin/main`, read the concurrent entry (findings byte-identical to this cycle's own: same 10 issues, same 0 PRs, same cold-read-ledger result, same cooldown decision), then regenerated the dashboard fresh and re-added this log entry on the current HEAD, so nothing conflicting was ever pushed.
+
+**Went well:** independently re-deriving every claim instead of trusting the prior cycle's own log entry, and resolving the push collision by regenerating rather than hand-merging machine-written files.
+
+**Did not go well:** `gate_tests` still cannot finish in this sandbox; a long-standing, accepted limitation, not new information. Three concurrent sessions running the same exhausted-state routine within the same half hour is real overlap cost, even though no work was duplicated this time.
+
+**Changing next cycle:** none. No new defect found, so no new gate per STEP 10b.
+
+**Next:** standing 10-issue Phil-gated queue (`OWNER-ACTIONS.md` "Start here"; GitHub #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), cheapest first (YouTube OAuth paste, Search Console Pages/Performance reports, Gemini billing, Stripe business description, VPS_DEPLOY_KEY).
+
+Pushed to main: this log entry, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`). No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## 2026-10-28, PM check-in (11:4x slot): previous work finished, independently reconfirmed, nothing new unblocked, no re-notify
 
 **NEXT FOR THE OPERATOR: same standing 10-issue Phil-gated queue (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), because every open issue is `decision`/`blocked-on-art` and nothing else is genuinely unblocked.**
