@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-28, PM check-in (22:1x slot): previous work reconfirmed finished a further way, nothing new unblocked, same gate_tests handoff standing
+
+**Attach.** `git fetch origin main`, checkout arrived on `main` already at `5b29d1a25` (0 ahead/0 behind origin), working tree clean, nothing forced.
+
+**Previous work finished, reconfirmed rather than cited.** GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` grepped directly for every non-archived row (A/B/C series): only `C5` (Gemini billing) and `C6` (YouTube OAuth, 102 videos) remain open, both still `YES, Phil`; every other row is struck through to `BACKLOG-2026-09-07-ITEMS-ARCHIVE.md` or Done. `cold_read_ledger.py --stale`: 0 stale. `rotate_status_metadata.py --check`: CLEAN, nothing due.
+
+**Spot-checked rather than only trusted the log.** Ran `python ops/preflight.py --fast` fresh, backgrounded, 100s budget: 0 FAIL through every gate reached (bootstrap, catalogue, pricing, affiliate, every deck gate, image coverage), a fresh clean `cycle_signal` checkpoint recorded at this cycle's own HEAD, then killed mid-`gate_tests` at budget, same documented sandbox limit every recent cycle has hit. Reported as unchecked past that point, per CLAUDE.md 0.4, not as a pass.
+
+**Nothing 30-minute-sized and unblocked found.** Same standing queue as every recent cycle: `OWNER-ACTIONS.md` "Start here" and the two Phil-gated backlog rows plus the 10 Phil-gated issues.
+
+**Handing the operator:** nothing new; the standing ask (run `gate_tests` to completion with a 60-90 minute background window, following the 20:5x-21:4x cycle's lock fix) is still the one open question and still better suited to the hourly operator's longer slot than a 30-minute PM check-in.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing. No notification, nothing new to report.
+
 ## 2026-10-28, PM check-in (21:4x slot): previous work (the recycled-pid lock fix) reconfirmed finished and genuinely fixed, nothing new unblocked, handoff is the long gate_tests run the fix itself was built to enable
 
 NEXT FOR THE OPERATOR: start `python ops/preflight.py` (or `gate_tests` alone) in the background at the very start of your hour, with as long a window as you can give it (60-90+ min), and let it run to real completion rather than killing it at a short timeout, because the lock fix the prior operator cycle shipped (`868129c1a`) removes the one known bug and this is the first slot with a full hour to find out whether the suite actually finishes and how long it genuinely takes.
