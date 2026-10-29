@@ -56,6 +56,8 @@ only moment it is cheap.
 
 ## Open claims
 
+- 2026-10-29, owner-invoked CEO session: `site/articles/how-to-organize-toys.html` (new toy-storage guide, plus articles index, sitemap, feed, llms.txt wiring). Release when pushed.
+
 **None currently open.** The `ops/ship.py` / `.github/workflows/hourly-brief.yml`
 claim opened and released this same cycle (2026-10-13, scheduled operator
 cycle): folded `ops/dashboard.py` regeneration into both, pushed as
