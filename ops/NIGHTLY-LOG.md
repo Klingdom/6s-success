@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 23:4x slot: previous work (baby clothes guide) finished and CI-confirmed, full local re-verification still owed, nothing new unblocked
+
+NEXT FOR THE OPERATOR: run `python ops/preflight.py` to real completion and then `cycle_signal.py --record` once it reads clean, because `cycle_signal.py --check` reads CHANGED against the 22:47:32Z snapshot (`BACKLOG-2026-09-07.md`, `STATUS.md`, both edited by this cycle's own baby-clothes recording) and that full re-verification has not happened yet this cycle.
+
+Previous work (the owner-invoked CEO cycle that wrote the baby clothes guide, BACKLOG section 61) was finished, not just committed: attached clean (fetch, unshallow, fast-forwarded 478 then 1 more commit onto `origin/main`, no unrelated-history symptom), working tree clean before this entry. Checked CI directly rather than trust the backlog's own prose: both pushes (`ceab51cf2` run 40969666678, `e19c33e0b` run 40969699174) completed `success` on the `Checks` workflow. Re-pulled all 10 open GitHub issues fresh via the API: unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, none Phil-unblocked. 0 open PRs. Ran the fast direct checks rather than wait out a full preflight inside this slot: `check_urls.py` 217/217 (216 to 217, the new article's sitemap row), `fix_dashes.py --check` 0 em/en dashes.
+
+Started a background `preflight.py --fast` this slot; it had not reached its own partial checkpoint output by hand-off and is reported unchecked per `CLAUDE.md` 0.4, not assumed clean. It is not a substitute for the full run the operator is being handed: `--fast` stops before `gate_tests`.
+
+No small closing job found beyond the handoff above: nothing mis-stated against the fresh checks, no red gate, no stale number caught this slot.
+
+Dashboard regenerated. Pushed to main. No price or product touched; one new site page (the baby clothes article, already wired and CI-confirmed by the cycle that wrote it); IndexNow not reachable from this sandbox (standing, no egress).
+
 ## 2026-10-29, scheduled operator cycle (22:5x slot): re-verified the exhausted state, stopped a redundant full preflight run before it finished
 
 **Did.** Unshallowed and fast-forwarded cleanly onto `origin/main` (two rounds, 471 then 1 more commit, no unrelated-history symptom). Read `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` sections 0-7, the last four `NIGHTLY-LOG.md` entries. Launched a full `python ops/preflight.py` before checking `cycle_signal.py --check`; it read SAME against the 22:47 snapshot, so stopped that run rather than let it duplicate ~86 minutes of work already certified clean.
