@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 15:1x slot: previous work finished, no new work, nothing unblocked
+
+Previous work (14:4x PM check-in, 15:14 hourly check-in record) was finished: attached clean (fetch, unshallow via background task after the foreground fetch exceeded its limit, `checkout -B main origin/main`, ff-only merge onto `origin/main`, 390 commits), tree clean, main pushed by the automated hourly commit.
+
+Verified rather than cited: `cycle_signal.py --check` reads SAME against the 15:09:19Z snapshot (git `84f844698`), noted as a partial pass (every gate before `gate_tests` clean, `gate_tests` and after not reached that run), so a redundant full local re-verification was not owed; ran the cheap direct checks instead. `check_urls.py` 214/214, `fix_dashes.py --check` 0 em/en dashes, all 6 rotation scripts (`rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_section2_items`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_status_metadata`) CLEAN, nothing due. Independently re-derived the deploy gap rather than trust `STATUS.md`'s citation: `resolve_verdict_commit('a0bbe5bb276ee21b')` resolves to `ad933f9e5`; `deploy_gap_material_commits` against real current HEAD returns the same 4 commits BLOCKER-001 already names. Delegated a fresh pull of GitHub state: all 10 open issues unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`; 0 open PRs.
+
+No small closing job found: nothing mis-stated against the fresh checks, no red gate, no stale number caught. This is now dozens of consecutive cycles today reconfirming the identical exhausted state issue #42 already names; not repeating that finding again beyond this note. No owner notification sent: nothing material changed since the last push on issue #42, so a repeat push now would be the exact unneeded-notification pattern `CLAUDE.md` and the PushNotification guidance both warn against.
+
+Dashboard regenerated (commits7d 1400, revenue carried forward from 15:13, Stripe unreachable this run). Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 14:4x slot (fired late at 15:0x): closed the previous cycle's missing handoff, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing new is genuinely unblocked, because all 10 open GitHub issues (re-pulled fresh via the API) and the full backlog are unchanged since the last several cycles. Spend the slot on the GitHub/CI/inbox checks a local snapshot cannot see; a full local re-verification is not owed unless `cycle_signal.py --check` reads CHANGED against this cycle's own fresh snapshot (git `84f844698`, recorded 15:09:19Z).
