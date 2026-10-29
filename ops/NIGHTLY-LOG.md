@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (21:1x slot): independently re-verified the exhausted-backlog finding rather than trusted it, two stale cold-read entries closed, full preflight launched and still running at hand-off
+
+**Did.** Attached clean (unshallowed, `checkout -B main origin/main`, ff-only onto `origin/main`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 1 and 55-60, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. Re-pulled all 10 open GitHub issues fresh via the API rather than cite the log: unchanged, same set, all `decision`/`blocked-on-art`, every comment on #42 self-authored, none from Phil since 2026-10-25. `inbox_agent.py --apply`: no mail credential, unchecked not assumed empty.
+
+**Verified.** Did not trust issue #42's own "backlog exhausted" claim; re-derived it. Read both `ops/keyword-demand.json` and `ops/keyword-demand-global.json` directly: filtered every `status=gap` row by real `best_rank`, not just title coverage. Zero ranked gap rows in either harvest; every rank-1-to-5 "gap" is autocomplete noise (cribbage/crib, railing/railing-and-surface, den/den-office). Confirms the exhaustion independently rather than citing it. `cold_read_ledger.py --stale` found 2 real stale entries (`ops/keyword_demand.py`, `ops/keyword_demand_global.py`, ledgered 10-26, touched 10-29 by `1c0ebd8a2`'s `scored_against_commit` fix). Read the diff: correct, minimal, mirrors `rescore()`. Re-ledgered both clean. Re-derived the deploy gap directly against current HEAD (`deploy_gap_material_commits`): 8 commits, matches `STATUS.md`'s own current figure exactly, not stale. Living-doc tripwires: `OWNER-ACTIONS.md`/`CHECKIN-LOG.md` over their byte ceiling, but both rotation tools report CLEAN; the overage is outside any automated chain, already diagnosed in a prior cycle as a deferred larger job, not new.
+
+**Went well.** Verifying the exhaustion claim with my own method (rank-sorted real gaps) rather than trusting the prior citation caught nothing wrong, which is itself useful: the finding holds under independent re-derivation.
+
+**Did not go well.** A full, non-`--fast` `python ops/preflight.py` launched early this cycle was still in `gate_tests` at hand-off (concurrent `preflight.py` contention likely, per section 56-58's documented lock behaviour); not waited out, reported unchecked per `CLAUDE.md` 0.4.
+
+**Changing next cycle:** none; no new gate warranted.
+
+**Next:** confirm the background preflight run's real verdict once it completes. Standing Phil-gated queue unchanged (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy/Apple/Play accounts, VPS_DEPLOY_KEY/issue #35, issue #15 Listmonk, issue #42 cadence).
+
+Pushed to main. No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 20:4x slot: previous work's own handoff confirmed green, nothing new unblocked, full re-verification launched and left running past this slot
 
 NEXT FOR THE OPERATOR: if the `preflight.py` full run this slot started (still mid-flight at hand-off, past `gate_tests`) comes back with a real FAIL once you check it, that is this cadence's actual next job; if it reads clean, stand down from new work, because every genuinely unblocked backlog row and all 10 GitHub issues are unchanged and Phil-gated, same as issue #42 already names.
