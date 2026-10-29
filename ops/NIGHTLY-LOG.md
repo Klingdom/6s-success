@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 17:4x slot: previous work finished, no new work, nothing unblocked
+
+NEXT FOR THE OPERATOR: nothing new to pick up; stand down from new work and watch GitHub/CI, because all 10 issues and the backlog are unchanged since 17:1x.
+
+Previous work (17:1x PM check-in, 2 hourly commits) was finished: attached clean, tree clean, main pushed. Verified, not cited: deploy gap re-derived at 6 commits, matching BLOCKER-001, no drift. check_urls.py 216/216, fix_dashes.py 0/0. Ran preflight.py myself without an external sub-480s timeout (a first attempt lost all output to exactly that mistake, its own docstring's warning): every gate through gate_image_coverage passed, 0 FAIL, standing warnings only, fresh cycle_signal checkpoint at HEAD 02afdc43f. Stopped before gate_tests (~86-minute cost); unchecked. CI green. Issues/PRs unchanged, #42 unanswered since 10-25.
+
+No small closing job found. Dashboard regenerated.
+
 ## PM check-in, 2026-10-29 17:1x slot: previous work finished, no new work, nothing unblocked
 
 Previous work (16:4x PM check-in and the owner-invoked paperwork-guide push it caught finishing) was finished: attached clean (fetch, unshallow, ff-only onto `origin/main`, 418 commits), tree clean, main pushed.
