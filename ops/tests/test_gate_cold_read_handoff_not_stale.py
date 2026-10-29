@@ -369,6 +369,32 @@ def main() -> int:
         fails.append("a 'backgrounded `X`' handoff was wrongly flagged: "
                      "%r" % stale)
 
+    # 11b. A genuine "the `X` full run ... started (still mid-flight at
+    #      hand-off)" handoff, naming a launched, still-executing PROCESS
+    #      rather than a cold-read candidate, must not be flagged. Found
+    #      live 2026-10-29: "NEXT FOR THE OPERATOR: if the `preflight.py`
+    #      full run this slot started (still mid-flight at hand-off, past
+    #      `gate_tests`) comes back with a real FAIL once you check it,
+    #      that is this cadence's actual next job; if it reads clean,
+    #      stand down from new work" tripped the gate on `preflight.py`,
+    #      already ledgered clean, because the existing still-running
+    #      strip only matches a qualifier immediately before the
+    #      backtick, not one sitting in a later parenthetical.
+    log_full_run_mid_flight = (
+        "# Nightly log\n\nnewest first\n\n"
+        "## PM check-in, 2026-10-29\n\n"
+        "NEXT FOR THE OPERATOR: if the `build_feed.py` full run this slot "
+        "started (still mid-flight at hand-off, past `gate_tests`) comes "
+        "back with a real FAIL once you check it, that is this cadence's "
+        "actual next job; if it reads clean, stand down from new work.\n"
+    )
+    stale = preflight.cold_read_handoff_stale_files(
+        log_full_run_mid_flight, LEDGER)
+    if stale:
+        fails.append("a 'the `X` full run ... started (still mid-flight)' "
+                     "handoff was wrongly flagged as a stale cold-read "
+                     "candidate: %r" % stale)
+
     # 12. A genuine "standing N-file rotation cold-read tier from `X`"
     #     handoff must not be flagged, even though `X` is ledgered clean:
     #     being ledgered is the precondition for entering the rotation

@@ -1019,7 +1019,7 @@
     "preflight.py": {
       "status": "fixed",
       "date": "2026-10-29",
-      "note": "fail()/warn() now print immediately AND the final report reprinted the same lines a second time, a confirmed duplicate in every completed run's log. Removed the final per-item reprint, kept the summary count; the two targeted tests and fix_dashes --check still pass."
+      "note": "Fixed 2026-10-29 (second time this date): gate_cold_read_handoff_not_stale's cite-don't-hand-off stripping ran the generic parenthetical strip before a new still-executing-process phrasing ('the X full run ... started (still mid-flight at hand-off...)') could be recognised, so the word it keyed on was already gone and preflight.py (ledgered clean) was wrongly flagged as a stale handoff. Moved the new strip ahead of the parenthetical strip; fail-then-pass proved in test_gate_cold_read_handoff_not_stale.py (26/26)."
     },
     "prerender_shop.py": {
       "status": "clean",

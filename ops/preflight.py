@@ -19192,6 +19192,26 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
             if re.search(name_re, raw):
                 addresses_a_file = True
             live = re.sub(r"~~.*?~~", "", raw, flags=re.S)
+            # Found live 2026-10-29: "if the `preflight.py` full run this
+            # slot started (still mid-flight at hand-off, past
+            # `gate_tests`) comes back with a real FAIL... if it reads
+            # clean, stand down from new work" names the file as the
+            # subject of a launched, still-executing PROCESS ("full run
+            # ... started ... mid-flight"), not a cold-read candidate,
+            # the same "cite, don't hand off" shape the still-running
+            # strip below already recognises for a different wording.
+            # This one has to run BEFORE the generic parenthetical strip
+            # just below, not after it like the other cite-don't-hand-off
+            # patterns: "mid-flight" sits inside the "(still mid-flight
+            # at hand-off...)" aside, which the blanket `\([^()]*\)` strip
+            # deletes first, so by the time a later strip ran on `live`
+            # the word this pattern keys on was already gone and
+            # `preflight.py` stayed in the extracted names, flagged
+            # stale even though the ledger-clean file inside the
+            # parenthetical was never a read candidate.
+            live = re.sub(
+                r"(?:the )?`[^`]*` full run\b[^.]*mid-flight[^.]*\.",
+                "", live, flags=re.I)
             live = re.sub(r"\([^()]*\)", "", live, flags=re.S)
             # A bare "already/just fixed/cleared/resolved in `X.py`"
             # citation is the unwrapped-parenthetical shape: precedent

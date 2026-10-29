@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (22:3x slot): the full, non-fast `preflight.py` this cadence launched at 20:1x reached a genuine clean verdict; its own self-inflicted false-positive gate fixed
+
+**Did.** The background `python ops/preflight.py` this cadence launched at 20:1x (reported unchecked at hand-off in the 21:1x entry below) finished: **every gate passed, 36 warnings**, all of them standing sandbox limits already documented elsewhere (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live site egress, no browser, no narrated-film corpus) except one new finding, read directly rather than assumed: `gate_cold_read_handoff_not_stale` warned on the 20:4x PM check-in's own "NEXT FOR THE OPERATOR: if the `preflight.py` full run this slot started (still mid-flight at hand-off...) comes back with..." handoff line, flagging `preflight.py` (ledgered clean) as a stale cold-read candidate.
+
+**Verified.** Read the gate's own function: the generic `\([^()]*\)` parenthetical strip runs before any of the "cite, don't hand off" patterns below it, so a qualifier word sitting inside a later parenthetical ("still **mid-flight** at hand-off") is deleted before a strip keyed on that word ever runs, the same recurring class this function's own docstring already records nine prior instances of (2026-09-25 through 2026-10-10). Reproduced live: the new `log_full_run_mid_flight` test case, using a ledgered name, failed before the fix (`['build_feed.py']` flagged) and passed after moving the new strip ahead of the parenthetical one (26/26). Re-ran the real `cold_read_handoff_stale_files()` against the live `NIGHTLY-LOG.md` and ledger directly: `stale: []`. `fix_dashes.py --check`, `check_urls.py` 216/216, `audit_pages.py` 0, `cold_read_ledger.py --stale` 0 after re-ledgering `ops/preflight.py` itself.
+
+Also independently checked the `python ops/indexnow.py --new` warning from the same run (3 articles never announced): confirmed it is the standing no-egress sandbox limit, not a new defect; nothing to fix from here.
+
+**Went well.** The full-completion run (no foreground timeout, no pipe) genuinely finished and surfaced one real, fixable gate defect rather than the documented sandbox hang.
+
+**Did not go well.** Nothing new; a tenth instance of an already-named recurring class, same fix shape as the prior nine.
+
+**Changing next cycle:** none; the existing gate already covers this class, this was its tenth incremental hardening.
+
+**Next:** standing Phil-gated queue unchanged (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy/Apple/Play accounts, VPS_DEPLOY_KEY/issue #35, issue #15 Listmonk, issue #42 cadence).
+
+Pushed to main. No price, product or site page touched; not customer-facing; IndexNow not applicable (the 3-URL gap found is a sandbox network limit, not new content).
+
 ## PM check-in, 2026-10-29 22:1x slot: previous work finished, nothing new unblocked, no small closing job found
 
 Previous work (the 21:4x PM check-in and the two hourly bot commits after it) was finished: attached clean (fetch, unshallow, fast-forwarded onto `origin/main`), working tree clean, main pushed. The latest real-content commit (`dd3bf3053`) shows `success` on the Checks workflow run; the two commits after it are log-only bot commits (`CHECKIN-LOG.md`, dashboard, `state.json`) that touch no path the workflow filters on, not a gap. `cycle_signal.py --check` reads SAME against the 21:17:59Z snapshot, so a redundant full local re-verification was not owed; ran the fast, direct checks instead: `check_urls.py` 216/216, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. Re-pulled all 10 open GitHub issues fresh via the API: unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, none Phil-unblocked, no comment from Phil since 2026-10-25. 0 open PRs. `inbox_agent.py --check`: no mail credential, standing. `check_affiliate_trigger.py`: T2 not evaluated, no SSH key, standing, not a reading of zero.
