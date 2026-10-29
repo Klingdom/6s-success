@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-29 18:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-29 19:11 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -30,7 +30,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Closed to date | 32 |
 | Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
 | Working tree | clean, in sync |
-| Last commit | `68be9f4` Close a real stale cold-read ledger entry: ops/share_cards.p |
+| Last commit | `3fcdea9` PM check-in 19:0x: CI-confirm the keyword-demand fix, flag p |
 
 ## Product readiness
 
