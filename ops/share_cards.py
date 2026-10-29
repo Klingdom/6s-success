@@ -267,6 +267,13 @@ def apply(page, src):
     e = card(page)
     if not e or "/assets/zones/" in og_of(src):
         return src
+    # Work in LF and give the page back its own line endings. On a Windows
+    # checkout (core.autocrlf=true) the page is CRLF, and _EXTRA removes
+    # "\n<meta ...>" but not the \r before it, so every run stacked
+    # stray carriage returns into the meta block. Found 2026-10-29: two
+    # stray CRs per page reached a commit on three articles.
+    if "\r\n" in src:
+        return apply(page, src.replace("\r\n", "\n")).replace("\n", "\r\n")
     url = "%s/assets/img/%s" % (BASE, e["file"])
     out = _EXTRA.sub("", src)
     out = _OG.sub(lambda m: m.group(1) + url + m.group(2), out)
