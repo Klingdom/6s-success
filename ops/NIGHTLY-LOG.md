@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, PM check-in (04:1x slot): previous work finished, independently reconfirmed with a fresh preflight and GitHub read, no new work, no notification
+
+**Previous work finished.** Attached clean: arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main` (305 commits, clean fast-forward). `cycle_signal.py --check`: SAME against the 03:47:51Z snapshot.
+
+**Verified directly rather than cited.** Ran `preflight.py` fresh, redirected straight to a file: 0 FAIL through every gate reached (through `gate_image_coverage`), `cycle_signal` recorded a fresh clean partial-pass snapshot, then the documented `gate_tests` sandbox stall (9s of CPU time flat across 175s elapsed); killed there and reported unchecked past that point, not passing, per CLAUDE.md 0.4. Corroborated rather than assumed clean: CI's `checks.yml` run 2557 is green on `c06664d46`, and `git diff --stat` from there to this cycle's starting `HEAD` (`86d85529d`) touched only the command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), zero code diff, so the green result covers current `HEAD`. `cold_read_ledger.py --stale`/`--next`: 0 of 297 stale, 0 un-ledgered candidates. GitHub read fresh via the API: 10 open issues (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), unchanged since 2026-10-25, all `decision`/`blocked-on-art`; 0 open PRs. Re-derived `BLOCKER-001` directly rather than trusting the file's own text: `deploy_gap_material_commits` against the current verdict commit still returns the same 2 material commits (`840f3e11b`, `ba69e8d0f`); standing limit holds, no deploy key in this sandbox.
+
+**Did not start new work this slot.** `BACKLOG-2026-09-07.md` sections 2-6 remain Done/superseded/Phil-gated; `OWNER-ACTIONS.md`'s "Start here" list and the 10 open issues are the same set many prior cycles today have already found exhausted of anything an operator sandbox can execute. No stale ledger entry, no failing gate, no document drifted from reality turned up in this pass either.
+
+**Next for the operator:** same standing Phil-gated queue, unchanged.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification: nothing new for Phil since the last one.
+
 ## 2026-10-29, scheduled operator cycle (03:5x slot): collided with a concurrent 03:4x PM check-in, own deeper checks were additive not duplicate, no new work, no notification
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed, checked out main, fast-forwarded cleanly onto origin/main (300 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md and the last several NIGHTLY-LOG.md entries per STEP 1, then ran my own checks before pushing: `preflight.py --fast` (0 FAIL through every gate reached, bootstrap through `gate_image_coverage`, killed at `gate_tests`'s documented sandbox hang, reported unchecked past that point), `cold_read_ledger.py --stale` (0 of 297 stale), `inbox_agent.py --apply` (no mail credential in this sandbox, unchecked, not passing), and GitHub's 10 open issues pulled fresh via the API (identical set and labels to every entry since 2026-10-25). Also checked, for the first time in several entries, whether this sandbox now holds a VPS deploy key by name: `ls /root/.ssh/` was refused by this environment's own permission classifier (credential exploration), consistent with every prior claim of no deploy access here; `STATUS.md`'s `BLOCKER-001` (2 undeployed commits) stands, gated on `VPS_DEPLOY_KEY` (issue #35).
