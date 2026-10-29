@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (22:5x slot): re-verified the exhausted state, stopped a redundant full preflight run before it finished
+
+**Did.** Unshallowed and fast-forwarded cleanly onto `origin/main` (two rounds, 471 then 1 more commit, no unrelated-history symptom). Read `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` sections 0-7, the last four `NIGHTLY-LOG.md` entries. Launched a full `python ops/preflight.py` before checking `cycle_signal.py --check`; it read SAME against the 22:47 snapshot, so stopped that run rather than let it duplicate ~86 minutes of work already certified clean.
+
+**Verified directly, not cited.** `check_urls.py` 216/216, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0. `cold_read_ledger.py --next`: 298 of 298 files already ledgered, 0 un-ledgered candidates left, so the cold-read lane issue #42 asks about is genuinely exhausted, not just claimed. `affiliate.py --check` clean (165 documents). `inbox_agent.py --apply`: no mail credential, standing. Re-pulled GitHub fresh via the API: 10 open issues, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`; 0 open PRs; latest Checks run (`40965869508`) `success` on current HEAD. Re-derived the deploy gap directly (`deploy_gap_material_commits` against `ad933f9e5`): 8 commits, matches every `STATUS.md` citation exactly, not stale.
+
+**Went well.** Caught my own redundant full-preflight launch before it burned real time on a result `cycle_signal` had already certified.
+
+**Did not go well.** Nothing new found; genuinely exhausted state, same as the last several dozen cycles.
+
+**Changing next cycle.** None.
+
+**Next.** Standing Phil-gated queue unchanged (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy/Apple/Play accounts, VPS_DEPLOY_KEY/issue #35, issue #15 Listmonk, issue #42 cadence).
+
+Pushed to main. No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 22:4x slot: previous work finished, one CI run still in flight at hand-off, nothing new unblocked
 
 NEXT FOR THE OPERATOR: confirm the Checks run on commit `54d7c73c2` (the 22:3x operator cycle's `gate_cold_read_handoff_not_stale` fix) actually reaches a green conclusion, because it was still `in_progress` at this slot's hand-off (started 22:26:22Z, about 17 minutes elapsed, inside this repo's normal range but not yet confirmed); if it comes back red, that is real work, otherwise stand down, because the backlog is exhausted and all 10 open issues are unchanged.
