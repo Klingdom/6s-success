@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 16:1x slot (fired at 16:25): previous work finished, no new work, nothing unblocked
+
+Previous work (15:4x PM check-in, 15:4x/16:0x hourly check-ins) was finished: attached clean, tree clean, main pushed. This cycle's own attach needed the unshallow step as usual (foreground fetch moved to background after exceeding its limit, waited for it, then ff-only merged 2 commits cleanly).
+
+Verified rather than cited: ran `ops/preflight.py --fast` myself (not trusted from a citation) and recorded a fresh clean cycle_signal checkpoint at this cycle's own HEAD (`481afab6fe`, 16:31:42Z): 0 FAIL through every gate before `gate_tests`, 6 standard sandbox warns, `gate_tests` itself not reached inside the slot, reported unchecked not assumed passing. `check_urls.py` 214/214, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 documents), all 6 rotation scripts CLEAN, `inbox_agent.py --apply` no mail credential (standing, unchecked not assumed empty). Re-pulled all 10 open GitHub issues fresh via the API: unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`; issue #42 last updated 2026-10-25, still no reply from Phil. 0 open PRs. Independently re-derived the deploy gap directly against current HEAD with `preflight.resolve_verdict_commit`/`deploy_gap_material_commits`: still 4 commits (3 content, 1 restamp), matching `STATUS.md`'s `BLOCKER-001` citation exactly, no drift. Last 5 `checks.yml` runs on `main` all `success`; the two newest commits (this cycle's own 15:4x PM check-in and the 16:0x hourly) touch only dashboard/log/state files, correctly excluded from that workflow's triggers by design, not a gap.
+
+No small closing job found: nothing mis-stated against the fresh checks, no red gate, no stale number caught. This is now dozens of consecutive cycles today reconfirming the identical exhausted state issue #42 already names; not repeating that finding again beyond this note. No owner notification sent: nothing material changed since the last push on issue #42.
+
+Dashboard regenerated (commits7d 1396, revenue carried forward from 16:07, Stripe unreachable this run). Pushed to main. No price or product touched, no site page changed; IndexNow not applicable. Handing the operator: standing Phil-gated queue only (`OWNER-ACTIONS.md`; issues #42/#40/#35/#33/#31/#29/#21/#18/#15/#2); nothing new.
+
 ## PM check-in, 2026-10-29 15:4x slot (fired late at 16:0x): previous work finished, no new work, nothing unblocked
 
 NEXT FOR THE OPERATOR: stand down from new work and keep watching GitHub and CI, because cycle_signal reads SAME against the 15:55:27Z snapshot and all 10 open issues, re-pulled fresh via the API, are unchanged; the backlog has nothing genuinely unblocked to hand over.
