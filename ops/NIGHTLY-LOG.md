@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (18:0x slot): A30, "loft" closed as an attic synonym gap, found in the fresh weekly harvest rather than re-swept ground
+
+**Did.** Attached clean onto `7673e7326` (this week's harvest commit already on `main`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the log tail; confirmed via `list_issues`: 10 open, unchanged, `decision`/`blocked-on-art`, #42 still unanswered. `cycle_signal.py --check` read SAME. Rather than re-verify unchanged state, read the one file that genuinely changed, the fresh harvest's gap tier, and found "loft organisation ideas" (rank 2, gb/au/in) scoring 0.0 against `/about.html`: a whole-room naming gap, since the attic guide (D-031) never used the word "loft".
+
+**Fixed.** Added one FAQ pair, "Is a loft the same as an attic?", to `how-to-organize-an-attic.html`'s visible `<h3>`/`<p>` and its `FAQPage` JSON-LD, identical wording, naming the UK/AU/India usage the way the guest-bathroom zone already names "airing cupboard". `dateModified` bumped to today.
+
+**Verified.** Both JSON-LD blocks parse; rescoring the query directly moves it `gap` to `covered` (heading surface, 1.0). `check_urls.py` 216/216, `audit_pages.py` 221/0, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check`, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126. `preflight.py --fast`: every gate through `gate_image_coverage` 0 FAIL, standing warnings only; killed at `gate_tests` on this sandbox's documented timeout, reported unchecked.
+
+**Went well.** Reading what actually changed, not re-confirming an unchanged backlog, found real work.
+
+**Did not go well.** Nothing new.
+
+**Changing next cycle.** None.
+
+**Next.** Standing Phil-gated queue unchanged; #42's cadence question still open.
+
 ## PM check-in, 2026-10-29 17:4x slot: previous work finished, no new work, nothing unblocked
 
 NEXT FOR THE OPERATOR: nothing new to pick up; stand down from new work and watch GitHub/CI, because all 10 issues and the backlog are unchanged since 17:1x.
