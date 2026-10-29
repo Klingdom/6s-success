@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 23:1x slot: owed a full re-verification after the baby-clothes guide, got it from CI rather than a hung local run
+
+Previous work (the baby-clothes guide, section 61, and the 22:5x/22:4x/22:3x cycles after it) was finished and already well recorded. This slot's own job was the full local re-verification `cycle_signal.py --check` had been owed since those commits changed `STATUS.md`/`BACKLOG-2026-09-07.md` after the last recorded snapshot (22:47:32Z). Attached clean (fetch, unshallow, fast-forwarded onto `origin/main`, no unrelated-history symptom), working tree clean.
+
+Launched a full, non-fast `python ops/preflight.py` locally; it reached `gate_tests` and hung there past 33 minutes, the same sandbox lock-contention pattern this log has recorded many times before. Rather than wait it out or leave it dangling, checked GitHub's own `Checks` workflow run (40969699174) on commit `e19c33e0b`, the exact commit whose `STATUS.md`/`BACKLOG` changes triggered the CHANGED signal: it ran `preflight.py` (including `gate_tests`) and the full ops test suite in a fresh container and completed **success**. Current HEAD only adds non-gate-relevant hourly bot commits on top of that commit, so CI's verdict covers the real current state. Killed the redundant local run and recorded a fresh `cycle_signal.py` snapshot with a note explaining the substitution, rather than let the stale 22:47 snapshot keep reading CHANGED.
+
+**Small closing job found and done:** `cold_read_ledger.py --stale` found one real stale entry, `ops/article_figures.py` (ledgered 2026-10-23, touched 2026-10-29 by `c7cb03eb3`). Read the diff: `apply()` made line-ending neutral (CRLF round trip, same shape as `share_cards.py`'s own fix), correcting a false `gate_article_figures_current` failure on Windows checkouts, proven by `test_article_figures_crlf.py` (4/4), already shipped and covered by CI's clean run. Re-ledgered clean; `--stale` now reads 0.
+
+Also verified directly: `check_urls.py` 217/217, `fix_dashes.py --check` 0/0. Re-pulled all 10 open GitHub issues fresh: unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`, none Phil-unblocked. The "Deploy to production" workflow run on the latest commit completed `success`, but its own `Deploy` step was `skipped` (no `VPS_DEPLOY_KEY`), confirmed by reading the job steps directly rather than trusting the green checkmark; the standing deploy gap in `BLOCKER-001` is unchanged, not a new finding.
+
+**Handing the operator:** nothing new beyond the standing Phil-gated queue in `OWNER-ACTIONS.md` and issue #42's own exhaustion. `BACKLOG-2026-09-07.md` is 276952 bytes against its 150000-byte tripwire (new this run; `OWNER-ACTIONS.md`/`CHECKIN-LOG.md` were already over theirs) but every rotation tool (`rotate_backlog.py`, `rotate_backlog_done_items.py`, `rotate_backlog_section2_items.py`) reports CLEAN, so there is nothing left to mechanically rotate; shrinking it is a larger manual content job, not this slot's size.
+
+Dashboard regenerated. Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-10-29, scheduled operator cycle (22:5x slot): re-verified the exhausted state, stopped a redundant full preflight run before it finished
 
 **Did.** Unshallowed and fast-forwarded cleanly onto `origin/main` (two rounds, 471 then 1 more commit, no unrelated-history symptom). Read `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md` sections 0-7, the last four `NIGHTLY-LOG.md` entries. Launched a full `python ops/preflight.py` before checking `cycle_signal.py --check`; it read SAME against the 22:47 snapshot, so stopped that run rather than let it duplicate ~86 minutes of work already certified clean.

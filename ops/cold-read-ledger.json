@@ -52,9 +52,9 @@
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found."
     },
     "article_figures.py": {
-      "status": "fixed",
-      "date": "2026-10-23",
-      "note": "Cold-read 2026-10-23: found one real defect (site/articles/index.html missing twitter:title/description/image entirely; gate_share_cards_current's apply()-diff check cannot catch a tag that never existed), fixed, and gated (gate_twitter_card_complete, fail-then-pass proven). Everything else checked clean: manifest cross-checks against FIGURES/plan() exact match, all referenced image files on disk, all 76/33 pages' served og:image/figure match the manifest exactly."
+      "status": "clean",
+      "date": "2026-10-29",
+      "note": "Re-ledgered 2026-10-29 PM check-in: cold-read ledger flagged this file as stale (ledgered 2026-10-23, touched 2026-10-29 by c7cb03eb3). Confirmed the diff: apply() made line-ending neutral (CRLF round trip, same fix shape as share_cards.py), fixing a false gate_article_figures_current failure on Windows checkouts. Proven by test_article_figures_crlf.py (4/4), already shipped and CI-confirmed clean."
     },
     "audit_catalog.py": {
       "status": "clean",
