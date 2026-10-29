@@ -18,9 +18,9 @@ Regenerated the dashboard against the merged HEAD and pushed only that. Handing 
 
 **Went well.** The gate built for exactly this drift caught it precisely; only the fix was needed.
 
-**Did not go well.** Production Knowledge is one run-on paragraph the rotator can't split (reads as "1 entry"); flagged in place rather than hidden.
+**Did not go well.** Pushing the rescore turned CI red: `checks.yml` run 40945484348 failed `gate_tests` on `test_gate_goals_keyword_cluster_citation_current.py`, because GOALS.md's own "small space" cluster citation (a sentence this file has corrected after nearly every prior rescore, by its own documented history) went stale the moment the rescore moved the numbers, and I pushed without re-checking that specific gate first. Fixed immediately (GOALS.md edited to 23/14/0/37, matching the live data), watched the next `checks.yml` run (40947624338) to real completion: `success`. Should have run `gate_goals_keyword_cluster_citation_current` right after the `--rescore`, before the first push, since GOALS.md's own correction chain already names this as a recurring consequence of exactly that command.
 
-**Changing next cycle.** None structural.
+**Changing next cycle.** Run `gate_goals_keyword_cluster_citation_current` (and ideally the full warn-gate sweep) immediately after any `keyword_demand.py`/`keyword_demand_global.py` `--rescore`, before pushing, not after CI catches it.
 
 **Next.** Check the background `preflight.py` result before trusting a clean pass. Standing Phil-gated queue unchanged.
 
