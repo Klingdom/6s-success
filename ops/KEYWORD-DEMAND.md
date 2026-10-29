@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** not recorded, so treat every status here as of unknown age against 221 page(s). Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-29T04:56:59Z against 222 page(s) at commit d32e90661. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 221 published page titles: 1208 covered, 1434 partial, 166 gap.
+**Queries found:** 2808. Checked against 222 published page titles: 1231 covered, 1422 partial, 155 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 166, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 155, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -69,7 +69,6 @@ Showing the top 80 of 166, ordered by the best rank the phrase reached in any on
 | 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
 | 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) |
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 7 | organizing your bedroom tips for decluttering | - | Decluttering vs. organizing: what's actually different (0.33) |
 | 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
 | 8 | back porch society | - | Why your family won't put things back where they belong (0.33) |
 | 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
@@ -79,7 +78,6 @@ Showing the top 80 of 166, ordered by the best rank the phrase reached in any on
 | 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) |
-| 8 | how to store extra blankets | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 8 | stove on floor plan | - | Venture plan (0.33) |
 | 9 | clothes sorter hamper near me target | - | How to organize the nursery baby clothes (0.20) |
@@ -101,10 +99,12 @@ Showing the top 80 of 166, ordered by the best rank the phrase reached in any on
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 10 | how to plan a nursery layout | Nursery | The Nursery Deck: 66 cards, free to read (0.33) |
 | 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) |
+| 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
+| 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1434.
+Showing the top 60 of 1422.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -184,7 +184,7 @@ Showing the top 60 of 1434.
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 95 | 2 | 48 | 45 |
 | Laundry Room | 71 | 0 | 17 | 54 |
-| Living Room | 86 | 2 | 57 | 27 |
+| Living Room | 86 | 2 | 54 | 30 |
 | Mudroom | 43 | 1 | 22 | 20 |
 | Nursery | 62 | 2 | 25 | 35 |
 | Pantry | 58 | 1 | 31 | 26 |
