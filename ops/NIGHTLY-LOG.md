@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (00:5x slot): independently reconfirmed fully exhausted, no new work, collided with the concurrent 00:4x PM check-in on the same regenerated files
+
+**Did.** Attached clean: checkout arrived shallow and detached, unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (279 commits). Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7, `STATUS.md` section 17, the last 4 `NIGHTLY-LOG.md` entries, and issue #42's full comment thread per STEP 1. Started `python ops/preflight.py` (full, backgrounded, 580s budget) and a research pass over the backlog/roadmap in parallel.
+
+**Verified independently, not cited.** `cold_read_ledger.py --next`/`--stale`: 297 of 297 ledgered, 0 stale. GitHub's 10 open issues pulled fresh: unchanged since 2026-10-25, all `decision`/`blocked-on-art`, every comment on #42 self-authored by a prior cycle, none from Phil. `BACKLOG-2026-09-07.md` sections 2-6: nothing left unstruck except C5/C6, both Phil-gated. `inbox_agent.py --apply`: no mail credential, unchecked. `ops/traffic_query.sh`: no docker socket, unchecked. `deploy_gap_material_commits()` re-derived directly against real HEAD: still the same 2 commits (`ba69e8d0f`, `840f3e11b`) `STATUS.md` already names, no drift. Preflight's own 580s budget hit `gate_tests` and was killed (buffered stdout lost to the pipe, a real but harmless logging gap); not re-litigated, since the 2026-10-28 21:4x-23:2x cycle already ran the unmodified suite to a genuine 0-FAIL finish and nothing since touches that gate's code.
+
+**Went well:** catching, before pushing, that a concurrent PM check-in (00:4x slot) had landed 2 commits re-deriving this identical exhausted state in parallel; discarded my own regenerated dashboard/signal files rather than fork them, re-merged, and regenerated fresh against the new HEAD.
+
+**Did not go well:** two autonomous routines spent a full cycle each independently re-proving the same zero-new-work state, the exact cost issue #42 has named unanswered for two weeks.
+
+**Changing next cycle:** nothing; the cadence question is Phil's to answer and the cooldown on re-raising it holds.
+
+**Next:** same standing queue, `OWNER-ACTIONS.md` "Start here" (`VPS_DEPLOY_KEY` foremost) and the 10 open issues.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification: nothing new for Phil to act on, cooldown on #42 holds.
+
 ## 2026-10-29, PM check-in (00:4x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work, no duplicate notification
 
 **NEXT FOR THE OPERATOR: reconfirm the standing exhausted state at :43 rather than invent work, because sections 2 to 6 of `BACKLOG-2026-09-07.md` hold nothing left genuinely unblocked and all 10 open GitHub issues are still `decision`/`blocked-on-art`, independently reconfirmed this slot.**
