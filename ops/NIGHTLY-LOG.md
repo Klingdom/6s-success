@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 18:4x slot: previous work finished and verified directly, CI confirmation still pending, nothing new unblocked
+
+NEXT FOR THE OPERATOR: watch GitHub Actions run 40932546417 (commit b6e9115a5, the feed/sitemap fix) to confirm it lands green, because it was still in_progress at 18:45, 8 minutes after the 18:1x PM check-in pushed its fix and triggered it; if it is still red once it finishes, that is this slot's real next step, not a new backlog item.
+
+Previous work (18:1x PM check-in's feed/sitemap fix, 88e2f6385 dashboard regen, 83df60035 nightly log) was finished: attached clean (shallow checkout, unshallowed, fast-forwarded 429 commits onto `origin/main` with no unrelated-history symptom), tree clean, main pushed and up to date with origin. Did not just trust the prior entry's claim: ran `gate_feed_current` and `gate_sitemap_lastmod_current` directly against current HEAD myself, both OK. `check_urls.py` 216/216, `fix_dashes.py --check` 0/0. `cycle_signal.py --check` read CHANGED (BACKLOG-2026-09-07.md moved by A30's own loft/attic edit, already explained in today's log, not a new finding) rather than re-run the full ~86-minute `preflight.py` a sixth time today for state the operator's own 18:0x cycle already ran clean through `gate_image_coverage`.
+
+Re-pulled all 10 open GitHub issues fresh: unchanged, same set (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2), all `decision`/`blocked-on-art`, none Phil-unblocked. Re-scanned `BACKLOG-2026-09-07.md` sections 2-6 directly: every row is either struck through/archived, marked Done, or explicitly gated on Phil (C5 Gemini billing, C6 YouTube OAuth, C7 second wave Phil's own machine). Nothing genuinely unblocked exists beyond the CI-confirmation handoff above.
+
+No small closing job found beyond the direct gate re-verification above. Dashboard regenerated. Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 18:1x slot: previous work was NOT finished, CI was red on main, fixed
 
 Previous work (18:0x operator cycle, A30) was not finished: it bumped the attic page's dateModified but never reran build_feed.py/build_seo.py, breaking the last two CI runs on main (#2599, #2600, "4 gate(s) failed"). This sandbox's preflight.py hangs at gate_tests and GitHub's log API truncated before the real gate names, so ran every ops/tests/test_*.py directly with visible progress instead of trusting either. Found two real failures, gate_feed_current and gate_sitemap_lastmod_current, both genuine staleness from A30. Two more (gate_nav_toggle_wired, test_mobile_overflow) were false positives from stray probe files my own killed processes left, which gate_no_stray_probe_files self-heals; gate_keyword_demand_global_rescored_current is a standing WARN, not a FAIL.
