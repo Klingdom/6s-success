@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T02:46:48Z",
-   "mode": "changed",
-   "offered": 12,
-   "accepted": 12,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T02:51:22Z",
    "mode": "changed",
    "offered": 11,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-29T22:57:41Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -666,7 +666,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "b4f0f6eb889aabf0",
-  "https://6s-success.com/articles/": "15edbf8d8c74be9d",
+  "https://6s-success.com/articles/": "87041942a2657edd",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -688,7 +688,7 @@
   "https://6s-success.com/articles/why-you-keep-running-out-of-things": "721a5432fdf0e13a",
   "https://6s-success.com/articles/why-you-never-finish-a-zone": "b329a6eed805dc78",
   "https://6s-success.com/articles/why-your-house-gets-messy-again": "4ccadf55b97e11f5",
-  "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "c011a6f64a4efa4b",
+  "https://6s-success.com/articles/zone-too-small-for-what-it-holds": "5aea1ed5fd63a19a",
   "https://6s-success.com/deck/entryway-print-and-play.html": "874e78ad294ed630",
   "https://6s-success.com/rooms/dining-room": "17df404759588008",
   "https://6s-success.com/rooms/entryway": "aed629e41ec7d331",
