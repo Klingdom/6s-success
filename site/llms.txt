@@ -13,8 +13,8 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   what done looks like, the surfaces to clean and the method for each, and the
   supplies the work calls for. These are the most detailed pages on the site.
 - /rooms/ : 20 room pages, each collecting its zones with session timings.
-- /articles/ : 37 explanatory articles on root causes and habits, including guides to organizing a basement and an attic safely, storing blankets, organizing toys, and organizing paperwork.
-  /feed.xml : an Atom feed of 35 of the 37 articles under it (the 2 that
+- /articles/ : 38 explanatory articles on root causes and habits, including guides to organizing a basement and an attic safely, storing blankets, organizing toys, organizing paperwork, and organizing baby clothes.
+  /feed.xml : an Atom feed of 36 of the 38 articles under it (the 2 that
   predate dated metadata are not in it yet), for a reader or aggregator
   that wants to follow new writing without recrawling the site.
 - /method.html : what the six S's are and why Safety is the fourth, not an

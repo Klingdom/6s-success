@@ -225,7 +225,16 @@ _BLOCK = re.compile(re.escape(START) + r".*?" + re.escape(END) + r"\n?", re.S)
 
 
 def apply(page, src):
-    """Put the page's figure before its second section heading. Idempotent."""
+    """Put the page's figure before its second section heading. Idempotent.
+
+    Line-ending neutral: a Windows checkout (core.autocrlf=true) hands this
+    CRLF text, and the figure block is written with bare LF, so without the
+    round trip below apply(page, src) never equals src there and
+    gate_article_figures_current reports every CRLF article as unwired,
+    a false failure seen 2026-10-29. Same fix as ops/share_cards.py apply().
+    """
+    if "\r\n" in src:
+        return apply(page, src.replace("\r\n", "\n")).replace("\n", "\r\n")
     e = load_manifest().get(page)
     out = _BLOCK.sub("", src)
     if not e or not os.path.exists(os.path.join(IMG, e["file"])):
