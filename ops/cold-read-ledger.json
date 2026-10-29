@@ -1207,9 +1207,9 @@
       "note": "third-pass cold-read, 2026-10-12: find_time() parsed a month-first ordinal date (Oct. 14th) but not the identical date day-first (14th October), so a customer naming a clear appointment in the more common day-first phrasing got no calendar invite and a 'no time could be read' forward instead. Fixed DATE_PATTERNS' day-first branch to accept an optional ordinal suffix and optional 'of', matching the leniency already given to the month-first branch. 2 new regression cases added to test_service_orders.py, fail-then-pass proved."
     },
     "share_cards.py": {
-      "status": "fixed",
-      "date": "2026-10-23",
-      "note": "Cold-read 2026-10-23: found one real defect (site/articles/index.html missing twitter:title/description/image entirely; gate_share_cards_current's apply()-diff check cannot catch a tag that never existed), fixed, and gated (gate_twitter_card_complete, fail-then-pass proven). Everything else checked clean: manifest cross-checks against FIGURES/plan() exact match, all referenced image files on disk, all 76/33 pages' served og:image/figure match the manifest exactly."
+      "status": "clean",
+      "date": "2026-10-29",
+      "note": "Fresh cold-read 2026-10-29 after the 2026-10-29 CRLF-stacking fix (c79829238): read all 501 lines end to end. apply()'s CRLF branch (normalize to LF, recurse, convert back) is correct and idempotent; wire() preserves line endings via newline=\"\" on both read and write. test_share_cards_crlf.py 4/4 pass. Confirmed no stray CR survives in any tracked site/ or ops/*.json file (git grep -P for \\r, 0 hits). plan()/visual_for()/targets()/card_html() unchanged since the 2026-10-23 entry and re-read clean: manifest keys match targets() exactly, PRODUCT/ARTICLE_ROOM picture mappings still point at real files on disk, _EXTRA/_OG regexes still strip-then-reinsert exactly one of each extra meta tag. No new defect."
     },
     "ship.py": {
       "status": "clean",

@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (19:0x slot): one real stale cold-read ledger entry found and closed, everything else reconfirmed exhausted
+
+**Did.** Fresh shallow+detached checkout, unshallowed, attached to `main` (ff-only, 431 commits). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` sections 0-2, `STATUS.md` section 0 (no open claims), and the last four real `NIGHTLY-LOG.md` entries. Ran `python ops/cold_read_ledger.py --stale` rather than trust any prior cycle's citation.
+
+**Found and fixed.** `ops/share_cards.py` was ledgered clean 2026-10-23 but last touched 2026-10-29 (the CRLF-stacking fix, `c79829238`), so its cold-read entry was stale per `ops/preflight.py`'s own gate. Read the current 501 lines end to end rather than trust the diff: the CRLF branch in `apply()` (normalize to LF, recurse, convert back) is correct and idempotent, `wire()` preserves line endings via `newline=""` on both read and write, `test_share_cards_crlf.py` passes 4/4, and `git grep -P '\r'` across tracked `site/` and `ops/*.json` returns zero hits, confirming the fix actually landed in the tracked tree, not just the test. No new defect. Recorded a fresh clean ledger entry dated today; `--stale` now reads 0.
+
+**Verified.** Mid-cycle, a concurrent session landed two commits (`1c0ebd8a2`, a real keyword-demand harvest `scored_against_commit` fix, then a dashboard regen) while a local `preflight.py` full run was mid-flight; killed the now-stale run rather than trust it, re-fetched/ff-merged twice, and ran `preflight.py --fast` fresh against the real current HEAD: 0 FAIL through every gate before `gate_tests` (standing warnings only: the four living-docs size tripwires, image-coverage gitignored-in-sandbox note), fresh `cycle_signal` checkpoint recorded, `gate_tests` itself stopped before its documented ~86-minute completion and reported unchecked, not assumed passing. `inbox_agent.py --apply`: no mail credential, unchecked not assumed empty. All 10 GitHub issues re-pulled fresh: unchanged, same set (`#42,#40,#35,#33,#31,#29,#21,#18,#15,#2`), all `decision`/`blocked-on-art`. Checked both fresh keyword-demand harvests (US and global) for a genuinely new, in-scope, unclaimed cold-read candidate before concluding there wasn't one: the global harvest's only gap rows are noise (railings, gas-fire stones, toilet trivia) bar "loft", already closed this cycle by A30; the US harvest's remaining 155 gaps are the same `BACKLOG-2026-09-07.md` line 57 already triaged as answered-or-too-small (craft room, closet, car, shed) or out of topic.
+
+**Went well.** The ledger's own `--stale` check, not a prose citation, is what surfaced real unfinished work a concurrent session's commit message never mentioned.
+
+**Did not go well.** Nothing beyond the now-standard `gate_tests` sandbox-timeout gap.
+
+**Changing next cycle.** None; no new gate warranted, since `gate_tests()` already includes this exact ledger file in its own run and `cold_read_ledger.py --stale` is already the check that caught this.
+
+**Next.** Watching GitHub Actions run 40934940652 (commit `1c0ebd8a2`, the keyword-demand CI fix) for green; still `in_progress` as of this entry. Standing Phil-gated queue otherwise unchanged.
+
 ## PM check-in, 2026-10-29 18:4x slot (continued): the CI run this cycle's own earlier entry was waiting on came back red, for a real reason, fixed
 
 NEXT FOR THE OPERATOR: watch the GitHub Actions run for commit 80f52eab5 (this fix) to confirm green; if `gate_tests` fails again for an unrelated reason, that is real work, not the exhausted-backlog state.
