@@ -981,6 +981,7 @@ def main(argv):
         "pages_checked": pages,
         "failures": failures,
         "rows": rows,
+        "scored_against_commit": head_commit(),
     }
     if dry:
         print("dry run: nothing written")

@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 18:4x slot (continued): the CI run this cycle's own earlier entry was waiting on came back red, for a real reason, fixed
+
+NEXT FOR THE OPERATOR: watch the GitHub Actions run for commit 80f52eab5 (this fix) to confirm green; if `gate_tests` fails again for an unrelated reason, that is real work, not the exhausted-backlog state.
+
+The 18:45 entry below handed off "watch run 40932546417 for green." It finished red: `gate_tests` actually completed end to end this time (6m10s in CI, `test_gate_keyword_demand_global_rescored_current.py` the one real failure out of 454 files), rather than hanging the way it usually does, so this is new signal, not the usual unchecked timeout. Read the job log directly via the GitHub API rather than trust the one-line summary.
+
+**Root cause, found by reading the actual script, not just the gate:** `ops/keyword_demand_global.py`'s plain harvest path (`main()`, no `--rescore`) scores every query against the live `site/` corpus at harvest time, exactly like `--rescore` does, but never stamped `scored_against_commit` on the payload it writes; only the `--rescore`/`rescore()` path did. So every weekly scheduled harvest silently dropped the field the staleness gate depends on, and the file stayed in a permanent "never checked" WARN state until someone happened to run `--rescore` by hand afterward. `ops/keyword_demand.py`, the US sibling, has the identical bug in its own plain-harvest payload construction; it only wasn't failing today because its committed file still carried a `scored_against_commit` from a manual rescore after the last harvest, a coincidence of timing, not a difference in correctness.
+
+**Fixed at the source, both files:** added `"scored_against_commit": head_commit()` (`kd.head_commit()` for the global file) to the payload dict each plain harvest already builds, mirroring what `rescore()` already does, since both paths score against the same corpus at the same moment. Re-ran `python ops/keyword_demand_global.py --rescore` (free, no network) once to stamp the already-committed file that was missing the field, rather than leave it broken until next week's scheduled harvest. Verified: `test_gate_keyword_demand_global_rescored_current.py` and its US sibling `test_gate_keyword_demand_rescored_current.py` both pass; `test_keyword_demand.py`, `test_gate_keyword_demand_global_not_stale.py`, `test_gate_goals_keyword_cluster_citation_current.py`, `test_gate_also_called_is_heading.py`, `test_room_also_called.py` all still pass, no regression. A full local `gate_tests` re-run (all 454 files) was started in the background to cover the rest of the suite before shipping further; its result, if anything new turned up, is recorded separately.
+
+`check_urls.py` 216/216, `fix_dashes.py --check` 0/0 after. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 18:4x slot: previous work finished and verified directly, CI confirmation still pending, nothing new unblocked
 
 NEXT FOR THE OPERATOR: watch GitHub Actions run 40932546417 (commit b6e9115a5, the feed/sitemap fix) to confirm it lands green, because it was still in_progress at 18:45, 8 minutes after the 18:1x PM check-in pushed its fix and triggered it; if it is still red once it finishes, that is this slot's real next step, not a new backlog item.

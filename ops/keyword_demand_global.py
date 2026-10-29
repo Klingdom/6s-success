@@ -316,6 +316,7 @@ def main(argv):
                      for k, v in sorted(canaries.items())},
         "pages_checked": pages,
         "rows": rows,
+        "scored_against_commit": kd.head_commit(),
     }
     if dry:
         print("dry run: nothing written")

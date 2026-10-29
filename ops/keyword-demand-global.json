@@ -35743,10 +35743,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -44168,5 +44168,7 @@
       ],
       "in_us_harvest": true
     }
-  ]
+  ],
+  "scored_at": "2026-10-29T18:48:45Z",
+  "scored_against_commit": "80f52eab5"
 }
