@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (16:4x-16:5x slot): superseded mid-run by heavy concurrent activity, re-grounded rather than duplicated
+
+**Did.** Unshallowed, attached to main, read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `OWNER-ACTIONS.md` and the log tail. Found `STATUS.md` carried a genuine open claim from Phil's own 10:33 CEO session on `how-to-organize-toys.html`; respected it, did not touch that area. Launched `preflight.py --fast` in the background to re-verify after `cycle_signal` read CHANGED.
+
+**Verified.** While preflight ran `gate_tests`, a fast run of concurrent pushes landed: the toy guide shipped and released, a real `preflight.py` syntax-warning fix landed, a second claim opened and then also shipped and released (the home paperwork guide, `how-to-organize-paperwork.html`, 335 lines, its own share image and feed/sitemap wiring, plus a CRLF-stacking fix in `share_cards.py` with a new regression test). Killed my now twice-stale local preflight run rather than trust results against a superseded HEAD, discarded my own stale `cycle-signal.json` checkpoint, fast-forwarded twice onto fresh origin/main. Confirmed the new `preflight.py` still imports clean under `-W error::SyntaxWarning`. Spot-checked the first shipped article directly (3,091 words, real title, 23 headings, not just a file-exists check). Re-pulled all 10 GitHub issues fresh: unchanged, same set. `check_urls.py` 214/214, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `inbox_agent.py --apply` no mail credential (standing). `STATUS.md`'s open claims now read none currently open, confirmed directly.
+
+**Went well.** Caught the concurrency twice before pushing anything against stale content, which would have reopened the exact collision class section 0 of `STATUS.md` exists to prevent.
+
+**Did not go well.** Did not complete a fresh full local `gate_tests` run; concurrent PM check-ins had already run one clean minutes earlier against near-identical content, so re-running it here would have been the duplicate work this cycle is meant to avoid.
+
+**Changing next cycle.** None procedural.
+
+**Next.** No open claims. Standing Phil-gated queue only; issues unchanged.
+
+Dashboard regenerated. Pushed to main. No price touched; no site page authored this cycle.
+
 ## PM check-in, 2026-10-29 16:4x slot: previous work finished; the one fresh claim this slot caught already landed and released by the time of writing; cycle_signal re-grounded at new HEAD
 
 NEXT FOR THE OPERATOR: nothing new to pick up. `STATUS.md` briefly carried a fresh claim ("owner-invoked CEO session: `site/articles/how-to-organize-toys.html`", claimed 16:33:22Z) that this check-in flagged as in-flight and told the operator not to collide with. By the time this entry was being written, a concurrent owner-invoked push (`2404a870c` the guide itself, `927b31f41` STATUS release, `ead382c3a` BACKLOG section 59 record) had already landed the page and released the claim, all authored directly by Phil with Claude Opus 5.5 co-authorship, not by this PM/operator rotation. Confirmed via `git show --stat` on all three, not assumed from the commit titles alone. Nothing is owed here beyond noting it; do not re-touch the toy guide or its STATUS/BACKLOG entries.
