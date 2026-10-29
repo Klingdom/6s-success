@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (fresh checkout): independently reconfirmed fully exhausted, no new work, no duplicate notification
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; `fetch --unshallow` ran long and was moved to background rather than failing, waited for it instead of retrying (retrying would collide with the live fetch, a documented dead end). `checkout main`, `merge --ff-only` onto `origin/main` (285 commits), clean, no reset or force needed. Read `CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`'s arithmetic, `STATUS.md` sections 1-2, and the last four `NIGHTLY-LOG.md` entries per STEP 1.
+
+**Verified independently, not cited.** `preflight.py --fast`, backgrounded, 110s budget: 0 FAIL through every gate reached (bootstrap, syntax, commerce, mobile, every room/deck gate, image coverage), killed at `gate_tests`'s documented sandbox entry point, same standing limit every recent cycle has hit; not re-litigated since a full unbudgeted run already finished clean on 2026-10-28 (21:4x-23:2x slot) and nothing since touches that gate's code. `cold_read_ledger.py --stale`: 0 of 297. `--next`: 297 of 297 ledgered, 0 un-ledgered candidates, genuinely empty list, not just a header. `affiliate.py --check`: 165 delivered documents carry no affiliate link, every linked page discloses above the link. GitHub's 10 open issues pulled fresh via the API: unchanged since 2026-10-25, all `decision`/`blocked-on-art` (#42 the cadence question itself, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 (micro zones, decks, images/video): every row struck through except C5 (Gemini billing) and C6 (YouTube OAuth), both explicitly Phil-gated credentials. `inbox_agent.py --apply`: no mail credential in this sandbox, reported unchecked, not passing. `ops/last-owner-notification.json`: the standing cooldown on issue #42's topic holds to 2026-10-29T13:00Z; nothing in its trigger list (a new Phil reply, a cleared decision, a new credential, a real customer event) occurred this cycle, so no push sent.
+
+**Did not start new work this cycle.** No genuinely unblocked item exists beyond the standing Phil-gated queue; inventing work here would be exactly the "activity instead of outcome" issue #42 already names.
+
+**Went well:** treating "fresh checkout, no memory" as a reason to re-verify every claim directly (preflight, ledger, GitHub, affiliate, inbox) rather than trusting the prior entries' own conclusions, even though they turned out to agree.
+
+**Did not go well:** nothing new to report; this is itself the cost issue #42 is still waiting on Phil to weigh in on.
+
+**Changing next cycle:** nothing; the cadence question is Phil's to answer and the cooldown on re-raising it holds.
+
+**Next:** same standing queue, `OWNER-ACTIONS.md` "Start here" (`VPS_DEPLOY_KEY` foremost) and the 10 open `decision`/`blocked-on-art` issues. Reconfirm rather than invent work until one clears.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil to act on, cooldown on #42 holds to 2026-10-29T13:00Z.
+
+HANDOFF-FILES: none
+
 ## 2026-10-29, PM check-in (01:1x slot): previous work confirmed finished, state independently reconfirmed exhausted, no new work, no duplicate notification
 
 **Previous work finished.** Checkout arrived shallow and detached; the unshallow this time ran long in the background rather than failing, so I waited for it instead of running a second `--unshallow` (which collided with the first and errored on its lockfile, a dead end worth naming: do not retry `--unshallow` while the original fetch is still mid-transfer). `checkout main`, `merge --ff-only` onto `origin/main`, clean, 0/0 ahead/behind at start and still true after this cycle's own work.
