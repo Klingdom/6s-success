@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 17:1x slot: previous work finished, no new work, nothing unblocked
+
+Previous work (16:4x PM check-in and the owner-invoked paperwork-guide push it caught finishing) was finished: attached clean (fetch, unshallow, ff-only onto `origin/main`, 418 commits), tree clean, main pushed.
+
+Verified, not cited: `cycle_signal.py --check` read CHANGED (STATUS/BACKLOG moved, both already explained by the logged paperwork-guide landing, not new). Ran `preflight.py --fast` myself: every gate through `gate_image_coverage` passed, 0 FAIL, standing warnings only; stopped it at `gate_tests` (documented sandbox hang) rather than hold the slot, reported unchecked. Re-derived the deploy gap directly (`deploy_gap_material_commits`): 6 commits, matches `BLOCKER-001` and line 77 exactly, no drift. `check_urls.py` 216/216, `fix_dashes.py` 0/0, `affiliate.py` clean, all 6 rotation scripts CLEAN. Dead lock pid (592, my own killed run) confirmed dead, self-heals. 10 GitHub issues re-pulled, unchanged, `decision`/`blocked-on-art`, #42 still unanswered since 2026-10-25.
+
+No small closing job found; recorded a fresh clean `cycle_signal` checkpoint. Dashboard regenerated. Handing operator: standing Phil-gated queue only.
+
 ## 2026-10-29, scheduled operator cycle (16:4x-16:5x slot): superseded mid-run by heavy concurrent activity, re-grounded rather than duplicated
 
 **Did.** Unshallowed, attached to main, read `BACKLOG-2026-09-07.md`, `CLAUDE.md`, `OWNER-ACTIONS.md` and the log tail. Found `STATUS.md` carried a genuine open claim from Phil's own 10:33 CEO session on `how-to-organize-toys.html`; respected it, did not touch that area. Launched `preflight.py --fast` in the background to re-verify after `cycle_signal` read CHANGED.
