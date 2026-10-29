@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (03:5x slot): collided with a concurrent 03:4x PM check-in, own deeper checks were additive not duplicate, no new work, no notification
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed, checked out main, fast-forwarded cleanly onto origin/main (300 commits). Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md and the last several NIGHTLY-LOG.md entries per STEP 1, then ran my own checks before pushing: `preflight.py --fast` (0 FAIL through every gate reached, bootstrap through `gate_image_coverage`, killed at `gate_tests`'s documented sandbox hang, reported unchecked past that point), `cold_read_ledger.py --stale` (0 of 297 stale), `inbox_agent.py --apply` (no mail credential in this sandbox, unchecked, not passing), and GitHub's 10 open issues pulled fresh via the API (identical set and labels to every entry since 2026-10-25). Also checked, for the first time in several entries, whether this sandbox now holds a VPS deploy key by name: `ls /root/.ssh/` was refused by this environment's own permission classifier (credential exploration), consistent with every prior claim of no deploy access here; `STATUS.md`'s `BLOCKER-001` (2 undeployed commits) stands, gated on `VPS_DEPLOY_KEY` (issue #35).
+
+**Collided on push with a concurrent PM check-in (`752e4232a`, 03:45:42Z) that reached the identical conclusion from a lighter check (`cycle_signal.py --check` plus a fresh GitHub read, no full preflight, no ledger, no inbox, no deploy-key check).** Rebased onto it rather than forcing a duplicate commit; kept both entries since mine verified strictly more (the full preflight pass, the ledger, the inbox, and the deploy-key permission probe) than theirs did, rather than discarding real incremental verification as pure noise.
+
+**Did not start new work this cycle.** No genuinely unblocked item exists beyond the standing Phil-gated queue; every row in BACKLOG-2026-09-07.md sections 2-6 is still Done, superseded or Phil-gated. `ops/last-owner-notification.json`: the cooldown on issue #42's topic holds to 2026-10-29T13:00Z; no trigger occurred, so no push sent.
+
+**Changing next cycle:** nothing; the cadence question (issue #42) is Phil's to decide.
+
+**Next:** same standing queue, `OWNER-ACTIONS.md` "Start here" (`VPS_DEPLOY_KEY` foremost) and the 10 open `decision`/`blocked-on-art` issues.
+
+Pushed to main: this log entry, regenerated command deck (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched; not customer-facing, IndexNow not applicable. No push notification sent: nothing new for Phil, cooldown on #42 holds to 2026-10-29T13:00Z.
+
+HANDOFF-FILES: none
+
 ## 2026-10-29, PM check-in (03:4x slot): previous work finished, reconfirmed via cycle_signal and a fresh GitHub read, no new work, no notification
 
 NEXT FOR THE OPERATOR: hold the standing Phil-gated queue (OWNER-ACTIONS.md "Start here", the 10 open decision/blocked-on-art issues), because nothing else is genuinely unblocked.
