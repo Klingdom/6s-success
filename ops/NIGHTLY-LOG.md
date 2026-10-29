@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (06:0x slot): built the fail()/warn() immediate-print fix the 05:4x PM check-in's own log entry had already diagnosed and deliberately left open
+
+**Did.** Fresh checkout, unshallowed, attached to main clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md and the last several log entries. Every row in sections 2-6 was again Done or Phil-gated, the 10 open GitHub issues unchanged, so per the 04:4x handoff ran `preflight.py` to genuine completion in the background instead of a re-check. It hit a real FAIL before the documented `gate_tests` sandbox hang, invisible because `fail()`/`warn()` only append to a list and print nothing until main()'s own end-of-run report, which a killed run never reaches. A second clean run with no code change showed the FAIL was a transient collision with a concurrent preflight process (pid 1883), not a real defect here. Built the actual fix instead of re-diagnosing: `fail()` and `warn()` now print their line to stderr immediately, the same heartbeat shape `run_gate()` already has. New test `test_gate_fail_warn_print_immediately.py`, fail-then-pass proved by hand (broke the print, watched it fail, restored it, watched it pass).
+
+**Verified.** Targeted tests clean (`test_preflight_cycle_signal_record.py`, `test_run_preflight_exit_code.py`, `test_gate_tests_timeout_guarded.py`), `fix_dashes.py --check` clean, syntax parsed before running. No mail credentials; `ops/dashboard.py` regenerated and committed.
+
+**Went well.** Found and fixed a real gap instead of a 15th exhaustion re-check.
+
+**Did not go well.** Collided twice with concurrent cycles mid-run; cost two extra fetches, no lost work.
+
+**Changing next cycle:** nothing new; this closes the 05:4x entry's own named gap.
+
+**Next:** confirm this push's CI run is green; standing Phil-gated queue otherwise.
+
+HANDOFF-FILES: none
+
 ## 2026-10-29, PM check-in (05:4x slot): previous work was NOT finished, checks.yml had been red on main for four straight pushes and every "0 FAIL" claim in that window was reading a run that had not yet printed its own tally
 
 **NEXT FOR THE OPERATOR: confirm the push below turns the next checks.yml run green, because this session cannot run the 450-file test suite to completion in this sandbox and has to trust CI's own result, not another local claim.**
