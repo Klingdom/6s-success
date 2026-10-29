@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T02:28:54Z",
-   "mode": "changed",
-   "offered": 49,
-   "accepted": 49,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T02:34:54Z",
    "mode": "changed",
    "offered": 11,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-29T16:50:43Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -662,21 +662,21 @@
   "https://6s-success.com/articles/decluttering-vs-organizing": "e28faa51af3da915",
   "https://6s-success.com/articles/everyday-things-out-of-reach": "abff6ce4ed597cc5",
   "https://6s-success.com/articles/everything-needs-an-assigned-home": "434cb39792c327b2",
-  "https://6s-success.com/articles/family-wont-put-things-back": "c0f2667879406d06",
+  "https://6s-success.com/articles/family-wont-put-things-back": "75797cfd5051edaf",
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "b4f0f6eb889aabf0",
-  "https://6s-success.com/articles/": "5d12d0c54fb3dbdb",
+  "https://6s-success.com/articles/": "bc5b785d09b100fc",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
-  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
+  "https://6s-success.com/articles/more-storage-wont-fix-clutter": "78e9f76433012ce9",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
   "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "e8368de4756229e6",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
-  "https://6s-success.com/articles/where-to-start-decluttering": "5b024dffc2880c88",
+  "https://6s-success.com/articles/where-to-start-decluttering": "eadcb28bab13ebdd",
   "https://6s-success.com/articles/why-a-shared-zone-never-stays-reset": "1e7cf433bfeb1833",
   "https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean": "fbf8728e08642ac4",
-  "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another": "4f218927c828a759",
+  "https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another": "3fc25943de1f2274",
   "https://6s-success.com/articles/why-mail-piles-up-by-the-door": "3e75d12472dc6ad0",
   "https://6s-success.com/articles/why-the-medicine-cabinet-never-gets-cleared-out": "e0908fb2f5236cb2",
   "https://6s-success.com/articles/why-the-same-spot-never-gets-clean": "8d6787a74f476b11",
