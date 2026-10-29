@@ -19051,7 +19051,7 @@ def cold_read_handoff_stale_files(log_text: str, ledger: dict,
     operator:" case above, so the gate fell through to an older,
     superseded entry and flagged its now-resolved name as if it were the
     live handoff. Widened both header patterns: the bold one to
-    `\*\*Next\b[^*\n]*\*\*` (anything after "Next" up to the closing
+    `\\*\\*Next\\b[^*\\n]*\\*\\*` (anything after "Next" up to the closing
     "**"), the all-caps one to `NEXT FOR[^:\n]*:` (anything after "NEXT
     FOR" up to the colon), rather than adding another exact string this
     log's phrasing will just as easily drift past again.
