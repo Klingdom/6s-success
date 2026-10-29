@@ -1146,6 +1146,11 @@
       "date": "2026-10-26",
       "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
+    "rotate_backlog_section2_items.py": {
+      "status": "clean",
+      "date": "2026-10-29",
+      "note": "Read in full against its own documented 06:5x-slot fix (the ARCHIVED_MARKER re-archival guard). Verified logic: SECTION_START_RE/NEXT_SECTION_RE bound section 2 correctly, ROW_START_RE/find_rows correctly skip A1-A6 (dateless, ITEMS-ARCHIVE pointers) and already-rotated A7-A29 pointers (SECTION2-ARCHIVE marker). No live defect found; pointer-row non-greedy bold-match assumes no nested ** inside a lead sentence, true today, documented here as a fragility not a bug. --check against real committed file: CLEAN."
+    },
     "rotate_checkin_log.py": {
       "status": "fixed",
       "date": "2026-10-23",

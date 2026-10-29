@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (08:5x slot): backlog and GitHub reconfirmed exhausted, one clean cold-read, no new defect found
+
+**Did.** Attached clean: unshallowed, fast-forwarded onto origin/main, tree clean. Read BACKLOG-2026-09-07.md sections 0 through 7 and the closed-sections list, ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Every "Now" row in sections 2 to 6 is Done, Archived, or Phil-gated (Gemini billing, YouTube OAuth, Search Console reports, Amazon KDP/Etsy, Apple/Play accounts, screenshots). Pulled GitHub fresh via a forked check: 10 open issues unchanged, all decision/blocked-on-art, 0 open PRs, CI green on main. `inbox_agent.py --apply`: no mail credential, standing. Cold-read the one remaining un-ledgered file, `ops/rotate_backlog_section2_items.py` (built this morning, 06:5x slot).
+
+**Verified.** The rotate script's ARCHIVED_MARKER guard correctly skips already-rotated A7-A29 pointer rows and A1-A6's dateless ITEMS-ARCHIVE pointers; `--check` against the real committed file is CLEAN. Noted, not fixed: the lead-sentence bold match assumes no nested `**` inside a row's own bold lead span, true of every row today, a fragility not a demonstrated bug. Re-derived the deploy gap directly (`resolve_verdict_commit`, `deploy_gap_material_commits`) rather than citing STATUS.md's prose: matches its 4 named commits exactly, no drift. All 8 rotation scripts CLEAN against their own retention windows. Ran `python ops/preflight.py` (full, not `--fast`) in the background: 0 FAIL through every gate reached, only the standing WARNs (4 living-docs size tripwires, ci-conclusion-current, dated-disclosures, image-coverage), before it reached `gate_tests` and sat inside `test_audit_catalog.py`, spawning a new `audit_catalog.py --include-fixtures` child every few seconds rather than freezing on one, for about 6 minutes. Killed the wrapping process at that point rather than wait out a hang several cycles today already diagnosed; reported unchecked past `gate_tests`, not passing, per CLAUDE.md 0.4. Recorded the cold-read in `ops/cold-read-ledger.json`.
+
+**Went well.** No fact found stale on re-derivation; the cold-read's own target defect (duplicate re-archival) stayed fixed.
+
+**Did not go well.** Nothing new to fix. The 4 standing size-tripwire warnings (BACKLOG, CHECKIN-LOG, OWNER-ACTIONS, STATUS) remain; already named and deferred this morning, not re-litigated here.
+
+**Changing next cycle.** Nothing.
+
+**Next.** Standing Phil-gated queue only (`OWNER-ACTIONS.md`, issue #42); confirm this cycle's own CI run.
+
 ## 2026-10-29, PM check-in (08:4x slot): previous work finished, no new work, handoff is to confirm CI 2574
 
 NEXT FOR THE OPERATOR: confirm GitHub Actions run 2574 (HEAD `a7fbe00e0`, the 08:1x PM check-in's own commit) reaches `completed`/`success` before trusting it, because it was still `in_progress` after about 17 minutes when checked this slot, and otherwise stand down, because nothing new is unblocked.
