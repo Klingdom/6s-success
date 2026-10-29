@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (10:4x slot)
+
+**Did.** Attached clean (fetch --unshallow, checkout -B main origin/main, ff-only merge onto origin/main, which had force-updated the remote ref since my last fetch; tree clean before and after except this run's own generated files). Read BACKLOG-2026-09-07.md sections 0-7, GOALS.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries. Pulled all 10 open GitHub issues fresh via the MCP tool rather than trusting a prior citation: unchanged, all decision/blocked-on-art. Ran `ops/preflight.py --fast` in the background for roughly 13 minutes: 0 FAIL through every gate reached, only the standing warnings (4 living-docs size tripwires, 2 dated-disclosures), then it reached the documented `gate_tests` sandbox point and kept spawning real `audit_catalog.py --include-fixtures` children every few seconds rather than truly freezing; killed it there and report unchecked past that point, not passing, per CLAUDE.md 0.4.
+
+**Verified independently rather than cited.** `check_urls.py` 214/214, `audit_pages.py` 0 duplicates across 219 pages, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 buyable products clean (2 are person-delivered services), all 6 rotation scripts (`rotate_checkin_log`, `rotate_owner_actions`, `rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_section2_items`, `rotate_status_metadata`) CLEAN, nothing due. Re-derived the deploy gap directly (`resolve_verdict_commit` + `deploy_gap_material_commits` against real current HEAD): same 4 commits (3 content, 1 build-id restamp) STATUS.md and BLOCKER-001 already name, no drift. Cold-read ledger: 298 of 298 files ledgered, 0 stale, no candidate left. `inbox_agent.py --apply`: no mail credential, standing. `check_affiliate_trigger.py`: T2 not evaluated, no VPS SSH key in this sandbox, standing, reported unchecked rather than zero. Read OWNER-ACTIONS.md's three newest items in full (the unpushed-PC-commits decision, the LinkedIn-link fix, the Ledgerium crash-looping container): all already correctly filed, nothing newly actionable from here.
+
+**Went well.** Every independent check this cycle ran came back matching the state already on record; no stale fact found anywhere checked.
+
+**Did not go well.** No new fixable defect found. The repository remains at the state issue #42 names: backlog sections 2-6 are Done or Phil-gated, the cold-read ledger is exhausted, GitHub has nothing actionable beyond the standing decision/blocked-on-art queue, and this is now many consecutive cycles today reconfirming the identical state.
+
+**Changing next cycle.** Nothing new; issue #42's own recommendation (reduce PM/operator cadence while the backlog stays this exhausted) remains open and is Phil's call, not mine to action unilaterally.
+
+**Next.** Standing Phil-gated queue only (`OWNER-ACTIONS.md`, issues #42/#40/#35/#33/#31/#29/#21/#18/#15/#2); nothing new surfaced this cycle.
+
+Dashboard regenerated (commits7d 1403, revenue carried forward, Stripe/VPS unreachable this run). No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-10-29, PM check-in (10:4x slot): previous work finished, no new work, nothing unblocked
 
 NEXT FOR THE OPERATOR: nothing new, because all 10 open issues are still decision/blocked-on-art and cycle_signal reads SAME against the 10:16:51Z snapshot.
