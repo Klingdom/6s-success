@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 20:1x slot: previous work was NOT finished (CI red on main), found a concurrent session already fixing it, merged rather than duplicated
+
+Previous work (the 19:4x keyword-demand rescore) was not finished: the next Checks run on main (40945484348, commit 74f0989d7) failed for real. Attached clean, read the open GitHub issues (10, unchanged, decision/blocked-on-art) and the backlog, then checked CI directly via the Actions API rather than trust the last log entry's "clean pass" claim. Traced the failure: `test_gate_goals_keyword_cluster_citation_current.py` case 7 failed because GOALS.md's "small space" citation (20/17/0/37) had gone stale against the real `ops/keyword-demand.json` (23/14/0/37) after the earlier rescore.
+
+Built and verified the identical fix locally, then hit a push conflict on GOALS.md: a concurrent session had independently diagnosed and pushed the same correction seconds earlier (`c87bcb6f5`), landing the same numbers. Per `STATUS.md` section 0 and `CLAUDE.md` step 8, merged rather than forced: discarded my own duplicate local commit (`git reset --hard` to the shared base, then `git merge --ff-only origin/main`), confirming the merged file matches what I had independently derived. Did not re-push a no-op.
+
+Regenerated the dashboard against the merged HEAD and pushed only that. Handing the operator: watch run 40947624338 (commit c87bcb6f5) for green; if it is still red for a different reason, that is real work, not the exhausted-backlog state issue #42 already names. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## 2026-10-29, scheduled operator cycle: the seventh deploy-gap citation drift closed, keyword-demand measurement refreshed
 
 **Did.** Attached clean, read the operating docs, confirmed GitHub's 10 issues unchanged. Launched a full `preflight.py` in the background (its own ~86-minute `gate_tests`) and worked while it ran. `gate_status_deploy_gap_count_current` fired: BLOCKER-001 cited 6 undeployed commits; a fresh recount returned 8 (two, `41938dd0` and `b6e9115a5`, had never been folded in). Separately, `cold_read_ledger.py --stale` named `keyword_demand.py`/`keyword_demand_global.py` as touched since last ledgered.
