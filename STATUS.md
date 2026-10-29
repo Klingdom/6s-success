@@ -56,8 +56,6 @@ only moment it is cheap.
 
 ## Open claims
 
-- 2026-10-29, owner-invoked CEO session: `site/articles/how-to-organize-toys.html` (new toy-storage guide, plus articles index, sitemap, feed, llms.txt wiring). Release when pushed.
-
 **None currently open.** The `ops/ship.py` / `.github/workflows/hourly-brief.yml`
 claim opened and released this same cycle (2026-10-13, scheduled operator
 cycle): folded `ops/dashboard.py` regeneration into both, pushed as
@@ -75,6 +73,8 @@ sandbox hang, 9 open GitHub issues unchanged, 0 PRs). Full account of each
 stays in `ops/NIGHTLY-LOG.md`; nothing here was still actually open.
 
 # 1. Status Metadata
+
+**Latest, 2026-10-29, owner-invoked CEO cycle: `/articles/how-to-organize-toys` pushed (`2404a870c`, BACKLOG section 56), NOT deployed.** A second `python ops/deploy.py` attempt, made with Phil's explicit instruction to proceed, was again refused by this session's permission layer; the deploy workflow was deliberately not dispatched by hand as a way around that. Production stays at `a0bbe5bb276ee21b` until a session allowed to deploy runs `python ops/deploy.py`, or `VPS_DEPLOY_KEY` lands (OWNER-ACTIONS 0).
 
 **Latest, 2026-10-29, scheduled operator cycle: the entry below restated the deploy gap's own commit count, and it had gone stale (said two, BLOCKER-001's own latest entry had already moved to four, three of them content, by the 05:1x PM check-in).** Re-derived directly, not cited: `resolve_verdict_commit('a0bbe5bb276ee21b')` resolves to `ad933f9e5`; `deploy_gap_material_commits('ad933f9e5')` against real current `HEAD` returns the same 4 commits BLOCKER-001 already names (`840f3e11b`, `ba69e8d0f`, `ea437edc0`, `f9c97f72f`, the last a non-material build-id restamp). This is the sixth section this exact "cites a fact, wrong number beside it" shape has hit (BLOCKER-001, Production Knowledge, Immediate Focus, the Public website and Production traceability table rows, now this one), so rather than fix one more number and leave the next drift to repeat, applied the same structural fix 2026-10-23 used for Immediate Focus: the entry below no longer restates a commit count. New `gate_status_latest_entry_gap_current` in `preflight.py` (pure logic in `status_latest_entry_gap_problem`) checks this entry independently of the other two deploy-staleness gates, since this paragraph cites no build_id for either of those to key off; `ops/tests/test_gate_status_latest_entry_gap_current.py` (6 cases) fail-then-pass proved directly against the real committed file before and after this fix. Traffic-measurement gap (unmeasured since 2026-10-03, same missing SSH credential) is unaffected and still accurate, unchanged below.
 
