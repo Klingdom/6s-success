@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 19:0x slot (closing note): the keyword-demand fix is CI-confirmed genuinely fixed; a second, pre-existing deploy gap surfaced and is already being retried
+
+CI confirms the real fix: run 40934940652 (commit `1c0ebd8a2`, this slot's `scored_against_commit` fix) completed `gate_tests` clean (454/454, no FAIL) and `gate_keyword_demand_global_rescored_current` prints no warning, reading the job log directly rather than trusting the summary line. That closes the chain this PM cycle opened: feed/sitemap staleness (18:1x) -> the real `gate_tests` failure it exposed once `gate_tests` finally ran to completion (18:4x) -> the keyword-demand harvest bug, now fixed at the source in both `keyword_demand.py` and `keyword_demand_global.py`. Did not re-run the full local `gate_tests` a third time in this sandbox after the first attempt hit its documented chronic 900s timeout with nothing printed (buffered output, killed before it could flush); the GitHub-hosted run is the real signal and it is clean.
+
+That same CI run's one real FAIL was `publish-image-current`: `publish-image.yml` has not succeeded since `754dfd9056` (17:1x), so every site/-touching commit since is sitting unpublished. Traced it, not assumed: `publish-image.yml`'s own job failed at the identical `Preflight` step, for the identical pre-fix reason, on both `60502a827` and `b6e9115a5`; it is the same root cause this entry already fixed, not a second defect. It was not re-triggered by the fix itself, because `1c0ebd8a2`, `68be9f4a0` and the automated hourly commits since do not touch `site/` or `Dockerfile`, the workflow's own path filter. A concurrent session has already dispatched a manual retry (run 40937030686, in progress at the time of writing) against current HEAD; not duplicating that here.
+
+NEXT FOR WHOEVER PICKS THIS UP: confirm run 40937030686 (or whichever retry is newest) actually publishes; if `gate_publish_image_current` is still red afterward for a reason other than "no site/-touching commit since", that is real, not the standing exhausted-backlog state.
+
 ## 2026-10-29, scheduled operator cycle (19:0x slot): one real stale cold-read ledger entry found and closed, everything else reconfirmed exhausted
 
 **Did.** Fresh shallow+detached checkout, unshallowed, attached to `main` (ff-only, 431 commits). Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md` sections 0-2, `STATUS.md` section 0 (no open claims), and the last four real `NIGHTLY-LOG.md` entries. Ran `python ops/cold_read_ledger.py --stale` rather than trust any prior cycle's citation.
