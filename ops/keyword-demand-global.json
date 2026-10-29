@@ -29,7 +29,7 @@
       "note": ""
     }
   },
-  "pages_checked": 221,
+  "pages_checked": 222,
   "rows": [
     {
       "query": "area craft activity",
@@ -1484,7 +1484,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -1878,7 +1878,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -1918,7 +1918,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -1938,10 +1938,10 @@
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-store-blankets.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -2182,7 +2182,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -2391,7 +2391,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -2429,7 +2429,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -2466,10 +2466,10 @@
       "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-store-blankets.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -3141,7 +3141,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "bonus rules for outsourced employees",
@@ -3259,7 +3259,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "car organisation essentials",
@@ -3502,7 +3502,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -3521,7 +3521,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -3722,7 +3722,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "coat closet organization ideas",
@@ -3810,7 +3810,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "coat closet organization small",
@@ -4172,7 +4172,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "den ideas eyfs",
@@ -6130,7 +6130,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "family room decorating ideas with tv and fireplace",
@@ -6499,7 +6499,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "foyer design ideas india",
@@ -6575,7 +6575,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "foyer design ideas with mirror",
@@ -9271,7 +9271,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "hooks for outerwear",
@@ -9952,7 +9952,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange a small gallery wall",
@@ -9973,7 +9973,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to arrange a small kids bedroom",
@@ -10141,7 +10141,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -10223,7 +10223,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -10424,7 +10424,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -10658,7 +10658,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange dresser drawers",
@@ -10876,7 +10876,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange gallery wall art",
@@ -10899,7 +10899,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange gas stove",
@@ -10974,7 +10974,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -11039,7 +11039,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -11071,7 +11071,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange outdoor furniture",
@@ -11207,7 +11207,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange pics on wall",
@@ -11251,7 +11251,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to arrange pictures on wall different sizes",
@@ -12739,7 +12739,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to declutter when you use everything",
@@ -13629,7 +13629,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to hang clothes on a drying rack",
@@ -13850,7 +13850,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to hold bench",
@@ -14901,7 +14901,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -15804,7 +15804,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -15842,7 +15842,7 @@
       "best_page_title": "Contact 6S Success: books, quotes, workshops, and press",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/contact.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -17077,7 +17077,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -17117,7 +17117,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -17125,7 +17125,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organise bed pillows",
@@ -18056,7 +18056,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise cleaning tools",
@@ -18141,7 +18141,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise coats",
@@ -18270,7 +18270,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/where-to-start-decluttering.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -18828,7 +18828,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -18868,7 +18868,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -18916,7 +18916,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise my room",
@@ -19274,7 +19274,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise procedures",
@@ -19477,12 +19477,12 @@
         "how to organise outdoor storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "covered",
       "markets": [
         "in"
@@ -20018,7 +20018,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organise under stairs cupboard",
@@ -20396,8 +20396,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/book.html",
-      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
@@ -20536,7 +20536,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a craft room diy",
@@ -21631,7 +21631,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a kids bedroom",
@@ -21869,7 +21869,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize a kitchen pantry",
@@ -22094,10 +22094,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-store-blankets.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -22356,7 +22356,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a living room with toys",
@@ -22430,7 +22430,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a messy living room",
@@ -22452,7 +22452,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a messy workshop",
@@ -22988,7 +22988,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize a pantry with wire shelves",
@@ -23077,7 +23077,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a plant nursery",
@@ -23206,7 +23206,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a small desk without drawers",
@@ -23321,7 +23321,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize a small front entry closet",
@@ -24255,7 +24255,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize baby clothes in nursery",
@@ -24762,7 +24762,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize bathroom counter space",
@@ -24976,11 +24976,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -25005,7 +25005,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -25027,7 +25027,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -25128,7 +25128,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize bedroom clutter",
@@ -26269,7 +26269,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -26334,7 +26334,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -26356,7 +26356,7 @@
       "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -26406,7 +26406,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize closet space",
@@ -26597,7 +26597,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize coat rack",
@@ -26633,7 +26633,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/standards.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -26914,13 +26914,13 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize deep nightstand drawers",
@@ -27449,7 +27449,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize dresser men",
@@ -27975,7 +27975,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize kids book shelf",
@@ -28222,7 +28222,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize large cooking utensils",
@@ -28235,7 +28235,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "gap",
       "markets": [
@@ -28282,7 +28282,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize laundry room without cabinets",
@@ -28340,7 +28340,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -28360,7 +28360,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -28383,7 +28383,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -28429,7 +28429,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -28452,7 +28452,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -28475,7 +28475,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -28724,7 +28724,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize my baking supplies",
@@ -28766,7 +28766,7 @@
       "markets": [
         "gb"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize my hallway closet",
@@ -28785,7 +28785,7 @@
       "markets": [
         "gb"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize my nightstand",
@@ -29337,7 +29337,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize power tools",
@@ -29625,7 +29625,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -29770,7 +29770,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize storage room",
@@ -29935,7 +29935,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize towels and bed sheets",
@@ -30431,7 +30431,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize under sink storage",
@@ -30450,7 +30450,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize vanity",
@@ -30597,7 +30597,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize your bedside table",
@@ -30658,7 +30658,7 @@
       "markets": [
         "gb"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize your hallway closet",
@@ -30677,7 +30677,7 @@
       "markets": [
         "gb"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to organize your home bakery",
@@ -30738,7 +30738,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "how to organize your room middle class",
@@ -31305,7 +31305,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "how to plan a workshop templates",
@@ -32099,8 +32099,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-study-desk.html",
@@ -32121,9 +32121,9 @@
         "how to organise diaper storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
+      "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-an-attic.html",
       "matched_on": "heading",
@@ -32161,9 +32161,9 @@
         "how to organise diaper storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
+      "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
@@ -32203,8 +32203,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -32241,8 +32241,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -32260,8 +32260,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-storage-zone.html",
@@ -32317,8 +32317,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.2,
       "heading_coverage": 0.6,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -32336,8 +32336,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -32355,8 +32355,8 @@
         "how to organize outdoor seating"
       ],
       "room": "",
-      "best_page": "/zones/mudroom-the-seasonal-outdoor-gear.html",
-      "best_page_title": "How to organize the mudroom seasonal outdoor gear",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/zones/patio-or-deck-the-outdoor-seating-zone.html",
@@ -32395,8 +32395,8 @@
         "how to organize outdoor storage"
       ],
       "room": "",
-      "best_page": "/zones/dining-room-the-dining-table.html",
-      "best_page_title": "How to organize the dining room dining table",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/patio-or-deck-the-outdoor-dining-zone.html",
@@ -32414,8 +32414,8 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "best_page_title": "How to organize the family room toy storage",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -33552,7 +33552,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "kitchen organization ideas ikea",
@@ -34204,7 +34204,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "laundry detergent organisation",
@@ -34309,7 +34309,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "laundry room design ideas ikea",
@@ -34721,7 +34721,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "laundry room organization small",
@@ -34791,7 +34791,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -34812,7 +34812,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -34833,7 +34833,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -34852,13 +34852,13 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "linen closet organization bins",
@@ -34909,7 +34909,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -34928,7 +34928,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -34947,7 +34947,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "covered",
       "markets": [
@@ -34966,7 +34966,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -34985,7 +34985,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35004,7 +35004,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35023,7 +35023,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35042,7 +35042,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35084,7 +35084,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35103,7 +35103,7 @@
       "best_page_title": "How to organize the hall closet linen storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -35938,7 +35938,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -35976,7 +35976,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -36119,7 +36119,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "master bathroom accessories list",
@@ -36754,7 +36754,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "master bedroom design",
@@ -37193,7 +37193,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-store-blankets.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -37537,7 +37537,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "mudroom shoe organization ideas",
@@ -38823,7 +38823,7 @@
         "au",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "pantry organisation ideas ikea",
@@ -38989,7 +38989,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "pantry organization ideas dollar tree",
@@ -39168,7 +39168,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "pantry organization ideas with baskets",
@@ -39404,7 +39404,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "primary bathroom ideas",
@@ -41474,7 +41474,7 @@
         "ca",
         "in"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "walk in closet organisation ideas",
@@ -41760,7 +41760,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "walk in closet organizer home depot",
@@ -41817,7 +41817,7 @@
       "markets": [
         "ca"
       ],
-      "in_us_harvest": true
+      "in_us_harvest": false
     },
     {
       "query": "walk in closet organizers",
@@ -42150,8 +42150,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/contact.html",
-      "best_page_title": "Contact 6S Success: books, quotes, workshops, and press",
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/zones/home-office-the-bookshelf-and-reference-zone.html",
@@ -42407,9 +42407,9 @@
         "how to organize detergent and supplies"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-store-blankets.html",
+      "best_page_title": "How to store blankets, and where each kind should live",
+      "coverage": 0.167,
       "heading_coverage": 0.333,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
       "matched_on": "heading",
@@ -42731,7 +42731,7 @@
       "markets": [
         "in"
       ],
-      "in_us_harvest": false
+      "in_us_harvest": true
     },
     {
       "query": "why is a landing called a landing in a house",
@@ -44458,6 +44458,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-26T14:58:24Z",
-  "scored_against_commit": "b014f8a15"
+  "scored_at": "2026-10-29T05:55:04Z",
+  "scored_against_commit": "c42c2be07"
 }
