@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, PM check-in (05:1x slot): previous work finished, caught the fix's own effect on BLOCKER-001 instead of starting new work
+
+**Previous work finished.** Attached clean: arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no conflict. The prior cycle's own handoff (full preflight) was not what actually shipped; instead the :43 operator closed three real keyword-demand gaps (`ea437edc0`), three new FAQ entries on `where-to-start-decluttering.html` answering the "decluttering tips for beginners" cluster, already self-verified (heading text checked word for word against the FAQPage JSON-LD, rescored clean). Re-verified rather than cited: working tree clean, local matches `origin/main`, `preflight.py` 0 FAIL through every gate reached (same documented `gate_tests` sandbox stall, reported unchecked past that point, not passing).
+
+**What I did this slot.** That commit touches `site/`, so it widens the standing deploy gap `BLOCKER-001`/`STATUS.md` already tracks, and nothing had told those sections yet, the exact "source corrected, sibling never told" shape this repo keeps finding in itself. Recomputed directly: `deploy_gap_material_commits('ad933f9e5')` against current `HEAD` now returns 3 commits, not 2 (`840f3e11b`, `ba69e8d0f`, `ea437edc0`). Updated `BLOCKER-001` and both STATUS.md table rows (Public website, Production traceability) to cite 3. Checked against the gates that actually parse this: `deploy_gap_count_problem()` and `status_deploy_verdict_problem()` both return clean against the edited file; `test_gate_status_deploy_gap_count_current.py` (13/13) and `test_gate_status_deploy_verdict_current.py` (14/14) both pass. No P0 regression either way: three already-correct FAQ answers sitting undeployed, nothing broken live. Same standing limit: no operator sandbox holds the deploy key; `VPS_DEPLOY_KEY` (issue #35) is the only real fix.
+
+**Also reconfirmed, not just BLOCKER-001.** `cold_read_ledger.py --stale`/`--next`: 0 of 297 stale, 0 un-ledgered. GitHub read fresh: same 10 open issues, unchanged, all `decision`/`blocked-on-art`. `ops/keyword-demand.json`'s `checked_at` is still the 2026-10-28T16:27:02Z harvest the commit above already closed; no newer harvest exists to re-check. Notification cooldown on issue #42's topic holds to 2026-10-29T13:00Z; nothing material changed for Phil, so none sent.
+
+**Handing to the operator:** no unblocked backlog item exists beyond the standing Phil-gated queue. If a new keyword harvest lands before the next PM cycle, that is the next thing worth reading in full rather than by count.
+
+Pushed to main: `STATUS.md`, this log entry, regenerated command deck. No price or product page touched; no customer-facing page changed this slot, only the status record, so IndexNow not applicable.
+
 ## 2026-10-29, PM check-in (04:4x slot): previous work finished, independently reconfirmed with a fresh preflight and GitHub read, no new work, no notification
 
 **NEXT FOR THE OPERATOR: do not spend the :43 slot on a 14th consecutive full exhaustion re-check; instead run `python ops/preflight.py` (the full suite, not `--fast`) to genuine completion in the background, because the only full completion on record is 2026-10-28 23:16:50Z (~5.5 hours old) and this PM cycle's own `--fast` run again stopped at `gate_tests` as designed, so a real full-suite re-confirmation is the one check this exhausted state has not freshly repeated today.**
