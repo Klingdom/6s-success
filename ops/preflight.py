@@ -255,6 +255,15 @@ def release_preflight_lock(path: str = PREFLIGHT_RUN_LOCK) -> None:
 
 
 def fail(gate: str, msg: str) -> None:
+    # Found 2026-10-29: a run that hits the documented gate_tests sandbox
+    # hang is killed before reaching the final "for g, m in FAIL: print(...)"
+    # loop in main(), so a real FAIL recorded earlier in the run (before
+    # gate_tests) was invisible in the log, only maybe_record_cycle_signal's
+    # "not recorded, this run has failing gate(s)" line hinted one existed,
+    # by name. Same root cause run_gate's own heartbeat line was fixed for:
+    # nothing printed until the whole run finished. Print immediately,
+    # alongside the heartbeat, so a truncated run still names its failure.
+    print(f"  FAIL  {gate:22} {msg}", file=sys.stderr, flush=True)
     FAIL.append((gate, msg))
 
 
