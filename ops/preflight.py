@@ -22218,6 +22218,53 @@ def gate_backlog_done_items_rotated() -> None:
              % (n_rows, n_bytes))
 
 
+def gate_backlog_section2_items_rotated() -> None:
+    """BACKLOG-2026-09-07.md section 2's free-form "A<N>, date, ..."
+    journal rows must not carry more than a generous buffer past ops/
+    rotate_backlog_section2_items.py's own retention window.
+
+    Found 2026-10-29, scheduled operator cycle: gate_living_docs_total_
+    size_tripwire flagged BACKLOG-2026-09-07.md at 332KB against its
+    150KB tripwire right after gate_backlog_closed_sections_not_oversized
+    and gate_backlog_done_items_rotated both ran clean. Section 2 alone
+    was 72KB, in 23 free-form A7-A29 rows that ops/rotate_backlog_done_
+    items.py's own docstring explicitly defers as a different shape from
+    the 17 whitelisted struck-through rows it rotates. This gate and its
+    rotate tool close that gap for section 2 specifically, the same way
+    gate_backlog_closed_sections_not_oversized closed it for sections 8+.
+
+    A WARNING, not a FAIL: an oversized file wastes every later cycle's
+    reading time (STEP 1 of the operating prompt reads this file in full
+    every cycle); it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from a row drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_backlog_section2_items_
+    rotated.py builds a synthetic file with a dated row well past the
+    buffered window and asserts this gate warns, then confirms a freshly
+    rotated copy stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_section2_items as rbsi
+    text = io.open(path, encoding="utf-8").read()
+    buffered_days = rbsi.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    n_rows, overdue, n_bytes, overdue_bytes = rbsi.count_stats(text, cutoff)
+    if overdue:
+        warn("backlog-section2-items-rotated",
+             "BACKLOG-2026-09-07.md section 2 carries %d dated journal "
+             "row(s) older than %s (the %d-day retention window plus a "
+             "7-day buffer), %d bytes, out of %d dated rows live (%d "
+             "bytes total). Run `python ops/rotate_backlog_section2_"
+             "items.py --apply` to move them into "
+             "BACKLOG-2026-09-07-SECTION2-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rbsi.DEFAULT_RETENTION_DAYS,
+                overdue_bytes, n_rows, n_bytes))
+
+
 LIVING_DOC_SIZE_LIMITS = {
     "STATUS.md": 110_000,
     "CHECKIN-LOG.md": 110_000,
@@ -31282,6 +31329,7 @@ def main() -> int:
     run_gate(gate_status_production_table_rows_not_oversized)
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_backlog_done_items_rotated)
+    run_gate(gate_backlog_section2_items_rotated)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
     run_gate(gate_nightly_log_ordering)

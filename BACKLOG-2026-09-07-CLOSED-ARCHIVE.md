@@ -2,6 +2,47 @@
 
 Numbered "## N. Closed/Done ..." sections older than ops/rotate_backlog_closed.py's retention window, moved here verbatim from BACKLOG-2026-09-07.md by that script. Never hand-edited. Newest first.
 
+## 10. Closed 2026-10-14: ops/NIGHTLY-LOG.md's own unbounded growth
+
+Not a backlog row (nothing above named it); found by a cold-read agent this
+cycle asked to find the top unblocked item, after it confirmed sections 2
+through 9 are genuinely exhausted (every row Done, Phil-gated, or closed by
+decision, matching `ops/cycle_signal.py --check`'s independent SAME verdict
+and `ops/cold_read_ledger.py`'s 199-of-199 saturation) and looked for
+something nobody had named yet rather than stop at "nothing to pick."
+
+`ops/NIGHTLY-LOG.md` had grown to 8.1MB / 57,105 lines / 2,795 entries back
+to 2026-08-23, never rotated since the file existed, because nothing ever
+checked whether it needed to be. Three gates already in `ops/preflight.py`
+(`gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`,
+`gate_cold_read_handoff_not_stale`) each read the whole file on every single
+preflight run to look at a handful of recent entries, and STEP 1 of the
+operating prompt itself asks every cycle to read "the last four entries,"
+which on this file meant opening and searching 8MB each time. That is a real
+and compounding cost: this is the same shape issue #42 (open, Phil-gated)
+names for the autonomous cadence generally, just never traced to this one
+file, and section 7's own "source corrected, artifact never re-derived from
+it" complaint applies here too, pointed at the log that records every other
+instance of it.
+
+**Fixed, not merely diagnosed.** New `ops/rotate_nightly_log.py` moves
+entries older than a 14-day retention window into `ops/NIGHTLY-LOG-
+ARCHIVE.md`, verbatim and in their existing order; nothing is deleted
+(`CLAUDE.md` section 54, Failure Is Information). Entry dates are resolved
+by searching each heading line for a `YYYY-MM-DD` anywhere in it (about a
+quarter of real entries have no leading date, reusing a neighbour's date
+instead, e.g. `"## PM check-in (10:1x slot): ..."`) and inheriting forward
+from the nearest earlier dated entry when a heading names none at all.
+Applied once this cycle: the live log is now 780 entries / 2.24MB (was
+2,795 / 8.06MB), archive holds the rest. New `gate_nightly_log_not_oversized`
+in `preflight.py` (a WARNING, matching its two neighbours) fires once the
+log drifts more than retention-plus-7-days past the window again, so this
+does not quietly regrow back to the same cost; `ops/tests/
+test_rotate_nightly_log.py` and `ops/tests/test_gate_nightly_log_not_
+oversized.py` both fail-then-pass proved. Re-verified clean directly against
+the real rotated file and against the real (pre-rotation) file before that,
+not assumed.
+
 ## 9. Closed 2026-10-13: dashboard staleness fixed at the source, not re-gated
 
 By 2026-10-13 every row in sections 2 to 6 was Done, Phil-gated, or closed by
