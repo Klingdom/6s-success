@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-29T04:56:59Z against 222 page(s) at commit d32e90661. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-29T19:56:53Z against 224 page(s) at commit 5742c536d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 222 published page titles: 1231 covered, 1422 partial, 155 gap.
+**Queries found:** 2808. Checked against 224 published page titles: 1263 covered, 1390 partial, 155 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -104,7 +104,7 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1422.
+Showing the top 60 of 1390.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -135,8 +135,6 @@ Showing the top 60 of 1422.
 | 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to declutter a kitchen counter | How to organize the kitchen prep counter | 0.67 |
-| 1 | how to declutter a living room | The Living Room Deck: 69 cards, free to read | 0.67 |
-| 1 | how to declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to organize a pantry with deep shelves | How to organize the pantry dry goods shelves | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
@@ -149,7 +147,6 @@ Showing the top 60 of 1422.
 | 2 | best way to organize charging station | How to organize the family room charging station | 0.67 |
 | 2 | bonus room storage | How to organize the family room blanket storage | 0.67 |
 | 2 | building a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 2 | declutter living room | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 2 | family room layout ideas | The Family Room Deck: 69 cards, free to read | 0.67 |
 | 2 | guest bathroom decorating ideas | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
 | 2 | guest bedroom design ideas | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
@@ -160,7 +157,6 @@ Showing the top 60 of 1422.
 | 2 | how to build an entertainment center | How to organize the family room entertainment center | 0.67 |
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
 | 2 | how to organize a dining room hutch | The Dining Room Deck: 61 cards, free to read | 0.67 |
-| 2 | how to organize a living room with toys | The Living Room Deck: 69 cards, free to read | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the pantry baking supplies | 0.67 |
 | 2 | how to organize car detailing supplies | How to organize the garage car care supplies | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
@@ -168,6 +164,10 @@ Showing the top 60 of 1422.
 | 2 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 2 | how to stock a guest bathroom | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
 | 2 | linen closet organization hacks | How to organize the hall closet linen storage | 0.67 |
+| 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
+| 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
+| 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
+| 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 
 ## By room
 
@@ -180,11 +180,11 @@ Showing the top 60 of 1422.
 | Guest Bathroom | 22 | 2 | 15 | 5 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
-| Home Office | 58 | 1 | 29 | 28 |
+| Home Office | 58 | 1 | 24 | 33 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 95 | 2 | 48 | 45 |
 | Laundry Room | 71 | 0 | 17 | 54 |
-| Living Room | 86 | 2 | 54 | 30 |
+| Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |
 | Nursery | 62 | 2 | 25 | 35 |
 | Pantry | 58 | 1 | 31 | 26 |

@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 222,
+  "pages_checked": 224,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -998,10 +998,10 @@
       "best_page": "/articles/how-to-organize-a-basement.html",
       "best_page_title": "How to organize a basement, one zone at a time",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "basement storage ideas ikea",
@@ -1622,7 +1622,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -1641,7 +1641,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -1660,7 +1660,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -1754,7 +1754,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -2010,7 +2010,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -2028,7 +2028,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -2046,7 +2046,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -2154,7 +2154,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -2497,7 +2497,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2587,7 +2587,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -2641,7 +2641,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -2713,7 +2713,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2803,7 +2803,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -3345,7 +3345,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -5613,7 +5613,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -5631,7 +5631,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -5651,7 +5651,7 @@
       "best_page_title": "Why is the thing you use every day the hardest one to reach?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -5671,7 +5671,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -5742,9 +5742,9 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -5854,7 +5854,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -5871,10 +5871,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "declutter media room",
@@ -5890,7 +5890,7 @@
       "best_page_title": "How to organize the living room media center",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -5925,9 +5925,9 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -6017,7 +6017,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -6052,9 +6052,9 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -6071,7 +6071,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -6143,9 +6143,9 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -6511,9 +6511,9 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -6859,7 +6859,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -6877,7 +6877,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -8185,7 +8185,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -8203,7 +8203,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -8312,7 +8312,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -8330,7 +8330,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -8474,7 +8474,7 @@
       "best_page_title": "How to organize the entryway drop zone",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -10172,12 +10172,12 @@
         "foyer organization ideas"
       ],
       "room": "",
-      "best_page": "/deck/entryway-print-and-play.html",
-      "best_page_title": "The Entryway Deck: the printable PDF has moved",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "coverage": 0.333,
       "heading_coverage": 0.333,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "gap"
     },
     {
@@ -10612,7 +10612,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -12241,7 +12241,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -12443,7 +12443,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -12587,10 +12587,10 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "home office organization ideas for small spaces",
@@ -13225,7 +13225,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -14075,7 +14075,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -14293,7 +14293,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -15311,7 +15311,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -15348,7 +15348,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -15419,13 +15419,13 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter a child's room",
@@ -15440,10 +15440,10 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter a closet",
@@ -15654,10 +15654,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to declutter a one bedroom apartment",
@@ -15673,7 +15673,7 @@
       "best_page_title": "Why is the thing you use every day the hardest one to reach?",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -15699,7 +15699,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -15737,7 +15737,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -15756,10 +15756,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/living-room-the-side-tables-and-lighting.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter an entire house",
@@ -16057,7 +16057,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -16075,7 +16075,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -16089,13 +16089,13 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter kitchen cabinets",
@@ -16170,10 +16170,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to declutter my apartment",
@@ -16296,13 +16296,13 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to declutter quickly",
@@ -16344,7 +16344,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -16396,13 +16396,13 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter your closet of clothes",
@@ -16473,10 +16473,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to declutter your room step by step",
@@ -17094,7 +17094,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.25,
       "heading_coverage": 0.25,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -17220,7 +17220,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -17869,8 +17869,8 @@
         "how to organize sorting hampers"
       ],
       "room": "",
-      "best_page": "/how-we-make-money.html",
-      "best_page_title": "How we make money: what we sell, and what we do not earn on",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -18016,8 +18016,8 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/how-we-make-money.html",
-      "best_page_title": "How we make money: what we sell, and what we do not earn on",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -18366,7 +18366,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -18772,7 +18772,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -18899,7 +18899,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -19189,7 +19189,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -19245,7 +19245,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -20220,13 +20220,13 @@
         "how to declutter a home office"
       ],
       "room": "Home Office",
-      "best_page": "/home-office-deck.html",
-      "best_page_title": "The Home Office Deck: 66 cards, free to read",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a home office for productivity",
@@ -20263,7 +20263,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -20339,7 +20339,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -20771,7 +20771,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -20790,7 +20790,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21017,10 +21017,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a long living room",
@@ -21770,7 +21770,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21788,7 +21788,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21806,7 +21806,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21978,7 +21978,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22018,7 +22018,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22075,7 +22075,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22170,7 +22170,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22730,7 +22730,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -23943,7 +23943,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -24036,7 +24036,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -24054,7 +24054,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -24344,7 +24344,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -24380,7 +24380,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25007,12 +25007,12 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/disclaimer.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -25821,7 +25821,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -26039,7 +26039,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/family-room-the-primary-media-zone.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -27008,7 +27008,7 @@
       "best_page_title": "How to organize the family room game storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27212,7 +27212,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/why-the-same-spot-never-gets-clean.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -27319,10 +27319,10 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize home office paperwork",
@@ -27337,10 +27337,10 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize home office supplies",
@@ -27520,7 +27520,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -27552,11 +27552,11 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -28044,10 +28044,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize makeup on bathroom counter",
@@ -28556,7 +28556,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -28701,7 +28701,7 @@
       "best_page_title": "How to organize the hall closet paper goods storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -28718,10 +28718,10 @@
       "best_page": "/articles/everything-needs-an-assigned-home.html",
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/dining-room-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize paper files at work",
@@ -28737,7 +28737,7 @@
       "best_page_title": "How to organize guest welcome and work surface",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -28755,7 +28755,7 @@
       "best_page_title": "How to organize the hall closet paper goods storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -28772,10 +28772,10 @@
       "best_page": "/articles/everything-needs-an-assigned-home.html",
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/everything-needs-an-assigned-home.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize paperwork",
@@ -28787,12 +28787,12 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bedroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -29427,7 +29427,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30236,7 +30236,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/family-room-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30272,7 +30272,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -30286,12 +30286,12 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -30304,13 +30304,13 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize toys in kids bedroom",
@@ -30344,10 +30344,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/living-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize toys in small space",
@@ -30363,7 +30363,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30377,11 +30377,11 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/zones/family-room-the-toy-and-play-zone.html",
-      "best_page_title": "How to organize the family room toy storage",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30399,7 +30399,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30689,7 +30689,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -30800,7 +30800,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/family-room-the-primary-media-zone.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -30945,10 +30945,10 @@
       "best_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
       "best_page_title": "How to organize the hall closet paper goods storage",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/dining-room-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize your shop",
@@ -31110,7 +31110,7 @@
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -31200,7 +31200,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -31780,7 +31780,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -32397,8 +32397,8 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
@@ -33627,7 +33627,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -33828,7 +33828,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -34174,7 +34174,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.4,
       "heading_coverage": 0.8,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -34248,7 +34248,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.6,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34338,7 +34338,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34374,7 +34374,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -34392,7 +34392,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34428,7 +34428,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34446,7 +34446,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -34464,7 +34464,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -34482,7 +34482,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -35368,10 +35368,10 @@
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "large storage boxes for organizing groceries",
@@ -35387,7 +35387,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -35405,7 +35405,7 @@
       "best_page_title": "How to organize the family room toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/family-room-the-toy-and-play-zone.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -36438,7 +36438,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -36601,7 +36601,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.4,
       "heading_coverage": 0.8,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -36786,10 +36786,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/living-room-the-side-tables-and-lighting.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "living room organization ideas pinterest",
@@ -36824,7 +36824,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -36861,7 +36861,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -36878,10 +36878,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.4,
-      "heading_coverage": 0.8,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "living room storage ideas for toys",
@@ -36896,10 +36896,10 @@
       "best_page": "/living-room-deck.html",
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "luxury primary bathroom ideas",
@@ -37261,7 +37261,7 @@
       "best_page_title": "How to organize the primary bathroom linen and towel storage",
       "coverage": 0.4,
       "heading_coverage": 0.6,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -38341,7 +38341,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -38623,7 +38623,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -38803,7 +38803,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/home-office-deck.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -38966,7 +38966,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -38986,7 +38986,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -39005,7 +39005,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -39042,7 +39042,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -39078,7 +39078,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -39852,10 +39852,10 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "organize small bedroom ideas",
@@ -39872,7 +39872,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -39940,13 +39940,13 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "organize walk in closet",
@@ -40233,7 +40233,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -40287,7 +40287,7 @@
       "best_page_title": "Is that really a backup, or are you just storing it?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -40598,7 +40598,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -40743,7 +40743,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/why-the-same-spot-never-gets-clean.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -40803,7 +40803,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -41026,7 +41026,7 @@
       "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -41046,7 +41046,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -41064,7 +41064,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -41084,7 +41084,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -42675,10 +42675,10 @@
       "best_page": "/articles/how-long-to-keep-a-maybe.html",
       "best_page_title": "How long should you keep something you can't decide about?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "patio and deck ideas",
@@ -43812,7 +43812,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -43868,7 +43868,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44261,11 +44261,11 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -44284,7 +44284,7 @@
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/where-to-start-decluttering.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44376,7 +44376,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44412,7 +44412,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.2,
       "heading_coverage": 0.6,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44469,7 +44469,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -44783,7 +44783,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -44802,7 +44802,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -45038,7 +45038,7 @@
       "best_page_title": "How to organize the patio or deck outdoor dining",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -45184,7 +45184,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -45202,7 +45202,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -45238,7 +45238,7 @@
       "best_page_title": "How to organize the guest bathroom vanity storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -45671,7 +45671,7 @@
       "best_page_title": "How to declutter sentimental items without the guilt",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -46690,7 +46690,7 @@
       "best_page_title": "How to organize the kids bedroom toy storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -46759,13 +46759,13 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "storage ideas for toys",
@@ -46777,11 +46777,11 @@
         "how to organize toy storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-toys.html",
+      "best_page_title": "How to organize toys so a child can put them away",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/kids-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -46853,7 +46853,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -46889,7 +46889,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -46925,7 +46925,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -47569,7 +47569,7 @@
       "best_page_title": "The Living Room Deck: 69 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48723,8 +48723,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -49083,12 +49083,12 @@
         "how to organize paper goods storage"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-paperwork.html",
+      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "heading",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -49593,10 +49593,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "what is the primary bathroom",
@@ -50236,7 +50236,7 @@
       "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -50253,10 +50253,10 @@
       "best_page": "/articles/more-storage-wont-fix-clutter.html",
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "why is my closet always cold",
@@ -50615,7 +50615,7 @@
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-paperwork.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -51381,6 +51381,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-29T04:56:59Z",
-  "scored_against_commit": "d32e90661"
+  "scored_at": "2026-10-29T19:56:53Z",
+  "scored_against_commit": "5742c536d"
 }

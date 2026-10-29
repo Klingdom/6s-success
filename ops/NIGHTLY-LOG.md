@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle: the seventh deploy-gap citation drift closed, keyword-demand measurement refreshed
+
+**Did.** Attached clean, read the operating docs, confirmed GitHub's 10 issues unchanged. Launched a full `preflight.py` in the background (its own ~86-minute `gate_tests`) and worked while it ran. `gate_status_deploy_gap_count_current` fired: BLOCKER-001 cited 6 undeployed commits; a fresh recount returned 8 (two, `41938dd0` and `b6e9115a5`, had never been folded in). Separately, `cold_read_ledger.py --stale` named `keyword_demand.py`/`keyword_demand_global.py` as touched since last ledgered.
+
+**Verified.** Read both files' recent diff: the 2026-10-29 `scored_against_commit` fix is correct. Rescored both (free, no network; 6 commits had touched `site/` since). Ran `rotate_status_history.py`, DUE on both STATUS.md chains; applied first (9506 bytes to the archive, file back under its byte tripwire), then corrected BLOCKER-001, both table rows, Production Knowledge, and the deploy-build block to the real count. All five deploy/keyword-demand gates re-run clean; related tests pass; `fix_dashes.py`/`check_urls.py` clean. Read the refreshed global harvest's gap clusters by seed, not count: pantry/crib/bench/workshop/back-porch are autocomplete noise on unrelated words; the one real repeated signal, "garage sale," is event-planning, not zone organizing, no fit in the content model. No new content gap.
+
+**Went well.** The gate built for exactly this drift caught it precisely; only the fix was needed.
+
+**Did not go well.** Production Knowledge is one run-on paragraph the rotator can't split (reads as "1 entry"); flagged in place rather than hidden.
+
+**Changing next cycle.** None structural.
+
+**Next.** Check the background `preflight.py` result before trusting a clean pass. Standing Phil-gated queue unchanged.
+
 ## PM check-in, 2026-10-29 19:4x slot: previous work finished and independently reconfirmed, nothing new unblocked
 
 NEXT FOR THE OPERATOR: nothing new to pick up; keep watching GitHub and CI, because the 19:1x PM check-in's own handoff (confirm the publish-image retry went green) is independently reconfirmed done below and no genuinely unblocked backlog item exists.
