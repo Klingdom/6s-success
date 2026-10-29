@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, scheduled operator cycle (08:0x slot): found and fixed a sixth instance of "cites a fact, wrong number beside it" in STATUS.md, closed by pointing at BLOCKER-001 instead of a seventh number-matching gate
+
+**Did.** Attached clean: fetched, unshallowed (336 commits behind), fast-forwarded onto `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries, `STATUS.md`, `OWNER-ACTIONS.md`. 10 open GitHub issues re-pulled fresh (unchanged, all `decision`/`blocked-on-art`; issue #42's own thread already documents today's exhaustion in detail, not re-raised). `inbox_agent.py --apply`: no mail credential, standing. With epics 1-5 again dead-ending at Phil (VPS SSH, Stripe key, KDP/Etsy accounts), re-derived rather than trusted STATUS.md's own deploy-gap claim: `deploy_gap_material_commits` against real current HEAD returns 4 commits, but section 1's "Latest" entry still said "two site commits", a sixth section hit by the exact "cites a fact, wrong number beside it" shape BLOCKER-001/Production Knowledge/Immediate Focus/two table rows already carry named gates for. Rather than add a seventh number-matching gate, applied 2026-10-23's own structural fix (used for Immediate Focus): the entry now points at BLOCKER-001 instead of restating the count. New `gate_status_latest_entry_gap_current` (`status_latest_entry_gap_problem`) catches a future restatement that goes stale; `ops/tests/test_gate_status_latest_entry_gap_current.py` (6 cases) fail-then-pass proved directly against the real file, before and after. Ran the due `rotate_status_metadata.py --apply` (1 entry, 470 bytes, to archive). Regenerated the command deck.
+
+**Verified.** The three status-gate functions (`status_latest_entry_gap_problem`, `status_deploy_verdict_problem`, `deploy_gap_count_problem`) all return clean against the real committed file after the fix. Existing tests for the two sibling gates still pass (14/14, 13/13) and `test_rotate_status_metadata.py` still passes (7/7), confirming the new entry's `**Latest,`/`**Earlier,` shape did not break that script's parser. `check_urls.py` 214/214, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `link_graph_report.py` 0 orphans. `preflight.py --fast` ran clean through every gate up to the documented `gate_tests` sandbox hang (confirmed via `ps`, legitimately running test files one at a time, not stuck); left running in the background past this entry rather than killed early.
+
+**Went well.** Caught a real, live defect by re-deriving a fact instead of trusting a two-day-old prose claim, exactly what step 5d asks for.
+
+**Did not go well.** First two attempts at the new regex missed the real phrasing ("two site commits" has a word between the count and "commits", and spells the number out); fixed before shipping, not after.
+
+**Changing next cycle:** nothing.
+
+**Next:** standing Phil-gated queue unchanged (VPS_DEPLOY_KEY/issue #35, Gemini billing, YouTube OAuth, KDP/Etsy accounts, issue #42). Confirm the backgrounded full `preflight.py` run reaches a clean `gate_tests` verdict.
+
 ## 2026-10-29, PM check-in (07:1x slot): previous work finished, closed the open handoff (CI run 2568), no new work
 
 Previous work was finished. The 06:5x operator cycle's own entry already fail-then-pass proved its new `gate_backlog_section2_items_rotated` and ran `preflight.py --fast` clean through every gate reached. Attached clean: fetch, unshallow, `checkout main`, fast-forward onto `origin/main`, tree clean both before and after.

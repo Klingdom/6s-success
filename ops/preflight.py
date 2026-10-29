@@ -18766,6 +18766,123 @@ def gate_status_deploy_gap_count_current() -> None:
         warn("status-deploy-gap-count-current", problem)
 
 
+def status_latest_entry_gap_problem(status_text: str, real_count: int) -> str:
+    """Pure logic for gate_status_latest_entry_gap_current, testable
+    without git.
+
+    Found 2026-10-29, scheduled operator cycle: `gate_status_deploy_gap_
+    count_current` only ever checks the count next to BLOCKER-001's own
+    build_id citation. Section 1's "Latest" entry, under "# 1. Status
+    Metadata", independently restates the same fact in its own prose
+    ("production now trails the repository by two site commits") with no
+    build_id anywhere nearby for the existing section-map checks to key
+    off, so it is invisible to both gate_status_deploy_verdict_current and
+    gate_status_deploy_gap_count_current. It had drifted (said two while
+    BLOCKER-001's own latest entry had already moved to four, three of
+    them content, per the 2026-10-29 05:1x PM check-in), the sixth section
+    this exact "cites a fact, wrong number beside it" shape has hit
+    (BLOCKER-001, Production Knowledge, Immediate Focus, the Public
+    website and Production traceability table rows, now this one).
+
+    Rather than widen yet again to match one more number, this applies
+    the structural fix 2026-10-23 already used for Immediate Focus: the
+    "Latest" entry should point at BLOCKER-001 as the one place this count
+    lives, not restate it. So this only fires when the paragraph BOTH
+    states a bare commit count AND does not carry that pointer phrase.
+    Once an entry points at BLOCKER-001 instead, a stale number inside it
+    is no longer this check's business (there isn't one to check).
+
+    Deliberately does not touch "Prior state, kept because the shape
+    recurs" history elsewhere in this file: only the single paragraph
+    starting "**Latest," is examined, the same scoping
+    deploy_gap_count_problem already uses for BLOCKER-001's own latest
+    entry, for the same reason (older entries intentionally keep stale
+    numbers as a dated record).
+
+    Returns '' if there is no such paragraph, it already points at
+    BLOCKER-001, it names no bare commit count at all, or the number it
+    does name agrees with real_count.
+    """
+    m = re.search(r"\*\*Latest,.*?(?=\n\n\*\*Older entries|\Z)",
+                  status_text, re.DOTALL)
+    if not m:
+        return ""
+    entry = m.group(0)
+    if "BLOCKER-001" in entry:
+        return ""
+    # The real 2026-10-29 defect spelled the count out ("two site
+    # commits"), not as a digit, so this needs the same small
+    # word-to-number map gate_risks_register_current already uses for
+    # RISKS.md's own spelled-out counts, not just a digit/"zero" match.
+    words = {"zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
+              "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+              "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13}
+    # "two SITE commits", not "two commits": allow one optional word
+    # between the count and "commit(s)", the phrasing this section
+    # actually uses and deploy_gap_count_problem's own tighter BLOCKER-001
+    # pattern does not need to.
+    matches = list(re.finditer(
+        r"\b(\d+|%s)\s+(?:\w+\s+)?commits?\b" % "|".join(words), entry,
+        re.IGNORECASE))
+    if not matches:
+        return ""
+    word = matches[-1].group(1).lower()
+    cited = words[word] if word in words else int(word)
+    if cited != real_count:
+        return (
+            "STATUS.md section 1's 'Latest' entry cites a gap of %d "
+            "commit(s), but a fresh count of commits since the last "
+            "confirmed deploy, touching site/ or Dockerfile, is %d. "
+            "Either correct the number or point the entry at BLOCKER-001 "
+            "instead of restating it." % (cited, real_count))
+    return ""
+
+
+def gate_status_latest_entry_gap_current() -> None:
+    """STATUS.md section 1's 'Latest' entry must not restate a stale
+    deploy-gap commit count.
+
+    Found 2026-10-29, scheduled operator cycle: this entry said "two site
+    commits" while a fresh recount (and BLOCKER-001's own already-current
+    latest entry) put the real gap at four, three of them content. Full
+    account in status_latest_entry_gap_problem()'s own docstring.
+
+    A WARNING, matching every sibling deploy-staleness gate: nothing in
+    the current commit caused a real redeploy to happen or not happen,
+    and this should not block unrelated work, only flag prose worth
+    correcting.
+
+    Proof this can fail: ops/tests/test_gate_status_latest_entry_gap_
+    current.py calls status_latest_entry_gap_problem() directly with a
+    synthetic "Latest" entry citing "two site commits" against a
+    real_count of 4 and asserts the warning fires by name, then confirms
+    it clears once the entry either states 4 or points at BLOCKER-001
+    instead.
+    """
+    status_path = os.path.join(ROOT, "STATUS.md")
+    verdict_path = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    if not os.path.exists(status_path) or not os.path.exists(verdict_path):
+        return
+    status_text = io.open(status_path, encoding="utf-8").read()
+    try:
+        verdict = json.loads(io.open(verdict_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    build_id = verdict.get("build_id")
+    if not build_id:
+        return
+    try:
+        commit = resolve_verdict_commit(build_id)
+        if commit is None:
+            return
+        real_count = len(deploy_gap_material_commits(commit))
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = status_latest_entry_gap_problem(status_text, real_count)
+    if problem:
+        warn("status-latest-entry-gap-current", problem)
+
+
 def b9_claim_problems(claims: list, diagnosis: dict, now: str,
                        stale_hours: int = 3) -> list:
     """Pure logic for gate_b9_claims_current, testable without disk or git.
@@ -31674,6 +31791,7 @@ def main() -> int:
     run_gate(gate_status_currency)
     run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_status_deploy_gap_count_current)
+    run_gate(gate_status_latest_entry_gap_current)
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
