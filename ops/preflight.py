@@ -268,6 +268,9 @@ def fail(gate: str, msg: str) -> None:
 
 
 def warn(gate: str, msg: str) -> None:
+    # Same reasoning as fail() above: a truncated run should still name a
+    # warning it already found, not just a failure.
+    print(f"  warn  {gate:22} {msg[:150]}", file=sys.stderr, flush=True)
     WARN.append((gate, msg))
 
 
