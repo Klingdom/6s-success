@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
-      "date": "2026-10-27",
-      "note": "Re-read the one unread change since the 2026-10-26 ledger date: the gate_status_metadata_not_oversized addition (5c0ce1586, this cycle's own rotate_status_metadata.py build). WARN-only, wired ahead of gate_tests alongside its seven siblings, buffer of 3, fail-then-pass proved in ops/tests/test_gate_status_metadata_not_oversized.py (7/7). No defect found."
+      "status": "fixed",
+      "date": "2026-10-29",
+      "note": "fail()/warn() now print immediately AND the final report reprinted the same lines a second time, a confirmed duplicate in every completed run's log. Removed the final per-item reprint, kept the summary count; the two targeted tests and fix_dashes --check still pass."
     },
     "prerender_shop.py": {
       "status": "clean",

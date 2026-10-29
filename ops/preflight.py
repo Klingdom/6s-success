@@ -31721,16 +31721,14 @@ def main() -> int:
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 
-    for g, m in FAIL:
-        # Not truncated, unlike warn below. A FAIL is rare and actionable;
-        # cutting it to 150 chars twice lost the one piece of evidence
-        # (the actual file/link pair) needed to chase a transient hit on
-        # no-stale-hardcoded-stripe-link, a payment-safety gate, on both
-        # 2026-10-02 occurrences.
-        print(f"  FAIL  {g:22} {m}")
-    for g, m in WARN:
-        print(f"  warn  {g:22} {m[:150]}")
-
+    # fail()/warn() themselves print this exact line the moment each is
+    # called (2026-10-29, so a run killed before this point, e.g. by the
+    # documented gate_tests sandbox hang, still names what it already
+    # found). Reprinting the same FAIL(g, m)/WARN(g, m) pairs here a second
+    # time, every single run, was pure duplication once that fix landed:
+    # confirmed live by diffing a completed CI run's own log against
+    # itself, each of its 34 warnings appearing twice, word for word, a
+    # few minutes apart. The lists still back the summary line below.
     print()
     if FAIL:
         print(f"  {len(FAIL)} gate(s) failed, {len(WARN)} warning(s). "

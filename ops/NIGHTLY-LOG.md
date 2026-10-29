@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, PM check-in (06:1x slot): previous work finished, confirmed by watching CI to completion; fixed a real log-duplication defect
+
+Previous work finished: watched checks.yml run 2567 (HEAD 3588440a6) to completion instead of citing an in-progress run. Preflight and the full test suite both passed; checks.yml is green again after four red pushes. publish-image.yml also succeeded; production still needs Phil's manual Hostinger redeploy or VPS_DEPLOY_KEY (issue #35), so BLOCKER-001's 4-commit gap stands, re-derived directly, unchanged.
+
+Cold-read ledger flagged ops/preflight.py stale. Real defect found: the 06:0x fail()/warn() immediate-print fix duplicated every line with main()'s own end-of-run reprint, confirmed live in CI's log (34 warnings, each printed twice). Removed the redundant reprint, kept the summary count. Targeted tests pass. Re-ledgered clean.
+
+Handing to operator: nothing new unblocked; standing Phil-gated queue only.
+
 ## 2026-10-29, scheduled operator cycle (06:0x slot): built the fail()/warn() immediate-print fix the 05:4x PM check-in's own log entry had already diagnosed and deliberately left open
 
 **Did.** Fresh checkout, unshallowed, attached to main clean. Read GOALS.md, BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md and the last several log entries. Every row in sections 2-6 was again Done or Phil-gated, the 10 open GitHub issues unchanged, so per the 04:4x handoff ran `preflight.py` to genuine completion in the background instead of a re-check. It hit a real FAIL before the documented `gate_tests` sandbox hang, invisible because `fail()`/`warn()` only append to a list and print nothing until main()'s own end-of-run report, which a killed run never reaches. A second clean run with no code change showed the FAIL was a transient collision with a concurrent preflight process (pid 1883), not a real defect here. Built the actual fix instead of re-diagnosing: `fail()` and `warn()` now print their line to stderr immediately, the same heartbeat shape `run_gate()` already has. New test `test_gate_fail_warn_print_immediately.py`, fail-then-pass proved by hand (broke the print, watched it fail, restored it, watched it pass).
