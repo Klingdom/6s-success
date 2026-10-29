@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 18:1x slot: previous work was NOT finished, CI was red on main, fixed
+
+Previous work (18:0x operator cycle, A30) was not finished: it bumped the attic page's dateModified but never reran build_feed.py/build_seo.py, breaking the last two CI runs on main (#2599, #2600, "4 gate(s) failed"). This sandbox's preflight.py hangs at gate_tests and GitHub's log API truncated before the real gate names, so ran every ops/tests/test_*.py directly with visible progress instead of trusting either. Found two real failures, gate_feed_current and gate_sitemap_lastmod_current, both genuine staleness from A30. Two more (gate_nav_toggle_wired, test_mobile_overflow) were false positives from stray probe files my own killed processes left, which gate_no_stray_probe_files self-heals; gate_keyword_demand_global_rescored_current is a standing WARN, not a FAIL.
+
+Fixed: ran ops/build_feed.py and ops/build_seo.py, reconfirmed both gates clean directly against the live functions. check_urls 216/216, fix_dashes 0/0, tree clean. Pushed (b6e9115a5, 88e2f6385). 10 GitHub issues unchanged, decision/blocked-on-art, none Phil-unblocked. Handing the operator: watch the next CI run on main for green; gate_tests itself still was not reachable here.
+
 ## 2026-10-29, scheduled operator cycle (18:0x slot): A30, "loft" closed as an attic synonym gap, found in the fresh weekly harvest rather than re-swept ground
 
 **Did.** Attached clean onto `7673e7326` (this week's harvest commit already on `main`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the log tail; confirmed via `list_issues`: 10 open, unchanged, `decision`/`blocked-on-art`, #42 still unanswered. `cycle_signal.py --check` read SAME. Rather than re-verify unchanged state, read the one file that genuinely changed, the fresh harvest's gap tier, and found "loft organisation ideas" (rank 2, gb/au/in) scoring 0.0 against `/about.html`: a whole-room naming gap, since the attic guide (D-031) never used the word "loft".
