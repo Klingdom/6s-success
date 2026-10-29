@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## 2026-10-29, PM check-in (07:1x slot): previous work finished, closed the open handoff (CI run 2568), no new work
+
+Previous work was finished. The 06:5x operator cycle's own entry already fail-then-pass proved its new `gate_backlog_section2_items_rotated` and ran `preflight.py --fast` clean through every gate reached. Attached clean: fetch, unshallow, `checkout main`, fast-forward onto `origin/main`, tree clean both before and after.
+
+Closed the standing open item from two cycles back rather than re-raising it: the 06:4x PM check-in's handoff was to confirm GitHub Actions run 2568 (commit `16dc5d704`, the log-duplication fix) reached `completed`/`success` before trusting it. Read it directly via the Actions API: `completed`/`success`, confirmed. Run 2569 (06:4x's own commit) is also `completed`/`success`. Run 2570, covering the current HEAD including the new section-2 rotation gate, was still `in_progress` after about 16 minutes, consistent with this suite's normal duration; not yet confirmed, so not claimed.
+
+Re-verified rather than cited: `cycle_signal.py --check` read CHANGED against the last snapshot (expected, `BACKLOG-2026-09-07.md` was rewritten by the rotation), so ran `preflight.py --fast` fresh. 0 FAIL through every gate reached, including the new gate; it recorded its own fresh clean partial-pass snapshot at `gate_image_coverage`, then hit the documented `gate_tests` sandbox hang. Killed there after ~2.5 minutes, reported unchecked past that point, not passing, per CLAUDE.md 0.4. `cold_read_ledger.py --stale`: 0 of 297. `check_urls.py`: 214/214. `fix_dashes.py --check`: 0 em/en dashes. `inbox_agent.py --check`: no mail credential, standing. GitHub read fresh: 10 open issues, unchanged since 2026-10-25, all `decision`/`blocked-on-art`.
+
+No new work started. Nothing in `BACKLOG-2026-09-07.md` sections 2-6 is genuinely unblocked beyond the standing Phil-gated queue; issue #42 already names this exhaustion cadence, not repeated again here. `CHECKIN-LOG.md`'s own hourly entries confirm the same: no outcome metric has moved in several hours.
+
+**Handing the operator:** confirm CI run 2570 reaches `completed`/`success` on the current HEAD before trusting the new rotation gate's own claim of a clean preflight pass; nothing else unblocked beyond the standing queue.
+
 ## 2026-10-29, scheduled operator cycle (06:5x slot): built the section-2 journal-row rotation gate_living_docs_total_size_tripwire was asking for, and caught the pointer re-rotation bug before shipping it
 
 **Did.** Unshallowed and attached clean to main (328 commits behind). Read GOALS.md references, BACKLOG-2026-09-07.md sections 0-7, STATUS.md, ROADMAP-2026-2029.md, CLAUDE.md, the last several log entries. GitHub direct: 10 open issues, unchanged, all decision/blocked-on-art. No mail credentials. Every row in sections 2-6 was again Done or Phil-gated, so ran preflight.py --fast in the background. It warned living-docs-total-size-tripwire on BACKLOG-2026-09-07.md (332KB vs 150KB), CHECKIN-LOG.md and OWNER-ACTIONS.md. Ran the three due rotations (rotate_backlog, rotate_backlog_closed, rotate_checkin_log --apply), all now CLEAN by their own retention windows, but BACKLOG-2026-09-07.md only shrank to 266KB: section 2 alone was 72KB of free-form A7-A29 journal rows, a shape rotate_backlog_done_items.py's own docstring explicitly defers. Built ops/rotate_backlog_section2_items.py (same 14-day retention convention, archives trailing narrative to a new BACKLOG-2026-09-07-SECTION2-ARCHIVE.md, keeps each row's bold lead sentence live so cross-references by id still resolve), plus gate_backlog_section2_items_rotated wired into preflight.py.
