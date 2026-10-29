@@ -18,6 +18,20 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main: BACKLOG-2026-09-07.md, its three archive files plus the new SECTION2 one, CHECKIN-LOG.md/ARCHIVE, ops/preflight.py, ops/rotate_backlog_section2_items.py, the new test, regenerated command deck. No price or product page touched, no site page changed; not customer-facing, IndexNow not applicable.
 
+## 2026-10-29, PM check-in (06:4x slot): previous work finished; handoff is to confirm CI on the 06:1x commit, not to start anything new
+
+**NEXT FOR THE OPERATOR: confirm GitHub Actions run 2568 (HEAD `16dc5d704`, the 06:1x PM check-in's own log-duplication fix) reaches `completed`/`success` before trusting that commit's claim of a clean preflight.py, because it was still `in_progress` when checked this slot and this sandbox cannot run the full test suite to completion itself.**
+
+**Previous work finished.** Attached clean: arrived shallow and detached, `fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no conflict, nothing to fast-forward (already current). `git status` clean both before and after. Re-verified rather than cited: `cold_read_ledger.py --stale` 0 of 297, `--next` confirms all 297 tracked files ledgered. `preflight.py` (full, not `--fast`) run fresh in the background: 0 FAIL through every gate reached, including `gate_ops_python_syntax`, the catalogue/deck/schema/image-coverage run and the preflight-lock gate; only the standing warnings every recent cycle has already named (`ci-conclusion-current` unchecked, this sandbox cannot query GitHub Actions from inside the script; the three living-docs size tripwires; `dated-disclosures`; `image-coverage`'s gitignored source pictures). Stopped it manually at the documented `gate_tests` sandbox hang rather than let it sit for the 16th time this day; not reported as passing past that point, per CLAUDE.md 0.4.
+
+**CI, not this sandbox, is the real check this slot.** Run 2567 (commit `3588440a6`) is `completed`/`success`. Run 2568 (commit `16dc5d704`, the 06:1x cycle's own fix) was still `in_progress` when read directly via the Actions API, several minutes after it started; the 06:1x entry's own claim that "the full 450+ file test suite passed" refers to the *prior* run (2567), not this one, so that specific commit's own correctness is not yet independently confirmed by anything that can actually finish. GitHub read fresh: 10 open issues, unchanged since 2026-10-25, all `decision`/`blocked-on-art`; 0 open PRs. Issue #42 (the cadence-exhaustion decision) has no new comment from Phil; nothing material changed to warrant a repeat of the same escalation.
+
+**Backlog checked directly, not cited.** Read `BACKLOG-2026-09-07.md` sections 2 through 7 in full. Every row is struck through Done/Archived, correctly held pending traffic (section 5), or explicitly Phil-gated: C5 (Gemini billing), C6 (YouTube OAuth paste), and section 6's six owner gates. Nothing unblocked for an autonomous session beyond what the last several cycles already found exhausted.
+
+**Did not start new work this slot,** per this routine's own instruction not to begin something large three minutes before the operator, and because inventing a close-out task against a backlog issue #42 already names as fully exhausted would be exactly the cost that issue flags. The one concrete, bounded thing left undone is watching run 2568 finish, which is the operator's handoff above.
+
+Pushed to main: this log entry, regenerated command deck. No price, product or site page touched; not customer-facing, IndexNow not applicable.
+
 ## 2026-10-29, PM check-in (06:1x slot): previous work finished, confirmed by watching CI to completion; fixed a real log-duplication defect
 
 Previous work finished: watched checks.yml run 2567 (HEAD 3588440a6) to completion instead of citing an in-progress run. Preflight and the full test suite both passed; checks.yml is green again after four red pushes. publish-image.yml also succeeded; production still needs Phil's manual Hostinger redeploy or VPS_DEPLOY_KEY (issue #35), so BLOCKER-001's 4-commit gap stands, re-derived directly, unchanged.
