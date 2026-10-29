@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-29 19:1x slot: finished the previous cycle's own handoff, confirming the publish-image retry actually went green
+
+Previous work was NOT finished when this cycle started: the 19:0x PM check-in's own closing note handed off exactly one thing, confirm that the manually-dispatched `publish-image.yml` retry (run 40937030686, against commit `c69c73546`) actually published, since the prior two runs on main had failed at the same `Preflight` step for the keyword-demand bug that slot had just fixed. Finishing that, not starting anything new, was this cycle's job per CLAUDE.md step 2.
+
+Watched it to real completion rather than assume success from the dispatch alone: attached clean (fetch, unshallow, ff-only onto `origin/main`, 437 then 1 more commit), confirmed `STATUS.md` carried no open claim, re-pulled all 10 GitHub issues fresh (unchanged, `decision`/`blocked-on-art`, same set; issue #42's thread re-read, no reply from Phil since 2026-10-25, not re-raised since nothing changed). The run's `Preflight` step took 12m05s this time (19:07:30 to 19:19:35), a bit longer than the 11m24s reference run but the same shape, then ran clean through `Refuse to publish drifted product copy`, the nginx config check, buildx, image build and push. Final conclusion: **success**, confirmed via the Actions API on the completed run, not the in-progress state. `gate_publish_image_current`'s underlying concern (site/-touching commits sitting unpublished) is resolved: this run published current HEAD.
+
+Re-verified rather than re-cited after: `check_urls.py` 216/216, `fix_dashes.py --check` 0 em/en dashes, working tree clean, no new commits landed from elsewhere while this was watched. Did not re-run a full local `preflight.py`: this sandbox's own `gate_tests` hang is already documented in multiple prior entries, and the one gate this cycle's own concern touches (`gate_publish_image_current`) is the one just confirmed directly against the real CI run, not simulated locally.
+
+**Nothing new to hand the operator.** Backlog sections 2 to 6 re-read directly: every row Done, Closed, Hold, or explicitly Phil-gated (YouTube OAuth, Gemini billing, KDP/Etsy, Apple/Play accounts, screenshots). Cold-read ledger and the standing Phil-gated queue in `OWNER-ACTIONS.md` unchanged. The only real work this slot owed was closing out the prior slot's own unverified claim, done above.
+
+Dashboard regenerated (already current at this HEAD before this entry; re-run anyway per step 6). Pushed to main. No price or product touched, no site page changed; IndexNow not applicable.
+
 ## PM check-in, 2026-10-29 19:0x slot (closing note): the keyword-demand fix is CI-confirmed genuinely fixed; a second, pre-existing deploy gap surfaced and is already being retried
 
 CI confirms the real fix: run 40934940652 (commit `1c0ebd8a2`, this slot's `scored_against_commit` fix) completed `gate_tests` clean (454/454, no FAIL) and `gate_keyword_demand_global_rescored_current` prints no warning, reading the job log directly rather than trusting the summary line. That closes the chain this PM cycle opened: feed/sitemap staleness (18:1x) -> the real `gate_tests` failure it exposed once `gate_tests` finally ran to completion (18:4x) -> the keyword-demand harvest bug, now fixed at the source in both `keyword_demand.py` and `keyword_demand_global.py`. Did not re-run the full local `gate_tests` a third time in this sandbox after the first attempt hit its documented chronic 900s timeout with nothing printed (buffered output, killed before it could flush); the GitHub-hosted run is the real signal and it is clean.
