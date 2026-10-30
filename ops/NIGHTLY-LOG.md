@@ -15917,3 +15917,23 @@ Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashb
 ## PM check-in, 2026-10-16 00:1x slot
 
 Previous work (23:5x operator, 23:4x PM) was finished, verified myself. Attached clean: unshallowed, fast forwarded 570 commits onto origin/main, no reset or force, tree clean. preflight.py hung again at the documented gate_tests sandbox limit, 0 FAIL before it. Ran the standing checks directly: check_urls.py 213/213, audit_pages.py 0/218 duplicates, affiliate.py clean (165 documents), fix_dashes.py 0/0, cold_read_ledger.py 0/204 stale and 0 un-ledgered, mobile npm test 3 suites passing. GitHub: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Nothing new genuinely unblocked; this is the same exhausted/Phil-gated state issue #42 already names, so not re-notifying. Dashboard regenerated. Standing Phil-gated list and the 10 issues are what remains for the operator.
+
+## Scheduled operator cycle, 2026-10-30 12:0x slot
+
+**Did:** Attached per STEP 0 (unshallowed, 572 commits, `checkout main`, ff-only onto `origin/main`, clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. GitHub re-read directly via the API: 10 issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs, `checks.yml` green. `inbox_agent.py --apply`: no mail credential, unchecked, same standing gap.
+
+**`preflight.py` run unbuffered: 0 FAIL through every gate up to and including `gate_image_coverage`, killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4.** `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `affiliate.py --check` all clean.
+
+**Found one real, in-scope gap rather than repeating the exhausted-state finding a sixth time.** Read the 2026-10-29 weekly global keyword harvest's `gap`-tier rows sorted by `best_rank` directly rather than trusting a prior cycle's pick: "how to organise a kitchen corner cupboard" (rank 4, gb/au/in) scored 0.333 against `kitchen-deck.html`. Checked the Kitchen zones' own `purpose`/`done_looks_like` text in `content.json` before picking a target: the Lower Cabinet and Cookware Zone's deep, low pot-and-pan storage is what a corner cupboard holds. Added "corner cupboard" to `zone-also-called.json` (A31, precedent A15/A21/A23/A24/A25/A29/A30), reran `ops/build_zone_pages.py` (self-chained through canonical links, landmarks, PWA, AVIF, fingerprint, sitemap).
+
+**Verified, not assumed.** `best_by(..., "head_words")` rescored directly moves the query from `gap` (0.333) to `covered` (1.0, matched on the zone page's own new heading). `check_urls.py` (218/218), `audit_pages.py` (223/0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, the 2 known service SKUs), `audit_visual.py --all --mobile` (228 pages, 0 findings beyond the already-documented font-load race on 20 pages) all clean.
+
+**Went well:** sorting the harvest's own gap tier by `best_rank` rather than re-reading a prior cycle's narrative found a real, unclaimed item in minutes.
+
+**Did not go well:** the deploy gap widened again, by this cycle's own commit, to 12 (9 content); same standing `VPS_DEPLOY_KEY` limit, not worked around. Same documented `gate_tests` sandbox hang.
+
+**Changing next cycle:** none.
+
+**Next:** the global harvest's remaining gap-tier rows at rank 5+ are mostly out of scope on inspection (classroom benches, gas-fire stones, outdoor handrails); the standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues are what remains otherwise.
+
+Pushed to main. `ops/zone-also-called.json`, `site/zones/kitchen-the-lower-cabinets-and-cookware.html`, `site/sitemap.xml`, `BACKLOG-2026-09-07.md`, `STATUS.md` (BLOCKER-001 and the two deploy-gap table rows widened to 12/9), dashboard regenerated. `ops/indexnow.py --submit` run: could not reach the site to confirm its own key file is served from this sandbox, so it correctly refused to submit rather than guess; reported unchecked, not done, per `CLAUDE.md` 0.4.
