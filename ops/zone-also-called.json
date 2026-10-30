@@ -103,6 +103,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-29 (gb, au, in): 'how to organise a kitchen corner cupboard', rank 4, 0.333 coverage, scored to kitchen-deck.html"
+  },
+  "Kitchen|Upper Cabinet Zone": {
+   "names": [
+    "dinnerware cabinet"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-30 (au): 'how to organise dinnerware', rank 5, 0.0 coverage, scored to /about.html via tie-break since no page used the word 'dinnerware'. Zone purpose ('Light storage at eye level and above for the dishes you reach for every day') and its own straighten pass ('dinner plates and everyday bowls at eye level') confirm the semantic match. Named 'dinnerware cabinet', not the bare word 'dinnerware': 'dinnerware' is the contents, not a name anyone calls this cabinet, and the also-called heading reads as a zone-name synonym ('Also called the X'), so the bare noun alone would misread as a claim nobody calling it that actually makes. 'Dinnerware cabinet' still carries the word the query searches for."
   }
  }
 }

@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 19:0x slot: A32, "dinnerware" zone synonym closed, one near-miss caught before shipping
+
+**Did.** Attached per step 0: arrived shallow and detached, unshallowed (628 commits), checkout main, merge --ff-only onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0 through 7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own last four entries directly, all independently reaching the same exhausted/Phil-gated verdict.
+
+**Verified before picking anything.** `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `cold_read_ledger.py`: 0/298 stale, 0 un-ledgered candidates, tier still fully exhausted. `affiliate.py --check` clean (166 documents). GitHub re-read live: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, standing gap. `BACKLOG-2026-09-07.md` sections 2-6: every row Done, Archived, Hold or Phil-gated.
+
+**Found and closed A32: a real zone synonym gap, same method A31 used an hour earlier.** `ops/keyword-demand-global.json`'s re-scored global harvest (2,170 rows, 143 gaps) sorted by `best_rank`: "how to organise dinnerware" (rank 5, au) scored to `/about.html` at 0.0 coverage. Checked against `content.json` before touching anything: the Kitchen's Upper Cabinet Zone purpose is "Light storage at eye level and above for the dishes you reach for every day" and its own straighten pass says "dinner plates and everyday bowls at eye level", an exact semantic match, and not the Lower Cabinet and Cookware Zone A31 had just closed for "corner cupboard" (pots/pans, not dishes).
+
+**Caught a real near-miss before it shipped.** A first pass added the bare word "dinnerware" to `zone-also-called.json`, which renders as "Also called the dinnerware": a zone-NAME claim, and nobody calls their upper cabinets "the dinnerware" (dinnerware is the contents, not a name for the cabinet), unlike every real precedent in that file ("corner cupboard", "master bathroom vanity", "snacks zone"), which are all names people actually use for the zone itself. Renamed to "dinnerware cabinet" before regenerating or verifying anything downstream, which still carries the searched word and reads honestly as "Also called the dinnerware cabinet". Not a shipped defect, so no new preflight gate: this is an editorial judgment call (not every bare noun is wrong, "snacks zone" and "corner cupboard" are both fine), not a mechanically checkable pattern, and it is the same care A25/A26/A29 already exercised on this same file.
+
+**Verified after fixing, not before.** Reran `ops/build_zone_pages.py` (self-chained: canonical links, landmarks, PWA, AVIF, fingerprint, sitemap), confirmed the real shipped heading reads "Also called the dinnerware cabinet". `ops/keyword_demand_global.py --rescore` moved the real file's gap count 143 to 142, covered 1022 to 1023, `heading_coverage` 1.0 against `/zones/kitchen-the-upper-cabinets.html`. `check_urls.py` 218/218, `audit_pages.py` 0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` clean, `link_graph_report.py` 0 orphans (min 2 inbound), `check_sellable.py` 124/126 (2 known service SKUs). `ops/audit_visual.py` scoped to the one changed page, desktop and mobile, 0 findings each; the full `--all --mobile` sweep still times out in this sandbox (the documented headless-Chromium limit), but a single page ran to completion both ways, which the last several cycles had not tried. `preflight.py --fast` ran every gate through `gate_image_coverage` with 0 FAIL, killed at the documented `gate_tests` hang, reported unchecked, not passing.
+
+**Went well:** scoping `audit_visual.py` to one page instead of `--all` got a real pass rather than another timeout, worth other cycles trying when only one or two pages changed.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) still open.
+
+**Changing next cycle:** when a cycle changes one or two pages, scope `audit_visual.py` to them by `--page` rather than defaulting straight to `--all --mobile` and reporting it unchecked.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged; the next un-scored gap-tier row for whichever cycle reads it next.
+
+Pushed to main. One zone page edited (`site/zones/kitchen-the-upper-cabinets.html`), `ops/zone-also-called.json`, `ops/keyword-demand-global.json` (rescored), `BACKLOG-2026-09-07.md` (A32), command deck regen. No price or product touched; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-10-30 18:4x slot
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated, and none of the 10 issues is the operator's to decide.

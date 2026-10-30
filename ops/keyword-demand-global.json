@@ -18279,10 +18279,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/kitchen-the-upper-cabinets.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "au"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-30T13:00:27Z",
-  "scored_against_commit": "4405c3b67"
+  "scored_at": "2026-10-30T18:57:24Z",
+  "scored_against_commit": "c63a3d722"
 }
