@@ -2,6 +2,38 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 12:1x slot: previous work was NOT finished, CI was red on main, fixed and reshipped
+
+**Previous work was not finished.** `checks.yml`'s own latest completed run on main (`41053123277`, commit `4b51332a6`) came back `failure`, not the green the prior cycle's commit message assumed. Checked the real job logs rather than trusting the push: two real gate failures, not the documented `gate_tests` sandbox hang. First, `gate_nightly_log_ordering` caught the exact append-not-prepend defect section 63 of `BACKLOG-2026-09-07.md` closed a few hours earlier, recurred: the 12:0x operator cycle's own entry landed after the legacy 2026-10-16 tail instead of at the top, 15,900+ lines from where "newest first" says to look. Second, `gate_build_id` failed: `site/build-id.txt` still said `0f629007fe34b46e` while the real site hashes to `c66859772cca7e71`, stale since before this cycle too.
+
+**Fixed both at the root, not by rerunning anything.** Moved the misplaced entry (byte-identical content, confirmed by sorting both versions' lines and diffing) from the end of `ops/NIGHTLY-LOG.md` to the top, above the 11:4x entry. Ran `python ops/build_id.py` to regenerate the real hash. Verified directly rather than assumed: re-ran the gate's own ordering logic against the fixed file (clean), ran `ops/tests/test_gate_nightly_log_ordering.py` (8/8) and `ops/tests/test_nightly_log.py` (10/10), confirmed `build-id.txt` now matches the computed hash. Standing checks after: `check_urls.py` (218/218), `audit_pages.py` (223/0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126, the 2 known service SKUs), `link_graph_report.py` (0 orphans), all clean. GitHub re-read directly: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs.
+
+**Did not go well:** this is the second time today the exact append-not-prepend shape has landed on `ops/NIGHTLY-LOG.md`; a gate catching it after the fact is working as designed, but nothing yet stops it recurring a third time. Worth a future cycle building a small prepend-only append helper for this file rather than relying on every cycle to read the "newest first" instruction correctly under STEP 1's "last four entries" phrasing, the same ambiguity the gate's own docstring already names from 2026-09-05 and 2026-10-15.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43. Watching this push's CI run to confirm it actually goes green before calling this closed.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `site/build-id.txt`, dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
+## Scheduled operator cycle, 2026-10-30 12:0x slot
+
+**Did:** Attached per STEP 0 (unshallowed, 572 commits, `checkout main`, ff-only onto `origin/main`, clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. GitHub re-read directly via the API: 10 issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs, `checks.yml` green. `inbox_agent.py --apply`: no mail credential, unchecked, same standing gap.
+
+**`preflight.py` run unbuffered: 0 FAIL through every gate up to and including `gate_image_coverage`, killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4.** `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `affiliate.py --check` all clean.
+
+**Found one real, in-scope gap rather than repeating the exhausted-state finding a sixth time.** Read the 2026-10-29 weekly global keyword harvest's `gap`-tier rows sorted by `best_rank` directly rather than trusting a prior cycle's pick: "how to organise a kitchen corner cupboard" (rank 4, gb/au/in) scored 0.333 against `kitchen-deck.html`. Checked the Kitchen zones' own `purpose`/`done_looks_like` text in `content.json` before picking a target: the Lower Cabinet and Cookware Zone's deep, low pot-and-pan storage is what a corner cupboard holds. Added "corner cupboard" to `zone-also-called.json` (A31, precedent A15/A21/A23/A24/A25/A29/A30), reran `ops/build_zone_pages.py` (self-chained through canonical links, landmarks, PWA, AVIF, fingerprint, sitemap).
+
+**Verified, not assumed.** `best_by(..., "head_words")` rescored directly moves the query from `gap` (0.333) to `covered` (1.0, matched on the zone page's own new heading). `check_urls.py` (218/218), `audit_pages.py` (223/0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, the 2 known service SKUs), `audit_visual.py --all --mobile` (228 pages, 0 findings beyond the already-documented font-load race on 20 pages) all clean.
+
+**Went well:** sorting the harvest's own gap tier by `best_rank` rather than re-reading a prior cycle's narrative found a real, unclaimed item in minutes.
+
+**Did not go well:** the deploy gap widened again, by this cycle's own commit, to 12 (9 content); same standing `VPS_DEPLOY_KEY` limit, not worked around. Same documented `gate_tests` sandbox hang.
+
+**Changing next cycle:** none.
+
+**Next:** the global harvest's remaining gap-tier rows at rank 5+ are mostly out of scope on inspection (classroom benches, gas-fire stones, outdoor handrails); the standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues are what remains otherwise.
+
+Pushed to main. `ops/zone-also-called.json`, `site/zones/kitchen-the-lower-cabinets-and-cookware.html`, `site/sitemap.xml`, `BACKLOG-2026-09-07.md`, `STATUS.md` (BLOCKER-001 and the two deploy-gap table rows widened to 12/9), dashboard regenerated. `ops/indexnow.py --submit` run: could not reach the site to confirm its own key file is served from this sandbox, so it correctly refused to submit rather than guess; reported unchecked, not done, per `CLAUDE.md` 0.4.
+
 ## PM check-in, 2026-10-30 11:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision + 2 blocked-on-art issues) and OWNER-ACTIONS.md, VPS_DEPLOY_KEY first, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Archived or gated on Phil.
@@ -15917,23 +15949,3 @@ Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashb
 ## PM check-in, 2026-10-16 00:1x slot
 
 Previous work (23:5x operator, 23:4x PM) was finished, verified myself. Attached clean: unshallowed, fast forwarded 570 commits onto origin/main, no reset or force, tree clean. preflight.py hung again at the documented gate_tests sandbox limit, 0 FAIL before it. Ran the standing checks directly: check_urls.py 213/213, audit_pages.py 0/218 duplicates, affiliate.py clean (165 documents), fix_dashes.py 0/0, cold_read_ledger.py 0/204 stale and 0 un-ledgered, mobile npm test 3 suites passing. GitHub: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Nothing new genuinely unblocked; this is the same exhausted/Phil-gated state issue #42 already names, so not re-notifying. Dashboard regenerated. Standing Phil-gated list and the 10 issues are what remains for the operator.
-
-## Scheduled operator cycle, 2026-10-30 12:0x slot
-
-**Did:** Attached per STEP 0 (unshallowed, 572 commits, `checkout main`, ff-only onto `origin/main`, clean, no reset or force). Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0, 2-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. GitHub re-read directly via the API: 10 issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs, `checks.yml` green. `inbox_agent.py --apply`: no mail credential, unchecked, same standing gap.
-
-**`preflight.py` run unbuffered: 0 FAIL through every gate up to and including `gate_image_coverage`, killed at the documented `gate_tests` headless-Chromium sandbox hang, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4.** `check_urls.py`, `audit_pages.py`, `fix_dashes.py --check`, `cold_read_ledger.py --stale`/`--next` (0 stale, 0 un-ledgered), `affiliate.py --check` all clean.
-
-**Found one real, in-scope gap rather than repeating the exhausted-state finding a sixth time.** Read the 2026-10-29 weekly global keyword harvest's `gap`-tier rows sorted by `best_rank` directly rather than trusting a prior cycle's pick: "how to organise a kitchen corner cupboard" (rank 4, gb/au/in) scored 0.333 against `kitchen-deck.html`. Checked the Kitchen zones' own `purpose`/`done_looks_like` text in `content.json` before picking a target: the Lower Cabinet and Cookware Zone's deep, low pot-and-pan storage is what a corner cupboard holds. Added "corner cupboard" to `zone-also-called.json` (A31, precedent A15/A21/A23/A24/A25/A29/A30), reran `ops/build_zone_pages.py` (self-chained through canonical links, landmarks, PWA, AVIF, fingerprint, sitemap).
-
-**Verified, not assumed.** `best_by(..., "head_words")` rescored directly moves the query from `gap` (0.333) to `covered` (1.0, matched on the zone page's own new heading). `check_urls.py` (218/218), `audit_pages.py` (223/0 findings), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126, the 2 known service SKUs), `audit_visual.py --all --mobile` (228 pages, 0 findings beyond the already-documented font-load race on 20 pages) all clean.
-
-**Went well:** sorting the harvest's own gap tier by `best_rank` rather than re-reading a prior cycle's narrative found a real, unclaimed item in minutes.
-
-**Did not go well:** the deploy gap widened again, by this cycle's own commit, to 12 (9 content); same standing `VPS_DEPLOY_KEY` limit, not worked around. Same documented `gate_tests` sandbox hang.
-
-**Changing next cycle:** none.
-
-**Next:** the global harvest's remaining gap-tier rows at rank 5+ are mostly out of scope on inspection (classroom benches, gas-fire stones, outdoor handrails); the standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues are what remains otherwise.
-
-Pushed to main. `ops/zone-also-called.json`, `site/zones/kitchen-the-lower-cabinets-and-cookware.html`, `site/sitemap.xml`, `BACKLOG-2026-09-07.md`, `STATUS.md` (BLOCKER-001 and the two deploy-gap table rows widened to 12/9), dashboard regenerated. `ops/indexnow.py --submit` run: could not reach the site to confirm its own key file is served from this sandbox, so it correctly refused to submit rather than guess; reported unchecked, not done, per `CLAUDE.md` 0.4.
