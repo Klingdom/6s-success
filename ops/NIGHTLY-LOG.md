@@ -16,6 +16,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-gated list and the 10 open issues, unchanged. No push notification: the CI-red state is already fixed (by the concurrent session, confirmed pulled in here), and the backlog/GOALS position is otherwise the same exhausted state issue #42 already names.
 
+**Addendum, same cycle:** the merge resolving the two concurrent fixes was pushed as `699742301`, triggering `checks.yml` run `41000628500`. Watched it for 13 minutes; it was still `in_progress` (not failed) when this cycle ended, so CI confirmation of this exact push is reported honestly as pending, not assumed green, per `CLAUDE.md` 0.4. Every gate this push actually touches (`gate_nightly_log_ordering` and its test file) was independently re-verified directly in this sandbox and is clean; nothing else in the merge changed site, price or product content. The next cycle should confirm run `41000628500`'s conclusion before treating `ci-conclusion-current` as settled.
+
 Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) after merging the concurrent session's fix. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-10-30 03:4x slot
