@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30: full independent re-verification, no new defect found
+
+**Did.** Shallow/detached checkout (issue #27's shape); unshallowed, checkout main, ff-only onto origin/main, clean. Read BACKLOG-2026-09-07.md sections 0-7 and 14-61, GOALS.md/ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 14, recent NIGHTLY-LOG.md entries.
+
+**Verified directly, not cited.** preflight.py: 0 FAIL through gate_image_coverage, hung at the documented gate_tests sandbox limit (killed, CPU flat ~17 min); unchecked past there. Checks CI for HEAD still in_progress after 25+ min, left unchecked rather than assumed green. check_urls.py 217/217, audit_pages.py 0 dup, fix_dashes.py 0/0, affiliate.py clean (165 docs). cold_read_ledger.py 0/298 stale, 0 un-ledgered. Both US and global keyword-demand harvests: 0 gap-tier rows in either, so content/SEO is exhausted too, not just cited. inbox_agent.py: no mail credential, unchecked. GitHub: 10 issues unchanged, 0 open PRs.
+
+**Chased the standing size-tripwire WARN on CHECKIN-LOG.md/OWNER-ACTIONS.md instead of re-citing it.** CHECKIN-LOG.md's 611 of 615 entries are near-identical boilerplate; its own rotate tool is CLEAN. The raw tripwire fires purely because 30 days of hourly entries arithmetically exceeds 110KB, already found and correctly deferred to issue #42's cadence decision by 4+ prior cycles; did not re-propose the same call a fifth time. OWNER-ACTIONS.md's overage is real content across 23 live items, not a correction chain.
+
+**Nothing new unblocked.** No push notification: the same state issue #42 names, reconfirmed dozens of times; another would be noise.
+
+**Went well:** independently re-checked several "known" claims rather than trusting the log; they held.
+
+**Did not go well:** same gate_tests sandbox limit; CI unusually slow this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list, 10 issues, unchanged.
+
+Pushed to main. Dashboard regenerated, honestly carrying revenue/traffic/deploy forward (no Stripe/VPS egress here). No price, product or page touched.
+
 ## PM check-in, 2026-10-30 01:1x slot: previous work finished, confirmed via a completed CI run rather than a local gate_tests hang, nothing new unblocked
 
 Previous work (00:4x PM and the concurrent 00:56 operator cycle) was finished. Attached clean: fetch, unshallow (487 commits), checkout main, ff-only onto origin/main, tree clean throughout. Rather than run a local preflight that would hit the documented gate_tests sandbox hang, checked GitHub's own Checks run for commit 294885db8 (the merge that landed the 00:56 cycle's rotations): it was in progress on attach and finished success at 01:15:53Z, a full preflight plus the full test suite in a clean container. Confirmed no ops/ code changed between that commit and current HEAD (only NIGHTLY-LOG.md, dashboard and checkin-log entries), so that green run covers the code actually at HEAD. Ran the cheap local checks directly anyway: check_urls.py 217/217, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/204.
