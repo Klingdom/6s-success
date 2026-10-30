@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 18:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated, and none of the 10 issues is the operator's to decide.
+
+Attach: arrived with local main detached, pointing at a stale ref (caab0f4, older than origin) rather than the usual clean shallow/detached shape; a fetch mid-unshallow reported it as a forced update. Resolved with `checkout -B main origin/main` per STEP 0's own fallback, no reset or rebase, no history lost, working tree already clean.
+
+Previous work (18:1x PM through the latest hourly check-in) verified finished myself, not cited. `preflight.py --fast` live: 0 FAIL through `gate_image_coverage`, `cycle_signal` clean, hung at the documented `gate_tests` sandbox limit, killed cleanly at 293s, no orphan lock. `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `affiliate.py --check` 165 clean, `check_sellable.py` 124/126 (2 service SKUs), `link_graph_report.py` 0 orphans. GitHub: 10 open issues unchanged since 2026-10-25, 0 PRs. Rotation tools (backlog, checkin-log, owner-actions, section2) all report CLEAN; the size-tripwire warnings are real but not yet due.
+
+**Nothing new genuinely unblocked.** No small closing job surfaced beyond the stale-ref fix above. No push notification sent: same exhausted, Phil-gated state many consecutive cycles have already reconfirmed.
+
+Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 18:1x slot
 
 Attach: shallow and detached on arrival (issue #27's usual shape), unshallowed (626 commits), checkout main, merge ff only onto origin/main, clean, no reset or force.
