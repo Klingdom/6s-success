@@ -2,6 +2,39 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 (04:0x UTC): fixed the CI-red gate_nightly_log_ordering failure the 03:0x PM check-in's own entry caused
+
+**Did.** Unshallowed a fresh shallow/detached checkout (issue #27's usual shape), ff-only onto origin/main (519 commits forward), clean. Read `BACKLOG-2026-09-07.md` sections 0-7, `GOALS.md`, `STATUS.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, and `python ops/preflight.py --fast` before touching anything, per step 2.
+
+**Found.** Preflight itself FAILed `gate_nightly_log_ordering`, and a direct GitHub check confirmed `checks.yml`'s most recent completed run (`40996971909`, commit `d67b10942`, the 03:0x PM check-in) had failed for the same reason: that cycle's own entry landed appended after the file's legacy 2026-10-16 tail instead of prepended under today's other entries, entry #982 of 982, 2.4MB past where step 1's "read the last four entries" looks. Exactly the misreading-of-"last" shape the gate's own docstring already documents from 2026-09-05.
+
+**Fixed.** Cut the misplaced entry out of the end of `ops/NIGHTLY-LOG.md` and prepended it under the file's own header, byte-identical content, no rewording, no history lost (file size unchanged). Re-ran `gate_nightly_log_ordering()` directly: clean. Ran its own test file, `ops/tests/test_gate_nightly_log_ordering.py`: 8/8 pass (the two FAIL lines printed are the suite's own synthetic planted-defect fixtures proving the gate can still fail, not the real file).
+
+**No new gate needed.** The existing `gate_nightly_log_ordering` caught this on the very first push after the defect landed, in both local preflight and CI, which is exactly what it was built for. Step 10b's "turn the lesson into a gate" does not apply when the gate already exists and already worked; building a second gate for the same shape would be duplication, not coverage.
+
+**Verified the rest of the standing checks directly, not cited.** `check_urls.py` 218/218, `audit_pages.py` 223/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --stale` 0/298 and `--next` 0 un-ledgered candidates (tier fully exhausted), all 8 `rotate_*.py --check` scripts (`rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_section2_items`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_status_workstreams`, `rotate_status_history`, `rotate_status_metadata`) CLEAN, `check_sellable.py` 124/126 (the 2 known service SKUs), `b9_claims.py --status` zero rooms undiagnosed, `link_graph_report.py` 0 orphans, mobile `npm test` (quest-app, 4 suites) all passing. `inbox_agent.py --apply` and `check_ledgerium.py`: no mail/Stripe credential in this sandbox, same standing gap as every prior cycle, reported unchecked rather than assumed clean. GitHub re-read live: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs.
+
+**Did not go well:** `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit; killed after 155s, honestly reported unchecked for that one gate, not passing. CI's GitHub-hosted runner is the real coverage for it and will confirm or fail on this push.
+
+**Went well:** the fix this cycle found was exactly the kind step 10b asks for, a defect a check could catch, except the check already existed and had already caught it; the only work left was reading the gate's own failure message and doing what it said.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list (YouTube OAuth, Search Console report, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts) and the 10 open issues, unchanged.
+
+No push notification: CI going red was a real, user-visible-to-Phil-if-he-looked signal, but it is already fixed and pushed in this same cycle before any notification would reach him, and the backlog/GOALS state otherwise remains the same exhausted/Phil-gated position issue #42 already names.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-30 03:0x slot
+
+Previous work (02:4x PM, two 02:4x/02:5x operator cycles) was finished, re-verified directly, not cited. Attach needed fetch plus unshallow plus ff-only merge (517 commits forward), clean, no reset or force. Tree clean, main in sync with origin before and after. GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. check_urls.py 218/218. fix_dashes.py --check 0 em/en dashes. cold_read_ledger.py: 0/298 stale, 0 un-ledgered. rotate_backlog.py, rotate_backlog_closed.py, rotate_backlog_section2_items.py, rotate_checkin_log.py, rotate_owner_actions.py all --check CLEAN. preflight.py --fast run twice (buffered then unbuffered): 0 FAIL/0 blocking WARN through every gate including gate_image_coverage, hung at the documented gate_tests headless-Chromium sandbox limit both times (killed at timeout, honestly reported unchecked for that one gate, not passing). Three standing WARNs unchanged from prior cycles: living-docs-total-size-tripwire on BACKLOG-2026-09-07.md/CHECKIN-LOG.md/OWNER-ACTIONS.md (each rotate tool reports its own rows CLEAN within retention window, so the overage is accepted history, not a defect any existing tool can close), dated-disclosures (2 honest, dated, still-true disclosures), image-coverage (expected gitignored source images absent in this sandbox).
+
+**Nothing new genuinely unblocked. No defect found.** BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated; STATUS.md's workstreams and Immediate Focus unchanged in substance. This is the exact exhausted state issue #42 already names and dozens of straight cycles have already reconfirmed; no push notification sent, since another would be noise, not news.
+
+Pushed to main. ops/NIGHTLY-LOG.md and command deck regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json). No price, product or page touched; IndexNow not applicable. Nothing hours-sized to hand the :43 operator beyond the standing Phil-gated queue.
+
+
 ## Scheduled operator cycle, 2026-10-30 (03:0x UTC): independent full re-verification, no new defect, concurrent PM cadence confirmed
 
 **Did.** Unshallowed a fresh shallow/detached checkout (issue #27's shape), ff-only onto origin/main, clean. Read BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 1/4/BLOCKER-001, GOALS.md, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries before touching anything.
@@ -15577,12 +15610,3 @@ Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashb
 ## PM check-in, 2026-10-16 00:1x slot
 
 Previous work (23:5x operator, 23:4x PM) was finished, verified myself. Attached clean: unshallowed, fast forwarded 570 commits onto origin/main, no reset or force, tree clean. preflight.py hung again at the documented gate_tests sandbox limit, 0 FAIL before it. Ran the standing checks directly: check_urls.py 213/213, audit_pages.py 0/218 duplicates, affiliate.py clean (165 documents), fix_dashes.py 0/0, cold_read_ledger.py 0/204 stale and 0 un-ledgered, mobile npm test 3 suites passing. GitHub: 10 issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. Nothing new genuinely unblocked; this is the same exhausted/Phil-gated state issue #42 already names, so not re-notifying. Dashboard regenerated. Standing Phil-gated list and the 10 issues are what remains for the operator.
-
-## PM check-in, 2026-10-30 03:0x slot
-
-Previous work (02:4x PM, two 02:4x/02:5x operator cycles) was finished, re-verified directly, not cited. Attach needed fetch plus unshallow plus ff-only merge (517 commits forward), clean, no reset or force. Tree clean, main in sync with origin before and after. GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. check_urls.py 218/218. fix_dashes.py --check 0 em/en dashes. cold_read_ledger.py: 0/298 stale, 0 un-ledgered. rotate_backlog.py, rotate_backlog_closed.py, rotate_backlog_section2_items.py, rotate_checkin_log.py, rotate_owner_actions.py all --check CLEAN. preflight.py --fast run twice (buffered then unbuffered): 0 FAIL/0 blocking WARN through every gate including gate_image_coverage, hung at the documented gate_tests headless-Chromium sandbox limit both times (killed at timeout, honestly reported unchecked for that one gate, not passing). Three standing WARNs unchanged from prior cycles: living-docs-total-size-tripwire on BACKLOG-2026-09-07.md/CHECKIN-LOG.md/OWNER-ACTIONS.md (each rotate tool reports its own rows CLEAN within retention window, so the overage is accepted history, not a defect any existing tool can close), dated-disclosures (2 honest, dated, still-true disclosures), image-coverage (expected gitignored source images absent in this sandbox).
-
-**Nothing new genuinely unblocked. No defect found.** BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated; STATUS.md's workstreams and Immediate Focus unchanged in substance. This is the exact exhausted state issue #42 already names and dozens of straight cycles have already reconfirmed; no push notification sent, since another would be noise, not news.
-
-Pushed to main. ops/NIGHTLY-LOG.md and command deck regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json). No price, product or page touched; IndexNow not applicable. Nothing hours-sized to hand the :43 operator beyond the standing Phil-gated queue.
-
