@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 18:1x slot
+
+Attach: shallow and detached on arrival (issue #27's usual shape), unshallowed (626 commits), checkout main, merge ff only onto origin/main, clean, no reset or force.
+
+**Previous work finished, verified myself, not cited.** 10 open GitHub issues unchanged, same set (8 decision, 2 blocked-on-art: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs, none updated by Phil. BACKLOG-2026-09-07.md sections 0-7 read directly: every row in 2-4 struck through, archived or Phil-gated; section 5 is Hold stating what has to be true first; section 6 is the owner-gate table; only C5/C6 un-struck and both explicitly Phil's. STATUS.md section 14: Workstream 1/2 BLOCKED, 3 CLOSED, no replacement open. Ran check_urls.py (218/218), fix_dashes.py --check (0 em/en dashes), cold_read_ledger.py --stale (0/298) and --next (0 un-ledgered), affiliate.py --check (165 documents clean), check_sellable.py (124/126, 2 person-delivered services), link_graph_report.py (0 orphans). python ops/preflight.py --fast run live in the background, watched to its own 280s timeout rather than piped blind: 0 FAIL through every gate up to and including gate_image_coverage, cycle_signal recorded a clean snapshot, then hung at the documented gate_tests headless-Chromium sandbox limit; the self-test gate_preflight_lock_blocks_concurrent_runs also passed on the way through. Terminated cleanly by its own timeout, no orphan process left. Reported unchecked past gate_tests, not passing, per CLAUDE.md 0.4.
+
+**Nothing new genuinely unblocked.** Same exhausted, fully Phil-gated state issue #42 already names and a very long run of consecutive cycles has already independently reconfirmed. No defect found this cycle, so no new gate written. No push notification sent: nothing has changed since the last report on this exact state.
+
+**Next for the operator:** standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json). No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-30 17:5x slot: full re-verification, state unchanged
 
 **Did.** Attached per step 0: arrived shallow and detached, unshallowed, checked out main, merged origin/main ff-only, clean, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 through 7 directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own last entries (17:1x PM and 16:5x operator) directly, not a summary.
