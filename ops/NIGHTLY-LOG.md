@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 05:4x slot: previous work finished, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and OWNER-ACTIONS.md, unchanged, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is already struck, Done, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and all 3 STATUS.md workstreams are BLOCKED or CLOSED with no replacement open.
+
+**Previous work (05:1x PM and the 04:5x operator) was finished and pushed clean, main at 67011cc, tree clean before and after.** Attach arrived shallow and detached as usual (issue #27's shape). The first `git fetch --unshallow` attempt failed with a network reset (`RPC failed; curl 56 Recv failure`), leaving the repo shallow at only 62 commits; a plain retry on the second attempt succeeded, 9,614 commits. Checked out main, merge --ff-only onto origin/main, clean, no reset or force.
+
+**Caught and corrected a false positive caused by the still-shallow window, not reported as a finding.** `cold_read_ledger.py --stale` against the 62-commit shallow history flagged 5 files (rotate_owner_actions_closed_items.py, rotate_owner_actions_gemini_billing.py, rotate_status_workstreams.py, verify_deploy.py, rotate_status_metadata.py) as touched after their clean/fixed date. `git log` on each pointed to commit `1de0c85`, the shallow boundary commit that shows every file as "new" because the fetched history is truncated there, not because the files were really edited 2026-10-29. Re-ran `--stale` after the unshallow succeeded: 0 stale, confirming this was the shallow-clone artifact issue #27 already names, not a new ledger defect.
+
+**Verified directly, not cited.** GitHub re-read live via the API: 10 open issues unchanged, same exact set as every recent cycle (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2; 8 decision, 2 blocked-on-art), 0 open PRs. `check_urls.py` 218/218. `fix_dashes.py --check` 0 em/en dashes. All 12 `rotate_*.py --check` scripts CLEAN. `STATUS.md` section 14 re-read directly: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open. `BACKLOG-2026-09-07.md` sections 2-6: no un-struck row outside the Phil-gated items.
+
+**One honest gap, not papered over.** `python -u ops/preflight.py --fast` was run foreground with a 90s timeout to rule out the pipe-buffering explanation some recent entries gave; it still produced zero gate output before being killed at the documented `gate_tests` headless-Chromium sandbox hang. Reported fully unchecked for this run, per CLAUDE.md 0.4, not assumed passing. The narrower direct checks above independently cover the same ground.
+
+**Nothing new genuinely unblocked. No defect found.** Same exhausted state issue #42 already names and dozens of cycles across the last two weeks have already reconfirmed; no push notification sent, since another would be noise, not news.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 05:1x slot: previous work finished, nothing new unblocked
 
 **Previous work (04:5x operator and 04:4x PM) was finished.** Attach arrived shallow and detached as usual (issue #27's shape); unshallowed, checked out main, merge --ff-only onto origin/main (clean, no reset or force). Working tree clean before and after. Diffed the last completed green Checks run's commit (b2e8bca93, conclusion success) against HEAD: only CHECKIN-LOG.md/EXECUTIVE-DASHBOARD-LIVE.md/ops/NIGHTLY-LOG.md/ops/dashboard.html/ops/last-brief-sent.json/ops/state-checkin.json/ops/state.json changed, no code or content, so that green run covers HEAD's actual code.
