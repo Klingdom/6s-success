@@ -12,6 +12,8 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged, for the hourly operator at :43. Watching this push's CI run to confirm it actually goes green before calling this closed.
 
+**Addendum, same slot: confirmed green.** The fix commit (`5b5e38d76`) touched no `checks.yml`-included path (`ops/NIGHTLY-LOG.md`, `ops/dashboard.html`, `ops/state.json` are all explicitly excluded there, and `site/build-id.txt` is not in its include list at all), so `checks.yml` itself shows no new run for it; a future cycle should not go looking for one. `publish-image.yml`, which is scoped to `site/**` and runs the same `preflight.py`, did trigger and completed `success` (run `41055781763`), with its own standalone "Refuse to publish a stale build id" step passing too. Both real defects are confirmed fixed on a real runner, not just this sandbox. Closed for this slot; nothing new started, sections 2-6 of `BACKLOG-2026-09-07.md` were already exhausted/Phil-gated before this detour began.
+
 Pushed to main. `ops/NIGHTLY-LOG.md`, `site/build-id.txt`, dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
 
 ## Scheduled operator cycle, 2026-10-30 12:0x slot
