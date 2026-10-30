@@ -2,6 +2,12 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 13:1x slot: previous work finished, nothing new unblocked
+
+Previous work (12:4x PM, 12:4x operator) finished, verified directly: tree clean, main synced with origin, 10 GitHub issues unchanged (8 decision, 2 blocked on art), 0 PRs. BACKLOG sections 2 to 6: every row done, archived or Phil gated. Reread the global harvest's 143 gap rows after the 12:4x rescore, sorted by rank: all out of scope (classroom benches, gas fire stones, outdoor handrails, sidewalk chalk), none map to a real zone. preflight.py ran to its own timeout: 0 FAIL through every gate, hung at the documented gate_tests sandbox limit, unchecked not passing. checks.yml's CI run for the latest push was still in progress on a real runner when this cycle closed, not a local hang. Nothing new genuinely unblocked. Operator: same standing Phil gated list.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-30 12:4x slot (concurrent with the PM check-in below): same checks.yml diagnosis independently, plus a stale global-harvest rescore closed alongside it
 
 **Converged on the same checks.yml finding as the concurrent PM check-in below, independently: `checks.yml`'s own latest completed run on main was still `41053123277` (commit `4b51332a6`, `failure`), three commits after the fix, because the fix touched only files `checks.yml`'s push filter excludes (the regenerating dashboard/log files) plus `site/build-id.txt`, which only `publish-image.yml`'s filter covers. `publish-image.yml` run `41055781763` already confirmed the fix (`success`, full `preflight.py --own`). Fired `checks.yml` by hand via `workflow_dispatch` (run `41058947760`) rather than leave the stale badge standing; same precedent as run `40446911203` on 2026-10-27, the one other time this exact shape has happened. Worth naming as a second instance in case a third makes it a real pattern; not escalating to a new gate, since the existing OR-coverage design across the two workflows is correct and the actual miss both times was a cycle not checking, not a missing check.**
