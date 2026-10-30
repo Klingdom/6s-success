@@ -2,17 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-10-30 06:4x slot: previous work finished, nothing new unblocked
+## PM check-in, 2026-10-30 07:1x slot: previous work finished; fixed a newest-first ordering slip the gate cannot see
 
-NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and `OWNER-ACTIONS.md`, unchanged, because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is already struck, Done, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and all 3 `STATUS.md` workstreams are BLOCKED or CLOSED with no replacement open.
+**Previous work (06:4x PM, 07:0x operator) was finished and pushed clean,** main fast-forwarded to 8db29b404 cleanly (unshallow, checkout, merge --ff-only, no reset or force). But reading the file by eye (not trusting the header) found a real small defect: the 07:0x operator entry (committed 06:56:38Z) had landed physically below the 06:4x PM entry (committed 06:48:11Z), both same calendar date, so `gate_nightly_log_ordering` stayed green (it only checks for a date reappearing after the log has moved to an older date, not intra-day slot order) while the file's own "newest first" header was briefly false for anyone reading just the top. Fixed: swapped the two blocks verbatim, zero content changed; confirmed with a sorted-line diff against the pre-edit file, byte-identical. Re-ran `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_nightly_log_not_oversized` directly against the edited file: all clean.
 
-**Previous work (06:1x PM, 06:0x operator) was finished and pushed clean**, tree clean before and after this cycle's own attach too. Re-verified directly, not cited. GitHub re-read live via the API: 10 open issues, the same exact set every recent cycle has named (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2; 8 `decision` + 2 `blocked-on-art`), 0 open PRs. `check_urls.py` 218/218 sitemap URLs resolve. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0 entries stale. `BACKLOG-2026-09-07.md` sections 2-6 read directly: no un-struck row outside C5/C6, both named in section 6 as owner gates. `STATUS.md` section 14 re-read directly: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open. `EXECUTIVE-DASHBOARD-LIVE.md` matches: $0 revenue, traffic carried forward from 2026-10-03 (not measured fresh, no ssh key in this sandbox, honestly marked not measured rather than assumed flat).
+**Verified directly, not cited.** `python ops/preflight.py --fast` run to completion in the background: 0 FAIL through every gate up to and including `gate_image_coverage`, clean `cycle_signal` snapshot, then the documented `gate_tests` headless-Chromium sandbox hang (killed, honestly unchecked for that one gate, not assumed passing). `fix_dashes.py --check` 0 em/en dashes. `check_urls.py` 218/218. GitHub re-read live via the API: 10 open issues unchanged, same exact set as every recent cycle (42, 40, 35, 33, 31, 29, 21, 18, 15, 2; 8 decision, 2 blocked-on-art), 0 open PRs. `STATUS.md` section 14 re-read directly: Workstream 1 and 2 BLOCKED on Phil, Workstream 3 CLOSED, no replacement open. `BACKLOG-2026-09-07.md` sections 2-6 re-read directly: no un-struck row outside the Phil-gated C5/C6 pair.
 
-**One honest gap, not papered over.** `python ops/preflight.py --fast` was foregrounded with a 170s timeout: 0 FAIL/ERROR printed through every gate reached, including `gate_image_coverage` and a clean `cycle_signal` snapshot, then it hit the documented `gate_tests` headless-Chromium sandbox hang and the timeout killed it with no further output. Reported unchecked for that one gate, per `CLAUDE.md` 0.4, not assumed passing. The narrower direct checks above independently cover the same ground this gate would also check.
+**Nothing new genuinely unblocked beyond the ordering fix above.** Not sending a push notification: the exhausted state is the same one issue #42 already names and dozens of cycles have reconfirmed; the ordering fix is small, local, and already self-documented in this log, not news Phil needs pushed to his phone.
 
-**Nothing new genuinely unblocked, no defect found.** Not sending a push notification: this is the same exhausted state issue #42 already names and dozens of consecutive cycles have already reconfirmed; another would be noise, not news.
-
-Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+Pushed to main. `ops/NIGHTLY-LOG.md` reorder plus command deck regen. No price, product or page touched; IndexNow not applicable.
 
 ## Scheduled operator cycle, 2026-10-30 ~07:0x slot: full independent re-verification, state unchanged
 
@@ -33,6 +31,18 @@ Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product
 **Next:** the 10 open GitHub issues and OWNER-ACTIONS.md's standing Phil-gated list, unchanged.
 
 Pushed to main. Dashboard regenerated (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json). No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-30 06:4x slot: previous work finished, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and `OWNER-ACTIONS.md`, unchanged, because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is already struck, Done, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and all 3 `STATUS.md` workstreams are BLOCKED or CLOSED with no replacement open.
+
+**Previous work (06:1x PM, 06:0x operator) was finished and pushed clean**, tree clean before and after this cycle's own attach too. Re-verified directly, not cited. GitHub re-read live via the API: 10 open issues, the same exact set every recent cycle has named (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2; 8 `decision` + 2 `blocked-on-art`), 0 open PRs. `check_urls.py` 218/218 sitemap URLs resolve. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0 entries stale. `BACKLOG-2026-09-07.md` sections 2-6 read directly: no un-struck row outside C5/C6, both named in section 6 as owner gates. `STATUS.md` section 14 re-read directly: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open. `EXECUTIVE-DASHBOARD-LIVE.md` matches: $0 revenue, traffic carried forward from 2026-10-03 (not measured fresh, no ssh key in this sandbox, honestly marked not measured rather than assumed flat).
+
+**One honest gap, not papered over.** `python ops/preflight.py --fast` was foregrounded with a 170s timeout: 0 FAIL/ERROR printed through every gate reached, including `gate_image_coverage` and a clean `cycle_signal` snapshot, then it hit the documented `gate_tests` headless-Chromium sandbox hang and the timeout killed it with no further output. Reported unchecked for that one gate, per `CLAUDE.md` 0.4, not assumed passing. The narrower direct checks above independently cover the same ground this gate would also check.
+
+**Nothing new genuinely unblocked, no defect found.** Not sending a push notification: this is the same exhausted state issue #42 already names and dozens of consecutive cycles have already reconfirmed; another would be noise, not news.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-10-30 06:1x slot: previous work finished, nothing new unblocked
 
