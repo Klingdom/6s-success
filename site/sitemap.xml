@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/shop.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -498,6 +498,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://6s-success.com/articles/how-to-organize-a-linen-closet</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-linen-closet.jpg</image:loc>
+      <image:caption>Two or three complete sheet sets per bed, each bundled in its own pillowcase, the shelf labeled with bed size and count, everyday towels at eye level.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://6s-success.com/articles/how-to-organize-an-attic</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -509,7 +519,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-baby-clothes</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -539,7 +549,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-store-blankets</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -549,7 +559,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>

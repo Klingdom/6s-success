@@ -74,6 +74,8 @@ stays in `ops/NIGHTLY-LOG.md`; nothing here was still actually open.
 
 # 1. Status Metadata
 
+**Latest, 2026-10-29 (late), owner-invoked CEO cycle: `/articles/how-to-organize-a-linen-closet` pushed (BACKLOG section 62), with `gate_risks_evidence_current` now accepting a `forms_dead` citation that matches the tree (`71a5f721d`) and `site/shop.html` re-prerendered (its no-JS grid had lacked the " USD" price marks `2140c7f83` added). NOT deployed; see BLOCKER-001's newest entry for the gap.**
+
 **Latest, 2026-10-29 (23:0x), owner-invoked CEO cycle: `/articles/how-to-organize-baby-clothes` pushed (`c7cb03eb3`, BACKLOG section 61) with `article_figures.apply()` made line-ending neutral (a false `article-figures` failure on every Windows checkout). NOT deployed; see BLOCKER-001's newest entry for the gap.**
 
 **Latest, 2026-10-29 (16:5x), owner-invoked CEO cycle: `/articles/how-to-organize-paperwork` pushed (`c79829238`, BACKLOG section 60) with a fix for `share_cards.py --wire` stacking stray carriage returns on Windows checkouts. NOT deployed; the gap is 6 site commits, see BLOCKER-001's newest entry.**
