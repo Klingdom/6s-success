@@ -18067,6 +18067,30 @@ def gate_risks_register_current() -> None:
              "; ".join(bad))
 
 
+def tree_derived_state() -> dict:
+    """ops/state.json keys that are a pure function of the working tree,
+    computed exactly as ops/dashboard.py computes them."""
+    files = [f for f in glob.glob(os.path.join(ROOT, "site", "**", "*.html"),
+                                  recursive=True)
+             if not os.path.basename(f).startswith("_")]
+    dead = 0
+    for f in files:
+        dead += io.open(f, encoding="utf-8", errors="replace").read().count(
+            'onsubmit="return false"')
+    return {"forms_dead": dead}
+
+
+def _cited_matches(cited: str, live) -> bool:
+    if isinstance(live, bool):
+        return cited.lower() == str(live).lower()
+    if isinstance(live, (int, float)):
+        try:
+            return float(cited) == float(live)
+        except ValueError:
+            return False
+    return cited == str(live)
+
+
 def gate_risks_evidence_current() -> None:
     """Every `key=value` evidence line in RISKS.md that names an
     ops/state.json key must still match the live value.
@@ -18093,9 +18117,18 @@ def gate_risks_evidence_current() -> None:
     text = io.open(path, encoding="utf-8").read()
     state = json.load(io.open(state_path, encoding="utf-8"))
 
+    fresh = tree_derived_state()
     bad = []
     for key, cited in re.findall(r"\b([a-z][a-z_0-9]*)=([A-Za-z0-9.]+)", text):
         if key not in state:
+            continue
+        # A count the working tree itself determines is current if it matches
+        # the tree, even when the hourly ops/state.json snapshot has not caught
+        # up. Found 2026-10-29: every new page adds one footer form, so the
+        # commit adding a page had to choose between RISKS matching the
+        # snapshot (stale an hour later) and matching the tree (failing CI and
+        # publish-image until the hourly run), and publish-image failed on it.
+        if key in fresh and _cited_matches(cited, fresh[key]):
             continue
         live = state[key]
         if isinstance(live, bool):
