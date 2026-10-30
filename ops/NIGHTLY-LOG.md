@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 19:5x slot: a sixth deploy-gap citation drift, found and closed with a gate, not just a number fix
+
+**Did.** Attached per STEP 0 (unshallow, ff-only onto origin/main, a concurrent push merged in cleanly). Read the backlog, roadmap, CLAUDE.md, recent log entries. Confirmed CI green myself via the Actions API (run `41115163326`, success). `preflight.py --fast` 0 FAIL before the documented `gate_tests` hang; `check_urls`, `fix_dashes`, `cold_read_ledger` (298/298, 0 next), `affiliate`, `check_sellable`, `link_graph_report` all clean. GitHub: 10 issues unchanged, 0 PRs; no mail credential. Checked the keyword-harvest gap tier for a zone synonym (A29-A32 method); the best candidate, "large cooking utensils", would only reach `partial`, and its also-called phrasing repeats A32's own flagged mistake (a contents noun read as a zone-name claim), so left it.
+
+**Found instead: a sixth "cites a fact, wrong number beside it" drift, uncovered by any gate.** `deploy_gap_material_commits('ad933f9e5')` returns 15 commits, not the 12 cited in STATUS.md's "Public website"/"Production traceability" rows (already behind BLOCKER-001's own 13). Existing gates cover BLOCKER-001 and the "Latest" paragraph, not these two rows.
+
+**Fixed with a gate.** Corrected both rows to 15/10, appended then rotated a new BLOCKER-001 entry (`rotate_status_history.py --apply-blocker1`). Added `gate_status_table_rows_gap_count_current`, fail-then-pass proved against the real file (`test_gate_status_table_rows_gap_count_current.py`, 5/5).
+
+**Verified after:** all `test_gate_status_*.py` pass; `fix_dashes`/`check_urls` clean; dashboard regenerated.
+
+**Went well:** caught the near-miss before shipping it; found a real ungated drift instead.
+
+**Did not go well:** same `gate_tests` sandbox limit; issues #27, #42 still open, Phil's hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list and 10 open issues, unchanged.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md`, `ops/preflight.py`, new test file, command deck regen. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 19:4x slot: previous work now confirmed finished, CI is green
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated, and none of the 10 issues is the operator's to decide.

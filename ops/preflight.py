@@ -18916,6 +18916,96 @@ def gate_status_latest_entry_gap_current() -> None:
         warn("status-latest-entry-gap-current", problem)
 
 
+def status_table_rows_gap_count_problem(status_text: str,
+                                         real_count: int) -> str:
+    """Pure logic for gate_status_table_rows_gap_count_current, testable
+    without git.
+
+    Found live 2026-10-30, scheduled operator cycle: BLOCKER-001's own
+    commit count (gate_status_deploy_gap_count_current) and section 1's
+    "Latest" paragraph (gate_status_latest_entry_gap_current) both have a
+    dedicated staleness gate, but the two section 1 TABLE rows that
+    independently restate the same count in their own words, "Public
+    website" and "Production traceability" ("REOPENED: 12 commits
+    undeployed, 9 of them content"), have never had one, even though a
+    prior cycle's own widening comment on these exact rows ("widened from
+    11 to 12") shows the number is hand-maintained prose that drifts the
+    same way every other deploy-gap citation in this file already does.
+    Confirmed live: a fresh recount put the real gap at 15 while both rows
+    still said 12, two commits after BLOCKER-001's own last entry (13) had
+    itself already gone stale by two more.
+
+    Checks only the two labelled table rows, by the same regex shape
+    status_deploy_verdict_problem already uses to locate them (up to the
+    next `\n|`), for a "<n> commits undeployed" count. Returns a problem
+    string naming every stale row found; '' if neither row states a count,
+    or every row's count agrees with real_count.
+    """
+    sections = {
+        "Public website": r"\|\s*Public website\s*\|.*?(?=\n\|)",
+        "Production traceability": r"\|\s*Production traceability\s*\|.*?(?=\n\|)",
+    }
+    stale = []
+    for label, pattern in sections.items():
+        m = re.search(pattern, status_text, re.DOTALL)
+        if not m:
+            continue
+        row = m.group(0)
+        counts = list(re.finditer(r"(\d+)\s+commits?\s+undeployed",
+                                   row, re.IGNORECASE))
+        if not counts:
+            continue
+        cited = int(counts[-1].group(1))
+        if cited != real_count:
+            stale.append("%s (cites %d)" % (label, cited))
+    if not stale:
+        return ""
+    return ("STATUS.md section 1's table row(s) %s cite a stale "
+            "undeployed-commit count; a fresh count of commits since the "
+            "last confirmed deploy, touching site/ or Dockerfile, is %d."
+            % (", ".join(stale), real_count))
+
+
+def gate_status_table_rows_gap_count_current() -> None:
+    """STATUS.md's "Public website" and "Production traceability" table
+    rows must not restate a stale deploy-gap commit count.
+
+    Full account in status_table_rows_gap_count_problem()'s own docstring.
+    A WARNING, matching every sibling deploy-staleness gate: nothing in
+    the current commit caused a real redeploy to happen or not happen,
+    and this should not block unrelated work, only flag prose worth
+    correcting.
+
+    Proof this can fail: ops/tests/test_gate_status_table_rows_gap_count_
+    current.py calls status_table_rows_gap_count_problem() directly with
+    synthetic rows citing 12 against a real_count of 15 and asserts the
+    warning fires by name, then confirms it clears once both rows state
+    15.
+    """
+    status_path = os.path.join(ROOT, "STATUS.md")
+    verdict_path = os.path.join(ROOT, "ops", "deploy-verdict.json")
+    if not os.path.exists(status_path) or not os.path.exists(verdict_path):
+        return
+    status_text = io.open(status_path, encoding="utf-8").read()
+    try:
+        verdict = json.loads(io.open(verdict_path, encoding="utf-8").read())
+    except Exception:                                          # noqa: BLE001
+        return
+    build_id = verdict.get("build_id")
+    if not build_id:
+        return
+    try:
+        commit = resolve_verdict_commit(build_id)
+        if commit is None:
+            return
+        real_count = len(deploy_gap_material_commits(commit))
+    except Exception:                                          # noqa: BLE001
+        return
+    problem = status_table_rows_gap_count_problem(status_text, real_count)
+    if problem:
+        warn("status-table-rows-gap-count-current", problem)
+
+
 def b9_claim_problems(claims: list, diagnosis: dict, now: str,
                        stale_hours: int = 3) -> list:
     """Pure logic for gate_b9_claims_current, testable without disk or git.
@@ -31845,6 +31935,7 @@ def main() -> int:
     run_gate(gate_status_deploy_verdict_current)
     run_gate(gate_status_deploy_gap_count_current)
     run_gate(gate_status_latest_entry_gap_current)
+    run_gate(gate_status_table_rows_gap_count_current)
     run_gate(gate_b9_claims_current)
     run_gate(gate_cold_read_handoff_not_stale)
     run_gate(gate_cold_read_ledger_entries_not_stale)
