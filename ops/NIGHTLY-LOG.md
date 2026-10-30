@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 14:3x slot: full re-verification, state unchanged
+
+**Did.** Unshallowed and attached to main per step 0 (the checkout arrived shallow and detached, 595 commits behind; fast-forwarded clean, no conflict this time). Re-read BACKLOG-2026-09-07.md sections 0-7 and the closed-section tail (through #63), ROADMAP-2026-2029.md's constraint framing, and this operating prompt's own three facts. Ran preflight.py --fast, dashboard.py, and the fast verification set by hand (check_urls, fix_dashes --check, cold_read_ledger --stale, check_sellable, link_graph_report). Re-pulled GitHub issues and PRs fresh rather than trusting the last cited count, and read all 7 comments on issue #42 (the cadence question) end to end rather than re-deriving a stale summary of it.
+
+**Verified.** preflight.py --fast: 0 FAIL through every gate including gate_image_coverage, cycle_signal recorded a clean snapshot at git HEAD e644142c3 before gate_tests, which hung at 226s and was killed there, the same documented sandbox limit every recent cycle hits; reported unchecked past that point, not passing. check_urls.py 218/218. fix_dashes.py --check 0/0. cold_read_ledger.py --stale 0/298, 0 un-ledgered. check_sellable.py 124/126 Stripe-matched (2 known service SKUs). link_graph_report.py 0 orphans. ops/keyword-demand-global.json's 143 gap rows re-checked by hand, sorted by best_rank: all still off-topic noise (classroom bench arrangement, gas-fire stone arranging, Revit stair railings, garage-sale speed, "why is toilet my favourite place"), the same out-of-scope set named in the 13:4x entry, nothing in this product's domain. GitHub: 10 open issues unchanged, all `decision`/`blocked-on-art` (#2, #15, #18, #21, #29, #31, #33, #35, #40, #42); 0 open PRs. checks.yml green on current HEAD (`fd72b3228`, run 41070721482, conclusion success). `git log --since=5 days ago` shows zero Klingdom-authored commits since `8173de0bd` (2026-10-22); every intervening commit is Claude/github-actions.
+
+**Went well.** The unshallow-then-attach sequence this prompt's step 0 specifies worked without the "unrelated histories" failure prior runs hit; no rediagnosis needed this cycle.
+
+**Did not go well.** Nothing new to work: BACKLOG-2026-09-07.md sections 2-6 are still entirely Done, Hold or Phil-gated; the cold-read ledger is still 298/298 with 0 un-ledgered candidates; no inbox credential exists to check (`inbox_agent.py --apply`: "no mail credentials in this environment"). Issue #42 (reduce the Routines' cadence, or accept the cost) has had no owner reply in 5 days; per that issue's own established pattern across 7 prior comments, not re-raising it again on unchanged state, and not touching the Routines' schedule myself, since a prior cycle already confirmed `update_trigger` refuses an agent-initiated cadence change on a routine created via http_api (this session's own trigger can only self-disable, which would stop the one session able to pick up new work the moment it exists, so it was correctly left alone again).
+
+**Changing next cycle.** Nothing; the standing handoff (OWNER-ACTIONS.md's gate list, smallest-effort first: YouTube OAuth, Search Console sitemap/report confirmation, Gemini billing, Amazon KDP + Etsy accounts) is unchanged and already fully built up to each gate.
+
+**Next.** Same as every recent cycle: the next genuinely new motion here is either Phil clearing one of the 10 open decisions, new traffic/sales evidence arriving, or a real owner push landing fresh content to cold-read. Dashboard regenerated and committed this cycle regardless, per step 11b.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-30 14:1x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil gated list, unchanged.
