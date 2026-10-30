@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 23:4x slot: previous work was NOT finished either, checks.yml itself was still red, triggered a fresh run, watch it
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 41146534581 (workflow_dispatch on HEAD 195567496) reached conclusion success before trusting anything else this cycle reports, because that is the only completed checks.yml run that will exist on current main, and it was still in_progress when this slot had to ship.
+
+**Previous work was not finished.** Attached clean (unshallowed, ff-only onto origin/main, no push since). The 23:0x PM entry above fixed a real `gate_build_id` FAIL (stale `site/build-id.txt` after A33 bypassed `ops/ship.py`) and its 23:38 follow-up confirmed `publish-image.yml` went green on the fix. That confirmation was real but incomplete: it never checked `checks.yml` itself, a separate workflow with a separate trigger-path filter. Ran `preflight.py --fast` live this slot and it caught exactly that gap: `gate_ci_conclusion_current` hard FAILed, `checks.yml`'s most recent completed run is still `failure` (run `41141790757`, commit `10240bbbc4`, the same merge the 23:0x entry already named), because `site/build-id.txt` is not one of `checks.yml`'s trigger paths (only `publish-image.yml` watches `site/**`), so every commit since (`b6cfea37c`, `e9cad6600`, `195567496`) touched only paths `checks.yml` ignores (`ops/NIGHTLY-LOG.md`, the dashboard trio) or paths outside its filter entirely, and nothing re-triggered it. `gate_checks_yml_real_gap` correctly did not also fire: no real non-bot commit touched a trigger path it doesn't exclude, so this was dormant-but-red, not a silently-shipped real change.
+
+**Fixing it, not just reporting it twice (CLAUDE.md 0.2).** `checks.yml` has a `workflow_dispatch` trigger; ran it directly against `main` via the Actions API rather than making a throwaway commit just to poke a trigger path. Run `41146534581` queued at 23:47:30Z on HEAD `195567496` and was still `in_progress` when this slot's time ran out. Reporting it honestly as unchecked, not assumed green: per CLAUDE.md 0.4, a queued/in-progress run is not evidence either way.
+
+GitHub re-read live beyond that: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` section 6's six-row owner-gate table is the only unstruck content, all Phil's own hand; nothing else is genuinely unblocked, so there is no second workstream to open even once CI is confirmed.
+
+**Did not go well:** the same "fixed the symptom, confirmed the wrong workflow" gap `gate_ci_conclusion_current`'s own docstring was written to catch (2026-10-19) recurred today in a new shape (two separate workflows with disjoint path filters, not one flaky one); worth noting but not a new gate, since the existing gate caught it correctly the first time it was actually run.
+
+**Changing next cycle:** none beyond the handoff above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 23:0x slot: previous work was NOT finished, CI was red, fixed it
 
 **Previous work was not finished.** `preflight.py --fast`, run live, found a real FAIL: `gate_build_id` flagged `site/build-id.txt` stale (tree said `eaf222a0b634a548`, computed `562524b95ece04a6`), and GitHub confirmed `checks.yml`'s most recent completed run (`41141790757`, commit `10240bbbc4`, the merge after A33) actually failed in CI, not just locally. Traced the cause: A33 (`46534e9a3`) changed `site/sitemap.xml` and one zone page but was committed directly rather than through `ops/ship.py`, which is the only place that re-stamps `build-id.txt` after staging; the same thing happened after A32 a few hours earlier and was fixed by a since-landed commit, so this is the second recurrence today of the exact "source corrected, artifact not re-derived" class CLAUDE.md names. The gate worked exactly as designed both times; the slip was a cycle bypassing `ops/ship.py`.
