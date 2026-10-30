@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 20:1x slot: previous work finished and verified; closed a stale cold-read ledger entry
+
+Previous work (19:5x operator) was finished: CI confirmed green via the Actions API, tree clean, pushed. Attached clean: fetched, unshallowed, fast-forwarded onto origin/main, no reset or force. `preflight.py --fast` 0 FAIL through `gate_image_coverage`, hung at the documented `gate_tests` sandbox limit as every recent cycle reports; `check_urls.py` 218/218, `fix_dashes.py --check` 0/0. GitHub re-read live: same 10 open issues (8 decision, 2 blocked-on-art), unchanged, none mine to decide.
+
+**Found and closed one real defect:** `cold_read_ledger.py --stale` named `ops/preflight.py` outdated, ledgered clean 2026-10-29 but touched again 2026-10-30 (c82922dcf added `gate_status_table_rows_gap_count_current`). Read that diff in full rather than trusting the commit message: the new gate locates STATUS.md's two table rows by the same regex shape an existing gate already uses, compares the cited commit count to a fresh `deploy_gap_material_commits()` recount, warns (does not fail) on mismatch, and returns early on any missing file or bad JSON. Ran its test directly: `test_gate_status_table_rows_gap_count_current.py` PASS, 5 checks. No defect found; re-ledgered clean with today's date and a note naming what was read. `--stale` now 0/298.
+
+**Nothing else new to start.** Same exhausted, Phil-gated state issue #42 already names. No push notification: a ledger housekeeping fix is not news Phil needs to act on.
+
+**Handing the operator:** nothing new; standing Phil-gated list and the 10 open issues, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or site page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-30 19:5x slot: a sixth deploy-gap citation drift, found and closed with a gate, not just a number fix
 
 **Did.** Attached per STEP 0 (unshallow, ff-only onto origin/main, a concurrent push merged in cleanly). Read the backlog, roadmap, CLAUDE.md, recent log entries. Confirmed CI green myself via the Actions API (run `41115163326`, success). `preflight.py --fast` 0 FAIL before the documented `gate_tests` hang; `check_urls`, `fix_dashes`, `cold_read_ledger` (298/298, 0 next), `affiliate`, `check_sellable`, `link_graph_report` all clean. GitHub: 10 issues unchanged, 0 PRs; no mail credential. Checked the keyword-harvest gap tier for a zone synonym (A29-A32 method); the best candidate, "large cooking utensils", would only reach `partial`, and its also-called phrasing repeats A32's own flagged mistake (a contents noun read as a zone-name claim), so left it.

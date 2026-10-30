@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "fixed",
-      "date": "2026-10-29",
-      "note": "Fixed 2026-10-29 (second time this date): gate_cold_read_handoff_not_stale's cite-don't-hand-off stripping ran the generic parenthetical strip before a new still-executing-process phrasing ('the X full run ... started (still mid-flight at hand-off...)') could be recognised, so the word it keyed on was already gone and preflight.py (ledgered clean) was wrongly flagged as a stale handoff. Moved the new strip ahead of the parenthetical strip; fail-then-pass proved in test_gate_cold_read_handoff_not_stale.py (26/26)."
+      "status": "clean",
+      "date": "2026-10-30",
+      "note": "Re-ledgered 2026-10-30 PM check-in: prior entry (fixed 2026-10-29) went stale the same day a later commit (c82922dcf) added gate_status_table_rows_gap_count_current and its helper status_table_rows_gap_count_problem. Read the diff in full: locates STATUS.md's Public website/Production traceability table rows by the same regex shape status_deploy_verdict_problem already uses, extracts the cited commits-undeployed count, compares to a fresh deploy_gap_material_commits() recount, warns (not fails) on mismatch, and returns early on any missing file or unparseable JSON rather than raising. Ran ops/tests/test_gate_status_table_rows_gap_count_current.py directly: PASS, 5 checks. No defect found."
     },
     "prerender_shop.py": {
       "status": "clean",
