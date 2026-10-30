@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 ~06:0x slot
+
+**Did:** Checkout arrived shallow and detached (standard shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force used on real work (one later `reset --hard` to `origin/main` only discarded this session's own disposable `cycle-signal.json` snapshot after a stash-pop conflict, nothing else was local). Read `BACKLOG-2026-09-07.md` sections 0-7 and the newest items (62, 63), `ROADMAP-2026-2029.md` context already held from recent cycles, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md`/`CHECKIN-LOG.md` entries.
+
+**Verified directly, not cited.** `preflight.py --fast` backgrounded and watched: 0 FAIL through every gate up to the documented `gate_tests` headless-Chromium sandbox hang (killed at 239s, honestly reported unchecked for that one gate, not passing). `cold_read_ledger.py`: 0/298 stale, 298/298 ledgered, 0 un-ledgered candidates, fully exhausted. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked, standing gap. GitHub re-read directly via the API: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs. Checked CI directly rather than trust the gate's own network-blind warning: `checks.yml` runs on `main` over the last several pushes are all `success`, confirming item 63's `gate_nightly_log_ordering` fix (the append-vs-prepend CI-red catch) held and did not regress.
+
+**Noted, not acted on: extreme concurrency.** At least 5 to 6 distinct scheduled sessions (operator + two PM cadences + hourly check-in bot) are landing commits on `main` roughly every 10 to 20 minutes right now; `EXECUTIVE-DASHBOARD-LIVE.md` reads 1,400 commits in the trailing 7 days. This cycle's own fetch-and-merge hit a real collision (a disposable `ops/cycle-signal.json` snapshot conflicting with a concurrent session's own write), resolved by taking `origin/main`'s version since the file is machine-regenerated and carries no hand-authored content. Issue #42 (open 16 days, 0 reply) already names this exact cadence-versus-value tradeoff; nothing here changes that question, so not reopening it.
+
+**Nothing new to start.** Every unblocked lane is genuinely exhausted, independently reconfirmed rather than taken on trust: all 10 GitHub issues are `decision`/`blocked-on-art`, the cold-read ledger is empty, `BACKLOG-2026-09-07.md` sections 2-6 have no un-struck row outside the owner-gate table. No defect found this cycle, so no new preflight gate was written. **No push notification sent:** the last deliberate push on this topic (`ops/last-owner-notification.json`, 2026-10-27T12:58Z) already covers this exact state and nothing material has changed since (no new Phil reply, no cleared decision, no new credential, no customer event); a repeat now would be the noise `CLAUDE.md`'s own principles warn against, not news.
+
+**Went well:** caught the git collision before it could silently drop either session's work, rather than forcing past it.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; the collision above is a small but real cost of the current concurrency, worth Phil's eventual attention per issue #42, not re-litigated here.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console reports, Gemini billing, Amazon/Etsy/Apple/Play accounts, on-device screenshots) and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue forward (no Stripe egress here). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 05:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and OWNER-ACTIONS.md, unchanged, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is already struck, Done, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and all 3 STATUS.md workstreams are BLOCKED or CLOSED with no replacement open.
