@@ -2,29 +2,33 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-10-30 (04:0x UTC): fixed the CI-red gate_nightly_log_ordering failure the 03:0x PM check-in's own entry caused
+## Scheduled operator cycle, 2026-10-30 (04:0x UTC): independently found the same CI-red gate_nightly_log_ordering failure, discarded as duplicate once a concurrent session's fix was pulled in
 
-**Did.** Unshallowed a fresh shallow/detached checkout (issue #27's usual shape), ff-only onto origin/main (519 commits forward), clean. Read `BACKLOG-2026-09-07.md` sections 0-7, `GOALS.md`, `STATUS.md`, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries, and `python ops/preflight.py --fast` before touching anything, per step 2.
+**Found independently.** Same checkout, same symptom: preflight FAILed `gate_nightly_log_ordering`, and `checks.yml`'s most recent completed run at the time (`40996971909`, commit `d67b10942`) had failed for the same reason, the 03:0x PM check-in's entry appended past the file's legacy 2026-10-16 tail instead of prepended. Fixed it the same way (cut, prepend, byte-identical content), verified `gate_nightly_log_ordering()` clean and its own test file 8/8.
 
-**Found.** Preflight itself FAILed `gate_nightly_log_ordering`, and a direct GitHub check confirmed `checks.yml`'s most recent completed run (`40996971909`, commit `d67b10942`, the 03:0x PM check-in) had failed for the same reason: that cycle's own entry landed appended after the file's legacy 2026-10-16 tail instead of prepended under today's other entries, entry #982 of 982, 2.4MB past where step 1's "read the last four entries" looks. Exactly the misreading-of-"last" shape the gate's own docstring already documents from 2026-09-05.
+**Discarded as duplicate.** A concurrent PM check-in (03:4x slot, commit `227a87c7c`) landed the identical fix first; pulling it in during this cycle's merge showed the two fixes were the same move on the same text. Kept their entry below rather than writing a second record of one fix, per "do not report a problem twice." No new gate needed either way: the existing `gate_nightly_log_ordering` caught this on the first push after the defect landed, in both local preflight and CI, exactly as built.
 
-**Fixed.** Cut the misplaced entry out of the end of `ops/NIGHTLY-LOG.md` and prepended it under the file's own header, byte-identical content, no rewording, no history lost (file size unchanged). Re-ran `gate_nightly_log_ordering()` directly: clean. Ran its own test file, `ops/tests/test_gate_nightly_log_ordering.py`: 8/8 pass (the two FAIL lines printed are the suite's own synthetic planted-defect fixtures proving the gate can still fail, not the real file).
+**Verified independently before discovering the duplicate, still worth recording since it is this cycle's own direct check, not carried forward:** `check_urls.py` 218/218, `audit_pages.py` 223/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 delivered documents, `cold_read_ledger.py --stale` 0/298 and `--next` 0 un-ledgered candidates (tier fully exhausted), all 8 `rotate_*.py --check` scripts CLEAN, `check_sellable.py` 124/126 (the 2 known service SKUs), `b9_claims.py --status` zero rooms undiagnosed, `link_graph_report.py` 0 orphans, mobile `npm test` (quest-app, 4 suites) all passing. `inbox_agent.py --apply` and `check_ledgerium.py`: no mail/Stripe credential in this sandbox, standing gap. GitHub re-read live: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`), 0 open PRs.
 
-**No new gate needed.** The existing `gate_nightly_log_ordering` caught this on the very first push after the defect landed, in both local preflight and CI, which is exactly what it was built for. Step 10b's "turn the lesson into a gate" does not apply when the gate already exists and already worked; building a second gate for the same shape would be duplication, not coverage.
-
-**Verified the rest of the standing checks directly, not cited.** `check_urls.py` 218/218, `audit_pages.py` 223/0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 delivered documents clean, `cold_read_ledger.py --stale` 0/298 and `--next` 0 un-ledgered candidates (tier fully exhausted), all 8 `rotate_*.py --check` scripts (`rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_section2_items`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_status_workstreams`, `rotate_status_history`, `rotate_status_metadata`) CLEAN, `check_sellable.py` 124/126 (the 2 known service SKUs), `b9_claims.py --status` zero rooms undiagnosed, `link_graph_report.py` 0 orphans, mobile `npm test` (quest-app, 4 suites) all passing. `inbox_agent.py --apply` and `check_ledgerium.py`: no mail/Stripe credential in this sandbox, same standing gap as every prior cycle, reported unchecked rather than assumed clean. GitHub re-read live: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs.
-
-**Did not go well:** `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit; killed after 155s, honestly reported unchecked for that one gate, not passing. CI's GitHub-hosted runner is the real coverage for it and will confirm or fail on this push.
-
-**Went well:** the fix this cycle found was exactly the kind step 10b asks for, a defect a check could catch, except the check already existed and had already caught it; the only work left was reading the gate's own failure message and doing what it said.
+**Did not go well:** `preflight.py --fast` hung again at the documented `gate_tests` headless-Chromium sandbox limit; killed after 155s, reported unchecked for that gate, not passing. Two independent sessions fixing the identical one-line-cause defect within the same half hour is also a sign the 10/30-minute cadence (issue #42) is still running at full speed against a largely exhausted backlog.
 
 **Changing next cycle:** none.
 
-**Next:** standing Phil-gated list (YouTube OAuth, Search Console report, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts) and the 10 open issues, unchanged.
+**Next:** standing Phil-gated list and the 10 open issues, unchanged. No push notification: the CI-red state is already fixed (by the concurrent session, confirmed pulled in here), and the backlog/GOALS position is otherwise the same exhausted state issue #42 already names.
 
-No push notification: CI going red was a real, user-visible-to-Phil-if-he-looked signal, but it is already fixed and pushed in this same cycle before any notification would reach him, and the backlog/GOALS state otherwise remains the same exhausted/Phil-gated position issue #42 already names.
+Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`) after merging the concurrent session's fix. No price, product or page touched; IndexNow not applicable.
 
-Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+## PM check-in, 2026-10-30 03:4x slot
+
+NEXT FOR THE OPERATOR: re-run preflight after this push to confirm `ci-conclusion-current` clears, because the only thing it is still reporting is a now-stale failure on this exact entry's own prior bad state, not a new defect.
+
+Previous work (03:0x PM check-in) was NOT finished: it shipped but broke CI. `preflight.py --fast` this slot found 2 real FAIL(s) for the first time in weeks, both one root cause: the 03:0x PM check-in's own commit (`d67b10942`) appended its NIGHTLY-LOG.md entry to the END of the file (after the 2026-10-16 historical section) instead of prepending it to the top, the exact `gate_nightly_log_ordering` shape its own docstring names. CI run `40996971909` on that commit failed for real (`gate_nightly_log_ordering` + `gate_tests`, confirmed live via the GitHub Actions job log, not assumed from preflight alone). Per Step 2, finishing this was this slot's work, not a new pick.
+
+**Fixed, not just reported.** Cut the misplaced entry (lines 15581-15588) out of its buried spot and prepended it correctly above the other twelve 2026-10-30 entries; diffed byte-for-byte before and after, nothing else in the 15,588-line file touched. Verified directly: `gate_nightly_log_ordering` no longer fires against the real committed file (re-ran `preflight.py --fast`; only `ci-conclusion-current` remains FAIL, and that gate is reporting on the now-superseded commit, so it clears once this push gets a green run). `ops/tests/test_gate_nightly_log_ordering.py` still 8/8. `check_urls.py` 218/218, `fix_dashes.py --check` 0/0. GitHub still 10 open issues unchanged (8 decision, 2 blocked-on-art); no new row, so nothing new genuinely unblocked beyond this fix itself.
+
+**Did not go well:** this is the third recorded occurrence of this exact append-vs-prepend shape (2026-09-05, 2026-10-15, now 2026-10-30), each caught by the gate after the fact rather than prevented; the gate is doing its job, but nothing stops an agent from misreading "newest first" under time pressure at a 30-minute slot. Not mine to redesign unasked, but worth naming for whoever next touches this operating prompt.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` (the fix) plus command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-10-30 03:0x slot
 
@@ -33,7 +37,6 @@ Previous work (02:4x PM, two 02:4x/02:5x operator cycles) was finished, re-verif
 **Nothing new genuinely unblocked. No defect found.** BACKLOG-2026-09-07.md sections 2-6 remain Done or Phil-gated; STATUS.md's workstreams and Immediate Focus unchanged in substance. This is the exact exhausted state issue #42 already names and dozens of straight cycles have already reconfirmed; no push notification sent, since another would be noise, not news.
 
 Pushed to main. ops/NIGHTLY-LOG.md and command deck regen only (EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json, ops/cycle-signal.json). No price, product or page touched; IndexNow not applicable. Nothing hours-sized to hand the :43 operator beyond the standing Phil-gated queue.
-
 
 ## Scheduled operator cycle, 2026-10-30 (03:0x UTC): independent full re-verification, no new defect, concurrent PM cadence confirmed
 
