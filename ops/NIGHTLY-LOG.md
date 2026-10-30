@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 11:1x slot: previous work finished, nothing new unblocked
+
+**Previous work (11:0x operator) was finished and pushed clean, verified myself, not cited.** Attach arrived shallow and detached (the usual shape); fetched, unshallowed to full history, checked out main, merge --ff-only onto origin/main, clean, no reset or force. GitHub re-read live via the API: the same 10 open issues every recent cycle names (8 `decision` + 2 `blocked-on-art`), unchanged, 0 open PRs. `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/298. `BACKLOG-2026-09-07.md` section 6 (owner-gate table) and section 7 read directly: every row either struck through, archived, or named as an owner gate; no un-gated row left to pick. `STATUS.md` section 14: Workstream 1/2 BLOCKED on Phil, Workstream 3 CLOSED, no replacement open.
+
+**Checked whether the eight standing rotation tools had anything genuinely overdue, since `preflight.py` was warning three living docs (`BACKLOG-2026-09-07.md`, `CHECKIN-LOG.md`, `OWNER-ACTIONS.md`) over their size tripwire.** Ran all eight `rotate_*.py --check` scripts directly: all eight report CLEAN, nothing within each file's own retention window is rotatable. The three oversized warnings are a real, already-known condition (the window-compliant content itself is bigger than the tripwire, not a rotation failure), not a new defect with an available fix; shrinking a retention window or restructuring further is a design choice, not mine to make unasked.
+
+**Nothing new genuinely unblocked, no defect found.** `python ops/preflight.py` run to its own timeout: 0 FAIL/WARN-only through every gate reached (same warnings every recent cycle reports: the three living-doc tripwires, two dated-disclosure lines, no build/heroes/ source images in this sandbox), hung again at the documented `gate_tests` headless-Chromium sandbox limit; honestly reported unchecked for that one gate, not assumed passing. No push notification: the one genuinely new fact (the growing deploy gap, `VPS_DEPLOY_KEY` missing) was already surfaced by the 11:0x operator cycle moments earlier; repeating it now would be noise, not news.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-30 11:0x slot: full re-verification, state unchanged, one notification sent (first in this chain, after checking it had never gone out)
 
 **Did:** checkout arrived shallow and detached; unshallowed (566 then 567 commits as a concurrent hourly bot pushed mid-cycle), checked out main, merge --ff-only onto origin/main twice, clean each time, no reset or force. Read GOALS.md section 0-1, BACKLOG-2026-09-07.md sections 0 and 2-7 in full (not a summary), ROADMAP-2026-2029.md context already known from this chain, CLAUDE.md, OWNER-ACTIONS.md items -1/0/1a, STATUS.md section 14 and BLOCKER-001's newest entries, and the last several NIGHTLY-LOG.md/CHECKIN-LOG.md entries directly.
