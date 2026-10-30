@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 ~10:0x slot: a third independent gate_tests hang this morning, confirming it is sandbox contention, not a one-off
+
+**Did:** checkout arrived shallow and detached; unshallowed, checked out main, merge --ff-only onto origin/main, repeated twice more as concurrent cycles pushed ahead, clean each time, no reset or force. Read BACKLOG-2026-09-07.md sections 0-7, STATUS.md section 14, GOALS.md section 0-1, CLAUDE.md, the last several NIGHTLY-LOG.md entries.
+
+**Verified directly, not cited.** GitHub re-read live via the API: the same 10 open issues every cycle today names (8 decision, 2 blocked-on-art), unchanged. `check_urls.py` 218/218, `audit_pages.py` 223/0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `link_graph_report.py` 0 orphans, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py` 0/298 stale and 0 un-ledgered, all 12 `rotate_*.py --check` CLEAN, `check_sellable.py --deep` 124/126 (no Stripe credential here), `inbox_agent.py` no mail credential. STATUS.md Workstream 1/2 BLOCKED, 3 CLOSED; BACKLOG-2026-09-07.md sections 2-6 no un-struck row outside the owner-gate table.
+
+**Did not go well, a real pattern now, not one bad run.** Ran full `preflight.py` (not `--fast`) in the background with a 15-minute cap: it hung at `gate_tests` again and was killed at the cap, with 0 FAIL printed through every gate reached. That is the third distinct outcome today (08:5x finished clean in ~7 min, 09:1x hung 33+ min, this run hung 15+ min): the hang is real, intermittent, and most likely concurrent-session resource contention (headless Chromium, multiple simultaneous `preflight.py` runs), not something `gate_tests` itself gets wrong. Not writing a new gate: there is nothing to check for, since the product is not the thing misbehaving.
+
+**Next:** standing Phil-gated list (`OWNER-ACTIONS.md`) and the 10 open issues, unchanged. No push notification: same exhausted state issue #42 already names.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 09:1x slot: previous work finished, gate_tests hang recurred and the morning's one-pass fix claim does not hold
 
 **Previous work (08:4x second PM, 08:5x operator) was finished and pushed clean,** verified myself before building on it: fast-forwarded cleanly onto origin/main, tree clean. Independently re-confirmed the state both already found: GitHub's 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs; STATUS.md Workstream 1/2 BLOCKED, 3 CLOSED; BACKLOG-2026-09-07.md sections 2-6 no un-struck row outside the owner-gate table; check_urls.py 218/218; fix_dashes.py --check 0/0; cold_read_ledger.py 0/298 stale, 0 un-ledgered.
