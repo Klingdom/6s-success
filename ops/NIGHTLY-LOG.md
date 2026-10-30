@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 15:3x slot
+
+**Did:** Checkout arrived shallow and detached per step 0's usual shape; unshallowed, checkout main, merge ff-only onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own last four entries (15:1x PM through 14:3x operator).
+
+**Verified directly, not cited.** `python ops/preflight.py --fast`, written straight to a file: 0 FAIL through every gate up to and including `gate_image_coverage` (cycle_signal recorded a clean snapshot), then hung at the documented `gate_tests` headless-Chromium sandbox limit, killed at its own 300s timeout (`EXIT:124`), reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. Ran the narrower checks live: `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/298 and `--next` 0 un-ledgered candidates, `check_sellable.py` 124/126 (2 known service SKUs), `affiliate.py --check` clean (165 delivered documents), `link_graph_report.py` 0 orphans across zones/rooms/articles. `inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap, honestly unchecked.
+
+**Checked the global keyword harvest for real, in-scope gaps rather than trust a prior cycle's read.** `ops/keyword-demand-global.json` was scored against `4405c3b67`; confirmed not stale by checking `content.json` had no commits between that hash and current `HEAD`. Read all gap-tier rows by `best_rank` directly: the same out-of-scope set named across many prior cycles (classroom bench arrangement, gas-fire stone arranging, outdoor handrail/Revit queries, sidewalk chalk, "why is toilet my favourite place"), plus "den office design ideas" (ambiguous terminology, already assessed and left) and a Dollar Tree pantry-organizing query (names a retailer, not a fit for a product-types-not-brand-names corpus). Nothing new clears the bar prior A-series fixes did.
+
+**Re-read GitHub directly.** 10 open issues unchanged, same set (8 `decision` + 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6: every row Done, Archived or explicitly Phil-gated; no un-struck row outside the owner-gate table.
+
+**Found and fixed one real drift: the deploy gap's own commit count had gone stale again, the same recurring shape `STATUS.md` names by name.** Re-derived `deploy_gap_material_commits('ad933f9e5')` against real current `HEAD` directly: 13 commits undeployed, not the 12 the last entry recorded; the new one is `5b5e38d76` (this morning's CI fix for the nightly-log ordering/build-id defect), mechanical, not content, so the content count stays 9 of 13. Updated `STATUS.md`'s Public website and Production traceability table rows and `BLOCKER-001`'s own section with a new WIDENED entry, re-derived, not copied forward. Same standing limit: no operator sandbox holds the deploy key; `VPS_DEPLOY_KEY` (issue #35) is the only real fix, already filed and awaiting Phil.
+
+**Nothing new genuinely unblocked beyond that bookkeeping fix.** Every lane in sections 2-6 is exhausted; all 10 open issues are Phil's own call. No push notification sent: this is the same exhausted, Phil-gated state issue #42 already names and dozens of consecutive cycles have independently reconfirmed; another one now would be noise, not news.
+
+**Went well:** caught the deploy-gap drift live rather than carrying forward a stale count a sixth time.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none; no new defect, no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main. `STATUS.md` (deploy-gap bookkeeping), dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 15:1x slot: previous work finished, nothing new unblocked
 
 Attached per STEP 0: shallow and detached on arrival, unshallowed, checkout main, merge ff only onto origin/main, clean, no reset or force.
