@@ -111,6 +111,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-30 (au): 'how to organise dinnerware', rank 5, 0.0 coverage, scored to /about.html via tie-break since no page used the word 'dinnerware'. Zone purpose ('Light storage at eye level and above for the dishes you reach for every day') and its own straighten pass ('dinner plates and everyday bowls at eye level') confirm the semantic match. Named 'dinnerware cabinet', not the bare word 'dinnerware': 'dinnerware' is the contents, not a name anyone calls this cabinet, and the also-called heading reads as a zone-name synonym ('Also called the X'), so the bare noun alone would misread as a claim nobody calling it that actually makes. 'Dinnerware cabinet' still carries the word the query searches for."
+  },
+  "Kitchen|Cooking Zone": {
+   "names": [
+    "cooking utensils zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-29 (ca): 'how to organize large cooking utensils', rank 3, 0.0 title coverage (0.333 heading coverage against an unrelated page, /articles/how-to-organize-toys.html, a coincidental word overlap, not a real match). Checked against the zone's own purpose/done_looks_like text in content.json before adding: 'A utensil crock holding no more than six tools' sits in this zone's own done_looks_like, naming the exact object a search for large cooking utensils is about (the big spoons, tongs and ladles kept by the stove, not the shallow-drawer flatware/spatulas the Utensil and Utility Drawers zone already owns). Named 'cooking utensils zone', the same '<word> zone' precedent as 'car maintenance zone'/'snacks zone'/'drying racks zone', not the bare word 'utensils', which nobody searching this calls the zone."
   }
  }
 }

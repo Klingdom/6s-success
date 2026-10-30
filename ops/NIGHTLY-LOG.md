@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 22:5x slot: A33, a zone-level synonym gap, "large cooking utensils" against the Kitchen's own Cooking Zone
+
+**Did.** Attached per step 0: arrived shallow and detached, unshallowed (659 commits), checked out main, merged ff-only onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` and this file's last entries. GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs. `cold_read_ledger.py --next`: 298 of 298 ledgered, 0 stale. `inbox_agent.py --apply`: no mail credential, honestly unchecked. Everything in sections 2-6 and OWNER-ACTIONS.md remained Done, Hold or Phil-gated (deploy itself needs `VPS_DEPLOY_KEY`, no SSH key exists in this sandbox), so this cycle read the global harvest's own gap tier sorted by `best_rank`. "how to organize large cooking utensils" (rank 3, ca, 0.0 title coverage, scored to `/about.html`) checked against the Cooking Zone's own `done_looks_like` text in content.json before picking it: "A utensil crock holding no more than six tools" names exactly the big spoons/tongs/ladles the query is about, distinct from the Utensil and Utility Drawers zone's shallow-drawer flatware. Added "cooking utensils zone" to `zone-also-called.json` (precedent: A21/A23/A24, the `<word> zone` naming, not a bare noun per A32's lesson), reran `ops/build_zone_pages.py` (self-chained sitemap/fingerprint), then `python ops/keyword_demand_global.py --rescore`.
+
+**Verified.** Rescore moved the query from `gap` (0.0, `/about.html`) to `partial` (0.667 heading coverage, `/zones/kitchen-the-cooking-zone.html`, matched on heading); 142 gap rows site-wide down to 141. `check_urls.py` 218/218, `audit_pages.py` 0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents, `link_graph_report.py` 0 orphans, `check_sellable.py` 124/126 (2 service SKUs), `test_gate_zone_also_called_is_heading.py` 6/6, `gate_sitemap_lastmod_current`/`gate_keyword_demand_global_rescored_current` both clean called directly. `preflight.py` (full, not `--fast`) ran every gate through `gate_image_coverage` with 0 FAIL, killed at the documented `gate_tests` sandbox hang after confirming zero progress across repeated checks, reported unchecked per CLAUDE.md 0.4.
+
+**Went well:** checking the zone's own purpose text before attributing the query, rather than the first plausible zone, the same discipline A31/A32 used earlier today.
+
+**Did not go well:** nothing new; same standing sandbox limits (no VPS key, no mail credential, `gate_tests` hang).
+
+**Changing next cycle:** none; no new defect class found, so no new gate.
+
+**Next:** push, resubmit changed pages to IndexNow, regenerate the dashboard. No other unblocked, non-Phil-gated workstream exists: sections 2-6 are Done or Phil-gated, cold-read ledger exhausted, GitHub issues unchanged.
+
 ## PM check-in, 2026-10-30 22:1x slot: previous work finished, reverified myself, nothing new unblocked
 
 Attach: shallow and detached again; unshallowed (657 commits), checked out main, merged ff-only onto origin/main, clean, no reset or force, tree clean throughout.
