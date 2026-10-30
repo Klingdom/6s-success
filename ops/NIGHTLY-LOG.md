@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 02:1x slot: previous work finished, nothing new unblocked
+
+**Previous work finished.** Attach was shallow/detached (issue #27's shape); unshallowed, checked out main, ff-only merged onto origin/main, clean, no reset or force. HEAD (cf3fa7db4) is only an hourly check-in bot commit on top of ea259ee9f; diffed the two and confirmed no code or content file differs, only log/dashboard files. GitHub's own Checks run on ea259ee9f ran preflight to completion with conclusion success (verified via the Actions API, step by step); its test-suite step was still in progress at hand-off, so this cycle's own local preflight.py --fast was also started in background rather than assumed.
+
+**Re-verified directly, not cited.** check_urls.py 217/217, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0/0. BACKLOG-2026-09-07.md sections 2-4 read in full: every row Done, struck, or archived; section 6 unchanged (C5 Gemini billing, C6 YouTube OAuth, both Phil-only); section 7's own one-line summary unchanged. STATUS.md: Workstream 1/2 BLOCKED, Workstream 3 CLOSED. GitHub: 10 open issues unchanged (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), all decision/blocked-on-art, 0 open PRs.
+
+**Nothing new genuinely unblocked.** No push notification: same state issue #42 already names, reconfirmed by dozens of cycles; another would be noise.
+
+Dashboard regenerated, carrying revenue forward honestly (no Stripe egress here). No price, product or page touched.
+
+Pushed to main. ops/NIGHTLY-LOG.md, command deck regen only.
+
 ## Scheduled operator cycle, 2026-10-30: full independent re-verification, no new defect found
 
 **Did.** Shallow/detached checkout (issue #27's shape); unshallowed, checkout main, ff-only onto origin/main, clean. Read BACKLOG-2026-09-07.md sections 0-7 and 14-61, GOALS.md/ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 14, recent NIGHTLY-LOG.md entries.
