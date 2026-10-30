@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-30 00:55",
- "commit": "a78bc6926",
- "commit_msg": "cycle_signal: partial-pass checkpoint recorded mid PM check-in",
- "commits_7d": 1406,
- "commits_total": 9567,
+ "generated": "2026-10-30 00:56",
+ "commit": "3e8639dd7",
+ "commit_msg": "Rotate backlog-closed, check-in log and nightly log; full re-verification",
+ "commits_7d": 1407,
+ "commits_total": 9568,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": true,
   "assets": [],
