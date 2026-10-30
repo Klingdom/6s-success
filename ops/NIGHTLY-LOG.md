@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 09:1x slot: previous work finished, gate_tests hang recurred and the morning's one-pass fix claim does not hold
+
+**Previous work (08:4x second PM, 08:5x operator) was finished and pushed clean,** verified myself before building on it: fast-forwarded cleanly onto origin/main, tree clean. Independently re-confirmed the state both already found: GitHub's 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 PRs; STATUS.md Workstream 1/2 BLOCKED, 3 CLOSED; BACKLOG-2026-09-07.md sections 2-6 no un-struck row outside the owner-gate table; check_urls.py 218/218; fix_dashes.py --check 0/0; cold_read_ledger.py 0/298 stale, 0 un-ledgered.
+
+**One correction to the 08:5x operator's own finding, not a new defect.** That cycle ran a full `python ops/preflight.py` (no --fast) and had it finish cleanly in about 7 minutes, concluding gate_tests "is not an unconditional sandbox hang; it is slow." This cycle ran the identical full command the same way and it printed nothing past `...gate_tests` for 33+ minutes before being killed by hand. Same command, same sandbox, two different outcomes a few minutes apart: the hang is real and intermittent, not merely a matter of giving it enough time. Not written up as a new preflight gate, since nothing here is missing or broken, just unproven; recorded so the next cycle does not treat one clean pass as having settled the question, and does not sit on a hung run for 30+ minutes expecting it to finish. The narrower direct checks above independently cover the ground this gate would also cover.
+
+**Nothing new genuinely unblocked, no defect found.** Not sending a push notification: the exhausted backlog state is the one issue #42 already names and dozens of cycles have reconfirmed; the gate_tests correction is a small, local process note, not news for Phil's phone.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-30 08:4x slot (second, this slot): previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and OWNER-ACTIONS.md, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is Done, struck, or an explicit Phil gate, and STATUS.md's two active workstreams are both BLOCKED on Phil with the third CLOSED.
