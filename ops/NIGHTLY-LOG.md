@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 (fresh checkout): independently reconfirmed exhausted, checked both keyword-demand gap tiers for a new candidate, found none
+
+**Did.** Attached per step 0: arrived shallow and detached, unshallowed (645 commits), checked out main, merged ff-only onto origin/main, clean, no reset or force. A concurrent push (20:4x PM check-in through two hourly check-ins) landed mid-cycle; fast-forwarded cleanly onto it rather than force-pushing over it. Read `BACKLOG-2026-09-07.md` sections 0 through 7, `STATUS.md`, `CLAUDE.md`, and this file's own last entries directly, all independently reaching the same exhausted/Phil-gated verdict the concurrent cycle also just recorded.
+
+**Verified myself, not cited.** `preflight.py --fast` run live to its own timeout: 0 FAIL through every gate up to and including `gate_image_coverage`, `cycle_signal` recorded a clean snapshot, hung at the documented `gate_tests` headless-Chromium sandbox limit, killed cleanly, reported unchecked past that point, not passing, per `CLAUDE.md` 0.4. `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/298, `--next` 0 un-ledgered (fully exhausted). `affiliate.py --check` 165 documents clean. `check_sellable.py` 124/126 (the 2 person-delivered services correctly excluded). `link_graph_report.py` 0 orphans across zones, rooms and articles. `inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap. GitHub re-read live via the API, not cited: 10 open issues unchanged (8 `decision`, 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs, none updated by Phil.
+
+**Checked the deploy gap for drift before trusting the citation, since this exact shape has recurred six times.** Re-derived `deploy_gap_material_commits('ad933f9e5')` directly against `HEAD` before the concurrent push landed: 15 commits, exactly matching `STATUS.md`'s own "Public website"/"Production traceability" rows as widened by an earlier cycle. No drift found; nothing to fix.
+
+**Checked both keyword-demand gap tiers (global and US) for a new on-topic synonym candidate, the A29-A32 method, before concluding exhausted.** Sorted both by `best_rank`; every row in the top 20-40 of each is off-topic noise against this product (classroom benches, gas-fire stones, handrail/railing construction and Revit questions, soap-making supplies, sidewalk chalk, PC game saves, a Path of Exile stash, cribbage tournaments, daycare, a dropped kerb). The one plausible household term, "foyer", is already folded in (A18, 2026-10-02): several "foyer organi[s/z]ation ideas" variants already score `covered` via `/rooms/entryway.html`'s heading; the remaining foyer rows are long-tail modifiers ("for flat", "with mirror", "pinterest", "india", "with shoe rack") that no single page will ever fully cover and are not worth chasing individually, the same judgment call A27's full 200-row sweep already made. No new gap found.
+
+**No defect found, nothing new genuinely unblocked.** Same exhausted, Phil-gated state several hours of consecutive cycles have already independently reconfirmed. No push notification sent: this is not news.
+
+**Went well:** the deploy-gap re-derivation matched on the first check, no drift to fix; the fast-forward onto a concurrent push landed clean with no conflict in this file once resolved in the right order.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issue #27 (shallow/detached checkout) still open by design (STEP 0 handles it every cycle rather than needing a code fix).
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regen only. No price, product or site page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 20:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated, and none of the 10 issues is the operator's to decide.
