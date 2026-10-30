@@ -1,14 +1,14 @@
 {
-  "combined_hash": "d90c597e1c30ceaed4fa73be879cf8fe04494e3d056091b767283a2fb4dc1d44",
-  "git_head": "fdcc67393006fd327156a542b17d0a6ca5366c2d",
-  "note": "full python ops/preflight.py (not --fast) ran to genuine completion, no foreground timeout: 1 self-healing FAIL (stray probe file left by a killed concurrent process, deleted by the gate itself, confirmed gone from the tree), 36 standing warnings (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live-site/Etsy egress), 0 real defects. HEAD fdcc67393",
-  "recorded_at": "2026-10-30T02:33:06Z",
+  "combined_hash": "6a0649bdf1ffb7913e98db5ded2c6b9937482d2301403a47832969c6675aef9a",
+  "git_head": "b381c42ddc6cf83987ed06c4cc904e0086e6f519",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD b381c42ddc",
+  "recorded_at": "2026-10-30T02:44:06Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "6daa926495bc2723a48b1b5e1b38d692cbdbc54b1db738f4bdc7475f6659b9bb",
+    "BACKLOG-2026-09-07.md": "2d68b48ddf7990f9809be82f76dce5f97be042600f51e092d8e9f646aa5ff176",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "c96c428bff625d0aa17cb70974b778fccf610404400e8c3c77c3c0512dc4db15",
-    "STATUS.md": "52e3b66bc5ae4fefd9386be26e63b986a9d6657b79837c141200423c1199e320",
+    "STATUS.md": "a7832241473d68792628915c720e9d32ac121bea72b544d0fb71bfc765f3515c",
     "ops/deploy-verdict.json": "bf5a55b31939d8fa3264fac4211078376e072ff8aceaafc7dd75dff416ba802d"
   }
 }
