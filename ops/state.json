@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-30 19:05",
- "commit": "f34b34b39",
+ "generated": "2026-10-30 19:06",
+ "commit": "a498b97d5",
  "commit_msg": "A32: close the \"dinnerware\" zone synonym gap on Kitchen Upper Cabinet Zone",
  "commits_7d": 1376,
  "commits_total": 9710,
@@ -12,8 +12,8 @@
  "affiliate_trigger_last_measured": "T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised.",
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
- "clean": true,
- "ahead": "1",
+ "clean": false,
+ "ahead": "0",
  "deploy": {
   "reachable": true,
   "assets": [],

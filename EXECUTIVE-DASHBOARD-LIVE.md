@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-30 19:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-30 19:06 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -30,7 +30,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Closed to date | 32 |
 | Commits (7 days) | 1376 of 9710 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `f34b34b39` A32: close the "dinnerware" zone synonym gap on Kitchen Uppe |
+| Last commit | `a498b97d5` A32: close the "dinnerware" zone synonym gap on Kitchen Uppe |
 
 ## Product readiness
 

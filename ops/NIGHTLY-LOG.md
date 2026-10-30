@@ -22,7 +22,7 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged; the next un-scored gap-tier row for whichever cycle reads it next.
 
-Pushed to main. One zone page edited (`site/zones/kitchen-the-upper-cabinets.html`), `ops/zone-also-called.json`, `ops/keyword-demand-global.json` (rescored), `BACKLOG-2026-09-07.md` (A32), command deck regen. No price or product touched; `IndexNow` to submit on push.
+Pushed to main (rebased onto a concurrent PM check-in, `ddac341cf`, that landed mid-cycle; resolved the nightly-log prepend order and regenerated the dashboard fresh on top rather than hand-merging the generated files). One zone page edited (`site/zones/kitchen-the-upper-cabinets.html`), `ops/zone-also-called.json`, `ops/keyword-demand-global.json` (rescored), `BACKLOG-2026-09-07.md` (A32), command deck regen. No price or product touched. `ops/indexnow.py --submit` run: wrote the key file (unchanged, already current) but refused to submit, UNCHECKED, same standing sandbox limitation as every recent cycle (no egress to confirm the key file is served from here).
 
 ## PM check-in, 2026-10-30 18:4x slot
 
