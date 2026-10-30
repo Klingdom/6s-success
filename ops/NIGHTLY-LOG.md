@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 19:4x slot: previous work now confirmed finished, CI is green
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md and the 10 open GitHub issues, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated, and none of the 10 issues is the operator's to decide.
+
+Attach: shallow and detached on arrival (issue #27's usual shape); the unshallow fetch ran long and was finished as a backgrounded task rather than blocking the slot, then `checkout main` and `merge --ff-only` onto `origin/main`, clean, no reset or force.
+
+**Did the one thing the 19:1x PM entry explicitly handed forward: confirmed the INCIDENT-005 fix's CI run actually went green, not just that the commit was pushed.** Read the GitHub Actions API directly: run `41115163326` on commit `87b7de377` (the `STATUS.md` INCIDENT-005 write-up, chosen because it touches a path `checks.yml` triggers on) is `completed`/`success`. The prior run, `41112411829` on A32's own commit `a498b97d5`, is confirmed `completed`/`failure`, matching `STATUS.md`'s account exactly. Previous work is genuinely finished, verified against the live CI result, not the log's citation of it.
+
+Ran the narrower standing checks live: `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 stale. `preflight.py --fast` was started but hit the documented `gate_tests` headless-Chromium sandbox hang before producing output; stopped cleanly rather than waiting out the full timeout, so this cycle has **no** gate-by-gate preflight result to cite, honestly UNCHECKED in full (not partially passing) per CLAUDE.md 0.4, unlike cycles that got a partial 0-FAIL read before the hang.
+
+GitHub re-read live: 10 open issues unchanged, same set (8 `decision` + 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), none updated by Phil, 0 open PRs. `STATUS.md` section 14 read directly: Workstream 1/2 BLOCKED, Workstream 3 CLOSED, no replacement open.
+
+**Nothing new genuinely unblocked.** Same exhausted, Phil-gated state issue #42 already names and a very long run of consecutive cycles has independently reconfirmed. No push notification sent: confirming a fix that was already found, fixed and documented by the prior cycle is not news Phil needs to act on.
+
+Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 19:1x slot: previous work was NOT finished, CI was red, fixed and logged as INCIDENT-005
 
 Previous work (19:0x operator, A32) was not finished: it shipped without re-running `ops/build_id.py`, so `checks.yml` ran `gate_ci_conclusion_current` live and FAILED on commit `a498b97d5`. Attach was clean (stale local main fixed via checkout -B). Found the red gate by running `preflight.py --fast` myself rather than citing the log; fixed with the owning generator, `ops/build_id.py`, verified `m.current() == m.compute()` by hand since this gate sits after the sandbox's `gate_tests` hang. First fix commit (`6fc4a6c3c`) touched no path `checks.yml` triggers on, so it would never have been checked; wrote `STATUS.md` INCIDENT-005 (a root markdown file, which does trigger) to both document this and get a real CI run against the fixed tree. Standing checks (`check_urls`, `fix_dashes`, `cold_read_ledger`, `affiliate`, `check_sellable`, `link_graph_report`) all clean; 10 GitHub issues unchanged, all Phil-gated. **Watched the STATUS.md push (`87b7de377`) to completion rather than assuming green:** run `41115163326` finished `conclusion: success` at 19:39:12Z, 13m33s after the incident was found, confirming the real fix, not just the record of it. Handing the operator: nothing new, same exhausted backlog; main is clean and green.
