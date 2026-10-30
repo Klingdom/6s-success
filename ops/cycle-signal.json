@@ -1,10 +1,10 @@
 {
-  "combined_hash": "613b859c1a84d1b421f84577dabf092654b7a519dc8a2746b61b10cb6615c71b",
-  "git_head": "4c70dc432cb7a61919126ee1d2156dd4bd5a6baf",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 4c70dc432c",
-  "recorded_at": "2026-10-30T00:46:41Z",
+  "combined_hash": "d90c597e1c30ceaed4fa73be879cf8fe04494e3d056091b767283a2fb4dc1d44",
+  "git_head": "73bbca3aef805394027b9f6dc2c5cd404e1f7c78",
+  "note": "CI run 40982831979 (294885db8) completed success at 01:15:53Z, full preflight+gate_tests in a clean container, covers current HEAD's code (no ops/ code change since that commit, only logs/dashboard); check_urls 217/217, fix_dashes 0/0, cold_read_ledger 0/204 stale run locally this cycle.",
+  "recorded_at": "2026-10-30T01:17:32Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "9a5229a45a84d60eb9cc1f70e6837f2d81491feaa55bcad220d26fa885456ec1",
+    "BACKLOG-2026-09-07.md": "6daa926495bc2723a48b1b5e1b38d692cbdbc54b1db738f4bdc7475f6659b9bb",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "c96c428bff625d0aa17cb70974b778fccf610404400e8c3c77c3c0512dc4db15",
