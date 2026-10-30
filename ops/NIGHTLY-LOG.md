@@ -2,25 +2,43 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## Scheduled operator cycle, 2026-10-30 23:3x slot: fresh checkout, independently reconfirmed exhausted, no new gap row clean enough to ship
+## Scheduled operator cycle, 2026-10-30 23:5x slot: handed-off checks.yml run still in progress, not claimed green; merged a concurrent diverged push, no new gap row clean enough to ship
 
-**Did.** Attached per step 0: arrived shallow and detached, unshallowed (668 commits), checked out main, merged ff-only onto origin/main, clean, no reset or force. Read `BACKLOG-2026-09-07.md` (section 0 ordering, section 2-6 status), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` sections 2 and 14, `OWNER-ACTIONS.md`'s open list, and this file's own last four entries directly, not a summary.
+**Previous work handoff NOT yet resolved, reported honestly rather than assumed.** The 23:4x PM entry above handed off `checks.yml` run `41146534581` (workflow_dispatch on `195567496`) as in_progress, to be confirmed before trusting anything else. Re-checked it directly via the Actions API, twice, a few minutes apart: `status: in_progress` both times, no `conclusion` yet. Per `CLAUDE.md` 0.4, an unchecked run is not a pass; this is reported unchecked, not green, and is still the next operator's first job: `get_workflow_run` on `41146534581` before trusting `checks.yml`.
 
-**Verified myself, not cited.** `preflight.py --fast` run live to its own timeout: 0 FAIL through every gate up to and including `gate_image_coverage`; hung at the documented `gate_tests` headless-Chromium sandbox limit, reported unchecked, not passing. GitHub re-read live via the real API: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, none updated by Phil since the last cycle's check. `inbox_agent.py --apply`: no mail credential in this sandbox, honestly unchecked. `cold_read_ledger.py --stale` 0/298, `--next` 0 un-ledgered, fully exhausted. `STATUS.md` section 14: all 3 workstreams BLOCKED, nothing newly unblocked.
+**Did, independently, not only re-verifying the handoff.** Attached per step 0: arrived shallow and detached, unshallowed (668 commits), checked out main, merged ff-only onto origin/main at the time, read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md` sections 2 and 14, `OWNER-ACTIONS.md`'s open list, and this file's own last four entries directly. `preflight.py --fast` run live to its own timeout: 0 FAIL through every gate up to and including `gate_image_coverage`; hung at the documented `gate_tests` sandbox limit, reported unchecked. GitHub re-read live: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs, none updated by Phil. `inbox_agent.py --apply`: no mail credential, honestly unchecked. `cold_read_ledger.py --stale` 0/298, fully exhausted. `STATUS.md` section 14: all 3 workstreams BLOCKED, nothing newly unblocked.
 
 **Looked for ship-sized work beyond re-verification, per 0.1.** Read `ops/keyword-demand-global.json`'s 141 gap rows sorted by `best_rank` directly (not the `--status` report's truncated preview). The lowest-rank rows are mostly off-topic autocomplete noise for this site (handrail posts, organic detergent, classroom benches) or retailer-named ("pantry organization ideas dollar tree"), neither a genuine content gap nor safe to name per `CLAUDE.md`'s product-type-not-brand rule. The one candidate worth checking closely, "den office design ideas" (rank 2, all four markets, scored to `/home-office-deck.html`), was not shipped: `ops/room-also-called.json` already assigns "den" to Family Room (19 measured queries), so adding it to Home Office too would be the exact misattribution risk recent cycles have been guarding against, not a clean single-room match like A31-A33. Left unticketed rather than forced.
 
+**My own push collided with the 23:4x entry's concurrent push (both diverged from the same parent); merged rather than forced.** Kept both nightly-log entries, this one ordered above the 23:4x entry it builds on since it resolves that entry's own open handoff; regenerated the dashboard trio fresh after the merge rather than keeping either side's stale numbers.
+
 **No defect found, nothing new genuinely unblocked.** Same exhausted, Phil-gated state dozens of consecutive cycles have already reconfirmed; `OWNER-ACTIONS.md`'s open items are all genuinely Phil's own hand. No push notification sent: not news.
 
-**Went well:** checking the room-level synonym ledger before attributing "den office" to Home Office, rather than shipping the first plausible match.
+**Went well:** reporting the handed-off run as still unchecked rather than assuming it would pass just because it was dispatched; checking the room-level synonym ledger before attributing "den office" to Home Office.
 
-**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 and #42 both still open, both needing Phil's own hand.
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 and #42 both still open, both needing Phil's own hand. A second real merge conflict in the generated dashboard trio in under an hour, from two concurrent cycles both regenerating it; not a new gate (the files are supposed to be regenerated, not hand-merged, and regenerating fresh after merge is the correct fix each time), but worth naming if it keeps happening.
 
 **Changing next cycle:** none; no new defect class found, so no new gate.
 
-**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
+**Next:** confirm `checks.yml` run `41146534581` reaches a real conclusion before trusting CI; otherwise the standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
 
-Pushed to main. Command deck regen only. No price, product or page touched; IndexNow not applicable.
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
+## PM check-in, 2026-10-30 23:4x slot: previous work was NOT finished either, checks.yml itself was still red, triggered a fresh run, watch it
+
+NEXT FOR THE OPERATOR: confirm checks.yml run 41146534581 (workflow_dispatch on HEAD 195567496) reached conclusion success before trusting anything else this cycle reports, because that is the only completed checks.yml run that will exist on current main, and it was still in_progress when this slot had to ship.
+
+**Previous work was not finished.** Attached clean (unshallowed, ff-only onto origin/main, no push since). The 23:0x PM entry above fixed a real `gate_build_id` FAIL (stale `site/build-id.txt` after A33 bypassed `ops/ship.py`) and its 23:38 follow-up confirmed `publish-image.yml` went green on the fix. That confirmation was real but incomplete: it never checked `checks.yml` itself, a separate workflow with a separate trigger-path filter. Ran `preflight.py --fast` live this slot and it caught exactly that gap: `gate_ci_conclusion_current` hard FAILed, `checks.yml`'s most recent completed run is still `failure` (run `41141790757`, commit `10240bbbc4`, the same merge the 23:0x entry already named), because `site/build-id.txt` is not one of `checks.yml`'s trigger paths (only `publish-image.yml` watches `site/**`), so every commit since (`b6cfea37c`, `e9cad6600`, `195567496`) touched only paths `checks.yml` ignores (`ops/NIGHTLY-LOG.md`, the dashboard trio) or paths outside its filter entirely, and nothing re-triggered it. `gate_checks_yml_real_gap` correctly did not also fire: no real non-bot commit touched a trigger path it doesn't exclude, so this was dormant-but-red, not a silently-shipped real change.
+
+**Fixing it, not just reporting it twice (CLAUDE.md 0.2).** `checks.yml` has a `workflow_dispatch` trigger; ran it directly against `main` via the Actions API rather than making a throwaway commit just to poke a trigger path. Run `41146534581` queued at 23:47:30Z on HEAD `195567496` and was still `in_progress` when this slot's time ran out. Reporting it honestly as unchecked, not assumed green: per CLAUDE.md 0.4, a queued/in-progress run is not evidence either way.
+
+GitHub re-read live beyond that: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` section 6's six-row owner-gate table is the only unstruck content, all Phil's own hand; nothing else is genuinely unblocked, so there is no second workstream to open even once CI is confirmed.
+
+**Did not go well:** the same "fixed the symptom, confirmed the wrong workflow" gap `gate_ci_conclusion_current`'s own docstring was written to catch (2026-10-19) recurred today in a new shape (two separate workflows with disjoint path filters, not one flaky one); worth noting but not a new gate, since the existing gate caught it correctly the first time it was actually run.
+
+**Changing next cycle:** none beyond the handoff above.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
 
 ## PM check-in, 2026-10-30 23:0x slot: previous work was NOT finished, CI was red, fixed it
 
