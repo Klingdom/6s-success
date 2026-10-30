@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 11:0x slot: full re-verification, state unchanged, one notification sent (first in this chain, after checking it had never gone out)
+
+**Did:** checkout arrived shallow and detached; unshallowed (566 then 567 commits as a concurrent hourly bot pushed mid-cycle), checked out main, merge --ff-only onto origin/main twice, clean each time, no reset or force. Read GOALS.md section 0-1, BACKLOG-2026-09-07.md sections 0 and 2-7 in full (not a summary), ROADMAP-2026-2029.md context already known from this chain, CLAUDE.md, OWNER-ACTIONS.md items -1/0/1a, STATUS.md section 14 and BLOCKER-001's newest entries, and the last several NIGHTLY-LOG.md/CHECKIN-LOG.md entries directly.
+
+**Verified directly, not cited.** `python ops/preflight.py --fast` run to completion against a 270s timeout, output captured to a file this time rather than lost to an unredirected background job (a mistake this cycle made once and caught before relying on it): 0 FAIL anywhere in the file, every gate through `gate_image_coverage` passed, hung at the documented `gate_tests` headless-Chromium sandbox limit, killed by its own timeout (exit 124), honestly reported unchecked for that one gate. `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `cycle_signal.py --check` SAME, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 person-delivered services), `link_graph_report.py` 0 orphans, `cold_read_ledger.py --next` 298 of 298 ledgered, 0 stale, 0 un-ledgered candidates (genuinely exhausted, checked directly, not assumed). A separate fork re-read GitHub live via the real API rather than citing this log: 10 open issues unchanged (same set every recent cycle names), 0 open PRs, and confirmed by reading full comment bodies that no comment on #42, #40 or #15 is a genuine reply from Phil (every comment, including ones under the `Klingdom` login, carries this automation's own footer; the account name is not proof of a human reply, worth recording once rather than assumed). `ops/inbox_agent.py --apply`: no mail credential in this sandbox, standing gap. Independently re-derived the live deploy gap rather than citing BLOCKER-001's own prose: `deploy_gap_material_commits` against the current confirmed build returns 11 commits, matching STATUS.md's own count exactly.
+
+**No new defect, no new gate.** BACKLOG-2026-09-07.md sections 2-6 remain Done, Archived or Phil-gated; nothing newly unblocked. Did not write a new preflight gate for the gate_tests contention: three cycles already reasoned through it this morning (concurrent-session resource contention, not a product defect), and nothing here contradicts that.
+
+**One notification sent, the first this chain appears to have ever sent on this specific point, checked by reading many prior entries before deciding, not assumed.** Not about the exhausted backlog itself, which is correctly not news by now. About a sharper fact this cycle put together directly: Phil has pushed five real content commits since 2026-10-29 (four articles plus a generator fix), and all of them, plus six more, are sitting undeployed because `VPS_DEPLOY_KEY` (`OWNER-ACTIONS.md` item 0, issue #35, filed in late September) is still missing. His own recent work is invisible to every visitor until that two-minute step happens or he deploys by hand. Dozens of log entries have correctly reported the exhausted backlog and chosen silence as the right call; this is a different, narrower fact worth his attention once, not a repeat.
+
+**Went well:** caught my own unredirected-background-job mistake (lost preflight output once) before reporting a result from it, and re-ran with output captured to a file instead.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (VPS_DEPLOY_KEY first) and the 10 open issues, unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 10:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision + 2 blocked-on-art issues) and OWNER-ACTIONS.md, unchanged, because every row in BACKLOG-2026-09-07.md sections 2 through 6 is Done, Archived or explicitly gated on Phil, and nothing moved in the 20 minutes since the 10:1x/10:0x cycles said the same.
