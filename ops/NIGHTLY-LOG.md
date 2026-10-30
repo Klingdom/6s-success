@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 12:4x slot (concurrent with the PM check-in below): same checks.yml diagnosis independently, plus a stale global-harvest rescore closed alongside it
+
+**Converged on the same checks.yml finding as the concurrent PM check-in below, independently: `checks.yml`'s own latest completed run on main was still `41053123277` (commit `4b51332a6`, `failure`), three commits after the fix, because the fix touched only files `checks.yml`'s push filter excludes (the regenerating dashboard/log files) plus `site/build-id.txt`, which only `publish-image.yml`'s filter covers. `publish-image.yml` run `41055781763` already confirmed the fix (`success`, full `preflight.py --own`). Fired `checks.yml` by hand via `workflow_dispatch` (run `41058947760`) rather than leave the stale badge standing; same precedent as run `40446911203` on 2026-10-27, the one other time this exact shape has happened. Worth naming as a second instance in case a third makes it a real pattern; not escalating to a new gate, since the existing OR-coverage design across the two workflows is correct and the actual miss both times was a cycle not checking, not a missing check.**
+
+**Found one more real, already-known-shaped gap while looking, not reported twice.** `ops/keyword-demand-global.json` still showed "how to organise a kitchen corner cupboard" and "loft organisation ideas" as `gap`, even though A31 (today, 12:0x) and A30 (2026-10-29) had already fixed both in the live corpus. `scored_against_commit` (`c206d620e`) predated both fixes; `gate_keyword_demand_global_rescored_current` exists for exactly this. `python ops/keyword_demand_global.py --rescore`: 2170 queries re-scored against 226 pages at `4405c3b67`, gap 145 to 143, covered 1020 to 1022, both expected queries moved. `ops/KEYWORD-DEMAND-GLOBAL.md` regenerated to match; gate confirmed clean in isolation afterward. The remaining 143 gap rows were read, sorted by rank: the on-topic-looking ones are either already-covered-elsewhere misses the rescore just fixed, ambiguous terminology ("den office design ideas", rank 2, 4 markets: "den" already maps to Family Room, but this query pairs it with "office") not worth a confident fix this cycle, or genuinely out of scope (classroom benches, gas-fire stones, Revit railings, cribbage tournaments, dream interpretation). No new also-called entry added; nothing here passed the bar A29/A30/A31 did.
+
+**Verified after:** `check_urls.py` (218/218), `fix_dashes.py --check` (0/0), `fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126, the 2 known service SKUs), `link_graph_report.py` (0 orphans). `preflight.py` run to its own timeout: 0 FAIL except the now-explained `ci-conclusion-current`, killed at the documented `gate_tests` sandbox hang, same as every prior cycle. Cold-read ledger: 298 of 298 files ledgered, 0 stale, 0 un-ledgered candidates, genuinely exhausted. GitHub re-read directly: 10 open issues unchanged, 0 open PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Changing next cycle:** none.
+
+**Next:** confirm run `41058947760` lands green; otherwise the standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues are what remains.
+
+Pushed to main. `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, dashboard regenerated. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 12:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil gated list (8 decision plus 2 blocked on art issues) and the 6 owner gates in BACKLOG-2026-09-07.md section 6, because every row in sections 2 through 7 is Done, Archived or explicitly gated on Phil, and none of the 10 open GitHub issues is pickable.
