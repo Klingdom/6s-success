@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 (03:0x UTC): independent full re-verification, no new defect, concurrent PM cadence confirmed
+
+**Did.** Unshallowed a fresh shallow/detached checkout (issue #27's shape), ff-only onto origin/main, clean. Read BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md section 1/4/BLOCKER-001, GOALS.md, OWNER-ACTIONS.md, and the last several NIGHTLY-LOG.md entries before touching anything.
+
+**Verified directly, not cited.** `check_urls.py` 218/218, `audit_pages.py` 223/0 duplicates, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale, `check_sellable.py` 124/126 (the 2 known service SKUs), `b9_claims.py --status` zero rooms undiagnosed. Re-scored both keyword harvests fresh (`--rescore`): 155 US gaps, 145 global gaps, all checked by hand against the top ranks; every one is either off-topic autocomplete noise (video games, cribbage, bench press) or a concept this corpus genuinely does not cover yet at sub-1%-of-demand scale (blind-corner kitchen cabinets), matching the standing "checked and deliberately not escalated" bar section 1b already set. Discarded the rescore's own working-tree diff rather than commit it: no gap count moved, so it was a verification step, not a finding. `inbox_agent.py --apply`: no mail credential, unchecked. GitHub: 10 open issues unchanged (#42,#40,#35,#33,#31,#29,#21,#18,#15,#2), re-read issue #42's full thread, all comments self-authored, zero reply from Phil since 2026-10-25. Ran a full (non-`--fast`) `preflight.py` in the background: every gate through `gate_image_coverage` clean, hung at the documented `gate_tests` headless-Chromium sandbox limit (same as every recent cycle), killed after confirming no progress; CI (`checks.yml`) on recent commits is the real coverage for that gate and has been green on every completed run this week.
+
+**Went well:** caught a live concurrent PM check-in (`e14275420`, `ca1e4db80`) landing mid-cycle and re-synced before writing anything, avoiding a collision on shared files.
+
+**Did not go well:** same `gate_tests` sandbox hang as every prior cycle; no new information from it.
+
+**Changing next cycle:** nothing; the cadence-waste question is issue #42's, not mine to resolve unilaterally.
+
+**Next:** standing Phil-gated list (YouTube OAuth, Search Console report, Gemini billing, Amazon KDP/Etsy, Apple/Play accounts), unchanged. No push notification: same state issue #42 already names, reconfirmed again; another would be noise.
+
 ## PM check-in, 2026-10-30 02:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 `decision` + 2 `blocked-on-art` issues) and `OWNER-ACTIONS.md`, unchanged, because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is already struck through, Done, or Hold.
