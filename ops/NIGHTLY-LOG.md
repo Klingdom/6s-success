@@ -8,9 +8,11 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 **Fixed this slot.** Ran `python ops/build_id.py` to restamp, confirmed `--check` clean. Did not add new chaining into `build_zone_pages.py`: `build_id.py` hashes git's staged index, not the working tree (see its own docstring), so it can only run correctly after staging, which is `ops/ship.py`'s job already; the fix here is procedural (ship through `ops/ship.py`), not a new gate. Re-verified independently: `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0/0. GitHub re-read live: 10 open issues unchanged (8 decision, 2 blocked-on-art), 0 open PRs, matching every recent cycle's count.
 
-**Next for the operator:** re-confirm CI goes green on this push; if `gate_build_id` or `ci-conclusion-current` reds again after a future content-only commit, check whether that commit used `ops/ship.py`. Otherwise, standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+**Confirmed, not assumed: watched the triggered run to actual completion rather than trusting the queued push.** `site/build-id.txt` is outside `checks.yml`'s own path filter (no `site/**` entry there; that path is `publish-image.yml`'s job), so the real signal was `Publish site image` run `41144124451` on commit `b6cfea37c`, watched from `in_progress` to `completed`/`success` (23:22:53Z to 23:36:22Z). CI is green again.
 
-Pushed to main via `ops/ship.py`. `ops/NIGHTLY-LOG.md`, `site/build-id.txt`, command deck regen. No price, product or page touched; IndexNow not applicable.
+**Next for the operator:** if `gate_build_id` or `ci-conclusion-current` reds again after a future content-only commit, check whether that commit used `ops/ship.py`. Otherwise, standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open issues, unchanged.
+
+Pushed to main via `ops/ship.py`; a concurrent hourly cycle (`eb1f832c4`, dashboard regen only) landed while this slot ran, merged `--ff-only`, no conflict. `ops/NIGHTLY-LOG.md`, `site/build-id.txt`, command deck regen. No price, product or page touched; IndexNow not applicable.
 
 ## Scheduled operator cycle, 2026-10-30 22:5x slot: A33, a zone-level synonym gap, "large cooking utensils" against the Kitchen's own Cooking Zone
 
