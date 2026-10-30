@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 ~08:0x slot: keyword demand statuses were stale against site/, re-derived for free, no network
+
+**Did:** Checkout arrived shallow and detached; unshallowed, checked out main, merge --ff-only onto origin/main, clean, no reset or force. Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last several NIGHTLY-LOG.md entries.
+
+**Verified directly.** python ops/preflight.py: 0 FAIL through gate_image_coverage, then the documented gate_tests sandbox hang, killed, honestly unchecked for that one gate. Ran the narrow checks live: check_urls.py 218/218, audit_pages.py 223/0 duplicates, affiliate.py --check 165 documents, fix_dashes.py --check 0/0, fix_dialect.py --check clean, link_graph_report.py 0 orphans, check_sellable.py 124/126 matched. cold_read_ledger.py 0/298 stale. inbox_agent.py: no mail credential, standing gap. GitHub: 10 issues unchanged, 0 PRs. The live deploy gap was re-derived directly (not cited): 11 commits undeployed against ops/deploy-verdict.json's stale 2026-10-26 confirmation, same standing VPS_DEPLOY_KEY wait (OWNER-ACTIONS 0, issue #35).
+
+**Found:** ops/keyword-demand.json and ops/keyword-demand-global.json were both scored against commit 5742c536d, three days-old content commits behind HEAD (the baby-clothes, paperwork and linen-closet articles). gate_keyword_demand_rescored_current's own threshold is 5 site/ commits before it warns, and only 3 had landed, so it stayed correctly silent; this was routine staleness, not a gate miss. Re-scored both with their own --rescore flag (free, no network, pure functions over files on disk). US: 1390 partial moved to 1346, 44 queries now correctly covered by the new articles; gap count unchanged at 155, all previously-checked noise (game/hobby senses of room names). Global: one real gap closed, "why does my bathroom gets clogged" now partial against the micro-zone explainer page.
+
+**Went well:** found real, if small, measurement drift by rescoring rather than trusting a markdown snapshot.
+
+**Did not go well:** same documented gate_tests sandbox limitation; no new gate needed, this one is within its own designed tolerance.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list (8 decision issues, 2 blocked-on-art, VPS_DEPLOY_KEY) and OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. Dashboard regenerated. No price, product or page touched; not customer-facing, IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 07:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and OWNER-ACTIONS.md, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is Done, struck, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and STATUS.md's two active workstreams are both BLOCKED on Phil (Umami key, a spending decision) with the third CLOSED.

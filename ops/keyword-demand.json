@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 224,
+  "pages_checked": 226,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -218,13 +218,13 @@
         "attic organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "attic organization ideas",
@@ -329,10 +329,10 @@
       "best_page": "/articles/how-to-organize-an-attic.html",
       "best_page_title": "How to organize an attic without overloading it",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "attic storage ideas ikea",
@@ -470,11 +470,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -488,13 +488,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "baby diaper caddy organizer",
@@ -506,8 +506,8 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
@@ -548,7 +548,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -1194,11 +1194,11 @@
         "guest bathroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bathroom-deck.html",
-      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -1307,10 +1307,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "bathroom organizers and storage ideas",
@@ -1507,11 +1507,11 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -1525,11 +1525,11 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -2207,10 +2207,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best way to organize a nursery dresser",
@@ -2225,10 +2225,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/nursery-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to organize a workshop",
@@ -2258,13 +2258,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best way to organize baby clothes in closet",
@@ -2276,13 +2276,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best way to organize baby clothes in drawers",
@@ -2294,13 +2294,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to organize baking pans",
@@ -2442,7 +2442,7 @@
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2497,7 +2497,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2532,10 +2532,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "best way to organize dresser and closet",
@@ -2550,10 +2550,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to organize dresser for baby",
@@ -2568,10 +2568,10 @@
       "best_page": "/articles/how-to-organize-a-junk-drawer.html",
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to organize entryway closet",
@@ -2587,7 +2587,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -2673,8 +2673,8 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-store-blankets.html",
@@ -2713,7 +2713,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -2781,13 +2781,13 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "best_page_title": "How to organize a junk drawer (and keep it that way)",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to set up a garden",
@@ -2817,13 +2817,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "best way to store books in storage",
@@ -2927,8 +2927,8 @@
         "how to organize blanket storage"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-store-blankets.html",
@@ -4306,13 +4306,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "closet organizer for towels",
@@ -4324,12 +4324,12 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -4361,11 +4361,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -4379,11 +4379,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -4433,8 +4433,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
@@ -4451,8 +4451,8 @@
         "how to organize sorting hampers"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.2,
       "heading_coverage": 0.4,
       "heading_page": "/laundry-room-deck.html",
@@ -4469,8 +4469,8 @@
         "how to organize sorting hampers"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.2,
       "heading_coverage": 0.4,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -4487,8 +4487,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -4505,8 +4505,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
@@ -4523,8 +4523,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -4559,8 +4559,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/primary-bedroom-deck.html",
@@ -4578,8 +4578,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -4597,8 +4597,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -4615,8 +4615,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -4633,11 +4633,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -4652,8 +4652,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -4688,9 +4688,9 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
@@ -4706,8 +4706,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -7583,7 +7583,7 @@
       "best_page_title": "The 6S Zone Scoring Sheet and Layered Audit Template",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -8055,8 +8055,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -9046,8 +9046,8 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -9065,8 +9065,8 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -10010,8 +10010,8 @@
         "foyer organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/rooms/entryway.html",
@@ -10028,8 +10028,8 @@
         "foyer organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/rooms/entryway.html",
@@ -12146,8 +12146,8 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -12165,8 +12165,8 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -14165,7 +14165,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -14197,11 +14197,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -14380,8 +14380,8 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/guest-bathroom-deck.html",
@@ -15455,11 +15455,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -15882,13 +15882,13 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter dining room table",
@@ -16414,13 +16414,13 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to declutter your dining room",
@@ -17144,11 +17144,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -17162,11 +17162,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -17180,11 +17180,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -17198,8 +17198,8 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/laundry-room-deck.html",
@@ -17675,7 +17675,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -18340,11 +18340,11 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -18453,11 +18453,11 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -18507,8 +18507,8 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
@@ -18747,11 +18747,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -18950,11 +18950,11 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -19223,11 +19223,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -19481,8 +19481,8 @@
         "how to organize a entryway"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/rooms/entryway.html",
@@ -20103,8 +20103,8 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -20123,8 +20123,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -21188,7 +21188,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -21322,7 +21322,7 @@
       "best_page_title": "How to organize the pantry dry goods shelves",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -21748,10 +21748,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a small bedroom",
@@ -21897,11 +21897,11 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -21954,11 +21954,11 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -22053,13 +22053,13 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a small living room space",
@@ -22132,7 +22132,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -22745,11 +22745,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22817,11 +22817,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22835,11 +22835,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -22853,12 +22853,12 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -22871,11 +22871,11 @@
         "how to organize baby clothes"
       ],
       "room": "Garage",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -22889,13 +22889,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize baby clothes in bins",
@@ -22907,8 +22907,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-an-attic.html",
@@ -22925,13 +22925,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize baby clothes in cube storage",
@@ -22943,12 +22943,12 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -22962,11 +22962,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22980,11 +22980,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22998,13 +22998,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize baby clothes in dresser by size",
@@ -23016,13 +23016,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/nursery-deck.html",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize baby clothes in nursery",
@@ -23052,8 +23052,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.75,
       "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
@@ -23070,11 +23070,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -23088,13 +23088,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/primary-bedroom-deck.html",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize baby clothes without a dresser",
@@ -23106,13 +23106,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/nursery-deck.html",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize baby dresser",
@@ -23125,11 +23125,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
-      "best_page_title": "How to organize the guest bedroom dresser",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -23143,8 +23143,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -23342,9 +23342,9 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.75,
       "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "matched_on": "heading",
@@ -23397,11 +23397,11 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/guest-bathroom-deck.html",
-      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -23620,7 +23620,7 @@
       "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -23785,11 +23785,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -23804,11 +23804,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -23823,11 +23823,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -23842,13 +23842,13 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize bed sheets by size",
@@ -23861,11 +23861,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/hall-closet-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -23882,13 +23882,13 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize bedding",
@@ -23919,8 +23919,8 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -23977,8 +23977,8 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-closet.html",
-      "best_page_title": "How to organize the guest bedroom closet",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -24068,11 +24068,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -24177,8 +24177,8 @@
         "how to organize blanket storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-store-blankets.html",
@@ -24250,8 +24250,8 @@
         "how to organize book storage"
       ],
       "room": "",
-      "best_page": "/book.html",
-      "best_page_title": "6S Success: Home Edition, the book, 50 chapters, 20 rooms",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/living-room-the-bookshelves-and-display.html",
@@ -25274,11 +25274,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -25292,11 +25292,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25310,11 +25310,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25328,11 +25328,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -25346,11 +25346,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25365,11 +25365,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -25383,11 +25383,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -25401,11 +25401,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -25437,11 +25437,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25455,11 +25455,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25473,11 +25473,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/consulting.html",
-      "best_page_title": "Home reset consulting: $250 online, $1,200 on site",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25509,11 +25509,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25527,11 +25527,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25545,12 +25545,12 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -25563,11 +25563,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.25,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -25583,8 +25583,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -25601,11 +25601,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -25619,8 +25619,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -25637,8 +25637,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -25655,11 +25655,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "gap"
     },
@@ -25673,8 +25673,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -25691,8 +25691,8 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -25709,12 +25709,12 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -25727,11 +25727,11 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -25745,13 +25745,13 @@
         "how to organize closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize clothes",
@@ -25763,8 +25763,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -25781,11 +25781,11 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-an-attic.html",
-      "best_page_title": "How to organize an attic without overloading it",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -25871,12 +25871,12 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/about.html",
-      "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
-      "coverage": 0.0,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -26017,11 +26017,11 @@
         "how to organize crib"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-crib-and-sleep-zone.html",
-      "best_page_title": "How to organize the nursery crib",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26361,11 +26361,11 @@
         "how to organize diaper storage"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26456,7 +26456,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26474,7 +26474,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -26492,7 +26492,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -26506,11 +26506,11 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26542,11 +26542,11 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
-      "best_page_title": "How to organize the guest bedroom dresser",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26565,7 +26565,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -26583,7 +26583,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26601,7 +26601,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26619,7 +26619,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26633,11 +26633,11 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-dresser.html",
-      "best_page_title": "How to organize the guest bedroom dresser",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26655,7 +26655,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26691,7 +26691,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26796,11 +26796,11 @@
         "how to organize drying rack"
       ],
       "room": "",
-      "best_page": "/zones/laundry-room-the-washer-and-dryer.html",
-      "best_page_title": "How to organize the laundry room washer and dryer",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -26953,7 +26953,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -27190,8 +27190,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -27462,8 +27462,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
@@ -27770,11 +27770,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
-      "best_page_title": "Why does the medicine cabinet never get cleared out?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -27788,11 +27788,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -27806,11 +27806,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27824,11 +27824,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27842,11 +27842,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -27860,11 +27860,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27878,11 +27878,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27896,13 +27896,13 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize linen closet shelves",
@@ -27914,12 +27914,12 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -27932,12 +27932,12 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -27950,8 +27950,8 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bathroom-deck.html",
@@ -28242,8 +28242,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -28427,7 +28427,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -28464,7 +28464,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -28483,7 +28483,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -29409,7 +29409,7 @@
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -29478,13 +29478,13 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize small walk in closet",
@@ -29496,8 +29496,8 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -29622,8 +29622,8 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -29943,11 +29943,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -29961,13 +29961,13 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
-      "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/guest-bathroom-deck.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize towels and sheets in closet",
@@ -29979,13 +29979,13 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
-      "status": "partial"
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
+      "status": "covered"
     },
     {
       "query": "how to organize towels and washcloths",
@@ -29997,11 +29997,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -30015,11 +30015,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/hall-closet-the-paper-and-household-backstock.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30037,7 +30037,7 @@
       "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -30069,11 +30069,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
-      "best_page_title": "Why does the medicine cabinet never get cleared out?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bathroom-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30087,12 +30087,12 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -30124,12 +30124,12 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -30145,10 +30145,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
       "best_page_title": "How to organize the guest bathroom towels",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize towels on shelf",
@@ -30160,11 +30160,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30214,13 +30214,13 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/guest-bathroom-deck.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "how to organize toy box",
@@ -30417,7 +30417,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -30540,8 +30540,8 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -30666,11 +30666,11 @@
         "how to organize a guest bathroom"
       ],
       "room": "",
-      "best_page": "/guest-bathroom-deck.html",
-      "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -30855,7 +30855,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -30887,8 +30887,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/hall-closet-deck.html",
@@ -30924,11 +30924,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -30998,8 +30998,8 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -31830,8 +31830,8 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
@@ -32052,8 +32052,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -32686,8 +32686,8 @@
         "how to organize seasonal storage"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -32758,11 +32758,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/how-to-store-blankets.html",
-      "best_page_title": "How to store blankets, and where each kind should live",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -33253,11 +33253,11 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -33788,13 +33788,13 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/articles/is-that-really-a-backup.html",
-      "best_page_title": "Is that really a backup, or are you just storing it?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
-      "matched_on": "title",
-      "status": "partial"
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "ideas for towel storage",
@@ -33842,11 +33842,11 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -33896,8 +33896,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -33915,11 +33915,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -34298,8 +34298,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/kids-bedroom-deck.html",
-      "best_page_title": "The Kids Bedroom Deck: 69 cards, free to read",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/zones/kids-bedroom-the-clothing-closet.html",
@@ -36049,11 +36049,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -36068,11 +36068,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36086,11 +36086,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36105,8 +36105,8 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bathroom-deck.html",
@@ -36123,13 +36123,13 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "linen closet organization dollar tree",
@@ -36141,11 +36141,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36159,12 +36159,12 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -36178,11 +36178,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36197,11 +36197,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -36216,11 +36216,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36235,11 +36235,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36253,11 +36253,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36271,11 +36271,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36289,11 +36289,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36307,13 +36307,13 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "linen closet organization shelves",
@@ -36326,12 +36326,12 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -36344,13 +36344,13 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "linen closet organization systems",
@@ -36362,11 +36362,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -36380,11 +36380,11 @@
         "linen closet organization"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -38096,8 +38096,8 @@
         "why is my hall closet always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/why-is-my-house-always-messy.html",
@@ -38118,7 +38118,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -38548,7 +38548,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -39024,7 +39024,7 @@
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -39384,7 +39384,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-you-cant-find-the-right-charger.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -39922,8 +39922,8 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -39958,8 +39958,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -39976,8 +39976,8 @@
         "how to organize walkway"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -40138,11 +40138,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/how-to-organize-baby-clothes.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -40156,11 +40156,11 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-dresser.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -40193,11 +40193,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "best_page_title": "How to organize the guest bedroom bed and linens",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -40265,11 +40265,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -40538,11 +40538,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -40578,10 +40578,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "organizing a small bedroom",
@@ -40667,8 +40667,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -40817,11 +40817,11 @@
         "how to organize bed and linens"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -40877,10 +40877,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "organizing toiletries in bathroom",
@@ -40928,12 +40928,12 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "covered"
     },
     {
@@ -41170,11 +41170,11 @@
         "how to organize seasonal storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.25,
       "heading_coverage": 0.75,
-      "heading_page": "/garage-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -43056,8 +43056,8 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -44261,13 +44261,13 @@
         "hall closet organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-paperwork.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "simple decluttering pro tips",
@@ -44449,10 +44449,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "small bedroom organization ideas",
@@ -44501,11 +44501,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44519,11 +44519,11 @@
         "coat closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44615,7 +44615,7 @@
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -44632,9 +44632,9 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "title",
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
       "status": "partial"
     },
     {
@@ -44650,10 +44650,10 @@
       "best_page": "/guest-bathroom-deck.html",
       "best_page_title": "The Guest Bathroom Deck: 60 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/guest-bathroom-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "small guest bathroom storage ideas",
@@ -45002,7 +45002,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -45252,8 +45252,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -45270,8 +45270,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -46018,11 +46018,11 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/articles/what-is-6s.html",
-      "best_page_title": "What is 6S? The six steps, and how it differs from 5S",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/sentimental-items-without-guilt.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -46253,8 +46253,8 @@
         "how to organize bulk storage"
       ],
       "room": "",
-      "best_page": "/articles/more-storage-wont-fix-clutter.html",
-      "best_page_title": "More storage will not fix a messy room",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/kids-bedroom-deck.html",
@@ -46325,13 +46325,13 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "storage for baking supplies",
@@ -46708,7 +46708,7 @@
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -47089,11 +47089,11 @@
         "how to organize linen storage"
       ],
       "room": "",
-      "best_page": "/zones/hall-closet-the-linen-shelf-zone.html",
-      "best_page_title": "How to organize the hall closet linen storage",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -47511,8 +47511,8 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -47890,11 +47890,11 @@
         "how to organize towels"
       ],
       "room": "",
-      "best_page": "/zones/guest-bathroom-the-guest-linen-zone.html",
-      "best_page_title": "How to organize the guest bathroom towels",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48307,8 +48307,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48325,8 +48325,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48343,8 +48343,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48361,8 +48361,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48379,8 +48379,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48397,8 +48397,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/guest-bedroom-deck.html",
@@ -48415,8 +48415,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48434,8 +48434,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48452,8 +48452,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48470,8 +48470,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48488,8 +48488,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48506,8 +48506,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48524,8 +48524,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48543,8 +48543,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48561,8 +48561,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48597,12 +48597,12 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "matched_on": "title",
       "status": "partial"
     },
     {
@@ -48615,9 +48615,9 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
-      "coverage": 0.25,
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "coverage": 0.5,
       "heading_coverage": 0.75,
       "heading_page": "/downloads/6S-Standards-Pack.html",
       "matched_on": "heading",
@@ -48633,8 +48633,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48669,8 +48669,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48687,8 +48687,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48705,8 +48705,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48723,11 +48723,11 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48759,8 +48759,8 @@
         "walk in closet organization"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -48975,8 +48975,8 @@
         "how to organize a hall closet"
       ],
       "room": "",
-      "best_page": "/hall-closet-deck.html",
-      "best_page_title": "The Hall Closet Deck: 58 cards, free to read",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/sentimental-items-without-guilt.html",
@@ -49029,8 +49029,8 @@
         "how to organize baby clothes"
       ],
       "room": "",
-      "best_page": "/zones/nursery-the-baby-clothing-zone.html",
-      "best_page_title": "How to organize the nursery baby clothes",
+      "best_page": "/articles/how-to-organize-baby-clothes.html",
+      "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/family-wont-put-things-back.html",
@@ -49866,7 +49866,7 @@
       "best_page_title": "Articles: why homes get messy, and where to start",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "title",
       "status": "covered"
     },
@@ -50268,11 +50268,11 @@
         "why is my hall closet always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -50286,11 +50286,11 @@
         "why is my hall closet always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-organize-a-linen-closet.html",
+      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -51381,6 +51381,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-29T19:56:53Z",
-  "scored_against_commit": "5742c536d"
+  "scored_at": "2026-10-30T08:01:16Z",
+  "scored_against_commit": "c206d620e"
 }

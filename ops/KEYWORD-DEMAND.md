@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-29T19:56:53Z against 224 page(s) at commit 5742c536d. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-30T08:01:16Z against 226 page(s) at commit c206d620e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 224 published page titles: 1263 covered, 1390 partial, 155 gap.
+**Queries found:** 2808. Checked against 226 published page titles: 1307 covered, 1346 partial, 155 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -71,7 +71,7 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 | 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
 | 8 | back porch society | - | Why your family won't put things back where they belong (0.33) |
-| 8 | clothes sorter hamper near me amazon | - | How to organize the nursery baby clothes (0.20) |
+| 8 | clothes sorter hamper near me amazon | - | How to organize baby clothes by size, without drowning in them (0.20) |
 | 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
@@ -80,7 +80,7 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 | 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) |
 | 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
 | 8 | stove on floor plan | - | Venture plan (0.33) |
-| 9 | clothes sorter hamper near me target | - | How to organize the nursery baby clothes (0.20) |
+| 9 | clothes sorter hamper near me target | - | How to organize baby clothes by size, without drowning in them (0.20) |
 | 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 9 | foyer design ideas pinterest | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) |
@@ -104,7 +104,7 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1390.
+Showing the top 60 of 1346.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -163,7 +163,7 @@ Showing the top 60 of 1390.
 | 2 | how to organize sports stuff in garage | How to organize the garage sports gear storage | 0.67 |
 | 2 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 2 | how to stock a guest bathroom | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
-| 2 | linen closet organization hacks | How to organize the hall closet linen storage | 0.67 |
+| 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
@@ -177,7 +177,7 @@ Showing the top 60 of 1390.
 | Entryway | 50 | 2 | 24 | 24 |
 | Family Room | 27 | 0 | 19 | 8 |
 | Garage | 77 | 2 | 33 | 42 |
-| Guest Bathroom | 22 | 2 | 15 | 5 |
+| Guest Bathroom | 22 | 2 | 14 | 6 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
 | Home Office | 58 | 1 | 24 | 33 |
@@ -186,7 +186,7 @@ Showing the top 60 of 1390.
 | Laundry Room | 71 | 0 | 17 | 54 |
 | Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |
-| Nursery | 62 | 2 | 25 | 35 |
+| Nursery | 62 | 2 | 23 | 37 |
 | Pantry | 58 | 1 | 31 | 26 |
 | Primary Bathroom | 13 | 1 | 8 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
