@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 07:4x slot: previous work finished, nothing new unblocked
+
+NEXT FOR THE OPERATOR: standing Phil-gated list (8 decision issues, 2 blocked-on-art) and OWNER-ACTIONS.md, because every unblocked row in BACKLOG-2026-09-07.md sections 2-6 is Done, struck, or an explicit Phil gate (C5 Gemini billing, C6 YouTube OAuth), and STATUS.md's two active workstreams are both BLOCKED on Phil (Umami key, a spending decision) with the third CLOSED.
+
+**Previous work (07:1x PM, 07:0x operator) was finished and pushed clean, re-verified myself, not cited.** Attach needed a real unshallow and ff-only merge, 547 commits forward onto origin/main, tree clean before and after. Verified directly: `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 stale. GitHub re-read live via the API: 10 open issues unchanged, same exact set every recent cycle names (#42, #40, #35, #33, #31, #29, #21, #18, #15, #2; 8 `decision` + 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 re-read directly: only C5/C6 un-struck, both explicit Phil gates. `STATUS.md` Workstream 1 and 2 BLOCKED, Workstream 3 CLOSED, no replacement open.
+
+**One honest gap.** `preflight.py --fast` was backgrounded; it hit the documented `gate_tests` headless-Chromium sandbox hang with no gate output captured before the kill (stdout buffering under the pipe, the same symptom several recent cycles name). Reported unchecked for that run, not assumed passing, per `CLAUDE.md` 0.4. The narrower direct checks above independently cover the same ground.
+
+**Nothing new genuinely unblocked, no defect found.** Not sending a push notification: this is the same exhausted state issue #42 already names and dozens of cycles have reconfirmed; another would be noise, not news.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 07:1x slot: previous work finished; fixed a newest-first ordering slip the gate cannot see
 
 **Previous work (06:4x PM, 07:0x operator) was finished and pushed clean,** main fast-forwarded to 8db29b404 cleanly (unshallow, checkout, merge --ff-only, no reset or force). But reading the file by eye (not trusting the header) found a real small defect: the 07:0x operator entry (committed 06:56:38Z) had landed physically below the 06:4x PM entry (committed 06:48:11Z), both same calendar date, so `gate_nightly_log_ordering` stayed green (it only checks for a date reappearing after the log has moved to an older date, not intra-day slot order) while the file's own "newest first" header was briefly false for anyone reading just the top. Fixed: swapped the two blocks verbatim, zero content changed; confirmed with a sorted-line diff against the pre-edit file, byte-identical. Re-ran `gate_nightly_log_ordering`, `gate_nightly_log_no_duplicate_entries`, `gate_nightly_log_not_oversized` directly against the edited file: all clean.
