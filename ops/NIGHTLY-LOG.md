@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 17:5x slot: full re-verification, state unchanged
+
+**Did.** Attached per step 0: arrived shallow and detached, unshallowed, checked out main, merged origin/main ff-only, clean, no reset or force. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0 through 7 directly, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's own last entries (17:1x PM and 16:5x operator) directly, not a summary.
+
+**Verified directly, not cited.** Ran `python ops/preflight.py --fast` live in the background, watched its own log rather than trusting a prior run's citation: 0 FAIL through every gate up to and including `gate_image_coverage`, `cycle_signal` recorded a clean snapshot, then hung at the documented `gate_tests` headless-Chromium sandbox limit (`test_audit_catalog.py` spawning a fresh `audit_catalog.py --include-fixtures` child repeatedly). Killed it by hand after confirming no progress; the lock directory records the now-dead pid, reclaimed automatically by the next run's own liveness check, matching the documented behaviour, no manual deletion needed. Reported unchecked past `gate_tests`, not passing, per `CLAUDE.md` 0.4. Ran the narrower checks live myself: `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0 stale, `affiliate.py --check` clean (165 delivered documents, no affiliate link in any), `check_sellable.py` 124/126 Stripe-and-delivery-matched (2 known service SKUs, person-delivered), `link_graph_report.py` 0 orphans. `inbox_agent.py --apply`: no mail credentials in this sandbox, same standing gap, honestly unchecked.
+
+**Re-derived the deploy gap myself rather than trust the last citation.** Called `deploy_gap_material_commits('ad933f9e5')` directly against real current HEAD: 13 commits, byte-identical sha list to `STATUS.md`'s `BLOCKER-001` entry from the 15:3x slot. No drift; still gated on `VPS_DEPLOY_KEY` (issue #35), the only real fix, Phil's own hand.
+
+**Re-read GitHub directly, not cited.** 10 open issues unchanged, same set (8 `decision` + 2 `blocked-on-art`: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs. Checked CI directly via the Actions API: the most recent completed run (`41096402526`, the 16:5x cycle's own commit `dcd6e53f0`) is `completed`/`success`; a newer run on the 17:4x PM commit was still queued at the time of this check, not a failure. `BACKLOG-2026-09-07.md` sections 1b and 2 through 7 read in full: every row is Done, Archived, Hold (naming what has to be true first), or the owner-gate table in section 6; nothing un-struck and ungated. `STATUS.md`'s Workstream 1/2/3 section read directly: 1 and 2 BLOCKED on Phil, 3 CLOSED, no replacement workstream open, matching `CLAUDE.md` section 18's 3-workstream limit with room to spare but nothing unblocked to fill it.
+
+**Nothing new genuinely unblocked.** All 10 open issues are Phil's own call; every lane in `BACKLOG-2026-09-07.md` sections 2 through 6 is exhausted; `CHECKIN-LOG.md`'s last several hourly entries (13:56 through 16:46) each independently say nothing measurable moved. No defect found this cycle, so no new preflight gate was written. No push notification sent: this is the same exhausted, fully Phil-gated state issue #42 already names and a very long run of consecutive cycles today has already independently reconfirmed; another one now would be the noise the routine framework itself warns against, not news.
+
+**Went well:** the deploy-gap re-derivation and the CI-API cross-check both came back byte-identical to the prior cycle's own independent reads, which is itself a form of verification (two sessions, same method, same answer) rather than just repetition.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none; no new defect class, no new gate needed.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 17:4x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list and OWNER-ACTIONS.md, unchanged, because every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Hold or explicitly Phil-gated.
