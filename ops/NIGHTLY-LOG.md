@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-30 16:3x slot
+
+**Did:** Attached per STEP 0: shallow and detached on arrival, unshallowed (635 commits), checkout main, merge ff only onto origin/main, clean, no reset or force. Read BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, and this file's own last four entries directly, not a summary.
+
+**Verified directly, not cited.** `python ops/preflight.py` run live (fresh container, pymupdf reinstalled from ops/requirements.txt): 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, cycle_signal recorded a clean snapshot, then hung at the documented `gate_tests` headless-Chromium sandbox limit; watched for several minutes with no CPU progress, killed by hand, no stray lock left. Reported unchecked past that gate, not passing, per CLAUDE.md 0.4. Ran the narrower checks live: `check_urls.py` 218/218, `fix_dashes.py --check` 0 em/en dashes, `cold_read_ledger.py --stale` 0/298 and `--next` 0 un-ledgered candidates (lane fully exhausted again), `affiliate.py --check` clean (165 documents), `check_sellable.py` 124/126 (2 known service SKUs), `link_graph_report.py` 0 orphans. `inbox_agent.py --apply`: no mail credential in this sandbox, same standing gap, honestly unchecked. GitHub re-read live via the API: 10 open issues unchanged, same set (8 decision, 2 blocked-on-art: #42, #40, #35, #33, #31, #29, #21, #18, #15, #2), 0 open PRs; read every recent comment on #42, #15 and #2 directly rather than trust the log's citation, confirmed none is from Phil since the dates already on record. Deploy gap re-derived directly (`deploy_gap_material_commits('ad933f9e5')` against real current HEAD): still 13 commits, matching STATUS.md, no drift.
+
+**Found and fixed one real, genuinely unblocked item.** `preflight.py` warned `gate_status_blocker001_not_oversized`: STATUS.md's BLOCKER-001 chain had grown to 5 entries, only the newest current. Ran `ops/rotate_status_history.py --apply-blocker1`: moved 4 older entries (3406 bytes) into STATUS-ARCHIVE.md, kept the newest live. Verified before shipping: `--check-blocker1` now CLEAN, diffed STATUS.md (only the 4 superseded paragraphs removed, the current entry and every other section untouched), and `ops/tests/test_gate_status_blocker001_not_oversized.py` still passes its own fail-then-pass proof (6/6) against the real fix. This is the gate doing its job, not a new defect class, so no new gate written this cycle.
+
+**Nothing else new genuinely unblocked.** Every row in BACKLOG-2026-09-07.md sections 2-6 is Done, Archived, Hold, or explicitly Phil-gated (the 6-row owner-gate table, all accounts/money/OAuth); the 10 open GitHub issues are all `decision` or `blocked-on-art`, Phil's own call. No push notification sent: nothing changed since the last report on this exact exhausted state.
+
+**Went well:** found a real, small, closeable item instead of only reconfirming the standing exhausted state.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation as every recent cycle; issue #27 (shallow/detached checkout) and issue #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none; no new defect class, no new gate needed.
+
+**Next:** standing Phil-gated list in OWNER-ACTIONS.md and the 10 open issues, unchanged.
+
+Pushed to main. `STATUS.md`, `STATUS-ARCHIVE.md` (BLOCKER-001 rotation), command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`, `ops/cycle-signal.json`). No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-30 16:1x slot: previous work finished, nothing new unblocked
 
 NEXT FOR THE OPERATOR: standing Phil-gated list in OWNER-ACTIONS.md, unchanged, because every other unblocked lane is genuinely exhausted and none of the 10 open issues is the operator's to act on.
