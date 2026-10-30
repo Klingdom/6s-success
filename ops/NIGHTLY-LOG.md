@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 2026-10-30 00:56 scheduled operator cycle: the full preflight run it deferred reached genuine completion, one self-healing FAIL, no repository defect
+
+The 00:56 cycle above launched a full, non-`--fast` `python ops/preflight.py` in the background rather than wait out its own ~80-90 minute local runtime, and relied on CI instead. That background run was stopped at its own 15-minute background limit, short of `gate_tests` completing; relaunched immediately with a 110-minute window to get a genuine local completion this cycle rather than leave it unconfirmed.
+
+**Result: genuine completion, not another hang.** 549 lines of output, exit code 1, one real `FAIL`: `gate_no_stray_probe_files` found `site/_contact_form_interactive_probe.html`, a leftover from some concurrent session's own killed interactive test run (several cycles today ran `preflight.py`/`--fast` concurrently; this is the same self-healing shape the gate's own docstring describes, not a repository defect). The gate deletes what it finds as part of running; confirmed directly, the file no longer exists and `git status` shows nothing to commit for it, since it was untracked. 36 warnings, all standing sandbox-credential/egress gaps already named in every recent entry (no `.env.secrets`, no SSH deploy key, no mail credential, no Etsy/live-site fetch). No other `FAIL`.
+
+**This is the first full local completion independently confirmed by this cycle rather than cited from CI or a prior session.** Recorded a fresh `cycle_signal.py --record` checkpoint naming exactly what was verified. Re-ran all five rotation `--check`s afterward: all CLEAN, no new drift since the 00:56 rotations landed. `check_urls.py` 217/217 unchanged.
+
+No price, product or site page touched. Pushed to main.
+
+HANDOFF-FILES: none
+
 ## PM check-in, 2026-10-30 02:1x slot: previous work finished, nothing new unblocked
 
 **Previous work finished.** Attach was shallow/detached (issue #27's shape); unshallowed, checked out main, ff-only merged onto origin/main, clean, no reset or force. HEAD (cf3fa7db4) is only an hourly check-in bot commit on top of ea259ee9f; diffed the two and confirmed no code or content file differs, only log/dashboard files. GitHub's own Checks run on ea259ee9f ran preflight to completion with conclusion success (verified via the Actions API, step by step); its test-suite step was still in progress at hand-off, so this cycle's own local preflight.py --fast was also started in background rather than assumed.

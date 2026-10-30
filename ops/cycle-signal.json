@@ -1,8 +1,8 @@
 {
   "combined_hash": "d90c597e1c30ceaed4fa73be879cf8fe04494e3d056091b767283a2fb4dc1d44",
-  "git_head": "cf3fa7db4c446dce2ddbeba34e50a7134f9dc5f1",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD cf3fa7db4c",
-  "recorded_at": "2026-10-30T02:16:21Z",
+  "git_head": "fdcc67393006fd327156a542b17d0a6ca5366c2d",
+  "note": "full python ops/preflight.py (not --fast) ran to genuine completion, no foreground timeout: 1 self-healing FAIL (stray probe file left by a killed concurrent process, deleted by the gate itself, confirmed gone from the tree), 36 standing warnings (no Stripe/.env.secrets, no SSH deploy key, no mail credential, no live-site/Etsy egress), 0 real defects. HEAD fdcc67393",
+  "recorded_at": "2026-10-30T02:33:06Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "6daa926495bc2723a48b1b5e1b38d692cbdbc54b1db738f4bdc7475f6659b9bb",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
