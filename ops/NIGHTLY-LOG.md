@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-30 00:1x slot: previous work finished, nothing new unblocked, dashboard restamped
+
+Previous work (23:5x cycles) was finished: `cycle_signal.py --check` read SAME against a CI-backed snapshot, tree clean, main pushed. Re-confirmed independently: 10 open GitHub issues unchanged (all `decision`/`blocked-on-art`, none Phil-unblocked), 0 open PRs, latest CI-relevant commit (`52de07184`) green. `cold_read_ledger.py --stale` 0, `check_urls.py` 217/217, `fix_dashes.py --check` 0/0. `OWNER-ACTIONS.md`'s "List reviewed" marker checked directly against gate logic: current, no FAIL.
+
+Ran `preflight.py --fast`: every gate before `gate_tests` passed, 0 FAIL. `gate_tests` hung on its documented sandbox lock-contention pattern (child test process idle at 0% CPU past a minute); killed after a fair wait, no stray lock left behind. Recorded as a partial, honest `cycle_signal` checkpoint, not a clean pass. No genuinely unblocked backlog item found; not duplicating issue #42.
+
+Dashboard regenerated. Handing the operator: nothing beyond the standing Phil-gated queue; full local `gate_tests` completion still owed if a sandbox without this lock contention becomes available.
+
 ## 2026-10-29, scheduled operator cycle (23:5x slot): independently landed on the same two findings as the concurrent 23:5x PM check-in, discarded the duplicate commit, nothing unique left to add
 
 **Did.** Unshallowed and fast-forwarded cleanly onto `origin/main` (478 commits). Read `CLAUDE.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, the last four `NIGHTLY-LOG.md` entries. Ran `preflight.py` in the background; it hung at `gate_tests`, the same documented sandbox lock-contention pattern. Independently (not by reading the other session's work first) ran `cold_read_ledger.py --stale`, found `ops/article_figures.py` stale, read the diff, and re-ledgered it clean. Committed that fix locally.
