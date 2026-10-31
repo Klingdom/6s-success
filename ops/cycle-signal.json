@@ -1,10 +1,10 @@
 {
-  "combined_hash": "7da685fd807b0181ac147a62d89c2a468237304fa12aea086d408851f52ecf85",
-  "git_head": "ba341f4e7cc0c5bd2241da0cab7f67c3eb7d67dd",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD ba341f4e7c",
-  "recorded_at": "2026-10-31T13:10:03Z",
+  "combined_hash": "44f90cdd5aa257b80b45e01609a6705a357da102911d8af3d7e182bbf2b9b573",
+  "git_head": "5c28a6f85f231140ebdb2ca9bdb4e2701c382501",
+  "note": "merged A43 (garage sale content fix) with origin's 12:4x PM check-in; preflight --skip-tests on this merge, 0 FAIL before documented gate_etsy_pdfs_current sandbox hang",
+  "recorded_at": "2026-10-31T13:15:11Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "8ac9cb688ed3fded7675aa40b070f72247199043205d82758c41609105d03a9d",
+    "BACKLOG-2026-09-07.md": "0f5179d125b21018796b16e254ee1b137940696e3048e1ad5bd6f1827b62dd3e",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "89cff4f17106ae406417bfa82aaebae792ef7e392729dcdf7aac3b9ef39fabf1",
