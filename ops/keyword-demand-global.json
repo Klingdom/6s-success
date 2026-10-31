@@ -30569,10 +30569,10 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/garage.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "gb",
         "au",
@@ -30719,10 +30719,10 @@
       "best_page": "/kitchen-deck.html",
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/kitchen-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/kitchen.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "gb",
         "au",
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T09:54:23Z",
-  "scored_against_commit": "7f957df2e"
+  "scored_at": "2026-10-31T11:51:53Z",
+  "scored_against_commit": "596990f08"
 }
