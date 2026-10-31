@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (04:5x slot): closed the keyword gap the 04:4x PM check-in handed off, A34
+
+**Did.** Attached clean: fetched origin/main, already unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. A concurrent PM check-in (04:4x slot) pushed mid-cycle with a named handoff; fetched and fast-forwarded onto it rather than diverging. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Independently re-verified rather than cited: live `list_issues` still 10 open (8 decision, 2 blocked-on-art), unchanged since 2026-10-25, 0 Phil replies; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential, standing gap; `STATUS.md` section 14's three workstreams still BLOCKED/BLOCKED/CLOSED. Ran `preflight.py` unbuffered to a log file: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, timed out at the documented `gate_tests` headless-Chromium sandbox hang (exit 124), same standing limitation every recent cycle reports.
+
+**Did the handed-off work rather than re-confirm exhaustion a tenth time.** The 04:4x PM check-in named the real next step: the global keyword gap tier's top-ranked rows are mostly off-topic noise (Revit stair railings, a cribbage tournament, a dropped kerb), so it needs individual judgement, the same way A29 through A33 each did. Read the top ~100 of 141 gap rows directly. "how to organise nappies" (rank 8, gb) is genuinely on-topic, but the Nursery's "Diaper and Care Backstock" zone already carried a "nappy caddy" also-called entry that could not cover it: `ops/keyword_demand.py`'s scorer matches exact words, not stems, so the query's plural "nappies" never matched the existing singular "nappy". Checked the zone's own `purpose` text in `content.json` before adding ("Holds the reserve that feeds the changing station") to confirm the semantic match, then added "nappies zone" to the existing entry in `ops/zone-also-called.json`, the `<word> zone` naming precedent A32/A33 already established rather than the bare word alone (A32's own lesson: a bare noun reads as a zone-name claim nobody searching for it actually makes). Reran `ops/build_zone_pages.py` (self-chained: canonical links, landmarks, PWA, AVIF, fingerprint, sitemap).
+
+**Verified directly, not assumed.** `ops/keyword_demand_global.py --rescore`: the query moves from `gap` to `covered`, `heading_coverage` 1.0 against `/zones/nursery-the-diaper-and-care-backstock.html`, matched on heading; site-wide gap count 141 to 140. `check_urls.py` 218/218, `audit_pages.py` 223 pages/0 findings/0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 (2 known service SKUs), `link_graph_report.py` 0 orphans, `test_gate_zone_also_called_is_heading.py` 6/6 (including the real committed site).
+
+**Went well:** a genuine, verified, GREEN-tier content fix shipped this cycle, not another "nothing to do" entry.
+
+**Did not go well:** the gap tier is thinning (140 rows left, most off-topic); this lane will itself run exhausted soon and need the same honest "no more real gaps here" verdict A27 already recorded once before for an earlier harvest.
+
+**Changing next cycle:** nothing; this closes cleanly with no follow-on.
+
+**Next:** mine the remaining ~140-row gap tier for the next on-topic vocabulary gap, same method; otherwise same 10 Phil-gated issues, unchanged.
+
+Pushed to main. `BACKLOG-2026-09-07.md` (A34), `ops/zone-also-called.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, one zone page, sitemap, dashboard regen. No price or product touched; one existing page edited, no new page; `IndexNow` submitted on push.
+
 ## PM check-in, 2026-10-31 (04:4x slot): previous work finished; handing the operator a concrete next step instead of another generic "mine the gap tier"
 
 NEXT FOR THE OPERATOR: read down the global keyword gap tier (`ops/keyword-demand-global.json`, 141 gap rows, unchanged since A33) for the next genuine on-topic zone/room vocabulary gap, because the top ranked rows by `best_rank` are mostly off-topic noise (Revit railing questions, a classroom-bench query, a cribbage tournament, a dropped kerb) that need individual judgement before a fix, the same way A29 through A33 each did, not a blind pick of rank 1.

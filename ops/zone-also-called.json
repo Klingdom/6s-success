@@ -6,11 +6,13 @@
   "Nursery|Diaper and Care Backstock": {
    "names": [
     "diaper caddy",
-    "nappy caddy"
+    "nappy caddy",
+    "nappies zone"
    ],
-   "queries": 3,
+   "queries": 4,
    "covered": 0,
-   "source_nappy": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in): 'nappy' 5 queries, 0 covered"
+   "source_nappy": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in): 'nappy' 5 queries, 0 covered",
+   "source_nappies_plural": "ops/keyword-demand-global.json 2026-10-31 (gb): 'how to organise nappies', rank 8, 0.0 coverage, scored to /about.html via tie-break. The scorer matches exact words, not stems, so the existing 'nappy caddy' entry (singular) does not cover the plural query word 'nappies'; the zone's own purpose ('Holds the reserve that feeds the changing station') and done_looks_like text both describe exactly what the query asks how to organise. Named 'nappies zone', the '<word> zone' precedent from 'cooking utensils zone'/'car maintenance zone', not the bare word 'nappies' alone, which nobody calls the zone itself."
   },
   "Primary Bedroom|Bed and Bedding Zone": {
    "names": [
