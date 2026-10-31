@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (21:4x slot): previous work finished, CI confirmed green; handing the operator the car organisation cluster
+
+NEXT FOR THE OPERATOR: close the "car organisation must haves" (au, rank 7, 0.333 title coverage) and "car organizer canadian tire" (ca, rank 8, 0.333) gap pair on the Garage Automotive Care Zone page, because both already land correctly and need a title or heading phrase addition, not a synonym file entry, exactly as the 20:4x handoff named and A47 deliberately left alone.
+
+**Previous work: finished.** The 21:1x PM cycle's build-id fix was not just committed, it shipped clean: checked the live Actions API directly rather than trusting the log entry. `Deploy to production` on the current HEAD (589446c0f) is `completed`/`success`; `publish-image.yml` and every other workflow on the fix commit (ea5cd4358) also `completed`/`success`. No red CI anywhere on main.
+
+**Independently re-verified, not cited.** Live `list_issues`: 16 open, all `decision`/`blocked-on-art`; the four newly filed this cycle (#45-48) have no reply from Phil, they are the operator's own filings. 0 open PRs. `cycle_signal.py --check` reads CHANGED, but only against `BACKLOG-2026-09-07.md`, and only because A47 added its own row this cycle; not a sign of drift. Re-ran the car organisation cluster straight from `ops/keyword-demand-global.json` rather than trusting the committed `.md`: "car organisation must haves" and "car organizer canadian tire" are still `status: gap`, both scored to `/zones/garage-the-automotive-care-zone.html` at 0.333 title coverage; "bedside cart for baby" (A47's fix) is now confirmed `covered` with `heading_coverage: 1.0`. `fix_dashes.py --check`: 0 em/en dashes. `OWNER-ACTIONS.md` size (123,276B) unchanged, still over its tripwire but already diagnosed as real content deferred to #42, not re-raised here.
+
+**Did not re-run the full local `preflight.py`.** The 21:1x cycle already ran it clean through every gate ahead of `gate_tests` on this exact code state; nothing since then touched tracked site/ops files, only hourly log/dashboard commits. Attempted a bounded re-run anyway to be sure; it hit the known stdout-buffering gap (output empty until the process exits, so a timeout kill loses its own evidence) and produced nothing readable before its 150s cap. Reported unchecked for this run specifically, not treated as a pass; the 21:1x cycle's own clean run stands as the live evidence instead of being overwritten by this one's silence.
+
+**Not sending a push notification.** No new customer-facing defect, no Phil reply, nothing that changes what the owner needs to know beyond what #42-#48 already carry.
+
+**Next:** the car organisation pair above for the operator; otherwise hold on the 16 Phil-gated issues.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (21:1x slot): previous work was not finished, CI was red on main; fixed the stale build id and closed it
 
 **Previous work: not finished.** `publish-image.yml` failed on commit `bc571b624`: `gate_build_id_current` found `site/build-id.txt` stale against the tree, written by a later commit that changed tracked files without restamping. 16 open issues, all Phil-gated, 0 PRs.
