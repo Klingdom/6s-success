@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T04:25:22Z",
-   "mode": "changed",
-   "offered": 5,
-   "accepted": 5,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T04:55:43Z",
    "mode": "changed",
    "offered": 5,
@@ -635,6 +628,13 @@
    "offered": 2,
    "accepted": 2,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T06:24:55Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -723,7 +723,7 @@
   "https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone": "38386254acec7fcd",
   "https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone": "4bba1bbff182b512",
   "https://6s-success.com/zones/family-room-the-charging-and-device-zone": "18eb239cc1ce4c87",
-  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "43c62e1c1372ed8c",
+  "https://6s-success.com/zones/family-room-the-craft-and-activity-zone": "724c2c2704e5a946",
   "https://6s-success.com/zones/family-room-the-primary-media-zone": "96c164a177d08f95",
   "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "5f7f074e1c5b7ba2",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "9dd21b01a2be996a",
