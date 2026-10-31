@@ -1,10 +1,10 @@
 {
-  "combined_hash": "678e747104a7e1d3d3faae116ac3aa917dbfe9c0a46e177ece5b04926de73ca9",
-  "git_head": "d6a49066b8b787d7cc1868d6017bb07964790ea4",
-  "note": "PM 22:4x: preflight --skip-tests clean through gate_etsy_pdfs_current sandbox hang, 0 FAIL, A48 unmatched_words claim independently verified",
-  "recorded_at": "2026-10-31T22:19:03Z",
+  "combined_hash": "7fe699ec1199d8f2b9239d612becf8bc3779eeca1f03730e2e4d4618d5936b6c",
+  "git_head": "eae91b70746ae9c2e6b2548fb825a9d22922e04b",
+  "note": "",
+  "recorded_at": "2026-10-31T22:55:20Z",
   "signals": {
-    "BACKLOG-2026-09-07.md": "671ab4e0c44c7e5d01c834a0028392ab9531f92efb4f1acac82ec77a20ded22f",
+    "BACKLOG-2026-09-07.md": "b61bde144e111c1cedbbfb787bf80cd3f817cdb1f4bd9e04ec052f735f6325c9",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "5d3722e0ef83403c85cc36dc4374e9f3ad8f1fd6089ca1f2a792deb4c6d3b44d",

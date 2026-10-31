@@ -103,11 +103,13 @@
   },
   "Entryway|Coat and Outerwear Zone": {
    "names": [
-    "coat cupboard"
+    "coat cupboard",
+    "jackets zone",
+    "coat hanger"
    ],
-   "queries": 2,
+   "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+   "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in); 2026-10-31 (no market listed): 'how to hang jackets on hanger', rank 11, gap, 0.333 coverage, scored to /garage-deck.html on a coincidental match ('HANG THE BIKES AND LABEL BY WHO PLAYS' and two other unrelated card headings on that page literally contain the word 'hang'), not a real one. The zone's own purpose ('Hold the outerwear you will actually wear this week') and its common_items ('The wool coat, on a hanger') are exactly what the query asks about; a jacket is the same outerwear this zone already holds, just the lighter-weight word for it. Named 'jackets zone' (the '<word> zone' precedent from the A-series, not the bare plural alone) and 'coat hanger' (a real household name for this spot, and the literal word already in the zone's own common_items text, just not in a heading). Moves the query from gap (0.333, wrong page) to partial (0.667, matched on heading, the real zone page): 'hang' itself is not added, since nothing in this zone's real content supports a heading claiming it literally."
   },
   "Guest Bathroom|Guest Linen Zone": {
    "names": [
@@ -164,6 +166,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-31 (au): 'how to organise small garden shed', rank 12, gap, 0.333 title coverage, scored to /family-room-deck.html via a coincidental word match on 'small' (heading_coverage 0.333), not a real one; found by the 19:4x PM check-in's own gap-tier mining, same wrong-page misattribution shape A37 fixed for 'utility room' against Laundry Room. Checked against the zone's own purpose text in content.json before adding: 'Stores the yard tools and outdoor supplies so long handles stay off the floor and garden chemicals stay latched away from everything else' is exactly what a household garden shed holds, whether the yard tools live in a shed or a garage bay; the Patio room's Outdoor Storage Zone (cushions under a lid) and Garden and Plant Care Zone (containers and feed) are both a worse fit, since neither stores tools. Named 'garden shed zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38), not the bare noun 'garden shed' alone, which would overclaim the zone literally is a shed rather than the same function wherever it is housed."
+  },
+  "Laundry Room|Washer and Dryer": {
+   "names": [
+    "washing machine"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (ca): 'utility room design with washing machine', rank 13, gap, 0.4 title coverage, scored to /laundry-room-deck.html; the 'utility room' half of this query already matches since A37 added that room-level synonym, but 'washing' and 'machine' do not, the same exact-word-not-stem gap A34/A36 already fixed once each: the zone's own title word is 'Washer', not 'washing', and 'machine' never appears in any heading at all. Checked the zone's own purpose text in content.json before adding: 'Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops' is literally about the washing machine, and the zone's own common_items/standard text already says 'washing machine' in body copy, just never in a heading. Named 'washing machine' as a single phrase (the precedent from 'nappy change table'/'makeup vanity'), not 'washing' or 'machine' separately. Moves the query from gap (0.4) to partial (0.8, matched on heading); the query's remaining word, 'design', is generic layout filler this product does not honestly claim for a single zone heading, the same reason 'plan' was dropped from the room-layout tips in A40."
   }
  }
 }

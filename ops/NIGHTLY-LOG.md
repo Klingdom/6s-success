@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (23:0x slot): closed two genuine clusters mined from the remaining global gap rows the 22:4x handoff named, A49
+
+**Correcting the 22:4x second-pass verdict below, not just citing it.** That cycle read all 113 gap rows and concluded the lane was "exhausted of actionable clusters," checked directly against `unmatched_words` rather than row count; two rows it passed over were genuine, not noise, confirmed by actually rebuilding and rescoring rather than reading text alone.
+
+**Did.** Checkout arrived shallow and detached; unshallowed for real (waited for the fetch rather than racing it), `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force (178 commits fast-forwarded). GitHub: 16 open issues, all `decision`/`blocked-on-art`, none newly commented by Phil since the last read (checked every one directly, not just the count). 0 open PRs. Inbox: `inbox_agent.py --apply` reports no mail credentials, the standing gap.
+
+**Did what the 22:4x handoff asked: mined the remaining 113 global gap rows for a genuine cluster.** Read the full sorted list, not just the top ranks (CLAUDE.md 5c). Confirmed almost all of it is real off-topic noise (Revit stair-railing CAD, cribbage tournaments, bench press form, vastu bedroom direction, paneer/pasta cooking trouble, back-porch bands and careers) that no honest edit should chase, the same set the second-pass cycle below named. Two rows were genuine: "how to hang jackets on hanger" was scoring to `/garage-deck.html` on a coincidental word match (that page's own unrelated card headings literally say "HANG THE BIKES..."), the same wrong-page misattribution shape as A37/A45/A46; checked the Entryway Coat and Outerwear Zone's own purpose and `common_items` text in `content.json` before adding "jackets zone" and "coat hanger" to `zone-also-called.json`. "Utility room design with washing machine" was the exact row A37 deliberately left open; "washing"/"machine" never matched any heading even though the zone's own body copy already says "washing machine", the same exact-word-not-stem gap A34/A36 fixed once each; added "washing machine" as a single phrase to a new `Laundry Room|Washer and Dryer` entry, checked against the zone's own purpose text first.
+
+**Verified.** Reran `ops/build_zone_pages.py` (self-chained). `test_gate_zone_also_called_is_heading.py` (6/6, both new headings render as committed). `ops/keyword_demand_global.py --rescore`: both target queries move from `gap` to `partial` (0.667 and 0.6 respectively), confirmed live against the real rescored file, not asserted; site-wide gap count 113 to 111. `check_urls.py` (218/218), `audit_pages.py` (223/0, 0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126 Stripe-matched, 2 known service SKUs, unchanged), `build_id.py --check` (current), `ops/audit_visual.py` scoped to both changed pages (desktop and mobile, 0 findings each).
+
+**Preflight: ran, 0 FAIL through every reachable gate, genuinely stalled at `gate_prerender_shop_current`** (flat CPU, 21s unchanged across 7+ minutes elapsed, the documented headless-Chromium sandbox limit, unrelated to this change since nothing here touches `shop.html`), killed by pid after confirming flat, not left to time out blind. Left the resulting lock directory in place rather than hand-deleted, since its own recorded pid matched the process just killed and the tool's dead-pid detection clears it on the next run, the same precedent A38 already proved. Recorded a fresh `cycle_signal.py` snapshot after the targeted checks above, all of which cover exactly what this change touches.
+
+**Went well:** the misattribution check on "hang jackets" caught a real coincidental match before writing anything, and the washing-machine fix closed a row A37 had explicitly left open rather than re-diagnosing it from scratch.
+
+**Did not go well:** nothing new; `BACKLOG-2026-09-07.md` remains over its own 150,000-byte size tripwire (153,191 bytes) but every rotation tool (`rotate_backlog.py`, `rotate_backlog_closed.py`, `rotate_backlog_section2_items.py`, `rotate_backlog_done_items.py`) reports CLEAN, the same already-diagnosed "real content inside its own retention window" shape `OWNER-ACTIONS.md`'s own tripwire carries, not a mechanical fix.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 111 global gap rows for the next genuine cluster, or act on any Phil reply to #42-#48 or the other open decision issues.
+
+Pushed to main. `ops/zone-also-called.json`, two rebuilt zone pages, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-10-31 (22:4x slot, second pass): correcting the prior handoff, the global gap lane is noise, not a cluster; still holding for the operator
 
 NEXT FOR THE OPERATOR: hold on the 16 Phil-gated issues, because the "mine the remaining 113 global gap rows for a cluster" handoff this same slot left 20 minutes ago does not survive a direct read of the rows.

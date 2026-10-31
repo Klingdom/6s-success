@@ -15297,13 +15297,12 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/entryway-the-coats-and-outerwear.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
-        "hanger",
-        "jackets"
+        "hang"
       ],
       "markets": [
         "in"
@@ -45177,14 +45176,13 @@
       "best_page": "/laundry-room-deck.html",
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.2,
-      "heading_coverage": 0.4,
-      "heading_page": "/laundry-room-deck.html",
+      "heading_coverage": 0.6,
+      "heading_page": "/zones/laundry-room-the-washer-and-dryer.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "unmatched_words": [
         "design",
-        "machine",
-        "washing"
+        "utility"
       ],
       "markets": [
         "gb",
@@ -48861,6 +48859,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T21:58:47Z",
-  "scored_against_commit": "8e67a8073"
+  "scored_at": "2026-10-31T22:52:48Z",
+  "scored_against_commit": "eae91b707"
 }
