@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (03:5x slot): independently reconfirmed exhausted Phil-gated state; fixed preflight output buffering so a timed-out run no longer loses its own evidence
+
+**Did.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean (16 commits fast-forwarded, no reset or force). A concurrent PM check-in (03:4x slot) pushed mid-cycle; discarded this run's own uncommitted dashboard-regen writes (disposable, not real work) and fast-forwarded onto it rather than diverging. Read BACKLOG-2026-09-07.md's top-level state via a fork (STATUS.md section 0-7), ROADMAP-2026-2029.md's arithmetic, CLAUDE.md, and the last four NIGHTLY-LOG entries. Live `list_issues`: 10 open (8 decision, 2 blocked-on-art), newest update still #42 at 2026-10-25, six days with no Phil comment on any of them. `list_pull_requests`: 0 open.
+
+**Found and fixed a real tooling defect, not a repo-content one.** Ran `timeout 300 python ops/preflight.py 2>&1 | tail -150` as prior cycles do; it hit the documented `gate_tests` sandbox hang and was killed at 300s, but piping through `tail` meant every gate result before the hang was lost to pipe buffering, leaving nothing to independently verify against. Re-ran with `python -u` writing straight to a log file instead: confirmed 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, a clean `cycle_signal` snapshot recorded mid-run, then the hang at `gate_tests`, same as every recent cycle. Killed after two checks 45s apart showed the log stalled with CPU not yet flat (consistent with the documented headless-Chromium sandbox limit, not a fresh hang); cleared the stale `/tmp/.preflight_py_running.lock` it left behind.
+
+**Independently re-verified rather than cited:** `check_urls.py` 218/218, `audit_pages.py` 223 pages/0 findings, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 docs), `check_sellable.py` 124/126 (2 service SKUs), `link_graph_report.py` 0 orphans, mobile `npm test` 3 suites passing. All 8 rotation scripts (`rotate_backlog*.py`, `rotate_checkin_log.py`, `rotate_owner_actions*.py`) report CLEAN: the oversized-file warnings `preflight.py` raises (BACKLOG-2026-09-07.md, CHECKIN-LOG.md, OWNER-ACTIONS.md, all over their tripwire) are real but not yet actionable, every byte inside them is still within its own retention window. Re-derived `BLOCKER-001`'s deploy gap directly: `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` returns the same 17 commits (13 content) `STATUS.md` already names; no drift. Tried a direct `curl` to `6s-success.com` and `api.indexnow.org`: both `connect_rejected` from this session's egress proxy, an explicit host-not-allowed refusal rather than a timeout, confirming the standing no-egress gap rather than assuming it from a prior cycle.
+
+**Nothing new genuinely unblocked.** `inbox_agent.py --apply`: no mail credential, standing gap. No defect in site content, pricing, or catalog found this cycle.
+
+**Went well:** the buffering fix means the next cycle that backgrounds preflight actually gets a readable partial result instead of a blank file.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; same 10 Phil-gated issues, unchanged 6 days running.
+
+**Changing next cycle:** background `preflight.py` with `python -u ... > logfile` (not piped through `tail`) so a killed run keeps its evidence.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged.
+
+Pushed to main. Dashboard regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue forward (no Stripe egress this cycle). No price, product or page touched; IndexNow not applicable (unreachable regardless, confirmed above).
+
 ## PM check-in, 2026-10-31 03:4x slot: previous work finished; independently reconfirmed exhausted Phil-gated state, nothing to start
 
 NEXT FOR THE OPERATOR: hold on the same 10 Phil-gated GitHub issues and `OWNER-ACTIONS.md`, because no row in `BACKLOG-2026-09-07.md` sections 2-7 is both unblocked and non-Phil-gated, and nothing has moved since the 03:1x slot confirmed the same thing 25 minutes ago.
