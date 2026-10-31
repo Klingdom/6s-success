@@ -18732,6 +18732,18 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     Widened to also match the bare word "zero" (case-insensitive) as the
     count 0, alongside the existing digit match.
 
+    Found live 2026-10-31, scheduled operator cycle: the digit match had no
+    leading word boundary, so a token this very gate's own prose is likely
+    to contain, an "A38 commit" style fix-series id directly followed by
+    the word "commit" (this file's own convention for naming which A-series
+    item closed a given commit), was itself misread as a cited count. The
+    writer's "the Hall Closet Cleaning Supply Zone fix... A38 commit lands"
+    line fed this function a real count of 21 and had the function read
+    back 38, the trailing digits of "A38" with "commit" stuck on. Fixed by
+    requiring a word boundary immediately before the digit group, which a
+    letter-digit run like "A38" never has (no boundary between two \\w
+    characters), so the match can no longer start inside an identifier.
+
     Returns a problem string if the cited count and the real one disagree;
     '' if there is no BLOCKER-001 section, no build_id, the latest entry
     does not yet cite the current build_id (gate_status_deploy_verdict_
@@ -18752,7 +18764,7 @@ def deploy_gap_count_problem(status_text: str, real_count: int,
     latest = entries[-1] if entries else section
     if build_id not in latest:
         return ""
-    matches = list(re.finditer(r"(\d+|\bzero)\s+commits?\b", latest,
+    matches = list(re.finditer(r"\b(\d+|zero)\s+commits?\b", latest,
                                 re.IGNORECASE))
     if not matches:
         return ""

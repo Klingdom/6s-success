@@ -3,6 +3,15 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-10T19:51:00Z",
  "zones": {
+  "Hall Closet|Cleaning Supply Zone": {
+   "names": [
+    "detergents zone",
+    "cleaners zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (ca): 'detergents and cleaners must be stored', rank 5, gap, 0.25 coverage, scored to /articles/how-to-organize-an-attic.html via a coincidental word match, not a real one. The zone's own purpose ('Holds the products you clean with, grouped so you carry the right handful to the right room') and safety text (bleach and ammonia products kept on separate shelves, out of a child's reach) are exactly what the query asks about; its title words 'Cleaning Supply' never render the plural product-category words 'detergents' or 'cleaners' the query actually uses. Named 'detergents zone' and 'cleaners zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36), not either bare plural alone. Moves the query from gap (0.25) to partial (0.5), matched on heading, not full coverage: the query's other words ('must', 'stored') are grammatical, not zone vocabulary, and no honest heading adds them."
+  },
   "Family Room|Craft and Activity Zone": {
    "names": [
     "crafts zone"

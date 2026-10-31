@@ -209,12 +209,48 @@ def main() -> int:
         fails.append("'zero commits' phrasing, cited 0, real 0: still "
                       "flagged: %r" % problem)
 
+    # 14. The real live shape found 2026-10-31, scheduled operator cycle:
+    #     the latest entry's own prose names a fix-series id immediately
+    #     before the word "commit" ("this cycle's own A38 commit"), which
+    #     the old digit-only regex (no leading word boundary) misread as a
+    #     cited count of 38, the trailing digits of "A38" glued to
+    #     "commit". The real, later-stated count is 21. Must report 21, not
+    #     38: the id-shaped false match must not win just because it comes
+    #     later in the text.
+    id_false_positive = (
+        "**Widened, later: the gap is now 21 commits, 16 of them "
+        "content.** Confirmed build `%s`. This entry will go stale again "
+        "the moment this cycle's own A38 commit lands." % BUILD_ID
+    )
+    problem = preflight.deploy_gap_count_problem(
+        section(id_false_positive), real_count=21, build_id=BUILD_ID,
+        checked_at="2026-10-31T07:55:00Z")
+    if problem:
+        fails.append(
+            "'A38 commit' false positive: cited should read as 21 (real "
+            "21), but still flagged: %r" % problem)
+
+    # 15. Same shape, but the real count genuinely differs from the
+    #     correctly-read 21 (not the false-positive 38): must fire and name
+    #     21, never 38.
+    problem = preflight.deploy_gap_count_problem(
+        section(id_false_positive), real_count=22, build_id=BUILD_ID,
+        checked_at="2026-10-31T07:55:00Z")
+    if not problem:
+        fails.append(
+            "'A38 commit' false positive: cited 21 real 22: expected a "
+            "problem, got none")
+    elif "21 commit" not in problem or "38" in problem:
+        fails.append(
+            "'A38 commit' false positive: problem string did not read the "
+            "real 21, or leaked the false 38: %r" % problem)
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 13 checks")
+    print("PASS: 15 checks")
     return 0
 
 
