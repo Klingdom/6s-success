@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-31T09:54:24Z against 226 page(s) at commit 7f957df2e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-31T15:17:43Z against 226 page(s) at commit 723acdb80. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 226 published page titles: 1309 covered, 1346 partial, 153 gap.
+**Queries found:** 2808. Checked against 226 published page titles: 1314 covered, 1350 partial, 144 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 153, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 144, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -38,7 +38,6 @@ Showing the top 80 of 153, ordered by the best rank the phrase reached in any on
 | 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
 | 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
-| 4 | foyer design ideas photos | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
 | 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) |
@@ -51,11 +50,9 @@ Showing the top 80 of 153, ordered by the best rank the phrase reached in any on
 | 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) |
 | 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) |
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
-| 5 | how to organize a garage sale quickly | Garage | The Garage Deck: 80 cards, free to read (0.33) |
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
-| 6 | foyer design ideas for flat | - | What does a 5S engagement cost, and why no flat rate? (0.33) |
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) |
 | 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) |
@@ -81,7 +78,6 @@ Showing the top 80 of 153, ordered by the best rank the phrase reached in any on
 | 8 | stove on floor plan | - | Venture plan (0.33) |
 | 9 | clothes sorter hamper near me target | - | How to organize baby clothes by size, without drowning in them (0.20) |
 | 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 9 | foyer design ideas pinterest | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) |
 | 9 | how to hold a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) |
@@ -92,7 +88,6 @@ Showing the top 80 of 153, ordered by the best rank the phrase reached in any on
 | 9 | why do i have trouble climbing stairs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 10 | card games organizer storage | - | More storage will not fix a messy room (0.33) |
 | 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 10 | foyer design ideas india | - | The Entryway Deck: the printable PDF has moved (0.00) |
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) |
 | 10 | how to organize pc | - | - (0.00) |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
@@ -101,10 +96,15 @@ Showing the top 80 of 153, ordered by the best rank the phrase reached in any on
 | 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) |
 | 11 | how to arrange twin cribs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) |
+| 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) |
+| 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
+| 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) |
+| 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1346.
+Showing the top 60 of 1350.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -174,9 +174,9 @@ Showing the top 60 of 1346.
 | Room | Queries | Gap | Partial | Covered |
 |---|---|---|---|---|
 | Dining Room | 39 | 0 | 21 | 18 |
-| Entryway | 50 | 2 | 24 | 24 |
+| Entryway | 50 | 1 | 22 | 27 |
 | Family Room | 27 | 0 | 19 | 8 |
-| Garage | 77 | 2 | 33 | 42 |
+| Garage | 77 | 1 | 33 | 43 |
 | Guest Bathroom | 22 | 2 | 14 | 6 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |

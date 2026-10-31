@@ -5539,9 +5539,9 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
+      "heading_coverage": 0.333,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
       "status": "gap"
     },
     {
@@ -6747,10 +6747,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "design outside grill cooking station",
@@ -10049,10 +10049,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial"
+      "status": "covered"
     },
     {
       "query": "foyer design ideas for flat",
@@ -10067,10 +10067,10 @@
       "best_page": "/articles/what-a-5s-engagement-costs.html",
       "best_page_title": "What does a 5S engagement cost, and why no flat rate?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "foyer design ideas for flat indian style",
@@ -10085,9 +10085,9 @@
       "best_page": "/articles/what-a-5s-engagement-costs.html",
       "best_page_title": "What does a 5S engagement cost, and why no flat rate?",
       "coverage": 0.2,
-      "heading_coverage": 0.2,
+      "heading_coverage": 0.4,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
+      "matched_on": "heading",
       "status": "gap"
     },
     {
@@ -10103,10 +10103,10 @@
       "best_page": "/articles/everything-needs-an-assigned-home.html",
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/entryway-deck.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "foyer design ideas india",
@@ -10121,10 +10121,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "foyer design ideas photos",
@@ -10139,10 +10139,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "foyer design ideas pinterest",
@@ -10157,10 +10157,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "foyer design ideas simple",
@@ -10175,10 +10175,10 @@
       "best_page": "/articles/how-to-organize-paperwork.html",
       "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
-      "status": "gap"
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "foyer design ideas with mirror",
@@ -10193,10 +10193,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap"
+      "status": "partial"
     },
     {
       "query": "foyer design ideas with shoe rack",
@@ -16546,10 +16546,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to decorate a living room",
@@ -16820,10 +16820,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to decorate entry way",
@@ -16967,10 +16967,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to design gallery wall",
@@ -17258,7 +17258,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.2,
       "heading_coverage": 0.4,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
       "status": "gap"
     },
@@ -19747,10 +19747,10 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/garage.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize a garage sale quickly",
@@ -19767,10 +19767,10 @@
       "best_page": "/garage-deck.html",
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/garage.html",
+      "matched_on": "heading",
+      "status": "partial"
     },
     {
       "query": "how to organize a garage sale without tables",
@@ -19787,7 +19787,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/rooms/garage.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -22875,7 +22875,7 @@
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/rooms/garage.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -27430,7 +27430,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/zones/garage-the-automotive-care-zone.html",
+      "heading_page": "/rooms/garage.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -46871,7 +46871,7 @@
       "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/kitchen-the-cooking-zone.html",
+      "heading_page": "/rooms/kitchen.html",
       "matched_on": "title",
       "status": "partial"
     },
@@ -51381,6 +51381,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-31T09:54:24Z",
-  "scored_against_commit": "7f957df2e"
+  "scored_at": "2026-10-31T15:17:43Z",
+  "scored_against_commit": "723acdb80"
 }

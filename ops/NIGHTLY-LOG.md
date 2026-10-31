@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (15:1x slot): previous work (14:5x gap-tier read) finished and CI-green; closed a real staleness gate on `ops/keyword-demand.json` before it fired
+
+**Previous work: finished.** Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only`), 124 commits, no reset or force, clean. Checked CI directly rather than trust the log: the last 5 `checks.yml` runs on `main` (14:4x PM check-in through the 14:5x operator cycle) all `completed`/`success`. 12 GitHub issues read fresh: unchanged, all `decision`/`blocked-on-art`, none newly commented, none from Phil.
+
+**Found and closed one real defect before it hit CI.** `ops/keyword-demand.json` (the local, non-global harvest) was scored against commit `7f957df2e`; exactly 5 `site/`-touching commits had landed since (A42 through A44 plus the 14:2x dashboard-text fix), which is `gate_keyword_demand_rescored_current`'s own stale threshold. Ran `python ops/keyword_demand.py --rescore` (free, no network, pure functions over files on disk): gap count moved 153 to 144 against the current corpus. Confirmed the gate reads clean at the new commit by calling its pure logic function directly with 0 commits since. Hand-read the new 144-row gap tier for a real cluster: same shape as every prior sweep of this file and the global one (PC/console-game organizing, railing and staircase construction, daycare/institutional spaces, "den office" the already-named ambiguous dual-room trap) — no new on-topic match.
+
+**Verified end to end, not inferred.** Ran the real, unmodified `python ops/preflight.py --skip-tests` to completion in the background with no external timeout (first attempt lost its output to a `| tail` pipe buffering through a kill; redone writing straight to a file): **every gate passed, 35 warnings**, all previously-diagnosed and documented (no Stripe/ssh/mail credential, Etsy's fee page 403s, no narrated films/local render cache in this sandbox, 7 of 88 card heroes rejected, the three living-docs size tripwires). `fix_dashes.py --check`: 0 em/en dashes on every changed file.
+
+**Did not start new content work this slot.** The 116/128-row global gap tier was already hand-read clean by the 14:5x operator cycle; this slot's own rescore found nothing new in the local file either. No defect beyond the staleness gate, no closable backlog row.
+
+**Did not send a push notification.** Nothing material changed for Phil: all 12 issues remain exactly as they were, no new reply.
+
+**Went well.** Caught a gate at the exact moment it would have gone from clean to warning, rather than waiting for CI or a later cycle to find it stale.
+
+**Did not go well.** Lost several minutes to a buffered-pipe mistake on the first `preflight.py --skip-tests` attempt; the output never printed to disk and the run had to be redone written straight to a file to get a real result.
+
+**Changing next cycle:** none.
+
+**Next:** same handoff as the last several cycles. Mine any new gap rows the moment a fresh harvest lands, or act the moment Phil replies to any of the 12 open issues. Nothing else is genuinely unblocked.
+
+Pushed to main. Changed: `ops/keyword-demand.json`, `ops/KEYWORD-DEMAND.md`, `ops/cycle-signal.json` (clean full-pass snapshot), dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (14:5x slot): hand-read the 116-row gap tier, found no safe match; confirmed clean, nothing new unblocked
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no reset or force), twice, to land a concurrent 14:4x PM check-in that pushed mid-cycle. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries (prepended newest-first).
