@@ -31602,6 +31602,15 @@ def main() -> int:
     # gates above were moved on 2026-10-21.
     run_gate(gate_owner_actions_last_measured_current)
 
+    # site/build-id.txt is the third occurrence of the identical shape:
+    # pure hashing, no browser, no network, and it has now failed on the
+    # real GitHub runner three cycles running (A32, A33, A34) while sitting
+    # undetected behind this sandbox's gate_tests hang every single time,
+    # caught only after push by reading CI job logs by hand. Moved here for
+    # the same reason gate_owner_actions_last_measured_current was, just
+    # above.
+    run_gate(gate_build_id_current)
+
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
     run_gate(gate_unsourced_stats)
@@ -31912,7 +31921,6 @@ def main() -> int:
     run_gate(gate_revenue_model_checkout_caveat)
     run_gate(gate_marketplace_fix_current)
     run_gate(gate_corporate_buy_path_current)
-    run_gate(gate_build_id_current)
     run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
