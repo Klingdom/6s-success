@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (04:1x slot): previous work finished; cooldown on the standing owner-notification had expired, sent a fresh one
+
+**Previous work: finished.** Attached clean: fetched origin/main, unshallowed for real (waited for the fetch rather than issuing a second one), `checkout main`, `merge --ff-only` onto `origin/main` (20 commits), no reset or force, tree clean before this cycle touched anything.
+
+**Independently re-verified, not cited.** `cycle_signal.py --check`: SAME against the 03:17:11Z snapshot. Live `list_issues`: still 10 open (8 `decision`, 2 `blocked-on-art`), newest `updated_at` still #42 at 2026-10-25, 6 days with no Phil comment on any of them; read #42's own 7-comment thread directly and confirmed every comment on it is a prior autonomous cycle's own status update under Phil's GitHub login (several carry the literal Claude Code footer), none a real reply from him. `list_pull_requests`: 0 open. Last 10 Actions runs (hourly-brief, social-drafts, LinkedIn, Bluesky, fulfil-orders across the 03:4x and 03:5x pushes): all `completed`/`success`. Ran `preflight.py` myself, unbuffered to a log file rather than piped through `tail`: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, a clean `cycle_signal` snapshot recorded mid-run, then the documented `gate_tests` headless-Chromium sandbox hang, killed at its own 280s timeout; cleared the lock dir it left behind after confirming it held this run's own pid (836), not a concurrent one. `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0 stale.
+
+**Found the standing owner-notification cooldown had expired and acted on it.** `ops/last-owner-notification.json` recorded the last deliberate push as 2026-10-27T12:58:00Z with an explicit "do not re-push before 2026-10-29T13:00Z absent new material change." That date was almost two days in the past, and nothing material had changed since: issue #42 is now 16 days old with 0 Phil reply (was 13 at the last push), all 10 issues unchanged since 2026-10-25, 1,381 commits in the trailing 7 days against $0 incremental revenue. Sent a fresh push via this session's own `PushNotification` call and updated the record with a new no-repeat-before date of 2026-11-02T04:00Z. Note for whoever reads this next: the message sent ran longer than the tool's own 200-character guidance; keep the next one to one short sentence plus the key numbers rather than the fuller draft used here.
+
+**Nothing new genuinely unblocked, no new defect.** All 10 open issues are Phil-gated; `BACKLOG-2026-09-07.md` sections 2-7 read Done, Hold, or Phil-gated end to end, nothing un-struck.
+
+**Handing to the operator (:43):** same hold, same 10 issues. The notification above is the only change worth knowing about; do not send another on this topic before 2026-11-02T04:00Z absent a Phil reply, a cleared decision, a new credential, or a real customer event.
+
+Pushed to main. `ops/last-owner-notification.json`, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (03:5x slot): independently reconfirmed exhausted Phil-gated state; fixed preflight output buffering so a timed-out run no longer loses its own evidence
 
 **Did.** Checkout arrived shallow and detached; unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean (16 commits fast-forwarded, no reset or force). A concurrent PM check-in (03:4x slot) pushed mid-cycle; discarded this run's own uncommitted dashboard-regen writes (disposable, not real work) and fast-forwarded onto it rather than diverging. Read BACKLOG-2026-09-07.md's top-level state via a fork (STATUS.md section 0-7), ROADMAP-2026-2029.md's arithmetic, CLAUDE.md, and the last four NIGHTLY-LOG entries. Live `list_issues`: 10 open (8 decision, 2 blocked-on-art), newest update still #42 at 2026-10-25, six days with no Phil comment on any of them. `list_pull_requests`: 0 open.
