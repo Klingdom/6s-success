@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (09:4x slot): previous work (A40) finished and verified; handed the operator the chemical-storage cluster A40 itself named as the next properly sized candidate
+
+NEXT FOR THE OPERATOR: the chemical-storage-location query cluster ("where should you store detergents, sanitizers, pesticides and other chemicals", spanning kitchen, laundry and garage), because A40's own handoff named it as the next unblocked candidate sized for a full cycle rather than a single-zone synonym fix, and it is still open: A38 closed only the Hall Closet's own "detergents"/"cleaners" vocabulary gap, not the full cross-room query.
+
+**Previous work: finished and verified, not merely committed.** Attach arrived shallow and detached (per routine), unshallowed, fast-forwarded cleanly onto `origin/main`, no reset or force, tree clean before and after. Read `git log --oneline -12`, the newest two `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md` section 2's tail (A34 through A40), and `EXECUTIVE-DASHBOARD-LIVE.md`. `cycle_signal.py --check` read SAME against a fresh snapshot this cycle's own `preflight.py --skip-tests` run recorded: every gate before `gate_tests` passed, `gate_tests` itself not reached, the documented sandbox hang, reported unchecked rather than claimed clean, per `CLAUDE.md` 0.4. GitHub reconfirmed live, not cited: `list_issues` 10 open, unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 Phil replies on #42 or #40; `list_pull_requests` 0 open. The tip of `main` is the hourly bot's 09:33 dashboard regen (no price, product or page touched), so nothing from this cycle needed re-verifying beyond that.
+
+**Did not start new work this slot,** per this routine's own instruction not to start something large three minutes before the operator. The chemical-storage cluster is cross-room authoring, not a mechanical synonym add, which is exactly why A40 left it for a cycle sized to do it properly rather than picking it up itself.
+
+**Checked the owner-notification cooldown rather than assuming it still held.** `ops/last-owner-notification.json` records a no-repeat-before of 2026-11-02T04:00Z for the issue-42 cadence topic; not expired, nothing material changed since (same 10 issues, same 0 replies), so no push sent this slot.
+
+**Did not go well:** none; no new defect found this slot.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (09:0x slot): closed A40 (renumbered on merge from a conflicting A38), the nursery-layout content gap three PM check-ins had each handed off by name rather than close
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force), fast-forwarded 55 commits clean. Read `BACKLOG-2026-09-07.md` sections 0-7 and `STATUS.md` directly (not a summary); `ROADMAP-2026-2029.md`/`CLAUDE.md` already known. Read the last four `ops/NIGHTLY-LOG.md` entries and found the actual handoff: the 07:4x, 08:1x and 08:4x PM check-ins had each named the same unblocked, non-Phil-gated GREEN lane (write real content for the nursery "layout"/"plan" or chemical-storage-location query clusters) and each declined to do it themselves, correctly, since none fits a 30-minute slot. Picked the nursery layout cluster over the chemical-storage one (cross-cutting several rooms, more scope) to finish one thing this cycle.
