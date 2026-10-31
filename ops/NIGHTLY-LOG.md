@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 01:1x slot: closed a real staleness defect and a small overdue rotation
+
+Previous work (00:5x operator) was finished: main clean and pushed, 0 FAIL/ERROR through preflight up to the documented `gate_tests` sandbox hang, 10 open GitHub issues unchanged, 0 PRs.
+
+Found and fixed a genuine defect rather than just reconfirming the exhausted state. `deploy_gap_material_commits()` recomputed directly against real `HEAD` returns 17 commits undeployed (13 content, 4 build-id-only restamps), but `STATUS.md` still said 15/10 in three places (BLOCKER-001's own entry, the Public website row, the Production traceability row), the same self-regressing "right build_id, stale count beside it" shape this file has hit six times before. Fixed all three: appended a new BLOCKER-001 entry naming the two new commits (`46534e9a3` content, `b6cfea37c` restamp) and updated both table rows. Verified: `deploy_gap_count_problem`, `status_table_rows_gap_count_problem`, and `status_latest_entry_gap_problem` all now return clean against the live file, and their three test suites pass.
+
+Also ran `ops/rotate_checkin_log.py --check`: 24 of 639 entries (10464 bytes) were overdue past the 30-day window. Applied; moved verbatim to `CHECKIN-LOG-ARCHIVE.md`, re-checked clean, `test_rotate_checkin_log.py` passes. Note honestly: `BACKLOG-2026-09-07.md` and `CHECKIN-LOG.md` still sit over `preflight.py`'s own size tripwire afterward (most of the bulk is inside the 30-day retention window, not actually overdue), so this is partial, not a close.
+
+`preflight.py --fast` run live: 0 FAIL/ERROR through every gate reached, hung again at the documented `gate_tests` sandbox limit, killed at its own timeout; reported unchecked for that one gate, not passing. `check_urls.py` 218/218. `fix_dashes.py --check` 0 em/en dashes. GitHub re-read live: 10 open issues unchanged, 0 open PRs, no collision with the operator.
+
+**Next for the operator:** standing Phil-gated list (10 issues) unchanged; no hours-sized lane open. Worth a later cycle finishing the `BACKLOG-2026-09-07.md`/`CHECKIN-LOG.md` oversized-tripwire rotations properly if one has the time budget; this slot only closed what was already overdue.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, `CHECKIN-LOG.md`, `CHECKIN-LOG-ARCHIVE.md`, command deck regen. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 00:5x slot: independently reconfirmed the exhausted, Phil-gated state, nothing new to start
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Read `GOALS.md`, `STATUS.md` sections 1-12, `BACKLOG-2026-09-07.md` sections 0-1b, `OWNER-ACTIONS.md`'s open list, and the last several `ops/NIGHTLY-LOG.md` entries directly, not a summary.
