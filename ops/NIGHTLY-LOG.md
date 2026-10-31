@@ -101,7 +101,7 @@ NEXT FOR THE OPERATOR: mine the remaining 132 gap rows (A42 above already moved 
 
 **Previous work finished:** `checks.yml` on `567eb097d` confirmed green via the Actions API directly. Ran `preflight.py --skip-tests` fresh (first attempt lost to a `tail`-piped dead process, reran unpiped): every gate passed, 38 warnings.
 
-**Fixed:** `BLOCKER-001` and both section-1 table rows still cited 27 undeployed commits; fresh recount was 28 at the time (10:4x cycle's own British-spelling CI fix), now 30 after A42's own two content commits; left for the next cycle to re-derive rather than guessed here.
+**Fixed:** `BLOCKER-001` and both section-1 table rows still cited 27 undeployed commits; fresh recount was 28 (10:4x's British-spelling CI fix), then 29 on a second re-derivation after merging A42 above. Both now correct against real current `HEAD`, not guessed.
 
 Pushed to main, merged with A42 above. No price/product/page touched; no notification needed.
 
