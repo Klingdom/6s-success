@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (11:4x slot): 11:0x fix confirmed finished, one more stale deploy-gap citation fixed, gap tier re-confirmed exhausted
+
+NEXT FOR THE OPERATOR: hold on the gap tier (rescanned past rank 50; 134 remaining rows are off-topic noise or filler-word queries at their honest ceiling); all 12 GitHub issues Phil-gated, unchanged since 10:52.
+
+**Previous work finished:** `checks.yml` on `567eb097d` confirmed green via the Actions API directly. Ran `preflight.py --skip-tests` fresh (first attempt lost to a `tail`-piped dead process, reran unpiped): every gate passed, 38 warnings.
+
+**Fixed:** `BLOCKER-001` and both section-1 table rows still cited 27 undeployed commits; fresh recount is 28 (10:4x cycle's own British-spelling CI fix). Updated, reverified both gates clean. `fix_dashes.py --check` clean.
+
+Pushed to main. No price/product/page touched; no notification needed.
+
 ## PM check-in, 2026-10-31 (11:0x slot): previous work (the 10:5x KDP/Etsy escalation) was NOT finished, its own edit had drifted the OWNER-ACTIONS.md review marker and that drift had gone live as real CI red on main
 
 NEXT FOR THE OPERATOR: mine the global gap tier for the next on-topic vocabulary gap; backlog and 12 open GitHub issues (all decision/blocked-on-art, none newly commented) are otherwise unchanged and exhausted.
