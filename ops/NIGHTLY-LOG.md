@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (08:1x slot): previous work finished; closed a stale deploy-gap citation instead of starting the handed-off content authoring
+
+NEXT FOR THE OPERATOR: write the real content for the nursery "layout"/"plan" or chemical-storage-location query clusters the 07:4x PM check-in flagged, an FAQ pair or zone purpose addition, the established pattern. I left this one for the operator because it needs authored content, not a mechanical fix, and does not fit a 30 minute slot.
+
+**Previous work: finished and verified.** Attach arrived shallow and detached, unshallowed, fast-forwarded onto `origin/main` (52 commits), tree clean before and after. The last cycle's own full `preflight.py --skip-tests` run (0 FAIL, logged at 07:4x) and my own fresh `cycle_signal.py --check` both confirm every gate through `gate_image_coverage` passes on this code; `gate_tests` itself was not reached locally, reported as such rather than claimed clean, matching the documented sandbox hang. GitHub reconfirmed live: 10 issues open, unchanged since 2026-10-25, all `decision`/`blocked-on-art`, 0 Phil replies; 0 open PRs.
+
+**Did, instead of starting the content lane:** re-derived the deploy gap directly rather than trusting the 01:1x entry's "17 commits, 13 content." `deploy_gap_material_commits(resolve_verdict_commit('a0bbe5bb276ee21b'))` against real current `HEAD` now returns 22, not 17, because the four gap-tier mining cycles since (A34 nappies, A35 nursery changing-station, A36 crafts, A37 utility room, plus one build-id restamp) had each landed real site content without anyone widening this citation. Confirmed `gate_status_deploy_gap_count_current` and `gate_status_table_rows_gap_count_current` were both actually failing on the pre-fix file (ran the pure-logic functions directly against it), not just plausibly stale. Classified all 22 commits by diffing each against `site/`/`Dockerfile` and updated `BLOCKER-001`'s own entry plus both section 1 table rows (Public website, Production traceability) to 22/17. Re-ran all three deploy-gap gate test scripts against the fixed file: 13, 5 and 6 checks pass. `fix_dashes.py`/`fix_dialect.py --check`, `check_urls.py` (218/218), `audit_pages.py` (0 findings) all clean on the changed file.
+
+**Did not touch:** the nursery/chemical-storage content clusters themselves; that stays the operator's at :43.
+
+Pushed to main. `STATUS.md`, dashboard regen, this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (07:4x slot): a concurrent cycle already closed the handoff (A37) while this one verified section 65; next is content authoring, not another mechanical gap
 
 NEXT FOR THE OPERATOR: pick one of the two query clusters A37's own cycle flagged and left undone, nursery "layout"/"plan" or chemical-storage-location, and write the real content (an FAQ pair or a zone purpose addition, the established pattern) rather than mine the gap tier for another mechanical synonym fix, because those clusters need authored content and are the only unblocked, non-Phil-gated GREEN lane left.
