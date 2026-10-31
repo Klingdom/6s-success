@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (19:4x slot): previous work finished; found one fresh, non-Phil-gated gap-tier candidate and handed it to the operator
+
+NEXT FOR THE OPERATOR: "how to organise small garden shed" (au, rank 12 in the global keyword gap tier, scores to /family-room-deck.html) is the same wrong-page misattribution shape A37 already fixed for "utility room" to Laundry Room, because a garden shed belongs to the Garage's Lawn and Garden Tool Zone or the Patio room, not Family Room, and nobody has mined this tier since A44 left it at 116 gap rows.
+
+Previous work: finished. Attach arrived shallow and detached; waited for the backgrounded unshallow fetch rather than issuing a second one, `checkout main`, `merge --ff-only` onto `origin/main`, clean, no reset or force. Tree clean before and after.
+
+Independently re-verified, not cited. `cycle_signal.py --check`: SAME against the 19:14:22Z snapshot (git ee9c494010), partial pass, everything before `gate_tests` green, so skipped a redundant full local `preflight.py`. Live GitHub: 12 open issues, unchanged, all `decision`/`blocked-on-art`, none newly commented since 19:1x's own read; 0 open PRs; last 10 Actions runs on current head all `completed`/`success`. Living-doc sizes: `CHECKIN-LOG.md` 90,518B, `BACKLOG-2026-09-07.md` 142,031B, `OWNER-ACTIONS.md` 123,276B (still over budget on purpose, per 18:4x's own reasoning, no new safe trim found this cycle). Dashboard's Traffic/Affiliate rows are still carried forward from 2026-10-03, unmeasured (no SSH key for analytics in this sandbox), already Phil-gated as GitHub issue #35; not a new finding.
+
+Went looking rather than only re-reading the backlog table: hand-read sections 2-6 of `BACKLOG-2026-09-07.md` (every row Done or owner-gated through A44), then ran `python ops/keyword_demand_global.py --rescore` directly (free, no network) to check whether the live global gap tier has moved since A44. It has not moved in volume (116 gap rows, same as A44 left it), but nobody had actually read the residual rows since then. Read all 116 by `best_rank`: the overwhelming majority is the same off-topic noise prior cycles already named (Revit stair railings, cribbage tournaments, paneer, back porch band names, bench press). One genuine on-topic misattribution stood out, named above. A few softer candidates ("car organisation" queries already landing correctly on garage-deck.html but scoring gap; "how to organise terrace"; "bedside cart for baby") are plausible but weaker fits, left for the operator to judge rather than guessed at here.
+
+Not sending a push notification: nothing material changed for Phil (no new issue reply, no CI failure, no sale, no delivery problem); the gap-tier find is routine SEO housekeeping within existing autonomy, not something he needs to act on.
+
+Pushed to main. Dashboard regen, `ops/keyword-demand-global.json` rescore, and this entry only; no price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (19:1x slot): previous work (18:4x operator) finished; nothing new found, held
 
 Previous work finished: 18:4x's living-docs tripwire fix pushed clean, tree in sync with origin. Independently re-ran: fresh `preflight.py` to completion, 0 FAIL/ERROR through every reachable gate, standing warnings only (OWNER-ACTIONS.md tripwire, left over budget on purpose per last cycle's own reasoning; 2 dated disclosures; image-coverage gitignored-source note), stalled at the documented `gate_tests` sandbox hang, reported unchecked not passing. `cold_read_ledger.py`: 0 stale. `affiliate.py --check`: 165 clean. `fix_dashes.py --check`: clean. Live GitHub: 12 open issues, unchanged, all decision/blocked-on-art, none newly commented. 0 open PRs. Hand-read BACKLOG-2026-09-07.md sections 2-6 myself: every row Archived, Done, Closed, or owner-gated. The live Checks run on the 18:4x commit was still in_progress after ~19 minutes when checked (normal range, not reported as green).
