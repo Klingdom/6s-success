@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (05:1x slot): A34 shipped red, fixed and moved the gate ahead of the sandbox hang for good
+
+**Did.** Pushed A34 (`d403f144b`) believing it clean because local `preflight.py` hit the documented `gate_tests` sandbox hang before reaching every gate, same as every recent cycle. This time waited for `checks.yml` to actually finish rather than treating the local pass as the verdict (`CLAUDE.md` 0.4: unchecked is not passing), and it failed: `gate_build_id_current` FAIL, `site/build-id.txt` stale against the real site hash, because `ops/build_zone_pages.py`'s own chain does not run `ops/build_id.py` and this cycle forgot to run it by hand after.
+
+**Checked before writing it up as a three-strikes pattern, not assumed.** Pulled the last two CI runs that touched `site/build-id.txt`: A33 hit this exact failure the cycle before (`41144124451`), A32 the cycle before that (`41114691751`), both fixed with a follow-up commit each time and neither one asked why it kept recurring. Three consecutive occurrences, `CLAUDE.md` step 10b's own threshold, and a gate already exists and has caught every one of them; what was wrong is its position in `preflight.py`'s own run order, after `gate_tests`, which hangs on headless Chromium in this sandbox on every single run, so no local pass before push could ever reach it. The exact shape `BACKLOG-2026-09-07.md` section 38 already fixed once, 2026-10-21, for a different gate (`gate_owner_actions_last_measured_current`).
+
+**Fixed at the root, not the symptom.** Moved `gate_build_id_current` to run immediately after `gate_owner_actions_last_measured_current`, both now well ahead of `gate_tests`. Regenerated `site/build-id.txt`, verified `m.current() == m.compute()` directly. Proved the gate still fails: planted a stale hash, called `gate_build_id_current()` directly, watched it FAIL by name; restored the real hash, called it again, clean. Pushed as its own commit (`8f2e0f868`), separate from A34's content change, per `CLAUDE.md` 41's scoped-commits rule.
+
+**Verified rather than assumed fixed:** `fix_dashes.py --check` 0/0, `python -c "import ast; ast.parse(...)"` on the edited file. Watching `checks.yml` on `8f2e0f868` to confirm the real fix, not just the local proof, before closing this entry.
+
+**Went well:** waiting for the real CI result instead of trusting a sandbox-capped local pass is exactly what caught this; a cycle that pushed and moved on would have left main red, same as the two before it.
+
+**Did not go well:** this is now the third time the same root cause produced a red push before anyone asked why. The underlying generator gap (`build_zone_pages.py` not chaining `build_id.py`) is still open; moving the gate catches the mistake before the next push ships red, it does not stop the mistake from being made.
+
+**Changing next cycle:** nothing further needed on this one; the gate move is the fix.
+
+**Next:** confirm `checks.yml` green on `8f2e0f868`; otherwise same 10 Phil-gated issues, unchanged.
+
+Pushed to main. `ops/preflight.py`, `site/build-id.txt`, `BACKLOG-2026-09-07.md` (section 64), this entry. No price, product or page touched; tooling fix only, `IndexNow` not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (04:5x slot): closed the keyword gap the 04:4x PM check-in handed off, A34
 
 **Did.** Attached clean: fetched origin/main, already unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. A concurrent PM check-in (04:4x slot) pushed mid-cycle with a named handoff; fetched and fast-forwarded onto it rather than diverging. Read `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four `NIGHTLY-LOG.md` entries. Independently re-verified rather than cited: live `list_issues` still 10 open (8 decision, 2 blocked-on-art), unchanged since 2026-10-25, 0 Phil replies; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential, standing gap; `STATUS.md` section 14's three workstreams still BLOCKED/BLOCKED/CLOSED. Ran `preflight.py` unbuffered to a log file: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, timed out at the documented `gate_tests` headless-Chromium sandbox hang (exit 124), same standing limitation every recent cycle reports.
