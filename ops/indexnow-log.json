@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T05:57:51Z",
-   "mode": "changed",
-   "offered": 10,
-   "accepted": 10,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T06:57:25Z",
    "mode": "changed",
    "offered": 6,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T08:51:56Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -744,7 +744,7 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "0e898ec35d7eff7d",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "68b8a36108579bca",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "4a87483f3ee7d32b",
-  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "ccc0565001321c25",
+  "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "5d26bf9399fd9683",
   "https://6s-success.com/zones/hall-closet-the-linen-shelf-zone": "07e4fc48c6e3b909",
   "https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock": "5164e680546f775b",
   "https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone": "31d7810dcbfba098",

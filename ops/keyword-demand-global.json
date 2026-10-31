@@ -4431,10 +4431,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/hall-closet-the-cleaning-supply-zone.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T08:54:19Z",
-  "scored_against_commit": "1c51bcf8a"
+  "scored_at": "2026-10-31T09:19:36Z",
+  "scored_against_commit": "151e2107c"
 }
