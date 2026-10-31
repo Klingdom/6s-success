@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T04:55:43Z",
-   "mode": "changed",
-   "offered": 5,
-   "accepted": 5,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T05:57:51Z",
    "mode": "changed",
    "offered": 10,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T07:48:52Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -700,7 +700,7 @@
   "https://6s-success.com/rooms/home-office": "ae1e85f0574d47a7",
   "https://6s-success.com/rooms/kids-bedroom": "9a702ad8c2044580",
   "https://6s-success.com/rooms/kitchen": "7d0c8e532be6ce24",
-  "https://6s-success.com/rooms/laundry-room": "403a9f6cdbefdcb1",
+  "https://6s-success.com/rooms/laundry-room": "1a5b7a33e5f9b51e",
   "https://6s-success.com/rooms/living-room": "944b3b5fedb4e85d",
   "https://6s-success.com/rooms/mudroom": "2c351cfe24db9c60",
   "https://6s-success.com/rooms/nursery": "1b039d75bea49e6d",
