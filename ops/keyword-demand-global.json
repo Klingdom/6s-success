@@ -2253,7 +2253,7 @@
       "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
+      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -17882,7 +17882,7 @@
       "best_page_title": "Safety notice: read before any cleaning or organizing step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-the-same-spot-never-gets-clean.html",
+      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -26888,7 +26888,7 @@
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/why-the-same-spot-never-gets-clean.html",
+      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "heading",
       "status": "partial",
       "markets": [
@@ -27833,7 +27833,7 @@
       "best_page_title": "How to organize the hall closet cleaning supplies",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -42102,10 +42102,10 @@
       "best_page": "/articles/how-to-store-blankets.html",
       "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.167,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_coverage": 0.833,
+      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T09:19:36Z",
-  "scored_against_commit": "151e2107c"
+  "scored_at": "2026-10-31T09:54:23Z",
+  "scored_against_commit": "7f957df2e"
 }

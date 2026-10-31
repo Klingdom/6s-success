@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-31T08:37:02Z against 226 page(s) at commit f7806dd58. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-31T09:54:24Z against 226 page(s) at commit 7f957df2e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 226 published page titles: 1309 covered, 1345 partial, 154 gap.
+**Queries found:** 2808. Checked against 226 published page titles: 1309 covered, 1346 partial, 153 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 154, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 153, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -96,15 +96,15 @@ Showing the top 80 of 154, ordered by the best rank the phrase reached in any on
 | 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) |
 | 10 | how to organize pc | - | - (0.00) |
 | 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 10 | how to plan a nursery layout | Nursery | The Nursery Deck: 66 cards, free to read (0.33) |
 | 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) |
 | 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) |
+| 11 | how to arrange twin cribs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1345.
+Showing the top 60 of 1346.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -186,7 +186,7 @@ Showing the top 60 of 1345.
 | Laundry Room | 71 | 0 | 17 | 54 |
 | Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |
-| Nursery | 62 | 2 | 23 | 37 |
+| Nursery | 62 | 1 | 24 | 37 |
 | Pantry | 58 | 1 | 31 | 26 |
 | Primary Bathroom | 13 | 1 | 8 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
