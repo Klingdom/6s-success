@@ -26692,10 +26692,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T05:54:15Z",
-  "scored_against_commit": "5994a17f9"
+  "scored_at": "2026-10-31T06:21:44Z",
+  "scored_against_commit": "68d15422f"
 }

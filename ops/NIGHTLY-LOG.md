@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (06:2x slot): closed one more stemming gap, A36, after confirming A35 green on GitHub first
+
+**Did.** Continuation of the same cycle that shipped A35. Watched `checks.yml` and `publish-image.yml` on A35's own commit (`2b64ac39a`) to actual completion rather than moving on: both `completed`/`success` (preflight itself ran clean end to end on the real GitHub runner, including the `gate_tests` step this sandbox cannot reach). Fetched afterward and found a concurrent PM check-in (06:1x slot) had already independently confirmed the same thing and recorded it; fast-forwarded onto it rather than duplicating the verification.
+
+**Kept mining the gap tier rather than stop at the handoff's own named band.** The 05:4x PM handoff covered ranks 7-15; read further into the tier (138 rows) myself. Most of ranks 1-9 are off-topic (classroom benches, Revit railings, back porch bands, cribbage tournaments, "why is my pasta mushy"). Checked two candidates that looked promising and ruled them out before acting: "draw a larder organization chart" and "foyer design ideas photos" both use a room word already covered in `room-also-called.json` ("larder", "foyer"), but the remaining query intent (a diagram, decor photos) is a different content type this site's pages do not address, not a missing synonym; adding either word again would violate that file's own rule against adding a word the site already covers. Found one real gap: "how to organize crafts" (gb, au, in, rank 8) was scoring to `/about.html` via tie-break because the Family Room's "Craft and Activity Zone" title carries the singular "Craft", and the scorer matches exact words, not stems, the identical shape A34 already fixed once for "nappy"/"nappies".
+
+**Fixed and verified directly.** Checked the zone's own purpose text in `content.json` before adding ("Hold craft supplies grouped by activity so a project can start in one motion") to confirm the semantic match. Added "crafts zone" to a new `Family Room|Craft and Activity Zone` entry in `ops/zone-also-called.json`, reran `ops/build_zone_pages.py` (self-chained). `test_gate_zone_also_called_is_heading.py` 6/6. `ops/keyword_demand_global.py --rescore`: the query moves `gap` to `covered`, `heading_coverage` 1.0, matched on heading against the real zone page; site-wide gap count 138 to 137. `check_urls.py` 218/218, `audit_pages.py` 223/0 findings, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents, `check_sellable.py` 124/126 (2 service SKUs), `link_graph_report.py` 0 orphans, `build_id.py --check` current, `ops/audit_visual.py` scoped to the changed page (desktop and mobile) 0 findings each.
+
+**Also reconfirmed, not re-derived:** `list_issues` still 10 open, 8 decision/2 blocked-on-art, unchanged since 2026-10-25, 0 Phil replies; `list_pull_requests` 0 open; `inbox_agent.py --apply` no mail credential, standing gap.
+
+**Went well:** ruling out two tempting-looking candidates (larder, foyer) before touching anything, rather than adding a word the site already measurably covers, which the file's own rule exists to prevent.
+
+**Did not go well:** nothing new; this closes cleanly.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining ~137-row gap tier past rank 9 for the next on-topic candidate, same method; otherwise same 10 Phil-gated issues, unchanged.
+
+Pushed to main. `BACKLOG-2026-09-07.md` (A36), `ops/zone-also-called.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, one zone page, sitemap, dashboard regen. No price or product touched; one existing page edited, no new page; `IndexNow` submitted on push.
+
 ## PM check-in, 2026-10-31 (06:1x slot): previous work (A35) was unverified on GitHub when this cycle started; confirmed finished
 
 NEXT FOR THE OPERATOR: mine the remaining 138-row global keyword gap tier for the next on-topic vocabulary gap, same method as A29 through A35.

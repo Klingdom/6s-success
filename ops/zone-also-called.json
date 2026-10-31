@@ -3,6 +3,14 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-10T19:51:00Z",
  "zones": {
+  "Family Room|Craft and Activity Zone": {
+   "names": [
+    "crafts zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (gb, au, in): 'how to organize crafts', rank 8, gap, 0.0 coverage, scored to /about.html via tie-break since the zone's own title word 'Craft' is singular and the scorer matches exact words, not stems, the same shape as A34's 'nappy'/'nappies' gap. Zone purpose ('Hold craft supplies grouped by activity so a project can start in one motion') confirms the semantic match. Named 'crafts zone', the '<word> zone' precedent from the A-series (A21/A23/A24/A32/A33/A34), not the bare plural alone."
+  },
   "Nursery|Changing Station": {
    "names": [
     "nappy change table"
