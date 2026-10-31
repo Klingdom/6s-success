@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (12:1x slot): previous work (A42, the 11:0x marker-drift fix, the 11:4x deploy-gap re-derivations) was finished and CI-green; closed the one real DUE housekeeping item found, nothing else unblocked
+
+NEXT FOR THE OPERATOR: mine the remaining 132 global gap-tier rows for the next genuinely on-topic, in-scope query, same method as A29-A42 (A42's own handoff, still open). All 12 GitHub issues Phil-gated, unchanged since the 11:5x cycle's own read 14 minutes earlier; none newly commented.
+
+**Previous work: finished.** Attach arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force), clean before and after. Independently re-verified, not cited: `deploy_gap_material_commits()` re-run directly against real current `HEAD` returns 29 commits, matching STATUS.md's own just-widened citation exactly, so that chain is not stale. `list_issues` live: 12 open, unchanged since the 11:5x cycle's own read (10 standing `decision`/`blocked-on-art` plus #43/#44, the KDP/Etsy launches filed this morning), none newly commented. `actions_list` on `checks.yml`: the latest run on current `HEAD` (`865f4441e`) completed `success` via the API, confirmed directly rather than assumed in-progress.
+
+**Ran `preflight.py --skip-tests` for real, not piped through `tail` this time** (a first attempt this slot lost its output to exactly that, the same dead-pipe trap an earlier cycle's own log entry already named; reran unpiped to a file). Zero FAIL on every gate reached, including the full KDP and Etsy listing-validity suites (both clean, their own `UNCHECKED` rows are genuine external-fetch gaps, not failures); hung again at the documented `gate_etsy_pdfs_current` headless-Chromium sandbox limit, killed by pid after confirming flat CPU rather than left to time out blind, same precedent as every prior cycle that has hit it. Cleared the stale lock directory the killed first attempt left behind and recorded a fresh `cycle_signal.py` snapshot with that evidence in the note, rather than silently treating an unrun gate as passing.
+
+**Found and closed the one real DUE item.** `gate_status_blocker001_not_oversized` warned STATUS.md's `BLOCKER-001` chain had grown back to 8 entries; `rotate_status_history.py --check-blocker1` confirmed DUE (7 entries archivable). Ran `--apply-blocker1`: 7 entries (9,712 bytes) moved to `STATUS-ARCHIVE.md`, 1 left live. Re-checked clean after; the gate's own dedicated test (`test_gate_status_blocker001_not_oversized.py`) re-run directly, 6/6 pass. `fix_dashes.py --check` on the changed files: 0 em dashes, 0 en dashes. The standing `living-docs-total-size-tripwire` warnings on `BACKLOG-2026-09-07.md`, `CHECKIN-LOG.md` and `OWNER-ACTIONS.md` were checked against every sibling rotation tool (`rotate_backlog`, `rotate_backlog_closed`, `rotate_backlog_done_items`, `rotate_backlog_section2_items`, `rotate_checkin_log`, `rotate_owner_actions`, `rotate_owner_actions_closed_items`, `rotate_owner_actions_gemini_billing`, `rotate_status_metadata`, `rotate_status_workstreams`): every one reports CLEAN, nothing rotatable yet, confirming the standing note that this content is un-rotatable until its own retention window passes, not a gap in the tooling.
+
+**Did not send a push notification.** The standing `ops/last-owner-notification.json` cooldown (topic `issue-42-cadence-and-owner-gates`, no-repeat-before 2026-11-02T04:00Z) has not expired, and nothing material changed on that topic. #43/#44 (the KDP/Etsy decisions) were already filed as GitHub issues by the 10:5x operator cycle and already judged not to warrant a separate push by the 11:5x cycle minutes before this one; nothing changed since that judgment to revisit it.
+
+**Went well.** Caught the dead-pipe trap on the first preflight attempt before trusting its empty output as a clean pass.
+
+**Did not go well.** Lost several minutes to the same documented `gate_etsy_pdfs_current` sandbox hang every recent cycle has already hit.
+
+**Changing next cycle:** none.
+
+**Next:** same handoff A42 left (mine the remaining 132 gap rows), or act the moment Phil comments on any of the 12 open decision/blocked-on-art issues.
+
+Pushed to main. Changed: `STATUS.md`, `STATUS-ARCHIVE.md` (BLOCKER-001 rotation), `ops/cycle-signal.json`, dashboard regen, this log entry. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (11:5x slot): closed A42, the kitchen and garage layout gaps the global gap tier handoff named, same mechanism A40 built for the Nursery
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and

@@ -1,14 +1,14 @@
 {
-  "combined_hash": "21012e7cb72a4680f1ce1cf26caebeaae6b1b1fe49a0759eef0f5a551f9db5b9",
-  "git_head": "596990f0881f91b47224f8ce06f5900bace4df80",
-  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD 596990f088",
-  "recorded_at": "2026-10-31T11:57:23Z",
+  "combined_hash": "5905d503a4f1fada8d68b730ac1d0a0f35ffb4b3c7e25bfeda5780870fe7e730",
+  "git_head": "5347587c3ab0ababdaf9534a639e06eaa42629b7",
+  "note": "PM 12:1x: full local preflight --skip-tests re-run, 0 FAIL on every gate reached before the documented gate_etsy_pdfs_current headless-Chromium sandbox hang (killed by pid after confirming flat CPU, same precedent as prior cycles); CI confirmed green (success) on this exact HEAD (865f4441e) via the Actions API.",
+  "recorded_at": "2026-10-31T12:25:08Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "8ac9cb688ed3fded7675aa40b070f72247199043205d82758c41609105d03a9d",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "89cff4f17106ae406417bfa82aaebae792ef7e392729dcdf7aac3b9ef39fabf1",
-    "STATUS.md": "74ebe3503f680a8ae183400cc6edafc1928e5c9843cb3ed0fbee301500aa2783",
+    "STATUS.md": "dd519efabd6aae5eb3854c6b2febdfcc8a86fd9d075864c676674909e6574527",
     "ops/deploy-verdict.json": "bf5a55b31939d8fa3264fac4211078376e072ff8aceaafc7dd75dff416ba802d"
   }
 }
