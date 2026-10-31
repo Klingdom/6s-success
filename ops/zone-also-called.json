@@ -40,12 +40,14 @@
    "names": [
     "diaper caddy",
     "nappy caddy",
-    "nappies zone"
+    "nappies zone",
+    "bedside cart"
    ],
-   "queries": 4,
+   "queries": 5,
    "covered": 0,
    "source_nappy": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in): 'nappy' 5 queries, 0 covered",
-   "source_nappies_plural": "ops/keyword-demand-global.json 2026-10-31 (gb): 'how to organise nappies', rank 8, 0.0 coverage, scored to /about.html via tie-break. The scorer matches exact words, not stems, so the existing 'nappy caddy' entry (singular) does not cover the plural query word 'nappies'; the zone's own purpose ('Holds the reserve that feeds the changing station') and done_looks_like text both describe exactly what the query asks how to organise. Named 'nappies zone', the '<word> zone' precedent from 'cooking utensils zone'/'car maintenance zone', not the bare word 'nappies' alone, which nobody calls the zone itself."
+   "source_nappies_plural": "ops/keyword-demand-global.json 2026-10-31 (gb): 'how to organise nappies', rank 8, 0.0 coverage, scored to /about.html via tie-break. The scorer matches exact words, not stems, so the existing 'nappy caddy' entry (singular) does not cover the plural query word 'nappies'; the zone's own purpose ('Holds the reserve that feeds the changing station') and done_looks_like text both describe exactly what the query asks how to organise. Named 'nappies zone', the '<word> zone' precedent from 'cooking utensils zone'/'car maintenance zone', not the bare word 'nappies' alone, which nobody calls the zone itself.",
+   "source_bedside_cart": "ops/keyword-demand-global.json 2026-10-31 (ca): 'how to organize bedside cart for baby', rank 15, gap, 0.333 coverage, scored to /articles/how-to-organize-baby-clothes.html via a coincidental word match on 'baby', not a real one. The zone's own purpose ('Holds the reserve that feeds the changing station, in the sizes your baby is about to need') and the already-measured 'diaper caddy cart' partial coverage on this same zone (ops/keyword-demand-global.json row 'how to organize diaper caddy cart', partial, 0.667 heading coverage) confirm households already searching this exact concept as a rolling cart kept at the bedside rather than a fixed shelf; the household word 'bedside cart' for that same reserve is a real, if thin, synonym. Named 'bedside cart', the exact phrase searched, since nobody else calls this zone that."
   },
   "Primary Bedroom|Bed and Bedding Zone": {
    "names": [

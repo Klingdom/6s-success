@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (21:0x slot): closed A47, re-checking and overturning A46's own "no misattribution" verdict, and filed four owner gates that had never reached GitHub
+
+**Did.** Clean attach: shallow and detached on arrival, unshallowed for real (waited for the backgrounded fetch), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. GitHub: 12 open issues at start, all `decision`/`blocked-on-art`, no new Phil comment since the last cycle's read; 0 open PRs. Inbox: no mail credentials, the standing gap. Preflight: 0 FAIL/ERROR through every reachable gate (only the standing warnings: `OWNER-ACTIONS.md` size tripwire, 2 dated disclosures, image-coverage note), hung at the documented `gate_tests` sandbox limit, killed by pid after confirming flat CPU, reported unchecked not passing.
+
+Re-read A46's own two "left alone, needs content not a synonym" candidates rather than trust its verdict (CLAUDE.md 5d). "Car organisation" really is a coverage shortfall on the correct page. "Bedside cart for baby" was not: it scores `gap` and lands on `/articles/how-to-organize-baby-clothes.html`, a coincidental match on "baby," not the Nursery zone that actually covers it. Added "bedside cart" to the existing `Nursery|Diaper and Care Backstock` entry in `zone-also-called.json` (A47), alongside its existing diaper-caddy names. Rebuilt, rescored: `gap` to `covered`, site-wide gap count 114 to 113.
+
+Also found: the accounts layer decision ($11,250 of the $21,500 revenue plan, named "the largest single unlock" in `OWNER-ACTIONS.md` item 6) was never ranked in this backlog's own owner-gates table and never filed on GitHub, the same invisible-gate shape #43/#44 fixed for Amazon/Etsy earlier today. Filed #45 (accounts layer), #46 (YouTube OAuth), #47 (Gemini billing), #48 (Apple/Play accounts); all four sat only in markdown before this.
+
+**Verified.** `test_gate_zone_also_called_is_heading.py`/`test_gate_also_called_is_heading.py` (6/6 each); `check_urls` (218/218), `audit_pages` (223/0), `fix_dashes`/`fix_dialect --check` (0/0), `affiliate --check` (165 docs), `link_graph_report` (0 orphans), `build_id --check` (current), `audit_visual` scoped to the changed page (desktop and mobile, 0 findings). `indexnow.py --submit`: wrote the key files but could not reach the live site to confirm, reported unchecked rather than guessed.
+
+**Went well:** catching that A46's own prose, not just a prior cycle's, was wrong, by re-deriving the row instead of citing it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 113 gap rows, or act on any Phil reply to #42, #43, #44, #45, #46, #47, #48, or the other open decision issues.
+
+Pushed to main. `zone-also-called.json`, the rebuilt zone page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price touched; one page edited, none added.
+
 ## PM check-in, 2026-10-31 (20:1x slot): previous work (19:5x operator, A45) finished; closed A46, the "terrace" room-level misattribution
 
 Previous work finished: A45 pushed and verified. GitHub: 12 open issues unchanged, all decision/blocked-on-art; 0 open PRs; Actions green. `cycle_signal --check` SAME, skipped a redundant preflight before acting.

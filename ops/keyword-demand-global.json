@@ -25120,10 +25120,10 @@
       "best_page": "/articles/how-to-organize-baby-clothes.html",
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -26945,10 +26945,10 @@
       "best_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "best_page_title": "How to organize the nursery diaper storage",
       "coverage": 0.333,
-      "heading_coverage": 0.667,
+      "heading_coverage": 1.0,
       "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
       "matched_on": "heading",
-      "status": "partial",
+      "status": "covered",
       "markets": [
         "gb",
         "au",
@@ -28752,10 +28752,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca",
         "gb",
@@ -37430,10 +37430,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T20:16:36Z",
-  "scored_against_commit": "5d0f32f50"
+  "scored_at": "2026-10-31T20:56:43Z",
+  "scored_against_commit": "700728971"
 }
