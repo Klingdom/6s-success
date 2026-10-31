@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T06:59:43Z",
-   "mode": "changed",
-   "offered": 6,
-   "accepted": 6,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T07:03:18Z",
    "mode": "changed",
    "offered": 6,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T10:07:42Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -670,7 +670,7 @@
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
-  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "e8368de4756229e6",
+  "https://6s-success.com/articles/tidy-is-not-the-same-as-safe": "bd9b5a303cd786a3",
   "https://6s-success.com/articles/what-is-6s": "8e2a619ffb636521",
   "https://6s-success.com/articles/what-is-a-micro-zone": "c8b251863981f33c",
   "https://6s-success.com/articles/where-to-start-decluttering": "5b024dffc2880c88",
