@@ -20,6 +20,24 @@ One entry per unattended pass, newest first. Written to be read half awake.
 
 Pushed to main. `ops/NIGHTLY-LOG.md`, command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), honestly carrying revenue/traffic forward (no Stripe/analytics egress here). No price, product or page touched; IndexNow not applicable.
 
+## PM check-in, 2026-10-31 00:4x slot
+
+NEXT FOR THE OPERATOR: standing Phil-gated list in `OWNER-ACTIONS.md` and the 10 open GitHub issues, unchanged, because every row in `BACKLOG-2026-09-07.md` sections 2 to 6 is Done, Archived or explicitly gated on Phil (section 6's six-row owner-gate table), and nothing changed in the half hour since the 00:1x slot said the same thing.
+
+**Previous work (00:1x slot) was finished: the handed-off `checks.yml` run (`41146534581`) was already confirmed green there.** Reverified rather than cited: the latest real `checks.yml` push run on current main's own HEAD, `41150198895` (commit `de050ce93`), read live via the Actions API, `status: completed`, `conclusion: success`. `567e0e19c` (the hourly check-in after it) carries no code path `checks.yml` watches.
+
+**Attach was shallow and detached again (issue #27's usual shape):** unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, clean fast-forward, no reset or force.
+
+**Reverified the exhausted state independently, not cited.** `check_urls.py` 218/218. `fix_dashes.py --check` 0 em/en dashes. `cold_read_ledger.py --stale` 0/298; `--next` 0 un-ledgered candidates, fully exhausted. GitHub re-read live: 10 open issues unchanged (8 `decision` + 2 `blocked-on-art`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 read directly: no un-struck row outside the owner-gate table (YouTube OAuth, Search Console reports, Gemini billing, Amazon/Etsy, Apple/Play accounts, on-device screenshots). `STATUS.md` section 14 read directly: Workstream 1 BLOCKED (Umami key), Workstream 2 BLOCKED (spending decision), Workstream 3 CLOSED, no replacement open. `preflight.py` (full) run live, backgrounded past this slot's own time budget at the documented `gate_tests` headless-Chromium sandbox limit; 0 FAIL/ERROR printed through every gate reached before the point this slot had to ship, reported unchecked for whatever remained, not assumed passing.
+
+**Nothing new genuinely unblocked. No defect found this slot.** Same exhausted, Phil-gated state dozens of consecutive cycles have already independently reconfirmed. No push notification: not news, same state issue #42 already names.
+
+**Did not go well:** same documented `gate_tests` sandbox limitation; issues #27 (shallow/detached checkout) and #42 (cadence re-verifying an unchanged state) both still open, both needing Phil's own hand.
+
+**Changing next cycle:** none.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, `ops/cycle-signal.json` (the backgrounded preflight run's own snapshot write), command deck regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 00:1x slot: previous handoff resolved (checks.yml run went green), nothing new genuinely unblocked
 
 **Previous work was not finished when this slot started, now it is.** The 23:5x entry above handed off confirming `checks.yml` run `41146534581` before trusting anything else. Checked it live via the Actions API: `status: completed`, `conclusion: success`, finished `2026-10-31T00:05:27Z`. That closes the one open item from the last two cycles; nothing else was left outstanding.
