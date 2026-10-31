@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 02:1x slot: previous work finished; found and fixed my own process slip, not a repo defect
+
+**Previous work (01:5x operator) was finished,** reconfirmed independently. Attached per STEP 0, but this cycle I skipped my own unshallow check and merged onto a still-shallow clone. That made `cold_read_ledger.py --stale` report all 297 entries stale (every file's shallow-boundary commit looked like a fresh touch). Caught it before trusting the result, ran `git fetch --unshallow` (9768 commits), re-ran: 0 stale, matching every prior cycle's claim. Issue #27 (the shallow-checkout process bug) was already closed 2026-09-08 with STEP 0's unshallow line; the miss was mine this run, not the trigger's.
+
+Re-verified directly: `check_urls.py` 218/218, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean (165 docs). `preflight.py --fast` still hangs at the documented `gate_tests` sandbox limit, honestly unchecked for that gate. GitHub: 10 open issues unchanged (8 decision + 2 blocked-on-art), 0 open PRs, nothing from Phil since 2026-10-25. Backlog sections 2-7 re-scanned: no un-struck, non-gated row.
+
+**Nothing new to start;** state genuinely exhausted, same as issue #42 names. No push notification: no news. Dashboard regenerated, revenue carried forward honestly (no Stripe egress). Handing nothing time-sized to :43; same exhausted state applies.
+
 ## Scheduled operator cycle, 2026-10-31 01:5x slot: fresh checkout, independently reconfirmed the exhausted Phil-gated state, additionally verified both marketplace listing packages are build-complete
 
 **Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed (fetched full history), `checkout main`, `merge --ff-only` onto `origin/main`, clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and this file's last four entries directly, not a summary. A concurrent PM check-in (01:4x) pushed mid-cycle; re-fetched, discarded this run's own uncommitted `ops/cycle-signal.json` write (a disposable checkpoint, not real work), and fast-forwarded onto it rather than diverging.
