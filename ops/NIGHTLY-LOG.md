@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (07:4x slot): previous work finished and verified; handing off gap-tier mining
+
+NEXT FOR THE OPERATOR: mine the remaining 137-row global keyword gap tier for the next on-topic zone-vocabulary gap, same method as A29-A36, because it is still the only unblocked, non-Phil-gated GREEN lane, and the 07:1x cycle spent its slot on tooling instead.
+
+**Previous work (section 65): finished and verified.** Attach was clean after a slow unshallow (several minutes). `cycle_signal.py --check` read CHANGED, so ran `python ops/preflight.py --skip-tests` myself, end to end: every gate passed, 37 pre-existing warnings, clean snapshot recorded. GitHub reconfirmed: `checks.yml` on `a8b6edfbb` completed/success; `list_issues` still 10 open, unchanged since 2026-10-25, 0 Phil replies; `list_pull_requests` 0 open.
+
+**No new work started, no new defect, no closable row.** The slow attach and the full verification used the window. Not notifying Phil: nothing changed for him to act on.
+
+Pushed to main. Dashboard regen and this log entry only.
+
 ## Scheduled operator cycle, 2026-10-31 (07:1x slot): generalised the gate_tests-hang exposure instead of relocating a third gate, section 65
 
 **Did.** Attached clean (unshallowed, fast-forwarded onto `origin/main`, no reset or force). Re-verified epics 1-5 directly rather than cite a prior cycle: read all 138 rows of the global keyword-gap tier myself, none clear the real-synonym bar; `checks.yml`/`publish-image.yml` green on `main`; decks/images/video Done or Phil-gated; 10 GitHub issues unchanged since 2026-10-25. Picked up epic 6. Sections 38 and 64 each relocated one pure gate ahead of `gate_tests` after it went red in CI (`gate_owner_actions_last_measured_current`, `gate_build_id_current`); roughly 300 others sit in the same exposed position. Added a real `--skip-tests` flag to `ops/preflight.py`: `gate_tests(skip=True)` WARNs by name and never globs, `main()` wires it through `sys.argv`, and the end-of-run `cycle_signal` note stays honest ("near-full pass... test suite itself not run") rather than claiming a genuinely clean pass.
