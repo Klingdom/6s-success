@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (05:4x slot): previous work finished and verified; the "gap tier is mostly off-topic" handoff from 04:4x only holds for the very top ranks, corrected for the operator
+
+NEXT FOR THE OPERATOR: read ranks 7 through 15 of the global keyword gap tier (`ops/keyword-demand-global.json`, 140 rows) for the next on-topic zone vocabulary gap, because that deeper band actually holds several genuine candidates (bathroom organisation, nursery layout, entryway decoration, utility room, storeroom, makeup vanity, nappy change table) that the earlier "mostly noise" framing, true only for ranks 1 to 6, had not surfaced.
+
+**Previous work: finished and verified, not just committed.** Attach was clean: fetched `origin/main`, already unshallowed, fast-forwarded onto `origin/main` (1 commit, the hourly bot), no reset or force, tree clean before and after. `cycle_signal.py --check` read CHANGED (expected: A34 and the build-id fix both touched `BACKLOG-2026-09-07.md` since the last snapshot), so ran the full local `preflight.py` rather than skip it. Independently confirmed on GitHub rather than cited from the 05:3x entry: `actions_list` for both `checks.yml` and `publish-image.yml` on commit `8f2e0f868` (the build-id/gate-order fix) and the next commit `0fdde0917` both read `completed`/`success`. `list_issues`: still 10 open (8 decision, 2 blocked-on-art), newest `updated_at` still #42 at 2026-10-25, 0 new Phil comments. `list_pull_requests`: 0 open.
+
+**Ran `preflight.py` myself, unbuffered to a log file, watched it to the documented hang rather than trusting a prior run's claim.** 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`; `cycle_signal` recorded a clean snapshot mid-run. Hung at `gate_tests` as every recent cycle reports; confirmed the hang rather than assumed it (elapsed time advanced 56s with CPU flat at 7-12%, no new log line), then killed it, checked the lock file's pid matched this run's own pid (511) before clearing it.
+
+**Checked the backlog sections a fresh pair of eyes hadn't this cycle, rather than only re-reading the handoff.** `BACKLOG-2026-09-07.md` sections 2 to 4 (micro zones, decks, images/video): every row is struck through Done or is C5/C6, both explicitly Phil-gated (Gemini billing, YouTube OAuth). Nothing new genuinely unblocked there. The one open, non-Phil-gated GREEN lane left is the global keyword gap tier A29 to A34 have been mining. Read the gap rows myself by rank rather than re-quoting the prior handoff: ranks 1 to 6 are genuinely off-topic (classroom benches, Revit stair railings, a cribbage tournament, organic detergent, sidewalk chalk), confirming that part of the 04:4x framing. But ranks 7 to 15 are not: "organization for tiny bathrooms", "how to plan a nursery layout", "where should you store detergents sanitizers pesticides and other chemicals", "how to decorate a small entrance hallway" / "how to decorate an entranceway", "utility room design with washing machine", "how to organise a storeroom", "how to organize makeup vanity box", and "how to organise nappy change table" (the same Nursery-changing family A34 just closed one entry of) are all genuinely on-topic zone/root-cause queries this site already has a room for. Did not pick one and ship it myself; this slot hands off rather than starts, per this routine's own instruction.
+
+**Nothing else genuinely unblocked, no new defect, no closable row.** All 10 open issues remain Phil-gated; not re-notifying on #42/#40, nothing changed since the last push on that topic.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (05:3x slot): previous work was NOT finished when this cycle started; confirmed another cycle finished it correctly, closed the loop it left open
 
 NEXT FOR THE OPERATOR: hold, same 10 Phil-gated issues, unchanged. Nothing new to pick up this slot; the whole slot went to finishing the previous cycle's unfinished work, per CLAUDE.md 0.2 and this routine's own step 2.
