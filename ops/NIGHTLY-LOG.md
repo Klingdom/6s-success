@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (11:0x slot): previous work (the 10:5x KDP/Etsy escalation) was NOT finished, its own edit had drifted the OWNER-ACTIONS.md review marker and that drift had gone live as real CI red on main
+
+NEXT FOR THE OPERATOR: mine the global gap tier for the next on-topic vocabulary gap; backlog and 12 open GitHub issues (all decision/blocked-on-art, none newly commented) are otherwise unchanged and exhausted.
+
+**Previous work: NOT finished.** `preflight.py --skip-tests` found 2 real FAIL: `owner-actions-last-measured-current` (the 10:5x cycle added dated items 14/15 at 2026-10-31 but left the "List reviewed" header at 2026-10-25, the exact marker-drift bug this repo has hit before) and `ci-conclusion-current`, which turned out to be that same drift's live consequence: checks.yml run 41194928984 on commit 4382a6dd25 actually FAILED on GitHub, confirmed via the Actions API, not assumed from the local gate alone.
+
+**Fixed.** Bumped the marker to 2026-10-31. Verified directly against the real file by importing preflight.py and calling the gate function itself (FAIL list empty), plus the dedicated unit test (9/9). A full re-run hit the documented `gate_etsy_pdfs_current` headless-Chromium sandbox hang from an unrelated, already-running preflight process; left it rather than kill it blind, and verified this one fix by the two methods above instead of claiming a clean full pass I did not actually observe.
+
+Pushed to main. Changed: `OWNER-ACTIONS.md`, dashboard regen. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-10-31 (10:5x slot): filed the Amazon KDP and Etsy launches as GitHub issues #43/#44 instead of mining another keyword gap, and fixed a stale listing count found along the way
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and
