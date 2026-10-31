@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T10:20:13Z",
-   "mode": "changed",
-   "offered": 14,
-   "accepted": 14,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T15:11:27Z",
    "mode": "changed",
    "offered": 210,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T19:54:35Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -729,7 +729,7 @@
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "9dd21b01a2be996a",
   "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "1823729717c5e2a0",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "2c15a59e951743a7",
-  "https://6s-success.com/zones/garage-the-lawn-and-garden-tool-zone": "14442d46e86f19c7",
+  "https://6s-success.com/zones/garage-the-lawn-and-garden-tool-zone": "80c11399e97880df",
   "https://6s-success.com/zones/garage-the-power-tool-and-battery-zone": "1ba34fb87e826e62",
   "https://6s-success.com/zones/garage-the-primary-workbench": "d4ee0c4b1393717b",
   "https://6s-success.com/zones/garage-the-sports-and-recreation-zone": "6a29c64e307e9a13",
