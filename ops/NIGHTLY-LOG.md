@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (13:3x slot): previous work (A43, the 12:4x/12:1x BLOCKER-001 verification) finished and CI-green; nothing new genuinely unblocked
+
+**Previous work: finished.** Attach arrived shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main. A concurrent operator cycle pushed a merge plus A43 (garage sale query cluster) while this cycle was mid-read; refetched and fast-forwarded onto it rather than racing, no reset or force. preflight.py --skip-tests run unpiped to a file: zero FAIL on every gate reached, hung only at the documented gate_etsy_pdfs_current sandbox limit, killed by timeout, same precedent as every prior cycle. All 11 rotation scripts (backlog, checkin-log, owner-actions, status) independently re-run with --check: CLEAN, nothing DUE. checks.yml on the last two non-bot commits: both completed/success via the Actions API.
+
+**Live list_issues: 12 open, unchanged.** All decision/blocked-on-art, none newly commented, none from Phil. The $19 all-time/1-sale figure the dashboard carries forward is a long-standing known number, not a new event; checked NIGHTLY-LOG history, not new.
+
+**Did:** no new defect, no closable row beyond the re-verifications above. Dashboard regen (Stripe and live-site unreachable from this sandbox this run, correctly marked unknown/carried-forward rather than asserted) is the only change. Did not send a push notification: the standing issue-42 cooldown (no-repeat-before 2026-11-02T04:00Z) has not expired and nothing material changed.
+
+**Next for the operator:** mine the remaining 128 global gap-tier rows, same method as A29-A43, or act the moment Phil comments on any of the 12 open issues.
+
+Pushed to main. Dashboard regen only; no price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (13:0x slot): closed A43, the garage sale query cluster, the largest on-topic group left in the global gap tier
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no reset or force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last `NIGHTLY-LOG.md` entries. Live GitHub: 12 issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py`: no mail credentials, standing gap.
