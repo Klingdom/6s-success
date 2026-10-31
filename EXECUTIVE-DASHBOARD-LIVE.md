@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-31 10:50 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-10-31 10:53 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 2 P0 items still open. |
+| **Overall** | **YELLOW** 4 P0 items still open. |
 | **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-10-31 10:07 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -26,11 +26,11 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 |---|---|
 | Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
-| Open issues | 10 (2 P0, 2 blocked on art, 8 need your call) |
+| Open issues | 12 (4 P0, 2 blocked on art, 10 need your call) |
 | Closed to date | 32 |
-| Commits (7 days) | 1377 of 9839 total |
+| Commits (7 days) | 1377 of 9840 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `afebcf16f` Hourly check-in record |
+| Last commit | `99f5c61ff` PM check-in 10:4x: fix the two real defects that broke check |
 
 ## Product readiness
 
@@ -62,6 +62,8 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 - **Authorise YouTube uploads** (5 min). **CLEARED 2026-09-26: the desync that held this row is fixed and re-verified.** The publish pair was verified directly: all 114 narrated 16:9 masters in `build/video/zones-narrated`, which is what this tool actually uploads, end within 5 seconds of their own caption track, 114 of 114.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **Add one line to the cloud environment's setup script** (2 min). **Found 2026-10-15, PM check-in.** This session's fresh container had `pymupdf` missing even though it is pinned in `ops/requirements.txt`, so `ops/affiliate.py --check`, the gate that keeps affiliate links out of every document a customer receives (Amazon's own operating agreement requires this), failed closed on all three PDFs it tried to read with "could not read 3 delivered document(s)".
+- **#44** Decide: open the Etsy shop and publish 3 finished print-pack listings (OWNER-ACTIONS.md item 15, ~40 min, never tracked as an issue)
+- **#43** Decide: publish the finished book on Amazon KDP (OWNER-ACTIONS.md item 14, ~30 min, never tracked as an issue)
 - **#42** Decide: the 10/30/60-minute autonomous cadence is now re-verifying an unchanged, fully-exhausted state
 - **#40** Decide: Claude Code usage limit stalled the autonomous PM/operator routines for 5 days, silently
 - **#35** Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys
@@ -75,6 +77,8 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
+| 44 | Decide: open the Etsy shop and publish 3 finished print-pack listings (OWNER-ACTIONS.md item 15, ~40 min, never tracked as an issue) | P0, decision |
+| 43 | Decide: publish the finished book on Amazon KDP (OWNER-ACTIONS.md item 14, ~30 min, never tracked as an issue) | P0, decision |
 | 42 | Decide: the 10/30/60-minute autonomous cadence is now re-verifying an unchanged, fully-exhausted state | decision |
 | 40 | Decide: Claude Code usage limit stalled the autonomous PM/operator routines for 5 days, silently | decision |
 | 35 | Decide: add VPS_DEPLOY_KEY as a GitHub Actions secret to automate production deploys | decision |
