@@ -154,6 +154,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-29 (ca): 'how to organize large cooking utensils', rank 3, 0.0 title coverage (0.333 heading coverage against an unrelated page, /articles/how-to-organize-toys.html, a coincidental word overlap, not a real match). Checked against the zone's own purpose/done_looks_like text in content.json before adding: 'A utensil crock holding no more than six tools' sits in this zone's own done_looks_like, naming the exact object a search for large cooking utensils is about (the big spoons, tongs and ladles kept by the stove, not the shallow-drawer flatware/spatulas the Utensil and Utility Drawers zone already owns). Named 'cooking utensils zone', the same '<word> zone' precedent as 'car maintenance zone'/'snacks zone'/'drying racks zone', not the bare word 'utensils', which nobody searching this calls the zone."
+  },
+  "Garage|Lawn and Garden Tool Zone": {
+   "names": [
+    "garden shed zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (au): 'how to organise small garden shed', rank 12, gap, 0.333 title coverage, scored to /family-room-deck.html via a coincidental word match on 'small' (heading_coverage 0.333), not a real one; found by the 19:4x PM check-in's own gap-tier mining, same wrong-page misattribution shape A37 fixed for 'utility room' against Laundry Room. Checked against the zone's own purpose text in content.json before adding: 'Stores the yard tools and outdoor supplies so long handles stay off the floor and garden chemicals stay latched away from everything else' is exactly what a household garden shed holds, whether the yard tools live in a shed or a garage bay; the Patio room's Outdoor Storage Zone (cushions under a lid) and Garden and Plant Care Zone (containers and feed) are both a worse fit, since neither stores tools. Named 'garden shed zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38), not the bare noun 'garden shed' alone, which would overclaim the zone literally is a shed rather than the same function wherever it is housed."
   }
  }
 }

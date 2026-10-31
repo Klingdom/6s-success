@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (19:5x slot): closed the 19:4x PM handoff, A45, the "garden shed" misattribution
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`), clean, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries before acting. Live GitHub, read directly rather than cited: 12 open issues, unchanged, all `decision`/`blocked-on-art`, no new Phil comment on any (confirmed #42: still 7, last 2026-10-25; #40: still 3, last 2026-10-13); 0 open PRs.
+
+Took the one genuinely new, non-Phil-gated row that existed: the 19:4x PM check-in's own gap-tier find, "how to organise small garden shed" (au, rank 12) scoring to `/family-room-deck.html` on a coincidental word match on "small", the same misattribution shape A37 fixed for "utility room" against Laundry Room.
+
+**Verified before acting.** Checked the Garage room's Lawn and Garden Tool Zone purpose text in `content.json` against the query before touching anything, and ruled out both Patio candidates (Outdoor Storage Zone is cushions under a lid, Garden and Plant Care Zone is containers and feed, neither stores tools) rather than guessing.
+
+**Fixed (A45, `BACKLOG-2026-09-07.md`).** Added "garden shed zone" to a new `Garage|Lawn and Garden Tool Zone` entry in `ops/zone-also-called.json`, the `<word> zone` naming precedent, not the bare noun alone. Reran `ops/build_zone_pages.py` (self-chained).
+
+**Verified.** `ops/tests/test_gate_zone_also_called_is_heading.py` (6/6, including the real committed site). `ops/keyword_demand_global.py --rescore` moves the target query from `gap` (0.333) to `partial` (`heading_coverage` 0.667, matched on heading, the real Garage zone page); site-wide gap count 116 to 115. `check_urls.py` (218/218), `audit_pages.py` (0 duplicate titles/descriptions), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `check_sellable.py` (124/126 Stripe-matched, 2 known service SKUs), `link_graph_report.py` (0 orphans), `build_id.py --check` (current), `ops/audit_visual.py` scoped to the changed page (desktop and mobile, 0 findings each) all clean. Ran a fresh `preflight.py` only after the tree settled (killed a first backgrounded run started before the edit, to avoid trusting a result racing a mid-flight file change): 0 FAIL/ERROR through every reachable gate, standing warnings only (`OWNER-ACTIONS.md` tripwire, left over budget on purpose per the 18:4x cycle's own reasoning; 2 dated disclosures; image-coverage gitignored-source note; CI conclusion unchecked, no network), stalled at the documented `gate_tests` sandbox hang; killed by pid after confirming no further CPU progress, reported unchecked per `CLAUDE.md` 0.4, not treated as a pass.
+
+`PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credentials, the standing gap.
+
+**Not sending a push notification.** Nothing material changed for Phil: no new issue reply, no CI failure, no sellable defect, no sale. A closed SEO synonym gap is routine autonomy, not something he needs told.
+
+**Went well:** catching that the first backgrounded `preflight.py` run started before the edit landed, and rerunning clean rather than trusting a result that could have scanned a half-written tree.
+
+**Did not go well:** nothing new; this is the same single-row cadence the last several weeks of cycles have run at, because the backlog's Now sections are otherwise exhausted.
+
+**Changing next cycle:** none beyond what issue #42 already asks Phil to decide.
+
+**Next:** mine the remaining 115 global gap-tier rows for the next genuine on-topic misattribution or vocabulary gap, or act the moment Phil comments on #42, #40, #43, #44 or any other open issue.
+
+Pushed to main. `ops/zone-also-called.json`, `site/zones/garage-the-lawn-and-garden-tool-zone.html`, `site/sitemap.xml`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND-GLOBAL.md`, `ops/sitemap-content-hashes.json`, `ops/cycle-signal.json`, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; one existing zone page edited, no new page; `IndexNow` to submit on push (needs real network, the hourly CI job, not this sandbox).
+
 ## PM check-in, 2026-10-31 (19:4x slot): previous work finished; found one fresh, non-Phil-gated gap-tier candidate and handed it to the operator
 
 NEXT FOR THE OPERATOR: "how to organise small garden shed" (au, rank 12 in the global keyword gap tier, scores to /family-room-deck.html) is the same wrong-page misattribution shape A37 already fixed for "utility room" to Laundry Room, because a garden shed belongs to the Garage's Lawn and Garden Tool Zone or the Patio room, not Family Room, and nobody has mined this tier since A44 left it at 116 gap rows.
