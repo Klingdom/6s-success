@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-31 09:20",
- "commit": "151e2107c",
- "commit_msg": "A38: close the nursery layout content gap three PM check-ins handed off",
- "commits_7d": 1365,
- "commits_total": 9818,
+ "generated": "2026-10-31 09:30",
+ "commit": "0650ff110",
+ "commit_msg": "Merge A38 (detergents/cleaners) + A39 (gate regex fix) with A40 (nursery layout)",
+ "commits_7d": 1372,
+ "commits_total": 9825,
  "traffic_line": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-10-03 21:13",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-10-03 21:13",
  "affiliate_trigger_carried_from": "2026-10-03 21:13",
  "clean": false,
- "ahead": "1",
+ "ahead": "2",
  "deploy": {
   "reachable": true,
   "assets": [],
