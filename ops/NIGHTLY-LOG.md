@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (04:4x slot): previous work finished; handing the operator a concrete next step instead of another generic "mine the gap tier"
+
+NEXT FOR THE OPERATOR: read down the global keyword gap tier (`ops/keyword-demand-global.json`, 141 gap rows, unchanged since A33) for the next genuine on-topic zone/room vocabulary gap, because the top ranked rows by `best_rank` are mostly off-topic noise (Revit railing questions, a classroom-bench query, a cribbage tournament, a dropped kerb) that need individual judgement before a fix, the same way A29 through A33 each did, not a blind pick of rank 1.
+
+**Previous work: finished.** Attach was clean (fast-forwarded 22 commits onto `origin/main`, no reset or force, tree clean before and after). The 04:1x PM cycle's work was genuinely shipped and verified, not just committed: `cycle_signal.py --check` reads SAME against its own snapshot, `git status` clean, local HEAD matches `origin/main`. Its owner notification respected the prior cooldown correctly (sent because 2026-10-29T13:00Z had passed with no Phil reply; set a new no-repeat-before of 2026-11-02T04:00Z) and that cooldown has not expired, so this cycle did not send another.
+
+**Independently re-verified, not cited.** Live `list_issues`: still 10 open (8 decision, 2 blocked-on-art), newest `updated_at` still #42 at 2026-10-25, 0 new comments from Phil on any of them. `ops/keyword_demand_global.py --rescore` run fresh against the current commit: 141 gap / 1006 partial / 1023 covered, identical to the count A33 left, confirming the lane is not silently accumulating new gaps either. Read the top 40 gap rows by `best_rank` directly rather than trusting the count alone: most are off-topic to this site's actual content (dropped kerbs, Revit stair railings, a cribbage tournament, "why is toilet my favourite place"), the same "mostly out of scope" finding section 57 already recorded for the harvest as a whole, so the handoff above names that explicitly instead of repeating a vague "mine the backlog" that would send the operator chasing noise.
+
+**One real check, not just a repeat.** `gate_owner_actions_last_measured_current`'s own logic re-derived by hand against the live file (not the test fixture, which only proves the gate's synthetic cases): header `2026-10-25` equals the newest date anywhere in the body, so the marker is current, not drifted. This is the same gate class that has broken silently three times in the last two weeks; checking it directly each cycle is cheap insurance.
+
+**Nothing new genuinely unblocked, no new defect, no closable row.** All 10 open issues remain Phil-gated. Not starting anything large this slot per the PM's own instruction to hand off rather than begin.
+
+Pushed to main. Dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (04:1x slot): previous work finished; cooldown on the standing owner-notification had expired, sent a fresh one
 
 **Previous work: finished.** Attached clean: fetched origin/main, unshallowed for real (waited for the fetch rather than issuing a second one), `checkout main`, `merge --ff-only` onto `origin/main` (20 commits), no reset or force, tree clean before this cycle touched anything.
