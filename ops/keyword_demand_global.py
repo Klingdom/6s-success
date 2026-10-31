@@ -194,14 +194,16 @@ def report(payload):
         "## Not in the US harvest, top-ranked first",
         "",
     ]
-    cols = ["rank", "status", "markets", "query", "our best page"]
+    cols = ["rank", "status", "markets", "query", "our best page",
+            "missing words"]
     lines.append(bar + bar.join(" %s " % c for c in cols) + bar)
     lines.append(bar + bar.join("---" for _ in cols) + bar)
     order = sorted(new, key=lambda r: (r["best_rank"], -len(r["markets"]),
                                        r["query"]))
     for r in order[:150]:
         cells = [str(r["best_rank"]), r["status"], " ".join(r["markets"]),
-                 r["query"], r["best_page"] or "-"]
+                 r["query"], r["best_page"] or "-",
+                 ", ".join(r.get("unmatched_words", [])) or "-"]
         lines.append(bar + bar.join(" %s " % c for c in cells) + bar)
     return "\n".join(lines) + "\n"
 

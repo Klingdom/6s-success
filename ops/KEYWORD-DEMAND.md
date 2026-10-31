@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-31T15:17:43Z against 226 page(s) at commit 723acdb80. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-31T21:58:46Z against 226 page(s) at commit 8e67a8073. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 226 published page titles: 1314 covered, 1350 partial, 144 gap.
+**Queries found:** 2808. Checked against 226 published page titles: 1321 covered, 1344 partial, 143 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,94 +17,94 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 144, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 143, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
-| Rank | Query | Room | Closest page we have |
-|---|---|---|---|
-| 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) |
-| 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) |
-| 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) |
-| 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) |
-| 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 2 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) |
-| 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) |
-| 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) |
-| 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) |
-| 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) |
-| 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) |
-| 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) |
-| 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 4 | how to organize hard drive files | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 4 | ideas for decks and patios | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) |
-| 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) |
-| 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) |
-| 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
-| 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
-| 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) |
-| 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) |
-| 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) |
-| 6 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) |
-| 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
-| 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) |
-| 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) |
-| 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) |
-| 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) |
-| 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) |
-| 8 | back porch society | - | Why your family won't put things back where they belong (0.33) |
-| 8 | clothes sorter hamper near me amazon | - | How to organize baby clothes by size, without drowning in them (0.20) |
-| 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) |
-| 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) |
-| 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) |
-| 8 | stove on floor plan | - | Venture plan (0.33) |
-| 9 | clothes sorter hamper near me target | - | How to organize baby clothes by size, without drowning in them (0.20) |
-| 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) |
-| 9 | how to hold a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) |
-| 9 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 9 | organize hard disk drives | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 9 | organize packing kit guide | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 9 | what problems exist in this kitchen | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) |
-| 9 | why do i have trouble climbing stairs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 10 | card games organizer storage | - | More storage will not fix a messy room (0.33) |
-| 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) |
-| 10 | how to organize pc | - | - (0.00) |
-| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) |
-| 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
-| 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) |
-| 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) |
-| 11 | how to arrange twin cribs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) |
-| 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) |
-| 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) |
-| 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) |
+| Rank | Query | Room | Closest page we have | Missing words |
+|---|---|---|---|---|
+| 1 | how to draw a railing on a floor plan | - | Venture plan (0.25) | draw, floor, railing |
+| 1 | how to organize sidewalk chalk | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | chalk, sidewalk |
+| 1 | how to organize soap making supplies | - | How to organize the garage car care supplies (0.33) | making, soap |
+| 1 | organize outdoor diy lab | - | How to organize the mudroom seasonal outdoor gear (0.33) | diy, lab |
+| 2 | how to build a railing on a porch | - | How to organize the patio or deck railing and surface (0.33) | build, porch |
+| 2 | how to build walkway steps | - | What is 6S? The six steps, and how it differs from 5S (0.33) | build, walkway |
+| 2 | how to organize benchmark advance materials | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | advance, benchmark, materials |
+| 2 | how to organize games on pc | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | games |
+| 2 | how to organize stash poe 2 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | poe, stash |
+| 2 | landings on a staircase | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | landings, staircase |
+| 3 | daycare organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | daycare |
+| 3 | den office design ideas | - | The Home Office Deck: 66 cards, free to read (0.33) | den, design |
+| 3 | draw a larder organization chart | - | The Pantry Deck: 57 cards, free to read (0.00) | chart, draw |
+| 3 | how to arrange logs in solo stove | - | How to organize the kitchen stove area (0.33) | logs, solo |
+| 3 | how to organize cricut vinyl | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cricut, vinyl |
+| 3 | organized nurse designs | - | What is a micro zone? The unit that actually gets organized (0.33) | designs, nurse |
+| 4 | back porch careers | - | Why your family won't put things back where they belong (0.33) | careers, porch |
+| 4 | how to build a nightstand for beginners | - | How to organize the guest bedroom nightstand (0.33) | beginners, build |
+| 4 | how to build a staircase with landing | - | How to organize a stair landing, zone by zone (0.33) | build, staircase |
+| 4 | how to make a disposable diaper | - | How we make money: what we sell, and what we do not earn on (0.33) | diaper, disposable |
+| 4 | how to organize a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
+| 4 | how to organize hard drive files | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | drive, hard |
+| 4 | ideas for decks and patios | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | decks, patios |
+| 4 | why am i frequently using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | frequently, using |
+| 5 | back porch column ideas | - | Why your family won't put things back where they belong (0.33) | column, porch |
+| 5 | decks and patios design ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | decks, patios |
+| 5 | dental organization ideas | - | The Family Room Deck: 69 cards, free to read (0.00) | dental |
+| 5 | guest bathroom decorating ideas pictures pinterest | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, pinterest |
+| 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) | cribbage, tournament |
+| 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | belts |
+| 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | kindergarten |
+| 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) | garages, unfinished |
+| 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) | build, floating, staircase |
+| 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) | bar, bench, correctly |
+| 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
+| 6 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) | cake, decorating |
+| 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | dollar, tree |
+| 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) | pinterest, tips |
+| 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, trouble |
+| 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | constantly, using |
+| 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) | countertop, cover, stove |
+| 7 | going to the bathroom problems | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, problems |
+| 7 | how to design a walkway garden | - | How to organize the garage garden tool storage (0.33) | design, walkway |
+| 7 | how to organize a walkout | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | walkout |
+| 7 | pantry organization ideas dollar tree | Pantry | The Pantry Deck: 57 cards, free to read (0.33) | dollar, tree |
+| 8 | back porch society | - | Why your family won't put things back where they belong (0.33) | porch, society |
+| 8 | clothes sorter hamper near me amazon | - | How to organize baby clothes by size, without drowning in them (0.20) | amazon, near, sorter |
+| 8 | how to arrange benches in classroom | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | benches, classroom |
+| 8 | how to host a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, host, tournament |
+| 8 | how to organize raised garden beds | - | How to organize the garage garden tool storage (0.33) | beds, raised |
+| 8 | how to organize steam games | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | games, steam |
+| 8 | how to organize your computer | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | computer |
+| 8 | how to plan a workshop templates | Workshop | How to organize a workshop, zone by zone (0.33) | plan, templates |
+| 8 | nine steps on how to organize a cooperative | - | What is 6S? The six steps, and how it differs from 5S (0.33) | cooperative, nine |
+| 8 | stove on floor plan | - | Venture plan (0.33) | floor, stove |
+| 9 | clothes sorter hamper near me target | - | How to organize baby clothes by size, without drowning in them (0.20) | clothes, hamper, near |
+| 9 | designing stairs with landing | - | How to organize a stair landing, zone by zone (0.33) | designing, stairs |
+| 9 | how to build exterior stairs with landing | - | How to organize a stair landing, zone by zone (0.25) | build, exterior, stairs |
+| 9 | how to hold a cribbage tournament | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribbage, tournament |
+| 9 | how to install a stove top range | - | How to organize the kitchen stove area (0.25) | install, range, top |
+| 9 | how to organize script mods sims 4 | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | mods, script, sims |
+| 9 | organize hard disk drives | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | disk, drives |
+| 9 | organize packing kit guide | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | guide, packing |
+| 9 | what problems exist in this kitchen | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | exist, problems |
+| 9 | why do i have trouble climbing stairs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | climbing, trouble |
+| 10 | card games organizer storage | - | More storage will not fix a messy room (0.33) | card, games |
+| 10 | decorating ideas for stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | decorating, stairs |
+| 10 | how to host a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.25) | cribbage, host, tournament |
+| 10 | how to organize pc | - | - (0.00) | - |
+| 10 | how to organize printed recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | printed, recipes |
+| 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) | problems, solutions |
+| 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | metal, stairs |
+| 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) | desktop, games |
+| 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) | flat, indian, style |
+| 11 | how to arrange twin cribs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribs, twin |
+| 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | ceilings, decorate, high |
+| 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
+| 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
+| 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
+| 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1350.
+Showing the top 60 of 1344.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -186,7 +186,7 @@ Showing the top 60 of 1350.
 | Laundry Room | 71 | 0 | 17 | 54 |
 | Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |
-| Nursery | 62 | 1 | 24 | 37 |
+| Nursery | 62 | 1 | 22 | 39 |
 | Pantry | 58 | 1 | 31 | 26 |
 | Primary Bathroom | 13 | 1 | 8 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |

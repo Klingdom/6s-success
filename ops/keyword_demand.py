@@ -539,6 +539,25 @@ def score_rows(results, rooms, inventory):
         # earned it so a reader can discount it if they disagree.
         row["matched_on"] = "title" if score >= hscore else "heading"
         row["status"] = classify(max(score, hscore))
+        # UNMATCHED_WORDS, ADDED 2026-10-31. Found live: two gap rows
+        # ("car organisation must haves", "car organizer canadian tire")
+        # were handed off three cycles running as "needs a title or
+        # heading phrase addition" because the query text itself contains
+        # "organizer"/"organisation", which reads as the missing word. It
+        # is not: both are in FORMAT_WORDS and never enter content_words()
+        # at all, so the word actually missing from the page is "must"/
+        # "haves" or "canadian"/"tire", neither of which could be added
+        # honestly (generic listicle filler and a named retailer this
+        # product has no relationship with). A reader (or a later cycle)
+        # seeing only the score has no way to tell a real content gap from
+        # this one without re-deriving content_words() by hand. Naming the
+        # actual unmatched words closes that gap once, here, rather than
+        # once per cycle that reopens the same row.
+        cw = content_words(q)
+        winner = page if score >= hscore else hpage
+        won_words = (winner or {}).get(
+            "words" if score >= hscore else "head_words", set())
+        row["unmatched_words"] = sorted(w for w in cw if w not in won_words)
         rows.append(row)
     return rows
 
@@ -695,12 +714,13 @@ def report(payload):
       "reached in any one seed suggestion list, so the top of this list is "
       "what an engine predicts first. The full set is in "
       "`keyword-demand.json`.\n" % (min(80, len(gaps)), len(gaps)))
-    w("| Rank | Query | Room | Closest page we have |")
-    w("|---|---|---|---|")
+    w("| Rank | Query | Room | Closest page we have | Missing words |")
+    w("|---|---|---|---|---|")
     for r in sorted(gaps, key=lambda r: (r["best_rank"], r["query"]))[:80]:
-        w("| %d | %s | %s | %s (%.2f) |"
+        w("| %d | %s | %s | %s (%.2f) | %s |"
           % (r["best_rank"], r["query"], r["room"] or "-",
-             r["best_page_title"] or "-", r["coverage"]))
+             r["best_page_title"] or "-", r["coverage"],
+             ", ".join(r.get("unmatched_words", [])) or "-"))
     w("\n## Partial: we are close, and the title does not use their words\n")
     w("Showing the top %d of %d.\n" % (min(60, len(partial)), len(partial)))
     w("| Rank | Query | Our closest title | Coverage |")

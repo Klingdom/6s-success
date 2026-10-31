@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (22:0x slot): closed the "car organisation"/"car organizer" cluster the 20:4x and 21:4x handoffs both got wrong, and named it so it cannot recur
+
+**Did.** Clean attach: shallow and detached on arrival, unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. GitHub: 16 open issues, all `decision`/`blocked-on-art`, none newly commented by Phil; 0 open PRs. Inbox: no mail credentials, the standing gap. Re-synced with origin mid-cycle (it had moved 589446c0f to 8e67a8073 while this cycle was reading) before writing anything.
+
+**Verified the handoff's premise before acting on it (CLAUDE.md 5d), and it did not survive.** Both the 20:4x and 21:4x PM check-ins described "car organisation must haves" and "car organizer canadian tire" (0.333 title coverage, both already on the correct page) as needing "a title or heading phrase addition." Ran `content_words()` directly: "organizer"/"organisation" are already in `FORMAT_WORDS` and never enter scoring at all, so the word every handoff assumed was missing was never the problem. The words actually absent are "must"/"haves" (generic listicle filler) and "canadian"/"tire" (a named retailer with no relationship to this product). No honest edit adds either without keyword-stuffing or implying a false affiliation (CLAUDE.md sections 9 and 48). This is the third consecutive cycle to touch this exact row without closing it, so per section 0.2/10b it became a gate instead of a fourth handoff.
+
+**Fixed.** `score_rows()` in `ops/keyword_demand.py` now computes `unmatched_words`, the actual content words absent from the page that won the match, stored on every row. Both `ops/keyword_demand.py`'s and `ops/keyword_demand_global.py`'s gap tables gained a "Missing words" column, so a future cycle reads `must, haves` or `canadian, tire` directly instead of guessing from the query text the way three cycles running just did.
+
+**Verified.** `test_keyword_demand.py` (22/22, unchanged). `test_gate_keyword_demand_global_not_stale.py`, `test_gate_keyword_demand_global_rescored_current.py` (both pass). `--rescore` on both files: the two target rows now show `unmatched_words: ["haves","must"]` and `["canadian","tire"]` exactly, confirmed live, not asserted. `check_urls.py` (218/218), `audit_pages.py` (0 duplicates), `affiliate.py --check` (165 documents), `fix_dashes.py --check` (0/0), `link_graph_report.py` (0 orphans), `build_id.py --check` (current). `cold_read_ledger.py --add` recorded both edited files. `preflight.py --skip-tests`: 2 FAIL. One, a stray probe file from an unrelated concurrent run's killed test, preflight deleted itself and confirmed gone. The other, `gate_ci_conclusion_current`, is stale, not new: checks.yml is path-filtered to `ops/**`/`.github/workflows/**`/`build/**`, and every commit since the 21:1x build-id fix touched only excluded log/dashboard files or `site/build-id.txt`, so checks.yml never retriggered to confirm that fix. This push touches real `ops/` code and will retrigger it. 38 warnings, all standing and previously diagnosed.
+
+**Went well:** catching that a confident, twice-repeated diagnosis ("add organizer to the title") was wrong by re-deriving it from the actual scoring function rather than trusting the query text, the same discipline A46/A47 already modeled this cycle for a different row.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none beyond the new column; hold on the 16 Phil-gated issues.
+
+**Next:** mine the remaining 113 global gap rows for a genuine cluster, or act on any Phil reply to #42-#48.
+
+Pushed to main. `ops/keyword_demand.py`, `ops/keyword_demand_global.py`, both rescored JSON/MD outputs, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (21:4x slot): previous work finished, CI confirmed green; handing the operator the car organisation cluster
 
 NEXT FOR THE OPERATOR: close the "car organisation must haves" (au, rank 7, 0.333 title coverage) and "car organizer canadian tire" (ca, rank 8, 0.333) gap pair on the Garage Automotive Care Zone page, because both already land correctly and need a title or heading phrase addition, not a synonym file entry, exactly as the 20:4x handoff named and A47 deliberately left alone.
