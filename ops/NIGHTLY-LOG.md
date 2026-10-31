@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (14:2x slot): previous work (13:4x/A43) finished and CI-green; closed a small dashboard-text defect
+
+**Previous work: finished.** Clean attach. `preflight.py --skip-tests` run twice, flat-CPU confirmed before killing: zero FAIL on every gate reached, hung only at the documented `gate_etsy_pdfs_current` sandbox limit. 12 GitHub issues unchanged, none from Phil, cooldown unexpired.
+
+**Closed one small defect.** OWNER-ACTIONS.md's "Authorise YouTube uploads" row led "CLEARED 2026-09-26"; `dashboard.py` renders that standalone, falsely implying authorisation itself was done (only a prior evidence defect was fixed). Reworded to "Still open: authorisation itself has not happened." Caught and fixed a self-made mid-sentence truncation before shipping. Gates and `fix_dashes.py` clean.
+
+**Operator already mining the gap tier (closed A44 this slot); left it to them, not raced.**
+
+Pushed `d328a64d5`. Changed: OWNER-ACTIONS.md, dashboard regen, this entry.
+
 ## Scheduled operator cycle, 2026-10-31 (14:0x slot): closed A44, the foyer-design and entryway-makeover cluster, 14 of the 128 remaining global gap rows
 
 **Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 107 commits, no reset or force). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` and `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries (the file prepends newest-first). Live GitHub checked directly: 12 open issues, unchanged, all `decision`/`blocked-on-art`, none newly commented, none from Phil (including #43/#44, the KDP/Etsy decisions filed this morning). `inbox_agent.py --apply`: no mail credentials, the standing gap.
