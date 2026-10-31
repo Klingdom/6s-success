@@ -46,7 +46,12 @@ def main() -> int:
     src = inspect.getsource(preflight.main)
 
     checkpoint_marker = "maybe_record_cycle_signal("
-    gate_tests_marker = "run_gate(gate_tests)"
+    # 2026-10-31: gate_tests() gained a skip parameter (see
+    # test_gate_tests_skip_flag.py), so the real call site is now
+    # "run_gate(gate_tests, skip_tests)". Matching only the open paren plus
+    # comma, not the full call, so this marker survives if the parameter is
+    # ever renamed.
+    gate_tests_marker = "run_gate(gate_tests,"
 
     i_checkpoint = src.find(checkpoint_marker)
     i_gate_tests = src.find(gate_tests_marker)
@@ -70,7 +75,7 @@ def main() -> int:
     # confirm this same check would have caught it.
     broken_src = (
         "def main():\n"
-        "    run_gate(gate_tests)\n"
+        "    run_gate(gate_tests, skip_tests)\n"
         "    run_gate(gate_conflict_markers)\n"
         "    maybe_record_cycle_signal(FAIL)\n"
         "    return 0\n"

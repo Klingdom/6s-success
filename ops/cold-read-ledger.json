@@ -1017,9 +1017,9 @@
       "note": "cold-read 2026-10-14 16:1x-17:0x slot: read in full, 8/8 own tests pass, fallback logic verified correct, no defect found"
     },
     "preflight.py": {
-      "status": "clean",
-      "date": "2026-10-30",
-      "note": "Re-ledgered 2026-10-30 PM check-in: prior entry (fixed 2026-10-29) went stale the same day a later commit (c82922dcf) added gate_status_table_rows_gap_count_current and its helper status_table_rows_gap_count_problem. Read the diff in full: locates STATUS.md's Public website/Production traceability table rows by the same regex shape status_deploy_verdict_problem already uses, extracts the cited commits-undeployed count, compares to a fresh deploy_gap_material_commits() recount, warns (not fails) on mismatch, and returns early on any missing file or unparseable JSON rather than raising. Ran ops/tests/test_gate_status_table_rows_gap_count_current.py directly: PASS, 5 checks. No defect found."
+      "status": "fixed",
+      "date": "2026-10-31",
+      "note": "Found the recurring 'pure gate sits after gate_tests, invisible to any local run shorter than the real ~90min suite, caught only by CI going red after push' class (gate_owner_actions_last_measured_current moved 2026-10-21, gate_build_id_current moved 2026-10-31). Added a real --skip-tests flag so a run can decline gate_tests' own cost on purpose and still reach the ~300 other gates after it in the same pass, instead of being silently truncated by an external timeout. gate_tests(skip=True) warns by name and never globs; main() wires the flag through; the end-of-run cycle_signal note stays honest (near-full pass, not a genuinely clean one) when used. ops/tests/test_gate_tests_skip_flag.py, fail-then-pass proved directly."
     },
     "prerender_shop.py": {
       "status": "clean",
