@@ -283,7 +283,7 @@ def test_runs_before_gate_existing_and_gate_tests_in_main():
     body = src[start:]
     probe_pos = body.index("run_gate(gate_no_stray_probe_files)")
     existing_pos = body.index("run_gate(gate_existing")
-    tests_pos = body.index("run_gate(gate_tests)")
+    tests_pos = body.index("run_gate(gate_tests,")
     assert probe_pos < existing_pos, (
         "gate_no_stray_probe_files must run before gate_existing, or a "
         "stray file from an earlier killed run pollutes the pages gate "

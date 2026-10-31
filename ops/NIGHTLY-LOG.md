@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (07:1x slot): generalised the gate_tests-hang exposure instead of relocating a third gate, section 65
+
+**Did.** Attached clean (unshallowed, fast-forwarded onto `origin/main`, no reset or force). Re-verified epics 1-5 directly rather than cite a prior cycle: read all 138 rows of the global keyword-gap tier myself, none clear the real-synonym bar; `checks.yml`/`publish-image.yml` green on `main`; decks/images/video Done or Phil-gated; 10 GitHub issues unchanged since 2026-10-25. Picked up epic 6. Sections 38 and 64 each relocated one pure gate ahead of `gate_tests` after it went red in CI (`gate_owner_actions_last_measured_current`, `gate_build_id_current`); roughly 300 others sit in the same exposed position. Added a real `--skip-tests` flag to `ops/preflight.py`: `gate_tests(skip=True)` WARNs by name and never globs, `main()` wires it through `sys.argv`, and the end-of-run `cycle_signal` note stays honest ("near-full pass... test suite itself not run") rather than claiming a genuinely clean pass.
+
+**Verified.** New `ops/tests/test_gate_tests_skip_flag.py`, fail-then-pass proved directly (stashed the fix, got a clean `TypeError`, restored, clean). Two existing ordering tests pinned the old literal call-site string; updated both, reran, still pass, same for three more that already matched the unaffected shorter prefix. Ran the real thing end to end in the background: `python ops/preflight.py --skip-tests` finished in about 4 minutes and reached every gate after `gate_tests` for the first time any local run here has, 0 FAIL, 39 pre-existing warnings. Read the committed `cycle-signal.json`, not the console line, to confirm the honest note was actually stored. `fix_dashes.py --check` 0/0 on every changed file. `cold_read_ledger.py --add` recorded the re-read.
+
+**Went well:** running the real `--skip-tests` pass to completion rather than trusting the unit tests alone; it is the first local run in this sandbox's history to reach literally every gate but one.
+
+**Did not go well:** nothing new; this closes cleanly.
+
+**Changing next cycle:** none.
+
+**Next:** a future cold read could still check whether any of the ~300 gates after `gate_tests` silently assumes something upstream of it ran first; none appeared to this cycle. Otherwise the same exhausted, Phil-gated set.
+
+Pushed to main. `ops/preflight.py`, two existing test files, one new test file, `BACKLOG-2026-09-07.md` (section 65), `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (06:4x slot): A36 finished and verified; unblocked lane unchanged
 
 NEXT FOR THE OPERATOR: mine the remaining 137-row global keyword gap tier for the next on-topic zone-vocabulary gap, same method as A29-A36, the only unblocked, non-Phil-gated GREEN lane.

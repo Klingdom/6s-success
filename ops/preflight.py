@@ -2707,13 +2707,33 @@ def _run_bounded(cmd: list, cwd: str, env: dict, timeout: int) -> "tuple[int, st
         raise
 
 
-def gate_tests() -> None:
+def gate_tests(skip: bool = False) -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
     Two test files were written this cycle to prove new checks can return more
     than the one verdict the environment happened to be in. Left unwired they
     would have been documentation: correct on the day, silently rotting after.
+
+    2026-10-31: this gate's own real cost (roughly 90 minutes of wall time
+    in this sandbox, per the 2026-10-28 cycle that finally let it run to
+    completion rather than killing it) is what put gate_build_id_current and
+    gate_owner_actions_last_measured_current behind a wall nothing after this
+    point in main() could get past within a normal cycle's shorter timeout,
+    three separate times (A32/A33 for the first, A32/A33/A34 for the second)
+    before each was individually relocated ahead of this gate. Relocating one
+    gate at a time only ever fixes the gate that already went red in CI; the
+    roughly 300 other pure, no-browser, no-network gates still sitting after
+    this one in main()'s list are exactly as exposed as those two were before
+    their own incident. `--skip-tests` lets a local run explicitly decline
+    this gate's own real cost and still execute every one of those other
+    gates in the same pass, instead of being silently truncated by an
+    external timeout that races gate_tests and never reaches them. It is
+    never a substitute for the real suite: it WARNs, by name, every time.
     """
+    if skip:
+        warn("tests", "skipped via --skip-tests; ops/tests/*.py not run "
+             "this pass, not a substitute for a full gate_tests run")
+        return
     files = sorted(glob.glob(os.path.join(ROOT, "ops", "tests", "test_*.py")))
     if not files:
         return
@@ -31533,7 +31553,9 @@ def gate_routine_prompt_current() -> None:
 
 def main() -> int:
     deep = "--deep" in sys.argv
-    print(f"  preflight, {'deep' if deep else 'fast'}\n")
+    skip_tests = "--skip-tests" in sys.argv
+    print(f"  preflight, {'deep' if deep else 'fast'}"
+          f"{' (gate_tests skipped)' if skip_tests else ''}\n")
 
     bootstrap_fresh_sandbox()
 
@@ -31710,7 +31732,7 @@ def main() -> int:
               f"(cycle_signal checkpoint, not a full preflight pass), "
               f"git HEAD {cycle_signal.git_head()[:10]}"))
 
-    run_gate(gate_tests)
+    run_gate(gate_tests, skip_tests)
     run_gate(gate_conflict_markers)
     run_gate(gate_no_duplicate_html_close)
     run_gate(gate_no_windows_only_redirect)
@@ -32054,7 +32076,19 @@ def main() -> int:
         return 1
     print(f"  every gate passed" +
           (f", {len(WARN)} warning(s) worth a read" if WARN else ""))
-    maybe_record_cycle_signal(FAIL)
+    if skip_tests:
+        # Honest about scope, same convention as the partial-pass checkpoint
+        # above gate_tests: a run that explicitly skipped gate_tests is not
+        # the "genuinely clean pass" this snapshot's own docstring means,
+        # even though FAIL is empty, so the note must say so by name rather
+        # than let a later `--check` read SAME against an unverified suite.
+        maybe_record_cycle_signal(
+            FAIL,
+            note=(f"near-full pass via --skip-tests: every gate except "
+                  f"gate_tests passed, test suite itself not run this pass, "
+                  f"git HEAD {cycle_signal.git_head()[:10]}"))
+    else:
+        maybe_record_cycle_signal(FAIL)
     return 0
 
 
