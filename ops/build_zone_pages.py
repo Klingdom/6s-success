@@ -3593,6 +3593,9 @@ def room_faq(room, rm, rt):
     if tips.get("Room layout"):
         qa.append((f"How should you lay out {article_for(rm)} {rm}?",
                    _clean(tips["Room layout"])))
+    if tips.get("Garage sale"):
+        qa.append(("How do you organize a garage sale?",
+                   _clean(tips["Garage sale"])))
     names = [display(room["room"], z["zone"]) for z in room["zones"]]
     if names:
         qa.append((f"What parts of the {rm} should be organized separately?",
@@ -3955,11 +3958,23 @@ def room_page(room, header, footer, all_rooms=()):
         out.append(f'<h2>{esc(rm.capitalize())} layout</h2>'
                    f'<p>{esc(_clean(_layout_text))}</p>')
 
+    # Same shape as "Room layout" above, and for the same reason: "how to
+    # organize a garage sale" (the global keyword harvest, 2026-10-31)
+    # scored a gap because "sale" appeared nowhere in an <h1>-<h3> on this
+    # page. Only the Garage room carries this tip; every other room's
+    # lookup is simply None.
+    _sale_text = _room_tips.get("Garage sale")
+    if _sale_text:
+        out.append(f'<h2>{esc(rm.capitalize())} sale</h2>'
+                   f'<p>{esc(_clean(_sale_text))}</p>')
+
     # "Where to start" now renders above the zone list (D10); "Room
-    # layout" now has its own heading just above; keep both out of this
-    # list too, so neither tip is said twice on one page.
+    # layout" and "Garage sale" now have their own headings just above;
+    # keep all three out of this list too, so no tip is said twice on
+    # one page.
     tips = [t for t in (room.get("tips") or [])
-            if t.get("label") not in ("Where to start", "Room layout")]
+            if t.get("label") not in ("Where to start", "Room layout",
+                                       "Garage sale")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'

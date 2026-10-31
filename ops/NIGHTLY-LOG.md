@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (13:0x slot): closed A43, the garage sale query cluster, the largest on-topic group left in the global gap tier
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only`, no reset or force). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last `NIGHTLY-LOG.md` entries. Live GitHub: 12 issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py`: no mail credentials, standing gap.
+
+**Mined the 132-row global gap tier the 11:5x handoff named.** Four rows, "how to host/organise/organize/plan a garage sale", all pointed at `/garage-deck.html` with no heading match, the largest cluster left. Checked Chapter 11 of the published book (sell only what is genuinely worth the work, set a deadline, donate the rest) and the Garage room's own Power Tool and Sports zones (both already name sellable items) first. Added a "Garage sale" tip built from those facts, wired through the `tips.get(label)` mechanism A40 built, rendered as its own `<h2>`.
+
+**Verified.** `keyword_demand_global.py --rescore`: all four queries gap to partial, heading match on `/rooms/garage.html`; gap count 132 to 128. `check_urls.py`, `audit_pages.py`, `fix_dashes.py`/`fix_dialect.py`, `affiliate.py`, `check_sellable.py` (124/126, unchanged), `link_graph_report.py`, `audit_visual.py` on the changed page, all clean. `preflight.py --skip-tests`: 0 FAIL before the documented `gate_etsy_pdfs_current` hang, killed by pid per precedent.
+
+**Went well.** A 4-query cluster closed in one pass.
+
+**Did not go well.** Same Etsy-PDF render hang cost minutes again.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 128 gap rows, or act on a Phil reply.
+
+Pushed to main. Changed: `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, generated outputs, `ops/keyword-demand-global.json`, `BACKLOG-2026-09-07.md` (A43), dashboard regen, this entry. No price touched; one page edited; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-10-31 (12:1x slot): previous work (A42, the 11:0x marker-drift fix, the 11:4x deploy-gap re-derivations) was finished and CI-green; closed the one real DUE housekeeping item found, nothing else unblocked
 
 NEXT FOR THE OPERATOR: mine the remaining 132 global gap-tier rows for the next genuinely on-topic, in-scope query, same method as A29-A42 (A42's own handoff, still open). All 12 GitHub issues Phil-gated, unchanged since the 11:5x cycle's own read 14 minutes earlier; none newly commented.
