@@ -3,6 +3,22 @@
  "_rule": "Do not add a word with no measured queries, and do not add a word the site already covers. Keyed 'Room|Zone' using the same exact room/zone names as content.json, matching the convention ops/zone-search-terms.json already uses for its own lookup key.",
  "_measured_at": "2026-10-10T19:51:00Z",
  "zones": {
+  "Nursery|Changing Station": {
+   "names": [
+    "nappy change table"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (au): 'how to organise nappy change table', rank 12, gap, 0.333 coverage, scored to /zones/dining-room-the-dining-table.html via a coincidental word match on 'table', not a real one. The zone's own purpose ('A pad you can work at with one hand staying on your baby the entire time') and the AU/UK term 'nappy change table' for a baby-changing station confirm the semantic match; distinct from the already-covered 'Diaper and Care Backstock' zone below, which is the reserve/backstock, not the station itself. Named 'nappy change table', the exact phrase searched, since nobody else calls this zone that and the also-called heading reads as an honest zone-name synonym."
+  },
+  "Primary Bathroom|Vanity Drawers": {
+   "names": [
+    "makeup vanity"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (in): 'how to organize makeup vanity box', rank 12, gap, 0.333 coverage, scored to /zones/guest-bathroom-the-guest-vanity-counter.html via the word 'vanity', the wrong room (a guest's visit, not daily makeup). This zone's own purpose ('hold the grooming tools and products you actually reach for, arranged by when in the day you use them') is the real match for a makeup-organizing box; the Guest Bathroom's vanity has no makeup storage of its own."
+  },
   "Nursery|Diaper and Care Backstock": {
    "names": [
     "diaper caddy",

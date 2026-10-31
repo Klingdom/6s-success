@@ -15916,10 +15916,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
-      "status": "partial",
+      "status": "covered",
       "markets": [
         "gb"
       ],
@@ -18895,10 +18895,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
-      "heading_page": "/guest-bedroom-deck.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
-      "status": "partial",
+      "status": "covered",
       "markets": [
         "au"
       ],
@@ -18914,10 +18914,10 @@
       "best_page": "/zones/dining-room-the-dining-table.html",
       "best_page_title": "How to organize the dining room dining table",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/nursery-the-changing-station.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "au"
       ],
@@ -28450,10 +28450,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/zones/primary-bathroom-the-vanity-drawers.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "in"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T04:53:02Z",
-  "scored_against_commit": "0e66dd856"
+  "scored_at": "2026-10-31T05:54:15Z",
+  "scored_against_commit": "5994a17f9"
 }
