@@ -1,6 +1,6 @@
 {
  "_why": "The household words for a room this site names differently. Every entry is measured, not guessed: the 'queries' and 'covered' figures are from ops/keyword-demand.json's 2026-10-02 harvest, which ran the VOCABULARY_PROBES seeds added to ops/keyword_demand.py for exactly this question. A word earns a place here only if people type it AND this site does not already answer for it.",
- "_rule": "Do not add a word with no measured queries. 'master closet', 'rec room', 'ensuite' and 'lounge' were all considered and all returned zero, so naming them would be inventing demand. Do not add a word the site already covers: 'utility room' (13 queries, 9 covered), 'linen closet' (51, 24), 'coat closet' (21, 11), 'walk in closet' (34, 15) and 'front hall' (6, 4) are all answered already and adding them would be noise.",
+ "_rule": "Do not add a word with no measured queries. 'master closet', 'rec room', 'ensuite' and 'lounge' were all considered and all returned zero, so naming them would be inventing demand. Do not add a word the site already covers: 'linen closet' (51 queries, 24 covered), 'coat closet' (21, 11), 'walk in closet' (34, 15) and 'front hall' (6, 4) are all answered already and adding them would be noise. 'utility room' was wrongly kept on this list until 2026-10-31: its 'covered' queries scored against /articles/how-to-organize-a-basement.html, matched only because that page's own unrelated headings happen to carry both words ('3. The utility zone: keep it clear' and '6. The room you actually use'), not because the Laundry Room, the real answer, said anything about being a utility room at all. See the Laundry Room entry below.",
  "_measured_at": "2026-10-02T08:12:24Z",
  "rooms": {
   "Primary Bedroom": {
@@ -54,6 +54,14 @@
    "queries": 3,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-23 (gb, au, in)"
+  },
+  "Laundry Room": {
+   "names": [
+    "utility room"
+   ],
+   "queries": 26,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-31 (gb, au, ca, in). All 26 global queries plus 15 more in the US harvest (ops/keyword-demand.json) were scoring 'covered' or 'partial' against /articles/how-to-organize-a-basement.html or /articles/how-long-does-it-take-to-organise-a-room.html, neither of which is about this room; 'covered' is recorded as 0 here because none of that was earned by a Laundry Room page, which carried no 'utility room' wording at all until this entry."
   }
  },
  "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."
