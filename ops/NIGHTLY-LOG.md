@@ -2,6 +2,32 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (18:4x slot): trimmed the three living documents the PM check-in handed off, flagged by `gate_living_docs_total_size_tripwire`
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed properly, `checkout main`, `merge --ff-only`, clean. A concurrent PM check-in pushed mid-attach with the only genuinely new, non-Phil-gated row in two weeks: `gate_living_docs_total_size_tripwire` warning on `CHECKIN-LOG.md`, `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md`. Took that row rather than re-deriving the exhausted GitHub/backlog state a sixth time this hour.
+
+**Verified before acting.** Ran every relevant rotation tool's `--check` first: all reported CLEAN against their own retention windows, meaning nothing was stale by date, the files were simply oversized at their steady in-window volume. Measured each file's real growth rate directly rather than guessed a fix.
+
+**Fixed, with measurement behind each number.** `CHECKIN-LOG.md`: 632 hourly entries over exactly 30 days, about 440 bytes each, so the file's own 30 day default retention settles near 316KB by arithmetic alone. Lowered `ops/rotate_checkin_log.py`'s `DEFAULT_RETENTION_DAYS` to 8 and ran `--apply`: 425 entries moved to the archive, live file now 90,518 bytes (was 276,869). `BACKLOG-2026-09-07.md`: 51 numbered "Closed" sections, 213,536 bytes, all inside the 14 day window because the cadence has been closing roughly one a day. Lowered `ops/rotate_backlog_closed.py`'s default to 4 and ran `--apply`: 38 sections moved, live file now 138,198 bytes (was 313,175). Both archives received every word verbatim; nothing deleted.
+
+**`OWNER-ACTIONS.md` deliberately left over budget.** Its own preamble and closed-item rotation tools both already report CLEAN. Cold read the remaining 123,276 bytes directly: 12 genuinely open, non duplicate owner decision items, several carrying measured history (traffic numbers, dated corrections) Phil still needs. No safe rotation candidate exists; hand trimming it risked exactly the information loss CLAUDE.md warns against, so the warning stays live rather than being silenced. Needs a dedicated editorial pass, not a blind cut.
+
+**Caught and fixed a side effect.** Lowering the two defaults broke two sibling gate tests (`test_gate_checkin_log_not_oversized.py`, `test_gate_backlog_closed_sections_not_oversized.py`): both hardcoded day offsets assuming the old 30 day and 14 day defaults. Fixed both to derive their buffer window from the module's own `DEFAULT_RETENTION_DAYS` at import time; reran, 4/4 and 5/5 pass.
+
+**Verified.** Reran `gate_living_docs_total_size_tripwire` directly: silent on the two fixed files, still warns on `OWNER-ACTIONS.md` exactly as expected. Full `python ops/preflight.py` to completion of every reachable gate: 0 FAIL/ERROR, 4 warnings, all pre-existing (CI conclusion unchecked in this sandbox, the `OWNER-ACTIONS.md` tripwire above, two standing honest disclosures, gitignored source images), stalled only at the documented `gate_tests` sandbox hang. `ops/affiliate.py --check`: 165 documents clean. `fix_dashes.py --check`: 0 em or en dashes. `PYTHONIOENCODING=utf-8 python ops/inbox_agent.py --apply`: no mail credentials, the standing gap. Live GitHub: 12 open issues, unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+**Not sending a push notification.** This is operational housekeeping (a WARNING, not a FAIL; no customer-facing effect), not something Phil needs to act on, and nothing changed on #42/#40 since the standing no-repeat date (2026-11-02T04:00Z).
+
+**Went well:** catching that the two retention defaults I changed had sibling tests hardcoding the old values, before pushing a change that would have gone green locally and then failed CI.
+
+**Did not go well:** `OWNER-ACTIONS.md` stays over its tripwire; a real fix needs time this cycle did not spend guessing at which paragraphs are safe to cut.
+
+**Changing next cycle:** none beyond giving `OWNER-ACTIONS.md` a dedicated editorial pass when one is warranted, rather than a blind cut.
+
+**Next:** hold on #42, #43, #44 and the other decision/blocked-on-art issues; resume the epic ordering the moment any clears, or take the next genuinely unblocked row a cold read turns up.
+
+Pushed to main. `ops/rotate_checkin_log.py`, `ops/rotate_backlog_closed.py`, two test files, `CHECKIN-LOG.md`/`CHECKIN-LOG-ARCHIVE.md`, `BACKLOG-2026-09-07.md`/`BACKLOG-2026-09-07-CLOSED-ARCHIVE.md`, cold-read ledger, this entry, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (18:4x slot): previous work finished; found one genuinely new, non-Phil-gated item and handed it to the operator
 
 NEXT FOR THE OPERATOR: trim BACKLOG-2026-09-07.md, CHECKIN-LOG.md and OWNER-ACTIONS.md back under their own size tripwires, because preflight's gate_living_docs_total_size_tripwire now warns on all three and this is the first genuinely unblocked, non-Phil-gated row in two weeks of cycles. Check each file for its own rotation/archive convention before hand-editing (BACKLOG-2026-09-07-CLOSED-ARCHIVE.md, CHECKIN-LOG-ARCHIVE.md already exist as the pattern); do not hand-edit a file a generator owns.

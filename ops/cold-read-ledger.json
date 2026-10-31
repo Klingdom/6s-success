@@ -1138,8 +1138,8 @@
     },
     "rotate_backlog_closed.py": {
       "status": "fixed",
-      "date": "2026-10-26",
-      "note": "cold read 2026-10-26: count_stats() conflated total-corpus bytes with overdue bytes in the --check DUE message and in preflight's gate_backlog_closed_sections_not_oversized warn text (reported 180769 bytes would move when only 2888 would); fixed both call sites, added overdue_bytes to count_stats()'s return, added a regression test"
+      "date": "2026-10-31",
+      "note": "Lowered DEFAULT_RETENTION_DAYS 14 to 4 to clear gate_living_docs_total_size_tripwire"
     },
     "rotate_backlog_done_items.py": {
       "status": "clean",
@@ -1153,8 +1153,8 @@
     },
     "rotate_checkin_log.py": {
       "status": "fixed",
-      "date": "2026-10-23",
-      "note": "New file, built this cycle to fix CHECKIN-LOG.md's own unrotated growth; fail-then-pass proved with ops/tests/test_rotate_checkin_log.py and ops/tests/test_gate_checkin_log_not_oversized.py"
+      "date": "2026-10-31",
+      "note": "Lowered DEFAULT_RETENTION_DAYS 30 to 8 to clear gate_living_docs_total_size_tripwire"
     },
     "rotate_nightly_log.py": {
       "status": "fixed",

@@ -31,8 +31,20 @@ ARCHIVE.md) already use.
 Usage:
     python ops/rotate_backlog_closed.py --check
     python ops/rotate_backlog_closed.py --check --days N
-    python ops/rotate_backlog_closed.py --apply   (default 14-day window)
+    python ops/rotate_backlog_closed.py --apply   (default 4-day window)
     python ops/rotate_backlog_closed.py --apply --days N
+
+Found 2026-10-31: at the closure rate the operator cadence has actually
+produced (51 numbered sections in the 14 days before this edit, about
+4300 bytes each), the 14-day default alone settles near 213KB of closed
+sections, which combined with the file's other live content pushes the
+whole file well past gate_living_docs_total_size_tripwire's 150,000-byte
+ceiling even with nothing overdue by gate_backlog_closed_sections_not_
+oversized's own (14+7)-day buffer. Lowered to 4 days, which leaves the
+file under the tripwire with a few days' buffer; the archive keeps every
+word, so this only changes how long a closed section stays in the file
+STEP 1 of the operating prompt reads as "the CURRENT queue" before a
+cold read has to open BACKLOG-2026-09-07-CLOSED-ARCHIVE.md instead.
 """
 import argparse
 import datetime
@@ -59,7 +71,7 @@ ARCHIVE_HEADER = (
     "first.\n"
 )
 
-DEFAULT_RETENTION_DAYS = 14
+DEFAULT_RETENTION_DAYS = 4
 
 SECTION_RE = re.compile(r"^## (\d+)\.", re.MULTILINE)
 

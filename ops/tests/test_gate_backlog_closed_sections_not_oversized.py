@@ -20,6 +20,8 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 import preflight                                                # noqa: E402
 import rotate_backlog_closed as rbc                              # noqa: E402
 
+BUFFER_DAYS = rbc.DEFAULT_RETENTION_DAYS + 7
+
 PREFIX = (
     "# Backlog\n\n## 7. What I would tell you if you only read one line\n\n"
     "nothing rotated here.\n\n---\n\n"
@@ -53,9 +55,10 @@ def main() -> int:
     today = datetime.date.today()
     d = lambda n: (today - datetime.timedelta(days=n)).isoformat()  # noqa: E731
 
-    # 1. A section well past the buffered window (retention 14 + 7 day
-    #    buffer = 21 days) must warn.
-    stale_text = _file([_section(8, d(40), "long overdue")])
+    # 1. A section well past the buffered window (retention + 7 day
+    #    buffer, computed from the module's own current default rather
+    #    than a hardcoded number) must warn.
+    stale_text = _file([_section(8, d(BUFFER_DAYS + 19), "long overdue")])
     with tempfile.TemporaryDirectory() as tmp:
         fails1, warns1 = _run_gate(tmp, stale_text)
     if fails1:
@@ -78,8 +81,8 @@ def main() -> int:
     # 3. A section just inside the buffer (retention + buffer, minus a
     #    day) must not warn: the buffer exists specifically so rotation
     #    does not need to run the instant a section crosses the bare
-    #    14-day line.
-    buffered_text = _file([_section(8, d(20), "inside the buffer")])
+    #    retention-window line.
+    buffered_text = _file([_section(8, d(BUFFER_DAYS - 1), "inside the buffer")])
     with tempfile.TemporaryDirectory() as tmp3:
         fails3, warns3 = _run_gate(tmp3, buffered_text)
     if fails3 or any(g == "backlog-closed-sections-not-oversized"
@@ -90,7 +93,7 @@ def main() -> int:
     # 4. A mix: one section overdue, one recent. Must warn, counting only
     #    the overdue one, and must not crash on sections 2-7 numbering
     #    (not touched by this gate at all).
-    mixed_text = _file([_section(8, d(40), "overdue"),
+    mixed_text = _file([_section(8, d(BUFFER_DAYS + 19), "overdue"),
                          _section(9, d(1), "recent")])
     with tempfile.TemporaryDirectory() as tmp4:
         fails4, warns4 = _run_gate(tmp4, mixed_text)

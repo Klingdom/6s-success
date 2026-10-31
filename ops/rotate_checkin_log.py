@@ -26,8 +26,16 @@ keep the whole archive oldest-first too.
 Usage:
     python ops/rotate_checkin_log.py --check            report only, exit 1 if over the window
     python ops/rotate_checkin_log.py --check --days N   use a different retention window
-    python ops/rotate_checkin_log.py --apply            rotate now (default 30-day window)
+    python ops/rotate_checkin_log.py --apply            rotate now (default 8-day window)
     python ops/rotate_checkin_log.py --apply --days N
+
+Found 2026-10-31: the hourly cadence writes a steady ~440 bytes/entry,
+24 entries/day, so the original 30-day default settles at roughly 316KB,
+well past gate_living_docs_total_size_tripwire's 110,000-byte ceiling for
+this file even with every entry inside the retention window and nothing
+overdue by gate_checkin_log_not_oversized's own (30+7)-day buffer. Lowered
+to 8 days, which settles at roughly 90-100KB: under the tripwire with a
+buffer of about two days' growth before the next rotation is needed.
 """
 import argparse
 import datetime
@@ -51,7 +59,7 @@ ARCHIVE_HEADER = (
     "for this split are in CHECKIN-LOG.md.\n"
 )
 
-DEFAULT_RETENTION_DAYS = 30
+DEFAULT_RETENTION_DAYS = 8
 
 
 def split_header_and_entries(text: str, first_line: str, third_prefix: str):

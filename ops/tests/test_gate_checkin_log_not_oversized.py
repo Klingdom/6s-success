@@ -17,6 +17,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 import preflight                                                # noqa: E402
+import rotate_checkin_log as rcl                                 # noqa: E402
+
+BUFFER_DAYS = rcl.DEFAULT_RETENTION_DAYS + 7
 
 HEADER = ("# Hourly check-in log\n\n"
           "What moved, what did not, and what is next. Written by "
@@ -40,10 +43,11 @@ def main() -> int:
     today = datetime.date.today()
     d = lambda n: (today - datetime.timedelta(days=n)).isoformat()  # noqa: E731
 
-    # 1. A log with an entry well past the buffered window (retention 30
-    #    + 7 day buffer = 37 days) must warn. This is the real defect
-    #    found 2026-10-23: nothing before this gate ever caught it.
-    stale_text = HEADER + "\n" + "## %s 09:00\n\nbody\n" % d(60)
+    # 1. A log with an entry well past the buffered window (retention +
+    #    7 day buffer, computed from the module's own current default
+    #    rather than a hardcoded number) must warn. This is the real
+    #    defect found 2026-10-23: nothing before this gate ever caught it.
+    stale_text = HEADER + "\n" + "## %s 09:00\n\nbody\n" % d(BUFFER_DAYS + 23)
     with tempfile.TemporaryDirectory() as tmp:
         fails1, warns1 = _run_gate(tmp, stale_text)
     if fails1:
@@ -64,7 +68,7 @@ def main() -> int:
 
     # 3. A log with an old entry just inside the buffer (retention +
     #    buffer, minus a day) must not warn.
-    buffered_text = HEADER + "\n" + "## %s 09:00\n\nbody\n" % d(36)
+    buffered_text = HEADER + "\n" + "## %s 09:00\n\nbody\n" % d(BUFFER_DAYS - 1)
     with tempfile.TemporaryDirectory() as tmp3:
         fails3, warns3 = _run_gate(tmp3, buffered_text)
     if fails3 or any(g == "checkin-log-not-oversized" for g, _ in warns3):
