@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (14:0x slot): closed A44, the foyer-design and entryway-makeover cluster, 14 of the 128 remaining global gap rows
+
+**Did.** Fresh checkout, no memory of prior runs. Arrived shallow and detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, 107 commits, no reset or force). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` and `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries (the file prepends newest-first). Live GitHub checked directly: 12 open issues, unchanged, all `decision`/`blocked-on-art`, none newly commented, none from Phil (including #43/#44, the KDP/Etsy decisions filed this morning). `inbox_agent.py --apply`: no mail credentials, the standing gap.
+
+**Mined the 128-row global gap tier the 13:3x handoff named.** Hand-read all 128 rows, not a count: the large majority remain genuine out-of-scope noise (cribbage tournaments, bench press, Revit railing CAD, paneer/pasta troubleshooting, the "Back Porch" restaurant chain, "larder lake" the Ontario town). Fourteen real, on-topic queries stood out, all about the Entryway: "entryway makeover diy", eight "foyer design ideas ..." variants, three "how to decorate a/an entrance..." variants, and "messy front entrance", the largest cluster left.
+
+**Did the work.** Checked the room's own facts first: the existing "The trap" tip already argues new furniture does not fix unassigned mail, keys and shoes; the Landing Spot zone's purpose is a single tray with bare surface either side; the Bench or Console zone's purpose caps the top at three items or fewer. Added two tips built entirely from those facts ("After a makeover", "Design"), generalized the existing `tips.get("Room layout")`/`tips.get("Garage sale")` mechanism with two more label-keyed `<h2>` branches in `room_faq()`/`room_page()`, resynced `mcp/content.json`.
+
+**Verified.** `keyword_demand_global.py --rescore`: 12 of 14 target queries gap to partial; gap count 128 to 116. The other 2 correctly stayed gap (one needs more words than honestly fit; one is a corporate-lobby query, not a household one). `cold_read_ledger.py --add` recorded the direct `build_zone_pages.py` edit. `check_urls.py`, `audit_pages.py`, `fix_dashes.py`, `affiliate.py`, `check_sellable.py`, `link_graph_report.py`, `build_id.py --check`, `audit_visual.py` scoped to the changed page (desktop and mobile), all clean. `preflight.py --skip-tests`: 0 FAIL before the documented `gate_etsy_pdfs_current` sandbox hang, killed by pid per standing precedent.
+
+**Went well.** A 14-query cluster closed in one pass, the largest since A43.
+
+**Did not go well.** Same Etsy-PDF render hang cost minutes again; `audit_visual.py --help` was mistaken for a flag and ran a full-site headless-Chromium pass before being caught and stopped.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 116 gap rows, or act on a Phil reply to any of the 12 open issues.
+
+Pushed to main. Changed: `content/manual/source/content.json`, `mcp/content.json`, `ops/build_zone_pages.py`, generated outputs, `ops/keyword-demand-global.json`, `ops/cold-read-ledger.json`, `BACKLOG-2026-09-07.md` (A44), dashboard regen, this entry. No price touched; one page edited; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-10-31 (13:3x slot): previous work (A43, the 12:4x/12:1x BLOCKER-001 verification) finished and CI-green; nothing new genuinely unblocked
 
 **Previous work: finished.** Attach arrived shallow and detached; unshallowed, checkout main, merge --ff-only onto origin/main. A concurrent operator cycle pushed a merge plus A43 (garage sale query cluster) while this cycle was mid-read; refetched and fast-forwarded onto it rather than racing, no reset or force. preflight.py --skip-tests run unpiped to a file: zero FAIL on every gate reached, hung only at the documented gate_etsy_pdfs_current sandbox limit, killed by timeout, same precedent as every prior cycle. All 11 rotation scripts (backlog, checkin-log, owner-actions, status) independently re-run with --check: CLEAN, nothing DUE. checks.yml on the last two non-bot commits: both completed/success via the Actions API.

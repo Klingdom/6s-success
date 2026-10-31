@@ -567,9 +567,9 @@
       "note": "Read in full (135 lines) and run directly: regenerates both build/ and site/ copies, 20 rooms / 114 zones asserted, 0 drift."
     },
     "build_zone_pages.py": {
-      "status": "clean",
-      "date": "2026-10-22",
-      "note": "PM check-in 16:1x: cold_read_ledger.py --stale named this file (and two siblings below) as read but not re-dated after today's 08:37 image commit (2bddafa82, Phil + Opus 5.5). Diff re-read directly: adds ROOM_MAPS (ops/room-maps.json), preferred over the book's ROOM_DIAGRAMS in room_diagram(), and a per-source caption branch in diagram_html(). Gated by the new gate_room_maps_current (regenerates and diffs in memory, fail-proved per the commit message). Full preflight run twice by the 16:0x cycle, 0 FAIL both times through gate_tests. No defect found."
+      "status": "fixed",
+      "date": "2026-10-31",
+      "note": "Scheduled operator cycle, 2026-10-31. Edited this file directly (not a drive-by): added the 'Design' and 'After a makeover' tip labels to room_faq() and room_page(), parallel to the existing 'Room layout'/'Garage sale' mechanism, to close the foyer-design and entryway-makeover gap cluster the global keyword harvest found. Re-read room_faq(), room_page()'s tip-rendering block, and the generic 'For this room' list filter in full before editing; verified the new labels render as real <h2> headings, are excluded from the generic list so nothing renders twice, and that no other room accidentally picks up Entryway-only copy (tips.get returns None for every other room)."
     },
     "canonical_links.py": {
       "status": "clean",

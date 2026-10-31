@@ -3596,6 +3596,12 @@ def room_faq(room, rm, rt):
     if tips.get("Garage sale"):
         qa.append(("How do you organize a garage sale?",
                    _clean(tips["Garage sale"])))
+    if tips.get("Design"):
+        qa.append((f"How should you design {article_for(rm)} {rm}?",
+                   _clean(tips["Design"])))
+    if tips.get("After a makeover"):
+        qa.append((f"Why does {article_for(rm)} {rm} get messy again after "
+                   f"a makeover?", _clean(tips["After a makeover"])))
     names = [display(room["room"], z["zone"]) for z in room["zones"]]
     if names:
         qa.append((f"What parts of the {rm} should be organized separately?",
@@ -3968,13 +3974,29 @@ def room_page(room, header, footer, all_rooms=()):
         out.append(f'<h2>{esc(rm.capitalize())} sale</h2>'
                    f'<p>{esc(_clean(_sale_text))}</p>')
 
+    # Same shape again, for the "foyer design ideas" and "entryway makeover"
+    # clusters the global keyword harvest, 2026-10-31, found with no heading
+    # match anywhere on the site: "design" and "makeover" appeared in
+    # neither title nor any h1-h3. Entryway is the only room that carries
+    # either tip today; every other room's lookup is simply None.
+    _design_text = _room_tips.get("Design")
+    if _design_text:
+        out.append(f'<h2>{esc(rm.capitalize())} design, and when to '
+                   f'decorate</h2><p>{esc(_clean(_design_text))}</p>')
+
+    _makeover_text = _room_tips.get("After a makeover")
+    if _makeover_text:
+        out.append(f'<h2>Why the {esc(rm)} gets messy again after a '
+                   f'makeover</h2><p>{esc(_clean(_makeover_text))}</p>')
+
     # "Where to start" now renders above the zone list (D10); "Room
-    # layout" and "Garage sale" now have their own headings just above;
-    # keep all three out of this list too, so no tip is said twice on
-    # one page.
+    # layout", "Garage sale", "Design" and "After a makeover" now have
+    # their own headings just above; keep all five out of this list too,
+    # so no tip is said twice on one page.
     tips = [t for t in (room.get("tips") or [])
             if t.get("label") not in ("Where to start", "Room layout",
-                                       "Garage sale")]
+                                       "Garage sale", "Design",
+                                       "After a makeover")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'

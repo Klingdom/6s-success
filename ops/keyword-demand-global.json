@@ -5773,10 +5773,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "in"
       ],
@@ -5792,10 +5792,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/deck/entryway-print-and-play.html",
-      "matched_on": "title",
-      "status": "partial",
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "covered",
       "markets": [
         "in"
       ],
@@ -6348,10 +6348,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "partial",
+      "status": "covered",
       "markets": [
         "ca"
       ],
@@ -6367,10 +6367,10 @@
       "best_page": "/articles/what-a-5s-engagement-costs.html",
       "best_page_title": "What does a 5S engagement cost, and why no flat rate?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
-      "status": "gap",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6386,9 +6386,9 @@
       "best_page": "/articles/what-a-5s-engagement-costs.html",
       "best_page_title": "What does a 5S engagement cost, and why no flat rate?",
       "coverage": 0.2,
-      "heading_coverage": 0.2,
+      "heading_coverage": 0.4,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
+      "matched_on": "heading",
       "status": "gap",
       "markets": [
         "ca"
@@ -6405,10 +6405,10 @@
       "best_page": "/articles/everything-needs-an-assigned-home.html",
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/entryway-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6424,10 +6424,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6443,10 +6443,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6462,10 +6462,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6481,10 +6481,10 @@
       "best_page": "/articles/how-to-organize-paperwork.html",
       "best_page_title": "How to organize paperwork at home with a simple filing system",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
-      "matched_on": "title",
-      "status": "gap",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -6500,10 +6500,10 @@
       "best_page": "/deck/entryway-print-and-play.html",
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.0,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
-      "status": "gap",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -13232,10 +13232,10 @@
       "best_page": "/articles/zone-too-small-for-what-it-holds.html",
       "best_page_title": "Small space organizing: why doesn't anything fit?",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/entryway-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "gb"
       ],
@@ -13251,10 +13251,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "ca"
       ],
@@ -13289,10 +13289,10 @@
       "best_page": "/articles/why-is-my-house-always-messy.html",
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/family-wont-put-things-back.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "in"
       ],
@@ -13385,7 +13385,7 @@
       "best_page_title": "How to organize the patio or deck railing and surface",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/zones/patio-or-deck-the-surface-rail-and-safety-zone.html",
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "title",
       "status": "partial",
       "markets": [
@@ -37023,7 +37023,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/rooms/entryway.html",
       "matched_on": "heading",
       "status": "covered",
       "markets": [
@@ -37041,10 +37041,10 @@
       "best_page": "/articles/index.html",
       "best_page_title": "Articles: why homes get messy, and where to start",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/entryway.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "in"
       ],
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T13:07:23Z",
-  "scored_against_commit": "ba341f4e7"
+  "scored_at": "2026-10-31T14:00:13Z",
+  "scored_against_commit": "b8fa64860"
 }

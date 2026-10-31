@@ -1,8 +1,8 @@
 {
   "combined_hash": "44f90cdd5aa257b80b45e01609a6705a357da102911d8af3d7e182bbf2b9b573",
-  "git_head": "5c28a6f85f231140ebdb2ca9bdb4e2701c382501",
-  "note": "merged A43 (garage sale content fix) with origin's 12:4x PM check-in; preflight --skip-tests on this merge, 0 FAIL before documented gate_etsy_pdfs_current sandbox hang",
-  "recorded_at": "2026-10-31T13:15:11Z",
+  "git_head": "b8fa64860c4c95c72319ccb12739d0e95b6701cb",
+  "note": "partial pass: every gate before gate_tests passed, gate_tests and everything after it not reached this run (cycle_signal checkpoint, not a full preflight pass), git HEAD b8fa64860c",
+  "recorded_at": "2026-10-31T14:01:33Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "0f5179d125b21018796b16e254ee1b137940696e3048e1ad5bd6f1827b62dd3e",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
