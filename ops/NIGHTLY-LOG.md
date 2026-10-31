@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (05:3x slot): previous work was NOT finished when this cycle started; confirmed another cycle finished it correctly, closed the loop it left open
+
+NEXT FOR THE OPERATOR: hold, same 10 Phil-gated issues, unchanged. Nothing new to pick up this slot; the whole slot went to finishing the previous cycle's unfinished work, per CLAUDE.md 0.2 and this routine's own step 2.
+
+**Previous work: not finished when checked.** Attach was clean (unshallowed, fast-forwarded, no reset or force). `cycle_signal.py --check` read CHANGED, so a full re-verification was owed, not skipped, and it found the real defect: the 04:5x operator's A34 commit (`d403f144b`) shipped a real content edit with a stale `site/build-id.txt`, and both `checks.yml` and `publish-image.yml` failed on GitHub for it (confirmed directly via `actions_list`/`get_job_logs`, not read off a log entry's own claim). Started fixing it myself (ran `ops/build_id.py`, confirmed `--check` current), then `git push` hit a real conflict: a concurrent scheduled-operator cycle had landed the identical fix first (`8f2e0f868`), plus a better one, moving `gate_build_id_current` ahead of this sandbox's `gate_tests` hang so the mistake surfaces before push rather than after. Its own log entry (below) ends on "watching checks.yml on 8f2e0f868 to confirm the real fix... before closing this entry" and never came back to close that loop.
+
+**Did not duplicate; discarded my own redundant commit and closed the open loop instead.** Diffed my local commit against `origin/main`, confirmed the `build-id.txt` hash matched theirs exactly byte for byte, and `git reset --hard origin/main` to drop mine rather than push a second fix for the same defect (CLAUDE.md section 8: merge, don't collide). Then did the one thing their entry left undone: queried `checks.yml` and `publish-image.yml` for commit `8f2e0f868` directly and waited for both to finish rather than assuming green. Both completed with `conclusion: success`. The underlying generator gap they named ("build_zone_pages.py not chaining build_id.py") turns out already covered a different way: `ops/ship.py` always restamps `build-id.txt` after staging, and `.githooks/pre-commit` already refuses a commit that changes `site/` while it's stale, and `gate_hooks_enabled` self-heals `core.hooksPath` the first time `preflight.py` runs in a fresh sandbox. The actual recurring cause is cycles driving plain `git commit` instead of `ops/ship.py`/the hooks, in a sandbox where `core.hooksPath` starts unset every fresh container. Set `core.hooksPath` to `.githooks` directly in this session rather than waiting for a `preflight.py` run to reach that gate, so this session's own commits are guarded for the rest of its life.
+
+**Live-reconfirmed, not re-derived:** `list_issues` still 10 open, 8 decision/2 blocked-on-art, no new comments on any since 2026-10-25.
+
+**Went well:** waiting for the real git conflict rather than force-pushing surfaced the collision immediately, and the diff-before-discard check confirmed the two fixes were byte-identical before dropping mine, so nothing was lost.
+
+**Did not go well:** two cycles independently spent real work on the exact same five-minute fix inside one hour. `STATUS.md` section 0 already covers this (a gate in `ops/preflight.py` is explicitly one of the things to claim before non-trivial work); neither cycle appended a claim line, which is exactly the thirty-second step that convention exists for.
+
+**Changing next cycle:** none; this closes cleanly.
+
+Own fix was superseded and dropped rather than pushed; confirmed `origin/main` already carries the real fix, green on both workflows. This entry and a dashboard regen are the only new push this slot. No price, product or page touched.
+
 ## Scheduled operator cycle, 2026-10-31 (05:1x slot): A34 shipped red, fixed and moved the gate ahead of the sandbox hang for good
 
 **Did.** Pushed A34 (`d403f144b`) believing it clean because local `preflight.py` hit the documented `gate_tests` sandbox hang before reaching every gate, same as every recent cycle. This time waited for `checks.yml` to actually finish rather than treating the local pass as the verdict (`CLAUDE.md` 0.4: unchecked is not passing), and it failed: `gate_build_id_current` FAIL, `site/build-id.txt` stale against the real site hash, because `ops/build_zone_pages.py`'s own chain does not run `ops/build_id.py` and this cycle forgot to run it by hand after.
