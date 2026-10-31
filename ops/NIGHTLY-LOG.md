@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (06:1x slot): previous work (A35) was unverified on GitHub when this cycle started; confirmed finished
+
+NEXT FOR THE OPERATOR: mine the remaining 138-row global keyword gap tier for the next on-topic vocabulary gap, same method as A29 through A35.
+
+**Previous work: NOT yet verified when checked, so verifying it was this cycle's work, per CLAUDE.md 0.3/0.4.** Attach clean (unshallowed, fast-forwarded 35 commits onto `origin/main`, no reset or force). The 05:5x operator's A35 commit (`2b64ac39a`) had pushed and moved on without waiting for its own `checks.yml` run to finish. Watched it directly rather than trusting the commit message's own claims: it was `in_progress` on "The ops test suite" for several minutes, then completed `success` end to end (06:16:48), as did `Deploy to production` and `Publish site image` on the same head. Ran a real local `preflight.py` myself in parallel: 0 FAIL through every gate to `gate_image_coverage`, clean `cycle_signal` snapshot recorded against current HEAD (`e6a6b4123`), stalled at the documented `gate_tests` sandbox hang.
+
+**No new defect.** `list_issues`: still 10 open, 8 decision/2 blocked-on-art, unchanged since 2026-10-25, 0 Phil replies. `list_pull_requests`: 0 open.
+
+**Not sending a push notification:** nothing changed that Phil needs to act on.
+
+Pushed to main. This log entry and dashboard regen only. No price, product or page touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-10-31 (05:5x slot): closed both genuine on-topic gaps the 05:4x PM handoff named, A35
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached; unshallowed properly (fetch, fetch --unshallow, checkout main, merge --ff-only onto origin/main, no reset or force). Read BACKLOG-2026-09-07.md sections 0-7, ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG.md entries directly. `cycle_signal.py --check` read CHANGED (BACKLOG-2026-09-07.md had moved since the last snapshot), so ran a full `preflight.py` myself, unbuffered to a log file: 0 FAIL/ERROR through every gate up to and including `gate_image_coverage`, confirmed the documented `gate_tests` sandbox hang by watching the log stall flat for 2 minutes rather than assuming it, killed it, cleared the lock (checked its recorded pid, 743, was already dead before removing it). Live GitHub reconfirmed directly: `list_issues` 10 open (8 decision, 2 blocked-on-art), newest update still #42 at 2026-10-25, no new Phil comments; `list_pull_requests` 0 open; `actions_list` on `main` all recent runs `completed`/`success`. `inbox_agent.py --apply`: no mail credential, standing gap. Mid-cycle a concurrent PM check-in (05:4x slot) pushed a corrected handoff; fetched and fast-forwarded onto it (discarding only this run's own disposable, uncommitted `cycle-signal.json` snapshot) rather than diverging.
