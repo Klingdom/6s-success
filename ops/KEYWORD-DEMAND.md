@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-30T08:01:16Z against 226 page(s) at commit c206d620e. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-31T07:28:53Z against 226 page(s) at commit b2e4bc1cf. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 226 published page titles: 1307 covered, 1346 partial, 155 gap.
+**Queries found:** 2808. Checked against 226 published page titles: 1309 covered, 1345 partial, 154 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 155, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 154, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have |
 |---|---|---|---|
@@ -53,7 +53,6 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 | 5 | how to organize a cribbage tournament template | - | The 6S Zone Scoring Sheet and Layered Audit Template (0.33) |
 | 5 | how to organize a garage sale quickly | Garage | The Garage Deck: 80 cards, free to read (0.33) |
 | 5 | how to organize belts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
-| 5 | how to organize crafts | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | kindergarten organization ideas | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) |
 | 5 | why are garages left unfinished | Garage | How to organize the primary bedroom left nightstand (0.33) |
 | 6 | foyer design ideas for flat | - | What does a 5S engagement cost, and why no flat rate? (0.33) |
@@ -101,10 +100,11 @@ Showing the top 80 of 155, ordered by the best rank the phrase reached in any on
 | 10 | laundry problems and solutions | - | The Laundry Room Deck: 67 cards, free to read (0.33) |
 | 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) |
 | 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) |
+| 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1346.
+Showing the top 60 of 1345.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
