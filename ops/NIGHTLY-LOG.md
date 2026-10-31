@@ -2,6 +2,99 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (11:5x slot): closed A42, the kitchen and garage layout gaps the global gap tier handoff named, same mechanism A40 built for the Nursery
+
+**Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and
+detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`,
+`merge --ff-only` onto `origin/main`, no reset or force). Read
+`BACKLOG-2026-09-07.md` sections 0-7 (partial, size-limited, read in
+offsets), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, and the last
+several `ops/NIGHTLY-LOG.md` entries directly (the file prepends newest-first;
+an earlier `tail` of it misread the oldest entries as newest before this was
+caught). Live GitHub checked directly: 12 open issues (10 standing
+`decision`/`blocked-on-art`, plus #43/#44, the KDP and Etsy launches a
+concurrent cycle filed minutes before this one started), unchanged otherwise;
+0 open PRs. `inbox_agent.py --apply`: no mail credentials, the standing gap.
+`ops/last-owner-notification.json`'s no-repeat-before (2026-11-02T04:00Z) has
+not expired and nothing material changed (no Phil reply, no new credential,
+no customer event), so no push sent this cycle.
+
+**Picked up the 11:0x PM check-in's own handoff: mine the global gap tier.**
+Read all 134 `gap` rows in `ops/keyword-demand-global.json` by hand rather
+than trust a count; the great majority are genuine autocomplete noise with no
+connection to this product (cribbage tournaments, bench press form, paneer
+and pasta troubleshooting, Stardew Valley, "back porch band members"),
+confirming the standing "mostly out of scope" reading several prior cycles
+already gave this tier. Two real, on-topic gaps stood out: "how to plan a
+kitchen layout" and "how to plan a garage layout", the same shape A40 had
+already solved once for the Nursery and left generalised
+(`tips.get("Room layout")` in `room_faq()`/`room_page()`).
+
+**Did the work.** Checked each room's own `content.json` facts before writing
+anything, same discipline A40 used. Kitchen: the room's own intro already
+names the Sink and Dishwashing Zone as the one fixed recovery point every
+other zone drains into; the Upper Cabinet Zone's own safety pass already says
+heavy and breakable items do not belong overhead. Garage: the intro already
+names the Primary Workbench as the one surface that has to clear first; the
+Automotive Care and Lawn and Garden Tool Zones' own safety passes already
+require petrol and garden chemicals to stay latched and out of the house
+envelope regardless of layout. Added a "Room layout" tip to each room built
+entirely from those existing facts, nothing invented. Resynced
+`mcp/content.json` from the edited source in the same pass, the exact drift
+A40's own "did not go well" named as a recurring risk.
+
+**Verified.** Reran `ops/build_zone_pages.py` then `ops/build_seo.py`
+directly. `ops/keyword_demand_global.py --rescore`: both target queries move
+`gap` (0.333 each) to `partial` (`heading_coverage` 0.667 each, matched on
+heading, their own room pages); site-wide gap count 134 to 132. Checked all 6
+"plan a `<room>` layout" rows in the file by hand, not just the two targets:
+Home Office and Living Room stayed on their own deck pages at their prior
+scores, unaffected; Workshop's "how to plan a workshop layout/event/for
+students/templates" rows stayed `gap`, deliberately not touched, because
+those four queries are about running a professional or classroom workshop,
+not the household Workshop room, the same ambiguous-word trap already ruled
+out for "larder"/"foyer". `check_urls.py` (218/218), `audit_pages.py`
+(223/0 findings, 0 duplicates), `fix_dashes.py`/`fix_dialect.py --check`
+(0/0), `affiliate.py --check` (165 documents), `check_sellable.py`
+(124/126 Stripe-matched, 2 known service SKUs), `link_graph_report.py`
+(0 orphans), `build_id.py --check` (caught genuinely stale at commit time,
+regenerated, then current), `ops/audit_visual.py` scoped to
+`site/rooms/kitchen.html` and `site/rooms/garage.html` (desktop and mobile,
+0 findings each) all clean. Ran `preflight.py --skip-tests` unbuffered twice
+this cycle: the first run predated this change and was killed at the
+documented `gate_etsy_pdfs_current` headless-Chromium sandbox hang after
+confirming flat output growth; the second, run fresh against this change,
+reached the same documented hang with 0 FAIL on every gate before it,
+`gate_tests` itself correctly reported as skipped (`--skip-tests`) rather
+than claimed clean. `ops/indexnow.py --submit`: refused to submit, the site
+unreachable from this sandbox, the standing limitation; the hourly-brief
+workflow's own real-egress IndexNow step covers this on its own schedule.
+
+**Went well.** Catching the nightly log's own newest-first convention before
+trusting a `tail` read of it, which would have had this cycle re-deriving
+"exhausted, 10 issues, 2026-10-25" as the current state when the real current
+state (12 issues, two new ones filed an hour earlier) was at the top of the
+file the whole time.
+
+**Did not go well.** Lost a few minutes to the same `gate_etsy_pdfs_current`
+render hang every recent cycle has already documented; killed it by pid
+rather than left it to time out blind, same as precedent.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 132 gap rows for the next genuinely on-topic,
+in-scope query, same method as A29-A42, or act the moment Phil comments on
+any of the 12 open decision/blocked-on-art issues.
+
+Pushed to main (`a95efa5b9`). Changed: `content/manual/source/content.json`,
+`mcp/content.json`, `ops/build-generated` outputs (`site/rooms/kitchen.html`,
+`site/rooms/garage.html`, `site/sitemap.xml`, `ops/sitemap-content-hashes.json`,
+`site/build-id.txt`), `ops/keyword-demand-global.json`,
+`ops/KEYWORD-DEMAND-GLOBAL.md`, `BACKLOG-2026-09-07.md` (A42), this log entry.
+No price or product touched; two existing room pages edited, no new page;
+`IndexNow` not submitted (sandbox cannot reach the site; covered by the
+hourly workflow's own real-egress step).
+
 ## PM check-in, 2026-10-31 (11:0x slot): previous work (the 10:5x KDP/Etsy escalation) was NOT finished, its own edit had drifted the OWNER-ACTIONS.md review marker and that drift had gone live as real CI red on main
 
 NEXT FOR THE OPERATOR: mine the global gap tier for the next on-topic vocabulary gap; backlog and 12 open GitHub issues (all decision/blocked-on-art, none newly commented) are otherwise unchanged and exhausted.
