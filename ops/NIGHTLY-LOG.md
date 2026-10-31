@@ -2,6 +2,84 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-10-31 (10:5x slot): filed the Amazon KDP and Etsy launches as GitHub issues #43/#44 instead of mining another keyword gap, and fixed a stale listing count found along the way
+
+**Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and
+detached; unshallowed properly (`fetch`, `fetch --unshallow`, `checkout main`,
+`merge --ff-only`, no reset or force), fast-forward clean through several
+concurrent cycles' pushes over the course of this slot. Read `BACKLOG-2026-09-07.md`
+sections 0-7, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries, and
+live GitHub directly rather than cited: `list_issues` read 10 open, unchanged
+since 2026-10-25, all `decision`/`blocked-on-art`; `list_pull_requests` 0 open.
+`inbox_agent.py --apply`: no mail credentials, the standing gap.
+
+**Chose not to mine the gap tier this slot.** A29-A41 have spent dozens of
+cycles closing small, real, but marginal vocabulary and infrastructure gaps
+while the single largest built-and-ready, zero-FAIL, unblocked item on the
+whole operation, publishing the finished book on Amazon KDP and the three
+finished print packs on Etsy (`OWNER-ACTIONS.md` items 14 and 15, written
+2026-09-03/06/09), had sat for nearly two months without ever once being
+promoted to the GitHub decision queue every other open "Decide:" item already
+lives in (`list_issues`/`search_issues` confirmed zero issues ever referenced
+KDP or Etsy). `GOALS.md`'s own theory of the business says the digital
+catalogue alone cannot reach the revenue target on reachable traffic and the
+route runs through channels where buyers are already shopping; this is the
+plainest unaddressed case of that argument on the list.
+
+**Independently re-verified before filing, not cited.** Ran `build/listings/check_kdp.py`
+and `build/listings/check_etsy.py` fresh against the real committed EPUB,
+cover and listing files: 0 FAIL on both, today. Found one real drift while
+checking: `OWNER-ACTIONS.md` item 15 still said "four" Etsy listings
+throughout (heading, body, step 5); the real, live `etsy-listings.json` has
+carried exactly three (`L1-whole-house`, `L4-moving-in`, `L5-holiday-hosting`)
+since the 2026-09-23 L2-kitchen withdrawal, confirmed by reading the file
+directly. `MARKETPLACE-LISTINGS.md` had already been corrected to "three";
+only this item's own copy had never caught up. Fixed in place, not just
+reported.
+
+**Filed.** GitHub issues #43 (KDP, `decision`/`P0`) and #44 (Etsy,
+`decision`/`P0`), each with the full field-by-field reference, what is
+already built, what genuinely cannot be checked without Phil's own account
+(Etsy's fee schedule returns HTTP 403 to every automated request), and the
+exact single step each needs. Cross-referenced both back into
+`OWNER-ACTIONS.md` items 14/15 and `BACKLOG-2026-09-07.md` section 6 row 4,
+so a future cycle finds the issue numbers immediately instead of re-deriving
+that no issue existed.
+
+**Also ran `preflight.py --skip-tests` directly** (unbuffered, backgrounded):
+0 FAIL through every gate up to `gate_etsy_pdfs_current`, which hung on the
+documented sandbox limitation (headless Chromium rendering, the same shape
+as the `gate_tests` hang) and was killed after confirming flat CPU rather
+than left to time out blind. One real FAIL surfaced and resolved by this
+cycle's own push: `checks-yml-real-gap` (two non-bot commits, an accidental
+scratch-file add/revert made while drafting the issue bodies, had landed
+with no later CI run). Everything else was the standing, already-documented
+set: no Stripe credential, `6s-success.com` unreachable from this sandbox,
+cron cadence under-measured on several workflows, `BLOCKER-001` due for
+rotation. `affiliate.py --check`: 165 documents clean.
+
+**Went well.** Caught that a genuinely higher-leverage item than anything in
+the keyword-gap tier had never been escalated where Phil actually looks,
+by checking GitHub directly instead of trusting the backlog's own "exhausted"
+reading of what remains unblocked.
+
+**Did not go well.** An early mistake while drafting the issue bodies:
+accidentally used a file-write tool against the live repository instead of a
+scratch file, pushing a throwaway placeholder straight to `main`. Caught and
+reverted within the same minute, confirmed by `git log`, no lasting effect
+beyond the one extra commit pair this log's own CI-gap finding above had to
+account for.
+
+**Changing next cycle.** None beyond what the two new issues already ask.
+
+**Next.** Mine the global gap tier (134 rows) for the next on-topic
+vocabulary gap, same method as A29-A41, or act the moment Phil comments on
+#43, #44, or any of the other 10 unchanged decision/blocked-on-art issues.
+
+Pushed to main. Changed: `OWNER-ACTIONS.md` (items 14/15), `BACKLOG-2026-09-07.md`
+(section 6 row 4), dashboard regen, this log entry. No price, product or page
+touched; two new GitHub issues filed (#43, #44); IndexNow not applicable.
+
 ## PM check-in, 2026-10-31 (10:4x slot): independently found the same CI-red regression the 10:1x twin had already fixed and pushed; merged rather than duplicate, no new file change needed
 
 NEXT FOR THE OPERATOR: mine the global gap tier (134 rows) for the next on-topic vocabulary gap, same method as A29-A41, now that the thing blocking it (the 10:1x entry below) is cleared.

@@ -1062,6 +1062,12 @@ two-minute check, not a project.
 
 ### 14. Create the Amazon KDP account and publish the book. About 30 minutes, once.
 
+**Tracked 2026-10-31 as GitHub issue #43**, `decision`/`P0`, because this item had
+sat here since 2026-09-03, fully built and zero-FAIL, without ever once being
+promoted to the same visible decision queue every other open "Decide:" item
+lives in. Nothing in this item's own text changed; the issue exists so Phil
+sees it where he is already looking.
+
 **What:** the business sells in exactly one place and that place had 52
 visitors in thirty days, none of them from Google. A finished 271,000 word
 book (`build/listings/verify_epub.py`'s own live count against the committed
@@ -1112,13 +1118,28 @@ help topic named. Two things there have changed since the previous draft was
 written: the 70% royalty band now runs to $12.99, and `<h2>` in a description
 is unsupported, which the old draft used three times.
 
-### 15. Create the Etsy shop and publish four listings. About 40 minutes, once.
+### 15. Create the Etsy shop and publish three listings. About 40 minutes, once.
+
+**Tracked 2026-10-31 as GitHub issue #44**, `decision`/`P0`, because this item
+had sat here since 2026-09-06/09, fully built and zero-FAIL, without ever
+once being promoted to the same visible decision queue every other open
+"Decide:" item lives in. The issue exists so Phil sees it where he is already
+looking.
+
+**Corrected 2026-10-31, this operator: this item's own heading and steps
+still said "four" listings, stale since the second withdrawal below; the
+real, checked, live count is three.** `build/listings/etsy-listings.json`
+lists exactly `L1-whole-house`, `L4-moving-in` and `L5-holiday-hosting`
+today, confirmed directly against the file rather than assumed from the old
+count. `MARKETPLACE-LISTINGS.md` line 48 already said "three"; only this
+item's own copy had drifted. `build/listings/check_etsy.py` still passes
+with zero failures against these three.
 
 **What:** 155 finished print packs, and Etsy's organisation-printable category
-has buyers searching for exactly this today. Four listings are written, and
+has buyers searching for exactly this today. Three listings are written, and
 their files are built and measured.
 
-**Corrected 2026-09-09, this operator: it was five, now four.** A fifth,
+**Corrected 2026-09-09, this operator: it was five, then four.** A fifth,
 L3-entryway (30 cards, the six passes for the five Entryway zones), was
 written, priced, rendered and readied, then withdrawn: it sold the exact
 content `ops/generated_products.py` already excludes from the site's own
@@ -1129,6 +1150,11 @@ publishing, not after: its files are removed from
 `build/listings/etsy/L3-entryway/`, and `build/listings/check_etsy.py` now
 fails any listing that repeats this shape. Full account in
 `MARKETPLACE-LISTINGS.md` section 3.1.
+
+**Then, 2026-09-23: a second withdrawal, L2-kitchen, same reason** (it
+duplicated the free Kitchen deck, `MARKETPLACE-LISTINGS.md` section 3.1).
+That is what brought the real count from four to three; this item's own
+heading and step 5 never caught up to it until today.
 
 1. Go to `https://www.etsy.com/sell` and open a shop. Country **United
    States**, currency **USD**, language **English**.
@@ -1141,7 +1167,7 @@ fails any listing that repeats this shape. Full account in
    percentage and fixed amount. Etsy returns HTTP 403 to every automated
    request, so no fee figure in this repository is verified, and the four
    prices were set by a rule that needs those numbers to be checked.
-5. Create the four listings from `MARKETPLACE-LISTINGS.md` section 3.4. Each
+5. Create the three listings from `MARKETPLACE-LISTINGS.md` section 3.4. Each
    has its title, its 13 tags as one comma-separated line, and its description
    as a single block to paste.
 6. For each, set it to **Digital**, upload the files from
