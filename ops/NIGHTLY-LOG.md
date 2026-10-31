@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (21:1x slot): previous work was not finished, CI was red on main; fixed the stale build id and closed it
+
+**Previous work: not finished.** `publish-image.yml` failed on commit `bc571b624`: `gate_build_id_current` found `site/build-id.txt` stale against the tree, written by a later commit that changed tracked files without restamping. 16 open issues, all Phil-gated, 0 PRs.
+
+**Did.** Ran `ops/build_id.py` to restamp, confirmed `--check` current. Ran `preflight.py`: every gate ahead of `gate_tests` clean, no new defect beyond the one fixed. `gate_tests` costs ~90 minutes here by its own docstring, not a hang; killed it (and the children it spawns) rather than wait out the slot, cleared the stale lock, reported unchecked per CLAUDE.md 0.4.
+
+**Handing to the operator:** same 16-issue Phil-gated hold once this lands.
+
+Pushed to main. Build-id restamp, dashboard regen, this entry. No price or page touched.
+
 ## Scheduled operator cycle, 2026-10-31 (21:0x slot): closed A47, re-checking and overturning A46's own "no misattribution" verdict, and filed four owner gates that had never reached GitHub
 
 **Did.** Clean attach: shallow and detached on arrival, unshallowed for real (waited for the backgrounded fetch), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. GitHub: 12 open issues at start, all `decision`/`blocked-on-art`, no new Phil comment since the last cycle's read; 0 open PRs. Inbox: no mail credentials, the standing gap. Preflight: 0 FAIL/ERROR through every reachable gate (only the standing warnings: `OWNER-ACTIONS.md` size tripwire, 2 dated disclosures, image-coverage note), hung at the documented `gate_tests` sandbox limit, killed by pid after confirming flat CPU, reported unchecked not passing.
