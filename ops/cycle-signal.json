@@ -1,14 +1,14 @@
 {
-  "combined_hash": "5905d503a4f1fada8d68b730ac1d0a0f35ffb4b3c7e25bfeda5780870fe7e730",
-  "git_head": "5347587c3ab0ababdaf9534a639e06eaa42629b7",
-  "note": "PM 12:1x: full local preflight --skip-tests re-run, 0 FAIL on every gate reached before the documented gate_etsy_pdfs_current headless-Chromium sandbox hang (killed by pid after confirming flat CPU, same precedent as prior cycles); CI confirmed green (success) on this exact HEAD (865f4441e) via the Actions API.",
-  "recorded_at": "2026-10-31T12:25:08Z",
+  "combined_hash": "7da685fd807b0181ac147a62d89c2a468237304fa12aea086d408851f52ecf85",
+  "git_head": "ba341f4e7cc0c5bd2241da0cab7f67c3eb7d67dd",
+  "note": "PM 12:4x: full local preflight --skip-tests re-run on current HEAD (ba341f4e7, includes the 12:1x BLOCKER-001 rotation and the hourly bot's own commit), 0 FAIL on every gate reached before the documented gate_etsy_pdfs_current headless-Chromium sandbox hang (exit 124, killed by timeout, same precedent as every prior cycle). Closes the gap where the 12:1x cycle's own snapshot (git_head 5347587c3) predated its final STATUS.md edit.",
+  "recorded_at": "2026-10-31T12:46:18Z",
   "signals": {
     "BACKLOG-2026-09-07.md": "8ac9cb688ed3fded7675aa40b070f72247199043205d82758c41609105d03a9d",
     "BACKLOG-2026-H2.md": "eb14a48e70d0a7d21e39f67916755f1901d6ff235175fcf9b324ac746d2c932a",
     "GOALS.md": "d8c1ca6f25cf8692d7f5a57ca1f29f33d080de3dfbd255ef68fede63bbadd8ad",
     "OWNER-ACTIONS.md": "89cff4f17106ae406417bfa82aaebae792ef7e392729dcdf7aac3b9ef39fabf1",
-    "STATUS.md": "dd519efabd6aae5eb3854c6b2febdfcc8a86fd9d075864c676674909e6574527",
+    "STATUS.md": "90fdb08aec8bb4e96b56bce5faa7c5a3c99c62dcb1a6099b83d966376cf8068a",
     "ops/deploy-verdict.json": "bf5a55b31939d8fa3264fac4211078376e072ff8aceaafc7dd75dff416ba802d"
   }
 }
