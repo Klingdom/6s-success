@@ -217,13 +217,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-03T16:02:52Z",
-   "mode": "changed",
-   "offered": 211,
-   "accepted": 211,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-03T18:03:32Z",
    "mode": "changed",
    "offered": 5,
@@ -635,6 +628,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-10-31T23:00:06Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -716,7 +716,7 @@
   "https://6s-success.com/zones/dining-room-the-sideboard-storage": "fe395c0ea3c77be0",
   "https://6s-success.com/zones/dining-room-the-sideboard-surface": "3b83fcbe9969b2d4",
   "https://6s-success.com/zones/entryway-the-bench-or-console": "023aa3afbf515aeb",
-  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "024a7199c7507cb0",
+  "https://6s-success.com/zones/entryway-the-coats-and-outerwear": "6b91e30bd92d31c8",
   "https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor": "0b71113abd2ff588",
   "https://6s-success.com/zones/entryway-the-landing-spot": "4014e16db74b1382",
   "https://6s-success.com/zones/entryway-the-shoes-and-boots": "907d90140d402480",
@@ -773,7 +773,7 @@
   "https://6s-success.com/zones/laundry-room-the-hanging-and-air-dry-zone": "0b1c06832d5bc39c",
   "https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone": "f845cbaa8a5e89b3",
   "https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone": "7b407e317e970fa8",
-  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "98db4565222599ba",
+  "https://6s-success.com/zones/laundry-room-the-washer-and-dryer": "240617e114769a7c",
   "https://6s-success.com/zones/living-room-the-bookshelves-and-display": "51650fae1c5235ce",
   "https://6s-success.com/zones/living-room-the-coffee-table": "3ff85dd0355de27b",
   "https://6s-success.com/zones/living-room-the-floor-and-circulation-path": "74dbca1e592c7b76",
