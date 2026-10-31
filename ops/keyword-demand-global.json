@@ -30838,10 +30838,10 @@
       "best_page": "/nursery-deck.html",
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/nursery-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/nursery.html",
+      "matched_on": "heading",
+      "status": "partial",
       "markets": [
         "gb",
         "au",
@@ -44169,6 +44169,6 @@
       "in_us_harvest": true
     }
   ],
-  "scored_at": "2026-10-31T07:28:31Z",
-  "scored_against_commit": "b2e4bc1cf"
+  "scored_at": "2026-10-31T08:54:19Z",
+  "scored_against_commit": "1c51bcf8a"
 }

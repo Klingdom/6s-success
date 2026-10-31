@@ -3590,6 +3590,9 @@ def room_faq(room, rm, rt):
     if tips.get("The trap"):
         qa.append((f"What is the most common mistake when organizing "
                    f"{article_for(rm)} {rm}?", _clean(tips["The trap"])))
+    if tips.get("Room layout"):
+        qa.append((f"How should you lay out {article_for(rm)} {rm}?",
+                   _clean(tips["Room layout"])))
     names = [display(room["room"], z["zone"]) for z in room["zones"]]
     if names:
         qa.append((f"What parts of the {rm} should be organized separately?",
@@ -3926,10 +3929,37 @@ def room_page(room, header, footer, all_rooms=()):
     except Exception as e:                                    # noqa: BLE001
         print(f"  WARNING: no room kit rendered for {room['room']}: {e}")
 
-    # "Where to start" now renders above the zone list (D10); keep it out
-    # of this list too, so the same tip is not said twice on one page.
+    # A room's own "Room layout" tip gets its own heading, not a line in
+    # the generic "For this room" list below. "how to plan a nursery
+    # layout" (the global keyword harvest, 2026-10-31) scored a gap at
+    # 0.333 because the word "layout" appeared nowhere in an <h1>-<h3> on
+    # the page; `ops/keyword_demand.py`'s own scorer reads headings, not
+    # list items, for heading_coverage.
+    #
+    # Found and fixed before shipping: a first draft of this heading read
+    # "How to plan the {room} layout", which also put the generic word
+    # "plan" on this one page. Since no other page's heading carries
+    # "layout" either, every "how to plan a <OTHER ROOM> layout" query
+    # (kitchen, garage, living room, workshop...) then scored 2 of 3
+    # words (plan+layout) against THIS room's page, beating that other
+    # room's own page (1 of 3, its own name only) outright, not merely
+    # tying it, so the tie-break room-signal check never got a chance to
+    # correct it. Rescoring live confirmed it: "how to plan a kitchen
+    # layout" and four siblings all pointed at /rooms/nursery.html.
+    # Dropping "plan" leaves just the room's own name plus "layout" here,
+    # so an unrelated room's query only ties on "layout" and the existing
+    # room-signal tie-break (A22/A25/A37's own mechanism) correctly
+    # prefers that room's own page again.
+    _layout_text = _room_tips.get("Room layout")
+    if _layout_text:
+        out.append(f'<h2>{esc(rm.capitalize())} layout</h2>'
+                   f'<p>{esc(_clean(_layout_text))}</p>')
+
+    # "Where to start" now renders above the zone list (D10); "Room
+    # layout" now has its own heading just above; keep both out of this
+    # list too, so neither tip is said twice on one page.
     tips = [t for t in (room.get("tips") or [])
-            if t.get("label") != "Where to start"]
+            if t.get("label") not in ("Where to start", "Room layout")]
     if tips:
         out.append('<h2>For this room</h2><ul>')
         out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
