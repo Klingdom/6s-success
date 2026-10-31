@@ -2,15 +2,25 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-10-31 (07:4x slot): previous work finished and verified; handing off gap-tier mining
+## PM check-in, 2026-10-31 (07:4x slot): a concurrent cycle already closed the handoff (A37) while this one verified section 65; next is content authoring, not another mechanical gap
 
-NEXT FOR THE OPERATOR: mine the remaining 137-row global keyword gap tier for the next on-topic zone-vocabulary gap, same method as A29-A36, because it is still the only unblocked, non-Phil-gated GREEN lane, and the 07:1x cycle spent its slot on tooling instead.
+NEXT FOR THE OPERATOR: pick one of the two query clusters A37's own cycle flagged and left undone, nursery "layout"/"plan" or chemical-storage-location, and write the real content (an FAQ pair or a zone purpose addition, the established pattern) rather than mine the gap tier for another mechanical synonym fix, because those clusters need authored content and are the only unblocked, non-Phil-gated GREEN lane left.
 
-**Previous work (section 65): finished and verified.** Attach was clean after a slow unshallow (several minutes). `cycle_signal.py --check` read CHANGED, so ran `python ops/preflight.py --skip-tests` myself, end to end: every gate passed, 37 pre-existing warnings, clean snapshot recorded. GitHub reconfirmed: `checks.yml` on `a8b6edfbb` completed/success; `list_issues` still 10 open, unchanged since 2026-10-25, 0 Phil replies; `list_pull_requests` 0 open.
+**Previous work (section 65): finished and verified.** Attach clean after a slow unshallow. `cycle_signal.py --check` read CHANGED, so ran `python ops/preflight.py --skip-tests` myself, end to end: every gate passed, 37 pre-existing warnings, clean snapshot recorded. This cycle's own planned handoff (mine the gap tier) was overtaken mid-run: a concurrent PM instance mined it first and shipped A37 (utility room to Laundry Room misattribution; see its own entry below) before this push landed, so main was fetched and merged, not forced, with the generated dashboard files regenerated rather than hand-resolved. GitHub reconfirmed: `checks.yml` on `a8b6edfbb` completed/success; 10 issues open, unchanged since 2026-10-25, 0 Phil replies; 0 open PRs.
 
-**No new work started, no new defect, no closable row.** The slow attach and the full verification used the window. Not notifying Phil: nothing changed for him to act on.
+**No new defect, no closable row found by this cycle.** Not notifying Phil: nothing changed for him to act on.
 
-Pushed to main. Dashboard regen and this log entry only.
+Pushed to main. This log entry and dashboard regen only.
+
+## PM check-in, 2026-10-31 (07:1x slot): A36 finished and verified; mined the gap tier myself and closed a real misattribution, A37
+
+**Previous work finished and verified.** Attach clean, no reset/force. `preflight.py` run twice this cycle (before and after my own change): both 0 FAIL through `gate_image_coverage`, clean `cycle_signal` snapshot each time, stalled flat at the documented `gate_tests` sandbox hang, no stray lock. GitHub reconfirmed: 10 issues open, unchanged since 2026-10-25, all decision/blocked-on-art; 0 open PRs.
+
+**Did the gap-tier mining myself rather than hand off again:** the 06:4x handoff had sat untouched for two bot-only hourly cycles, and it is sized to fit this slot. Checked several top-ranked candidates first and ruled them out with evidence (ambiguous rooms, wrong content type, or already-named-synonym stemming of no real value), the same discipline the 06:2x cycle used for "larder"/"foyer". Found a real one past the top ranks: 26 global "utility room" queries plus 15 US ones were scoring to a basement article or a generic time-estimate article by coincidental word overlap, not because either page is about a utility room; `room-also-called.json`'s own rule had wrongly called this word "already covered" since 2026-10-02. Added it as a Laundry Room entry, corrected the stale rule line, reran the generator. Verified live: the US harvest's own bucket counts moved for real (gap 155 to 154, covered +2); the global file's bucket counts did not move (still 137 gap, one row stays 0.4) but 21 of 26 rows now correctly attribute to the real Laundry Room page instead of the basement/generic articles. Full check suite (`check_urls`, `audit_pages`, `fix_dashes`/`fix_dialect --check`, `affiliate --check`, `check_sellable`, `link_graph_report`, `build_id --check`, scoped `audit_visual` on both changed pages) all clean. Full detail in `BACKLOG-2026-09-07.md` A37.
+
+**Handing to the operator:** the gap tier still has candidates I did not act on (nursery "layout"/"plan" queries, chemical-storage queries spanning several zones) because each needs real content authoring, not a mechanical synonym fix; worth a dedicated look, not a quick pass.
+
+Pushed to main. `BACKLOG-2026-09-07.md` (A37), `ops/room-also-called.json`, `ops/keyword-demand.json`, `ops/keyword-demand-global.json`, `ops/KEYWORD-DEMAND.md`, one room page, sitemap, dashboard regen. No price or product touched; one existing page edited, no new page; `IndexNow` submitted on push.
 
 ## Scheduled operator cycle, 2026-10-31 (07:1x slot): generalised the gate_tests-hang exposure instead of relocating a third gate, section 65
 

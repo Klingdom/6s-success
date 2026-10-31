@@ -2658,8 +2658,8 @@
       "best_page": "/kitchen-deck.html",
       "best_page_title": "The Kitchen Deck: 72 cards, typeset and free to read or print",
       "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/kitchen-deck.html",
+      "heading_coverage": 0.75,
+      "heading_page": "/zones/kitchen-the-cooking-zone.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -16358,11 +16358,11 @@
         "how to declutter a laundry room"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -20926,7 +20926,7 @@
       "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -22405,11 +22405,11 @@
         "how to declutter a laundry room"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -26002,10 +26002,10 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/family-room-the-craft-and-activity-zone.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "how to organize crib sheets",
@@ -38155,7 +38155,7 @@
       "best_page_title": "The Nursery Deck: 66 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/nursery-the-diaper-and-care-backstock.html",
+      "heading_page": "/zones/nursery-the-changing-station.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -47944,11 +47944,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -47962,11 +47962,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -47980,11 +47980,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -47998,11 +47998,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48016,11 +48016,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "partial"
     },
@@ -48034,11 +48034,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48072,11 +48072,11 @@
         "utility room organization"
       ],
       "room": "",
-      "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
-      "best_page_title": "How long does it actually take to organize a room?",
+      "best_page": "/laundry-room-deck.html",
+      "best_page_title": "The Laundry Room Deck: 67 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/laundry-room-deck.html",
       "matched_on": "heading",
       "status": "covered"
     },
@@ -48201,10 +48201,10 @@
       "best_page": "/zones/guest-bathroom-the-guest-vanity-counter.html",
       "best_page_title": "How to organize the guest bathroom vanity counter",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "partial"
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/primary-bathroom-the-vanity-drawers.html",
+      "matched_on": "heading",
+      "status": "covered"
     },
     {
       "query": "vanity organizers and storage",
@@ -51381,6 +51381,6 @@
       "status": "partial"
     }
   ],
-  "scored_at": "2026-10-30T08:01:16Z",
-  "scored_against_commit": "c206d620e"
+  "scored_at": "2026-10-31T07:28:53Z",
+  "scored_against_commit": "b2e4bc1cf"
 }
