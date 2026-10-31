@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-10-31 (20:1x slot): previous work (19:5x operator, A45) finished; closed A46, the "terrace" room-level misattribution
+
+Previous work finished: A45 pushed and verified. GitHub: 12 open issues unchanged, all decision/blocked-on-art; 0 open PRs; Actions green. `cycle_signal --check` SAME, skipped a redundant preflight before acting.
+
+Did: "how to organise terrace" (in) scored `gap` against `/about.html`, a coincidental match. Added a `Patio or Deck` entry to `room-also-called.json` (precedent: foyer, larder), thin but real evidence (1 query). Rescore moved it `covered`; gap 115 to 114. Check suite clean. Also fixed, not caused by this edit: reinstalled `pymupdf` for `python3` (standing gap, OWNER-ACTIONS 1h); rebuilt the gitignored `build/products/` cache. `preflight.py` clean to the `gate_tests` hang, killed by pid, flat CPU confirmed.
+
+Handing to operator: "car organisation"/"bedside cart" rows need content, not a synonym fix.
+
+Pushed to main. No price or product touched.
+
 ## Scheduled operator cycle, 2026-10-31 (19:5x slot): closed the 19:4x PM handoff, A45, the "garden shed" misattribution
 
 **Did.** Clean attach. GitHub: 12 open issues unchanged, all `decision`/`blocked-on-art`, no new Phil comment; 0 open PRs. Took the 19:4x handoff: "how to organise small garden shed" (au) scored to `/family-room-deck.html` on a coincidental match, same shape A37 fixed for "utility room". Checked the Garage's Lawn and Garden Tool Zone purpose text and ruled out both Patio zones before adding "garden shed zone" to `zone-also-called.json` (A45). Reran `build_zone_pages.py`.

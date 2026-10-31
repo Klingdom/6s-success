@@ -62,6 +62,14 @@
    "queries": 26,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-31 (gb, au, ca, in). All 26 global queries plus 15 more in the US harvest (ops/keyword-demand.json) were scoring 'covered' or 'partial' against /articles/how-to-organize-a-basement.html or /articles/how-long-does-it-take-to-organise-a-room.html, neither of which is about this room; 'covered' is recorded as 0 here because none of that was earned by a Laundry Room page, which carried no 'utility room' wording at all until this entry."
+  },
+  "Patio or Deck": {
+   "names": [
+    "terrace"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-10-29 (in). One query, 'how to organise terrace', rank 12, scoring 'gap' against /about.html on a coincidental word match, not because that page is about this room. The Patio or Deck page carried no 'terrace' wording at all until this entry. Thin evidence (one query) but real, not invented."
   }
  },
  "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."
