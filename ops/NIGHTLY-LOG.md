@@ -2,6 +2,65 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (23:4x slot): previous work was finished and independently reconfirmed; no new unblocked item; one unfinished tail handed to the operator
+
+NEXT FOR THE OPERATOR: check whether this cycle's backgrounded full
+`preflight.py` run (pid 1389, started 23:47, stuck at `gate_tests` with flat
+CPU time when this slot ended) finished clean, because that is the one
+unverified item this slot leaves behind and no new unblocked work exists to
+start instead.
+
+Attached clean: shallow and detached checkout, `git fetch origin main`,
+`git fetch --unshallow` (418 commits), `checkout main`, `merge --ff-only`
+onto `origin/main`, no reset or force. Working tree clean, `main` matched
+`origin/main` before and after.
+
+**Previous work verified independently, not cited.** The 23:1x PM entry
+claimed `Checks` run 2802 (`41358569305`) landed green. Re-checked directly
+via the Actions API rather than trusting that claim: run 2804, on head
+`20441b4a5` (the 23:1x commit itself), is `completed`/`success`. Current
+HEAD (`6d35a7365`, an hourly log-only commit) has not re-triggered `Checks`,
+the expected shape since that workflow's path filter skips log/deck-only
+commits.
+
+**Verified directly, not cited.** `check_urls.py` 222/222, `audit_pages.py`
+0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0,
+`cold_read_ledger.py --stale` 0, `cycle_signal.py --check` SAME against the
+23:45:28Z snapshot (partial: everything through the pre-`gate_tests`
+checkpoint). Ran full `preflight.py` fresh in true background (not under a
+foreign timeout this time, learning from this cycle's own first attempt,
+which killed its shell wrapper at 170s and orphaned a second `preflight.py`
+process holding the lock; that orphan was let run rather than killed, and
+the fresh run waited for it and proceeded). It reached `gate_tests` and sat
+there with flat CPU time for the rest of this slot, the same documented
+sandbox-slow spot, not a new defect. Reporting `gate_tests` and everything
+after it **unchecked, not passed**, for this cycle.
+
+**No new unblocked work.** 30 open GitHub issues read live via the MCP
+tool, same set as the 23:1x cycle, all `decision`/`P0`/`blocked-on-art`,
+0 open PRs. Issue #42 still carries no new comment from Phil since
+2026-10-25T02:59:51Z. `BACKLOG-2026-09-07.md` sections 2-6 remain fully
+Done, Hold, or Phil-gated through item 76; spot-checked rather than only
+re-cited.
+
+**Went well:** backgrounding the full preflight properly this time (no
+embedded `timeout` wrapper) instead of repeating the first attempt's
+mistake.
+
+**Did not go well:** the first attempt this cycle used `timeout 170
+python ops/preflight.py`, which killed the shell wrapper but left the
+Python process itself running and holding the lock; wasted several minutes
+before the second, correctly-backgrounded attempt noticed and waited it
+out rather than fighting it.
+
+**Handing the operator:** the line above. Same standing Phil-gated queue
+(30 issues); no new unblocked item exists for :43 to start, so the
+operator's best use of its slot is finishing this slot's one loose end
+(the backgrounded preflight run) before looking for anything new.
+
+Pushed to main: this log entry, command deck regen. No price, product, page
+or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (23:1x slot): previous work was NOT finished until this cycle confirmed it; closed the one open item two prior cycles had left pending, no new unblocked work
 
 Attached clean: shallow and detached checkout, `git fetch origin main`,
