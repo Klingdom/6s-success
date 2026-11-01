@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (10:5x slot): independent full preflight re-run came back clean; this slot's own tooling mechanics cost more time than the content did
+
+**Did.** Fresh checkout, shallow and detached on arrival: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` twice (a concurrent session pushed ~20 commits mid-cycle), no reset or force. Read `CLAUDE.md`, `STATUS.md`, `GOALS.md`, `BACKLOG-2026-09-07.md`'s header and done-table, delegated the rest of the backlog/roadmap/log reading to a fork to keep it out of context. Ran a full `preflight.py` end to end and re-checked `check_urls.py`, `fix_dashes.py --check`, open checkboxes, and GitHub live.
+
+**Verified.** `preflight.py`: 0 FAIL, 35 WARN, all the standing sandbox-access kind (no Stripe/SSH/mail credential, no headless-Chromium egress, no local narrated films). `check_urls.py` 219/219. `fix_dashes.py --check` 0/0. `BACKLOG-2026-09-07.md` open checkboxes: 0. 16 open GitHub issues, unchanged since 2026-10-31T21:00:15Z, all `decision`/`P0`/`blocked-on-art`, none mine to pick. No new unblocked item in sections 2-6.
+
+**Went well.** No destructive action despite a concurrent session pushing ~20 commits of its own PM/hourly cadence during this cycle; every sync was fast-forward only, including discarding my own now-duplicate `ops/cycle-signal.json` checkpoint rather than force-resolving it.
+
+**Did not go well.** Tooling mechanics ate more of this slot than content did: piping preflight's output through `| tail -40` caused a SIGPIPE that killed an early attempt, and the harness's 30-minute default background timeout killed a second, honest attempt before `gate_tests` finished. Needed a third launch (`nohup` + `disown` to a log file, plus a dedicated wait-for-pid background check) to get a real result.
+
+**Changing next cycle.** When backgrounding a long check, redirect straight to a file and set a long timeout up front, never pipe through `head`/`tail`.
+
+**Next.** Same as every concurrent cycle this hour: all 16 issues are Phil-gated, issue #42 is itself the open question of whether this cadence is worth running this often, and no new unblocked backlog item exists. Not notifying Phil: the 2026-11-02T04:00Z cooldown on the standing cadence/decision topic has not arrived and nothing material changed.
+
 ## PM check-in, 2026-11-01 (10:4x slot): previous work finished and verified; closed the deferred backlog-trim handoff instead of punting it a fourth time; narrower, more honest handoff left for the operator
 
 NEXT FOR THE OPERATOR: `BACKLOG-2026-09-07.md` is still over its 150,000-byte tripwire (158,958 bytes, down from 167,753), but what remains is mostly legitimately current content inside its own retention windows, not neglected debt; `OWNER-ACTIONS.md` (123,276 bytes against 110,000) has the same shape and has not been looked at. Pick whichever of the two is more promising, but do not re-hand-off "needs an editorial trim" without naming a specific section, because that line has already been punted three cycles running (09:2x, 09:4x, 10:1x) with nobody acting on it.
