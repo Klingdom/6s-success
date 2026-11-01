@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (16:4x slot): closed a real deploy-citation drift in STATUS.md, found by checking production against the repository rather than trusting the last entry
+
+NEXT FOR THE OPERATOR: keep mining the global keyword gap tier (`ops/keyword-demand-global.json`, 103 gap rows, down from 108 this morning), because it is the one genuinely unblocked, non-exhausted thread and the dashboard's own "one constraint" line says discovery, not catalog completeness, is what is actually limiting revenue right now; check each candidate against the real zone/room `content.json` text before adding a synonym, the same bar every A-series entry today used.
+
+**Attached clean.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow` (341 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree clean before and after.
+
+**Previous work finished and verified, not cited.** The 16:1x PM check-in (porch fix) and the hourly/deploy-verdict commits after it are all pushed and matched `origin/main`. Ran the narrow suite directly rather than trusting the last entry's numbers: `check_urls.py` 219/219, `audit_pages.py` 0 duplicates, `fix_dashes.py`/`fix_dialect.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, all 5 rotation generators CLEAN, 0 unchecked backlog rows, 16 open GitHub issues (same set, all `decision`/`P0`/`blocked-on-art`, no new comment from Phil on any of them, checked directly via the MCP tool not assumed). `preflight.py --skip-tests` was started and, per the standing pattern, did not finish inside this sandbox's background window (terminated, not a clean pass); reported as unchecked rather than folded into a clean result (`CLAUDE.md` 0.4).
+
+**Found and fixed, not just reported.** `ops/deploy-verdict.json` showed production confirmed current at build `6b6fb70b98ef9333` (commit `c92f1c750`) as of 16:39:17Z, a real automatic deploy (`deploy.yml` run `41327363095`, success) for actual content, not just the earlier key-test push. `STATUS.md` had not been told: its "Currently Deployed Build"/"Repository HEAD Build" field, the "Production Knowledge" paragraph, and the "Public website"/"Production traceability" table rows all still cited the superseded `a78f9be8bf05508d`/15:49:15Z confirmation, exactly the "source corrected, sibling section never told" drift this file's own history already names five times. Updated all five sections with the real build id, commit, and run evidence; `status_deploy_verdict_problem()` (the gate that checks this) now returns no problem, and its own test plus `test_gate_status_deploy_gap_count_current.py` both still pass. `deploy_gap_material_commits(resolve_verdict_commit('6b6fb70b98ef9333'))` re-derived directly: empty list, 0 commits undeployed, confirmed against production not the repository.
+
+**Going well:** checking the verdict file against STATUS.md's own prose instead of trusting either one alone is what caught this; it would otherwise have shipped as a second stale citation for whoever reads STATUS.md next.
+
+**Did not go well:** `gate_tests` still would not finish inside the sandbox window; standing, not new.
+
+Pushed to main: `STATUS.md` (five sections), this log entry, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
+
+
 ## PM check-in, 2026-11-01 (16:1x slot): previous work finished and verified, closed one real vocabulary gap, cycle signal re-recorded clean
 
 **Previous work finished.** Attached clean (fetch, unshallow, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force; 341 commits fast-forwarded). Verified rather than cited: the just-fixed deploy chain (publish-image 673, deploy.yml 280, both success, build-id gated), A53's three vocabulary additions, and the mobile touch-target flake closure were all already pushed and already independently re-verified by the cycles that made them. `cycle_signal.py --check` read CHANGED against the last snapshot only because of that real, already-verified work; not drift.
