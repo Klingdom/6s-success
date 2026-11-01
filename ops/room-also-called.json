@@ -65,11 +65,12 @@
   },
   "Patio or Deck": {
    "names": [
-    "terrace"
+    "terrace",
+    "backyard"
    ],
-   "queries": 1,
+   "queries": 2,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-10-29 (in). One query, 'how to organise terrace', rank 12, scoring 'gap' against /about.html on a coincidental word match, not because that page is about this room. The Patio or Deck page carried no 'terrace' wording at all until this entry. Thin evidence (one query) but real, not invented."
+   "source": "ops/keyword-demand-global.json 2026-10-29 (in) for 'terrace'; 2026-10-31 (au) for 'backyard'. 'backyard organisation' (rank 7, au) scored 'gap' against /about.html on a coincidental title match, not because that page is about this room; the Patio or Deck page's own six zones (seating, grilling, dining, garden, storage, the surface/rail/safety zone) are exactly what a household means by 'backyard', and the page carried no 'backyard' wording at all until this entry. Thin evidence (one query each) but real, not invented."
   }
  },
  "_global_note": "Entries carrying a 'source' were measured by ops/keyword_demand_global.py, which harvests the same seeds for gb, au, ca and in. ops/tests/test_room_also_called.py accepts evidence from either harvest."

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-31T21:58:46Z against 226 page(s) at commit 8e67a8073. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-10-31T23:57:50Z against 227 page(s) at commit 03ce13558. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 226 published page titles: 1321 covered, 1344 partial, 143 gap.
+**Queries found:** 2808. Checked against 227 published page titles: 1335 covered, 1333 partial, 140 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 143, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 140, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -58,7 +58,7 @@ Showing the top 80 of 143, ordered by the best rank the phrase reached in any on
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
 | 6 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) | cake, decorating |
 | 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | dollar, tree |
-| 6 | organizing your bedroom tips pinterest | - | The Guest Bedroom Deck: 57 cards, free to read (0.33) | pinterest, tips |
+| 6 | organizing your bedroom tips pinterest | - | How to declutter a bedroom in one day, step by step (0.33) | pinterest, tips |
 | 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, trouble |
 | 7 | constantly using the bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | constantly, using |
 | 7 | cover space between stove and countertop | - | Small space organizing: why doesn't anything fit? (0.20) | countertop, cover, stove |
@@ -104,7 +104,7 @@ Showing the top 80 of 143, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1344.
+Showing the top 60 of 1333.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -126,6 +126,7 @@ Showing the top 60 of 1344.
 | 12 | small guest bathroom storage ideas | How to organize the guest bathroom vanity storage | 0.75 |
 | 14 | how to declutter dining room table | How to organize the dining room dining table | 0.75 |
 | 14 | power tool organizer for tool box | How to organize the garage power tool storage | 0.75 |
+| 15 | how to declutter a one bedroom apartment | How to declutter a bedroom in one day, step by step | 0.75 |
 | 19 | primary bathroom designs with shower | How to organize the primary bathroom shower or tub | 0.75 |
 | 21 | buy garden tool storage | How to organize the garage garden tool storage | 0.75 |
 | 21 | stair stringer landing to landing | How to organize a stair landing, zone by zone | 0.75 |
@@ -167,7 +168,6 @@ Showing the top 60 of 1344.
 | 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
-| 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 
 ## By room
 

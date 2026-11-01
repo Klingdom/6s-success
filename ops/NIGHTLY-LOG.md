@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (00:0x slot): A50, "backyard" never appeared anywhere on the Patio or Deck room page
+
+**Did.** Checkout arrived shallow and detached; unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force (188 commits fast-forwarded). GitHub: 16 open issues, all `decision`/`blocked-on-art`, none newly commented by Phil. 0 open PRs. Inbox: no mail credentials, the standing gap. Ran a full `preflight.py --skip-tests` before touching anything: 0 FAIL through every gate reached, genuinely stalled at the documented `gate_etsy_pdfs_current` sandbox hang (confirmed flat CPU across 4+ minutes before killing), matching today's own standing precedent.
+
+**Mined the remaining 111 global gap rows for the next genuine cluster, per the 23:4x handoff.** Read the full sorted list, not just top ranks (CLAUDE.md 5c). Almost all of it is genuine off-topic noise already catalogued by prior cycles tonight (Revit handrail/railing CAD, a cribbage-tournament cluster, bench-press form, pasta/paneer cooking trouble, a "back porch" business-or-place-name cluster, vastu/interior-decor queries this product deliberately does not chase). One genuine miss: "backyard organisation" (au, rank 7, gap, scored to `/about.html` via tie-break on the single content word "backyard"). Checked the Patio or Deck room's own `intro` and its six zones' purposes in `content.json` before adding anything, and grep-confirmed the page carried no "backyard" wording at all. Added "backyard" alongside the existing "terrace" to the `Patio or Deck` entry in `room-also-called.json` (same file, same precedent, same one-query honesty bar).
+
+**Verified.** Reran `ops/build_zone_pages.py` (self-chained). `test_room_also_called.py` and `test_gate_also_called_is_heading.py` both pass. `ops/keyword_demand_global.py --rescore` moves the target query from `gap` to `covered` (heading_coverage 1.0, matched on heading, the real room page); global gap count 111 to 110. Cross-checked the US harvest's rescore (143 to 140 gap) row by row rather than trusting the aggregate delta: every affected row is a genuine Patio-or-Deck query now landing on a Patio-or-Deck page, not an overclaim. `check_urls.py` (219/219), `audit_pages.py` (224/0, 0 duplicates), `fix_dashes.py`/`fix_dialect.py --check` (0/0), `affiliate.py --check` (165 documents), `link_graph_report.py` (0 orphans), `check_sellable.py` (124/126 Stripe-matched, 2 known service SKUs), `build_id.py --check` (current), `ops/audit_visual.py` scoped to `site/rooms/patio-or-deck.html` (desktop and mobile, 0 findings each) all clean. Reran `preflight.py --skip-tests` after the change: 0 FAIL through every gate reached, stalled again at the same `gate_etsy_pdfs_current` sandbox limit, killed after confirming flat.
+
+**Went well:** cross-checking the US harvest's own affected rows one by one rather than trusting the aggregate gap-count delta as proof of a clean fix.
+
+**Did not go well:** nothing new; `BACKLOG-2026-09-07.md` remains over its own 150,000-byte tripwire, the same already-diagnosed "real content inside its own retention window" shape.
+
+**Changing next cycle:** none.
+
+**Next:** mine the remaining 110 global gap rows for the next genuine cluster, or act on any Phil reply to the 16 open decision/blocked-on-art issues.
+
+Pushed to main. `ops/room-also-called.json`, one rebuilt room page, rescore files, `BACKLOG-2026-09-07.md`, dashboard regen, this entry. No price or product touched; `IndexNow` to submit on push.
+
 ## PM check-in, 2026-10-31 (23:4x slot): previous work finished; handing the operator the same unblocked candidate, the gap lane is unchanged
 
 NEXT FOR THE OPERATOR: mine the remaining 111 global gap rows in `ops/keyword-demand-global.json` for the next genuine cluster, because it is the only unblocked, non-Phil-gated work left and it is what A48/A49 both found real clusters in.

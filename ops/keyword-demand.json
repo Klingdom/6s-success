@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 226,
+  "pages_checked": 227,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -865,13 +865,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "backyard"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/patio-or-deck.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "bag on the bed organizer",
@@ -1769,7 +1767,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -1805,8 +1803,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -1827,8 +1825,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -1849,8 +1847,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -1948,11 +1946,11 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -2262,7 +2260,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2617,7 +2615,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-store-blankets.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2761,7 +2759,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -2803,7 +2801,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2822,7 +2820,7 @@
       "best_page_title": "How to organize a junk drawer (and keep it that way)",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -2860,7 +2858,7 @@
       "best_page_title": "The Entryway Deck: the printable PDF has moved",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -3004,7 +3002,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -3713,11 +3711,11 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4879,7 +4877,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -4898,7 +4896,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -5595,15 +5593,15 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "declutter",
+        "complete",
         "houseplants"
       ]
     },
@@ -6019,8 +6017,8 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -6268,8 +6266,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -6308,16 +6306,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "checklist"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter bedroom checklist pdf",
@@ -6329,15 +6325,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.5,
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "checklist",
         "pdf"
       ]
     },
@@ -6353,16 +6348,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/everyday-things-out-of-reach.html",
-      "best_page_title": "Why is the thing you use every day the hardest one to reach?",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "day"
-      ]
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter checklist for bedroom",
@@ -6376,16 +6369,14 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "checklist"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter compact kitchen",
@@ -6480,8 +6471,8 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.25,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -6589,7 +6580,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -6629,7 +6620,7 @@
       "best_page_title": "How to organize the living room media center",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6776,13 +6767,11 @@
       "best_page": "/articles/how-long-does-it-take-to-organise-a-room.html",
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "checklist"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter rustic kitchen ideas",
@@ -6840,7 +6829,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -6940,8 +6929,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -6962,8 +6951,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -7028,11 +7017,11 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.4,
       "heading_coverage": 0.8,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "checklist"
+        "home"
       ]
     },
     {
@@ -7049,11 +7038,11 @@
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/what-is-6s.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bedroom"
+        "tidying"
       ]
     },
     {
@@ -7070,11 +7059,11 @@
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.25,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "checklist",
+        "home",
         "tutorial"
       ]
     },
@@ -7176,16 +7165,14 @@
         "how to declutter a entryway"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "decluttering"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "decluttering tips and tricks",
@@ -8497,7 +8484,7 @@
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -9034,7 +9021,7 @@
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -12392,12 +12379,11 @@
       "best_page": "/articles/decluttering-vs-organizing.html",
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "checklist",
         "fresh",
         "garden"
       ]
@@ -12756,7 +12742,7 @@
       "best_page_title": "How to organize the patio or deck grill station",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/patio-or-deck-deck.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -13934,7 +13920,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -14586,7 +14572,7 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -14837,7 +14823,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -14961,11 +14947,11 @@
         "how to organize a primary bedroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -15896,11 +15882,11 @@
         "how to organize dresser"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16001,7 +15987,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -16393,8 +16379,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -17319,12 +17305,12 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.5,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -17338,11 +17324,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-closet.html",
-      "best_page_title": "How to organize the guest bedroom closet",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17358,16 +17344,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.333,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "fast"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter a bedroom in one day",
@@ -17381,16 +17365,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/everyday-things-out-of-reach.html",
-      "best_page_title": "Why is the thing you use every day the hardest one to reach?",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bedroom"
-      ]
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter a bedroom in one day without",
@@ -17402,16 +17384,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/everyday-things-out-of-reach.html",
-      "best_page_title": "Why is the thing you use every day the hardest one to reach?",
-      "coverage": 0.4,
-      "heading_coverage": 0.8,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.8,
+      "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "bedroom"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter a bedroom step by step",
@@ -17424,16 +17404,14 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 1.0,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to declutter a child's bedroom",
@@ -17445,11 +17423,11 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17468,7 +17446,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17483,11 +17461,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17612,8 +17590,8 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
@@ -17714,16 +17692,15 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/everyday-things-out-of-reach.html",
-      "best_page_title": "Why is the thing you use every day the hardest one to reach?",
-      "coverage": 0.25,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
-      "matched_on": "heading",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.75,
+      "heading_coverage": 0.75,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
-        "apartment",
-        "one"
+        "apartment"
       ]
     },
     {
@@ -17748,7 +17725,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17763,8 +17740,8 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -17786,9 +17763,9 @@
         "how to declutter a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
       "matched_on": "heading",
@@ -17826,8 +17803,8 @@
         "how to declutter a entryway"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
@@ -17848,8 +17825,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -17867,8 +17844,8 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -17907,8 +17884,8 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -17926,11 +17903,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-closet.html",
-      "best_page_title": "How to organize the guest bedroom closet",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17945,11 +17922,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -17989,8 +17966,8 @@
         "how to declutter a primary bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/index.html",
@@ -18053,8 +18030,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -18072,8 +18049,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -18111,8 +18088,8 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
@@ -18150,8 +18127,8 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -18171,8 +18148,8 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -18279,8 +18256,8 @@
         "how to declutter a guest bedroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -18319,8 +18296,8 @@
         "how to declutter a laundry room"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
@@ -18339,8 +18316,8 @@
         "how to declutter a primary bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/articles/index.html",
@@ -18361,8 +18338,8 @@
         "how to declutter a entryway"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -18402,8 +18379,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-paperwork.html",
-      "best_page_title": "How to organize paperwork at home with a simple filing system",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
@@ -18422,8 +18399,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
       "heading_page": "/articles/decluttering-vs-organizing.html",
@@ -18454,7 +18431,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18492,11 +18469,11 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/zones/guest-bedroom-the-guest-closet.html",
-      "best_page_title": "How to organize the guest bedroom closet",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18511,11 +18488,11 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-toys.html",
-      "best_page_title": "How to organize toys so a child can put them away",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18530,11 +18507,11 @@
         "how to declutter a hall closet"
       ],
       "room": "",
-      "best_page": "/articles/how-to-organize-a-linen-closet.html",
-      "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -18608,16 +18585,14 @@
         "how to declutter a guest bedroom"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
-      "coverage": 0.5,
-      "heading_coverage": 0.75,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.75,
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to decorate a guest bathroom",
@@ -19315,7 +19290,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.25,
       "heading_coverage": 0.25,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -19953,7 +19928,7 @@
       "best_page_title": "How to organize the kitchen stove area",
       "coverage": 0.25,
       "heading_coverage": 0.25,
-      "heading_page": "/dining-room-deck.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -20788,11 +20763,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -20888,7 +20863,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -21218,11 +21193,11 @@
         "how to organize a mudroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -21241,7 +21216,7 @@
       "best_page_title": "How to organize the guest bedroom closet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -21256,8 +21231,8 @@
         "how to organize a mudroom"
       ],
       "room": "",
-      "best_page": "/articles/where-to-start-decluttering.html",
-      "best_page_title": "Where to start decluttering when it all feels like too much",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/how-to-organize-a-basement.html",
@@ -21356,11 +21331,11 @@
         "how to declutter a kids bedroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -21424,7 +21399,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -21461,8 +21436,8 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -24502,8 +24477,8 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -24996,11 +24971,11 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -25017,8 +24992,8 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -25246,11 +25221,11 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "very"
+        "garage"
       ]
     },
     {
@@ -25562,7 +25537,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -25616,8 +25591,8 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/deck-gallery-mudroom.html",
-      "best_page_title": "Every card in the Mudroom deck",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/stair-landing-deck.html",
@@ -26488,8 +26463,8 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.667,
       "heading_coverage": 1.0,
       "heading_page": "/zones/guest-bathroom-the-shower-or-tub.html",
@@ -26879,11 +26854,11 @@
         "how to organize bench"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -26904,7 +26879,7 @@
       "best_page_title": "How to organize the guest bedroom closet",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -26923,7 +26898,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -26939,11 +26914,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/articles/why-you-cant-see-your-own-clutter.html",
-      "best_page_title": "Why can't you see the clutter in your own house anymore?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -26962,7 +26937,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -26977,11 +26952,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -26998,11 +26973,11 @@
         "how to organize bed"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28354,7 +28329,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -28373,7 +28348,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28394,7 +28369,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28415,7 +28390,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -28434,7 +28409,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28456,7 +28431,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -28475,7 +28450,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -28496,7 +28471,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -28534,7 +28509,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28555,7 +28530,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28576,7 +28551,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28616,7 +28591,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28637,7 +28612,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28719,7 +28694,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -28780,7 +28755,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -28903,7 +28878,7 @@
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -28999,13 +28974,11 @@
       "best_page": "/zones/entryway-the-coats-and-outerwear.html",
       "best_page_title": "How to organize the entryway coats and outerwear",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/why-mail-piles-up-by-the-door.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "jackets"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/entryway-the-coats-and-outerwear.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize comforters and sheets",
@@ -29137,8 +29110,8 @@
         "how to organize craft area"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
@@ -29563,7 +29536,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29684,7 +29657,7 @@
       "best_page_title": "How to organize the home office desk drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29703,7 +29676,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29722,7 +29695,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29760,7 +29733,7 @@
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29780,7 +29753,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -29818,7 +29791,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29837,7 +29810,7 @@
       "best_page_title": "How to organize the kids bedroom dresser drawers",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29877,7 +29850,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29917,7 +29890,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -29939,7 +29912,7 @@
       "best_page_title": "How to organize the primary bedroom dresser top",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -32924,8 +32897,8 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -33145,7 +33118,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -33207,11 +33180,11 @@
         "how to organize steps"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33995,7 +33968,7 @@
       "best_page_title": "How to organize the guest bedroom bed and linens",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -34282,11 +34255,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -34304,12 +34277,12 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/disclaimer.html",
-      "best_page_title": "Safety notice: read before any cleaning or organizing step",
-      "coverage": 0.667,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/zones/guest-bedroom-the-guest-bed-and-linens.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
     },
@@ -34465,7 +34438,7 @@
       "best_page_title": "How to organize the guest bedroom dresser",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -35702,7 +35675,7 @@
       "best_page_title": "Where to start decluttering when it all feels like too much",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -35722,7 +35695,7 @@
       "best_page_title": "Where to start decluttering when it all feels like too much",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -35758,11 +35731,11 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -36684,11 +36657,11 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "very"
+        "tidy"
       ]
     },
     {
@@ -36946,8 +36919,8 @@
         "how to declutter a nursery"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/index.html",
@@ -37147,7 +37120,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37560,11 +37533,11 @@
         "how to organize bed and bedding"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37804,7 +37777,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37861,7 +37834,7 @@
       "best_page_title": "How to organize baby clothes by size, without drowning in them",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-basement.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -37936,11 +37909,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -37962,7 +37935,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -41283,8 +41256,8 @@
         "primary bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -41304,8 +41277,8 @@
         "primary bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/downloads/6S-Standards-Pack.html",
@@ -42232,12 +42205,11 @@
       "best_page": "/articles/decluttering-vs-organizing.html",
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.25,
-      "heading_coverage": 0.25,
-      "heading_page": "/articles/decluttering-vs-organizing.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "checklist",
         "garden",
         "modern"
       ]
@@ -43443,12 +43415,12 @@
         "how to organize railing and surface"
       ],
       "room": "",
-      "best_page": "/articles/everyday-things-out-of-reach.html",
-      "best_page_title": "Why is the thing you use every day the hardest one to reach?",
-      "coverage": 0.333,
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
+      "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/tidy-is-not-the-same-as-safe.html",
-      "matched_on": "heading",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
+      "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
         "railing"
@@ -43565,11 +43537,11 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -43626,11 +43598,11 @@
         "primary bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43666,11 +43638,11 @@
         "how to organize a mudroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -44567,8 +44539,8 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -45356,8 +45328,8 @@
         "how to organize a kids bedroom"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -45806,11 +45778,11 @@
       "best_page_title": "Decluttering vs. organizing: what's actually different",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/where-to-start-decluttering.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "bedroom"
+        "tips"
       ]
     },
     {
@@ -45868,11 +45840,11 @@
         "how to organize a primary bedroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -45892,11 +45864,11 @@
         "how to organize a guest bedroom"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -47768,13 +47740,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "backyard"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/rooms/patio-or-deck.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "patio deck ideas on a budget",
@@ -47811,12 +47781,11 @@
       "best_page": "/patio-or-deck-deck.html",
       "best_page_title": "The Patio or Deck Deck: 68 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/rooms/patio-or-deck.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "backyard",
         "decks"
       ]
     },
@@ -47974,11 +47943,11 @@
         "why is my kids bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/index.html",
-      "best_page_title": "Articles: why homes get messy, and where to start",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -48999,7 +48968,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -49066,7 +49035,7 @@
       "best_page_title": "How long does it actually take to organize a room?",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -49746,8 +49715,8 @@
         "kids bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/zone-too-small-for-what-it-holds.html",
-      "best_page_title": "Small space organizing: why doesn't anything fit?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -50802,8 +50771,8 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -50821,8 +50790,8 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -50840,8 +50809,8 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.75,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -50861,8 +50830,8 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -50882,8 +50851,8 @@
         "guest bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/more-storage-wont-fix-clutter.html",
@@ -51080,8 +51049,8 @@
         "how to declutter a stair landing"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.25,
       "heading_coverage": 0.5,
       "heading_page": "/articles/how-to-organize-toys.html",
@@ -52448,7 +52417,7 @@
       "best_page_title": "Venture plan",
       "coverage": 0.333,
       "heading_coverage": 0.333,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "gap",
       "unmatched_words": [
@@ -52728,7 +52697,7 @@
       "best_page_title": "Why everything needs an assigned home",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -52811,8 +52780,8 @@
         "how to declutter a workshop"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -52871,8 +52840,8 @@
         "how to declutter a pantry"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -52890,8 +52859,8 @@
         "how to declutter a guest bathroom"
       ],
       "room": "",
-      "best_page": "/articles/sentimental-items-without-guilt.html",
-      "best_page_title": "How to declutter sentimental items without the guilt",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/where-to-start-decluttering.html",
@@ -54563,7 +54532,7 @@
       "best_page_title": "How to organize the living room walkway",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-an-attic.html",
+      "heading_page": "/rooms/patio-or-deck.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -55118,11 +55087,11 @@
         "primary bedroom organization ideas"
       ],
       "room": "",
-      "best_page": "/articles/why-you-have-to-dig-for-what-you-need.html",
-      "best_page_title": "Why do you have to move three things to get the one you need?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/primary-bedroom-deck.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -55778,7 +55747,7 @@
       "best_page_title": "Articles: why homes get messy, and where to start",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -56049,16 +56018,14 @@
         "why is my guest bedroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-a-shared-zone-never-stays-reset.html",
-      "best_page_title": "Why does a shared zone never stay reset?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-a-junk-drawer.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "bedroom"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "why is a deck better than a patio",
@@ -56113,8 +56080,8 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 1.0,
       "heading_page": "/articles/why-is-my-house-always-messy.html",
@@ -56132,11 +56099,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -56158,7 +56125,7 @@
       "best_page_title": "Why is my house always messy?",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -56173,11 +56140,11 @@
         "why is my mudroom always messy"
       ],
       "room": "",
-      "best_page": "/articles/why-is-my-house-always-messy.html",
-      "best_page_title": "Why is my house always messy?",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/why-is-my-house-always-messy.html",
+      "heading_page": "/articles/index.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -56195,11 +56162,11 @@
         "why is my guest bedroom always messy"
       ],
       "room": "",
-      "best_page": "/guest-bedroom-deck.html",
-      "best_page_title": "The Guest Bedroom Deck: 57 cards, free to read",
+      "best_page": "/articles/how-to-declutter-a-bedroom.html",
+      "best_page_title": "How to declutter a bedroom in one day, step by step",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -56260,7 +56227,7 @@
       "best_page_title": "How to organize a linen closet: sheets, towels and shelves",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/articles/how-to-organize-a-linen-closet.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -56905,7 +56872,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -56926,7 +56893,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/index.html",
+      "heading_page": "/articles/how-to-declutter-a-bedroom.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -57492,6 +57459,6 @@
       ]
     }
   ],
-  "scored_at": "2026-10-31T21:58:46Z",
-  "scored_against_commit": "8e67a8073"
+  "scored_at": "2026-10-31T23:57:50Z",
+  "scored_against_commit": "03ce13558"
 }
