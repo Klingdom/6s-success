@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (~13:5x slot): full independent re-verification, the handoff lane mined and found genuinely exhausted, no fabricated fix shipped
+
+Fresh checkout, no memory of prior runs. Unshallowed and attached clean onto `01cd77c41`, merging twice across the cycle as concurrent PM cycles pushed (`fac650eb1`, `2e41be721`), no reset or force.
+
+**Re-verified rather than cited.** Full `python ops/preflight.py --skip-tests` run to completion in the background (my own first attempt wrapped it in an unnecessary 100s `timeout` and got it killed; re-ran without that): every gate passed, 37 warnings, all the standing sandbox kind (no Stripe/SSH/mail credential, analytics unreachable, local render caches empty). `cold_read_ledger.py --stale` 0, `--next` 299 of 299, 0 un-ledgered. `check_sellable.py` 124/126 Stripe-matched (2 known service SKUs). `affiliate.py --check` clean, 165 documents. `inbox_agent.py --apply`: no mail credential, unchecked, not assumed empty. GitHub via the MCP tool: 16 open issues, same set as every recent cycle, all `decision`/`P0`/`blocked-on-art`, none with a reply from Phil since 2026-10-31T21:00:15Z; `checks.yml` run 2766 (the 13:1x PM cycle) completed `success`.
+
+**Took the 13:4x PM check-in's own handoff rather than inventing a different workstream:** mine the global keyword gap tier (108 rows, confirmed unchanged) for the next genuine on-topic cluster. Read the gap rows directly, sorted by rank, rather than trust the row count. Found the lane is substantially exhausted of safe candidates, not just thin: ranks 1-15 across all 108 rows are dominated by off-topic noise unrelated to household organizing (Revit stair-railing CAD questions, a cribbage tournament, daycare/kindergarten organization, bench-press form, paneer and pasta cooking questions, Vastu bedroom direction, a UK "dropped kerb"). The one cluster that looked promising, "back porch organisation/organization" and its many variants (careers, band members, Burlington, Edmonton, promotions, "the porch australia"), is Google autocomplete noise around an actual venue/business named "Back Porch," not a household query; the one honestly on-topic member of that cluster, "back porch organization ideas," already scores `partial` against the Patio or Deck page. Checked the other lead, "larder organization chart" / "draw a larder organization chart" (scored to `/pantry-deck.html`/`/rooms/pantry.html`), against the real rendered page before touching anything: `site/rooms/pantry.html` line 188 already carries "Also called the larder" (and `site/rooms/entryway.html` line 204 already carries "Also called the foyer or the entrance hall"), both pre-existing `room-also-called.json` entries this operator had not rendered as applied yet. The query's remaining gap is the word "chart," which this site has no honest heading for (it does not offer a diagram-drawing tool); shipping a forced match here would repeat exactly the "dinnerware" lesson A32 already recorded, a claim nobody searching for it actually makes.
+
+**Shipped nothing rather than force a weak match.** No price, product or page touched; no new gate needed, since nothing this cycle checked surfaced a new defect class, only confirmed the standing clean state and the handoff lane's current limits.
+
+**Went well:** reading all 108 gap rows directly instead of trusting the last handoff's "108 rows left" as still meaning untapped opportunity; it does not.
+
+**Did not go well:** wasted one preflight run by wrapping it in my own short `timeout`, the exact mistake a recent entry already named and that I should have remembered from reading it.
+
+**Changing next cycle:** the keyword-gap lane should not be treated as the standing "next unblocked work" without first checking whether the top ranks are noise, the way this cycle did; worth noting in the next handoff rather than repeating "108 rows, mine it" unchanged.
+
+**Next:** same standing Phil-gated queue (16 issues); nothing new unblocked. Issue #42's cadence question is unchanged; last deliberate push notification on that topic was 2026-10-31T04:10:00Z with an explicit no-repeat-before of 2026-11-02T04:00Z, which has not passed and nothing material changed, so none sent this cycle.
+
+Pushed to main: this log entry, command deck regen. No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-01 (13:4x slot): previous work finished and verified, same exhausted Phil-gated queue, one self-inflicted non-result reported plainly
 
 NEXT FOR THE OPERATOR: keep mining the global keyword gap tier (108 rows left, confirmed unchanged) for the next genuine on-topic cluster, because that is the only non-Phil-gated, non-measurement-blocked lane open right now under the ordering rule.
