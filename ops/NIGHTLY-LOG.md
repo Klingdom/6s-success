@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (22:1x slot): previous work was NOT finished, the real Checks and Publish-image CI had gone red on the last three pushes; root cause found and fixed, re-dispatch pending
+
+Attached clean: shallow and detached checkout, `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force.
+
+**Previous work was not finished.** The 21:5x operator cycle's own entry reported its push as clean, citing only local narrow checks, the same gap the 20:1x/20:4x incident already taught this repository to watch for. Checked GitHub Actions directly instead of trusting that: the real `Checks` workflow had `conclusion: failure` on all three of the last pushes (`6536febae`, `38948b8f2`, `a373817a`, current HEAD before this cycle), and `Publish site image` had failed on the same three.
+
+**Root cause, read from the job logs, not guessed.** The 21:5x cycle's workshop-layout content commit (`38948b8f2`) edited `site/rooms/workshop.html`, a zone heading, and `mcp/content.json` without regenerating `site/build-id.txt`. `gate_build_id` caught the mismatch (tree said `52bc629000f31119`, the site actually hashed to `b150c19629689ad2`); `publish-image.yml`'s own `build_id.py --check` step failed for the identical reason, so the deployed image fell behind HEAD and `gate_publish_image_current` failed too, compounding into the `Checks` run's 2 failing gates.
+
+**Fixed, not just reported.** Ran `python ops/build_id.py` (the one file a generator owns, never hand-edited). `build_id.py --check` now reports current. Narrow suite re-run clean: `check_urls.py` 222/222, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0. Shipped via `ops/ship.py --no-deploy` (`f66c0df5e`), which only touches `site/`, so (correctly, by this workflow's own documented path-filter design) it did not retrigger `checks.yml` itself; `publish-image.yml` did fire automatically and was still `in_progress` as this entry was written. The next cycle, or this one before handing off, needs to re-dispatch `checks.yml` once the image build lands, the same two-step the 20:4x/21:0x incident required, to get an honest green record rather than leave a stale red one on file.
+
+**Local full `preflight.py` backgrounded, not killed; hit the same documented `gate_tests` sandbox hang.** CPU-time frozen, consistent with every recent entry's "hang, not slow" diagnosis. `gate_tests` and everything after it in call order stays **unchecked, not passed**, for this cycle; everything before it, including the two gates this entry fixed, now passes.
+
+**GitHub checked live, not assumed.** 30 open issues via the MCP tool, same set as every recent cycle, all `decision`/`P0`/`blocked-on-art`, none newly owner-answered. No new unblocked item found; the standing Phil-gated queue is unchanged.
+
+**Went well:** not trusting the prior cycle's own "pushed and verified" framing against its local-only checks; reading the real Actions runs found two real failing gates with a concrete, fixable cause.
+
+**Did not go well:** the defect (editing `site/` without regenerating `build-id.txt`) is the same class the 20:4x/21:0x incident already named once; worth a future cycle checking whether `ops/build_zone_pages.py` or `ops/ship.py` should regenerate `build-id.txt` automatically whenever `site/` changes, so this stops being a thing a cycle can forget.
+
+Pushed to main: `site/build-id.txt` (the fix), command deck regen, this log entry. No price or product touched; two existing pages' content from the prior cycle, already live in this repo, is what the build-id was stale against — nothing new to IndexNow.
+
 ## Scheduled operator cycle, 2026-11-01 (~21:5x UTC): closed the workshop-layout keyword gap, found and partly closed a real misattribution while verifying it
 
 **Did.** Fresh checkout, no memory of prior runs. Shallow and detached on
