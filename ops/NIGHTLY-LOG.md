@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (05:4x slot): found one new, genuinely unblocked item by checking every rotation tool directly rather than trusting the standing exhausted-state citation, fixed and verified
+
+**Did.** Fresh checkout, shallow and detached on arrival, unshallowed for real, `checkout main`, `merge --ff-only` onto `origin/main` (236 commits fast-forwarded), no reset or force.
+
+**Verified rather than cited, three ways.** (1) GitHub re-pulled live, not assumed: 16 open issues, same set as every recent cycle, all `decision`/`blocked-on-art`/P0. Read issue #42's full comment thread directly rather than trust a prior summary: every comment is a prior agent cycle's own self-update, nothing from Phil since 2026-10-25. (2) Re-read `ops/keyword-demand.json`'s 139 `gap` rows by hand rather than cite the 2026-10-31 finding: all 120 no-room gaps are seed-collision noise (e.g. "how to host a cribbage tournament" matching the seed "how to organize crib", "organize hard drive files" matching "how to organize hardware storage"), none a real synonym gap. Confirms the content/SEO lane is genuinely dry, independently. (3) Ran all 11 rotation scripts with `--check` rather than trust the standing "all clean" claim: 10 reported CLEAN, but **`rotate_status_metadata.py` reported DUE** (6 entries in `STATUS.md` section 1, 5 older than the chain's own latest date) — new, not caught by any prior cycle's log entry.
+
+**Fixed.** `python ops/rotate_status_metadata.py --apply`: moved 5 stale entries (3,063 bytes) to `STATUS-ARCHIVE.md`, leaving the one current entry live. Re-ran the gate directly against the real file (`gate_status_metadata_not_oversized()`, clean) and both of its own test files (`test_rotate_status_metadata.py`, `test_gate_status_metadata_not_oversized.py`, 7/7 each). `fix_dashes.py --check` on both changed files: 0/0.
+
+**Full `preflight.py --skip-tests` run live, backgrounded, not piped through `tail`.** 0 real FAIL through every gate reached (etsy_listing_valid, kdp_listing_valid, all the `gate_tests`-adjacent relocated gates, all clean); stalled at the documented `gate_etsy_pdfs_current` headless-Chromium sandbox limit, same shape as every recent cycle. Killed cleanly after 275s rather than left to hang further; confirmed the pid was dead and removed the resulting `/tmp/.preflight_py_running.lock` directory myself rather than leave it for the next run's stale-timeout wait (the lock's own pid-reuse check would have caught it too, but no reason to make the next cycle pay the wait).
+
+**Not done.** `gate_etsy_pdfs_current` itself stayed unchecked this cycle, consistent with, not new evidence beyond, the standing sandbox limitation. No price, product or site page touched; not customer-facing, `IndexNow` not applicable.
+
+**Went well:** checking every rotation tool directly instead of trusting "all clean" found a real item none of today's many prior cycles had caught. **Did not go well:** nothing new; standing sandbox gaps (no Stripe/mail credential, headless Chromium) unchanged. **Changing next cycle:** none; this is already the practice to keep (verify each tool, not the summary of it).
+
+**Next:** same 16 Phil-gated issues, no reply. Not notifying Phil further on the cadence/decision topic (issue #42's own no-repeat date has not arrived and nothing material changed there); a separate, smaller push went out this cycle narrating the STATUS.md fix in case it was useful context, in hindsight a borderline call given this is nowhere near P0.
+
+Pushed to main: this entry, the STATUS.md/STATUS-ARCHIVE.md rotation, dashboard regen, cycle-signal checkpoint.
+
 ## PM check-in, 2026-11-01 (05:4x slot): previous work finished and verified, same exhausted state reconfirmed, no new unblocked work
 
 NEXT FOR THE OPERATOR: hold the line, same standing Phil-gated queue, because all 16 open GitHub issues are decision/P0/blocked-on-art and nothing material has moved since the 05:1x snapshot.
