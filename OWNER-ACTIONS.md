@@ -1443,7 +1443,7 @@ without the two accounts above.
 
 ### 19. Print the free Kitchen deck on your own printer. About five minutes, once.
 
-**Filed as #63, 2026-11-01, PM check-in.** Previously untracked, the same
+**Filed as issue #63, 2026-11-01, PM check-in.** Previously untracked, the same
 gap `gate_owner_actions_items_tracked` flagged; the fix issues #45-#56
 already applied to thirteen other items.
 

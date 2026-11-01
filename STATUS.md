@@ -82,9 +82,7 @@ stays in `ops/NIGHTLY-LOG.md`; nothing here was still actually open.
 
 **Latest, 2026-11-01 (15:1x UTC), owner-invoked CEO cycle: DEPLOYED. Production serves `a27adff83fd70ec2`, identical to the repository; 0 commits undeployed, 126 live payment links, 0 dead. Six new guides now live. See BLOCKER-001's newest entry.**
 
-**Latest, 2026-10-31, owner-invoked CEO cycle: `/articles/how-to-declutter-a-bedroom` pushed (`5eaabc827`, BACKLOG section 67). NOT deployed; see BLOCKER-001's newest entry for the gap and the exact remaining blocker (auto-mode classifier, not a missing key).**
-
-**Older entries (118 of them, 2026-08 to 2026-10-31) live in `STATUS-ARCHIVE.md`.** Rotated 2026-11-01 by `ops/rotate_status_metadata.py --apply`: kept live only the entry (or entries, where more than one shares the same most recent date) carrying 2026-10-31, the actual most recent date found in the chain, not simply whichever entry happened to sit physically first (the chain had drifted out of newest-first order); 5 more entries moved to the archive. Nothing is deleted, and the gates that scan this file for stale claims (`gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`) scan the archive too, so an archived claim is no less checked than a current one.
+**Older entries (119 of them, 2026-08 to 2026-11-01) live in `STATUS-ARCHIVE.md`.** Rotated 2026-11-01 by `ops/rotate_status_metadata.py --apply`: kept live only the entry (or entries, where more than one shares the same most recent date) carrying 2026-11-01, the actual most recent date found in the chain, not simply whichever entry happened to sit physically first (the chain had drifted out of newest-first order); 1 more entries moved to the archive. Nothing is deleted, and the gates that scan this file for stale claims (`gate_no_stale_session_label`, `gate_no_stale_checkout_count`, `gate_no_stale_listmonk_blocker`, `gate_corporate_buy_path_current`, `gate_critical_risks_escalated`) scan the archive too, so an archived claim is no less checked than a current one.
 
 # 2. Executive Snapshot
 
