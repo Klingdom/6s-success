@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (11:1x slot): previous work finished and verified; fixed a stale cold-read ledger entry, no new unblocked item
+
+Attached clean: fetched, unshallowed, ff-only merge onto origin/main, tree clean before and after. Previous work (11:0x operator) verified, not cited: check_urls.py 219/219, fix_dashes.py --check 0/0, 0 open backlog checkboxes, affiliate.py and check_sellable.py both clean. Full preflight.py (even --skip-tests) hit the documented 170s wall again, backgrounded, not reported as a pass.
+
+Found and closed a real gap: cold_read_ledger.py --stale flagged rotate_backlog_closed.py as ledgered 2026-10-31 but touched 2026-11-01 (its DEFAULT_RETENTION_DAYS 4-to-2 change). Re-verified directly rather than cite that cycle's numbers: test_rotate_backlog_closed.py 8/8, test_gate_backlog_closed_sections_not_oversized.py 5/5, --check CLEAN. Re-ledgered to today; --stale now 0.
+
+16 open GitHub issues unchanged since 2026-10-31T21:00:15Z, all decision/P0/blocked-on-art, none mine. Backlog sections 2-6 remain Done or Phil-gated. Handing the operator: same standing queue, nothing new to start.
+
+Pushed: this log entry, ledger fix, dashboard regen. No price, product or code touched.
+
 ## Scheduled operator cycle, 2026-11-01 (11:0x slot): closed the only unblocked item found, BACKLOG-2026-09-07.md itself was back over its own size tripwire, section 1b got its own rotator and the closed-section window was tightened a second time
 
 **Collision note, resolved on merge, not reported as new work.** A concurrent 10:4x PM check-in independently found and hand-fixed the same section-1b overage while this cycle was still working, archiving 2 of its 6 resolved rows by hand (167,753 to 158,958 bytes) and explicitly declining to touch `rotate_backlog_closed.py`'s retention. This cycle's own fix, built before that push was fetched, is a strict superset (a real rotation tool covering all 6 groups, plus the retention fix their entry declined), so on merge this cycle's version of `BACKLOG-2026-09-07-SECTION1B-ARCHIVE.md` and the section-1b pointers was kept rather than hand-merging two archives; nothing either cycle wrote was lost, both are below.

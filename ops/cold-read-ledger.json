@@ -1138,8 +1138,8 @@
     },
     "rotate_backlog_closed.py": {
       "status": "fixed",
-      "date": "2026-10-31",
-      "note": "Lowered DEFAULT_RETENTION_DAYS 14 to 4 to clear gate_living_docs_total_size_tripwire"
+      "date": "2026-11-01",
+      "note": "Scheduled operator cycle 11:0x lowered DEFAULT_RETENTION_DAYS 4 to 2 to clear gate_living_docs_total_size_tripwire again (closure rate climbed to 16 sections in 4 days); re-verified directly this cycle, not cited: test_rotate_backlog_closed.py 8/8, test_gate_backlog_closed_sections_not_oversized.py 5/5 both pass against the lowered default, rotate_backlog_closed.py --check reports CLEAN against the live file."
     },
     "rotate_backlog_done_items.py": {
       "status": "clean",
