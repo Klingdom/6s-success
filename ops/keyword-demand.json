@@ -14426,15 +14426,14 @@
       "best_page": "/home-office-deck.html",
       "best_page_title": "The Home Office Deck: 66 cards, free to read",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/home-office-deck.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/rooms/home-office.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
         "creating",
         "productive",
-        "tips",
-        "workspace"
+        "tips"
       ]
     },
     {
@@ -16255,12 +16254,11 @@
       "best_page": "/about.html",
       "best_page_title": "About 6S Success: a factory discipline, rebuilt for real homes",
       "coverage": 0.0,
-      "heading_coverage": 0.0,
-      "heading_page": "/about.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.5,
+      "heading_page": "/zones/nursery-the-crib-and-sleep-zone.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "cribs",
         "twin"
       ]
     },
@@ -57456,6 +57454,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-01T00:51:01Z",
-  "scored_against_commit": "b90efa242"
+  "scored_at": "2026-11-01T15:54:41Z",
+  "scored_against_commit": "8fe8afda6"
 }

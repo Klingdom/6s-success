@@ -10,6 +10,14 @@
    "queries": 16,
    "covered": 0
   },
+  "Home Office": {
+   "names": [
+    "workspace"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-01 (ca): 'home office organization tips for creating a productive workspace', rank 12, gap, 0.333 coverage, scored to /home-office-deck.html. 'Workspace' is the plain household word for this room; the page carried no 'workspace' wording anywhere (grep-confirmed) before this entry. 'Creating', 'productive' and 'tips' stay unmatched: generic listicle filler, not facts this product states about the room, the same discipline 'plan'/'design' were held to in the Room layout tips."
+  },
   "Primary Bathroom": {
    "names": [
     "master bathroom"

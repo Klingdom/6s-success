@@ -28,6 +28,14 @@
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-31 (au): 'how to organise nappy change table', rank 12, gap, 0.333 coverage, scored to /zones/dining-room-the-dining-table.html via a coincidental word match on 'table', not a real one. The zone's own purpose ('A pad you can work at with one hand staying on your baby the entire time') and the AU/UK term 'nappy change table' for a baby-changing station confirm the semantic match; distinct from the already-covered 'Diaper and Care Backstock' zone below, which is the reserve/backstock, not the station itself. Named 'nappy change table', the exact phrase searched, since nobody else calls this zone that and the also-called heading reads as an honest zone-name synonym."
   },
+  "Nursery|Crib and Sleep Zone": {
+   "names": [
+    "cribs zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-01 (ca): 'how to arrange twin cribs', rank 10, gap, 0.0 coverage, scored to /about.html via tie-break. The same exact-word-not-stem gap A34/A36 already fixed once each for 'nappy'/'nappies' and 'craft'/'crafts': this zone's own title word is 'Crib' (singular), so the scorer never matched the query's plural 'cribs'. Checked the zone's own purpose ('The one surface in the house where your baby is left alone, which is why it holds a fitted sheet and nothing more') before adding; a household with twins still has this same one zone, repeated, not a different zone. Named 'cribs zone', the '<word> zone' precedent from the A-series, not the bare plural alone. 'Twin' stays unmatched: nothing in this zone's real content is specific to multiples, so no honest heading claims it."
+  },
   "Primary Bathroom|Vanity Drawers": {
    "names": [
     "makeup vanity"
@@ -66,11 +74,12 @@
   },
   "Garage|Bulk and Overhead Storage": {
    "names": [
-    "camping zone"
+    "camping zone",
+    "storeroom zone"
    ],
-   "queries": 2,
+   "queries": 3,
    "covered": 0,
-   "source": "ops/keyword-demand-global.json 2026-11-01 (au): 'how to organise camping', rank 11, gap, 0.0 coverage, and 'how to organize camp' (in), rank 14, gap, 0.0 coverage, both scored to /about.html via tie-break, seeded from 'how to organise outdoor storage'. Checked the zone's own content in content.json before adding: this zone's own 'variants' array names 'Genuinely seasonal storage, such as decorations or camping' by that exact word already, and its purpose ('Holds the things you genuinely need once or twice a year, high up and out of the way') is exactly what seasonal camping gear is. Named 'camping zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38/'garden shed zone'/'cake decorating zone'), not the bare word 'camping' alone, which would overclaim the zone exists only for that one activity rather than bulk seasonal storage generally."
+   "source": "ops/keyword-demand-global.json 2026-11-01 (au): 'how to organise camping', rank 11, gap, 0.0 coverage, and 'how to organize camp' (in), rank 14, gap, 0.0 coverage, both scored to /about.html via tie-break, seeded from 'how to organise outdoor storage'. Checked the zone's own content in content.json before adding: this zone's own 'variants' array names 'Genuinely seasonal storage, such as decorations or camping' by that exact word already, and its purpose ('Holds the things you genuinely need once or twice a year, high up and out of the way') is exactly what seasonal camping gear is. Named 'camping zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38/'garden shed zone'/'cake decorating zone'), not the bare word 'camping' alone, which would overclaim the zone exists only for that one activity rather than bulk seasonal storage generally. Added 2026-11-01, scheduled operator: 'how to organise a storeroom' (rank 13, gap, 0.0, /about.html, tie-break) is a general household storage room, exactly this zone's own purpose read generically rather than seasonally; named 'storeroom zone', same precedent."
   },
   "Pantry|Snack and Lunch Zone": {
    "names": [

@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-01T00:51:01Z against 227 page(s) at commit b90efa242. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-01T15:54:41Z against 227 page(s) at commit 8fe8afda6. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 227 published page titles: 1336 covered, 1333 partial, 139 gap.
+**Queries found:** 2808. Checked against 227 published page titles: 1336 covered, 1335 partial, 137 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 139, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 137, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -94,17 +94,17 @@ Showing the top 80 of 139, ordered by the best rank the phrase reached in any on
 | 10 | metal stairs and landing | - | How to organize a stair landing, zone by zone (0.33) | metal, stairs |
 | 11 | best way to organize games on desktop | - | How to organize a junk drawer (and keep it that way) (0.33) | desktop, games |
 | 11 | foyer design ideas for flat indian style | - | What does a 5S engagement cost, and why no flat rate? (0.20) | flat, indian, style |
-| 11 | how to arrange twin cribs | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | cribs, twin |
 | 11 | how to decorate a living room with high ceilings | Living Room | The Living Room Deck: 69 cards, free to read (0.40) | ceilings, decorate, high |
 | 11 | how to operate a gas stove | - | How to organize the kitchen stove area (0.33) | gas, operate |
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
 | 11 | organizing ideas for bedrooms | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | bedrooms |
+| 11 | simple guest bathroom decorating ideas pictures | Guest Bathroom | The Guest Bathroom Deck: 60 cards, free to read (0.40) | decorating, pictures, simple |
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1333.
+Showing the top 60 of 1335.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -180,7 +180,7 @@ Showing the top 60 of 1333.
 | Guest Bathroom | 22 | 2 | 14 | 6 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
-| Home Office | 58 | 1 | 24 | 33 |
+| Home Office | 58 | 0 | 25 | 33 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |
 | Kitchen | 95 | 2 | 48 | 45 |
 | Laundry Room | 71 | 0 | 17 | 54 |
