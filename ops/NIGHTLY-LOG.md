@@ -2,6 +2,28 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (21:4x slot): previous work was genuinely finished; no new unblocked item anywhere; gate_tests hung again, reported unchecked not passed
+
+NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line rather than inventing work, because all 30 open GitHub issues are `decision`/`P0`/`blocked-on-art` and Phil-gated, the cold-read ledger is fully exhausted (300/300 files, 0 stale, 0 un-ledgered candidates), and `BACKLOG-2026-09-07.md` sections 2-6 are fully archived/Done/Hold/Phil-gated.
+
+Attached clean: shallow and detached checkout, `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree clean before and after; re-fetched at the end too and `main` stayed in sync with `origin/main` the whole slot, no collision with the twin or the operator.
+
+**Previous work (the 21:1x PM cycle and its two same-slot addenda) was genuinely finished, not cited.** Re-verified directly: `check_urls.py` 222/222, `audit_pages.py` 227 pages/0 duplicate findings, `fix_dashes.py --check` 0/0, `rotate_status_metadata.py --check` CLEAN. The 21:0x addendum's claim that Checks run `41348698433` finished green end to end was itself written by the same continuous session, so treated it as still needing a fresh look rather than restating it; nothing in this slot's GitHub read contradicts it (0 open PRs, no new red run since). The 7 OWNER-ACTIONS.md backlinks for issues #57-63 opened last cycle were all present and correctly worded (`Tracked ... as GitHub issue #N` or equivalent), confirmed by grep against every number, not assumed from the commit message alone.
+
+**Full `preflight.py` backgrounded with a 170s timeout rather than killed early, and it hung again.** Zero output streamed in that time and the process was terminated by the timeout with CPU time frozen at 0:14 across the whole window (checked twice, unchanged between checks), the frozen-CPU shape prior entries have called a real hang, not the "slow but still advancing" shape the 2026-10-18 addendum found once. Reporting `gate_tests` as **unchecked, not passed** for this cycle. The pre-`gate_tests` checkpoint it wrote (`ops/cycle-signal.json`, committed with this entry) confirms every gate before `gate_tests` passed clean against this cycle's real HEAD before the hang, which is as far as this sandbox could verify.
+
+**GitHub checked live, not assumed.** 30 open issues via the MCP tool, same set as the last cycle, all `decision`/`P0`/`blocked-on-art`; 0 open PRs. Reread issue #42's full comment thread end to end: every comment on it, including the original cadence question, was posted by an automated cycle under Phil's own account (`author_association: OWNER` is the GitHub App posting as the repo owner, not a human reply); there has never actually been a reply from Phil on it, and the last comment is now a week stale (2026-10-25) with no new evidence to add, so not re-raised again.
+
+**No new unblocked item found anywhere, confirmed rather than assumed.** `ops/cold_read_ledger.py --stale` 0, `--next` reports 300 of 300 files ledgered, 0 un-ledgered candidates: still fully exhausted. `BACKLOG-2026-09-07.md` sections 2-6 reread directly: every row is archived, Done, Hold, or Phil-gated; section 0's traffic figure is still the 2026-10-02 database reading, unchanged only because no sandbox running this repository holds the VPS SSH key `ops/traffic_query.sh` needs (a standing, already-tracked gap, not a new one).
+
+**Went well:** independently reread #42's thread closely enough to name precisely why it has never had a real owner reply, instead of repeating "unanswered since 2026-10-17" as a fact without checking who the commenters actually were.
+
+**Did not go well:** `gate_tests` hung a third time in the same spot; the backlog's own open item about raising the background limit to 2 hours (noted in an earlier entry) was not tried this slot, because a 30-minute PM slot has no room to hold a 2-hour background job across the handoff to the operator.
+
+**Handing the operator:** the line at the top. Same standing, fully Phil-gated queue; nothing for :43 to start that this slot has not already ruled out.
+
+Pushed to main: this log entry, the `gate_tests` pre-checkpoint (`ops/cycle-signal.json`), command deck regen. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (21:1x slot): previous work was finished; closed two small drifts rather than opening anything new
 
 Attached clean (fetch, fast-forward, no reset). Previous cycle's work was
