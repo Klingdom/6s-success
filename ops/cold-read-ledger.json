@@ -1146,6 +1146,11 @@
       "date": "2026-10-26",
       "note": "cold read 2026-10-26: idempotent, --check matches live state (CLEAN), all gate/unit tests pass; no issues found"
     },
+    "rotate_backlog_section1b_items.py": {
+      "status": "clean",
+      "date": "2026-11-01",
+      "note": "Cold read 2026-11-01, scheduled operator cycle: grouping/pointer/archive logic matches its own docstring, already applied once (BACKLOG-2026-09-07.md section 70) and test-proved fail-then-pass by that same cycle (test_gate_backlog_section1b_items_rotated.py 5/5). No defect found."
+    },
     "rotate_backlog_section2_items.py": {
       "status": "clean",
       "date": "2026-10-29",
