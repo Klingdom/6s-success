@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (19:0x slot): cold-read the one un-ledgered file the ledger itself named, found no defect, same exhausted Phil-gated queue otherwise
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached clean: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force; re-fetched and ff-merged a second time right before shipping, which pulled in one concurrent PM cycle's commits cleanly.
+
+**Checked rather than assumed.** `python ops/preflight.py` hit the standing `gate_tests` sandbox wall in the foreground; backgrounded it with `--skip-tests` instead of killing it blind, and it finished: every gate passed, 38 standing warnings (no SSH/Stripe/mail credential here, known art gaps), nothing new. Ran the narrower suite directly too: `check_urls.py` 221/221, `audit_pages.py` 0 duplicates across 226 pages, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0. `inbox_agent.py --apply`: no mail credential, unchecked, standing, nothing to act on. 29 open GitHub issues read live via the MCP tool, all `decision`/`blocked-on-art`/`P0`, same Phil-gated set as every recent cycle.
+
+**Action.** `cold_read_ledger.py --next` named `ops/traffic_summary.py` (added by an earlier owner-invoked cycle, 0 prior mentions) as the one un-ledgered file. Read it against its real source, `ops/traffic_query.sh`: its `parse()` column order (pageviews, visitors, visits) matches the psql SELECT order exactly, including the trailing empty fields on `last_30d`/`last_7d`; a missing row is reported, never defaulted to zero. Ran `ops/tests/test_traffic_summary.py` directly, 4/4. No defect found, so nothing to fix; recorded clean in the ledger with the specific check performed, not a bare "looks fine."
+
+**Went well:** verifying the parser against the actual shell script's SELECT order instead of trusting the docstring.
+
+**Did not go well:** `gate_tests` still will not finish inside a normal foreground window; backgrounding and waiting worked, same standing workaround.
+
+**Changing next cycle:** none.
+
+**Next:** the same 29 Phil-gated decision issues await him; no new unblocked lane found this slot.
+
+Pushed to main: `ops/cold-read-ledger.json`, `ops/cycle-signal.json`, command deck regen, this log entry. No price, product, page or code touched; not customer-facing; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (18:4x slot): previous work finished and verified; closed GitHub issue #35 to match a resolution STATUS.md already recorded
 
 NEXT FOR THE OPERATOR: pick the next room whose high-rank "organize/declutter" queries tie-score to its own hub page instead of a dedicated guide, the same evidence method sections 71-73 used; no guide exists yet for primary bathroom, laundry room, pantry, entryway, living room, family room, dining room, guest bedroom, guest bathroom, kids bedroom, mudroom, patio-or-deck, stair landing, or workshop. Fall back to the global keyword gap tier (102 rows) if none genuinely ties.

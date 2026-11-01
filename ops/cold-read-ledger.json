@@ -1336,6 +1336,11 @@
       "date": "2026-10-18",
       "note": "One-off historical generator/collector/validator from Phil's own Desktop content-authoring pipeline (content/app-mvp, content/app-spec, content/video/*, content/manual/source's extraction scripts): every path is a hardcoded C:\\Users\\philk\\... Desktop or dead ephemeral-session scratch/workflow-journal path, so it cannot be re-run in this or any other sandbox, and nothing in ops/ or any CI workflow calls it. Read in full for logic bugs rather than executed. No defect found. Same literal-backslash Windows-only path join as build_video.py in the same directory; not treated as a bug for the same reason."
     },
+    "traffic_summary.py": {
+      "status": "clean",
+      "date": "2026-11-01",
+      "note": "Cold-read 2026-11-01, scheduled operator cycle: parse() column order (pageviews, visitors, visits) matches ops/traffic_query.sh's real psql SELECT order exactly, including trailing empty fields on last_30d/last_7d; missing rows are reported, never defaulted to zero; test_traffic_summary.py 4/4 passing, re-run directly. No defect found."
+    },
     "validate.py": {
       "status": "fixed",
       "date": "2026-10-18",
