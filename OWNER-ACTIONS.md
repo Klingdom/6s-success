@@ -226,6 +226,8 @@ not there, tell me and I will find another route.
 
 ### 1e. Decide about Rakuten's standing access to your support Google account. About two minutes.
 
+**Tracked 2026-11-01 as GitHub issue #59**, `decision`.
+
 Found 2026-09-09 by opening the mailbox rather than reading our own record of
 it. Google sent a security alert for `support@6s-success.com` at 2026-08-29
 21:39 UTC: "You allowed Rakuten Advertising - Collective Voice access to some of
@@ -256,6 +258,8 @@ do, and neither is completing a signup in your name.
 ---
 
 ### 1d. Paste the business description into Stripe. Two minutes, and it is the first thing a buyer reads about you.
+
+**Tracked 2026-11-01 as GitHub issue #58**, `decision`, `P0` (chargeback/trust risk).
 
 `ops/stripe_brand.py --check` has been reporting "No product description set" on
 every preflight run, and it has never been written down here, so it warned into
@@ -613,6 +617,8 @@ exist.) The one zone that was already correct is Entry Console or Bench.
 
 ### 1c. Label your own devices, so the next buy-click is not as unreadable as the last nine. About one minute per device.
 
+**Tracked 2026-11-01 as GitHub issue #57**, `decision`.
+
 **Added 2026-09-09, this operator, found reading `ops/experiments.py` cold and
 running it.** EXP-001 (has a stranger ever clicked a buy button) is
 permanently AMBIGUOUS for the nine clicks recorded before 2026-09-03
@@ -654,7 +660,11 @@ sits behind this list rather than something an agent could do for you.
 
 ### ~~1. Install one SSH key.~~ DONE BY ME 2026-09-01. Full text and its superseded follow-up archived to `OWNER-ACTIONS-ARCHIVE.md`.
 
-### 1b. Or, right now: deploy the site yourself. One click, or one command.
+### ~~1b. Or, right now: deploy the site yourself.~~ NO LONGER NEEDED, 2026-11-01: deploys are automatic.
+
+**Resolved 2026-11-01.** `VPS_DEPLOY_KEY` is set as a GitHub Actions secret (issue #35, closed) and `.github/workflows/deploy.yml` now runs itself on every push, gated only by that key. `ops/deploy-verdict.json` confirms production current at build `a55a1a8bfa276587`, checked `2026-11-01T18:09:04Z`, matching repository HEAD exactly. The manual path below is kept for the record and for the rare case the automatic workflow itself needs a hand, but pressing Redeploy or running `ops/deploy.py` by hand is no longer a standing ask.
+
+Full original text, archived for continuity:
 
 **What:** either press Redeploy in Hostinger's Docker Manager, or, if you are
 on the machine holding the private half of the deploy key, run
@@ -695,6 +705,8 @@ stands. Left the tracked verdict file untouched rather than guess at it.
 
 ### 2. Run the 16 on-device app checks. About 20 minutes.
 
+**Tracked 2026-11-01 as GitHub issue #60**, `decision`.
+
 **What:** `cd mobile/quest-app && npx expo start --lan`, scan the QR with Expo
 Go, work through `mobile/quest-app/ON-DEVICE-TEST.md`.
 **Why it matters:** the app bundles, passes its tests and has verified
@@ -705,6 +717,8 @@ has been proven on a phone. A failure here is worth more than a pass.
 ### ~~3. Narration decision.~~ WITHDRAWN, it was never Phil's to make. Full text archived to `OWNER-ACTIONS-ARCHIVE.md`.
 
 ### 4. Three affiliate applications are stalled on you. Do not finish them yet.
+
+**Tracked 2026-11-01 as GitHub issue #61**, `decision` (confirms the existing hold, no new action asked).
 
 **Superseded 2026-09-17, this operator: everything below is the diagnosis,
 not the instruction. Read this correction first.** `PLAN-AFFILIATE-MONETISATION.md`
@@ -816,7 +830,7 @@ privacy policy reachable from the home page through a link containing the word
 three ask for, including tax and payment details, is behind a login only you
 have.
 
-### 4b. The original framing (superseded by item 4 above, which has the current ask). Full text archived to `OWNER-ACTIONS-ARCHIVE.md`.
+### ~~4b. The original framing~~ (superseded by item 4 above, which has the current ask). Full text archived to `OWNER-ACTIONS-ARCHIVE.md`.
 
 ### 5. Apple Developer and Google Play accounts. $99/yr and $25 once.
 
@@ -1460,6 +1474,8 @@ before anything else is built on top of it.
 
 
 ### 20. Add one link to each of the 12 published video descriptions. About ten minutes, once.
+
+**Tracked 2026-11-01 as GitHub issue #62**, `decision`.
 
 **Decide item 1 first, added 2026-09-18: this may be ten minutes you do not
 need to spend.** Those same 12 videos are among the 100 whose on-screen

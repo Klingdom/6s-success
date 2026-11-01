@@ -2,6 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (18:1x slot): previous work finished and verified, closed the rest of the owner-item-invisible-to-GitHub gap, fixed one stale ask and one heading-format bug
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; the global keyword gap tier is still the only live non-Phil-gated lane, per the 17:4x PM check-in's own handoff. 30 GitHub issues now await Phil.
+
+**Attached clean**, after a real divergence: the checkout's local `main` and `origin/main` had actually diverged (59 vs 63 unique commits, not just the usual shallow-detached illusion), because the fetch at the start of this cycle force-updated `origin/main` mid-command while an earlier `git fetch --unshallow`/`checkout`/`merge --ff-only` was still running in the background. Did not reset or force: let the backgrounded command finish on its own, which fast-forwarded cleanly once the fetch settled; `git merge-base` then confirmed `origin/main` was a strict ancestor of the stale local pointer, not a true fork.
+
+**Previous work finished and verified, not cited.** The 17:59 operator cycle (owner-items-untracked gate, issues #49-56) was pushed and matched `origin/main`. Its own full `preflight.py` had been killed at the `gate_tests` sandbox wall and reported honestly as unchecked; re-ran the narrower suite directly rather than trust the citation: `check_urls.py` 220/220, `audit_pages.py` 0 duplicates, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0, `fix_dashes.py --check` 0/0.
+
+**Finished the gap the last cycle deliberately left.** `owner_actions_untracked_items()` still flagged 9 OWNER-ACTIONS.md items (1b, 1c, 1d, 1e, 2, 4, 4b, 19, 20). Filed GitHub issues #57-62 for the six that are genuinely open asks (1c, 1d marked P0 for chargeback/trust risk, 1e, 2, 4, 20) and backlinked each. Did not file issues for the other three: 1b turned out to be stale rather than untracked, 4b is a dead archive-pointer with a heading-format bug, and 19 is the gate's own named exception (a print-and-report chore).
+
+**Found and fixed, not just filed.** Item 1b ("deploy the site yourself") asked for a manual redeploy that `STATUS.md` and this cycle's own read of `ops/deploy-verdict.json` show is obsolete: `VPS_DEPLOY_KEY` is set, `deploy.yml` auto-deploys on push, and production is confirmed current at build `a55a1a8bfa276587` as of `18:09:04Z`, matching HEAD exactly. Marked resolved with strikethrough rather than filing an issue for a dead ask. Item 4b had no strikethrough despite being a pure archive pointer, the one format inconsistency that was making the gate flag a non-issue as if it were a live one; fixed to match the convention every other resolved pointer in the file already uses (1f, 1a, 3, 10, 12, 0, 1).
+
+**Verified.** `owner_actions_untracked_items()` reran against the real committed file: down from 9 to 1 (only item 19, the intended exception). `fix_dashes.py --check` 0/0 across every touched file. Full `preflight.py` backgrounded at the start of this cycle; still inside `gate_tests` past 60 minutes, same standing sandbox limit; left running rather than killed, reported unchecked for that gate, not folded into a clean result.
+
+**Going well:** treating "untracked" and "stale" as two different defects instead of filing an issue for every gate hit by reflex; one of the nine turned out not to need an issue at all once actually read.
+
+**Did not go well:** the git divergence at STEP 0 cost real time to diagnose safely; worth a future cycle checking whether the timeout that pushed the attach command to background is set too low for this sandbox's typical fetch latency.
+
+**Changing next cycle:** none.
+
+**Next:** issue #42 (cadence) and #40 (usage-limit stall) still await Phil; the global keyword gap tier remains the one unblocked lane for the operator.
+
+Pushed to main: `OWNER-ACTIONS.md`, this log entry, command deck regen. No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-01: closed the "owner item has, or needs, a GitHub issue but cannot say so" gap a second time, and gated it
 
 **Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached clean: fetch, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. The global keyword-gap lane (102 rows) was already independently mined and called exhausted by two concurrent cycles today, so checked `OWNER-ACTIONS.md` for the same invisible-issue defect the 2026-10-31 sweep (#43-48) fixed once. Found it had regressed: four of those six items (1, 1b, 5, 6) never got the backlink text written into their own section, and thirteen more items, including CRITICAL risk RISK-0011 (product masters, single point of failure) and a live security exposure (two public ports, no firewall), had never been filed at all.
