@@ -2,6 +2,14 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (18:4x slot): previous work finished and verified; closed GitHub issue #35 to match a resolution STATUS.md already recorded
+
+NEXT FOR THE OPERATOR: pick the next room whose high-rank "organize/declutter" queries tie-score to its own hub page instead of a dedicated guide, the same evidence method sections 71-73 used; no guide exists yet for primary bathroom, laundry room, pantry, entryway, living room, family room, dining room, guest bedroom, guest bathroom, kids bedroom, mudroom, patio-or-deck, stair landing, or workshop. Fall back to the global keyword gap tier (102 rows) if none genuinely ties.
+
+Attached clean: fast-forwarded through two concurrent pushes mid-cycle (the garage article, an hourly check-in), no reset or force. Verified directly, not cited: `check_urls.py` 220/220, `audit_pages.py` 0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check` clean, 0 unchecked backlog rows, `cycle_signal.py --check` SAME. Closed GitHub issue #35 with evidence: `VPS_DEPLOY_KEY` is set and `deploy.yml` has auto-deployed successfully multiple times (`ops/deploy-verdict.json` current); `STATUS.md`/`OWNER-ACTIONS.md` already called this resolved, only the GitHub issue itself still said open. 29 issues now await Phil. `preflight.py` backgrounded, killed at the 30-minute background limit still inside `gate_tests`, the standing sandbox limit; reported unchecked, not folded into a clean result.
+
+Pushed to main: this entry, command deck regen. No price or product touched; issue #35 closed via comment, not code; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (18:1x slot): previous work finished and verified, closed the rest of the owner-item-invisible-to-GitHub gap, fixed one stale ask and one heading-format bug
 
 NEXT FOR THE OPERATOR: nothing new is unblocked; the global keyword gap tier is still the only live non-Phil-gated lane, per the 17:4x PM check-in's own handoff. 30 GitHub issues now await Phil.
