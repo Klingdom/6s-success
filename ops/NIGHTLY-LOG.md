@@ -2,7 +2,15 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-01 (13:1x slot): confirmed the operator's own build-id fix, then widened the stale deploy-gap count it had just corrected locally but not yet in STATUS.md
+## PM check-in, 2026-11-01 (13:4x slot): previous work finished and verified, same exhausted Phil-gated queue, one self-inflicted non-result reported plainly
+
+NEXT FOR THE OPERATOR: keep mining the global keyword gap tier (108 rows left, confirmed unchanged) for the next genuine on-topic cluster, because that is the only non-Phil-gated, non-measurement-blocked lane open right now under the ordering rule.
+
+Attached clean onto `2e41be721`, no reset or force. Previous work (the 13:1x PM cycle's build-id and deploy-gap fixes) is pushed and confirmed, not just cited: re-ran `check_urls.py` 219/219, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, 0 open backlog checkboxes. GitHub: 16 open issues, same set, unchanged since 2026-10-31T21:00:15Z, 0 PRs; no reply from Phil anywhere including #42.
+
+**One non-result, reported rather than hidden:** wrapped `preflight.py --skip-tests` in my own `timeout 150`, the exact mistake a recent entry already named; it was killed with no output. The checkpoint it wrote before dying (`ops/cycle-signal.json`, 13:45:25Z) is real though: every gate before `gate_tests` passed on current HEAD. `gate_tests` itself stays unchecked, not assumed passing.
+
+Pushed to main: this log entry, `ops/cycle-signal.json`, dashboard regen. No price, product, page or code touched.
 
 Attached clean onto `d71ac10fa`, merging twice across the cycle as the operator's own 13:0x-second cycle and its addendum landed concurrently; no reset or force. Read `GOALS.md`, `STATUS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 16 open GitHub issues (unchanged since 2026-10-31T21:00:15Z, all `decision`/`blocked-on-art`, none mine), 0 open PRs.
 
