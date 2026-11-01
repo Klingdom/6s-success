@@ -2,7 +2,30 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-01 (20:1x slot): previous work finished and verified; caught and fixed a real CI failure the prior cycle's own merge had introduced
+## PM check-in, 2026-11-01 (20:4x slot): previous work was NOT actually finished, the real Checks CI was still red on both pushes since; root cause resolved on its own, re-triggered to get an honest green record, result reported unchecked rather than assumed
+
+NEXT FOR THE OPERATOR: confirm the Checks run queued this slot (run id 41348698433, workflow_dispatch on commit 5fdeba19d) finished green before trusting CI is clean again; if it is green, there is no new unblocked item anywhere (30 open GitHub issues, all `decision`/`blocked-on-art`, issue #42 unanswered since 2026-10-17), so hold the line rather than inventing work.
+
+Attached clean: shallow checkout, `git fetch origin main`, `git fetch --unshallow` (385 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force.
+
+**Previous work was not finished.** The 20:1x PM cycle's own commit message claimed its ROADMAP fix was "failing the real Checks CI gate," implying it had made CI pass again. Checked GitHub Actions directly instead of trusting that: the `Checks` run on its own head commit (`0aaa1b2e2`) was `conclusion: failure`, and so was the next push (`42c50f74b`). Pulled the job log rather than guessing: the real failing gate was `gate_publish_image_current`, not the ROADMAP number at all (that one now passed) - the deployed site had fallen behind HEAD because `publish-image.yml`'s run against `42c50f74b` itself failed to publish.
+
+**Root cause had already resolved itself, verified rather than assumed.** A `workflow_dispatch` of "Publish site image" (not run by this cycle) succeeded against current HEAD (`5fdeba19d`) at 20:30-20:45, before this cycle started reading logs. Confirmed directly, not inferred from that run's green checkmark alone: called `gate_publish_image_current()` locally against the live repo state and it passed. Separately, the hourly operator's own `78d8e9e81` ("Deploy verdict: production confirmed current") landed independently during this cycle and agrees.
+
+**Re-triggered Checks for an honest record, and it is still running as this entry is written.** Fixing the underlying gap does not retroactively turn a logged failure green, and this repo's own `gate_ci_conclusion_current` reads the most recently *completed* run, so a stale red record would keep failing that gate even though the real defect is gone. Queued `workflow_dispatch` on `checks.yml` at 20:48 against `main` (run `41348698433`, commit `5fdeba19d`). Checked three times over the next 12+ minutes; still `in_progress` on the Preflight step each time, longer than the prior run's ~8 minutes but not yet past the point of concern. **Reporting this as unchecked, not green** - the next cycle to touch this repo should read that run's actual conclusion before citing CI as clean.
+
+**Narrow suite run directly while waiting, not cited from a prior cycle:** `check_urls.py` 222/222, `audit_pages.py` 0 duplicate titles/descriptions, `fix_dashes.py --check` 0 em/en dashes, `affiliate.py --check` 165 documents clean, `cold_read_ledger.py --stale` 0.
+
+**Local full `preflight.py` did not resolve itself this time, unlike the 2026-10-18 addendum's finding.** Backgrounded it rather than killing it at the foreground timeout, per that entry's own advice. It sat unchanged at the `gate_tests` sandbox point for over 10 minutes with CPU time frozen at 0:14 (not progressing, not merely slow), so killed it and fell back to the narrow suite above. Worth the next cycle treating "background it and wait" as conditional, not a settled fix: this is at least the second distinct failure mode behind the same symptom.
+
+**No new unblocked item found.** 30 open GitHub issues re-pulled live, same set, all `decision`/`blocked-on-art`. Issue #42's own comment thread (re-read in full) confirms no reply from Phil since his one 2026-10-17 status comment; nothing in `BACKLOG-2026-09-07.md` sections 2-6 is both unblocked and workstream-sized.
+
+**Went well:** not trusting the prior cycle's "fixed the CI gate" framing against its commit message alone; reading the actual job log found the real failing gate was a different one than the fix addressed.
+
+**Did not go well:** spent most of this slot's time waiting on a CI run that still has not returned a conclusion; that cost is reported here rather than hidden behind an assumed pass.
+
+Pushed to main: this log entry, command deck regen. No price, product or page touched; IndexNow not applicable.
+
 
 NEXT FOR THE OPERATOR: nothing new is unblocked beyond the standing Phil-gated queue (30 open issues); the room-guide keyword lane is down to thirteen candidates with no real query signal, per the 19:4x cycle's own finding, so treat it as exhausted for now rather than mining it a fourth time.
 
