@@ -2,6 +2,64 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (23:1x slot): previous work was NOT finished until this cycle confirmed it; closed the one open item two prior cycles had left pending, no new unblocked work
+
+Attached clean: shallow and detached checkout, `git fetch origin main`,
+`git fetch --unshallow`, `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force. Working tree clean, `main` matched
+`origin/main`.
+
+**Previous work was not finished.** The 22:4x PM entry dispatched `Checks`
+run 2802 (id `41358569305`) to re-verify the 22:1x build-id fix and left it
+`in_progress`; the 22:5x operator cycle after it read GitHub state and still
+found it unresolved, naming "confirm run 41358569305 landed green" as the
+next step rather than checking it. Two cycles in a row left the real
+verification undone while reporting their own work clean.
+
+**Fixed, not re-reported.** Read the run directly via the Actions API
+instead of trusting either entry: `get_workflow_run` on `41358569305`
+returns `status: completed`, `conclusion: success`, against head
+`26e9432e1` (the "Deploy verdict" commit, downstream of the build-id fix).
+The real `Checks` gate is green on current history; the build-id defect from
+the 22:1x cycle is now actually verified fixed, not just claimed fixed.
+
+**No new unblocked work.** 30 open GitHub issues read live via the MCP
+tool, same set as every recent cycle, all `decision`/`P0`/`blocked-on-art`.
+Issue #42 (the cadence-waste decision) still carries no new comment from
+Phil since 2026-10-25T02:59:51Z; its own no-repeat date for this standing
+report is 2026-11-02T04:00Z, so no notification sent this cycle, a
+duplicate would be the exact waste that issue exists to stop.
+`BACKLOG-2026-09-07.md` sections 2-6 remain fully Done, Hold, or
+Phil-gated through item 76; nothing in section 5 (Hold) or section 6
+(owner gates) changed state.
+
+**Verified directly, not cited.** `check_urls.py` 222/222, `audit_pages.py`
+0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0,
+`cold_read_ledger.py --stale` 0, `cycle_signal.py --check` SAME against the
+23:19:12Z snapshot (partial: everything through the pre-`gate_tests`
+checkpoint). Full `preflight.py` backgrounded per the standing
+background-don't-kill practice; it was still sitting at `gate_tests` with
+flat CPU time after more than 5 minutes when this slot's time ran out.
+Left running rather than killed. Reporting `gate_tests` and everything after
+it in call order **unchecked, not passed**, for this cycle; whoever reads
+this next should check whether it finished before re-running it.
+
+**Went well:** treating "confirm the run landed green" literally, as an
+API call rather than a re-statement, is what closed a gap two cycles in a
+row had left open.
+
+**Did not go well:** nothing new; the backgrounded `gate_tests` hang is the
+same standing unresolved question, not a new defect.
+
+**Handing the operator:** nothing new and nothing time-sensitive. Same
+standing Phil-gated queue (30 issues, all decision/P0/blocked-on-art);
+check on the backgrounded `preflight.py` (pid 1021 in this cycle's
+container, will not survive into the operator's own container) only if a
+fresh run is wanted, since it cannot be read across sessions.
+
+Pushed to main: this log entry, command deck regen. No price, product, page
+or code touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-01 (~22:5x UTC): the US keyword-demand tier had gone stale against today's own guide articles; rescored for free, one new misattribution logged, not patched
 
 **Did.** Fresh checkout, unshallowed and attached to `main` with `fetch`/`fetch --unshallow`/`checkout`/`merge --ff-only`, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and 63-75, `STATUS.md`'s top sections, `ROADMAP-2026-2029.md`'s headline, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Checked rather than trusted the standing "fully exhausted" claim: 30 open GitHub issues re-pulled live via the API, all `decision`/`P0`/`blocked-on-art`; `ops/cold_read_ledger.py --stale`/`--next` confirmed 300/300, 0 stale; every rotation script for the three living-doc size tripwires preflight warns about (`BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `STATUS.md`) reports CLEAN, nothing yet past its own retention window. With no GitHub-gated or rotation-gated work available, read `ops/keyword-demand.json` cold and found it scored against a stale commit (`54aeb5632`, 229 pages) while its global sibling was already current (230 pages, including today's kitchen/garage/workshop guide articles). Ran `ops/keyword_demand.py --rescore` (free, no network): gap 135 to 133, partial 1317 to 1310, covered 1356 to 1365; `KEYWORD-DEMAND.md` regenerated with it.
