@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (01:4x slot): previous work finished and verified; closed one real stale-ledger gap; same standing Phil-gated queue, nothing new to hand the operator
+
+NEXT FOR THE OPERATOR: nothing newly unblocked; hold the same standing Phil-gated queue rather than inventing work, because all 16 open GitHub issues are `decision`/`blocked-on-art`/P0 and the 109 remaining global keyword-demand gap rows were already mined clean by the 01:1x cycle minutes earlier.
+
+Attached clean: checkout arrived shallow and detached, unshallowed for real (205+ commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, working tree clean before and after.
+
+**Previous work (01:1x PM, A51) finished and verified, not cited.** Re-ran directly rather than trusting its own numbers: `check_urls.py` 219/219 sitemap URLs resolve, `fix_dashes.py --check` 0 em/en dashes, `fix_dialect.py --check` 0 British spellings. GitHub via the MCP tool directly: 16 open issues, same set as logged (#48/#47/#46/#45/#44/#43/#42/#40/#15/#35/#2/#33/#21/#31/#29/#18), all `decision`/`blocked-on-art`, none touched by Phil since 2026-10-31T21:00:15Z. 0 open PRs.
+
+**One real gap found and fixed, not just reported.** `cold_read_ledger.py --stale` showed one genuinely stale entry: `ops/build_messy_article.py` ledgered clean on 2026-10-26 but Phil's own 2026-10-31 commit (`5eaabc827`) had touched it since (added one "Keep reading" link to the new bedroom-declutter article). Read the actual diff rather than trusting the commit message: the only change is that one `<li>` link; confirmed its target page exists; regenerated the article and diffed against the committed file, byte-identical; `fix_dialect.py`/`fix_dashes.py --check` both clean on the output. Re-ledgered clean with a note naming exactly what was checked. `cold_read_ledger.py --stale` now reports 0 of 229+.
+
+**Ran `preflight.py --skip-tests` backgrounded, unbuffered, before touching anything.** 0 FAIL through every gate reached. Stalled again at the documented `gate_etsy_pdfs_current` sandbox limit (this sandbox's proxy explicitly rejects connections to `6s-success.com`, a hard egress denial, not the "just slow" `gate_tests` shape an earlier addendum corrected); confirmed the rejection in the proxy log before killing by pid, no stray lock left behind. Rotation scripts (`rotate_backlog_closed.py`, `rotate_backlog_done_items.py`, `rotate_backlog_section2_items.py`, `rotate_owner_actions*.py`) all report CLEAN; the standing `BACKLOG-2026-09-07.md`/`OWNER-ACTIONS.md` size-tripwire warnings are real content still inside its own retention window, the same already-diagnosed shape, not a new defect.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 remain Done or Phil-gated. The 01:1x cycle minutes earlier mined the full sorted global gap-row list (not just top ranks) and found nothing genuine; independently re-confirmed the gap count is still 109 of 2170 rows, unchanged, and the candidates it declined (handrail/railing construction queries) are correctly off-topic, not a missed cluster.
+
+**Not starting anything large this slot**, per this routine's own instruction. The genuinely unblocked lane (mining keyword-demand gap rows) was already worked dry this hour; nothing else is unblocked for the operator to pick up at :43 beyond re-confirming the same exhausted state.
+
+**Not notifying Phil:** nothing here needs an owner decision; the ledger gap was fixed, not escalated.
+
+Pushed to main. `ops/cold-read-ledger.json`, dashboard regen, this entry. No price, product, or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (01:1x slot): previous work (A51) finished and verified against real CI, not cited; mined the remaining gap tier myself, nothing genuine in it
 
 Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main` (203 commits fast-forwarded), no reset or force, working tree clean before and after. Verified rather than trusted: A51's own commit CI run showed one FAIL, `gate_publish_image_current`, the already-tracked issue #35 deploy-key gap, not a new defect; the next pushed commit's CI run (`0308f3e37`) came back green, confirming the path-filter re-trigger the gate names actually worked, not assuming it would. Local `preflight.py` backgrounded rather than killed (the documented slow-not-hung `gate_tests` step); left running past this entry. 16 open GitHub issues, all `decision`/`blocked-on-art`, none touched by Phil since 2026-10-31T21:00. Mined the 11 remaining `KEYWORD-DEMAND-GLOBAL.md` gap rows myself: the handrail/railing cluster is construction and installation queries (Revit, post spacing, privacy fencing), not an organizing-content gap, the stair handrail's own cleaning content is already covered elsewhere. No genuine cluster this pass. Handing the operator: nothing new is unblocked; same standing Phil-gated queue.
