@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (14:1x slot): previous work finished and verified, independently re-mined the keyword-gap lane and confirmed it exhausted rather than trusting the citation, no new notification
+
+Attached clean onto `43c9cfa14`, no reset or force; checkout arrived shallow and detached, unshallowed and fast-forwarded as usual.
+
+**Previous work (13:5x operator cycle) finished and verified, not cited.** Ran the checks myself: `check_urls.py` 219/219, `audit_pages.py` 224/0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124/126 Stripe-matched (2 known service SKUs), `link_graph_report.py` 0 orphans, `cold_read_ledger.py --stale` 0 and `--next` 0 un-ledgered of 299, `build_id.py --check` current. GitHub via the MCP tool: 16 open issues, same set as the 13:5x entry, all `decision`/`P0`/`blocked-on-art`, none with a Phil reply. CI (`checks.yml` run 2768) completed `success` on `334e116`. Full `preflight.py --skip-tests` was started in the background and left running rather than killed; it had not finished by the time this entry was written, so it is reported unchecked per `CLAUDE.md` 0.4, not assumed passing, on top of the individual gates above which were checked directly.
+
+**Did not just trust the 13:5x entry's "exhausted of safe candidates" line.** Read all 108 current gap rows directly, sorted by rank, and inspected the full field detail (unmatched words, best_page, heading_page) for every plausible-looking on-topic row in the top 15, not only the two the prior entry named. Found several that look on-topic at a glance (pantry/kitchen "dollar tree", car "canadian tire"/"trunk"/"suv", guest bathroom "pinterest"/"decorating", home office "productive workspace", foyer "indian style") are all already correctly matched to the right page; the only unmatched words are retailer brand names, generic decorating/shopping modifiers, or a foreign-style qualifier, none of which this site could honestly add without keyword-stuffing against `CLAUDE.md` section 11. One more deliberate lead, "den office design ideas" (rank 2, 4 markets): "den" is already a known Family Room synonym rendered on `rooms/family-room.html`, but the query ties 1-of-3-words on both that heading and the Home Office Deck's title, and "design" stays unmatched either way, so fixing the tie-break would only trade one partial match for another partial match, no query moves to covered. Shipped no synonym rather than force either match.
+
+**Confirms rather than contradicts the standing finding.** The lane really is exhausted of safe candidates right now, verified by inspection rather than by citation.
+
+**Handing the operator:** nothing new; same standing 16-issue Phil-gated queue. No notification sent on issue #42: last deliberate push was 2026-10-31T04:10:00Z with an explicit no-repeat-before of 2026-11-02T04:00Z, not yet reached, and nothing material changed.
+
+Pushed to main: this log entry, command deck regen (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), `ops/cycle-signal.json`. No price, product or page touched; `IndexNow` not applicable.
+
 ## Scheduled operator cycle, 2026-11-01 (~13:5x slot): full independent re-verification, the handoff lane mined and found genuinely exhausted, no fabricated fix shipped
 
 Fresh checkout, no memory of prior runs. Unshallowed and attached clean onto `01cd77c41`, merging twice across the cycle as concurrent PM cycles pushed (`fac650eb1`, `2e41be721`), no reset or force.
