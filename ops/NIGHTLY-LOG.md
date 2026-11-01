@@ -26,7 +26,20 @@ ship time.
 Phil-gated queue stands. If the full `gate_tests` run that is still going
 surfaces anything, the next cycle should read it rather than re-run it.
 
-## Scheduled operator cycle, 2026-11-01 (21:0x slot): independently corroborated the addendum below rather than duplicating it; no new unblocked item found
+**Addendum, same slot: the backgrounded `gate_tests` run did not finish in
+15 minutes.** Unlike the 2026-10-18 addendum (slow, finished on its own
+past 180s), this run was still inside `gate_tests` when it hit its own
+15-minute background limit and was stopped; CPU time inside it kept
+advancing through real test files the whole way (`test_audit_catalog.py`,
+`test_check_etsy_free_duplicate.py`, `test_cold_read_ledger_stale.py`, each
+genuinely executing, not stalled on one), so this is not evidence of a
+hang either, just evidence that a full run can take longer than 15 minutes
+in this sandbox. Not restarted a third time: a background job that long
+would outlive this 30-minute slot and risk colliding with :40/:43. Every
+gate before `gate_tests` passed clean; `gate_tests` itself stays
+**unchecked, not passed**, for this cycle. Next cycle: try backgrounding it
+with a longer limit (up to 2 hours) early, before other work, so it has
+room to finish. independently corroborated the addendum below rather than duplicating it; no new unblocked item found
 
 Reached the same conclusion as the addendum immediately below (a separate, concurrent firing) before pulling origin and seeing it already written: watched Checks run `41348698433` to completion independently (`success`, confirmed via the Actions API, not the checkmark alone) and called `gate_ci_conclusion_current()`/`gate_publish_image_current()` directly, both clean. Rather than push a second narrative of the same incident into an already-oversized file (156KB against the 150KB tripwire), deferred to the addendum's own complete writeup and dropped the redundant entry before pushing.
 
