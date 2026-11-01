@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (08:4x slot): previous work finished and verified, closed one real cold-read ledger gap, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: check pid 1334's full `preflight.py` run (started this cycle, left running rather than killed) before re-running it from scratch, because every gate before `gate_tests` already passed clean and killing a live run only to repeat it wastes the slow part.
+
+Attached clean: checkout arrived shallow and detached, `git fetch origin main`, `git fetch --unshallow` (258 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree clean, main matched origin before and after.
+
+**Previous work finished and verified, not cited.** The 07:5x/08:1x operator and PM cycles (`fb77ce4f6`, `29fb1eed6`) are pushed; re-ran checks directly rather than trusting their own numbers: `check_urls.py` 219/219, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `audit_pages.py` 224 pages/0 duplicates, `grep -c "^- \[ \]" BACKLOG-2026-09-07.md` 0. 16 open GitHub issues via the MCP tool, same set as every cycle since 2026-10-31, none touched since #48 at 2026-10-31T21:00:15Z, all `decision`/`P0`/`blocked-on-art`. `ops/last-owner-notification.json` still names 2026-11-02T04:00Z as the no-repeat-before date; not arrived, nothing material changed, no notification sent.
+
+**One real gap found and closed, not re-logged.** `cold_read_ledger.py --stale` flagged `ops/preflight.py` as ledgered 2026-10-31 but last touched 2026-11-01, by the 08:1x cycle's own Gemini-regex/deploy-gap fix (`29fb1eed6`). Read that diff directly: a regression-tested regex widening plus a re-derived citation, both already fail-then-pass proved per that cycle's own log entry. Re-ledgered clean with a note naming the commit. `--stale` now 0, `--next` 298/298 ledgered, confirming the exhaustion claim rather than repeating it.
+
+**Full preflight run in progress, not killed at the usual foreground timeout.** My own first attempt wrapped it in a 170s `timeout` that then killed it at 170s before gate_tests finished (exit 143); that result is void and is not reported as a pass. Restarted properly with `nohup ... &` (pid 1334), confirmed progressing (deck gates completing in sequence, now at `gate_tests`) rather than flat-CPU hung, and left running past this slot rather than killed a second time.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 remain fully done or Phil-gated; the cold-read ledger is fully exhausted (298/298, 0 stale).
+
+Pushed to main: this log entry, dashboard regen, `ops/cold-read-ledger.json`. No price, product, page or code touched; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-01: let a full preflight.py reach gate_tests rather than kill it, fixed two real warnings it found, same exhausted Phil-gated queue otherwise
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached: `git fetch origin main`, `git fetch --unshallow` (243 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, the last several `ops/NIGHTLY-LOG.md` entries.
