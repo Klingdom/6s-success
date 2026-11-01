@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-01 19:23 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-01 19:46 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 9 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-11-01 19:23 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 129 of 130 catalog items |
+| **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 226 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 129 of 130 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 226 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /home/runner/.ssh/6s_deploy, so the database was not rea). This is not a reading of zero.) |
-| Open issues | 29 (9 P0, 2 blocked on art, 27 need your call) |
+| Traffic | 1048 pageviews from 97 visitors across 247 visits, 2026-08-20 to 2026-10-03. **441 of those pageviews came from 2 automated session(s)**, leaving 607 from 95 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
+| Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
+| Open issues | 30 (9 P0, 2 blocked on art, 28 need your call) |
 | Closed to date | 33 |
-| Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
-| Working tree | clean, in sync |
-| Last commit | `1e46ab2` PM check-in 19:1x: previous work verified, deploy gap reconf |
+| Commits (7 days) | 1431 of 10139 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `46a91ab5e` Hourly check-in record |
 
 ## Product readiness
 
@@ -62,6 +62,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 - **Authorise YouTube uploads** (5 min). **Still open: authorisation itself has not happened.** CLEARED 2026-09-26 was the desync that once cast doubt on this row, fixed and re-verified, not the authorisation itself.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
 - **Add one line to the cloud environment's setup script** (2 min). **Found 2026-10-15, PM check-in.** This session's fresh container had `pymupdf` missing even though it is pinned in `ops/requirements.txt`, so `ops/affiliate.py --check`, the gate that keeps affiliate links out of every document a customer receives (Amazon's own operating agreement requires this), failed closed on all three PDFs it tried to read with "could not read 3 delivered document(s)".
+- **#63** Decide/confirm: print the free Kitchen deck on a real printer and confirm it's legible (OWNER-ACTIONS.md item 19, about 5 min, never tracked as an issue)
 - **#62** Decide: paste the Sustain-anchor link into 12 already-published YouTube descriptions (OWNER-ACTIONS.md item 20, about 10 min, never tracked as an issue)
 - **#61** Decide/confirm: affiliate applications stay held until the T2 click trigger fires (OWNER-ACTIONS.md item 4, confirms existing plan, never tracked as an issue)
 - **#60** Decide: run the 16 on-device mobile app checks (OWNER-ACTIONS.md item 2, about 20 min, never tracked as an issue)
@@ -94,6 +95,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
+| 63 | Decide/confirm: print the free Kitchen deck on a real printer and confirm it's legible (OWNER-ACTIONS.md item 19, about 5 min, never tracked as an issue) | decision |
 | 62 | Decide: paste the Sustain-anchor link into 12 already-published YouTube descriptions (OWNER-ACTIONS.md item 20, about 10 min, never tracked as an issue) | decision |
 | 61 | Decide/confirm: affiliate applications stay held until the T2 click trigger fires (OWNER-ACTIONS.md item 4, confirms existing plan, never tracked as an issue) | decision |
 | 60 | Decide: run the 16 on-device mobile app checks (OWNER-ACTIONS.md item 2, about 20 min, never tracked as an issue) | decision |

@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (19:4x slot): closed the named OWNER-ACTIONS tracking gap, preflight still unconfirmed past gate_tests
+
+NEXT FOR THE OPERATOR: start the next room guide article (primary bathroom, laundry room, pantry, or any room still missing one), because it is the one unblocked, workstream-sized lane the previous two cycles already identified and nothing has changed since.
+
+Attached clean: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. HEAD matched the 19:1x PM check-in's own commit (`1e46ab2ee`) plus the hourly check-in after it (`46a91ab5e`); no new commits from the operator yet at this slot.
+
+**Previous work finished and verified, not cited.** The 19:1x PM check-in and the hourly check-in after it are pushed and match origin. That entry named one gap it did not fix: OWNER-ACTIONS.md item 19 (print the Kitchen deck and confirm legibility) cited no GitHub issue, the exact shape `gate_owner_actions_items_tracked` warns on. Fixed this cycle: filed issue #63 (label `decision`) and added the one-line backlink to item 19, closing that warning rather than reporting it a third time.
+
+**Preflight: still cannot report clean past `gate_tests`.** Backgrounded `python ops/preflight.py` rather than killing it at the foreground limit, per the standing note that this is slow, not hung. It ran a full 3 minutes and reached `gate_tests` with everything before it clean (cycle_signal recorded a matching clean snapshot through `gate_image_coverage`), then the background window itself closed before `gate_tests` or anything after it produced a result. Reporting this as unchecked past that point, not folded into a clean pass; the same wall every recent cycle has hit. Three living-document size-tripwire warnings fired again (BACKLOG-2026-09-07.md 152KB/150KB, OWNER-ACTIONS.md 127KB/110KB, STATUS.md 112KB/110KB) — real, standing, not new, and not fixed this cycle for time; worth an operator or PM slot cold-reading one of them next, same precedent as sections 65/66/70.
+
+**GitHub checked directly.** 29 open issues (now 30 with #63), all `decision`/`blocked-on-art`/`P0`, none unblocked for autonomous work. No row in `BACKLOG-2026-09-07.md` sections 1-6 is both unblocked and workstream-sized; section 7's own one-line summary still holds: technically finished, commercially unproven.
+
+**Went well:** found and closed a real, previously-named gap instead of re-reporting it.
+
+**Did not go well:** preflight's background window is still too short to clear `gate_tests`; a future cycle should give it a longer background run (10+ minutes) rather than repeating a 3-minute attempt that cannot succeed.
+
+Pushed to main: this log entry, `OWNER-ACTIONS.md` backlink, command deck regen, `ops/cycle-signal.json`. No price, product, or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (19:1x slot): previous work finished and verified, no new unblocked item, preflight could not be confirmed this cycle
 
 Attached clean onto origin/main, merged one concurrent hourly push mid-cycle, no conflicts, no reset or force. Previous work (18:4x PM closing issue #35, 19:0x operator's cold-read) is pushed and matches origin, verified directly: check_urls.py 221/221, audit_pages.py 0 duplicates, fix_dashes.py 0/0, affiliate.py 165 documents clean, cold_read_ledger.py 0 stale, 0 unchecked backlog rows. Deploy gap recomputed directly, not cited: 0 material commits, production current. 29 open GitHub issues, all decision/blocked-on-art/P0, Phil-gated; only OWNER-ACTIONS item 19 untracked, the named exception. Full preflight.py, plain and skip-tests, was backgrounded twice and killed at this sandbox's timeout inside gate_tests; reported unchecked, not folded into a clean pass.
