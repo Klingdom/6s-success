@@ -226,13 +226,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-09T17:22:13Z",
-   "mode": "changed",
-   "offered": 114,
-   "accepted": 114,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-10T20:09:01Z",
    "mode": "changed",
    "offered": 1,
@@ -644,6 +637,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-01T21:56:31Z",
+   "mode": "changed",
+   "offered": 2,
+   "accepted": 2,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -718,7 +718,7 @@
   "https://6s-success.com/rooms/primary-bathroom": "ab20c8ac5d6dcacf",
   "https://6s-success.com/rooms/primary-bedroom": "1bb4c0e7d31e98ca",
   "https://6s-success.com/rooms/stair-landing": "71aa5b31cb67da62",
-  "https://6s-success.com/rooms/workshop": "c8008b37e86d9522",
+  "https://6s-success.com/rooms/workshop": "97b04eb739e0056e",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "f3999f480ceb6bc3",
   "https://6s-success.com/zones/dining-room-the-dining-table": "74b387be7e251378",
@@ -750,7 +750,7 @@
   "https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens": "cecae76c7f702539",
   "https://6s-success.com/zones/guest-bedroom-the-guest-closet": "8c8185a273f70896",
   "https://6s-success.com/zones/guest-bedroom-the-guest-dresser": "d5943ecc10a4ca83",
-  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "0e898ec35d7eff7d",
+  "https://6s-success.com/zones/guest-bedroom-the-guest-nightstand": "6438200c9e8bf332",
   "https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface": "68b8a36108579bca",
   "https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone": "4a87483f3ee7d32b",
   "https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone": "5d26bf9399fd9683",
