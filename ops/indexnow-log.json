@@ -225,13 +225,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-04T10:00:21Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-09T03:25:46Z",
    "mode": "changed",
    "offered": 210,
@@ -643,6 +636,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-01T20:05:52Z",
+   "mode": "changed",
+   "offered": 5,
+   "accepted": 5,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -674,7 +674,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room": "fb3c47b6ea6750af",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe": "d66ff8f3af969e88",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer": "a2a3a2a042b02dbe",
-  "https://6s-success.com/articles/": "ba1f5d25f7fc9e35",
+  "https://6s-success.com/articles/": "7f1fe8659d8534f7",
   "https://6s-success.com/articles/is-that-really-a-backup": "7805de5c5d8a2d3a",
   "https://6s-success.com/articles/more-storage-wont-fix-clutter": "c823bdb17b2fa5d3",
   "https://6s-success.com/articles/sentimental-items-without-guilt": "f448f8e6e3c4305e",
@@ -717,7 +717,7 @@
   "https://6s-success.com/rooms/primary-bathroom": "ab20c8ac5d6dcacf",
   "https://6s-success.com/rooms/primary-bedroom": "1bb4c0e7d31e98ca",
   "https://6s-success.com/rooms/stair-landing": "71aa5b31cb67da62",
-  "https://6s-success.com/rooms/workshop": "49c3f844fa2a1c24",
+  "https://6s-success.com/rooms/workshop": "c8008b37e86d9522",
   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station": "c6922f76ca90963a",
   "https://6s-success.com/zones/dining-room-the-china-or-display-cabinet": "f3999f480ceb6bc3",
   "https://6s-success.com/zones/dining-room-the-dining-table": "74b387be7e251378",
@@ -858,8 +858,8 @@
   "https://6s-success.com/workshop-deck.html": "be78804e75b50ad3",
   "https://6s-success.com/patio-or-deck-deck.html": "f773efb52f38778c",
   "https://6s-success.com/articles/why-is-my-house-always-messy": "13d66dfab2b3ed91",
-  "https://6s-success.com/articles/how-to-organize-a-basement": "d21d9e151e2b69c3",
-  "https://6s-success.com/articles/how-to-organize-an-attic": "633a30d4df25c506",
+  "https://6s-success.com/articles/how-to-organize-a-basement": "b85177a96246ed6f",
+  "https://6s-success.com/articles/how-to-organize-an-attic": "8a2a0913f50afde9",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom": "07c889b3b40437e9",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet": "e81b6fa6bdc1e77c",
   "https://6s-success.com/articles/how-to-organize-baby-clothes": "18bb5e44d8ced5e7",
@@ -867,7 +867,7 @@
   "https://6s-success.com/articles/how-to-organize-toys": "eebbf6ba20638767",
   "https://6s-success.com/articles/how-to-store-blankets": "f69ef4077bc84c2a",
   "https://6s-success.com/articles/how-to-declutter-a-kitchen": "9374c47f687be4c6",
-  "https://6s-success.com/articles/how-to-organize-a-garage": "e6e4fa46b60a13dc"
+  "https://6s-success.com/articles/how-to-organize-a-garage": "b71261ba4582156e"
  },
  "hash_algo": "sha256-16-lf-1"
 }
