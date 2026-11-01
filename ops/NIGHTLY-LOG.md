@@ -2,6 +2,95 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (~21:5x UTC): closed the workshop-layout keyword gap, found and partly closed a real misattribution while verifying it
+
+**Did.** Fresh checkout, no memory of prior runs. Shallow and detached on
+arrival; `git fetch origin main`, `git fetch --unshallow` (399 commits),
+`checkout main`, `merge --ff-only` onto `origin/main`, no reset or force.
+Read `BACKLOG-2026-09-07.md` in full (330 lines, sections 0-7 plus 63-74
+closed), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`'s top sections,
+and several hundred lines of `ops/NIGHTLY-LOG.md`. Confirmed today's
+earlier owner-invoked CEO cycle fixed deploy automation
+(`VPS_DEPLOY_KEY` set, `deploy.yml` auto-deploys and records
+`ops/deploy-verdict.json`) and shipped four guide articles; production
+matches HEAD with 0 commits undeployed.
+
+**Checked GitHub directly rather than assumed.** 30 open issues via the
+MCP tool, every one of them `decision`/`P0`/`blocked-on-art`, each
+tracking a real `OWNER-ACTIONS.md` row awaiting Phil (Stripe business
+description, the Etsy/KDP publish steps, the capped local-demand test
+budget, closing two public VPS ports, the accounts-layer decision, and
+so on). None newly unblocked. `python ops/preflight.py` was started in
+the background and still had not finished `gate_tests` after its full
+170s foreground window; consistent with the standing documented
+slow-not-hung shape, narrower checks run directly in its place, the
+usual workaround.
+
+**Found and fixed real, measured content work instead of re-verifying
+the exhausted state a third time this slot.** `ops/keyword-demand-global.json`'s
+gap tier (102 of 2170 rows) still held "how to plan a workshop layout"
+and three siblings scoring to `/rooms/workshop.html` at 0.333 coverage,
+because no page used "layout" in a heading. Added a `"Room layout"` tip
+to Workshop in `content/manual/source/content.json`, the same mechanism
+already built for Nursery/Kitchen/Garage, written from the room's own
+six real zones (bench, power tools and fasteners within reach of it,
+finishing/chemicals kept clear of power tools, PPE by the door).
+Regenerated `site/rooms/workshop.html` via `ops/build_zone_pages.py`
+(never hand-edited), re-synced `mcp/content.json` byte for byte.
+`ops/keyword_demand_global.py --rescore` (free, no network): global gap
+tier 102 to 100, 2 of the 4 workshop-layout queries move to partial on a
+real heading match, the other 2 ("for students", "templates") stay gap
+honestly since nothing on the page answers them.
+
+**A second, real finding surfaced by the same rescore, chased rather
+than left for the next cycle to re-discover.** "how to organize
+nightstand drawers" was attributing to a kitchen declutter article on a
+coincidental "drawers" match, not the real page, the Guest Bedroom
+nightstand zone. Added `"drawers zone"` to `ops/zone-also-called.json`
+(measured demand, the established synonym pattern) so that zone page now
+carries an honest "Also called the drawers zone" heading. Traced further
+rather than declared fixed: the query's top-level attribution is scored
+on page TITLE words only, a separate field from heading coverage, and
+multiple pages already tie on "nightstand"+"drawers" in titles/headings
+with no room signal to break the tie, so the top-level `best_page` did
+not flip. The query was and stays classified `covered` either way, so
+this is a cosmetic internal-report artifact, not a live defect; the
+heading addition is still real content and was kept. Full account in
+`BACKLOG-2026-09-07.md` section 75.
+
+**Verified rather than cited.** `check_urls.py` 222/222, `audit_pages.py`
+227 pages/0 duplicates, `fix_dashes.py --check` 0/0, `affiliate.py --check`
+165 documents clean, `diagnosis.check_all()` 0 problems, `mcp/content.json`
+byte-identical to the manual source, `ops/tests/test_room_also_called.py`
+and `ops/tests/test_gate_zone_also_called_is_heading.py` both pass.
+`ops/indexnow.py --submit`: correctly refused, no network from this
+sandbox to confirm the key file is served (standing, unchecked not
+passed). `ops/inbox_agent.py --apply`: no mail credential, unchecked,
+standing.
+
+**Went well:** chasing the second finding (the nightstand misattribution)
+all the way to its real root cause (a title-only tie-break, not a
+heading gap) instead of stopping once a heading fix looked plausible,
+and saying plainly that it did not flip the classification rather than
+claiming a fix that did not land.
+
+**Did not go well:** a rebase onto a concurrently-pushed commit hit a
+one-line conflict in `ops/cycle-signal.json` (a regenerated checkpoint
+file, timestamp only); resolved by keeping the later timestamp, no
+content lost.
+
+**Changing next cycle:** none.
+
+**Next:** the 30 open GitHub issues are all genuinely Phil-gated (money,
+accounts, legal, a VPS port change); nothing else is unblocked this
+cycle. The title-only tie-break class this cycle found (same shape as
+the heading tie-break A22/A25/A37 already fixed once) is worth a future
+cycle's attention if it keeps recurring, but is not itself customer-facing.
+
+Pushed to main (`38948b8f2`). Command deck regenerated. No price or
+product touched; two existing pages edited, no new page, so IndexNow
+submission was attempted (refused, no network) rather than skipped.
+
 ## PM check-in, 2026-11-01 (21:4x slot): previous work was genuinely finished; no new unblocked item anywhere; gate_tests hung again, reported unchecked not passed
 
 NEXT FOR THE OPERATOR: nothing new is unblocked, hold the line rather than inventing work, because all 30 open GitHub issues are `decision`/`P0`/`blocked-on-art` and Phil-gated, the cold-read ledger is fully exhausted (300/300 files, 0 stale, 0 un-ledgered candidates), and `BACKLOG-2026-09-07.md` sections 2-6 are fully archived/Done/Hold/Phil-gated.
