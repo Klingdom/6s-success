@@ -2,6 +2,76 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (02:5x slot): fresh checkout, full independent re-verification, state confirmed still fully exhausted, no notification sent
+
+**Did.** Checkout arrived shallow and detached; unshallowed for real
+(`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto
+`origin/main` (215 commits fast-forwarded), no reset or force. Read
+`CLAUDE.md`, `BACKLOG-2026-09-07.md` sections 0-7 in full, `GOALS.md`
+sections 0-2, `STATUS.md`'s open-claims section and BLOCKER-001's newest
+entry, and the last several `ops/NIGHTLY-LOG.md` entries directly, not a
+summary of them.
+
+**Verified rather than cited.** Ran `ops/preflight.py --skip-tests`
+unbuffered in the background for real (not the 170s-timeout shortcut that
+produced no output on the first attempt this cycle): 0 real FAIL through
+every gate reached, matching every recent cycle. It stalled again at the
+documented `gate_etsy_pdfs_current` sandbox limit (hard egress denial to
+`6s-success.com`, confirmed via the proxy status endpoint); stopped it
+there rather than let it run indefinitely, since no cycle in weeks has
+gotten this sandbox past that exact point. GitHub checked live via the MCP
+tool: 16 open issues, same set as every recent cycle (`#48` through `#45`,
+`#44`, `#43`, `#42`, `#40`, `#35`, `#33`, `#31`, `#29`, `#21`, `#18`, `#15`,
+`#2`), none touched since `#48` at 2026-10-31T21:00:15Z. CI (`checks.yml`)
+green on the most recent substantive push (`d24d3235b`); the two newest
+commits are dashboard-only and correctly skip the workflow's path filter.
+`inbox_agent.py --apply`: no mail credential, the standing gap.
+`ops/traffic_query.sh`'s VPS SSH key checked directly (`~/.ssh` empty in
+this container): still absent, same standing gap as every prior cycle.
+
+**No new unblocked item found, checked rather than assumed.**
+`BACKLOG-2026-09-07.md` sections 2-6 remain Done or Phil-gated.
+`ops/keyword_demand_global.py --status` still shows 109 of 2,170 gap rows;
+the 00:4x and 01:1x cycles this same evening already mined that list twice
+and found nothing genuine, so a third pass this hour would have duplicated
+work rather than added it, and none was run. `CHANGELOG.md` is 4 days past
+its own "Last updated" stamp, well inside the 21-day gate threshold.
+`RISKS.md` was re-reviewed earlier this same date. `STATUS.md`'s open-claims
+section is empty. Production deploy gap is 39 commits (32 content), the
+same standing, non-P0, Phil-gated figure (`VPS_DEPLOY_KEY`, issue #35) every
+recent entry already carries; re-derived directly, not cited, and
+unchanged.
+
+**One stray artifact from this cycle's own backgrounded preflight run,
+cleaned up before pushing.** `ops/cycle-signal.json` picked up this run's
+own partial-pass checkpoint (git HEAD `82fe21d5a9`, same shape every other
+cycle's own preflight run leaves); committed as part of this entry rather
+than reverted, since it is a true record of a real check that ran.
+
+**Went well:** running preflight unbuffered and truly in the background
+instead of the shortcut that silently produced zero output last time;
+caught the difference before writing it up as a finding.
+
+**Did not go well:** nothing new; the standing sandbox egress limit and the
+standing Phil-gated queue are unchanged.
+
+**Changing next cycle:** none.
+
+**Next:** act on any Phil reply to the 16 open decision/blocked-on-art
+issues; otherwise the same standing Phil-gated queue. The keyword-gap lane
+is dry; do not re-mine it a third time in one evening without a fresh
+harvest.
+
+**Not notifying Phil.** Nothing here needs a fresh owner decision: same 16
+issues, same CI-green state, same 39-commit non-P0 deploy gap, no new mail,
+no new sale signal reachable from this sandbox. Issue #42 already named an
+explicit no-repeat date of 2026-11-02T04:00Z for this exact standing-state
+report; sending one now would be the cadence waste that issue exists to
+stop.
+
+Pushed to main: this entry, the cycle-signal checkpoint, command deck
+regen. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (02:4x slot): previous work finished and independently reconfirmed, same exhausted state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; hold the standing Phil-gated queue rather than inventing work, because all 16 open GitHub issues are `decision`/`blocked-on-art`/P0, none touched since `#48` at 2026-10-31T21:00:15Z, and the local file state is byte-identical to the 02:14:08Z snapshot.
