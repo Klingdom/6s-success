@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-10-31 23:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-01 00:03 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 5 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-10-31 23:38 because this run could not reach Stripe** |
+| **Revenue this month** | **not measured this month, no Stripe credential in this environment (last known monthly figure: $0, measured 2026-10-31 23:38)** |
 | | `............................` |
-| **Paying customers** | 0 |
+| **Paying customers** | not measured this month (last known: 0, measured 2026-10-31 23:38) |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (129 of 130 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -28,9 +28,9 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 1 of 60 outbound retailer click(s) in the last 90 days, from 1 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-10-03 21:13; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
 | Open issues | 16 (5 P0, 2 blocked on art, 14 need your call) |
 | Closed to date | 32 |
-| Commits (7 days) | 1387 of 9951 total |
+| Commits (7 days) | 1389 of 9953 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `03ce13558` PM check-in 23:4x: previous work finished, re-verified; hand |
+| Last commit | `e43e348ee` A50: add backyard as a Patio or Deck room-level synonym |
 
 ## Product readiness
 
