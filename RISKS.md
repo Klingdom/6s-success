@@ -124,19 +124,40 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-**Re-reviewed 2026-09-30, scheduled operator, picking up the drift-recheck
-lane the 17:1x PM check-in handed off after closing DECISIONS.md D-019
-through D-028.** Full top-to-bottom read of all fourteen entries, every
-severity, status, and cited figure cross-checked against the live
-`ops/state.json` rather than trusted from the last dated note: `forms_dead`
-(RISK-0012) reads 214, matching its own last correction exactly; `social_
-units` (same entry) reads 4939, matching; `catalog_total` reads 130 and
-`can_take_payment` is true, matching RISK-0001/RISK-0008's 129-of-130
-closing figures; `ops/card-hero-verdicts.json` still shows exactly 7 `no`
-verdicts of 88, matching RISK-0003. Section 8's own open/closed/CRITICAL
-counts (7 open, 7 closed, three CRITICAL: RISK-0007, RISK-0011, RISK-0013)
-were recounted directly from the table below rather than assumed and match.
-No drift found anywhere in the register this pass.
+**Re-reviewed 2026-11-01, PM check-in, closing the gate_tests failure
+`test_gate_risks_register_date.py` had been reporting this header as 32
+days past its own monthly promise.** Full top-to-bottom read of all
+fourteen entries, every severity, status, and cited figure cross-checked
+against the live `ops/state.json` rather than trusted from the last dated
+note: `forms_dead` (RISK-0012) reads 224, matching the entry's own current
+headline bullet exactly, not the 214 the previous review below cited (the
+entry itself had kept pace with every page shipped since; only this
+header's own historical callout had not, the same "content fixed, summary
+line never told" shape section 8 already warns about, caught here before
+it compounded); `social_units` (same entry) reads 4939, matching;
+`catalog_total` reads 130, `can_take_payment` is true and `email_list` is
+0, matching RISK-0001/RISK-0008's 129-of-130 closing figures and
+RISK-0012/RISK-0013's "no list to fall back on" claim; `ops/card-hero-
+verdicts.json` still shows exactly 7 `no` verdicts of 88, matching
+RISK-0003's own count (7 rejected, ET-003 the one IP case). Section 8's own
+open/closed/CRITICAL counts (7 open, 7 closed, three CRITICAL: RISK-0007,
+RISK-0011, RISK-0013) were recounted directly from the table below rather
+than assumed and match. RISK-0014 (two sessions sharing one working
+directory) is still live, not historical: this same cycle's own attach
+followed a push titled "Dashboard regen after rebase onto concurrent
+check-in cycle," the same collision shape this entry names, confirming its
+`status: OPEN` is still correct rather than something this review should
+close on elapsed time. No status change needed anywhere in the register
+this pass; the only defect found was the header's own stale figure, fixed
+above.
+
+Last reviewed before that: 2026-09-30, scheduled operator. Full
+top-to-bottom read of all fourteen entries, cited figures cross-checked
+against the live `ops/state.json`: `forms_dead` (RISK-0012) read 214,
+matching its own last correction exactly at that time; `social_units` read
+4939; `catalog_total` read 130 and `can_take_payment` was true;
+`ops/card-hero-verdicts.json` showed exactly 7 `no` verdicts of 88. No
+drift found that pass.
 
 Last reviewed before that: 2026-09-23. Full top-to-bottom read that cycle
 (all thirteen entries then recorded, not just the three open CRITICALs):
