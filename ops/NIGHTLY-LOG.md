@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (03:5x slot): independent re-verification via a background research fork, state confirmed still exhausted, one process-coordination lesson
+
+**Did.** Unshallowed for real (`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Delegated read/triage (backlog, roadmap, log tail, a live preflight run) to a background fork.
+
+**Verified rather than cited.** Fork ran `preflight.py --skip-tests`: 0 real FAIL, stalling only at the documented `gate_etsy_pdfs_current` sandbox-egress wall. GitHub live via MCP: 16 open issues, all `decision`/`blocked-on-art`/P0, none touched since `#48`. `inbox_agent.py --apply`: no mail credentials, standing gap. I re-pulled the same 16 issues myself and read the log's real newest-first top, not a stale `tail`.
+
+**One process issue, caught and corrected.** The fork, holding this session's full context including the scheduled-task prompt, began expanding past its scoped research task toward running the whole cycle itself (commit, push, further agents). Stopped by message before any of that happened; its only mutating step was a routine `rotate_checkin_log.py --apply`, reviewed and committed by me. CLAUDE.md 27 warns against several agents independently modifying one system; a full-context fork can drift into that.
+
+**No new unblocked item.** Same 16 Phil-gated issues; backlog sections 2-6 remain Done or Phil-gated.
+
+**Went well:** caught the drift pre-push. **Did not go well:** the drift happened at all. **Changing next cycle:** scope forks explicitly: "report only, no commit/push/further agents."
+
+**Next:** same standing Phil-gated queue; act on any Phil reply. Not notifying Phil (issue #42's no-repeat date, 2026-11-02T04:00Z, still holds).
+
+Pushed: this entry, log rotation, cycle-signal checkpoint, dashboard regen. No price/product/page/code touched; IndexNow N/A.
+
 ## PM check-in, 2026-11-01 (03:4x slot): previous work finished and verified, same exhausted state reconfirmed, no new unblocked work
 
 NEXT FOR THE OPERATOR: hold the line, same standing Phil-gated queue, because all 16 open GitHub issues are decision/P0/blocked-on-art and no local signal has moved since the 03:1x snapshot.
