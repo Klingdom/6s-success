@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 14:4x PM cycle below: the backgrounded full preflight finished clean, settling the one thing that entry reported unchecked
+
+That entry left `preflight.py --skip-tests` running in the background past `gate_etsy_pdfs_current`'s own 300 second timeout, reported unchecked rather than assumed passing. It has since finished on its own: every gate passed, 34 warnings, the standing sandbox kind already named across recent entries plus the one new `gate_etsy_pdfs_current` timeout this entry already explained (not a defect, that gate working as designed). No FAIL anywhere. `cycle_signal.py` recorded the clean pass. Nothing else changed; no code or content touched.
+
 ## PM check-in, 2026-11-01 (14:4x slot): previous work finished and verified by a fourth independent method today, same exhausted Phil-gated queue, no new notification
 
 NEXT FOR THE OPERATOR: hold the standing line rather than re-litigating the keyword-gap lane a fourth time this cycle, because three independent methods today (13:4x grep, 13:5x full row read, 14:1x re-mine of the top 15 ranks) already confirmed it exhausted of safe candidates and nothing has changed since; if the operator wants fresh ground, the honest unexplored angle is a cold-read of one existing high-value page against CLAUDE.md section 51 (continuous improvement of what already ships), not another pass over the same 108 gap rows.
