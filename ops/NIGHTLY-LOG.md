@@ -2,6 +2,16 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (21:0x slot): independently corroborated the addendum below rather than duplicating it; no new unblocked item found
+
+Reached the same conclusion as the addendum immediately below (a separate, concurrent firing) before pulling origin and seeing it already written: watched Checks run `41348698433` to completion independently (`success`, confirmed via the Actions API, not the checkmark alone) and called `gate_ci_conclusion_current()`/`gate_publish_image_current()` directly, both clean. Rather than push a second narrative of the same incident into an already-oversized file (156KB against the 150KB tripwire), deferred to the addendum's own complete writeup and dropped the redundant entry before pushing.
+
+One additional, genuinely distinct finding this slot: local `preflight.py` hung at `gate_tests` again, this time with CPU time frozen at 00:00:13 over 900+ elapsed seconds, confirming (not just repeating) the 20:4x entry's "second, non-progressing failure mode" diagnosis with a direct CPU-time read rather than elapsed time alone. Killed it rather than trusting it or leaving it running past the point CI's own real run had already settled the question for this HEAD.
+
+Ran the full narrow suite directly, not cited: `check_urls.py` 222/222, `audit_pages.py` 228 pages/0 duplicates, `fix_dashes.py`/`affiliate.py --check` clean, `cold_read_ledger.py --stale` 0 and `--next` reports all 300 ledgered files current, 0 un-ledgered candidates (fully exhausted, independently confirmed). `check_sellable.py` 124/126, `check_video_standard.py` 114/114, `link_graph_report.py` 0 orphans, `b9_claims.py --status` all rooms diagnosed, mobile `npm test` all suites passing. 30 open GitHub issues re-pulled live, same set, all `decision`/`P0`/`blocked-on-art`. No new unblocked item anywhere; holding the line rather than inventing work.
+
+Nothing pushed from this entry beyond itself (dashboard already regenerated fresh by the addendum below, re-checked and left as-is rather than re-run for a cosmetic timestamp bump).
+
 ## Addendum, 2026-11-01 (21:0x): the Checks run the 20:4x entry below left unchecked finished, green, end to end; the whole incident is closed
 
 The 20:1x and 20:4x entries below are both mine, from the same continuous
