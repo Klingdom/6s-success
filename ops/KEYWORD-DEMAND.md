@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-10-31T23:57:50Z against 227 page(s) at commit 03ce13558. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-01T00:51:01Z against 227 page(s) at commit b90efa242. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 227 published page titles: 1335 covered, 1333 partial, 140 gap.
+**Queries found:** 2808. Checked against 227 published page titles: 1336 covered, 1333 partial, 139 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 140, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 139, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -56,7 +56,6 @@ Showing the top 80 of 140, ordered by the best rank the phrase reached in any on
 | 6 | how to build a floating staircase landing | - | How to organize a stair landing, zone by zone (0.25) | build, floating, staircase |
 | 6 | how to hold bench press bar correctly | - | Contact 6S Success: books, quotes, workshops, and press (0.20) | bar, bench, correctly |
 | 6 | how to operate a wood stove | - | How to organize the kitchen stove area (0.33) | operate, wood |
-| 6 | how to organize cake decorating supplies | - | How to organize the garage car care supplies (0.33) | cake, decorating |
 | 6 | kitchen organization ideas dollar tree | Kitchen | The Kitchen Deck: 72 cards, typeset and free to read or print (0.33) | dollar, tree |
 | 6 | organizing your bedroom tips pinterest | - | How to declutter a bedroom in one day, step by step (0.33) | pinterest, tips |
 | 6 | trouble going to bathroom | - | The Guest Bathroom Deck: 60 cards, free to read (0.33) | going, trouble |
@@ -101,6 +100,7 @@ Showing the top 80 of 140, ordered by the best rank the phrase reached in any on
 | 11 | how to organize recipes | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | recipes |
 | 11 | how to plan a workshop for students | Workshop | How to organize a workshop, zone by zone (0.33) | plan, students |
 | 11 | organize seasonal pricing model | - | How to organize the hall closet seasonal storage (0.33) | model, pricing |
+| 11 | organizing ideas for bedrooms | - | About 6S Success: a factory discipline, rebuilt for real homes (0.00) | bedrooms |
 
 ## Partial: we are close, and the title does not use their words
 

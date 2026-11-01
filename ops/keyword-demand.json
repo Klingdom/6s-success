@@ -27816,14 +27816,11 @@
       "best_page": "/zones/garage-the-automotive-care-zone.html",
       "best_page_title": "How to organize the garage car care supplies",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
-      "matched_on": "title",
-      "status": "gap",
-      "unmatched_words": [
-        "cake",
-        "decorating"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/zones/pantry-the-baking-zone.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize camping gear",
@@ -57459,6 +57456,6 @@
       ]
     }
   ],
-  "scored_at": "2026-10-31T23:57:50Z",
-  "scored_against_commit": "03ce13558"
+  "scored_at": "2026-11-01T00:51:01Z",
+  "scored_against_commit": "b90efa242"
 }

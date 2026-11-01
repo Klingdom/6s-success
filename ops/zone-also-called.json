@@ -174,6 +174,14 @@
    "queries": 1,
    "covered": 0,
    "source": "ops/keyword-demand-global.json 2026-10-31 (ca): 'utility room design with washing machine', rank 13, gap, 0.4 title coverage, scored to /laundry-room-deck.html; the 'utility room' half of this query already matches since A37 added that room-level synonym, but 'washing' and 'machine' do not, the same exact-word-not-stem gap A34/A36 already fixed once each: the zone's own title word is 'Washer', not 'washing', and 'machine' never appears in any heading at all. Checked the zone's own purpose text in content.json before adding: 'Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops' is literally about the washing machine, and the zone's own common_items/standard text already says 'washing machine' in body copy, just never in a heading. Named 'washing machine' as a single phrase (the precedent from 'nappy change table'/'makeup vanity'), not 'washing' or 'machine' separately. Moves the query from gap (0.4) to partial (0.8, matched on heading); the query's remaining word, 'design', is generic layout filler this product does not honestly claim for a single zone heading, the same reason 'plan' was dropped from the room-layout tips in A40."
+  },
+  "Pantry|Baking Zone": {
+   "names": [
+    "cake decorating zone"
+   ],
+   "queries": 1,
+   "covered": 0,
+   "source": "ops/keyword-demand-global.json 2026-11-01 (ca): 'how to organize cake decorating supplies', rank 6, gap, 0.333 title coverage, scored to /zones/garage-the-automotive-care-zone.html via a coincidental word match on 'organize'/'supplies' (both titles read 'How to organize the ... supplies'), not a real one, found mining the remaining global gap rows A50 left (per the 2026-11-01 00:3x PM check-in's handoff). Checked the zone's own content in content.json before adding: the Baking Zone's own time_note already says 'deciding about the decorating gear', its done_looks_like and common_items both name 'Cutters, cases and piping tips in a single lift-out bin', and its safety text warns about 'small decorating pieces like silver balls and mini cutters' and a shared scoop carrying allergen traces 'straight into a birthday cake'. Every word the query needs is already real content on this page, just never in a heading. Named 'cake decorating zone', the '<word> zone' precedent from the A-series (A32/A33/A34/A36/A38, most recently 'garden shed zone'), not the bare phrase 'cake decorating' alone, which would overclaim the zone exists only for that one activity rather than baking generally."
   }
  }
 }
