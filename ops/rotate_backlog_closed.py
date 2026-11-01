@@ -31,7 +31,7 @@ ARCHIVE.md) already use.
 Usage:
     python ops/rotate_backlog_closed.py --check
     python ops/rotate_backlog_closed.py --check --days N
-    python ops/rotate_backlog_closed.py --apply   (default 4-day window)
+    python ops/rotate_backlog_closed.py --apply   (default 2-day window)
     python ops/rotate_backlog_closed.py --apply --days N
 
 Found 2026-10-31: at the closure rate the operator cadence has actually
@@ -45,6 +45,22 @@ file under the tripwire with a few days' buffer; the archive keeps every
 word, so this only changes how long a closed section stays in the file
 STEP 1 of the operating prompt reads as "the CURRENT queue" before a
 cold read has to open BACKLOG-2026-09-07-CLOSED-ARCHIVE.md instead.
+
+Found 2026-11-01: the cadence sped up again. 16 sections closed in the
+4 days the previous fix budgeted for (54-69, about 2836 bytes each,
+45,380 bytes total), and the whole file had grown back to 167,753 bytes
+against the same 150,000 ceiling, even with section 1b (see ops/
+rotate_backlog_section1b_items.py, added the same cycle) also freed.
+4 days of closed sections alone, at this rate, is too much to carry
+live. Lowered again, to 2 days: archives sections 54-62 (26,521 bytes,
+dated 2026-10-28/29), keeps 63-69 (18,859 bytes, dated 2026-10-30/
+11-01) live. The arithmetic, not a guess: live content outside the
+closed chain and section 1b runs about 110,267 bytes right now, so a
+closed-section budget above roughly 40,000 bytes reopens the tripwire;
+2 days settles near 19,000, leaving a real buffer rather than a razor's
+edge. If the closure rate keeps climbing, the next fix is the same
+shape again, one notch lower, following the arithmetic at the time
+rather than copying this number forward.
 """
 import argparse
 import datetime
@@ -71,7 +87,7 @@ ARCHIVE_HEADER = (
     "first.\n"
 )
 
-DEFAULT_RETENTION_DAYS = 4
+DEFAULT_RETENTION_DAYS = 2
 
 SECTION_RE = re.compile(r"^## (\d+)\.", re.MULTILINE)
 

@@ -22557,6 +22557,50 @@ def gate_backlog_section2_items_rotated() -> None:
                 overdue_bytes, n_rows, n_bytes))
 
 
+def gate_backlog_section1b_items_rotated() -> None:
+    """BACKLOG-2026-09-07.md section 1b's resolved/done/closed paragraph
+    groups must not carry more than a generous buffer past ops/rotate_
+    backlog_section1b_items.py's own retention window.
+
+    Found 2026-11-01, scheduled operator cycle: the same unbounded-growth
+    shape gate_backlog_section2_items_rotated already closed for section
+    2's table rows, just for section 1b's free prose. Section 1b had
+    reached 12,106 bytes, every paragraph in it already resolved, with
+    no rotation tool covering it at all until this gate's own paired
+    script.
+
+    A WARNING, not a FAIL: an oversized file wastes every later cycle's
+    reading time (STEP 1 of the operating prompt reads this file in full
+    every cycle); it does not ship anything broken to a customer. The
+    buffer (retention window plus 7 days) means this does not fire the
+    day after a rotation purely from a group drifting a day past the
+    window; it fires only once the gap is real.
+
+    Proof this can fail: ops/tests/test_gate_backlog_section1b_items_
+    rotated.py builds a synthetic file with a dated group well past the
+    buffered window and asserts this gate warns, then confirms a freshly
+    rotated copy stays silent.
+    """
+    path = os.path.join(ROOT, "BACKLOG-2026-09-07.md")
+    if not os.path.exists(path):
+        return
+    import rotate_backlog_section1b_items as rb1b
+    text = io.open(path, encoding="utf-8").read()
+    buffered_days = rb1b.DEFAULT_RETENTION_DAYS + 7
+    cutoff = dt.date.today() - dt.timedelta(days=buffered_days)
+    n_groups, overdue, n_bytes, overdue_bytes = rb1b.count_stats(text, cutoff)
+    if overdue:
+        warn("backlog-section1b-items-rotated",
+             "BACKLOG-2026-09-07.md section 1b carries %d dated "
+             "paragraph group(s) older than %s (the %d-day retention "
+             "window plus a 7-day buffer), %d bytes, out of %d dated "
+             "groups live (%d bytes total). Run `python ops/rotate_"
+             "backlog_section1b_items.py --apply` to move them into "
+             "BACKLOG-2026-09-07-SECTION1B-ARCHIVE.md."
+             % (overdue, cutoff.isoformat(), rb1b.DEFAULT_RETENTION_DAYS,
+                overdue_bytes, n_groups, n_bytes))
+
+
 LIVING_DOC_SIZE_LIMITS = {
     "STATUS.md": 110_000,
     "CHECKIN-LOG.md": 110_000,
@@ -31630,6 +31674,7 @@ def main() -> int:
     run_gate(gate_backlog_closed_sections_not_oversized)
     run_gate(gate_backlog_done_items_rotated)
     run_gate(gate_backlog_section2_items_rotated)
+    run_gate(gate_backlog_section1b_items_rotated)
     run_gate(gate_living_docs_total_size_tripwire)
     run_gate(gate_status_workstreams_rotated)
     run_gate(gate_nightly_log_ordering)
