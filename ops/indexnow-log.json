@@ -12,6 +12,7 @@
   "https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room",
   "https://6s-success.com/articles/how-long-to-keep-a-maybe",
   "https://6s-success.com/articles/how-to-declutter-a-bedroom",
+  "https://6s-success.com/articles/how-to-declutter-a-kitchen",
   "https://6s-success.com/articles/how-to-organize-a-basement",
   "https://6s-success.com/articles/how-to-organize-a-junk-drawer",
   "https://6s-success.com/articles/how-to-organize-a-linen-closet",
@@ -222,13 +223,6 @@
   "https://6s-success.com/zones/workshop-the-safety-and-ppe-station"
  ],
  "runs": [
-  {
-   "at": "2026-10-04T07:02:31Z",
-   "mode": "changed",
-   "offered": 1,
-   "accepted": 1,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
   {
    "at": "2026-10-04T07:22:49Z",
    "mode": "changed",
@@ -641,6 +635,13 @@
    "offered": 5,
    "accepted": 5,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-01T18:23:37Z",
+   "mode": "changed",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -863,7 +864,8 @@
   "https://6s-success.com/articles/how-to-organize-baby-clothes": "18bb5e44d8ced5e7",
   "https://6s-success.com/articles/how-to-organize-paperwork": "4e0505f6cf48a8db",
   "https://6s-success.com/articles/how-to-organize-toys": "eebbf6ba20638767",
-  "https://6s-success.com/articles/how-to-store-blankets": "f69ef4077bc84c2a"
+  "https://6s-success.com/articles/how-to-store-blankets": "f69ef4077bc84c2a",
+  "https://6s-success.com/articles/how-to-declutter-a-kitchen": "5449dca90457928a"
  },
  "hash_algo": "sha256-16-lf-1"
 }
