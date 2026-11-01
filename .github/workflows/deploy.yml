@@ -39,6 +39,9 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    # Write access only so the verdict step below can record what it deployed.
+    permissions:
+      contents: write
     # ops/deploy.py's own SSH calls carry a 90s (reachability) and 420s
     # (compose pull/up) timeout; this leaves headroom around both.
     timeout-minutes: 15
@@ -71,3 +74,31 @@ jobs:
         # commit's. A mismatch fails this job on purpose, the same way a
         # human watching the Redeploy button would notice and try again.
         run: python3 ops/deploy.py
+
+      - name: Record the confirmed deploy in the repository
+        if: steps.setup_key.outputs.skip != 'true'
+        # ops/deploy.py writes ops/deploy-verdict.json only after it has read
+        # production's own build-id.txt equal to this commit's. Before
+        # 2026-11-01 that file stayed on the runner and was thrown away, so
+        # the repository went on believing production was whatever a local
+        # session last confirmed, and every deploy-gap gate and STATUS row
+        # would have reported commits "undeployed" that were live. Only
+        # ops/deploy-verdict.json is committed, which publish-image.yml does
+        # not watch, so this cannot trigger another build and deploy.
+        # Deliberately not `|| true`: a verdict that could not be saved must
+        # show as a failed job, not as a green one with a stale record.
+        run: |
+          git diff --quiet -- ops/deploy-verdict.json && { echo "verdict unchanged"; exit 0; }
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add ops/deploy-verdict.json
+          git commit -m "Deploy verdict: production confirmed current at $(python3 -c 'import json;print(json.load(open("ops/deploy-verdict.json"))["build_id"])')"
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "verdict recorded"; exit 0
+            fi
+            echo "push attempt $attempt lost a race, retrying"
+            sleep $((attempt * 5))
+          done
+          echo "could not record the deploy verdict after 5 attempts" >&2
+          exit 1
