@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (09:4x slot): previous work finished and verified, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: `BACKLOG-2026-09-07.md`'s live sections 0-7 exceed the 150,000-byte tripwire (167,753 bytes); `rotate_backlog_closed.py --check` is CLEAN, so this needs an editorial trim of the live content, not mechanical archiving.
+
+Attached clean: unshallowed, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force, tree clean before and after.
+
+**Previous work (08:4x/09:2x PM, hourly check-ins) verified, not cited.** CI green on the two prior real commits (`fdcc1880c`, `fb77ce4f6`); `7db0afbd5` in progress with no failure history. Re-ran directly: `check_urls.py` 219/219, `audit_pages.py` 224/0 duplicates, `fix_dashes.py --check` 0/0, `cold_read_ledger.py --stale` 0, `grep -c "^- \[ \]" BACKLOG-2026-09-07.md` 0.
+
+**Full `preflight.py` killed at its 170s wrapper at the usual `gate_tests` wall, not reported as a pass.** 0 FAIL, 5 standing WARN (image-coverage source pictures gitignored, same known gaps) through everything before that gate. No lock file left behind.
+
+**GitHub checked live.** 16 open issues, same set as every cycle since 2026-10-31 (#48 down to #18), none touched since #48 at 2026-10-31T21:00:15Z, now about 12.7 hours. All `decision`/`P0`/`blocked-on-art`, none mine to pick. Notification no-repeat-before (2026-11-02T04:00Z) not arrived; nothing material changed, none sent.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 remain 0 unchecked, fully done or Phil-gated.
+
+Pushed to main: this log entry, dashboard regen. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (09:2x slot): previous work finished and verified, chased a false content regression to its real sandbox cause and closed the gap for good, same exhausted Phil-gated queue
 
 NEXT FOR THE OPERATOR: `BACKLOG-2026-09-07.md` is 164,665 bytes against its own 150,000-byte tripwire, but `rotate_backlog_closed.py --check` is CLEAN (nothing closed is stale enough to archive yet); the overage is in the live, non-closed sections, which needs an editorial read for what is genuinely safe to trim, not a blind cut. Also: the previous slot's "NEXT FOR THE OPERATOR: check pid 1334" could not be acted on, because this container had no memory of it, confirming that pointing a future cycle at a backgrounded pid does not actually survive to the next scheduled firing; say so plainly instead of repeating that pattern.
