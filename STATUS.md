@@ -74,6 +74,8 @@ stays in `ops/NIGHTLY-LOG.md`; nothing here was still actually open.
 
 # 1. Status Metadata
 
+**Latest, 2026-11-01 (19:xx UTC), owner-invoked CEO cycle: `/articles/how-to-organize-a-garage` shipped (BACKLOG section 73), primary offer the $9 Garage Pack; room hubs now link their step-by-step guides.**
+
 **Latest, 2026-11-01 (18:xx UTC), owner-invoked CEO cycle: `/articles/how-to-declutter-a-kitchen` shipped (BACKLOG section 71), deployed by the automatic chain. The `deploy.yml` verdict step proved itself on its first run (`2b591aedf`, committed by github-actions, no loop).**
 
 **Latest, 2026-11-01 (15:5x UTC), owner-invoked CEO cycle: DEPLOYS ARE AUTOMATIC. `VPS_DEPLOY_KEY` is set; the first push after it (`4107f65a4`) built and deployed itself, and production matches the repository (`a78f9be8bf05508d`). `deploy.yml` now records each confirmed deploy in `ops/deploy-verdict.json`. See BLOCKER-001.**

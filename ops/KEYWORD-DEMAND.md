@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-01T17:08:57Z against 227 page(s) at commit 2b591aedf. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-01T18:15:29Z against 229 page(s) at commit 54aeb5632. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 227 published page titles: 1337 covered, 1335 partial, 136 gap.
+**Queries found:** 2808. Checked against 229 published page titles: 1356 covered, 1317 partial, 135 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 136, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 135, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -104,7 +104,7 @@ Showing the top 80 of 136, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1335.
+Showing the top 60 of 1317.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -135,7 +135,6 @@ Showing the top 60 of 1335.
 | 1 | how to build a drop zone | How to organize the entryway drop zone | 0.67 |
 | 1 | how to build a patio deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 | 1 | how to build a stair landing | How to organize a stair landing, zone by zone | 0.67 |
-| 1 | how to declutter a kitchen counter | How to organize the kitchen prep counter | 0.67 |
 | 1 | how to decorate a stair landing | How to organize a stair landing, zone by zone | 0.67 |
 | 1 | how to organize a pantry with deep shelves | How to organize the pantry dry goods shelves | 0.67 |
 | 1 | how to organize desk drawers diy | How to organize the home office desk drawers | 0.67 |
@@ -157,17 +156,18 @@ Showing the top 60 of 1335.
 | 2 | how to build a grill station | How to organize the patio or deck grill station | 0.67 |
 | 2 | how to build an entertainment center | How to organize the family room entertainment center | 0.67 |
 | 2 | how to declutter a bathroom counter | How to organize the guest bathroom vanity counter | 0.67 |
+| 2 | how to declutter kitchen countertops | How to declutter a kitchen: counters, cabinets and drawers | 0.67 |
 | 2 | how to organize a dining room hutch | The Dining Room Deck: 61 cards, free to read | 0.67 |
 | 2 | how to organize baking supplies in kitchen | How to organize the pantry baking supplies | 0.67 |
 | 2 | how to organize car detailing supplies | How to organize the garage car care supplies | 0.67 |
 | 2 | how to organize household cleaning supplies | How to organize the hall closet cleaning supplies | 0.67 |
-| 2 | how to organize sports stuff in garage | How to organize the garage sports gear storage | 0.67 |
 | 2 | how to stage a guest bedroom | The Guest Bedroom Deck: 57 cards, free to read | 0.67 |
 | 2 | how to stock a guest bathroom | The Guest Bathroom Deck: 60 cards, free to read | 0.67 |
 | 2 | linen closet organization hacks | How to organize a linen closet: sheets, towels and shelves | 0.67 |
 | 2 | master bathroom storage ideas | How to organize the primary bathroom linen and towel storage | 0.67 |
 | 2 | master bedroom closet organization ideas | How to organize the primary bedroom closet | 0.67 |
 | 2 | patio deck design ideas | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
+| 2 | patio off of deck | The Patio or Deck Deck: 68 cards, free to read | 0.67 |
 
 ## By room
 
@@ -176,13 +176,13 @@ Showing the top 60 of 1335.
 | Dining Room | 39 | 0 | 21 | 18 |
 | Entryway | 50 | 1 | 22 | 27 |
 | Family Room | 27 | 0 | 19 | 8 |
-| Garage | 77 | 1 | 33 | 43 |
+| Garage | 77 | 1 | 27 | 49 |
 | Guest Bathroom | 22 | 2 | 14 | 6 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
 | Home Office | 58 | 0 | 25 | 33 |
 | Kids Bedroom | 20 | 0 | 8 | 12 |
-| Kitchen | 95 | 2 | 48 | 45 |
+| Kitchen | 95 | 2 | 41 | 52 |
 | Laundry Room | 71 | 0 | 17 | 54 |
 | Living Room | 86 | 2 | 43 | 41 |
 | Mudroom | 43 | 1 | 22 | 20 |

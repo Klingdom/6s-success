@@ -1969,6 +1969,36 @@ ROOM_READING = [
 ]
 
 
+# The hand-written step-by-step guides, linked from the room page they
+# walk through. Added 2026-11-01: each guide linked to its room hub, but no
+# room hub linked back, so a reader who arrived on /rooms/kitchen ("How to
+# organize a kitchen, zone by zone") never learned there was a sequenced
+# declutter guide for the same room, and the two pages read to a crawler as
+# two unrelated answers to one question rather than a hub and its how-to.
+# Keyed by the room's display name; a room with no guide gets the general
+# list unchanged.
+ROOM_GUIDES = {
+    "Kitchen": [("../articles/how-to-declutter-a-kitchen.html",
+                 "How to declutter a kitchen, step by step",
+                 "Counters first, then the sink and drawers, then cabinets and the fridge.")],
+    "Garage": [("../articles/how-to-organize-a-garage.html",
+                "How to organize a garage full of stuff",
+                "Floor first, then one zone at a time, and what to do with old paint.")],
+    "Primary Bedroom": [("../articles/how-to-declutter-a-bedroom.html",
+                         "How to declutter a bedroom in one day",
+                         "Floor, bed, surfaces, nightstands, then drawers and closet.")],
+    "Hall Closet": [("../articles/how-to-organize-a-linen-closet.html",
+                     "How to organize a linen closet",
+                     "Sheets, towels and shelves.")],
+    "Nursery": [("../articles/how-to-organize-baby-clothes.html",
+                 "How to organize baby clothes",
+                 "By size, with the next size waiting.")],
+    "Home Office": [("../articles/how-to-organize-paperwork.html",
+                     "How to organize paperwork",
+                     "What to keep, for how long, and where.")],
+}
+
+
 def related_reading(links, descriptions=False):
     """The article links, by default as titles only.
 
@@ -4055,7 +4085,7 @@ def room_page(room, header, footer, all_rooms=()):
                              for r in others) + '</div>')
     out.append('<p><a href="../resources.html">All 20 rooms and '
                '114 micro zones on one page</a></p>')
-    out.append(related_reading(ROOM_READING))
+    out.append(related_reading(ROOM_GUIDES.get(room["room"], []) + ROOM_READING))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)

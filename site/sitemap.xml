@@ -499,12 +499,22 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-basement</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
       <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-basement.jpg</image:loc>
       <image:caption>A basement is six small zones, not one room. Check for water, clear the utility zone first, get everything off the floor, then work one zone per session.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://6s-success.com/articles/how-to-organize-a-garage</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-garage.jpg</image:loc>
+      <image:caption>Clear the floor first, then sort one zone at a time: overhead bins, sports gear, tools, garden things and car supplies. About seven to ten hours in all.</image:caption>
     </image:image>
   </url>
   <url>
@@ -529,7 +539,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-an-attic</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -875,7 +885,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/garage</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -905,7 +915,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/hall-closet</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -935,7 +945,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/kitchen</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -975,7 +985,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/nursery</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -1015,7 +1025,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/primary-bedroom</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>

@@ -394,6 +394,7 @@ Maintain:
 | LRN-0041 | Two of my own `preflight.py` processes running at once produced one real-looking FAIL with no real defect behind it | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0042 | The lock that fixed LRN-0041 could not tell a zombie (SIGKILLed, unreaped) holder from a live one, so the routine way every cycle ends a hung preflight run held the next cycle's lock for up to 20 minutes | ENGINEERING / TOOLING | SUPPORTED | HIGH |
 | LRN-0043 | A gate's own `except ValueError: return` hid a live rotate_owner_actions.py regression all day; a sibling PM check-in had already cited the same refusal as a non-defect hours earlier | ENGINEERING / TOOLING | SUPPORTED | HIGH |
+| LRN-0044 | Before claiming "nothing answers this query", read the runner-up: a keyword tie picked a card deck over the room hub that already answers it | SEO / MEASUREMENT | SUPPORTED | HIGH |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -1832,6 +1833,19 @@ exercises the exact shape every real cycle produces. Standing habit for
 whoever reads a "waited on the lock" line in a future log entry: check
 whether the holder was a zombie before assuming the stale-mtime path is
 the only way locks clear.
+
+#### LRN-0044: Before claiming "nothing answers this query", read the runner-up: a keyword tie picked a card deck over the room hub that already answers it
+
+**Status:** SUPPORTED
+**Confidence:** HIGH (re-scored the whole harvest both ways)
+**Domain:** SEO / MEASUREMENT
+**Measured:** 2026-11-01
+
+**Observation.** Two guides (`how-to-declutter-a-kitchen`, `how-to-organize-a-garage`) were justified as "the only match is the deck", read off `best_page` in `ops/keyword-demand.json`. Re-scoring with decks excluded showed `/rooms/kitchen` and `/rooms/garage` ("How to organize a ..., zone by zone") tie them exactly; `_tie_break` simply fell to the deck. Only 2 of 2,808 rows have a deck strictly beating every guide.
+
+**Implication.** `best_page` names one winner of a tie, not the only answer. A new page aimed at a tied cluster is an intent bet (sequenced how-to versus zone hub), not a gap fill, and risks competing with the hub.
+
+**Next action.** Before writing for a cluster, check the best non-deck page as well as `best_page`. When a guide and a hub share a cluster, link the hub to the guide (`ROOM_GUIDES` in `ops/build_zone_pages.py`) so they read as hub and how-to. Measure the two guides against the hubs once Search Console data exists.
 
 #### LRN-0043: A gate that catches an exception and returns is not "handling" a broken anchor, it is hiding it, and a sibling PM check-in cited that exact shape as a non-defect hours before it was found and fixed
 
