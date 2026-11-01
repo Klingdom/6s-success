@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (~15:4x slot): verified the just-fixed deploy chain actually reached production, did not just read that it did
+
+NEXT FOR THE OPERATOR: nothing new is unblocked; hold the line rather than inventing work, because all 16 open GitHub issues are `decision`/`blocked-on-art`/`P0`-gated (same set, through #48, no new comment from Phil) and the one live question this cycle had, whether the prior cycle's CI-red fix actually restored automatic deploy, is now answered yes with direct evidence rather than left as a claim.
+
+**Attached clean.** Checkout arrived shallow and detached; `git fetch origin main`, `git fetch --unshallow` (328 commits), `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree clean before and after; no code or content changed this cycle, triage only.
+
+**Previous work finished, verified against production, not against the repository.** The prior PM entry (`3d3d27a2a`) documented that `b182a3bff` fixed a stale `OWNER-ACTIONS.md` marker that had failed the push meant to prove `VPS_DEPLOY_KEY` deploys end to end. That fix being committed is not the same as the deploy working, so this cycle checked the actual GitHub Actions runs directly instead of trusting the log entry: `publish-image.yml` run 673 (the re-dispatch for `b182a3bff`) completed `success` at 15:47:21Z; its `workflow_run` trigger fired `deploy.yml` run 280 automatically, which also completed `success` at 15:48:14Z for HEAD `8fe8afda6`. `deploy.yml` refuses to claim success until production's own build id matches, so this is the real end-to-end proof the 2026-11-01 08:16 owner commit was waiting on, not an HTTP 200 standing in for it.
+
+**Narrower checks run directly.** `check_urls.py`: 219/219 sitemap URLs resolve. `rotate_owner_actions.py --check` and `--check-preamble`: both CLEAN, nothing due. `rotate_owner_actions_closed_items.py --check`: CLEAN. `grep -c "^- \[ \]" BACKLOG-2026-09-07.md`: 0. 16 open GitHub issues read directly via the MCP tool, same set as every recent cycle, all owner-gated.
+
+**One warning noted, not fixed.** Full `preflight.py` flagged `OWNER-ACTIONS.md` at 123,475 bytes, over its 110,000-byte tripwire (`warn`, not `FAIL`). Checked both of its own rotation generators before touching it by hand: `rotate_owner_actions.py --check` and `rotate_owner_actions_closed_items.py --check` both report CLEAN, nothing currently due to archive. Left as a standing warning rather than hand-edited, since no generator considers it due and this file is generator-owned.
+
+**Did not go well / still open at ship time:** full `preflight.py` hit its documented slow `gate_tests` stage again (foreground run hit the usual ~150s timeout; backgrounded per the 2026-10-18 learning that this is slow, not hung). Still running past 3 minutes at ship time; this entry ships on the narrower checks above plus the direct CI/deploy evidence rather than wait on it, consistent with how prior cycles have handled the same known slowness.
+
+**Going well:** verifying the deploy claim against the Actions runs themselves (build-id-gated success, not a log entry) rather than citing the prior cycle's own account of it.
+
+Pushed to main: this log entry and command deck regen only. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (~15:1x-15:3x slot): found and fixed the real reason Phil's first automatic-deploy test went red, not just the first OWNER-ACTIONS.md FAIL in reach
 
 **Previous work was not finished; finishing it was this cycle's work.** Attached clean (unshallowed, ff-only onto `origin/main`, no reset or force). The standing state was the usual exhausted, Phil-gated queue (16 open issues, all `decision`/`blocked-on-art`/P0, 0 unchecked backlog rows) until a fresh `git fetch` mid-cycle surfaced something none of the recent entries had: Phil himself pushed `4107f65a4` about an hour earlier, setting `VPS_DEPLOY_KEY` as a GitHub Actions secret (`OWNER-ACTIONS.md` item 0, issue #35, the single most repeated blocker in this repository's history) and pushing a real content commit (`site/articles/how-to-organize-a-linen-closet.html` linking the bedroom guide) specifically to exercise the new auto-deploy path end to end.
