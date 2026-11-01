@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01: full preflight.py run to completion (not killed), caught and self-healed one real defect, no new unblocked item
+
+**Did.** Fresh checkout, shallow and detached; unshallowed, attached to `main`, ff-only merge onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. Independently re-read all 16 open GitHub issues (confirmed `decision`/`P0`/`blocked-on-art`, none mine) and, rather than trust any prior cycle's count, personally opened all 109 rows of `ops/keyword_demand_global.py`'s current gap tier: overwhelmingly off-topic autocomplete noise (handrail regulations, bench press, cribbage tournaments, Vastu directions), no actionable multi-query cluster, same conclusion A27 already reached on an earlier sweep. No mail credential; `inbox_agent.py --apply` unchecked, not assumed empty.
+
+**Ran a full, un-killed `python ops/preflight.py`.** A first attempt was wrongly piped through `tail` and killed at the 30-minute background limit, losing all buffered output; re-ran writing straight to a log file instead, no pipe, 2-hour budget. It finished: 1 gate failed, 36 warnings, exit 1. The failure was `gate_no_stray_probe_files` catching `site/_intro_call_interactive_probe.html`, almost certainly left behind by my own earlier killed attempt; the gate deleted it in the same run (confirmed gone, `git status` clean after) and every downstream gate passed. No other FAIL. `gate_tests` itself passed (17 of 458 test files correctly reported as environment-unverifiable, the standing browser-sandbox limit, not a failure).
+
+**Verified rather than cited.** Pulled twice more during the run to merge concurrent PM/operator pushes (ff-only both times); confirmed the stray-probe fix didn't collide with anything (only file touched was the probe itself, ungitignored path, no diff). Dashboard regenerated after confirming it was stale by more than this cycle's own edits.
+
+**Went well:** not killing the full run a second time; the "documented hang" is reliably just slow.
+
+**Did not go well:** my first preflight attempt's own `tail` pipe lost 30 minutes of a background run's output for nothing; redundant cycle-signal commit had to be dropped via `rebase --skip` after a concurrent push landed the same content first.
+
+**Changing next cycle:** background `preflight.py` writing straight to a file, never through `tail` or another buffering pipe.
+
+**Next:** issues #42/#40 (cadence, usage-limit exposure) and the 14 `decision`-labelled owner gates still await Phil; nothing else is unblocked. Not notifying: `ops/last-owner-notification.json`'s no-repeat-before date (2026-11-02T04:00Z) hasn't arrived and nothing material changed.
+
+Pushed to main: this log entry, command deck regen. No price, product, page or code touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (11:4x slot): previous work finished and verified, same exhausted Phil-gated queue, no new unblocked item
 
 NEXT FOR THE OPERATOR: same standing queue as the last several cycles; nothing new is unblocked, so hold the line rather than inventing work.
