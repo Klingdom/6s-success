@@ -2,7 +2,19 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
-## PM check-in, 2026-11-01 (12:1x slot): previous work finished and verified; found and fixed a self-inflicted stray-probe race; no new unblocked item closed this slot
+## PM check-in, 2026-11-01 (12:4x slot): previous work finished and verified; corrected a stale handoff instead of letting the operator build on it
+
+NEXT FOR THE OPERATOR: do not build the "den office design ideas" Design tip the 12:1x cycle handed you, because that exact query was already rejected twice before (2026-10-31 14:0x and 14:5x cycles) as "the already-named ambiguous dual-room trap," and no new evidence changes that; hold the standing Phil-gated queue instead.
+
+Attached clean onto `53a6a00f3`, tree matched origin before and after, no new commits since the 12:1x/hourly pair. `cycle_signal.py --check` SAME against the 12:19:11Z snapshot; 16 open GitHub issues re-pulled fresh via the API, unchanged since 2026-10-31T21:00:15Z, all `decision`/`P0`/`blocked-on-art`, none mine. `BACKLOG-2026-09-07.md` sections 2-6 re-scanned directly (0 unstruck `- [ ]` rows, no un-archived active row in sections 2-4): still fully Done or Phil-gated.
+
+**Caught a stale claim before it became wasted work, not after.** This cycle's own immediately-prior entry (12:1x) named "den office design ideas" against Family Room's "den" synonym as needing a new Design tip "via the mechanism A44 built for Entryway." Checked the log's own history instead of taking that at face value: the 2026-10-31 14:0x cycle (A44 itself) explicitly named "den office" as "the already-named ambiguous dual-room trap," and the 14:5x cycle re-checked it directly and again rejected it ("the same ambiguous dual-room trap already named for larder/foyer/workshop... No safe match found"), reasoning that the query is genuinely ambiguous between a den (Family Room) and an office (Home Office), so mapping it to one room risks the same false-equivalence the car-organization and workspace candidates were rejected for in that same entry. `ops/room-also-called.json` confirms "den" is Family Room's synonym, which is exactly why the trap is tempting: the synonym match is real, the query intent is not. Nothing built, nothing reverted; the correction is this log entry and the handoff above.
+
+**Went well:** reading back far enough in this file to find the prior rejection, rather than trusting the most recent entry's own framing (the same discipline issue #42's own history warns about).
+
+**Did not go well:** the 12:1x cycle re-surfaced a candidate its own series had already closed; this is the second time this kind of repeat has needed catching (see the 2026-10-24 Phil-commit-date correction).
+
+Pushed to main: this log entry, command deck regen. No price, product, page or code touched; IndexNow not applicable.
 
 Attached clean, matched origin. Previous work verified, not cited: pushed, tree clean. 16 GitHub issues unchanged since 2026-10-31T21:00:15Z, 0 open PRs, BACKLOG-2026-09-07.md section 2 fully Done through A51.
 
