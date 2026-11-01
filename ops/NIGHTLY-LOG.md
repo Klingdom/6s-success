@@ -2,6 +2,26 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (09:2x slot): previous work finished and verified, chased a false content regression to its real sandbox cause and closed the gap for good, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: `BACKLOG-2026-09-07.md` is 164,665 bytes against its own 150,000-byte tripwire, but `rotate_backlog_closed.py --check` is CLEAN (nothing closed is stale enough to archive yet); the overage is in the live, non-closed sections, which needs an editorial read for what is genuinely safe to trim, not a blind cut. Also: the previous slot's "NEXT FOR THE OPERATOR: check pid 1334" could not be acted on, because this container had no memory of it, confirming that pointing a future cycle at a backgrounded pid does not actually survive to the next scheduled firing; say so plainly instead of repeating that pattern.
+
+Attached clean: shallow and detached on arrival, `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Working tree clean, main matched origin before and after.
+
+**Previous work (08:4x PM, 08:5x operator) finished and pushed; CI confirmed green on the real HEAD, not assumed.** `fdcc1880c` is the latest `checks.yml` run and it is `completed`/`success`.
+
+**Chased what looked like a real regression to its real, fixable cause instead of reporting it.** A standalone `python ops/affiliate.py --check` FAILed ("could not read 3 delivered documents") and `python ops/check_sellable.py` FAILed separately ("120 name a file that is not built"), both contradicting weeks of this log's own "165 documents clean" / "124 of 126" citations. Root cause: this container's `pip` was bound to a different Python than `python3` runs (`pymupdf` landed in the wrong interpreter's site-packages), and `build/products/` had never been generated here. `ops/preflight.py` already fixes exactly this pair unconditionally, with its own docstring naming at least seven prior entries that hit it, but that fix never covered a standalone run of either narrow script, which is the pattern most PM/operator cycles actually use. Installed `pymupdf` with the correct interpreter, built the catalogue, reran both: 165 documents clean, 124/126 confirmed, matching the historical record exactly. The long-repeated number was genuine, not a copied, unverified citation.
+
+**Closed the gap, not just this run.** Added a small, side-effect-free `_bootstrap_fresh_sandbox()` to both `ops/affiliate.py` and `ops/check_sellable.py`, mirroring `preflight.py`'s own proven fix at smaller scope, so a standalone run of either script self-heals instead of misreporting a sandbox gap as a content regression. Verified by simulating a fresh sandbox (`rm -rf build/products`) and rerunning both cold: both self-heal, same clean numbers, no manual step first. Full account in `BACKLOG-2026-09-07.md` section 69.
+
+**Verified.** `ops/tests/test_affiliate.py`, `test_check_sellable.py`, `test_check_sellable_excluded_note.py` all pass. `check_urls.py` 219/219, `audit_pages.py` 224/0, `fix_dashes.py --check` 0/0 on every changed file, `cold_read_ledger.py --stale` 0 (both edited files re-ledgered fixed), `grep -c "^- \[ \]" BACKLOG-2026-09-07.md` 0. 16 open GitHub issues via the MCP tool, same set as every cycle since 2026-10-31, none touched since #48 at 2026-10-31T21:00:15Z, all `decision`/`P0`/`blocked-on-art`. `ops/last-owner-notification.json` still names 2026-11-02T04:00Z as the no-repeat-before date; not arrived, nothing material changed, no notification sent.
+
+**A full local `preflight.py` run was started, confirmed progressing (gate names advancing, not flat-CPU hung), then deliberately killed rather than left running.** This container has no persistence across scheduled firings, so a backgrounded pid here cannot be "checked" by a later cycle the way several recent entries have asked for, including the one immediately before this. The lock file's pid was confirmed to match the killed process before removal. CI's own `checks.yml` run against this push is the real, durable backstop instead: it will run on GitHub's own infrastructure, its result is checkable by any future cycle through the API, and this container's own sandbox-specific stalls (headless Chromium egress, etc.) do not apply there.
+
+**No new unblocked item found.** `BACKLOG-2026-09-07.md` sections 2-6 remain fully done or Phil-gated.
+
+Pushed to main: this log entry, the backlog entry, the two script fixes, `ops/cold-read-ledger.json`, dashboard regen. No price, product or page touched; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (08:4x slot): previous work finished and verified, closed one real cold-read ledger gap, same exhausted Phil-gated queue
 
 NEXT FOR THE OPERATOR: check pid 1334's full `preflight.py` run (started this cycle, left running rather than killed) before re-running it from scratch, because every gate before `gate_tests` already passed clean and killing a live run only to repeat it wastes the slow part.

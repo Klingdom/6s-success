@@ -45,11 +45,13 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 import glob
 import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PY = sys.executable
 CATALOGUE = os.path.join(ROOT, "ops", "affiliate-catalogue.csv")
 ACCOUNTS = os.path.join(ROOT, "ops", "affiliate-accounts.json")
 
@@ -398,8 +400,34 @@ def delivered_documents() -> list:
     return sorted(out)
 
 
+def _bootstrap_fresh_sandbox() -> None:
+    """Heal the two causes a fresh checkout hits before this check can read.
+
+    `ops/preflight.py` already does this unconditionally for the same
+    reason (see its own `bootstrap_fresh_sandbox`): a fresh checkout has no
+    `pymupdf` installed into the interpreter actually running, and no
+    `build/products/` built yet, so `delivered_documents()` either fails
+    every PDF closed or finds far fewer files than exist once the catalogue
+    is built. Running this check through `preflight.py` picks up its
+    bootstrap for free; running it standalone (as every narrow-check cycle
+    does) did not, and that gap read as a false content regression at least
+    once. Both fixes are idempotent and side-effect free, so this runs
+    unconditionally rather than only after a first failure.
+    """
+    try:
+        import pymupdf  # noqa: F401
+    except ImportError:
+        subprocess.run([PY, "-m", "pip", "install", "-q", "--timeout", "60",
+                         "-r", os.path.join(ROOT, "ops", "requirements.txt")],
+                        cwd=ROOT)
+    if not os.path.isdir(os.path.join(ROOT, "build", "products")):
+        subprocess.run([PY, os.path.join(ROOT, "ops", "build_catalog.py"),
+                         "--build"], cwd=ROOT, capture_output=True, text=True)
+
+
 def check() -> int:
     """Refuse to ship anything that breaks the three rules."""
+    _bootstrap_fresh_sandbox()
     bad = []
     ids = {v.get("publisher_id") for v in accounts().values()
            if v.get("publisher_id")}

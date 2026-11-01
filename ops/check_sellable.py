@@ -26,6 +26,7 @@ from __future__ import annotations
 import io
 import json
 import os
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,7 +35,25 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 os.environ.setdefault("STRIPE_FULFIL_IMPORT_ONLY", "1")
 
 
+def _bootstrap_fresh_sandbox() -> None:
+    """Build the catalogue before checking it, the same fix preflight.py
+    already carries unconditionally in its own `bootstrap_fresh_sandbox`.
+
+    A fresh checkout has no `build/products/` until `build_catalog.py
+    --build` runs once; without it, every file-existence check below reads
+    as "not built" for every single SKU, which looks like the one failure
+    this file exists to catch (money taken, nothing delivered) and is not.
+    Running this check through `preflight.py` already bootstraps for free;
+    running it standalone, the way a narrow-check cycle does, did not.
+    """
+    if not os.path.isdir(os.path.join(ROOT, "build", "products")):
+        subprocess.run([sys.executable, os.path.join(ROOT, "ops",
+                         "build_catalog.py"), "--build"],
+                        cwd=ROOT, capture_output=True, text=True)
+
+
 def main() -> int:
+    _bootstrap_fresh_sandbox()
     js = io.open(os.path.join(ROOT, "site", "assets", "js", "data.js"),
                  encoding="utf-8").read()
     listed = json.loads(js[js.index("["):js.rindex("]") + 1])

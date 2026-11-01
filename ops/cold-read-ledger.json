@@ -12,9 +12,9 @@
       "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: read in full (738 lines) and run directly, not just inspected. --self-test: 4/4 historical outcomes reproduced (EM-003's missing key correctly fails, the landing-zone and garage-tool-wall cases score correctly, the levitating-sink must_not_show hard-fail holds). --check: 89 card and 114 zone checklists all derive with 0 errors against the real corpus. No GEMINI_API_KEY or source images in this sandbox, so --all cannot run here; --one/--all both report BLOCKED plainly rather than guessing, confirmed by reading that branch. No defect found."
     },
     "affiliate.py": {
-      "status": "clean",
-      "date": "2026-10-12",
-      "note": "Second-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (475 lines). host_disclosed() matching is case-sensitive-lowercase-only against site/privacy.html text, a latent gap if a host were ever named there with capital letters, but the live catalogue only uses target/homedepot (both lowercase-disclosed) and the function fails CLOSED (withholds) on any mismatch, so this cannot cause an undisclosed link to publish. No live defect; noted for whoever next adds a merchant."
+      "status": "fixed",
+      "date": "2026-11-01",
+      "note": "Self-heal: bootstrap pymupdf + build/products before check(), so a standalone run cannot misreport the known fresh-sandbox gap as a content regression"
     },
     "affiliate_report.py": {
       "status": "clean",
@@ -632,9 +632,9 @@
       "note": "Fourth-pass cold read, 2026-10-12 scheduled operator cycle: re-read in full (147 lines). Ran directly: correctly reports UNCHECKED for all five printables (pypdf not installed in this sandbox) rather than a false pass; every one of the five printables named individually rather than only the headline pack. No defect found."
     },
     "check_sellable.py": {
-      "status": "clean",
-      "date": "2026-10-15",
-      "note": "Re-verified 2026-10-15, scheduled operator cycle, as the standing oldest-entry drift check (BACKLOG-2026-09-07.md and GitHub #42 both confirm every backlog row and issue is Done/Hold/Phil-gated, cycle_signal.py --check reads SAME): read the full 210 lines again rather than trusting the 2026-10-11 date. No code change since (git log on the file shows its last commit still 2026-10-02, 044863b9). Ran it live: 126 listed/priced, 126 in SELLABLE, 125 in DELIVERY, 124 of 126 buyable products confirmed in Stripe with a delivery entry and a file on disk, the other 2 correctly excluded as person-delivered services (CN-INHOME, CN-VIRTUAL). 0 FAIL, no drift between the three lists it protects."
+      "status": "fixed",
+      "date": "2026-11-01",
+      "note": "Self-heal: bootstrap build/products before main(), so a standalone run cannot misreport the known fresh-sandbox gap as a content regression"
     },
     "check_sitemap_current.py": {
       "status": "clean",
