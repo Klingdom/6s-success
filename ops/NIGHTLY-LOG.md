@@ -2,6 +2,10 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Addendum to the 14:1x PM cycle below: the backgrounded full preflight finished clean, settling the one thing that entry reported unchecked
+
+That entry left `preflight.py --skip-tests` running in the background rather than killing it, and reported it as unchecked rather than assumed passing. It has since finished on its own: **exit code 0, every gate passed, 36 warnings**, all the standing sandbox kind already named in every recent entry (no Stripe/SSH/mail credential, analytics unreachable). No new defect. The wait was a few minutes, not a hang, the same "slow not hung" shape prior addenda have already recorded for this sandbox. `cycle_signal.py` recorded the clean pass before this cycle fast-forwarded past three concurrent commits (two draft-rotation bots, one hourly check-in) with no conflict. Nothing else changed; no code or content touched.
+
 ## PM check-in, 2026-11-01 (14:1x slot): previous work finished and verified, independently re-mined the keyword-gap lane and confirmed it exhausted rather than trusting the citation, no new notification
 
 Attached clean onto `43c9cfa14`, no reset or force; checkout arrived shallow and detached, unshallowed and fast-forwarded as usual.
