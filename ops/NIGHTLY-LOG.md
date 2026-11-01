@@ -2,6 +2,22 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (~15:1x-15:3x slot): found and fixed the real reason Phil's first automatic-deploy test went red, not just the first OWNER-ACTIONS.md FAIL in reach
+
+**Previous work was not finished; finishing it was this cycle's work.** Attached clean (unshallowed, ff-only onto `origin/main`, no reset or force). The standing state was the usual exhausted, Phil-gated queue (16 open issues, all `decision`/`blocked-on-art`/P0, 0 unchecked backlog rows) until a fresh `git fetch` mid-cycle surfaced something none of the recent entries had: Phil himself pushed `4107f65a4` about an hour earlier, setting `VPS_DEPLOY_KEY` as a GitHub Actions secret (`OWNER-ACTIONS.md` item 0, issue #35, the single most repeated blocker in this repository's history) and pushing a real content commit (`site/articles/how-to-organize-a-linen-closet.html` linking the bedroom guide) specifically to exercise the new auto-deploy path end to end.
+
+**Verified against the actual CI run, not the commit message's optimism.** `publish-image.yml` run 671 for that commit finished `failure` (confirmed via `get_job_logs`, not assumed from a green-looking push): `gate_owner_actions_last_measured_current` FAILed, plus the two tests that assert the real file parses clean against it. Root cause: Phil's own item-0 edit in that same commit was dated 2026-11-01, newer than the file's own "List reviewed: 2026-10-31" marker, so the gate correctly caught its own document going stale on the very push meant to prove the deploy pipeline works. Because the image build never completed, `deploy.yml`'s `workflow_run` trigger never fired, so the first real test of the new secret never actually ran.
+
+**Fixed, not just reported.** Read enough of `OWNER-ACTIONS.md` (the full "Start here" table, items 0/1/1b/1c/1d/1e/1g/4/5/6/7/7a in full, every remaining section header) to honestly bump the marker to 2026-11-01, rather than a blind date-stamp. Verified the gate's own logic directly against the corrected file before shipping (`header_date == newest`, no FAIL). Shipped via `python ops/ship.py --no-deploy -m "..."` (commit `b182a3bff`): commit/push/verify-on-origin all `ok`; `--no-deploy` because this sandbox has no VPS egress or deploy key, same standing limit as every cycle.
+
+**Collision, handled per CLAUDE.md step 8.** A concurrent session manually re-dispatched `publish-image.yml` against this fix commit twice within the same minute (runs 672, cancelled, then 673, in progress as this entry is written) before this cycle could check it itself. Did not dispatch a third run; left 673 to finish rather than race it. First real end-to-end result of the new `VPS_DEPLOY_KEY` secret is still unconfirmed as of this entry: the next cycle (or this one's own follow-up) should check run 673's conclusion and, if it goes green, confirm `deploy.yml` actually fired and production's `build-id.txt` moved, not just that the image built.
+
+**Also found, separately:** `OWNER-ACTIONS.md` is 123,475 bytes, over its own 110,000-byte tripwire (WARN, not FAIL; needs `ops/rotate_owner_actions.py`, not a hand edit, left for a cycle with room for it).
+
+**Handing the operator:** confirm run 673's conclusion and, if green, verify the production build id actually moved after `deploy.yml` ran; if it also fails, read its own job log rather than re-citing this entry's diagnosis, since a second real cause is possible. If it deploys clean, `OWNER-ACTIONS.md` item 0 and issue #35 can finally close for real, not "done pending verification."
+
+Pushed to main: `OWNER-ACTIONS.md` (the marker fix), command deck regen, this log entry. No price, product or page content touched beyond the marker; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-01 (~15:0x slot): fixed a real oversized-gate warning, full preflight confirmed clean after a genuine local hang, cold-read the homepage against CLAUDE.md section 51 and found nothing new to ship
 
 **Did.** Fresh checkout, no memory of prior runs. Checkout arrived shallow and detached: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`. Diverged once mid-cycle against a concurrent PM push; resolved with a real merge, not a reset or force, taking the newer of two conflicting `ops/cycle-signal.json` checkpoints. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `GOALS.md`, `ops/NIGHTLY-LOG.md`'s last several entries.
