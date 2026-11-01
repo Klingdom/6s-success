@@ -15036,6 +15036,87 @@ def gate_owner_actions_retired_sku_count_current(fp_oa: str = "",
              % (cited, pending))
 
 
+def owner_actions_untracked_items(text: str):
+    """Return the heading of every open, numbered OWNER-ACTIONS.md item that
+    cites no GitHub issue anywhere in its own section.
+
+    Found 2026-11-01, scheduled operator cycle, while adding the cross-
+    reference text issues #43 through #48 should have carried back into
+    OWNER-ACTIONS.md itself when they were filed 2026-10-31. Four of those
+    six items (1, 1b, 5, 6) never got the backlink: the issue existed, but
+    nobody could find it starting from the item itself. Checking further
+    found seven more items (8, 11, 16, 17, 18, 21, 22) plus one CRITICAL
+    risk split across two items (1g, 13, RISK-0011) that had never been
+    filed as an issue at all, the same invisible-gate shape, just not yet
+    caught. This is now the third time this exact class of defect has been
+    found by hand instead of by a check: the first time (2026-10-31) fixed
+    six items, this time thirteen more. A gate exists from here on.
+
+    A heading is "open and numbered" if it starts with a bare "N." or
+    "Na." (a digit, an optional single lowercase letter, a period), has no
+    "~~" strikethrough anywhere in it (this file's own convention for a
+    resolved item), and does not itself say the item is already done
+    ("done by", "no longer needs you", "withdrawn"). For every such
+    heading, its own body (everything up to the next "### " heading) must
+    contain "issue #<number>" somewhere, case-insensitive. Deliberately
+    narrow: a narrative subsection heading ("New 2026-10-22: ...", "Start
+    here: ...") never matches the numbered-heading shape, so this cannot
+    flag prose it has no business judging.
+    """
+    heading_re = re.compile(r"^### (.+)$", re.M)
+    headings = list(heading_re.finditer(text))
+    numbered_re = re.compile(r"^\d+[a-z]?\.\s")
+    done_re = re.compile(r"done by|no longer needs you|withdrawn", re.I)
+    issue_re = re.compile(r"issue #\d+", re.I)
+    problems = []
+    for i, m in enumerate(headings):
+        heading = m.group(1)
+        if "~~" in heading:
+            continue
+        if not numbered_re.match(heading):
+            continue
+        if done_re.search(heading):
+            continue
+        start = m.end()
+        end = headings[i + 1].start() if i + 1 < len(headings) else len(text)
+        body = text[start:end]
+        if not issue_re.search(body):
+            problems.append(heading.strip())
+    return problems
+
+
+def gate_owner_actions_items_tracked(path=None) -> None:
+    """Every open, numbered OWNER-ACTIONS.md item should cite a GitHub issue
+    somewhere in its own section, so Phil can find it from the one place he
+    actually checks rather than only from this file.
+
+    See owner_actions_untracked_items() for the full history: this is the
+    second independent discovery of the same defect class in two days.
+    Warning, not failing, on purpose: an untracked item is a visibility gap,
+    not a wrong or dishonest claim, and several genuinely low-urgency items
+    (a print-and-report request, a chore contingent on another decision) do
+    not need their own issue the moment this gate exists. The point is that
+    the gap stays visible every run instead of needing a third independent
+    discovery.
+    """
+    path = path or os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    problems = owner_actions_untracked_items(text)
+    if problems:
+        warn("owner-actions-items-tracked",
+             "%d open OWNER-ACTIONS.md item(s) cite no GitHub issue in "
+             "their own section, so Phil cannot find them from the issue "
+             "tracker: %s%s. File one (label decision, P0 if it blocks "
+             "revenue or is a trust/safety risk) and add a one-line "
+             "backlink, the same fix issues #45-#56 already applied to "
+             "thirteen other items."
+             % (len(problems), ", ".join(problems[:6]),
+                " and %d more" % (len(problems) - 6)
+                if len(problems) > 6 else ""))
+
+
 def gate_pages_missing_art() -> None:
     """Count every customer-facing page that ships with no picture at all.
 
@@ -31686,6 +31767,7 @@ def main() -> int:
     # by reading job logs by hand. Moved here for the same reason the three
     # gates above were moved on 2026-10-21.
     run_gate(gate_owner_actions_last_measured_current)
+    run_gate(gate_owner_actions_items_tracked)
 
     # site/build-id.txt is the third occurrence of the identical shape:
     # pure hashing, no browser, no network, and it has now failed on the

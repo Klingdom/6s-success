@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01: closed the "owner item has, or needs, a GitHub issue but cannot say so" gap a second time, and gated it
+
+**Did.** Fresh checkout, no memory of prior runs. Unshallowed and attached clean: fetch, `fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `STATUS.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. The global keyword-gap lane (102 rows) was already independently mined and called exhausted by two concurrent cycles today, so checked `OWNER-ACTIONS.md` for the same invisible-issue defect the 2026-10-31 sweep (#43-48) fixed once. Found it had regressed: four of those six items (1, 1b, 5, 6) never got the backlink text written into their own section, and thirteen more items, including CRITICAL risk RISK-0011 (product masters, single point of failure) and a live security exposure (two public ports, no firewall), had never been filed at all.
+
+**Action.** Filed 8 new GitHub issues (#49-#56). Added a one-line backlink to all 13 affected OWNER-ACTIONS.md sections. Built `owner_actions_untracked_items()`/`gate_owner_actions_items_tracked()` in `ops/preflight.py` (WARN, not FAIL), wired into `main()`.
+
+**Verified.** `ops/tests/test_gate_owner_actions_items_tracked.py` (7/7), fail-then-pass proved directly against the real file (item 7 flagged before the fix, clean after). `ast.parse` confirms `preflight.py` parses. `fix_dashes.py --check` 0/0 on every touched file. `check_urls.py` 219/219, `audit_pages.py` 0 duplicates, `affiliate.py --check` 165 documents clean. Full `preflight.py --skip-tests` backgrounded; killed at the documented sandbox wall with 0 lines flushed, reported unchecked, not passing.
+
+**Went well.** Checking whether a prior "closed" defect class had actually stayed closed, rather than mining the same exhausted keyword lane a third time this hour.
+
+**Did not go well.** The full preflight run gave no partial evidence this time (output stayed buffered through the kill); narrower checks covered the real gap instead.
+
+**Changing next cycle:** none.
+
+**Next:** 9 more untracked items (1b-deploy-yourself, 1c, 1d, 1e, 2, 4, 4b, 19, 20) remain, deliberately left for a future cycle; the new gate names them every run. 24 GitHub issues now await Phil.
+
+Pushed to main. No price, product or site page touched; not customer-facing; IndexNow not applicable.
+
 ## Scheduled operator cycle, 2026-11-01 (17:0x slot): unshallowed and attached cleanly, closed A54 before reading the 17:1x entry's own (incorrect) rejection of the same query, full preflight re-confirmed clean
 
 **Correction to the 17:1x PM check-in below, which landed concurrently with this cycle's own work and reached the opposite verdict on the same query.** That entry's own account reads "'Organization for tiny bathrooms' and 'car organisation must haves' are scoring/filler-word artifacts... not vocabulary gaps. No safe, evidence-backed addition found this cycle." The bathroom half of that verdict was wrong, reached independently of this cycle's own work below: Primary Bathroom's own `intro` already states "the smallest room you use the most," a real, specific fact the query is about, not a filler word. The 17:1x cycle checked the query's surface wording and the existing headings, correctly found no match, and stopped there without checking whether a groundable fact existed to build a new heading from. "Car organisation must haves" was correctly declined there; A48 (2026-10-31) already proved those exact words are generic listicle filler with no honest heading fix, so that half of the 17:1x verdict stands.

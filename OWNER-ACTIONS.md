@@ -189,6 +189,11 @@ happen?", and it found one real trap and one real blocker:
 
 ### 1g. Confirm one file opens from OneDrive on a different device. Two minutes, and it closes a CRITICAL risk.
 
+**Tracked 2026-11-01 as GitHub issue #49**, `decision`/`P0`, alongside item 13
+below (the same RISK-0011), never tracked as an issue before, the same
+invisible-gate shape issues #43 through #48 already fixed for other items on
+2026-10-31.
+
 **What I found, on your own machine, today.** The 6S product masters on your
 Desktop had no backup of any kind. File History: off. Windows Backup: off. No
 shadow copies. OneDrive was running the whole time, which is what made it
@@ -304,6 +309,10 @@ the only gap.
 ---
 
 ### 1b. Turn on Gemini API billing. This unblocks every image on the roadmap.
+
+**Tracked 2026-10-31 as GitHub issue #47**, `decision`, filed alongside items
+14/15/5/6 the same cycle but the cross-reference was never written back into
+this item's own section until now.
 
 **Corrected 2026-09-18, Phil's own workstation (issue #2): the free deck now has 7 cards without a photograph, not 9.** EP-008, ET-004 and EU-011 got locally generated heroes on 2026-09-15; EH-004 and EP-007 followed on 2026-09-18, reviewed at full size and at the card's photograph band, and the print-and-play PDF was rebuilt and verified live (disclosure now reads 81 of 88 illustrated). The remaining seven do not print a placeholder glyph any more: the template shows the card's objective in a text panel where the photograph goes. Readable, but still no picture. Still missing: EE-002, EM-009, ES-007, ET-003, EU-002, EU-004, EU-009 (confirmed against `ops/card-hero-verdicts.json` this cycle). This is now a measured art decision, not a retry queue: 3 fresh prompt attempts per card, 48 images reviewed by eye, and the local SD model cannot render an umbrella stand, a cork notice board, a whiteboard or a boot tray without inventing an unrelated room around it (LRN-0012); it needs a stronger hosted model (the Gemini billing gate) or real photographs. Zone pages: 5 of 8 previously-stale heroes fixed the same session, 3 remain (file storage, printer station, material rack), same root cause.
 
@@ -443,6 +452,10 @@ under the $3.47 "Entryway deck card art" row above since it is a fifth of
 one card family reprinted, not the whole deck.
 
 ### 1. Authorise YouTube uploads. Five minutes, once, never again.
+
+**Tracked 2026-10-31 as GitHub issue #46**, `decision`, filed alongside items
+14/15/1b/5/6 the same cycle but the cross-reference was never written back
+into this item's own section until now.
 
 **This is the biggest single lever on the business right now.** 456 videos are
 built and 12 are public, because those 12 were posted by hand. 102 finished
@@ -807,6 +820,10 @@ have.
 
 ### 5. Apple Developer and Google Play accounts. $99/yr and $25 once.
 
+**Tracked 2026-10-31 as GitHub issue #48**, `decision`, filed alongside items
+14/15/1/1b/6 the same cycle but the cross-reference was never written back
+into this item's own section until now.
+
 **Why it matters:** no store listing, no iOS or Android release, no in-app
 purchase without them.
 **Ready:** everything up to submission is done and committed.
@@ -824,6 +841,11 @@ false claim to a review team, so this is the one asset I will not fabricate.
 
 ### 6. Accounts layer: yes or no, and the privacy stance.
 
+**Tracked 2026-10-31 as GitHub issue #45**, `decision`/`P0`, the single
+largest named revenue gap, filed alongside items 14/15/1/1b/5 the same cycle
+but the cross-reference was never written back into this item's own section
+until now.
+
 **Why it matters:** this is the largest single unlock, worth roughly $11,250 of
 the $21,500 revenue plan, because it enables household play and 6S Plus. It is
 also the first customer data we would hold, so it changes our privacy and
@@ -832,6 +854,10 @@ security posture and is expensive to reverse.
 as a shared code rather than a social graph.
 
 ### 7. Listmonk cannot send, AND the site was never wired to it.
+
+**Tracked as GitHub issue #15**, `P0`/`decision`, open since 2026-08, but this
+item's own section never carried the cross-reference until now, the same gap
+items 1/1b/5/6 above had.
 
 **THIRD FINDING, 2026-10-04, and it reverses part of the paragraph below: the route DID exist, and what it served was worse than nothing.** The 2026-09-04 note below says there is no route to Listmonk from the site at all. That stopped being true at some point after it was written: `site/nginx/default.conf` carried a `location = /subscribe` proxying `172.17.0.1:8081/subscription/form`, and `https://6s-success.com/subscribe` returned 200 with Listmonk's own public form.
 
@@ -875,6 +901,8 @@ want it sooner, say so and I will build it, but I would rather not put a
 capture form in front of two visitors a day and call it progress.
 
 ### 7a. The original defect: Listmonk's SMTP login belongs to the other business.
+
+**Same GitHub issue #15 as item 7 above.**
 
 **Measured 2026-09-03, not inferred.** This item used to say "root URL and
 from-address need setting", which was the 2026-08-23 diagnosis and is no longer
@@ -929,6 +957,9 @@ first time there will be a count of how many people wanted on. It is not a
 substitute for a list.
 
 ### 8. Close two public ports. Two lines and a restart, about five minutes.
+
+**Tracked 2026-11-01 as GitHub issue #50**, `decision`/`P0`, never tracked as
+an issue before.
 
 **What:** Umami on 32769 and Listmonk on 8081 are reachable from the open
 internet.
@@ -1016,6 +1047,9 @@ sent, so nothing at the header level is suppressing indexing.
 
 ### 11. Post the 114 zone-reset videos somewhere a stranger can find them.
 
+**Tracked 2026-11-01 as GitHub issue #51**, `decision`, never tracked as an
+issue before.
+
 **What:** `build/video/zones/` holds 114 short, vertical, captions-only clips,
 one per micro zone, 79 MB total, rendered and ffprobe-verified by you
 (`a44335a`). They are built for posting to social video platforms (YouTube
@@ -1033,6 +1067,9 @@ without an account to post through.
 ### ~~12. Regenerate the book cover.~~ DONE BY ME 2026-09-03, no machine needed, see R2 in "Resolved today" above (this item duplicated it). Full text archived to `OWNER-ACTIONS-ARCHIVE.md`.
 
 ### 13. Where are the product masters backed up? About two minutes.
+
+**Tracked 2026-11-01 as GitHub issue #49**, `decision`/`P0`, alongside item 1g
+above (the same RISK-0011), never tracked as an issue before.
 
 **What:** `RISKS.md` (RISK-0011) records that the roughly 1.74 to 1.78 GB of
 book plate PNGs, deck art, photographs and font masters behind every product
@@ -1199,6 +1236,9 @@ Etsy PDF re-renders at 76 pages, not 152. Nothing further needed here.
 
 ### 16. Create Pinterest and Instagram business accounts, then post the 114 zone cards already built. About 20 minutes, once.
 
+**Tracked 2026-11-01 as GitHub issue #52**, `decision`, never tracked as an
+issue before.
+
 **Added 2026-09-08, this operator, found while checking whether GOALS.md's own
 "not blocked" claim about these two channels was still true.** It was true for
 building the asset and has stayed false for posting it: `ops/build_social_pins.py`
@@ -1266,6 +1306,9 @@ descriptions that had lost their zone link to a length cut end in it again.
 
 ### 17. Decide the capped local demand test for In-Home Days. A budget, a stop date, and about five minutes beyond that.
 
+**Tracked 2026-11-01 as GitHub issue #53**, `decision`/`P0`, the ROADMAP G2
+gate this whole item is waiting on, never tracked as an issue before.
+
 **Added 2026-09-11, PM check-in, found reading `BACKLOG-2026-H2.md` section
 3B rather than trusted from an earlier cycle's own list of what remains.**
 `3B.1` has sat as "Phil, this is a spending decision" since the strategy
@@ -1320,6 +1363,9 @@ needs your number and your date, in writing, before anything spends.
 ---
 
 ### 18. Create Facebook and X accounts, then read the daily draft email. About 15 minutes, once.
+
+**Tracked 2026-11-01 as GitHub issue #54**, `decision`, never tracked as an
+issue before.
 
 **Added 2026-09-12, this operator, found reading `ops/corpus_index.py` cold,
 per step 5d.** The same book corpus `ops/linkedin_drafts.py` has been reading
@@ -1490,6 +1536,9 @@ costs five minutes and one sheet of paper.
 
 ### 21. Decide whether 6S Success runs a public MCP endpoint. About two minutes to decide; ten to start it if yes.
 
+**Tracked 2026-11-01 as GitHub issue #55**, `decision`, never tracked as an
+issue before.
+
 **This is a decision, not a chore, and it is here because I will not make it
 for you.** The repository has been building and publishing an MCP server image
 on every content change since 2026-08-31, and keeping a byte-identical 1.1 MB
@@ -1548,6 +1597,9 @@ with no purpose is the state that produced the false claim above, and I would
 rather delete it than keep pretending. Recorded as `DECISIONS.md` D-028.
 
 ### 22. Turn on the photos API, and choose whether it may look at photos. About five minutes.
+
+**Tracked 2026-11-01 as GitHub issue #56**, `decision`, never tracked as an
+issue before.
 
 **Built 2026-10-14 on your request; independently security-reviewed and
 hardened 2026-10-15; still not deployed.** `photos/` stores private
