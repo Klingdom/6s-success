@@ -1996,6 +1996,9 @@ ROOM_GUIDES = {
     "Home Office": [("../articles/how-to-organize-paperwork.html",
                      "How to organize paperwork",
                      "What to keep, for how long, and where.")],
+    "Workshop": [("../articles/how-to-organize-a-workshop.html",
+                  "How to organize a workshop, step by step",
+                  "Safety station first, then the bench, the tools, the fasteners and the chemical cabinet.")],
 }
 
 

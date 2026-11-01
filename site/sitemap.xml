@@ -538,6 +538,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://6s-success.com/articles/how-to-organize-a-workshop</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/share/articles-how-to-organize-a-workshop.jpg</image:loc>
+      <image:caption>Start at the safety station, then the workbench, the power tools, the fasteners, the material rack and the chemical cabinet. About five to eight hours in all.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://6s-success.com/articles/how-to-organize-an-attic</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -1045,7 +1055,7 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/workshop</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
