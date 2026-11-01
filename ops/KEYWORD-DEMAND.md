@@ -4,9 +4,9 @@
 
 **Harvested:** 2026-10-28T16:27:02Z from google, bing, 151 seeds, 302 attempts: 261 returned completions, 40 had none, 1 errored. Canary: bing ok, google ok.
 
-**Scored:** 2026-11-01T18:15:29Z against 229 page(s) at commit 54aeb5632. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
+**Scored:** 2026-11-01T22:53:41Z against 230 page(s) at commit 26e9432e1. Coverage below describes the site at THAT moment, not when the queries were harvested. Re-derive with `python ops/keyword_demand.py --rescore`, which needs no network.
 
-**Queries found:** 2808. Checked against 229 published page titles: 1356 covered, 1317 partial, 135 gap.
+**Queries found:** 2808. Checked against 230 published page titles: 1365 covered, 1310 partial, 133 gap.
 
 **This is not search volume.** An autocomplete suggestion proves an engine predicts the phrase, which means people type it often enough to be worth predicting. It carries no count, and `rank` orders suggestions only within the one seed that produced them. Anything here presented as a monthly volume is a fabrication (CLAUDE.md section 8).
 
@@ -17,7 +17,7 @@
 
 ## Gaps: nothing we publish is titled for these
 
-Showing the top 80 of 135, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
+Showing the top 80 of 133, ordered by the best rank the phrase reached in any one seed suggestion list, so the top of this list is what an engine predicts first. The full set is in `keyword-demand.json`.
 
 | Rank | Query | Room | Closest page we have | Missing words |
 |---|---|---|---|---|
@@ -104,7 +104,7 @@ Showing the top 80 of 135, ordered by the best rank the phrase reached in any on
 
 ## Partial: we are close, and the title does not use their words
 
-Showing the top 60 of 1317.
+Showing the top 60 of 1310.
 
 | Rank | Query | Our closest title | Coverage |
 |---|---|---|---|
@@ -176,7 +176,7 @@ Showing the top 60 of 1317.
 | Dining Room | 39 | 0 | 21 | 18 |
 | Entryway | 50 | 1 | 22 | 27 |
 | Family Room | 27 | 0 | 19 | 8 |
-| Garage | 77 | 1 | 27 | 49 |
+| Garage | 77 | 1 | 26 | 50 |
 | Guest Bathroom | 22 | 2 | 14 | 6 |
 | Guest Bedroom | 24 | 0 | 13 | 11 |
 | Hall Closet | 30 | 0 | 12 | 18 |
@@ -191,7 +191,7 @@ Showing the top 60 of 1317.
 | Primary Bathroom | 13 | 0 | 9 | 4 |
 | Primary Bedroom | 16 | 1 | 13 | 2 |
 | Stair Landing | 24 | 0 | 16 | 8 |
-| Workshop | 66 | 5 | 36 | 25 |
+| Workshop | 66 | 3 | 31 | 32 |
 
 1927 queries name no room of ours. Those are either a different subject the engine wandered into, or a room-independent question, and the second kind is where an article earns its place.
 

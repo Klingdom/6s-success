@@ -2,6 +2,24 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (~22:5x UTC): the US keyword-demand tier had gone stale against today's own guide articles; rescored for free, one new misattribution logged, not patched
+
+**Did.** Fresh checkout, unshallowed and attached to `main` with `fetch`/`fetch --unshallow`/`checkout`/`merge --ff-only`, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7 and 63-75, `STATUS.md`'s top sections, `ROADMAP-2026-2029.md`'s headline, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries. Checked rather than trusted the standing "fully exhausted" claim: 30 open GitHub issues re-pulled live via the API, all `decision`/`P0`/`blocked-on-art`; `ops/cold_read_ledger.py --stale`/`--next` confirmed 300/300, 0 stale; every rotation script for the three living-doc size tripwires preflight warns about (`BACKLOG-2026-09-07.md`, `OWNER-ACTIONS.md`, `STATUS.md`) reports CLEAN, nothing yet past its own retention window. With no GitHub-gated or rotation-gated work available, read `ops/keyword-demand.json` cold and found it scored against a stale commit (`54aeb5632`, 229 pages) while its global sibling was already current (230 pages, including today's kitchen/garage/workshop guide articles). Ran `ops/keyword_demand.py --rescore` (free, no network): gap 135 to 133, partial 1317 to 1310, covered 1356 to 1365; `KEYWORD-DEMAND.md` regenerated with it.
+
+**A second finding, logged not fixed.** The same rescore's output surfaced "organize grilling station" misattributed to the dining room's coffee station page instead of the real patio/deck grill zone, on an exact-word-match tie with no stemming ("grilling" never equals "grill"). Third instance of this shape (after A25 and the nightstand-drawers case). Not patched: a stemming fix to the scorer's `words()`/`_tie_break` would reclassify rows across both 2,808- and 2,170-query tiers at once, bigger than one cycle's "finish one thing" scope, and the query's own `partial` status is unaffected either way. Left for a deliberate future pass. Full account in `BACKLOG-2026-09-07.md` section 76.
+
+**Verified.** `check_urls.py` 222/222, `audit_pages.py` 227/0 duplicates, `fix_dashes.py --check` 0/0, `check_sellable.py` 124/126, `link_graph_report.py` 0 orphans. `gate_keyword_demand_rescored_current()` and its global sibling called directly against the post-rescore files: both clean. Full `preflight.py` backgrounded; every gate through `gate_image_coverage` and the pre-`gate_tests` `cycle_signal` checkpoint passed 0 FAIL before hanging at `gate_tests` with frozen CPU time, the same documented sandbox shape; killed rather than left running. Reporting `gate_tests` **unchecked, not passed**. `ops/inbox_agent.py --apply`: no mail credential, unchecked, standing.
+
+**Went well:** reading the measurement file itself cold, rather than its own "Scored" line, is what caught the staleness; the gate built for exactly this (`gate_keyword_demand_rescored_current`) had not yet had a chance to fire this cycle.
+
+**Did not go well:** a `workflow_dispatch` of `checks.yml` against the prior cycle's HEAD was still `in_progress` when this cycle finished reading GitHub state; not waited on, since it does not block this cycle's own push.
+
+**Changing next cycle:** none.
+
+**Next:** confirm the in-progress `checks.yml` run (`41358569305`) landed green; the grilling-station tie-break class is worth a dedicated pass if a fourth instance turns up.
+
+Pushed to main. Command deck regenerated. No price or product touched; no page content changed, only measurement files, so `IndexNow` is not applicable.
+
 ## PM check-in, 2026-11-01 (22:4x slot): finished the previous cycle's pending item, no new unblocked work exists
 
 NEXT FOR THE OPERATOR: confirm run 41358569305 (Checks, workflow_dispatch on `26e9432e1`) finished green at https://github.com/Klingdom/6s-success/actions/runs/41358569305; if still red, read its job logs directly and fix the real cause, because the 22:1x cycle's build-id fix was never verified against a real `Checks` run and that is the only unfinished item this slot found.

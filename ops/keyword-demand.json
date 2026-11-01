@@ -19,7 +19,7 @@
       "note": ""
     }
   },
-  "pages_checked": 229,
+  "pages_checked": 230,
   "failures": [
     {
       "seed": "how to organize a living room",
@@ -2203,7 +2203,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -2694,7 +2694,7 @@
       "best_page_title": "How to organize the family room charging station",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -4468,7 +4468,7 @@
       "best_page_title": "How to organize the workshop paint and chemical storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -6969,13 +6969,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "declutter"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "declutter your home office",
@@ -9041,7 +9039,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -9062,7 +9060,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -12035,7 +12033,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/more-storage-wont-fix-clutter.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -20270,7 +20268,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -23681,13 +23679,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "messy"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a mudroom",
@@ -24307,7 +24303,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -24350,7 +24346,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -25334,13 +25330,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "event"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a workshop garage",
@@ -25421,13 +25415,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize a writing workshop",
@@ -27050,7 +27042,7 @@
       "best_page_title": "More storage will not fix a messy room",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -29602,7 +29594,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -30449,7 +30441,7 @@
       "best_page_title": "How to organize the workshop hardware storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -30487,7 +30479,7 @@
       "best_page_title": "The Garage Deck: 80 cards, free to read",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -32327,7 +32319,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -32345,13 +32337,11 @@
       "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/garage-deck.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize power tools in tool box",
@@ -32367,11 +32357,11 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.5,
       "heading_coverage": 0.75,
-      "heading_page": "/patio-or-deck-deck.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
-        "power"
+        "box"
       ]
     },
     {
@@ -32388,7 +32378,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -32410,7 +32400,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -33335,7 +33325,7 @@
       "best_page_title": "How to organize the entryway bench or console",
       "coverage": 0.5,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -33373,7 +33363,7 @@
       "best_page_title": "How to organize the garage garden tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -33410,13 +33400,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "how to organize towels",
@@ -34970,12 +34958,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "gap",
+      "heading_coverage": 0.667,
+      "heading_page": "/articles/index.html",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "event",
         "plan"
       ]
     },
@@ -35014,12 +35001,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.333,
-      "heading_coverage": 0.333,
+      "heading_coverage": 0.667,
       "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "gap",
+      "matched_on": "heading",
+      "status": "partial",
       "unmatched_words": [
-        "layout",
         "plan"
       ]
     },
@@ -36429,7 +36415,7 @@
       "best_page_title": "How to store blankets, and where each kind should live",
       "coverage": 0.333,
       "heading_coverage": 0.667,
-      "heading_page": "/disclaimer.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "partial",
       "unmatched_words": [
@@ -39375,7 +39361,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -43945,7 +43931,7 @@
       "best_page_title": "How to organize the dining room beverage or coffee station",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/articles/how-to-organize-baby-clothes.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -44541,7 +44527,7 @@
       "best_page_title": "How to organize the garage tool wall",
       "coverage": 0.5,
       "heading_coverage": 0.5,
-      "heading_page": "/deck-gallery.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -45406,13 +45392,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
-      "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "checklist"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "organizing craft supplies ideas",
@@ -48322,7 +48306,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -48343,7 +48327,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S Success Home Edition - Sample (Chapters 1-30).html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -48364,7 +48348,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "heading",
       "status": "covered",
       "unmatched_words": []
@@ -48402,7 +48386,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -48421,7 +48405,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 1.0,
       "heading_coverage": 1.0,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "covered",
       "unmatched_words": []
@@ -48440,7 +48424,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.75,
       "heading_coverage": 0.75,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -50526,7 +50510,7 @@
       "best_page_title": "How to organize the guest bathroom vanity storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-toys.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -51952,13 +51936,11 @@
       "best_page": "/zones/garage-the-power-tool-and-battery-zone.html",
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
-      "heading_coverage": 0.667,
-      "heading_page": "/articles/how-to-organize-a-garage.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "tools"
-      ]
+      "heading_coverage": 1.0,
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "storage for sports equipment",
@@ -53011,7 +52993,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -56994,7 +56976,7 @@
       "best_page_title": "How to organize the garage power tool storage",
       "coverage": 0.667,
       "heading_coverage": 0.667,
-      "heading_page": "/downloads/6S-Standards-Pack.html",
+      "heading_page": "/articles/how-to-organize-a-workshop.html",
       "matched_on": "title",
       "status": "partial",
       "unmatched_words": [
@@ -57096,13 +57078,11 @@
       "best_page": "/rooms/workshop.html",
       "best_page_title": "How to organize a workshop, zone by zone",
       "coverage": 0.5,
-      "heading_coverage": 0.5,
+      "heading_coverage": 1.0,
       "heading_page": "/rooms/workshop.html",
-      "matched_on": "title",
-      "status": "partial",
-      "unmatched_words": [
-        "layout"
-      ]
+      "matched_on": "heading",
+      "status": "covered",
+      "unmatched_words": []
     },
     {
       "query": "workshop organization ideas",
@@ -57408,6 +57388,6 @@
       ]
     }
   ],
-  "scored_at": "2026-11-01T18:15:29Z",
-  "scored_against_commit": "54aeb5632"
+  "scored_at": "2026-11-01T22:53:41Z",
+  "scored_against_commit": "26e9432e1"
 }
