@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-11-01 15:13 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-11-01 15:17 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -29,8 +29,8 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 | Open issues | 16 (5 P0, 2 blocked on art, 14 need your call) |
 | Closed to date | 32 |
 | Commits (7 days) | unknown (shallow clone, could not verify) of unknown (shallow clone, could not verify total) total |
-| Working tree | clean, in sync |
-| Last commit | `581abb5` DEPLOYED 2026-11-01: production serves a27adff83fd70ec2 = re |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `4107f65` VPS_DEPLOY_KEY set (OWNER-ACTIONS 0 done); linen closet guid |
 
 ## Product readiness
 
@@ -57,7 +57,7 @@ The site can take money for 129 of 130 catalog items, each a live Stripe Payment
 ## What needs you
 
 - **Check your Claude Code usage limit or plan status** (2 min). **Added 2026-10-09, PM check-in.** The autonomous PM and operator Routines went completely dark for roughly 5 days: `git log` shows zero Claude-authored commits between 2026-10-04 11:19:40Z and this cycle, every one of the 36 commits in that window from the dumb hourly check-in/social-rotation bot instead.
-- **Add `VPS_DEPLOY_KEY` as a GitHub Actions secret** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
+- **~~Add `VPS_DEPLOY_KEY` as a GitHub Actions secret~~ **DONE 2026-11-01 15:14Z** (set from the owner-invoked CEO session on Phil's instruction, `gh secret list` confirms it; first automatic deploy to be verified on the next image build, see STATUS)** (2 min). Closes the single most repeated line in this repository's whole operating history for good, not once.
 - **~~Verify the site in Google Search Console~~, send the Pages/Performance reports** (2 min). **Corrected 2026-10-20, PM check-in: this row still described the original verification task as open, 6 days after the full `### 1a` section below it (line ~872) recorded Phil had done it.** Verification itself is done: Phil set up the Domain property via DNS TXT, confirmed live by `nslookup`, token recorded in `ops/site-verification.json`, `gate_site_verification_declared` now finds it.
 - **Authorise YouTube uploads** (5 min). **Still open: authorisation itself has not happened.** CLEARED 2026-09-26 was the desync that once cast doubt on this row, fixed and re-verified, not the authorisation itself.
 - **Paste the business description into Stripe** (2 min). The live account still has no product description; it is the first thing a buyer reads about us at checkout, and the account-level gap is visible today.
