@@ -223,13 +223,6 @@
  ],
  "runs": [
   {
-   "at": "2026-10-04T02:18:06Z",
-   "mode": "changed",
-   "offered": 12,
-   "accepted": 12,
-   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
-  },
-  {
    "at": "2026-10-04T04:46:06Z",
    "mode": "changed",
    "offered": 12,
@@ -641,6 +634,13 @@
    "offered": 1,
    "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-11-01T16:05:22Z",
+   "mode": "changed",
+   "offered": 3,
+   "accepted": 3,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ],
  "hashes": {
@@ -703,7 +703,7 @@
   "https://6s-success.com/rooms/guest-bathroom": "f6034a5061a5635f",
   "https://6s-success.com/rooms/guest-bedroom": "57ba7542af8c3e93",
   "https://6s-success.com/rooms/hall-closet": "179e1a4c281e07eb",
-  "https://6s-success.com/rooms/home-office": "ae1e85f0574d47a7",
+  "https://6s-success.com/rooms/home-office": "e2928a5030193ffd",
   "https://6s-success.com/rooms/kids-bedroom": "9a702ad8c2044580",
   "https://6s-success.com/rooms/kitchen": "b715b57d7e0dabe2",
   "https://6s-success.com/rooms/laundry-room": "1a5b7a33e5f9b51e",
@@ -733,7 +733,7 @@
   "https://6s-success.com/zones/family-room-the-primary-media-zone": "96c164a177d08f95",
   "https://6s-success.com/zones/family-room-the-toy-and-play-zone": "5f7f074e1c5b7ba2",
   "https://6s-success.com/zones/garage-the-automotive-care-zone": "9dd21b01a2be996a",
-  "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "15a209f36b41e697",
+  "https://6s-success.com/zones/garage-the-bulk-and-overhead-storage": "1cb3bf9bd7fb394b",
   "https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets": "2c15a59e951743a7",
   "https://6s-success.com/zones/garage-the-lawn-and-garden-tool-zone": "80c11399e97880df",
   "https://6s-success.com/zones/garage-the-power-tool-and-battery-zone": "1ba34fb87e826e62",
@@ -795,7 +795,7 @@
   "https://6s-success.com/zones/nursery-the-baby-clothing-zone": "0329ea2eb5759301",
   "https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone": "012b8f8b690bad61",
   "https://6s-success.com/zones/nursery-the-changing-station": "5a6af6d2ffe58c9b",
-  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "5ebb26e63937c6d5",
+  "https://6s-success.com/zones/nursery-the-crib-and-sleep-zone": "e094aaedcdd32de2",
   "https://6s-success.com/zones/nursery-the-diaper-and-care-backstock": "8ec928058b6d22db",
   "https://6s-success.com/zones/nursery-the-feeding-station": "2051dc79f2e644e7",
   "https://6s-success.com/zones/pantry-the-backstock-and-bulk": "aab6b02eafcd1161",
