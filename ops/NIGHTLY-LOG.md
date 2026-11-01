@@ -2,6 +2,82 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (02:3x slot): re-ledgered build_messy_article.py (collided with a concurrent PM check-in doing the same fix, merged cleanly), full preflight left running past this slot
+
+**Did.** Checkout arrived shallow and detached; unshallowed for real
+(`git fetch --unshallow`), `checkout main`, `merge --ff-only` onto
+`origin/main`, no reset or force. Read `BACKLOG-2026-09-07.md` sections 0-7,
+`STATUS.md` (open claims, Executive Snapshot, BLOCKER-001), `GOALS.md`
+section 0-1, `OWNER-ACTIONS.md` preamble, and the last several
+`ops/NIGHTLY-LOG.md` entries directly.
+
+**Verified rather than cited.** `ops/check_urls.py` 219/219, `audit_pages.py`
+0 duplicate titles/descriptions, `fix_dashes.py --check` 0/0,
+`affiliate.py --check` 165 documents clean, `link_graph_report.py` 0
+orphans/0 thin/0 dead ends, `cold_read_ledger.py --stale` found one real
+gap (below). GitHub via the MCP tool directly: 16 open issues, same set as
+every recent cycle, all `decision`/`blocked-on-art`/`P0`, none touched by
+Phil since 2026-10-31T21:00:15Z. Current CI (`checks.yml`) on HEAD is
+green. Inbox: `inbox_agent.py --apply` reports no mail credentials, the
+standing gap.
+
+**Found and fixed one real cold-read-ledger gap, then collided with a
+concurrent session fixing the identical thing.** `ops/build_messy_article.py`
+was ledgered clean 2026-10-26 but last touched 2026-10-31 (Phil's own
+bedroom-article commit, `5eaabc827`, added one related-reading link).
+Cold-read the diff, confirmed it was the only change, regenerated and
+confirmed byte-identical to the committed page, re-ledgered. Pushed, then
+on the next fetch found a concurrent PM check-in (`3fb3210b8`) had re-
+ledgered the exact same entry seconds earlier. Merged rather than force a
+duplicate: kept the concurrent cycle's note, dropped mine, resolved the
+JSON conflict by hand, confirmed `cold_read_ledger.py --stale` reports 0
+and the file still parses, pushed the merge (`89f77408d`). This is the
+same collision shape issue #42 and `STATUS.md` section 0 already name;
+recorded here as one more real instance, not a new problem.
+
+**Full `preflight.py` backgrounded, not killed, and still running past
+this slot.** Started at 01:49, reached `gate_tests` within the first
+minute (every gate before it passed, one `cycle_signal` clean-pass
+snapshot recorded), and was still progressing through the suite's
+interactive Chromium tests (confirmed by name: `test_contact_form_
+interactive.py`, then `test_quest_flow.py`) 47 minutes later, CPU time
+far below wall time throughout, consistent with the documented
+slow-not-hung shape rather than a real hang. Left it running in the
+background rather than kill it or substitute a partial result as final;
+whoever picks this up next should check whether it finished clean before
+re-running it from scratch.
+
+**No new unblocked item found.** All 11 remaining global keyword-gap rows
+were already mined by the prior 01:1x cycle (handrail/railing construction
+queries, correctly off-topic); the local `KEYWORD-DEMAND.md` carries 0 gap
+rows. `BACKLOG-2026-09-07.md` sections 2-6 remain fully done or Phil-gated.
+16 open GitHub issues are the same standing decision queue (`#43` through
+`#48` filed 2026-10-29/31, `#42`/`#40`/`#35`/`#15`/`#2`/`#33`/`#21`/`#31`/
+`#29`/`#18`); none answered.
+
+**No notification sent.** The 2026-10-31 ~04:1x push on this exact topic
+(issue #42, the cadence/owner-gate backlog) named an explicit no-repeat
+date of 2026-11-02T04:00Z absent material change; nothing material has
+changed (same 16 issues, same exhausted state, CI green, no Phil reply).
+
+**Went well:** merging a real collision instead of force-pushing a
+duplicate fix over it.
+
+**Did not go well:** the full `preflight.py` run took well over 45 minutes
+this cycle, longer than any previously logged "slow, not hung" run; worth
+the next cycle checking whether the interactive-test count has grown
+enough that this needs its own gate (a time budget, or splitting the
+suite) rather than being re-litigated as a one-off each time.
+
+**Changing next cycle:** none beyond the above observation.
+
+**Next:** check whether the backgrounded `preflight.py` (pid 819) finished
+clean; act on any Phil reply to the 16 open issues; otherwise the same
+standing Phil-gated queue.
+
+Pushed to main: the ledger fix, the merge, command deck regen, this entry.
+No price or product touched; no new page; IndexNow not applicable.
+
 ## PM check-in, 2026-11-01 (02:1x slot): previous work finished and independently reconfirmed, same exhausted state, nothing new to hand the operator
 
 NEXT FOR THE OPERATOR: nothing newly unblocked; hold the standing Phil-gated queue, because all 16 open GitHub issues are `decision`/`blocked-on-art`/P0, none touched by Phil since 2026-10-31T21:00:15Z, and the global keyword-demand gap lane is confirmed still dry.
