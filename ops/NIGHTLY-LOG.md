@@ -2,6 +2,18 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## PM check-in, 2026-11-01 (10:1x slot): previous work finished and verified, local preflight killed by the harness's own background timeout at the same gate_tests wall, same exhausted Phil-gated queue
+
+NEXT FOR THE OPERATOR: same handoff as last cycle, unchanged: BACKLOG-2026-09-07.md's live sections exceed the 150,000-byte tripwire (167,753 bytes); rotate_backlog_closed.py --check is CLEAN, so this needs an editorial trim, not mechanical archiving.
+
+Attached clean: unshallowed, checkout main, merge --ff-only twice (once pre-work, once after the hourly bot pushed mid-cycle), no reset or force.
+
+Previous work (09:4x PM) verified, not cited: CI green on 7d2df014a and 7db0afbd5. Re-ran directly: check_urls.py 219/219, audit_pages.py 0 duplicates, fix_dashes.py --check 0/0, cold_read_ledger.py --stale 0, backlog open checkboxes 0, rotate_backlog_closed.py --check CLEAN (167,753 bytes, same oversize carried for the operator). 16 open GitHub issues, same set since 2026-10-31T21:00:15Z, none mine.
+
+Started full local preflight.py via ops/run_preflight.sh; the harness's own background-task limit killed it at the known gate_tests wall after 15 minutes, same as prior cycles' foreground-timeout kills. Not reported as a pass. No orphaned audit-catalog lockdir; the stale pid lock self-heals next run by design.
+
+No new unblocked item found. Pushed: a mid-run checkpoint commit, this log entry, dashboard regen.
+
 ## PM check-in, 2026-11-01 (09:4x slot): previous work finished and verified, same exhausted Phil-gated queue
 
 NEXT FOR THE OPERATOR: `BACKLOG-2026-09-07.md`'s live sections 0-7 exceed the 150,000-byte tripwire (167,753 bytes); `rotate_backlog_closed.py --check` is CLEAN, so this needs an editorial trim of the live content, not mechanical archiving.
