@@ -23423,7 +23423,13 @@ def gate_backlog_gemini_cost_current() -> None:
     flash, flash_batch, pro = m.group(1), m.group(2), m.group(3)
 
     backlog = io.open(backlog_path, encoding="utf-8").read()
-    row_m = re.search(r"\|\s*3\s*\|\s*\*\*Gemini billing\*\*.*", backlog)
+    # Found live 2026-11-01, scheduled operator cycle: the row's own bold
+    # span grew a trailing period ("**Gemini billing.**", filed-as-issue
+    # prose added 2026-10-31) and this regex required the closing "**"
+    # immediately after "billing" with nothing between, so it went blind
+    # to the real row while the content itself was still correct. Widened
+    # to tolerate a short run of punctuation before the close.
+    row_m = re.search(r"\|\s*3\s*\|\s*\*\*Gemini billing[.:]?\*\*.*", backlog)
     if not row_m:
         warn("backlog-gemini-cost-current",
              "BACKLOG-2026-09-07.md's section 6 'Gemini billing' row has "

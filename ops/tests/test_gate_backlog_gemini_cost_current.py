@@ -37,6 +37,17 @@ BACKLOG_TEMPLATE = (
     "| 4 | Amazon KDP and Etsy accounts | 30 min | buyers already in them |\n"
 )
 
+# Found live 2026-11-01: the real row's bold span grew a trailing period
+# ("**Gemini billing.**", filed-as-issue prose added 2026-10-31), which the
+# original regex (closing "**" immediately after "billing") could not see
+# at all, so the gate went blind rather than flagging the real row.
+BACKLOG_TEMPLATE_WITH_PERIOD = (
+    "| 2 | Search Console | 2 min | done |\n"
+    "| 3 | **Gemini billing.** Filed as #47. | 5 min | every image on the "
+    "roadmap, %s |\n"
+    "| 4 | Amazon KDP and Etsy accounts | 30 min | buyers already in them |\n"
+)
+
 
 def _run(oa_text, backlog_text):
     tmp = tempfile.mkdtemp()
@@ -105,12 +116,26 @@ def main() -> int:
         fails.append("the real committed documents failed: %r"
                      % (preflight.FAIL,))
 
+    # 7. The row's bold span carries a trailing period, the real shape the
+    #    row drifted to on 2026-10-31: still found, and still correctly
+    #    flags a stale figure inside it.
+    r, w = _run(OA_TEMPLATE, BACKLOG_TEMPLATE_WITH_PERIOD % "$13.53 to $47.26")
+    if not r or "backlog-gemini-cost-current" != r[0][0]:
+        fails.append("the period-bearing row shape was not caught: %r"
+                      % (r,))
+
+    # 8. Same period-bearing shape, current figure: no fail.
+    r, w = _run(OA_TEMPLATE, BACKLOG_TEMPLATE_WITH_PERIOD % "$4.32 to $29.62")
+    if r:
+        fails.append("the period-bearing row with a current figure was "
+                      "wrongly flagged: %r" % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_backlog_gemini_cost_current, 6/6 checks pass")
+    print("OK: gate_backlog_gemini_cost_current, 8/8 checks pass")
     return 0
 
 
