@@ -342,9 +342,9 @@
       "note": "Read roughly 700 of 1365 lines in full (all data/appendix/gate logic; the remainder is print CSS) and run directly: all gates pass (0 em/en dashes, 0 brand names, 114 zone cards, 21 room sections, 123 product types, 10 @page rules) across the manual, print edition and both appendices; 0 drift on rerun."
     },
     "build_messy_article.py": {
-      "status": "fixed",
-      "date": "2026-10-26",
-      "note": "Fixed a live British word choice this cycle: 'a fortnight' -> 'two weeks' (fix_dialect.VOCAB, missed by gate_no_british_spellings_shipped before this cycle widened it). Regenerated the page; no other content changed."
+      "status": "clean",
+      "date": "2026-11-01",
+      "note": "Re-ledgered after Phil's own 2026-10-31 commit (5eaabc827) added one related-link <li> to the new bedroom-declutter article. Diffed the full file: the only change is that one link line, target page confirmed to exist. Regenerated and diffed against the committed article: byte-identical. fix_dialect.py and fix_dashes.py --check both clean on the output. No logic or data changed."
     },
     "build_microzone_coverage.py": {
       "status": "clean",
