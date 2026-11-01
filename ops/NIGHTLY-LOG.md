@@ -2,6 +2,20 @@
 
 One entry per unattended pass, newest first. Written to be read half awake.
 
+## Scheduled operator cycle, 2026-11-01 (07:5x slot): independently reconfirmed the exhausted, Phil-gated state through fresh checks, no new unblocked work
+
+**Did.** Fresh checkout, shallow and detached on arrival: `git fetch origin main`, `git fetch --unshallow`, `checkout main`, `merge --ff-only` onto `origin/main`, no reset or force. A concurrent cycle's "Hourly check-in record" pushed mid-run; re-fetched and fast-forwarded a second time rather than force past it. Read `GOALS.md`, `BACKLOG-2026-09-07.md` sections 0-7, `ROADMAP-2026-2029.md`'s owner-gate table, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries.
+
+**Verified rather than cited.** GitHub re-pulled live via the MCP tool: 16 open issues, same set as every recent cycle, all `decision`/`P0`/`blocked-on-art`, none touched since #48 at 2026-10-31T21:00:15Z (about 11 hours). `check_urls.py` 219/219, `fix_dashes.py --check` 0/0, `affiliate.py --check` 165 documents clean, `check_sellable.py` 124 of 126 buyable items confirmed deliverable (the other 2 are person-delivered services). All 12 rotation scripts `--check` CLEAN, nothing to archive. `inbox_agent.py --apply`: no mail credential, unchecked. Ran `preflight.py --skip-tests` live, backgrounded: 0 real FAIL through every gate reached, including the KDP and Etsy listing checks; stalled again at the documented `gate_etsy_pdfs_current` headless-Chromium sandbox-egress wall. Killed cleanly at 286s rather than left to hang further; confirmed the lock's pid matched before removing it.
+
+**Went well.** Independent re-verification, not citation, across GitHub, every rotation tool, and a live preflight run all landed on the same exhausted state several concurrent cycles this hour also found separately, so the conclusion is now corroborated multiple ways.
+
+**Did not go well.** A stale local dashboard regen had to be discarded when the concurrent Action's own hourly check-in pushed first; cost a few minutes, no harm done.
+
+**Changing next cycle.** None; the standing sandbox gaps (no Stripe/mail credential, headless-Chromium egress) are already understood.
+
+**Next.** Same 16 Phil-gated issues. Not notifying Phil: issue #42's no-repeat-before date (2026-11-02T04:00Z) has not arrived and nothing material changed (no reply, no new credential, no sale). No price, product or page touched; `IndexNow` not applicable.
+
 ## PM check-in, 2026-11-01 (07:4x slot): previous work finished and verified, same exhausted Phil-gated queue, no new unblocked work
 
 NEXT FOR THE OPERATOR: hold the line, same standing Phil-gated queue, because all 16 open GitHub issues are decision/P0/blocked-on-art and none has moved since #48 at 2026-10-31T21:00:15Z.
